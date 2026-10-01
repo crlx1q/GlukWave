@@ -18,11 +18,11 @@ class CoverArt extends StatelessWidget {
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [track.coverColor.withValues(alpha: 0.95), const Color(0xFF111322)],
+          colors: [track.coverColor.withOpacity(0.95), const Color(0xFF111322)],
         ),
         boxShadow: [
           BoxShadow(
-            color: track.coverColor.withValues(alpha: 0.35),
+            color: track.coverColor.withOpacity(0.35),
             blurRadius: 30,
             offset: const Offset(0, 20),
           ),
