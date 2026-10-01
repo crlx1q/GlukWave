@@ -21,9 +21,6 @@ jobs:
         with:
           channel: stable
 
-      - name: Ensure Android scaffolding
-        run: flutter create --platforms=android --org com.crlx1q --project-name glukwave .
-
       - name: Install dependencies
         run: flutter pub get
 
