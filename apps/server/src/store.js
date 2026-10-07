@@ -4,7 +4,7 @@ import {MongoClient} from 'mongodb';
 
 export async function openStore(config) {
   if(config.storage==='mongo') {
-    const client=new MongoClient(config.mongoUri);await client.connect();const db=client.db(config.mongoDb);
+    const client=new MongoClient(config.mongoUri,{family:4,autoSelectFamily:false,serverSelectionTimeoutMS:10000});await client.connect();const db=client.db(config.mongoDb);
     await db.collection('users').createIndex({email:1},{unique:true});
     await db.collection('users').createIndex({username:1},{unique:true});
     return {
