@@ -18,9 +18,9 @@ if(e.NODE_ENV !== 'production') {
 }
 export const config={
   root,dataDir,env:e.NODE_ENV||'development',production:e.NODE_ENV==='production',
-  host:e.HOST||'127.0.0.1',port:Number(e.PORT||4000),appUrl:e.APP_URL||'http://127.0.0.1:5173',
+  host:e.HOST||'0.0.0.0',port:Number(e.PORT||4000),appUrl:e.APP_URL||'http://127.0.0.1:5173',
   origins:(e.ALLOWED_ORIGINS||e.APP_URL||'http://127.0.0.1:5173,http://localhost:5173').split(',').map(x=>x.trim()),
-  trustProxy:Number(e.TRUST_PROXY||0),storage:e.DB_DRIVER||'sqlite',mongoUri:e.MONGODB_URI||'',mongoDb:e.MONGODB_DATABASE||'glukwave',
+  trustProxy:Number(e.TRUST_PROXY!==undefined?e.TRUST_PROXY:(e.NODE_ENV==='production'||e.PORT?1:0)),storage:e.DB_DRIVER||'sqlite',mongoUri:e.MONGODB_URI||'',mongoDb:e.MONGODB_DATABASE||'glukwave',
   encryptionKey:e.TOKEN_ENCRYPTION_KEY||keys.encryption,
   adminEmails:(e.ADMIN_EMAILS||'').toLowerCase().split(',').filter(Boolean),
   emailVerify:bool(e.REQUIRE_EMAIL_VERIFICATION,e.NODE_ENV==='production'),
