@@ -24,7 +24,7 @@ export const config={
   encryptionKey:e.TOKEN_ENCRYPTION_KEY||keys.encryption,
   adminEmails:(e.ADMIN_EMAILS||'').toLowerCase().split(',').filter(Boolean),
   emailVerify:bool(e.REQUIRE_EMAIL_VERIFICATION,e.NODE_ENV==='production'),
-  turnstileSiteKey:e.TURNSTILE_SITE_KEY||'',turnstileSecret:e.TURNSTILE_SECRET_KEY||'',
+  turnstileSiteKey:e.TURNSTILE_SITE_KEY||e.TURNSTILE_SITEKEY||'',turnstileSecret:e.TURNSTILE_SECRET_KEY||e.TURNSTILE_SECRET||'',
   smtp:e.SMTP_URL||'',mailFrom:e.MAIL_FROM||'GlukWave <noreply@wave.gluk.tech>',
   google:{id:e.GOOGLE_CLIENT_ID||'',secret:e.GOOGLE_CLIENT_SECRET||''},
   spotify:{id:e.SPOTIFY_CLIENT_ID||'',secret:e.SPOTIFY_CLIENT_SECRET||''},
