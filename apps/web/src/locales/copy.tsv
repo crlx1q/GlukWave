@@ -1,0 +1,751 @@
+# Permanent copy IDs; columns: ID | English | Kazakh | Ukrainian | German | Spanish. Russian is retained in the immutable migration inventory.
+001|Account|Аккаунт|Обліковий запис|Konto|Cuenta
+002|Profile and sign in|Профиль және кіру|Профіль і вхід|Profil und Anmeldung|Perfil e inicio de sesión
+003|Appearance|Безендіру|Оформлення|Aussehen|Apariencia
+004|Colours and motion|Түстер және қозғалыс|Кольори та рух|Farben und Bewegung|Colores y movimiento
+005|Playback|Ойнату|Відтворення|Wiedergabe|Reproducción
+006|Cover and lyrics|Мұқаба және мәтін|Обкладинка та слова|Cover und Liedtext|Portada y letra
+007|Offline music|Офлайн музыка|Музика без мережі|Offline-Musik|Música sin conexión
+008|Files and cache|Файлдар және кеш|Файли та кеш|Dateien und Cache|Archivos y caché
+009|Connections|Қосылымдар|Підключення|Verbindungen|Conexiones
+010|Sources and Discord|Дереккөздер және Discord|Джерела й Discord|Quellen und Discord|Fuentes y Discord
+011|Notifications|Хабарландырулар|Сповіщення|Benachrichtigungen|Notificaciones
+012|Stay connected|Байланыста болу|Бути поруч|In Verbindung bleiben|Mantente cerca
+013|Devices|Құрылғылар|Пристрої|Geräte|Dispositivos
+014|Where your music plays|Музыка ойналатын жер|Де звучить музика|Wo deine Musik spielt|Dónde suena tu música
+015|Shortcuts|Пернелер|Клавіші|Tastenkürzel|Atajos
+016|Little conveniences|Шағын ыңғайлылықтар|Маленькі зручності|Kleine Helfer|Pequeñas comodidades
+017|About|Қолданба туралы|Про застосунок|Über GlukWave|Acerca de
+018|Version and licences|Нұсқа және лицензиялар|Версія та ліцензії|Version und Lizenzen|Versión y licencias
+019|This browser does not support push notifications.|Бұл браузер push хабарландыруларын қолдамайды.|Цей браузер не підтримує push-сповіщення.|Dieser Browser unterstützt keine Push-Nachrichten.|Este navegador no admite notificaciones push.
+020|Notifications are unavailable right now. Try later.|Хабарландырулар қазір қолжетімсіз. Кейін қайтала.|Сповіщення зараз недоступні. Спробуй пізніше.|Benachrichtigungen sind gerade nicht verfügbar. Versuche es später.|Las notificaciones no están disponibles. Inténtalo más tarde.
+021|Allow GlukWave notifications in your browser settings.|Браузер баптауларында GlukWave хабарландыруларына рұқсат бер.|Дозволь сповіщення GlukWave у налаштуваннях браузера.|Erlaube GlukWave-Nachrichten in den Browsereinstellungen.|Permite las notificaciones de GlukWave en tu navegador.
+022|ON YOUR FREQUENCY|ӨЗ ЖИІЛІГІҢДЕ|НА СВОЇЙ ЧАСТОТІ|AUF DEINER FREQUENZ|EN TU FRECUENCIA
+023|Settings|Баптаулар|Налаштування|Einstellungen|Ajustes
+024|Your space. Your rhythm.|Сенің кеңістігің. Сенің ырғағың.|Твій простір. Твій ритм.|Dein Raum. Dein Rhythmus.|Tu espacio. Tu ritmo.
+025|Settings sections|Баптау бөлімдері|Розділи налаштувань|Einstellungsbereiche|Secciones de ajustes
+026|Settings section|Баптау бөлімі|Розділ налаштувань|Einstellungsbereich|Sección de ajustes
+027|Save music automatically|Музыканы автоматты сақтау|Зберігати музику автоматично|Musik automatisch speichern|Guardar música automáticamente
+028|Your audio files stay cached after listening.|Аудиофайлдарың тыңдағаннан кейін кеште қалады.|Твої аудіофайли залишаються в кеші після прослуховування.|Deine Audiodateien bleiben nach dem Hören im Cache.|Tus archivos de audio quedan en caché después de escucharlos.
+029|Space for music|Музыкаға орын|Місце для музики|Platz für Musik|Espacio para música
+030|The oldest automatic cache is removed when full.|Орын толса, ең ескі автоматты кеш жойылады.|Коли місце закінчується, найстаріший автоматичний кеш видаляється.|Bei vollem Speicher wird der älteste automatische Cache entfernt.|Cuando se llena, se elimina la caché automática más antigua.
+031|Cache limit|Кеш шегі|Ліміт кешу|Cache-Limit|Límite de caché
+032|Your account|Сенің аккаунтың|Твій обліковий запис|Dein Konto|Tu cuenta
+033|Email|Электрондық пошта|Пошта|E-Mail|Correo
+034|Verified|Расталған|Підтверджено|Bestätigt|Verificado
+035|Awaiting verification|Растауды күтуде|Очікує підтвердження|Bestätigung ausstehend|Pendiente de verificación
+036|Email sent|Хат жіберілді|Лист надіслано|E-Mail gesendet|Correo enviado
+037|Send email|Хат жіберу|Надіслати лист|E-Mail senden|Enviar correo
+038|Collapse profile|Профильді жинау|Згорнути профіль|Profil einklappen|Contraer perfil
+039|Edit profile|Профильді өңдеу|Редагувати профіль|Profil bearbeiten|Editar perfil
+040|Sign out on this device|Осы құрылғыдан шығу|Вийти на цьому пристрої|Auf diesem Gerät abmelden|Cerrar sesión aquí
+041|Your private cache will be removed from this browser.|Жеке кешің осы браузерден жойылады.|Особистий кеш буде видалено з цього браузера.|Dein privater Cache wird aus diesem Browser entfernt.|Tu caché personal se eliminará de este navegador.
+042|Sign out|Шығу|Вийти|Abmelden|Cerrar sesión
+043|Keep your music close|Музыкаң жаныңда болсын|Нехай музика буде поруч|Deine Musik bleibt nah|Tu música, siempre cerca
+044|Sign in or create an account|Кіру немесе аккаунт ашу|Увійти або створити обліковий запис|Anmelden oder Konto erstellen|Iniciar sesión o crear cuenta
+045|Your profile and library follow you across devices.|Профилің мен медиатекаң құрылғыларыңда қолжетімді болады.|Профіль і медіатека будуть доступні на твоїх пристроях.|Profil und Mediathek sind auf deinen Geräten verfügbar.|Tu perfil y biblioteca estarán en tus dispositivos.
+046|Lyrics beside your music|Музыка жанындағы мәтін|Слова поруч із музикою|Liedtext neben der Musik|La letra junto a tu música
+047|Real lyrics from an LRC or your file, below the cover.|LRC не файлыңдағы нақты мәтін мұқабаның астында.|Справжній текст із LRC або твого файлу під обкладинкою.|Echter Text aus LRC oder deiner Datei unter dem Cover.|Letra real de un archivo LRC o tuyo, bajo la portada.
+048|3D cover|Көлемді мұқаба|Об'ємна обкладинка|3D-Cover|Portada 3D
+049|Rotate the cover on desktop. Flat mode shows the image.|Компьютерде мұқабаны айналдыр. Жазық режимде тек сурет көрсетіледі.|На ПК обкладинку можна обертати. Плаский режим показує зображення.|Am PC lässt sich das Cover drehen. Der flache Modus zeigt das Bild.|Gira la portada en el ordenador. El modo plano muestra la imagen.
+050|Behind the cover|Мұқаба артында|За обкладинкою|Hinter dem Cover|Detrás de la portada
+051|Vinyl or CD in 3D mode.|Көлемді режимдегі винил не CD.|Вініл або CD в об'ємному режимі.|Vinyl oder CD im 3D-Modus.|Vinilo o CD en modo 3D.
+052|Cover medium|Мұқаба тасымалдағышы|Носій обкладинки|Cover-Medium|Soporte de portada
+053|Vinyl|Винил|Вініл|Vinyl|Vinilo
+054|Volume on this device|Осы құрылғыдағы дыбыс|Гучність цього пристрою|Lautstärke dieses Geräts|Volumen de este dispositivo
+055|Swipe sideways for another queued track. Pull the mini player up to open your music.|Кезектегі тректі ауыстыру үшін жанға сырғыт. Музыканы ашу үшін шағын плеерді жоғары тарт.|Свайп убік змінює трек із черги. Потягни мініплеєр угору, щоб відкрити музику.|Seitlich wischen wechselt den Titel. Ziehe den Miniplayer nach oben, um ihn zu öffnen.|Desliza a los lados para cambiar de pista. Arrastra el minirreproductor hacia arriba para abrirlo.
+056|Push notifications|Push хабарландырулары|Push-сповіщення|Push-Nachrichten|Notificaciones push
+057|Invitations, messages and updates from GlukWave.|GlukWave шақырулары, хабарламалары және жаңалықтары.|Запрошення, повідомлення та новини GlukWave.|Einladungen, Nachrichten und Neuigkeiten von GlukWave.|Invitaciones, mensajes y novedades de GlukWave.
+058|Invitations stay in the app. Push notifications are currently unavailable.|Шақырулар қолданбада қалады. Push хабарландырулары қазір қолжетімсіз.|Запрошення залишаються в застосунку. Push-сповіщення зараз недоступні.|Einladungen bleiben in der App. Push-Nachrichten sind gerade nicht verfügbar.|Las invitaciones quedan en la aplicación. Las notificaciones push no están disponibles.
+059|Discord presence|Discord белсенділігі|Присутність у Discord|Discord-Aktivität|Presencia en Discord
+060|Show your music through the linked GlukWave desktop app.|Музыкаңды байланысқан GlukWave компьютер қолданбасы арқылы көрсету.|Показувати музику через пов'язаний застосунок GlukWave на ПК.|Zeige deine Musik über die verbundene GlukWave-Desktop-App.|Muestra tu música con la aplicación de GlukWave vinculada al ordenador.
+061|Open connections|Қосылымдарды ашу|Відкрити підключення|Verbindungen öffnen|Abrir conexiones
+062|Your devices|Сенің құрылғыларың|Твої пристрої|Deine Geräte|Tus dispositivos
+063|Use one account on your phone and computer. Transfer music with its position and queue.|Телефон мен компьютерде бір аккаунтты қолдан. Музыканы орнымен және кезегімен бірге тасымалда.|Увійди в один обліковий запис на телефоні й ПК. Передавай музику з позицією та чергою.|Nutze ein Konto auf Handy und PC. Übertrage Musik mit Position und Warteschlange.|Usa una cuenta en móvil y ordenador. Transfiere música con su posición y cola.
+064|Online|Желіде|У мережі|Online|En línea
+065|Offline|Желіде емес|Не в мережі|Offline|Sin conexión
+066|Devices appear after you sign in.|Құрылғылар кіргеннен кейін пайда болады.|Пристрої з'являться після входу.|Geräte erscheinen nach der Anmeldung.|Los dispositivos aparecerán al iniciar sesión.
+067|Manage devices|Құрылғыларды басқару|Керувати пристроями|Geräte verwalten|Gestionar dispositivos
+068|Play / pause|Ойнату / кідірту|Відтворення / пауза|Wiedergabe / Pause|Reproducir / pausar
+069|Find music|Музыка табу|Знайти музику|Musik finden|Buscar música
+070|Previous / next track|Алдыңғы / келесі трек|Попередній / наступний трек|Vorheriger / nächster Titel|Pista anterior / siguiente
+071|Close player or dialog|Плеерді не терезені жабу|Згорнути плеєр або вікно|Player oder Fenster schließen|Cerrar reproductor o ventana
+072|Playback shortcuts work outside text fields.|Ойнату пернелері мәтін өрістерінен тыс жұмыс істейді.|Клавіші відтворення працюють поза полями вводу.|Wiedergabetasten funktionieren außerhalb von Eingabefeldern.|Los atajos de reproducción funcionan fuera de los campos de texto.
+073|Your music. Your rhythm. Personal files, official source players and your own space for sound.|Сенің музыкаң. Сенің ырғағың. Жеке файлдар, ресми плеерлер және дыбысқа арналған өз кеңістігің.|Твоя музика. Твій ритм. Особисті файли, офіційні плеєри й власний простір для звуку.|Deine Musik. Dein Rhythmus. Eigene Dateien, offizielle Player und dein Raum für Klang.|Tu música. Tu ritmo. Archivos personales, reproductores oficiales y tu espacio para el sonido.
+074|Interface font · SIL Open Font License|Интерфейс қарпі · SIL Open Font License|Шрифт інтерфейсу · SIL Open Font License|Schrift · SIL Open Font License|Fuente · SIL Open Font License
+075|Licence|Лицензия|Ліцензія|Lizenz|Licencia
+076|Libraries and copyrights|Кітапханалар және авторлық құқықтар|Бібліотеки та авторські права|Bibliotheken und Urheberrechte|Bibliotecas y derechos de autor
+077|External music belongs to its rights holders. Each source sets its availability and playback terms.|Сыртқы музыка құқық иелеріне тиесілі. Қолжетімділік пен ойнату шарттарын дереккөз белгілейді.|Зовнішня музика належить правовласникам. Джерело визначає доступність і умови відтворення.|Externe Musik gehört ihren Rechteinhabern. Die Quelle bestimmt Verfügbarkeit und Wiedergabe.|La música externa pertenece a sus titulares. Cada fuente establece su disponibilidad y condiciones.
+078|Avatar updated|Аватар жаңартылды|Аватар оновлено|Avatar aktualisiert|Avatar actualizado
+079|Banner updated|Баннер жаңартылды|Банер оновлено|Banner aktualisiert|Banner actualizado
+080|MUSIC TELLS YOUR STORY|МУЗЫКА СЕН ТУРАЛЫ АЙТАДЫ|МУЗИКА РОЗПОВІДАЄ ПРО ТЕБЕ|MUSIK ERZÄHLT DEINE GESCHICHTE|LA MÚSICA HABLA DE TI
+081|Your profile|Сенің профилің|Твій профіль|Dein Profil|Tu perfil
+082|On your frequency|Өз жиілігіңде|На своїй частоті|Auf deiner Frequenz|En tu frecuencia
+083|Create your profile|Профиліңді жасау|Створити свій профіль|Dein Profil erstellen|Crear tu perfil
+084|An avatar, a banner, your collections and a little about you.|Аватар, баннер, жинақтарың және өзің туралы.|Аватар, банер, колекції та трохи про себе.|Avatar, Banner, Sammlungen und etwas über dich.|Avatar, banner, colecciones y un poco sobre ti.
+085|Loading…|Жүктелуде…|Завантажуємо…|Wird geladen…|Cargando…
+086|Change banner|Баннерді өзгерту|Змінити банер|Banner ändern|Cambiar banner
+087|Your avatar|Сенің аватарың|Твій аватар|Dein Avatar|Tu avatar
+088|A LITTLE ABOUT YOU|ӨЗІҢ ТУРАЛЫ|ТРОХИ ПРО ТЕБЕ|ETWAS ÜBER DICH|UN POCO SOBRE TI
+089|A few words about you, your favourite sound or what matters now.|Өзің, сүйікті дыбысың немесе қазір маңызды нәрсе туралы бірнеше сөз.|Кілька слів про себе, улюблений звук чи те, що зараз важливе.|Ein paar Worte über dich, deinen Lieblingsklang oder das, was dir wichtig ist.|Unas palabras sobre ti, tu sonido favorito o lo que importa ahora.
+090|tracks|трек|треків|Titel|pistas
+091|playlists|плейлист|плейлистів|Playlists|listas
+092|liked|ұнаған|улюблених|Favoriten|favoritas
+093|On our wave since|Біздің толқында|На нашій хвилі з|Bei uns seit|En nuestra onda desde
+094|Email verified|Пошта расталған|Пошту підтверджено|E-Mail bestätigt|Correo verificado
+095|Email not verified yet|Пошта әлі расталмаған|Пошту ще не підтверджено|E-Mail noch nicht bestätigt|Correo aún sin verificar
+096|Open admin console|Әкімші консолін ашу|Відкрити консоль адміністратора|Admin-Konsole öffnen|Abrir consola de administrador
+097|ROOM FOR EVERY SOUND|ӘР МУЗЫКАҒА ОРЫН|МІСЦЕ ДЛЯ РІЗНОЇ МУЗИКИ|PLATZ FÜR JEDEN KLANG|ESPACIO PARA CADA SONIDO
+098|On your side|Сенің жағыңда|На твоєму боці|An deiner Seite|De tu lado
+099|JUST BE IN THE MUSIC|МУЗЫКАДА БОЛ|ПРОСТО БУТИ В МУЗИЦІ|EINFACH IN DER MUSIK SEIN|SOLO VIVE LA MÚSICA
+100|Your library, files, playlists and music across your devices.|Медиатекаң, файлдарың, плейлистерің және құрылғыларыңдағы музыка.|Медіатека, файли, плейлисти та музика на твоїх пристроях.|Mediathek, Dateien, Playlists und Musik auf deinen Geräten.|Biblioteca, archivos, listas y música en tus dispositivos.
+101|FIRST ON THE WAVE|ТОЛҚЫНДА АЛҒАШҚЫ|РАНІШЕ ЗА ВСІХ НА ХВИЛІ|ZUERST AUF DER WELLE|PRIMERO EN LA ONDA
+102|Unbound features in the beta programme, with a badge for helping GlukWave grow.|Бета бағдарламасындағы Unbound мүмкіндіктері және GlukWave дамуына көмектесу белгісі.|Можливості Unbound у бета-програмі та знак допомоги розвитку GlukWave.|Unbound-Funktionen im Betaprogramm und ein Abzeichen für deine Unterstützung.|Funciones de Unbound en el programa beta y una insignia por ayudar a GlukWave.
+103|NOTHING BETWEEN YOU AND THE MUSIC|СЕН ЖӘНЕ МУЗЫКА|НІЧОГО ЗАЙВОГО МІЖ ВАМИ|NÄHER AN DER MUSIK|MÁS CERCA DE LA MÚSICA
+104|All available features without plan limits. GlukWave's only paid level.|Барлық қолжетімді мүмкіндіктер тариф шектеулерінсіз. GlukWave жалғыз ақылы деңгейі.|Усі доступні можливості без обмежень тарифу. Єдиний платний рівень GlukWave.|Alle verfügbaren Funktionen ohne Tariflimits. Der einzige kostenpflichtige GlukWave-Tarif.|Todas las funciones disponibles sin límites del plan. El único nivel de pago de GlukWave.
+105|Your level|Сенің деңгейің|Твій рівень|Dein Tarif|Tu nivel
+106|By invitation to the beta programme|Бета бағдарламасына шақыру бойынша|За запрошенням у бета-програму|Auf Einladung ins Betaprogramm|Por invitación al programa beta
+107|A subscription to all available features|Барлық қолжетімді мүмкіндіктерге жазылым|Підписка на всі доступні можливості|Abo für alle verfügbaren Funktionen|Suscripción a todas las funciones disponibles
+108|Unbound subscriptions are currently unavailable|Unbound жазылымы қазір қолжетімсіз|Оформлення Unbound зараз недоступне|Unbound-Abos sind gerade nicht verfügbar|La suscripción a Unbound no está disponible
+109|Basic level|Негізгі деңгей|Базовий рівень|Basistarif|Nivel básico
+110|Manage subscription|Жазылымды басқару|Керувати підпискою|Abo verwalten|Gestionar suscripción
+111|Explore Unbound|Unbound ашу|Відкрити Unbound|Unbound entdecken|Explorar Unbound
+112|Subscriptions unavailable|Жазылым қолжетімсіз|Оформлення недоступне|Abos nicht verfügbar|Suscripciones no disponibles
+113|You can manage your subscription at any time.|Жазылымыңды кез келген уақытта басқара аласың.|Підпискою можна керувати будь-коли.|Du kannst dein Abo jederzeit verwalten.|Puedes gestionar tu suscripción en cualquier momento.
+114|Unbound subscriptions are currently unavailable.|Unbound жазылымы қазір қолжетімсіз.|Оформлення Unbound зараз недоступне.|Unbound-Abos sind gerade nicht verfügbar.|La suscripción a Unbound no está disponible.
+115|This is your sound|Сен осылай естілесің|Так звучиш ти|So klingst du|Así suenas tú
+116|Profile saved|Профиль сақталды|Профіль збережено|Profil gespeichert|Perfil guardado
+117|Name|Аты|Ім'я|Name|Nombre
+118|Tag|Тег|Тег|Tag|Etiqueta
+119|About you|Өзің туралы|Про себе|Über dich|Sobre ti
+120|Tags, separated by commas|Үтірмен бөлінген тегтер|Теги через кому|Tags, mit Kommas getrennt|Etiquetas separadas por comas
+121|ambient, evening, on my wave|ambient, кеш, өз толқынымда|ambient, вечір, на своїй хвилі|ambient, Abend, auf meiner Welle|ambient, noche, en mi onda
+122|Animated GIFs work for avatars and banners.|Аватар мен баннер үшін анимациялық GIF қолдау бар.|Анімовані GIF підтримуються для аватара й банера.|Animierte GIFs funktionieren für Avatar und Banner.|Se admiten GIF animados para el avatar y el banner.
+123|Save profile|Профильді сақтау|Зберегти профіль|Profil speichern|Guardar perfil
+124|Administrators only|Тек әкімшілерге|Лише для адміністраторів|Nur für Administratoren|Solo administradores
+125|This console requires an administrator account.|Консоль үшін әкімші аккаунты қажет.|Консоль потребує облікового запису адміністратора.|Diese Konsole benötigt ein Administratorkonto.|Esta consola requiere una cuenta de administrador.
+126|EVERYTHING ON ITS FREQUENCY|БАРЛЫҒЫ ӨЗ ЖИІЛІГІНДЕ|УСЕ НА СВОЇХ ЧАСТОТАХ|ALLES AUF SEINER FREQUENZ|CADA COSA EN SU FRECUENCIA
+127|GlukWave console|GlukWave консолі|Консоль GlukWave|GlukWave-Konsole|Consola GlukWave
+128|People, server status and events.|Адамдар, сервер күйі және оқиғалар.|Люди, стан сервера та події.|Nutzer, Serverstatus und Ereignisse.|Personas, estado del servidor y eventos.
+129|Refresh|Жаңарту|Оновити|Aktualisieren|Actualizar
+130|Fetching server status…|Сервер күйі жүктелуде…|Отримуємо стан сервера…|Serverstatus wird geladen…|Cargando estado del servidor…
+131|USERS|ПАЙДАЛАНУШЫЛАР|КОРИСТУВАЧІ|NUTZER|USUARIOS
+132|TRACKS|ТРЕКТЕР|ТРЕКИ|TITEL|PISTAS
+133|ROOMS|БӨЛМЕЛЕР|КІМНАТИ|RÄUME|SALAS
+134|PLAYLISTS|ПЛЕЙЛИСТЕР|ПЛЕЙЛИСТИ|PLAYLISTS|LISTAS
+135|DEVICES|ҚҰРЫЛҒЫЛАР|ПРИСТРОЇ|GERÄTE|DISPOSITIVOS
+136|STORAGE|ҚОЙМА|СХОВИЩЕ|SPEICHER|ALMACENAMIENTO
+137|Users|Пайдаланушылар|Користувачі|Nutzer|Usuarios
+138|User plan updated|Пайдаланушы деңгейі жаңартылды|Рівень користувача оновлено|Nutzertarif aktualisiert|Plan actualizado
+139|Role updated|Рөл жаңартылды|Роль оновлено|Rolle aktualisiert|Rol actualizado
+140|User|Пайдаланушы|Користувач|Nutzer|Usuario
+141|Administrator|Әкімші|Адміністратор|Administrator|Administrador
+142|User unblocked|Пайдаланушы ашылды|Користувача розблоковано|Nutzer entsperrt|Usuario desbloqueado
+143|User blocked|Пайдаланушы бұғатталды|Користувача заблоковано|Nutzer gesperrt|Usuario bloqueado
+144|Unblock|Бұғаттан шығару|Розблокувати|Entsperren|Desbloquear
+145|Block|Бұғаттау|Заблокувати|Sperren|Bloquear
+146|Events|Оқиғалар|Події|Ereignisse|Eventos
+147|System|Жүйе|Система|System|Sistema
+148|Details|Мәліметтер|Деталі|Details|Detalles
+149|No events yet.|Әзірге оқиғалар жоқ.|Поки немає подій.|Noch keine Ereignisse.|Aún no hay eventos.
+150|Local mail|Жергілікті пошта|Локальна пошта|Lokale E-Mails|Correo local
+151|Real verification and recovery messages queued without SMTP.|SMTP жоқ растау және қалпына келтіру хаттары.|Справжні листи підтвердження й відновлення в черзі без SMTP.|Echte Bestätigungs- und Wiederherstellungsnachrichten ohne SMTP.|Mensajes reales de verificación y recuperación en cola sin SMTP.
+152|Open mail log|Пошта журналын ашу|Відкрити журнал пошти|E-Mail-Protokoll öffnen|Abrir registro de correo
+153|Message|Хат|Лист|Nachricht|Mensaje
+154|No server data|Сервер деректері жоқ|Немає даних сервера|Keine Serverdaten|Sin datos del servidor
+155|Try refreshing.|Жаңартып көр.|Спробуй оновити.|Versuche zu aktualisieren.|Intenta actualizar.
+156|Track cover|Трек мұқабасы|Обкладинка треку|Titelcover|Portada de la pista
+157|ON YOUR WAVE|ӨЗ ТОЛҚЫНЫҢДА|НА ТВОЇЙ ХВИЛІ|AUF DEINER WELLE|EN TU ONDA
+158|Cover appearance|Мұқаба безендіруі|Оформлення обкладинки|Cover-Aussehen|Apariencia de portada
+159|3D|Көлемді|Об'ємна|3D|3D
+160|Flat|Жазық|Пласка|Flach|Plana
+161|Flip cover|Мұқабаны аудару|Перевернути обкладинку|Cover umdrehen|Girar portada
+162|Reset cover position|Мұқаба орнын қайтару|Скинути положення обкладинки|Coverposition zurücksetzen|Restablecer portada
+163|On mobile: swipe sideways for tracks, down to close. Rotate the cover on desktop.|Телефонда: жанға — трек, төмен — жабу. Компьютерде мұқабаны айналдыр.|На телефоні: убік — трек, униз — згорнути. На ПК обертай обкладинку.|Am Handy: seitlich für Titel, nach unten zum Schließen. Am PC das Cover drehen.|En móvil: a los lados para cambiar, abajo para cerrar. En ordenador, gira la portada.
+164|Drag the cover or rotate it with arrow keys.|Мұқабаны тарт немесе көрсеткі пернелерімен айналдыр.|Потягни обкладинку або обертай стрілками.|Ziehe das Cover oder drehe es mit den Pfeiltasten.|Arrastra la portada o gírala con las flechas.
+165|Flat cover — a little calmer.|Жазық мұқаба — тынышырақ.|Пласка обкладинка — трохи спокійніше.|Flaches Cover — etwas ruhiger.|Portada plana: un poco más de calma.
+166|No connection. Check your network and try again.|Қосылым жоқ. Желіні тексеріп, қайтала.|Немає з'єднання. Перевір мережу й спробуй знову.|Keine Verbindung. Prüfe dein Netzwerk und versuche es erneut.|Sin conexión. Revisa la red e inténtalo de nuevo.
+167|That didn't work. Please try again.|Әрекет орындалмады. Қайталап көр.|Не вдалося. Спробуй знову.|Das hat nicht geklappt. Versuche es erneut.|No se pudo completar. Inténtalo de nuevo.
+168|That didn't work.|Әрекет орындалмады.|Не вдалося виконати дію.|Das hat nicht geklappt.|No se pudo completar.
+169|This service is unavailable. Try later.|Сервис қолжетімсіз. Кейін қайтала.|Сервіс недоступний. Спробуй пізніше.|Der Dienst ist nicht verfügbar. Versuche es später.|El servicio no está disponible. Inténtalo más tarde.
+170|Home|Басты|Головна|Start|Inicio
+171|Explore|Зерттеу|Дослідити|Entdecken|Explorar
+172|Library|Медиатека|Медіатека|Mediathek|Biblioteca
+173|Listen together|Бірге тыңдау|Слухати разом|Gemeinsam hören|Escuchar juntos
+174|The wave paused for a moment.|Толқын сәл кідірді.|Хвиля на мить збилася.|Die Welle hat kurz gestockt.|La onda se detuvo un momento.
+175|Reload the app. Your library is safe.|Қолданбаны қайта жүкте. Медиатекаң сақталған.|Перезавантаж застосунок. Медіатеку збережено.|Lade die App neu. Deine Mediathek ist sicher.|Recarga la aplicación. Tu biblioteca está guardada.
+176|Back to music|Музыкаға оралу|Повернутися до музики|Zurück zur Musik|Volver a la música
+177|Could not finish connecting.|Қосылуды аяқтау мүмкін болмады.|Не вдалося завершити підключення.|Verbindung konnte nicht abgeschlossen werden.|No se pudo completar la conexión.
+178|Email verified.|Пошта расталды.|Пошту підтверджено.|E-Mail bestätigt.|Correo verificado.
+179|Source account connected. Choose music to import.|Дереккөз аккаунты қосылды. Тасымалдайтын музыканы таңда.|Обліковий запис джерела підключено. Обери музику для перенесення.|Quellkonto verbunden. Wähle Musik zum Importieren.|Cuenta de la fuente conectada. Elige música para importar.
+180|Skip to content|Мазмұнға өту|До вмісту|Zum Inhalt|Ir al contenido
+181|GlukWave — home|GlukWave — басты|GlukWave — головна|GlukWave — Start|GlukWave — inicio
+182|YOUR SPACE|СЕНІҢ КЕҢІСТІГІҢ|ТВІЙ ПРОСТІР|DEIN RAUM|TU ESPACIO
+183|Main navigation|Негізгі навигация|Головна навігація|Hauptnavigation|Navegación principal
+184|MUSICAL WORLDS|МУЗЫКАЛЫҚ ӘЛЕМДЕР|МУЗИЧНІ СВІТИ|MUSIKWELTEN|MUNDOS MUSICALES
+185|Connect sources|Дереккөздерді қосу|Підключити джерела|Quellen verbinden|Conectar fuentes
+186|Music sources|Музыка дереккөздері|Джерела музики|Musikquellen|Fuentes de música
+187|Yandex Music|Яндекс Музыка|Яндекс Музика|Yandex Music|Yandex Music
+188|YOUR COLLECTION|СЕНІҢ ЖИНАҒЫҢ|ТВОЯ КОЛЕКЦІЯ|DEINE SAMMLUNG|TU COLECCIÓN
+189|Open playlists|Плейлистерді ашу|Відкрити плейлисти|Playlists öffnen|Abrir listas
+190|Liked|Ұнағандар|Улюблені|Favoriten|Favoritas
+191|On this device|Құрылғыда|На пристрої|Auf diesem Gerät|En este dispositivo
+192|Make GlukWave yours|GlukWave өзіңше|Зроби GlukWave своїм|Dein eigenes GlukWave|GlukWave a tu manera
+193|Make it your own|Өзіңше бапта|Налаштуй під себе|Nach deinem Geschmack|Personalízalo
+194|Offline mode|Офлайн режим|Офлайн-режим|Offline-Modus|Modo sin conexión
+195|Go home|Бастыға|На головну|Zur Startseite|Ir a inicio
+196|Previous screen|Алдыңғы экран|Попередній екран|Vorherige Ansicht|Pantalla anterior
+197|Next screen|Келесі экран|Наступний екран|Nächste Ansicht|Pantalla siguiente
+198|Music, people, mood…|Музыка, адамдар, көңіл күй…|Музика, люди, настрій…|Musik, Menschen, Stimmung…|Música, personas, ánimo…
+199|All sections|Барлық бөлім|Усі розділи|Alle Bereiche|Todas las secciones
+200|YOUR MUSIC · YOUR RHYTHM|СЕНІҢ МУЗЫКАҢ · СЕНІҢ ЫРҒАҒЫҢ|ТВОЯ МУЗИКА · ТВІЙ РИТМ|DEINE MUSIK · DEIN RHYTHMUS|TU MÚSICA · TU RITMO
+201|Switch to light theme|Ашық тақырыпқа ауысу|Увімкнути світлу тему|Helles Design einschalten|Activar tema claro
+202|Switch to dark theme|Қараңғы тақырыпқа ауысу|Увімкнути темну тему|Dunkles Design einschalten|Activar tema oscuro
+203|Open profile|Профильді ашу|Відкрити профіль|Profil öffnen|Abrir perfil
+204|Sign in to your account|Аккаунтқа кіру|Увійти в обліковий запис|Im Konto anmelden|Iniciar sesión
+205|No connection. Saved music is still available.|Қосылым жоқ. Сақталған музыка қолжетімді.|Немає з'єднання. Збережена музика доступна.|Keine Verbindung. Gespeicherte Musik bleibt verfügbar.|Sin conexión. La música guardada sigue disponible.
+206|Verify your email|Поштаңды раста|Підтверди пошту|Bestätige deine E-Mail|Verifica tu correo
+207| to use your account.| аккаунтыңды пайдалану үшін.|, щоб користуватися обліковим записом.|, um dein Konto zu nutzen.| para usar tu cuenta.
+208|Verification email sent|Растау хаты жіберілді|Лист підтвердження надіслано|Bestätigungs-E-Mail gesendet|Correo de verificación enviado
+209|Resend email|Хатты қайта жіберу|Надіслати лист знову|E-Mail erneut senden|Reenviar correo
+210|Mobile navigation|Мобильді навигация|Мобільна навігація|Mobile Navigation|Navegación móvil
+211|Search|Іздеу|Пошук|Suche|Buscar
+212|Together|Бірге|Разом|Zusammen|Juntos
+213|Music shared with you|Сенімен бөліскен музыка|Музика, якою поділилися|Mit dir geteilte Musik|Música compartida contigo
+214|Listen to track|Тректі тыңдау|Послухати трек|Titel hören|Escuchar pista
+215|Everything on your wave|Өз толқыныңдағы барлығы|Усе на твоїй хвилі|Alles auf deiner Welle|Todo en tu onda
+216|Sources and imports|Дереккөздер және тасымалдау|Джерела та перенесення|Quellen und Import|Fuentes e importación
+217|Saved music|Сақталған музыка|Збережена музика|Gespeicherte Musik|Música guardada
+218|Admin console|Әкімші консолі|Консоль адміністратора|Admin-Konsole|Consola de administrador
+219|New on your wave|Толқыныңдағы жаңалық|Нове на твоїй хвилі|Neu auf deiner Welle|Novedades en tu onda
+220|Open →|Ашу →|Відкрити →|Öffnen →|Abrir →
+221|Quiet for now|Әзірге тыныш|Поки тихо|Noch ganz ruhig|Todo tranquilo
+222|Messages and invitations will appear here.|Хабарламалар мен шақырулар осында пайда болады.|Повідомлення й запрошення з'являться тут.|Nachrichten und Einladungen erscheinen hier.|Los mensajes e invitaciones aparecerán aquí.
+223|GlukWave in a desktop browser|GlukWave компьютер браузерінде|GlukWave у браузері на ПК|GlukWave im Desktop-Browser|GlukWave en el navegador del ordenador
+224|GlukWave in your browser|GlukWave браузерде|GlukWave у браузері|GlukWave im Browser|GlukWave en tu navegador
+225|You're on your wave. Welcome!|Өз толқыныңдасың. Қош келдің!|Ти на своїй хвилі. Вітаємо!|Du bist auf deiner Welle. Willkommen!|Estás en tu onda. ¡Bienvenido!
+226|Password updated. You can sign in now.|Құпиясөз жаңартылды. Енді кіре аласың.|Пароль оновлено. Тепер можна увійти.|Passwort geändert. Du kannst dich anmelden.|Contraseña actualizada. Ya puedes iniciar sesión.
+227|Account created. Welcome to your wave!|Аккаунт ашылды. Өз толқыныңа қош келдің!|Обліковий запис створено. Вітаємо на своїй хвилі!|Konto erstellt. Willkommen auf deiner Welle!|Cuenta creada. ¡Bienvenido a tu onda!
+228|Welcome back!|Қайта келгеніңе қуаныштымыз!|З поверненням!|Willkommen zurück!|¡Bienvenido de nuevo!
+229|Your music starts here|Музыкаң осы жерден басталады|Твоя музика починається тут|Deine Musik beginnt hier|Tu música empieza aquí
+230|Recover access|Қолжетімділікті қалпына келтіру|Відновити доступ|Zugang wiederherstellen|Recuperar acceso
+231|New password|Жаңа құпиясөз|Новий пароль|Neues Passwort|Nueva contraseña
+232|Sign in with QR|QR арқылы кіру|Увійти за QR|Mit QR anmelden|Entrar con QR
+233|Welcome back|Қайта қош келдің|З поверненням|Willkommen zurück|Bienvenido de nuevo
+234|One account. All your musical worlds.|Бір аккаунт. Барлық музыкалық әлемің.|Один обліковий запис. Усі твої музичні світи.|Ein Konto. All deine Musikwelten.|Una cuenta. Todos tus mundos musicales.
+235|Creating QR code…|QR код жасалуда…|Створюємо QR-код…|QR-Code wird erstellt…|Creando código QR…
+236|QR code to sign in to GlukWave|GlukWave кіру QR коды|QR-код для входу в GlukWave|QR-Code zur GlukWave-Anmeldung|Código QR para entrar a GlukWave
+237|Code expired. Create a new one.|Кодтың мерзімі өтті. Жаңасын жаса.|Термін коду минув. Створи новий.|Code abgelaufen. Erstelle einen neuen.|El código ha caducado. Crea uno nuevo.
+238|Scan the code with your phone camera and approve the sign-in in your account.|Кодты телефон камерасымен сканерлеп, аккаунтыңда кіруді раста.|Відскануй код камерою телефона й підтверди вхід у своєму акаунті.|Scanne den Code mit der Handykamera und bestätige die Anmeldung in deinem Konto.|Escanea el código con tu móvil y confirma el acceso en tu cuenta.
+239|Valid until|Дейін жарамды|Діє до|Gültig bis|Válido hasta
+240|New code|Жаңа код|Новий код|Neuer Code|Nuevo código
+241|Sign in with email|Пошта арқылы кіру|Увійти за поштою|Mit E-Mail anmelden|Entrar con correo
+242|Check your email|Поштаңды тексер|Перевір пошту|Prüfe dein Postfach|Revisa tu correo
+243|If this account exists, a recovery link will arrive at that email. Check your spam folder too.|Мұндай аккаунт бар болса, қалпына келтіру сілтемесі поштаға келеді. Спамды да тексер.|Якщо акаунт існує, посилання на відновлення прийде на пошту. Перевір також спам.|Wenn das Konto existiert, erhältst du einen Wiederherstellungslink. Prüfe auch den Spamordner.|Si la cuenta existe, recibirás un enlace de recuperación. Revisa también el spam.
+244|Back to sign in|Кіруге оралу|Повернутися до входу|Zur Anmeldung|Volver al inicio de sesión
+245|What should we call you?|Атың кім?|Як тебе звати?|Wie heißt du?|¿Cómo te llamas?
+246|Your name or favourite nickname|Атың немесе сүйікті лақап атың|Ім'я або улюблений нік|Name oder Lieblingsnickname|Nombre o apodo favorito
+247|Your unique tag|Бірегей тегің|Твій унікальний тег|Dein einzigartiger Tag|Tu etiqueta única
+248|Latin letters, numbers and _ only|Тек латын әріптері, сандар және _|Лише латинські літери, цифри й _|Nur lateinische Buchstaben, Zahlen und _|Solo letras latinas, números y _
+249|Email address|Электрондық пошта|Електронна пошта|E-Mail-Adresse|Correo electrónico
+250|Password|Құпиясөз|Пароль|Passwort|Contraseña
+251|Your password|Құпиясөзің|Твій пароль|Dein Passwort|Tu contraseña
+252|At least 10 characters|Кемінде 10 таңба|Щонайменше 10 символів|Mindestens 10 Zeichen|Al menos 10 caracteres
+253|One moment…|Бір сәт…|Зачекай мить…|Einen Moment…|Un momento…
+254|Sign in|Кіру|Увійти|Anmelden|Iniciar sesión
+255|Create account|Аккаунт ашу|Створити акаунт|Konto erstellen|Crear cuenta
+256|Send link|Сілтеме жіберу|Надіслати посилання|Link senden|Enviar enlace
+257|Save password|Құпиясөзді сақтау|Зберегти пароль|Passwort speichern|Guardar contraseña
+258|Forgot password|Құпиясөзді ұмыттым|Забув пароль|Passwort vergessen|Olvidé mi contraseña
+259|or|немесе|або|oder|o
+260|QR code|QR код|QR-код|QR-Code|Código QR
+261|Sign in with Google|Google арқылы кіру|Увійти через Google|Mit Google anmelden|Entrar con Google
+262|Google sign-in is unavailable right now|Google арқылы кіру қазір қолжетімсіз|Вхід через Google зараз недоступний|Google-Anmeldung ist gerade nicht verfügbar|El acceso con Google no está disponible
+263|You can use email or a QR code.|Пошта не QR кодты қолдана аласың.|Можна увійти за поштою або QR-кодом.|Du kannst E-Mail oder QR-Code verwenden.|Puedes usar correo o un código QR.
+264|First time here?|Алғаш рет келдің бе?|Уперше тут?|Zum ersten Mal hier?|¿Primera vez aquí?
+265|Already on our wave?|Біздің толқындасың ба?|Уже на нашій хвилі?|Schon auf unserer Welle?|¿Ya estás en nuestra onda?
+266|To sign in|Кіруге|До входу|Zur Anmeldung|Ir a iniciar sesión
+267|Approve device sign-in|Құрылғыға кіруді растау|Підтвердити вхід на пристрої|Geräteanmeldung bestätigen|Confirmar acceso del dispositivo
+268|GlukWave app|GlukWave қолданбасы|Застосунок GlukWave|GlukWave-App|Aplicación GlukWave
+269| is requesting access to your account.| аккаунтыңа кіруді сұрайды.| просить увійти у твій акаунт.| möchte sich in deinem Konto anmelden.| solicita entrar en tu cuenta.
+270|Only approve a sign-in you started. QR codes and links expire after a few minutes.|Өзің бастаған кіруді ғана раста. QR мен сілтемелер бірнеше минут жарамды.|Підтверджуй лише власний вхід. QR і посилання діють кілька хвилин.|Bestätige nur eine selbst begonnene Anmeldung. Codes und Links gelten wenige Minuten.|Confirma solo un acceso que hayas iniciado. Los códigos y enlaces duran unos minutos.
+271|Sign-in approved. Return to your device.|Кіру расталды. Құрылғыңа орал.|Вхід підтверджено. Повернись на пристрій.|Anmeldung bestätigt. Kehre zum Gerät zurück.|Acceso confirmado. Vuelve al dispositivo.
+272|This is my device — sign in|Бұл менің құрылғым — кіру|Це мій пристрій — увійти|Das ist mein Gerät — anmelden|Es mi dispositivo: entrar
+273|Sign in to your account here first.|Алдымен осы құрылғыда аккаунтыңа кір.|Спочатку увійди в акаунт на цьому пристрої.|Melde dich zuerst hier in deinem Konto an.|Primero inicia sesión en tu cuenta aquí.
+274|Sign in to GlukWave|GlukWave кіру|Увійти в GlukWave|Bei GlukWave anmelden|Entrar en GlukWave
+275|This source uses its official player. Saving its audio file is unavailable.|Дереккөз ресми плеерін қолданады. Аудиофайлды сақтау қолжетімсіз.|Джерело використовує офіційний плеєр. Збереження файлу недоступне.|Diese Quelle nutzt ihren offiziellen Player. Die Audiodatei lässt sich nicht speichern.|Esta fuente usa su reproductor oficial. No se puede guardar el archivo de audio.
+276|Could not download the file.|Файлды жүктеу мүмкін болмады.|Не вдалося завантажити файл.|Datei konnte nicht heruntergeladen werden.|No se pudo descargar el archivo.
+277|This track exceeds the cache limit. Increase it in settings.|Трек кеш шегінен үлкен. Баптаулардан шекті арттыр.|Трек перевищує ліміт кешу. Збільш його в налаштуваннях.|Der Titel überschreitet das Cache-Limit. Erhöhe es in den Einstellungen.|La pista supera el límite de caché. Amplíalo en ajustes.
+278|This track exceeds the cache limit.|Трек кеш шегінен үлкен.|Трек перевищує ліміт кешу.|Der Titel überschreitet das Cache-Limit.|La pista supera el límite de caché.
+279|Download cancelled.|Жүктеу тоқтатылды.|Завантаження скасовано.|Download abgebrochen.|Descarga cancelada.
+280|Saved tracks fill the cache. Remove files or increase the limit.|Сақталған тректер кешті толтырды. Файлдарды жой немесе шекті арттыр.|Збережені треки заповнили кеш. Видали файли або збільш ліміт.|Gespeicherte Titel füllen den Cache. Lösche Dateien oder erhöhe das Limit.|La caché está llena de pistas guardadas. Elimina archivos o amplía el límite.
+281|Your browser is out of space. Free storage or reduce the cache.|Браузерде орын жетпейді. Орын босат немесе кешті азайт.|Браузеру бракує місця. Звільни пам'ять або зменш кеш.|Dein Browser hat keinen Platz. Gib Speicher frei oder verkleinere den Cache.|Tu navegador no tiene espacio. Libera almacenamiento o reduce la caché.
+282|You're in a room|Бөлмедесің|Ти в кімнаті|Du bist in einem Raum|Estás en una sala
+283|ONE SOUND FOR YOU AND YOUR PEOPLE|СЕН ЖӘНЕ ДОСТАРЫҢ ҮШІН БІР МУЗЫКА|ОДНА МУЗИКА ДЛЯ ТЕБЕ І ТВОЇХ|EIN KLANG FÜR DICH UND DEINE LEUTE|UN SONIDO PARA TI Y LOS TUYOS
+284|Your room, favourite music and good company.|Бөлмең, сүйікті музыка және жақсы достар.|Своя кімната, улюблена музика й хороші люди.|Dein Raum, Lieblingsmusik und gute Gesellschaft.|Tu sala, tu música y buena compañía.
+285|Create room|Бөлме ашу|Створити кімнату|Raum erstellen|Crear sala
+286|Invitation link or code|Шақыру сілтемесі не коды|Посилання або код запрошення|Einladungslink oder Code|Enlace o código de invitación
+287|Room invitation|Бөлмеге шақыру|Запрошення в кімнату|Raumeinladung|Invitación a sala
+288|Connecting…|Қосылуда…|Підключаємося…|Verbindung wird hergestellt…|Conectando…
+289|Better on the same wave|Бір толқында жақсы|Добре на одній хвилі|Gemeinsam auf einer Welle|Mejor en la misma onda
+290|Sign in and invite your people|Кіріп, достарыңды шақыр|Увійди й поклич своїх|Anmelden und Freunde einladen|Entra e invita a los tuyos
+291|Create a room, invite friends and listen together. You decide who controls the music.|Бөлме аш, достарыңды шақырып, бірге тыңда. Музыканы кім басқаратынын өзің шеш.|Створи кімнату, запроси друзів і слухайте разом. Ти вирішуєш, хто керує музикою.|Erstelle einen Raum, lade Freunde ein und hört gemeinsam. Du bestimmst die Musiksteuerung.|Crea una sala, invita a tus amigos y escuchad juntos. Tú decides quién controla la música.
+292|Your rooms|Сенің бөлмелерің|Твої кімнати|Deine Räume|Tus salas
+293|people|адам|людей|Personen|personas
+294|members|қатысушы|учасники|Mitglieder|miembros
+295|Your room|Сенің бөлмең|Твоя кімната|Dein Raum|Tu sala
+296|Just you here for now.|Әзірге тек сен барсың.|Поки тут лише ти.|Noch bist nur du hier.|Por ahora estás tú.
+297|Music can bring everyone together.|Музыка бәрін жинай алады.|Музика вже може зібрати компанію.|Musik bringt alle zusammen.|La música puede reunir a todos.
+298|ON THE SAME FREQUENCY|ОРТАҚ ЖИІЛІКТЕ|НА СПІЛЬНІЙ ЧАСТОТІ|AUF EINER FREQUENZ|EN LA MISMA FRECUENCIA
+299|Copy invitation|Шақыруды көшіру|Скопіювати запрошення|Einladung kopieren|Copiar invitación
+300|The room host shares invitations|Шақыруды бөлме иесі бөліседі|Запрошенням ділиться господар кімнати|Der Gastgeber teilt Einladungen|El anfitrión comparte las invitaciones
+301|Link copied|Сілтеме көшірілді|Посилання скопійовано|Link kopiert|Enlace copiado
+302|Disconnect from listening|Тыңдаудан ажырау|Відключитися від прослуховування|Vom Hören trennen|Desconectar escucha
+303|Leave room|Бөлмеден шығу|Вийти з кімнати|Raum verlassen|Salir de sala
+304|Choose the first track|Алғашқы тректі таңда|Обери першу музику|Ersten Titel wählen|Elige la primera pista
+305|Open your library or search while staying in the room|Бөлмеде қалып, медиатеканы не іздеуді аш|Відкрий медіатеку або пошук, залишаючись у кімнаті|Öffne Mediathek oder Suche, während du im Raum bleibst|Abre la biblioteca o busca sin salir de la sala
+306|Pause for everyone|Барлығы үшін кідірту|Пауза для всіх|Für alle pausieren|Pausar para todos
+307|Play together|Бірге ойнату|Відтворити разом|Gemeinsam abspielen|Reproducir juntos
+308|Shared track position|Ортақ трек орны|Спільна позиція треку|Gemeinsame Titelposition|Posición compartida
+309|BESIDE YOU|ЖАНЫҢДА|ПОРУЧ ІЗ ТОБОЮ|AN DEINER SEITE|A TU LADO
+310|Room host|Бөлме иесі|Господар кімнати|Gastgeber|Anfitrión
+311|Can control music|Музыканы басқара алады|Може керувати музикою|Kann Musik steuern|Puede controlar la música
+312|Listening together|Бірге тыңдауда|Слухає разом|Hört mit|Escuchando juntos
+313|Allow music control|Музыканы басқаруға рұқсат беру|Дозволити керування музикою|Musiksteuerung erlauben|Permitir control de música
+314|Even silence feels good together.|Бірге тіпті тыныштық та жақсы.|Разом добре навіть у тиші.|Auch Stille ist zusammen schön.|Incluso el silencio se disfruta juntos.
+315|But you can send the first message too.|Бірақ алғашқы хабарламаны да жаза аласың.|Та перше повідомлення теж можна написати.|Du kannst aber auch die erste Nachricht schreiben.|También puedes escribir el primer mensaje.
+316|Say something to your people…|Достарыңа жаз…|Напиши своїм…|Schreib deinen Leuten…|Escribe a los tuyos…
+317|Room message|Бөлме хабарламасы|Повідомлення в кімнаті|Raumnachricht|Mensaje de sala
+318|Send message|Хабарлама жіберу|Надіслати повідомлення|Nachricht senden|Enviar mensaje
+319|Room closed|Бөлме жабылды|Кімнату закрито|Raum geschlossen|Sala cerrada
+320|Close room for everyone|Бөлмені бәріне жабу|Закрити кімнату для всіх|Raum für alle schließen|Cerrar sala para todos
+321|In good company|Жақсы ортада|У хорошій компанії|In guter Gesellschaft|En buena compañía
+322|every sound feels closer.|әр дыбыс жақынырақ.|кожна музика ближча.|ist jede Musik näher.|cada sonido se siente más cerca.
+323|Create a room or open an invitation.|Бөлме аш немесе шақыруды аш.|Створи кімнату або відкрий запрошення.|Erstelle einen Raum oder öffne eine Einladung.|Crea una sala o abre una invitación.
+324|Choose tracks, seek and chat together.|Тректерді таңдап, бірге айналдыр және сөйлес.|Обирайте треки, перемотуйте та спілкуйтеся разом.|Wählt Titel, spult und chattet gemeinsam.|Elegid pistas, avanzad y charlad juntos.
+325|Create your place|Өз орныңды жасау|Створити своє місце|Deinen Platz schaffen|Crear tu espacio
+326|A place for you and your people|Сен және достарың үшін орын|Місце для тебе й твоїх|Ein Platz für dich und deine Leute|Un espacio para ti y los tuyos
+327|Room ready. Copy the invitation and invite friends.|Бөлме дайын. Шақыруды көшіріп, достарыңды шақыр.|Кімната готова. Скопіюй запрошення й поклич друзів.|Raum bereit. Kopiere die Einladung und lade Freunde ein.|Sala lista. Copia la invitación e invita a tus amigos.
+328|Room name|Бөлме атауы|Назва кімнати|Raumname|Nombre de sala
+329|For example, an unhurried evening|Мысалы, асықпайтын кеш|Наприклад, вечір без поспіху|Zum Beispiel: ein ruhiger Abend|Por ejemplo, una tarde sin prisas
+330|You host the room and choose who can control the music.|Бөлме иесі болып, музыканы кім басқаратынын таңдайсың.|Ти господар кімнати й вирішуєш, хто може керувати музикою.|Du bist Gastgeber und bestimmst, wer die Musik steuern kann.|Tú eres el anfitrión y decides quién controla la música.
+331|Creating…|Жасалуда…|Створюємо…|Wird erstellt…|Creando…
+332|This theme has been reset.|Тақырып қалпына келтірілді.|Оформлення теми скинуто.|Dieses Design wurde zurückgesetzt.|Se ha restablecido este tema.
+333|Saving…|Сақталуда…|Зберігаємо…|Wird gespeichert…|Guardando…
+334|Synced|Синхрондалды|Синхронізовано|Synchronisiert|Sincronizado
+335|Saved on device|Құрылғыда сақталды|Збережено на пристрої|Auf dem Gerät gespeichert|Guardado en el dispositivo
+336|Saved in this browser|Осы браузерде сақталды|Збережено в цьому браузері|In diesem Browser gespeichert|Guardado en este navegador
+337|App theme|Қолданба тақырыбы|Тема застосунку|App-Design|Tema de la aplicación
+338|Light|Ашық|Світла|Hell|Claro
+339|Dark|Қараңғы|Темна|Dunkel|Oscuro
+340|Automatic|Автоматты|Автоматична|Automatisch|Automático
+341|Your palette|Сенің палитраң|Твоя палітра|Deine Palette|Tu paleta
+342|Choose a palette to edit|Өңдейтін палитраны таңда|Обери палітру для зміни|Palette zum Bearbeiten wählen|Elige una paleta
+343|Colours are saved separately for light and dark themes.|Түстер ашық және қараңғы тақырыптар үшін бөлек сақталады.|Кольори зберігаються окремо для світлої й темної тем.|Farben werden für helles und dunkles Design getrennt gespeichert.|Los colores se guardan por separado para los temas claro y oscuro.
+344|Accent|Акцент|Акцент|Akzent|Acento
+345|Custom surface colours|Өз бет түстерің|Власні кольори поверхонь|Eigene Oberflächenfarben|Colores de superficie
+346|Background|Фон|Тло|Hintergrund|Fondo
+347|Cards|Карточкалар|Картки|Karten|Tarjetas
+348|Text|Мәтін|Текст|Text|Texto
+349|Text blends into the background. Choose more contrast; settings and reset stay visible.|Мәтін фонмен араласады. Айқын түстерді таңда; баптау мен қалпына келтіру көрінеді.|Текст зливається з тлом. Обери більше контрасту; налаштування й скидання залишаться видимими.|Text hebt sich kaum ab. Wähle mehr Kontrast; Einstellungen und Zurücksetzen bleiben sichtbar.|El texto se confunde con el fondo. Elige más contraste; ajustes y restablecimiento siguen visibles.
+350|Wave visualisation|Толқын көрінісі|Візуалізація хвилі|Wellenvisualisierung|Visualización de onda
+351|Silk|Жібек|Шовк|Seide|Seda
+352|Particles|Бөлшектер|Частинки|Partikel|Partículas
+353|Corner radius|Бұрыштардың дөңгеленуі|Заокруглення|Eckenradius|Radio de esquinas
+354|Animation speed|Анимация жылдамдығы|Швидкість анімацій|Animationsgeschwindigkeit|Velocidad de animación
+355|Animations|Анимациялар|Анімації|Animationen|Animaciones
+356|Icons, wave and atmosphere.|Белгілер, толқын және орта.|Іконки, хвиля й оточення.|Symbole, Welle und Umgebung.|Iconos, onda y ambiente.
+357|Decorative motion is off.|Сәндік қозғалыс өшірулі.|Декоративний рух вимкнено.|Dekorative Bewegung ist aus.|El movimiento decorativo está desactivado.
+358|Your device prefers less motion. We respect that.|Құрылғың аз қозғалысты сұрайды. Оны ескереміз.|Пристрій просить менше руху. Ми це враховуємо.|Dein Gerät bevorzugt weniger Bewegung. Wir berücksichtigen das.|Tu dispositivo prefiere menos movimiento. Lo respetamos.
+359|Background blur|Фонды бұлыңғырлау|Розмиття тла|Hintergrundunschärfe|Desenfoque del fondo
+360|Soft light behind covers and surfaces.|Мұқаба мен беттердің артындағы жұмсақ жарық.|М'яке світло за обкладинками й поверхнями.|Weiches Licht hinter Covern und Flächen.|Luz suave detrás de portadas y superficies.
+361|Compact interface|Ықшам интерфейс|Компактний інтерфейс|Kompakte Oberfläche|Interfaz compacta
+362|More music on screen, less empty space.|Экранда көбірек музыка, азырақ бос орын.|Більше музики на екрані, менше вільного простору.|Mehr Musik auf dem Bildschirm, weniger Freiraum.|Más música en pantalla, menos espacio vacío.
+363|Real lyrics under the cover.|Мұқаба астындағы нақты мәтін.|Справжні слова під обкладинкою.|Echter Liedtext unter dem Cover.|Letra real bajo la portada.
+364|Reset this theme|Тақырыпты қалпына келтіру|Скинути цю тему|Dieses Design zurücksetzen|Restablecer este tema
+365|LIVE PREVIEW|ТІКЕЛЕЙ КӨРІНІС|ЖИВИЙ ПЕРЕГЛЯД|LIVE-VORSCHAU|VISTA PREVIA
+366|A space that's all yours.|Тек сенің кеңістігің.|Твій власний простір.|Ein Raum ganz für dich.|Un espacio todo tuyo.
+367|Your colour. Your rhythm. Your music.|Сенің түсің. Сенің ырғағың. Сенің музыкаң.|Твій колір. Твій ритм. Твоя музика.|Deine Farbe. Dein Rhythmus. Deine Musik.|Tu color. Tu ritmo. Tu música.
+368|My wave|Менің толқыным|Моя хвиля|Meine Welle|Mi onda
+369|Stay in the moment|Осы сәтте қал|Залишайся в моменті|Im Moment bleiben|Quédate en el momento
+370|On your wave|Өз толқыныңда|На твоїй хвилі|Auf deiner Welle|En tu onda
+371|Music that stays close|Жаныңда қалатын музыка|Музика, що поруч|Musik, die bei dir bleibt|Música que te acompaña
+372|Changes appear immediately.|Өзгерістер бірден көрінеді.|Зміни видно одразу.|Änderungen sind sofort sichtbar.|Los cambios se ven al instante.
+373|Light and dark themes follow your device.|Ашық пен қараңғы тақырып құрылғыңа сай ауысады.|Світла й темна теми перемикаються разом із пристроєм.|Helles und dunkles Design folgen deinem Gerät.|Los temas claro y oscuro siguen a tu dispositivo.
+374|Change the appearance whenever you like.|Безендіруді кез келген уақытта өзгерт.|Змінюй оформлення будь-коли.|Ändere das Aussehen, wann du möchtest.|Cambia la apariencia cuando quieras.
+375|YouTube won't play this video here. Open the original or choose another track.|YouTube бұл бейнені мұнда ойнатпайды. Түпнұсқасын аш немесе басқа трек таңда.|YouTube не відтворює це відео тут. Відкрий оригінал або обери інший трек.|YouTube spielt dieses Video hier nicht ab. Öffne das Original oder einen anderen Titel.|YouTube no reproduce este vídeo aquí. Abre el original o elige otra pista.
+376|Collapse SoundCloud player|SoundCloud плеерін жинау|Згорнути плеєр SoundCloud|SoundCloud-Player einklappen|Contraer reproductor SoundCloud
+377|Open SoundCloud player|SoundCloud плеерін ашу|Відкрити плеєр SoundCloud|SoundCloud-Player öffnen|Abrir reproductor SoundCloud
+378|· official player|· ресми плеер|· офіційний плеєр|· offizieller Player|· reproductor oficial
+379|Open original|Түпнұсқаны ашу|Відкрити оригінал|Original öffnen|Abrir original
+380|Loading source player…|Дереккөз плеері жүктелуде…|Завантажуємо плеєр сервісу…|Quellplayer wird geladen…|Cargando reproductor…
+381|Spotify determines the available preview and full track.|Үзінді мен толық тректі Spotify анықтайды.|Доступний фрагмент і повний трек визначає Spotify.|Spotify bestimmt Vorschau und vollständigen Titel.|Spotify determina el fragmento y la pista completa disponibles.
+382|For me|Маған арналған|Під мене|Für mich|Para mí
+383|Familiar. Unexpected. Yours.|Таныс. Күтпеген. Сенікі.|Улюблене. Несподіване. Твоє.|Vertraut. Unerwartet. Deins.|Familiar. Inesperado. Tuyo.
+384|Music you'll want to return to.|Қайта тыңдағың келетін музыка.|Музика, до якої хочеться повертатися.|Musik, zu der du zurückkehren willst.|Música a la que querrás volver.
+385|On your frequency|Өз жиілігіңде|На твоїй частоті|Auf deiner Frequenz|En tu frecuencia
+386|Exhale|Демалу|Видихнути|Durchatmen|Respirar
+387|Slow down. Feel the moment.|Баяула. Сәтті сезін.|Сповільнись. Відчуй момент.|Langsamer werden. Den Moment spüren.|Baja el ritmo. Siente el momento.
+388|No need to hurry here.|Мұнда асығудың қажеті жоқ.|Тут нікуди не треба поспішати.|Hier musst du dich nicht beeilen.|Aquí no hay prisa.
+389|Quieter world. Deeper breath.|Тыныш әлем. Терең дем.|Тихіший світ. Глибший вдих.|Leisere Welt. Tieferer Atem.|Menos ruido. Respira más hondo.
+390|In the flow|Ағында|У потоці|Im Flow|En el flujo
+391|Just you and what matters.|Тек сен және маңыздысы.|Лише ти й важливе.|Nur du und das, was zählt.|Solo tú y lo que importa.
+392|Music to get things done.|Іске көмектесетін музыка.|Музика, з якою все вдається.|Musik, mit der alles gelingt.|Música para avanzar.
+393|Find your inner rhythm|Ішкі ырғағыңды тап|Знайди внутрішній ритм|Finde deinen inneren Rhythmus|Encuentra tu ritmo interior
+394|Feel it all|Бәрін сезіну|Відчути все|Alles fühlen|Sentirlo todo
+395|Louder heart. Brighter day.|Жүрек қаттырақ. Күн жарқын.|Гучніше серце. Яскравіший день.|Lauteres Herz. Hellerer Tag.|Más corazón. Un día más brillante.
+396|Let the music move with you.|Музыка сенімен қозғалсын.|Нехай музика рухається з тобою.|Lass die Musik mit dir ziehen.|Que la música se mueva contigo.
+397|More life in every beat|Әр ырғақта көбірек өмір|Більше життя в кожному біті|Mehr Leben in jedem Beat|Más vida en cada ritmo
+398|Dream a little|Армандау|Помріяти|Ein wenig träumen|Soñar un poco
+399|While the world sleeps.|Әлем ұйықтағанда.|Поки світ спить.|Während die Welt schläft.|Mientras el mundo duerme.
+400|Melodies for the quietest thoughts.|Ең тыныш ойларға әуендер.|Мелодії для найтихіших думок.|Melodien für die leisesten Gedanken.|Melodías para los pensamientos más tranquilos.
+401|Let's try another search.|Басқа сұрауды іздеп көрейік.|Спробуймо інший запит.|Versuchen wir eine andere Suche.|Probemos otra búsqueda.
+402|YOUR PERSONAL SPACE|ЖЕКЕ КЕҢІСТІГІҢ|ОСОБИСТИЙ ПРОСТІР|DEIN PERSÖNLICHER RAUM|TU ESPACIO PERSONAL
+403|Finding your wave…|Толқыныңды іздеуде…|Ловимо хвилю…|Deine Welle wird gesucht…|Buscando tu onda…
+404|Stop the wave|Толқынды тоқтату|Зупинити хвилю|Welle stoppen|Detener la onda
+405|Find your wave|Толқыныңды тап|Знайти свою хвилю|Deine Welle finden|Encuentra tu onda
+406|Catch a wave|Толқынды ұстау|Зловити хвилю|Eine Welle finden|Atrapa una onda
+407|Add your audio files|Аудиофайлдарыңды қосу|Додати свої аудіофайли|Eigene Audiodateien hinzufügen|Añadir tus archivos de audio
+408|NO RUSH|АСЫҒУ ЖОҚ|БЕЗ ПОСПІХУ|KEINE EILE|SIN PRISAS
+409|How are you feeling?|Көңіл күйің қалай?|Як ти зараз?|Wie fühlst du dich?|¿Cómo te sientes?
+410|Forest|Орман|Ліс|Wald|Bosque
+411|Forest lake|Орман көлі|Лісове озеро|Waldsee|Lago del bosque
+412|Ocean|Мұхит|Океан|Ozean|Océano
+413|By the quiet ocean|Тыныш мұхит жанында|Біля тихого океану|Am ruhigen Ozean|Junto al océano tranquilo
+414|Snow|Қар|Сніг|Schnee|Nieve
+415|Snow in the forest|Ормандағы қар|Сніг у лісі|Schnee im Wald|Nieve en el bosque
+416|Night|Түн|Ніч|Nacht|Noche
+417|Night in the forest|Ормандағы түн|Ніч у лісі|Nacht im Wald|Noche en el bosque
+418|Your browser paused the sound. Press “Start rain” again.|Браузер дыбысты кідіртті. «Жаңбырды қосу» түймесін қайта бас.|Браузер призупинив звук. Натисни «Увімкнути дощ» знову.|Dein Browser hat den Ton pausiert. Drücke erneut „Regen starten“.|El navegador pausó el sonido. Pulsa «Iniciar lluvia» otra vez.
+419|Could not start ambient audio. Check playback permissions in your browser.|Орта дыбысы қосылмады. Браузердің ойнату рұқсатын тексер.|Не вдалося увімкнути звук оточення. Перевір дозвіл браузера.|Umgebungsgeräusche konnten nicht starten. Prüfe die Wiedergaberechte im Browser.|No se pudo iniciar el sonido ambiente. Revisa los permisos del navegador.
+420|LESS WORLD, MORE MUSIC|АЗ ӘЛЕМ, КӨП МУЗЫКА|ТИХІШИЙ СВІТ, ГУЧНІША МУЗИКА|WENIGER WELT, MEHR MUSIK|MENOS RUIDO, MÁS MÚSICA
+421|A place to exhale|Демалатын орын|Місце для видиху|Ein Platz zum Durchatmen|Un espacio para respirar
+422|Pixel worlds. Warm sound. No hurry.|Пиксель әлемдері. Жылы дыбыс. Асығусыз.|Піксельні світи. Теплий звук. Без поспіху.|Pixelwelten. Warmer Klang. Keine Eile.|Mundos de píxeles. Sonido cálido. Sin prisas.
+423|Hide everything|Барлығын жасыру|Сховати все|Alles ausblenden|Ocultar todo
+424|Quiet space|Тыныш кеңістік|Тихий простір|Ruhiger Raum|Espacio tranquilo
+425|Canvas Cycle — original Effect Games scene|Canvas Cycle — Effect Games түпнұсқа көрінісі|Canvas Cycle — оригінальна сцена Effect Games|Canvas Cycle — Originalszene von Effect Games|Canvas Cycle: escena original de Effect Games
+426|GLUK LO-FI · LIVING LANDSCAPE|GLUK LO-FI · ЖАНДЫ КӨРІНІС|GLUK LO-FI · ЖИВИЙ ПЕЙЗАЖ|GLUK LO-FI · LEBENDIGE LANDSCHAFT|GLUK LO-FI · PAISAJE VIVO
+427|Show interface|Интерфейсті көрсету|Повернути інтерфейс|Oberfläche zeigen|Mostrar interfaz
+428|Hide interface|Интерфейсті жасыру|Сховати інтерфейс|Oberfläche ausblenden|Ocultar interfaz
+429|you're here. that's enough.|сен осындасың. осы жеткілікті.|ти тут. і цього досить.|du bist hier. das genügt.|estás aquí. eso basta.
+430|Loading the original scene…|Түпнұсқа көрініс жүктелуде…|Завантажуємо оригінальну сцену…|Originalszene wird geladen…|Cargando escena original…
+431|The creators' site didn't respond. Your GlukWave landscape stays here.|Авторлар сайты жауап бермеді. GlukWave көрінісі осында қалады.|Сайт авторів не відповів. Пейзаж GlukWave залишається.|Die Website antwortet nicht. Deine GlukWave-Landschaft bleibt hier.|El sitio de los autores no respondió. El paisaje GlukWave sigue aquí.
+432|If the original doesn't appear, open it below.|Түпнұсқа көрінбесе, төмендегі сілтемеден аш.|Якщо оригінал не з'явився, відкрий його нижче.|Falls das Original nicht erscheint, öffne es unten.|Si el original no aparece, ábrelo abajo.
+433|Water, light and a little silence.|Су, жарық және аздап тыныштық.|Вода, світло й трохи тиші.|Wasser, Licht und etwas Stille.|Agua, luz y un poco de silencio.
+434|Return to Gluk landscape|Gluk көрінісіне оралу|Повернути пейзаж Gluk|Zur Gluk-Landschaft|Volver al paisaje Gluk
+435|Load Canvas Cycle|Canvas Cycle жүктеу|Завантажити Canvas Cycle|Canvas Cycle laden|Cargar Canvas Cycle
+436|Rain ·|Жаңбыр ·|Дощ ·|Regen ·|Lluvia ·
+437|Stop sound|Дыбысты тоқтату|Зупинити звук|Ton stoppen|Detener sonido
+438|YOUR LITTLE WORLD|СЕНІҢ ШАҒЫН ӘЛЕМІҢ|ТВІЙ МАЛЕНЬКИЙ СВІТ|DEINE KLEINE WELT|TU PEQUEÑO MUNDO
+439|AMBIENT SOUND|ОРТА ДЫБЫСЫ|ЗВУК ОТОЧЕННЯ|UMGEBUNGSKLANG|SONIDO AMBIENTE
+440|Rain|Жаңбыр|Дощ|Regen|Lluvia
+441|Rain volume|Жаңбыр дыбысы|Гучність дощу|Regenlautstärke|Volumen de lluvia
+442|Starting…|Қосылуда…|Вмикаємо…|Wird gestartet…|Iniciando…
+443|Start rain|Жаңбырды қосу|Увімкнути дощ|Regen starten|Iniciar lluvia
+444|Rain is playing on this device|Жаңбыр осы құрылғыда естіледі|Дощ звучить на цьому пристрої|Regen läuft auf diesem Gerät|La lluvia suena en este dispositivo
+445|Rain on · volume 0%|Жаңбыр қосулы · дыбыс 0%|Дощ увімкнено · гучність 0%|Regen an · Lautstärke 0 %|Lluvia activa · volumen 0 %
+446|Sound off|Дыбыс өшірулі|Звук вимкнено|Ton aus|Sonido apagado
+447|Atmosphere|Атмосфера|Атмосфера|Atmosphäre|Atmósfera
+448|Fireflies|Жарқырауық қоңыздар|Світлячки|Glühwürmchen|Luciérnagas
+449|Landscape only|Тек көрініс|Лише пейзаж|Nur Landschaft|Solo paisaje
+450|The landscape moves with your rhythm.|Көрініс ырғағыңмен қозғалады.|Пейзаж рухається у твоєму ритмі.|Die Landschaft bewegt sich in deinem Rhythmus.|El paisaje se mueve a tu ritmo.
+451|Reduced motion is on — the landscape stays still.|Аз қозғалыс қосулы — көрініс тыныш қалады.|Менше руху ввімкнено — пейзаж залишається спокійним.|Weniger Bewegung ist an — die Landschaft bleibt ruhig.|Menos movimiento está activo: el paisaje permanece quieto.
+452|Ambient audio stops when you leave this screen.|Бұл экраннан шыққанда орта дыбысы тоқтайды.|Звук оточення вимикається, коли ти залишаєш екран.|Umgebungsgeräusche stoppen, wenn du diese Ansicht verlässt.|El sonido ambiente se detiene al salir de esta pantalla.
+453|Canvas Cycle: Joseph Huckaby / Effect Games · scenes: Mark Ferrari.|Canvas Cycle: Joseph Huckaby / Effect Games · көріністер: Mark Ferrari.|Canvas Cycle: Joseph Huckaby / Effect Games · сцени: Mark Ferrari.|Canvas Cycle: Joseph Huckaby / Effect Games · Szenen: Mark Ferrari.|Canvas Cycle: Joseph Huckaby / Effect Games · escenas: Mark Ferrari.
+454|Original scenes load from the creators' site. The GlukWave landscape works locally and offline.|Түпнұсқа көріністер авторлар сайтынан жүктеледі. GlukWave көрінісі құрылғыда, офлайн жұмыс істейді.|Оригінальні сцени завантажуються із сайту авторів. Пейзаж GlukWave працює локально й без мережі.|Originalszenen laden von der Website der Autoren. Die GlukWave-Landschaft funktioniert lokal und offline.|Las escenas originales se cargan del sitio de sus autores. El paisaje GlukWave funciona localmente y sin conexión.
+455|You can simply be here.|Жай ғана осында бола аласың.|Можна просто побути тут.|Du kannst einfach hier sein.|Puedes simplemente estar aquí.
+456|Living landscapes, rain and a little silence.|Жанды көріністер, жаңбыр және аздап тыныштық.|Живі пейзажі, дощ і трохи тиші.|Lebendige Landschaften, Regen und etwas Stille.|Paisajes vivos, lluvia y un poco de silencio.
+457|Open a quiet world|Тыныш әлемді ашу|Відкрити тихий світ|Ruhige Welt öffnen|Abrir un mundo tranquilo
+458|Quieter than the world|Әлемнен тыныш|Тихіше світу|Leiser als die Welt|Más tranquilo que el mundo
+459|Lo-fi & quiet evenings|Lo-fi және тыныш кештер|Lo-fi і тихі вечори|Lo-Fi & ruhige Abende|Lo-fi y tardes tranquilas
+460|After sunset|Күн батқаннан кейін|Після заходу сонця|Nach Sonnenuntergang|Después del atardecer
+461|Jazz & city nights|Jazz және түнгі қала|Jazz і нічне місто|Jazz & Stadtnächte|Jazz y noches de ciudad
+462|A little deeper|Өзіңе тереңірек|Глибше в себе|Etwas tiefer|Un poco más adentro
+463|Ambient & thoughts|Ambient және ойлар|Ambient і думки|Ambient & Gedanken|Ambient y pensamientos
+464|A lighter day|Жаңа жеңілдік|Нова легкість|Ein leichter Tag|Un día más ligero
+465|Indie & good days|Indie және жақсы күндер|Indie і хороші дні|Indie & gute Tage|Indie y buenos días
+466|Free flight|Еркін ұшу|Вільний політ|Freier Flug|Vuelo libre
+467|Electronic & movement|Electronic және қозғалыс|Electronic і рух|Electronic & Bewegung|Electrónica y movimiento
+468|Good night|Қайырлы түн|Доброї ночі|Gute Nacht|Buenas noches
+469|Good morning|Қайырлы таң|Доброго ранку|Guten Morgen|Buenos días
+470|Good afternoon|Қайырлы күн|Добрий день|Guten Tag|Buenas tardes
+471|Good evening|Қайырлы кеш|Добрий вечір|Guten Abend|Buenas noches
+472|YOUR LITTLE MUSICAL WORLD|СЕНІҢ ШАҒЫН МУЗЫКАЛЫҚ ӘЛЕМІҢ|ТВІЙ МАЛЕНЬКИЙ МУЗИЧНИЙ СВІТ|DEINE KLEINE MUSIKWELT|TU PEQUEÑO MUNDO MUSICAL
+473|Everything you love. On one wave.|Ұнатқаныңның бәрі. Бір толқында.|Усе, що любиш. На одній хвилі.|Alles, was du liebst. Auf einer Welle.|Todo lo que amas. En una onda.
+474|Bring your music together|Музыкаңды жинау|Зібрати свою музику|Deine Musik zusammenbringen|Reunir tu música
+475|Your favourites|Сенің ұнағандарың|Твої улюблені|Deine Favoriten|Tus favoritas
+476|Loading favourites…|Ұнағандар жүктелуде…|Отримуємо улюблене…|Favoriten werden geladen…|Cargando favoritas…
+477|What moves you will live here|Жүрегіңе жеткені осында болады|Тут буде те, що торкнуло|Was dich berührt, ist hier zuhause|Aquí estará lo que te emociona
+478|Closer to music|Музыкаға жақынырақ|Ближче до музики|Näher an der Musik|Más cerca de la música
+479|Loading your library…|Медиатекаң жүктелуде…|Отримуємо медіатеку…|Mediathek wird geladen…|Cargando biblioteca…
+480|Add files from your device|Құрылғыдан файл қосу|Додай файли з пристрою|Dateien vom Gerät hinzufügen|Añade archivos de tu dispositivo
+481|FIND YOUR MOOD|КӨҢІЛ КҮЙІҢДІ ТАП|ЗНАЙДИ СВІЙ НАСТРІЙ|FINDE DEINE STIMMUNG|ENCUENTRA TU ÁNIMO
+482|Maybe this is yours|Мүмкін, бұл сенікі|Може, це твоє|Vielleicht ist das deins|Quizá esto sea lo tuyo
+483|SEARCH BY MOOD|КӨҢІЛ КҮЙМЕН ІЗДЕУ|ПОШУК ЗА НАСТРОЄМ|NACH STIMMUNG SUCHEN|BUSCAR POR ÁNIMO
+484|MUSIC REMEMBERS|МУЗЫКА ЕСТЕ САҚТАЙДЫ|МУЗИКА ПАМ'ЯТАЄ|MUSIK ERINNERT SICH|LA MÚSICA RECUERDA
+485|Recently on your wave|Жақында толқыныңда|Нещодавно на твоїй хвилі|Kürzlich auf deiner Welle|Hace poco en tu onda
+486|Your story starts here|Тарихың осы жерден басталады|Твоя історія починається тут|Deine Geschichte beginnt hier|Tu historia empieza aquí
+487|All|Барлығы|Усе|Alle|Todo
+488|First track. First moment.|Бірінші трек. Бірінші сәт.|Перший трек. Перший момент.|Erster Titel. Erster Moment.|Primera pista. Primer momento.
+489|Play your files or find music in search.|Файлдарыңды тыңда немесе іздеуден музыка тап.|Слухай свої файли або знайди музику в пошуку.|Höre eigene Dateien oder finde Musik in der Suche.|Escucha tus archivos o encuentra música en la búsqueda.
+490|Find something|Бір нәрсе табу|Знайти щось|Etwas finden|Buscar algo
+491|MUSIC BRINGS US CLOSER|МУЗЫКА ЖАҚЫНДАТАДЫ|МУЗИКА ЗБЛИЖУЄ|MUSIK VERBINDET|LA MÚSICA NOS UNE
+492|It's good to be|Жақсы болғаны|Добре, коли|Schön, wenn wir|Qué bien estar
+493|on the same wave.|бір толқында.|на одній хвилі.|auf einer Welle sind.|en la misma onda.
+494|Create a room and invite your people|Бөлме ашып, достарыңды шақыр|Створи кімнату й поклич своїх|Raum erstellen und Freunde einladen|Crea una sala e invita a los tuyos
+495|Your frequency. Your rhythm.|Өз жиілігің. Өз ырғағың.|Своя частота. Свій ритм.|Deine Frequenz. Dein Rhythmus.|Tu frecuencia. Tu ritmo.
+496|EVERYTHING YOU WANT TO HEAR|ЕСТІГІҢ КЕЛГЕННІҢ БӘРІ|УСЕ, ЩО ХОЧЕТЬСЯ ПОЧУТИ|ALLES, WAS DU HÖREN WILLST|TODO LO QUE QUIERES OÍR
+497|Find your sound|Өз дыбысыңды тап|Знайди своє|Finde deinen Klang|Encuentra tu sonido
+498|A track, an artist, a mood — or a link from your favourite service.|Трек, орындаушы, көңіл күй — не сүйікті сервис сілтемесі.|Трек, виконавець, настрій — або посилання з улюбленого сервісу.|Ein Titel, Künstler, eine Stimmung — oder ein Link deines Lieblingsdienstes.|Una pista, un artista, un ánimo o un enlace de tu servicio favorito.
+499|Music search|Музыка іздеу|Пошук музики|Musiksuche|Búsqueda de música
+500|What's on your wave today?|Бүгін толқыныңда не бар?|Що сьогодні на твоїй хвилі?|Was ist heute auf deiner Welle?|¿Qué suena hoy en tu onda?
+501|Clear search|Іздеуді тазарту|Очистити пошук|Suche löschen|Limpiar búsqueda
+502|All sources|Барлық сервис|Усі сервіси|Alle Quellen|Todas las fuentes
+503|Did you mean|Мүмкін, іздегенің|Можливо, ти шукав|Meintest du|Quizá buscabas
+504|Your keyboard layout might have wandered.|Пернетақта тілі ауысқан сияқты.|Схоже, розкладка заблукала.|Vielleicht ist das Tastaturlayout verrutscht.|Quizá cambió la distribución del teclado.
+505|Some sources are currently unavailable|Кейбір дереккөз қазір қолжетімсіз|Деякі джерела зараз недоступні|Einige Quellen sind gerade nicht verfügbar|Algunas fuentes no están disponibles
+506|Could not fetch results. Try later.|Нәтижелерді алу мүмкін болмады. Кейін қайтала.|Не вдалося отримати результати. Спробуй пізніше.|Ergebnisse konnten nicht geladen werden. Versuche es später.|No se pudieron obtener resultados. Inténtalo más tarde.
+507|Searching on your frequency…|Жиілігіңнен іздеуде…|Шукаємо на твоїй частоті…|Auf deiner Frequenz wird gesucht…|Buscando en tu frecuencia…
+508|Where shall we start?|Неден бастаймыз?|Із чого почнемо?|Wo fangen wir an?|¿Por dónde empezamos?
+509|Got a link to a favourite track?|Сүйікті трекке сілтемең бар ма?|Є посилання на улюблений трек?|Hast du einen Link zum Lieblingstitel?|¿Tienes un enlace a tu pista favorita?
+510|Paste it into search to open the source's official player.|Ресми плеерді ашу үшін іздеуге қой.|Встав у пошук, щоб відкрити офіційний плеєр джерела.|Füge ihn in die Suche ein, um den offiziellen Player zu öffnen.|Pégalo en la búsqueda para abrir el reproductor oficial.
+511|My GlukWave library|Менің GlukWave медиатекам|Моя медіатека GlukWave|Meine GlukWave-Mediathek|Mi biblioteca GlukWave
+512|YOUR SOUND LIVES HERE|ӨЗІҢДІКІ ОСЫНДА|ТУТ ЖИВЕ ТВОЄ|DEIN KLANG IST HIER ZUHAUSE|TU SONIDO VIVE AQUÍ
+513|A little collection of big feelings.|Үлкен сезімдердің шағын жинағы.|Маленька колекція великих почуттів.|Eine kleine Sammlung großer Gefühle.|Una pequeña colección de grandes sentimientos.
+514|Add music|Музыка қосу|Додати музику|Musik hinzufügen|Añadir música
+515|Music needs a home|Музыкаға үй керек|Музиці потрібен дім|Musik braucht ein Zuhause|La música necesita un hogar
+516|Sign in and build your library|Кіріп, медиатекаңды жина|Увійди й збери медіатеку|Anmelden und Mediathek aufbauen|Entra y crea tu biblioteca
+517|Favourites, playlists and history follow you on every device.|Ұнағандар, плейлистер және тарих әр құрылғыңда бірге.|Улюблені, плейлисти й історія поруч на кожному пристрої.|Favoriten, Playlists und Verlauf begleiten dich auf jedem Gerät.|Favoritas, listas e historial te acompañan en cada dispositivo.
+518|All tracks|Барлық трек|Усі треки|Alle Titel|Todas las pistas
+519|History|Тарих|Історія|Verlauf|Historial
+520|Playlist|Плейлист|Плейлист|Playlist|Lista
+521|Export library as JSON|Медиатеканы JSON экспорттау|Експортувати медіатеку JSON|Mediathek als JSON exportieren|Exportar biblioteca en JSON
+522|← All playlists|← Барлық плейлист|← Усі плейлисти|← Alle Playlists|← Todas las listas
+523|Listen|Тыңдау|Слухати|Hören|Escuchar
+524|Edit|Өңдеу|Редагувати|Bearbeiten|Editar
+525|TITLE|АТАУЫ|НАЗВА|TITEL|TÍTULO
+526|SOURCE|ДЕРЕККӨЗ|ДЖЕРЕЛО|QUELLE|FUENTE
+527|TIME|УАҚЫТ|ЧАС|ZEIT|TIEMPO
+528|Save what speaks to you|Жүрегіңе жеткенін сақта|Зберігай те, що відгукується|Speichere, was dich berührt|Guarda lo que te llega
+529|Quiet for now — a good time to begin|Әзірге тыныш — бастайтын кез|Поки тихо — час починати|Noch ruhig — Zeit anzufangen|Todo tranquilo: es hora de empezar
+530|Your collection starts here|Жинағың осында басталады|Тут починається колекція|Hier beginnt deine Sammlung|Aquí empieza tu colección
+531|Edit playlist tracks|Плейлист тректерін өңдеу|Змінити треки плейлиста|Playlist-Titel bearbeiten|Editar pistas de la lista
+532|Remove from playlist|Плейлистен алып тастау|Прибрати з плейлиста|Aus Playlist entfernen|Quitar de lista
+533|A playlist that feels like you|Өзіңдей плейлист|Плейлист, як ти відчуваєш|Eine Playlist wie du|Una lista a tu manera
+534|A new little world|Жаңа шағын әлем|Новий маленький світ|Eine neue kleine Welt|Un nuevo pequeño mundo
+535|Playlist updated|Плейлист жаңартылды|Плейлист оновлено|Playlist aktualisiert|Lista actualizada
+536|Playlist created|Плейлист жасалды|Плейлист створено|Playlist erstellt|Lista creada
+537|Title|Атауы|Назва|Titel|Título
+538|For unhurried evenings|Асықпайтын кештер үшін|Для вечорів без поспіху|Für ruhige Abende|Para tardes sin prisas
+539|Description|Сипаттама|Опис|Beschreibung|Descripción
+540|What's this music about?|Бұл музыка не туралы?|Про що ця музика?|Worum geht es in dieser Musik?|¿De qué trata esta música?
+541|Save|Сақтау|Зберегти|Speichern|Guardar
+542|Create playlist|Плейлист жасау|Створити плейлист|Playlist erstellen|Crear lista
+543|Playlist deleted|Плейлист жойылды|Плейлист видалено|Playlist gelöscht|Lista eliminada
+544|Delete playlist|Плейлистті жою|Видалити плейлист|Playlist löschen|Eliminar lista
+545|Music already with you|Жаныңдағы музыка|Музика, що вже з тобою|Musik, die schon bei dir ist|Música que ya te acompaña
+546|Add your audio files. They'll appear in your library and on your other devices.|Аудиофайлдарыңды қос. Олар медиатекада және басқа құрылғыларыңда пайда болады.|Додай аудіофайли. Вони з'являться в медіатеці й на інших пристроях.|Füge Audiodateien hinzu. Sie erscheinen in deiner Mediathek und auf anderen Geräten.|Añade tus archivos de audio. Aparecerán en tu biblioteca y tus otros dispositivos.
+547|Music added to your library|Музыка медиатекаға қосылды|Музику додано до медіатеки|Musik zur Mediathek hinzugefügt|Música añadida a la biblioteca
+548|file selected|файл таңдалды|файл обрано|Datei gewählt|archivo seleccionado
+549|files selected|файл таңдалды|файлів обрано|Dateien gewählt|archivos seleccionados
+550|Choose files or drop them here|Файлдарды таңда не осында сүйре|Обери файли або перетягни сюди|Dateien wählen oder hier ablegen|Elige archivos o arrástralos aquí
+551|Artist|Орындаушы|Виконавець|Künstler|Artista
+552|From file metadata|Файл метадеректерінен|Із метаданих файлу|Aus den Dateimetadaten|De los metadatos del archivo
+553|Add to library|Медиатекаға қосу|Додати до медіатеки|Zur Mediathek hinzufügen|Añadir a biblioteca
+554|Add files you have permission to use. Configure automatic caching separately.|Қолдануға құқығың бар файлдарды қос. Автоматты кешті бөлек бапта.|Додавай файли, якими можеш користуватися. Автоматичний кеш налаштовується окремо.|Füge Dateien hinzu, die du nutzen darfst. Automatisches Caching ist separat einstellbar.|Añade archivos que puedas usar. Configura la caché automática por separado.
+555|BRING YOUR SOUND TOGETHER|МУЗЫКАҢДЫ БІР ЖЕРГЕ ЖИНА|ЗІБРАТИ СВОЄ В ОДНОМУ МІСЦІ|DEINEN KLANG ZUSAMMENBRINGEN|REÚNE TU SONIDO
+556|Music without borders|Шекарасыз музыка|Музика без кордонів|Musik ohne Grenzen|Música sin fronteras
+557|Your tracks live in different places. Here they're close.|Тректерің әр жерде. Мұнда олар бірге.|Твої треки в різних місцях. Тут вони поруч.|Deine Titel leben an vielen Orten. Hier sind sie zusammen.|Tus pistas viven en lugares distintos. Aquí están juntas.
+558|Connected|Қосылған|Підключено|Verbunden|Conectado
+559|Search available|Іздеу қолжетімді|Пошук доступний|Suche verfügbar|Búsqueda disponible
+560|Ready to connect|Қосылуға дайын|Готовий до підключення|Bereit zum Verbinden|Listo para conectar
+561|Import unavailable|Тасымалдау қолжетімсіз|Перенесення недоступне|Import nicht verfügbar|Importación no disponible
+562|Favourite discoveries and independent sound.|Сүйікті жаңалықтар және тәуелсіз дыбыс.|Улюблені знахідки й незалежний звук.|Lieblingsentdeckungen und unabhängiger Klang.|Descubrimientos favoritos y sonido independiente.
+563|Playlists collected over years.|Жылдар бойы жиналған плейлистер.|Плейлисти, зібрані роками.|Über Jahre gesammelte Playlists.|Listas recopiladas durante años.
+564|Your songs and favourite collections.|Әндерің және сүйікті жинақтарың.|Твої пісні й улюблені добірки.|Deine Songs und Lieblingssammlungen.|Tus canciones y colecciones favoritas.
+565|Music, videos and entire musical worlds.|Музыка, бейнелер және музыкалық әлемдер.|Музика, кліпи й цілі музичні світи.|Musik, Videos und ganze Musikwelten.|Música, vídeos y mundos musicales enteros.
+566|Choose music|Музыка таңдау|Обрати музику|Musik wählen|Elegir música
+567|Account disconnected|Аккаунт ажыратылды|Акаунт відключено|Konto getrennt|Cuenta desconectada
+568|Disconnect account|Аккаунтты ажырату|Відключити акаунт|Konto trennen|Desconectar cuenta
+569|Account import is unavailable|Аккаунт тасымалдауы қолжетімсіз|Імпорт акаунта недоступний|Kontoimport nicht verfügbar|Importación de cuenta no disponible
+570|Connect account|Аккаунтты қосу|Підключити акаунт|Konto verbinden|Conectar cuenta
+571|Sign in and connect|Кіру және қосу|Увійти й підключити|Anmelden und verbinden|Entrar y conectar
+572|Search and playback work without an account. Import your library from an existing export.|Іздеу мен ойнату аккаунтсыз жұмыс істейді. Медиатеканы дайын экспорттан тасымалда.|Пошук і відтворення працюють без акаунта. Перенеси бібліотеку з готового експорту.|Suche und Wiedergabe funktionieren ohne Konto. Importiere deine Bibliothek aus einem Export.|La búsqueda y reproducción funcionan sin cuenta. Importa tu biblioteca desde una exportación.
+573|Import music from an existing CSV or JSON export.|Музыканы дайын CSV не JSON экспортынан тасымалда.|Перенеси музику з готового експорту CSV або JSON.|Importiere Musik aus einem CSV- oder JSON-Export.|Importa música de una exportación CSV o JSON.
+574|Connecting an account from this source is unavailable.|Бұл дереккөз аккаунтын қосу қолжетімсіз.|Підключення акаунта цього джерела недоступне.|Ein Konto dieser Quelle lässt sich gerade nicht verbinden.|No se puede conectar una cuenta de esta fuente.
+575|Checking connections…|Қосылымдар тексерілуде…|Перевіряємо підключення…|Verbindungen werden geprüft…|Comprobando conexiones…
+576|Already have an export?|Дайын экспортың бар ма?|Уже є експорт?|Hast du bereits einen Export?|¿Ya tienes una exportación?
+577|Import a playlist from JSON or CSV: titles, artists and track links.|JSON не CSV плейлисті: атаулар, орындаушылар және трек сілтемелері.|Перенеси плейлист із JSON або CSV: назви, виконавці та посилання.|Importiere eine Playlist aus JSON oder CSV: Titel, Künstler und Links.|Importa una lista desde JSON o CSV: títulos, artistas y enlaces.
+578|Choose file|Файл таңдау|Обрати файл|Datei wählen|Elegir archivo
+579|How sources and imports work|Дереккөздер мен тасымалдау қалай жұмыс істейді|Як працюють джерела й перенесення|So funktionieren Quellen und Import|Cómo funcionan las fuentes y la importación
+580|GlukWave stores your library and track links. External music uses official players; each service controls access and availability. Only your own audio files can be downloaded and cached.|GlukWave медиатекаңды және сілтемелерді сақтайды. Сыртқы музыка ресми плеерлерде ойналады; қолжетімділікті сервис анықтайды. Тек өз аудиофайлдарыңды жүктеп, кештеуге болады.|GlukWave зберігає медіатеку й посилання. Зовнішня музика звучить в офіційних плеєрах; доступність визначає сервіс. Завантажувати й кешувати можна лише власні аудіофайли.|GlukWave speichert deine Mediathek und Links. Externe Musik nutzt offizielle Player; Zugang und Verfügbarkeit bestimmt der Dienst. Nur eigene Audiodateien können heruntergeladen und gecacht werden.|GlukWave guarda tu biblioteca y enlaces. La música externa usa reproductores oficiales; el servicio decide acceso y disponibilidad. Solo tus archivos de audio pueden descargarse y almacenarse.
+581|Sign in to music accounts on the service's own page. You can also import playlists from an export containing track names and links.|Музыка аккаунтына сервис бетінде кір. Трек атаулары мен сілтемелері бар экспорттан да тасымалдай аласың.|Вхід у музичний акаунт відбувається на сторінці сервісу. Можна імпортувати плейлист з експорту з назвами й посиланнями.|Melde dich auf der Website des Musikdienstes an. Playlists lassen sich auch aus Exporten mit Titelnamen und Links importieren.|Inicia sesión en la página del servicio musical. También puedes importar listas desde exportaciones con nombres y enlaces.
+582|CSV: title, artist, sourceUrl. JSON: a tracks array with the same fields. Upload audio separately in your library.|CSV: title, artist, sourceUrl. JSON: сол өрістері бар tracks тізімі. Аудионы медиатекаға бөлек жүкте.|CSV: title, artist, sourceUrl. JSON: масив tracks із цими полями. Аудіо додається окремо в медіатеці.|CSV: title, artist, sourceUrl. JSON: ein tracks-Array mit denselben Feldern. Audio separat in der Mediathek hochladen.|CSV: title, artist, sourceUrl. JSON: un array tracks con esos campos. Sube el audio por separado en la biblioteca.
+583|Loading your music…|Музыкаң жүктелуде…|Отримуємо твою музику…|Deine Musik wird geladen…|Cargando tu música…
+584|Account connected, but it's quiet here|Аккаунт қосылды, бірақ әзірге тыныш|Акаунт підключено, але тут тихо|Konto verbunden, aber hier ist es noch ruhig|Cuenta conectada, pero todo está tranquilo
+585|No playlists available for import were found in this source.|Тасымалдауға қолжетімді плейлистер табылмады.|У джерелі не знайдено плейлистів для перенесення.|Keine importierbaren Playlists in dieser Quelle gefunden.|No se encontraron listas disponibles para importar.
+586|Selected|Таңдалды|Обрано|Ausgewählt|Seleccionadas
+587|of|ішінен|із|von|de
+588|Deselect|Таңдауды алып тастау|Зняти вибір|Abwählen|Deseleccionar
+589|Select all|Барлығын таңдау|Обрати все|Alle auswählen|Seleccionar todo
+590|Importing music…|Музыка тасымалдануда…|Переносимо музику…|Musik wird importiert…|Importando música…
+591|Import selected|Таңдалғанды тасымалдау|Перенести обране|Auswahl importieren|Importar selección
+592|This is part of a large playlist. Import selected tracks or the whole playlist.|Бұл үлкен плейлистің бір бөлігі. Таңдалған тректерді не түгел плейлистті тасымалда.|Це частина великого плейлиста. Перенеси обрані треки або весь плейлист.|Dies ist ein Teil einer großen Playlist. Importiere ausgewählte Titel oder die gesamte Playlist.|Esta es parte de una lista grande. Importa las pistas elegidas o la lista completa.
+593|Import entire playlist|Плейлистті түгел тасымалдау|Перенести весь плейлист|Gesamte Playlist importieren|Importar lista completa
+594|Stay visible to your people|Достарыңа көрініп жүр|Будь на виду у своїх|Bleib für deine Leute sichtbar|Mantente cerca de los tuyos
+595|Link Discord to your profile. “Listening to GlukWave” works through the running desktop app.|Discord профиліңе байланыстыр. «GlukWave тыңдауда» компьютер қолданбасы арқылы жұмыс істейді.|Прив'яжи Discord до профілю. «Слухає GlukWave» працює через запущений застосунок на ПК.|Verknüpfe Discord mit deinem Profil. „Hört GlukWave“ funktioniert über die laufende Desktop-App.|Vincula Discord a tu perfil. «Escuchando GlukWave» funciona con la aplicación de escritorio abierta.
+596|Discord disconnected|Discord ажыратылды|Discord відключено|Discord getrennt|Discord desconectado
+597|Disconnect Discord|Discord ажырату|Відключити Discord|Discord trennen|Desconectar Discord
+598|Link Discord|Discord байланыстыру|Прив'язати Discord|Discord verknüpfen|Vincular Discord
+599|That code didn't work. Enable presence in the desktop GlukWave app and copy a new code.|Код жарамады. Компьютер GlukWave белсенділігін қосып, жаңа кодты көшір.|Код не підійшов. Увімкни присутність у GlukWave на ПК та скопіюй новий.|Der Code funktioniert nicht. Aktiviere Präsenz in der Desktop-App und kopiere einen neuen Code.|El código no funciona. Activa la presencia en GlukWave de escritorio y copia uno nuevo.
+600|Discord presence linked to this tab|Discord белсенділігі осы бетке байланыстырылды|Присутність Discord пов'язана з цією вкладкою|Discord-Präsenz mit diesem Tab verbunden|Presencia de Discord vinculada a esta pestaña
+601|Discord pairing code from the desktop app|Компьютер қолданбасындағы Discord коды|Код Discord із застосунку на ПК|Discord-Kopplungscode aus der Desktop-App|Código de Discord de la aplicación de escritorio
+602|Code from the desktop app|Компьютер қолданбасынан код|Код із застосунку на ПК|Code aus der Desktop-App|Código de la aplicación de escritorio
+603|Pair|Байланыстыру|Пов'язати|Koppeln|Vincular
+604|Discord account connection is unavailable. Link music presence to the open desktop GlukWave app instead.|Discord аккаунтын қосу қолжетімсіз. Музыка белсенділігін ашық компьютер GlukWave қолданбасына байланыстыруға болады.|Підключення Discord недоступне. Присутність можна пов'язати з відкритим GlukWave на ПК.|Discord-Kontoverbindung ist nicht verfügbar. Verknüpfe die Musikpräsenz mit der offenen Desktop-App.|La conexión de cuenta Discord no está disponible. Puedes vincular la presencia musical a GlukWave de escritorio.
+605|MUSIC STAYS WITH YOU|МУЗЫКА ЖАНЫҢДА ҚАЛАДЫ|МУЗИКА ЗАЛИШАЄТЬСЯ З ТОБОЮ|MUSIK BLEIBT BEI DIR|LA MÚSICA TE ACOMPAÑA
+606|Your music is available even without a connection.|Музыкаң желісіз де қолжетімді.|Твоя музика доступна навіть без мережі.|Deine Musik ist auch ohne Verbindung verfügbar.|Tu música está disponible incluso sin conexión.
+607|CACHE USED|ҚОЛДАНЫЛҒАН КЕШ|ЗАЙНЯТО В КЕШІ|CACHE BELEGT|CACHÉ USADA
+608|MB|МБ|МБ|MB|MB
+609|Cache cleared on this device|Құрылғы кеші тазартылды|Кеш цього пристрою очищено|Cache auf diesem Gerät geleert|Caché borrada en este dispositivo
+610|Clear cache|Кешті тазарту|Очистити кеш|Cache leeren|Borrar caché
+611|Saved manually|Қолмен сақталған|Збережено вручну|Manuell gespeichert|Guardado manualmente
+612|Automatic cache|Автоматты кеш|Автоматичний кеш|Automatischer Cache|Caché automática
+613|Remove cached file|Кештегі файлды жою|Видалити файл із кешу|Cache-Datei entfernen|Eliminar archivo de caché
+614|File removed from device|Файл құрылғыдан жойылды|Файл видалено з пристрою|Datei vom Gerät entfernt|Archivo eliminado del dispositivo
+615|Get ready for the road|Жолға дайындал|Підготуйся до дороги|Bereit für unterwegs|Prepárate para el camino
+616|Open library|Медиатеканы ашу|Відкрити медіатеку|Mediathek öffnen|Abrir biblioteca
+617|Local files cache automatically while listening. You can also save them with the download button.|Жергілікті файлдар тыңдағанда автоматты кештеледі. Жүктеу түймесімен де сақтай аласың.|Локальні файли кешуються під час прослуховування. Можна зберегти їх кнопкою завантаження.|Lokale Dateien werden beim Hören gecacht. Du kannst sie auch mit der Download-Schaltfläche speichern.|Los archivos locales se guardan en caché al escucharlos. También puedes guardarlos con el botón de descarga.
+618|This browser cache belongs to your account and is removed when you sign out. External source players need a connection.|Браузер кеші аккаунтыңа тиесілі, шыққанда жойылады. Сыртқы плеерлерге желі керек.|Кеш браузера належить акаунту й видаляється при виході. Зовнішнім плеєрам потрібна мережа.|Dieser Cache gehört deinem Konto und wird beim Abmelden entfernt. Externe Player benötigen eine Verbindung.|La caché pertenece a tu cuenta y se borra al cerrar sesión. Los reproductores externos necesitan conexión.
+619|Search is currently unavailable|Іздеу қазір қолжетімсіз|Пошук зараз недоступний|Suche ist gerade nicht verfügbar|Búsqueda no disponible
+620|This source is currently unavailable|Дереккөз қазір қолжетімсіз|Джерело зараз недоступне|Diese Quelle ist gerade nicht verfügbar|Esta fuente no está disponible
+621|No results for this search yet|Бұл іздеуде нәтиже жоқ|За цим запитом нічого не знайдено|Noch keine Ergebnisse für diese Suche|No hay resultados para esta búsqueda
+622|Add your files|Файлдарыңды қосу|Додати свої файли|Eigene Dateien hinzufügen|Añadir tus archivos
+623|Search SoundCloud, open a track link or add your own files.|SoundCloud ізде, трек сілтемесін аш не өз файлдарыңды қос.|Шукай у SoundCloud, відкрий посилання на трек або додай файли.|Suche in SoundCloud, öffne einen Titellink oder füge eigene Dateien hinzu.|Busca en SoundCloud, abre un enlace o añade tus archivos.
+624|Try another title or artist. You can add music from your device or import a playlist.|Басқа атау не орындаушыны ізде. Құрылғыдан музыка қосып, плейлист тасымалдай аласың.|Спробуй іншу назву чи виконавця. Додай музику з пристрою або перенеси плейлист.|Versuche einen anderen Titel oder Künstler. Füge Dateien hinzu oder importiere eine Playlist.|Prueba otro título o artista. Añade música de tu dispositivo o importa una lista.
+625|The room controls the shared queue|Бөлмеде ортақ кезек басқарылады|У кімнаті чергою керують спільно|Der Raum steuert die gemeinsame Warteschlange|La sala controla la cola compartida
+626|Shuffle queue|Кезекті араластыру|Перемішати чергу|Warteschlange mischen|Mezclar cola
+627|Previous track|Алдыңғы трек|Попередній трек|Vorheriger Titel|Pista anterior
+628|Pause|Кідірту|Пауза|Pause|Pausar
+629|Play|Ойнату|Відтворити|Abspielen|Reproducir
+630|Next track|Келесі трек|Наступний трек|Nächster Titel|Pista siguiente
+631|Enable repeat|Қайталауды қосу|Увімкнути повтор|Wiederholen aktivieren|Activar repetición
+632|Repeat one track|Бір тректі қайталау|Повтор одного треку|Einen Titel wiederholen|Repetir una pista
+633|Disable repeat|Қайталауды өшіру|Вимкнути повтор|Wiederholen deaktivieren|Desactivar repetición
+634|Playback position|Ойнату орны|Позиція відтворення|Wiedergabeposition|Posición de reproducción
+635|Music player|Музыка плеері|Музичний плеєр|Musikplayer|Reproductor de música
+636|Choose music and take a breath|Музыканы таңдап, демал|Обери музику й видихни|Musik wählen und durchatmen|Elige música y respira
+637|Remove from favourites|Ұнағандардан алу|Прибрати з улюблених|Aus Favoriten entfernen|Quitar de favoritas
+638|Add to favourites|Ұнағандарға қосу|Додати до улюблених|Zu Favoriten hinzufügen|Añadir a favoritas
+639|Expand player|Плеерді ашу|Розгорнути плеєр|Player erweitern|Ampliar reproductor
+640|Playback queue|Ойнату кезегі|Черга відтворення|Warteschlange|Cola de reproducción
+641|Mute|Дыбысты өшіру|Вимкнути звук|Stummschalten|Silenciar
+642|Unmute|Дыбысты қосу|Увімкнути звук|Ton einschalten|Activar sonido
+643|Volume|Дыбыс|Гучність|Lautstärke|Volumen
+644|Press to enable sound|Дыбысты қосу үшін бас|Натисни, щоб увімкнути звук|Drücken, um Ton einzuschalten|Pulsa para activar el sonido
+645|Expanded music player|Ашылған музыка плеері|Розгорнутий музичний плеєр|Erweiterter Musikplayer|Reproductor ampliado
+646|Collapse player|Плеерді жинау|Згорнути плеєр|Player einklappen|Contraer reproductor
+647|NOW ON YOUR WAVE|ҚАЗІР ТОЛҚЫНЫҢДА|ЗАРАЗ НА ТВОЇЙ ХВИЛІ|JETZT AUF DEINER WELLE|AHORA EN TU ONDA
+648|Your music|Сенің музыкаң|Твоя музика|Deine Musik|Tu música
+649|Mini player over other windows|Терезелер үстіндегі шағын плеер|Мініплеєр поверх вікон|Miniplayer über anderen Fenstern|Minirreproductor sobre otras ventanas
+650|Player sections|Плеер бөлімдері|Розділи плеєра|Player-Bereiche|Secciones del reproductor
+651|Player|Плеер|Плеєр|Player|Reproductor
+652|Lyrics|Мәтін|Слова|Liedtext|Letra
+653|Queue|Кезек|Черга|Warteschlange|Cola
+654|Comments|Пікірлер|Коментарі|Kommentare|Comentarios
+655|To playlist|Плейлистке|До плейлиста|Zur Playlist|A lista
+656|Add lyrics to this music|Музыкаға мәтін қосу|Додати слова до музики|Liedtext hinzufügen|Añadir letra a esta música
+657|Open lyrics|Мәтінді ашу|Відкрити текст|Liedtext öffnen|Abrir letra
+658|Loading lyrics…|Мәтін жүктелуде…|Отримуємо слова…|Liedtext wird geladen…|Cargando letra…
+659|Add lyrics from an LRC or text file.|LRC не мәтін файлынан қос.|Додай слова з LRC або текстового файлу.|Füge Text aus einer LRC- oder Textdatei hinzu.|Añade letra de un archivo LRC o de texto.
+660|NEXT ON THE WAVE|ТОЛҚЫНДА КЕЛЕСІ|ДАЛІ ПО ХВИЛІ|ALS NÄCHSTES|SIGUIENTE EN LA ONDA
+661|Your queue|Сенің кезегің|Твоя черга|Deine Warteschlange|Tu cola
+662|Just stay in the music.|Музыкада қал.|Просто залишайся в музиці.|Bleib einfach in der Musik.|Quédate en la música.
+663|Save this file for offline listening.|Офлайн тыңдау үшін файлды сақта.|Збережи файл для офлайн-прослуховування.|Speichere diese Datei zum Offline-Hören.|Guarda este archivo para escucharlo sin conexión.
+664|Music plays in the source's official player.|Музыка дереккөздің ресми плеерінде ойналады.|Музика звучить в офіційному плеєрі джерела.|Musik spielt im offiziellen Player der Quelle.|La música suena en el reproductor oficial de la fuente.
+665|SYNCHRONISED LYRICS|СИНХРОНДАЛҒАН МӘТІН|СИНХРОНІЗОВАНИЙ ТЕКСТ|SYNCHRONISIERTER LIEDTEXT|LETRA SINCRONIZADA
+666|WORDS TO THE MUSIC|МУЗЫКА МӘТІНІ|СЛОВА ДО МУЗИКИ|WORTE ZUR MUSIK|PALABRAS DE LA MÚSICA
+667|Add LRC / text|LRC / мәтін қосу|Додати LRC / текст|LRC / Text hinzufügen|Añadir LRC / texto
+668|No lyrics for this music yet|Бұл музыкада мәтін жоқ|У цієї музики ще немає тексту|Noch kein Liedtext für diese Musik|Esta música aún no tiene letra
+669|The file owner can add lyrics or an LRC file with timestamps.|Файл иесі мәтін не уақыт белгілері бар LRC қоса алады.|Власник файлу може додати слова або LRC із часом.|Der Dateibesitzer kann Text oder eine LRC-Datei mit Zeitmarken hinzufügen.|El propietario puede añadir letra o un LRC con marcas de tiempo.
+670|Next on the wave|Толқында келесі|Далі по хвилі|Als Nächstes|Siguiente en la onda
+671|Remove from queue|Кезектен алу|Видалити з черги|Aus Warteschlange entfernen|Quitar de cola
+672|What do you hear?|Не естіп тұрсың?|Що чуєш ти?|Was hörst du?|¿Qué escuchas?
+673|Comments in the moment|Осы сәттің пікірлері|Коментарі в моменті|Kommentare im Moment|Comentarios en el momento
+674|Leave a thought at this second…|Осы секундқа ойыңды қалдыр…|Залиши думку на цій секунді…|Hinterlasse hier einen Gedanken…|Deja una idea en este segundo…
+675|Comment|Пікір|Коментар|Kommentar|Comentario
+676|Send comment|Пікір жіберу|Надіслати коментар|Kommentar senden|Enviar comentario
+677|Loading comments…|Пікірлер жүктелуде…|Отримуємо коментарі…|Kommentare werden geladen…|Cargando comentarios…
+678|Delete comment|Пікірді жою|Видалити коментар|Kommentar löschen|Eliminar comentario
+679|The first word is yours|Алғашқы сөз сенікі|Перше слово за тобою|Das erste Wort gehört dir|La primera palabra es tuya
+680|Your comment keeps its timestamp.|Пікірің уақыт белгісімен қалады.|Позначка часу залишиться з коментарем.|Dein Kommentar behält seine Zeitmarke.|Tu comentario conserva la marca de tiempo.
+681|Lyrics for your track|Трегіңнің мәтіні|Слова до твого треку|Liedtext für deinen Titel|Letra para tu pista
+682|Lyrics added|Мәтін қосылды|Текст додано|Liedtext hinzugefügt|Letra añadida
+683|Text or LRC|Мәтін не LRC|Текст або LRC|Text oder LRC|Texto o LRC
+684|[00:12.00] First line…|[00:12.00] Бірінші жол…|[00:12.00] Перший рядок…|[00:12.00] Erste Zeile…|[00:12.00] Primera línea…
+685|Upload .lrc / .txt|.lrc / .txt жүктеу|Завантажити .lrc / .txt|.lrc / .txt hochladen|Subir .lrc / .txt
+686|Choose a text file smaller than 200 KB.|200 КБ аз мәтін файлды таңда.|Обери текстовий файл до 200 КБ.|Wähle eine Textdatei unter 200 KB.|Elige un archivo de texto menor de 200 KB.
+687|This file has no text yet.|Файлда мәтін жоқ.|У файлі немає тексту.|Diese Datei enthält keinen Text.|El archivo no tiene texto.
+688|The first 50,000 characters are open.|Алғашқы 50 000 таңба ашылды.|Відкрито перші 50 000 символів.|Die ersten 50.000 Zeichen sind geöffnet.|Se abrieron los primeros 50.000 caracteres.
+689|Lyrics stay in your account. For external music, only you can see them.|Мәтін аккаунтыңда сақталады. Сыртқы музыка мәтінін тек сен көресің.|Слова збережуться в акаунті. Для зовнішньої музики їх бачиш лише ти.|Liedtexte bleiben in deinem Konto. Bei externer Musik siehst nur du sie.|La letra queda en tu cuenta. Para música externa, solo tú la ves.
+690|Save lyrics|Мәтінді сақтау|Зберегти слова|Liedtext speichern|Guardar letra
+691|Music beside you|Жаныңдағы музыка|Музика поруч|Musik an deiner Seite|Música a tu lado
+692|Choose where music plays. Sign in to the same account on your devices to see them here.|Музыка ойнайтын жерді таңда. Құрылғыларыңда бір аккаунтқа кіріп, осында көр.|Обери, де звучить музика. Увійди в один акаунт на пристроях, щоб побачити їх тут.|Wähle, wo Musik spielt. Melde dich auf deinen Geräten im selben Konto an.|Elige dónde suena la música. Usa la misma cuenta en tus dispositivos para verlos aquí.
+693|This device|Осы құрылғы|Цей пристрій|Dieses Gerät|Este dispositivo
+694|Listening now|Қазір тыңдауда|Зараз слухає|Hört gerade Musik|Escuchando ahora
+695|Previous track on device|Құрылғыдағы алдыңғы трек|Попередній трек на пристрої|Vorheriger Titel auf Gerät|Pista anterior en dispositivo
+696|Pause on device|Құрылғыда кідірту|Пауза на пристрої|Auf Gerät pausieren|Pausar en dispositivo
+697|Play on device|Құрылғыда ойнату|Відтворити на пристрої|Auf Gerät abspielen|Reproducir en dispositivo
+698|Next track on device|Құрылғыдағы келесі трек|Наступний трек на пристрої|Nächster Titel auf Gerät|Pista siguiente en dispositivo
+699|Transferring playback to device|Ойнату құрылғыға тасымалдануда|Передаємо відтворення на пристрій|Wiedergabe wird übertragen|Transfiriendo reproducción
+700|Listen here|Осында тыңдау|Слухати тут|Hier hören|Escuchar aquí
+701|Connecting this device|Құрылғы қосылуда|Підключаємо цей пристрій|Dieses Gerät wird verbunden|Conectando este dispositivo
+702|Sign in on your phone or another computer to see them here.|Телефоныңда не басқа компьютерде кіріп, осында көр.|Увійди на телефоні або іншому ПК, щоб побачити їх тут.|Melde dich am Handy oder einem anderen PC an, damit sie hier erscheinen.|Inicia sesión en el móvil u otro ordenador para verlos aquí.
+703|Press Play on a new device first. Then control its music from here.|Жаңа құрылғыда алдымен Ойнату бас. Содан кейін осы жерден басқар.|Спершу натисни Відтворити на новому пристрої. Потім керуй звідси.|Drücke zuerst Abspielen auf dem neuen Gerät. Danach kannst du es hier steuern.|Primero pulsa Reproducir en el nuevo dispositivo. Después contrólalo desde aquí.
+704|Your browser needs a tap. Press Play to enable sound.|Браузер басуды күтеді. Дыбысты қосу үшін Ойнату бас.|Браузер чекає натискання. Натисни Відтворити для звуку.|Dein Browser braucht einen Klick. Drücke Abspielen für Ton.|Tu navegador necesita un toque. Pulsa Reproducir para activar sonido.
+705|The device blocked audio. Open GlukWave there and press Play.|Құрылғы дыбысқа рұқсат бермеді. Сол жерде GlukWave ашып, Ойнату бас.|Пристрій заблокував звук. Відкрий там GlukWave і натисни Відтворити.|Das Gerät blockiert Audio. Öffne dort GlukWave und drücke Abspielen.|El dispositivo bloqueó el audio. Abre GlukWave allí y pulsa Reproducir.
+706|Press Play in the official Yandex Music player. Playback is controlled inside its widget.|Ресми Яндекс Музыка плеерінде Ойнату бас. Басқару виджет ішінде.|Натисни Play в офіційному плеєрі Яндекс Музики. Керування всередині віджета.|Drücke Play im offiziellen Yandex-Music-Player. Die Steuerung erfolgt im Widget.|Pulsa Play en el reproductor oficial de Yandex Music. Se controla dentro del widget.
+707|Yandex Music needs Play pressed inside its official widget.|Яндекс Музыка ресми виджет ішінде Play басуды қажет етеді.|Яндекс Музика потребує Play в офіційному віджеті.|Yandex Music benötigt Play im offiziellen Widget.|Yandex Music necesita que pulses Play dentro del widget.
+708|The source player didn't start. Allow sound on your device.|Дереккөз плеері іске қосылмады. Құрылғыда дыбысқа рұқсат бер.|Плеєр джерела не почав грати. Дозволь звук на пристрої.|Der Quellplayer startet nicht. Erlaube Ton auf dem Gerät.|El reproductor no inició. Permite sonido en tu dispositivo.
+709|Seek inside this service's official player.|Бұл сервистің ресми плеерінде айналдыр.|Перемотуй в офіційному плеєрі сервісу.|Spule im offiziellen Player dieses Dienstes.|Avanza dentro del reproductor oficial del servicio.
+710|No track is selected on this device yet.|Құрылғыда трек әлі таңдалмаған.|На пристрої ще не обрано трек.|Auf diesem Gerät ist noch kein Titel gewählt.|Aún no hay una pista elegida en este dispositivo.
+711|The external player didn't allow playback.|Сыртқы плеер ойнатуға рұқсат бермеді.|Зовнішній плеєр не дозволив відтворення.|Der externe Player erlaubt die Wiedergabe nicht.|El reproductor externo no permitió la reproducción.
+712|Enable sound in the source's official player.|Дереккөздің ресми плеерінде дыбысты қос.|Увімкни звук в офіційному плеєрі джерела.|Aktiviere Ton im offiziellen Quellplayer.|Activa el sonido en el reproductor oficial.
+713|This source is controlled inside its own player.|Бұл дереккөз өз плеерінде басқарылады.|Цим джерелом керують у його плеєрі.|Diese Quelle wird in ihrem eigenen Player gesteuert.|Esta fuente se controla en su propio reproductor.
+714|No response from the room. Check your connection.|Бөлме жауап бермеді. Қосылымды тексер.|Кімната не відповіла. Перевір з'єднання.|Keine Antwort vom Raum. Prüfe die Verbindung.|La sala no respondió. Revisa tu conexión.
+715|Could not open the audio file. Try the track again.|Аудиофайл ашылмады. Тректі қайта қос.|Не вдалося відкрити аудіофайл. Спробуй знову.|Audiodatei konnte nicht geöffnet werden. Versuche den Titel erneut.|No se pudo abrir el audio. Intenta la pista de nuevo.
+716|GlukWave — your music|GlukWave — сенің музыкаң|GlukWave — твоя музика|GlukWave — deine Musik|GlukWave — tu música
+717|Computer|Компьютер|Комп'ютер|Computer|Ordenador
+718|Browser|Браузер|Браузер|Browser|Navegador
+719|The host closed the room.|Бөлме иесі жапты.|Господар закрив кімнату.|Der Gastgeber hat den Raum geschlossen.|El anfitrión cerró la sala.
+720|The room is still connecting. Try again in a moment.|Бөлме әлі қосылуда. Бір сәттен соң қайтала.|Кімната ще підключається. Спробуй за мить.|Der Raum verbindet noch. Versuche es gleich erneut.|La sala aún se conecta. Inténtalo en un momento.
+721|Could not join the room.|Бөлмеге қосылу мүмкін болмады.|Не вдалося приєднатися до кімнати.|Raum konnte nicht betreten werden.|No se pudo entrar en la sala.
+722|Press Play in the source player to allow sound.|Дыбысқа рұқсат беру үшін дереккөзде Play бас.|Натисни Play у плеєрі джерела для звуку.|Drücke Play im Quellplayer, um Ton zu erlauben.|Pulsa Play en el reproductor de la fuente para permitir sonido.
+723|Allow pop-up windows for GlukWave and try again.|GlukWave қалқымалы терезелеріне рұқсат беріп, қайтала.|Дозволь спливні вікна GlukWave й спробуй знову.|Erlaube Pop-ups für GlukWave und versuche es erneut.|Permite ventanas emergentes para GlukWave e inténtalo de nuevo.
+724|Mini player open. Keeping it on top depends on your browser.|Шағын плеер ашылды. Үстінде бекіту браузерге байланысты.|Мініплеєр відкрито. Закріплення поверх вікон залежить від браузера.|Miniplayer geöffnet. Immer im Vordergrund hängt vom Browser ab.|Minirreproductor abierto. Mantenerlo encima depende del navegador.
+725|Warm paper|Жылы қағаз|Теплий папір|Warmes Papier|Papel cálido
+726|Quiet night|Тыныш түн|Тиха ніч|Ruhige Nacht|Noche tranquila
+727|Closer to nature|Табиғатқа жақынырақ|Ближче до природи|Näher an der Natur|Más cerca de la naturaleza
+728|Soft lilac|Жұмсақ сирень|М'який бузок|Sanftes Lila|Lila suave
+729|This action needs a connection. Saved music works offline.|Бұл әрекетке желі керек. Сақталған музыка офлайн ойналады.|Цій дії потрібна мережа. Збережена музика працює офлайн.|Diese Aktion braucht eine Verbindung. Gespeicherte Musik läuft offline.|Esta acción necesita conexión. La música guardada funciona sin ella.
+730|Signed out. Private downloads were removed from this device.|Шықтың. Жеке жүктемелер құрылғыдан жойылды.|Ти вийшов. Особисті завантаження видалено з пристрою.|Abgemeldet. Private Downloads wurden von diesem Gerät entfernt.|Sesión cerrada. Las descargas privadas se eliminaron de este dispositivo.
+731|track|трек|трек|Titel|pista
+732|tracks|трек|треки|Titel|pistas
+733|music|музыка|музику|Musik|música
+734|Loading music…|Музыка жүктелуде…|Отримуємо музику…|Musik wird geladen…|Cargando música…
+735|Gathering your music…|Музыкаң жиналуда…|Збираємо твою музику…|Deine Musik wird gesammelt…|Reuniendo tu música…
+736|Close|Жабу|Закрити|Schließen|Cerrar
+737|Your music will appear here|Музыкаң осында пайда болады|Тут з'явиться твоя музика|Hier erscheint deine Musik|Tu música aparecerá aquí
+738|Unknown artist|Белгісіз орындаушы|Невідомий виконавець|Unbekannter Künstler|Artista desconocido
+739|Saved on this device|Құрылғыда сақталған|Збережено на цьому пристрої|Auf diesem Gerät gespeichert|Guardado en este dispositivo
+740|Add to playlist|Плейлистке қосу|Додати до плейлиста|Zur Playlist hinzufügen|Añadir a lista
+741|Add files from your device or import playlists from a favourite service.|Құрылғыдан файл қос не сүйікті сервистен плейлист тасымалда.|Додай файли або перенеси плейлисти з улюбленого сервісу.|Füge eigene Dateien hinzu oder importiere Playlists eines Lieblingsdienstes.|Añade archivos o importa listas de tu servicio favorito.
+742|Track added to playlist|Трек плейлистке қосылды|Трек у плейлисті|Titel zur Playlist hinzugefügt|Pista añadida a lista
+743|New playlist|Жаңа плейлист|Новий плейлист|Neue Playlist|Nueva lista
+744|For example, a good wave|Мысалы, жақсы толқында|Наприклад, на хорошій хвилі|Zum Beispiel: eine gute Welle|Por ejemplo, una buena onda
+745|Create with this track|Осы трекпен жасау|Створити з цим треком|Mit diesem Titel erstellen|Crear con esta pista
+746|Track saved on device|Трек құрылғыда сақталды|Трек збережено на пристрої|Titel auf Gerät gespeichert|Pista guardada en el dispositivo
+747|Saved|Сақталған|Збережено|Gespeichert|Guardada
+748|Pin file|Файлды бекіту|Закріпити файл|Datei behalten|Fijar archivo
+749|Download|Жүктеу|Завантажити|Herunterladen|Descargar
+750|Online player|Онлайн плеер|Онлайн-плеєр|Online-Player|Reproductor en línea

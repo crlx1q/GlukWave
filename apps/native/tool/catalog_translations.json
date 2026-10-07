@@ -1,0 +1,4122 @@
+{
+  "native.ffddd31c12": {
+    "ru": "Главная",
+    "en": "Home",
+    "kk": "Басты",
+    "uk": "Головна",
+    "de": "Start",
+    "es": "Inicio"
+  },
+  "native.27925da08c": {
+    "ru": "Медиатека",
+    "en": "Library",
+    "kk": "Медиатека",
+    "uk": "Медіатека",
+    "de": "Mediathek",
+    "es": "Biblioteca"
+  },
+  "native.d3aa3fa13d": {
+    "ru": "Любимые",
+    "en": "Liked",
+    "kk": "Ұнағандар",
+    "uk": "Улюблені",
+    "de": "Favoriten",
+    "es": "Favoritas"
+  },
+  "native.200ba6b661": {
+    "ru": "Слушать вместе",
+    "en": "Listen together",
+    "kk": "Бірге тыңдау",
+    "uk": "Слухати разом",
+    "de": "Gemeinsam hören",
+    "es": "Escuchar juntos"
+  },
+  "native.7ab03d602e": {
+    "ru": "Устройства",
+    "en": "Devices",
+    "kk": "Құрылғылар",
+    "uk": "Пристрої",
+    "de": "Geräte",
+    "es": "Dispositivos"
+  },
+  "native.7f17c7c62a": {
+    "ru": "Настройки",
+    "en": "Settings",
+    "kk": "Баптаулар",
+    "uk": "Налаштування",
+    "de": "Einstellungen",
+    "es": "Ajustes"
+  },
+  "native.db4afdc056": {
+    "ru": "Подключить источники",
+    "en": "Connect sources",
+    "kk": "Дереккөздерді қосу",
+    "uk": "Підключити джерела",
+    "de": "Quellen verbinden",
+    "es": "Conectar fuentes"
+  },
+  "native.0fb8bc0888": {
+    "ru": "Яндекс Музыка",
+    "en": "Yandex Music",
+    "kk": "Яндекс Музыка",
+    "uk": "Яндекс Музика",
+    "de": "Yandex Music",
+    "es": "Yandex Music"
+  },
+  "native.67b99cc9bf": {
+    "ru": "Не в сети",
+    "en": "Offline",
+    "kk": "Желіде емес",
+    "uk": "Не в мережі",
+    "de": "Offline",
+    "es": "Sin conexión"
+  },
+  "native.026abb1e0a": {
+    "ru": "Выйти",
+    "en": "Sign out",
+    "kk": "Шығу",
+    "uk": "Вийти",
+    "de": "Abmelden",
+    "es": "Cerrar sesión"
+  },
+  "native.f545f066e3": {
+    "ru": "Управлять подпиской",
+    "en": "Manage subscription",
+    "kk": "Жазылымды басқару",
+    "uk": "Керувати підпискою",
+    "de": "Abo verwalten",
+    "es": "Gestionar suscripción"
+  },
+  "native.52acff18e2": {
+    "ru": "Открыть Unbound",
+    "en": "Explore Unbound",
+    "kk": "Unbound ашу",
+    "uk": "Відкрити Unbound",
+    "de": "Unbound entdecken",
+    "es": "Explorar Unbound"
+  },
+  "native.aee78fe860": {
+    "ru": "Имя",
+    "en": "Name",
+    "kk": "Аты",
+    "uk": "Ім'я",
+    "de": "Name",
+    "es": "Nombre"
+  },
+  "native.312416bd6b": {
+    "ru": "О себе",
+    "en": "About you",
+    "kk": "Өзің туралы",
+    "uk": "Про себе",
+    "de": "Über dich",
+    "es": "Sobre ti"
+  },
+  "native.d8203fae6b": {
+    "ru": "Теги через запятую",
+    "en": "Tags, separated by commas",
+    "kk": "Үтірмен бөлінген тегтер",
+    "uk": "Теги через кому",
+    "de": "Tags, mit Kommas getrennt",
+    "es": "Etiquetas separadas por comas"
+  },
+  "native.5b16fcdd97": {
+    "ru": "Аккаунт",
+    "en": "Account",
+    "kk": "Аккаунт",
+    "uk": "Обліковий запис",
+    "de": "Konto",
+    "es": "Cuenta"
+  },
+  "native.d206f1bed0": {
+    "ru": "Оформление",
+    "en": "Appearance",
+    "kk": "Безендіру",
+    "uk": "Оформлення",
+    "de": "Aussehen",
+    "es": "Apariencia"
+  },
+  "native.c188eb08a1": {
+    "ru": "Подключения",
+    "en": "Connections",
+    "kk": "Қосылымдар",
+    "uk": "Підключення",
+    "de": "Verbindungen",
+    "es": "Conexiones"
+  },
+  "native.ee3c35f311": {
+    "ru": "Уведомления",
+    "en": "Notifications",
+    "kk": "Хабарландырулар",
+    "uk": "Сповіщення",
+    "de": "Benachrichtigungen",
+    "es": "Notificaciones"
+  },
+  "native.0ad272ade8": {
+    "ru": "Клавиши",
+    "en": "Shortcuts",
+    "kk": "Пернелер",
+    "uk": "Клавіші",
+    "de": "Tastenkürzel",
+    "es": "Atajos"
+  },
+  "native.b9c9ff652d": {
+    "ru": "О приложении",
+    "en": "About",
+    "kk": "Қолданба туралы",
+    "uk": "Про застосунок",
+    "de": "Über GlukWave",
+    "es": "Acerca de"
+  },
+  "native.2988f5fbfc": {
+    "ru": "Объёмная обложка",
+    "en": "3D cover",
+    "kk": "Көлемді мұқаба",
+    "uk": "Об'ємна обкладинка",
+    "de": "3D-Cover",
+    "es": "Portada 3D"
+  },
+  "native.8c021dafec": {
+    "ru": "Винил",
+    "en": "Vinyl",
+    "kk": "Винил",
+    "uk": "Вініл",
+    "de": "Vinyl",
+    "es": "Vinilo"
+  },
+  "native.cf979a3886": {
+    "ru": "Место для музыки",
+    "en": "Space for music",
+    "kk": "Музыкаға орын",
+    "uk": "Місце для музики",
+    "de": "Platz für Musik",
+    "es": "Espacio para música"
+  },
+  "native.99544f70c8": {
+    "ru": "Почта подтверждена",
+    "en": "Email verified",
+    "kk": "Пошта расталған",
+    "uk": "Пошту підтверджено",
+    "de": "E-Mail bestätigt",
+    "es": "Correo verificado"
+  },
+  "native.0755f11f12": {
+    "ru": "Редактировать профиль",
+    "en": "Edit profile",
+    "kk": "Профильді өңдеу",
+    "uk": "Редагувати профіль",
+    "de": "Profil bearbeiten",
+    "es": "Editar perfil"
+  },
+  "native.108aa2199f": {
+    "ru": "Почта",
+    "en": "Email",
+    "kk": "Электрондық пошта",
+    "uk": "Пошта",
+    "de": "E-Mail",
+    "es": "Correo"
+  },
+  "native.c2f668e54f": {
+    "ru": "Обновить",
+    "en": "Refresh",
+    "kk": "Жаңарту",
+    "uk": "Оновити",
+    "de": "Aktualisieren",
+    "es": "Actualizar"
+  },
+  "native.b3fae20397": {
+    "ru": "Плоская",
+    "en": "Flat",
+    "kk": "Жазық",
+    "uk": "Пласка",
+    "de": "Flach",
+    "es": "Plana"
+  },
+  "native.81798ba3b3": {
+    "ru": "Уведомления сейчас недоступны. Попробуй позже.",
+    "en": "Notifications are unavailable right now. Try later.",
+    "kk": "Хабарландырулар қазір қолжетімсіз. Кейін қайтала.",
+    "uk": "Сповіщення зараз недоступні. Спробуй пізніше.",
+    "de": "Benachrichtigungen sind gerade nicht verfügbar. Versuche es später.",
+    "es": "Las notificaciones no están disponibles. Inténtalo más tarde."
+  },
+  "native.6433b522a1": {
+    "ru": "Поиск",
+    "en": "Search",
+    "kk": "Іздеу",
+    "uk": "Пошук",
+    "de": "Suche",
+    "es": "Buscar"
+  },
+  "native.0c456a489e": {
+    "ru": "ТВОЙ МАЛЕНЬКИЙ МИР",
+    "en": "YOUR LITTLE WORLD",
+    "kk": "СЕНІҢ ШАҒЫН ӘЛЕМІҢ",
+    "uk": "ТВІЙ МАЛЕНЬКИЙ СВІТ",
+    "de": "DEINE KLEINE WELT",
+    "es": "TU PEQUEÑO MUNDO"
+  },
+  "native.847e19da38": {
+    "ru": "Место для выдоха",
+    "en": "A place to exhale",
+    "kk": "Демалатын орын",
+    "uk": "Місце для видиху",
+    "de": "Ein Platz zum Durchatmen",
+    "es": "Un espacio para respirar"
+  },
+  "native.11688c1649": {
+    "ru": "Вместе",
+    "en": "Together",
+    "kk": "Бірге",
+    "uk": "Разом",
+    "de": "Zusammen",
+    "es": "Juntos"
+  },
+  "native.37f9f18bdc": {
+    "ru": "Добрый вечер",
+    "en": "Good evening",
+    "kk": "Қайырлы кеш",
+    "uk": "Добрий вечір",
+    "de": "Guten Abend",
+    "es": "Buenas noches"
+  },
+  "native.51d822d031": {
+    "ru": "Добрый день",
+    "en": "Good afternoon",
+    "kk": "Қайырлы күн",
+    "uk": "Добрий день",
+    "de": "Guten Tag",
+    "es": "Buenas tardes"
+  },
+  "native.d73c91bbc4": {
+    "ru": "Доброе утро",
+    "en": "Good morning",
+    "kk": "Қайырлы таң",
+    "uk": "Доброго ранку",
+    "de": "Guten Morgen",
+    "es": "Buenos días"
+  },
+  "native.6ce6f8d86e": {
+    "ru": "Создать плейлист",
+    "en": "Create playlist",
+    "kk": "Плейлист жасау",
+    "uk": "Створити плейлист",
+    "de": "Playlist erstellen",
+    "es": "Crear lista"
+  },
+  "native.7984f2471a": {
+    "ru": "Новый маленький мир",
+    "en": "A new little world",
+    "kk": "Жаңа шағын әлем",
+    "uk": "Новий маленький світ",
+    "de": "Eine neue kleine Welt",
+    "es": "Un nuevo pequeño mundo"
+  },
+  "native.99855bf52d": {
+    "ru": "Добавить музыку",
+    "en": "Add music",
+    "kk": "Музыка қосу",
+    "uk": "Додати музику",
+    "de": "Musik hinzufügen",
+    "es": "Añadir música"
+  },
+  "native.d6ab7b0b5a": {
+    "ru": "Плейлист",
+    "en": "Playlist",
+    "kk": "Плейлист",
+    "uk": "Плейлист",
+    "de": "Playlist",
+    "es": "Lista"
+  },
+  "native.3de49828e8": {
+    "ru": "Название",
+    "en": "Title",
+    "kk": "Атауы",
+    "uk": "Назва",
+    "de": "Titel",
+    "es": "Título"
+  },
+  "native.58b59eb005": {
+    "ru": "Все сервисы",
+    "en": "All sources",
+    "kk": "Барлық сервис",
+    "uk": "Усі сервіси",
+    "de": "Alle Quellen",
+    "es": "Todas las fuentes"
+  },
+  "native.129336147d": {
+    "ru": "Музыка без границ",
+    "en": "Music without borders",
+    "kk": "Шекарасыз музыка",
+    "uk": "Музика без кордонів",
+    "de": "Musik ohne Grenzen",
+    "es": "Música sin fronteras"
+  },
+  "native.96aa77adea": {
+    "ru": "СОБРАТЬ СВОЁ В ОДНОМ МЕСТЕ",
+    "en": "BRING YOUR SOUND TOGETHER",
+    "kk": "МУЗЫКАҢДЫ БІР ЖЕРГЕ ЖИНА",
+    "uk": "ЗІБРАТИ СВОЄ В ОДНОМУ МІСЦІ",
+    "de": "DEINEN KLANG ZUSAMMENBRINGEN",
+    "es": "REÚNE TU SONIDO"
+  },
+  "native.55c12495ec": {
+    "ru": "Название комнаты",
+    "en": "Room name",
+    "kk": "Бөлме атауы",
+    "uk": "Назва кімнати",
+    "de": "Raumname",
+    "es": "Nombre de sala"
+  },
+  "native.3643850b0a": {
+    "ru": "Создать комнату",
+    "en": "Create room",
+    "kk": "Бөлме ашу",
+    "uk": "Створити кімнату",
+    "de": "Raum erstellen",
+    "es": "Crear sala"
+  },
+  "native.5aeda8f0be": {
+    "ru": "Выйти из комнаты",
+    "en": "Leave room",
+    "kk": "Бөлмеден шығу",
+    "uk": "Вийти з кімнати",
+    "de": "Raum verlassen",
+    "es": "Salir de sala"
+  },
+  "native.0554078156": {
+    "ru": "Может управлять музыкой",
+    "en": "Can control music",
+    "kk": "Музыканы басқара алады",
+    "uk": "Може керувати музикою",
+    "de": "Kann Musik steuern",
+    "es": "Puede controlar la música"
+  },
+  "native.4864057d62": {
+    "ru": "Сохранить",
+    "en": "Save",
+    "kk": "Сақтау",
+    "uk": "Зберегти",
+    "de": "Speichern",
+    "es": "Guardar"
+  },
+  "native.2b03969a67": {
+    "ru": "Привязать Discord",
+    "en": "Link Discord",
+    "kk": "Discord байланыстыру",
+    "uk": "Прив'язати Discord",
+    "de": "Discord verknüpfen",
+    "es": "Vincular Discord"
+  },
+  "native.746716f000": {
+    "ru": "Открыть профиль",
+    "en": "Open profile",
+    "kk": "Профильді ашу",
+    "uk": "Відкрити профіль",
+    "de": "Profil öffnen",
+    "es": "Abrir perfil"
+  },
+  "native.14f7c63cc1": {
+    "ru": "Пароль",
+    "en": "Password",
+    "kk": "Құпиясөз",
+    "uk": "Пароль",
+    "de": "Passwort",
+    "es": "Contraseña"
+  },
+  "native.817314e802": {
+    "ru": "Не меньше 10 символов",
+    "en": "At least 10 characters",
+    "kk": "Кемінде 10 таңба",
+    "uk": "Щонайменше 10 символів",
+    "de": "Mindestens 10 Zeichen",
+    "es": "Al menos 10 caracteres"
+  },
+  "native.8d29ff5c84": {
+    "ru": "Создать аккаунт",
+    "en": "Create account",
+    "kk": "Аккаунт ашу",
+    "uk": "Створити акаунт",
+    "de": "Konto erstellen",
+    "es": "Crear cuenta"
+  },
+  "native.939e95a11d": {
+    "ru": "Войти",
+    "en": "Sign in",
+    "kk": "Кіру",
+    "uk": "Увійти",
+    "de": "Anmelden",
+    "es": "Iniciar sesión"
+  },
+  "native.8166d3a910": {
+    "ru": "Восстановить доступ",
+    "en": "Recover access",
+    "kk": "Қолжетімділікті қалпына келтіру",
+    "uk": "Відновити доступ",
+    "de": "Zugang wiederherstellen",
+    "es": "Recuperar acceso"
+  },
+  "native.30bb0333ca": {
+    "ru": "или",
+    "en": "or",
+    "kk": "немесе",
+    "uk": "або",
+    "de": "oder",
+    "es": "o"
+  },
+  "native.8080010c5e": {
+    "ru": "Светлая",
+    "en": "Light",
+    "kk": "Ашық",
+    "uk": "Світла",
+    "de": "Hell",
+    "es": "Claro"
+  },
+  "native.bd16b23470": {
+    "ru": "Тёмная",
+    "en": "Dark",
+    "kk": "Қараңғы",
+    "uk": "Темна",
+    "de": "Dunkel",
+    "es": "Oscuro"
+  },
+  "native.5a187c8ad3": {
+    "ru": "На твоей волне",
+    "en": "On your wave",
+    "kk": "Өз толқыныңда",
+    "uk": "На твоїй хвилі",
+    "de": "Auf deiner Welle",
+    "es": "En tu onda"
+  },
+  "native.2dd965ee95": {
+    "ru": "Акцент",
+    "en": "Accent",
+    "kk": "Акцент",
+    "uk": "Акцент",
+    "de": "Akzent",
+    "es": "Acento"
+  },
+  "native.b59390bb25": {
+    "ru": "Фон",
+    "en": "Background",
+    "kk": "Фон",
+    "uk": "Тло",
+    "de": "Hintergrund",
+    "es": "Fondo"
+  },
+  "native.93970437e2": {
+    "ru": "Текст",
+    "en": "Text",
+    "kk": "Мәтін",
+    "uk": "Текст",
+    "de": "Text",
+    "es": "Texto"
+  },
+  "native.830603aad3": {
+    "ru": "Анимации",
+    "en": "Animations",
+    "kk": "Анимациялар",
+    "uk": "Анімації",
+    "de": "Animationen",
+    "es": "Animaciones"
+  },
+  "native.064f067d84": {
+    "ru": "Шёлк",
+    "en": "Silk",
+    "kk": "Жібек",
+    "uk": "Шовк",
+    "de": "Seide",
+    "es": "Seda"
+  },
+  "native.e6d802e5aa": {
+    "ru": "Частицы",
+    "en": "Particles",
+    "kk": "Бөлшектер",
+    "uk": "Частинки",
+    "de": "Partikel",
+    "es": "Partículas"
+  },
+  "native.b3d81a3f8b": {
+    "ru": "Лесное озеро",
+    "en": "Forest lake",
+    "kk": "Орман көлі",
+    "uk": "Лісове озеро",
+    "de": "Waldsee",
+    "es": "Lago del bosque"
+  },
+  "native.2400e502b3": {
+    "ru": "У тихого океана",
+    "en": "By the quiet ocean",
+    "kk": "Тыныш мұхит жанында",
+    "uk": "Біля тихого океану",
+    "de": "Am ruhigen Ozean",
+    "es": "Junto al océano tranquilo"
+  },
+  "native.4589c6cdad": {
+    "ru": "Снег в лесу",
+    "en": "Snow in the forest",
+    "kk": "Ормандағы қар",
+    "uk": "Сніг у лісі",
+    "de": "Schnee im Wald",
+    "es": "Nieve en el bosque"
+  },
+  "native.635c3de27b": {
+    "ru": "Ночь в лесу",
+    "en": "Night in the forest",
+    "kk": "Ормандағы түн",
+    "uk": "Ніч у лісі",
+    "de": "Nacht im Wald",
+    "es": "Noche en el bosque"
+  },
+  "native.711dd88a87": {
+    "ru": "Вода, свет и немного тишины.",
+    "en": "Water, light and a little silence.",
+    "kk": "Су, жарық және аздап тыныштық.",
+    "uk": "Вода, світло й трохи тиші.",
+    "de": "Wasser, Licht und etwas Stille.",
+    "es": "Agua, luz y un poco de silencio."
+  },
+  "native.4883983984": {
+    "ru": "Светлячки",
+    "en": "Fireflies",
+    "kk": "Жарқырауық қоңыздар",
+    "uk": "Світлячки",
+    "de": "Glühwürmchen",
+    "es": "Luciérnagas"
+  },
+  "native.aad03f21ab": {
+    "ru": "Дождь",
+    "en": "Rain",
+    "kk": "Жаңбыр",
+    "uk": "Дощ",
+    "de": "Regen",
+    "es": "Lluvia"
+  },
+  "native.88d40c97f5": {
+    "ru": "GLUK LO-FI · ЖИВОЙ ПЕЙЗАЖ",
+    "en": "GLUK LO-FI · LIVING LANDSCAPE",
+    "kk": "GLUK LO-FI · ЖАНДЫ КӨРІНІС",
+    "uk": "GLUK LO-FI · ЖИВИЙ ПЕЙЗАЖ",
+    "de": "GLUK LO-FI · LEBENDIGE LANDSCHAFT",
+    "es": "GLUK LO-FI · PAISAJE VIVO"
+  },
+  "native.b09bf87fd9": {
+    "ru": "Слушать",
+    "en": "Listen",
+    "kk": "Тыңдау",
+    "uk": "Слухати",
+    "de": "Hören",
+    "es": "Escuchar"
+  },
+  "native.c56877fbe6": {
+    "ru": "Моя волна",
+    "en": "My wave",
+    "kk": "Менің толқыным",
+    "uk": "Моя хвиля",
+    "de": "Meine Welle",
+    "es": "Mi onda"
+  },
+  "native.5f266e04fe": {
+    "ru": "Поймать волну",
+    "en": "Catch a wave",
+    "kk": "Толқынды ұстау",
+    "uk": "Зловити хвилю",
+    "de": "Eine Welle finden",
+    "es": "Atrapa una onda"
+  },
+  "native.c746e31388": {
+    "ru": "Послушать трек",
+    "en": "Listen to track",
+    "kk": "Тректі тыңдау",
+    "uk": "Послухати трек",
+    "de": "Titel hören",
+    "es": "Escuchar pista"
+  },
+  "language.title": {
+    "en": "Language",
+    "ru": "Язык",
+    "kk": "Тіл",
+    "uk": "Мова",
+    "de": "Sprache",
+    "es": "Idioma"
+  },
+  "language.auto": {
+    "en": "Automatic",
+    "ru": "Автоматически",
+    "kk": "Автоматты",
+    "uk": "Автоматично",
+    "de": "Automatisch",
+    "es": "Automático"
+  },
+  "language.hint": {
+    "en": "Automatic uses your region or device language. Your choice is saved here and in your account, and works offline.",
+    "ru": "Автоматически — по региону или языку устройства. Выбор сохранится здесь и в аккаунте и работает без сети.",
+    "kk": "Автоматты таңдау аймаққа немесе құрылғы тіліне сүйенеді. Таңдау құрылғыда және аккаунтта сақталып, офлайн жұмыс істейді.",
+    "uk": "Автоматично — за регіоном або мовою пристрою. Вибір збережеться тут і в обліковому записі та працює без мережі.",
+    "de": "Automatisch folgt deiner Region oder Gerätesprache. Deine Auswahl wird hier und im Konto gespeichert und funktioniert offline.",
+    "es": "Automático usa tu región o el idioma del dispositivo. Tu elección se guarda aquí y en tu cuenta y funciona sin conexión."
+  },
+  "count.tracks.one": {
+    "en": "{count} track",
+    "ru": "{count} трек",
+    "kk": "{count} трек",
+    "uk": "{count} трек",
+    "de": "{count} Titel",
+    "es": "{count} pista"
+  },
+  "count.tracks.few": {
+    "en": "{count} tracks",
+    "ru": "{count} трека",
+    "kk": "{count} трек",
+    "uk": "{count} треки",
+    "de": "{count} Titel",
+    "es": "{count} pistas"
+  },
+  "count.tracks.many": {
+    "en": "{count} tracks",
+    "ru": "{count} треков",
+    "kk": "{count} трек",
+    "uk": "{count} треків",
+    "de": "{count} Titel",
+    "es": "{count} pistas"
+  },
+  "count.tracks.other": {
+    "en": "{count} tracks",
+    "ru": "{count} треков",
+    "kk": "{count} трек",
+    "uk": "{count} треків",
+    "de": "{count} Titel",
+    "es": "{count} pistas"
+  },
+  "native.df0c76065d": {
+    "ru": "Добавить в плейлист",
+    "en": "Add to playlist",
+    "kk": "Плейлистке қосу",
+    "uk": "Додати до плейлиста",
+    "de": "Zur Playlist hinzufügen",
+    "es": "Añadir a una lista"
+  },
+  "native.4eca465a4a": {
+    "ru": "Это устройство",
+    "en": "This device",
+    "kk": "Осы құрылғы",
+    "uk": "Цей пристрій",
+    "de": "Dieses Gerät",
+    "es": "Este dispositivo"
+  },
+  "native.c97fa8b29b": {
+    "ru": "Следующий трек",
+    "en": "Next track",
+    "kk": "Келесі трек",
+    "uk": "Наступний трек",
+    "de": "Nächster Titel",
+    "es": "Pista siguiente"
+  },
+  "native.8e1abb9475": {
+    "ru": "Предыдущий трек",
+    "en": "Previous track",
+    "kk": "Алдыңғы трек",
+    "uk": "Попередній трек",
+    "de": "Vorheriger Titel",
+    "es": "Pista anterior"
+  },
+  "native.4ae50d3073": {
+    "ru": "Закрыть",
+    "en": "Close",
+    "kk": "Жабу",
+    "uk": "Закрити",
+    "de": "Schließen",
+    "es": "Cerrar"
+  },
+  "native.03498e395a": {
+    "ru": "Пауза",
+    "en": "Pause",
+    "kk": "Кідірту",
+    "uk": "Пауза",
+    "de": "Pause",
+    "es": "Pausar"
+  },
+  "native.4ddf34c036": {
+    "ru": "Убрать из любимого",
+    "en": "Remove from favourites",
+    "kk": "Ұнағандардан алу",
+    "uk": "Прибрати з улюблених",
+    "de": "Aus Favoriten entfernen",
+    "es": "Quitar de favoritas"
+  },
+  "native.590b94553f": {
+    "ru": "Свернуть плеер",
+    "en": "Collapse player",
+    "kk": "Плеерді жинау",
+    "uk": "Згорнути плеєр",
+    "de": "Player einklappen",
+    "es": "Contraer reproductor"
+  },
+  "native.aec93b16ba": {
+    "ru": "Очередь",
+    "en": "Queue",
+    "kk": "Кезек",
+    "uk": "Черга",
+    "de": "Warteschlange",
+    "es": "Cola"
+  },
+  "native.621777004a": {
+    "ru": "Громкость",
+    "en": "Volume",
+    "kk": "Дыбыс",
+    "uk": "Гучність",
+    "de": "Lautstärke",
+    "es": "Volumen"
+  },
+  "native.c157a9e867": {
+    "ru": "Текст или LRC",
+    "en": "Text or LRC",
+    "kk": "Мәтін не LRC",
+    "uk": "Текст або LRC",
+    "de": "Text oder LRC",
+    "es": "Texto o LRC"
+  },
+  "native.41eba7e6c0": {
+    "ru": "Удалить комментарий",
+    "en": "Delete comment",
+    "kk": "Пікірді жою",
+    "uk": "Видалити коментар",
+    "de": "Kommentar löschen",
+    "es": "Eliminar comentario"
+  },
+  "native.8df71302b3": {
+    "ru": "Твоя музыка",
+    "en": "Your music",
+    "kk": "Сенің музыкаң",
+    "uk": "Твоя музика",
+    "de": "Deine Musik",
+    "es": "Tu música"
+  },
+  "native.adc9a38302": {
+    "ru": "GlukWave — твоя музыка",
+    "en": "GlukWave — your music",
+    "kk": "GlukWave — сенің музыкаң",
+    "uk": "GlukWave — твоя музика",
+    "de": "GlukWave — deine Musik",
+    "es": "GlukWave — tu música"
+  },
+  "native.b6d57513a1": {
+    "ru": "Скачан вручную",
+    "en": "Saved manually",
+    "kk": "Қолмен сақталған",
+    "uk": "Збережено вручну",
+    "de": "Manuell gespeichert",
+    "es": "Guardado manualmente"
+  },
+  "native.1db1b7e7a7": {
+    "ru": "Компьютер",
+    "en": "Computer",
+    "kk": "Компьютер",
+    "uk": "Комп'ютер",
+    "de": "Computer",
+    "es": "Ordenador"
+  },
+  "native.a0cc85a258": {
+    "ru": "Обложка {p0}. Наклон пальцем или мышью.",
+    "en": "Cover {p0}. Tilt with a finger or mouse.",
+    "kk": "{p0} мұқабасы. Саусақпен не тінтуірмен еңкейту.",
+    "uk": "Обкладинка {p0}. Нахиляй пальцем або мишею.",
+    "de": "Cover {p0}. Mit Finger oder Maus neigen.",
+    "es": "Portada {p0}. Inclínala con el dedo o el ratón."
+  },
+  "native.02a22b9218": {
+    "ru": "Обложка {p0}",
+    "en": "Cover {p0}",
+    "kk": "{p0} мұқабасы",
+    "uk": "Обкладинка {p0}",
+    "de": "Cover {p0}",
+    "es": "Portada {p0}"
+  },
+  "native.5384db72a4": {
+    "ru": "Источники",
+    "en": "Sources",
+    "kk": "Дереккөздер",
+    "uk": "Джерела",
+    "de": "Quellen",
+    "es": "Fuentes"
+  },
+  "native.212ccf5938": {
+    "ru": "Скачивания",
+    "en": "Downloads",
+    "kk": "Жүктеулер",
+    "uk": "Завантаження",
+    "de": "Downloads",
+    "es": "Descargas"
+  },
+  "native.eb0b9b0d90": {
+    "ru": "Профиль",
+    "en": "Profile",
+    "kk": "Профиль",
+    "uk": "Профіль",
+    "de": "Profil",
+    "es": "Perfil"
+  },
+  "native.5a214bdfe9": {
+    "ru": "Консоль",
+    "en": "Console",
+    "kk": "Консоль",
+    "uk": "Консоль",
+    "de": "Konsole",
+    "es": "Consola"
+  },
+  "native.0ec753be8d": {
+    "ru": "Отмена",
+    "en": "Cancel",
+    "kk": "Бас тарту",
+    "uk": "Скасувати",
+    "de": "Abbrechen",
+    "es": "Cancelar"
+  },
+  "native.398c7d4f7b": {
+    "ru": "Готово",
+    "en": "Done",
+    "kk": "Дайын",
+    "uk": "Готово",
+    "de": "Fertig",
+    "es": "Listo"
+  },
+  "native.c6f95cad29": {
+    "ru": "Локальная медиатека",
+    "en": "Local library",
+    "kk": "Жергілікті медиатека",
+    "uk": "Локальна медіатека",
+    "de": "Lokale Mediathek",
+    "es": "Biblioteca local"
+  },
+  "native.8db46ea789": {
+    "ru": "Адрес",
+    "en": "Address",
+    "kk": "Мекенжай",
+    "uk": "Адреса",
+    "de": "Adresse",
+    "es": "Dirección"
+  },
+  "native.6c1e1967ba": {
+    "ru": "Вернуться к приложению",
+    "en": "Return to the app",
+    "kk": "Қолданбаға оралу",
+    "uk": "Повернутися до застосунку",
+    "de": "Zur App zurück",
+    "es": "Volver a la aplicación"
+  },
+  "native.91cea4784a": {
+    "ru": "Нет связи с сервером. Скачанная музыка доступна. {p0}",
+    "en": "The server is unreachable. Downloaded music is available. {p0}",
+    "kk": "Сервермен байланыс жоқ. Жүктелген музыка қолжетімді. {p0}",
+    "uk": "Немає зв’язку із сервером. Завантажена музика доступна. {p0}",
+    "de": "Der Server ist nicht erreichbar. Heruntergeladene Musik ist verfügbar. {p0}",
+    "es": "No se puede conectar con el servidor. La música descargada está disponible. {p0}"
+  },
+  "native.9e506acb19": {
+    "ru": "Повторить",
+    "en": "Try again",
+    "kk": "Қайталау",
+    "uk": "Спробувати ще",
+    "de": "Erneut versuchen",
+    "es": "Reintentar"
+  },
+  "native.a3e784c186": {
+    "ru": "Lo-fi комната",
+    "en": "Lo-fi room",
+    "kk": "Lo-fi бөлмесі",
+    "uk": "Lo-fi кімната",
+    "de": "Lo-fi-Raum",
+    "es": "Sala lo-fi"
+  },
+  "native.0a0be598ca": {
+    "ru": "СОБРАТЬ ВСЁ ВМЕСТЕ",
+    "en": "BRING IT ALL TOGETHER",
+    "kk": "БӘРІН БІРІКТІР",
+    "uk": "ЗІБРАТИ ВСЕ РАЗОМ",
+    "de": "ALLES ZUSAMMENBRINGEN",
+    "es": "REÚNELO TODO"
+  },
+  "native.cf696d8d96": {
+    "ru": "Всё на одной волне",
+    "en": "All on one wave",
+    "kk": "Бәрі бір толқында",
+    "uk": "Усе на одній хвилі",
+    "de": "Alles auf einer Welle",
+    "es": "Todo en una misma onda"
+  },
+  "native.1c8ad826bb": {
+    "ru": "Локальная музыка",
+    "en": "Local music",
+    "kk": "Жергілікті музыка",
+    "uk": "Локальна музика",
+    "de": "Lokale Musik",
+    "es": "Música local"
+  },
+  "native.eaad77f8f4": {
+    "ru": "Трек, исполнитель или ссылка…",
+    "en": "Track, artist or link…",
+    "kk": "Трек, орындаушы немесе сілтеме…",
+    "uk": "Трек, виконавець або посилання…",
+    "de": "Titel, Interpret oder Link…",
+    "es": "Pista, artista o enlace…"
+  },
+  "native.16df3aa8af": {
+    "ru": "Обновить медиатеку",
+    "en": "Refresh library",
+    "kk": "Медиатеканы жаңарту",
+    "uk": "Оновити медіатеку",
+    "de": "Mediathek aktualisieren",
+    "es": "Actualizar biblioteca"
+  },
+  "native.bd23ec8a42": {
+    "ru": "Твой мир",
+    "en": "Your world",
+    "kk": "Сенің әлемің",
+    "uk": "Твій світ",
+    "de": "Deine Welt",
+    "es": "Tu mundo"
+  },
+  "native.211621443e": {
+    "ru": "Загружаем: {p0}",
+    "en": "Uploading: {p0}",
+    "kk": "Жүктелуде: {p0}",
+    "uk": "Завантаження: {p0}",
+    "de": "Wird hochgeladen: {p0}",
+    "es": "Subiendo: {p0}"
+  },
+  "native.194858b25f": {
+    "ru": "Тихой ночи",
+    "en": "A quiet night",
+    "kk": "Тыныш түн",
+    "uk": "Тихої ночі",
+    "de": "Eine ruhige Nacht",
+    "es": "Una noche tranquila"
+  },
+  "native.10da2df4b2": {
+    "ru": "Пусть сегодня звучит что-то твоё.",
+    "en": "Let today sound like you.",
+    "kk": "Бүгін өз әуенің естілсін.",
+    "uk": "Нехай сьогодні звучить щось твоє.",
+    "de": "Lass den heutigen Tag nach dir klingen.",
+    "es": "Que hoy suene algo tuyo."
+  },
+  "native.4fc610d5e7": {
+    "ru": "ТЫ ЗДЕСЬ. МУЗЫКА РЯДОМ.",
+    "en": "YOU’RE HERE. MUSIC IS CLOSE.",
+    "kk": "СЕН ОСЫНДАСЫҢ. МУЗЫКА ЖАНЫҢДА.",
+    "uk": "ТИ ТУТ. МУЗИКА ПОРУЧ.",
+    "de": "DU BIST HIER. MUSIK IST NAH.",
+    "es": "ESTÁS AQUÍ. LA MÚSICA ESTÁ CERCA."
+  },
+  "native.642fcf95d9": {
+    "ru": "Собрать музыку",
+    "en": "Bring your music together",
+    "kk": "Музыкаңды жина",
+    "uk": "Зібрати музику",
+    "de": "Deine Musik sammeln",
+    "es": "Reunir tu música"
+  },
+  "native.e352fa0553": {
+    "ru": "{p0} треков, которые откликнулись",
+    "en": "{p0} tracks that moved you",
+    "kk": "Ұнаған {p0} трек",
+    "uk": "{p0} треків, що відгукнулися",
+    "de": "{p0} Titel, die dich berühren",
+    "es": "{p0} pistas que te llegaron"
+  },
+  "native.90e8504b03": {
+    "ru": "Скачанное",
+    "en": "Downloaded",
+    "kk": "Жүктелген",
+    "uk": "Завантажене",
+    "de": "Heruntergeladen",
+    "es": "Descargado"
+  },
+  "native.4e7b973c7e": {
+    "ru": "Твоя музыка даже без интернета",
+    "en": "Your music, even offline",
+    "kk": "Музыкаң интернетсіз де жаныңда",
+    "uk": "Твоя музика навіть без інтернету",
+    "de": "Deine Musik, auch offline",
+    "es": "Tu música, incluso sin conexión"
+  },
+  "native.d73ebed4df": {
+    "ru": "Твой саундтрек",
+    "en": "Your soundtrack",
+    "kk": "Сенің саундтрегің",
+    "uk": "Твій саундтрек",
+    "de": "Dein Soundtrack",
+    "es": "Tu banda sonora"
+  },
+  "native.51d1aabe9f": {
+    "ru": "В медиатеку →",
+    "en": "Go to library →",
+    "kk": "Медиатекаға →",
+    "uk": "До медіатеки →",
+    "de": "Zur Mediathek →",
+    "es": "Ir a la biblioteca →"
+  },
+  "native.a3ea6451ed": {
+    "ru": "Первый маленький мир",
+    "en": "Your first little world",
+    "kk": "Алғашқы шағын әлемің",
+    "uk": "Перший маленький світ",
+    "de": "Deine erste kleine Welt",
+    "es": "Tu primer pequeño mundo"
+  },
+  "native.637437750e": {
+    "ru": "Создай плейлист или перенеси его из любимого сервиса.",
+    "en": "Create a playlist or bring one from your favourite service.",
+    "kk": "Плейлист жаса немесе сүйікті сервисіңнен көшір.",
+    "uk": "Створи плейлист або перенеси його з улюбленого сервісу.",
+    "de": "Erstelle eine Playlist oder übertrage sie von deinem Lieblingsdienst.",
+    "es": "Crea una lista o trae una de tu servicio favorito."
+  },
+  "native.b2fa6a1cea": {
+    "ru": "Всё начинается с музыки",
+    "en": "It all starts with music",
+    "kk": "Бәрі музыкадан басталады",
+    "uk": "Усе починається з музики",
+    "de": "Alles beginnt mit Musik",
+    "es": "Todo empieza con la música"
+  },
+  "native.b73d4d1b29": {
+    "ru": "Ещё один раз",
+    "en": "One more time",
+    "kk": "Тағы бір рет",
+    "uk": "Ще один раз",
+    "de": "Noch einmal",
+    "es": "Una vez más"
+  },
+  "native.c55ae9eb3e": {
+    "ru": "Твой музыкальный мир ждёт",
+    "en": "Your musical world is waiting",
+    "kk": "Музыкалық әлемің сені күтеді",
+    "uk": "Твій музичний світ чекає",
+    "de": "Deine Musikwelt wartet",
+    "es": "Tu mundo musical te espera"
+  },
+  "native.a468ce3ecb": {
+    "ru": "Добавь свои аудиофайлы или подключи библиотеку. Здесь появятся твои треки и настоящая история прослушивания.",
+    "en": "Add your audio files or connect a library. Your tracks and real listening history will appear here.",
+    "kk": "Аудиофайлдарыңды қос немесе медиатеканы байланыстыр. Тректерің мен тыңдау тарихың осында көрінеді.",
+    "uk": "Додай свої аудіофайли або підключи медіатеку. Тут з’являться твої треки та справжня історія прослуховування.",
+    "de": "Füge Audiodateien hinzu oder verbinde eine Mediathek. Hier erscheinen deine Titel und dein tatsächlicher Hörverlauf.",
+    "es": "Añade tus archivos de audio o conecta una biblioteca. Aquí aparecerán tus pistas y tu historial real de escucha."
+  },
+  "native.5e2a1d79c9": {
+    "ru": "LO-FI КОМНАТА",
+    "en": "LO-FI ROOM",
+    "kk": "LO-FI БӨЛМЕСІ",
+    "uk": "LO-FI КІМНАТА",
+    "de": "LO-FI-RAUM",
+    "es": "SALA LO-FI"
+  },
+  "native.31c118bf9d": {
+    "ru": "Можно просто\nпобыть.",
+    "en": "You can just\nbe.",
+    "kk": "Жай ғана\nдемал.",
+    "uk": "Можна просто\nпобути.",
+    "de": "Einfach\nsein.",
+    "es": "Puedes simplemente\nestar."
+  },
+  "native.bf064cd50f": {
+    "ru": "Вода, свет и немного тишины.  ↗",
+    "en": "Water, light and a little quiet.  ↗",
+    "kk": "Су, жарық және аздаған тыныштық.  ↗",
+    "uk": "Вода, світло й трохи тиші.  ↗",
+    "de": "Wasser, Licht und etwas Ruhe.  ↗",
+    "es": "Agua, luz y un poco de calma.  ↗"
+  },
+  "native.323bd869d4": {
+    "ru": "Сделано для твоего маленького музыкального мира.",
+    "en": "Made for your little musical world.",
+    "kk": "Шағын музыкалық әлемің үшін жасалған.",
+    "uk": "Створено для твого маленького музичного світу.",
+    "de": "Für deine kleine Musikwelt gemacht.",
+    "es": "Hecho para tu pequeño mundo musical."
+  },
+  "native.9200137ae9": {
+    "ru": "Название плейлиста",
+    "en": "Playlist name",
+    "kk": "Плейлист атауы",
+    "uk": "Назва плейлиста",
+    "de": "Name der Playlist",
+    "es": "Nombre de la lista"
+  },
+  "native.dcb57004b9": {
+    "ru": "{p0} треков",
+    "en": "{p0} tracks",
+    "kk": "{p0} трек",
+    "uk": "{p0} треків",
+    "de": "{p0} Titel",
+    "es": "{p0} pistas"
+  },
+  "native.082b4a891b": {
+    "ru": "Вся медиатека",
+    "en": "Entire library",
+    "kk": "Бүкіл медиатека",
+    "uk": "Уся медіатека",
+    "de": "Gesamte Mediathek",
+    "es": "Toda la biblioteca"
+  },
+  "native.9221337472": {
+    "ru": "Всё, что откликается — в одном месте.",
+    "en": "Everything that moves you, in one place.",
+    "kk": "Ұнаған әуендердің бәрі бір жерде.",
+    "uk": "Усе, що відгукується, в одному місці.",
+    "de": "Alles, was dich berührt, an einem Ort.",
+    "es": "Todo lo que te llega, en un solo lugar."
+  },
+  "native.708d386559": {
+    "ru": "ТВОЙ САУНДТРЕК",
+    "en": "YOUR SOUNDTRACK",
+    "kk": "СЕНІҢ САУНДТРЕГІҢ",
+    "uk": "ТВІЙ САУНДТРЕК",
+    "de": "DEIN SOUNDTRACK",
+    "es": "TU BANDA SONORA"
+  },
+  "native.7b4cc84722": {
+    "ru": "Треки",
+    "en": "Tracks",
+    "kk": "Тректер",
+    "uk": "Треки",
+    "de": "Titel",
+    "es": "Pistas"
+  },
+  "native.5cbd56308f": {
+    "ru": "Плейлисты",
+    "en": "Playlists",
+    "kk": "Плейлисттер",
+    "uk": "Плейлисти",
+    "de": "Playlists",
+    "es": "Listas"
+  },
+  "native.da39e0cc91": {
+    "ru": "Локальные",
+    "en": "Local",
+    "kk": "Жергілікті",
+    "uk": "Локальні",
+    "de": "Lokal",
+    "es": "Locales"
+  },
+  "native.46298dcf5e": {
+    "ru": "Найди то, что откликнется",
+    "en": "Find what moves you",
+    "kk": "Өзіңе жақын әуенді тап",
+    "uk": "Знайди те, що відгукнеться",
+    "de": "Finde, was dich berührt",
+    "es": "Encuentra lo que te llega"
+  },
+  "native.1adc5a6a23": {
+    "ru": "Здесь будет твоя музыка",
+    "en": "Your music will be here",
+    "kk": "Музыкаң осында болады",
+    "uk": "Тут буде твоя музика",
+    "de": "Hier wird deine Musik sein",
+    "es": "Aquí estará tu música"
+  },
+  "native.29f6c0dba0": {
+    "ru": "Добавь аудиофайл или перенеси плейлист из источников.",
+    "en": "Add an audio file or import a playlist from a source.",
+    "kk": "Аудиофайл қос немесе дереккөзден плейлист көшір.",
+    "uk": "Додай аудіофайл або перенеси плейлист із джерел.",
+    "de": "Füge eine Audiodatei hinzu oder importiere eine Playlist aus einer Quelle.",
+    "es": "Añade un archivo de audio o importa una lista de una fuente."
+  },
+  "native.388ca31bac": {
+    "ru": "К источникам",
+    "en": "Go to sources",
+    "kk": "Дереккөздерге",
+    "uk": "До джерел",
+    "de": "Zu den Quellen",
+    "es": "Ir a las fuentes"
+  },
+  "native.fbb72c35d6": {
+    "ru": "Переименовать плейлист",
+    "en": "Rename playlist",
+    "kk": "Плейлист атауын өзгерту",
+    "uk": "Перейменувати плейлист",
+    "de": "Playlist umbenennen",
+    "es": "Renombrar lista"
+  },
+  "native.715e8f0c32": {
+    "ru": "Переименовать",
+    "en": "Rename",
+    "kk": "Атауын өзгерту",
+    "uk": "Перейменувати",
+    "de": "Umbenennen",
+    "es": "Renombrar"
+  },
+  "native.2eb4f15128": {
+    "ru": "Удалить плейлист?",
+    "en": "Delete playlist?",
+    "kk": "Плейлистті өшіру керек пе?",
+    "uk": "Видалити плейлист?",
+    "de": "Playlist löschen?",
+    "es": "¿Eliminar la lista?"
+  },
+  "native.75710f1731": {
+    "ru": "Треки останутся в медиатеке.",
+    "en": "The tracks will stay in your library.",
+    "kk": "Тректер медиатекада қалады.",
+    "uk": "Треки залишаться в медіатеці.",
+    "de": "Die Titel bleiben in deiner Mediathek.",
+    "es": "Las pistas permanecerán en tu biblioteca."
+  },
+  "native.86ea33aef5": {
+    "ru": "Удалить",
+    "en": "Delete",
+    "kk": "Өшіру",
+    "uk": "Видалити",
+    "de": "Löschen",
+    "es": "Eliminar"
+  },
+  "native.682466a401": {
+    "ru": "В поисках звука",
+    "en": "Looking for a sound",
+    "kk": "Әуен іздеу",
+    "uk": "У пошуках звуку",
+    "de": "Auf der Suche nach Klang",
+    "es": "Buscando un sonido"
+  },
+  "native.fb10bb6c43": {
+    "ru": "Ищи название, исполнителя или вставь ссылку.",
+    "en": "Search a title, an artist or paste a link.",
+    "kk": "Атауын, орындаушыны ізде немесе сілтеме қой.",
+    "uk": "Шукай назву, виконавця або встав посилання.",
+    "de": "Suche nach Titel oder Interpret oder füge einen Link ein.",
+    "es": "Busca un título, un artista o pega un enlace."
+  },
+  "native.9bd84125bc": {
+    "ru": "НАЙДЁМ ТО САМОЕ",
+    "en": "FIND THAT ONE SONG",
+    "kk": "СОЛ БІР ӘУЕНДІ ТАБАЙЫҚ",
+    "uk": "ЗНАЙДЕМО ТЕ САМЕ",
+    "de": "FINDE GENAU DIESEN SONG",
+    "es": "ENCUENTRA ESA CANCIÓN"
+  },
+  "native.bbd9181561": {
+    "ru": "Что хочется услышать?",
+    "en": "What would you like to hear?",
+    "kk": "Не тыңдағың келеді?",
+    "uk": "Що хочеться почути?",
+    "de": "Was möchtest du hören?",
+    "es": "¿Qué te apetece escuchar?"
+  },
+  "native.58212e541c": {
+    "ru": "Искать",
+    "en": "Search",
+    "kk": "Іздеу",
+    "uk": "Шукати",
+    "de": "Suchen",
+    "es": "Buscar"
+  },
+  "native.1aa3589e13": {
+    "ru": "Мои треки",
+    "en": "My tracks",
+    "kk": "Менің тректерім",
+    "uk": "Мої треки",
+    "de": "Meine Titel",
+    "es": "Mis pistas"
+  },
+  "native.f1b3941857": {
+    "ru": "Возможно, ты имел в виду «{p0}»?",
+    "en": "Did you mean “{p0}”?",
+    "kk": "«{p0}» дегенді меңзедің бе?",
+    "uk": "Можливо, ти мав на увазі «{p0}»?",
+    "de": "Meintest du „{p0}“?",
+    "es": "¿Querías decir «{p0}»?"
+  },
+  "native.6d7be8c94d": {
+    "ru": "Найдём твою музыку",
+    "en": "Let’s find your music",
+    "kk": "Музыкаңды табайық",
+    "uk": "Знайдемо твою музику",
+    "de": "Finden wir deine Musik",
+    "es": "Encontraremos tu música"
+  },
+  "native.e61d08951b": {
+    "ru": "Пока ничего не нашли",
+    "en": "Nothing found yet",
+    "kk": "Әзірге ештеңе табылмады",
+    "uk": "Поки нічого не знайшли",
+    "de": "Noch nichts gefunden",
+    "es": "Todavía no hay resultados"
+  },
+  "native.01529b9d5e": {
+    "ru": "Поиск объединяет доступные источники. Перепутанную раскладку мы тоже заметим.",
+    "en": "Search brings available sources together. We can also spot a mixed-up keyboard layout.",
+    "kk": "Іздеу қолжетімді дереккөздерді біріктіреді. Қате пернетақта тілін де байқаймыз.",
+    "uk": "Пошук об’єднує доступні джерела. Переплутану розкладку теж помітимо.",
+    "de": "Die Suche verbindet verfügbare Quellen. Auch eine vertauschte Tastaturbelegung erkennen wir.",
+    "es": "La búsqueda reúne las fuentes disponibles. También detectamos una distribución de teclado equivocada."
+  },
+  "native.10c727a4cc": {
+    "ru": "Попробуй другое название или добавь ссылку на трек.",
+    "en": "Try another name or add a track link.",
+    "kk": "Басқа атауды көр немесе трек сілтемесін қос.",
+    "uk": "Спробуй іншу назву або додай посилання на трек.",
+    "de": "Versuche einen anderen Namen oder einen Titellink.",
+    "es": "Prueba otro nombre o añade un enlace a la pista."
+  },
+  "native.0556f90ffc": {
+    "ru": "Добавить по ссылке",
+    "en": "Add by link",
+    "kk": "Сілтемемен қосу",
+    "uk": "Додати за посиланням",
+    "de": "Per Link hinzufügen",
+    "es": "Añadir por enlace"
+  },
+  "native.f130436a3b": {
+    "ru": "В очередь",
+    "en": "Add to queue",
+    "kk": "Кезекке қосу",
+    "uk": "До черги",
+    "de": "Zur Warteschlange",
+    "es": "Añadir a la cola"
+  },
+  "native.81524f9e71": {
+    "ru": "В какой маленький мир?",
+    "en": "Which little world?",
+    "kk": "Қай шағын әлемге?",
+    "uk": "У який маленький світ?",
+    "de": "In welche kleine Welt?",
+    "es": "¿A qué pequeño mundo?"
+  },
+  "native.9feaa9c30e": {
+    "ru": "Сначала создай плейлист в медиатеке.",
+    "en": "First create a playlist in your library.",
+    "kk": "Алдымен медиатекада плейлист жаса.",
+    "uk": "Спочатку створи плейлист у медіатеці.",
+    "de": "Erstelle zuerst eine Playlist in deiner Mediathek.",
+    "es": "Primero crea una lista en tu biblioteca."
+  },
+  "native.e72e7819a3": {
+    "ru": "Сохранить скачивание",
+    "en": "Keep this download",
+    "kk": "Жүктеуді сақтау",
+    "uk": "Зберегти завантаження",
+    "de": "Download behalten",
+    "es": "Conservar esta descarga"
+  },
+  "native.5fbca5dea7": {
+    "ru": "Скачать на устройство",
+    "en": "Download to device",
+    "kk": "Құрылғыға жүктеу",
+    "uk": "Завантажити на пристрій",
+    "de": "Auf Gerät herunterladen",
+    "es": "Descargar al dispositivo"
+  },
+  "native.2266a8f9e2": {
+    "ru": "Удалить с устройства",
+    "en": "Remove from device",
+    "kk": "Құрылғыдан өшіру",
+    "uk": "Видалити з пристрою",
+    "de": "Vom Gerät entfernen",
+    "es": "Eliminar del dispositivo"
+  },
+  "native.58131c476d": {
+    "ru": "Открыть трек и комментарии",
+    "en": "Open track and comments",
+    "kk": "Трек пен пікірлерді ашу",
+    "uk": "Відкрити трек і коментарі",
+    "de": "Titel und Kommentare öffnen",
+    "es": "Abrir pista y comentarios"
+  },
+  "native.22618d4822": {
+    "ru": "Открыть {p0}",
+    "en": "Open {p0}",
+    "kk": "{p0} ашу",
+    "uk": "Відкрити {p0}",
+    "de": "{p0} öffnen",
+    "es": "Abrir {p0}"
+  },
+  "native.69d7d7248a": {
+    "ru": "Копировать ссылку",
+    "en": "Copy link",
+    "kk": "Сілтемені көшіру",
+    "uk": "Копіювати посилання",
+    "de": "Link kopieren",
+    "es": "Copiar enlace"
+  },
+  "native.dd68e0027d": {
+    "ru": "Ссылка скопирована.",
+    "en": "Link copied.",
+    "kk": "Сілтеме көшірілді.",
+    "uk": "Посилання скопійовано.",
+    "de": "Link kopiert.",
+    "es": "Enlace copiado."
+  },
+  "native.8c343d516d": {
+    "ru": "Удалить из медиатеки",
+    "en": "Remove from library",
+    "kk": "Медиатекадан өшіру",
+    "uk": "Видалити з медіатеки",
+    "de": "Aus Mediathek entfernen",
+    "es": "Eliminar de la biblioteca"
+  },
+  "native.0f29ff7f79": {
+    "ru": "Удалить «{p0}»?",
+    "en": "Delete “{p0}”?",
+    "kk": "«{p0}» өшіру керек пе?",
+    "uk": "Видалити «{p0}»?",
+    "de": "„{p0}“ löschen?",
+    "es": "¿Eliminar «{p0}»?"
+  },
+  "native.3f54d53ce0": {
+    "ru": "Файл будет удалён с сервера. Локальные скачивания можно удалить отдельно.",
+    "en": "The file will be deleted from the server. Local downloads can be removed separately.",
+    "kk": "Файл серверден өшіріледі. Құрылғыдағы жүктеулер бөлек өшіріледі.",
+    "uk": "Файл буде видалено із сервера. Локальні завантаження можна видалити окремо.",
+    "de": "Die Datei wird vom Server gelöscht. Lokale Downloads kannst du separat entfernen.",
+    "es": "El archivo se eliminará del servidor. Las descargas locales se pueden eliminar por separado."
+  },
+  "native.a90b7cbc92": {
+    "ru": "Оставить",
+    "en": "Keep",
+    "kk": "Қалдыру",
+    "uk": "Залишити",
+    "de": "Behalten",
+    "es": "Conservar"
+  },
+  "native.28e8073601": {
+    "ru": "Твои треки живут в разных местах. Здесь они вместе.",
+    "en": "Your tracks live in different places. Here they’re together.",
+    "kk": "Тректерің әр жерде сақталады. Мұнда бәрі бірге.",
+    "uk": "Твої треки живуть у різних місцях. Тут вони разом.",
+    "de": "Deine Titel leben an verschiedenen Orten. Hier sind sie zusammen.",
+    "es": "Tus pistas viven en distintos lugares. Aquí están juntas."
+  },
+  "native.8343afbb45": {
+    "ru": "Подключён {p0}",
+    "en": "Connected as {p0}",
+    "kk": "{p0} ретінде қосылған",
+    "uk": "Підключено як {p0}",
+    "de": "Verbunden als {p0}",
+    "es": "Conectado como {p0}"
+  },
+  "native.a9f3831f36": {
+    "ru": "Публичный поиск и ссылки доступны. Вход нужен для личных плейлистов.",
+    "en": "Public search and links are available. Sign in for personal playlists.",
+    "kk": "Ашық іздеу мен сілтемелер қолжетімді. Жеке плейлисттер үшін кір.",
+    "uk": "Публічний пошук і посилання доступні. Для особистих плейлистів увійди.",
+    "de": "Öffentliche Suche und Links sind verfügbar. Melde dich für persönliche Playlists an.",
+    "es": "La búsqueda pública y los enlaces están disponibles. Inicia sesión para listas personales."
+  },
+  "native.993a71a598": {
+    "ru": "Перенеси плейлисты и любимые треки",
+    "en": "Import playlists and favourites",
+    "kk": "Плейлисттер мен сүйікті тректерді көшіру",
+    "uk": "Перенеси плейлисти й улюблені треки",
+    "de": "Playlists und Favoriten übertragen",
+    "es": "Importar listas y favoritos"
+  },
+  "native.081b1d81c6": {
+    "ru": "Перенести",
+    "en": "Import",
+    "kk": "Көшіру",
+    "uk": "Перенести",
+    "de": "Übertragen",
+    "es": "Importar"
+  },
+  "native.94d07a2171": {
+    "ru": "Отключить",
+    "en": "Disconnect",
+    "kk": "Ажырату",
+    "uk": "Відключити",
+    "de": "Trennen",
+    "es": "Desconectar"
+  },
+  "native.124298ec71": {
+    "ru": "Подключить",
+    "en": "Connect",
+    "kk": "Қосу",
+    "uk": "Підключити",
+    "de": "Verbinden",
+    "es": "Conectar"
+  },
+  "native.656d8c4f40": {
+    "ru": "Пока недоступно",
+    "en": "Not available yet",
+    "kk": "Әзірге қолжетімсіз",
+    "uk": "Поки недоступно",
+    "de": "Noch nicht verfügbar",
+    "es": "Aún no disponible"
+  },
+  "native.e8ee34a373": {
+    "ru": "Источники недоступны",
+    "en": "Sources unavailable",
+    "kk": "Дереккөздер қолжетімсіз",
+    "uk": "Джерела недоступні",
+    "de": "Quellen nicht verfügbar",
+    "es": "Fuentes no disponibles"
+  },
+  "native.e8c84710a2": {
+    "ru": "Проверь соединение и попробуй обновить подключения.",
+    "en": "Check your connection and refresh connections.",
+    "kk": "Байланысты тексеріп, қосылымдарды жаңарт.",
+    "uk": "Перевір з’єднання й онови підключення.",
+    "de": "Prüfe deine Verbindung und aktualisiere die Verbindungen.",
+    "es": "Comprueba la conexión y actualiza las conexiones."
+  },
+  "native.cd9296f478": {
+    "ru": "Твои файлы и экспорт плейлистов",
+    "en": "Your files and playlist exports",
+    "kk": "Файлдарың және плейлист экспорттары",
+    "uk": "Твої файли й експорт плейлистів",
+    "de": "Deine Dateien und Playlist-Exporte",
+    "es": "Tus archivos y listas exportadas"
+  },
+  "native.0d6b25bb78": {
+    "ru": "Аудиофайлы играют в фоне и доступны офлайн. CSV / JSON переносит реальные названия и ссылки на источники.",
+    "en": "Audio files play in the background and work offline. CSV / JSON imports real titles and source links.",
+    "kk": "Аудиофайлдар фонда және офлайн ойнатылады. CSV / JSON нақты атаулар мен дереккөз сілтемелерін көшіреді.",
+    "uk": "Аудіофайли грають у фоні та доступні офлайн. CSV / JSON переносить справжні назви й посилання на джерела.",
+    "de": "Audiodateien spielen im Hintergrund und offline. CSV / JSON übernimmt echte Titel und Quelllinks.",
+    "es": "Los archivos de audio se reproducen en segundo plano y sin conexión. CSV / JSON importa títulos reales y enlaces a las fuentes."
+  },
+  "native.d94f27d311": {
+    "ru": "Добавить аудио",
+    "en": "Add audio",
+    "kk": "Аудио қосу",
+    "uk": "Додати аудіо",
+    "de": "Audio hinzufügen",
+    "es": "Añadir audio"
+  },
+  "native.f1b4dac46c": {
+    "ru": "Импорт CSV / JSON",
+    "en": "Import CSV / JSON",
+    "kk": "CSV / JSON импорттау",
+    "uk": "Імпорт CSV / JSON",
+    "de": "CSV / JSON importieren",
+    "es": "Importar CSV / JSON"
+  },
+  "native.8b01571e48": {
+    "ru": "Добавить трек по ссылке",
+    "en": "Add track by link",
+    "kk": "Тректі сілтемемен қосу",
+    "uk": "Додати трек за посиланням",
+    "de": "Titel per Link hinzufügen",
+    "es": "Añadir pista por enlace"
+  },
+  "native.819abda8d9": {
+    "ru": "Ссылка на трек",
+    "en": "Track link",
+    "kk": "Трек сілтемесі",
+    "uk": "Посилання на трек",
+    "de": "Titellink",
+    "es": "Enlace a la pista"
+  },
+  "native.eaf0e31f63": {
+    "ru": "По ссылке",
+    "en": "By link",
+    "kk": "Сілтемемен",
+    "uk": "За посиланням",
+    "de": "Per Link",
+    "es": "Por enlace"
+  },
+  "native.824436c0c7": {
+    "ru": "Внешние источники воспроизводятся на официальной площадке. Фоновый плеер и скачивание доступны для аудиофайлов с разрешением владельца.",
+    "en": "External sources play on their official platform. Background playback and downloads are available for audio files with the owner’s permission.",
+    "kk": "Сыртқы дереккөздер ресми платформасында ойнатылады. Иесі рұқсат берген аудиофайлдар фонда ойнатылып, жүктеле алады.",
+    "uk": "Зовнішні джерела відтворюються на офіційній платформі. Фонове відтворення й завантаження доступні для аудіофайлів із дозволом власника.",
+    "de": "Externe Quellen spielen auf ihrer offiziellen Plattform. Hintergrundwiedergabe und Downloads sind für Audiodateien mit Erlaubnis des Eigentümers verfügbar.",
+    "es": "Las fuentes externas se reproducen en su plataforma oficial. La reproducción en segundo plano y las descargas están disponibles para archivos de audio con permiso del propietario."
+  },
+  "native.3bdfeea56b": {
+    "ru": "Обновить подключения",
+    "en": "Refresh connections",
+    "kk": "Қосылымдарды жаңарту",
+    "uk": "Оновити підключення",
+    "de": "Verbindungen aktualisieren",
+    "es": "Actualizar conexiones"
+  },
+  "native.03047eef41": {
+    "ru": "{p0} · твои плейлисты",
+    "en": "{p0} · your playlists",
+    "kk": "{p0} · плейлисттерің",
+    "uk": "{p0} · твої плейлисти",
+    "de": "{p0} · deine Playlists",
+    "es": "{p0} · tus listas"
+  },
+  "native.9789a336b5": {
+    "ru": "У источника пока нет доступных плейлистов.",
+    "en": "This source has no available playlists yet.",
+    "kk": "Бұл дереккөзде әзірге қолжетімді плейлисттер жоқ.",
+    "uk": "У джерелі поки немає доступних плейлистів.",
+    "de": "Diese Quelle hat noch keine verfügbaren Playlists.",
+    "es": "Esta fuente aún no tiene listas disponibles."
+  },
+  "native.00860b84d0": {
+    "ru": "Перенести весь плейлист",
+    "en": "Import entire playlist",
+    "kk": "Бүкіл плейлистті көшіру",
+    "uk": "Перенести весь плейлист",
+    "de": "Gesamte Playlist übertragen",
+    "es": "Importar toda la lista"
+  },
+  "native.f901da5358": {
+    "ru": "Включая треки, которых нет в этом списке",
+    "en": "Including tracks outside this list",
+    "kk": "Бұл тізімнен тыс тректерді де қосу",
+    "uk": "Включно з треками поза цим списком",
+    "de": "Auch Titel außerhalb dieser Liste",
+    "es": "Incluidas las pistas fuera de esta lista"
+  },
+  "native.32b74a3c47": {
+    "ru": "Без названия",
+    "en": "Untitled",
+    "kk": "Атаусыз",
+    "uk": "Без назви",
+    "de": "Ohne Titel",
+    "es": "Sin título"
+  },
+  "native.f6dab074d7": {
+    "ru": "Назад",
+    "en": "Back",
+    "kk": "Артқа",
+    "uk": "Назад",
+    "de": "Zurück",
+    "es": "Atrás"
+  },
+  "native.b2ac0da1b6": {
+    "ru": "Перенесено треков: {p0}.",
+    "en": "Tracks imported: {p0}.",
+    "kk": "Көшірілген тректер: {p0}.",
+    "uk": "Перенесено треків: {p0}.",
+    "de": "Übertragene Titel: {p0}.",
+    "es": "Pistas importadas: {p0}."
+  },
+  "native.e8b58dacdf": {
+    "ru": "Перенести в Wave",
+    "en": "Import into Wave",
+    "kk": "Wave ішіне көшіру",
+    "uk": "Перенести до Wave",
+    "de": "In Wave übertragen",
+    "es": "Importar a Wave"
+  },
+  "native.139fd495d9": {
+    "ru": "Музыка с собой",
+    "en": "Music to take with you",
+    "kk": "Музыка жаныңда",
+    "uk": "Музика із собою",
+    "de": "Musik zum Mitnehmen",
+    "es": "Música para llevar"
+  },
+  "native.880e44a69b": {
+    "ru": "{p0} МБ из {p1} МБ на этом устройстве.",
+    "en": "{p0} MB of {p1} MB on this device.",
+    "kk": "Бұл құрылғыда {p1} МБ ішінен {p0} МБ.",
+    "uk": "{p0} МБ із {p1} МБ на цьому пристрої.",
+    "de": "{p0} MB von {p1} MB auf diesem Gerät.",
+    "es": "{p0} MB de {p1} MB en este dispositivo."
+  },
+  "native.28e756053a": {
+    "ru": "БЕЗ ИНТЕРНЕТА — С ТОБОЙ",
+    "en": "WITH YOU, EVEN OFFLINE",
+    "kk": "ИНТЕРНЕТСІЗ ДЕ ЖАНЫҢДА",
+    "uk": "БЕЗ ІНТЕРНЕТУ — З ТОБОЮ",
+    "de": "BEI DIR, AUCH OFFLINE",
+    "es": "CONTIGO, INCLUSO SIN CONEXIÓN"
+  },
+  "native.cfe7094211": {
+    "ru": "Очистить автокеш",
+    "en": "Clear automatic cache",
+    "kk": "Автоматты кешті тазалау",
+    "uk": "Очистити автокеш",
+    "de": "Automatischen Cache leeren",
+    "es": "Vaciar caché automática"
+  },
+  "native.c484e0bf9e": {
+    "ru": "Удалить скачивания?",
+    "en": "Remove downloads?",
+    "kk": "Жүктеулерді өшіру керек пе?",
+    "uk": "Видалити завантаження?",
+    "de": "Downloads entfernen?",
+    "es": "¿Eliminar las descargas?"
+  },
+  "native.a2f281e0fb": {
+    "ru": "Активный трек останется до конца воспроизведения.",
+    "en": "The current track stays until playback ends.",
+    "kk": "Қазіргі трек ойнату аяқталғанша сақталады.",
+    "uk": "Поточний трек залишиться до кінця відтворення.",
+    "de": "Der aktuelle Titel bleibt bis zum Ende der Wiedergabe.",
+    "es": "La pista actual se conserva hasta que termine de reproducirse."
+  },
+  "native.fc62d0d702": {
+    "ru": "Удалить скачивания",
+    "en": "Remove downloads",
+    "kk": "Жүктеулерді өшіру",
+    "uk": "Видалити завантаження",
+    "de": "Downloads entfernen",
+    "es": "Eliminar descargas"
+  },
+  "native.9db7ca043f": {
+    "ru": "Скачивание трека",
+    "en": "Downloading track",
+    "kk": "Трек жүктелуде",
+    "uk": "Завантаження треку",
+    "de": "Titel wird heruntergeladen",
+    "es": "Descargando pista"
+  },
+  "native.50c21d127f": {
+    "ru": "Музыка скоро будет рядом",
+    "en": "Your music will be close soon",
+    "kk": "Музыкаң жақында жаныңда болады",
+    "uk": "Музика скоро буде поруч",
+    "de": "Deine Musik ist bald bei dir",
+    "es": "Tu música estará cerca pronto"
+  },
+  "native.078fb4ae47": {
+    "ru": "Автокеш включён по умолчанию. Ты также можешь скачать аудиофайл через меню трека.",
+    "en": "Automatic cache is on by default. You can also download an audio file from its track menu.",
+    "kk": "Автоматты кеш әдепкіде қосулы. Аудиофайлды трек мәзірінен де жүктеуге болады.",
+    "uk": "Автокеш увімкнено за замовчуванням. Аудіофайл також можна завантажити через меню треку.",
+    "de": "Der automatische Cache ist standardmäßig aktiv. Du kannst eine Audiodatei auch über ihr Titelmenü herunterladen.",
+    "es": "La caché automática está activada por defecto. También puedes descargar un archivo de audio desde el menú de la pista."
+  },
+  "native.9e516806ab": {
+    "ru": "{p0} · {p1} МБ",
+    "en": "{p0} · {p1} MB",
+    "kk": "{p0} · {p1} МБ",
+    "uk": "{p0} · {p1} МБ",
+    "de": "{p0} · {p1} MB",
+    "es": "{p0} · {p1} MB"
+  },
+  "native.c3acebae3e": {
+    "ru": "Одна музыка. Хорошие люди. Своя маленькая комната.",
+    "en": "One song. Good people. Your own little room.",
+    "kk": "Бір әуен. Жақсы адамдар. Өзіңнің шағын бөлмең.",
+    "uk": "Одна музика. Хороші люди. Своя маленька кімната.",
+    "de": "Eine Musik. Gute Menschen. Dein eigener kleiner Raum.",
+    "es": "Una música. Buena gente. Tu propia pequeña sala."
+  },
+  "native.cfb828faf3": {
+    "ru": "ОДНА МУЗЫКА НА ДВОИХ",
+    "en": "ONE SONG FOR TWO",
+    "kk": "ЕКЕУГЕ ОРТАҚ ӘУЕН",
+    "uk": "ОДНА МУЗИКА НА ДВОХ",
+    "de": "EINE MUSIK FÜR ZWEI",
+    "es": "UNA MÚSICA PARA DOS"
+  },
+  "native.2e0b4996ef": {
+    "ru": "Твоё тихое место",
+    "en": "Your quiet place",
+    "kk": "Тыныш мекенің",
+    "uk": "Твоє тихе місце",
+    "de": "Dein ruhiger Ort",
+    "es": "Tu lugar tranquilo"
+  },
+  "native.2230603bcd": {
+    "ru": "Присоединиться к друзьям",
+    "en": "Join your friends",
+    "kk": "Достарыңа қосылу",
+    "uk": "Приєднатися до друзів",
+    "de": "Freunden beitreten",
+    "es": "Unirte a tus amigos"
+  },
+  "native.c4627815d7": {
+    "ru": "Приглашение или код",
+    "en": "Invitation or code",
+    "kk": "Шақыру немесе код",
+    "uk": "Запрошення або код",
+    "de": "Einladung oder Code",
+    "es": "Invitación o código"
+  },
+  "native.0b7a3e93f1": {
+    "ru": "По приглашению",
+    "en": "By invitation",
+    "kk": "Шақырумен",
+    "uk": "За запрошенням",
+    "de": "Per Einladung",
+    "es": "Por invitación"
+  },
+  "native.2414024420": {
+    "ru": "{p0} на одной волне",
+    "en": "{p0} on the same wave",
+    "kk": "Бір толқында {p0}",
+    "uk": "{p0} на одній хвилі",
+    "de": "{p0} auf einer Welle",
+    "es": "{p0} en la misma onda"
+  },
+  "native.cd705fb252": {
+    "ru": "Здесь рады твоим друзьям",
+    "en": "Your friends are welcome here",
+    "kk": "Достарыңды мұнда қуана күтеміз",
+    "uk": "Тут раді твоїм друзям",
+    "de": "Deine Freunde sind hier willkommen",
+    "es": "Tus amigos son bienvenidos"
+  },
+  "native.a82ae8303b": {
+    "ru": "Создай комнату и отправь приглашение. Ведущий выбирает музыку и делится доступом к управлению.",
+    "en": "Create a room and send an invitation. The host chooses music and shares control.",
+    "kk": "Бөлме жасап, шақыру жібер. Жүргізуші музыка таңдап, басқару құқығын бөліседі.",
+    "uk": "Створи кімнату й надішли запрошення. Ведучий обирає музику й ділиться керуванням.",
+    "de": "Erstelle einen Raum und verschicke eine Einladung. Der Gastgeber wählt Musik und teilt die Steuerung.",
+    "es": "Crea una sala y envía una invitación. El anfitrión elige la música y comparte el control."
+  },
+  "native.e191ae678f": {
+    "ru": "● НА ОДНОЙ ВОЛНЕ",
+    "en": "● ON THE SAME WAVE",
+    "kk": "● БІР ТОЛҚЫНДА",
+    "uk": "● НА ОДНІЙ ХВИЛІ",
+    "de": "● AUF EINER WELLE",
+    "es": "● EN LA MISMA ONDA"
+  },
+  "native.0a4c6ceeee": {
+    "ru": "● СОЕДИНЯЕМСЯ",
+    "en": "● CONNECTING",
+    "kk": "● ҚОСЫЛУДА",
+    "uk": "● З’ЄДНУЄМОСЯ",
+    "de": "● VERBINDUNG WIRD HERGESTELLT",
+    "es": "● CONECTANDO"
+  },
+  "native.916b1a3bbf": {
+    "ru": "Приглашение скопировано.",
+    "en": "Invitation copied.",
+    "kk": "Шақыру көшірілді.",
+    "uk": "Запрошення скопійовано.",
+    "de": "Einladung kopiert.",
+    "es": "Invitación copiada."
+  },
+  "native.2c8e25954f": {
+    "ru": "Пригласить друзей",
+    "en": "Invite friends",
+    "kk": "Достарды шақыру",
+    "uk": "Запросити друзів",
+    "de": "Freunde einladen",
+    "es": "Invitar amigos"
+  },
+  "native.1d2a1d354c": {
+    "ru": "На одной волне",
+    "en": "On the same wave",
+    "kk": "Бір толқында",
+    "uk": "На одній хвилі",
+    "de": "Auf einer Welle",
+    "es": "En la misma onda"
+  },
+  "native.76ffe26d00": {
+    "ru": "Участник",
+    "en": "Member",
+    "kk": "Қатысушы",
+    "uk": "Учасник",
+    "de": "Mitglied",
+    "es": "Miembro"
+  },
+  "native.d73e431d49": {
+    "ru": "Ведущий",
+    "en": "Host",
+    "kk": "Жүргізуші",
+    "uk": "Ведучий",
+    "de": "Gastgeber",
+    "es": "Anfitrión"
+  },
+  "native.6a4bbeffcc": {
+    "ru": "Слушает",
+    "en": "Listening",
+    "kk": "Тыңдап отыр",
+    "uk": "Слухає",
+    "de": "Hört zu",
+    "es": "Escuchando"
+  },
+  "native.6174ccc7f5": {
+    "ru": "Разговоры между треками",
+    "en": "Talk between tracks",
+    "kk": "Тректер арасындағы әңгіме",
+    "uk": "Розмови між треками",
+    "de": "Gespräche zwischen Titeln",
+    "es": "Charlas entre pistas"
+  },
+  "native.7abdd3e513": {
+    "ru": "Первое сообщение — за тобой.",
+    "en": "The first message is yours.",
+    "kk": "Алғашқы хабарлама сенен.",
+    "uk": "Перше повідомлення — за тобою.",
+    "de": "Die erste Nachricht kommt von dir.",
+    "es": "El primer mensaje es tuyo."
+  },
+  "native.e46d8ce0ed": {
+    "ru": "Написать в комнату…",
+    "en": "Write to the room…",
+    "kk": "Бөлмеге жазу…",
+    "uk": "Написати в кімнату…",
+    "de": "In den Raum schreiben…",
+    "es": "Escribir en la sala…"
+  },
+  "native.76dcf737a6": {
+    "ru": "Отправить",
+    "en": "Send",
+    "kk": "Жіберу",
+    "uk": "Надіслати",
+    "de": "Senden",
+    "es": "Enviar"
+  },
+  "native.ebd33b8d52": {
+    "ru": "Выбирай треки в медиатеке — вся комната услышит их вместе.",
+    "en": "Choose tracks from your library. The whole room will hear them together.",
+    "kk": "Медиатекадан тректер таңда. Бөлменің бәрі бірге тыңдайды.",
+    "uk": "Обирай треки в медіатеці — уся кімната почує їх разом.",
+    "de": "Wähle Titel aus deiner Mediathek. Der ganze Raum hört sie gemeinsam.",
+    "es": "Elige pistas de tu biblioteca. Toda la sala las escuchará a la vez."
+  },
+  "native.7f5dea692a": {
+    "ru": "Музыкой управляет ведущий. Он может выдать доступ любому участнику.",
+    "en": "The host controls the music and can share access with any member.",
+    "kk": "Музыканы жүргізуші басқарады. Ол кез келген қатысушыға құқық бере алады.",
+    "uk": "Музикою керує ведучий. Він може надати доступ будь-якому учаснику.",
+    "de": "Der Gastgeber steuert die Musik und kann jedem Mitglied Zugriff geben.",
+    "es": "El anfitrión controla la música y puede dar acceso a cualquier miembro."
+  },
+  "native.fec96a4982": {
+    "ru": "На любом устройстве",
+    "en": "On any device",
+    "kk": "Кез келген құрылғыда",
+    "uk": "На будь-якому пристрої",
+    "de": "Auf jedem Gerät",
+    "es": "En cualquier dispositivo"
+  },
+  "native.06722aad25": {
+    "ru": "Один аккаунт. Музыка всегда рядом.",
+    "en": "One account. Music always close.",
+    "kk": "Бір аккаунт. Музыка әрдайым жаныңда.",
+    "uk": "Один обліковий запис. Музика завжди поруч.",
+    "de": "Ein Konto. Musik immer bei dir.",
+    "es": "Una cuenta. La música siempre cerca."
+  },
+  "native.d3b6a00135": {
+    "ru": "ПРОДОЛЖИ ТАМ, ГДЕ УДОБНО",
+    "en": "CONTINUE WHERE YOU FEEL AT HOME",
+    "kk": "ӨЗІҢЕ ЫҢҒАЙЛЫ ЖЕРДЕ ЖАЛҒАСТЫР",
+    "uk": "ПРОДОВЖУЙ ТАМ, ДЕ ЗРУЧНО",
+    "de": "HÖRE WEITER, WO ES DIR PASST",
+    "es": "CONTINÚA DONDE TE RESULTE CÓMODO"
+  },
+  "native.5e1f41132a": {
+    "ru": "Звук живёт здесь",
+    "en": "The sound lives here",
+    "kk": "Әуен осында",
+    "uk": "Звук живе тут",
+    "de": "Hier lebt der Klang",
+    "es": "Aquí vive el sonido"
+  },
+  "native.bc791dbe7e": {
+    "ru": "Устройство",
+    "en": "Device",
+    "kk": "Құрылғы",
+    "uk": "Пристрій",
+    "de": "Gerät",
+    "es": "Dispositivo"
+  },
+  "native.011e2099f2": {
+    "ru": "В сети · готово слушать",
+    "en": "Online · ready to listen",
+    "kk": "Желіде · тыңдауға дайын",
+    "uk": "У мережі · готовий слухати",
+    "de": "Online · bereit zum Hören",
+    "es": "En línea · listo para escuchar"
+  },
+  "native.49daba7f72": {
+    "ru": "Звук сюда",
+    "en": "Move sound here",
+    "kk": "Дыбысты осында ауыстыру",
+    "uk": "Звук сюди",
+    "de": "Klang hierher übertragen",
+    "es": "Traer sonido aquí"
+  },
+  "native.1b2692a600": {
+    "ru": "Предыдущий на этом устройстве",
+    "en": "Previous on this device",
+    "kk": "Бұл құрылғыда алдыңғы трек",
+    "uk": "Попередній на цьому пристрої",
+    "de": "Vorheriger Titel auf diesem Gerät",
+    "es": "Anterior en este dispositivo"
+  },
+  "native.6dd5de06c7": {
+    "ru": "Играть / Пауза на этом устройстве",
+    "en": "Play / pause on this device",
+    "kk": "Бұл құрылғыда ойнату / кідірту",
+    "uk": "Грати / пауза на цьому пристрої",
+    "de": "Wiedergabe / Pause auf diesem Gerät",
+    "es": "Reproducir / pausar en este dispositivo"
+  },
+  "native.ca8ab6965b": {
+    "ru": "Следующий на этом устройстве",
+    "en": "Next on this device",
+    "kk": "Бұл құрылғыда келесі трек",
+    "uk": "Наступний на цьому пристрої",
+    "de": "Nächster Titel auf diesem Gerät",
+    "es": "Siguiente en este dispositivo"
+  },
+  "native.76bdd0e417": {
+    "ru": "Добавь ещё одно устройство",
+    "en": "Add another device",
+    "kk": "Тағы бір құрылғы қос",
+    "uk": "Додай ще один пристрій",
+    "de": "Füge ein weiteres Gerät hinzu",
+    "es": "Añade otro dispositivo"
+  },
+  "native.bf9b9e0034": {
+    "ru": "Войди в этот же аккаунт на телефоне или в браузере. Устройство появится здесь, когда будет в сети.",
+    "en": "Sign in to the same account on your phone or in a browser. The device appears here when it’s online.",
+    "kk": "Телефонда не браузерде осы аккаунтқа кір. Құрылғы желіге қосылғанда осында көрінеді.",
+    "uk": "Увійди в цей самий обліковий запис на телефоні або в браузері. Пристрій з’явиться тут, коли буде в мережі.",
+    "de": "Melde dich auf dem Telefon oder im Browser mit demselben Konto an. Das Gerät erscheint hier, sobald es online ist.",
+    "es": "Inicia sesión en la misma cuenta en tu teléfono o navegador. El dispositivo aparecerá aquí cuando esté en línea."
+  },
+  "native.e305e5f150": {
+    "ru": "Вход по QR",
+    "en": "Sign in with QR",
+    "kk": "QR арқылы кіру",
+    "uk": "Вхід за QR",
+    "de": "Mit QR anmelden",
+    "es": "Entrar con QR"
+  },
+  "native.280e0f673d": {
+    "ru": "Подтвердить вход",
+    "en": "Confirm sign in",
+    "kk": "Кіруді растау",
+    "uk": "Підтвердити вхід",
+    "de": "Anmeldung bestätigen",
+    "es": "Confirmar inicio de sesión"
+  },
+  "native.8db44b4616": {
+    "ru": "Найти сервер в сети",
+    "en": "Find server on the network",
+    "kk": "Желіден сервер табу",
+    "uk": "Знайти сервер у мережі",
+    "de": "Server im Netzwerk finden",
+    "es": "Buscar servidor en la red"
+  },
+  "native.0e89a07236": {
+    "ru": "Войди в один аккаунт на всех устройствах. В домашней сети можно слушать свои файлы без интернета. Передача работает с аудиотреками GlukWave.",
+    "en": "Use one account on all devices. You can listen to your files offline on your home network. Transfers work with GlukWave audio tracks.",
+    "kk": "Барлық құрылғыда бір аккаунтты қолдан. Үй желісінде файлдарыңды интернетсіз тыңдай аласың. Ауыстыру GlukWave аудиотректерімен жұмыс істейді.",
+    "uk": "Увійди в один обліковий запис на всіх пристроях. У домашній мережі можна слухати свої файли без інтернету. Передавання працює з аудіотреками GlukWave.",
+    "de": "Nutze ein Konto auf allen Geräten. Im Heimnetz kannst du deine Dateien ohne Internet hören. Die Übertragung funktioniert mit GlukWave-Audiotiteln.",
+    "es": "Usa una cuenta en todos los dispositivos. En tu red doméstica puedes escuchar tus archivos sin internet. La transferencia funciona con pistas de audio de GlukWave."
+  },
+  "native.f09e6c35a1": {
+    "ru": "Серверы рядом",
+    "en": "Nearby servers",
+    "kk": "Жақын серверлер",
+    "uk": "Сервери поруч",
+    "de": "Server in der Nähe",
+    "es": "Servidores cercanos"
+  },
+  "native.f1d32f86b2": {
+    "ru": "Пока ничего не найдено. Проверь, что телефон и компьютер подключены к одной домашней сети, и попробуй ещё раз.",
+    "en": "Nothing found yet. Check that your phone and computer share the same home network, then try again.",
+    "kk": "Әзірге ештеңе табылмады. Телефон мен компьютердің бір үй желісіне қосылғанын тексеріп, қайтала.",
+    "uk": "Поки нічого не знайдено. Перевір, що телефон і комп’ютер підключені до однієї домашньої мережі, і спробуй ще.",
+    "de": "Noch nichts gefunden. Prüfe, ob Telefon und Computer im selben Heimnetz sind, und versuche es erneut.",
+    "es": "Todavía no hay resultados. Comprueba que el teléfono y el ordenador estén en la misma red doméstica y reintenta."
+  },
+  "native.5a257ddf16": {
+    "ru": "Ссылка или код QR",
+    "en": "QR link or code",
+    "kk": "QR сілтемесі не коды",
+    "uk": "Посилання або код QR",
+    "de": "QR-Link oder Code",
+    "es": "Enlace o código QR"
+  },
+  "native.a94c1d3dbe": {
+    "ru": "Разрешить вход?",
+    "en": "Allow sign in?",
+    "kk": "Кіруге рұқсат беру керек пе?",
+    "uk": "Дозволити вхід?",
+    "de": "Anmeldung erlauben?",
+    "es": "¿Permitir el inicio de sesión?"
+  },
+  "native.ab5de9486a": {
+    "ru": "«{p0}» получит доступ к твоему аккаунту. Подтверди, если ты сейчас входишь на этом устройстве.",
+    "en": "“{p0}” will gain access to your account. Confirm if you’re signing in on that device now.",
+    "kk": "«{p0}» аккаунтыңа қол жеткізеді. Қазір сол құрылғыда кіріп жатсаң, раста.",
+    "uk": "«{p0}» отримає доступ до твого облікового запису. Підтвердь, якщо зараз входиш на цьому пристрої.",
+    "de": "„{p0}“ erhält Zugriff auf dein Konto. Bestätige, wenn du dich gerade auf diesem Gerät anmeldest.",
+    "es": "«{p0}» tendrá acceso a tu cuenta. Confirma si estás iniciando sesión en ese dispositivo ahora."
+  },
+  "native.616bb19d6c": {
+    "ru": "Разрешить",
+    "en": "Allow",
+    "kk": "Рұқсат беру",
+    "uk": "Дозволити",
+    "de": "Erlauben",
+    "es": "Permitir"
+  },
+  "native.3c11e25735": {
+    "ru": "Твой маленький мир",
+    "en": "Your little world",
+    "kk": "Сенің шағын әлемің",
+    "uk": "Твій маленький світ",
+    "de": "Deine kleine Welt",
+    "es": "Tu pequeño mundo"
+  },
+  "native.bd8bfe25b5": {
+    "ru": "Музыка тоже говорит о тебе.",
+    "en": "Music says something about you, too.",
+    "kk": "Музыка да сен жайлы сыр шертеді.",
+    "uk": "Музика теж говорить про тебе.",
+    "de": "Auch Musik erzählt von dir.",
+    "es": "La música también habla de ti."
+  },
+  "native.29352daac4": {
+    "ru": "ПРОФИЛЬ GLUKWAVE",
+    "en": "GLUKWAVE PROFILE",
+    "kk": "GLUKWAVE ПРОФИЛІ",
+    "uk": "ПРОФІЛЬ GLUKWAVE",
+    "de": "GLUKWAVE-PROFIL",
+    "es": "PERFIL DE GLUKWAVE"
+  },
+  "native.3288466d0d": {
+    "ru": "Загрузить баннер (включая GIF)",
+    "en": "Upload banner (including GIF)",
+    "kk": "Баннер жүктеу (GIF те болады)",
+    "uk": "Завантажити банер (зокрема GIF)",
+    "de": "Banner hochladen (auch GIF)",
+    "es": "Subir banner (incluido GIF)"
+  },
+  "native.dd5a0b517a": {
+    "ru": "Настроить профиль",
+    "en": "Edit profile",
+    "kk": "Профильді өңдеу",
+    "uk": "Налаштувати профіль",
+    "de": "Profil bearbeiten",
+    "es": "Editar perfil"
+  },
+  "native.a61f7c97a6": {
+    "ru": "Свободнее с Unbound",
+    "en": "More freedom with Unbound",
+    "kk": "Unbound арқылы көбірек еркіндік",
+    "uk": "Вільніше з Unbound",
+    "de": "Mehr Freiheit mit Unbound",
+    "es": "Más libertad con Unbound"
+  },
+  "native.ae23547099": {
+    "ru": "Ты в бета-программе: возможности Unbound уже доступны.",
+    "en": "You’re in the beta programme. Unbound features are already available.",
+    "kk": "Сен бета бағдарламасындасың. Unbound мүмкіндіктері қолжетімді.",
+    "uk": "Ти в бета-програмі: можливості Unbound уже доступні.",
+    "de": "Du bist im Betaprogramm. Unbound-Funktionen sind bereits verfügbar.",
+    "es": "Estás en el programa beta. Las funciones de Unbound ya están disponibles."
+  },
+  "native.f6da905d33": {
+    "ru": "Твой Unbound активен. Подпиской можно управлять в защищённом кабинете.",
+    "en": "Your Unbound is active. Manage your subscription in the secure portal.",
+    "kk": "Unbound белсенді. Жазылымды қорғалған кабинеттен басқар.",
+    "uk": "Твій Unbound активний. Керуй підпискою в захищеному кабінеті.",
+    "de": "Dein Unbound ist aktiv. Verwalte dein Abo im sicheren Portal.",
+    "es": "Tu Unbound está activo. Gestiona tu suscripción en el portal seguro."
+  },
+  "native.02da34d36b": {
+    "ru": "Больше места для музыки, плейлистов и личных миров.",
+    "en": "More space for music, playlists and personal worlds.",
+    "kk": "Музыкаға, плейлисттерге және жеке әлемдерге көбірек орын.",
+    "uk": "Більше місця для музики, плейлистів і особистих світів.",
+    "de": "Mehr Platz für Musik, Playlists und persönliche Welten.",
+    "es": "Más espacio para música, listas y mundos personales."
+  },
+  "native.ec812a93fb": {
+    "ru": "После оплаты обнови профиль. Подписка появится, когда платёж будет подтверждён.",
+    "en": "Refresh your profile after payment. Your subscription will appear once payment is confirmed.",
+    "kk": "Төлемнен кейін профильді жаңарт. Төлем расталғанда жазылым көрінеді.",
+    "uk": "Після оплати онови профіль. Підписка з’явиться після підтвердження платежу.",
+    "de": "Aktualisiere dein Profil nach der Zahlung. Dein Abo erscheint, sobald die Zahlung bestätigt ist.",
+    "es": "Actualiza tu perfil después del pago. Tu suscripción aparecerá cuando se confirme el pago."
+  },
+  "native.f7b2846451": {
+    "ru": "Подписка пока недоступна",
+    "en": "Subscriptions unavailable for now",
+    "kk": "Жазылым әзірге қолжетімсіз",
+    "uk": "Підписка поки недоступна",
+    "de": "Abos derzeit nicht verfügbar",
+    "es": "Suscripciones aún no disponibles"
+  },
+  "native.b7eea7b75e": {
+    "ru": "Маленькие миры",
+    "en": "Little worlds",
+    "kk": "Шағын әлемдер",
+    "uk": "Маленькі світи",
+    "de": "Kleine Welten",
+    "es": "Pequeños mundos"
+  },
+  "native.dee6918f7b": {
+    "ru": "Твои плейлисты появятся здесь.",
+    "en": "Your playlists will appear here.",
+    "kk": "Плейлисттерің осында көрінеді.",
+    "uk": "Твої плейлисти з’являться тут.",
+    "de": "Deine Playlists erscheinen hier.",
+    "es": "Tus listas aparecerán aquí."
+  },
+  "native.ec1641f67e": {
+    "ru": "Сделай этот мир своим",
+    "en": "Make this world yours",
+    "kk": "Бұл әлемді өзіңдікі ет",
+    "uk": "Зроби цей світ своїм",
+    "de": "Mach diese Welt zu deiner",
+    "es": "Haz tuyo este mundo"
+  },
+  "native.db0d5a3cc6": {
+    "ru": "Ник",
+    "en": "Username",
+    "kk": "Пайдаланушы аты",
+    "uk": "Нік",
+    "de": "Benutzername",
+    "es": "Nombre de usuario"
+  },
+  "native.5dcbecbd1a": {
+    "ru": "Плеер и текст",
+    "en": "Player and lyrics",
+    "kk": "Плеер және мәтін",
+    "uk": "Плеєр і слова",
+    "de": "Player und Liedtext",
+    "es": "Reproductor y letra"
+  },
+  "native.ed3fb91811": {
+    "ru": "В твоём ритме",
+    "en": "In your rhythm",
+    "kk": "Өз ырғағыңда",
+    "uk": "У твоєму ритмі",
+    "de": "In deinem Rhythmus",
+    "es": "A tu ritmo"
+  },
+  "native.413b6b6e1c": {
+    "ru": "Всё нужное — на своём месте.",
+    "en": "Everything you need, in its place.",
+    "kk": "Қажеттің бәрі өз орнында.",
+    "uk": "Усе потрібне — на своєму місці.",
+    "de": "Alles, was du brauchst, an seinem Platz.",
+    "es": "Todo lo que necesitas, en su lugar."
+  },
+  "native.aff68c53a5": {
+    "ru": "НАСТРОЙ СВОЙ МИР",
+    "en": "SHAPE YOUR WORLD",
+    "kk": "ӘЛЕМІҢДІ БАПТА",
+    "uk": "НАЛАШТУЙ СВІЙ СВІТ",
+    "de": "GESTALTE DEINE WELT",
+    "es": "DA FORMA A TU MUNDO"
+  },
+  "native.9e54439649": {
+    "ru": "Меньше движения",
+    "en": "Less motion",
+    "kk": "Аз қозғалыс",
+    "uk": "Менше руху",
+    "de": "Weniger Bewegung",
+    "es": "Menos movimiento"
+  },
+  "native.026a78998b": {
+    "ru": "Спокойные переходы, неподвижные волны и обложки.",
+    "en": "Calm transitions, still waves and covers.",
+    "kk": "Баяу ауысулар, қозғалмайтын толқындар мен мұқабалар.",
+    "uk": "Спокійні переходи, нерухомі хвилі й обкладинки.",
+    "de": "Ruhige Übergänge, unbewegte Wellen und Cover.",
+    "es": "Transiciones tranquilas, ondas y portadas quietas."
+  },
+  "native.f296708154": {
+    "ru": "Текст под обложкой",
+    "en": "Lyrics beneath the cover",
+    "kk": "Мұқаба астындағы мәтін",
+    "uk": "Слова під обкладинкою",
+    "de": "Liedtext unter dem Cover",
+    "es": "Letra bajo la portada"
+  },
+  "native.9c1a4954e3": {
+    "ru": "Строки с привязкой ко времени следуют за музыкой.",
+    "en": "Timed lines follow the music.",
+    "kk": "Уақытқа байланған жолдар музыкаға ілеседі.",
+    "uk": "Рядки з прив’язкою до часу йдуть за музикою.",
+    "de": "Zeitmarkierte Zeilen folgen der Musik.",
+    "es": "Las líneas con marcas de tiempo siguen la música."
+  },
+  "native.1228a8a0aa": {
+    "ru": "Пластинка или CD рядом с настоящей обложкой.",
+    "en": "A record or CD beside the real cover.",
+    "kk": "Нақты мұқабаның жанындағы пластинка не CD.",
+    "uk": "Платівка або CD біля справжньої обкладинки.",
+    "de": "Eine Schallplatte oder CD neben dem echten Cover.",
+    "es": "Un disco de vinilo o CD junto a la portada real."
+  },
+  "native.5a01c28561": {
+    "ru": "Личные тексты и LRC добавляются на вкладке «Текст» полного плеера. Доступны и для внешних треков.",
+    "en": "Add personal lyrics and LRC on the full player’s Lyrics tab. External tracks are supported too.",
+    "kk": "Жеке мәтін мен LRC толық плеердің «Мәтін» қойындысында қосылады. Сыртқы тректер де қолдау табады.",
+    "uk": "Особисті тексти й LRC додаються на вкладці «Слова» повного плеєра. Доступно й для зовнішніх треків.",
+    "de": "Füge eigene Liedtexte und LRC im Tab „Liedtext“ des Vollbildplayers hinzu. Auch für externe Titel verfügbar.",
+    "es": "Añade letras personales y LRC en la pestaña Letra del reproductor completo. También admite pistas externas."
+  },
+  "native.ec09cf02cb": {
+    "ru": "Окно мини-плеера",
+    "en": "Mini player window",
+    "kk": "Шағын плеер терезесі",
+    "uk": "Вікно мініплеєра",
+    "de": "Miniplayer-Fenster",
+    "es": "Ventana del minirreproductor"
+  },
+  "native.b66c3826b6": {
+    "ru": "Кешировать музыку локально",
+    "en": "Cache music locally",
+    "kk": "Музыканы құрылғыда кештеу",
+    "uk": "Кешувати музику локально",
+    "de": "Musik lokal zwischenspeichern",
+    "es": "Guardar música en caché local"
+  },
+  "native.b970e0b709": {
+    "ru": "Разрешённые треки сохраняются после запуска.",
+    "en": "Permitted tracks are saved after playback starts.",
+    "kk": "Рұқсат етілген тректер ойнату басталғанда сақталады.",
+    "uk": "Дозволені треки зберігаються після початку відтворення.",
+    "de": "Erlaubte Titel werden nach Wiedergabestart gespeichert.",
+    "es": "Las pistas permitidas se guardan al iniciar la reproducción."
+  },
+  "native.66a51f90fa": {
+    "ru": "{p0} МБ на этом устройстве",
+    "en": "{p0} MB on this device",
+    "kk": "Бұл құрылғыда {p0} МБ",
+    "uk": "{p0} МБ на цьому пристрої",
+    "de": "{p0} MB auf diesem Gerät",
+    "es": "{p0} MB en este dispositivo"
+  },
+  "native.4ce03a61f3": {
+    "ru": "Лимит автокеша",
+    "en": "Automatic cache limit",
+    "kk": "Автоматты кеш шегі",
+    "uk": "Ліміт автокешу",
+    "de": "Limit des automatischen Caches",
+    "es": "Límite de caché automática"
+  },
+  "native.3fac5a808d": {
+    "ru": "{p0} МБ",
+    "en": "{p0} MB",
+    "kk": "{p0} МБ",
+    "uk": "{p0} МБ",
+    "de": "{p0} MB",
+    "es": "{p0} MB"
+  },
+  "native.92818e37d4": {
+    "ru": "Ручные загрузки и звучащий файл сохраняются. Скачивания ниже показывают реальные файлы.",
+    "en": "Manual downloads and the playing file are kept. Downloads below show real files.",
+    "kk": "Қолмен жүктелген және ойнатылып жатқан файлдар сақталады. Төменде нақты жүктелген файлдар көрсетіледі.",
+    "uk": "Ручні завантаження й поточний файл зберігаються. Нижче показано справжні завантажені файли.",
+    "de": "Manuelle Downloads und die abgespielte Datei bleiben erhalten. Die Downloads unten zeigen echte Dateien.",
+    "es": "Se conservan las descargas manuales y el archivo en reproducción. Las descargas de abajo muestran archivos reales."
+  },
+  "native.f73970e14f": {
+    "ru": "Статус музыки работает через Discord на компьютере.",
+    "en": "Music status works through Discord on your computer.",
+    "kk": "Музыка күйі компьютердегі Discord арқылы беріледі.",
+    "uk": "Статус музики працює через Discord на комп’ютері.",
+    "de": "Der Musikstatus läuft über Discord auf deinem Computer.",
+    "es": "El estado de música funciona a través de Discord en tu ordenador."
+  },
+  "native.576be5b21a": {
+    "ru": "Проверить подключение к Discord",
+    "en": "Check Discord connection",
+    "kk": "Discord қосылымын тексеру",
+    "uk": "Перевірити підключення до Discord",
+    "de": "Discord-Verbindung prüfen",
+    "es": "Comprobar conexión con Discord"
+  },
+  "native.d9b1f7556f": {
+    "ru": "Presence из браузера",
+    "en": "Browser presence",
+    "kk": "Браузер күйі",
+    "uk": "Статус із браузера",
+    "de": "Browser-Präsenz",
+    "es": "Estado desde el navegador"
+  },
+  "native.27b6476a48": {
+    "ru": "Разрешить веб-плееру передавать статус через этот компьютер.",
+    "en": "Let the web player share its status through this computer.",
+    "kk": "Веб-плеерге күйін осы компьютер арқылы беруге рұқсат ет.",
+    "uk": "Дозволь вебплеєру передавати статус через цей комп’ютер.",
+    "de": "Erlaube dem Webplayer, seinen Status über diesen Computer zu teilen.",
+    "es": "Permite que el reproductor web comparta su estado a través de este ordenador."
+  },
+  "native.296b28d576": {
+    "ru": "Код привязки скопирован.",
+    "en": "Pairing code copied.",
+    "kk": "Байланыстыру коды көшірілді.",
+    "uk": "Код прив’язки скопійовано.",
+    "de": "Kopplungscode kopiert.",
+    "es": "Código de vinculación copiado."
+  },
+  "native.bc56422bc2": {
+    "ru": "Скопировать код",
+    "en": "Copy code",
+    "kk": "Кодты көшіру",
+    "uk": "Копіювати код",
+    "de": "Code kopieren",
+    "es": "Copiar código"
+  },
+  "native.d77ccea399": {
+    "ru": "Приглашения и новости",
+    "en": "Invitations and news",
+    "kk": "Шақырулар мен жаңалықтар",
+    "uk": "Запрошення й новини",
+    "de": "Einladungen und Neuigkeiten",
+    "es": "Invitaciones y noticias"
+  },
+  "native.c16c202873": {
+    "ru": "Push-уведомления на этом устройстве.",
+    "en": "Push notifications on this device.",
+    "kk": "Бұл құрылғыдағы push хабарландырулары.",
+    "uk": "Push-сповіщення на цьому пристрої.",
+    "de": "Push-Mitteilungen auf diesem Gerät.",
+    "es": "Notificaciones push en este dispositivo."
+  },
+  "native.bcec42f75c": {
+    "ru": "Уведомления пока недоступны на этом устройстве.",
+    "en": "Notifications aren’t available on this device yet.",
+    "kk": "Бұл құрылғыда хабарландырулар әзірге қолжетімсіз.",
+    "uk": "Сповіщення поки недоступні на цьому пристрої.",
+    "de": "Mitteilungen sind auf diesem Gerät noch nicht verfügbar.",
+    "es": "Las notificaciones aún no están disponibles en este dispositivo."
+  },
+  "native.61b20696ac": {
+    "ru": "Управление с клавиатуры",
+    "en": "Keyboard controls",
+    "kk": "Пернетақтамен басқару",
+    "uk": "Керування з клавіатури",
+    "de": "Tastatursteuerung",
+    "es": "Controles de teclado"
+  },
+  "native.06c1a8eda7": {
+    "ru": "Для клавиатуры телефона или компьютера. При вводе текста музыка не переключается.",
+    "en": "For your phone or computer keyboard. Typing text won’t change the music.",
+    "kk": "Телефон не компьютер пернетақтасы үшін. Мәтін жазғанда музыка ауыспайды.",
+    "uk": "Для клавіатури телефона або комп’ютера. Під час введення тексту музика не перемикається.",
+    "de": "Für die Tastatur von Telefon oder Computer. Texteingaben wechseln die Musik nicht.",
+    "es": "Para el teclado del teléfono u ordenador. Al escribir texto no cambia la música."
+  },
+  "native.4a0edcd188": {
+    "ru": "Пробел",
+    "en": "Space",
+    "kk": "Бос орын",
+    "uk": "Пробіл",
+    "de": "Leertaste",
+    "es": "Espacio"
+  },
+  "native.f974582a9e": {
+    "ru": "Играть / пауза",
+    "en": "Play / pause",
+    "kk": "Ойнату / кідірту",
+    "uk": "Грати / пауза",
+    "de": "Wiedergabe / Pause",
+    "es": "Reproducir / pausar"
+  },
+  "native.8396e265bd": {
+    "ru": "Открыть поиск",
+    "en": "Open search",
+    "kk": "Іздеуді ашу",
+    "uk": "Відкрити пошук",
+    "de": "Suche öffnen",
+    "es": "Abrir búsqueda"
+  },
+  "native.ddaa07f2d9": {
+    "ru": "Свернуть полный плеер",
+    "en": "Collapse full player",
+    "kk": "Толық плеерді жинау",
+    "uk": "Згорнути повний плеєр",
+    "de": "Vollbildplayer einklappen",
+    "es": "Contraer reproductor completo"
+  },
+  "native.63ca392a3c": {
+    "ru": "Версия 1.0.0",
+    "en": "Version 1.0.0",
+    "kk": "1.0.0 нұсқасы",
+    "uk": "Версія 1.0.0",
+    "de": "Version 1.0.0",
+    "es": "Versión 1.0.0"
+  },
+  "native.97639011ba": {
+    "ru": "Твой маленький музыкальный мир. Настоящая медиатека, комнаты и музыка с собой.",
+    "en": "Your little musical world. A real library, rooms and music to take with you.",
+    "kk": "Сенің шағын музыкалық әлемің. Нақты медиатека, бөлмелер және жаныңдағы музыка.",
+    "uk": "Твій маленький музичний світ. Справжня медіатека, кімнати й музика із собою.",
+    "de": "Deine kleine Musikwelt. Eine echte Mediathek, Räume und Musik zum Mitnehmen.",
+    "es": "Tu pequeño mundo musical. Una biblioteca real, salas y música para llevar."
+  },
+  "native.488dd14a85": {
+    "ru": "Лицензии",
+    "en": "Licences",
+    "kk": "Лицензиялар",
+    "uk": "Ліцензії",
+    "de": "Lizenzen",
+    "es": "Licencias"
+  },
+  "native.917e05143a": {
+    "ru": "Сервер",
+    "en": "Server",
+    "kk": "Сервер",
+    "uk": "Сервер",
+    "de": "Server",
+    "es": "Servidor"
+  },
+  "native.457b27490d": {
+    "ru": "Подтверди почту по письму",
+    "en": "Confirm your email using the message",
+    "kk": "Поштаңды хат арқылы раста",
+    "uk": "Підтвердь пошту за листом",
+    "de": "Bestätige deine E-Mail über die Nachricht",
+    "es": "Confirma tu correo con el mensaje"
+  },
+  "native.1d5ad05dcb": {
+    "ru": "Выйти из аккаунта",
+    "en": "Sign out",
+    "kk": "Аккаунттан шығу",
+    "uk": "Вийти з облікового запису",
+    "de": "Abmelden",
+    "es": "Cerrar sesión"
+  },
+  "native.fc7b54ff4d": {
+    "ru": "Твой маленький\nмузыкальный мир.",
+    "en": "Your little\nmusical world.",
+    "kk": "Шағын\nмузыкалық әлемің.",
+    "uk": "Твій маленький\nмузичний світ.",
+    "de": "Deine kleine\nMusikwelt.",
+    "es": "Tu pequeño\nmundo musical."
+  },
+  "native.a889d29336": {
+    "ru": "Музыка из разных мест.\nЛюди на одной волне.\nИ никакой спешки.",
+    "en": "Music from different places.\nPeople on the same wave.\nAnd no rush.",
+    "kk": "Әр жерден жиналған музыка.\nБір толқындағы адамдар.\nАсықпайық.",
+    "uk": "Музика з різних місць.\nЛюди на одній хвилі.\nІ жодного поспіху.",
+    "de": "Musik von verschiedenen Orten.\nMenschen auf einer Welle.\nUnd keine Eile.",
+    "es": "Música de distintos lugares.\nPersonas en la misma onda.\nY sin prisas."
+  },
+  "native.4541ac0a47": {
+    "ru": "Начнём твой мир",
+    "en": "Let’s start your world",
+    "kk": "Әлеміңді бастайық",
+    "uk": "Почнімо твій світ",
+    "de": "Beginnen wir deine Welt",
+    "es": "Empecemos tu mundo"
+  },
+  "native.6532324a05": {
+    "ru": "Рады тебя слышать",
+    "en": "Glad to hear you",
+    "kk": "Сені естуге қуаныштымыз",
+    "uk": "Раді тебе чути",
+    "de": "Schön, dich zu hören",
+    "es": "Nos alegra escucharte"
+  },
+  "native.8ad78c0f86": {
+    "ru": "Немного о тебе — и музыка рядом.",
+    "en": "A little about you, and music is close.",
+    "kk": "Өзің жайлы аздап айт — музыка жаныңда.",
+    "uk": "Трохи про тебе — і музика поруч.",
+    "de": "Ein wenig über dich, und die Musik ist nah.",
+    "es": "Un poco sobre ti y la música estará cerca."
+  },
+  "native.691934d883": {
+    "ru": "Войди, чтобы музыка была рядом на всех устройствах.",
+    "en": "Sign in to keep music close on every device.",
+    "kk": "Музыка барлық құрылғыда жаныңда болуы үшін кір.",
+    "uk": "Увійди, щоб музика була поруч на всіх пристроях.",
+    "de": "Melde dich an, damit deine Musik auf jedem Gerät bei dir ist.",
+    "es": "Inicia sesión para tener tu música cerca en todos tus dispositivos."
+  },
+  "native.5b9ff29223": {
+    "ru": "Защищённый вход и регистрация проходят в браузере с Cloudflare. После подтверждения ты вернёшься в приложение.",
+    "en": "Secure sign in and registration open in your browser. You’ll return to the app after confirmation.",
+    "kk": "Қауіпсіз кіру мен тіркелу браузерде өтеді. Расталған соң қолданбаға ораласың.",
+    "uk": "Захищений вхід і реєстрація відкриються в браузері. Після підтвердження повернешся до застосунку.",
+    "de": "Sichere Anmeldung und Registrierung öffnen im Browser. Nach der Bestätigung kehrst du zur App zurück.",
+    "es": "El inicio de sesión y registro seguros se abren en tu navegador. Volverás a la aplicación al confirmar."
+  },
+  "native.d8e062885a": {
+    "ru": "Войти по почте в браузере",
+    "en": "Sign in with email in browser",
+    "kk": "Браузерде поштамен кіру",
+    "uk": "Увійти поштою в браузері",
+    "de": "Per E-Mail im Browser anmelden",
+    "es": "Entrar con correo en el navegador"
+  },
+  "native.eba037f95d": {
+    "ru": "Укажи почту",
+    "en": "Enter your email",
+    "kk": "Поштаңды енгіз",
+    "uk": "Укажи пошту",
+    "de": "Gib deine E-Mail ein",
+    "es": "Introduce tu correo"
+  },
+  "native.07fefc08da": {
+    "ru": "Показать пароль",
+    "en": "Show password",
+    "kk": "Құпиясөзді көрсету",
+    "uk": "Показати пароль",
+    "de": "Passwort anzeigen",
+    "es": "Mostrar contraseña"
+  },
+  "native.8992c9df0b": {
+    "ru": "Скрыть пароль",
+    "en": "Hide password",
+    "kk": "Құпиясөзді жасыру",
+    "uk": "Приховати пароль",
+    "de": "Passwort verbergen",
+    "es": "Ocultar contraseña"
+  },
+  "native.3e56a59a30": {
+    "ru": "Введи пароль",
+    "en": "Enter your password",
+    "kk": "Құпиясөзіңді енгіз",
+    "uk": "Введи пароль",
+    "de": "Gib dein Passwort ein",
+    "es": "Introduce tu contraseña"
+  },
+  "native.6bc8d80189": {
+    "ru": "Например, musicfriend",
+    "en": "For example, musicfriend",
+    "kk": "Мысалы, musicfriend",
+    "uk": "Наприклад, musicfriend",
+    "de": "Zum Beispiel musicfriend",
+    "es": "Por ejemplo, musicfriend"
+  },
+  "native.ffa6dd52b0": {
+    "ru": "3–32 латинских букв, цифр или _",
+    "en": "3–32 Latin letters, digits or _",
+    "kk": "3–32 латын әрпі, сан не _",
+    "uk": "3–32 латинські літери, цифри або _",
+    "de": "3–32 lateinische Buchstaben, Ziffern oder _",
+    "es": "3–32 letras latinas, dígitos o _"
+  },
+  "native.f11858d578": {
+    "ru": "Как тебя называть",
+    "en": "What should we call you?",
+    "kk": "Сені қалай атайық?",
+    "uk": "Як тебе називати?",
+    "de": "Wie sollen wir dich nennen?",
+    "es": "¿Cómo te llamamos?"
+  },
+  "native.bbdb97ba67": {
+    "ru": "Уже есть аккаунт",
+    "en": "Already have an account",
+    "kk": "Аккаунтым бар",
+    "uk": "Уже є обліковий запис",
+    "de": "Schon ein Konto",
+    "es": "Ya tengo cuenta"
+  },
+  "native.481cee4349": {
+    "ru": "Создать свой мир",
+    "en": "Create your world",
+    "kk": "Әлеміңді жаса",
+    "uk": "Створити свій світ",
+    "de": "Deine Welt erstellen",
+    "es": "Crear tu mundo"
+  },
+  "native.b58e16258e": {
+    "ru": "Если аккаунт существует, письмо с инструкцией уже отправлено.",
+    "en": "If the account exists, an email with instructions has been sent.",
+    "kk": "Аккаунт бар болса, нұсқаулық хат жіберілді.",
+    "uk": "Якщо обліковий запис існує, лист з інструкцією вже надіслано.",
+    "de": "Falls das Konto existiert, wurde eine E-Mail mit Anweisungen gesendet.",
+    "es": "Si la cuenta existe, se ha enviado un correo con instrucciones."
+  },
+  "native.24ee8363c4": {
+    "ru": "Забыл пароль?",
+    "en": "Forgot password?",
+    "kk": "Құпиясөзді ұмыттың ба?",
+    "uk": "Забув пароль?",
+    "de": "Passwort vergessen?",
+    "es": "¿Olvidaste la contraseña?"
+  },
+  "native.304d2e9c36": {
+    "ru": "По QR",
+    "en": "With QR",
+    "kk": "QR арқылы",
+    "uk": "За QR",
+    "de": "Mit QR",
+    "es": "Con QR"
+  },
+  "native.7a18c5e61a": {
+    "ru": "Отменить ожидание",
+    "en": "Cancel waiting",
+    "kk": "Күтуді тоқтату",
+    "uk": "Скасувати очікування",
+    "de": "Warten abbrechen",
+    "es": "Cancelar espera"
+  },
+  "native.2b9ecdfc9d": {
+    "ru": "Музыка на новом устройстве",
+    "en": "Music on a new device",
+    "kk": "Жаңа құрылғыдағы музыка",
+    "uk": "Музика на новому пристрої",
+    "de": "Musik auf einem neuen Gerät",
+    "es": "Música en un nuevo dispositivo"
+  },
+  "native.5156e365fc": {
+    "ru": "Открой GlukWave на телефоне → Устройства → Подтвердить вход. Проверь название устройства перед подтверждением.",
+    "en": "Open GlukWave on your phone → Devices → Confirm sign in. Check the device name before confirming.",
+    "kk": "Телефонда GlukWave аш → Құрылғылар → Кіруді растау. Растамас бұрын құрылғы атауын тексер.",
+    "uk": "Відкрий GlukWave на телефоні → Пристрої → Підтвердити вхід. Перевір назву пристрою перед підтвердженням.",
+    "de": "Öffne GlukWave auf dem Telefon → Geräte → Anmeldung bestätigen. Prüfe den Gerätenamen vor der Bestätigung.",
+    "es": "Abre GlukWave en el teléfono → Dispositivos → Confirmar inicio de sesión. Comprueba el nombre del dispositivo antes de confirmar."
+  },
+  "native.c3badea7fc": {
+    "ru": "Наведи камеру на QR GlukWave",
+    "en": "Point your camera at a GlukWave QR code",
+    "kk": "Камераны GlukWave QR кодына бағытта",
+    "uk": "Наведи камеру на QR GlukWave",
+    "de": "Richte die Kamera auf einen GlukWave-QR-Code",
+    "es": "Apunta la cámara a un QR de GlukWave"
+  },
+  "native.8182fca7f7": {
+    "ru": "Пульс GlukWave",
+    "en": "GlukWave pulse",
+    "kk": "GlukWave ырғағы",
+    "uk": "Пульс GlukWave",
+    "de": "GlukWave-Puls",
+    "es": "Pulso de GlukWave"
+  },
+  "native.850de99e1e": {
+    "ru": "Пользователи, события и состояние сервера.",
+    "en": "Users, events and server status.",
+    "kk": "Пайдаланушылар, оқиғалар және сервер күйі.",
+    "uk": "Користувачі, події та стан сервера.",
+    "de": "Benutzer, Ereignisse und Serverstatus.",
+    "es": "Usuarios, eventos y estado del servidor."
+  },
+  "native.a8ce65c8da": {
+    "ru": "КОНСОЛЬ АДМИНИСТРАТОРА",
+    "en": "ADMINISTRATOR CONSOLE",
+    "kk": "ӘКІМШІ КОНСОЛІ",
+    "uk": "КОНСОЛЬ АДМІНІСТРАТОРА",
+    "de": "ADMINISTRATORKONSOLE",
+    "es": "CONSOLA DE ADMINISTRACIÓN"
+  },
+  "native.2355a3badd": {
+    "ru": "Последние события",
+    "en": "Recent events",
+    "kk": "Соңғы оқиғалар",
+    "uk": "Останні події",
+    "de": "Letzte Ereignisse",
+    "es": "Eventos recientes"
+  },
+  "native.bb92633bf5": {
+    "ru": "Событие",
+    "en": "Event",
+    "kk": "Оқиға",
+    "uk": "Подія",
+    "de": "Ereignis",
+    "es": "Evento"
+  },
+  "native.90353a9d3d": {
+    "ru": "Твой стиль",
+    "en": "Your style",
+    "kk": "Сенің стилің",
+    "uk": "Твій стиль",
+    "de": "Dein Stil",
+    "es": "Tu estilo"
+  },
+  "native.8ec35b8339": {
+    "ru": "Светлая и тёмная темы, свои цвета и движение. Как тебе нравится.",
+    "en": "Light and dark themes, your colours and motion. Just as you like.",
+    "kk": "Ашық және қараңғы тақырыптар, өз түстерің мен қозғалыс. Өзіңе ұнағандай.",
+    "uk": "Світла й темна теми, свої кольори та рух. Як тобі подобається.",
+    "de": "Helle und dunkle Designs, deine Farben und Bewegung. Wie es dir gefällt.",
+    "es": "Temas claros y oscuros, tus colores y movimiento. Como te guste."
+  },
+  "native.2691b463f8": {
+    "ru": "Настроить оформление",
+    "en": "Customize appearance",
+    "kk": "Безендіруді баптау",
+    "uk": "Налаштувати оформлення",
+    "de": "Aussehen anpassen",
+    "es": "Personalizar apariencia"
+  },
+  "native.387f1c0b62": {
+    "ru": "Закрыть оформление",
+    "en": "Close appearance",
+    "kk": "Безендіруді жабу",
+    "uk": "Закрити оформлення",
+    "de": "Aussehen schließen",
+    "es": "Cerrar apariencia"
+  },
+  "native.09e4ba36d6": {
+    "ru": "Твой мир — в твоих цветах.",
+    "en": "Your world, in your colours.",
+    "kk": "Әлемің өз түстеріңде.",
+    "uk": "Твій світ — у твоїх кольорах.",
+    "de": "Deine Welt in deinen Farben.",
+    "es": "Tu mundo, en tus colores."
+  },
+  "native.afeb19400d": {
+    "ru": "Системная",
+    "en": "System",
+    "kk": "Жүйелік",
+    "uk": "Системна",
+    "de": "System",
+    "es": "Sistema"
+  },
+  "native.d3b55f5ca6": {
+    "ru": "Так выглядит твой стиль",
+    "en": "This is your style",
+    "kk": "Сенің стилің осындай",
+    "uk": "Так виглядає твій стиль",
+    "de": "So sieht dein Stil aus",
+    "es": "Así es tu estilo"
+  },
+  "native.7d4c797c67": {
+    "ru": "Палитра",
+    "en": "Palette",
+    "kk": "Палитра",
+    "uk": "Палітра",
+    "de": "Palette",
+    "es": "Paleta"
+  },
+  "native.ed80bb3e14": {
+    "ru": "У каждой темы свои цвета. Вторую можно настроить отдельно.",
+    "en": "Each theme has its own colours. You can customize the other one separately.",
+    "kk": "Әр тақырыптың өз түстері бар. Екіншісін бөлек баптауға болады.",
+    "uk": "Кожна тема має свої кольори. Другу можна налаштувати окремо.",
+    "de": "Jedes Design hat eigene Farben. Du kannst das andere separat anpassen.",
+    "es": "Cada tema tiene sus colores. Puedes personalizar el otro por separado."
+  },
+  "native.06bd854145": {
+    "ru": "Светлой темы",
+    "en": "Light theme",
+    "kk": "Ашық тақырып",
+    "uk": "Світлої теми",
+    "de": "Helles Design",
+    "es": "Tema claro"
+  },
+  "native.0f3b835082": {
+    "ru": "Тёмной темы",
+    "en": "Dark theme",
+    "kk": "Қараңғы тақырып",
+    "uk": "Темної теми",
+    "de": "Dunkles Design",
+    "es": "Tema oscuro"
+  },
+  "native.fed5befeb5": {
+    "ru": "Акцент {p0}",
+    "en": "Accent {p0}",
+    "kk": "{p0} акценті",
+    "uk": "Акцент {p0}",
+    "de": "Akzent {p0}",
+    "es": "Acento {p0}"
+  },
+  "native.984126b8b7": {
+    "ru": "Свой акцент",
+    "en": "Custom accent",
+    "kk": "Өз акцентің",
+    "uk": "Свій акцент",
+    "de": "Eigener Akzent",
+    "es": "Acento personalizado"
+  },
+  "native.9cbcd3b318": {
+    "ru": "Все цвета",
+    "en": "All colours",
+    "kk": "Барлық түстер",
+    "uk": "Усі кольори",
+    "de": "Alle Farben",
+    "es": "Todos los colores"
+  },
+  "native.64e081e829": {
+    "ru": "Фон, поверхности и текст",
+    "en": "Background, surfaces and text",
+    "kk": "Фон, беттер және мәтін",
+    "uk": "Фон, поверхні й текст",
+    "de": "Hintergrund, Flächen und Text",
+    "es": "Fondo, superficies y texto"
+  },
+  "native.4ab17a04f4": {
+    "ru": "Поверхности",
+    "en": "Surfaces",
+    "kk": "Беттер",
+    "uk": "Поверхні",
+    "de": "Flächen",
+    "es": "Superficies"
+  },
+  "native.99204a3cf5": {
+    "ru": "Скругление",
+    "en": "Corner radius",
+    "kk": "Бұрыштардың дөңгелектігі",
+    "uk": "Заокруглення",
+    "de": "Eckenradius",
+    "es": "Redondeo"
+  },
+  "native.7831d42ea5": {
+    "ru": "Скорость движения",
+    "en": "Motion speed",
+    "kk": "Қозғалыс жылдамдығы",
+    "uk": "Швидкість руху",
+    "de": "Bewegungstempo",
+    "es": "Velocidad del movimiento"
+  },
+  "native.60efac2834": {
+    "ru": "Логотип, волна и плавные переходы.",
+    "en": "Logo, wave and smooth transitions.",
+    "kk": "Логотип, толқын және жұмсақ ауысулар.",
+    "uk": "Логотип, хвиля та плавні переходи.",
+    "de": "Logo, Welle und fließende Übergänge.",
+    "es": "Logo, onda y transiciones suaves."
+  },
+  "native.666e0f796a": {
+    "ru": "Мягкое свечение",
+    "en": "Soft glow",
+    "kk": "Жұмсақ жарқыл",
+    "uk": "М’яке сяйво",
+    "de": "Sanftes Leuchten",
+    "es": "Brillo suave"
+  },
+  "native.007c5fcecf": {
+    "ru": "Тёплый свет вокруг обложки в плеере.",
+    "en": "Warm light around the cover in the player.",
+    "kk": "Плеердегі мұқаба айналасындағы жылы жарық.",
+    "uk": "Тепле світло навколо обкладинки в плеєрі.",
+    "de": "Warmes Licht um das Cover im Player.",
+    "es": "Luz cálida alrededor de la portada en el reproductor."
+  },
+  "native.bff051ace0": {
+    "ru": "Компактный вид",
+    "en": "Compact view",
+    "kk": "Ықшам көрініс",
+    "uk": "Компактний вигляд",
+    "de": "Kompakte Ansicht",
+    "es": "Vista compacta"
+  },
+  "native.f770c17775": {
+    "ru": "Больше музыки на одном экране.",
+    "en": "More music on one screen.",
+    "kk": "Бір экранда көбірек музыка.",
+    "uk": "Більше музики на одному екрані.",
+    "de": "Mehr Musik auf einem Bildschirm.",
+    "es": "Más música en una pantalla."
+  },
+  "native.5c948d22d9": {
+    "ru": "Наклоняй её пальцем или мышью в плеере.",
+    "en": "Tilt it with your finger or mouse in the player.",
+    "kk": "Плеерде саусақпен не тінтуірмен еңкейт.",
+    "uk": "Нахиляй її пальцем або мишею в плеєрі.",
+    "de": "Neige es im Player mit Finger oder Maus.",
+    "es": "Inclínala con el dedo o ratón en el reproductor."
+  },
+  "native.2aa64630e3": {
+    "ru": "Стиль волны",
+    "en": "Wave style",
+    "kk": "Толқын стилі",
+    "uk": "Стиль хвилі",
+    "de": "Wellenstil",
+    "es": "Estilo de onda"
+  },
+  "native.ebcd6e8521": {
+    "ru": "Сбросить {p0} тему",
+    "en": "Reset {p0} theme",
+    "kk": "{p0} тақырыпты қалпына келтіру",
+    "uk": "Скинути {p0} тему",
+    "de": "{p0} Design zurücksetzen",
+    "es": "Restablecer tema {p0}"
+  },
+  "native.5cc6512b7e": {
+    "ru": "Сохранено здесь. Обновим аккаунт, когда появится соединение.",
+    "en": "Saved here. Your account will update when you’re connected.",
+    "kk": "Осында сақталды. Байланыс орнағанда аккаунтыңды жаңартамыз.",
+    "uk": "Збережено тут. Оновимо обліковий запис, коли з’явиться з’єднання.",
+    "de": "Hier gespeichert. Dein Konto wird aktualisiert, sobald du verbunden bist.",
+    "es": "Guardado aquí. Tu cuenta se actualizará cuando te conectes."
+  },
+  "native.ef6585b509": {
+    "ru": "Сохранено здесь. Синхронизируем с аккаунтом…",
+    "en": "Saved here. Syncing with your account…",
+    "kk": "Осында сақталды. Аккаунтпен синхрондалуда…",
+    "uk": "Збережено тут. Синхронізуємо з обліковим записом…",
+    "de": "Hier gespeichert. Wird mit deinem Konto synchronisiert…",
+    "es": "Guardado aquí. Sincronizando con tu cuenta…"
+  },
+  "native.456801dbda": {
+    "ru": "Изменения сохраняются в твоём аккаунте.",
+    "en": "Changes are saved in your account.",
+    "kk": "Өзгерістер аккаунтыңда сақталады.",
+    "uk": "Зміни зберігаються у твоєму обліковому записі.",
+    "de": "Änderungen werden in deinem Konto gespeichert.",
+    "es": "Los cambios se guardan en tu cuenta."
+  },
+  "native.1f17fc01da": {
+    "ru": "Сохранено на этом устройстве. Работает и без входа.",
+    "en": "Saved on this device. Works without signing in.",
+    "kk": "Бұл құрылғыда сақталды. Кірмей де жұмыс істейді.",
+    "uk": "Збережено на цьому пристрої. Працює й без входу.",
+    "de": "Auf diesem Gerät gespeichert. Funktioniert auch ohne Anmeldung.",
+    "es": "Guardado en este dispositivo. Funciona sin iniciar sesión."
+  },
+  "native.bb18fa6d01": {
+    "ru": "Повторить синхронизацию",
+    "en": "Retry sync",
+    "kk": "Синхрондауды қайталау",
+    "uk": "Повторити синхронізацію",
+    "de": "Synchronisierung wiederholen",
+    "es": "Reintentar sincronización"
+  },
+  "native.dd0ee1385e": {
+    "ru": "Укажи HEX, например #A08369",
+    "en": "Enter HEX, for example #A08369",
+    "kk": "HEX енгіз, мысалы #A08369",
+    "uk": "Укажи HEX, наприклад #A08369",
+    "de": "Gib HEX ein, etwa #A08369",
+    "es": "Introduce HEX, por ejemplo #A08369"
+  },
+  "native.405576c78f": {
+    "ru": "Применить цвет",
+    "en": "Apply colour",
+    "kk": "Түсті қолдану",
+    "uk": "Застосувати колір",
+    "de": "Farbe anwenden",
+    "es": "Aplicar color"
+  },
+  "native.bcc3751765": {
+    "ru": "Не удалось включить дождь. Попробуй ещё раз.",
+    "en": "Couldn’t turn on the rain. Try again.",
+    "kk": "Жаңбырды қосу мүмкін болмады. Қайтала.",
+    "uk": "Не вдалося ввімкнути дощ. Спробуй ще.",
+    "de": "Der Regen ließ sich nicht einschalten. Versuche es erneut.",
+    "es": "No se pudo activar la lluvia. Reintenta."
+  },
+  "native.1d03ab1de9": {
+    "ru": "Тише мир — громче музыка",
+    "en": "A quieter world, louder music",
+    "kk": "Әлем тыныш — музыка анық",
+    "uk": "Тихіший світ — гучніша музика",
+    "de": "Leisere Welt, lautere Musik",
+    "es": "Un mundo más tranquilo, una música más intensa"
+  },
+  "native.6182f364dd": {
+    "ru": "ТВОЙ ПЕЙЗАЖ",
+    "en": "YOUR LANDSCAPE",
+    "kk": "СЕНІҢ ПЕЙЗАЖЫҢ",
+    "uk": "ТВІЙ ПЕЙЗАЖ",
+    "de": "DEINE LANDSCHAFT",
+    "es": "TU PAISAJE"
+  },
+  "native.3acf87bef9": {
+    "ru": "АТМОСФЕРА",
+    "en": "ATMOSPHERE",
+    "kk": "АТМОСФЕРА",
+    "uk": "АТМОСФЕРА",
+    "de": "ATMOSPHÄRE",
+    "es": "ATMÓSFERA"
+  },
+  "native.dae7e05e24": {
+    "ru": "Чистый пейзаж",
+    "en": "Clear landscape",
+    "kk": "Таза пейзаж",
+    "uk": "Чистий пейзаж",
+    "de": "Klare Landschaft",
+    "es": "Paisaje limpio"
+  },
+  "native.d049e3f66b": {
+    "ru": "Шум дождя",
+    "en": "Rain sound",
+    "kk": "Жаңбыр дыбысы",
+    "uk": "Шум дощу",
+    "de": "Regengeräusch",
+    "es": "Sonido de lluvia"
+  },
+  "native.32c2235be0": {
+    "ru": "Добавь немного к своей музыке.",
+    "en": "Add a little to your music.",
+    "kk": "Музыкаңа аздап қос.",
+    "uk": "Додай трохи до своєї музики.",
+    "de": "Füge deiner Musik ein wenig hinzu.",
+    "es": "Añade un poco a tu música."
+  },
+  "native.d4958d914e": {
+    "ru": "Свой маленький мир, даже без интернета.",
+    "en": "Your little world, even offline.",
+    "kk": "Шағын әлемің интернетсіз де жаныңда.",
+    "uk": "Свій маленький світ навіть без інтернету.",
+    "de": "Deine kleine Welt, auch offline.",
+    "es": "Tu pequeño mundo, incluso sin conexión."
+  },
+  "native.201adfd2e2": {
+    "ru": "Вернуть управление",
+    "en": "Restore controls",
+    "kk": "Басқаруды қайтару",
+    "uk": "Повернути керування",
+    "de": "Steuerung wiederherstellen",
+    "es": "Restaurar controles"
+  },
+  "native.b22adb46b6": {
+    "ru": "Режим дзен",
+    "en": "Zen mode",
+    "kk": "Дзен режимі",
+    "uk": "Режим дзен",
+    "de": "Zen-Modus",
+    "es": "Modo zen"
+  },
+  "native.370bd25ead": {
+    "ru": "СЕЙЧАС МОЖНО ПРОСТО БЫТЬ",
+    "en": "NOW YOU CAN SIMPLY BE",
+    "kk": "ҚАЗІР ЖАЙ ҒАНА ДЕМАЛ",
+    "uk": "ЗАРАЗ МОЖНА ПРОСТО БУТИ",
+    "de": "JETZT EINFACH SEIN",
+    "es": "AHORA PUEDES SIMPLEMENTE ESTAR"
+  },
+  "native.7237c9b62a": {
+    "ru": "Твоя музыка. Твой ритм. Твоё место.",
+    "en": "Your music. Your rhythm. Your place.",
+    "kk": "Музыкаң. Ырғағың. Мекенің.",
+    "uk": "Твоя музика. Твій ритм. Твоє місце.",
+    "de": "Deine Musik. Dein Rhythmus. Dein Ort.",
+    "es": "Tu música. Tu ritmo. Tu lugar."
+  },
+  "native.2c89e1f83b": {
+    "ru": "Убрать из любимых",
+    "en": "Remove from favourites",
+    "kk": "Сүйіктілерден алып тастау",
+    "uk": "Прибрати з улюблених",
+    "de": "Aus Favoriten entfernen",
+    "es": "Quitar de favoritos"
+  },
+  "native.5633e5c745": {
+    "ru": "В любимые",
+    "en": "Add to favourites",
+    "kk": "Сүйіктілерге қосу",
+    "uk": "До улюблених",
+    "de": "Zu Favoriten",
+    "es": "Añadir a favoritos"
+  },
+  "native.1acf0afe60": {
+    "ru": "Сохранить с собой",
+    "en": "Keep with you",
+    "kk": "Өзіңмен бірге сақтау",
+    "uk": "Зберегти із собою",
+    "de": "Zum Mitnehmen speichern",
+    "es": "Guardar para llevar"
+  },
+  "native.899c8de911": {
+    "ru": "Твой музыкальный мир",
+    "en": "Your musical world",
+    "kk": "Музыкалық әлемің",
+    "uk": "Твій музичний світ",
+    "de": "Deine Musikwelt",
+    "es": "Tu mundo musical"
+  },
+  "native.b196b73079": {
+    "ru": "Выбери музыку в медиатеке",
+    "en": "Choose music from your library",
+    "kk": "Медиатекадан музыка таңда",
+    "uk": "Обери музику в медіатеці",
+    "de": "Wähle Musik aus deiner Mediathek",
+    "es": "Elige música de tu biblioteca"
+  },
+  "native.c750dc7d94": {
+    "ru": "Играть",
+    "en": "Play",
+    "kk": "Ойнату",
+    "uk": "Грати",
+    "de": "Wiedergabe",
+    "es": "Reproducir"
+  },
+  "native.d66131f711": {
+    "ru": "Полный плеер",
+    "en": "Full player",
+    "kk": "Толық плеер",
+    "uk": "Повний плеєр",
+    "de": "Vollbildplayer",
+    "es": "Reproductor completo"
+  },
+  "native.11bf0a5893": {
+    "ru": "Выбери музыку",
+    "en": "Choose music",
+    "kk": "Музыка таңда",
+    "uk": "Обери музику",
+    "de": "Wähle Musik",
+    "es": "Elige música"
+  },
+  "native.a1d6afb1b3": {
+    "ru": "Твоя волна начнётся с первого трека.",
+    "en": "Your wave starts with the first track.",
+    "kk": "Толқының алғашқы тректен басталады.",
+    "uk": "Твоя хвиля почнеться з першого треку.",
+    "de": "Deine Welle beginnt mit dem ersten Titel.",
+    "es": "Tu onda empieza con la primera pista."
+  },
+  "native.b1b410f065": {
+    "ru": "СЕЙЧАС ЗВУЧИТ",
+    "en": "NOW PLAYING",
+    "kk": "ҚАЗІР ОЙНАЛУДА",
+    "uk": "ЗАРАЗ ГРАЄ",
+    "de": "JETZT LÄUFT",
+    "es": "REPRODUCIENDO"
+  },
+  "native.30ef88c9b5": {
+    "ru": "Действия с треком",
+    "en": "Track actions",
+    "kk": "Трек әрекеттері",
+    "uk": "Дії з треком",
+    "de": "Titelaktionen",
+    "es": "Acciones de la pista"
+  },
+  "native.28ca76fdd0": {
+    "ru": "Трек",
+    "en": "Track",
+    "kk": "Трек",
+    "uk": "Трек",
+    "de": "Titel",
+    "es": "Pista"
+  },
+  "native.f1401a6c61": {
+    "ru": "Обсудить",
+    "en": "Discuss",
+    "kk": "Талқылау",
+    "uk": "Обговорити",
+    "de": "Diskutieren",
+    "es": "Comentar"
+  },
+  "native.e7797473dd": {
+    "ru": "3D обложка",
+    "en": "3D cover",
+    "kk": "3D мұқаба",
+    "uk": "3D-обкладинка",
+    "de": "3D-Cover",
+    "es": "Portada 3D"
+  },
+  "native.36f30bdb01": {
+    "ru": "Любимый трек",
+    "en": "Favourite track",
+    "kk": "Сүйікті трек",
+    "uk": "Улюблений трек",
+    "de": "Lieblingstitel",
+    "es": "Pista favorita"
+  },
+  "native.ca25d9c93e": {
+    "ru": "С собой",
+    "en": "Take with you",
+    "kk": "Өзіңмен бірге",
+    "uk": "Із собою",
+    "de": "Zum Mitnehmen",
+    "es": "Para llevar"
+  },
+  "native.58ef1d8c95": {
+    "ru": "Слушать в {p0}",
+    "en": "Listen on {p0}",
+    "kk": "{p0} арқылы тыңдау",
+    "uk": "Слухати в {p0}",
+    "de": "Auf {p0} hören",
+    "es": "Escuchar en {p0}"
+  },
+  "native.ffe3af5890": {
+    "ru": "Официальный плеер {p0} откроется в браузере. Он управляет воспроизведением и доступностью трека.",
+    "en": "The official {p0} player opens in your browser. It controls playback and track availability.",
+    "kk": "Ресми {p0} плеері браузерде ашылады. Ол ойнату мен тректің қолжетімділігін басқарады.",
+    "uk": "Офіційний плеєр {p0} відкриється в браузері. Він керує відтворенням і доступністю треку.",
+    "de": "Der offizielle {p0}-Player öffnet im Browser. Er steuert Wiedergabe und Verfügbarkeit des Titels.",
+    "es": "El reproductor oficial de {p0} se abre en el navegador. Controla la reproducción y la disponibilidad de la pista."
+  },
+  "native.5a13cba854": {
+    "ru": "СЛОВА РЯДОМ",
+    "en": "WORDS CLOSE BY",
+    "kk": "СӨЗДЕР ЖАНЫҢДА",
+    "uk": "СЛОВА ПОРУЧ",
+    "de": "WORTE GANZ NAH",
+    "es": "PALABRAS CERCA"
+  },
+  "native.d8a9b54429": {
+    "ru": "Перемешать",
+    "en": "Shuffle",
+    "kk": "Араластыру",
+    "uk": "Перемішати",
+    "de": "Zufällig",
+    "es": "Aleatorio"
+  },
+  "native.3a2d254d6e": {
+    "ru": "Предыдущий",
+    "en": "Previous",
+    "kk": "Алдыңғы",
+    "uk": "Попередній",
+    "de": "Zurück",
+    "es": "Anterior"
+  },
+  "native.e9c094d2a9": {
+    "ru": "Следующий",
+    "en": "Next",
+    "kk": "Келесі",
+    "uk": "Наступний",
+    "de": "Weiter",
+    "es": "Siguiente"
+  },
+  "native.9089f12327": {
+    "ru": "Повтор: {p0}",
+    "en": "Repeat: {p0}",
+    "kk": "Қайталау: {p0}",
+    "uk": "Повтор: {p0}",
+    "de": "Wiederholen: {p0}",
+    "es": "Repetir: {p0}"
+  },
+  "native.ff780900c5": {
+    "ru": "ТЕКСТ В РИТМЕ МУЗЫКИ",
+    "en": "LYRICS IN THE MUSIC’S RHYTHM",
+    "kk": "МУЗЫКА ЫРҒАҒЫНДАҒЫ МӘТІН",
+    "uk": "СЛОВА В РИТМІ МУЗИКИ",
+    "de": "LIEDTEXT IM TAKT DER MUSIK",
+    "es": "LETRA AL RITMO DE LA MÚSICA"
+  },
+  "native.7ad990dd63": {
+    "ru": "СЛОВА ТВОЕЙ МУЗЫКИ",
+    "en": "WORDS OF YOUR MUSIC",
+    "kk": "МУЗЫКАҢНЫҢ СӨЗДЕРІ",
+    "uk": "СЛОВА ТВОЄЇ МУЗИКИ",
+    "de": "WORTE DEINER MUSIK",
+    "es": "PALABRAS DE TU MÚSICA"
+  },
+  "native.1aea079cdb": {
+    "ru": "Добавить текст",
+    "en": "Add lyrics",
+    "kk": "Мәтін қосу",
+    "uk": "Додати слова",
+    "de": "Liedtext hinzufügen",
+    "es": "Añadir letra"
+  },
+  "native.3d92401582": {
+    "ru": "Загружаем текст",
+    "en": "Loading lyrics",
+    "kk": "Мәтін жүктелуде",
+    "uk": "Завантажуємо слова",
+    "de": "Liedtext wird geladen",
+    "es": "Cargando letra"
+  },
+  "native.8f61423be2": {
+    "ru": "Здесь будут слова",
+    "en": "Words will be here",
+    "kk": "Сөздер осында болады",
+    "uk": "Тут будуть слова",
+    "de": "Hier kommen die Worte",
+    "es": "Aquí estará la letra"
+  },
+  "native.6774e0dd9c": {
+    "ru": "Добавь свой текст или LRC — строки будут рядом с музыкой.",
+    "en": "Add your lyrics or LRC. The words will stay close to the music.",
+    "kk": "Мәтініңді немесе LRC қос. Сөздер музыкамен қатар жүреді.",
+    "uk": "Додай свій текст або LRC — слова будуть поруч із музикою.",
+    "de": "Füge deinen Liedtext oder LRC hinzu. Die Worte bleiben bei der Musik.",
+    "es": "Añade tu letra o LRC. Las palabras acompañarán a la música."
+  },
+  "native.0c37b5a035": {
+    "ru": "Импортировать текст",
+    "en": "Import lyrics",
+    "kk": "Мәтінді импорттау",
+    "uk": "Імпортувати слова",
+    "de": "Liedtext importieren",
+    "es": "Importar letra"
+  },
+  "native.da4b2995ca": {
+    "ru": "Слова рядом",
+    "en": "Words close by",
+    "kk": "Сөздер жаныңда",
+    "uk": "Слова поруч",
+    "de": "Worte ganz nah",
+    "es": "Palabras cerca"
+  },
+  "native.59f2a68e7e": {
+    "ru": "[00:10.00] Первая строка\n[00:18.50] Вторая строка",
+    "en": "[00:10.00] First line\n[00:18.50] Second line",
+    "kk": "[00:10.00] Бірінші жол\n[00:18.50] Екінші жол",
+    "uk": "[00:10.00] Перший рядок\n[00:18.50] Другий рядок",
+    "de": "[00:10.00] Erste Zeile\n[00:18.50] Zweite Zeile",
+    "es": "[00:10.00] Primera línea\n[00:18.50] Segunda línea"
+  },
+  "native.bd71178379": {
+    "ru": "{p0} треков · {p1}",
+    "en": "{p0} tracks · {p1}",
+    "kk": "{p0} трек · {p1}",
+    "uk": "{p0} треків · {p1}",
+    "de": "{p0} Titel · {p1}",
+    "es": "{p0} pistas · {p1}"
+  },
+  "native.8c96dfdeaf": {
+    "ru": "Твоя очередь ждёт",
+    "en": "Your queue is waiting",
+    "kk": "Кезегің сені күтеді",
+    "uk": "Твоя черга чекає",
+    "de": "Deine Warteschlange wartet",
+    "es": "Tu cola te espera"
+  },
+  "native.f11290c0ba": {
+    "ru": "Добавляй музыку через меню трека.",
+    "en": "Add music from the track menu.",
+    "kk": "Трек мәзірінен музыка қос.",
+    "uk": "Додавай музику через меню треку.",
+    "de": "Füge Musik über das Titelmenü hinzu.",
+    "es": "Añade música desde el menú de la pista."
+  },
+  "native.3fe293662f": {
+    "ru": "Тот самый момент",
+    "en": "That very moment",
+    "kk": "Сол бір сәт",
+    "uk": "Той самий момент",
+    "de": "Genau dieser Moment",
+    "es": "Ese preciso momento"
+  },
+  "native.35b3855a5f": {
+    "ru": "Оставь мысль прямо в музыке.",
+    "en": "Leave a thought right in the music.",
+    "kk": "Ойыңды музыканың өзінде қалдыр.",
+    "uk": "Залиш думку просто в музиці.",
+    "de": "Hinterlasse einen Gedanken direkt in der Musik.",
+    "es": "Deja un pensamiento en la música."
+  },
+  "native.b50bfb41fe": {
+    "ru": "Что чувствуешь сейчас?",
+    "en": "How do you feel right now?",
+    "kk": "Қазір не сезіп тұрсың?",
+    "uk": "Що відчуваєш зараз?",
+    "de": "Was fühlst du gerade?",
+    "es": "¿Qué sientes ahora?"
+  },
+  "native.c65a7fd398": {
+    "ru": "Оставить мысль",
+    "en": "Leave a thought",
+    "kk": "Ойыңды қалдыру",
+    "uk": "Залишити думку",
+    "de": "Gedanken hinterlassen",
+    "es": "Dejar un pensamiento"
+  },
+  "native.dcf664edf6": {
+    "ru": "Загружаем комментарии",
+    "en": "Loading comments",
+    "kk": "Пікірлер жүктелуде",
+    "uk": "Завантажуємо коментарі",
+    "de": "Kommentare werden geladen",
+    "es": "Cargando comentarios"
+  },
+  "native.c51a972201": {
+    "ru": "Первая мысль — за тобой",
+    "en": "The first thought is yours",
+    "kk": "Алғашқы ой сенен",
+    "uk": "Перша думка — за тобою",
+    "de": "Der erste Gedanke kommt von dir",
+    "es": "El primer pensamiento es tuyo"
+  },
+  "native.5439c05c19": {
+    "ru": "Здесь появятся настоящие комментарии слушателей.",
+    "en": "Real listener comments will appear here.",
+    "kk": "Тыңдаушылардың нақты пікірлері осында көрінеді.",
+    "uk": "Тут з’являться справжні коментарі слухачів.",
+    "de": "Hier erscheinen echte Kommentare von Hörern.",
+    "es": "Aquí aparecerán comentarios reales de los oyentes."
+  },
+  "native.e917ac283f": {
+    "ru": "Загружаем музыку",
+    "en": "Loading music",
+    "kk": "Музыка жүктелуде",
+    "uk": "Завантажуємо музику",
+    "de": "Musik wird geladen",
+    "es": "Cargando música"
+  },
+  "native.2bf6b84a6f": {
+    "ru": "ТВОЯ ЛИЧНАЯ ВОЛНА",
+    "en": "YOUR PERSONAL WAVE",
+    "kk": "ЖЕКЕ ТОЛҚЫНЫҢ",
+    "uk": "ТВОЯ ОСОБИСТА ХВИЛЯ",
+    "de": "DEINE PERSÖNLICHE WELLE",
+    "es": "TU ONDA PERSONAL"
+  },
+  "native.c1a1b57faa": {
+    "ru": "Собери свою музыку.\nИ найди свой ритм.",
+    "en": "Gather your music.\nFind your rhythm.",
+    "kk": "Музыкаңды жина.\nЫрғағыңды тап.",
+    "uk": "Збери свою музику.\nЗнайди свій ритм.",
+    "de": "Sammle deine Musik.\nFinde deinen Rhythmus.",
+    "es": "Reúne tu música.\nEncuentra tu ritmo."
+  },
+  "native.642189648a": {
+    "ru": "Все твои треки. Один поток.\nСейчас хочется просто слушать.",
+    "en": "All your tracks. One flow.\nRight now, just listen.",
+    "kk": "Барлық тректерің. Бір ағын.\nҚазір жай тыңда.",
+    "uk": "Усі твої треки. Один потік.\nЗараз хочеться просто слухати.",
+    "de": "Alle deine Titel. Ein Fluss.\nJetzt einfach zuhören.",
+    "es": "Todas tus pistas. Un solo flujo.\nAhora, simplemente escucha."
+  },
+  "native.c4ea2e3005": {
+    "ru": "Твоя музыка, в твоём ритме",
+    "en": "Your music, in your rhythm",
+    "kk": "Музыкаң өз ырғағыңда",
+    "uk": "Твоя музика, у твоєму ритмі",
+    "de": "Deine Musik in deinem Rhythmus",
+    "es": "Tu música, a tu ritmo"
+  },
+  "native.159f366d10": {
+    "ru": "Оконные функции недоступны: {p0}",
+    "en": "Window features unavailable: {p0}",
+    "kk": "Терезе мүмкіндіктері қолжетімсіз: {p0}",
+    "uk": "Віконні функції недоступні: {p0}",
+    "de": "Fensterfunktionen nicht verfügbar: {p0}",
+    "es": "Funciones de ventana no disponibles: {p0}"
+  },
+  "native.25ed968e60": {
+    "ru": "Сохранённая медиатека повреждена. Обнови её с сервера.",
+    "en": "The saved library is damaged. Refresh it from the server.",
+    "kk": "Сақталған медиатека бүлінген. Серверден жаңарт.",
+    "uk": "Збережену медіатеку пошкоджено. Онови її із сервера.",
+    "de": "Die gespeicherte Mediathek ist beschädigt. Aktualisiere sie vom Server.",
+    "es": "La biblioteca guardada está dañada. Actualízala desde el servidor."
+  },
+  "native.b217602ba0": {
+    "ru": "Войди снова — сессия завершилась.",
+    "en": "Sign in again. Your session has ended.",
+    "kk": "Қайта кір. Сессия аяқталды.",
+    "uk": "Увійди знову — сесія завершилася.",
+    "de": "Melde dich erneut an. Deine Sitzung ist beendet.",
+    "es": "Vuelve a iniciar sesión. Tu sesión ha terminado."
+  },
+  "native.d8b4826b17": {
+    "ru": "Не удалось войти. Попробуй ещё раз.",
+    "en": "Couldn’t sign in. Try again.",
+    "kk": "Кіру мүмкін болмады. Қайтала.",
+    "uk": "Не вдалося увійти. Спробуй ще.",
+    "de": "Anmeldung fehlgeschlagen. Versuche es erneut.",
+    "es": "No se pudo iniciar sesión. Reintenta."
+  },
+  "native.b85fd36bb6": {
+    "ru": "Время входа истекло. Создай новый код.",
+    "en": "Sign-in time expired. Create a new code.",
+    "kk": "Кіру уақыты бітті. Жаңа код жаса.",
+    "uk": "Час входу минув. Створи новий код.",
+    "de": "Anmeldezeit abgelaufen. Erstelle einen neuen Code.",
+    "es": "El tiempo para entrar ha caducado. Crea un nuevo código."
+  },
+  "native.4c922f0c45": {
+    "ru": "Сначала войди в аккаунт на этом устройстве.",
+    "en": "First sign in on this device.",
+    "kk": "Алдымен бұл құрылғыда аккаунтқа кір.",
+    "uk": "Спочатку увійди в обліковий запис на цьому пристрої.",
+    "de": "Melde dich zuerst auf diesem Gerät an.",
+    "es": "Primero inicia sesión en este dispositivo."
+  },
+  "native.283b363614": {
+    "ru": "Это не код входа GlukWave.",
+    "en": "This isn’t a GlukWave sign-in code.",
+    "kk": "Бұл GlukWave кіру коды емес.",
+    "uk": "Це не код входу GlukWave.",
+    "de": "Dies ist kein GlukWave-Anmeldecode.",
+    "es": "Este no es un código de acceso de GlukWave."
+  },
+  "native.e5eacefb73": {
+    "ru": "Вход на другом устройстве подтверждён.",
+    "en": "Sign in on the other device confirmed.",
+    "kk": "Басқа құрылғыдағы кіру расталды.",
+    "uk": "Вхід на іншому пристрої підтверджено.",
+    "de": "Anmeldung auf dem anderen Gerät bestätigt.",
+    "es": "Inicio de sesión en el otro dispositivo confirmado."
+  },
+  "native.fb5429ae1b": {
+    "ru": "У этого трека нет ссылки на источник.",
+    "en": "This track has no source link.",
+    "kk": "Бұл тректің дереккөз сілтемесі жоқ.",
+    "uk": "Цей трек не має посилання на джерело.",
+    "de": "Dieser Titel hat keinen Quelllink.",
+    "es": "Esta pista no tiene enlace a la fuente."
+  },
+  "native.bb5aee59aa": {
+    "ru": "{p0} открыт. Источник управляет воспроизведением; скачивание недоступно.",
+    "en": "{p0} opened. The source controls playback; downloads are unavailable.",
+    "kk": "{p0} ашылды. Ойнатуды дереккөз басқарады; жүктеу қолжетімсіз.",
+    "uk": "{p0} відкрито. Джерело керує відтворенням; завантаження недоступне.",
+    "de": "{p0} geöffnet. Die Quelle steuert die Wiedergabe; Downloads sind nicht verfügbar.",
+    "es": "{p0} abierto. La fuente controla la reproducción; las descargas no están disponibles."
+  },
+  "native.131b87ec38": {
+    "ru": "В этой комнате управляет ведущий. Попроси доступ.",
+    "en": "The host controls this room. Ask for access.",
+    "kk": "Бұл бөлмені жүргізуші басқарады. Рұқсат сұра.",
+    "uk": "Цією кімнатою керує ведучий. Попроси доступ.",
+    "de": "Der Gastgeber steuert diesen Raum. Bitte um Zugriff.",
+    "es": "El anfitrión controla esta sala. Pide acceso."
+  },
+  "native.239486deb5": {
+    "ru": "Трек добавлен в любимые.",
+    "en": "Track added to favourites.",
+    "kk": "Трек сүйіктілерге қосылды.",
+    "uk": "Трек додано до улюблених.",
+    "de": "Titel zu Favoriten hinzugefügt.",
+    "es": "Pista añadida a favoritos."
+  },
+  "native.90bb5d60ca": {
+    "ru": "Музыка появилась в медиатеке.",
+    "en": "Music added to your library.",
+    "kk": "Музыка медиатекаға қосылды.",
+    "uk": "Музику додано до медіатеки.",
+    "de": "Musik zur Mediathek hinzugefügt.",
+    "es": "Música añadida a tu biblioteca."
+  },
+  "native.b1426ae61b": {
+    "ru": "Подтверди доступ в браузере и обнови подключения.",
+    "en": "Confirm access in your browser and refresh connections.",
+    "kk": "Браузерде рұқсатты растап, қосылымдарды жаңарт.",
+    "uk": "Підтвердь доступ у браузері й онови підключення.",
+    "de": "Bestätige den Zugriff im Browser und aktualisiere die Verbindungen.",
+    "es": "Confirma el acceso en el navegador y actualiza las conexiones."
+  },
+  "native.b8b235d91f": {
+    "ru": "Мост Discord доступен на компьютере.",
+    "en": "The Discord bridge is available on your computer.",
+    "kk": "Discord көпірі компьютерде қолжетімді.",
+    "uk": "Міст Discord доступний на комп’ютері.",
+    "de": "Die Discord-Brücke ist auf deinem Computer verfügbar.",
+    "es": "El puente de Discord está disponible en el ordenador."
+  },
+  "native.79b5d767d1": {
+    "ru": "Для совместного управления нужно соединение с сервером.",
+    "en": "Shared controls need a server connection.",
+    "kk": "Бірге басқару үшін сервермен байланыс қажет.",
+    "uk": "Для спільного керування потрібне з’єднання із сервером.",
+    "de": "Gemeinsame Steuerung benötigt eine Serververbindung.",
+    "es": "El control compartido necesita conexión con el servidor."
+  },
+  "native.215c1efc19": {
+    "ru": "Команда отклонена.",
+    "en": "Command rejected.",
+    "kk": "Команда қабылданбады.",
+    "uk": "Команду відхилено.",
+    "de": "Befehl abgelehnt.",
+    "es": "Comando rechazado."
+  },
+  "native.27962f8ac9": {
+    "ru": "Не выбран трек для передачи.",
+    "en": "No track selected for transfer.",
+    "kk": "Ауыстыру үшін трек таңдалмаған.",
+    "uk": "Не обрано трек для передавання.",
+    "de": "Kein Titel zur Übertragung ausgewählt.",
+    "es": "No hay pista seleccionada para transferir."
+  },
+  "native.2b386cb1d4": {
+    "ru": "Этот источник не поддерживает нативный перенос воспроизведения.",
+    "en": "This source doesn’t support native playback transfers.",
+    "kk": "Бұл дереккөз нативті ойнатуды ауыстыруды қолдамайды.",
+    "uk": "Це джерело не підтримує передавання нативного відтворення.",
+    "de": "Diese Quelle unterstützt keine native Wiedergabeübertragung.",
+    "es": "Esta fuente no admite transferencias de reproducción nativa."
+  },
+  "native.1d9a81e50c": {
+    "ru": "Другая команда изменила воспроизведение.",
+    "en": "Another command changed playback.",
+    "kk": "Басқа команда ойнатуды өзгертті.",
+    "uk": "Інша команда змінила відтворення.",
+    "de": "Ein anderer Befehl hat die Wiedergabe geändert.",
+    "es": "Otro comando cambió la reproducción."
+  },
+  "native.ce93da4baa": {
+    "ru": "Не удалось восстановить предыдущий трек: {p0}",
+    "en": "Couldn’t restore the previous track: {p0}",
+    "kk": "Алдыңғы тректі қалпына келтіру мүмкін болмады: {p0}",
+    "uk": "Не вдалося відновити попередній трек: {p0}",
+    "de": "Vorheriger Titel konnte nicht wiederhergestellt werden: {p0}",
+    "es": "No se pudo restaurar la pista anterior: {p0}"
+  },
+  "native.001bce4367": {
+    "ru": "{p0} не поддерживает совместный нативный плеер.",
+    "en": "{p0} doesn’t support the shared native player.",
+    "kk": "{p0} ортақ нативті плеерді қолдамайды.",
+    "uk": "{p0} не підтримує спільний нативний плеєр.",
+    "de": "{p0} unterstützt den gemeinsamen nativen Player nicht.",
+    "es": "{p0} no admite el reproductor nativo compartido."
+  },
+  "native.21d3c7b0bf": {
+    "ru": "Некорректная ссылка.",
+    "en": "Invalid link.",
+    "kk": "Сілтеме жарамсыз.",
+    "uk": "Некоректне посилання.",
+    "de": "Ungültiger Link.",
+    "es": "Enlace no válido."
+  },
+  "native.adb57243da": {
+    "ru": "Не удалось открыть браузер.",
+    "en": "Couldn’t open your browser.",
+    "kk": "Браузерді ашу мүмкін болмады.",
+    "uk": "Не вдалося відкрити браузер.",
+    "de": "Browser konnte nicht geöffnet werden.",
+    "es": "No se pudo abrir el navegador."
+  },
+  "native.8a5e96055a": {
+    "ru": "Укажи адрес сервера, например https://wave.gluk.tech",
+    "en": "Enter the server address, for example https://wave.gluk.tech",
+    "kk": "Сервер мекенжайын енгіз, мысалы https://wave.gluk.tech",
+    "uk": "Укажи адресу сервера, наприклад https://wave.gluk.tech",
+    "de": "Gib die Serveradresse ein, etwa https://wave.gluk.tech",
+    "es": "Introduce la dirección del servidor, por ejemplo https://wave.gluk.tech"
+  },
+  "native.6ade2e521e": {
+    "ru": "Для этого сервера нужен HTTPS. Локальный HTTP доступен в debug-сборке.",
+    "en": "This server requires HTTPS. Local HTTP is available in debug builds.",
+    "kk": "Бұл сервер HTTPS талап етеді. Жергілікті HTTP debug нұсқасында қолжетімді.",
+    "uk": "Цей сервер потребує HTTPS. Локальний HTTP доступний у debug-збірці.",
+    "de": "Dieser Server benötigt HTTPS. Lokales HTTP ist in Debug-Builds verfügbar.",
+    "es": "Este servidor requiere HTTPS. HTTP local está disponible en compilaciones de depuración."
+  },
+  "native.5918da6940": {
+    "ru": "Не удалось подключиться. Проверь интернет и попробуй ещё раз.",
+    "en": "Couldn’t connect. Check your internet connection and try again.",
+    "kk": "Қосылу мүмкін болмады. Интернетті тексеріп, қайтала.",
+    "uk": "Не вдалося підключитися. Перевір інтернет і спробуй ще.",
+    "de": "Verbindung fehlgeschlagen. Prüfe dein Internet und versuche es erneut.",
+    "es": "No se pudo conectar. Comprueba internet y reintenta."
+  },
+  "native.6a2f34c7ec": {
+    "ru": "Не удалось загрузить файл.",
+    "en": "Couldn’t upload the file.",
+    "kk": "Файлды жүктеу мүмкін болмады.",
+    "uk": "Не вдалося завантажити файл.",
+    "de": "Datei konnte nicht hochgeladen werden.",
+    "es": "No se pudo subir el archivo."
+  },
+  "native.7e03f83d51": {
+    "ru": "Скачивание отменено.",
+    "en": "Download cancelled.",
+    "kk": "Жүктеу тоқтатылды.",
+    "uk": "Завантаження скасовано.",
+    "de": "Download abgebrochen.",
+    "es": "Descarga cancelada."
+  },
+  "native.3d96e7d07c": {
+    "ru": "Этот трек сейчас недоступен для скачивания.",
+    "en": "This track is currently unavailable for download.",
+    "kk": "Бұл тректі қазір жүктеу мүмкін емес.",
+    "uk": "Цей трек зараз недоступний для завантаження.",
+    "de": "Dieser Titel ist derzeit nicht zum Download verfügbar.",
+    "es": "Esta pista no está disponible para descargar ahora."
+  },
+  "native.5eb9f20ac7": {
+    "ru": "Скачивание прервалось. Можно попробовать ещё раз.",
+    "en": "Download interrupted. You can try again.",
+    "kk": "Жүктеу үзілді. Қайталап көруге болады.",
+    "uk": "Завантаження перервано. Можна спробувати ще.",
+    "de": "Download unterbrochen. Du kannst es erneut versuchen.",
+    "es": "Descarga interrumpida. Puedes reintentar."
+  },
+  "native.6d15d36f74": {
+    "ru": "друг",
+    "en": "friend",
+    "kk": "дос",
+    "uk": "друже",
+    "de": "Freund",
+    "es": "amigo"
+  },
+  "native.644d7351d1": {
+    "ru": "Цвет должен выглядеть как #A08369.",
+    "en": "The colour should look like #A08369.",
+    "kk": "Түс #A08369 түрінде болуы керек.",
+    "uk": "Колір має виглядати як #A08369.",
+    "de": "Die Farbe sollte wie #A08369 aussehen.",
+    "es": "El color debe tener un formato como #A08369."
+  },
+  "native.fb89a335f1": {
+    "ru": "Не удалось воспроизвести трек: {p0}",
+    "en": "Couldn’t play the track: {p0}",
+    "kk": "Тректі ойнату мүмкін болмады: {p0}",
+    "uk": "Не вдалося відтворити трек: {p0}",
+    "de": "Titel konnte nicht abgespielt werden: {p0}",
+    "es": "No se pudo reproducir la pista: {p0}"
+  },
+  "native.266e43ddb8": {
+    "ru": "Этот трек воспроизводится на официальной площадке.",
+    "en": "This track plays on its official platform.",
+    "kk": "Бұл трек ресми платформасында ойнатылады.",
+    "uk": "Цей трек відтворюється на офіційній платформі.",
+    "de": "Dieser Titel spielt auf seiner offiziellen Plattform.",
+    "es": "Esta pista se reproduce en su plataforma oficial."
+  },
+  "native.c11b18779a": {
+    "ru": "Ссылка на аудио недоступна.",
+    "en": "The audio link is unavailable.",
+    "kk": "Аудио сілтемесі қолжетімсіз.",
+    "uk": "Посилання на аудіо недоступне.",
+    "de": "Audiolink ist nicht verfügbar.",
+    "es": "El enlace de audio no está disponible."
+  },
+  "native.310a7a8960": {
+    "ru": "Автокеш: {p0}",
+    "en": "Automatic cache: {p0}",
+    "kk": "Автоматты кеш: {p0}",
+    "uk": "Автокеш: {p0}",
+    "de": "Automatischer Cache: {p0}",
+    "es": "Caché automática: {p0}"
+  },
+  "native.449b7110f6": {
+    "ru": "Сначала выбери трек.",
+    "en": "Choose a track first.",
+    "kk": "Алдымен трек таңда.",
+    "uk": "Спочатку обери трек.",
+    "de": "Wähle zuerst einen Titel.",
+    "es": "Elige una pista primero."
+  },
+  "native.2f44180776": {
+    "ru": "Устройство не смогло начать воспроизведение.",
+    "en": "The device couldn’t start playback.",
+    "kk": "Құрылғы ойнатуды бастай алмады.",
+    "uk": "Пристрій не зміг почати відтворення.",
+    "de": "Das Gerät konnte die Wiedergabe nicht starten.",
+    "es": "El dispositivo no pudo iniciar la reproducción."
+  },
+  "native.1a9e0219dd": {
+    "ru": "Этот источник не разрешает локальное скачивание.",
+    "en": "This source doesn’t allow local downloads.",
+    "kk": "Бұл дереккөз құрылғыға жүктеуге рұқсат бермейді.",
+    "uk": "Це джерело не дозволяє локальне завантаження.",
+    "de": "Diese Quelle erlaubt keine lokalen Downloads.",
+    "es": "Esta fuente no permite descargas locales."
+  },
+  "native.7e606ff748": {
+    "ru": "В кеше мало места. Удали скачивания или увеличь лимит.",
+    "en": "The cache is low on space. Remove downloads or increase the limit.",
+    "kk": "Кеште орын аз. Жүктеулерді өшір не шекті арттыр.",
+    "uk": "У кеші мало місця. Видали завантаження або збільш ліміт.",
+    "de": "Im Cache ist wenig Platz. Entferne Downloads oder erhöhe das Limit.",
+    "es": "Hay poco espacio en la caché. Elimina descargas o aumenta el límite."
+  },
+  "native.9c8269d22d": {
+    "ru": "Сначала останови этот трек, затем удали файл.",
+    "en": "Stop this track before deleting its file.",
+    "kk": "Файлын өшірмес бұрын тректі тоқтат.",
+    "uk": "Зупини цей трек перед видаленням файлу.",
+    "de": "Stoppe diesen Titel, bevor du seine Datei löschst.",
+    "es": "Detén esta pista antes de eliminar su archivo."
+  },
+  "native.25363da343": {
+    "ru": "Discord не подключён",
+    "en": "Discord disconnected",
+    "kk": "Discord қосылмаған",
+    "uk": "Discord не підключено",
+    "de": "Discord nicht verbunden",
+    "es": "Discord desconectado"
+  },
+  "native.15b20dde3a": {
+    "ru": "Подключение к Discord пока недоступно",
+    "en": "Discord connection unavailable for now",
+    "kk": "Discord қосылымы әзірге қолжетімсіз",
+    "uk": "Підключення до Discord поки недоступне",
+    "de": "Discord-Verbindung derzeit nicht verfügbar",
+    "es": "Conexión con Discord aún no disponible"
+  },
+  "native.a984270377": {
+    "ru": "Presence доступен в Windows",
+    "en": "Presence is available on Windows",
+    "kk": "Presence Windows жүйесінде қолжетімді",
+    "uk": "Presence доступний у Windows",
+    "de": "Presence ist unter Windows verfügbar",
+    "es": "Presence está disponible en Windows"
+  },
+  "native.6bde881273": {
+    "ru": "Открой приложение Discord на компьютере",
+    "en": "Open Discord on your computer",
+    "kk": "Компьютерде Discord аш",
+    "uk": "Відкрий Discord на комп’ютері",
+    "de": "Öffne Discord auf deinem Computer",
+    "es": "Abre Discord en tu ordenador"
+  },
+  "native.5d84405321": {
+    "ru": "Подключаемся к Discord…",
+    "en": "Connecting to Discord…",
+    "kk": "Discord қосылуда…",
+    "uk": "Підключаємося до Discord…",
+    "de": "Verbindung zu Discord…",
+    "es": "Conectando con Discord…"
+  },
+  "native.8d9b2503b6": {
+    "ru": "Соединение с Discord прервалось",
+    "en": "Discord connection interrupted",
+    "kk": "Discord қосылымы үзілді",
+    "uk": "З’єднання з Discord перервано",
+    "de": "Discord-Verbindung unterbrochen",
+    "es": "Conexión con Discord interrumpida"
+  },
+  "native.ac8bdece49": {
+    "ru": "Discord закрыт",
+    "en": "Discord closed",
+    "kk": "Discord жабылды",
+    "uk": "Discord закрито",
+    "de": "Discord geschlossen",
+    "es": "Discord cerrado"
+  },
+  "native.f34acd6e4a": {
+    "ru": "Discord отключил интеграцию",
+    "en": "Discord disabled the integration",
+    "kk": "Discord интеграцияны ажыратты",
+    "uk": "Discord вимкнув інтеграцію",
+    "de": "Discord hat die Integration deaktiviert",
+    "es": "Discord desactivó la integración"
+  },
+  "native.52bc821a01": {
+    "ru": "Discord подключён",
+    "en": "Discord connected",
+    "kk": "Discord қосылды",
+    "uk": "Discord підключено",
+    "de": "Discord verbunden",
+    "es": "Discord conectado"
+  },
+  "native.7d5b9d9122": {
+    "ru": "Discord отклонил Presence",
+    "en": "Discord rejected presence",
+    "kk": "Discord күйді қабылдамады",
+    "uk": "Discord відхилив статус",
+    "de": "Discord hat Presence abgelehnt",
+    "es": "Discord rechazó Presence"
+  },
+  "native.cc94d41c5f": {
+    "ru": "Не удалось прочитать ответ Discord",
+    "en": "Couldn’t read the Discord response",
+    "kk": "Discord жауабын оқу мүмкін болмады",
+    "uk": "Не вдалося прочитати відповідь Discord",
+    "de": "Discord-Antwort konnte nicht gelesen werden",
+    "es": "No se pudo leer la respuesta de Discord"
+  },
+  "native.c82b849d9a": {
+    "ru": "Открыть GlukWave",
+    "en": "Open GlukWave",
+    "kk": "GlukWave ашу",
+    "uk": "Відкрити GlukWave",
+    "de": "GlukWave öffnen",
+    "es": "Abrir GlukWave"
+  },
+  "native.3f60cf701d": {
+    "ru": "Играть / Пауза",
+    "en": "Play / pause",
+    "kk": "Ойнату / кідірту",
+    "uk": "Грати / пауза",
+    "de": "Wiedergabe / Pause",
+    "es": "Reproducir / pausar"
+  },
+  "native.e5ee886686": {
+    "ru": "Мини-плеер",
+    "en": "Mini player",
+    "kk": "Шағын плеер",
+    "uk": "Мініплеєр",
+    "de": "Miniplayer",
+    "es": "Minirreproductor"
+  },
+  "native.3e2347f6a4": {
+    "ru": "Уведомления отключены в настройках устройства.",
+    "en": "Notifications are disabled in device settings.",
+    "kk": "Құрылғы баптауларында хабарландырулар өшірулі.",
+    "uk": "Сповіщення вимкнені в налаштуваннях пристрою.",
+    "de": "Mitteilungen sind in den Geräteeinstellungen deaktiviert.",
+    "es": "Las notificaciones están desactivadas en los ajustes del dispositivo."
+  },
+  "native.f2c19e16b8": {
+    "ru": "Не удалось включить уведомления. Попробуй ещё раз.",
+    "en": "Couldn’t turn on notifications. Try again.",
+    "kk": "Хабарландыруларды қосу мүмкін болмады. Қайтала.",
+    "uk": "Не вдалося ввімкнути сповіщення. Спробуй ще.",
+    "de": "Mitteilungen konnten nicht aktiviert werden. Versuche es erneut.",
+    "es": "No se pudieron activar las notificaciones. Reintenta."
+  },
+  "native.fae9d01025": {
+    "ru": "Автокеш",
+    "en": "Automatic cache",
+    "kk": "Автоматты кеш",
+    "uk": "Автокеш",
+    "de": "Automatischer Cache",
+    "es": "Caché automática"
+  },
+  "native.b8c9d2cd6f": {
+    "ru": "тёмную",
+    "en": "dark",
+    "kk": "қараңғы",
+    "uk": "темну",
+    "de": "Dunkles",
+    "es": "oscuro"
+  },
+  "native.eb5820813d": {
+    "ru": "светлую",
+    "en": "light",
+    "kk": "ашық",
+    "uk": "світлу",
+    "de": "Helles",
+    "es": "claro"
+  },
+  "native.0b48cc8756": {
+    "ru": "выключен",
+    "en": "off",
+    "kk": "өшірулі",
+    "uk": "вимкнено",
+    "de": "aus",
+    "es": "desactivado"
+  },
+  "native.81d73996e1": {
+    "ru": "один трек",
+    "en": "one track",
+    "kk": "бір трек",
+    "uk": "один трек",
+    "de": "ein Titel",
+    "es": "una pista"
+  },
+  "native.7d449210b8": {
+    "ru": "вся очередь",
+    "en": "entire queue",
+    "kk": "бүкіл кезек",
+    "uk": "уся черга",
+    "de": "gesamte Warteschlange",
+    "es": "toda la cola"
+  },
+  "native.90db49c312": {
+    "ru": "твоя очередь",
+    "en": "your queue",
+    "kk": "сенің кезегің",
+    "uk": "твоя черга",
+    "de": "deine Warteschlange",
+    "es": "tu cola"
+  },
+  "native.b40415dfac": {
+    "ru": "очередь комнаты",
+    "en": "room queue",
+    "kk": "бөлме кезегі",
+    "uk": "черга кімнати",
+    "de": "Raumwarteschlange",
+    "es": "cola de la sala"
+  },
+  "native.5de203e8f1": {
+    "ru": "Музыка GlukWave",
+    "en": "GlukWave music",
+    "kk": "GlukWave музыкасы",
+    "uk": "Музика GlukWave",
+    "de": "GlukWave-Musik",
+    "es": "Música de GlukWave"
+  },
+  "native.76427de2d8": {
+    "ru": "GlukWave не удалось запустить",
+    "en": "GlukWave couldn’t start",
+    "kk": "GlukWave іске қосылмады",
+    "uk": "Не вдалося запустити GlukWave",
+    "de": "GlukWave konnte nicht starten",
+    "es": "GlukWave no pudo iniciarse"
+  },
+  "native.85e221a3e3": {
+    "ru": "Закрой приложение и открой его снова.",
+    "en": "Close the app and open it again.",
+    "kk": "Қолданбаны жауып, қайта аш.",
+    "uk": "Закрий застосунок і відкрий його знову.",
+    "de": "Schließe die App und öffne sie erneut.",
+    "es": "Cierra la aplicación y ábrela de nuevo."
+  },
+  "count.liked.one": {
+    "en": "{count} track that moved you",
+    "ru": "{count} трек, который откликнулся",
+    "kk": "Ұнаған {count} трек",
+    "uk": "{count} трек, що відгукнувся",
+    "de": "{count} Titel, der dich berührt",
+    "es": "{count} pista que te llegó"
+  },
+  "count.liked.few": {
+    "en": "{count} tracks that moved you",
+    "ru": "{count} трека, которые откликнулись",
+    "kk": "Ұнаған {count} трек",
+    "uk": "{count} треки, що відгукнулися",
+    "de": "{count} Titel, die dich berühren",
+    "es": "{count} pistas que te llegaron"
+  },
+  "count.liked.many": {
+    "en": "{count} tracks that moved you",
+    "ru": "{count} треков, которые откликнулись",
+    "kk": "Ұнаған {count} трек",
+    "uk": "{count} треків, що відгукнулися",
+    "de": "{count} Titel, die dich berühren",
+    "es": "{count} pistas que te llegaron"
+  },
+  "count.liked.other": {
+    "en": "{count} tracks that moved you",
+    "ru": "{count} треков, которые откликнулись",
+    "kk": "Ұнаған {count} трек",
+    "uk": "{count} треків, що відгукнулися",
+    "de": "{count} Titel, die dich berühren",
+    "es": "{count} pistas que te llegaron"
+  }
+}

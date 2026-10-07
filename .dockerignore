@@ -1,0 +1,8 @@
+node_modules
+.git
+.env
+var
+work
+outputs
+apps/native
+apps/web/dist

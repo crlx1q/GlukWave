@@ -1,0 +1,3084 @@
+{
+  "native.a0cc85a258": {
+    "ru": "Обложка {p0}. Наклон пальцем или мышью.",
+    "files": [
+      "ui\\album_stage.dart"
+    ]
+  },
+  "native.02a22b9218": {
+    "ru": "Обложка {p0}",
+    "files": [
+      "ui\\album_stage.dart"
+    ]
+  },
+  "native.ffddd31c12": {
+    "ru": "Главная",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.27925da08c": {
+    "ru": "Медиатека",
+    "files": [
+      "ui\\app.dart",
+      "ui\\app.dart"
+    ]
+  },
+  "native.6433b522a1": {
+    "ru": "Поиск",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.d3aa3fa13d": {
+    "ru": "Любимые",
+    "files": [
+      "ui\\app.dart",
+      "ui\\app.dart",
+      "ui\\app.dart",
+      "ui\\app.dart"
+    ]
+  },
+  "native.200ba6b661": {
+    "ru": "Слушать вместе",
+    "files": [
+      "ui\\app.dart",
+      "ui\\app.dart",
+      "ui\\app.dart",
+      "services\\desktop.dart"
+    ]
+  },
+  "native.5384db72a4": {
+    "ru": "Источники",
+    "files": [
+      "ui\\app.dart",
+      "ui\\app.dart",
+      "ui\\app.dart"
+    ]
+  },
+  "native.212ccf5938": {
+    "ru": "Скачивания",
+    "files": [
+      "ui\\app.dart",
+      "ui\\app.dart",
+      "ui\\app.dart",
+      "ui\\app.dart"
+    ]
+  },
+  "native.7ab03d602e": {
+    "ru": "Устройства",
+    "files": [
+      "ui\\app.dart",
+      "ui\\app.dart",
+      "ui\\app.dart",
+      "ui\\app.dart"
+    ]
+  },
+  "native.eb0b9b0d90": {
+    "ru": "Профиль",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.7f17c7c62a": {
+    "ru": "Настройки",
+    "files": [
+      "ui\\app.dart",
+      "ui\\app.dart",
+      "ui\\app.dart"
+    ]
+  },
+  "native.5a214bdfe9": {
+    "ru": "Консоль",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.0ec753be8d": {
+    "ru": "Отмена",
+    "files": [
+      "ui\\app.dart",
+      "ui\\app.dart",
+      "ui\\player.dart"
+    ]
+  },
+  "native.398c7d4f7b": {
+    "ru": "Готово",
+    "files": [
+      "ui\\app.dart",
+      "ui\\player.dart"
+    ]
+  },
+  "native.c6f95cad29": {
+    "ru": "Локальная медиатека",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.8db46ea789": {
+    "ru": "Адрес",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.6c1e1967ba": {
+    "ru": "Вернуться к приложению",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.91cea4784a": {
+    "ru": "Нет связи с сервером. Скачанная музыка доступна. {p0}",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.9e506acb19": {
+    "ru": "Повторить",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.0c456a489e": {
+    "ru": "ТВОЙ МАЛЕНЬКИЙ МИР",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.a3e784c186": {
+    "ru": "Lo-fi комната",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.0a0be598ca": {
+    "ru": "СОБРАТЬ ВСЁ ВМЕСТЕ",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.cf696d8d96": {
+    "ru": "Всё на одной волне",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.1c8ad826bb": {
+    "ru": "Локальная музыка",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.eaad77f8f4": {
+    "ru": "Трек, исполнитель или ссылка…",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.16df3aa8af": {
+    "ru": "Обновить медиатеку",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.bd23ec8a42": {
+    "ru": "Твой мир",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.847e19da38": {
+    "ru": "Место для выдоха",
+    "files": [
+      "ui\\app.dart",
+      "ui\\app.dart",
+      "ui\\lofi.dart"
+    ]
+  },
+  "native.11688c1649": {
+    "ru": "Вместе",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.211621443e": {
+    "ru": "Загружаем: {p0}",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.37f9f18bdc": {
+    "ru": "Добрый вечер",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.51d822d031": {
+    "ru": "Добрый день",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.d73c91bbc4": {
+    "ru": "Доброе утро",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.194858b25f": {
+    "ru": "Тихой ночи",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.10da2df4b2": {
+    "ru": "Пусть сегодня звучит что-то твоё.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.4fc610d5e7": {
+    "ru": "ТЫ ЗДЕСЬ. МУЗЫКА РЯДОМ.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.642fcf95d9": {
+    "ru": "Собрать музыку",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.e352fa0553": {
+    "ru": "{p0} треков, которые откликнулись",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.90e8504b03": {
+    "ru": "Скачанное",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.4e7b973c7e": {
+    "ru": "Твоя музыка даже без интернета",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.d73ebed4df": {
+    "ru": "Твой саундтрек",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.51d1aabe9f": {
+    "ru": "В медиатеку →",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.a3ea6451ed": {
+    "ru": "Первый маленький мир",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.637437750e": {
+    "ru": "Создай плейлист или перенеси его из любимого сервиса.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.6ce6f8d86e": {
+    "ru": "Создать плейлист",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.b2fa6a1cea": {
+    "ru": "Всё начинается с музыки",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.b73d4d1b29": {
+    "ru": "Ещё один раз",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.c55ae9eb3e": {
+    "ru": "Твой музыкальный мир ждёт",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.a468ce3ecb": {
+    "ru": "Добавь свои аудиофайлы или подключи библиотеку. Здесь появятся твои треки и настоящая история прослушивания.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.db4afdc056": {
+    "ru": "Подключить источники",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.5e2a1d79c9": {
+    "ru": "LO-FI КОМНАТА",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.31c118bf9d": {
+    "ru": "Можно просто\nпобыть.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.bf064cd50f": {
+    "ru": "Вода, свет и немного тишины.  ↗",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.323bd869d4": {
+    "ru": "Сделано для твоего маленького музыкального мира.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.7984f2471a": {
+    "ru": "Новый маленький мир",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.9200137ae9": {
+    "ru": "Название плейлиста",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.dcb57004b9": {
+    "ru": "{p0} треков",
+    "files": [
+      "ui\\app.dart",
+      "ui\\app.dart"
+    ]
+  },
+  "native.082b4a891b": {
+    "ru": "Вся медиатека",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.9221337472": {
+    "ru": "Всё, что откликается — в одном месте.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.708d386559": {
+    "ru": "ТВОЙ САУНДТРЕК",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.7b4cc84722": {
+    "ru": "Треки",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.5cbd56308f": {
+    "ru": "Плейлисты",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.da39e0cc91": {
+    "ru": "Локальные",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.99855bf52d": {
+    "ru": "Добавить музыку",
+    "files": [
+      "ui\\app.dart",
+      "ui\\widgets.dart"
+    ]
+  },
+  "native.d6ab7b0b5a": {
+    "ru": "Плейлист",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.46298dcf5e": {
+    "ru": "Найди то, что откликнется",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.1adc5a6a23": {
+    "ru": "Здесь будет твоя музыка",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.29f6c0dba0": {
+    "ru": "Добавь аудиофайл или перенеси плейлист из источников.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.388ca31bac": {
+    "ru": "К источникам",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.fbb72c35d6": {
+    "ru": "Переименовать плейлист",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.3de49828e8": {
+    "ru": "Название",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.715e8f0c32": {
+    "ru": "Переименовать",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.2eb4f15128": {
+    "ru": "Удалить плейлист?",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.75710f1731": {
+    "ru": "Треки останутся в медиатеке.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.86ea33aef5": {
+    "ru": "Удалить",
+    "files": [
+      "ui\\app.dart",
+      "ui\\app.dart"
+    ]
+  },
+  "native.682466a401": {
+    "ru": "В поисках звука",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.fb10bb6c43": {
+    "ru": "Ищи название, исполнителя или вставь ссылку.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.9bd84125bc": {
+    "ru": "НАЙДЁМ ТО САМОЕ",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.bbd9181561": {
+    "ru": "Что хочется услышать?",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.58212e541c": {
+    "ru": "Искать",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.58b59eb005": {
+    "ru": "Все сервисы",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.1aa3589e13": {
+    "ru": "Мои треки",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.0fb8bc0888": {
+    "ru": "Яндекс Музыка",
+    "files": [
+      "ui\\app.dart",
+      "ui\\app.dart",
+      "core\\models.dart"
+    ]
+  },
+  "native.f1b3941857": {
+    "ru": "Возможно, ты имел в виду «{p0}»?",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.6d7be8c94d": {
+    "ru": "Найдём твою музыку",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.e61d08951b": {
+    "ru": "Пока ничего не нашли",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.01529b9d5e": {
+    "ru": "Поиск объединяет доступные источники. Перепутанную раскладку мы тоже заметим.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.10c727a4cc": {
+    "ru": "Попробуй другое название или добавь ссылку на трек.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.0556f90ffc": {
+    "ru": "Добавить по ссылке",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.f130436a3b": {
+    "ru": "В очередь",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.df0c76065d": {
+    "ru": "Добавить в плейлист",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.81524f9e71": {
+    "ru": "В какой маленький мир?",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.9feaa9c30e": {
+    "ru": "Сначала создай плейлист в медиатеке.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.e72e7819a3": {
+    "ru": "Сохранить скачивание",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.5fbca5dea7": {
+    "ru": "Скачать на устройство",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.2266a8f9e2": {
+    "ru": "Удалить с устройства",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.58131c476d": {
+    "ru": "Открыть трек и комментарии",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.22618d4822": {
+    "ru": "Открыть {p0}",
+    "files": [
+      "ui\\app.dart",
+      "ui\\lofi.dart"
+    ]
+  },
+  "native.69d7d7248a": {
+    "ru": "Копировать ссылку",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.dd68e0027d": {
+    "ru": "Ссылка скопирована.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.8c343d516d": {
+    "ru": "Удалить из медиатеки",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.0f29ff7f79": {
+    "ru": "Удалить «{p0}»?",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.3f54d53ce0": {
+    "ru": "Файл будет удалён с сервера. Локальные скачивания можно удалить отдельно.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.a90b7cbc92": {
+    "ru": "Оставить",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.129336147d": {
+    "ru": "Музыка без границ",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.28e8073601": {
+    "ru": "Твои треки живут в разных местах. Здесь они вместе.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.96aa77adea": {
+    "ru": "СОБРАТЬ СВОЁ В ОДНОМ МЕСТЕ",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.8343afbb45": {
+    "ru": "Подключён {p0}",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.a9f3831f36": {
+    "ru": "Публичный поиск и ссылки доступны. Вход нужен для личных плейлистов.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.993a71a598": {
+    "ru": "Перенеси плейлисты и любимые треки",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.081b1d81c6": {
+    "ru": "Перенести",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.94d07a2171": {
+    "ru": "Отключить",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.124298ec71": {
+    "ru": "Подключить",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.656d8c4f40": {
+    "ru": "Пока недоступно",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.e8ee34a373": {
+    "ru": "Источники недоступны",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.e8c84710a2": {
+    "ru": "Проверь соединение и попробуй обновить подключения.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.cd9296f478": {
+    "ru": "Твои файлы и экспорт плейлистов",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.0d6b25bb78": {
+    "ru": "Аудиофайлы играют в фоне и доступны офлайн. CSV / JSON переносит реальные названия и ссылки на источники.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.d94f27d311": {
+    "ru": "Добавить аудио",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.f1b4dac46c": {
+    "ru": "Импорт CSV / JSON",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.8b01571e48": {
+    "ru": "Добавить трек по ссылке",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.819abda8d9": {
+    "ru": "Ссылка на трек",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.eaf0e31f63": {
+    "ru": "По ссылке",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.824436c0c7": {
+    "ru": "Внешние источники воспроизводятся на официальной площадке. Фоновый плеер и скачивание доступны для аудиофайлов с разрешением владельца.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.3bdfeea56b": {
+    "ru": "Обновить подключения",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.03047eef41": {
+    "ru": "{p0} · твои плейлисты",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.9789a336b5": {
+    "ru": "У источника пока нет доступных плейлистов.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.00860b84d0": {
+    "ru": "Перенести весь плейлист",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.f901da5358": {
+    "ru": "Включая треки, которых нет в этом списке",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.32b74a3c47": {
+    "ru": "Без названия",
+    "files": [
+      "ui\\app.dart",
+      "core\\models.dart"
+    ]
+  },
+  "native.f6dab074d7": {
+    "ru": "Назад",
+    "files": [
+      "ui\\app.dart",
+      "ui\\app.dart"
+    ]
+  },
+  "native.b2ac0da1b6": {
+    "ru": "Перенесено треков: {p0}.",
+    "files": [
+      "ui\\app.dart",
+      "core\\controller.dart"
+    ]
+  },
+  "native.e8b58dacdf": {
+    "ru": "Перенести в Wave",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.139fd495d9": {
+    "ru": "Музыка с собой",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.880e44a69b": {
+    "ru": "{p0} МБ из {p1} МБ на этом устройстве.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.28e756053a": {
+    "ru": "БЕЗ ИНТЕРНЕТА — С ТОБОЙ",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.cfe7094211": {
+    "ru": "Очистить автокеш",
+    "files": [
+      "ui\\app.dart",
+      "ui\\app.dart"
+    ]
+  },
+  "native.c484e0bf9e": {
+    "ru": "Удалить скачивания?",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.a2f281e0fb": {
+    "ru": "Активный трек останется до конца воспроизведения.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.fc62d0d702": {
+    "ru": "Удалить скачивания",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.9db7ca043f": {
+    "ru": "Скачивание трека",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.50c21d127f": {
+    "ru": "Музыка скоро будет рядом",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.078fb4ae47": {
+    "ru": "Автокеш включён по умолчанию. Ты также можешь скачать аудиофайл через меню трека.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.9e516806ab": {
+    "ru": "{p0} · {p1} МБ",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.c3acebae3e": {
+    "ru": "Одна музыка. Хорошие люди. Своя маленькая комната.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.cfb828faf3": {
+    "ru": "ОДНА МУЗЫКА НА ДВОИХ",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.2e0b4996ef": {
+    "ru": "Твоё тихое место",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.55c12495ec": {
+    "ru": "Название комнаты",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.3643850b0a": {
+    "ru": "Создать комнату",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.2230603bcd": {
+    "ru": "Присоединиться к друзьям",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.c4627815d7": {
+    "ru": "Приглашение или код",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.0b7a3e93f1": {
+    "ru": "По приглашению",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.2414024420": {
+    "ru": "{p0} на одной волне",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.cd705fb252": {
+    "ru": "Здесь рады твоим друзьям",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.a82ae8303b": {
+    "ru": "Создай комнату и отправь приглашение. Ведущий выбирает музыку и делится доступом к управлению.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.e191ae678f": {
+    "ru": "● НА ОДНОЙ ВОЛНЕ",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.0a4c6ceeee": {
+    "ru": "● СОЕДИНЯЕМСЯ",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.916b1a3bbf": {
+    "ru": "Приглашение скопировано.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.2c8e25954f": {
+    "ru": "Пригласить друзей",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.5aeda8f0be": {
+    "ru": "Выйти из комнаты",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.1d2a1d354c": {
+    "ru": "На одной волне",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.76ffe26d00": {
+    "ru": "Участник",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.d73e431d49": {
+    "ru": "Ведущий",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.0554078156": {
+    "ru": "Может управлять музыкой",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.6a4bbeffcc": {
+    "ru": "Слушает",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.6174ccc7f5": {
+    "ru": "Разговоры между треками",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.7abdd3e513": {
+    "ru": "Первое сообщение — за тобой.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.e46d8ce0ed": {
+    "ru": "Написать в комнату…",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.76dcf737a6": {
+    "ru": "Отправить",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.ebd33b8d52": {
+    "ru": "Выбирай треки в медиатеке — вся комната услышит их вместе.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.7f5dea692a": {
+    "ru": "Музыкой управляет ведущий. Он может выдать доступ любому участнику.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.fec96a4982": {
+    "ru": "На любом устройстве",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.06722aad25": {
+    "ru": "Один аккаунт. Музыка всегда рядом.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.d3b6a00135": {
+    "ru": "ПРОДОЛЖИ ТАМ, ГДЕ УДОБНО",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.5e1f41132a": {
+    "ru": "Звук живёт здесь",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.bc791dbe7e": {
+    "ru": "Устройство",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.4eca465a4a": {
+    "ru": "Это устройство",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.011e2099f2": {
+    "ru": "В сети · готово слушать",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.67b99cc9bf": {
+    "ru": "Не в сети",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.49daba7f72": {
+    "ru": "Звук сюда",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.1b2692a600": {
+    "ru": "Предыдущий на этом устройстве",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.6dd5de06c7": {
+    "ru": "Играть / Пауза на этом устройстве",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.ca8ab6965b": {
+    "ru": "Следующий на этом устройстве",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.76bdd0e417": {
+    "ru": "Добавь ещё одно устройство",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.bf9b9e0034": {
+    "ru": "Войди в этот же аккаунт на телефоне или в браузере. Устройство появится здесь, когда будет в сети.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.e305e5f150": {
+    "ru": "Вход по QR",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.280e0f673d": {
+    "ru": "Подтвердить вход",
+    "files": [
+      "ui\\app.dart",
+      "ui\\app.dart",
+      "ui\\app.dart"
+    ]
+  },
+  "native.8db44b4616": {
+    "ru": "Найти сервер в сети",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.0e89a07236": {
+    "ru": "Войди в один аккаунт на всех устройствах. В домашней сети можно слушать свои файлы без интернета. Передача работает с аудиотреками GlukWave.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.f09e6c35a1": {
+    "ru": "Серверы рядом",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.f1d32f86b2": {
+    "ru": "Пока ничего не найдено. Проверь, что телефон и компьютер подключены к одной домашней сети, и попробуй ещё раз.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.5a257ddf16": {
+    "ru": "Ссылка или код QR",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.a94c1d3dbe": {
+    "ru": "Разрешить вход?",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.ab5de9486a": {
+    "ru": "«{p0}» получит доступ к твоему аккаунту. Подтверди, если ты сейчас входишь на этом устройстве.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.616bb19d6c": {
+    "ru": "Разрешить",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.3c11e25735": {
+    "ru": "Твой маленький мир",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.bd8bfe25b5": {
+    "ru": "Музыка тоже говорит о тебе.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.29352daac4": {
+    "ru": "ПРОФИЛЬ GLUKWAVE",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.3288466d0d": {
+    "ru": "Загрузить баннер (включая GIF)",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.dd5a0b517a": {
+    "ru": "Настроить профиль",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.026abb1e0a": {
+    "ru": "Выйти",
+    "files": [
+      "ui\\app.dart",
+      "services\\desktop.dart"
+    ]
+  },
+  "native.a61f7c97a6": {
+    "ru": "Свободнее с Unbound",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.ae23547099": {
+    "ru": "Ты в бета-программе: возможности Unbound уже доступны.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.f6da905d33": {
+    "ru": "Твой Unbound активен. Подпиской можно управлять в защищённом кабинете.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.02da34d36b": {
+    "ru": "Больше места для музыки, плейлистов и личных миров.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.ec812a93fb": {
+    "ru": "После оплаты обнови профиль. Подписка появится, когда платёж будет подтверждён.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.f545f066e3": {
+    "ru": "Управлять подпиской",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.52acff18e2": {
+    "ru": "Открыть Unbound",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.f7b2846451": {
+    "ru": "Подписка пока недоступна",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.b7eea7b75e": {
+    "ru": "Маленькие миры",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.dee6918f7b": {
+    "ru": "Твои плейлисты появятся здесь.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.ec1641f67e": {
+    "ru": "Сделай этот мир своим",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.aee78fe860": {
+    "ru": "Имя",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.db0d5a3cc6": {
+    "ru": "Ник",
+    "files": [
+      "ui\\app.dart",
+      "ui\\app.dart"
+    ]
+  },
+  "native.312416bd6b": {
+    "ru": "О себе",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.d8203fae6b": {
+    "ru": "Теги через запятую",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.4864057d62": {
+    "ru": "Сохранить",
+    "files": [
+      "ui\\app.dart",
+      "ui\\player.dart"
+    ]
+  },
+  "native.5b16fcdd97": {
+    "ru": "Аккаунт",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.d206f1bed0": {
+    "ru": "Оформление",
+    "files": [
+      "ui\\app.dart",
+      "ui\\app.dart",
+      "ui\\appearance_panel.dart",
+      "ui\\lofi.dart"
+    ]
+  },
+  "native.5dcbecbd1a": {
+    "ru": "Плеер и текст",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.c188eb08a1": {
+    "ru": "Подключения",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.ee3c35f311": {
+    "ru": "Уведомления",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.0ad272ade8": {
+    "ru": "Клавиши",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.b9c9ff652d": {
+    "ru": "О приложении",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.ed3fb91811": {
+    "ru": "В твоём ритме",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.413b6b6e1c": {
+    "ru": "Всё нужное — на своём месте.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.aff68c53a5": {
+    "ru": "НАСТРОЙ СВОЙ МИР",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.9e54439649": {
+    "ru": "Меньше движения",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.026a78998b": {
+    "ru": "Спокойные переходы, неподвижные волны и обложки.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.f296708154": {
+    "ru": "Текст под обложкой",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.9c1a4954e3": {
+    "ru": "Строки с привязкой ко времени следуют за музыкой.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.2988f5fbfc": {
+    "ru": "Объёмная обложка",
+    "files": [
+      "ui\\app.dart",
+      "ui\\appearance_panel.dart"
+    ]
+  },
+  "native.1228a8a0aa": {
+    "ru": "Пластинка или CD рядом с настоящей обложкой.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.8c021dafec": {
+    "ru": "Винил",
+    "files": [
+      "ui\\app.dart",
+      "ui\\appearance_panel.dart"
+    ]
+  },
+  "native.5a01c28561": {
+    "ru": "Личные тексты и LRC добавляются на вкладке «Текст» полного плеера. Доступны и для внешних треков.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.ec09cf02cb": {
+    "ru": "Окно мини-плеера",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.b66c3826b6": {
+    "ru": "Кешировать музыку локально",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.b970e0b709": {
+    "ru": "Разрешённые треки сохраняются после запуска.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.cf979a3886": {
+    "ru": "Место для музыки",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.66a51f90fa": {
+    "ru": "{p0} МБ на этом устройстве",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.4ce03a61f3": {
+    "ru": "Лимит автокеша",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.3fac5a808d": {
+    "ru": "{p0} МБ",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.92818e37d4": {
+    "ru": "Ручные загрузки и звучащий файл сохраняются. Скачивания ниже показывают реальные файлы.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.f73970e14f": {
+    "ru": "Статус музыки работает через Discord на компьютере.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.2b03969a67": {
+    "ru": "Привязать Discord",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.576be5b21a": {
+    "ru": "Проверить подключение к Discord",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.d9b1f7556f": {
+    "ru": "Presence из браузера",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.27b6476a48": {
+    "ru": "Разрешить веб-плееру передавать статус через этот компьютер.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.296b28d576": {
+    "ru": "Код привязки скопирован.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.bc56422bc2": {
+    "ru": "Скопировать код",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.d77ccea399": {
+    "ru": "Приглашения и новости",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.c16c202873": {
+    "ru": "Push-уведомления на этом устройстве.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.bcec42f75c": {
+    "ru": "Уведомления пока недоступны на этом устройстве.",
+    "files": [
+      "ui\\app.dart",
+      "services\\push.dart"
+    ]
+  },
+  "native.61b20696ac": {
+    "ru": "Управление с клавиатуры",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.06c1a8eda7": {
+    "ru": "Для клавиатуры телефона или компьютера. При вводе текста музыка не переключается.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.4a0edcd188": {
+    "ru": "Пробел",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.f974582a9e": {
+    "ru": "Играть / пауза",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.c97fa8b29b": {
+    "ru": "Следующий трек",
+    "files": [
+      "ui\\app.dart",
+      "ui\\player.dart",
+      "services\\desktop.dart"
+    ]
+  },
+  "native.8e1abb9475": {
+    "ru": "Предыдущий трек",
+    "files": [
+      "ui\\app.dart",
+      "ui\\player.dart"
+    ]
+  },
+  "native.8396e265bd": {
+    "ru": "Открыть поиск",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.ddaa07f2d9": {
+    "ru": "Свернуть полный плеер",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.63ca392a3c": {
+    "ru": "Версия 1.0.0",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.97639011ba": {
+    "ru": "Твой маленький музыкальный мир. Настоящая медиатека, комнаты и музыка с собой.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.488dd14a85": {
+    "ru": "Лицензии",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.917e05143a": {
+    "ru": "Сервер",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.99544f70c8": {
+    "ru": "Почта подтверждена",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.457b27490d": {
+    "ru": "Подтверди почту по письму",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.0755f11f12": {
+    "ru": "Редактировать профиль",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.746716f000": {
+    "ru": "Открыть профиль",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.1d5ad05dcb": {
+    "ru": "Выйти из аккаунта",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.fc7b54ff4d": {
+    "ru": "Твой маленький\nмузыкальный мир.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.a889d29336": {
+    "ru": "Музыка из разных мест.\nЛюди на одной волне.\nИ никакой спешки.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.4541ac0a47": {
+    "ru": "Начнём твой мир",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.6532324a05": {
+    "ru": "Рады тебя слышать",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.8ad78c0f86": {
+    "ru": "Немного о тебе — и музыка рядом.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.691934d883": {
+    "ru": "Войди, чтобы музыка была рядом на всех устройствах.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.5b9ff29223": {
+    "ru": "Защищённый вход и регистрация проходят в браузере с Cloudflare. После подтверждения ты вернёшься в приложение.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.d8e062885a": {
+    "ru": "Войти по почте в браузере",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.108aa2199f": {
+    "ru": "Почта",
+    "files": [
+      "ui\\app.dart",
+      "ui\\app.dart"
+    ]
+  },
+  "native.eba037f95d": {
+    "ru": "Укажи почту",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.14f7c63cc1": {
+    "ru": "Пароль",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.07fefc08da": {
+    "ru": "Показать пароль",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.8992c9df0b": {
+    "ru": "Скрыть пароль",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.817314e802": {
+    "ru": "Не меньше 10 символов",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.3e56a59a30": {
+    "ru": "Введи пароль",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.6bc8d80189": {
+    "ru": "Например, musicfriend",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.ffa6dd52b0": {
+    "ru": "3–32 латинских букв, цифр или _",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.f11858d578": {
+    "ru": "Как тебя называть",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.8d29ff5c84": {
+    "ru": "Создать аккаунт",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.939e95a11d": {
+    "ru": "Войти",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.bbdb97ba67": {
+    "ru": "Уже есть аккаунт",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.481cee4349": {
+    "ru": "Создать свой мир",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.8166d3a910": {
+    "ru": "Восстановить доступ",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.b58e16258e": {
+    "ru": "Если аккаунт существует, письмо с инструкцией уже отправлено.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.24ee8363c4": {
+    "ru": "Забыл пароль?",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.30bb0333ca": {
+    "ru": "или",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.304d2e9c36": {
+    "ru": "По QR",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.7a18c5e61a": {
+    "ru": "Отменить ожидание",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.2b9ecdfc9d": {
+    "ru": "Музыка на новом устройстве",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.5156e365fc": {
+    "ru": "Открой GlukWave на телефоне → Устройства → Подтвердить вход. Проверь название устройства перед подтверждением.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.4ae50d3073": {
+    "ru": "Закрыть",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.c3badea7fc": {
+    "ru": "Наведи камеру на QR GlukWave",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.8182fca7f7": {
+    "ru": "Пульс GlukWave",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.850de99e1e": {
+    "ru": "Пользователи, события и состояние сервера.",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.a8ce65c8da": {
+    "ru": "КОНСОЛЬ АДМИНИСТРАТОРА",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.2355a3badd": {
+    "ru": "Последние события",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.bb92633bf5": {
+    "ru": "Событие",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.c2f668e54f": {
+    "ru": "Обновить",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.90353a9d3d": {
+    "ru": "Твой стиль",
+    "files": [
+      "ui\\appearance_panel.dart"
+    ]
+  },
+  "native.8ec35b8339": {
+    "ru": "Светлая и тёмная темы, свои цвета и движение. Как тебе нравится.",
+    "files": [
+      "ui\\appearance_panel.dart"
+    ]
+  },
+  "native.2691b463f8": {
+    "ru": "Настроить оформление",
+    "files": [
+      "ui\\appearance_panel.dart"
+    ]
+  },
+  "native.387f1c0b62": {
+    "ru": "Закрыть оформление",
+    "files": [
+      "ui\\appearance_panel.dart"
+    ]
+  },
+  "native.09e4ba36d6": {
+    "ru": "Твой мир — в твоих цветах.",
+    "files": [
+      "ui\\appearance_panel.dart"
+    ]
+  },
+  "native.8080010c5e": {
+    "ru": "Светлая",
+    "files": [
+      "ui\\appearance_panel.dart"
+    ]
+  },
+  "native.bd16b23470": {
+    "ru": "Тёмная",
+    "files": [
+      "ui\\appearance_panel.dart"
+    ]
+  },
+  "native.afeb19400d": {
+    "ru": "Системная",
+    "files": [
+      "ui\\appearance_panel.dart"
+    ]
+  },
+  "native.5a187c8ad3": {
+    "ru": "На твоей волне",
+    "files": [
+      "ui\\appearance_panel.dart",
+      "ui\\player.dart"
+    ]
+  },
+  "native.d3b55f5ca6": {
+    "ru": "Так выглядит твой стиль",
+    "files": [
+      "ui\\appearance_panel.dart"
+    ]
+  },
+  "native.7d4c797c67": {
+    "ru": "Палитра",
+    "files": [
+      "ui\\appearance_panel.dart"
+    ]
+  },
+  "native.ed80bb3e14": {
+    "ru": "У каждой темы свои цвета. Вторую можно настроить отдельно.",
+    "files": [
+      "ui\\appearance_panel.dart"
+    ]
+  },
+  "native.06bd854145": {
+    "ru": "Светлой темы",
+    "files": [
+      "ui\\appearance_panel.dart"
+    ]
+  },
+  "native.0f3b835082": {
+    "ru": "Тёмной темы",
+    "files": [
+      "ui\\appearance_panel.dart"
+    ]
+  },
+  "native.2dd965ee95": {
+    "ru": "Акцент",
+    "files": [
+      "ui\\appearance_panel.dart"
+    ]
+  },
+  "native.fed5befeb5": {
+    "ru": "Акцент {p0}",
+    "files": [
+      "ui\\appearance_panel.dart"
+    ]
+  },
+  "native.984126b8b7": {
+    "ru": "Свой акцент",
+    "files": [
+      "ui\\appearance_panel.dart"
+    ]
+  },
+  "native.9cbcd3b318": {
+    "ru": "Все цвета",
+    "files": [
+      "ui\\appearance_panel.dart"
+    ]
+  },
+  "native.64e081e829": {
+    "ru": "Фон, поверхности и текст",
+    "files": [
+      "ui\\appearance_panel.dart"
+    ]
+  },
+  "native.b59390bb25": {
+    "ru": "Фон",
+    "files": [
+      "ui\\appearance_panel.dart"
+    ]
+  },
+  "native.4ab17a04f4": {
+    "ru": "Поверхности",
+    "files": [
+      "ui\\appearance_panel.dart"
+    ]
+  },
+  "native.93970437e2": {
+    "ru": "Текст",
+    "files": [
+      "ui\\appearance_panel.dart",
+      "ui\\player.dart"
+    ]
+  },
+  "native.99204a3cf5": {
+    "ru": "Скругление",
+    "files": [
+      "ui\\appearance_panel.dart"
+    ]
+  },
+  "native.7831d42ea5": {
+    "ru": "Скорость движения",
+    "files": [
+      "ui\\appearance_panel.dart"
+    ]
+  },
+  "native.830603aad3": {
+    "ru": "Анимации",
+    "files": [
+      "ui\\appearance_panel.dart"
+    ]
+  },
+  "native.60efac2834": {
+    "ru": "Логотип, волна и плавные переходы.",
+    "files": [
+      "ui\\appearance_panel.dart"
+    ]
+  },
+  "native.666e0f796a": {
+    "ru": "Мягкое свечение",
+    "files": [
+      "ui\\appearance_panel.dart"
+    ]
+  },
+  "native.007c5fcecf": {
+    "ru": "Тёплый свет вокруг обложки в плеере.",
+    "files": [
+      "ui\\appearance_panel.dart"
+    ]
+  },
+  "native.bff051ace0": {
+    "ru": "Компактный вид",
+    "files": [
+      "ui\\appearance_panel.dart"
+    ]
+  },
+  "native.f770c17775": {
+    "ru": "Больше музыки на одном экране.",
+    "files": [
+      "ui\\appearance_panel.dart"
+    ]
+  },
+  "native.5c948d22d9": {
+    "ru": "Наклоняй её пальцем или мышью в плеере.",
+    "files": [
+      "ui\\appearance_panel.dart"
+    ]
+  },
+  "native.2aa64630e3": {
+    "ru": "Стиль волны",
+    "files": [
+      "ui\\appearance_panel.dart"
+    ]
+  },
+  "native.064f067d84": {
+    "ru": "Шёлк",
+    "files": [
+      "ui\\appearance_panel.dart"
+    ]
+  },
+  "native.e6d802e5aa": {
+    "ru": "Частицы",
+    "files": [
+      "ui\\appearance_panel.dart"
+    ]
+  },
+  "native.ebcd6e8521": {
+    "ru": "Сбросить {p0} тему",
+    "files": [
+      "ui\\appearance_panel.dart"
+    ]
+  },
+  "native.5cc6512b7e": {
+    "ru": "Сохранено здесь. Обновим аккаунт, когда появится соединение.",
+    "files": [
+      "ui\\appearance_panel.dart"
+    ]
+  },
+  "native.ef6585b509": {
+    "ru": "Сохранено здесь. Синхронизируем с аккаунтом…",
+    "files": [
+      "ui\\appearance_panel.dart"
+    ]
+  },
+  "native.456801dbda": {
+    "ru": "Изменения сохраняются в твоём аккаунте.",
+    "files": [
+      "ui\\appearance_panel.dart"
+    ]
+  },
+  "native.1f17fc01da": {
+    "ru": "Сохранено на этом устройстве. Работает и без входа.",
+    "files": [
+      "ui\\appearance_panel.dart"
+    ]
+  },
+  "native.bb18fa6d01": {
+    "ru": "Повторить синхронизацию",
+    "files": [
+      "ui\\appearance_panel.dart"
+    ]
+  },
+  "native.dd0ee1385e": {
+    "ru": "Укажи HEX, например #A08369",
+    "files": [
+      "ui\\appearance_panel.dart"
+    ]
+  },
+  "native.405576c78f": {
+    "ru": "Применить цвет",
+    "files": [
+      "ui\\appearance_panel.dart"
+    ]
+  },
+  "native.b3d81a3f8b": {
+    "ru": "Лесное озеро",
+    "files": [
+      "ui\\lofi.dart"
+    ]
+  },
+  "native.2400e502b3": {
+    "ru": "У тихого океана",
+    "files": [
+      "ui\\lofi.dart"
+    ]
+  },
+  "native.4589c6cdad": {
+    "ru": "Снег в лесу",
+    "files": [
+      "ui\\lofi.dart"
+    ]
+  },
+  "native.635c3de27b": {
+    "ru": "Ночь в лесу",
+    "files": [
+      "ui\\lofi.dart"
+    ]
+  },
+  "native.bcc3751765": {
+    "ru": "Не удалось включить дождь. Попробуй ещё раз.",
+    "files": [
+      "ui\\lofi.dart"
+    ]
+  },
+  "native.1d03ab1de9": {
+    "ru": "Тише мир — громче музыка",
+    "files": [
+      "ui\\lofi.dart"
+    ]
+  },
+  "native.711dd88a87": {
+    "ru": "Вода, свет и немного тишины.",
+    "files": [
+      "ui\\lofi.dart"
+    ]
+  },
+  "native.6182f364dd": {
+    "ru": "ТВОЙ ПЕЙЗАЖ",
+    "files": [
+      "ui\\lofi.dart"
+    ]
+  },
+  "native.3acf87bef9": {
+    "ru": "АТМОСФЕРА",
+    "files": [
+      "ui\\lofi.dart"
+    ]
+  },
+  "native.dae7e05e24": {
+    "ru": "Чистый пейзаж",
+    "files": [
+      "ui\\lofi.dart"
+    ]
+  },
+  "native.4883983984": {
+    "ru": "Светлячки",
+    "files": [
+      "ui\\lofi.dart"
+    ]
+  },
+  "native.aad03f21ab": {
+    "ru": "Дождь",
+    "files": [
+      "ui\\lofi.dart"
+    ]
+  },
+  "native.d049e3f66b": {
+    "ru": "Шум дождя",
+    "files": [
+      "ui\\lofi.dart"
+    ]
+  },
+  "native.32c2235be0": {
+    "ru": "Добавь немного к своей музыке.",
+    "files": [
+      "ui\\lofi.dart"
+    ]
+  },
+  "native.d4958d914e": {
+    "ru": "Свой маленький мир, даже без интернета.",
+    "files": [
+      "ui\\lofi.dart"
+    ]
+  },
+  "native.88d40c97f5": {
+    "ru": "GLUK LO-FI · ЖИВОЙ ПЕЙЗАЖ",
+    "files": [
+      "ui\\lofi.dart"
+    ]
+  },
+  "native.201adfd2e2": {
+    "ru": "Вернуть управление",
+    "files": [
+      "ui\\lofi.dart"
+    ]
+  },
+  "native.b22adb46b6": {
+    "ru": "Режим дзен",
+    "files": [
+      "ui\\lofi.dart"
+    ]
+  },
+  "native.370bd25ead": {
+    "ru": "СЕЙЧАС МОЖНО ПРОСТО БЫТЬ",
+    "files": [
+      "ui\\lofi.dart"
+    ]
+  },
+  "native.7237c9b62a": {
+    "ru": "Твоя музыка. Твой ритм. Твоё место.",
+    "files": [
+      "ui\\lofi.dart"
+    ]
+  },
+  "native.2c89e1f83b": {
+    "ru": "Убрать из любимых",
+    "files": [
+      "ui\\lofi.dart"
+    ]
+  },
+  "native.5633e5c745": {
+    "ru": "В любимые",
+    "files": [
+      "ui\\lofi.dart",
+      "ui\\player.dart",
+      "ui\\widgets.dart"
+    ]
+  },
+  "native.1acf0afe60": {
+    "ru": "Сохранить с собой",
+    "files": [
+      "ui\\lofi.dart"
+    ]
+  },
+  "native.899c8de911": {
+    "ru": "Твой музыкальный мир",
+    "files": [
+      "ui\\player.dart"
+    ]
+  },
+  "native.b196b73079": {
+    "ru": "Выбери музыку в медиатеке",
+    "files": [
+      "ui\\player.dart"
+    ]
+  },
+  "native.03498e395a": {
+    "ru": "Пауза",
+    "files": [
+      "ui\\player.dart",
+      "ui\\player.dart"
+    ]
+  },
+  "native.c750dc7d94": {
+    "ru": "Играть",
+    "files": [
+      "ui\\player.dart",
+      "ui\\player.dart"
+    ]
+  },
+  "native.4ddf34c036": {
+    "ru": "Убрать из любимого",
+    "files": [
+      "ui\\player.dart",
+      "ui\\widgets.dart"
+    ]
+  },
+  "native.d66131f711": {
+    "ru": "Полный плеер",
+    "files": [
+      "ui\\player.dart"
+    ]
+  },
+  "native.11bf0a5893": {
+    "ru": "Выбери музыку",
+    "files": [
+      "ui\\player.dart"
+    ]
+  },
+  "native.a1d6afb1b3": {
+    "ru": "Твоя волна начнётся с первого трека.",
+    "files": [
+      "ui\\player.dart"
+    ]
+  },
+  "native.590b94553f": {
+    "ru": "Свернуть плеер",
+    "files": [
+      "ui\\player.dart"
+    ]
+  },
+  "native.b1b410f065": {
+    "ru": "СЕЙЧАС ЗВУЧИТ",
+    "files": [
+      "ui\\player.dart"
+    ]
+  },
+  "native.30ef88c9b5": {
+    "ru": "Действия с треком",
+    "files": [
+      "ui\\player.dart",
+      "ui\\widgets.dart"
+    ]
+  },
+  "native.28ca76fdd0": {
+    "ru": "Трек",
+    "files": [
+      "ui\\player.dart"
+    ]
+  },
+  "native.aec93b16ba": {
+    "ru": "Очередь",
+    "files": [
+      "ui\\player.dart",
+      "ui\\player.dart"
+    ]
+  },
+  "native.f1401a6c61": {
+    "ru": "Обсудить",
+    "files": [
+      "ui\\player.dart"
+    ]
+  },
+  "native.e7797473dd": {
+    "ru": "3D обложка",
+    "files": [
+      "ui\\player.dart"
+    ]
+  },
+  "native.b3fae20397": {
+    "ru": "Плоская",
+    "files": [
+      "ui\\player.dart"
+    ]
+  },
+  "native.36f30bdb01": {
+    "ru": "Любимый трек",
+    "files": [
+      "ui\\player.dart"
+    ]
+  },
+  "native.621777004a": {
+    "ru": "Громкость",
+    "files": [
+      "ui\\player.dart",
+      "ui\\player.dart"
+    ]
+  },
+  "native.ca25d9c93e": {
+    "ru": "С собой",
+    "files": [
+      "ui\\player.dart"
+    ]
+  },
+  "native.b09bf87fd9": {
+    "ru": "Слушать",
+    "files": [
+      "ui\\player.dart"
+    ]
+  },
+  "native.58ef1d8c95": {
+    "ru": "Слушать в {p0}",
+    "files": [
+      "ui\\player.dart"
+    ]
+  },
+  "native.ffe3af5890": {
+    "ru": "Официальный плеер {p0} откроется в браузере. Он управляет воспроизведением и доступностью трека.",
+    "files": [
+      "ui\\player.dart"
+    ]
+  },
+  "native.5a13cba854": {
+    "ru": "СЛОВА РЯДОМ",
+    "files": [
+      "ui\\player.dart"
+    ]
+  },
+  "native.d8a9b54429": {
+    "ru": "Перемешать",
+    "files": [
+      "ui\\player.dart"
+    ]
+  },
+  "native.3a2d254d6e": {
+    "ru": "Предыдущий",
+    "files": [
+      "ui\\player.dart"
+    ]
+  },
+  "native.e9c094d2a9": {
+    "ru": "Следующий",
+    "files": [
+      "ui\\player.dart"
+    ]
+  },
+  "native.9089f12327": {
+    "ru": "Повтор: {p0}",
+    "files": [
+      "ui\\player.dart"
+    ]
+  },
+  "native.ff780900c5": {
+    "ru": "ТЕКСТ В РИТМЕ МУЗЫКИ",
+    "files": [
+      "ui\\player.dart"
+    ]
+  },
+  "native.7ad990dd63": {
+    "ru": "СЛОВА ТВОЕЙ МУЗЫКИ",
+    "files": [
+      "ui\\player.dart"
+    ]
+  },
+  "native.1aea079cdb": {
+    "ru": "Добавить текст",
+    "files": [
+      "ui\\player.dart"
+    ]
+  },
+  "native.3d92401582": {
+    "ru": "Загружаем текст",
+    "files": [
+      "ui\\player.dart"
+    ]
+  },
+  "native.8f61423be2": {
+    "ru": "Здесь будут слова",
+    "files": [
+      "ui\\player.dart"
+    ]
+  },
+  "native.6774e0dd9c": {
+    "ru": "Добавь свой текст или LRC — строки будут рядом с музыкой.",
+    "files": [
+      "ui\\player.dart"
+    ]
+  },
+  "native.0c37b5a035": {
+    "ru": "Импортировать текст",
+    "files": [
+      "ui\\player.dart"
+    ]
+  },
+  "native.da4b2995ca": {
+    "ru": "Слова рядом",
+    "files": [
+      "ui\\player.dart"
+    ]
+  },
+  "native.c157a9e867": {
+    "ru": "Текст или LRC",
+    "files": [
+      "ui\\player.dart"
+    ]
+  },
+  "native.59f2a68e7e": {
+    "ru": "[00:10.00] Первая строка\n[00:18.50] Вторая строка",
+    "files": [
+      "ui\\player.dart"
+    ]
+  },
+  "native.bd71178379": {
+    "ru": "{p0} треков · {p1}",
+    "files": [
+      "ui\\player.dart"
+    ]
+  },
+  "native.8c96dfdeaf": {
+    "ru": "Твоя очередь ждёт",
+    "files": [
+      "ui\\player.dart"
+    ]
+  },
+  "native.f11290c0ba": {
+    "ru": "Добавляй музыку через меню трека.",
+    "files": [
+      "ui\\player.dart"
+    ]
+  },
+  "native.3fe293662f": {
+    "ru": "Тот самый момент",
+    "files": [
+      "ui\\player.dart"
+    ]
+  },
+  "native.35b3855a5f": {
+    "ru": "Оставь мысль прямо в музыке.",
+    "files": [
+      "ui\\player.dart"
+    ]
+  },
+  "native.b50bfb41fe": {
+    "ru": "Что чувствуешь сейчас?",
+    "files": [
+      "ui\\player.dart"
+    ]
+  },
+  "native.c65a7fd398": {
+    "ru": "Оставить мысль",
+    "files": [
+      "ui\\player.dart"
+    ]
+  },
+  "native.dcf664edf6": {
+    "ru": "Загружаем комментарии",
+    "files": [
+      "ui\\player.dart"
+    ]
+  },
+  "native.c51a972201": {
+    "ru": "Первая мысль — за тобой",
+    "files": [
+      "ui\\player.dart"
+    ]
+  },
+  "native.5439c05c19": {
+    "ru": "Здесь появятся настоящие комментарии слушателей.",
+    "files": [
+      "ui\\player.dart"
+    ]
+  },
+  "native.41eba7e6c0": {
+    "ru": "Удалить комментарий",
+    "files": [
+      "ui\\player.dart"
+    ]
+  },
+  "native.e917ac283f": {
+    "ru": "Загружаем музыку",
+    "files": [
+      "ui\\widgets.dart"
+    ]
+  },
+  "native.2bf6b84a6f": {
+    "ru": "ТВОЯ ЛИЧНАЯ ВОЛНА",
+    "files": [
+      "ui\\widgets.dart"
+    ]
+  },
+  "native.c56877fbe6": {
+    "ru": "Моя волна",
+    "files": [
+      "ui\\widgets.dart"
+    ]
+  },
+  "native.c1a1b57faa": {
+    "ru": "Собери свою музыку.\nИ найди свой ритм.",
+    "files": [
+      "ui\\widgets.dart"
+    ]
+  },
+  "native.642189648a": {
+    "ru": "Все твои треки. Один поток.\nСейчас хочется просто слушать.",
+    "files": [
+      "ui\\widgets.dart"
+    ]
+  },
+  "native.5f266e04fe": {
+    "ru": "Поймать волну",
+    "files": [
+      "ui\\widgets.dart"
+    ]
+  },
+  "native.c4ea2e3005": {
+    "ru": "Твоя музыка, в твоём ритме",
+    "files": [
+      "ui\\widgets.dart"
+    ]
+  },
+  "native.159f366d10": {
+    "ru": "Оконные функции недоступны: {p0}",
+    "files": [
+      "core\\controller.dart"
+    ]
+  },
+  "native.25ed968e60": {
+    "ru": "Сохранённая медиатека повреждена. Обнови её с сервера.",
+    "files": [
+      "core\\controller.dart"
+    ]
+  },
+  "native.b217602ba0": {
+    "ru": "Войди снова — сессия завершилась.",
+    "files": [
+      "core\\controller.dart"
+    ]
+  },
+  "native.d8b4826b17": {
+    "ru": "Не удалось войти. Попробуй ещё раз.",
+    "files": [
+      "core\\controller.dart"
+    ]
+  },
+  "native.b85fd36bb6": {
+    "ru": "Время входа истекло. Создай новый код.",
+    "files": [
+      "core\\controller.dart"
+    ]
+  },
+  "native.4c922f0c45": {
+    "ru": "Сначала войди в аккаунт на этом устройстве.",
+    "files": [
+      "core\\controller.dart"
+    ]
+  },
+  "native.283b363614": {
+    "ru": "Это не код входа GlukWave.",
+    "files": [
+      "core\\controller.dart",
+      "core\\controller.dart"
+    ]
+  },
+  "native.e5eacefb73": {
+    "ru": "Вход на другом устройстве подтверждён.",
+    "files": [
+      "core\\controller.dart"
+    ]
+  },
+  "native.81798ba3b3": {
+    "ru": "Уведомления сейчас недоступны. Попробуй позже.",
+    "files": [
+      "core\\controller.dart"
+    ]
+  },
+  "native.fb5429ae1b": {
+    "ru": "У этого трека нет ссылки на источник.",
+    "files": [
+      "core\\controller.dart"
+    ]
+  },
+  "native.bb5aee59aa": {
+    "ru": "{p0} открыт. Источник управляет воспроизведением; скачивание недоступно.",
+    "files": [
+      "core\\controller.dart"
+    ]
+  },
+  "native.131b87ec38": {
+    "ru": "В этой комнате управляет ведущий. Попроси доступ.",
+    "files": [
+      "core\\controller.dart"
+    ]
+  },
+  "native.239486deb5": {
+    "ru": "Трек добавлен в любимые.",
+    "files": [
+      "core\\controller.dart"
+    ]
+  },
+  "native.90bb5d60ca": {
+    "ru": "Музыка появилась в медиатеке.",
+    "files": [
+      "core\\controller.dart"
+    ]
+  },
+  "native.b1426ae61b": {
+    "ru": "Подтверди доступ в браузере и обнови подключения.",
+    "files": [
+      "core\\controller.dart"
+    ]
+  },
+  "native.b8b235d91f": {
+    "ru": "Мост Discord доступен на компьютере.",
+    "files": [
+      "core\\controller.dart"
+    ]
+  },
+  "native.79b5d767d1": {
+    "ru": "Для совместного управления нужно соединение с сервером.",
+    "files": [
+      "core\\controller.dart"
+    ]
+  },
+  "native.215c1efc19": {
+    "ru": "Команда отклонена.",
+    "files": [
+      "core\\controller.dart"
+    ]
+  },
+  "native.27962f8ac9": {
+    "ru": "Не выбран трек для передачи.",
+    "files": [
+      "core\\controller.dart"
+    ]
+  },
+  "native.2b386cb1d4": {
+    "ru": "Этот источник не поддерживает нативный перенос воспроизведения.",
+    "files": [
+      "core\\controller.dart"
+    ]
+  },
+  "native.1d9a81e50c": {
+    "ru": "Другая команда изменила воспроизведение.",
+    "files": [
+      "core\\controller.dart"
+    ]
+  },
+  "native.ce93da4baa": {
+    "ru": "Не удалось восстановить предыдущий трек: {p0}",
+    "files": [
+      "core\\controller.dart"
+    ]
+  },
+  "native.001bce4367": {
+    "ru": "{p0} не поддерживает совместный нативный плеер.",
+    "files": [
+      "core\\controller.dart"
+    ]
+  },
+  "native.21d3c7b0bf": {
+    "ru": "Некорректная ссылка.",
+    "files": [
+      "core\\controller.dart"
+    ]
+  },
+  "native.adb57243da": {
+    "ru": "Не удалось открыть браузер.",
+    "files": [
+      "core\\controller.dart"
+    ]
+  },
+  "native.8a5e96055a": {
+    "ru": "Укажи адрес сервера, например https://wave.gluk.tech",
+    "files": [
+      "core\\api.dart"
+    ]
+  },
+  "native.6ade2e521e": {
+    "ru": "Для этого сервера нужен HTTPS. Локальный HTTP доступен в debug-сборке.",
+    "files": [
+      "core\\api.dart"
+    ]
+  },
+  "native.5918da6940": {
+    "ru": "Не удалось подключиться. Проверь интернет и попробуй ещё раз.",
+    "files": [
+      "core\\api.dart"
+    ]
+  },
+  "native.6a2f34c7ec": {
+    "ru": "Не удалось загрузить файл.",
+    "files": [
+      "core\\api.dart"
+    ]
+  },
+  "native.7e03f83d51": {
+    "ru": "Скачивание отменено.",
+    "files": [
+      "core\\api.dart"
+    ]
+  },
+  "native.3d96e7d07c": {
+    "ru": "Этот трек сейчас недоступен для скачивания.",
+    "files": [
+      "core\\api.dart"
+    ]
+  },
+  "native.5eb9f20ac7": {
+    "ru": "Скачивание прервалось. Можно попробовать ещё раз.",
+    "files": [
+      "core\\api.dart"
+    ]
+  },
+  "native.8df71302b3": {
+    "ru": "Твоя музыка",
+    "files": [
+      "core\\models.dart"
+    ]
+  },
+  "native.6d15d36f74": {
+    "ru": "друг",
+    "files": [
+      "core\\models.dart"
+    ]
+  },
+  "native.644d7351d1": {
+    "ru": "Цвет должен выглядеть как #A08369.",
+    "files": [
+      "core\\appearance.dart"
+    ]
+  },
+  "native.fb89a335f1": {
+    "ru": "Не удалось воспроизвести трек: {p0}",
+    "files": [
+      "services\\audio.dart"
+    ]
+  },
+  "native.266e43ddb8": {
+    "ru": "Этот трек воспроизводится на официальной площадке.",
+    "files": [
+      "services\\audio.dart"
+    ]
+  },
+  "native.c11b18779a": {
+    "ru": "Ссылка на аудио недоступна.",
+    "files": [
+      "services\\audio.dart"
+    ]
+  },
+  "native.310a7a8960": {
+    "ru": "Автокеш: {p0}",
+    "files": [
+      "services\\audio.dart"
+    ]
+  },
+  "native.449b7110f6": {
+    "ru": "Сначала выбери трек.",
+    "files": [
+      "services\\audio.dart"
+    ]
+  },
+  "native.2f44180776": {
+    "ru": "Устройство не смогло начать воспроизведение.",
+    "files": [
+      "services\\audio.dart"
+    ]
+  },
+  "native.1a9e0219dd": {
+    "ru": "Этот источник не разрешает локальное скачивание.",
+    "files": [
+      "services\\cache.dart"
+    ]
+  },
+  "native.7e606ff748": {
+    "ru": "В кеше мало места. Удали скачивания или увеличь лимит.",
+    "files": [
+      "services\\cache.dart"
+    ]
+  },
+  "native.9c8269d22d": {
+    "ru": "Сначала останови этот трек, затем удали файл.",
+    "files": [
+      "services\\cache.dart"
+    ]
+  },
+  "native.25363da343": {
+    "ru": "Discord не подключён",
+    "files": [
+      "services\\desktop.dart"
+    ]
+  },
+  "native.15b20dde3a": {
+    "ru": "Подключение к Discord пока недоступно",
+    "files": [
+      "services\\desktop.dart"
+    ]
+  },
+  "native.a984270377": {
+    "ru": "Presence доступен в Windows",
+    "files": [
+      "services\\desktop.dart"
+    ]
+  },
+  "native.6bde881273": {
+    "ru": "Открой приложение Discord на компьютере",
+    "files": [
+      "services\\desktop.dart"
+    ]
+  },
+  "native.5d84405321": {
+    "ru": "Подключаемся к Discord…",
+    "files": [
+      "services\\desktop.dart"
+    ]
+  },
+  "native.8d9b2503b6": {
+    "ru": "Соединение с Discord прервалось",
+    "files": [
+      "services\\desktop.dart"
+    ]
+  },
+  "native.ac8bdece49": {
+    "ru": "Discord закрыт",
+    "files": [
+      "services\\desktop.dart"
+    ]
+  },
+  "native.f34acd6e4a": {
+    "ru": "Discord отключил интеграцию",
+    "files": [
+      "services\\desktop.dart"
+    ]
+  },
+  "native.52bc821a01": {
+    "ru": "Discord подключён",
+    "files": [
+      "services\\desktop.dart"
+    ]
+  },
+  "native.7d5b9d9122": {
+    "ru": "Discord отклонил Presence",
+    "files": [
+      "services\\desktop.dart"
+    ]
+  },
+  "native.cc94d41c5f": {
+    "ru": "Не удалось прочитать ответ Discord",
+    "files": [
+      "services\\desktop.dart"
+    ]
+  },
+  "native.c746e31388": {
+    "ru": "Послушать трек",
+    "files": [
+      "services\\desktop.dart"
+    ]
+  },
+  "native.adc9a38302": {
+    "ru": "GlukWave — твоя музыка",
+    "files": [
+      "services\\desktop.dart"
+    ]
+  },
+  "native.c82b849d9a": {
+    "ru": "Открыть GlukWave",
+    "files": [
+      "services\\desktop.dart"
+    ]
+  },
+  "native.3f60cf701d": {
+    "ru": "Играть / Пауза",
+    "files": [
+      "services\\desktop.dart"
+    ]
+  },
+  "native.e5ee886686": {
+    "ru": "Мини-плеер",
+    "files": [
+      "services\\desktop.dart"
+    ]
+  },
+  "native.3e2347f6a4": {
+    "ru": "Уведомления отключены в настройках устройства.",
+    "files": [
+      "services\\push.dart"
+    ]
+  },
+  "native.f2c19e16b8": {
+    "ru": "Не удалось включить уведомления. Попробуй ещё раз.",
+    "files": [
+      "services\\push.dart"
+    ]
+  },
+  "native.b6d57513a1": {
+    "ru": "Скачан вручную",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.fae9d01025": {
+    "ru": "Автокеш",
+    "files": [
+      "ui\\app.dart"
+    ]
+  },
+  "native.b8c9d2cd6f": {
+    "ru": "тёмную",
+    "files": [
+      "ui\\appearance_panel.dart"
+    ]
+  },
+  "native.eb5820813d": {
+    "ru": "светлую",
+    "files": [
+      "ui\\appearance_panel.dart"
+    ]
+  },
+  "native.0b48cc8756": {
+    "ru": "выключен",
+    "files": [
+      "ui\\player.dart"
+    ]
+  },
+  "native.81d73996e1": {
+    "ru": "один трек",
+    "files": [
+      "ui\\player.dart"
+    ]
+  },
+  "native.7d449210b8": {
+    "ru": "вся очередь",
+    "files": [
+      "ui\\player.dart"
+    ]
+  },
+  "native.90db49c312": {
+    "ru": "твоя очередь",
+    "files": [
+      "ui\\player.dart"
+    ]
+  },
+  "native.b40415dfac": {
+    "ru": "очередь комнаты",
+    "files": [
+      "ui\\player.dart"
+    ]
+  },
+  "native.1db1b7e7a7": {
+    "ru": "Компьютер",
+    "files": [
+      "core\\controller.dart"
+    ]
+  },
+  "native.5de203e8f1": {
+    "ru": "Музыка GlukWave",
+    "files": [
+      "main.dart"
+    ]
+  },
+  "native.76427de2d8": {
+    "ru": "GlukWave не удалось запустить",
+    "files": [
+      "main.dart"
+    ]
+  },
+  "native.85e221a3e3": {
+    "ru": "Закрой приложение и открой его снова.",
+    "files": [
+      "main.dart"
+    ]
+  }
+}

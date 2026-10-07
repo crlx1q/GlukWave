@@ -1,0 +1,21 @@
+{
+  "source": "sapics/ip-location-db user-country",
+  "license": "PDDL-1.0",
+  "retrievedAt": "2026-10-07T08:16:07.731Z",
+  "databases": {
+    "ipv4": {
+      "url": "https://github.com/sapics/ip-location-db/releases/download/latest/user-country-ipv4-num.csv",
+      "sourceSha256": "b94836a78e2e156f93f12a830241c06f6ec9a802ad3aed890799296e925e60a2",
+      "packedSha256": "9a81ab379ebb915fcedabfcbf9e9854778588b9223eb86100aa923d5c1b2e916",
+      "rows": 292595,
+      "bytes": 2086682
+    },
+    "ipv6": {
+      "url": "https://github.com/sapics/ip-location-db/releases/download/latest/user-country-ipv6-num.csv",
+      "sourceSha256": "3c7b1eedeea6458d7da2d62c940d9a4437905851a857fdbfae98ceedb557e525",
+      "packedSha256": "542b80ef0a477090a58f808769f1df9aa4c5a8b093dae5c887d7c807c47baf18",
+      "rows": 282392,
+      "bytes": 6318865
+    }
+  }
+}

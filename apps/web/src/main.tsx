@@ -1,0 +1,11 @@
+import { createRoot } from 'react-dom/client';
+import { App } from './App';
+import { LocaleProvider } from './locale';
+import { Landing } from './landing';
+import './styles.css';
+import './experience.css';
+import './v6.css';
+const params=new URLSearchParams(location.search),legacyHash=['home','search','library','sources','rooms','lofi','downloads','settings','profile','admin'].includes(location.hash.slice(1).split('?')[0]),appQuery=['qr','native','secret','reset','invite','room','roomId','error','verified','billing','track','connected'].some(key=>params.has(key));
+const app=(location.pathname==='/app'||location.pathname.startsWith('/app/'))||legacyHash||appQuery;
+createRoot(document.getElementById('root')!).render(<LocaleProvider>{app?<App/>:<Landing/>}</LocaleProvider>);
+

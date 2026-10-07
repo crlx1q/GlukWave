@@ -1,0 +1,90 @@
+{
+  "language.title": {
+    "en": "Language",
+    "ru": "Язык",
+    "kk": "Тіл",
+    "uk": "Мова",
+    "de": "Sprache",
+    "es": "Idioma"
+  },
+  "language.auto": {
+    "en": "Automatic",
+    "ru": "Автоматически",
+    "kk": "Автоматты",
+    "uk": "Автоматично",
+    "de": "Automatisch",
+    "es": "Automático"
+  },
+  "language.hint": {
+    "en": "Automatic uses your region or device language. Your choice is saved here and in your account, and works offline.",
+    "ru": "Автоматически — по региону или языку устройства. Выбор сохранится здесь и в аккаунте и работает без сети.",
+    "kk": "Автоматты таңдау аймаққа немесе құрылғы тіліне сүйенеді. Таңдау құрылғыда және аккаунтта сақталып, офлайн жұмыс істейді.",
+    "uk": "Автоматично — за регіоном або мовою пристрою. Вибір збережеться тут і в обліковому записі та працює без мережі.",
+    "de": "Automatisch folgt deiner Region oder Gerätesprache. Deine Auswahl wird hier und im Konto gespeichert und funktioniert offline.",
+    "es": "Automático usa tu región o el idioma del dispositivo. Tu elección se guarda aquí y en tu cuenta y funciona sin conexión."
+  },
+  "count.tracks.one": {
+    "en": "{count} track",
+    "ru": "{count} трек",
+    "kk": "{count} трек",
+    "uk": "{count} трек",
+    "de": "{count} Titel",
+    "es": "{count} pista"
+  },
+  "count.tracks.few": {
+    "en": "{count} tracks",
+    "ru": "{count} трека",
+    "kk": "{count} трек",
+    "uk": "{count} треки",
+    "de": "{count} Titel",
+    "es": "{count} pistas"
+  },
+  "count.tracks.many": {
+    "en": "{count} tracks",
+    "ru": "{count} треков",
+    "kk": "{count} трек",
+    "uk": "{count} треків",
+    "de": "{count} Titel",
+    "es": "{count} pistas"
+  },
+  "count.tracks.other": {
+    "en": "{count} tracks",
+    "ru": "{count} треков",
+    "kk": "{count} трек",
+    "uk": "{count} треків",
+    "de": "{count} Titel",
+    "es": "{count} pistas"
+  },
+  "count.liked.one": {
+    "en": "{count} track that moved you",
+    "ru": "{count} трек, который откликнулся",
+    "kk": "Ұнаған {count} трек",
+    "uk": "{count} трек, що відгукнувся",
+    "de": "{count} Titel, der dich berührt",
+    "es": "{count} pista que te llegó"
+  },
+  "count.liked.few": {
+    "en": "{count} tracks that moved you",
+    "ru": "{count} трека, которые откликнулись",
+    "kk": "Ұнаған {count} трек",
+    "uk": "{count} треки, що відгукнулися",
+    "de": "{count} Titel, die dich berühren",
+    "es": "{count} pistas que te llegaron"
+  },
+  "count.liked.many": {
+    "en": "{count} tracks that moved you",
+    "ru": "{count} треков, которые откликнулись",
+    "kk": "Ұнаған {count} трек",
+    "uk": "{count} треків, що відгукнулися",
+    "de": "{count} Titel, die dich berühren",
+    "es": "{count} pistas que te llegaron"
+  },
+  "count.liked.other": {
+    "en": "{count} tracks that moved you",
+    "ru": "{count} треков, которые откликнулись",
+    "kk": "Ұнаған {count} трек",
+    "uk": "{count} треків, що відгукнулися",
+    "de": "{count} Titel, die dich berühren",
+    "es": "{count} pistas que te llegaron"
+  }
+}

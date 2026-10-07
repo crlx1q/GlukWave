@@ -1,0 +1,19 @@
+{
+  "name": "glukwave",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "workspaces": ["apps/server", "apps/web"],
+  "engines": {"node": ">=24.0.0"},
+  "scripts": {
+    "dev": "concurrently -n server,web -c cyan,magenta \"npm run dev -w @glukwave/server\" \"npm run dev -w @glukwave/web\"",
+    "build": "npm run build -w @glukwave/web",
+    "start": "npm run start -w @glukwave/server",
+    "test": "npm run test -w @glukwave/server",
+    "check": "npm run check -w @glukwave/web",
+    "keys": "node scripts/generate-keys.mjs",
+    "migrate": "node scripts/migrate.mjs",
+    "geoip:update": "node scripts/update-geoip.mjs"
+  },
+  "devDependencies": {"concurrently": "^9.2.1", "agent-browser": "^0.21.0"}
+}

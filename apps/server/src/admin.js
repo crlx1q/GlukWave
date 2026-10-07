@@ -1,0 +1,11 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import {z} from 'zod';
+import {id,now,parse,fail,asyncRoute,publicUser} from './util.js';
+
+export function setupAdmin(app,ctx){const {store,config,requireAdmin}=ctx;
+  app.get('/api/admin/overview',requireAdmin,asyncRoute(async(req,res)=>{const [users,tracks,playlists,rooms,events]=await Promise.all(['users','tracks','playlists','rooms','audit'].map(c=>store.list(c)));res.json({counts:{users:users.length,tracks:tracks.length,playlists:playlists.length,rooms:rooms.length,mediaBytes:tracks.reduce((sum,t)=>sum+(t.size||0),0)},users:users.map(u=>({...publicUser(u),blocked:u.blocked})),events:events.sort((a,b)=>b.createdAt.localeCompare(a.createdAt)).slice(0,100),integrations:ctx.providerConfiguration({diagnostics:true}),storage:{database:config.storage,media:config.objectStorage},uptime:process.uptime(),version:'0.1.0'});}));
+  app.patch('/api/admin/users/:id',requireAdmin,asyncRoute(async(req,res)=>{const b=parse(z.object({plan:z.enum(['free','beta','unbound']).optional(),role:z.enum(['user','admin']).optional(),blocked:z.boolean().optional()}).strict(),req.body);if(req.params.id===req.auth.user.id&&(b.blocked||b.role==='user'))fail(400,'SELF_ADMIN','Нельзя заблокировать себя или снять свои права.');const user=await store.update('users',req.params.id,u=>{if(!u)fail(404,'USER_NOT_FOUND','Пользователь не найден.');return {...u,...b};});if(b.blocked)ctx.io?.in(`user:${user.id}`).disconnectSockets(true);await ctx.audit('admin.userUpdate',req.auth.user.id,{targetUserId:user.id,changes:b});res.json({user:{...publicUser(user),blocked:user.blocked}});}));
+  app.get('/api/admin/audit',requireAdmin,asyncRoute(async(req,res)=>res.json({events:(await store.list('audit')).sort((a,b)=>b.createdAt.localeCompare(a.createdAt)).slice(0,500)})));
+  app.get('/api/admin/mailbox',requireAdmin,asyncRoute(async(req,res)=>{if(config.production)fail(404,'NOT_FOUND','Страница не найдена.');const dir=path.join(config.dataDir,'mailbox'),names=await fs.readdir(dir).catch(()=>[]),messages=await Promise.all(names.filter(x=>x.endsWith('.json')).slice(-100).map(async x=>JSON.parse(await fs.readFile(path.join(dir,x),'utf8'))));res.json({messages});}));
+}

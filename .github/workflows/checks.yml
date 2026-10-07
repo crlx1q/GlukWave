@@ -1,0 +1,72 @@
+name: GlukWave checks and builds
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  web-server:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run check
+      - run: npm run build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: GlukWave-web
+          path: apps/web/dist
+  flutter:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    defaults:
+      run:
+        working-directory: apps/native
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        if: runner.os == 'Linux'
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.35.4'
+          channel: stable
+          cache: true
+      - run: flutter pub get
+      - run: flutter analyze --no-pub
+      - run: flutter test --no-pub
+      - name: Android debug build
+        if: runner.os == 'Linux'
+        run: flutter build apk --debug --dart-define=GLUKWAVE_SERVER=https://wave.gluk.tech
+      - name: Windows release build
+        if: runner.os == 'Windows'
+        run: flutter build windows --release --dart-define=GLUKWAVE_SERVER=https://wave.gluk.tech
+      - name: iOS compile without signing
+        if: runner.os == 'macOS'
+        run: flutter build ios --release --no-codesign --dart-define=GLUKWAVE_SERVER=https://wave.gluk.tech
+      - uses: actions/upload-artifact@v4
+        if: runner.os == 'Linux'
+        with:
+          name: GlukWave-android-debug
+          path: apps/native/build/app/outputs/flutter-apk/app-debug.apk
+      - uses: actions/upload-artifact@v4
+        if: runner.os == 'Windows'
+        with:
+          name: GlukWave-windows
+          path: apps/native/build/windows/x64/runner/Release
+      - uses: actions/upload-artifact@v4
+        if: runner.os == 'macOS'
+        with:
+          name: GlukWave-ios-unsigned
+          path: apps/native/build/ios/iphoneos/Runner.app

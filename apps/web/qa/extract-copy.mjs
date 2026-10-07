@@ -1,0 +1,6 @@
+import fs from 'node:fs/promises';
+import ts from 'typescript';
+const names=(await fs.readdir('apps/web/src')).filter(name=>/\.tsx?$/.test(name)&&!['pixel-scene.ts','wave-shaders.ts'].includes(name));
+const strings=new Map(),templates=[];
+for(const name of names){const path=`apps/web/src/${name}`,source=await fs.readFile(path,'utf8'),ast=ts.createSourceFile(path,source,ts.ScriptTarget.Latest,true);const walk=node=>{if((ts.isStringLiteral(node)||ts.isNoSubstitutionTemplateLiteral(node)||ts.isJsxText(node))&&/[А-Яа-яЁё]/.test(node.text)){const value=ts.isJsxText(node)?node.text.trim().replace(/\s+/g,' '):node.text;if(value)strings.set(value,[...(strings.get(value)||[]),{file:name,pos:node.pos,kind:ts.SyntaxKind[node.kind]}]);}if(ts.isTemplateExpression(node)&&/[А-Яа-яЁё]/.test(node.getText(ast)))templates.push({file:name,text:node.getText(ast),pos:node.pos});ts.forEachChild(node,walk);};walk(ast);}
+await fs.writeFile('apps/web/qa/copy-inventory.json',JSON.stringify({strings:[...strings].map(([text,locations],index)=>({key:`copy.${String(index+1).padStart(3,'0')}`,text,locations})),templates},null,2));console.log(JSON.stringify({uniqueStrings:strings.size,templates:templates.length}));

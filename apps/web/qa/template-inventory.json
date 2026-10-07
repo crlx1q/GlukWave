@@ -1,0 +1,94 @@
+[
+  {
+    "key": "template.001",
+    "text": "{v0} ГБ"
+  },
+  {
+    "key": "template.002",
+    "text": "{v0} МБ"
+  },
+  {
+    "key": "template.003",
+    "text": "Тариф {v0}"
+  },
+  {
+    "key": "template.004",
+    "text": "Роль {v0}"
+  },
+  {
+    "key": "template.005",
+    "text": "Выбрать цвет: {v0}"
+  },
+  {
+    "key": "template.006",
+    "text": "Тема {v0}"
+  },
+  {
+    "key": "template.007",
+    "text": "Акцент {v0}"
+  },
+  {
+    "key": "template.008",
+    "text": "На твоей волне, {v0}."
+  },
+  {
+    "key": "template.009",
+    "text": "Громкость {v0}"
+  },
+  {
+    "key": "template.010",
+    "text": "Позиция трека {v0}"
+  },
+  {
+    "key": "template.011",
+    "text": "{v0}, к которым хочется вернуться"
+  },
+  {
+    "key": "template.012",
+    "text": "{v0} в медиатеке"
+  },
+  {
+    "key": "template.013",
+    "text": "Редактировать {v0}"
+  },
+  {
+    "key": "template.014",
+    "text": "Добавляем {v0}%"
+  },
+  {
+    "key": "template.015",
+    "text": "Перенесено {v0} треков в «{v1}»"
+  },
+  {
+    "key": "template.016",
+    "text": "Перенести из {v0}"
+  },
+  {
+    "key": "template.017",
+    "text": "Перенесено {v0} треков"
+  },
+  {
+    "key": "template.018",
+    "text": "{v0} КБ"
+  },
+  {
+    "key": "template.019",
+    "text": "{v0} · только твоя музыка"
+  },
+  {
+    "key": "template.020",
+    "text": "Официальный плеер {v0}"
+  },
+  {
+    "key": "template.021",
+    "text": "Яндекс Музыка: {v0}"
+  },
+  {
+    "key": "template.022",
+    "text": "Живой пиксельный пейзаж: {v0}"
+  },
+  {
+    "key": "template.023",
+    "text": "Открыть {v0}"
+  }
+]

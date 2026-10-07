@@ -1,0 +1,17 @@
+node_modules/
+.env
+.env.*.local
+var/
+work/
+apps/web/dist/
+apps/native/.dart_tool/
+apps/native/.flutter-plugins*
+apps/native/build/
+apps/native/android/local.properties
+apps/native/android/key.properties
+*.jks
+*.keystore
+outputs/*.zip
+outputs/*.apk
+outputs/*.exe
+outputs/*.png

@@ -1,0 +1,13 @@
+import fs from 'node:fs/promises';
+import assert from 'node:assert/strict';
+import { click,evaluate,run,screenshot,snapshot,wait } from './browser.mjs';
+run('reload');snapshot();wait(`!!document.querySelector('main h1')`);
+click('Library');click('Flickermood Forss');wait(`document.querySelector('.persistent-provider')?.dataset.ready==='true'`);
+click('Expand player');run('set','viewport','1280','860');snapshot();
+wait(`document.querySelector('.album-cover img')?.naturalWidth>=500`);
+const proof=evaluate(`({title:document.querySelector('.np-track-heading h1').textContent,artist:document.querySelector('.np-track-heading p').textContent,artwork:document.querySelector('.album-cover img').src,naturalWidth:document.querySelector('.album-cover img').naturalWidth,visibleText:document.querySelector('.full-player').innerText})`);
+assert.equal(proof.title,'Flickermood');assert.equal(proof.artist,'Forss');assert.equal(proof.naturalWidth,500);assert(!/verification-|qa@example|qa_check/.test(proof.visibleText));
+screenshot('work/qa/web-language-preview-source.png');
+await fs.copyFile('work/qa/web-language-preview-source.png','apps/web/public/brand/app-preview.png');
+await fs.writeFile('work/qa/web-language-preview.json',JSON.stringify({passed:true,...proof},null,2));
+console.log(JSON.stringify({passed:true,naturalWidth:proof.naturalWidth,artwork:proof.artwork,screenshot:'apps/web/public/brand/app-preview.png'}));

@@ -1,0 +1,19 @@
+services:
+  wave:
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      NODE_ENV: production
+      HOST: 0.0.0.0
+      PORT: 4000
+      APP_URL: https://wave.gluk.tech
+      ALLOWED_ORIGINS: https://wave.gluk.tech
+      REQUIRE_EMAIL_VERIFICATION: 'true'
+      TRUST_PROXY: 1
+      RELEASES_DIR: /app/releases
+    ports:
+      - '127.0.0.1:4000:4000'
+    volumes:
+      - ./var:/app/var
+      - ./outputs:/app/releases:ro

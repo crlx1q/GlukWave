@@ -1,0 +1,14 @@
+{
+  "releases": [
+    {
+      "platform": "android",
+      "file": "GlukWave-android-debug.apk",
+      "version": "1.0.0",
+      "signature": "debug",
+      "channel": "beta",
+      "bytes": 205076410,
+      "sha256": "ce31a4ada3d247545d79aa25513420ce8aeb1ad32d02e188625182c4de632944",
+      "builtAt": "2026-10-07T13:49:18.880Z"
+    }
+  ]
+}

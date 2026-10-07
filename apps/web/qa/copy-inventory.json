@@ -1,0 +1,8711 @@
+{
+  "strings": [
+    {
+      "key": "copy.001",
+      "text": "Аккаунт",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 824,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.002",
+      "text": "Профиль и вход",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 844,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.003",
+      "text": "Оформление",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 876,
+          "kind": "StringLiteral"
+        },
+        {
+          "file": "customization.tsx",
+          "pos": 2700,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.004",
+      "text": "Цвета и движение",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 897,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.005",
+      "text": "Воспроизведение",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 929,
+          "kind": "StringLiteral"
+        },
+        {
+          "file": "account.tsx",
+          "pos": 6560,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.006",
+      "text": "Обложка и слова",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 953,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.007",
+      "text": "Музыка без сети",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 985,
+          "kind": "StringLiteral"
+        },
+        {
+          "file": "App.tsx",
+          "pos": 9846,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.008",
+      "text": "Файлы и кеш",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 1012,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.009",
+      "text": "Подключения",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 1042,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.010",
+      "text": "Источники и Discord",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 1062,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.011",
+      "text": "Уведомления",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 1102,
+          "kind": "StringLiteral"
+        },
+        {
+          "file": "App.tsx",
+          "pos": 11917,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.012",
+      "text": "Быть рядом",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 1121,
+          "kind": "StringLiteral"
+        },
+        {
+          "file": "account.tsx",
+          "pos": 7974,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.013",
+      "text": "Устройства",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 1146,
+          "kind": "StringLiteral"
+        },
+        {
+          "file": "player-ui.tsx",
+          "pos": 4425,
+          "kind": "StringLiteral"
+        },
+        {
+          "file": "player-ui.tsx",
+          "pos": 11949,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.014",
+      "text": "Где звучит музыка",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 1167,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.015",
+      "text": "Клавиши",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 1199,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.016",
+      "text": "Маленькие удобства",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 1218,
+          "kind": "StringLiteral"
+        },
+        {
+          "file": "account.tsx",
+          "pos": 9563,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.017",
+      "text": "О приложении",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 1249,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.018",
+      "text": "Версия и лицензии",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 1269,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.019",
+      "text": "Этот браузер не поддерживает пуш уведомления.",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 1963,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.020",
+      "text": "Уведомления сейчас недоступны. Попробуй позже.",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 2235,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.021",
+      "text": "Разреши уведомления для GlukWave в настройках браузера.",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 2383,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.022",
+      "text": "НА СВОЕЙ ЧАСТОТЕ",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 3152,
+          "kind": "StringLiteral"
+        },
+        {
+          "file": "App.tsx",
+          "pos": 10279,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.023",
+      "text": "Настройки",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 3177,
+          "kind": "StringLiteral"
+        },
+        {
+          "file": "App.tsx",
+          "pos": 11812,
+          "kind": "StringLiteral"
+        },
+        {
+          "file": "App.tsx",
+          "pos": 14422,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.024",
+      "text": "Твоё пространство. В твоём ритме.",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 3201,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.025",
+      "text": "Разделы настроек",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 3319,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.026",
+      "text": "Раздел настроек",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 3711,
+          "kind": "JsxText"
+        },
+        {
+          "file": "account.tsx",
+          "pos": 3775,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.027",
+      "text": "Сохранять музыку автоматически",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 4345,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.028",
+      "text": "Твои аудиофайлы остаются в кеше после прослушивания.",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 4390,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.029",
+      "text": "Место для музыки",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 4487,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.030",
+      "text": "При заполнении удаляется самый старый автоматический кеш.",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 4514,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.031",
+      "text": "Лимит кеша",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 4707,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.032",
+      "text": "Твой аккаунт",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 5027,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.033",
+      "text": "Почта",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 5497,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.034",
+      "text": "Подтверждена",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 5539,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.035",
+      "text": "Ожидает подтверждения",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 5554,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.036",
+      "text": "Письмо отправлено",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 5708,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.037",
+      "text": "Отправить письмо",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 5730,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.038",
+      "text": "Свернуть профиль",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 5852,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.039",
+      "text": "Редактировать профиль",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 5871,
+          "kind": "StringLiteral"
+        },
+        {
+          "file": "account.tsx",
+          "pos": 13102,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.040",
+      "text": "Выйти на этом устройстве",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 5997,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.041",
+      "text": "Личный кеш будет удалён с этого браузера.",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 6032,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.042",
+      "text": "Выйти",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 6165,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.043",
+      "text": "Пусть музыка будет рядом",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 6222,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.044",
+      "text": "Войти или создать аккаунт",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 6330,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.045",
+      "text": "Твой профиль и медиатека будут доступны на твоих устройствах.",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 6366,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.046",
+      "text": "Слова рядом с музыкой",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 6666,
+          "kind": "StringLiteral"
+        },
+        {
+          "file": "customization.tsx",
+          "pos": 7784,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.047",
+      "text": "Настоящий текст из LRC или твоего файла под обложкой.",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 6702,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.048",
+      "text": "Объёмная обложка",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 6885,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.049",
+      "text": "На ПК обложку можно вращать. Плоский режим оставляет только изображение.",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 6916,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.050",
+      "text": "Носитель за обложкой",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 7033,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.051",
+      "text": "Винил или компакт-диск в объёмном режиме.",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 7064,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.052",
+      "text": "Носитель обложки",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 7183,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.053",
+      "text": "Винил",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 7327,
+          "kind": "JsxText"
+        },
+        {
+          "file": "album.tsx",
+          "pos": 5205,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.054",
+      "text": "Громкость этого устройства",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 7427,
+          "kind": "JsxText"
+        },
+        {
+          "file": "account.tsx",
+          "pos": 7603,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.055",
+      "text": "Свайп вбок меняет трек из очереди. Потяни мини плеер вверх, чтобы раскрыть музыку.",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 7760,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.056",
+      "text": "Пуш уведомления",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 8160,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.057",
+      "text": "Приглашения, сообщения и важное от GlukWave.",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 8218,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.058",
+      "text": "Приглашения остаются внутри приложения. Пуш уведомления сейчас недоступны.",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 8265,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.059",
+      "text": "Присутствие в Discord",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 8451,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.060",
+      "text": "Показывать музыку через связанное приложение GlukWave на ПК.",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 8487,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.061",
+      "text": "Открыть подключения",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 8626,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.062",
+      "text": "Твои устройства",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 8802,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.063",
+      "text": "Войди в один аккаунт на телефоне и компьютере. Музыку можно передать вместе с позицией и очередью.",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 8857,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.064",
+      "text": "В сети",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 9158,
+          "kind": "StringLiteral"
+        },
+        {
+          "file": "player-ui.tsx",
+          "pos": 18972,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.065",
+      "text": "Не в сети",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 9167,
+          "kind": "StringLiteral"
+        },
+        {
+          "file": "player-ui.tsx",
+          "pos": 18981,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.066",
+      "text": "Устройства появятся после входа в аккаунт.",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 9238,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.067",
+      "text": "Управлять устройствами",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 9383,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.068",
+      "text": "Play / пауза",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 9635,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.069",
+      "text": "Найти музыку",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 9665,
+          "kind": "StringLiteral"
+        },
+        {
+          "file": "App.tsx",
+          "pos": 11002,
+          "kind": "StringLiteral"
+        },
+        {
+          "file": "pages.tsx",
+          "pos": 20260,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.070",
+      "text": "Предыдущий / следующий трек",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 9690,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.071",
+      "text": "Свернуть плеер или окно",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 9728,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.072",
+      "text": "Клавиши воспроизведения работают, когда курсор находится вне поля ввода.",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 9888,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.073",
+      "text": "Твоя музыка. Твой ритм. Личные файлы, официальные плееры источников и своё пространство для звука.",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 10160,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.074",
+      "text": "Шрифт интерфейса · SIL Open Font License",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 10318,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.075",
+      "text": "Лицензия",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 10471,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.076",
+      "text": "Библиотеки и авторские права",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 10562,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.077",
+      "text": "Музыка внешних источников остаётся у правообладателей. Доступность и условия воспроизведения определяет источник.",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 10704,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.078",
+      "text": "Аватар обновлён",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 11420,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.079",
+      "text": "Баннер обновлён",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 11438,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.080",
+      "text": "МУЗЫКА РАССКАЗЫВАЕТ О ТЕБЕ",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 11575,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.081",
+      "text": "Твой профиль",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 11610,
+          "kind": "StringLiteral"
+        },
+        {
+          "file": "App.tsx",
+          "pos": 14384,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.082",
+      "text": "На своей частоте",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 11659,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.083",
+      "text": "Создать свой профиль",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 11759,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.084",
+      "text": "Аватар, баннер, музыкальные коллекции и немного о себе.",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 11790,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.085",
+      "text": "Загружаем…",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 12241,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.086",
+      "text": "Изменить баннер",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 12254,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.087",
+      "text": "Твой аватар",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 12546,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.088",
+      "text": "НЕМНОГО О ТЕБЕ",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 13203,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.089",
+      "text": "Пара строк о себе, любимом звуке или просто том, что сейчас важно.",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 13285,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.090",
+      "text": "треков",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 13518,
+          "kind": "JsxText"
+        },
+        {
+          "file": "types.ts",
+          "pos": 4561,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.091",
+      "text": "плейлистов",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 13576,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.092",
+      "text": "любимых",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 13637,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.093",
+      "text": "На нашей волне с",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 13731,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.094",
+      "text": "Почта подтверждена",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 13952,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.095",
+      "text": "Почта пока не подтверждена",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 13973,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.096",
+      "text": "Открыть консоль администратора",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 14135,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.097",
+      "text": "МЕСТО ДЛЯ РАЗНОЙ МУЗЫКИ",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 14285,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.098",
+      "text": "На твоей стороне",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 14316,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.099",
+      "text": "ПРОСТО БЫТЬ В МУЗЫКЕ",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 14410,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.100",
+      "text": "Личная медиатека, свои файлы, плейлисты и музыка на твоих устройствах.",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 14438,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.101",
+      "text": "РАНЬШЕ ВСЕХ НА ВОЛНЕ",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 14558,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.102",
+      "text": "Возможности Unbound в бета программе и знак человека, который помогает GlukWave расти.",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 14586,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.103",
+      "text": "НИЧЕГО ЛИШНЕГО МЕЖДУ ВАМИ",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 14730,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.104",
+      "text": "Все доступные возможности без ограничений тарифа. Единственный платный уровень GlukWave.",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 14763,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.105",
+      "text": "Твой уровень",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 15166,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.106",
+      "text": "По приглашению в бета программу",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 15199,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.107",
+      "text": "Подписка на все доступные возможности",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 15288,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.108",
+      "text": "Оформление Unbound сейчас недоступно",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 15328,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.109",
+      "text": "Базовый уровень",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 15368,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.110",
+      "text": "Управлять подпиской",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 15719,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.111",
+      "text": "Открыть Unbound",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 15741,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.112",
+      "text": "Оформление сейчас недоступно",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 15760,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.113",
+      "text": "Подпиской можно управлять в любой момент.",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 15903,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.114",
+      "text": "Оформление Unbound сейчас недоступно.",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 15947,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.115",
+      "text": "Так звучишь ты",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 16021,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.116",
+      "text": "Профиль сохранён",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 16466,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.117",
+      "text": "Имя",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 16514,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.118",
+      "text": "Тег",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 16633,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.119",
+      "text": "О себе",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 16789,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.120",
+      "text": "Теги через запятую",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 16899,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.121",
+      "text": "ambient, вечер, на своей волне",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 16984,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.122",
+      "text": "Анимированные GIF поддерживаются для аватара и баннера.",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 17063,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.123",
+      "text": "Сохранить профиль",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 17171,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.124",
+      "text": "Доступ только для администратора",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 18032,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.125",
+      "text": "Эта консоль открывается для аккаунтов с ролью администратора.",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 18067,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.126",
+      "text": "ВСЁ НА СВОИХ ЧАСТОТАХ",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 18197,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.127",
+      "text": "Консоль GlukWave",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 18227,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.128",
+      "text": "Люди, состояние сервера и важные события.",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 18258,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.129",
+      "text": "Обновить",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 18362,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.130",
+      "text": "Получаем состояние сервера…",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 18406,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.131",
+      "text": "ПОЛЬЗОВАТЕЛИ",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 18556,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.132",
+      "text": "ТРЕКИ",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 18578,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.133",
+      "text": "КОМНАТЫ",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 18592,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.134",
+      "text": "ПЛЕЙЛИСТЫ",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 18612,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.135",
+      "text": "УСТРОЙСТВА",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 18632,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.136",
+      "text": "ХРАНИЛИЩЕ",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 18712,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.137",
+      "text": "Пользователи",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 18827,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.138",
+      "text": "Уровень пользователя обновлён",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 19220,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.139",
+      "text": "Роль обновлена",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 19556,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.140",
+      "text": "Пользователь",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 19596,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.141",
+      "text": "Администратор",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 19639,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.142",
+      "text": "Пользователь разблокирован",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 19860,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.143",
+      "text": "Пользователь заблокирован",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 19889,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.144",
+      "text": "Разблокировать",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 19933,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.145",
+      "text": "Заблокировать",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 19950,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.146",
+      "text": "События",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 20042,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.147",
+      "text": "Система",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 20250,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.148",
+      "text": "Детали",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 20391,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.149",
+      "text": "Пока событий нет.",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 20500,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.150",
+      "text": "Локальная почта",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 20620,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.151",
+      "text": "Реальные письма для подтверждения и восстановления, поставленные в очередь без SMTP.",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 20661,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.152",
+      "text": "Открыть почтовый журнал",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 20948,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.153",
+      "text": "Письмо",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 21113,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.154",
+      "text": "Нет данных от сервера",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 21307,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.155",
+      "text": "Попробуй обновить состояние.",
+      "locations": [
+        {
+          "file": "account.tsx",
+          "pos": 21331,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.156",
+      "text": "Обложка трека",
+      "locations": [
+        {
+          "file": "album.tsx",
+          "pos": 2625,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.157",
+      "text": "НА ТВОЕЙ ВОЛНЕ",
+      "locations": [
+        {
+          "file": "album.tsx",
+          "pos": 4675,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.158",
+      "text": "Оформление обложки",
+      "locations": [
+        {
+          "file": "album.tsx",
+          "pos": 4865,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.159",
+      "text": "Объёмная",
+      "locations": [
+        {
+          "file": "album.tsx",
+          "pos": 5112,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.160",
+      "text": "Плоская",
+      "locations": [
+        {
+          "file": "album.tsx",
+          "pos": 5123,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.161",
+      "text": "Перевернуть обложку",
+      "locations": [
+        {
+          "file": "album.tsx",
+          "pos": 5536,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.162",
+      "text": "Вернуть положение обложки",
+      "locations": [
+        {
+          "file": "album.tsx",
+          "pos": 5740,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.163",
+      "text": "На телефоне: вбок — трек, вниз — свернуть. На ПК обложку можно повернуть.",
+      "locations": [
+        {
+          "file": "album.tsx",
+          "pos": 5949,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.164",
+      "text": "Потяни за обложку или поверни её клавишами со стрелками.",
+      "locations": [
+        {
+          "file": "album.tsx",
+          "pos": 6025,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.165",
+      "text": "Плоская обложка — спокойнее и проще.",
+      "locations": [
+        {
+          "file": "album.tsx",
+          "pos": 6085,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.166",
+      "text": "Нет подключения. Проверь сеть и попробуй ещё раз.",
+      "locations": [
+        {
+          "file": "api.ts",
+          "pos": 594,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.167",
+      "text": "Не получилось выполнить действие. Попробуй ещё раз.",
+      "locations": [
+        {
+          "file": "api.ts",
+          "pos": 816,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.168",
+      "text": "Не получилось выполнить действие.",
+      "locations": [
+        {
+          "file": "api.ts",
+          "pos": 1252,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.169",
+      "text": "Сервис сейчас недоступен. Попробуй позже.",
+      "locations": [
+        {
+          "file": "api.ts",
+          "pos": 1440,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.170",
+      "text": "Главная",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 1152,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.171",
+      "text": "Исследовать",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 1178,
+          "kind": "StringLiteral"
+        },
+        {
+          "file": "pages.tsx",
+          "pos": 3638,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.172",
+      "text": "Медиатека",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 1211,
+          "kind": "StringLiteral"
+        },
+        {
+          "file": "pages.tsx",
+          "pos": 10864,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.173",
+      "text": "Слушать вместе",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 1241,
+          "kind": "StringLiteral"
+        },
+        {
+          "file": "App.tsx",
+          "pos": 14237,
+          "kind": "StringLiteral"
+        },
+        {
+          "file": "community.tsx",
+          "pos": 2576,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.174",
+      "text": "Волна сбилась на мгновение.",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 2814,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.175",
+      "text": "Перезагрузи приложение. Твоя медиатека сохранена.",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 2849,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.176",
+      "text": "Вернуться к музыке",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 2969,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.177",
+      "text": "Не удалось завершить подключение.",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 6213,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.178",
+      "text": "Электронная почта подтверждена.",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 6398,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.179",
+      "text": "Аккаунт источника подключён. Можно выбрать музыку для переноса.",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 6801,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.180",
+      "text": "К содержимому",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 7570,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.181",
+      "text": "GlukWave — главная",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 7715,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.182",
+      "text": "ТВОЁ ПРОСТРАНСТВО",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 7778,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.183",
+      "text": "Главная навигация",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 7836,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.184",
+      "text": "МУЗЫКАЛЬНЫЕ МИРЫ",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 8198,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.185",
+      "text": "Подключить источники",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 8268,
+          "kind": "StringLiteral"
+        },
+        {
+          "file": "App.tsx",
+          "pos": 8302,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.186",
+      "text": "Источники музыки",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 8396,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.187",
+      "text": "Яндекс Музыка",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 8662,
+          "kind": "StringLiteral"
+        },
+        {
+          "file": "types.ts",
+          "pos": 3358,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.188",
+      "text": "ТВОЯ КОЛЛЕКЦИЯ",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 8912,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.189",
+      "text": "Открыть плейлисты",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 8980,
+          "kind": "StringLiteral"
+        },
+        {
+          "file": "App.tsx",
+          "pos": 9011,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.190",
+      "text": "Любимые",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 9246,
+          "kind": "JsxText"
+        },
+        {
+          "file": "pages.tsx",
+          "pos": 11412,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.191",
+      "text": "На устройстве",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 9826,
+          "kind": "JsxText"
+        },
+        {
+          "file": "pages.tsx",
+          "pos": 28374,
+          "kind": "StringLiteral"
+        },
+        {
+          "file": "types.ts",
+          "pos": 3261,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.192",
+      "text": "Совсем твой GlukWave",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 10057,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.193",
+      "text": "Настроить под себя",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 10084,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.194",
+      "text": "Офлайн режим",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 10264,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.195",
+      "text": "На главную",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 10497,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.196",
+      "text": "Предыдущий экран",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 10596,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.197",
+      "text": "Следующий экран",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 10728,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.198",
+      "text": "Музыка, люди, настроение…",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 10963,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.199",
+      "text": "Все разделы",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 11312,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.200",
+      "text": "ТВОЯ МУЗЫКА · ТВОЙ РИТМ",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 11418,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.201",
+      "text": "Включить светлую тему",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 11530,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.202",
+      "text": "Включить тёмную тему",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 11554,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.203",
+      "text": "Открыть профиль",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 12122,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.204",
+      "text": "Войти в аккаунт",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 12140,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.205",
+      "text": "Нет подключения. Сохранённая музыка остаётся доступной.",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 12475,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.206",
+      "text": "Подтверди почту",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 12632,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.207",
+      "text": ", чтобы пользоваться аккаунтом.",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 12666,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.208",
+      "text": "Письмо с подтверждением отправлено",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 12765,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.209",
+      "text": "Отправить письмо снова",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 12804,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.210",
+      "text": "Мобильная навигация",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 13016,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.211",
+      "text": "Поиск",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 13279,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.212",
+      "text": "Вместе",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 13303,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.213",
+      "text": "Музыка, которой поделились",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 13542,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.214",
+      "text": "Послушать трек",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 13924,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.215",
+      "text": "Всё на твоей волне",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 14142,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.216",
+      "text": "Источники и перенос",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 14300,
+          "kind": "StringLiteral"
+        },
+        {
+          "file": "pages.tsx",
+          "pos": 30966,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.217",
+      "text": "Сохранённая музыка",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 14342,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.218",
+      "text": "Консоль администратора",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 14485,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.219",
+      "text": "На твоей волне новое",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 14799,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.220",
+      "text": "Открыть →",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 15064,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.221",
+      "text": "Пока тихо",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 15131,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.222",
+      "text": "Когда появится сообщение или приглашение, ты увидишь его здесь.",
+      "locations": [
+        {
+          "file": "App.tsx",
+          "pos": 15143,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.223",
+      "text": "GlukWave в браузере на ПК",
+      "locations": [
+        {
+          "file": "auth.tsx",
+          "pos": 2429,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.224",
+      "text": "GlukWave в браузере",
+      "locations": [
+        {
+          "file": "auth.tsx",
+          "pos": 2457,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.225",
+      "text": "Ты на своей волне. Добро пожаловать!",
+      "locations": [
+        {
+          "file": "auth.tsx",
+          "pos": 3204,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.226",
+      "text": "Пароль обновлён. Теперь можно войти.",
+      "locations": [
+        {
+          "file": "auth.tsx",
+          "pos": 3978,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.227",
+      "text": "Аккаунт создан. Добро пожаловать на свою волну!",
+      "locations": [
+        {
+          "file": "auth.tsx",
+          "pos": 4293,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.228",
+      "text": "С возвращением!",
+      "locations": [
+        {
+          "file": "auth.tsx",
+          "pos": 4343,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.229",
+      "text": "Твоя музыка начинается здесь",
+      "locations": [
+        {
+          "file": "auth.tsx",
+          "pos": 4489,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.230",
+      "text": "Восстановить доступ",
+      "locations": [
+        {
+          "file": "auth.tsx",
+          "pos": 4536,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.231",
+      "text": "Новый пароль",
+      "locations": [
+        {
+          "file": "auth.tsx",
+          "pos": 4573,
+          "kind": "StringLiteral"
+        },
+        {
+          "file": "auth.tsx",
+          "pos": 6376,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.232",
+      "text": "Войти по QR",
+      "locations": [
+        {
+          "file": "auth.tsx",
+          "pos": 4600,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.233",
+      "text": "С возвращением",
+      "locations": [
+        {
+          "file": "auth.tsx",
+          "pos": 4614,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.234",
+      "text": "Один аккаунт. Все твои музыкальные миры.",
+      "locations": [
+        {
+          "file": "auth.tsx",
+          "pos": 4706,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.235",
+      "text": "Создаём QR код…",
+      "locations": [
+        {
+          "file": "auth.tsx",
+          "pos": 4819,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.236",
+      "text": "QR код для входа в GlukWave",
+      "locations": [
+        {
+          "file": "auth.tsx",
+          "pos": 4895,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.237",
+      "text": "Время кода истекло. Создай новый.",
+      "locations": [
+        {
+          "file": "auth.tsx",
+          "pos": 4944,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.238",
+      "text": "Открой камеру телефона и отсканируй код. Подтверди вход в своём аккаунте.",
+      "locations": [
+        {
+          "file": "auth.tsx",
+          "pos": 4980,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.239",
+      "text": "Действует до",
+      "locations": [
+        {
+          "file": "auth.tsx",
+          "pos": 5082,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.240",
+      "text": "Новый код",
+      "locations": [
+        {
+          "file": "auth.tsx",
+          "pos": 5292,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.241",
+      "text": "Войти по почте",
+      "locations": [
+        {
+          "file": "auth.tsx",
+          "pos": 5393,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.242",
+      "text": "Проверь почту",
+      "locations": [
+        {
+          "file": "auth.tsx",
+          "pos": 5484,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.243",
+      "text": "Если такой аккаунт существует, ссылка для восстановления придёт на указанную почту. Проверь также папку «Спам».",
+      "locations": [
+        {
+          "file": "auth.tsx",
+          "pos": 5505,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.244",
+      "text": "Вернуться ко входу",
+      "locations": [
+        {
+          "file": "auth.tsx",
+          "pos": 5689,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.245",
+      "text": "Как тебя зовут",
+      "locations": [
+        {
+          "file": "auth.tsx",
+          "pos": 5816,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.246",
+      "text": "Имя или любимый ник",
+      "locations": [
+        {
+          "file": "auth.tsx",
+          "pos": 5903,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.247",
+      "text": "Твой уникальный тег",
+      "locations": [
+        {
+          "file": "auth.tsx",
+          "pos": 5968,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.248",
+      "text": "только латиница, цифры и _",
+      "locations": [
+        {
+          "file": "auth.tsx",
+          "pos": 6104,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.249",
+      "text": "Электронная почта",
+      "locations": [
+        {
+          "file": "auth.tsx",
+          "pos": 6197,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.250",
+      "text": "Пароль",
+      "locations": [
+        {
+          "file": "auth.tsx",
+          "pos": 6391,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.251",
+      "text": "Твой пароль",
+      "locations": [
+        {
+          "file": "auth.tsx",
+          "pos": 6579,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.252",
+      "text": "Не меньше 10 символов",
+      "locations": [
+        {
+          "file": "auth.tsx",
+          "pos": 6593,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.253",
+      "text": "Подождём секунду…",
+      "locations": [
+        {
+          "file": "auth.tsx",
+          "pos": 6838,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.254",
+      "text": "Войти",
+      "locations": [
+        {
+          "file": "auth.tsx",
+          "pos": 6873,
+          "kind": "StringLiteral"
+        },
+        {
+          "file": "auth.tsx",
+          "pos": 7975,
+          "kind": "JsxText"
+        },
+        {
+          "file": "community.tsx",
+          "pos": 3104,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.255",
+      "text": "Создать аккаунт",
+      "locations": [
+        {
+          "file": "auth.tsx",
+          "pos": 6899,
+          "kind": "StringLiteral"
+        },
+        {
+          "file": "auth.tsx",
+          "pos": 7820,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.256",
+      "text": "Отправить ссылку",
+      "locations": [
+        {
+          "file": "auth.tsx",
+          "pos": 6933,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.257",
+      "text": "Сохранить пароль",
+      "locations": [
+        {
+          "file": "auth.tsx",
+          "pos": 6952,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.258",
+      "text": "Забыл пароль",
+      "locations": [
+        {
+          "file": "auth.tsx",
+          "pos": 7103,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.259",
+      "text": "или",
+      "locations": [
+        {
+          "file": "auth.tsx",
+          "pos": 7160,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.260",
+      "text": "QR код",
+      "locations": [
+        {
+          "file": "auth.tsx",
+          "pos": 7304,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.261",
+      "text": "Войти через Google",
+      "locations": [
+        {
+          "file": "auth.tsx",
+          "pos": 7438,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.262",
+      "text": "Вход через Google сейчас недоступен",
+      "locations": [
+        {
+          "file": "auth.tsx",
+          "pos": 7459,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.263",
+      "text": "Можно войти по почте или с помощью QR кода.",
+      "locations": [
+        {
+          "file": "auth.tsx",
+          "pos": 7664,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.264",
+      "text": "Первый раз здесь?",
+      "locations": [
+        {
+          "file": "auth.tsx",
+          "pos": 7743,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.265",
+      "text": "Уже на нашей волне?",
+      "locations": [
+        {
+          "file": "auth.tsx",
+          "pos": 7899,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.266",
+      "text": "Ко входу",
+      "locations": [
+        {
+          "file": "auth.tsx",
+          "pos": 8132,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.267",
+      "text": "Подтвердить вход на устройстве",
+      "locations": [
+        {
+          "file": "auth.tsx",
+          "pos": 9146,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.268",
+      "text": "Приложение GlukWave",
+      "locations": [
+        {
+          "file": "auth.tsx",
+          "pos": 9235,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.269",
+      "text": "просит войти в твой аккаунт.",
+      "locations": [
+        {
+          "file": "auth.tsx",
+          "pos": 9257,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.270",
+      "text": "Подтверждай только тот вход, который ты начал сам. QR и ссылки действуют несколько минут.",
+      "locations": [
+        {
+          "file": "auth.tsx",
+          "pos": 9429,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.271",
+      "text": "Вход подтверждён. Можно вернуться на устройство.",
+      "locations": [
+        {
+          "file": "auth.tsx",
+          "pos": 9785,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.272",
+      "text": "Это моё устройство — войти",
+      "locations": [
+        {
+          "file": "auth.tsx",
+          "pos": 9871,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.273",
+      "text": "Сначала войди в свой аккаунт на этом устройстве.",
+      "locations": [
+        {
+          "file": "auth.tsx",
+          "pos": 9956,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.274",
+      "text": "Войти в GlukWave",
+      "locations": [
+        {
+          "file": "auth.tsx",
+          "pos": 10103,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.275",
+      "text": "Этот источник воспроизводится через официальный плеер. Для него сохранение файла недоступно.",
+      "locations": [
+        {
+          "file": "cache.ts",
+          "pos": 3557,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.276",
+      "text": "Не получилось скачать файл.",
+      "locations": [
+        {
+          "file": "cache.ts",
+          "pos": 4366,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.277",
+      "text": "Трек больше лимита кеша. Увеличь лимит в настройках.",
+      "locations": [
+        {
+          "file": "cache.ts",
+          "pos": 4551,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.278",
+      "text": "Трек больше лимита кеша.",
+      "locations": [
+        {
+          "file": "cache.ts",
+          "pos": 4885,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.279",
+      "text": "Загрузка отменена.",
+      "locations": [
+        {
+          "file": "cache.ts",
+          "pos": 5252,
+          "kind": "StringLiteral"
+        },
+        {
+          "file": "cache.ts",
+          "pos": 5764,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.280",
+      "text": "Кеш заполнен сохранёнными треками. Удали несколько файлов или увеличь лимит.",
+      "locations": [
+        {
+          "file": "cache.ts",
+          "pos": 6258,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.281",
+      "text": "Браузеру не хватает места. Освободи память или уменьши кеш.",
+      "locations": [
+        {
+          "file": "cache.ts",
+          "pos": 6587,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.282",
+      "text": "Ты в комнате",
+      "locations": [
+        {
+          "file": "community.tsx",
+          "pos": 2439,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.283",
+      "text": "ОДНА МУЗЫКА НА ТЕБЯ И ТВОИХ",
+      "locations": [
+        {
+          "file": "community.tsx",
+          "pos": 2540,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.284",
+      "text": "Своя комната, любимая музыка и хорошие люди.",
+      "locations": [
+        {
+          "file": "community.tsx",
+          "pos": 2605,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.285",
+      "text": "Создать комнату",
+      "locations": [
+        {
+          "file": "community.tsx",
+          "pos": 2763,
+          "kind": "JsxText"
+        },
+        {
+          "file": "community.tsx",
+          "pos": 9399,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.286",
+      "text": "Ссылка или код приглашения",
+      "locations": [
+        {
+          "file": "community.tsx",
+          "pos": 2938,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.287",
+      "text": "Приглашение в комнату",
+      "locations": [
+        {
+          "file": "community.tsx",
+          "pos": 2978,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.288",
+      "text": "Подключаемся…",
+      "locations": [
+        {
+          "file": "community.tsx",
+          "pos": 3088,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.289",
+      "text": "Хорошо, когда на одной волне",
+      "locations": [
+        {
+          "file": "community.tsx",
+          "pos": 3193,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.290",
+      "text": "Войти и позвать своих",
+      "locations": [
+        {
+          "file": "community.tsx",
+          "pos": 3305,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.291",
+      "text": "Создай комнату, пригласи друзей и слушайте вместе. Доступ к управлению музыкой решаешь ты.",
+      "locations": [
+        {
+          "file": "community.tsx",
+          "pos": 3337,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.292",
+      "text": "Твои комнаты",
+      "locations": [
+        {
+          "file": "community.tsx",
+          "pos": 3531,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.293",
+      "text": "человек",
+      "locations": [
+        {
+          "file": "community.tsx",
+          "pos": 3909,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.294",
+      "text": "участника",
+      "locations": [
+        {
+          "file": "community.tsx",
+          "pos": 3919,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.295",
+      "text": "Твоя комната",
+      "locations": [
+        {
+          "file": "community.tsx",
+          "pos": 4000,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.296",
+      "text": "Пока здесь только ты.",
+      "locations": [
+        {
+          "file": "community.tsx",
+          "pos": 4086,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.297",
+      "text": "А музыка уже может собрать компанию.",
+      "locations": [
+        {
+          "file": "community.tsx",
+          "pos": 4114,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.298",
+      "text": "НА ОБЩЕЙ ЧАСТОТЕ",
+      "locations": [
+        {
+          "file": "community.tsx",
+          "pos": 4285,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.299",
+      "text": "Скопировать приглашение",
+      "locations": [
+        {
+          "file": "community.tsx",
+          "pos": 4366,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.300",
+      "text": "Приглашением делится хозяин комнаты",
+      "locations": [
+        {
+          "file": "community.tsx",
+          "pos": 4392,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.301",
+      "text": "Ссылка скопирована",
+      "locations": [
+        {
+          "file": "community.tsx",
+          "pos": 4672,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.302",
+      "text": "Отключиться от прослушивания",
+      "locations": [
+        {
+          "file": "community.tsx",
+          "pos": 4774,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.303",
+      "text": "Выйти из комнаты",
+      "locations": [
+        {
+          "file": "community.tsx",
+          "pos": 4805,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.304",
+      "text": "Выберите первую музыку",
+      "locations": [
+        {
+          "file": "community.tsx",
+          "pos": 5103,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.305",
+      "text": "Открой медиатеку или поиск, оставаясь в комнате",
+      "locations": [
+        {
+          "file": "community.tsx",
+          "pos": 5162,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.306",
+      "text": "Пауза для всех",
+      "locations": [
+        {
+          "file": "community.tsx",
+          "pos": 5266,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.307",
+      "text": "Воспроизвести вместе",
+      "locations": [
+        {
+          "file": "community.tsx",
+          "pos": 5283,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.308",
+      "text": "Общая позиция трека",
+      "locations": [
+        {
+          "file": "community.tsx",
+          "pos": 5705,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.309",
+      "text": "РЯДОМ С ТОБОЙ",
+      "locations": [
+        {
+          "file": "community.tsx",
+          "pos": 5939,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.310",
+      "text": "Хозяин комнаты",
+      "locations": [
+        {
+          "file": "community.tsx",
+          "pos": 6225,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.311",
+      "text": "Может управлять музыкой",
+      "locations": [
+        {
+          "file": "community.tsx",
+          "pos": 6260,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.312",
+      "text": "Слушает вместе",
+      "locations": [
+        {
+          "file": "community.tsx",
+          "pos": 6286,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.313",
+      "text": "Разрешить управление треками",
+      "locations": [
+        {
+          "file": "community.tsx",
+          "pos": 6441,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.314",
+      "text": "Вместе хорошо даже в тишине.",
+      "locations": [
+        {
+          "file": "community.tsx",
+          "pos": 7287,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.315",
+      "text": "Но первое сообщение тоже можно написать.",
+      "locations": [
+        {
+          "file": "community.tsx",
+          "pos": 7320,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.316",
+      "text": "Написать своим…",
+      "locations": [
+        {
+          "file": "community.tsx",
+          "pos": 7808,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.317",
+      "text": "Сообщение в комнате",
+      "locations": [
+        {
+          "file": "community.tsx",
+          "pos": 7863,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.318",
+      "text": "Отправить сообщение",
+      "locations": [
+        {
+          "file": "community.tsx",
+          "pos": 7904,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.319",
+      "text": "Комната закрыта",
+      "locations": [
+        {
+          "file": "community.tsx",
+          "pos": 8166,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.320",
+      "text": "Закрыть комнату для всех",
+      "locations": [
+        {
+          "file": "community.tsx",
+          "pos": 8205,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.321",
+      "text": "В хорошей компании",
+      "locations": [
+        {
+          "file": "community.tsx",
+          "pos": 8343,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.322",
+      "text": "любая музыка ближе.",
+      "locations": [
+        {
+          "file": "community.tsx",
+          "pos": 8366,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.323",
+      "text": "Создай комнату или открой приглашение.",
+      "locations": [
+        {
+          "file": "community.tsx",
+          "pos": 8393,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.324",
+      "text": "Вы сможете вместе выбирать треки, перематывать и общаться.",
+      "locations": [
+        {
+          "file": "community.tsx",
+          "pos": 8436,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.325",
+      "text": "Создать своё место",
+      "locations": [
+        {
+          "file": "community.tsx",
+          "pos": 8579,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.326",
+      "text": "Место для тебя и твоих",
+      "locations": [
+        {
+          "file": "community.tsx",
+          "pos": 8646,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.327",
+      "text": "Комната готова. Скопируй приглашение и позови друзей.",
+      "locations": [
+        {
+          "file": "community.tsx",
+          "pos": 8974,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.328",
+      "text": "Название комнаты",
+      "locations": [
+        {
+          "file": "community.tsx",
+          "pos": 9093,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.329",
+      "text": "Например, вечер без спешки",
+      "locations": [
+        {
+          "file": "community.tsx",
+          "pos": 9140,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.330",
+      "text": "Ты будешь хозяином комнаты и сможешь разрешать управление музыкой другим участникам.",
+      "locations": [
+        {
+          "file": "community.tsx",
+          "pos": 9223,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.331",
+      "text": "Создаём…",
+      "locations": [
+        {
+          "file": "community.tsx",
+          "pos": 9388,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.332",
+      "text": "Оформление этой темы восстановлено.",
+      "locations": [
+        {
+          "file": "customization.tsx",
+          "pos": 2181,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.333",
+      "text": "Сохраняем…",
+      "locations": [
+        {
+          "file": "customization.tsx",
+          "pos": 2836,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.334",
+      "text": "Синхронизировано",
+      "locations": [
+        {
+          "file": "customization.tsx",
+          "pos": 2878,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.335",
+      "text": "Сохранено на устройстве",
+      "locations": [
+        {
+          "file": "customization.tsx",
+          "pos": 2897,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.336",
+      "text": "Сохранено в этом браузере",
+      "locations": [
+        {
+          "file": "customization.tsx",
+          "pos": 2924,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.337",
+      "text": "Тема приложения",
+      "locations": [
+        {
+          "file": "customization.tsx",
+          "pos": 3102,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.338",
+      "text": "Светлая",
+      "locations": [
+        {
+          "file": "customization.tsx",
+          "pos": 3178,
+          "kind": "StringLiteral"
+        },
+        {
+          "file": "customization.tsx",
+          "pos": 4819,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.339",
+      "text": "Тёмная",
+      "locations": [
+        {
+          "file": "customization.tsx",
+          "pos": 3201,
+          "kind": "StringLiteral"
+        },
+        {
+          "file": "customization.tsx",
+          "pos": 4829,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.340",
+      "text": "Автоматическая",
+      "locations": [
+        {
+          "file": "customization.tsx",
+          "pos": 3226,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.341",
+      "text": "Твоя палитра",
+      "locations": [
+        {
+          "file": "customization.tsx",
+          "pos": 4522,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.342",
+      "text": "Какую палитру настроить",
+      "locations": [
+        {
+          "file": "customization.tsx",
+          "pos": 4591,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.343",
+      "text": "Цвета запоминаются отдельно для светлой и тёмной темы.",
+      "locations": [
+        {
+          "file": "customization.tsx",
+          "pos": 4902,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.344",
+      "text": "Акцент",
+      "locations": [
+        {
+          "file": "customization.tsx",
+          "pos": 5347,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.345",
+      "text": "Свои цвета поверхностей",
+      "locations": [
+        {
+          "file": "customization.tsx",
+          "pos": 5488,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.346",
+      "text": "Фон",
+      "locations": [
+        {
+          "file": "customization.tsx",
+          "pos": 5583,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.347",
+      "text": "Карточки",
+      "locations": [
+        {
+          "file": "customization.tsx",
+          "pos": 5601,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.348",
+      "text": "Текст",
+      "locations": [
+        {
+          "file": "customization.tsx",
+          "pos": 5620,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.349",
+      "text": "Текст немного сливается с фоном. Выбери более контрастные цвета — настройки и сброс всегда останутся видимыми.",
+      "locations": [
+        {
+          "file": "customization.tsx",
+          "pos": 5856,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.350",
+      "text": "Визуализация волны",
+      "locations": [
+        {
+          "file": "customization.tsx",
+          "pos": 6039,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.351",
+      "text": "Шёлк",
+      "locations": [
+        {
+          "file": "customization.tsx",
+          "pos": 6114,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.352",
+      "text": "Частицы",
+      "locations": [
+        {
+          "file": "customization.tsx",
+          "pos": 6135,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.353",
+      "text": "Скругления",
+      "locations": [
+        {
+          "file": "customization.tsx",
+          "pos": 6471,
+          "kind": "JsxText"
+        },
+        {
+          "file": "customization.tsx",
+          "pos": 6601,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.354",
+      "text": "Скорость анимаций",
+      "locations": [
+        {
+          "file": "customization.tsx",
+          "pos": 6745,
+          "kind": "JsxText"
+        },
+        {
+          "file": "customization.tsx",
+          "pos": 6899,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.355",
+      "text": "Анимации",
+      "locations": [
+        {
+          "file": "customization.tsx",
+          "pos": 7131,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.356",
+      "text": "Иконки, волна и окружение.",
+      "locations": [
+        {
+          "file": "customization.tsx",
+          "pos": 7168,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.357",
+      "text": "Декоративное движение выключено.",
+      "locations": [
+        {
+          "file": "customization.tsx",
+          "pos": 7226,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.358",
+      "text": "Устройство просит меньше движения — мы учитываем это.",
+      "locations": [
+        {
+          "file": "customization.tsx",
+          "pos": 7261,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.359",
+      "text": "Размытие фона",
+      "locations": [
+        {
+          "file": "customization.tsx",
+          "pos": 7409,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.360",
+      "text": "Мягкий свет за обложкой и поверхностями.",
+      "locations": [
+        {
+          "file": "customization.tsx",
+          "pos": 7437,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.361",
+      "text": "Компактный интерфейс",
+      "locations": [
+        {
+          "file": "customization.tsx",
+          "pos": 7580,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.362",
+      "text": "Больше музыки на экране, меньше свободного пространства.",
+      "locations": [
+        {
+          "file": "customization.tsx",
+          "pos": 7615,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.363",
+      "text": "Строки настоящего текста под обложкой.",
+      "locations": [
+        {
+          "file": "customization.tsx",
+          "pos": 7820,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.364",
+      "text": "Сбросить оформление этой темы",
+      "locations": [
+        {
+          "file": "customization.tsx",
+          "pos": 7975,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.365",
+      "text": "ЖИВОЙ ПРЕДПРОСМОТР",
+      "locations": [
+        {
+          "file": "customization.tsx",
+          "pos": 8120,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.366",
+      "text": "Совсем твоё пространство.",
+      "locations": [
+        {
+          "file": "customization.tsx",
+          "pos": 8458,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.367",
+      "text": "Твой цвет. Твой ритм. Твоя музыка.",
+      "locations": [
+        {
+          "file": "customization.tsx",
+          "pos": 8494,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.368",
+      "text": "Моя волна",
+      "locations": [
+        {
+          "file": "customization.tsx",
+          "pos": 8705,
+          "kind": "JsxText"
+        },
+        {
+          "file": "home-wave.tsx",
+          "pos": 3589,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.369",
+      "text": "Можно остаться в моменте",
+      "locations": [
+        {
+          "file": "customization.tsx",
+          "pos": 8739,
+          "kind": "JsxText"
+        },
+        {
+          "file": "home-wave.tsx",
+          "pos": 1290,
+          "kind": "StringLiteral"
+        },
+        {
+          "file": "player-ui.tsx",
+          "pos": 13241,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.370",
+      "text": "На твоей волне",
+      "locations": [
+        {
+          "file": "customization.tsx",
+          "pos": 9039,
+          "kind": "StringLiteral"
+        },
+        {
+          "file": "player-ui.tsx",
+          "pos": 3532,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.371",
+      "text": "Музыка, которая будет рядом",
+      "locations": [
+        {
+          "file": "customization.tsx",
+          "pos": 9090,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.372",
+      "text": "Изменения видны сразу.",
+      "locations": [
+        {
+          "file": "customization.tsx",
+          "pos": 9251,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.373",
+      "text": "Светлая и тёмная темы переключаются вместе с устройством.",
+      "locations": [
+        {
+          "file": "customization.tsx",
+          "pos": 9307,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.374",
+      "text": "Оформление можно менять в любой момент.",
+      "locations": [
+        {
+          "file": "customization.tsx",
+          "pos": 9367,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.375",
+      "text": "YouTube не разрешил воспроизведение этого видео. Открой оригинал или выбери другой трек.",
+      "locations": [
+        {
+          "file": "embeds.tsx",
+          "pos": 6003,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.376",
+      "text": "Свернуть источник SoundCloud",
+      "locations": [
+        {
+          "file": "embeds.tsx",
+          "pos": 8271,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.377",
+      "text": "Открыть источник SoundCloud",
+      "locations": [
+        {
+          "file": "embeds.tsx",
+          "pos": 8302,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.378",
+      "text": "· официальный плеер",
+      "locations": [
+        {
+          "file": "embeds.tsx",
+          "pos": 8527,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.379",
+      "text": "Открыть оригинал",
+      "locations": [
+        {
+          "file": "embeds.tsx",
+          "pos": 8634,
+          "kind": "StringLiteral"
+        },
+        {
+          "file": "lofi.tsx",
+          "pos": 13567,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.380",
+      "text": "Загружаем плеер сервиса…",
+      "locations": [
+        {
+          "file": "embeds.tsx",
+          "pos": 9183,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.381",
+      "text": "Доступный фрагмент и полный трек определяет Spotify.",
+      "locations": [
+        {
+          "file": "embeds.tsx",
+          "pos": 9275,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.382",
+      "text": "Под меня",
+      "locations": [
+        {
+          "file": "home-wave.tsx",
+          "pos": 447,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.383",
+      "text": "Любимое. Неожиданное. Твоё.",
+      "locations": [
+        {
+          "file": "home-wave.tsx",
+          "pos": 490,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.384",
+      "text": "Музыка, к которой хочется возвращаться.",
+      "locations": [
+        {
+          "file": "home-wave.tsx",
+          "pos": 520,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.385",
+      "text": "На твоей частоте",
+      "locations": [
+        {
+          "file": "home-wave.tsx",
+          "pos": 571,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.386",
+      "text": "Выдохнуть",
+      "locations": [
+        {
+          "file": "home-wave.tsx",
+          "pos": 622,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.387",
+      "text": "Замедлиться. Почувствовать момент.",
+      "locations": [
+        {
+          "file": "home-wave.tsx",
+          "pos": 662,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.388",
+      "text": "Здесь никуда не нужно спешить.",
+      "locations": [
+        {
+          "file": "home-wave.tsx",
+          "pos": 699,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.389",
+      "text": "Потише мир. Поглубже вдох.",
+      "locations": [
+        {
+          "file": "home-wave.tsx",
+          "pos": 741,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.390",
+      "text": "В потоке",
+      "locations": [
+        {
+          "file": "home-wave.tsx",
+          "pos": 803,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.391",
+      "text": "Только ты и то, что важно.",
+      "locations": [
+        {
+          "file": "home-wave.tsx",
+          "pos": 850,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.392",
+      "text": "Музыка, с которой всё получается.",
+      "locations": [
+        {
+          "file": "home-wave.tsx",
+          "pos": 879,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.393",
+      "text": "Найди свой внутренний ритм",
+      "locations": [
+        {
+          "file": "home-wave.tsx",
+          "pos": 924,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.394",
+      "text": "Почувствовать всё",
+      "locations": [
+        {
+          "file": "home-wave.tsx",
+          "pos": 987,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.395",
+      "text": "Громче сердце. Ярче этот день.",
+      "locations": [
+        {
+          "file": "home-wave.tsx",
+          "pos": 1043,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.396",
+      "text": "Пусть музыка движется с тобой.",
+      "locations": [
+        {
+          "file": "home-wave.tsx",
+          "pos": 1076,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.397",
+      "text": "Больше жизни в каждом бите",
+      "locations": [
+        {
+          "file": "home-wave.tsx",
+          "pos": 1118,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.398",
+      "text": "Помечтать",
+      "locations": [
+        {
+          "file": "home-wave.tsx",
+          "pos": 1182,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.399",
+      "text": "Пока весь мир спит.",
+      "locations": [
+        {
+          "file": "home-wave.tsx",
+          "pos": 1225,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.400",
+      "text": "Мелодии для самых тихих мыслей.",
+      "locations": [
+        {
+          "file": "home-wave.tsx",
+          "pos": 1247,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.401",
+      "text": "Попробуем найти музыку по другому запросу.",
+      "locations": [
+        {
+          "file": "home-wave.tsx",
+          "pos": 3083,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.402",
+      "text": "ПЕРСОНАЛЬНОЕ ПРОСТРАНСТВО",
+      "locations": [
+        {
+          "file": "home-wave.tsx",
+          "pos": 3482,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.403",
+      "text": "Ловим волну…",
+      "locations": [
+        {
+          "file": "home-wave.tsx",
+          "pos": 3823,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.404",
+      "text": "Остановить волну",
+      "locations": [
+        {
+          "file": "home-wave.tsx",
+          "pos": 3846,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.405",
+      "text": "Найти свою волну",
+      "locations": [
+        {
+          "file": "home-wave.tsx",
+          "pos": 3905,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.406",
+      "text": "Поймать волну",
+      "locations": [
+        {
+          "file": "home-wave.tsx",
+          "pos": 3924,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.407",
+      "text": "Добавить свои аудиофайлы",
+      "locations": [
+        {
+          "file": "home-wave.tsx",
+          "pos": 3967,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.408",
+      "text": "НИКАКОЙ СПЕШКИ",
+      "locations": [
+        {
+          "file": "home-wave.tsx",
+          "pos": 4351,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.409",
+      "text": "Как ты сейчас?",
+      "locations": [
+        {
+          "file": "home-wave.tsx",
+          "pos": 4451,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.410",
+      "text": "Лес",
+      "locations": [
+        {
+          "file": "lofi.tsx",
+          "pos": 517,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.411",
+      "text": "Лесное озеро",
+      "locations": [
+        {
+          "file": "lofi.tsx",
+          "pos": 529,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.412",
+      "text": "Океан",
+      "locations": [
+        {
+          "file": "lofi.tsx",
+          "pos": 567,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.413",
+      "text": "У тихого океана",
+      "locations": [
+        {
+          "file": "lofi.tsx",
+          "pos": 581,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.414",
+      "text": "Снег",
+      "locations": [
+        {
+          "file": "lofi.tsx",
+          "pos": 623,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.415",
+      "text": "Снег в лесу",
+      "locations": [
+        {
+          "file": "lofi.tsx",
+          "pos": 636,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.416",
+      "text": "Ночь",
+      "locations": [
+        {
+          "file": "lofi.tsx",
+          "pos": 678,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.417",
+      "text": "Ночь в лесу",
+      "locations": [
+        {
+          "file": "lofi.tsx",
+          "pos": 691,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.418",
+      "text": "Браузер приостановил звук. Нажми «Включить дождь» ещё раз.",
+      "locations": [
+        {
+          "file": "lofi.tsx",
+          "pos": 6575,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.419",
+      "text": "Не удалось включить звук окружения. Проверь разрешение на воспроизведение в браузере.",
+      "locations": [
+        {
+          "file": "lofi.tsx",
+          "pos": 6678,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.420",
+      "text": "ТИШЕ МИР — ГРОМЧЕ МУЗЫКА",
+      "locations": [
+        {
+          "file": "lofi.tsx",
+          "pos": 9358,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.421",
+      "text": "Место для выдоха",
+      "locations": [
+        {
+          "file": "lofi.tsx",
+          "pos": 9390,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.422",
+      "text": "Пиксельные миры. Тёплый звук. Никакой спешки.",
+      "locations": [
+        {
+          "file": "lofi.tsx",
+          "pos": 9472,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.423",
+      "text": "Скрыть всё",
+      "locations": [
+        {
+          "file": "lofi.tsx",
+          "pos": 9610,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.424",
+      "text": "Тихое пространство",
+      "locations": [
+        {
+          "file": "lofi.tsx",
+          "pos": 9758,
+          "kind": "StringLiteral"
+        },
+        {
+          "file": "lofi.tsx",
+          "pos": 11569,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.425",
+      "text": "Canvas Cycle — оригинальная сцена Effect Games",
+      "locations": [
+        {
+          "file": "lofi.tsx",
+          "pos": 10105,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.426",
+      "text": "GLUK LO-FI · ЖИВОЙ ПЕЙЗАЖ",
+      "locations": [
+        {
+          "file": "lofi.tsx",
+          "pos": 10448,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.427",
+      "text": "Вернуть интерфейс",
+      "locations": [
+        {
+          "file": "lofi.tsx",
+          "pos": 10535,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.428",
+      "text": "Скрыть интерфейс",
+      "locations": [
+        {
+          "file": "lofi.tsx",
+          "pos": 10555,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.429",
+      "text": "ты здесь. и этого достаточно.",
+      "locations": [
+        {
+          "file": "lofi.tsx",
+          "pos": 10836,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.430",
+      "text": "Загружаем сцену с сайта авторов…",
+      "locations": [
+        {
+          "file": "lofi.tsx",
+          "pos": 10979,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.431",
+      "text": "Сайт авторов не ответил. Здесь остаётся пейзаж GlukWave.",
+      "locations": [
+        {
+          "file": "lofi.tsx",
+          "pos": 11039,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.432",
+      "text": "Если оригинал не появился, открой его по ссылке ниже.",
+      "locations": [
+        {
+          "file": "lofi.tsx",
+          "pos": 11098,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.433",
+      "text": "Вода, свет и немного тишины.",
+      "locations": [
+        {
+          "file": "lofi.tsx",
+          "pos": 11154,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.434",
+      "text": "Вернуть пейзаж Gluk",
+      "locations": [
+        {
+          "file": "lofi.tsx",
+          "pos": 11376,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.435",
+      "text": "Загрузить Canvas Cycle",
+      "locations": [
+        {
+          "file": "lofi.tsx",
+          "pos": 11398,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.436",
+      "text": "Дождь ·",
+      "locations": [
+        {
+          "file": "lofi.tsx",
+          "pos": 11532,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.437",
+      "text": "Остановить звук",
+      "locations": [
+        {
+          "file": "lofi.tsx",
+          "pos": 11652,
+          "kind": "JsxText"
+        },
+        {
+          "file": "lofi.tsx",
+          "pos": 12619,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.438",
+      "text": "ТВОЙ МАЛЕНЬКИЙ МИР",
+      "locations": [
+        {
+          "file": "lofi.tsx",
+          "pos": 11765,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.439",
+      "text": "ЗВУК ОКРУЖЕНИЯ",
+      "locations": [
+        {
+          "file": "lofi.tsx",
+          "pos": 12096,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.440",
+      "text": "Дождь",
+      "locations": [
+        {
+          "file": "lofi.tsx",
+          "pos": 12149,
+          "kind": "JsxText"
+        },
+        {
+          "file": "lofi.tsx",
+          "pos": 12947,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.441",
+      "text": "Громкость дождя",
+      "locations": [
+        {
+          "file": "lofi.tsx",
+          "pos": 12179,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.442",
+      "text": "Включаем…",
+      "locations": [
+        {
+          "file": "lofi.tsx",
+          "pos": 12600,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.443",
+      "text": "Включить дождь",
+      "locations": [
+        {
+          "file": "lofi.tsx",
+          "pos": 12637,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.444",
+      "text": "Дождь звучит на этом устройстве",
+      "locations": [
+        {
+          "file": "lofi.tsx",
+          "pos": 12722,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.445",
+      "text": "Дождь включён · громкость 0%",
+      "locations": [
+        {
+          "file": "lofi.tsx",
+          "pos": 12756,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.446",
+      "text": "Звук выключен",
+      "locations": [
+        {
+          "file": "lofi.tsx",
+          "pos": 12787,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.447",
+      "text": "Атмосфера",
+      "locations": [
+        {
+          "file": "lofi.tsx",
+          "pos": 12894,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.448",
+      "text": "Светлячки",
+      "locations": [
+        {
+          "file": "lofi.tsx",
+          "pos": 12926,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.449",
+      "text": "Только пейзаж",
+      "locations": [
+        {
+          "file": "lofi.tsx",
+          "pos": 12964,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.450",
+      "text": "Пейзаж движется в твоём ритме.",
+      "locations": [
+        {
+          "file": "lofi.tsx",
+          "pos": 13252,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.451",
+      "text": "Меньше движения включено — пейзаж остаётся спокойным.",
+      "locations": [
+        {
+          "file": "lofi.tsx",
+          "pos": 13285,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.452",
+      "text": "Звук окружения выключается, когда ты покидаешь этот экран.",
+      "locations": [
+        {
+          "file": "lofi.tsx",
+          "pos": 13341,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.453",
+      "text": "Canvas Cycle: Joseph Huckaby / Effect Games · сцены: Mark Ferrari.",
+      "locations": [
+        {
+          "file": "lofi.tsx",
+          "pos": 13436,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.454",
+      "text": "Оригинальные сцены загружаются с сайта авторов. Пейзаж GlukWave работает на устройстве и без сети.",
+      "locations": [
+        {
+          "file": "lofi.tsx",
+          "pos": 13624,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.455",
+      "text": "Можно просто побыть здесь.",
+      "locations": [
+        {
+          "file": "lofi.tsx",
+          "pos": 14031,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.456",
+      "text": "Живые пейзажи, дождь и немного тишины.",
+      "locations": [
+        {
+          "file": "lofi.tsx",
+          "pos": 14067,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.457",
+      "text": "Открыть тихий мир",
+      "locations": [
+        {
+          "file": "lofi.tsx",
+          "pos": 14177,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.458",
+      "text": "Тише мира",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 851,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.459",
+      "text": "Lo-fi & тихие вечера",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 921,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.460",
+      "text": "После заката",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 951,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.461",
+      "text": "Jazz & ночной город",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 1029,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.462",
+      "text": "Глубже в себя",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 1058,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.463",
+      "text": "Ambient & мысли",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 1142,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.464",
+      "text": "Новая лёгкость",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 1167,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.465",
+      "text": "Indie & хорошие дни",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 1246,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.466",
+      "text": "Свободный полёт",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 1275,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.467",
+      "text": "Electronic & движение",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 1355,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.468",
+      "text": "Доброй ночи",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 1527,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.469",
+      "text": "Доброе утро",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 1549,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.470",
+      "text": "Добрый день",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 1571,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.471",
+      "text": "Добрый вечер",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 1585,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.472",
+      "text": "ТВОЙ МАЛЕНЬКИЙ МУЗЫКАЛЬНЫЙ МИР",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 2075,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.473",
+      "text": "Всё, что любишь. На одной волне.",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 2234,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.474",
+      "text": "Собрать свою музыку",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 2544,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.475",
+      "text": "Твои любимые",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 2775,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.476",
+      "text": "Получаем любимое…",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 2835,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.477",
+      "text": "Здесь будет то, что тронуло",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 2927,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.478",
+      "text": "Ближе к музыке",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 3126,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.479",
+      "text": "Получаем медиатеку…",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 3203,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.480",
+      "text": "Добавь файлы с устройства",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 3310,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.481",
+      "text": "НАЙДИ СВОЁ НАСТРОЕНИЕ",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 3507,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.482",
+      "text": "Может быть, это твоё",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 3536,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.483",
+      "text": "ПОИСК ПО НАСТРОЕНИЮ",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 4077,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.484",
+      "text": "МУЗЫКА ПОМНИТ",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 4365,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.485",
+      "text": "Недавно на твоей волне",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 4401,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.486",
+      "text": "Твоя история начинается здесь",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 4426,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.487",
+      "text": "Всё",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 4559,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.488",
+      "text": "Первый трек — первый момент.",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 4777,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.489",
+      "text": "Слушай свои файлы или найди музыку в поиске.",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 4812,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.490",
+      "text": "Найти что-нибудь",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 4939,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.491",
+      "text": "МУЗЫКА СБЛИЖАЕТ",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 5106,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.492",
+      "text": "Хорошо, когда",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 5132,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.493",
+      "text": "на одной волне.",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 5150,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.494",
+      "text": "Создай комнату и позови своих",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 5201,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.495",
+      "text": "На своей частоте. В своём ритме.",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 5322,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.496",
+      "text": "ВСЁ, ЧТО ХОЧЕТСЯ УСЛЫШАТЬ",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 6968,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.497",
+      "text": "Найди своё",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 7002,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.498",
+      "text": "Трек, исполнитель, настроение — или просто ссылка из любимого сервиса.",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 7027,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.499",
+      "text": "Поиск музыки",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 7282,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.500",
+      "text": "Что сегодня на твоей волне?",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 7309,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.501",
+      "text": "Очистить поиск",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 7382,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.502",
+      "text": "Все сервисы",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 7693,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.503",
+      "text": "Возможно, ты искал",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 7802,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.504",
+      "text": "Кажется, раскладка слегка заблудилась.",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 7898,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.505",
+      "text": "Некоторые источники сейчас недоступны",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 8076,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.506",
+      "text": "Не удалось получить результаты. Попробуй позже.",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 8239,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.507",
+      "text": "Ищем на твоей частоте…",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 8333,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.508",
+      "text": "От чего оттолкнёмся?",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 8471,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.509",
+      "text": "Есть ссылка на любимый трек?",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 8898,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.510",
+      "text": "Вставь её в поиск — GlukWave откроет официальный плеер источника.",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 8933,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.511",
+      "text": "Моя медиатека GlukWave",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 10342,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.512",
+      "text": "ЗДЕСЬ ЖИВЁТ ТВОЁ",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 10822,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.513",
+      "text": "Маленькая коллекция больших чувств.",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 10913,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.514",
+      "text": "Добавить музыку",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 11031,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.515",
+      "text": "Музыке нужен свой дом",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 11102,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.516",
+      "text": "Войти и собрать медиатеку",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 11207,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.517",
+      "text": "Твои любимые, плейлисты и история будут рядом на каждом устройстве.",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 11243,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.518",
+      "text": "Все треки",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 11390,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.519",
+      "text": "История",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 11434,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.520",
+      "text": "Плейлист",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 11684,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.521",
+      "text": "Экспортировать медиатеку JSON",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 11719,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.522",
+      "text": "← Все плейлисты",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 12651,
+          "kind": "JsxText"
+        },
+        {
+          "file": "pages.tsx",
+          "pos": 23707,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.523",
+      "text": "Слушать",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 12809,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.524",
+      "text": "Редактировать",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 12889,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.525",
+      "text": "НАЗВАНИЕ",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 12975,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.526",
+      "text": "ИСТОЧНИК",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 12996,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.527",
+      "text": "ВРЕМЯ",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 13017,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.528",
+      "text": "Сохраняй то, что откликается",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 13143,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.529",
+      "text": "Пока тихо — самое время начать",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 13193,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.530",
+      "text": "Здесь начинается твоя коллекция",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 13226,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.531",
+      "text": "Изменить состав плейлиста",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 13338,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.532",
+      "text": "Убрать из плейлиста",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 13499,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.533",
+      "text": "Плейлист, как ты чувствуешь",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 13825,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.534",
+      "text": "Новый маленький мир",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 13855,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.535",
+      "text": "Плейлист обновлён",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 14280,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.536",
+      "text": "Плейлист создан",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 14300,
+          "kind": "StringLiteral"
+        },
+        {
+          "file": "ui.tsx",
+          "pos": 8298,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.537",
+      "text": "Название",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 14347,
+          "kind": "JsxText"
+        },
+        {
+          "file": "pages.tsx",
+          "pos": 16487,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.538",
+      "text": "Для вечеров без спешки",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 14412,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.539",
+      "text": "Описание",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 14496,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.540",
+      "text": "О чём эта музыка?",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 14578,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.541",
+      "text": "Сохранить",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 14687,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.542",
+      "text": "Создать плейлист",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 14699,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.543",
+      "text": "Плейлист удалён",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 14962,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.544",
+      "text": "Удалить плейлист",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 15001,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.545",
+      "text": "Музыка, которая уже с тобой",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 15268,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.546",
+      "text": "Добавь свои аудиофайлы. Они появятся в медиатеке и будут доступны другим твоим устройствам.",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 15337,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.547",
+      "text": "Музыка добавлена в медиатеку",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 15977,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.548",
+      "text": "файл выбран",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 16179,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.549",
+      "text": "файлов выбрано",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 16193,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.550",
+      "text": "Выбери файлы или перетащи сюда",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 16212,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.551",
+      "text": "Исполнитель",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 16616,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.552",
+      "text": "Из метаданных файла",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 16660,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.553",
+      "text": "Добавить в медиатеку",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 17132,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.554",
+      "text": "Добавляй файлы, которыми можешь пользоваться. Автоматический кеш можно настроить отдельно.",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 17213,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.555",
+      "text": "СОБРАТЬ СВОЁ В ОДНОМ МЕСТЕ",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 19071,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.556",
+      "text": "Музыка без границ",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 19106,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.557",
+      "text": "Твои треки живут в разных местах. Здесь они рядом.",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 19138,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.558",
+      "text": "Подключено",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 19706,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.559",
+      "text": "Поиск доступен",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 19735,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.560",
+      "text": "Готов к подключению",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 19771,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.561",
+      "text": "Перенос пока недоступен",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 19793,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.562",
+      "text": "Любимые находки и независимый звук.",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 19888,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.563",
+      "text": "Плейлисты, которые собирались годами.",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 19945,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.564",
+      "text": "Твои песни и любимые подборки.",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 20003,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.565",
+      "text": "Музыка, клипы и целые музыкальные миры.",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 20036,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.566",
+      "text": "Выбрать музыку",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 20432,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.567",
+      "text": "Аккаунт отключён",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 20615,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.568",
+      "text": "Отключить аккаунт",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 20636,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.569",
+      "text": "Импорт аккаунта пока недоступен",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 20852,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.570",
+      "text": "Подключить аккаунт",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 20897,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.571",
+      "text": "Войти и подключить",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 20918,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.572",
+      "text": "Поиск и воспроизведение доступны без аккаунта. Личную библиотеку можно перенести из готового экспорта.",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 21069,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.573",
+      "text": "Можно перенести музыку из готового экспорта CSV / JSON.",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 21229,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.574",
+      "text": "Подключение аккаунта этого сервиса пока недоступно.",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 21287,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.575",
+      "text": "Проверяем подключения…",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 21396,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.576",
+      "text": "У тебя уже есть экспорт?",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 21536,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.577",
+      "text": "Перенеси плейлист из JSON или CSV: названия, исполнители и ссылки на треки.",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 21568,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.578",
+      "text": "Выбрать файл",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 21715,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.579",
+      "text": "Как работают источники и перенос",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 22377,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.580",
+      "text": "GlukWave хранит твою медиатеку и ссылки на треки. Внешняя музыка воспроизводится через официальные плееры: ограничения аккаунта и доступность определяет сам сервис. Скачивать и автоматически кешировать можно свои локальные аудиофайлы.",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 22422,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.581",
+      "text": "Вход в музыкальный аккаунт проходит на странице самого сервиса. Можно также перенести плейлист из готового экспорта с названиями и ссылками на треки.",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 22663,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.582",
+      "text": "CSV: title, artist, sourceUrl. JSON: массив tracks с теми же полями. Файлы аудио загружаются отдельно в медиатеке.",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 22819,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.583",
+      "text": "Получаем твою музыку…",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 23154,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.584",
+      "text": "Аккаунт подключён, а здесь пока тихо",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 23521,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.585",
+      "text": "В источнике не найдено доступных для переноса плейлистов.",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 23560,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.586",
+      "text": "Выбрано",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 23776,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.587",
+      "text": "из",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 23800,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.588",
+      "text": "Снять выбор",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 24025,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.589",
+      "text": "Выбрать всё",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 24039,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.590",
+      "text": "Переносим музыку…",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 24955,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.591",
+      "text": "Перенести выбранное",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 24975,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.592",
+      "text": "Здесь показана часть большого плейлиста. Можно перенести выбранные треки или плейлист целиком.",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 25055,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.593",
+      "text": "Перенести плейлист целиком",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 25524,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.594",
+      "text": "Оставайся на виду у своих",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 25989,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.595",
+      "text": "Привяжи Discord к профилю. Присутствие «слушает GlukWave» работает через запущенное приложение на ПК.",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 26022,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.596",
+      "text": "Discord отключён",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 26403,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.597",
+      "text": "Отключить Discord",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 26504,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.598",
+      "text": "Привязать Discord",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 26524,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.599",
+      "text": "Код не подошёл. Включи присутствие в приложении GlukWave на ПК и скопируй новый код.",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 27027,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.600",
+      "text": "Присутствие Discord связано с этой вкладкой",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 27228,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.601",
+      "text": "Код подключения Discord из программы на ПК",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 27355,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.602",
+      "text": "Код из программы на ПК",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 27412,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.603",
+      "text": "Связать",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 27559,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.604",
+      "text": "Подключение аккаунта Discord пока недоступно. Показ музыки можно связать с открытым приложением GlukWave на компьютере.",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 27639,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.605",
+      "text": "МУЗЫКА ОСТАЁТСЯ С ТОБОЙ",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 28342,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.606",
+      "text": "Твоя музыка доступна, даже когда вокруг нет сети.",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 28402,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.607",
+      "text": "ЗАНЯТО В КЕШЕ",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 28498,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.608",
+      "text": "МБ",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 28574,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.609",
+      "text": "Кеш на этом устройстве очищен",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 28840,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.610",
+      "text": "Очистить кеш",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 28893,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.611",
+      "text": "Скачан вручную",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 29366,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.612",
+      "text": "Автоматический кеш",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 29383,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.613",
+      "text": "Удалить файл из кеша",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 29487,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.614",
+      "text": "Файл удалён с устройства",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 29586,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.615",
+      "text": "Можно подготовиться к дороге",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 29698,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.616",
+      "text": "Открыть медиатеку",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 29812,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.617",
+      "text": "Локальные файлы автоматически кешируются при прослушивании. Также их можно сохранить кнопкой «Скачать» в плеере.",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 29863,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.618",
+      "text": "Этот кеш хранится в браузере и относится к твоему аккаунту. Выход из аккаунта удаляет его с этого устройства. Плееры внешних сервисов требуют подключения.",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 30010,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.619",
+      "text": "Поиск сейчас недоступен",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 30589,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.620",
+      "text": "Этот источник пока недоступен",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 30615,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.621",
+      "text": "По этому запросу пока ничего не нашлось",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 30648,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.622",
+      "text": "Добавить свои файлы",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 30847,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.623",
+      "text": "Можно поискать музыку в SoundCloud, открыть ссылку на трек или добавить свои файлы.",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 31015,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.624",
+      "text": "Попробуй другое название или исполнителя. Можно добавить музыку с устройства или перенести свой плейлист.",
+      "locations": [
+        {
+          "file": "pages.tsx",
+          "pos": 31101,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.625",
+      "text": "В комнате очередь управляется общими командами",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 1013,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.626",
+      "text": "Перемешать очередь",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 1062,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.627",
+      "text": "Предыдущий трек",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 1302,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.628",
+      "text": "Пауза",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 1528,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.629",
+      "text": "Воспроизвести",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 1536,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.630",
+      "text": "Следующий трек",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 1729,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.631",
+      "text": "Включить повтор",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 1952,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.632",
+      "text": "Повтор одного трека",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 1992,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.633",
+      "text": "Выключить повтор",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 2014,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.634",
+      "text": "Позиция воспроизведения",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 2749,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.635",
+      "text": "Музыкальный плеер",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 3161,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.636",
+      "text": "Выбери музыку — и можно выдохнуть",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 3576,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.637",
+      "text": "Убрать из любимого",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 3698,
+          "kind": "StringLiteral"
+        },
+        {
+          "file": "player-ui.tsx",
+          "pos": 11459,
+          "kind": "StringLiteral"
+        },
+        {
+          "file": "ui.tsx",
+          "pos": 6790,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.638",
+      "text": "Добавить в любимое",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 3719,
+          "kind": "StringLiteral"
+        },
+        {
+          "file": "player-ui.tsx",
+          "pos": 11480,
+          "kind": "StringLiteral"
+        },
+        {
+          "file": "ui.tsx",
+          "pos": 6811,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.639",
+      "text": "Развернуть плеер",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 4160,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.640",
+      "text": "Очередь воспроизведения",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 4285,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.641",
+      "text": "Выключить звук",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 4605,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.642",
+      "text": "Включить звук",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 4622,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.643",
+      "text": "Громкость",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 4887,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.644",
+      "text": "Нажми, чтобы включить звук",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 5117,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.645",
+      "text": "Развёрнутый музыкальный плеер",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 9757,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.646",
+      "text": "Свернуть плеер",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 10347,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.647",
+      "text": "СЕЙЧАС НА ТВОЕЙ ВОЛНЕ",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 10458,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.648",
+      "text": "Твоя музыка",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 10509,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.649",
+      "text": "Мини плеер поверх окон",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 10551,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.650",
+      "text": "Разделы плеера",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 10706,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.651",
+      "text": "Плеер",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 10735,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.652",
+      "text": "Слова",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 10754,
+          "kind": "StringLiteral"
+        },
+        {
+          "file": "player-ui.tsx",
+          "pos": 12593,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.653",
+      "text": "Очередь",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 10772,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.654",
+      "text": "Комментарии",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 10795,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.655",
+      "text": "В плейлист",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 12090,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.656",
+      "text": "Добавить слова к этой музыке",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 12409,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.657",
+      "text": "Открыть текст",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 12666,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.658",
+      "text": "Получаем слова…",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 12733,
+          "kind": "StringLiteral"
+        },
+        {
+          "file": "player-ui.tsx",
+          "pos": 13888,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.659",
+      "text": "Текст можно добавить из LRC или файла.",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 13009,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.660",
+      "text": "ДАЛЬШЕ ПО ВОЛНЕ",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 13082,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.661",
+      "text": "Твоя очередь",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 13105,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.662",
+      "text": "Просто останься в музыке.",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 13334,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.663",
+      "text": "Файл можно сохранить для офлайн прослушивания.",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 13390,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.664",
+      "text": "Музыка играет в официальном плеере источника.",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 13439,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.665",
+      "text": "СИНХРОНИЗИРОВАННЫЙ ТЕКСТ",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 13648,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.666",
+      "text": "СЛОВА К МУЗЫКЕ",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 13675,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.667",
+      "text": "Добавить LRC / текст",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 13814,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.668",
+      "text": "У этой музыки пока нет текста",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 14379,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.669",
+      "text": "Владелец файла может добавить настоящий текст или LRC файл с отметками времени.",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 14411,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.670",
+      "text": "Дальше по волне",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 14591,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.671",
+      "text": "Удалить из очереди",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 14925,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.672",
+      "text": "Что слышишь ты?",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 15104,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.673",
+      "text": "Комментарии в моменте",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 15148,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.674",
+      "text": "Оставь мысль на этой секунде…",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 15596,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.675",
+      "text": "Комментарий",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 15665,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.676",
+      "text": "Отправить комментарий",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 15740,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.677",
+      "text": "Получаем комментарии…",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 15854,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.678",
+      "text": "Удалить комментарий",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 16471,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.679",
+      "text": "Первое слово за тобой",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 16744,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.680",
+      "text": "Отметка времени останется вместе с комментарием.",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 16768,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.681",
+      "text": "Слова к твоему треку",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 16869,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.682",
+      "text": "Текст добавлен",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 17241,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.683",
+      "text": "Текст или LRC",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 17287,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.684",
+      "text": "[00:12.00] Первая строка…",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 17362,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.685",
+      "text": "Загрузить .lrc / .txt",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 17437,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.686",
+      "text": "Выбери текстовый файл меньше 200 КБ.",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 17698,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.687",
+      "text": "В файле пока нет текста.",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 17891,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.688",
+      "text": "Открыты первые 50 000 символов текста.",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 17963,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.689",
+      "text": "Твои слова сохранятся в аккаунте. Для музыки из внешнего сервиса текст будет виден только тебе.",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 18124,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.690",
+      "text": "Сохранить слова",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 18272,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.691",
+      "text": "Музыка рядом с тобой",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 18417,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.692",
+      "text": "Выбирай, откуда звучит музыка. Войди в один аккаунт на своих устройствах — они появятся здесь.",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 18504,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.693",
+      "text": "Это устройство",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 18941,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.694",
+      "text": "Сейчас слушает музыку",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 19106,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.695",
+      "text": "Предыдущий трек на устройстве",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 19238,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.696",
+      "text": "Пауза на устройстве",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 19443,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.697",
+      "text": "Воспроизвести на устройстве",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 19465,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.698",
+      "text": "Следующий трек на устройстве",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 19710,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.699",
+      "text": "Передаём воспроизведение на устройство",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 20127,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.700",
+      "text": "Слушать здесь",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 20170,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.701",
+      "text": "Подключаем это устройство",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 20326,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.702",
+      "text": "Войди в свой аккаунт на телефоне или другом компьютере — они появятся здесь.",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 20354,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.703",
+      "text": "На новом устройстве сначала нажми «Воспроизвести». После этого можно управлять музыкой отсюда.",
+      "locations": [
+        {
+          "file": "player-ui.tsx",
+          "pos": 20471,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.704",
+      "text": "Браузер ждёт твоего нажатия. Нажми «Воспроизвести», чтобы включить звук.",
+      "locations": [
+        {
+          "file": "player.tsx",
+          "pos": 7427,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.705",
+      "text": "Браузер устройства не разрешил звук. Открой GlukWave на нём и нажми Play.",
+      "locations": [
+        {
+          "file": "player.tsx",
+          "pos": 7529,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.706",
+      "text": "Нажми Play в официальном плеере Яндекс Музыки. Его воспроизведение управляется внутри виджета.",
+      "locations": [
+        {
+          "file": "player.tsx",
+          "pos": 7847,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.707",
+      "text": "Яндекс Музыка требует нажатия Play внутри официального виджета на устройстве.",
+      "locations": [
+        {
+          "file": "player.tsx",
+          "pos": 7971,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.708",
+      "text": "Плеер источника не начал воспроизведение. Разреши звук на устройстве.",
+      "locations": [
+        {
+          "file": "player.tsx",
+          "pos": 8363,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.709",
+      "text": "Перемотка доступна в официальном плеере этого сервиса.",
+      "locations": [
+        {
+          "file": "player.tsx",
+          "pos": 10682,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.710",
+      "text": "На устройстве ещё не выбран трек.",
+      "locations": [
+        {
+          "file": "player.tsx",
+          "pos": 10829,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.711",
+      "text": "Внешний плеер не разрешил воспроизведение на устройстве.",
+      "locations": [
+        {
+          "file": "player.tsx",
+          "pos": 11484,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.712",
+      "text": "Включи звук в официальном плеере источника.",
+      "locations": [
+        {
+          "file": "player.tsx",
+          "pos": 11576,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.713",
+      "text": "Этот источник требует управления внутри своего плеера.",
+      "locations": [
+        {
+          "file": "player.tsx",
+          "pos": 11649,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.714",
+      "text": "Нет ответа от комнаты. Проверь подключение.",
+      "locations": [
+        {
+          "file": "player.tsx",
+          "pos": 12492,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.715",
+      "text": "Не удалось открыть аудиофайл. Попробуй запустить трек снова.",
+      "locations": [
+        {
+          "file": "player.tsx",
+          "pos": 14020,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.716",
+      "text": "GlukWave — твоя музыка",
+      "locations": [
+        {
+          "file": "player.tsx",
+          "pos": 14792,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.717",
+      "text": "Компьютер",
+      "locations": [
+        {
+          "file": "player.tsx",
+          "pos": 16084,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.718",
+      "text": "Браузер",
+      "locations": [
+        {
+          "file": "player.tsx",
+          "pos": 16096,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.719",
+      "text": "Владелец закрыл комнату.",
+      "locations": [
+        {
+          "file": "player.tsx",
+          "pos": 18726,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.720",
+      "text": "Подключение к комнате ещё устанавливается. Попробуй через секунду.",
+      "locations": [
+        {
+          "file": "player.tsx",
+          "pos": 19272,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.721",
+      "text": "Не удалось подключиться к комнате.",
+      "locations": [
+        {
+          "file": "player.tsx",
+          "pos": 19578,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.722",
+      "text": "Нажми Play в плеере источника, чтобы разрешить звук.",
+      "locations": [
+        {
+          "file": "player.tsx",
+          "pos": 20562,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.723",
+      "text": "Разреши всплывающие окна для GlukWave и попробуй ещё раз.",
+      "locations": [
+        {
+          "file": "player.tsx",
+          "pos": 22285,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.724",
+      "text": "Мини плеер открыт. Закрепление поверх окон зависит от возможностей браузера.",
+      "locations": [
+        {
+          "file": "player.tsx",
+          "pos": 22359,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.725",
+      "text": "Тёплая бумага",
+      "locations": [
+        {
+          "file": "preferences.ts",
+          "pos": 5714,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.726",
+      "text": "Тихая ночь",
+      "locations": [
+        {
+          "file": "preferences.ts",
+          "pos": 5822,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.727",
+      "text": "Чуть ближе к природе",
+      "locations": [
+        {
+          "file": "preferences.ts",
+          "pos": 5958,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.728",
+      "text": "Мягкий лиловый",
+      "locations": [
+        {
+          "file": "preferences.ts",
+          "pos": 6107,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.729",
+      "text": "Для этого действия нужно подключение. Сохранённую музыку можно слушать без сети.",
+      "locations": [
+        {
+          "file": "store.tsx",
+          "pos": 12893,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.730",
+      "text": "Ты вышел из аккаунта. Личные загрузки на этом устройстве удалены.",
+      "locations": [
+        {
+          "file": "store.tsx",
+          "pos": 14426,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.731",
+      "text": "трек",
+      "locations": [
+        {
+          "file": "types.ts",
+          "pos": 4546,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.732",
+      "text": "трека",
+      "locations": [
+        {
+          "file": "types.ts",
+          "pos": 4553,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.733",
+      "text": "музыку",
+      "locations": [
+        {
+          "file": "ui.tsx",
+          "pos": 2782,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.734",
+      "text": "Получаем музыку…",
+      "locations": [
+        {
+          "file": "ui.tsx",
+          "pos": 2953,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.735",
+      "text": "Собираем твою музыку…",
+      "locations": [
+        {
+          "file": "ui.tsx",
+          "pos": 3515,
+          "kind": "StringLiteral"
+        },
+        {
+          "file": "ui.tsx",
+          "pos": 3565,
+          "kind": "JsxText"
+        },
+        {
+          "file": "ui.tsx",
+          "pos": 4398,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.736",
+      "text": "Закрыть",
+      "locations": [
+        {
+          "file": "ui.tsx",
+          "pos": 5071,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.737",
+      "text": "Здесь появится твоя музыка",
+      "locations": [
+        {
+          "file": "ui.tsx",
+          "pos": 5643,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.738",
+      "text": "Неизвестный исполнитель",
+      "locations": [
+        {
+          "file": "ui.tsx",
+          "pos": 6405,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.739",
+      "text": "Сохранён на этом устройстве",
+      "locations": [
+        {
+          "file": "ui.tsx",
+          "pos": 6589,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.740",
+      "text": "Добавить в плейлист",
+      "locations": [
+        {
+          "file": "ui.tsx",
+          "pos": 7168,
+          "kind": "StringLiteral"
+        },
+        {
+          "file": "ui.tsx",
+          "pos": 7531,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.741",
+      "text": "Добавь файлы с устройства или перенеси плейлисты из любимого сервиса.",
+      "locations": [
+        {
+          "file": "ui.tsx",
+          "pos": 7326,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.742",
+      "text": "Трек в плейлисте",
+      "locations": [
+        {
+          "file": "ui.tsx",
+          "pos": 7925,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.743",
+      "text": "Новый плейлист",
+      "locations": [
+        {
+          "file": "ui.tsx",
+          "pos": 8345,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.744",
+      "text": "Например, на хорошей волне",
+      "locations": [
+        {
+          "file": "ui.tsx",
+          "pos": 8390,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.745",
+      "text": "Создать с этим треком",
+      "locations": [
+        {
+          "file": "ui.tsx",
+          "pos": 8519,
+          "kind": "JsxText"
+        }
+      ]
+    },
+    {
+      "key": "copy.746",
+      "text": "Трек сохранён на устройстве",
+      "locations": [
+        {
+          "file": "ui.tsx",
+          "pos": 9008,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.747",
+      "text": "Сохранён",
+      "locations": [
+        {
+          "file": "ui.tsx",
+          "pos": 9148,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.748",
+      "text": "Закрепить файл",
+      "locations": [
+        {
+          "file": "ui.tsx",
+          "pos": 9213,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.749",
+      "text": "Скачать",
+      "locations": [
+        {
+          "file": "ui.tsx",
+          "pos": 9230,
+          "kind": "StringLiteral"
+        }
+      ]
+    },
+    {
+      "key": "copy.750",
+      "text": "Онлайн плеер",
+      "locations": [
+        {
+          "file": "ui.tsx",
+          "pos": 9241,
+          "kind": "StringLiteral"
+        }
+      ]
+    }
+  ],
+  "templates": [
+    {
+      "file": "account.tsx",
+      "text": "`${size/1024} ГБ`",
+      "pos": 4805
+    },
+    {
+      "file": "account.tsx",
+      "text": "`${size} МБ`",
+      "pos": 4823
+    },
+    {
+      "file": "account.tsx",
+      "text": "`Тариф ${user.displayName}`",
+      "pos": 19072
+    },
+    {
+      "file": "account.tsx",
+      "text": "`Роль ${user.displayName}`",
+      "pos": 19409
+    },
+    {
+      "file": "customization.tsx",
+      "text": "`Выбрать цвет: ${label}`",
+      "pos": 1159
+    },
+    {
+      "file": "customization.tsx",
+      "text": "`Тема ${preset.name}`",
+      "pos": 3979
+    },
+    {
+      "file": "customization.tsx",
+      "text": "`Акцент ${accent}`",
+      "pos": 5131
+    },
+    {
+      "file": "customization.tsx",
+      "text": "`На твоей волне, ${store.user.displayName}.`",
+      "pos": 8413
+    },
+    {
+      "file": "embeds.tsx",
+      "text": "`Официальный плеер ${sourceNames[track.source]}`",
+      "pos": 8052
+    },
+    {
+      "file": "embeds.tsx",
+      "text": "`Яндекс Музыка: ${track.title}`",
+      "pos": 9025
+    },
+    {
+      "file": "home-wave.tsx",
+      "text": "`${trackCount(personal.length)} · только твоя музыка`",
+      "pos": 4235
+    },
+    {
+      "file": "lofi.tsx",
+      "text": "`Живой пиксельный пейзаж: ${scenes.find(item=>item.id===scene)?.title}`",
+      "pos": 3914
+    },
+    {
+      "file": "pages.tsx",
+      "text": "`${trackCount(liked.length)}, к которым хочется вернуться`",
+      "pos": 2868
+    },
+    {
+      "file": "pages.tsx",
+      "text": "`${trackCount(store.library.tracks.length)} в медиатеке`",
+      "pos": 3253
+    },
+    {
+      "file": "pages.tsx",
+      "text": "`Редактировать ${playlist.name}`",
+      "pos": 12431
+    },
+    {
+      "file": "pages.tsx",
+      "text": "`${files.length} ${files.length===1?'файл выбран':'файлов выбрано'}`",
+      "pos": 16143
+    },
+    {
+      "file": "pages.tsx",
+      "text": "`Добавляем ${Math.round(progress*100)}%`",
+      "pos": 17091
+    },
+    {
+      "file": "pages.tsx",
+      "text": "`Перенесено ${result.imported} треков в «${result.playlist.name}»`",
+      "pos": 22161
+    },
+    {
+      "file": "pages.tsx",
+      "text": "`Перенести из ${sourceNames[provider as Source]}`",
+      "pos": 23036
+    },
+    {
+      "file": "pages.tsx",
+      "text": "`Перенесено ${result.imported} треков в «${result.playlist.name}»`",
+      "pos": 24811
+    },
+    {
+      "file": "pages.tsx",
+      "text": "`Перенесено ${result.imported} треков`",
+      "pos": 25423
+    },
+    {
+      "file": "player-ui.tsx",
+      "text": "`Громкость ${device.name}`",
+      "pos": 21510
+    },
+    {
+      "file": "player-ui.tsx",
+      "text": "`Позиция трека ${device.name}`",
+      "pos": 21795
+    },
+    {
+      "file": "player.tsx",
+      "text": "`${navigator.userAgent.includes('Windows')?'Компьютер':'Браузер'} · ${navigator.userAgent.includes('Firefox')?'Firefox':navigator.userAgent.includes('Edg')?'Edge':'Web'}`",
+      "pos": 16041
+    },
+    {
+      "file": "types.ts",
+      "text": "`${(value/1024/1024).toFixed(1)} МБ`",
+      "pos": 4208
+    },
+    {
+      "file": "types.ts",
+      "text": "`${Math.round(value/1024)} КБ`",
+      "pos": 4247
+    },
+    {
+      "file": "types.ts",
+      "text": "`${count} ${plural(count,'трек','трека','треков')}`",
+      "pos": 4520
+    },
+    {
+      "file": "ui.tsx",
+      "text": "`Открыть ${track?.title||'музыку'}`",
+      "pos": 2757
+    }
+  ]
+}
