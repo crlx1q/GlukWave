@@ -1,9 +1,12 @@
 import { t, getLanguage } from './locale';
 import {reportError} from './diagnostics';
+import {deviceId,surfaceId} from './device-identity';
 export class ApiError extends Error { constructor(public code: string, message: string, public details?: unknown) { super(message); } }
 export async function api<T>(path: string, init: RequestInit = {}): Promise<T> {
   const headers = new Headers(init.headers);
   headers.set('Accept-Language',getLanguage());
+  headers.set('X-GlukWave-Device',deviceId);
+  headers.set('X-GlukWave-Surface',surfaceId);
   if (init.body && !(init.body instanceof FormData)) headers.set('Content-Type','application/json');
   let response: Response;
   try { response = await fetch(`/api${path}`, { ...init, headers, credentials: 'include' }); }

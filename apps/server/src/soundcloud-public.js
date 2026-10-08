@@ -4,6 +4,13 @@ import {fail} from './util.js';
 const origin='https://soundcloud.com';
 const maxPageBytes=2*1024*1024;
 const reserved=new Set(['search','discover','charts','you','settings','pages','upload','terms-of-use','popular','tags']);
+export function publicSoundcloudClient(html){
+  const $=load(html);for(const element of $('script').toArray()){
+    const body=$(element).text(),start=body.indexOf('window.__sc_hydration');if(start<0)continue;
+    const match=body.slice(start).match(/^window\.__sc_hydration\s*=\s*(\[.*\])\s*;?\s*$/s);if(!match)return null;
+    try{const entries=JSON.parse(match[1]),identifier=entries.find(entry=>entry.hydratable==='apiClient')?.data?.id;return typeof identifier==='string'&&/^[a-z\d]{32}$/i.test(identifier)?identifier:null;}catch{return null;}
+  }return null;
+}
 export function soundcloudWaveformUrl(value){
   try{const url=new URL(value);if(url.protocol!=='https:'||url.hostname!=='wave.sndcdn.com'||url.port||url.username||url.password||!/^\/[a-z\d_-]{1,160}\.(?:json|png)$/i.test(url.pathname))return null;return `https://wave.sndcdn.com${url.pathname.replace(/\.png$/i,'.json')}`;}catch{return null;}
 }
@@ -57,11 +64,31 @@ export async function readSoundcloudPage(value,fetcher=fetch){
 
 export function createPublicSoundcloud({fetcher=fetch}={}){
   const cache=new Map(),pending=new Map(),waiters=[];let active=0,minute=Date.now(),requests=0;
-  async function page(url){
+  async function request(operation){
     if(waiters.length>=40)fail(503,'SOUNDCLOUD_BUSY','Поиск SoundCloud занят. Попробуй через минуту.');
     if(active>=4)await new Promise(resolve=>waiters.push(resolve));else active++;
-    try{if(Date.now()-minute>=60000){minute=Date.now();requests=0;}if(++requests>180)fail(429,'SOUNDCLOUD_LIMIT','Дай SoundCloud немного времени. Повтори поиск через минуту.');return await readSoundcloudPage(url,fetcher);}
+    try{if(Date.now()-minute>=60000){minute=Date.now();requests=0;}if(++requests>180)fail(429,'SOUNDCLOUD_LIMIT','Дай SoundCloud немного времени. Повтори поиск через минуту.');return await operation();}
     finally{if(waiters.length)waiters.shift()();else active--;}
+  }
+  const page=url=>request(()=>readSoundcloudPage(url,fetcher));
+  async function unicodeCandidates(q,html){
+    // SoundCloud's anonymous HTML search currently decodes UTF-8 queries as
+    // Latin-1. Use the same public JSON search as its website, with its public
+    // application identifier. No account cookies, OAuth tokens or private API
+    // credentials are copied, persisted or returned to our clients.
+    const identifier=publicSoundcloudClient(html);if(!identifier)fail(502,'SOUNDCLOUD_FORMAT','SoundCloud не открыл поиск. Повтори позже.');
+    return request(async()=>{
+      const url='https://api-v2.soundcloud.com/search/tracks?'+new URLSearchParams({q,client_id:identifier,limit:'10'});
+      const response=await fetcher(url,{redirect:'error',headers:{Accept:'application/json'},signal:AbortSignal.timeout(8000)});
+      if(!response.ok){await response.body?.cancel();fail(response.status===429?429:502,'SOUNDCLOUD_PUBLIC_ERROR','Поиск SoundCloud сейчас недоступен. Повтори позже.');}
+      if(!response.headers.get('content-type')?.includes('json')){await response.body?.cancel();fail(502,'SOUNDCLOUD_FORMAT','SoundCloud вернул неизвестный формат.');}
+      const reader=response.body.getReader(),chunks=[];let size=0;
+      try{for(;;){const {done,value}=await reader.read();if(done)break;size+=value.length;if(size>maxPageBytes)fail(502,'SOUNDCLOUD_FORMAT','Ответ SoundCloud слишком большой.');chunks.push(Buffer.from(value));}}
+      finally{await reader.cancel().catch(()=>{});}
+      let data;try{data=JSON.parse(Buffer.concat(chunks).toString('utf8'));}catch{fail(502,'SOUNDCLOUD_FORMAT','SoundCloud вернул неизвестный формат.');}
+      if(!Array.isArray(data.collection))fail(502,'SOUNDCLOUD_FORMAT','SoundCloud вернул неизвестный формат.');
+      return data.collection.filter(track=>track?.kind==='track'&&track.sharing==='public').map(track=>({url:soundcloudTrackUrl(track.permalink_url)})).filter(track=>track.url).slice(0,10);
+    });
   }
   async function cached(key,ttl,operation){
     const saved=cache.get(key);if(saved?.expiresAt>Date.now())return saved.value;
@@ -71,9 +98,9 @@ export function createPublicSoundcloud({fetcher=fetch}={}){
   }
   async function track(value){const url=soundcloudTrackUrl(value);if(!url)fail(400,'UNSUPPORTED_URL','Нужна ссылка SoundCloud на отдельный трек.');return cached(url,3600000,async()=>{const result=parseSoundcloudTrack(await page(url),url);if(!result)fail(502,'SOUNDCLOUD_METADATA','SoundCloud не открыл данные трека. Попробуй официальную ссылку позже.');return result;});}
   async function search(query){
-    const q=String(query).trim();if(!q||q.length>200)fail(400,'VALIDATION','Введи запрос до 200 символов.');
+    const q=String(query).normalize('NFC').trim();if(!q||q.length>200)fail(400,'VALIDATION','Введи запрос до 200 символов.');
     return cached('search:'+q.toLowerCase(),300000,async()=>{
-      const html=await page(`${origin}/search/sounds?${new URLSearchParams({q})}`),candidates=parseSoundcloudSearch(html);
+      const html=await page(`${origin}/search/sounds?${new URLSearchParams({q})}`),candidates=/[^\x00-\x7f]/.test(q)?await unicodeCandidates(q,html):parseSoundcloudSearch(html);
       if(!candidates.length){const $=load(html,{scriptingEnabled:false});if(!$('noscript').length||!$('a[href="/search/sounds"]').length)fail(502,'SOUNDCLOUD_FORMAT','SoundCloud изменил страницу поиска. Открой трек по ссылке.');return [];}
       const results=await Promise.allSettled(candidates.map(candidate=>track(candidate.url))),tracks=results.filter(result=>result.status==='fulfilled').map(result=>result.value);
       if(!tracks.length)throw results.find(result=>result.status==='rejected').reason;

@@ -1,4 +1,4 @@
-param([string]$Server = 'http://127.0.0.1:4000')
+param([string]$Server = 'https://wave.gluk.tech')
 $ErrorActionPreference = 'Stop'
 $projectRoot = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
 $nativeRoot = Join-Path $projectRoot 'apps/native'
@@ -20,6 +20,10 @@ function Copy-SourceDirectory([string]$Source, [string]$Destination) {
 foreach ($name in @('lib','assets','windows')) { Copy-SourceDirectory (Join-Path $nativeRoot $name) (Join-Path $buildWorkspace $name) }
 foreach ($name in @('pubspec.yaml','pubspec.lock','.metadata','analysis_options.yaml')) { Copy-Item -LiteralPath (Join-Path $nativeRoot $name) -Destination $buildWorkspace }
 $oldPubCache = $env:PUB_CACHE
+$oldBuildPath = $env:PATH
+$nugetTool = Join-Path $projectRoot 'work/tools/nuget/nuget.exe'
+& (Join-Path $PSScriptRoot 'prepare-nuget.ps1') -Destination $nugetTool
+$env:PATH = (Split-Path -Parent $nugetTool) + ';' + $env:PATH
 $env:PUB_CACHE = Join-Path (Split-Path $buildWorkspace -Parent) ('gw-pub-' + [guid]::NewGuid().ToString('N').Substring(0,6))
 $flutterCommand = Get-Command flutter -ErrorAction SilentlyContinue
 if ($flutterCommand) { $flutterPath = $flutterCommand.Source }
@@ -39,5 +43,5 @@ try {
   if ($LASTEXITCODE -ne 0) { throw 'Dependency restoration failed.' }
   & $flutterPath build windows --release --no-pub "--dart-define=GLUKWAVE_SERVER=$Server"
   if ($LASTEXITCODE -ne 0) { throw 'Windows compilation failed.' }
-} finally { Pop-Location; $env:PUB_CACHE = $oldPubCache }
+} finally { Pop-Location; $env:PUB_CACHE = $oldPubCache; $env:PATH = $oldBuildPath }
 & (Join-Path $PSScriptRoot 'package-windows.ps1') -ReleaseRoot (Join-Path $buildWorkspace 'build/windows/x64/runner/Release')

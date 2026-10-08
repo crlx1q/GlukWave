@@ -1,4 +1,4 @@
-param([string]$Compiler, [string]$Version='1.0.0+3', [string]$BundleRoot)
+param([string]$Compiler, [string]$Version='1.0.0+4', [string]$BundleRoot)
 $ErrorActionPreference = 'Stop'
 $projectRoot = Split-Path -Parent $PSScriptRoot
 $bundleRoot = if ($BundleRoot) { [IO.Path]::GetFullPath($BundleRoot) } else { Join-Path $projectRoot 'outputs\GlukWave-windows' }
@@ -12,7 +12,9 @@ if (!$Compiler) {
   $Compiler = $compilerCandidates | Where-Object {Test-Path -LiteralPath $_} | Select-Object -First 1
 }
 if (!$Compiler) { throw 'Install Inno Setup or pass -Compiler with its ISCC.exe path.' }
-& $Compiler ('/DBundleDir='+$bundleRoot) ('/DOutputDir='+$outputRoot) ('/DBuildVersion='+$Version) (Join-Path $projectRoot 'deploy\windows\GlukWave.iss')
+$webviewBootstrapper=Join-Path $projectRoot 'work/tools/webview2/MicrosoftEdgeWebview2Setup.exe'
+& (Join-Path $PSScriptRoot 'prepare-webview2.ps1') -Destination $webviewBootstrapper
+& $Compiler ('/DBundleDir='+$bundleRoot) ('/DOutputDir='+$outputRoot) ('/DBuildVersion='+$Version) ('/DWebViewBootstrapper='+$webviewBootstrapper) (Join-Path $projectRoot 'deploy\windows\GlukWave.iss')
 if ($LASTEXITCODE -ne 0) { throw 'Installer compilation failed.' }
 $installerFile = Join-Path $outputRoot 'GlukWave-Setup.exe'
 if (!(Test-Path -LiteralPath $installerFile)) { throw 'Installer output missing.' }

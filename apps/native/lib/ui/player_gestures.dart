@@ -104,14 +104,14 @@ class _PlayerGestureSurfaceState extends State<PlayerGestureSurface> {
             (distance.dx.abs() > 12 &&
                 details.velocity.pixelsPerSecond.dx.abs() > 700))) {
       final c = widget.controller;
-      final index = c.audio.tracks.indexWhere(
-        (track) => track.id == c.audio.current?.id,
+      final index = c.audio.viewTracks.indexWhere(
+        (track) => track.id == c.audio.viewCurrent?.id,
       );
       final next = index + (distance.dx < 0 ? 1 : -1);
       if (c.canControl &&
           index >= 0 &&
           next >= 0 &&
-          next < c.audio.tracks.length) {
+          next < c.audio.viewTracks.length) {
         unawaited(
           c.audio
               .skipToQueueItem(next)

@@ -7,6 +7,7 @@ void main() {
   test('Native and QR challenges accept the server epoch and legacy ISO', () {
     const epoch = 1791484000123;
     expect(challengeExpiry(epoch).millisecondsSinceEpoch, epoch);
+    expect(challengeExpiry('$epoch').millisecondsSinceEpoch, epoch);
     expect(
       challengeExpiry(
         DateTime.fromMillisecondsSinceEpoch(

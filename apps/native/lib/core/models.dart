@@ -15,6 +15,10 @@ DateTime challengeExpiry(dynamic value) {
     return DateTime.fromMillisecondsSinceEpoch(value.round(), isUtc: true);
   }
   if (value is String) {
+    final epoch = int.tryParse(value);
+    if (epoch != null && epoch > 0) {
+      return DateTime.fromMillisecondsSinceEpoch(epoch, isUtc: true);
+    }
     final parsed = DateTime.tryParse(value);
     if (parsed != null) return parsed;
   }
@@ -33,8 +37,11 @@ class WaveTrack {
   String get sourceUrl => json['sourceUrl'] as String? ?? '';
   double get duration => number(json['duration']);
   Json get playback => object(json['playback']);
-  bool get playable => playback['kind'] == 'audio';
-  bool get offline => playback['offline'] == true && playable;
+  bool get embedded =>
+      playback['kind'] == 'soundcloud' || playback['kind'] == 'youtube';
+  bool get playable => playback['kind'] == 'audio' || embedded;
+  bool get offline =>
+      playback['offline'] == true && playback['kind'] == 'audio';
   String get sourceName => switch (source) {
     'youtube' => 'YouTube',
     'spotify' => 'Spotify',

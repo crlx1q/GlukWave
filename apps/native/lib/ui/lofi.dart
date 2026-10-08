@@ -244,7 +244,7 @@ class _LofiPageState extends State<LofiPage>
                             ],
                           ),
                         ),
-                        if (c.audio.current != null) ...[
+                        if (c.audio.viewCurrent != null) ...[
                           const SizedBox(height: 22),
                           MiniPlayer(
                             controller: c,
@@ -389,7 +389,7 @@ class _LofiPageState extends State<LofiPage>
                     fontSize: 10,
                   ),
                 ),
-                if (full && c.audio.current != null) ...[
+                if (full && c.audio.viewCurrent != null) ...[
                   const SizedBox(height: 22),
                   MiniPlayer(controller: c, onOpen: () => openPlayer(context)),
                 ],

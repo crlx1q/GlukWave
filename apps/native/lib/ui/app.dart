@@ -18,6 +18,9 @@ import 'auth_visuals.dart';
 import 'auth_page.dart';
 export 'auth_page.dart' show AuthPage;
 import 'desktop_player.dart';
+import 'provider_host.dart';
+import 'connect_panel.dart';
+import 'listening_rail.dart';
 import 'lofi.dart';
 import '../l10n/wave_localizations.dart';
 
@@ -145,7 +148,7 @@ class _GlukWaveAppState extends State<GlukWaveApp> with WidgetsBindingObserver {
                 MediaQuery.disableAnimationsOf(context) ||
                 customization.reducedMotion,
           ),
-          child: child!,
+          child: PersistentProviderHost(controller: c, child: child!),
         ),
         home: Builder(
           builder: (context) {
@@ -292,6 +295,7 @@ class _WaveShellState extends State<WaveShell>
               child: Column(
                 children: [
                   topbar(desktop),
+                  if (c.room != null) roomPin(),
                   if (c.error != null)
                     Material(
                       color: waveVisuals(context).accentSoft,
@@ -335,52 +339,73 @@ class _WaveShellState extends State<WaveShell>
                       backgroundColor: waveVisuals(context).background,
                     ),
                   Expanded(
-                    child: page == WavePage.settings
-                        ? Padding(
-                            padding: EdgeInsets.fromLTRB(
-                              desktop ? 32 : 20,
-                              20,
-                              desktop ? 32 : 20,
-                              12,
-                            ),
-                            child: settingsPage(),
-                          )
-                        : AnimatedSwitcher(
-                            duration: Duration(
-                              milliseconds: c.settings['reducedMotion'] == true
-                                  ? 0
-                                  : 220,
-                            ),
-                            child: SingleChildScrollView(
-                              key: ValueKey('$page:${selectedPlaylist?['id']}'),
-                              padding: EdgeInsets.fromLTRB(
-                                waveVisuals(context).compact
-                                    ? 16
-                                    : desktop
-                                    ? 40
-                                    : 20,
-                                waveVisuals(context).compact
-                                    ? 16
-                                    : desktop
-                                    ? 34
-                                    : 20,
-                                waveVisuals(context).compact
-                                    ? 16
-                                    : desktop
-                                    ? 40
-                                    : 20,
-                                32,
-                              ),
-                              child: ConstrainedBox(
-                                constraints: const BoxConstraints(
-                                  maxWidth: 1450,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: page == WavePage.settings
+                              ? Padding(
+                                  padding: EdgeInsets.fromLTRB(
+                                    desktop ? 32 : 20,
+                                    20,
+                                    desktop ? 32 : 20,
+                                    12,
+                                  ),
+                                  child: settingsPage(),
+                                )
+                              : AnimatedSwitcher(
+                                  duration: Duration(
+                                    milliseconds:
+                                        c.settings['reducedMotion'] == true
+                                        ? 0
+                                        : 220,
+                                  ),
+                                  child: SingleChildScrollView(
+                                    key: ValueKey(
+                                      '$page:${selectedPlaylist?['id']}',
+                                    ),
+                                    padding: EdgeInsets.fromLTRB(
+                                      waveVisuals(context).compact
+                                          ? 16
+                                          : desktop
+                                          ? 40
+                                          : 20,
+                                      waveVisuals(context).compact
+                                          ? 16
+                                          : desktop
+                                          ? 34
+                                          : 20,
+                                      waveVisuals(context).compact
+                                          ? 16
+                                          : desktop
+                                          ? 40
+                                          : 20,
+                                      32,
+                                    ),
+                                    child: ConstrainedBox(
+                                      constraints: const BoxConstraints(
+                                        maxWidth: 1450,
+                                      ),
+                                      child: content(),
+                                    ),
+                                  ),
                                 ),
-                                child: content(),
-                              ),
-                            ),
+                        ),
+                        if (MediaQuery.sizeOf(context).width >= 1240 &&
+                            [
+                              WavePage.home,
+                              WavePage.library,
+                              WavePage.search,
+                              WavePage.liked,
+                            ].contains(page))
+                          DesktopListeningRail(
+                            controller: c,
+                            onExpand: () => showPlayer(),
+                            onDevices: () => navigate(WavePage.devices),
                           ),
+                      ],
+                    ),
                   ),
-                  if (c.audio.current != null)
+                  if (c.audio.viewCurrent != null)
                     Padding(
                       padding: EdgeInsets.fromLTRB(
                         desktop ? 28 : 10,
@@ -468,14 +493,14 @@ class _WaveShellState extends State<WaveShell>
                   if (extent < 1 &&
                       coverOrigin != null &&
                       coverDestination != null &&
-                      c.audio.current != null)
+                      c.audio.viewCurrent != null)
                     Positioned.fromRect(
                       rect: Rect.lerp(coverOrigin, coverDestination, extent)!,
                       child: IgnorePointer(
                         child: Artwork(
                           key: const Key('player-cover-transition'),
                           controller: c,
-                          url: c.audio.current!.artwork,
+                          url: c.audio.viewCurrent!.artwork,
                           size: Rect.lerp(
                             coverOrigin,
                             coverDestination,
@@ -502,7 +527,8 @@ class _WaveShellState extends State<WaveShell>
   }
 
   void preparePlayer() {
-    if (playerVisible || (c.audio.current == null && previewTrack == null)) {
+    if (playerVisible ||
+        (c.audio.viewCurrent == null && previewTrack == null)) {
       return;
     }
     coverOrigin = previewTrack == null ? artworkRect(miniArtwork) : null;
@@ -588,9 +614,9 @@ class _WaveShellState extends State<WaveShell>
     }
     final control = HardwareKeyboard.instance.isControlPressed;
     if (event.logicalKey == LogicalKeyboardKey.space &&
-        c.audio.current != null &&
+        c.audio.viewCurrent != null &&
         c.canControl) {
-      run(c, c.audio.player.playing ? c.audio.pause : c.audio.play);
+      run(c, c.audio.playing ? c.audio.pause : c.audio.play);
     } else if (control &&
         event.logicalKey == LogicalKeyboardKey.arrowRight &&
         c.canControl) {
@@ -834,7 +860,11 @@ class _WaveShellState extends State<WaveShell>
     child: Row(
       children: [
         if (!desktop)
-          Brand(size: 29, animated: c.settings['reducedMotion'] != true),
+          Brand(
+            size: 29,
+            compact: MediaQuery.sizeOf(context).width < 360,
+            animated: c.settings['reducedMotion'] != true,
+          ),
         if (desktop)
           Expanded(
             child: Row(
@@ -866,6 +896,17 @@ class _WaveShellState extends State<WaveShell>
           )
         else
           const Spacer(),
+        if (!desktop)
+          IconButton(
+            key: const Key('mobile-rooms'),
+            tooltip: wt('native.200ba6b661', context: context),
+            onPressed: () => navigate(WavePage.rooms),
+            icon: Icon(
+              Icons.spatial_audio_off_outlined,
+              size: 21,
+              color: waveVisuals(context).muted,
+            ),
+          ),
         IconButton(
           tooltip: wt('native.7ab03d602e', context: context),
           onPressed: () => navigate(WavePage.devices),
@@ -1728,6 +1769,69 @@ class _WaveShellState extends State<WaveShell>
         ),
     ],
   );
+  Future<Json?> roomCreation() async {
+    final name = TextEditingController();
+    bool public = false;
+    try {
+      return await showWaveDialog<Json>(
+        context: context,
+        builder: (dialog) => StatefulBuilder(
+          builder: (dialog, update) => AlertDialog(
+            title: Text(wt('native.2e0b4996ef', context: dialog)),
+            content: SizedBox(
+              width: 360,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  TextField(
+                    controller: name,
+                    autofocus: true,
+                    maxLength: 80,
+                    decoration: InputDecoration(
+                      labelText: wt('native.55c12495ec', context: dialog),
+                    ),
+                    onChanged: (_) => update(() {}),
+                  ),
+                  const SizedBox(height: 12),
+                  SwitchListTile(
+                    contentPadding: EdgeInsets.zero,
+                    value: public,
+                    title: Text(wt('room.public', context: dialog)),
+                    subtitle: Text(
+                      wt(
+                        public ? 'room.publicHint' : 'room.privateHint',
+                        context: dialog,
+                      ),
+                    ),
+                    onChanged: (value) => update(() => public = value),
+                  ),
+                ],
+              ),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(dialog),
+                child: Text(wt('native.0ec753be8d', context: dialog)),
+              ),
+              FilledButton(
+                onPressed: name.text.trim().isEmpty
+                    ? null
+                    : () => Navigator.pop(dialog, {
+                        'name': name.text.trim(),
+                        'public': public,
+                      }),
+                child: Text(wt('native.3643850b0a', context: dialog)),
+              ),
+            ],
+          ),
+        ),
+      );
+    } finally {
+      // showWaveDialog waits for the route widgets to unmount.
+      name.dispose();
+    }
+  }
+
   Future<void> showPlayer({WaveTrack? track}) async {
     setState(() => previewTrack = track);
     if (c.desktop.mini) await run(c, c.desktop.toggleMini);
@@ -2368,12 +2472,16 @@ class _WaveShellState extends State<WaveShell>
           children: [
             FilledButton.icon(
               onPressed: () async {
-                final name = await askText(
-                  context,
-                  wt('native.2e0b4996ef', context: context),
-                  wt('native.55c12495ec', context: context),
-                );
-                if (name != null) await run(c, () => c.createRoom(name));
+                final creation = await roomCreation();
+                if (creation != null) {
+                  await run(
+                    c,
+                    () => c.createRoom(
+                      creation['name'] as String,
+                      public: creation['public'] == true,
+                    ),
+                  );
+                }
               },
               icon: const Icon(Icons.add_rounded),
               label: Text(wt('native.3643850b0a', context: context)),
@@ -2501,7 +2609,7 @@ class _WaveShellState extends State<WaveShell>
           ),
         ),
         const SizedBox(height: 18),
-        if (c.audio.current != null)
+        if (c.audio.viewCurrent != null)
           MiniPlayer(controller: c, onOpen: showPlayer),
         section(wt('native.1d2a1d354c', context: context)),
         Surface(
@@ -2665,267 +2773,55 @@ class _WaveShellState extends State<WaveShell>
     });
   }
 
-  Widget devicesPage() => Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      PageHeading(
-        wt('native.fec96a4982', context: context),
-        wt('native.06722aad25', context: context),
-        eyebrow: wt('native.d3b6a00135', context: context),
-      ),
-      Surface(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              wt('native.5e1f41132a', context: context),
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w800),
-            ),
-            const SizedBox(height: 8),
-            Text(
-              c.deviceName,
-              style: TextStyle(color: waveVisuals(context).muted),
-            ),
-            const SizedBox(height: 16),
-            Row(
-              children: [
-                const Icon(Icons.volume_down_rounded, size: 20),
-                Expanded(
-                  child: Slider(
-                    value: c.audio.volume.clamp(0, 1),
-                    onChanged: (v) =>
-                        run(c, () => c.transport('volume', {'volume': v})),
-                  ),
-                ),
-                const Icon(Icons.volume_up_outlined, size: 20),
-              ],
-            ),
-          ],
-        ),
-      ),
-      const SizedBox(height: 18),
-      for (final device in c.devices)
-        Padding(
-          padding: const EdgeInsets.only(bottom: 14),
-          child: Surface(
-            child: Column(
-              children: [
-                Row(
+  Widget devicesPage() =>
+      ConnectPanel(controller: c, scanQr: scanQr, discover: discover);
+
+  Widget roomPin() {
+    final v = waveVisuals(context);
+    return Material(
+      color: v.accentSoft,
+      child: InkWell(
+        key: const Key('pinned-room'),
+        onTap: () => navigate(WavePage.rooms),
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(18, 8, 8, 8),
+          child: Row(
+            children: [
+              Icon(Icons.headphones_rounded, color: v.accent, size: 19),
+              const SizedBox(width: 11),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Icon(
-                      device['kind'] == 'android' || device['kind'] == 'ios'
-                          ? Icons.smartphone_rounded
-                          : device['kind'] == 'web'
-                          ? Icons.language_rounded
-                          : Icons.computer_outlined,
-                      size: 30,
-                      color: waveVisuals(context).accent,
-                    ),
-                    const SizedBox(width: 16),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            device['name'] as String? ??
-                                wt('native.bc791dbe7e', context: context),
-                            style: const TextStyle(
-                              fontSize: 17,
-                              fontWeight: FontWeight.w800,
-                            ),
-                          ),
-                          const SizedBox(height: 3),
-                          Text(
-                            device['id'] == c.deviceId
-                                ? wt('native.4eca465a4a', context: context)
-                                : device['online'] == true
-                                ? wt('native.011e2099f2', context: context)
-                                : wt('native.67b99cc9bf', context: context),
-                            style: TextStyle(
-                              color: waveVisuals(context).muted,
-                              fontSize: 11,
-                            ),
-                          ),
-                        ],
+                    Text(
+                      c.room?['name']?.toString() ??
+                          wt('room.pinned', context: context),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w800,
                       ),
                     ),
-                    if (device['id'] != c.deviceId)
-                      OutlinedButton(
-                        onPressed:
-                            device['online'] == true && c.audio.current != null
-                            ? () => run(
-                                c,
-                                () => c.transfer(device['id'] as String),
-                              )
-                            : null,
-                        child: Text(wt('native.49daba7f72', context: context)),
-                      ),
+                    Text(
+                      '${wt(c.connected ? 'room.online' : 'room.reconnecting', context: context)} · ${c.deviceKind}',
+                      style: TextStyle(fontSize: 9, color: v.muted),
+                    ),
                   ],
                 ),
-                if (device['id'] != c.deviceId && device['online'] == true) ...[
-                  const SizedBox(height: 16),
-                  Row(
-                    children: [
-                      IconButton(
-                        tooltip: wt('native.1b2692a600', context: context),
-                        onPressed: () => run(
-                          c,
-                          () => c.commandDevice(
-                            device['id'] as String,
-                            'previous',
-                          ),
-                        ),
-                        icon: const Icon(Icons.skip_previous_rounded),
-                      ),
-                      IconButton(
-                        tooltip: wt('native.6dd5de06c7', context: context),
-                        onPressed: () => run(
-                          c,
-                          () => c.commandDevice(
-                            device['id'] as String,
-                            object(device['state'])['playing'] == true
-                                ? 'pause'
-                                : 'play',
-                          ),
-                        ),
-                        icon: Icon(
-                          object(device['state'])['playing'] == true
-                              ? Icons.pause_rounded
-                              : Icons.play_arrow_rounded,
-                        ),
-                      ),
-                      IconButton(
-                        tooltip: wt('native.ca8ab6965b', context: context),
-                        onPressed: () => run(
-                          c,
-                          () => c.commandDevice(device['id'] as String, 'next'),
-                        ),
-                        icon: const Icon(Icons.skip_next_rounded),
-                      ),
-                      Expanded(
-                        child: Slider(
-                          value: number(
-                            object(device['state'])['volume'],
-                            .8,
-                          ).clamp(0, 1),
-                          onChanged: (v) => run(
-                            c,
-                            () => c.commandDevice(
-                              device['id'] as String,
-                              'volume',
-                              {'volume': v},
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        clock(number(object(device['state'])['position'])),
-                        style: TextStyle(
-                          color: waveVisuals(context).muted,
-                          fontSize: 11,
-                        ),
-                      ),
-                      Expanded(
-                        child: Slider(
-                          value: number(object(device['state'])['position'])
-                              .clamp(
-                                0,
-                                (c
-                                                .track(
-                                                  object(
-                                                        device['state'],
-                                                      )['trackId']
-                                                      as String?,
-                                                )
-                                                ?.duration ??
-                                            0) >
-                                        0
-                                    ? c
-                                          .track(
-                                            object(device['state'])['trackId']
-                                                as String?,
-                                          )!
-                                          .duration
-                                    : 1,
-                              ),
-                          max:
-                              (c
-                                          .track(
-                                            object(device['state'])['trackId']
-                                                as String?,
-                                          )
-                                          ?.duration ??
-                                      0) >
-                                  0
-                              ? c
-                                    .track(
-                                      object(device['state'])['trackId']
-                                          as String?,
-                                    )!
-                                    .duration
-                              : 1,
-                          onChanged: (v) => run(
-                            c,
-                            () => c.commandDevice(
-                              device['id'] as String,
-                              'seek',
-                              {'position': v},
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ],
-            ),
+              ),
+              IconButton(
+                tooltip: wt('native.5aeda8f0be', context: context),
+                onPressed: () => run(c, c.leaveRoom),
+                icon: const Icon(Icons.logout_rounded, size: 17),
+              ),
+            ],
           ),
         ),
-      if (c.devices.isEmpty)
-        EmptyState(
-          wt('native.76bdd0e417', context: context),
-          wt('native.bf9b9e0034', context: context),
-          icon: Icons.devices_rounded,
-        ),
-      const SizedBox(height: 10),
-      Wrap(
-        spacing: 12,
-        runSpacing: 12,
-        children: [
-          if (Platform.isWindows)
-            OutlinedButton.icon(
-              onPressed: () => showQrLogin(context, c),
-              icon: const Icon(Icons.qr_code_rounded),
-              label: Text(wt('native.e305e5f150', context: context)),
-            ),
-          if (Platform.isAndroid || Platform.isIOS)
-            OutlinedButton.icon(
-              onPressed: scanQr,
-              icon: const Icon(Icons.qr_code_scanner_rounded),
-              label: Text(wt('native.280e0f673d', context: context)),
-            ),
-          TextButton.icon(
-            onPressed: discover,
-            icon: const Icon(Icons.wifi_find_rounded),
-            label: Text(wt('native.8db44b4616', context: context)),
-          ),
-        ],
       ),
-      const SizedBox(height: 18),
-      Text(
-        wt('native.0e89a07236', context: context),
-        style: TextStyle(
-          color: waveVisuals(context).muted,
-          height: 1.7,
-          fontSize: 12,
-        ),
-      ),
-    ],
-  );
+    );
+  }
+
   Future<void> discover() async {
     await run(c, () async {
       final servers = await discoverServers(
@@ -3083,13 +2979,39 @@ class _WaveShellState extends State<WaveShell>
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              c.user!.displayName,
-                              style: const TextStyle(
-                                fontSize: 27,
-                                fontWeight: FontWeight.w800,
-                                letterSpacing: -.6,
-                              ),
+                            Wrap(
+                              spacing: 10,
+                              runSpacing: 3,
+                              crossAxisAlignment: WrapCrossAlignment.center,
+                              children: [
+                                Text(
+                                  c.user!.displayName,
+                                  style: const TextStyle(
+                                    fontSize: 27,
+                                    fontWeight: FontWeight.w800,
+                                    letterSpacing: -.6,
+                                  ),
+                                ),
+                                Chip(
+                                  label: Text(
+                                    c.user!.admin
+                                        ? 'ADMIN'
+                                        : c.user!.plan == 'beta'
+                                        ? 'β BETA'
+                                        : c.user!.plan == 'unbound'
+                                        ? 'UNBOUND'
+                                        : 'FREE',
+                                  ),
+                                  backgroundColor: waveVisuals(
+                                    context,
+                                  ).accentSoft,
+                                  side: BorderSide.none,
+                                  labelStyle: const TextStyle(
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.w800,
+                                  ),
+                                ),
+                              ],
                             ),
                             Text(
                               '@${c.user!.username}',
@@ -3099,21 +3021,6 @@ class _WaveShellState extends State<WaveShell>
                               ),
                             ),
                           ],
-                        ),
-                      ),
-                      Chip(
-                        label: Text(
-                          c.user!.plan == 'beta'
-                              ? 'β BETA'
-                              : c.user!.plan == 'unbound'
-                              ? 'UNBOUND'
-                              : 'FREE',
-                        ),
-                        backgroundColor: waveVisuals(context).accentSoft,
-                        side: BorderSide.none,
-                        labelStyle: const TextStyle(
-                          fontSize: 10,
-                          fontWeight: FontWeight.w800,
                         ),
                       ),
                     ],
@@ -3140,10 +3047,40 @@ class _WaveShellState extends State<WaveShell>
                       ),
                     ),
                   const SizedBox(height: 20),
-                  OutlinedButton.icon(
-                    onPressed: editProfile,
-                    icon: const Icon(Icons.edit_outlined, size: 17),
-                    label: Text(wt('native.dd5a0b517a', context: context)),
+                  Wrap(
+                    spacing: 8,
+                    runSpacing: 6,
+                    children: [
+                      OutlinedButton.icon(
+                        onPressed: editProfile,
+                        icon: const Icon(Icons.edit_outlined, size: 17),
+                        label: Text(wt('native.dd5a0b517a', context: context)),
+                      ),
+                      if (c.user!.avatar.isNotEmpty)
+                        TextButton.icon(
+                          onPressed: () =>
+                              run(c, () => c.removeProfileMedia('avatar')),
+                          icon: const Icon(
+                            Icons.person_remove_outlined,
+                            size: 16,
+                          ),
+                          label: Text(
+                            wt('profile.removeAvatar', context: context),
+                          ),
+                        ),
+                      if (c.user!.banner.isNotEmpty)
+                        TextButton.icon(
+                          onPressed: () =>
+                              run(c, () => c.removeProfileMedia('banner')),
+                          icon: const Icon(
+                            Icons.image_not_supported_outlined,
+                            size: 16,
+                          ),
+                          label: Text(
+                            wt('profile.removeBanner', context: context),
+                          ),
+                        ),
+                    ],
                   ),
                 ],
               ),

@@ -7,7 +7,12 @@ import '../services/diagnostics.dart';
 
 class WaveException implements Exception {
   final String message, code;
-  const WaveException(this.message, [this.code = 'request_failed']);
+  final int? status;
+  const WaveException(
+    this.message, [
+    this.code = 'request_failed',
+    this.status,
+  ]);
   @override
   String toString() => message;
 }
@@ -23,6 +28,7 @@ class WaveApi {
   String server;
   String language = 'en';
   String? token;
+  String deviceId = '', surfaceId = '';
   late final WaveDiagnostics diagnostics;
   WaveApi(String value) : server = validateServer(value) {
     diagnostics = WaveDiagnostics(() => server, () => headers);
@@ -53,6 +59,8 @@ class WaveApi {
   Map<String, String> get headers => {
     'X-GlukWave-Client': 'native',
     'Accept-Language': language,
+    if (deviceId.isNotEmpty) 'X-GlukWave-Device': deviceId,
+    if (surfaceId.isNotEmpty) 'X-GlukWave-Surface': surfaceId,
     if (token != null) 'Authorization': 'Bearer $token',
   };
   Future<Json> localeMetadata(String browserLanguage) async {
@@ -104,6 +112,7 @@ class WaveApi {
         detail['message'] as String? ?? wt('native.5918da6940'),
         detail['code'] as String? ??
             (error.response?.statusCode == 401 ? 'unauthorized' : 'network'),
+        error.response?.statusCode,
       );
     }
   }

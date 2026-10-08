@@ -203,18 +203,25 @@ class _AuthPageState extends State<AuthPage> {
               TextFormField(
                 key: const Key('auth-email'),
                 controller: email,
-                keyboardType: TextInputType.emailAddress,
+                keyboardType: register
+                    ? TextInputType.emailAddress
+                    : TextInputType.text,
                 textInputAction: TextInputAction.next,
-                autofillHints: const [AutofillHints.email],
+                autofillHints: [
+                  register ? AutofillHints.email : AutofillHints.username,
+                ],
                 decoration: field(
-                  'native.108aa2199f',
+                  register ? 'native.108aa2199f' : 'auth.identity',
                   Icons.alternate_email_rounded,
                 ),
                 validator: (value) =>
                     value != null &&
-                        RegExp(
-                          r'^[^\s@]+@[^\s@]+\.[^\s@]+$',
-                        ).hasMatch(value.trim())
+                        (register
+                            ? RegExp(
+                                r'^[^\s@]+@[^\s@]+\.[^\s@]+$',
+                              ).hasMatch(value.trim())
+                            : value.trim().isNotEmpty &&
+                                  value.trim().length <= 254)
                     ? null
                     : wt('native.eba037f95d', context: context),
               ),

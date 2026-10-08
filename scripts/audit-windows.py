@@ -10,11 +10,12 @@ from datetime import datetime, timezone
 parser = argparse.ArgumentParser()
 parser.add_argument('build_workspace', type=Path)
 parser.add_argument('--bundle', type=Path)
+parser.add_argument('--freeze', type=Path)
 args = parser.parse_args()
 root = Path(__file__).resolve().parent.parent
 bundle = args.bundle or root / 'outputs' / 'GlukWave-windows'
 archive = root / 'outputs' / 'GlukWave-windows.zip'
-frozen = json.loads((root / 'docs/verification/2026-10-08/native-source-freeze.json').read_text('utf-8'))
+frozen = json.loads((args.freeze or root / 'docs/verification/2026-10-08/native-source-freeze.json').read_text('utf-8'))
 
 
 def digest(value):
@@ -37,7 +38,7 @@ for item in frozen['files']:
 require(len(matched) >= 50, 'Insufficient build input coverage')
 
 binary_hashes = {}
-for name in ['glukwave.exe', 'flutter_windows.dll', 'libmpv-2.dll', 'audio_service_win_plugin.dll',
+for name in ['glukwave.exe', 'flutter_windows.dll', 'libmpv-2.dll', 'audio_service_win_plugin.dll', 'flutter_inappwebview_windows_plugin.dll',
              'flutter_secure_storage_windows_plugin.dll', 'tray_manager_plugin.dll', 'window_manager_plugin.dll',
              'msvcp140.dll', 'vcruntime140.dll', 'vcruntime140_1.dll']:
     value = (bundle / name).read_bytes()

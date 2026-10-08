@@ -140,6 +140,29 @@ class WaveController extends ChangeNotifier {
       _roomRevision = -1,
       _clockOffset = 0;
   String deviceId = '';
+  final String surfaceId = const Uuid().v4();
+  Json connect = {};
+  bool _localOutputActive = false;
+  int _accountGeneration = 0;
+  int _accountRevision = -1;
+  bool? _connectSupported;
+  bool get independentListening => connect['independent'] == true;
+  String? get activeDeviceId => connect['activeDeviceId'] as String?;
+  String? get activeSurfaceId => connect['activeSurfaceId'] as String?;
+  bool get controllingRemote =>
+      room == null &&
+      !independentListening &&
+      activeDeviceId != null &&
+      (activeDeviceId != deviceId ||
+          activeSurfaceId != null && activeSurfaceId != surfaceId);
+  String get activeDeviceName =>
+      devices
+          .where(
+            (d) => d['deviceId'] == activeDeviceId || d['id'] == activeDeviceId,
+          )
+          .map((d) => d['name']?.toString() ?? '')
+          .firstOrNull ??
+      wt('connect.otherDevice');
   String get deviceKind => Platform.isWindows
       ? 'windows'
       : Platform.isIOS
@@ -200,7 +223,10 @@ class WaveController extends ChangeNotifier {
       return true;
     };
     audio.onTransport = (command, data) async {
-      if (room == null || command == 'volume') return false;
+      if (room == null && !controllingRemote ||
+          room != null && command == 'volume') {
+        return false;
+      }
       await transport(command, data);
       return true;
     };
@@ -215,7 +241,7 @@ class WaveController extends ChangeNotifier {
       audio.mediaItem.listen((item) {
         notifyListeners();
         if (item != null) unawaited(waveforms.load(item.id));
-        if (item != null && online) {
+        if (item != null && online && !audio.remote) {
           unawaited(
             api
                 .call(
@@ -268,6 +294,8 @@ class WaveController extends ChangeNotifier {
     _applyLanguage();
     deviceId = preferences.getString('deviceId') ?? const Uuid().v4();
     await preferences.setString('deviceId', deviceId);
+    api.deviceId = deviceId;
+    api.surfaceId = surfaceId;
     try {
       await desktop.initialize(startMinimized: startMinimized);
       _desktopReady = true;
@@ -379,6 +407,7 @@ class WaveController extends ChangeNotifier {
         );
         rooms = objects((await api.call('/api/rooms'))['rooms']);
         devices = objects((await api.call('/api/devices'))['devices']);
+        await refreshConnect();
         _applySettings();
         await _persist();
         _connectSocket();
@@ -481,6 +510,11 @@ class WaveController extends ChangeNotifier {
     if (data['token'] is! String || object(data['user']).isEmpty) {
       throw WaveException(wt('native.d8b4826b17'));
     }
+    if (user != null &&
+        (user!.id != object(data['user'])['id'] ||
+            api.token != data['token'])) {
+      await logout(remote: false);
+    }
     api.token = data['token'] as String;
     user = WaveUser(object(data['user']));
     await secure.write(
@@ -554,9 +588,18 @@ class WaveController extends ChangeNotifier {
     socket?.dispose();
     socket = null;
     connected = false;
+    connect = {};
+    _accountRevision = -1;
+    _connectSupported = null;
+    _localOutputActive = false;
+    _accountGeneration++;
+    audio.clearRemote();
     room = null;
+    _roomGeneration++;
+    _roomSyncGeneration++;
+    _roomOutputActive = false;
     _roomRevision = -1;
-    await audio.localCommand('stop');
+    await audio.clear();
     cache.activeId = null;
     await cache.clear(includingDownloads: true);
     await waveforms.clear();
@@ -734,10 +777,9 @@ class WaveController extends ChangeNotifier {
       if (url.isEmpty) {
         throw WaveException(wt('native.fb5429ae1b'));
       }
-      await audio.localCommand('pause');
-      await openUrl(url);
-      tell(wt('native.bb5aee59aa', values: {'p0': (target.sourceName)}));
-      return;
+      throw WaveException(
+        wt('provider.unavailable', values: {'source': target.sourceName}),
+      );
     }
     final ids = (list ?? tracks)
         .where((t) => t.playable)
@@ -747,6 +789,23 @@ class WaveController extends ChangeNotifier {
       await transport('track', {'trackId': target.id, 'queue': ids});
       return;
     }
+    if (controllingRemote) {
+      await commandDevice(activeDeviceId!, 'track', {
+        'surfaceId': activeSurfaceId,
+        'trackId': target.id,
+        'queue': ids,
+      });
+      return;
+    }
+    if (!independentListening &&
+        _connectSupported == true &&
+        online &&
+        socket?.connected == true) {
+      final claimed = await emitAck('device:claim', {});
+      await receiveAccountState(object(claimed['connect']));
+    }
+    audio.clearRemote();
+    _localOutputActive = true;
     await audio.playTrack(target, list: list ?? tracks);
     _report();
   }
@@ -765,6 +824,11 @@ class WaveController extends ChangeNotifier {
       await emitAck('room:command', {
         'roomId': room!['id'],
         'command': command,
+        ...data,
+      });
+    } else if (controllingRemote) {
+      await commandDevice(activeDeviceId!, command, {
+        'surfaceId': activeSurfaceId,
         ...data,
       });
     } else {
@@ -945,6 +1009,24 @@ class WaveController extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> removeProfileMedia(String kind) async {
+    if (!['avatar', 'banner'].contains(kind)) return;
+    final response = await api.call(
+      '/api/profile/media/$kind',
+      method: 'DELETE',
+    );
+    final changed = object(response['user']);
+    if (changed.isNotEmpty) user = WaveUser(changed);
+    if (user != null && api.token != null) {
+      await secure.write(
+        key: 'session:${api.server}',
+        value: jsonEncode({'token': api.token, 'user': user!.json}),
+      );
+    }
+    await _persist();
+    notifyListeners();
+  }
+
   void _connectSocket() {
     if (socket != null || api.token == null) return;
     final session = api.token, origin = api.server;
@@ -958,15 +1040,18 @@ class WaveController extends ChangeNotifier {
             'token': api.token,
             'language': resolvedLanguage,
             'deviceId': deviceId,
+            'surfaceId': surfaceId,
             'name': deviceName,
             'kind': deviceKind,
           })
           .build(),
     );
-    socket!.onConnect((_) {
+    socket!.onConnect((_) async {
       connected = true;
-      _report();
       notifyListeners();
+      await refreshConnect();
+      if (session != api.token || origin != api.server) return;
+      _report();
       if (room != null) {
         unawaited(_rejoinRoom().catchError((_) {}));
       }
@@ -999,6 +1084,21 @@ class WaveController extends ChangeNotifier {
     socket!.on('devices:changed', (data) {
       devices = data is List ? objects(data) : objects(object(data)['devices']);
       notifyListeners();
+    });
+    socket!.on('account:state', (data) {
+      if (session != api.token || origin != api.server) return;
+      unawaited(
+        receiveAccountState(object(data)).catchError((error) {
+          api.diagnostics.report(error, kind: 'socket', code: 'ACCOUNT_STATE');
+        }),
+      );
+    });
+    socket!.on('session:revoked', (_) {
+      if (session != api.token || origin != api.server) return;
+      socket?.disconnect();
+      socket?.dispose();
+      socket = null;
+      unawaited(logout(remote: false).then((_) => tell(wt('connect.revoked'))));
     });
     socket!.on('device:command', (event) async {
       final data = event is List ? object(event.first) : object(event);
@@ -1056,19 +1156,25 @@ class WaveController extends ChangeNotifier {
 
   PlaybackSnapshot snapshot() => PlaybackSnapshot(
     trackId: audio.current?.id,
-    position: audio.player.position.inMilliseconds / 1000,
-    volume: audio.volume,
-    playing: audio.player.playing,
+    position: audio.outputPosition.inMilliseconds / 1000,
+    volume: audio.outputVolume,
+    playing: audio.outputPlaying,
     queue: audio.tracks.map((t) => t.id).toList(),
     updatedAt: DateTime.now().millisecondsSinceEpoch,
   );
   void _report() {
     if (socket?.connected == true) {
-      socket!.emit('device:state', snapshot().toJson());
+      socket!.emit('device:state', {
+        ...snapshot().toJson(),
+        'outputActive': room != null
+            ? _roomOutputActive
+            : !controllingRemote && _localOutputActive,
+        'roomId': room?['id'],
+      });
     }
     final web = _webPresence;
     if (web != null &&
-        !audio.player.playing &&
+        !audio.outputPlaying &&
         DateTime.now().millisecondsSinceEpoch - (web['receivedAt'] as int) <
             30000) {
       discord.update(
@@ -1086,8 +1192,8 @@ class WaveController extends ChangeNotifier {
     }
     discord.update(
       audio.current,
-      audio.player.playing,
-      audio.player.position.inMilliseconds / 1000,
+      audio.outputPlaying,
+      audio.outputPosition.inMilliseconds / 1000,
       appUrl,
       room: room,
     );
@@ -1149,6 +1255,7 @@ class WaveController extends ChangeNotifier {
     final command = data['command'] as String? ?? '';
     if (data['localOnly'] == true && data['outputActive'] is bool) {
       _roomOutputActive = data['outputActive'] as bool;
+      _localOutputActive = data['outputActive'] as bool;
     }
     if (command == 'track' || command == 'transfer') {
       final id = data['trackId'] as String?;
@@ -1165,6 +1272,8 @@ class WaveController extends ChangeNotifier {
       final previousQueue = List<WaveTrack>.from(audio.tracks);
       final previousState = snapshot();
       try {
+        audio.clearRemote();
+        _localOutputActive = true;
         await audio.playTrack(
           target,
           list: queue,
@@ -1200,7 +1309,9 @@ class WaveController extends ChangeNotifier {
     } else if (data['localOnly'] == true || command == 'volume') {
       await audio.localCommand(command, data);
     } else {
-      await transport(command, data);
+      // This command already targets this output. Routing it back through
+      // Connect would send it to the server a second time.
+      await audio.localCommand(command, data);
     }
     _report();
   }
@@ -1217,15 +1328,112 @@ class WaveController extends ChangeNotifier {
     );
   }
 
-  Future<void> transfer(String id) => commandDevice(id, 'transfer', {
-    'fromDeviceId': deviceId,
-    ...snapshot().toJson(),
-  });
-  Future<void> createRoom(String name) async {
+  Future<void> transfer(String id, {String? targetSurfaceId}) =>
+      commandDevice(id, 'transfer', {
+        'fromDeviceId': controllingRemote ? activeDeviceId : deviceId,
+        if (targetSurfaceId != null) 'surfaceId': targetSurfaceId,
+      });
+
+  Future<void> refreshConnect() async {
+    if (api.token == null) return;
+    final generation = _accountGeneration;
+    final session = api.token, origin = api.server;
+    try {
+      final response = await api.call('/api/connect');
+      if (generation != _accountGeneration ||
+          session != api.token ||
+          origin != api.server) {
+        return;
+      }
+      _connectSupported = response['connect'] is Map;
+      await receiveAccountState(object(response['connect']));
+    } on WaveException catch (error) {
+      // Older deployments have no account-wide Connect yet. Device commands
+      // and local playback continue to work until their backend is updated.
+      if (error.status != 404 &&
+          !['not_found', 'NOT_FOUND'].contains(error.code)) {
+        rethrow;
+      }
+      if (generation == _accountGeneration &&
+          session == api.token &&
+          origin == api.server) {
+        _connectSupported = false;
+      }
+    }
+  }
+
+  Future<void> setIndependentListening(bool value) async {
+    final response = await api.call(
+      '/api/connect',
+      method: 'PATCH',
+      data: {'independent': value},
+    );
+    await receiveAccountState(object(response['connect']));
+  }
+
+  Future<void> revokeDevice(String id) async {
+    await api.call('/api/devices/${Uri.encodeComponent(id)}', method: 'DELETE');
+    devices = objects((await api.call('/api/devices'))['devices']);
+    notifyListeners();
+  }
+
+  Future<void> receiveAccountState(Json incoming) async {
+    if (incoming.isEmpty) return;
+    final revision = (object(incoming['state'])['revision'] as num?)?.toInt();
+    if (revision != null && revision < _accountRevision) return;
+    if (revision != null) _accountRevision = revision;
+    _connectSupported = true;
+    final generation = ++_accountGeneration;
+    connect = Map.of(incoming);
+    if (room != null || !controllingRemote) {
+      audio.clearRemote();
+      notifyListeners();
+      return;
+    }
+    if (_localOutputActive) {
+      _localOutputActive = false;
+      audio.cancelPendingLoad();
+      await audio.localCommand('pause');
+    }
+    final rawTrack = object(incoming['track']);
+    var target = rawTrack.isNotEmpty ? WaveTrack(rawTrack) : null;
+    final state = PlaybackSnapshot.fromJson(object(incoming['state']));
+    target ??= track(state.trackId);
+    if (target == null && state.trackId != null) {
+      target = await requireTrack(state.trackId!);
+    }
+    if (generation != _accountGeneration ||
+        !controllingRemote ||
+        room != null) {
+      return;
+    }
+    final queue = objects(incoming['queueTracks']).map(WaveTrack.new).toList();
+    final serverTime =
+        (incoming['serverTime'] as num?)?.toInt() ?? state.updatedAt;
+    final projected = state.projectedPosition(
+      serverTime,
+      duration: target?.duration,
+    );
+    audio.showRemote(
+      PlaybackSnapshot(
+        trackId: state.trackId,
+        position: projected,
+        volume: state.volume,
+        playing: state.playing,
+        queue: state.queue,
+        revision: state.revision,
+      ),
+      target,
+      queue,
+    );
+    notifyListeners();
+  }
+
+  Future<void> createRoom(String name, {bool public = false}) async {
     final data = await api.call(
       '/api/rooms',
       method: 'POST',
-      data: {'name': name.trim()},
+      data: {'name': name.trim(), 'visibility': public ? 'public' : 'private'},
     );
     await enterRoom(object(data['room']));
   }
@@ -1378,7 +1586,9 @@ class WaveController extends ChangeNotifier {
       }
       return;
     }
-    if (state.trackId != null && state.trackId != audio.current?.id) {
+    if (state.trackId != null &&
+        (state.trackId != audio.current?.id ||
+            audio.current?.embedded == true && audio.provider.track == null)) {
       final target = await requireTrack(state.trackId!);
       if (!currentState()) return;
       if (!target.playable) {
@@ -1400,7 +1610,7 @@ class WaveController extends ChangeNotifier {
     if (!currentState()) return;
     await _correctDrift();
     final shouldPlay = state.playing && _roomOutputActive;
-    if (shouldPlay != audio.player.playing && audio.current != null) {
+    if (shouldPlay != audio.outputPlaying && audio.current != null) {
       await audio.localCommand(shouldPlay ? 'play' : 'pause');
     }
     if (state.trackId == null) await audio.localCommand('pause');
@@ -1416,7 +1626,7 @@ class WaveController extends ChangeNotifier {
       DateTime.now().millisecondsSinceEpoch + _clockOffset,
       duration: audio.current!.duration,
     );
-    final actual = audio.player.position.inMilliseconds / 1000;
+    final actual = audio.outputPosition.inMilliseconds / 1000;
     if ((expected - actual).abs() > 1.25) {
       await audio.localCommand('seek', {'position': expected});
     }

@@ -215,6 +215,17 @@ class DiscordPresence extends ChangeNotifier {
   }
 }
 
+/// Keep the official source controls visible in compact window modes.
+Size compactPlayerSize({required bool quick, String? source}) => Size(
+  quick ? 360 : 410,
+  (quick ? 420 : 116) +
+      (source == 'youtube'
+          ? 234
+          : source == 'soundcloud'
+          ? 134
+          : 0),
+);
+
 class DesktopShell extends ChangeNotifier with WindowListener, TrayListener {
   final WaveAudioHandler audio;
   bool mini = false, quick = false, initialized = false, _quitting = false;
@@ -228,6 +239,9 @@ class DesktopShell extends ChangeNotifier with WindowListener, TrayListener {
   Timer? _trayClick;
   Future<void> _windowWrites = Future.value();
   String? _title;
+  String? _compactSource;
+  String? get _visibleSource =>
+      audio.remote ? null : audio.provider.track?.source;
   DesktopShell(this.audio);
   Future<void> initialize({bool startMinimized = false}) async {
     if (!Platform.isWindows) return;
@@ -286,8 +300,34 @@ class DesktopShell extends ChangeNotifier with WindowListener, TrayListener {
 
   Future<void> updateTitle() async {
     if (!initialized) return;
-    final value = audio.player.playing && audio.current != null
-        ? '${audio.current!.title} — ${audio.current!.artist}'
+    if ((mini || quick) && _compactSource != _visibleSource) {
+      _compactSource = _visibleSource;
+      await _serialize(() async {
+        if (!mini && !quick) return;
+        final size = compactPlayerSize(quick: quick, source: _visibleSource);
+        final bounds = await windowManager.getBounds();
+        final work = _displayPlacement().work;
+        await windowManager.setMinimumSize(
+          Size(quick ? 300 : 330, size.height),
+        );
+        await windowManager.setBounds(
+          Rect.fromLTWH(
+            bounds.left.clamp(
+              work.left,
+              math.max(work.left, work.right - size.width),
+            ),
+            bounds.top.clamp(
+              work.top,
+              math.max(work.top, work.bottom - size.height),
+            ),
+            size.width,
+            size.height,
+          ),
+        );
+      });
+    }
+    final value = audio.playing && audio.viewCurrent != null
+        ? '${audio.viewCurrent!.title} — ${audio.viewCurrent!.artist}'
         : 'GlukWave';
     if (_title == value) return;
     _title = value;
@@ -369,6 +409,7 @@ class DesktopShell extends ChangeNotifier with WindowListener, TrayListener {
   Future<void> _restoreMain() async {
     _quickReady = false;
     mini = quick = false;
+    _compactSource = null;
     await windowManager.setOpacity(1);
     await windowManager.setTitleBarStyle(TitleBarStyle.normal);
     await windowManager.setAlwaysOnTop(false);
@@ -412,16 +453,18 @@ class DesktopShell extends ChangeNotifier with WindowListener, TrayListener {
       if (await windowManager.isMinimized()) await windowManager.restore();
       _quickReady = false;
       quick = false;
-      await windowManager.setMinimumSize(const Size(330, 116));
+      _compactSource = _visibleSource;
+      final size = compactPlayerSize(quick: false, source: _compactSource);
+      await windowManager.setMinimumSize(Size(330, size.height));
       await windowManager.setAsFrameless();
-      await windowManager.setSize(const Size(410, 116));
+      await windowManager.setSize(size);
       await windowManager.setAlwaysOnTop(true);
       await windowManager.setSkipTaskbar(true);
       await windowManager.setOpacity(.94);
       await windowManager.setResizable(false);
       await windowManager.setMaximizable(false);
       if (_normalBounds != null) {
-        final placement = await _cornerBounds(const Size(410, 116));
+        final placement = await _cornerBounds(size);
         await windowManager.setBounds(placement);
       }
       mini = true;
@@ -491,14 +534,16 @@ class DesktopShell extends ChangeNotifier with WindowListener, TrayListener {
     await _rememberMain();
     if (minimized) await windowManager.restore();
     mini = false;
-    await windowManager.setMinimumSize(const Size(300, 330));
+    _compactSource = _visibleSource;
+    final size = compactPlayerSize(quick: true, source: _compactSource);
+    await windowManager.setMinimumSize(Size(300, size.height));
     await windowManager.setAsFrameless();
     await windowManager.setAlwaysOnTop(true);
     await windowManager.setSkipTaskbar(true);
     await windowManager.setOpacity(1);
     await windowManager.setResizable(false);
     await windowManager.setMaximizable(false);
-    await windowManager.setBounds(await _cornerBounds(const Size(360, 420)));
+    await windowManager.setBounds(await _cornerBounds(size));
     quick = true;
     notifyListeners();
     await windowManager.show();
@@ -513,10 +558,15 @@ class DesktopShell extends ChangeNotifier with WindowListener, TrayListener {
       _quickReady = false;
       quick = false;
       mini = true;
-      await windowManager.setMinimumSize(const Size(330, 116));
+      _compactSource = _visibleSource;
+      final size = compactPlayerSize(quick: false, source: _compactSource);
+      await windowManager.setMinimumSize(Size(330, size.height));
       await windowManager.setOpacity(.94);
       if (_miniBoundsBeforeQuick != null) {
-        await windowManager.setBounds(_miniBoundsBeforeQuick!);
+        final bounds = _miniBoundsBeforeQuick!;
+        await windowManager.setBounds(
+          Rect.fromLTWH(bounds.left, bounds.top, size.width, size.height),
+        );
       }
       notifyListeners();
       await windowManager.show();
@@ -575,7 +625,7 @@ class DesktopShell extends ChangeNotifier with WindowListener, TrayListener {
         _background(showMain());
       case 'play':
         unawaited(
-          (audio.player.playing ? audio.pause() : audio.play()).catchError((
+          (audio.playing ? audio.pause() : audio.play()).catchError((
             Object error,
           ) {
             audio.onError?.call(error.toString());

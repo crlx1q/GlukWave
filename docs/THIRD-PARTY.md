@@ -53,3 +53,9 @@ The Google sign-in G is the unmodified [official asset](https://developers.googl
 Lyrics lookup uses the public [LRCLIB API](https://lrclib.net/docs) and the fixed-host [lyrics.ovh service](https://github.com/NTag/lyrics.ovh) as a plain-text fallback. The provider service does not guarantee coverage. Track metadata and record length determine whether timed lyrics are safe to attach; users' saved lyrics take priority.
 
 The Windows installer is compiled with unmodified [Inno Setup](https://jrsoftware.org/isinfo.php) 6.7.3. Copyright (C) 1997–2026 Jordan Russell; portions Copyright (C) 2000–2026 Martijn Laan. Its original license is included in `docs/licenses/Inno-Setup.txt` and in the Windows bundle. The build uses a portable compiler and does not install developer tooling on the user's machine. The installer and application remain unsigned beta packages.
+
+## Official provider players in Flutter
+
+The Flutter clients use flutter_inappwebview 6.1.5 (Apache-2.0). Its original license is preserved in docs/licenses/InAppWebView-Apache-2.0.txt and the Windows bundle. Windows uses Microsoft WebView2; the installer bundles Microsoft's signed Evergreen bootstrapper, which obtains the runtime from Microsoft when absent. The player remains visible and source media stays inside official SoundCloud/YouTube embeds. No extracted audio stream or provider account credential is included.
+
+Windows developer builds need NuGet, as documented by [InAppWebView](https://inappwebview.dev/docs/intro/#setup-windows) and [Microsoft](https://learn.microsoft.com/en-us/nuget/install-nuget-client-tools). scripts/prepare-nuget.ps1 obtains and verifies the Microsoft-signed tool; it is build tooling and is not included in the application.

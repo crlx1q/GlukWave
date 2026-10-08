@@ -35,7 +35,7 @@ const allowed=new Set(['apps','docs','scripts','deploy','.github']);
 const rootFiles=new Set(['.env.example','.gitignore','.dockerignore','Dockerfile','compose.yaml','package.json','package-lock.json','README.md']);
 const outputFiles=new Set(['outputs/START.md','outputs/VERIFICATION.md','outputs/Start-GlukWave.ps1']);
 const forbidden=/(?:^|\/)(?:node_modules|\.git|\.originkit|work|var|build|\.dart_tool|\.gradle|ephemeral|\.symlinks|__pycache__|xcuserdata)(?:\/|$)|\.(?:sqlite(?:3)?(?:-wal|-shm)?|keystore|jks|p12|apk|ipa|exe|pyc)$/i;
-const textFile=/\.(?:md|txt|json|[cm]?js|tsx?|css|html|ya?ml|ps1|py|dart|xml|java|kt|kts|cpp|cc|c|h|rc|properties|lock|cmake|xcconfig|plist|entitlements|example|gitignore|dockerignore)$|\/Dockerfile$/i;
+const textFile=/\.(?:md|txt|json|[cm]?js|tsx?|css|html|ya?ml|ps1|py|dart|xml|java|kt|kts|cpp|cc|c|h|rc|iss|properties|lock|cmake|xcconfig|plist|entitlements|example|gitignore|dockerignore)$|\/Dockerfile$/i;
 const names=new Set(),hashes=new Map();let cursor=offset,totalBytes=0,textFilesScanned=0;
 for(let n=0;n<count;n++){
   requireCondition(archive.readUInt32LE(cursor)===0x02014b50,'Invalid ZIP entry');
@@ -64,9 +64,11 @@ for(let n=0;n<count;n++){
 }
 requireCondition(cursor===end,'ZIP directory size mismatch');
 for(const filename of ['README.md','.env.example','outputs/START.md','outputs/VERIFICATION.md','docs/design-reference/Gluk-Wave-v2.html','docs/design-reference/Gluk-Wave-v6-PC-fixed.html','docs/verification/2026-10-08/evidence.json','apps/web/dist/index.html','apps/native/pubspec.yaml'])requireCondition(names.has(filename),'Required source missing: '+filename);
-const evidence=JSON.parse(await fs.readFile(path.join(root,'docs/verification/2026-10-08/evidence.json'),'utf8'));
+const evidenceArgument=process.argv.indexOf('--evidence'),evidencePath=evidenceArgument>=0?process.argv[evidenceArgument+1]:'docs/verification/2026-10-08/evidence.json';
+requireCondition(typeof evidencePath==='string','Evidence path missing');
+const evidence=JSON.parse(await fs.readFile(path.resolve(root,evidencePath),'utf8'));
 requireCondition(names.has('apps/web/dist'+evidence.web.javascript),'Current web build missing');
-const frozen=JSON.parse(await fs.readFile(path.join(root,'docs/verification/2026-10-08/native-source-freeze.json'),'utf8'));
+const frozen=JSON.parse(await fs.readFile(path.join(root,evidence.native.sourceFreezeFile||'docs/verification/2026-10-08/native-source-freeze.json'),'utf8'));
 for(const record of frozen.files)requireCondition(hashes.get('apps/native/'+record.path)===record.sha256,'Frozen native source missing/changed: '+record.path);
 const fonts=Array.from(names).filter(name=>/^apps\/native\/assets\/fonts\/Nunito-.+\.ttf$/.test(name));requireCondition(fonts.length===6,'Static font faces missing');
 const manrope=Array.from(names).filter(name=>/^apps\/native\/assets\/fonts\/Manrope-.+\.ttf$/.test(name));requireCondition(manrope.length===5,'Manrope static font faces missing');

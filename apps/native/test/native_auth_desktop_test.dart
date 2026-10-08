@@ -7,6 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:glukwave/core/models.dart';
 import 'package:glukwave/services/audio.dart';
 import 'package:glukwave/services/cache.dart';
+import 'package:glukwave/services/desktop.dart';
 import 'package:glukwave/ui/app.dart';
 import 'package:glukwave/ui/auth_visuals.dart';
 import 'package:glukwave/ui/desktop_player.dart';
@@ -73,6 +74,21 @@ Future<void> mount(WidgetTester tester, CaptureAuth c, Size size) async {
 }
 
 void main() {
+  test('Compact window reserves visible official source controls', () {
+    expect(compactPlayerSize(quick: false), const Size(410, 116));
+    expect(
+      compactPlayerSize(quick: false, source: 'soundcloud'),
+      const Size(410, 250),
+    );
+    expect(
+      compactPlayerSize(quick: false, source: 'youtube'),
+      const Size(410, 350),
+    );
+    expect(
+      compactPlayerSize(quick: true, source: 'youtube'),
+      const Size(360, 654),
+    );
+  });
   TestWidgetsFlutterBinding.ensureInitialized();
   setUpAll(() async {
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger

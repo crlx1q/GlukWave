@@ -9,6 +9,7 @@ import '../core/api.dart';
 import '../core/models.dart';
 import '../core/equalizer.dart';
 import 'cache.dart';
+import 'provider_player.dart';
 
 class WaveAudioHandler extends BaseAudioHandler {
   final WaveApi api;
@@ -16,6 +17,69 @@ class WaveAudioHandler extends BaseAudioHandler {
   // Native players send authorization headers directly. Android does not need an
   // insecure loopback proxy in release builds.
   late final AudioPlayer player;
+  final ProviderPlayer provider = ProviderPlayer();
+  PlaybackSnapshot? _remote;
+  WaveTrack? _remoteTrack;
+  List<WaveTrack> _remoteQueue = [];
+  WaveTrack? get viewCurrent => _remote != null ? _remoteTrack : current;
+  List<WaveTrack> get viewTracks => _remote != null ? _remoteQueue : tracks;
+  bool get remote => _remote != null;
+  bool get outputPlaying =>
+      current?.embedded == true ? provider.playing : player.playing;
+  Duration get outputPosition => current?.embedded == true
+      ? Duration(milliseconds: (provider.position * 1000).round())
+      : player.position;
+  bool get playing => _remote?.playing ?? outputPlaying;
+  Duration get position => _remote == null
+      ? outputPosition
+      : Duration(
+          milliseconds:
+              (_remote!.projectedPosition(
+                        DateTime.now().millisecondsSinceEpoch,
+                        duration: _remoteTrack?.duration,
+                      ) *
+                      1000)
+                  .round(),
+        );
+  Duration? get duration => _remote != null
+      ? Duration(milliseconds: ((_remoteTrack?.duration ?? 0) * 1000).round())
+      : current?.embedded == true
+      ? Duration(milliseconds: (provider.duration * 1000).round())
+      : player.duration;
+  Stream<Duration> get positionStream =>
+      Stream.periodic(const Duration(milliseconds: 250), (_) => position);
+  double get outputVolume => _volume;
+  void showRemote(
+    PlaybackSnapshot state,
+    WaveTrack? track,
+    List<WaveTrack> queue,
+  ) {
+    _remote = PlaybackSnapshot(
+      trackId: state.trackId,
+      position: state.position,
+      volume: state.volume,
+      playing: state.playing,
+      queue: state.queue,
+      updatedAt: DateTime.now().millisecondsSinceEpoch,
+      revision: state.revision,
+    );
+    _remoteTrack = track;
+    _remoteQueue = queue;
+    mediaItem.add(track == null ? null : item(track));
+    this.queue.add(queue.map(item).toList());
+    _broadcast();
+  }
+
+  void clearRemote() {
+    if (_remote == null) return;
+    _remote = null;
+    _remoteTrack = null;
+    _remoteQueue = [];
+    mediaItem.add(current == null ? null : item(current!));
+    queue.add(tracks.map(item).toList());
+    _broadcast();
+  }
+
   final AndroidEqualizer? _equalizer = Platform.isAndroid
       ? AndroidEqualizer()
       : null;
@@ -29,8 +93,9 @@ class WaveAudioHandler extends BaseAudioHandler {
   Future<void> _processingWrites = Future.value();
   String equalizerStatus = Platform.isAndroid ? 'waiting' : 'unsupported';
   int hardwareBandCount = 0;
-  double get volume => _volume;
-  bool get equalizerSupported => _equalizer != null;
+  double get volume => _remote?.volume ?? _volume;
+  bool get equalizerSupported =>
+      _equalizer != null && current?.embedded != true && !remote;
   List<WaveTrack> tracks = [];
   WaveTrack? current;
   AudioServiceRepeatMode repeat = AudioServiceRepeatMode.none;
@@ -48,6 +113,14 @@ class WaveAudioHandler extends BaseAudioHandler {
   void Function(String message)? onError;
   final List<StreamSubscription<dynamic>> _subscriptions = [];
   WaveAudioHandler(this.api, this.cache) {
+    provider.addListener(_broadcast);
+    provider.onError = (message) => onError?.call(wt(message));
+    provider.onEnded = () {
+      if (!_advancing) {
+        _advancing = true;
+        unawaited(_completed().whenComplete(() => _advancing = false));
+      }
+    };
     player = AudioPlayer(
       useProxyForRequestHeaders: false,
       audioPipeline: AudioPipeline(
@@ -180,10 +253,15 @@ class WaveAudioHandler extends BaseAudioHandler {
   );
 
   /// A room revision supersedes an in-flight source lookup before it can start.
-  void cancelPendingLoad() => _loadRevision++;
+  void cancelPendingLoad() {
+    _loadRevision++;
+    provider.cancelPendingLoad();
+  }
 
   Future<void> clear() async {
     cancelPendingLoad();
+    clearRemote();
+    await provider.clear();
     await player.stop();
     current = null;
     tracks = [];
@@ -222,7 +300,7 @@ class WaveAudioHandler extends BaseAudioHandler {
       PlaybackState(
         controls: [
           MediaControl.skipToPrevious,
-          player.playing ? MediaControl.pause : MediaControl.play,
+          playing ? MediaControl.pause : MediaControl.play,
           MediaControl.skipToNext,
           MediaControl.stop,
         ],
@@ -232,18 +310,30 @@ class WaveAudioHandler extends BaseAudioHandler {
           MediaAction.seekForward,
           MediaAction.seekBackward,
         },
-        processingState: switch (player.processingState) {
-          ProcessingState.idle => AudioProcessingState.idle,
-          ProcessingState.loading => AudioProcessingState.loading,
-          ProcessingState.buffering => AudioProcessingState.buffering,
-          ProcessingState.ready => AudioProcessingState.ready,
-          ProcessingState.completed => AudioProcessingState.completed,
-        },
-        playing: player.playing,
-        updatePosition: player.position,
+        processingState: remote
+            ? AudioProcessingState.ready
+            : current?.embedded == true
+            ? provider.loading
+                  ? AudioProcessingState.loading
+                  : provider.ready
+                  ? AudioProcessingState.ready
+                  : AudioProcessingState.idle
+            : switch (player.processingState) {
+                ProcessingState.idle => AudioProcessingState.idle,
+                ProcessingState.loading => AudioProcessingState.loading,
+                ProcessingState.buffering => AudioProcessingState.buffering,
+                ProcessingState.ready => AudioProcessingState.ready,
+                ProcessingState.completed => AudioProcessingState.completed,
+              },
+        playing: playing,
+        updatePosition: position,
         bufferedPosition: player.bufferedPosition,
         speed: player.speed,
-        queueIndex: _index < 0 ? null : _index,
+        queueIndex: remote
+            ? viewTracks.indexWhere((track) => track.id == viewCurrent?.id)
+            : _index < 0
+            ? null
+            : _index,
         repeatMode: repeat,
         shuffleMode: shuffle
             ? AudioServiceShuffleMode.all
@@ -264,6 +354,7 @@ class WaveAudioHandler extends BaseAudioHandler {
       throw WaveException(wt('native.266e43ddb8'));
     }
     final revision = ++_loadRevision;
+    clearRemote();
     final available = (list ?? tracks).where((t) => t.playable).toList();
     tracks = available.any((t) => t.id == track.id)
         ? available
@@ -274,6 +365,18 @@ class WaveAudioHandler extends BaseAudioHandler {
     queue.add(tracks.map(item).toList());
     mediaItem.add(item(track));
     await player.pause();
+    if (track.embedded) {
+      await provider.load(
+        track,
+        position: position,
+        volume: _volume,
+        playing: playing,
+      );
+      if (revision != _loadRevision) return;
+      _broadcast();
+      return;
+    }
+    await provider.clear();
     final local = await cache.fileFor(track.id);
     if (revision != _loadRevision) return;
     if (local != null) {
@@ -325,8 +428,8 @@ class WaveAudioHandler extends BaseAudioHandler {
       }
       if (repeat == AudioServiceRepeatMode.one && current != null) {
         if (await _intercept('seek', {'position': 0})) return;
-        await player.seek(Duration.zero);
-        await _startVerified();
+        await localCommand('seek', {'position': 0});
+        await localCommand('play');
       } else {
         await skipToNext();
       }
@@ -336,6 +439,24 @@ class WaveAudioHandler extends BaseAudioHandler {
   }
 
   Future<void> localCommand(String command, [Json data = const {}]) async {
+    if (current?.embedded == true && !['next', 'previous'].contains(command)) {
+      if (command == 'play' && !provider.ready && !provider.loading) {
+        await provider.load(
+          current!,
+          position: provider.position,
+          volume: _volume,
+        );
+        _broadcast();
+        return;
+      }
+      if (command == 'volume') {
+        _volume = number(data['volume'], .8).clamp(0, 1);
+        await onVolumeChanged?.call(_volume);
+      }
+      await provider.command(command, data);
+      _broadcast();
+      return;
+    }
     switch (command) {
       case 'play':
         if (current == null) throw WaveException(wt('native.449b7110f6'));
@@ -406,8 +527,8 @@ class WaveAudioHandler extends BaseAudioHandler {
 
   Future<void> _skip(int direction) async {
     if (tracks.isEmpty) return;
-    if (direction < 0 && player.position > const Duration(seconds: 3)) {
-      await player.seek(Duration.zero);
+    if (direction < 0 && outputPosition > const Duration(seconds: 3)) {
+      await localCommand('seek', {'position': 0});
       return;
     }
     var next = _index + direction;
@@ -422,7 +543,7 @@ class WaveAudioHandler extends BaseAudioHandler {
     if (next < 0) next = 0;
     if (next >= tracks.length) {
       if (repeat != AudioServiceRepeatMode.all) {
-        await player.pause();
+        await localCommand('pause');
         return;
       }
       next = 0;
@@ -458,11 +579,11 @@ class WaveAudioHandler extends BaseAudioHandler {
 
   @override
   Future<void> skipToQueueItem(int index) async {
-    if (index < 0 || index >= tracks.length) return;
-    final track = tracks[index];
+    if (index < 0 || index >= viewTracks.length) return;
+    final track = viewTracks[index];
     if (!await _intercept('track', {
       'trackId': track.id,
-      'queue': tracks.map((t) => t.id).toList(),
+      'queue': viewTracks.map((t) => t.id).toList(),
     })) {
       await playTrack(track);
     }
@@ -503,5 +624,8 @@ class WaveAudioHandler extends BaseAudioHandler {
       await sub.cancel();
     }
     await player.dispose();
+    provider.removeListener(_broadcast);
+    await provider.clear();
+    provider.dispose();
   }
 }

@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import '../core/controller.dart';
 import '../core/models.dart';
 import 'widgets.dart';
+import 'volume_slider.dart';
+import 'equalizer_panel.dart';
 import 'album_stage.dart';
 import 'player_gestures.dart';
 
@@ -27,7 +29,7 @@ class MiniPlayer extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
-    final c = controller, track = c.audio.current;
+    final c = controller, track = c.audio.viewCurrent;
     final v = waveVisuals(context);
     final compact = MediaQuery.sizeOf(context).width < 800;
     return ClipRRect(
@@ -114,72 +116,6 @@ class MiniPlayer extends StatelessWidget {
                           ),
                         ),
                       ),
-                      if (!compact)
-                        IconButton(
-                          tooltip: wt('native.8e1abb9475', context: context),
-                          onPressed: c.canControl
-                              ? () => _run(c, c.audio.skipToPrevious)
-                              : null,
-                          icon: Icon(
-                            Icons.skip_previous_rounded,
-                            color: v.onPlayer,
-                          ),
-                        ),
-                      StreamBuilder<PlaybackState>(
-                        stream: c.audio.playbackState,
-                        builder: (context, state) {
-                          final busy = const [
-                            AudioProcessingState.buffering,
-                            AudioProcessingState.loading,
-                          ].contains(state.data?.processingState);
-                          return IconButton.filled(
-                            tooltip: c.audio.player.playing
-                                ? wt('native.03498e395a', context: context)
-                                : wt('native.c750dc7d94', context: context),
-                            style: IconButton.styleFrom(
-                              backgroundColor: v.onPlayer,
-                              foregroundColor: v.player,
-                              minimumSize: const Size(44, 44),
-                              maximumSize: const Size(44, 44),
-                            ),
-                            onPressed: c.canControl && track != null
-                                ? () => _run(
-                                    c,
-                                    c.audio.player.playing
-                                        ? c.audio.pause
-                                        : c.audio.play,
-                                  )
-                                : null,
-                            icon: busy
-                                ? SizedBox(
-                                    width: 17,
-                                    height: 17,
-                                    child: CircularProgressIndicator(
-                                      strokeWidth: 2,
-                                      color: v.player,
-                                    ),
-                                  )
-                                : Icon(
-                                    c.audio.player.playing
-                                        ? Icons.pause_rounded
-                                        : Icons.play_arrow_rounded,
-                                    size: 23,
-                                  ),
-                          );
-                        },
-                      ),
-                      if (!compact)
-                        IconButton(
-                          tooltip: wt('native.c97fa8b29b', context: context),
-                          onPressed: c.canControl
-                              ? () => _run(c, c.audio.skipToNext)
-                              : null,
-                          icon: Icon(
-                            Icons.skip_next_rounded,
-                            color: v.onPlayer,
-                            size: 23,
-                          ),
-                        ),
                       if (track != null)
                         IconButton(
                           key: const Key('mini-like'),
@@ -204,6 +140,83 @@ class MiniPlayer extends StatelessWidget {
                           ),
                         ),
                       if (!compact)
+                        IconButton(
+                          tooltip: wt('native.8e1abb9475', context: context),
+                          onPressed: c.canControl
+                              ? () => _run(c, c.audio.skipToPrevious)
+                              : null,
+                          icon: Icon(
+                            Icons.skip_previous_rounded,
+                            color: v.onPlayer,
+                          ),
+                        ),
+                      StreamBuilder<PlaybackState>(
+                        stream: c.audio.playbackState,
+                        builder: (context, state) {
+                          final busy = const [
+                            AudioProcessingState.buffering,
+                            AudioProcessingState.loading,
+                          ].contains(state.data?.processingState);
+                          return IconButton.filled(
+                            tooltip: c.audio.playing
+                                ? wt('native.03498e395a', context: context)
+                                : wt('native.c750dc7d94', context: context),
+                            style: IconButton.styleFrom(
+                              backgroundColor: v.onPlayer,
+                              foregroundColor: v.player,
+                              minimumSize: const Size(44, 44),
+                              maximumSize: const Size(44, 44),
+                            ),
+                            onPressed: c.canControl && track != null
+                                ? () => _run(
+                                    c,
+                                    c.audio.playing
+                                        ? c.audio.pause
+                                        : c.audio.play,
+                                  )
+                                : null,
+                            icon: busy
+                                ? SizedBox(
+                                    width: 17,
+                                    height: 17,
+                                    child: CircularProgressIndicator(
+                                      strokeWidth: 2,
+                                      color: v.player,
+                                    ),
+                                  )
+                                : Icon(
+                                    c.audio.playing
+                                        ? Icons.pause_rounded
+                                        : Icons.play_arrow_rounded,
+                                    size: 23,
+                                  ),
+                          );
+                        },
+                      ),
+                      if (!compact)
+                        IconButton(
+                          tooltip: wt('native.c97fa8b29b', context: context),
+                          onPressed: c.canControl
+                              ? () => _run(c, c.audio.skipToNext)
+                              : null,
+                          icon: Icon(
+                            Icons.skip_next_rounded,
+                            color: v.onPlayer,
+                            size: 23,
+                          ),
+                        ),
+                      if (!compact)
+                        IconButton(
+                          key: const Key('mini-equalizer'),
+                          tooltip: wt('eq.title', context: context),
+                          onPressed: () => showPlayerEqualizer(context, c),
+                          icon: Icon(
+                            Icons.graphic_eq_rounded,
+                            color: v.onPlayer.withValues(alpha: .7),
+                            size: 19,
+                          ),
+                        ),
+                      if (!compact)
                         SizedBox(
                           width: 130,
                           child: Row(
@@ -214,7 +227,7 @@ class MiniPlayer extends StatelessWidget {
                                 size: 19,
                               ),
                               Expanded(
-                                child: Slider(
+                                child: VolumeSlider(
                                   value: c.audio.volume.clamp(0, 1),
                                   onChanged: (value) => _run(
                                     c,
@@ -242,9 +255,9 @@ class MiniPlayer extends StatelessWidget {
                 ),
               ),
               StreamBuilder<Duration>(
-                stream: c.audio.player.positionStream,
+                stream: c.audio.positionStream,
                 builder: (context, snapshot) {
-                  final total = c.audio.player.duration?.inMilliseconds ?? 0;
+                  final total = c.audio.duration?.inMilliseconds ?? 0;
                   return LinearProgressIndicator(
                     value: total > 0
                         ? ((snapshot.data?.inMilliseconds ?? 0) / total).clamp(
@@ -273,6 +286,29 @@ Future<void> _run(WaveController c, Future<void> Function() action) async {
     c.tell(error.toString());
   }
 }
+
+Future<void> showPlayerEqualizer(BuildContext context, WaveController c) =>
+    showWaveDialog<void>(
+      context: context,
+      builder: (dialog) => AlertDialog(
+        title: Text(wt('eq.title', context: dialog)),
+        content: SizedBox(
+          width: 580,
+          child: SingleChildScrollView(
+            child: AnimatedBuilder(
+              animation: c,
+              builder: (_, _) => EqualizerPanel(controller: c),
+            ),
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(dialog),
+            child: Text(wt('native.398c7d4f7b', context: dialog)),
+          ),
+        ],
+      ),
+    );
 
 class PlayerPage extends StatefulWidget {
   final WaveController controller;
@@ -313,12 +349,12 @@ class _PlayerPageState extends State<PlayerPage> {
   @override
   void initState() {
     super.initState();
-    current = widget.initialTrack ?? c.audio.current;
+    current = widget.initialTrack ?? c.audio.viewCurrent;
     unawaited(loadDetails());
     if (widget.initialTrack == null) {
       _media = c.audio.mediaItem.listen((item) {
         if (!mounted) return;
-        final track = c.audio.current;
+        final track = c.audio.viewCurrent;
         if (track?.id != current?.id) {
           setState(() {
             current = track;
@@ -465,7 +501,7 @@ class _PlayerPageState extends State<PlayerPage> {
                   color: waveVisuals(context).accent,
                 ),
               Expanded(
-                child: wide && tab == 0
+                child: wide && tab != 2
                     ? Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 56),
                         child: Row(
@@ -482,11 +518,17 @@ class _PlayerPageState extends State<PlayerPage> {
                             const SizedBox(width: 56),
                             Expanded(
                               child: SingleChildScrollView(
-                                key: const Key('desktop-lyrics-scroll'),
+                                key: Key(
+                                  tab == 0
+                                      ? 'desktop-lyrics-scroll'
+                                      : 'player-content-scroll',
+                                ),
                                 padding: const EdgeInsets.symmetric(
                                   vertical: 28,
                                 ),
-                                child: lyricPage(track),
+                                child: tab == 3
+                                    ? commentPage(track)
+                                    : lyricPage(track),
                               ),
                             ),
                           ],
@@ -503,7 +545,7 @@ class _PlayerPageState extends State<PlayerPage> {
                         },
                       ),
               ),
-              if (tab != 0 && c.audio.current != null)
+              if (!wide && tab != 0 && c.audio.viewCurrent != null)
                 Padding(
                   padding: const EdgeInsets.fromLTRB(18, 4, 18, 16),
                   child: MiniPlayer(
@@ -611,7 +653,7 @@ class _PlayerPageState extends State<PlayerPage> {
   Widget listening(WaveTrack track) => LayoutBuilder(
     builder: (context, constraints) {
       final size = (constraints.maxWidth * .94).clamp(170.0, 400.0);
-      final active = c.audio.current?.id == track.id;
+      final active = c.audio.viewCurrent?.id == track.id;
       return ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 530),
         child: Column(
@@ -630,7 +672,7 @@ class _PlayerPageState extends State<PlayerPage> {
                   controller: c,
                   track: track,
                   size: size,
-                  playing: active && c.audio.player.playing,
+                  playing: active && c.audio.playing,
                   artworkKey: widget.artworkKey,
                   touchTilt: false,
                 ),
@@ -746,9 +788,22 @@ class _PlayerPageState extends State<PlayerPage> {
               progress(track),
               const SizedBox(height: 9),
               transport(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              Wrap(
+                alignment: WrapAlignment.center,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                spacing: 4,
+                runSpacing: 2,
                 children: [
+                  IconButton(
+                    key: const Key('player-equalizer'),
+                    tooltip: wt('eq.title', context: context),
+                    onPressed: () => showPlayerEqualizer(context, c),
+                    icon: Icon(
+                      Icons.graphic_eq_rounded,
+                      size: 20,
+                      color: waveVisuals(context).muted,
+                    ),
+                  ),
                   IconButton(
                     tooltip: wt('native.621777004a', context: context),
                     onPressed: () => showVolume(),
@@ -788,7 +843,12 @@ class _PlayerPageState extends State<PlayerPage> {
               SizedBox(
                 width: double.infinity,
                 child: FilledButton.icon(
-                  onPressed: () => _run(c, () => c.play(track)),
+                  onPressed: () => _run(
+                    c,
+                    () => track.playable
+                        ? c.play(track)
+                        : c.openUrl(track.sourceUrl),
+                  ),
                   icon: Icon(
                     track.playable
                         ? Icons.play_arrow_rounded
@@ -826,7 +886,7 @@ class _PlayerPageState extends State<PlayerPage> {
               Padding(
                 padding: const EdgeInsets.only(top: 26),
                 child: StreamBuilder<Duration>(
-                  stream: c.audio.player.positionStream,
+                  stream: c.audio.positionStream,
                   builder: (_, snapshot) {
                     final index = synchronized && active
                         ? activeLyric(
@@ -885,11 +945,10 @@ class _PlayerPageState extends State<PlayerPage> {
     },
   );
   Widget progress(WaveTrack track) => StreamBuilder<Duration>(
-    stream: c.audio.player.positionStream,
+    stream: c.audio.positionStream,
     builder: (context, snapshot) {
       final total =
-          c.audio.player.duration?.inMilliseconds.toDouble() ??
-          track.duration * 1000;
+          c.audio.duration?.inMilliseconds.toDouble() ?? track.duration * 1000;
       final current = (snapshot.data?.inMilliseconds ?? 0)
           .toDouble()
           .clamp(0, total > 0 ? total : 1)
@@ -961,13 +1020,13 @@ class _PlayerPageState extends State<PlayerPage> {
         icon: const Icon(Icons.skip_previous_rounded, size: 33),
       ),
       IconButton.filled(
-        tooltip: c.audio.player.playing
+        tooltip: c.audio.playing
             ? wt('native.03498e395a', context: context)
             : wt('native.c750dc7d94', context: context),
         onPressed: c.canControl
             ? () => _run(
                 c,
-                () => c.audio.player.playing ? c.audio.pause() : c.audio.play(),
+                () => c.audio.playing ? c.audio.pause() : c.audio.play(),
               )
             : null,
         style: IconButton.styleFrom(
@@ -976,9 +1035,7 @@ class _PlayerPageState extends State<PlayerPage> {
           foregroundColor: waveVisuals(context).background,
         ),
         icon: Icon(
-          c.audio.player.playing
-              ? Icons.pause_rounded
-              : Icons.play_arrow_rounded,
+          c.audio.playing ? Icons.pause_rounded : Icons.play_arrow_rounded,
           size: 32,
         ),
       ),
@@ -1093,9 +1150,9 @@ class _PlayerPageState extends State<PlayerPage> {
         )
       else
         StreamBuilder<Duration>(
-          stream: c.audio.player.positionStream,
+          stream: c.audio.positionStream,
           builder: (_, snapshot) {
-            final active = synchronized && c.audio.current?.id == track.id
+            final active = synchronized && c.audio.viewCurrent?.id == track.id
                 ? activeLyric(
                     lyrics,
                     (snapshot.data?.inMilliseconds ?? 0) / 1000,
@@ -1111,7 +1168,7 @@ class _PlayerPageState extends State<PlayerPage> {
                       onTap:
                           synchronized &&
                               c.canControl &&
-                              c.audio.current?.id == track.id
+                              c.audio.viewCurrent?.id == track.id
                           ? () => _run(
                               c,
                               () => c.audio.seek(
@@ -1125,9 +1182,13 @@ class _PlayerPageState extends State<PlayerPage> {
                           : null,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 14),
-                        child: Text(
-                          lyrics[i]['text'] as String? ?? '',
+                        child: AnimatedDefaultTextStyle(
+                          duration: waveVisuals(context).duration(220),
+                          curve: Curves.easeOut,
                           style: TextStyle(
+                            fontFamily: Theme.of(
+                              context,
+                            ).textTheme.bodyMedium?.fontFamily,
                             fontSize: 30,
                             fontWeight: FontWeight.w800,
                             letterSpacing: -.7,
@@ -1136,6 +1197,7 @@ class _PlayerPageState extends State<PlayerPage> {
                                 ? waveVisuals(context).ink
                                 : waveVisuals(context).muted,
                           ),
+                          child: Text(lyrics[i]['text'] as String? ?? ''),
                         ),
                       ),
                     ),
@@ -1312,7 +1374,7 @@ class _PlayerPageState extends State<PlayerPage> {
         wt(
           'native.bd71178379',
           values: {
-            'p0': (c.audio.tracks.length),
+            'p0': (c.audio.viewTracks.length),
             'p1': (c.room == null
                 ? wt('native.90db49c312', context: context)
                 : wt('native.b40415dfac', context: context)),
@@ -1322,17 +1384,17 @@ class _PlayerPageState extends State<PlayerPage> {
         style: TextStyle(color: waveVisuals(context).muted, fontSize: 12),
       ),
       const SizedBox(height: 24),
-      if (c.audio.tracks.isEmpty)
+      if (c.audio.viewTracks.isEmpty)
         EmptyState(
           wt('native.8c96dfdeaf', context: context),
           wt('native.f11290c0ba', context: context),
           icon: Icons.queue_music,
         ),
-      for (final track in c.audio.tracks)
+      for (final track in c.audio.viewTracks)
         TrackRow(
           controller: c,
           track: track,
-          queue: c.audio.tracks,
+          queue: c.audio.viewTracks,
           onMore: () => widget.onMore(track),
         ),
     ],
@@ -1385,7 +1447,7 @@ class _PlayerPageState extends State<PlayerPage> {
                             '${entry['displayName']} · ${clock(number(entry['position']))}',
                         child: GestureDetector(
                           onTap: () {
-                            if (c.audio.current?.id == track.id) {
+                            if (c.audio.viewCurrent?.id == track.id) {
                               _run(
                                 c,
                                 () => c.audio.seek(
@@ -1442,8 +1504,8 @@ class _PlayerPageState extends State<PlayerPage> {
                 const SizedBox(width: 8),
                 Text(
                   clock(
-                    c.audio.current?.id == track.id
-                        ? c.audio.player.position.inMilliseconds / 1000
+                    c.audio.viewCurrent?.id == track.id
+                        ? c.audio.position.inMilliseconds / 1000
                         : 0,
                   ),
                   style: TextStyle(
@@ -1461,9 +1523,8 @@ class _PlayerPageState extends State<PlayerPage> {
                             method: 'POST',
                             data: {
                               'text': comment.text.trim(),
-                              'position': c.audio.current?.id == track.id
-                                  ? c.audio.player.position.inMilliseconds /
-                                        1000
+                              'position': c.audio.viewCurrent?.id == track.id
+                                  ? c.audio.position.inMilliseconds / 1000
                                   : 0,
                             },
                           );
@@ -1520,7 +1581,7 @@ class _PlayerPageState extends State<PlayerPage> {
                           ),
                         ),
                         TextButton(
-                          onPressed: c.audio.current?.id == track.id
+                          onPressed: c.audio.viewCurrent?.id == track.id
                               ? () => _run(
                                   c,
                                   () => c.audio.seek(

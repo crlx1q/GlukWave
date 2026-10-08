@@ -28,13 +28,33 @@ class AlbumStage extends StatefulWidget {
 }
 
 class _AlbumStageState extends State<AlbumStage>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin, WidgetsBindingObserver {
   late final spin = AnimationController(
     vsync: this,
     duration: const Duration(seconds: 15),
   );
   Offset tilt = Offset.zero;
-  bool dragging = false;
+  late final drift = AnimationController(
+    vsync: this,
+    duration: const Duration(seconds: 8),
+  );
+  bool dragging = false, hovering = false, visible = true;
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    visible = ![
+      AppLifecycleState.hidden,
+      AppLifecycleState.paused,
+      AppLifecycleState.detached,
+    ].contains(state);
+    motion();
+  }
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -49,7 +69,18 @@ class _AlbumStageState extends State<AlbumStage>
 
   void motion() {
     final settings = widget.controller.customization;
+    final animate =
+        visible &&
+        settings.appearance.cover3d &&
+        !settings.reducedMotion &&
+        !MediaQuery.disableAnimationsOf(context);
+    if (animate) {
+      if (!drift.isAnimating) drift.repeat(reverse: true);
+    } else {
+      drift.stop();
+    }
     if (widget.playing &&
+        visible &&
         settings.appearance.cover3d &&
         !settings.reducedMotion &&
         !MediaQuery.disableAnimationsOf(context)) {
@@ -61,6 +92,8 @@ class _AlbumStageState extends State<AlbumStage>
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    drift.dispose();
     spin.dispose();
     super.dispose();
   }
@@ -104,6 +137,7 @@ class _AlbumStageState extends State<AlbumStage>
                   context: context,
                 ),
                 child: MouseRegion(
+                  onEnter: (_) => setState(() => hovering = true),
                   onHover: (event) {
                     if (!dragging) {
                       setState(
@@ -114,7 +148,10 @@ class _AlbumStageState extends State<AlbumStage>
                       );
                     }
                   },
-                  onExit: (_) => setState(() => tilt = Offset.zero),
+                  onExit: (_) => setState(() {
+                    hovering = false;
+                    tilt = Offset.zero;
+                  }),
                   child: GestureDetector(
                     key: const Key('album-3d'),
                     behavior: HitTestBehavior.opaque,
@@ -167,13 +204,31 @@ class _AlbumStageState extends State<AlbumStage>
                     child: TweenAnimationBuilder<Offset>(
                       tween: Tween(begin: Offset.zero, end: tilt),
                       duration: dragging ? Duration.zero : v.duration(260),
-                      builder: (context, value, child) => Transform(
-                        alignment: Alignment.center,
-                        transform: Matrix4.identity()
-                          ..setEntry(3, 2, .0014)
-                          ..rotateX(-.06 - value.dy)
-                          ..rotateY(-.2 + value.dx)
-                          ..rotateZ(-.025),
+                      builder: (context, value, child) => AnimatedBuilder(
+                        animation: drift,
+                        builder: (_, child) => Transform(
+                          alignment: Alignment.center,
+                          transform: Matrix4.identity()
+                            ..setEntry(3, 2, .0014)
+                            ..rotateX(
+                              -.06 -
+                                  value.dy +
+                                  (!dragging && !hovering && visible
+                                      ? math.sin(drift.value * math.pi * 2) *
+                                            .035
+                                      : 0),
+                            )
+                            ..rotateY(
+                              -.2 +
+                                  value.dx +
+                                  (!dragging && !hovering && visible
+                                      ? math.sin(drift.value * math.pi * 2) *
+                                            .06
+                                      : 0),
+                            )
+                            ..rotateZ(-.025),
+                          child: child,
+                        ),
                         child: child,
                       ),
                       child: SizedBox(

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../core/controller.dart';
 import '../l10n/wave_localizations.dart';
 import 'widgets.dart';
+import 'volume_slider.dart';
 
 /// Same session and audio handler as the full application. The desktop shell
 /// switches the native window's bounds and frame; no second player is created.
@@ -35,7 +36,7 @@ class _DesktopCompactPlayerState extends State<DesktopCompactPlayer> {
   void _wheel(PointerSignalEvent event) {
     if (event is! PointerScrollEvent ||
         !c.canControl ||
-        c.audio.current == null) {
+        c.audio.viewCurrent == null) {
       return;
     }
     final now = DateTime.now();
@@ -59,7 +60,7 @@ class _DesktopCompactPlayerState extends State<DesktopCompactPlayer> {
   }) => IconButton(
     key: key,
     tooltip: label,
-    onPressed: c.canControl && c.audio.current != null
+    onPressed: c.canControl && c.audio.viewCurrent != null
         ? () => _run(action)
         : null,
     icon: Icon(icon, size: widget.quick ? 23 : 20),
@@ -77,7 +78,7 @@ class _DesktopCompactPlayerState extends State<DesktopCompactPlayer> {
       return IconButton.filled(
         key: const Key('desktop-quick-play'),
         tooltip: wt(
-          c.audio.player.playing ? 'native.03498e395a' : 'native.c750dc7d94',
+          c.audio.playing ? 'native.03498e395a' : 'native.c750dc7d94',
           context: context,
         ),
         style: IconButton.styleFrom(
@@ -86,8 +87,8 @@ class _DesktopCompactPlayerState extends State<DesktopCompactPlayer> {
           backgroundColor: v.ink,
           foregroundColor: v.background,
         ),
-        onPressed: c.canControl && c.audio.current != null
-            ? () => _run(c.audio.player.playing ? c.audio.pause : c.audio.play)
+        onPressed: c.canControl && c.audio.viewCurrent != null
+            ? () => _run(c.audio.playing ? c.audio.pause : c.audio.play)
             : null,
         icon: busy
             ? SizedBox.square(
@@ -98,7 +99,7 @@ class _DesktopCompactPlayerState extends State<DesktopCompactPlayer> {
                 ),
               )
             : Icon(
-                c.audio.player.playing
+                c.audio.playing
                     ? Icons.pause_rounded
                     : Icons.play_arrow_rounded,
                 size: widget.quick ? 30 : 25,
@@ -108,7 +109,7 @@ class _DesktopCompactPlayerState extends State<DesktopCompactPlayer> {
   );
 
   Widget _metadata({bool centered = false}) {
-    final v = waveVisuals(context), track = c.audio.current;
+    final v = waveVisuals(context), track = c.audio.viewCurrent;
     return GestureDetector(
       key: const Key('desktop-player-swipe'),
       behavior: HitTestBehavior.opaque,
@@ -197,7 +198,7 @@ class _DesktopCompactPlayerState extends State<DesktopCompactPlayer> {
 
   @override
   Widget build(BuildContext context) {
-    final v = waveVisuals(context), track = c.audio.current;
+    final v = waveVisuals(context), track = c.audio.viewCurrent;
     return Scaffold(
       backgroundColor: v.surface,
       body: Listener(
@@ -277,7 +278,7 @@ class _DesktopCompactPlayerState extends State<DesktopCompactPlayer> {
                           size: 18,
                         ),
                         Expanded(
-                          child: Slider(
+                          child: VolumeSlider(
                             key: const Key('desktop-quick-volume'),
                             value: c.audio.volume.clamp(0, 1),
                             onChanged: (value) => _run(
@@ -333,7 +334,7 @@ class _DesktopCompactPlayerState extends State<DesktopCompactPlayer> {
                     ),
                     const SizedBox(height: 9),
                     StreamBuilder<Duration>(
-                      stream: c.audio.player.positionStream,
+                      stream: c.audio.positionStream,
                       builder: (context, position) => ClipRRect(
                         borderRadius: BorderRadius.circular(3),
                         child: LinearProgressIndicator(

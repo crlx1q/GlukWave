@@ -6,6 +6,7 @@ import './styles.css';
 import './experience.css';
 import './v6.css';
 import './v7.css';
+import './connect-refinement.css';
 import {installDiagnostics} from './diagnostics';
 installDiagnostics();
 const params=new URLSearchParams(location.search),legacyHash=['home','search','library','sources','rooms','lofi','downloads','settings','profile','admin'].includes(location.hash.slice(1).split('?')[0]),appQuery=['qr','native','secret','reset','invite','room','roomId','error','verified','billing','track','connected'].some(key=>params.has(key));

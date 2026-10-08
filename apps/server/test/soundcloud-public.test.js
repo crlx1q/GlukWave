@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {parseSoundcloudSearch,parseSoundcloudTrack,readSoundcloudPage,createPublicSoundcloud,soundcloudTrackUrl} from '../src/soundcloud-public.js';
+import {parseSoundcloudSearch,parseSoundcloudTrack,readSoundcloudPage,createPublicSoundcloud,soundcloudTrackUrl,publicSoundcloudClient} from '../src/soundcloud-public.js';
 
 const page=(id=293)=>`<script>window.__sc_hydration = ${JSON.stringify([{hydratable:'apiClient',data:{unused:'public-client-fixture'}},{hydratable:'sound',data:{kind:'track',id,urn:`soundcloud:tracks:${id}`,title:'Parser verification',sharing:'public',permalink_url:`https://soundcloud.com/parser/track-${id}`,duration:123456,artwork_url:'https://i1.sndcdn.com/fixture.jpg',user:{username:'Parser QA'}}}])};</script>`;
 test('public SoundCloud parser reads track metadata without executing scripts or taking client credentials',()=>{
@@ -8,6 +8,19 @@ test('public SoundCloud parser reads track metadata without executing scripts or
   const tracks=parseSoundcloudSearch('<noscript><h2><a href="/parser/track-293">A &amp; B</a></h2><h2><a href="https://evil.test/ssrf">unsafe</a></h2><h2><a href="/search/sounds">search</a></h2></noscript>');assert.deepEqual(tracks,[{url:'https://soundcloud.com/parser/track-293',title:'A & B'}]);
   const track=parseSoundcloudTrack(page(),tracks[0].url);assert.equal(track.duration,123456);assert.equal(track.user.username,'Parser QA');assert.equal(track.urn,'soundcloud:tracks:293');assert.equal(track.unused,undefined);
   assert.equal(parseSoundcloudTrack(page().replace('"sharing":"public"','"sharing":"private"'),tracks[0].url),null);
+});
+test('Russian public search preserves UTF-8, hydrates only public tracks and never follows supplied API URLs',async()=>{
+  const identifier='a'.repeat(32),calls=[];
+  const client=createPublicSoundcloud({fetcher:async(url,options)=>{
+    url=new URL(url);calls.push(url);assert.equal(options.headers.Authorization,undefined);assert.equal(options.headers.Cookie,undefined);
+    if(url.hostname==='api-v2.soundcloud.com'){
+      assert.equal(url.pathname,'/search/tracks');assert.equal(url.searchParams.get('q'),'Кино');assert.equal(url.searchParams.get('client_id'),identifier);assert.equal(options.redirect,'error');
+      return Response.json({collection:[{kind:'track',sharing:'public',permalink_url:'https://soundcloud.com/parser/track-293'},{kind:'track',sharing:'private',permalink_url:'https://soundcloud.com/parser/private'},{kind:'track',sharing:'public',permalink_url:'http://127.0.0.1/secret'}],next_href:'http://127.0.0.1/secret'});
+    }
+    assert.equal(url.hostname,'soundcloud.com');return new Response(url.pathname==='/search/sounds'?`<script>window.__sc_hydration = [{"hydratable":"apiClient","data":{"id":"${identifier}"}}];</script>`:page(),{headers:{'content-type':'text/html'}});
+  }});
+  assert.equal((await client.search('Кино')).length,1);assert.equal(calls.length,3);
+  assert.equal(publicSoundcloudClient('<script>window.__sc_hydration = [{"hydratable":"apiClient","data":{"id":"https://evil.test"}}];</script>'),null);
 });
 test('public fetch blocks external redirects, limits payloads and reports upstream failures',async()=>{
   let calls=0;

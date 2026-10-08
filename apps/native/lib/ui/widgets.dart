@@ -36,9 +36,14 @@ Future<T?> showWaveDialog<T>({
 }
 
 class Brand extends StatelessWidget {
-  final bool animated;
+  final bool animated, compact;
   final double size;
-  const Brand({super.key, this.animated = false, this.size = 34});
+  const Brand({
+    super.key,
+    this.animated = false,
+    this.compact = false,
+    this.size = 34,
+  });
   @override
   Widget build(BuildContext context) => Row(
     mainAxisSize: MainAxisSize.min,
@@ -54,33 +59,34 @@ class Brand extends StatelessWidget {
           ),
         ),
       ),
-      const SizedBox(width: 10),
-      Text.rich(
-        TextSpan(
-          children: [
-            const TextSpan(
-              text: 'gluk ',
-              style: TextStyle(fontWeight: FontWeight.w800),
-            ),
-            const TextSpan(
-              text: 'wave',
-              style: TextStyle(fontWeight: FontWeight.w500),
-            ),
-            TextSpan(
-              text: '.',
-              style: TextStyle(
-                color: waveVisuals(context).accent,
-                fontWeight: FontWeight.w900,
+      if (!compact) const SizedBox(width: 10),
+      if (!compact)
+        Text.rich(
+          TextSpan(
+            children: [
+              const TextSpan(
+                text: 'gluk ',
+                style: TextStyle(fontWeight: FontWeight.w800),
               ),
-            ),
-          ],
+              const TextSpan(
+                text: 'wave',
+                style: TextStyle(fontWeight: FontWeight.w500),
+              ),
+              TextSpan(
+                text: '.',
+                style: TextStyle(
+                  color: waveVisuals(context).accent,
+                  fontWeight: FontWeight.w900,
+                ),
+              ),
+            ],
+          ),
+          style: TextStyle(
+            fontSize: size * .7,
+            color: waveVisuals(context).ink,
+            letterSpacing: -1,
+          ),
         ),
-        style: TextStyle(
-          fontSize: size * .7,
-          color: waveVisuals(context).ink,
-          letterSpacing: -1,
-        ),
-      ),
     ],
   );
 }
@@ -433,11 +439,8 @@ class _WaveHeroState extends State<WaveHero>
     final target = c == null
         ? 0.0
         : c.waveforms
-              .envelopeFor(c.audio.current?.id)
-              .at(
-                c.audio.player.position.inMilliseconds / 1000,
-                c.audio.player.playing,
-              );
+              .envelopeFor(c.audio.viewCurrent?.id)
+              .at(c.audio.position.inMilliseconds / 1000, c.audio.playing);
     setState(() {
       _energy = reduced ? 0 : easeEnergy(_energy, target, seconds);
       final movement = 1 - math.exp(-seconds * 16);
@@ -814,7 +817,7 @@ class TrackRow extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
-    final active = controller.audio.current?.id == track.id;
+    final active = controller.audio.viewCurrent?.id == track.id;
     final compact = waveVisuals(context).compact;
     final artworkSize = compact ? 38.0 : 46.0;
     return Material(
@@ -849,7 +852,7 @@ class TrackRow extends StatelessWidget {
                         ),
                       ),
                       child: Icon(
-                        controller.audio.player.playing
+                        controller.audio.playing
                             ? Icons.graphic_eq_rounded
                             : Icons.play_arrow_rounded,
                         color: waveVisuals(context).background,

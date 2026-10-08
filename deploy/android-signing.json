@@ -1,0 +1,7 @@
+{
+  "applicationId": "tech.gluk.glukwave",
+  "certificateSha256": "d631b0271019e5b3a9df153929ac0de07708b0766fc4c132fbce862b67a56748",
+  "baseline": "1.0.0+3",
+  "kind": "local testing certificate",
+  "privateKeyExported": false
+}

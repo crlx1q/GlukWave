@@ -145,6 +145,18 @@ ThemeData buildWaveTheme(
       bodySmall: TextStyle(color: v.muted, fontSize: 12),
     ),
     dividerColor: v.line,
+    scrollbarTheme: ScrollbarThemeData(
+      thickness: const WidgetStatePropertyAll(5),
+      radius: const Radius.circular(5),
+      thumbColor: WidgetStateProperty.resolveWith(
+        (states) => v.accent.withValues(
+          alpha: states.contains(WidgetState.dragged) ? .85 : .4,
+        ),
+      ),
+      trackVisibility: const WidgetStatePropertyAll(false),
+      crossAxisMargin: 3,
+      mainAxisMargin: 8,
+    ),
     iconTheme: IconThemeData(color: v.ink, size: 22),
     filledButtonTheme: FilledButtonThemeData(
       style: FilledButton.styleFrom(
