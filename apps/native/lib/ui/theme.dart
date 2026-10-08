@@ -28,7 +28,11 @@ class WaveVisuals extends ThemeExtension<WaveVisuals> {
     Brightness brightness,
   ) {
     final a = customization.appearance;
-    final p = customization.theme == 'amoled' ? a.amoled : brightness == Brightness.dark ? a.dark : a.light;
+    final p = customization.theme == 'amoled'
+        ? a.amoled
+        : brightness == Brightness.dark
+        ? a.dark
+        : a.light;
     return WaveVisuals(
       background: hexColor(p.bg),
       surface: hexColor(p.surface),
@@ -203,7 +207,11 @@ ThemeData buildWaveTheme(
     ),
     snackBarTheme: SnackBarThemeData(
       backgroundColor: v.ink,
-      contentTextStyle: TextStyle(fontFamily: 'Manrope', fontFamilyFallback: const ['Nunito'], color: v.background),
+      contentTextStyle: TextStyle(
+        fontFamily: 'Manrope',
+        fontFamilyFallback: const ['Nunito'],
+        color: v.background,
+      ),
       behavior: SnackBarBehavior.floating,
       shape: shape,
     ),

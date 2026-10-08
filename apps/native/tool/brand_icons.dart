@@ -1,25 +1,33 @@
 import 'dart:io';
 import 'package:image/image.dart' as image;
 
-void main() {
+void main(List<String> arguments) {
+  if (arguments.any((value) => value != '--ios-only')) {
+    throw ArgumentError('Usage: dart run tool/brand_icons.dart [--ios-only]');
+  }
   final logo = image.decodePng(File('assets/logo.png').readAsBytesSync())!;
-  final ico = image.encodeIco(image.copyResize(logo, width: 256, height: 256));
-  File('assets/app_icon.ico').writeAsBytesSync(ico);
-  File('windows/runner/resources/app_icon.ico').writeAsBytesSync(ico);
-  for (final item in {
-    'mdpi': 48,
-    'hdpi': 72,
-    'xhdpi': 96,
-    'xxhdpi': 144,
-    'xxxhdpi': 192,
-  }.entries) {
-    File(
-      'android/app/src/main/res/mipmap-${item.key}/ic_launcher.png',
-    ).writeAsBytesSync(
-      image.encodePng(
-        image.copyResize(logo, width: item.value, height: item.value),
-      ),
-    );
+  if (!arguments.contains('--ios-only')) {
+    final ico = image.IcoEncoder().encodeImages([
+      for (final size in [16, 24, 32, 48, 64, 128, 256])
+        image.copyResize(logo, width: size, height: size),
+    ]);
+    File('assets/app_icon.ico').writeAsBytesSync(ico);
+    File('windows/runner/resources/app_icon.ico').writeAsBytesSync(ico);
+    for (final item in {
+      'mdpi': 48,
+      'hdpi': 72,
+      'xhdpi': 96,
+      'xxhdpi': 144,
+      'xxxhdpi': 192,
+    }.entries) {
+      File(
+        'android/app/src/main/res/mipmap-${item.key}/ic_launcher.png',
+      ).writeAsBytesSync(
+        image.encodePng(
+          image.copyResize(logo, width: item.value, height: item.value),
+        ),
+      );
+    }
   }
   final iosDirectory = Directory(
     'ios/Runner/Assets.xcassets/AppIcon.appiconset',
@@ -42,10 +50,23 @@ void main() {
     '1024x1024@1x': 1024,
   };
   for (final entry in sizes.entries) {
-    File('${iosDirectory.path}/Icon-App-${entry.key}.png').writeAsBytesSync(
-      image.encodePng(
-        image.copyResize(logo, width: entry.value, height: entry.value),
-      ),
+    // App Store icons must be opaque. Preserve the same mark on its cream base.
+    final canvas = image.Image(
+      width: entry.value,
+      height: entry.value,
+      numChannels: 3,
     );
+    image.fill(canvas, color: image.ColorRgb8(0xef, 0xed, 0xe3));
+    image.compositeImage(
+      canvas,
+      image.copyResize(logo, width: entry.value, height: entry.value),
+    );
+    File(
+      '${iosDirectory.path}/Icon-App-${entry.key}.png',
+    ).writeAsBytesSync(image.encodePng(canvas));
   }
+  stdout.writeln(
+    'Exported ${sizes.length} opaque iOS icons'
+    '${arguments.contains('--ios-only') ? '' : ' and Android/Windows icons'}.',
+  );
 }

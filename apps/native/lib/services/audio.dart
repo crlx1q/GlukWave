@@ -16,12 +16,17 @@ class WaveAudioHandler extends BaseAudioHandler {
   // Native players send authorization headers directly. Android does not need an
   // insecure loopback proxy in release builds.
   late final AudioPlayer player;
-  final AndroidEqualizer? _equalizer = Platform.isAndroid ? AndroidEqualizer() : null;
-  final AndroidLoudnessEnhancer? _preamp = Platform.isAndroid ? AndroidLoudnessEnhancer() : null;
+  final AndroidEqualizer? _equalizer = Platform.isAndroid
+      ? AndroidEqualizer()
+      : null;
+  final AndroidLoudnessEnhancer? _preamp = Platform.isAndroid
+      ? AndroidLoudnessEnhancer()
+      : null;
   WaveEqualizer _processing = const WaveEqualizer();
   double _volume = 1, _rate = 1;
   bool _roomSpeed = false;
   int _processingRevision = 0;
+  Future<void> _processingWrites = Future.value();
   String equalizerStatus = Platform.isAndroid ? 'waiting' : 'unsupported';
   int hardwareBandCount = 0;
   double get volume => _volume;
@@ -36,14 +41,20 @@ class WaveAudioHandler extends BaseAudioHandler {
   final _random = Random();
   final List<int> _history = [];
   Future<bool> Function(String command, Json payload)? onTransport;
-  Future<bool> Function(WaveTrack track, AudioServiceRepeatMode repeat)? onEnded;
+  Future<bool> Function(WaveTrack track, AudioServiceRepeatMode repeat)?
+  onEnded;
   void Function()? onProcessingChanged;
   void Function(String message)? onError;
   final List<StreamSubscription<dynamic>> _subscriptions = [];
   WaveAudioHandler(this.api, this.cache) {
     player = AudioPlayer(
       useProxyForRequestHeaders: false,
-      audioPipeline: AudioPipeline(androidAudioEffects: [if (_equalizer != null) _equalizer, if (_preamp != null) _preamp]),
+      audioPipeline: AudioPipeline(
+        androidAudioEffects: [
+          if (_equalizer != null) _equalizer,
+          if (_preamp != null) _preamp,
+        ],
+      ),
     );
     _subscriptions.add(
       player.playbackEventStream.listen(
@@ -73,43 +84,79 @@ class WaveAudioHandler extends BaseAudioHandler {
 
   /// Android exposes hardware-defined bands. Interpolate the shared logarithmic
   /// curve at each real center frequency and obey the device gain limits.
-  Future<void> applyProcessing(WaveEqualizer preference, double rate, {bool inRoom = false}) async {
-    final changed = preference.enabled != _processing.enabled || preference.preamp != _processing.preamp ||
+  Future<void> applyProcessing(
+    WaveEqualizer preference,
+    double rate, {
+    bool inRoom = false,
+  }) async {
+    final changed =
+        preference.enabled != _processing.enabled ||
+        preference.preamp != _processing.preamp ||
         !_sameBands(preference.bands, _processing.bands);
     _processing = preference;
     _rate = rate.clamp(.5, 2);
     _roomSpeed = inRoom;
-    if (player.speed != (inRoom ? 1 : _rate)) await player.setSpeed(inRoom ? 1 : _rate);
+    if (player.speed != (inRoom ? 1 : _rate)) {
+      await player.setSpeed(inRoom ? 1 : _rate);
+    }
     if (changed) await _configureEqualizer();
   }
 
-  bool _sameBands(List<double> a, List<double> b) => a.length == b.length &&
+  bool _sameBands(List<double> a, List<double> b) =>
+      a.length == b.length &&
       List.generate(a.length, (i) => a[i] == b[i]).every((same) => same);
 
-  Future<void> _configureEqualizer() async {
-    final eq = _equalizer, enhancer = _preamp;
-    if (eq == null || enhancer == null) return;
+  Future<void> _configureEqualizer() {
     final revision = ++_processingRevision;
     final preference = _processing;
+    // A native effect update can take several platform round trips. Serialize
+    // those writes so an older slider value cannot finish after a newer one.
+    final operation = _processingWrites.catchError((_) {}).then((_) async {
+      if (revision != _processingRevision) return;
+      await _writeEqualizer(preference, revision);
+    });
+    _processingWrites = operation;
+    return operation;
+  }
+
+  Future<void> _writeEqualizer(WaveEqualizer preference, int revision) async {
+    final eq = _equalizer, enhancer = _preamp;
+    if (eq == null || enhancer == null) return;
     try {
       await eq.setEnabled(preference.enabled);
+      if (revision != _processingRevision) return;
       await enhancer.setEnabled(preference.enabled && preference.preamp > 0);
-      await enhancer.setTargetGain(preference.enabled ? preference.preamp.clamp(0, 12) : 0);
+      if (revision != _processingRevision) return;
+      await enhancer.setTargetGain(
+        preference.enabled ? preference.preamp.clamp(0, 12) : 0,
+      );
+      if (revision != _processingRevision) return;
       await _setOutputVolume();
-      if (current == null || player.processingState == ProcessingState.idle || player.processingState == ProcessingState.loading) {
+      if (revision != _processingRevision) return;
+      if (current == null ||
+          player.processingState == ProcessingState.idle ||
+          player.processingState == ProcessingState.loading) {
         equalizerStatus = 'waiting';
         onProcessingChanged?.call();
         return;
       }
-      final parameters = await eq.parameters.timeout(const Duration(seconds: 5));
+      final parameters = await eq.parameters.timeout(
+        const Duration(seconds: 5),
+      );
       if (revision != _processingRevision) return;
       hardwareBandCount = parameters.bands.length;
       for (final band in parameters.bands) {
         if (revision != _processingRevision) return;
-        await band.setGain(preference.gainAt(band.centerFrequency).clamp(parameters.minDecibels, parameters.maxDecibels));
+        await band.setGain(
+          preference
+              .gainAt(band.centerFrequency)
+              .clamp(parameters.minDecibels, parameters.maxDecibels),
+        );
       }
       if (revision != _processingRevision) return;
       equalizerStatus = 'ready';
+      // Restore negative preamp attenuation after a previous hardware failure.
+      await _setOutputVolume();
     } catch (_) {
       if (revision != _processingRevision) return;
       equalizerStatus = 'failed';
@@ -117,14 +164,19 @@ class WaveAudioHandler extends BaseAudioHandler {
         await eq.setEnabled(false);
         await enhancer.setEnabled(false);
         await player.setVolume(_volume);
-      } catch (_) { }
+      } catch (_) {}
     }
     onProcessingChanged?.call();
   }
 
-  Future<void> _setOutputVolume() => player.setVolume(_volume *
-      (_equalizer != null && _processing.enabled && equalizerStatus != 'failed'
-          ? pow(10, _processing.preamp.clamp(-12, 0) / 20).toDouble() : 1));
+  Future<void> _setOutputVolume() => player.setVolume(
+    _volume *
+        (_equalizer != null &&
+                _processing.enabled &&
+                equalizerStatus != 'failed'
+            ? pow(10, _processing.preamp.clamp(-12, 0) / 20).toDouble()
+            : 1),
+  );
 
   /// A room revision supersedes an in-flight source lookup before it can start.
   void cancelPendingLoad() => _loadRevision++;
@@ -140,6 +192,7 @@ class WaveAudioHandler extends BaseAudioHandler {
     queue.add([]);
     _broadcast();
   }
+
   Future<void> initializeSession() async {
     final session = await AudioSession.instance;
     await session.configure(const AudioSessionConfiguration.music());
@@ -266,7 +319,9 @@ class WaveAudioHandler extends BaseAudioHandler {
   Future<void> _completed() async {
     try {
       final finished = current;
-      if (finished != null && await onEnded?.call(finished, repeat) == true) return;
+      if (finished != null && await onEnded?.call(finished, repeat) == true) {
+        return;
+      }
       if (repeat == AudioServiceRepeatMode.one && current != null) {
         if (await _intercept('seek', {'position': 0})) return;
         await player.seek(Duration.zero);
@@ -441,6 +496,7 @@ class WaveAudioHandler extends BaseAudioHandler {
   }
 
   Future<void> release() async {
+    _processingRevision++;
     for (final sub in _subscriptions) {
       await sub.cancel();
     }

@@ -407,7 +407,9 @@ class _WaveHeroState extends State<WaveHero>
     duration: const Duration(seconds: 90),
   );
   double _energy = 0, _pointerActive = 0, _targetActive = 0;
-  Offset _pointer = const Offset(.5, .5), _pointerTarget = const Offset(.5, .5), _velocity = Offset.zero;
+  Offset _pointer = const Offset(.5, .5),
+      _pointerTarget = const Offset(.5, .5),
+      _velocity = Offset.zero;
   ScrollPosition? _scroll;
   bool _visible = true;
   Duration _lastFrame = Duration.zero;
@@ -441,7 +443,9 @@ class _WaveHeroState extends State<WaveHero>
       final movement = 1 - math.exp(-seconds * 16);
       final before = _pointer;
       _pointer += (_pointerTarget - _pointer) * movement;
-      final targetVelocity = seconds > 0 ? (_pointer - before) / seconds : Offset.zero;
+      final targetVelocity = seconds > 0
+          ? (_pointer - before) / seconds
+          : Offset.zero;
       _velocity += (targetVelocity - _velocity) * (1 - math.exp(-seconds * 8));
       _pointerActive +=
           (_targetActive - _pointerActive) * (1 - math.exp(-seconds * 5));
@@ -466,7 +470,9 @@ class _WaveHeroState extends State<WaveHero>
       _scroll = scroll;
       _scroll?.addListener(_visibility);
     }
-    WidgetsBinding.instance.addPostFrameCallback((_) { if (mounted) _visibility(); });
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) _visibility();
+    });
     _motion();
   }
 
@@ -487,7 +493,8 @@ class _WaveHeroState extends State<WaveHero>
   void _visibility() {
     final box = context.findRenderObject();
     if (box is! RenderBox || !box.hasSize || !mounted) return;
-    final origin = box.localToGlobal(Offset.zero), viewport = MediaQuery.sizeOf(context);
+    final origin = box.localToGlobal(Offset.zero),
+        viewport = MediaQuery.sizeOf(context);
     _visible = origin.dy < viewport.height && origin.dy + box.size.height > 0;
     _motion();
   }
@@ -785,9 +792,11 @@ class WavePainter extends CustomPainter {
   bool shouldRepaint(WavePainter oldDelegate) =>
       phase != oldDelegate.phase ||
       accentColor != oldDelegate.accentColor ||
+      backgroundColor != oldDelegate.backgroundColor ||
       style != oldDelegate.style ||
       energy != oldDelegate.energy ||
       pointer != oldDelegate.pointer ||
+      pointerVelocity != oldDelegate.pointerVelocity ||
       pointerActive != oldDelegate.pointerActive;
 }
 

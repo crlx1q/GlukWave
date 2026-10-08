@@ -221,7 +221,9 @@ void main() {
             expect(c.customization.appearance.coverKind, 'cd');
           }
           if (value == 'hotkeys') {
-            final hotkeysToggle = find.byKey(const Key('settings-hotkeys-toggle'));
+            final hotkeysToggle = find.byKey(
+              const Key('settings-hotkeys-toggle'),
+            );
             await tester.ensureVisible(hotkeysToggle);
             await tester.pumpAndSettle();
             await tester.tap(hotkeysToggle);

@@ -17,14 +17,14 @@ Map<String, int> fontTables(ByteData bytes) {
   return result;
 }
 
-Future<int> inkCoverage(FontWeight weight) async {
+Future<int> inkCoverage(FontWeight weight, {String family = 'Nunito'}) async {
   final recorder = ui.PictureRecorder();
   final canvas = ui.Canvas(recorder);
   final text = TextPainter(
     text: TextSpan(
       text: 'GlukWave Music',
       style: TextStyle(
-        fontFamily: 'Nunito',
+        fontFamily: family,
         fontWeight: weight,
         fontSize: 40,
         color: const ui.Color(0xff000000),
@@ -55,18 +55,26 @@ void main() {
       final manifest =
           jsonDecode(await rootBundle.loadString('FontManifest.json'))
               as List<dynamic>;
-      final family = manifest.cast<Map<String, dynamic>>().singleWhere(
-        (entry) => entry['family'] == 'Nunito',
-      );
-      final faces = family['fonts'] as List<dynamic>;
-      expect(faces.map((f) => f['weight']), [400, 500, 600, 700, 800, 900]);
-      expect(faces.map((f) => f['asset']).toSet(), hasLength(6));
-      for (final face in faces) {
-        final bytes = await rootBundle.load(face['asset'] as String);
-        final tables = fontTables(bytes);
-        expect(tables.containsKey('fvar'), isFalse);
-        expect(tables.containsKey('gvar'), isFalse);
-        expect(bytes.getUint16(tables['OS/2']! + 4), face['weight']);
+      for (final entry in {
+        'Manrope': [400, 500, 600, 700, 800],
+        'Nunito': [400, 500, 600, 700, 800, 900],
+      }.entries) {
+        final family = manifest.cast<Map<String, dynamic>>().singleWhere(
+          (item) => item['family'] == entry.key,
+        );
+        final faces = family['fonts'] as List<dynamic>;
+        expect(faces.map((f) => f['weight']), entry.value);
+        expect(
+          faces.map((f) => f['asset']).toSet(),
+          hasLength(entry.value.length),
+        );
+        for (final face in faces) {
+          final bytes = await rootBundle.load(face['asset'] as String);
+          final tables = fontTables(bytes);
+          expect(tables.containsKey('fvar'), isFalse);
+          expect(tables.containsKey('gvar'), isFalse);
+          expect(bytes.getUint16(tables['OS/2']! + 4), face['weight']);
+        }
       }
     },
   );
@@ -77,6 +85,15 @@ void main() {
       final bold = await inkCoverage(FontWeight.w800);
       expect(normal, greaterThan(0));
       expect(bold, greaterThan(normal * 1.35));
+    },
+  );
+  test(
+    'Manrope default registers genuine regular and extra-bold outlines',
+    () async {
+      final normal = await inkCoverage(FontWeight.w400, family: 'Manrope');
+      final bold = await inkCoverage(FontWeight.w800, family: 'Manrope');
+      expect(normal, greaterThan(0));
+      expect(bold, greaterThan(normal * 1.12));
     },
   );
 }

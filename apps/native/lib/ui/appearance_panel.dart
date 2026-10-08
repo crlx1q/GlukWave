@@ -118,8 +118,18 @@ class _AppearancePanelState extends State<AppearancePanel> {
     Brightness brightness,
   ) {
     final v = waveVisuals(context), appearance = state.appearance;
-    final mode = editing ?? (state.theme == 'amoled' ? 'amoled' : brightness == Brightness.dark ? 'dark' : 'light');
-    final palette = mode == 'amoled' ? appearance.amoled : mode == 'dark' ? appearance.dark : appearance.light;
+    final mode =
+        editing ??
+        (state.theme == 'amoled'
+            ? 'amoled'
+            : brightness == Brightness.dark
+            ? 'dark'
+            : 'light');
+    final palette = mode == 'amoled'
+        ? appearance.amoled
+        : mode == 'dark'
+        ? appearance.dark
+        : appearance.light;
     void appearanceChange(String key, dynamic value) => change({
       'appearance': {key: value},
     });
@@ -243,10 +253,14 @@ class _AppearancePanelState extends State<AppearancePanel> {
                                 key: Key('theme-${item.key}'),
                                 label: item.value,
                                 selected: state.theme == item.key,
-                                palette: item.key == 'amoled' ? appearance.amoled : item.key == 'dark'
+                                palette: item.key == 'amoled'
+                                    ? appearance.amoled
+                                    : item.key == 'dark'
                                     ? appearance.dark
                                     : appearance.light,
-                                icon: item.key == 'amoled' ? Icons.brightness_2_outlined : item.key == 'dark'
+                                icon: item.key == 'amoled'
+                                    ? Icons.brightness_2_outlined
+                                    : item.key == 'dark'
                                     ? Icons.nightlight_outlined
                                     : item.key == 'system'
                                     ? Icons.brightness_auto_outlined
@@ -587,7 +601,9 @@ class _AppearancePanelState extends State<AppearancePanel> {
                             wt(
                               'native.ebcd6e8521',
                               values: {
-                                'p0': (mode == 'amoled' ? 'AMOLED' : mode == 'dark'
+                                'p0': (mode == 'amoled'
+                                    ? 'AMOLED'
+                                    : mode == 'dark'
                                     ? wt('native.b8c9d2cd6f', context: context)
                                     : wt(
                                         'native.eb5820813d',

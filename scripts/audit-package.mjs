@@ -35,7 +35,7 @@ const allowed=new Set(['apps','docs','scripts','deploy','.github']);
 const rootFiles=new Set(['.env.example','.gitignore','.dockerignore','Dockerfile','compose.yaml','package.json','package-lock.json','README.md']);
 const outputFiles=new Set(['outputs/START.md','outputs/VERIFICATION.md','outputs/Start-GlukWave.ps1']);
 const forbidden=/(?:^|\/)(?:node_modules|\.git|\.originkit|work|var|build|\.dart_tool|\.gradle|ephemeral|\.symlinks|__pycache__|xcuserdata)(?:\/|$)|\.(?:sqlite(?:3)?(?:-wal|-shm)?|keystore|jks|p12|apk|ipa|exe|pyc)$/i;
-const textFile=/\.(?:md|txt|json|[cm]?js|tsx?|css|html|ya?ml|ps1|py|dart|xml|kts|properties|lock|cmake|xcconfig|plist|entitlements|example|gitignore|dockerignore)$|\/Dockerfile$/i;
+const textFile=/\.(?:md|txt|json|[cm]?js|tsx?|css|html|ya?ml|ps1|py|dart|xml|java|kt|kts|cpp|cc|c|h|rc|properties|lock|cmake|xcconfig|plist|entitlements|example|gitignore|dockerignore)$|\/Dockerfile$/i;
 const names=new Set(),hashes=new Map();let cursor=offset,totalBytes=0,textFilesScanned=0;
 for(let n=0;n<count;n++){
   requireCondition(archive.readUInt32LE(cursor)===0x02014b50,'Invalid ZIP entry');
@@ -69,9 +69,12 @@ requireCondition(names.has('apps/web/dist'+evidence.web.javascript),'Current web
 const frozen=JSON.parse(await fs.readFile(path.join(root,'docs/verification/2026-10-08/native-source-freeze.json'),'utf8'));
 for(const record of frozen.files)requireCondition(hashes.get('apps/native/'+record.path)===record.sha256,'Frozen native source missing/changed: '+record.path);
 const fonts=Array.from(names).filter(name=>/^apps\/native\/assets\/fonts\/Nunito-.+\.ttf$/.test(name));requireCondition(fonts.length===6,'Static font faces missing');
+const manrope=Array.from(names).filter(name=>/^apps\/native\/assets\/fonts\/Manrope-.+\.ttf$/.test(name));requireCondition(manrope.length===5,'Manrope static font faces missing');
 const archiveSha256=sha(archive),apkPath=path.join(root,'outputs/GlukWave-android-debug.apk'),apkSha256=await checksum(apkPath);
 requireCondition(apkSha256===evidence.native.sha256,'APK differs from verified build');
-const result={checkedAt:new Date().toISOString(),passed:true,archiveBytes:archive.length,archiveSha256,entries:count,allCrcAndSourceHashesMatched:true,textFilesScanned,localPrivateValuesAbsent:true,liveCredentialPatternsAbsent:true,staticFontFaces:fonts.length,frozenNativeSourcesMatched:frozen.files.length,currentWebBuild:evidence.web.javascript,runtimeDataExcluded:true,apkSha256};
+let windowsSha256=null;
+if(evidence.native.windowsExecutableBuilt){windowsSha256=await checksum(path.join(root,'outputs/GlukWave-windows.zip'));requireCondition(windowsSha256===evidence.native.windows.sha256,'Windows package differs from verified build');}
+const result={checkedAt:new Date().toISOString(),passed:true,archiveBytes:archive.length,archiveSha256,entries:count,allCrcAndSourceHashesMatched:true,textFilesScanned,localPrivateValuesAbsent:true,liveCredentialPatternsAbsent:true,staticFontFaces:fonts.length,manropeStaticFontFaces:manrope.length,frozenNativeSourcesMatched:frozen.files.length,currentWebBuild:evidence.web.javascript,runtimeDataExcluded:true,apkSha256,windowsSha256};
 await fs.mkdir(path.join(root,'work/qa'),{recursive:true});await fs.writeFile(path.join(root,'work/qa/source-package-proof.json'),JSON.stringify(result,null,2)+'\n');
-await fs.writeFile(path.join(root,'outputs/SHA256SUMS.txt'),`${apkSha256}  GlukWave-android-debug.apk\n${archiveSha256}  GlukWave-source.zip\n`);
+await fs.writeFile(path.join(root,'outputs/SHA256SUMS.txt'),`${apkSha256}  GlukWave-android-debug.apk\n${windowsSha256?windowsSha256+'  GlukWave-windows.zip\n':''}${archiveSha256}  GlukWave-source.zip\n`);
 console.log(JSON.stringify(result));

@@ -1588,20 +1588,21 @@ class _WaveShellState extends State<WaveShell>
         wt('native.fb10bb6c43', context: context),
         eyebrow: wt('native.9bd84125bc', context: context),
       ),
-      if (MediaQuery.sizeOf(context).width < 900) TextField(
-        controller: search,
-        onChanged: scheduleSearch,
-        onSubmitted: (_) => doSearch(),
-        decoration: InputDecoration(
-          prefixIcon: const Icon(Icons.search_rounded),
-          hintText: wt('native.bbd9181561', context: context),
-          suffixIcon: IconButton(
-            onPressed: doSearch,
-            tooltip: wt('native.58212e541c', context: context),
-            icon: const Icon(Icons.arrow_forward_rounded),
+      if (MediaQuery.sizeOf(context).width < 900)
+        TextField(
+          controller: search,
+          onChanged: scheduleSearch,
+          onSubmitted: (_) => doSearch(),
+          decoration: InputDecoration(
+            prefixIcon: const Icon(Icons.search_rounded),
+            hintText: wt('native.bbd9181561', context: context),
+            suffixIcon: IconButton(
+              onPressed: doSearch,
+              tooltip: wt('native.58212e541c', context: context),
+              icon: const Icon(Icons.arrow_forward_rounded),
+            ),
           ),
         ),
-      ),
       const SizedBox(height: 16),
       SingleChildScrollView(
         scrollDirection: Axis.horizontal,
@@ -3414,73 +3415,76 @@ class _WaveShellState extends State<WaveShell>
           ),
         ],
       ),
-      'playback' => Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        EqualizerPanel(controller: c),
-        const SizedBox(height: 18),
-        Surface(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            settingSwitch(
-              wt('native.f296708154', context: context),
-              wt('native.9c1a4954e3', context: context),
-              'lyrics',
-            ),
-            const Divider(height: 32),
-            SwitchListTile(
-              key: const Key('settings-cover-3d'),
-              contentPadding: EdgeInsets.zero,
-              title: Text(wt('native.2988f5fbfc', context: context)),
-              subtitle: Text(wt('native.1228a8a0aa', context: context)),
-              value: appearance.cover3d,
-              onChanged: (value) => run(
-                c,
-                () => c.customize({
-                  'appearance': {'cover3d': value},
-                }),
-              ),
-            ),
-            const SizedBox(height: 14),
-            Wrap(
-              spacing: 10,
+      'playback' => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          EqualizerPanel(controller: c),
+          const SizedBox(height: 18),
+          Surface(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                for (final item in {
-                  'vinyl': wt('native.8c021dafec', context: context),
-                  'cd': 'CD',
-                }.entries)
-                  ChoiceChip(
-                    key: Key('settings-cover-${item.key}'),
-                    label: Text(item.value),
-                    selected: appearance.coverKind == item.key,
-                    onSelected: (_) => run(
-                      c,
-                      () => c.customize({
-                        'appearance': {'coverKind': item.key},
-                      }),
-                    ),
+                settingSwitch(
+                  wt('native.f296708154', context: context),
+                  wt('native.9c1a4954e3', context: context),
+                  'lyrics',
+                ),
+                const Divider(height: 32),
+                SwitchListTile(
+                  key: const Key('settings-cover-3d'),
+                  contentPadding: EdgeInsets.zero,
+                  title: Text(wt('native.2988f5fbfc', context: context)),
+                  subtitle: Text(wt('native.1228a8a0aa', context: context)),
+                  value: appearance.cover3d,
+                  onChanged: (value) => run(
+                    c,
+                    () => c.customize({
+                      'appearance': {'cover3d': value},
+                    }),
                   ),
+                ),
+                const SizedBox(height: 14),
+                Wrap(
+                  spacing: 10,
+                  children: [
+                    for (final item in {
+                      'vinyl': wt('native.8c021dafec', context: context),
+                      'cd': 'CD',
+                    }.entries)
+                      ChoiceChip(
+                        key: Key('settings-cover-${item.key}'),
+                        label: Text(item.value),
+                        selected: appearance.coverKind == item.key,
+                        onSelected: (_) => run(
+                          c,
+                          () => c.customize({
+                            'appearance': {'coverKind': item.key},
+                          }),
+                        ),
+                      ),
+                  ],
+                ),
+                const SizedBox(height: 22),
+                Text(
+                  wt('native.5a01c28561', context: context),
+                  style: TextStyle(color: v.muted, fontSize: 12, height: 1.7),
+                ),
+                if (Platform.isWindows) ...[
+                  const Divider(height: 32),
+                  OutlinedButton.icon(
+                    onPressed: () => run(c, c.desktop.toggleMini),
+                    icon: const Icon(
+                      Icons.picture_in_picture_alt_rounded,
+                      size: 18,
+                    ),
+                    label: Text(wt('native.ec09cf02cb', context: context)),
+                  ),
+                ],
               ],
             ),
-            const SizedBox(height: 22),
-            Text(
-              wt('native.5a01c28561', context: context),
-              style: TextStyle(color: v.muted, fontSize: 12, height: 1.7),
-            ),
-            if (Platform.isWindows) ...[
-              const Divider(height: 32),
-              OutlinedButton.icon(
-                onPressed: () => run(c, c.desktop.toggleMini),
-                icon: const Icon(
-                  Icons.picture_in_picture_alt_rounded,
-                  size: 18,
-                ),
-                label: Text(wt('native.ec09cf02cb', context: context)),
-              ),
-            ],
-          ],
-        ),
+          ),
+        ],
       ),
-      ]),
       'storage' => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

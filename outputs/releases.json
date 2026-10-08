@@ -6,9 +6,19 @@
       "version": "1.0.0",
       "signature": "debug",
       "channel": "beta",
-      "bytes": 205079559,
-      "sha256": "9c00763529bd62dcd2acbe82aa354ff2636b3e132fdb3e09d77c5e7f018bc6db",
-      "builtAt": "2026-10-08T07:36:16.722Z"
+      "bytes": 205107898,
+      "sha256": "b3064a07b20c03c7476e5872a6becc8241294988c2f2ad473d75ce2b912bc63a",
+      "builtAt": "2026-10-08T14:32:40.873Z"
+    },
+    {
+      "platform": "windows",
+      "file": "GlukWave-windows.zip",
+      "version": "1.0.0",
+      "signature": "release",
+      "channel": "beta",
+      "bytes": 26820016,
+      "sha256": "d0c92949eac7a305bb21e09e2ad6d7cb947e06c9198c0382b843a34b1637620c",
+      "builtAt": "2026-10-08T15:47:39.494Z"
     }
   ]
 }

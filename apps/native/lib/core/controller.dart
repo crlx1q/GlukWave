@@ -171,13 +171,19 @@ class WaveController extends ChangeNotifier {
     audio.onEnded = (track, repeat) async {
       final active = room;
       if (active == null) return false;
-      if (canControl && _roomOutputActive && object(active['state'])['trackId'] == track.id) {
+      if (canControl &&
+          _roomOutputActive &&
+          object(active['state'])['trackId'] == track.id) {
         await emitAck('room:command', {
           'roomId': active['id'],
           'command': 'ended',
           'trackId': track.id,
           'expectedRevision': _roomRevision,
-          'repeat': repeat == AudioServiceRepeatMode.one ? 'one' : repeat == AudioServiceRepeatMode.all ? 'all' : 'none',
+          'repeat': repeat == AudioServiceRepeatMode.one
+              ? 'one'
+              : repeat == AudioServiceRepeatMode.all
+              ? 'all'
+              : 'off',
         });
       }
       return true;
@@ -546,8 +552,17 @@ class WaveController extends ChangeNotifier {
     _applyLanguage();
     cache.limitMB = (settings['cacheLimitMB'] as num?)?.toInt() ?? 1024;
     audio.autoCache = settings['autoCache'] != false;
-    unawaited(audio.applyProcessing(customization.equalizer, customization.playbackRate, inRoom: room != null)
-        .catchError((Object error) { tell(error.toString()); }));
+    unawaited(
+      audio
+          .applyProcessing(
+            customization.equalizer,
+            customization.playbackRate,
+            inRoom: room != null,
+          )
+          .catchError((Object error) {
+            tell(error.toString());
+          }),
+    );
   }
 
   void _appearanceChanged() {
@@ -687,7 +702,12 @@ class WaveController extends ChangeNotifier {
       if (!canControl) {
         throw WaveException(wt('native.131b87ec38'));
       }
-      if (command == 'play' || command == 'track' || command == 'next' || command == 'previous') _roomOutputActive = true;
+      if (command == 'play' ||
+          command == 'track' ||
+          command == 'next' ||
+          command == 'previous') {
+        _roomOutputActive = true;
+      }
       await emitAck('room:command', {
         'roomId': room!['id'],
         'command': command,
@@ -887,9 +907,7 @@ class WaveController extends ChangeNotifier {
       _report();
       notifyListeners();
       if (room != null) {
-        unawaited(
-          _rejoinRoom().catchError((_) {}),
-        );
+        unawaited(_rejoinRoom().catchError((_) {}));
       }
     });
     socket!.onDisconnect((_) {
@@ -1167,17 +1185,34 @@ class WaveController extends ChangeNotifier {
     _roomRevision = -1;
     _roomSyncGeneration++;
     audio.cancelPendingLoad();
-    await audio.applyProcessing(customization.equalizer, customization.playbackRate, inRoom: true);
+    await audio.applyProcessing(
+      customization.equalizer,
+      customization.playbackRate,
+      inRoom: true,
+    );
     final history = objects(
       (await api.call('/api/rooms/${target['id']}/messages'))['messages'],
     );
-    if (generation != _roomGeneration || session != api.token || origin != api.server || room?['id'] != target['id']) return;
+    if (generation != _roomGeneration ||
+        session != api.token ||
+        origin != api.server ||
+        room?['id'] != target['id']) {
+      return;
+    }
     messages = history;
     final joined = await emitAck('room:join', {'roomId': target['id']});
-    if (generation != _roomGeneration || session != api.token || origin != api.server || room?['id'] != target['id']) return;
+    if (generation != _roomGeneration ||
+        session != api.token ||
+        origin != api.server ||
+        room?['id'] != target['id']) {
+      return;
+    }
     final live = object(joined['room']);
     if (live.isNotEmpty) room = {...target, ...live};
-    await _roomState({'roomId': target['id'], 'state': room!['state']}, force: true);
+    await _roomState({
+      'roomId': target['id'],
+      'state': room!['state'],
+    }, force: true);
     notifyListeners();
   }
 
@@ -1186,7 +1221,12 @@ class WaveController extends ChangeNotifier {
     final session = api.token, origin = api.server;
     if (id == null) return;
     final response = await emitAck('room:join', {'roomId': id});
-    if (room?['id'] != id || generation != _roomGeneration || session != api.token || origin != api.server) return;
+    if (room?['id'] != id ||
+        generation != _roomGeneration ||
+        session != api.token ||
+        origin != api.server) {
+      return;
+    }
     final live = object(response['room']);
     if (live.isNotEmpty) {
       room!['members'] = live['members'];
@@ -1207,7 +1247,10 @@ class WaveController extends ChangeNotifier {
     messages = [];
     _roomRevision = -1;
     await audio.localCommand('pause');
-    await audio.applyProcessing(customization.equalizer, customization.playbackRate);
+    await audio.applyProcessing(
+      customization.equalizer,
+      customization.playbackRate,
+    );
     await refresh();
   }
 
@@ -1242,7 +1285,10 @@ class WaveController extends ChangeNotifier {
   Future<void> _roomState(Json update, {bool force = false}) async {
     if (room == null || update['roomId'] != room!['id']) return;
     final state = PlaybackSnapshot.fromJson(object(update['state']));
-    if (state.revision < _roomRevision || (!force && state.revision == _roomRevision)) return;
+    if (state.revision < _roomRevision ||
+        (!force && state.revision == _roomRevision)) {
+      return;
+    }
     final generation = ++_roomSyncGeneration;
     final session = api.token, origin = api.server;
     audio.cancelPendingLoad();
@@ -1254,11 +1300,18 @@ class WaveController extends ChangeNotifier {
           DateTime.now().millisecondsSinceEpoch;
     }
     final activeRoom = room!['id'];
-    bool currentState() => room?['id'] == activeRoom && _roomRevision == state.revision &&
-        generation == _roomSyncGeneration && session == api.token && origin == api.server;
+    bool currentState() =>
+        room?['id'] == activeRoom &&
+        _roomRevision == state.revision &&
+        generation == _roomSyncGeneration &&
+        session == api.token &&
+        origin == api.server;
     if (state.trackId == null) {
       await audio.clear();
-      if (currentState()) { notifyListeners(); _report(); }
+      if (currentState()) {
+        notifyListeners();
+        _report();
+      }
       return;
     }
     if (state.trackId != null && state.trackId != audio.current?.id) {

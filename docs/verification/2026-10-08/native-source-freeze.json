@@ -1,7 +1,7 @@
 {
-  "frozenAt": "2026-10-08T07:33:30.821914+00:00",
+  "frozenAt": "2026-10-08T14:28:13.832516+00:00",
   "compileDefine": "http://192.168.3.7:4000",
-  "sourceSha256": "126ea3b8289a71d8e7da389f3fb9bf03e5ffe4845495a9ed2b1ec85e28fedac2",
+  "sourceSha256": "6988a449893fb6a2df6d19ca6a5cf9663067101cfd20f53f246d8ce520c6f837",
   "files": [
     {
       "path": "android/app/build.gradle.kts",
@@ -45,28 +45,28 @@
     },
     {
       "path": "android/app/src/main/res/mipmap-hdpi/ic_launcher.png",
-      "bytes": 2062,
-      "sha256": "25d9c8cbd218ebe1973ef0c7fd56a64048b16fe8b3b265e9642069fb5a960702"
+      "bytes": 1148,
+      "sha256": "a52d185c17e0bceed90636e40045e9f28828b87b11fe41a760ae9fd456391d4a"
     },
     {
       "path": "android/app/src/main/res/mipmap-mdpi/ic_launcher.png",
-      "bytes": 1122,
-      "sha256": "6f0bd096d669c0492ccd32689008ccd576efa808ffe48170e66f8b874681c5e1"
+      "bytes": 656,
+      "sha256": "6118b4d7ae4ce51db8bf7ebeb23e8ab53c43fb83835a66c06a6f8604e85c0966"
     },
     {
       "path": "android/app/src/main/res/mipmap-xhdpi/ic_launcher.png",
-      "bytes": 2932,
-      "sha256": "d96c23115d9ff72ff71306eace36e793a503b8bc6c186acf961bae8efcf7a835"
+      "bytes": 1481,
+      "sha256": "d85ff48c9b52e460e7b755b1058635af3c9691550bd5777246901667d8d89fd5"
     },
     {
       "path": "android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png",
-      "bytes": 5498,
-      "sha256": "fac40c3f3611e505055f1812f2d27b57d8883c906f2e903da7385b0d2e25925c"
+      "bytes": 2805,
+      "sha256": "acba7f99bafeb06c040f1e55e36e701bcca09939820e42dd7335f31facb60f54"
     },
     {
       "path": "android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
-      "bytes": 7963,
-      "sha256": "a40214825c45931736f7e36760a657f533b5f046a4b217b13c72022073055631"
+      "bytes": 4230,
+      "sha256": "d1d4ae7f0bb21edf30523610469db5675571c8ffe1b2d1738352f169e0b3cbdb"
     },
     {
       "path": "android/app/src/main/res/values/styles.xml",
@@ -105,13 +105,38 @@
     },
     {
       "path": "assets/app_icon.ico",
-      "bytes": 12528,
-      "sha256": "b92657e16e51b670cc4c363be3b2ca07851d6a024a55adfc21f2f477868d19e2"
+      "bytes": 11501,
+      "sha256": "1959049e4ef99d14b0ef73b580d5dcbc9466b1f7a910452c99fb134dbcf25d25"
     },
     {
       "path": "assets/coast.jpg",
       "bytes": 62536,
       "sha256": "4eb2141d6e6a3d5344e8dedb67f6766226039c5a627c9141b757f0d993df3a80"
+    },
+    {
+      "path": "assets/fonts/Manrope-Bold.ttf",
+      "bytes": 97520,
+      "sha256": "06ef9bf16d6ce1b6b8d6b953ea8b9e6c30e4b3708cf039132224fb2a5aa77102"
+    },
+    {
+      "path": "assets/fonts/Manrope-ExtraBold.ttf",
+      "bytes": 98080,
+      "sha256": "63050130f7beccf497d740a2af39f8d5d49447e9ed777014e8d6d413442425ba"
+    },
+    {
+      "path": "assets/fonts/Manrope-Medium.ttf",
+      "bytes": 97580,
+      "sha256": "78177fa989a3feb256c1750faca4a05ab0b70f093f5f45b12a537e7b939bae9c"
+    },
+    {
+      "path": "assets/fonts/Manrope-Regular.ttf",
+      "bytes": 97500,
+      "sha256": "c443e2325b9ff17933ec2f5a99d835af430a545901d146f81f4fc9f4882b6623"
+    },
+    {
+      "path": "assets/fonts/Manrope-SemiBold.ttf",
+      "bytes": 97616,
+      "sha256": "1eea52be7b84d0841e39d6102cdf2f6777dbdbd6781d3a40a3323a8151163f07"
     },
     {
       "path": "assets/fonts/Nunito-Black.ttf",
@@ -149,6 +174,11 @@
       "sha256": "b944abd87e265d383d021181a00eb153babf605d2746d859be6be910a2deb1ed"
     },
     {
+      "path": "assets/licenses/Manrope-OFL.txt",
+      "bytes": 4387,
+      "sha256": "58172e0c0fac2cda8a37b348164bb55e44b0e69051e557e92b1d3f6910141f7b"
+    },
+    {
       "path": "assets/licenses/Nunito-OFL.txt",
       "bytes": 4385,
       "sha256": "580df76c95a1ec5ab878ceb25bb3d85c6a076804e9c970c8c6972aea775fdf65"
@@ -160,8 +190,13 @@
     },
     {
       "path": "assets/logo.png",
-      "bytes": 41093,
-      "sha256": "4edb410d2cf9dfad0a50b6c2f5d9212e1577dfb04589c79153ea2e8793d8f552"
+      "bytes": 22044,
+      "sha256": "17c11e6d04d4180a2ace71828dd9d2b9c8ef52f5380082062fe12a3d00acfa58"
+    },
+    {
+      "path": "assets/mark.svg",
+      "bytes": 400,
+      "sha256": "421eb15a46e15da29d635f5ca334f1671dae29ead2d4cf59977ee99028605392"
     },
     {
       "path": "assets/Nunito.ttf",
@@ -175,8 +210,8 @@
     },
     {
       "path": "lib/core/appearance.dart",
-      "bytes": 6596,
-      "sha256": "2420cee1a896ca0f551c6f16d59c07dd2dd8205bba217a0258c085ad97883341"
+      "bytes": 7770,
+      "sha256": "79b7a8a6ab5f419ae53c44681d2da785ae5b31de1f53a064ea766d9671acab04"
     },
     {
       "path": "lib/core/artwork.dart",
@@ -185,8 +220,13 @@
     },
     {
       "path": "lib/core/controller.dart",
-      "bytes": 40713,
-      "sha256": "b42abcc153b37fa4f5f5f7d1beedfe2a9014998b624576b1cb01483f6fe98326"
+      "bytes": 44582,
+      "sha256": "d1a22d9283cf52723b0e70994a8857754e3e3329f63212be3901e132695a5026"
+    },
+    {
+      "path": "lib/core/equalizer.dart",
+      "bytes": 2302,
+      "sha256": "56763a4efa99fa9ba49dc6b2ad3d0274d6f98a98101140106a18b9de781edefb"
     },
     {
       "path": "lib/core/models.dart",
@@ -200,8 +240,8 @@
     },
     {
       "path": "lib/l10n/catalogs.dart",
-      "bytes": 204500,
-      "sha256": "aa6de214fe45b91a01cff3aa9a37dc5283d453559f047aca54f90d11f1ec3347"
+      "bytes": 211381,
+      "sha256": "d2243696da60fad6a68150aa55ad6a1976d03adf6f32a5c60c8cdce228f4141a"
     },
     {
       "path": "lib/l10n/wave_localizations.dart",
@@ -210,8 +250,8 @@
     },
     {
       "path": "lib/main.dart",
-      "bytes": 2760,
-      "sha256": "f159e7a477e7cbaf029c2bec84429f32f4d53b758d6dac533ad43fd8f42c8eb7"
+      "bytes": 2921,
+      "sha256": "6ebf1c7152e80bc14d90b3e55ef8731a0412ffcf7b05fe58dcad0dbdad9348f0"
     },
     {
       "path": "lib/services/ambience.dart",
@@ -225,8 +265,8 @@
     },
     {
       "path": "lib/services/audio.dart",
-      "bytes": 11356,
-      "sha256": "0b79b64312f86d9b58574a7cb2d7ac52c1ed3a74c5513e9c8dc57593a1c17996"
+      "bytes": 16684,
+      "sha256": "5206c4eaf304b32c37c1ab0401ed0656e4e0ef0174cc319ed06e9adb2d2e7a93"
     },
     {
       "path": "lib/services/cache.dart",
@@ -260,13 +300,18 @@
     },
     {
       "path": "lib/ui/app.dart",
-      "bytes": 177969,
-      "sha256": "05dcfbf996875dfa68706275e91d47690a420d4993f9145930cdcee1d66a9346"
+      "bytes": 178575,
+      "sha256": "03e580f74c8cb94b6a1c586846596b197be5198cd306ad617788816ac04a3642"
     },
     {
       "path": "lib/ui/appearance_panel.dart",
-      "bytes": 33745,
-      "sha256": "2bd9349be23a374ac2fc7d24e947d6f835722538a5757d47f8cc0ec6147c4635"
+      "bytes": 34526,
+      "sha256": "7f72e17aa6fef396b4543c6530265fdbad103654b7886ce7e9360b1764764876"
+    },
+    {
+      "path": "lib/ui/equalizer_panel.dart",
+      "bytes": 7161,
+      "sha256": "a8579d4937bdd6666954b40a5b9888e1248cc4217defbac9cde1cbc6098c18c5"
     },
     {
       "path": "lib/ui/lofi.dart",
@@ -275,8 +320,8 @@
     },
     {
       "path": "lib/ui/player.dart",
-      "bytes": 56149,
-      "sha256": "1e1de661c66cbb96a528203518582900ba89889fb8c6224355baf3c6e08b973e"
+      "bytes": 56135,
+      "sha256": "2180e416c93749753d4c599e4320833a264bfb15a2fe848e505dc2f2661e862d"
     },
     {
       "path": "lib/ui/player_gestures.dart",
@@ -285,13 +330,13 @@
     },
     {
       "path": "lib/ui/silk_wave.dart",
-      "bytes": 5282,
-      "sha256": "6ea30c3b61afbe38be1e4cc8a11491ea2407a55e00bcec69c897c335cefda1b6"
+      "bytes": 3978,
+      "sha256": "caa74028124ca77ed57b29812afae8f171a18022ed62d26efd52aaaffb6c1ca2"
     },
     {
       "path": "lib/ui/theme.dart",
-      "bytes": 7021,
-      "sha256": "7144085b7a983250b0e107bb70045b40a556e22f6d0176f3e453a6a157e7b763"
+      "bytes": 7106,
+      "sha256": "78e260419f2764ac30e4a2b490b870218642793e24f38ead043584fe0f47ab1f"
     },
     {
       "path": "lib/ui/theme_preview.dart",
@@ -300,8 +345,8 @@
     },
     {
       "path": "lib/ui/widgets.dart",
-      "bytes": 32179,
-      "sha256": "87715146d8b244d76a2a15d3da9a9dfcae0c3ff8a744888022ee8262778e3cc6"
+      "bytes": 32904,
+      "sha256": "48a0faf4036e05d4f19819ada9a683b8f8e9e261fbbb8e9d775e5b0f270bf6ab"
     },
     {
       "path": "pubspec.lock",
@@ -310,8 +355,78 @@
     },
     {
       "path": "pubspec.yaml",
-      "bytes": 5179,
-      "sha256": "1bd9ad952f673d5ef490a4071efec7c0062ab57ad5210d810358a24aad8bfaa7"
+      "bytes": 5585,
+      "sha256": "c2a4b6a5a6f3837a499cd34b4c1a75bcb68c250cec19a626086d5f1b2349efff"
+    },
+    {
+      "path": "windows/CMakeLists.txt",
+      "bytes": 4260,
+      "sha256": "e565af12d9721948849e902ee25099040bd6569151a1b786e5872c4b30b46699"
+    },
+    {
+      "path": "windows/flutter/CMakeLists.txt",
+      "bytes": 3851,
+      "sha256": "bd05e3268b2f246bcbafdb778165fe67a7bafdba04eb73599502563a67b8ae7e"
+    },
+    {
+      "path": "windows/runner/CMakeLists.txt",
+      "bytes": 1836,
+      "sha256": "d765fdd05f63ad099e585a2cced0cbff13ec3229b7de68c8681b2107db850089"
+    },
+    {
+      "path": "windows/runner/flutter_window.cpp",
+      "bytes": 2193,
+      "sha256": "d615eedc06ae37321e59c2c00c7687d1887dcd97904eb7225fafd8dcb5b83da6"
+    },
+    {
+      "path": "windows/runner/flutter_window.h",
+      "bytes": 961,
+      "sha256": "0252b804f5da380c7709cbe1daff2b8d18daf6c49d7e6dd43e5af3c99c19f56c"
+    },
+    {
+      "path": "windows/runner/main.cpp",
+      "bytes": 1304,
+      "sha256": "220011e409654b8962a36d9216e7f5471346eb39cb9fa84b27a893f218ad1935"
+    },
+    {
+      "path": "windows/runner/resource.h",
+      "bytes": 448,
+      "sha256": "d0e8bf7835468b4b6b1f8f0747f2e8f25c19841f2df2ac60aaa584ddae3aa7c6"
+    },
+    {
+      "path": "windows/runner/resources/app_icon.ico",
+      "bytes": 11501,
+      "sha256": "1959049e4ef99d14b0ef73b580d5dcbc9466b1f7a910452c99fb134dbcf25d25"
+    },
+    {
+      "path": "windows/runner/runner.exe.manifest",
+      "bytes": 616,
+      "sha256": "639a56233fcd8cbcb8bbefcd93e4680ec2664f32d9acfb3d2ec1d8726a96e090"
+    },
+    {
+      "path": "windows/runner/Runner.rc",
+      "bytes": 3146,
+      "sha256": "5dc1465f114593bb7a8ab21a6937e47c656a6914cbf53f5d46d63c6e9a7820ea"
+    },
+    {
+      "path": "windows/runner/utils.cpp",
+      "bytes": 1862,
+      "sha256": "fbb18524c22593d0ce7869b0733e237be38e668fe045e3023bcf2d0b31784fa3"
+    },
+    {
+      "path": "windows/runner/utils.h",
+      "bytes": 691,
+      "sha256": "832e246b6758253f89016fb0374b30791242e97ad950d27fc678b3d9feacfdc4"
+    },
+    {
+      "path": "windows/runner/win32_window.cpp",
+      "bytes": 8822,
+      "sha256": "4e4f4dcf8e86ea6e097562cb3476039e693449bd8045367538afee579c017511"
+    },
+    {
+      "path": "windows/runner/win32_window.h",
+      "bytes": 3624,
+      "sha256": "d154cf89ba85f820631a9b5bedacbe64fc5815e428fe6bc5da579ce649f69841"
     }
   ]
 }

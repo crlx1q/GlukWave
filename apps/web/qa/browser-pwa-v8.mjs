@@ -13,7 +13,7 @@ try{
  wait(`!!navigator.serviceWorker.controller&&caches.has('${shell}')`);
  const preview=evaluate(`(async()=>{const response=await (await caches.open('${shell}')).match('/brand/app-preview.png');return response?{status:response.status,type:response.headers.get('content-type'),bytes:(await response.blob()).size}:null;})()`);
  assert.equal(preview.status,200);assert(preview.type.includes('image/png'));assert(preview.bytes>100000);
- const cache=inventory();assert.deepEqual(cache.names,[shell]);assert(cache.entries.some(entry=>entry.url===build));for(const path of ['/','/app/','/mini.html','/brand/app-preview.png'])assert(cache.entries.some(entry=>entry.url===path));assert(!cache.entries.some(entry=>entry.url.startsWith('/api/')||entry.url.startsWith('/socket.io/')));
+ const cache=inventory();assert.deepEqual(cache.names,[shell]);assert(cache.entries.some(entry=>entry.url===build));for(const path of ['/','/app/','/mini.html','/brand/app-preview.png','/brand/mark.svg','/brand/manrope-variable.woff2'])assert(cache.entries.some(entry=>entry.url===path));assert(!cache.entries.some(entry=>entry.url.startsWith('/api/')||entry.url.startsWith('/socket.io/')));
  samples.push({step:'fresh current v8 installation',serviceWorker:{url:serviceWorker.url,state:serviceWorker.state},preview,cache});
  run('set','offline','on');wait(`!navigator.onLine`);
  for(const [url,kind] of [['http://127.0.0.1:4100/app/#settings','app'],['http://127.0.0.1:4100/app/?invite=qa-offline-v8#rooms','app'],['http://127.0.0.1:4100/mini.html','mini'],['http://127.0.0.1:4100/','landing']]){

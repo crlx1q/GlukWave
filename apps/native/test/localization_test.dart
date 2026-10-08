@@ -69,7 +69,8 @@ void expectWholeLabel(WidgetTester tester, Finder label) {
   final firstTop = boxes.first.top;
   final firstHeight = boxes.first.bottom - boxes.first.top;
   final sameLine = boxes.every(
-    (b) => (b.top - firstTop).abs() < (firstHeight > 0 ? firstHeight * 0.5 : 10),
+    (b) =>
+        (b.top - firstTop).abs() < (firstHeight > 0 ? firstHeight * 0.5 : 10),
   );
   expect(
     sameLine,

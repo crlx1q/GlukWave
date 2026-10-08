@@ -17,7 +17,9 @@ Future<void> main() async {
   LicenseRegistry.addLicense(() async* {
     final text = await rootBundle.loadString('assets/licenses/Nunito-OFL.txt');
     yield LicenseEntryWithLineBreaks(['Nunito'], text);
-    final manrope = await rootBundle.loadString('assets/licenses/Manrope-OFL.txt');
+    final manrope = await rootBundle.loadString(
+      'assets/licenses/Manrope-OFL.txt',
+    );
     yield LicenseEntryWithLineBreaks(['Manrope'], manrope);
   });
   try {

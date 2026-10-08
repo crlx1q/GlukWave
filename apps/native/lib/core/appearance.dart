@@ -194,7 +194,9 @@ class WaveCustomization {
         ? settings['reducedMotion'] as bool
         : reducedMotion,
     equalizer: equalizer.merge(object(settings['equalizer'])),
-    playbackRate: settings['playbackRate'] is num && (settings['playbackRate'] as num).isFinite
+    playbackRate:
+        settings['playbackRate'] is num &&
+            (settings['playbackRate'] as num).isFinite
         ? (settings['playbackRate'] as num).toDouble().clamp(.5, 2)
         : playbackRate,
   );
@@ -208,12 +210,13 @@ class WaveCustomization {
   };
   Json resetPalette(String mode) => {
     'appearance': {
-      mode: (mode == 'amoled'
-              ? WavePalette.amoled
-              : mode == 'dark'
-              ? WavePalette.dark
-              : WavePalette.light)
-          .toJson(),
+      mode:
+          (mode == 'amoled'
+                  ? WavePalette.amoled
+                  : mode == 'dark'
+                  ? WavePalette.dark
+                  : WavePalette.light)
+              .toJson(),
       'radius': 24,
       'speed': 1,
       'compact': false,
