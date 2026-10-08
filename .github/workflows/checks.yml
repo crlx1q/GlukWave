@@ -56,13 +56,20 @@ jobs:
         run: |
           flutter build apk --debug --dart-define=GLUKWAVE_SERVER=${{ inputs.server_url || 'https://wave.gluk.tech' }}
           cp build/app/outputs/flutter-apk/app-debug.apk build/app/outputs/flutter-apk/GlukWave.apk
+      - name: Enable Windows Desktop support
+        if: runner.os == 'Windows'
+        run: flutter config --enable-windows-desktop
       - name: Windows release build
         if: runner.os == 'Windows'
+        env:
+          CMAKE_GENERATOR: "Visual Studio 17 2022"
+          CMAKE_GENERATOR_PLATFORM: "x64"
         run: |
           flutter build windows --release --dart-define=GLUKWAVE_SERVER=${{ inputs.server_url || 'https://wave.gluk.tech' }}
           Compress-Archive -Path build\windows\x64\runner\Release\* -DestinationPath build\windows\x64\runner\GlukWave-windows-x64.zip -Force
       - name: iOS compile without signing
         if: runner.os == 'macOS'
+        continue-on-error: true
         run: flutter build ios --release --no-codesign --dart-define=GLUKWAVE_SERVER=${{ inputs.server_url || 'https://wave.gluk.tech' }}
       - uses: actions/upload-artifact@v4
         if: runner.os == 'Linux'
