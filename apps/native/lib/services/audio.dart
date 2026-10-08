@@ -44,6 +44,7 @@ class WaveAudioHandler extends BaseAudioHandler {
   Future<bool> Function(WaveTrack track, AudioServiceRepeatMode repeat)?
   onEnded;
   void Function()? onProcessingChanged;
+  Future<void> Function(double volume)? onVolumeChanged;
   void Function(String message)? onError;
   final List<StreamSubscription<dynamic>> _subscriptions = [];
   WaveAudioHandler(this.api, this.cache) {
@@ -348,6 +349,7 @@ class WaveAudioHandler extends BaseAudioHandler {
       case 'volume':
         _volume = number(data['volume'], .8).clamp(0, 1);
         await _setOutputVolume();
+        await onVolumeChanged?.call(_volume);
       case 'next':
         await _skip(1);
       case 'previous':

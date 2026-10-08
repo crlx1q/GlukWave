@@ -67,9 +67,11 @@ function localizedProvider(provider,language){
 export function installLocalizedResponses(app,ctx){
   app.use('/api',(req,res,next)=>{
     const language=browserLanguage(req.headers['accept-language'])||ctx.localeFor(req).language;req.language=language;
-    res.set('Content-Language',language);res.vary('Accept-Language');const json=res.json.bind(res);
+    res.set('Content-Language',language);res.vary('Accept-Language');const json=res.json.bind(res),diagnosticRoute=req.path.startsWith('/admin/errors');
     res.json=payload=>{
-      if(payload&&typeof payload==='object'){
+      // Diagnostics are evidence, not consumer error messages to translate.
+      const diagnosticLogs=res.statusCode<400&&diagnosticRoute;
+      if(payload&&typeof payload==='object'&&!diagnosticLogs){
         if(payload.error)payload={...payload,error:localizedError(payload.error,language)};
         if(Array.isArray(payload.errors))payload={...payload,errors:payload.errors.map(error=>({...error,message:localizedError({code:error.code||'PROVIDER_UNAVAILABLE',message:error.message},language).message}))};
         for(const key of ['providers','connections'])if(Array.isArray(payload[key]))payload={...payload,[key]:payload[key].map(provider=>localizedProvider(provider,language))};

@@ -18,6 +18,7 @@ import 'helpers/fonts.dart';
 
 class LayoutApi extends WaveApi {
   Json? savedLyrics;
+  int? importedProvider;
   Completer<Json>? searchPending, lyricsPending;
   List<Json> lyricLines = [];
   LayoutApi() : super('http://127.0.0.1:4000');
@@ -28,6 +29,26 @@ class LayoutApi extends WaveApi {
     dynamic data,
     Json? query,
   }) async {
+    if (path.endsWith('/lyrics/search')) {
+      return {
+        'candidates': [
+          {
+            'providerId': 42,
+            'title': 'Own timed test',
+            'artist': 'Test artist',
+            'raw': '[00:01.25]Own timed line',
+            'synchronized': true,
+          },
+        ],
+      };
+    }
+    if (path.endsWith('/lyrics/lrclib')) {
+      importedProvider = object(data)['providerId'] as int;
+      lyricLines = [
+        {'time': 1.25, 'text': 'Own timed line'},
+      ];
+      return {'source': 'lrclib', 'synchronized': true, 'lines': lyricLines};
+    }
     if (path.endsWith('/lyrics')) {
       if (method == 'PUT') savedLyrics = object(data);
       if (method == 'GET' && lyricsPending != null) {
@@ -487,4 +508,58 @@ void main() {
       await clean(tester, c);
     },
   );
+  for (final width in [320.0, 1280.0]) {
+    testWidgets(
+      'LRCLIB selection saves provider ID through the real editor at $width',
+      (tester) async {
+        final c = (await tester.runAsync(controller))!;
+        c.user = WaveUser({'id': 'layout-fixture', 'username': 'listener'});
+        c.online = true;
+        final track = WaveTrack({
+          'id': 'external-lrclib-fixture',
+          'title': 'Own timed test',
+          'artist': 'Test artist',
+          'source': 'soundcloud',
+          'duration': 200,
+        });
+        await viewport(tester, Size(width, 850));
+        await tester.pumpWidget(
+          MaterialApp(
+            theme: waveTheme,
+            home: Scaffold(
+              body: PlayerPage(
+                controller: c,
+                initialTrack: track,
+                onMore: (_) {},
+              ),
+            ),
+          ),
+        );
+        await tester.pumpAndSettle();
+        await tester.tap(find.text('Текст'));
+        await tester.pumpAndSettle();
+        await tester.tap(find.text('Добавить текст'));
+        await tester.pumpAndSettle();
+        await tester.ensureVisible(find.text('Найти в LRCLIB'));
+        await tester.tap(find.text('Найти в LRCLIB'));
+        await tester.pumpAndSettle();
+        await tester.ensureVisible(
+          find.widgetWithText(ListTile, 'Own timed test'),
+        );
+        await tester.tap(find.widgetWithText(ListTile, 'Own timed test'));
+        await tester.pumpAndSettle();
+        final field = tester.widget<TextField>(
+          find.widgetWithText(TextField, 'Текст или LRC'),
+        );
+        expect(field.controller!.text, '[00:01.25]Own timed line');
+        expect(tester.takeException(), isNull);
+        await tester.tap(find.text('Сохранить'));
+        await tester.pumpAndSettle();
+        expect((c.api as LayoutApi).importedProvider, 42);
+        expect(find.text('Own timed line'), findsWidgets);
+        expect(tester.takeException(), isNull);
+        await clean(tester, c);
+      },
+    );
+  }
 }

@@ -15,5 +15,5 @@ outputs/*.zip
 outputs/*.apk
 outputs/*.exe
 outputs/*.png
-outputs/GlukWave-windows/
+outputs/GlukWave-windows*/
 outputs/*.partial*

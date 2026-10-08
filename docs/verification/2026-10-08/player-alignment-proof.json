@@ -1,0 +1,1909 @@
+{
+  "passed": true,
+  "mutedBrowser": true,
+  "actualPublicTrack": true,
+  "intentionalPause": true,
+  "samples": [
+    {
+      "items": [
+        {
+          "rect": {
+            "cx": 158.5,
+            "cy": 939,
+            "height": 51,
+            "width": 51,
+            "x": 133,
+            "y": 913.5
+          },
+          "selector": ".player-art"
+        },
+        {
+          "rect": {
+            "cx": 399.5,
+            "cy": 939,
+            "height": 40,
+            "width": 407,
+            "x": 196,
+            "y": 919
+          },
+          "selector": ".player-track-info"
+        },
+        {
+          "rect": {
+            "cx": 636,
+            "cy": 939,
+            "height": 42,
+            "width": 42,
+            "x": 615,
+            "y": 918
+          },
+          "selector": ".player-heart"
+        },
+        {
+          "rect": {
+            "cx": 1483,
+            "cy": 939,
+            "height": 36,
+            "width": 524,
+            "x": 1221,
+            "y": 921
+          },
+          "selector": ".player-tools"
+        },
+        {
+          "rect": {
+            "cx": 939,
+            "cy": 939,
+            "height": 58,
+            "width": 524,
+            "x": 677,
+            "y": 910
+          },
+          "selector": ".player-center"
+        }
+      ],
+      "mobileNavigation": {
+        "cx": 0,
+        "cy": 0,
+        "height": 0,
+        "width": 0,
+        "x": 0,
+        "y": 0
+      },
+      "overflow": 0,
+      "player": {
+        "cx": 939,
+        "cy": 939,
+        "height": 86,
+        "width": 1654,
+        "x": 112,
+        "y": 896
+      },
+      "settings": {
+        "active": null,
+        "button": {
+          "cx": 43.5,
+          "cy": 957.5,
+          "height": 49,
+          "width": 49,
+          "x": 19,
+          "y": 933
+        },
+        "display": "flex",
+        "icon": {
+          "cx": 43.5,
+          "cy": 957.5,
+          "height": 21,
+          "width": 21,
+          "x": 33,
+          "y": 947
+        },
+        "route": ""
+      },
+      "theme": "light",
+      "track": true,
+      "width": 1800
+    },
+    {
+      "items": [
+        {
+          "rect": {
+            "cx": 158.5,
+            "cy": 939,
+            "height": 51,
+            "width": 51,
+            "x": 133,
+            "y": 913.5
+          },
+          "selector": ".player-art"
+        },
+        {
+          "rect": {
+            "cx": 339.5,
+            "cy": 939,
+            "height": 40,
+            "width": 287,
+            "x": 196,
+            "y": 919
+          },
+          "selector": ".player-track-info"
+        },
+        {
+          "rect": {
+            "cx": 516,
+            "cy": 939,
+            "height": 42,
+            "width": 42,
+            "x": 495,
+            "y": 918
+          },
+          "selector": ".player-heart"
+        },
+        {
+          "rect": {
+            "cx": 1183,
+            "cy": 939,
+            "height": 36,
+            "width": 404,
+            "x": 981,
+            "y": 921
+          },
+          "selector": ".player-tools"
+        },
+        {
+          "rect": {
+            "cx": 759,
+            "cy": 939,
+            "height": 58,
+            "width": 404,
+            "x": 557,
+            "y": 910
+          },
+          "selector": ".player-center"
+        }
+      ],
+      "mobileNavigation": {
+        "cx": 0,
+        "cy": 0,
+        "height": 0,
+        "width": 0,
+        "x": 0,
+        "y": 0
+      },
+      "overflow": 0,
+      "player": {
+        "cx": 759,
+        "cy": 939,
+        "height": 86,
+        "width": 1294,
+        "x": 112,
+        "y": 896
+      },
+      "settings": {
+        "active": null,
+        "button": {
+          "cx": 43.5,
+          "cy": 957.5,
+          "height": 49,
+          "width": 49,
+          "x": 19,
+          "y": 933
+        },
+        "display": "flex",
+        "icon": {
+          "cx": 43.5,
+          "cy": 957.5,
+          "height": 21,
+          "width": 21,
+          "x": 33,
+          "y": 947
+        },
+        "route": ""
+      },
+      "theme": "light",
+      "track": true,
+      "width": 1440
+    },
+    {
+      "items": [
+        {
+          "rect": {
+            "cx": 158.5,
+            "cy": 939,
+            "height": 51,
+            "width": 51,
+            "x": 133,
+            "y": 913.5
+          },
+          "selector": ".player-art"
+        },
+        {
+          "rect": {
+            "cx": 312.828125,
+            "cy": 939,
+            "height": 40,
+            "width": 233.65625,
+            "x": 196,
+            "y": 919
+          },
+          "selector": ".player-track-info"
+        },
+        {
+          "rect": {
+            "cx": 462.65625,
+            "cy": 939,
+            "height": 42,
+            "width": 42,
+            "x": 441.65625,
+            "y": 918
+          },
+          "selector": ".player-heart"
+        },
+        {
+          "rect": {
+            "cx": 1049.65625,
+            "cy": 939,
+            "height": 36,
+            "width": 350.65625,
+            "x": 874.328125,
+            "y": 921
+          },
+          "selector": ".player-tools"
+        },
+        {
+          "rect": {
+            "cx": 678.9921875,
+            "cy": 939,
+            "height": 58,
+            "width": 350.671875,
+            "x": 503.65625,
+            "y": 910
+          },
+          "selector": ".player-center"
+        }
+      ],
+      "mobileNavigation": {
+        "cx": 0,
+        "cy": 0,
+        "height": 0,
+        "width": 0,
+        "x": 0,
+        "y": 0
+      },
+      "overflow": 0,
+      "player": {
+        "cx": 679,
+        "cy": 939,
+        "height": 86,
+        "width": 1134,
+        "x": 112,
+        "y": 896
+      },
+      "settings": {
+        "active": null,
+        "button": {
+          "cx": 43.5,
+          "cy": 957.5,
+          "height": 49,
+          "width": 49,
+          "x": 19,
+          "y": 933
+        },
+        "display": "flex",
+        "icon": {
+          "cx": 43.5,
+          "cy": 957.5,
+          "height": 21,
+          "width": 21,
+          "x": 33,
+          "y": 947
+        },
+        "route": ""
+      },
+      "theme": "light",
+      "track": true,
+      "width": 1280
+    },
+    {
+      "items": [
+        {
+          "rect": {
+            "cx": 158.5,
+            "cy": 939,
+            "height": 51,
+            "width": 51,
+            "x": 133,
+            "y": 913.5
+          },
+          "selector": ".player-art"
+        },
+        {
+          "rect": {
+            "cx": 273,
+            "cy": 939,
+            "height": 40,
+            "width": 154,
+            "x": 196,
+            "y": 919
+          },
+          "selector": ".player-track-info"
+        },
+        {
+          "rect": {
+            "cx": 383,
+            "cy": 939,
+            "height": 42,
+            "width": 42,
+            "x": 362,
+            "y": 918
+          },
+          "selector": ".player-heart"
+        },
+        {
+          "rect": {
+            "cx": 775,
+            "cy": 939,
+            "height": 36,
+            "width": 140,
+            "x": 705,
+            "y": 921
+          },
+          "selector": ".player-tools"
+        },
+        {
+          "rect": {
+            "cx": 554.5,
+            "cy": 939,
+            "height": 58,
+            "width": 271,
+            "x": 419,
+            "y": 910
+          },
+          "selector": ".player-center"
+        }
+      ],
+      "mobileNavigation": {
+        "cx": 0,
+        "cy": 0,
+        "height": 0,
+        "width": 0,
+        "x": 0,
+        "y": 0
+      },
+      "overflow": 0,
+      "player": {
+        "cx": 489,
+        "cy": 939,
+        "height": 86,
+        "width": 754,
+        "x": 112,
+        "y": 896
+      },
+      "settings": {
+        "active": null,
+        "button": {
+          "cx": 43.5,
+          "cy": 957.5,
+          "height": 49,
+          "width": 49,
+          "x": 19,
+          "y": 933
+        },
+        "display": "flex",
+        "icon": {
+          "cx": 43.5,
+          "cy": 957.5,
+          "height": 21,
+          "width": 21,
+          "x": 33,
+          "y": 947
+        },
+        "route": ""
+      },
+      "theme": "light",
+      "track": true,
+      "width": 900
+    },
+    {
+      "items": [
+        {
+          "rect": {
+            "cx": 44,
+            "cy": 731,
+            "height": 44,
+            "width": 44,
+            "x": 22,
+            "y": 709
+          },
+          "selector": ".player-art"
+        },
+        {
+          "rect": {
+            "cx": 168,
+            "cy": 731,
+            "height": 44,
+            "width": 196,
+            "x": 70,
+            "y": 709
+          },
+          "selector": ".player-track-info"
+        },
+        {
+          "rect": {
+            "cx": 290,
+            "cy": 731,
+            "height": 44,
+            "width": 40,
+            "x": 270,
+            "y": 709
+          },
+          "selector": ".player-heart"
+        },
+        {
+          "rect": {
+            "cx": 0,
+            "cy": 0,
+            "height": 0,
+            "width": 0,
+            "x": 0,
+            "y": 0
+          },
+          "selector": ".player-tools"
+        },
+        {
+          "rect": {
+            "cx": 336,
+            "cy": 731,
+            "height": 43,
+            "width": 44,
+            "x": 314,
+            "y": 709.5
+          },
+          "selector": ".player-center"
+        }
+      ],
+      "mobileNavigation": {
+        "cx": 190,
+        "cy": 809,
+        "height": 70,
+        "width": 380,
+        "x": 0,
+        "y": 774
+      },
+      "overflow": 0,
+      "player": {
+        "cx": 190,
+        "cy": 731,
+        "height": 68,
+        "width": 356,
+        "x": 12,
+        "y": 697
+      },
+      "settings": {
+        "active": null,
+        "button": {
+          "cx": 0,
+          "cy": 0,
+          "height": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "display": "none",
+        "icon": {
+          "cx": 0,
+          "cy": 0,
+          "height": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "route": ""
+      },
+      "theme": "light",
+      "track": true,
+      "width": 390
+    },
+    {
+      "items": [
+        {
+          "rect": {
+            "cx": 41,
+            "cy": 731,
+            "height": 44,
+            "width": 44,
+            "x": 19,
+            "y": 709
+          },
+          "selector": ".player-art"
+        },
+        {
+          "rect": {
+            "cx": 135.5,
+            "cy": 731,
+            "height": 44,
+            "width": 137,
+            "x": 67,
+            "y": 709
+          },
+          "selector": ".player-track-info"
+        },
+        {
+          "rect": {
+            "cx": 226,
+            "cy": 731,
+            "height": 44,
+            "width": 36,
+            "x": 208,
+            "y": 709
+          },
+          "selector": ".player-heart"
+        },
+        {
+          "rect": {
+            "cx": 0,
+            "cy": 0,
+            "height": 0,
+            "width": 0,
+            "x": 0,
+            "y": 0
+          },
+          "selector": ".player-tools"
+        },
+        {
+          "rect": {
+            "cx": 269.5,
+            "cy": 731,
+            "height": 43,
+            "width": 43,
+            "x": 248,
+            "y": 709.5
+          },
+          "selector": ".player-center"
+        }
+      ],
+      "mobileNavigation": {
+        "cx": 155,
+        "cy": 809,
+        "height": 70,
+        "width": 310,
+        "x": 0,
+        "y": 774
+      },
+      "overflow": 0,
+      "player": {
+        "cx": 155,
+        "cy": 731,
+        "height": 68,
+        "width": 292,
+        "x": 9,
+        "y": 697
+      },
+      "settings": {
+        "active": null,
+        "button": {
+          "cx": 0,
+          "cy": 0,
+          "height": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "display": "none",
+        "icon": {
+          "cx": 0,
+          "cy": 0,
+          "height": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "route": ""
+      },
+      "theme": "light",
+      "track": true,
+      "width": 320
+    },
+    {
+      "items": [
+        {
+          "rect": {
+            "cx": 158.5,
+            "cy": 939,
+            "height": 51,
+            "width": 51,
+            "x": 133,
+            "y": 913.5
+          },
+          "selector": ".player-art"
+        },
+        {
+          "rect": {
+            "cx": 399.5,
+            "cy": 939,
+            "height": 40,
+            "width": 407,
+            "x": 196,
+            "y": 919
+          },
+          "selector": ".player-track-info"
+        },
+        {
+          "rect": {
+            "cx": 636,
+            "cy": 939,
+            "height": 42,
+            "width": 42,
+            "x": 615,
+            "y": 918
+          },
+          "selector": ".player-heart"
+        },
+        {
+          "rect": {
+            "cx": 1483,
+            "cy": 939,
+            "height": 36,
+            "width": 524,
+            "x": 1221,
+            "y": 921
+          },
+          "selector": ".player-tools"
+        },
+        {
+          "rect": {
+            "cx": 939,
+            "cy": 939,
+            "height": 58,
+            "width": 524,
+            "x": 677,
+            "y": 910
+          },
+          "selector": ".player-center"
+        }
+      ],
+      "mobileNavigation": {
+        "cx": 0,
+        "cy": 0,
+        "height": 0,
+        "width": 0,
+        "x": 0,
+        "y": 0
+      },
+      "overflow": 0,
+      "player": {
+        "cx": 939,
+        "cy": 939,
+        "height": 86,
+        "width": 1654,
+        "x": 112,
+        "y": 896
+      },
+      "settings": {
+        "active": null,
+        "button": {
+          "cx": 43.5,
+          "cy": 957.5,
+          "height": 49,
+          "width": 49,
+          "x": 19,
+          "y": 933
+        },
+        "display": "flex",
+        "icon": {
+          "cx": 43.5,
+          "cy": 957.5,
+          "height": 21,
+          "width": 21,
+          "x": 33,
+          "y": 947
+        },
+        "route": ""
+      },
+      "theme": "dark",
+      "track": true,
+      "width": 1800
+    },
+    {
+      "items": [
+        {
+          "rect": {
+            "cx": 158.5,
+            "cy": 939,
+            "height": 51,
+            "width": 51,
+            "x": 133,
+            "y": 913.5
+          },
+          "selector": ".player-art"
+        },
+        {
+          "rect": {
+            "cx": 339.5,
+            "cy": 939,
+            "height": 40,
+            "width": 287,
+            "x": 196,
+            "y": 919
+          },
+          "selector": ".player-track-info"
+        },
+        {
+          "rect": {
+            "cx": 516,
+            "cy": 939,
+            "height": 42,
+            "width": 42,
+            "x": 495,
+            "y": 918
+          },
+          "selector": ".player-heart"
+        },
+        {
+          "rect": {
+            "cx": 1183,
+            "cy": 939,
+            "height": 36,
+            "width": 404,
+            "x": 981,
+            "y": 921
+          },
+          "selector": ".player-tools"
+        },
+        {
+          "rect": {
+            "cx": 759,
+            "cy": 939,
+            "height": 58,
+            "width": 404,
+            "x": 557,
+            "y": 910
+          },
+          "selector": ".player-center"
+        }
+      ],
+      "mobileNavigation": {
+        "cx": 0,
+        "cy": 0,
+        "height": 0,
+        "width": 0,
+        "x": 0,
+        "y": 0
+      },
+      "overflow": 0,
+      "player": {
+        "cx": 759,
+        "cy": 939,
+        "height": 86,
+        "width": 1294,
+        "x": 112,
+        "y": 896
+      },
+      "settings": {
+        "active": null,
+        "button": {
+          "cx": 43.5,
+          "cy": 957.5,
+          "height": 49,
+          "width": 49,
+          "x": 19,
+          "y": 933
+        },
+        "display": "flex",
+        "icon": {
+          "cx": 43.5,
+          "cy": 957.5,
+          "height": 21,
+          "width": 21,
+          "x": 33,
+          "y": 947
+        },
+        "route": ""
+      },
+      "theme": "dark",
+      "track": true,
+      "width": 1440
+    },
+    {
+      "items": [
+        {
+          "rect": {
+            "cx": 158.5,
+            "cy": 939,
+            "height": 51,
+            "width": 51,
+            "x": 133,
+            "y": 913.5
+          },
+          "selector": ".player-art"
+        },
+        {
+          "rect": {
+            "cx": 312.828125,
+            "cy": 939,
+            "height": 40,
+            "width": 233.65625,
+            "x": 196,
+            "y": 919
+          },
+          "selector": ".player-track-info"
+        },
+        {
+          "rect": {
+            "cx": 462.65625,
+            "cy": 939,
+            "height": 42,
+            "width": 42,
+            "x": 441.65625,
+            "y": 918
+          },
+          "selector": ".player-heart"
+        },
+        {
+          "rect": {
+            "cx": 1049.65625,
+            "cy": 939,
+            "height": 36,
+            "width": 350.65625,
+            "x": 874.328125,
+            "y": 921
+          },
+          "selector": ".player-tools"
+        },
+        {
+          "rect": {
+            "cx": 678.9921875,
+            "cy": 939,
+            "height": 58,
+            "width": 350.671875,
+            "x": 503.65625,
+            "y": 910
+          },
+          "selector": ".player-center"
+        }
+      ],
+      "mobileNavigation": {
+        "cx": 0,
+        "cy": 0,
+        "height": 0,
+        "width": 0,
+        "x": 0,
+        "y": 0
+      },
+      "overflow": 0,
+      "player": {
+        "cx": 679,
+        "cy": 939,
+        "height": 86,
+        "width": 1134,
+        "x": 112,
+        "y": 896
+      },
+      "settings": {
+        "active": null,
+        "button": {
+          "cx": 43.5,
+          "cy": 957.5,
+          "height": 49,
+          "width": 49,
+          "x": 19,
+          "y": 933
+        },
+        "display": "flex",
+        "icon": {
+          "cx": 43.5,
+          "cy": 957.5,
+          "height": 21,
+          "width": 21,
+          "x": 33,
+          "y": 947
+        },
+        "route": ""
+      },
+      "theme": "dark",
+      "track": true,
+      "width": 1280
+    },
+    {
+      "items": [
+        {
+          "rect": {
+            "cx": 158.5,
+            "cy": 939,
+            "height": 51,
+            "width": 51,
+            "x": 133,
+            "y": 913.5
+          },
+          "selector": ".player-art"
+        },
+        {
+          "rect": {
+            "cx": 273,
+            "cy": 939,
+            "height": 40,
+            "width": 154,
+            "x": 196,
+            "y": 919
+          },
+          "selector": ".player-track-info"
+        },
+        {
+          "rect": {
+            "cx": 383,
+            "cy": 939,
+            "height": 42,
+            "width": 42,
+            "x": 362,
+            "y": 918
+          },
+          "selector": ".player-heart"
+        },
+        {
+          "rect": {
+            "cx": 775,
+            "cy": 939,
+            "height": 36,
+            "width": 140,
+            "x": 705,
+            "y": 921
+          },
+          "selector": ".player-tools"
+        },
+        {
+          "rect": {
+            "cx": 554.5,
+            "cy": 939,
+            "height": 58,
+            "width": 271,
+            "x": 419,
+            "y": 910
+          },
+          "selector": ".player-center"
+        }
+      ],
+      "mobileNavigation": {
+        "cx": 0,
+        "cy": 0,
+        "height": 0,
+        "width": 0,
+        "x": 0,
+        "y": 0
+      },
+      "overflow": 0,
+      "player": {
+        "cx": 489,
+        "cy": 939,
+        "height": 86,
+        "width": 754,
+        "x": 112,
+        "y": 896
+      },
+      "settings": {
+        "active": null,
+        "button": {
+          "cx": 43.5,
+          "cy": 957.5,
+          "height": 49,
+          "width": 49,
+          "x": 19,
+          "y": 933
+        },
+        "display": "flex",
+        "icon": {
+          "cx": 43.5,
+          "cy": 957.5,
+          "height": 21,
+          "width": 21,
+          "x": 33,
+          "y": 947
+        },
+        "route": ""
+      },
+      "theme": "dark",
+      "track": true,
+      "width": 900
+    },
+    {
+      "items": [
+        {
+          "rect": {
+            "cx": 44,
+            "cy": 731,
+            "height": 44,
+            "width": 44,
+            "x": 22,
+            "y": 709
+          },
+          "selector": ".player-art"
+        },
+        {
+          "rect": {
+            "cx": 168,
+            "cy": 731,
+            "height": 44,
+            "width": 196,
+            "x": 70,
+            "y": 709
+          },
+          "selector": ".player-track-info"
+        },
+        {
+          "rect": {
+            "cx": 290,
+            "cy": 731,
+            "height": 44,
+            "width": 40,
+            "x": 270,
+            "y": 709
+          },
+          "selector": ".player-heart"
+        },
+        {
+          "rect": {
+            "cx": 0,
+            "cy": 0,
+            "height": 0,
+            "width": 0,
+            "x": 0,
+            "y": 0
+          },
+          "selector": ".player-tools"
+        },
+        {
+          "rect": {
+            "cx": 336,
+            "cy": 731,
+            "height": 43,
+            "width": 44,
+            "x": 314,
+            "y": 709.5
+          },
+          "selector": ".player-center"
+        }
+      ],
+      "mobileNavigation": {
+        "cx": 190,
+        "cy": 809,
+        "height": 70,
+        "width": 380,
+        "x": 0,
+        "y": 774
+      },
+      "overflow": 0,
+      "player": {
+        "cx": 190,
+        "cy": 731,
+        "height": 68,
+        "width": 356,
+        "x": 12,
+        "y": 697
+      },
+      "settings": {
+        "active": null,
+        "button": {
+          "cx": 0,
+          "cy": 0,
+          "height": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "display": "none",
+        "icon": {
+          "cx": 0,
+          "cy": 0,
+          "height": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "route": ""
+      },
+      "theme": "dark",
+      "track": true,
+      "width": 390
+    },
+    {
+      "items": [
+        {
+          "rect": {
+            "cx": 41,
+            "cy": 731,
+            "height": 44,
+            "width": 44,
+            "x": 19,
+            "y": 709
+          },
+          "selector": ".player-art"
+        },
+        {
+          "rect": {
+            "cx": 135.5,
+            "cy": 731,
+            "height": 44,
+            "width": 137,
+            "x": 67,
+            "y": 709
+          },
+          "selector": ".player-track-info"
+        },
+        {
+          "rect": {
+            "cx": 226,
+            "cy": 731,
+            "height": 44,
+            "width": 36,
+            "x": 208,
+            "y": 709
+          },
+          "selector": ".player-heart"
+        },
+        {
+          "rect": {
+            "cx": 0,
+            "cy": 0,
+            "height": 0,
+            "width": 0,
+            "x": 0,
+            "y": 0
+          },
+          "selector": ".player-tools"
+        },
+        {
+          "rect": {
+            "cx": 269.5,
+            "cy": 731,
+            "height": 43,
+            "width": 43,
+            "x": 248,
+            "y": 709.5
+          },
+          "selector": ".player-center"
+        }
+      ],
+      "mobileNavigation": {
+        "cx": 155,
+        "cy": 809,
+        "height": 70,
+        "width": 310,
+        "x": 0,
+        "y": 774
+      },
+      "overflow": 0,
+      "player": {
+        "cx": 155,
+        "cy": 731,
+        "height": 68,
+        "width": 292,
+        "x": 9,
+        "y": 697
+      },
+      "settings": {
+        "active": null,
+        "button": {
+          "cx": 0,
+          "cy": 0,
+          "height": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "display": "none",
+        "icon": {
+          "cx": 0,
+          "cy": 0,
+          "height": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "route": ""
+      },
+      "theme": "dark",
+      "track": true,
+      "width": 320
+    },
+    {
+      "items": [
+        {
+          "rect": {
+            "cx": 158.5,
+            "cy": 939,
+            "height": 51,
+            "width": 51,
+            "x": 133,
+            "y": 913.5
+          },
+          "selector": ".player-art"
+        },
+        {
+          "rect": {
+            "cx": 399.5,
+            "cy": 939,
+            "height": 40,
+            "width": 407,
+            "x": 196,
+            "y": 919
+          },
+          "selector": ".player-track-info"
+        },
+        {
+          "rect": {
+            "cx": 636,
+            "cy": 939,
+            "height": 42,
+            "width": 42,
+            "x": 615,
+            "y": 918
+          },
+          "selector": ".player-heart"
+        },
+        {
+          "rect": {
+            "cx": 1483,
+            "cy": 939,
+            "height": 36,
+            "width": 524,
+            "x": 1221,
+            "y": 921
+          },
+          "selector": ".player-tools"
+        },
+        {
+          "rect": {
+            "cx": 939,
+            "cy": 939,
+            "height": 58,
+            "width": 524,
+            "x": 677,
+            "y": 910
+          },
+          "selector": ".player-center"
+        }
+      ],
+      "mobileNavigation": {
+        "cx": 0,
+        "cy": 0,
+        "height": 0,
+        "width": 0,
+        "x": 0,
+        "y": 0
+      },
+      "overflow": 0,
+      "player": {
+        "cx": 939,
+        "cy": 939,
+        "height": 86,
+        "width": 1654,
+        "x": 112,
+        "y": 896
+      },
+      "settings": {
+        "active": null,
+        "button": {
+          "cx": 43.5,
+          "cy": 957.5,
+          "height": 49,
+          "width": 49,
+          "x": 19,
+          "y": 933
+        },
+        "display": "flex",
+        "icon": {
+          "cx": 43.5,
+          "cy": 957.5,
+          "height": 21,
+          "width": 21,
+          "x": 33,
+          "y": 947
+        },
+        "route": ""
+      },
+      "theme": "amoled",
+      "track": true,
+      "width": 1800
+    },
+    {
+      "items": [
+        {
+          "rect": {
+            "cx": 158.5,
+            "cy": 939,
+            "height": 51,
+            "width": 51,
+            "x": 133,
+            "y": 913.5
+          },
+          "selector": ".player-art"
+        },
+        {
+          "rect": {
+            "cx": 339.5,
+            "cy": 939,
+            "height": 40,
+            "width": 287,
+            "x": 196,
+            "y": 919
+          },
+          "selector": ".player-track-info"
+        },
+        {
+          "rect": {
+            "cx": 516,
+            "cy": 939,
+            "height": 42,
+            "width": 42,
+            "x": 495,
+            "y": 918
+          },
+          "selector": ".player-heart"
+        },
+        {
+          "rect": {
+            "cx": 1183,
+            "cy": 939,
+            "height": 36,
+            "width": 404,
+            "x": 981,
+            "y": 921
+          },
+          "selector": ".player-tools"
+        },
+        {
+          "rect": {
+            "cx": 759,
+            "cy": 939,
+            "height": 58,
+            "width": 404,
+            "x": 557,
+            "y": 910
+          },
+          "selector": ".player-center"
+        }
+      ],
+      "mobileNavigation": {
+        "cx": 0,
+        "cy": 0,
+        "height": 0,
+        "width": 0,
+        "x": 0,
+        "y": 0
+      },
+      "overflow": 0,
+      "player": {
+        "cx": 759,
+        "cy": 939,
+        "height": 86,
+        "width": 1294,
+        "x": 112,
+        "y": 896
+      },
+      "settings": {
+        "active": null,
+        "button": {
+          "cx": 43.5,
+          "cy": 957.5,
+          "height": 49,
+          "width": 49,
+          "x": 19,
+          "y": 933
+        },
+        "display": "flex",
+        "icon": {
+          "cx": 43.5,
+          "cy": 957.5,
+          "height": 21,
+          "width": 21,
+          "x": 33,
+          "y": 947
+        },
+        "route": ""
+      },
+      "theme": "amoled",
+      "track": true,
+      "width": 1440
+    },
+    {
+      "items": [
+        {
+          "rect": {
+            "cx": 158.5,
+            "cy": 939,
+            "height": 51,
+            "width": 51,
+            "x": 133,
+            "y": 913.5
+          },
+          "selector": ".player-art"
+        },
+        {
+          "rect": {
+            "cx": 312.828125,
+            "cy": 939,
+            "height": 40,
+            "width": 233.65625,
+            "x": 196,
+            "y": 919
+          },
+          "selector": ".player-track-info"
+        },
+        {
+          "rect": {
+            "cx": 462.65625,
+            "cy": 939,
+            "height": 42,
+            "width": 42,
+            "x": 441.65625,
+            "y": 918
+          },
+          "selector": ".player-heart"
+        },
+        {
+          "rect": {
+            "cx": 1049.65625,
+            "cy": 939,
+            "height": 36,
+            "width": 350.65625,
+            "x": 874.328125,
+            "y": 921
+          },
+          "selector": ".player-tools"
+        },
+        {
+          "rect": {
+            "cx": 678.9921875,
+            "cy": 939,
+            "height": 58,
+            "width": 350.671875,
+            "x": 503.65625,
+            "y": 910
+          },
+          "selector": ".player-center"
+        }
+      ],
+      "mobileNavigation": {
+        "cx": 0,
+        "cy": 0,
+        "height": 0,
+        "width": 0,
+        "x": 0,
+        "y": 0
+      },
+      "overflow": 0,
+      "player": {
+        "cx": 679,
+        "cy": 939,
+        "height": 86,
+        "width": 1134,
+        "x": 112,
+        "y": 896
+      },
+      "settings": {
+        "active": null,
+        "button": {
+          "cx": 43.5,
+          "cy": 957.5,
+          "height": 49,
+          "width": 49,
+          "x": 19,
+          "y": 933
+        },
+        "display": "flex",
+        "icon": {
+          "cx": 43.5,
+          "cy": 957.5,
+          "height": 21,
+          "width": 21,
+          "x": 33,
+          "y": 947
+        },
+        "route": ""
+      },
+      "theme": "amoled",
+      "track": true,
+      "width": 1280
+    },
+    {
+      "items": [
+        {
+          "rect": {
+            "cx": 158.5,
+            "cy": 939,
+            "height": 51,
+            "width": 51,
+            "x": 133,
+            "y": 913.5
+          },
+          "selector": ".player-art"
+        },
+        {
+          "rect": {
+            "cx": 273,
+            "cy": 939,
+            "height": 40,
+            "width": 154,
+            "x": 196,
+            "y": 919
+          },
+          "selector": ".player-track-info"
+        },
+        {
+          "rect": {
+            "cx": 383,
+            "cy": 939,
+            "height": 42,
+            "width": 42,
+            "x": 362,
+            "y": 918
+          },
+          "selector": ".player-heart"
+        },
+        {
+          "rect": {
+            "cx": 775,
+            "cy": 939,
+            "height": 36,
+            "width": 140,
+            "x": 705,
+            "y": 921
+          },
+          "selector": ".player-tools"
+        },
+        {
+          "rect": {
+            "cx": 554.5,
+            "cy": 939,
+            "height": 58,
+            "width": 271,
+            "x": 419,
+            "y": 910
+          },
+          "selector": ".player-center"
+        }
+      ],
+      "mobileNavigation": {
+        "cx": 0,
+        "cy": 0,
+        "height": 0,
+        "width": 0,
+        "x": 0,
+        "y": 0
+      },
+      "overflow": 0,
+      "player": {
+        "cx": 489,
+        "cy": 939,
+        "height": 86,
+        "width": 754,
+        "x": 112,
+        "y": 896
+      },
+      "settings": {
+        "active": null,
+        "button": {
+          "cx": 43.5,
+          "cy": 957.5,
+          "height": 49,
+          "width": 49,
+          "x": 19,
+          "y": 933
+        },
+        "display": "flex",
+        "icon": {
+          "cx": 43.5,
+          "cy": 957.5,
+          "height": 21,
+          "width": 21,
+          "x": 33,
+          "y": 947
+        },
+        "route": ""
+      },
+      "theme": "amoled",
+      "track": true,
+      "width": 900
+    },
+    {
+      "items": [
+        {
+          "rect": {
+            "cx": 44,
+            "cy": 731,
+            "height": 44,
+            "width": 44,
+            "x": 22,
+            "y": 709
+          },
+          "selector": ".player-art"
+        },
+        {
+          "rect": {
+            "cx": 168,
+            "cy": 731,
+            "height": 44,
+            "width": 196,
+            "x": 70,
+            "y": 709
+          },
+          "selector": ".player-track-info"
+        },
+        {
+          "rect": {
+            "cx": 290,
+            "cy": 731,
+            "height": 44,
+            "width": 40,
+            "x": 270,
+            "y": 709
+          },
+          "selector": ".player-heart"
+        },
+        {
+          "rect": {
+            "cx": 0,
+            "cy": 0,
+            "height": 0,
+            "width": 0,
+            "x": 0,
+            "y": 0
+          },
+          "selector": ".player-tools"
+        },
+        {
+          "rect": {
+            "cx": 336,
+            "cy": 731,
+            "height": 43,
+            "width": 44,
+            "x": 314,
+            "y": 709.5
+          },
+          "selector": ".player-center"
+        }
+      ],
+      "mobileNavigation": {
+        "cx": 190,
+        "cy": 809,
+        "height": 70,
+        "width": 380,
+        "x": 0,
+        "y": 774
+      },
+      "overflow": 0,
+      "player": {
+        "cx": 190,
+        "cy": 731,
+        "height": 68,
+        "width": 356,
+        "x": 12,
+        "y": 697
+      },
+      "settings": {
+        "active": null,
+        "button": {
+          "cx": 0,
+          "cy": 0,
+          "height": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "display": "none",
+        "icon": {
+          "cx": 0,
+          "cy": 0,
+          "height": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "route": ""
+      },
+      "theme": "amoled",
+      "track": true,
+      "width": 390
+    },
+    {
+      "items": [
+        {
+          "rect": {
+            "cx": 41,
+            "cy": 731,
+            "height": 44,
+            "width": 44,
+            "x": 19,
+            "y": 709
+          },
+          "selector": ".player-art"
+        },
+        {
+          "rect": {
+            "cx": 135.5,
+            "cy": 731,
+            "height": 44,
+            "width": 137,
+            "x": 67,
+            "y": 709
+          },
+          "selector": ".player-track-info"
+        },
+        {
+          "rect": {
+            "cx": 226,
+            "cy": 731,
+            "height": 44,
+            "width": 36,
+            "x": 208,
+            "y": 709
+          },
+          "selector": ".player-heart"
+        },
+        {
+          "rect": {
+            "cx": 0,
+            "cy": 0,
+            "height": 0,
+            "width": 0,
+            "x": 0,
+            "y": 0
+          },
+          "selector": ".player-tools"
+        },
+        {
+          "rect": {
+            "cx": 269.5,
+            "cy": 731,
+            "height": 43,
+            "width": 43,
+            "x": 248,
+            "y": 709.5
+          },
+          "selector": ".player-center"
+        }
+      ],
+      "mobileNavigation": {
+        "cx": 155,
+        "cy": 809,
+        "height": 70,
+        "width": 310,
+        "x": 0,
+        "y": 774
+      },
+      "overflow": 0,
+      "player": {
+        "cx": 155,
+        "cy": 731,
+        "height": 68,
+        "width": 292,
+        "x": 9,
+        "y": 697
+      },
+      "settings": {
+        "active": null,
+        "button": {
+          "cx": 0,
+          "cy": 0,
+          "height": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "display": "none",
+        "icon": {
+          "cx": 0,
+          "cy": 0,
+          "height": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "route": ""
+      },
+      "theme": "amoled",
+      "track": true,
+      "width": 320
+    }
+  ],
+  "settingsNavigation": {
+    "items": [
+      {
+        "rect": {
+          "cx": 158.5,
+          "cy": 939,
+          "height": 51,
+          "width": 51,
+          "x": 133,
+          "y": 913.5
+        },
+        "selector": ".player-art"
+      },
+      {
+        "rect": {
+          "cx": 339.5,
+          "cy": 939,
+          "height": 40,
+          "width": 287,
+          "x": 196,
+          "y": 919
+        },
+        "selector": ".player-track-info"
+      },
+      {
+        "rect": {
+          "cx": 516,
+          "cy": 939,
+          "height": 42,
+          "width": 42,
+          "x": 495,
+          "y": 918
+        },
+        "selector": ".player-heart"
+      },
+      {
+        "rect": {
+          "cx": 1183,
+          "cy": 939,
+          "height": 36,
+          "width": 404,
+          "x": 981,
+          "y": 921
+        },
+        "selector": ".player-tools"
+      },
+      {
+        "rect": {
+          "cx": 759,
+          "cy": 939,
+          "height": 58,
+          "width": 404,
+          "x": 557,
+          "y": 910
+        },
+        "selector": ".player-center"
+      }
+    ],
+    "mobileNavigation": {
+      "cx": 0,
+      "cy": 0,
+      "height": 0,
+      "width": 0,
+      "x": 0,
+      "y": 0
+    },
+    "overflow": 0,
+    "player": {
+      "cx": 759,
+      "cy": 939,
+      "height": 86,
+      "width": 1294,
+      "x": 112,
+      "y": 896
+    },
+    "settings": {
+      "active": "page",
+      "button": {
+        "cx": 43.5,
+        "cy": 957.5,
+        "height": 49,
+        "width": 49,
+        "x": 19,
+        "y": 933
+      },
+      "display": "flex",
+      "icon": {
+        "cx": 43.5,
+        "cy": 957.5,
+        "height": 21,
+        "width": 21,
+        "x": 33,
+        "y": 947
+      },
+      "route": "#settings"
+    },
+    "theme": "amoled",
+    "track": true,
+    "width": 1440
+  },
+  "sourceUnchangedDuringProbe": true
+}

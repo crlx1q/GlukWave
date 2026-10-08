@@ -14,6 +14,10 @@ import '../services/desktop.dart';
 import 'widgets.dart';
 import 'player.dart';
 import 'appearance_panel.dart';
+import 'auth_visuals.dart';
+import 'auth_page.dart';
+export 'auth_page.dart' show AuthPage;
+import 'desktop_player.dart';
 import 'lofi.dart';
 import '../l10n/wave_localizations.dart';
 
@@ -146,25 +150,17 @@ class _GlukWaveAppState extends State<GlukWaveApp> with WidgetsBindingObserver {
         home: Builder(
           builder: (context) {
             if (c.loading && c.user == null) {
-              return Scaffold(
-                body: Center(
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const Brand(),
-                      const SizedBox(height: 30),
-                      CircularProgressIndicator(
-                        color: waveVisuals(context).accent,
-                        strokeWidth: 2,
-                      ),
-                    ],
-                  ),
-                ),
-              );
+              return const WaveStartupPage();
             }
             return c.loggedIn
                 ? WaveShell(controller: c)
-                : AuthPage(controller: c);
+                : AuthPage(
+                    controller: c,
+                    onQrLogin: showQrLogin,
+                    onServerDebug: kDebugMode
+                        ? () => editServer(context, c)
+                        : null,
+                  );
           },
         ),
       );
@@ -258,6 +254,14 @@ class _WaveShellState extends State<WaveShell>
   int searchRequest = 0;
   String settingsSection = 'account';
   @override
+  void initState() {
+    super.initState();
+    // Compact desktop modes do not otherwise touch the full player animation.
+    // Create its ticker while this State is alive, before dispose can run.
+    playerReveal;
+  }
+
+  @override
   void dispose() {
     search.dispose();
     chat.dispose();
@@ -275,31 +279,8 @@ class _WaveShellState extends State<WaveShell>
 
   @override
   Widget build(BuildContext context) {
-    if (c.desktop.mini) {
-      return Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.all(10),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  const Brand(size: 22),
-                  const Spacer(),
-                  IconButton(
-                    tooltip: wt('native.6c1e1967ba', context: context),
-                    visualDensity: VisualDensity.compact,
-                    onPressed: () => run(c, c.desktop.toggleMini),
-                    icon: const Icon(Icons.open_in_full_rounded, size: 16),
-                  ),
-                ],
-              ),
-              Expanded(
-                child: MiniPlayer(controller: c, onOpen: showPlayer),
-              ),
-            ],
-          ),
-        ),
-      );
+    if (c.desktop.mini || c.desktop.quick) {
+      return DesktopCompactPlayer(controller: c, quick: c.desktop.quick);
     }
     final desktop = MediaQuery.sizeOf(context).width >= 900;
     final shell = Scaffold(
@@ -1652,8 +1633,84 @@ class _WaveShellState extends State<WaveShell>
       const SizedBox(height: 20),
       if (searching)
         const WaveLoadingList(key: Key('search-loading'))
-      else if (c.results.isNotEmpty)
-        tracksList(c.results)
+      else if (c.results.isNotEmpty || c.artistResults.isNotEmpty)
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            if (c.artistResults.isNotEmpty) ...[
+              Text(
+                wt('search.artists', context: context),
+                style: const TextStyle(
+                  fontSize: 17,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+              const SizedBox(height: 14),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    for (final artist in c.artistResults)
+                      Padding(
+                        padding: const EdgeInsets.only(right: 12),
+                        child: SizedBox(
+                          width: 176,
+                          child: OutlinedButton(
+                            key: ValueKey('search-artist-${artist['id']}'),
+                            style: OutlinedButton.styleFrom(
+                              padding: const EdgeInsets.all(14),
+                              backgroundColor: waveVisuals(context).surface,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(18),
+                              ),
+                            ),
+                            onPressed: () => run(c, () async {
+                              search.text = artist['name']?.toString() ?? '';
+                              await c.searchArtist(artist);
+                            }),
+                            child: Column(
+                              children: [
+                                ClipOval(
+                                  child: Artwork(
+                                    controller: c,
+                                    url: artist['artwork']?.toString() ?? '',
+                                    size: 66,
+                                    radius: 0,
+                                  ),
+                                ),
+                                const SizedBox(height: 11),
+                                Text(
+                                  artist['name']?.toString() ?? '',
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: const TextStyle(
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w800,
+                                  ),
+                                ),
+                                const SizedBox(height: 4),
+                                Text(
+                                  providerName(
+                                    artist['source']?.toString() ?? 'local',
+                                  ),
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    color: waveVisuals(context).muted,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 25),
+            ],
+            if (c.results.isNotEmpty) tracksList(c.results),
+          ],
+        )
       else
         EmptyState(
           search.text.isEmpty
@@ -2839,16 +2896,18 @@ class _WaveShellState extends State<WaveShell>
         spacing: 12,
         runSpacing: 12,
         children: [
-          OutlinedButton.icon(
-            onPressed: () => showQrLogin(context, c),
-            icon: const Icon(Icons.qr_code_rounded),
-            label: Text(wt('native.e305e5f150', context: context)),
-          ),
-          OutlinedButton.icon(
-            onPressed: scanQr,
-            icon: const Icon(Icons.qr_code_scanner_rounded),
-            label: Text(wt('native.280e0f673d', context: context)),
-          ),
+          if (Platform.isWindows)
+            OutlinedButton.icon(
+              onPressed: () => showQrLogin(context, c),
+              icon: const Icon(Icons.qr_code_rounded),
+              label: Text(wt('native.e305e5f150', context: context)),
+            ),
+          if (Platform.isAndroid || Platform.isIOS)
+            OutlinedButton.icon(
+              onPressed: scanQr,
+              icon: const Icon(Icons.qr_code_scanner_rounded),
+              label: Text(wt('native.280e0f673d', context: context)),
+            ),
           TextButton.icon(
             onPressed: discover,
             icon: const Icon(Icons.wifi_find_rounded),
@@ -3891,537 +3950,6 @@ Color providerColor(String id) => switch (id) {
   _ => accent,
 };
 
-class AuthPage extends StatefulWidget {
-  final WaveController controller;
-  const AuthPage({super.key, required this.controller});
-  @override
-  State<AuthPage> createState() => _AuthPageState();
-}
-
-class _AuthPageState extends State<AuthPage> {
-  WaveController get c => widget.controller;
-  final email = TextEditingController(),
-      password = TextEditingController(),
-      username = TextEditingController(),
-      name = TextEditingController();
-  final form = GlobalKey<FormState>();
-  bool register = false, busy = false, obscure = true;
-  String? error;
-  @override
-  void dispose() {
-    email.dispose();
-    password.dispose();
-    username.dispose();
-    name.dispose();
-    super.dispose();
-  }
-
-  Future<void> submit(Future<void> Function() action) async {
-    if (busy) return;
-    setState(() {
-      busy = true;
-      error = null;
-    });
-    try {
-      await action();
-    } catch (e) {
-      if (mounted) setState(() => error = e.toString());
-    } finally {
-      if (mounted) setState(() => busy = false);
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(
-      backgroundColor: waveVisuals(context).background,
-      toolbarHeight: 48,
-      elevation: 0,
-      scrolledUnderElevation: 0,
-      actions: [
-        if (c.appearanceStore != null)
-          Padding(
-            padding: const EdgeInsets.only(right: 12),
-            child: TextButton.icon(
-              key: const Key('open-appearance'),
-              onPressed: () => showAppearance(context, c.appearanceStore!),
-              icon: const Icon(Icons.palette_outlined, size: 17),
-              label: Text(wt('native.d206f1bed0', context: context)),
-            ),
-          ),
-      ],
-    ),
-    body: SafeArea(
-      child: LayoutBuilder(
-        builder: (context, constraints) => Center(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.all(26),
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 1040),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  if (constraints.maxWidth > 900)
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.only(right: 64),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Brand(size: 46),
-                            const SizedBox(height: 42),
-                            Text(
-                              wt('native.fc7b54ff4d', context: context),
-                              style: TextStyle(
-                                fontSize: 48,
-                                fontWeight: FontWeight.w800,
-                                letterSpacing: -2,
-                                height: 1.1,
-                              ),
-                            ),
-                            const SizedBox(height: 24),
-                            Text(
-                              wt('native.a889d29336', context: context),
-                              style: TextStyle(
-                                color: waveVisuals(context).muted,
-                                fontSize: 16,
-                                height: 1.9,
-                              ),
-                            ),
-                            const SizedBox(height: 34),
-                            SizedBox(
-                              height: 190,
-                              child: CustomPaint(
-                                painter: _AuthWave(
-                                  waveVisuals(context).accent,
-                                  waveVisuals(context).waveStyle,
-                                ),
-                                size: const Size(double.infinity, 190),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  Expanded(
-                    child: ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: 420),
-                      child: Form(
-                        key: form,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            if (constraints.maxWidth <= 900)
-                              const Padding(
-                                padding: EdgeInsets.only(bottom: 36),
-                                child: Brand(size: 40),
-                              ),
-                            Text(
-                              register
-                                  ? wt('native.4541ac0a47', context: context)
-                                  : wt('native.6532324a05', context: context),
-                              style: const TextStyle(
-                                fontSize: 30,
-                                letterSpacing: -1,
-                                fontWeight: FontWeight.w800,
-                              ),
-                            ),
-                            const SizedBox(height: 8),
-                            Text(
-                              register
-                                  ? wt('native.8ad78c0f86', context: context)
-                                  : wt('native.691934d883', context: context),
-                              style: TextStyle(
-                                color: waveVisuals(context).muted,
-                                fontSize: 12,
-                                height: 1.7,
-                              ),
-                            ),
-                            const SizedBox(height: 26),
-                            if (c.captchaEnabled) ...[
-                              Text(
-                                wt('native.5b9ff29223', context: context),
-                                style: TextStyle(
-                                  color: waveVisuals(context).muted,
-                                  height: 1.7,
-                                ),
-                              ),
-                              const SizedBox(height: 18),
-                              FilledButton.icon(
-                                onPressed: busy
-                                    ? null
-                                    : () => submit(
-                                        () => c.browserLogin(method: 'email'),
-                                      ),
-                                icon: const Icon(Icons.open_in_new_rounded),
-                                label: Text(
-                                  wt('native.d8e062885a', context: context),
-                                ),
-                              ),
-                            ] else ...[
-                              TextFormField(
-                                controller: email,
-                                keyboardType: TextInputType.emailAddress,
-                                autofillHints: const [AutofillHints.email],
-                                decoration: InputDecoration(
-                                  labelText: wt(
-                                    'native.108aa2199f',
-                                    context: context,
-                                  ),
-                                ),
-                                validator: (value) =>
-                                    value != null &&
-                                        RegExp(
-                                          r'^[^\s@]+@[^\s@]+\.[^\s@]+$',
-                                        ).hasMatch(value)
-                                    ? null
-                                    : wt('native.eba037f95d', context: context),
-                              ),
-                              const SizedBox(height: 14),
-                              TextFormField(
-                                controller: password,
-                                obscureText: obscure,
-                                autofillHints: [
-                                  register
-                                      ? AutofillHints.newPassword
-                                      : AutofillHints.password,
-                                ],
-                                decoration: InputDecoration(
-                                  labelText: wt(
-                                    'native.14f7c63cc1',
-                                    context: context,
-                                  ),
-                                  suffixIcon: IconButton(
-                                    tooltip: obscure
-                                        ? wt(
-                                            'native.07fefc08da',
-                                            context: context,
-                                          )
-                                        : wt(
-                                            'native.8992c9df0b',
-                                            context: context,
-                                          ),
-                                    onPressed: () =>
-                                        setState(() => obscure = !obscure),
-                                    icon: Icon(
-                                      obscure
-                                          ? Icons.visibility_outlined
-                                          : Icons.visibility_off_outlined,
-                                      size: 19,
-                                    ),
-                                  ),
-                                ),
-                                validator: (v) =>
-                                    v == null || v.length < (register ? 10 : 1)
-                                    ? register
-                                          ? wt(
-                                              'native.817314e802',
-                                              context: context,
-                                            )
-                                          : wt(
-                                              'native.3e56a59a30',
-                                              context: context,
-                                            )
-                                    : null,
-                                onFieldSubmitted: (_) {
-                                  if (form.currentState!.validate()) {
-                                    submit(
-                                      () => c.authenticate(
-                                        email.text,
-                                        password.text,
-                                        username: register
-                                            ? username.text
-                                            : null,
-                                        displayName: register
-                                            ? name.text
-                                            : null,
-                                      ),
-                                    );
-                                  }
-                                },
-                              ),
-                              if (register) ...[
-                                const SizedBox(height: 14),
-                                TextFormField(
-                                  controller: username,
-                                  maxLength: 32,
-                                  decoration: InputDecoration(
-                                    labelText: wt(
-                                      'native.db0d5a3cc6',
-                                      context: context,
-                                    ),
-                                    hintText: wt(
-                                      'native.6bc8d80189',
-                                      context: context,
-                                    ),
-                                  ),
-                                  validator: (v) =>
-                                      v != null &&
-                                          RegExp(
-                                            r'^[a-zA-Z0-9_]{3,32}$',
-                                          ).hasMatch(v)
-                                      ? null
-                                      : wt(
-                                          'native.ffa6dd52b0',
-                                          context: context,
-                                        ),
-                                ),
-                                const SizedBox(height: 10),
-                                TextFormField(
-                                  controller: name,
-                                  maxLength: 60,
-                                  decoration: InputDecoration(
-                                    labelText: wt(
-                                      'native.f11858d578',
-                                      context: context,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                              const SizedBox(height: 20),
-                              SizedBox(
-                                width: double.infinity,
-                                child: FilledButton(
-                                  onPressed: busy
-                                      ? null
-                                      : () {
-                                          if (form.currentState!.validate()) {
-                                            submit(
-                                              () => c.authenticate(
-                                                email.text,
-                                                password.text,
-                                                username: register
-                                                    ? username.text
-                                                    : null,
-                                                displayName: register
-                                                    ? name.text
-                                                    : null,
-                                              ),
-                                            );
-                                          }
-                                        },
-                                  child: busy
-                                      ? SizedBox(
-                                          width: 18,
-                                          height: 18,
-                                          child: CircularProgressIndicator(
-                                            strokeWidth: 2,
-                                            color: waveVisuals(
-                                              context,
-                                            ).background,
-                                          ),
-                                        )
-                                      : Text(
-                                          register
-                                              ? wt(
-                                                  'native.8d29ff5c84',
-                                                  context: context,
-                                                )
-                                              : wt(
-                                                  'native.939e95a11d',
-                                                  context: context,
-                                                ),
-                                        ),
-                                ),
-                              ),
-                              Wrap(
-                                alignment: WrapAlignment.spaceBetween,
-                                spacing: 8,
-                                runSpacing: 2,
-                                children: [
-                                  TextButton(
-                                    onPressed: busy
-                                        ? null
-                                        : () => setState(
-                                            () => register = !register,
-                                          ),
-                                    child: Text(
-                                      register
-                                          ? wt(
-                                              'native.bbdb97ba67',
-                                              context: context,
-                                            )
-                                          : wt(
-                                              'native.481cee4349',
-                                              context: context,
-                                            ),
-                                    ),
-                                  ),
-                                  if (!register)
-                                    TextButton(
-                                      onPressed: busy
-                                          ? null
-                                          : () => submit(() async {
-                                              final value = await askText(
-                                                context,
-                                                wt(
-                                                  'native.8166d3a910',
-                                                  context: context,
-                                                ),
-                                                wt(
-                                                  'native.108aa2199f',
-                                                  context: context,
-                                                ),
-                                                value: email.text,
-                                              );
-                                              if (value != null) {
-                                                await c.api.call(
-                                                  '/api/auth/forgot',
-                                                  method: 'POST',
-                                                  data: {'email': value},
-                                                );
-                                                c.tell(wt('native.b58e16258e'));
-                                              }
-                                            }),
-                                      child: Text(
-                                        wt(
-                                          'native.24ee8363c4',
-                                          context: context,
-                                        ),
-                                      ),
-                                    ),
-                                ],
-                              ),
-                            ],
-                            const SizedBox(height: 10),
-                            Row(
-                              children: [
-                                Expanded(child: Divider()),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 14),
-                                  child: Text(
-                                    wt('native.30bb0333ca', context: context),
-                                    style: TextStyle(
-                                      color: waveVisuals(context).muted,
-                                      fontSize: 11,
-                                    ),
-                                  ),
-                                ),
-                                Expanded(child: Divider()),
-                              ],
-                            ),
-                            const SizedBox(height: 16),
-                            Row(
-                              children: [
-                                Expanded(
-                                  child: OutlinedButton.icon(
-                                    onPressed:
-                                        busy ||
-                                            object(
-                                                  c.config['auth'],
-                                                )['google'] !=
-                                                true
-                                        ? null
-                                        : () => submit(c.browserLogin),
-                                    icon: const Icon(
-                                      Icons.language_rounded,
-                                      size: 19,
-                                    ),
-                                    label: const Text('Google'),
-                                  ),
-                                ),
-                                const SizedBox(width: 12),
-                                Expanded(
-                                  child: OutlinedButton.icon(
-                                    onPressed: busy || !c.online
-                                        ? null
-                                        : () => showQrLogin(context, c),
-                                    icon: const Icon(
-                                      Icons.qr_code_rounded,
-                                      size: 19,
-                                    ),
-                                    label: Text(
-                                      wt('native.304d2e9c36', context: context),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            if (busy)
-                              Padding(
-                                padding: const EdgeInsets.only(top: 14),
-                                child: TextButton(
-                                  onPressed: () {
-                                    c.cancelAuth = true;
-                                    setState(() => busy = false);
-                                  },
-                                  child: Text(
-                                    wt('native.7a18c5e61a', context: context),
-                                  ),
-                                ),
-                              ),
-                            if (error != null || c.error != null)
-                              Padding(
-                                padding: const EdgeInsets.only(top: 18),
-                                child: Text(
-                                  error ?? c.error!,
-                                  style: const TextStyle(
-                                    color: Color(0xffa44f40),
-                                    fontSize: 12,
-                                    height: 1.6,
-                                  ),
-                                ),
-                              ),
-                            const SizedBox(height: 28),
-                            TextButton.icon(
-                              onPressed: () => Navigator.push(
-                                context,
-                                MaterialPageRoute<void>(
-                                  builder: (_) => LofiPage(controller: c),
-                                ),
-                              ),
-                              icon: const Icon(
-                                Icons.nightlight_outlined,
-                                size: 16,
-                              ),
-                              label: Text(
-                                wt('native.847e19da38', context: context),
-                              ),
-                            ),
-                            GestureDetector(
-                              onLongPress: kDebugMode
-                                  ? () => editServer(context, c)
-                                  : null,
-                              child: Padding(
-                                padding: const EdgeInsets.all(12),
-                                child: Text(
-                                  'GlukWave · 1.0.0',
-                                  style: TextStyle(
-                                    color: waveVisuals(context).muted,
-                                    fontSize: 10,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
-    ),
-  );
-}
-
-class _AuthWave extends CustomPainter {
-  final Color color;
-  final String style;
-  const _AuthWave(this.color, this.style);
-  @override
-  void paint(Canvas canvas, Size size) {
-    WavePainter(.3, accentColor: color, style: style).paint(canvas, size);
-  }
-
-  @override
-  bool shouldRepaint(_AuthWave oldDelegate) =>
-      color != oldDelegate.color || style != oldDelegate.style;
-}
-
 Future<void> showQrLogin(BuildContext context, WaveController c) async {
   await run(c, () async {
     final qr = await c.api.call(
@@ -4458,7 +3986,7 @@ class _QrLoginDialogState extends State<QrLoginDialog> {
       await widget.controller.pollSession(
         '/api/auth/qr/${widget.qr['id']}',
         widget.qr['secret'] as String,
-        DateTime.parse(widget.qr['expiresAt'] as String),
+        challengeExpiry(widget.qr['expiresAt']),
       );
       if (mounted) Navigator.pop(context);
     } catch (e) {

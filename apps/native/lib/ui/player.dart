@@ -1147,55 +1147,153 @@ class _PlayerPageState extends State<PlayerPage> {
     ],
   );
   Future<void> importLyrics() async {
-    final id = current!.id;
+    final track = current!;
     final text = TextEditingController(
       text: lyrics
           .map(
-            (line) => synchronized
+            (line) => synchronized && line['time'] != null
                 ? '[${lrcClock(number(line['time']))}]${line['text']}'
                 : line['text'],
           )
           .join('\n'),
     );
+    final title = TextEditingController(text: track.title),
+        artist = TextEditingController(text: track.artist);
+    List<Json>? candidates;
+    Json? selected;
+    var busy = false;
     await showWaveDialog<void>(
       context: context,
-      builder: (dialog) => AlertDialog(
-        title: Text(wt('native.da4b2995ca', context: context)),
-        content: SizedBox(
-          width: 550,
-          child: TextField(
-            controller: text,
-            minLines: 8,
-            maxLines: 15,
-            decoration: InputDecoration(
-              labelText: wt('native.c157a9e867', context: context),
-              hintText: wt('native.59f2a68e7e', context: context),
+      builder: (outer) => StatefulBuilder(
+        builder: (dialog, update) => AlertDialog(
+          title: Text(wt('native.da4b2995ca', context: context)),
+          content: SizedBox(
+            width: 550,
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  TextField(
+                    controller: title,
+                    maxLength: 200,
+                    decoration: InputDecoration(
+                      labelText: wt('lyrics.title', context: context),
+                    ),
+                  ),
+                  TextField(
+                    controller: artist,
+                    maxLength: 200,
+                    decoration: InputDecoration(
+                      labelText: wt('lyrics.artist', context: context),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: TextButton.icon(
+                      icon: const Icon(Icons.search),
+                      label: Text(wt('lyrics.search', context: context)),
+                      onPressed: busy
+                          ? null
+                          : () async {
+                              update(() => busy = true);
+                              try {
+                                final result = await c.api.call(
+                                  '/api/tracks/${track.id}/lyrics/search',
+                                  query: {
+                                    'title': title.text,
+                                    'artist': artist.text,
+                                  },
+                                );
+                                if (dialog.mounted) {
+                                  update(
+                                    () => candidates = objects(
+                                      result['candidates'],
+                                    ),
+                                  );
+                                }
+                              } catch (error) {
+                                c.tell(error.toString());
+                              } finally {
+                                if (dialog.mounted) update(() => busy = false);
+                              }
+                            },
+                    ),
+                  ),
+                  if (busy) const LinearProgressIndicator(),
+                  if (candidates != null && candidates!.isEmpty)
+                    Text(wt('lyrics.none', context: context)),
+                  if (candidates != null)
+                    ...candidates!.map(
+                      (candidate) => ListTile(
+                        selected:
+                            selected?['providerId'] == candidate['providerId'],
+                        title: Text(candidate['title'] as String? ?? ''),
+                        subtitle: Text(
+                          '${candidate['artist']} · ${candidate['synchronized'] == true ? wt('lyrics.synced', context: context) : wt('lyrics.plain', context: context)}',
+                        ),
+                        onTap: () => update(() {
+                          selected = candidate;
+                          text.text = candidate['raw'] as String? ?? '';
+                        }),
+                      ),
+                    ),
+                  TextField(
+                    controller: text,
+                    minLines: 8,
+                    maxLines: 15,
+                    maxLength: 100000,
+                    decoration: InputDecoration(
+                      labelText: wt('native.c157a9e867', context: context),
+                      hintText: wt('native.59f2a68e7e', context: context),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    wt('lyrics.attribution', context: context),
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                ],
+              ),
             ),
           ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(dialog),
+              child: Text(wt('native.0ec753be8d', context: context)),
+            ),
+            FilledButton(
+              onPressed: busy
+                  ? null
+                  : () async {
+                      update(() => busy = true);
+                      await _run(c, () async {
+                        if (selected != null && text.text == selected!['raw']) {
+                          await c.api.call(
+                            '/api/tracks/${track.id}/lyrics/lrclib',
+                            method: 'POST',
+                            data: {'providerId': selected!['providerId']},
+                          );
+                        } else {
+                          await c.api.call(
+                            '/api/tracks/${track.id}/lyrics',
+                            method: 'PUT',
+                            data: {'text': text.text},
+                          );
+                        }
+                        if (dialog.mounted) Navigator.pop(dialog);
+                        if (current?.id == track.id) await loadDetails();
+                      });
+                      if (dialog.mounted) update(() => busy = false);
+                    },
+              child: Text(wt('native.4864057d62', context: context)),
+            ),
+          ],
         ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(dialog),
-            child: Text(wt('native.0ec753be8d', context: context)),
-          ),
-          FilledButton(
-            onPressed: () async {
-              await _run(c, () async {
-                await c.api.call(
-                  '/api/tracks/$id/lyrics',
-                  method: 'PUT',
-                  data: {'text': text.text},
-                );
-                if (dialog.mounted) Navigator.pop(dialog);
-                if (current?.id == id) await loadDetails();
-              });
-            },
-            child: Text(wt('native.4864057d62', context: context)),
-          ),
-        ],
       ),
     );
     text.dispose();
+    title.dispose();
+    artist.dispose();
   }
 
   Widget queuePage() => Column(

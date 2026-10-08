@@ -33,7 +33,8 @@ export function parseSoundcloudTrack(html,expectedUrl){
   if(!title||!/^[\w:.-]{1,100}$/.test(sid))return null;
   const artwork=value=>{try{const url=new URL(value);return url.protocol==='https:'&&/^(?:[a-z\d-]+\.)*sndcdn\.com$/i.test(url.hostname)?url.toString():'';}catch{return '';}};
   const duration=Number(track.duration);
-  return {id:track.id,urn:sid,title,user:{username:String(track.user?.username||'').slice(0,200),avatar_url:artwork(track.user?.avatar_url)},artwork_url:artwork(track.artwork_url),waveform_url:soundcloudWaveformUrl(track.waveform_url),duration:Number.isFinite(duration)&&duration>0&&duration<=86400000?duration:0,permalink_url:soundcloudTrackUrl(track.permalink_url)||expectedUrl};
+  const artistPath=String(track.user?.permalink||'');
+  return {id:track.id,urn:sid,title,genre:String(track.genre||'').slice(0,200),tag_list:String(track.tag_list||'').slice(0,1000),user:{id:track.user?.id,permalink:artistPath,permalink_url:/^[\w-]+$/.test(artistPath)?`${origin}/${artistPath}`:'',username:String(track.user?.username||'').slice(0,200),avatar_url:artwork(track.user?.avatar_url)},artwork_url:artwork(track.artwork_url),waveform_url:soundcloudWaveformUrl(track.waveform_url),duration:Number.isFinite(duration)&&duration>0&&duration<=86400000?duration:0,permalink_url:soundcloudTrackUrl(track.permalink_url)||expectedUrl};
 }
 
 export async function readSoundcloudPage(value,fetcher=fetch){

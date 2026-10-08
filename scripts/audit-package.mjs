@@ -74,7 +74,9 @@ const archiveSha256=sha(archive),apkPath=path.join(root,'outputs/GlukWave-androi
 requireCondition(apkSha256===evidence.native.sha256,'APK differs from verified build');
 let windowsSha256=null;
 if(evidence.native.windowsExecutableBuilt){windowsSha256=await checksum(path.join(root,'outputs/GlukWave-windows.zip'));requireCondition(windowsSha256===evidence.native.windows.sha256,'Windows package differs from verified build');}
-const result={checkedAt:new Date().toISOString(),passed:true,archiveBytes:archive.length,archiveSha256,entries:count,allCrcAndSourceHashesMatched:true,textFilesScanned,localPrivateValuesAbsent:true,liveCredentialPatternsAbsent:true,staticFontFaces:fonts.length,manropeStaticFontFaces:manrope.length,frozenNativeSourcesMatched:frozen.files.length,currentWebBuild:evidence.web.javascript,runtimeDataExcluded:true,apkSha256,windowsSha256};
+let installerSha256=null;
+if(evidence.native.windows?.installer?.sha256){installerSha256=await checksum(path.join(root,'outputs/GlukWave-Setup.exe'));requireCondition(installerSha256===evidence.native.windows.installer.sha256,'Installer differs from verified build');}
+const result={checkedAt:new Date().toISOString(),passed:true,archiveBytes:archive.length,archiveSha256,entries:count,allCrcAndSourceHashesMatched:true,textFilesScanned,localPrivateValuesAbsent:true,liveCredentialPatternsAbsent:true,staticFontFaces:fonts.length,manropeStaticFontFaces:manrope.length,frozenNativeSourcesMatched:frozen.files.length,currentWebBuild:evidence.web.javascript,runtimeDataExcluded:true,apkSha256,windowsSha256,installerSha256};
 await fs.mkdir(path.join(root,'work/qa'),{recursive:true});await fs.writeFile(path.join(root,'work/qa/source-package-proof.json'),JSON.stringify(result,null,2)+'\n');
-await fs.writeFile(path.join(root,'outputs/SHA256SUMS.txt'),`${apkSha256}  GlukWave-android-debug.apk\n${windowsSha256?windowsSha256+'  GlukWave-windows.zip\n':''}${archiveSha256}  GlukWave-source.zip\n`);
+await fs.writeFile(path.join(root,'outputs/SHA256SUMS.txt'),`${apkSha256}  GlukWave-android-debug.apk\n${windowsSha256?windowsSha256+'  GlukWave-windows.zip\n':''}${installerSha256?installerSha256+'  GlukWave-Setup.exe\n':''}${archiveSha256}  GlukWave-source.zip\n`);
 console.log(JSON.stringify(result));

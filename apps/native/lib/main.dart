@@ -10,10 +10,13 @@ import 'core/controller.dart';
 import 'services/audio.dart';
 import 'services/cache.dart';
 import 'ui/app.dart';
+import 'ui/auth_visuals.dart';
 import 'ui/widgets.dart';
 
-Future<void> main() async {
+Future<void> main(List<String> arguments) async {
   WidgetsFlutterBinding.ensureInitialized();
+  runApp(const WaveBootstrapApp());
+  WaveApi? startupApi;
   LicenseRegistry.addLicense(() async* {
     final text = await rootBundle.loadString('assets/licenses/Nunito-OFL.txt');
     yield LicenseEntryWithLineBreaks(['Nunito'], text);
@@ -37,6 +40,19 @@ Future<void> main() async {
           ? 'http://10.0.2.2:4000'
           : 'http://127.0.0.1:4000',
     );
+    startupApi = api;
+    FlutterError.onError = (details) {
+      api.diagnostics.report(
+        details.exception,
+        kind: 'framework',
+        stack: details.stack,
+      );
+      FlutterError.presentError(details);
+    };
+    PlatformDispatcher.instance.onError = (error, stack) {
+      api.diagnostics.report(error, kind: 'runtime', stack: stack);
+      return true;
+    };
     final cache = MusicCache(api);
     final handler = await AudioService.init<WaveAudioHandler>(
       builder: () => WaveAudioHandler(api, cache),
@@ -48,10 +64,21 @@ Future<void> main() async {
         androidNotificationIcon: 'drawable/ic_notification',
       ),
     );
-    final controller = WaveController(api, cache, handler);
+    final controller = WaveController(
+      api,
+      cache,
+      handler,
+      startMinimized: arguments.contains('--start-minimized'),
+    );
     runApp(GlukWaveApp(controller: controller));
     await controller.initialize();
   } catch (error, trace) {
+    startupApi?.diagnostics.report(
+      error,
+      kind: 'background',
+      stack: trace,
+      code: 'STARTUP',
+    );
     debugPrint('GlukWave startup: $error\n$trace');
     runApp(
       MaterialApp(

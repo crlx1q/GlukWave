@@ -1,0 +1,57 @@
+{
+  "checkedAt": "2026-10-08T19:45:19.760Z",
+  "serverTestsPassed": 39,
+  "nativeTestsPassed": 87,
+  "sourceFiles": 91,
+  "web": {
+    "checkedAt": "2026-10-08T19:18:15.760Z",
+    "passed": true,
+    "isolatedServer": true,
+    "mutedBrowser": true,
+    "volumeBeforeReload": {
+      "saved": "0.05",
+      "value": "0.05"
+    },
+    "volumeAfterReload": {
+      "saved": "0.05",
+      "value": "0.05"
+    },
+    "muteAfterReload": {
+      "saved": "0",
+      "value": "0"
+    },
+    "artistResultAndSelection": true,
+    "artistTrackMatch": true,
+    "timedLyricsWordMatch": true
+  },
+  "installer": {
+    "platform": "windows",
+    "file": "GlukWave-Setup.exe",
+    "version": "1.0.0+3",
+    "signature": "release",
+    "channel": "beta",
+    "bytes": 22051019,
+    "sha256": "aedd013173ceff16ab002af3928ebd7e817327e49f02e872039ba77caea65089",
+    "builtAt": "2026-10-08T19:22:25.622Z",
+    "realSilentInstall": true,
+    "startMenuShortcutCreated": true,
+    "bundleFilesMatched": 66,
+    "realUninstallPassed": true,
+    "ownerRunningAppPreserved": true,
+    "passed": true,
+    "interactiveCheckboxesClicked": false,
+    "probeRegistryAndShortcutRemoved": true,
+    "checkedAt": "2026-10-08T19:26:39.0585346Z",
+    "unselectedTasksRespected": true,
+    "actualHTTPDownloadMatched": true
+  },
+  "production": {
+    "checkedAt": "2026-10-08T19:45:19.763Z",
+    "url": "https://wave.gluk.tech",
+    "readOnlyPublicConfigChecked": true,
+    "nativeCaptchaCapability": false,
+    "googleConfigured": false,
+    "newBackendDeployedThisTurn": false,
+    "existingAppStillRunning": true
+  }
+}

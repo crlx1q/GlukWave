@@ -39,5 +39,5 @@ test('appearance keeps separate palettes, validates colors and merges durable pa
     assert.deepEqual(received.map(event=>event.revision),[1,2,3,4,5]);assert.deepEqual(unrelatedEvents,[]);
     assert.equal(received.at(-1).settings.appearance.light.ink,'#111122');assert.equal(received.at(-1).settings.appearance.dark.bg,'#171717');assert.equal(received.at(-1).settings.lyrics,false);
     assert.equal((await patch({revision:99})).status,400);
-  }finally{for(const socket of sockets)socket.disconnect();await service.close();assert.ok(directory.startsWith(qa+path.sep));await fs.rm(directory,{recursive:true,force:true});}
+  }finally{for(const socket of sockets)socket.disconnect();await service.close();assert.ok(directory.startsWith(qa+path.sep));await fs.rm(directory,{recursive:true,force:true,maxRetries:8,retryDelay:150});}
 });

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'models.dart';
+import '../services/diagnostics.dart';
 
 class WaveException implements Exception {
   final String message, code;
@@ -22,7 +23,32 @@ class WaveApi {
   String server;
   String language = 'en';
   String? token;
-  WaveApi(String value) : server = validateServer(value);
+  late final WaveDiagnostics diagnostics;
+  WaveApi(String value) : server = validateServer(value) {
+    diagnostics = WaveDiagnostics(() => server, () => headers);
+    dio.interceptors.add(
+      InterceptorsWrapper(
+        onError: (error, handler) {
+          final status = error.response?.statusCode;
+          if (error.type != DioExceptionType.cancel &&
+              (status == null || status >= 500)) {
+            diagnostics.report(
+              error.response == null
+                  ? 'Network request failed: ${error.type.name}'
+                  : 'Server request failed',
+              kind: 'network',
+              stack: error.stackTrace,
+              code:
+                  object(object(error.response?.data)['error'])['code']
+                      as String?,
+              status: status,
+            );
+          }
+          handler.next(error);
+        },
+      ),
+    );
+  }
   String url(String path) => Uri.parse('$server/').resolve(path).toString();
   Map<String, String> get headers => {
     'X-GlukWave-Client': 'native',

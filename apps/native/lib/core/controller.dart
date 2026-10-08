@@ -18,6 +18,7 @@ import 'models.dart';
 import 'appearance.dart';
 import '../services/appearance_store.dart';
 import '../services/audio.dart';
+import '../services/volume_store.dart';
 import '../services/cache.dart';
 import '../services/desktop.dart';
 import '../services/push.dart';
@@ -29,6 +30,7 @@ class WaveController extends ChangeNotifier {
   final WaveApi api;
   final MusicCache cache;
   final WaveAudioHandler audio;
+  final bool startMinimized;
   late final WaveformStore waveforms;
   final FlutterSecureStorage secure = const FlutterSecureStorage();
   late SharedPreferences preferences;
@@ -119,6 +121,7 @@ class WaveController extends ChangeNotifier {
         'reducedMotion': false,
       };
   List<WaveTrack> tracks = [], results = [];
+  List<Json> artistResults = [];
   List<String> likedIds = [];
   List<Json> playlists = [],
       history = [],
@@ -158,7 +161,12 @@ class WaveController extends ChangeNotifier {
   String get appUrl => config['appUrl'] as String? ?? api.server;
   bool get captchaEnabled =>
       (object(config['auth'])['turnstileSiteKey'] as String? ?? '').isNotEmpty;
-  WaveController(this.api, this.cache, this.audio) {
+  WaveController(
+    this.api,
+    this.cache,
+    this.audio, {
+    this.startMinimized = false,
+  }) {
     _applyLanguage();
     waveforms = WaveformStore(api)..addListener(notifyListeners);
     desktop = DesktopShell(audio);
@@ -166,7 +174,10 @@ class WaveController extends ChangeNotifier {
     cache.addListener(notifyListeners);
     desktop.addListener(notifyListeners);
     discord.addListener(notifyListeners);
-    audio.onError = tell;
+    audio.onError = (message) {
+      api.diagnostics.report(message, kind: 'playback');
+      tell(message);
+    };
     audio.onProcessingChanged = notifyListeners;
     audio.onEnded = (track, repeat) async {
       final active = room;
@@ -235,7 +246,13 @@ class WaveController extends ChangeNotifier {
 
   Future<void> initialize() async {
     preferences = await SharedPreferences.getInstance();
-    final savedServer = preferences.getString('server');
+    var savedServer = preferences.getString('server');
+    if (api.server == 'https://wave.gluk.tech' &&
+        savedServer == 'http://192.168.3.7:4000') {
+      // Retire the endpoint embedded in the previous LAN-only test build.
+      await preferences.remove('server');
+      savedServer = null;
+    }
     if (savedServer != null) {
       try {
         api.server = WaveApi.validateServer(savedServer);
@@ -252,12 +269,16 @@ class WaveController extends ChangeNotifier {
     deviceId = preferences.getString('deviceId') ?? const Uuid().v4();
     await preferences.setString('deviceId', deviceId);
     try {
-      await desktop.initialize();
+      await desktop.initialize(startMinimized: startMinimized);
       _desktopReady = true;
     } catch (e) {
+      api.diagnostics.report(e, kind: 'background', code: 'DESKTOP_INIT');
       tell(wt('native.159f366d10', values: {'p0': (e)}));
     }
     if (Platform.isAndroid || Platform.isIOS) await audio.initializeSession();
+    final volumeStore = DeviceVolumeStore(preferences);
+    await audio.localCommand('volume', {'volume': volumeStore.value});
+    audio.onVolumeChanged = volumeStore.save;
     final session = await secure.read(key: 'session:${api.server}');
     if (session != null) {
       final value = object(jsonDecode(session));
@@ -406,21 +427,54 @@ class WaveController extends ChangeNotifier {
     String? username,
     String? displayName,
   }) async {
-    if (captchaEnabled) {
-      await browserLogin(method: 'email');
-      return;
-    }
+    final captchaToken = captchaEnabled ? await verifyCaptcha() : null;
     final result = await api.call(
       '/api/auth/${username != null ? 'register' : 'login'}',
       method: 'POST',
       data: {
         'email': email.trim(),
         'password': password,
+        if (captchaToken != null) 'captchaToken': captchaToken,
         if (username != null) 'username': username.trim(),
         if (displayName != null) 'displayName': displayName.trim(),
       },
     );
     await acceptSession(result);
+  }
+
+  Future<String> verifyCaptcha() async {
+    final bridge = await api.call(
+      '/api/auth/native-captcha',
+      method: 'POST',
+      data: {},
+    );
+    await openUrl(bridge['url'] as String);
+    final expires = challengeExpiry(bridge['expiresAt']);
+    cancelAuth = false;
+    while (!cancelAuth && DateTime.now().isBefore(expires)) {
+      final result = await api.call(
+        '/api/auth/native-captcha/${bridge['id']}',
+        query: {'secret': bridge['secret']},
+      );
+      if (result['status'] == 'approved' && result['captchaToken'] is String) {
+        return result['captchaToken'] as String;
+      }
+      if (result['status'] == 'expired') break;
+      await Future<void>.delayed(const Duration(seconds: 2));
+    }
+    throw WaveException(wt('native.b85fd36bb6'));
+  }
+
+  bool get supportsNativeCaptcha =>
+      object(config['auth'])['nativeCaptcha'] == true;
+
+  Future<void> requestPasswordReset(String email) async {
+    final token = captchaEnabled ? await verifyCaptcha() : null;
+    await api.call(
+      '/api/auth/forgot',
+      method: 'POST',
+      data: {'email': email.trim(), if (token != null) 'captchaToken': token},
+    );
   }
 
   Future<void> acceptSession(Json data) async {
@@ -453,7 +507,7 @@ class WaveController extends ChangeNotifier {
     await pollSession(
       '/api/auth/native/${bridge['id']}',
       bridge['secret'] as String,
-      DateTime.parse(bridge['expiresAt'] as String),
+      challengeExpiry(bridge['expiresAt']),
     );
   }
 
@@ -740,6 +794,7 @@ class WaveController extends ChangeNotifier {
     final revision = ++_searchRevision;
     if (query.trim().isEmpty) {
       results = [];
+      artistResults = [];
       suggestion = null;
       notifyListeners();
       return;
@@ -750,6 +805,7 @@ class WaveController extends ChangeNotifier {
     );
     if (revision != _searchRevision) return;
     results = objects(data['tracks']).map(WaveTrack.new).toList();
+    artistResults = objects(data['artists']);
     suggestion = data['suggestion'] as String?;
     final failures = objects(data['errors']);
     if (failures.isNotEmpty) {
@@ -757,6 +813,11 @@ class WaveController extends ChangeNotifier {
     }
     notifyListeners();
   }
+
+  Future<void> searchArtist(Json artist) => search(
+    artist['name'] as String,
+    source: artist['source'] as String? ?? 'all',
+  );
 
   Future<void> resolve(String url) async {
     final t = WaveTrack(
@@ -914,7 +975,8 @@ class WaveController extends ChangeNotifier {
       connected = false;
       notifyListeners();
     });
-    socket!.onConnectError((_) {
+    socket!.onConnectError((error) {
+      api.diagnostics.report('Socket connection failed', kind: 'socket');
       connected = false;
       notifyListeners();
     });
@@ -947,6 +1009,7 @@ class WaveController extends ChangeNotifier {
         await _deviceCommand(data);
         ack?.call({'ok': true, 'state': snapshot().toJson()});
       } catch (e) {
+        api.diagnostics.report(e, kind: 'playback', code: 'DEVICE_COMMAND');
         ack?.call({
           'error': {'code': 'playback_failed', 'message': e.toString()},
         });
@@ -956,6 +1019,7 @@ class WaveController extends ChangeNotifier {
     socket!.on('room:state', (data) {
       unawaited(
         _roomState(object(data)).catchError((e) {
+          api.diagnostics.report(e, kind: 'socket', code: 'ROOM_STATE');
           tell(e.toString());
         }),
       );
@@ -1377,6 +1441,7 @@ class WaveController extends ChangeNotifier {
     _roomSyncGeneration++;
     audio.cancelPendingLoad();
     audio.onProcessingChanged = null;
+    audio.onVolumeChanged = null;
     _localeRequest++;
     waveforms.removeListener(notifyListeners);
     waveforms.dispose();
@@ -1392,6 +1457,7 @@ class WaveController extends ChangeNotifier {
     discord.removeListener(notifyListeners);
     desktop.dispose();
     discord.dispose();
+    api.diagnostics.dispose();
     super.dispose();
   }
 }

@@ -9,9 +9,10 @@ from datetime import datetime, timezone
 
 parser = argparse.ArgumentParser()
 parser.add_argument('build_workspace', type=Path)
+parser.add_argument('--bundle', type=Path)
 args = parser.parse_args()
 root = Path(__file__).resolve().parent.parent
-bundle = root / 'outputs' / 'GlukWave-windows'
+bundle = args.bundle or root / 'outputs' / 'GlukWave-windows'
 archive = root / 'outputs' / 'GlukWave-windows.zip'
 frozen = json.loads((root / 'docs/verification/2026-10-08/native-source-freeze.json').read_text('utf-8'))
 
@@ -49,7 +50,10 @@ for name in ['glukwave.exe', 'flutter_windows.dll', 'libmpv-2.dll', 'audio_servi
 release = args.build_workspace / 'build/windows/x64/runner/Release'
 for name in ['glukwave.exe', 'data/app.so', 'flutter_windows.dll', 'libmpv-2.dll']:
     require(digest((release / name).read_bytes()) == digest((bundle / name).read_bytes()), 'Package differs from build: ' + name)
-require(b'http://127.0.0.1:4000' in (bundle / 'data/app.so').read_bytes(), 'Local server origin missing from AOT')
+require(b'https://wave.gluk.tech' in (bundle / 'data/app.so').read_bytes(), 'Official HTTPS server origin missing from AOT')
+feature_markers = {marker: marker.encode('utf-8') in (bundle / 'data/app.so').read_bytes()
+                   for marker in ['/api/diagnostics/events', '/lyrics/lrclib', 'ROOM_STATE', 'Find on LRCLIB', 'deviceVolume', '/api/auth/native-captcha', 'desktop-quick-volume']}
+require(all(feature_markers.values()), 'Current diagnostics or LRCLIB import missing from AOT')
 
 manifest = json.loads((bundle / 'data/flutter_assets/FontManifest.json').read_text('utf-8'))
 font_count = 0
@@ -76,13 +80,14 @@ with zipfile.ZipFile(archive) as package:
         require(digest(package.read(name)) == digest((bundle / relative).read_bytes()), 'ZIP differs from delivery: ' + name)
     require(archive_files == {p.relative_to(bundle).as_posix() for p in bundle.rglob('*') if p.is_file()}, 'ZIP file set differs')
 
-result = {'checkedAt': datetime.now(timezone.utc).isoformat(), 'passed': True,
+result = {'checkedAt': datetime.now(timezone.utc).isoformat(), 'passed': True, 'bundle': str(bundle),
+          'featureMarkers': feature_markers,
           'file': 'outputs/GlukWave-windows.zip', 'bytes': archive.stat().st_size,
           'sha256': digest(archive.read_bytes()), 'frozenOriginalFilesMatched': len(frozen['files']),
           'compiledSourceFilesMatched': len(matched), 'compiledSourcePaths': matched,
           'binarySha256': binary_hashes, 'packageMatchesReleaseBuild': True,
           'zipCrcAndAllFilesMatched': True, 'staticFontFaces': font_count,
-          'compileDefine': 'http://127.0.0.1:4000', 'buildMode': 'release',
+          'compileDefine': 'https://wave.gluk.tech', 'buildMode': 'release',
           'authenticodeSigned': False, 'uiInteractionVerified': False, 'physicalAudioVerified': False}
 proof = root / 'work/qa/windows-package-proof.json'
 proof.write_text(json.dumps(result, indent=2) + '\n', encoding='utf-8')

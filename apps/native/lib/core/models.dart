@@ -9,6 +9,18 @@ List<Json> objects(dynamic value) =>
 double number(dynamic value, [double fallback = 0]) =>
     value is num ? value.toDouble() : fallback;
 
+// The server uses epoch milliseconds; older clients also accepted ISO dates.
+DateTime challengeExpiry(dynamic value) {
+  if (value is num && value.isFinite && value > 0) {
+    return DateTime.fromMillisecondsSinceEpoch(value.round(), isUtc: true);
+  }
+  if (value is String) {
+    final parsed = DateTime.tryParse(value);
+    if (parsed != null) return parsed;
+  }
+  throw const FormatException('Invalid authentication expiry');
+}
+
 class WaveTrack {
   final Json json;
   WaveTrack(Json data) : json = Map.of(data);

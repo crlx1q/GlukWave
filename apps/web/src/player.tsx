@@ -2,6 +2,8 @@ import { t, useLocale, getLanguage } from './locale';
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { io, type Socket } from 'socket.io-client';
 import { api, errorText, post } from './api';
+import { reportError } from './diagnostics';
+import { restoredVolume, saveVolume } from './volume';
 import { cached, downloads, saveTrack } from './cache';
 import { useStore } from './store';
 import { configureEqualizer, createAudioGraph, type AudioGraph } from './audio-processing';
@@ -14,7 +16,7 @@ const Context=createContext<Player|null>(null);
 // A device is a live playback surface. Origin-wide storage made a second tab evict the first.
 const deviceId=crypto.randomUUID();
 export const localDeviceId=deviceId;
-const emptyState:PlayerState={trackId:null,position:0,playing:false,volume:.8,queue:[],updatedAt:Date.now(),revision:0};
+const emptyState:PlayerState={trackId:null,position:0,playing:false,volume:restoredVolume(),queue:[],updatedAt:Date.now(),revision:0};
 export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
   const locale=useLocale(),store=useStore(),audio=useMemo(()=>{const element=new Audio();element.crossOrigin='anonymous';return element;},[]),[track,setTrack]=useState<Track|null>(null),[playback,setPlayback]=useState<Playback|null>(null),[state,setState]=useState<PlayerState>(emptyState),[duration,setDuration]=useState(0),[queue,setQueue]=useState<Track[]>([]),[full,setFullState]=useState(false),[revealProgress,setRevealProgress]=useState<number|null>(null),[fullTab,setFullTab]=useState<PlayerTab>('player'),[addTrack,setAddTrack]=useState<Track|null>(null),[savedIds,setSavedIds]=useState(new Set<string>()),[manualIds,setManualIds]=useState(new Set<string>()),[shuffle,setShuffle]=useState(false),[repeat,setRepeat]=useState<'off'|'all'|'one'>('off'),[devices,setDevices]=useState<Device[]>([]),[devicesOpen,setDevicesOpen]=useState(false),[room,setRoom]=useState<Room|null>(null),[socket,setSocket]=useState<Socket|null>(null),[autoplayBlocked,setAutoplayBlocked]=useState(false);
   const audioMeter=useRef<{context:AudioContext;graph:AudioGraph|null}|null>(null);
@@ -31,7 +33,7 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
   const setFull=useCallback((open:boolean,tab:PlayerTab='player')=>{setFullTab(tab);setRevealProgress(null);setFullState(open);},[]);
   const networkDelay=useRef(0);const stateRef=useRef(state),trackRef=useRef(track),playbackRef=useRef(playback),queueRef=useRef(queue),roomRef=useRef(room),controller=useRef<EmbedController|null>(null),objectUrl=useRef<string|null>(null),loadRevision=useRef(0),roomRevision=useRef(-1),roomSyncVersion=useRef(0),roomJoinVersion=useRef(0),desiredPlay=useRef(false),desiredPosition=useRef(0),settingsRef=useRef(store.settings),userRef=useRef(store.user),repeatRef=useRef(repeat),shuffleRef=useRef(shuffle);
   stateRef.current=state;trackRef.current=track;queueRef.current=queue;roomRef.current=room;settingsRef.current=store.settings;userRef.current=store.user;repeatRef.current=repeat;shuffleRef.current=shuffle;
-  const update=useCallback((partial:Partial<PlayerState>)=>{const next={...stateRef.current,...partial,updatedAt:Date.now(),revision:stateRef.current.revision+1};stateRef.current=next;setState(next);},[]);
+  const update=useCallback((partial:Partial<PlayerState>)=>{const next={...stateRef.current,...partial,updatedAt:Date.now(),revision:stateRef.current.revision+1};if(partial.volume!==undefined)saveVolume(next.volume);stateRef.current=next;setState(next);},[]);
   const roomOutputActive=useRef(true);
   useEffect(()=>{const graph=audioMeter.current?.graph;if(graph)configureEqualizer(graph,store.settings.equalizer);audio.playbackRate=room?1:store.settings.playbackRate;},[audio,room?.id,store.settings.equalizer,store.settings.playbackRate]);
   const clearPlayback=useCallback(()=>{loadRevision.current++;desiredPlay.current=false;desiredPosition.current=0;audio.pause();audio.removeAttribute('src');audio.load();controller.current?.pause();controller.current?.destroy?.();controller.current=null;if(objectUrl.current){URL.revokeObjectURL(objectUrl.current);objectUrl.current=null;}trackRef.current=null;playbackRef.current=null;queueRef.current=[];setTrack(null);setPlayback(null);setQueue([]);setDuration(0);update({trackId:null,position:0,playing:false,queue:[]});if('mediaSession'in navigator)navigator.mediaSession.metadata=null;},[audio,update]);
@@ -137,7 +139,7 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
   useEffect(()=>{
     const onTime=()=>update({position:audio.currentTime});const onPlay=()=>update({playing:true});const onPause=()=>update({playing:false});const onDuration=()=>{if(Number.isFinite(audio.duration))setDuration(audio.duration);};
     const onEnded=finish;
-    const onError=()=>{if(audio.error&&audio.src){update({playing:false});store.notify(t('copy.715'),true);}};
+    const onError=()=>{if(audio.error&&audio.src){reportError('Audio playback failed','playback',{code:`MEDIA_${audio.error.code}`});update({playing:false});store.notify(t('copy.715'),true);}};
     audio.addEventListener('timeupdate',onTime);audio.addEventListener('play',onPlay);audio.addEventListener('pause',onPause);audio.addEventListener('durationchange',onDuration);audio.addEventListener('ended',onEnded);audio.addEventListener('error',onError);
     return()=>{audio.removeEventListener('timeupdate',onTime);audio.removeEventListener('play',onPlay);audio.removeEventListener('pause',onPause);audio.removeEventListener('durationchange',onDuration);audio.removeEventListener('ended',onEnded);audio.removeEventListener('error',onError);};
   },[audio,finish,store.notify,update]);
@@ -153,6 +155,7 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
     const reloadDevices=()=>void api<{devices:Device[]}>('/devices').then(result=>setDevices(result.devices)).catch(()=>{});
     connection.on('connect',()=>{connection.emit('device:state',stateRef.current);reloadDevices();const roomId=roomRef.current?.id;if(roomId)connection.timeout(8000).emit('room:join',{roomId},(error:unknown,result:{room?:Room;error?:{message:string}})=>{if(roomId!==roomRef.current?.id)return;if(error||result?.error){store.notify(result?.error?.message||t('copy.721'),true);return;}if(result.room)void syncRoomStateRef.current({roomId,state:result.room.state,serverTime:Date.now()},true);});});
     connection.on('devices:changed',reloadDevices);
+    connection.on('connect_error',()=>{if(navigator.onLine)reportError('Realtime connection failed','socket',{code:'CONNECT_ERROR'});});
     connection.on('device:command',async(payload:Command,ack?:(result:unknown)=>void)=>{try{if(payload.outputActive!==undefined)roomOutputActive.current=payload.outputActive;if(roomRef.current&&!payload.localOnly)await sendCommandRef.current(payload,undefined,true);else await applyCommandRef.current(payload,true);ack?.({ok:true});connection.emit('device:state',stateRef.current);}catch(error){ack?.({error:{code:'PLAYBACK',message:errorText(error)}});store.notify(errorText(error),true);}});
     connection.on('room:state',(payload:{roomId:string;state:PlayerState;serverTime:number})=>void syncRoomStateRef.current(payload));
     connection.on('room:members',(payload:{roomId:string;members:Room['members']})=>{if(payload.roomId===roomRef.current?.id&&roomRef.current){roomRef.current={...roomRef.current,members:payload.members};setRoom(roomRef.current);}});
@@ -176,4 +179,3 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
   return <Context.Provider value={{track,state,duration,queue,full,revealProgress,setRevealProgress,fullTab,setFull,addTrack,setAddTrack,savedIds,manualIds,shuffle,repeat,setShuffle,setRepeat,playTrack,command,devices,devicesOpen,setDevicesOpen,room,joinRoom,leaveRoom,socket,playback,embedReady,embedUpdate,removeQueue,mini,autoplayBlocked,finish,audioEnergy,updateRoomMembers,equalizerAvailable:playback?.kind==='audio'}}>{children}</Context.Provider>;
 }
 export function usePlayer(){const context=useContext(Context);if(!context)throw new Error('Missing player');return context;}
-

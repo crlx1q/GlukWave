@@ -26,7 +26,11 @@ $stream = [System.IO.File]::Open($temporaryPath, [System.IO.FileMode]::CreateNew
 $archive = [System.IO.Compression.ZipArchive]::new($stream, [System.IO.Compression.ZipArchiveMode]::Create)
 try {
   foreach ($file in $files) {
-    $relative = [System.IO.Path]::GetRelativePath($projectRoot, $file).Replace('\', '/')
+    # Windows PowerShell 5.1 also supports this bounded relative-path calculation.
+    $absoluteFile = [System.IO.Path]::GetFullPath($file)
+    $rootPrefix = $projectRoot.TrimEnd([System.IO.Path]::DirectorySeparatorChar) + [System.IO.Path]::DirectorySeparatorChar
+    if (-not $absoluteFile.StartsWith($rootPrefix, [System.StringComparison]::OrdinalIgnoreCase)) { throw 'Source escaped project root.' }
+    $relative = $absoluteFile.Substring($rootPrefix.Length).Replace('\', '/')
     if ($relative.StartsWith('../') -or [System.IO.Path]::IsPathRooted($relative)) { throw 'Source escaped project root.' }
     $entry = $archive.CreateEntry('GlukWave/' + $relative, [System.IO.Compression.CompressionLevel]::Optimal)
     $source = [System.IO.File]::OpenRead($file)

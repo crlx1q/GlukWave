@@ -1,0 +1,432 @@
+{
+  "frozenAt": "2026-10-08T14:28:13.832516+00:00",
+  "compileDefine": "http://192.168.3.7:4000",
+  "sourceSha256": "6988a449893fb6a2df6d19ca6a5cf9663067101cfd20f53f246d8ce520c6f837",
+  "files": [
+    {
+      "path": "android/app/build.gradle.kts",
+      "bytes": 2221,
+      "sha256": "6225219b744d946293e2ef75df591ec8f1dc1455aa4dd2b9ad263a8bab276795"
+    },
+    {
+      "path": "android/app/src/debug/AndroidManifest.xml",
+      "bytes": 229,
+      "sha256": "10ed9279d4aecc0bebfc9d2d46daf354a44c0511d36b3b805792314bb23254c6"
+    },
+    {
+      "path": "android/app/src/main/AndroidManifest.xml",
+      "bytes": 2462,
+      "sha256": "893cd57ce4282c7055e8191472b66e7b201fa22a690d700447997393e6af404c"
+    },
+    {
+      "path": "android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java",
+      "bytes": 3970,
+      "sha256": "5ade597fec265f0f147615f1f3b98ebfa339c669d68c90de21132f3471a9d480"
+    },
+    {
+      "path": "android/app/src/main/kotlin/tech/gluk/glukwave/MainActivity.kt",
+      "bytes": 143,
+      "sha256": "01943f07fd3cee381b5d1285d99c448a57e14a58e5fe3d416126d68a3dac28a6"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/ic_notification.xml",
+      "bytes": 395,
+      "sha256": "65cf6cf3dae21ba4893fcf0cab2a9a1d880d9b0439bc33e4ba2b2a598e35b7c7"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/launch_background.xml",
+      "bytes": 446,
+      "sha256": "2df60e2cfbee873ce2858088cf003e6b93498f2f568476da437610467ea1a9d7"
+    },
+    {
+      "path": "android/app/src/main/res/drawable-v21/launch_background.xml",
+      "bytes": 450,
+      "sha256": "dca312ec77de83e43ef70a825c299b51451247286c29167d62f19165750b8793"
+    },
+    {
+      "path": "android/app/src/main/res/mipmap-hdpi/ic_launcher.png",
+      "bytes": 1148,
+      "sha256": "a52d185c17e0bceed90636e40045e9f28828b87b11fe41a760ae9fd456391d4a"
+    },
+    {
+      "path": "android/app/src/main/res/mipmap-mdpi/ic_launcher.png",
+      "bytes": 656,
+      "sha256": "6118b4d7ae4ce51db8bf7ebeb23e8ab53c43fb83835a66c06a6f8604e85c0966"
+    },
+    {
+      "path": "android/app/src/main/res/mipmap-xhdpi/ic_launcher.png",
+      "bytes": 1481,
+      "sha256": "d85ff48c9b52e460e7b755b1058635af3c9691550bd5777246901667d8d89fd5"
+    },
+    {
+      "path": "android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png",
+      "bytes": 2805,
+      "sha256": "acba7f99bafeb06c040f1e55e36e701bcca09939820e42dd7335f31facb60f54"
+    },
+    {
+      "path": "android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+      "bytes": 4230,
+      "sha256": "d1d4ae7f0bb21edf30523610469db5675571c8ffe1b2d1738352f169e0b3cbdb"
+    },
+    {
+      "path": "android/app/src/main/res/values/styles.xml",
+      "bytes": 1014,
+      "sha256": "cca15a99b59380a548bf6a890f7ca5380ee509b1f9bbb2f5f9ec3589fa25c2f7"
+    },
+    {
+      "path": "android/app/src/main/res/values-night/styles.xml",
+      "bytes": 1013,
+      "sha256": "ea763597dc1a84c8034251caee98d7753e0fbf57340ffc94677427de4b537516"
+    },
+    {
+      "path": "android/app/src/profile/AndroidManifest.xml",
+      "bytes": 385,
+      "sha256": "b01a4541a8144c15bc617bab7eb267c99fa1476368fbbda5a12cdbf4e316a34c"
+    },
+    {
+      "path": "android/build.gradle.kts",
+      "bytes": 561,
+      "sha256": "218f400e3fff31c9c986a2535dfb974560e1b4d33cc27b7c1fee96a2b7e44454"
+    },
+    {
+      "path": "android/gradle/wrapper/gradle-wrapper.properties",
+      "bytes": 206,
+      "sha256": "a23faf39f936281e98c22c568a812ded3684a61fcf683bbd1aac2e85691622ac"
+    },
+    {
+      "path": "android/gradle.properties",
+      "bytes": 227,
+      "sha256": "e73e8507a8f58c41e4fdf4fbbc9feb365c8f9d3cac6657527dd1c6e38c4c826d"
+    },
+    {
+      "path": "android/settings.gradle.kts",
+      "bytes": 796,
+      "sha256": "12ec5e66e6a1cc90fcd73cfae78c87e6ca9637dc3a860c90253af63aa1af58cf"
+    },
+    {
+      "path": "assets/app_icon.ico",
+      "bytes": 11501,
+      "sha256": "1959049e4ef99d14b0ef73b580d5dcbc9466b1f7a910452c99fb134dbcf25d25"
+    },
+    {
+      "path": "assets/coast.jpg",
+      "bytes": 62536,
+      "sha256": "4eb2141d6e6a3d5344e8dedb67f6766226039c5a627c9141b757f0d993df3a80"
+    },
+    {
+      "path": "assets/fonts/Manrope-Bold.ttf",
+      "bytes": 97520,
+      "sha256": "06ef9bf16d6ce1b6b8d6b953ea8b9e6c30e4b3708cf039132224fb2a5aa77102"
+    },
+    {
+      "path": "assets/fonts/Manrope-ExtraBold.ttf",
+      "bytes": 98080,
+      "sha256": "63050130f7beccf497d740a2af39f8d5d49447e9ed777014e8d6d413442425ba"
+    },
+    {
+      "path": "assets/fonts/Manrope-Medium.ttf",
+      "bytes": 97580,
+      "sha256": "78177fa989a3feb256c1750faca4a05ab0b70f093f5f45b12a537e7b939bae9c"
+    },
+    {
+      "path": "assets/fonts/Manrope-Regular.ttf",
+      "bytes": 97500,
+      "sha256": "c443e2325b9ff17933ec2f5a99d835af430a545901d146f81f4fc9f4882b6623"
+    },
+    {
+      "path": "assets/fonts/Manrope-SemiBold.ttf",
+      "bytes": 97616,
+      "sha256": "1eea52be7b84d0841e39d6102cdf2f6777dbdbd6781d3a40a3323a8151163f07"
+    },
+    {
+      "path": "assets/fonts/Nunito-Black.ttf",
+      "bytes": 132128,
+      "sha256": "b3628977111142f66472632770b76ee2c0665a40ae536bd64971a3bc19087717"
+    },
+    {
+      "path": "assets/fonts/Nunito-Bold.ttf",
+      "bytes": 132268,
+      "sha256": "19acc4b8e7dc15b49c3802b6f2b53a1c41d7ee548733204a367052fa53387933"
+    },
+    {
+      "path": "assets/fonts/Nunito-ExtraBold.ttf",
+      "bytes": 132180,
+      "sha256": "9bc8f0d0c03926636f41ec699c6563dd01835b510c194e2086811eaf65a8e527"
+    },
+    {
+      "path": "assets/fonts/Nunito-Medium.ttf",
+      "bytes": 132404,
+      "sha256": "818d89d5417ed2c7686c07097469f417d41dfe70b8e9514466637612f7ab9d8d"
+    },
+    {
+      "path": "assets/fonts/Nunito-Regular.ttf",
+      "bytes": 132324,
+      "sha256": "29f17d41574376520b263bde34a4fecb11814233ff280c66befce6020c5e3cc4"
+    },
+    {
+      "path": "assets/fonts/Nunito-SemiBold.ttf",
+      "bytes": 132256,
+      "sha256": "e6ac9b7051c6b3c4a23817a9272e2a8f7124896b36e68b30a3d46b452a0418a5"
+    },
+    {
+      "path": "assets/forest.jpg",
+      "bytes": 158271,
+      "sha256": "b944abd87e265d383d021181a00eb153babf605d2746d859be6be910a2deb1ed"
+    },
+    {
+      "path": "assets/licenses/Manrope-OFL.txt",
+      "bytes": 4387,
+      "sha256": "58172e0c0fac2cda8a37b348164bb55e44b0e69051e557e92b1d3f6910141f7b"
+    },
+    {
+      "path": "assets/licenses/Nunito-OFL.txt",
+      "bytes": 4385,
+      "sha256": "580df76c95a1ec5ab878ceb25bb3d85c6a076804e9c970c8c6972aea775fdf65"
+    },
+    {
+      "path": "assets/logo.gif",
+      "bytes": 3232167,
+      "sha256": "1e8d9b17f3f10032a288c6908fbf613906b691d6b558949f2c6efa4b3301f7d3"
+    },
+    {
+      "path": "assets/logo.png",
+      "bytes": 22044,
+      "sha256": "17c11e6d04d4180a2ace71828dd9d2b9c8ef52f5380082062fe12a3d00acfa58"
+    },
+    {
+      "path": "assets/mark.svg",
+      "bytes": 400,
+      "sha256": "421eb15a46e15da29d635f5ca334f1671dae29ead2d4cf59977ee99028605392"
+    },
+    {
+      "path": "assets/Nunito.ttf",
+      "bytes": 276932,
+      "sha256": "bb55a5ca5c2042335b3991af27c4d0705d0ef41cac6164ac737fd8f2a1e85207"
+    },
+    {
+      "path": "lib/core/api.dart",
+      "bytes": 5154,
+      "sha256": "7364b5b3d5b7f73560f39f615ba4a4ba49cd76af62f9acfc668e5b68acefa98f"
+    },
+    {
+      "path": "lib/core/appearance.dart",
+      "bytes": 7770,
+      "sha256": "79b7a8a6ab5f419ae53c44681d2da785ae5b31de1f53a064ea766d9671acab04"
+    },
+    {
+      "path": "lib/core/artwork.dart",
+      "bytes": 732,
+      "sha256": "d89969da07ce10f4ceb4f840e332b52e83e2066a214fcee9ac9ca5ea65245b40"
+    },
+    {
+      "path": "lib/core/controller.dart",
+      "bytes": 44582,
+      "sha256": "d1a22d9283cf52723b0e70994a8857754e3e3329f63212be3901e132695a5026"
+    },
+    {
+      "path": "lib/core/equalizer.dart",
+      "bytes": 2302,
+      "sha256": "56763a4efa99fa9ba49dc6b2ad3d0274d6f98a98101140106a18b9de781edefb"
+    },
+    {
+      "path": "lib/core/models.dart",
+      "bytes": 4359,
+      "sha256": "597fa610c3a319bf7e1d74dbc4b974aadb924caedec2ad611a05c233e2fdb595"
+    },
+    {
+      "path": "lib/core/wave_math.dart",
+      "bytes": 3473,
+      "sha256": "d35fec87f945e8d3d10157351d6a0e4470478b6201ce5eab33cb9ed176f61c65"
+    },
+    {
+      "path": "lib/l10n/catalogs.dart",
+      "bytes": 211381,
+      "sha256": "d2243696da60fad6a68150aa55ad6a1976d03adf6f32a5c60c8cdce228f4141a"
+    },
+    {
+      "path": "lib/l10n/wave_localizations.dart",
+      "bytes": 3744,
+      "sha256": "affe04b50680c7b2a2efdcc03fd4804c0d0b6405321014deb66e39deca12dab1"
+    },
+    {
+      "path": "lib/main.dart",
+      "bytes": 2921,
+      "sha256": "6ebf1c7152e80bc14d90b3e55ef8731a0412ffcf7b05fe58dcad0dbdad9348f0"
+    },
+    {
+      "path": "lib/services/ambience.dart",
+      "bytes": 2996,
+      "sha256": "7fe20417fef5f99bb4ae341460df16dc8cd0eb6ebee239fb8983b48cf9ac25ce"
+    },
+    {
+      "path": "lib/services/appearance_store.dart",
+      "bytes": 7301,
+      "sha256": "a97f3ceedf7140b02dcb10adcd3b00bcc7783ffc0c22ea05d59fa9b02b4c4582"
+    },
+    {
+      "path": "lib/services/audio.dart",
+      "bytes": 16684,
+      "sha256": "5206c4eaf304b32c37c1ab0401ed0656e4e0ef0174cc319ed06e9adb2d2e7a93"
+    },
+    {
+      "path": "lib/services/cache.dart",
+      "bytes": 7318,
+      "sha256": "995d6b4cb446c7e061ad25ea70620a427977a894c482b6c72d7afcc0fc21e9fb"
+    },
+    {
+      "path": "lib/services/desktop.dart",
+      "bytes": 12039,
+      "sha256": "7ca0aaf2f5f7d5f04330d3b87b87fa78dfd44e91138775295f9f0a4d6de20260"
+    },
+    {
+      "path": "lib/services/presence_bridge.dart",
+      "bytes": 2858,
+      "sha256": "d99e5cd622b9b021bfc54f10a091bc934380b190b45950ee2e3f6ae54a2163d8"
+    },
+    {
+      "path": "lib/services/push.dart",
+      "bytes": 2190,
+      "sha256": "6432613cfc56f413c8ca804e27f559ba9a4376b1a399e4273b32fbc8f20e1848"
+    },
+    {
+      "path": "lib/services/waveform.dart",
+      "bytes": 3226,
+      "sha256": "819f010ba29e4d4ec196b442034540dd2f4f2958704dc55604253721f439c837"
+    },
+    {
+      "path": "lib/ui/album_stage.dart",
+      "bytes": 10406,
+      "sha256": "f235d6b4cfaeff07e58c4587195337a90213c432f5a866575fa50f07ee8bcc5f"
+    },
+    {
+      "path": "lib/ui/app.dart",
+      "bytes": 178575,
+      "sha256": "03e580f74c8cb94b6a1c586846596b197be5198cd306ad617788816ac04a3642"
+    },
+    {
+      "path": "lib/ui/appearance_panel.dart",
+      "bytes": 34526,
+      "sha256": "7f72e17aa6fef396b4543c6530265fdbad103654b7886ce7e9360b1764764876"
+    },
+    {
+      "path": "lib/ui/equalizer_panel.dart",
+      "bytes": 7161,
+      "sha256": "a8579d4937bdd6666954b40a5b9888e1248cc4217defbac9cde1cbc6098c18c5"
+    },
+    {
+      "path": "lib/ui/lofi.dart",
+      "bytes": 26776,
+      "sha256": "2c8ec07b1e1f52460ec3deb4e20a76becd34980e5ac312802dcedff7b2641ee9"
+    },
+    {
+      "path": "lib/ui/player.dart",
+      "bytes": 56135,
+      "sha256": "2180e416c93749753d4c599e4320833a264bfb15a2fe848e505dc2f2661e862d"
+    },
+    {
+      "path": "lib/ui/player_gestures.dart",
+      "bytes": 4817,
+      "sha256": "c1b1d24592de29cc38142dc82569680537925a03576ca64df4ae3de1fb97fc0b"
+    },
+    {
+      "path": "lib/ui/silk_wave.dart",
+      "bytes": 3978,
+      "sha256": "caa74028124ca77ed57b29812afae8f171a18022ed62d26efd52aaaffb6c1ca2"
+    },
+    {
+      "path": "lib/ui/theme.dart",
+      "bytes": 7106,
+      "sha256": "78e260419f2764ac30e4a2b490b870218642793e24f38ead043584fe0f47ab1f"
+    },
+    {
+      "path": "lib/ui/theme_preview.dart",
+      "bytes": 5122,
+      "sha256": "a3c9fd3608f4197cd290e9e54a017481e62693c1202cded6ed8602ddeab87d73"
+    },
+    {
+      "path": "lib/ui/widgets.dart",
+      "bytes": 32904,
+      "sha256": "48a0faf4036e05d4f19819ada9a683b8f8e9e261fbbb8e9d775e5b0f270bf6ab"
+    },
+    {
+      "path": "pubspec.lock",
+      "bytes": 30907,
+      "sha256": "bebc280f2215fbe4966c547e1b551a61d04220a73144178bc4aa185258925940"
+    },
+    {
+      "path": "pubspec.yaml",
+      "bytes": 5585,
+      "sha256": "c2a4b6a5a6f3837a499cd34b4c1a75bcb68c250cec19a626086d5f1b2349efff"
+    },
+    {
+      "path": "windows/CMakeLists.txt",
+      "bytes": 4260,
+      "sha256": "e565af12d9721948849e902ee25099040bd6569151a1b786e5872c4b30b46699"
+    },
+    {
+      "path": "windows/flutter/CMakeLists.txt",
+      "bytes": 3851,
+      "sha256": "bd05e3268b2f246bcbafdb778165fe67a7bafdba04eb73599502563a67b8ae7e"
+    },
+    {
+      "path": "windows/runner/CMakeLists.txt",
+      "bytes": 1836,
+      "sha256": "d765fdd05f63ad099e585a2cced0cbff13ec3229b7de68c8681b2107db850089"
+    },
+    {
+      "path": "windows/runner/flutter_window.cpp",
+      "bytes": 2193,
+      "sha256": "d615eedc06ae37321e59c2c00c7687d1887dcd97904eb7225fafd8dcb5b83da6"
+    },
+    {
+      "path": "windows/runner/flutter_window.h",
+      "bytes": 961,
+      "sha256": "0252b804f5da380c7709cbe1daff2b8d18daf6c49d7e6dd43e5af3c99c19f56c"
+    },
+    {
+      "path": "windows/runner/main.cpp",
+      "bytes": 1304,
+      "sha256": "220011e409654b8962a36d9216e7f5471346eb39cb9fa84b27a893f218ad1935"
+    },
+    {
+      "path": "windows/runner/resource.h",
+      "bytes": 448,
+      "sha256": "d0e8bf7835468b4b6b1f8f0747f2e8f25c19841f2df2ac60aaa584ddae3aa7c6"
+    },
+    {
+      "path": "windows/runner/resources/app_icon.ico",
+      "bytes": 11501,
+      "sha256": "1959049e4ef99d14b0ef73b580d5dcbc9466b1f7a910452c99fb134dbcf25d25"
+    },
+    {
+      "path": "windows/runner/runner.exe.manifest",
+      "bytes": 616,
+      "sha256": "639a56233fcd8cbcb8bbefcd93e4680ec2664f32d9acfb3d2ec1d8726a96e090"
+    },
+    {
+      "path": "windows/runner/Runner.rc",
+      "bytes": 3146,
+      "sha256": "5dc1465f114593bb7a8ab21a6937e47c656a6914cbf53f5d46d63c6e9a7820ea"
+    },
+    {
+      "path": "windows/runner/utils.cpp",
+      "bytes": 1862,
+      "sha256": "fbb18524c22593d0ce7869b0733e237be38e668fe045e3023bcf2d0b31784fa3"
+    },
+    {
+      "path": "windows/runner/utils.h",
+      "bytes": 691,
+      "sha256": "832e246b6758253f89016fb0374b30791242e97ad950d27fc678b3d9feacfdc4"
+    },
+    {
+      "path": "windows/runner/win32_window.cpp",
+      "bytes": 8822,
+      "sha256": "4e4f4dcf8e86ea6e097562cb3476039e693449bd8045367538afee579c017511"
+    },
+    {
+      "path": "windows/runner/win32_window.h",
+      "bytes": 3624,
+      "sha256": "d154cf89ba85f820631a9b5bedacbe64fc5815e428fe6bc5da579ce649f69841"
+    }
+  ]
+}

@@ -1,6 +1,8 @@
 #include "flutter_window.h"
 
 #include <optional>
+#include <algorithm>
+#include "utils.h"
 
 #include "flutter/generated_plugin_registrant.h"
 
@@ -28,7 +30,10 @@ bool FlutterWindow::OnCreate() {
   SetChildContent(flutter_controller_->view()->GetNativeWindow());
 
   flutter_controller_->engine()->SetNextFrameCallback([&]() {
-    this->Show();
+    const auto arguments = GetCommandLineArguments();
+    if (std::find(arguments.begin(), arguments.end(), "--start-minimized") == arguments.end()) {
+      this->Show();
+    }
   });
 
   // Flutter can complete the first frame before the "show window" callback is

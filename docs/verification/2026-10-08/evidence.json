@@ -1,5 +1,5 @@
 {
-  "verifiedAt": "2026-10-08T15:58:50.681776+00:00",
+  "verifiedAt": "2026-10-08T19:45:19.760Z",
   "server": {
     "skipped": 0,
     "testsFailed": 0,
@@ -38,7 +38,7 @@
       },
       "passed": true
     },
-    "testsPassed": 34,
+    "testsPassed": 39,
     "console": {
       "passed": true,
       "counters": {
@@ -53,7 +53,56 @@
       "isolated": true,
       "credentialsPrinted": false
     },
-    "socketPlaybackTests": true
+    "socketPlaybackTests": true,
+    "diagnostics": {
+      "accessRedactionConcurrencyPassed": true,
+      "subsequentLocalizationAndDiagnosticsTestsPassed": 6,
+      "storage": "same configured SQLite or MongoDB",
+      "retentionDays": 30,
+      "maxGroups": 1000
+    },
+    "lyrics": {
+      "passed": true,
+      "checkedAt": "2026-10-08T17:54:08.535Z",
+      "liveService": "https://lrclib.net",
+      "actualServerHTTP": true,
+      "isolatedDatabase": true,
+      "metadata": {
+        "title": "Blinding Lights",
+        "artist": "The Weeknd",
+        "duration": 200
+      },
+      "source": "lrclib",
+      "providerId": 390,
+      "synchronized": true,
+      "timedLines": 39,
+      "firstTimestamp": 13.13,
+      "lastTimestamp": 190.12,
+      "cacheReused": true,
+      "elapsedMs": 316,
+      "copyrightedTextPrinted": false,
+      "expandedLookup": {
+        "normalizedMetadata": true,
+        "structuredSearchFallback": true,
+        "durationToleranceSeconds": 3,
+        "plainTextOnDurationMismatch": true,
+        "plainTextBackup": "https://api.lyrics.ovh",
+        "completeCatalogCoverage": false
+      }
+    },
+    "expandedSearch": {
+      "artist": true,
+      "genreAndTags": true,
+      "savedLyricsWords": true,
+      "privateLyricsIsolated": true
+    },
+    "nativeCaptcha": {
+      "implemented": true,
+      "oneUseToken": true,
+      "canonicalAppUrl": true,
+      "localHTTPTestsPassed": true,
+      "liveTurnstileRoundtripVerified": false
+    }
   },
   "web": {
     "liveRegressionPassed": true,
@@ -67,9 +116,9 @@
       "es"
     ],
     "checkPassed": true,
-    "javascript": "/assets/main-C8MboCtQ.js",
-    "catalogMessagesPerLanguage": 838,
-    "pwaVersion": "glukwave-shell-v10-palette",
+    "javascript": "/assets/main-DrXH2QVn.js",
+    "catalogMessagesPerLanguage": 908,
+    "pwaVersion": "glukwave-shell-v13-native-auth-search",
     "unchangedOfficialPlayer": true,
     "buildPassed": true,
     "soundcloudContinuity": {
@@ -88,25 +137,279 @@
       "passed": true,
       "baseline": 0.03535533016081197,
       "boostDb": 6.000000445684298,
-      "compensatedDb": 2.2206428724036125e-08,
+      "compensatedDb": 2.2206428724036125e-8,
       "disabledDb": 0,
       "outsideBandDb": 0.05164507536981287,
       "sampleRate": 48000
     },
-    "manualPause": "Owner confirmed the interrupted design smoke playback was manually paused."
+    "manualPause": "Owner confirmed the interrupted design smoke playback was manually paused.",
+    "diagnosticsAndLyrics": {
+      "passed": true,
+      "mutedBrowser": true,
+      "isolatedServer": true,
+      "steps": [
+        {
+          "step": "actual global ErrorEvent delivered and sanitized",
+          "count": 3,
+          "id": "93c87e42e8b62f98568b5b983ce1d326ca943eb0",
+          "message": "QA runtime collector 1791482728174 password=[redacted] token=[redacted] [email]",
+          "platform": "web",
+          "stack": "Error: QA runtime collector 1791482728174 password=[redacted] token=[redacted] [email]\n    at <anonymous>:1:52",
+          "state": "open"
+        },
+        {
+          "step": "actual admin UI resolves the report",
+          "state": "resolved",
+          "total": 1
+        },
+        {
+          "step": "real LRCLIB search, mobile editor and authenticated import",
+          "editor": {
+            "candidates": 10,
+            "length": 1760,
+            "lrc": true
+          },
+          "lines": 35,
+          "providerId": 37015057,
+          "source": "lrclib",
+          "synchronized": true
+        }
+      ]
+    },
+    "playerAlignment": {
+      "passed": true,
+      "samples": 18,
+      "maximumCenterErrorPixels": 0,
+      "settingsNavigationVerified": true,
+      "source": "work/qa/player-align-after.json"
+    },
+    "pwaEvidence": {
+      "passed": true,
+      "shell": "glukwave-shell-v13-native-auth-search",
+      "build": "/assets/main-DrXH2QVn.js",
+      "samples": [
+        {
+          "step": "fresh current v8 installation",
+          "serviceWorker": {
+            "url": "http://127.0.0.1:4100/sw.js",
+            "state": "activated"
+          },
+          "preview": {
+            "bytes": 183355,
+            "status": 200,
+            "type": "image/png"
+          },
+          "cache": {
+            "entries": [
+              {
+                "cache": "glukwave-shell-v13-native-auth-search",
+                "url": "/"
+              },
+              {
+                "cache": "glukwave-shell-v13-native-auth-search",
+                "url": "/app/"
+              },
+              {
+                "cache": "glukwave-shell-v13-native-auth-search",
+                "url": "/assets/main-DrXH2QVn.js"
+              },
+              {
+                "cache": "glukwave-shell-v13-native-auth-search",
+                "url": "/assets/main-BIrtkRYJ.css"
+              },
+              {
+                "cache": "glukwave-shell-v13-native-auth-search",
+                "url": "/mini.html"
+              },
+              {
+                "cache": "glukwave-shell-v13-native-auth-search",
+                "url": "/assets/mini-eTIbfVzR.js"
+              },
+              {
+                "cache": "glukwave-shell-v13-native-auth-search",
+                "url": "/assets/types-COHna8Pv.js"
+              },
+              {
+                "cache": "glukwave-shell-v13-native-auth-search",
+                "url": "/brand/logo.png"
+              },
+              {
+                "cache": "glukwave-shell-v13-native-auth-search",
+                "url": "/brand/mark.svg"
+              },
+              {
+                "cache": "glukwave-shell-v13-native-auth-search",
+                "url": "/brand/google-g.png"
+              },
+              {
+                "cache": "glukwave-shell-v13-native-auth-search",
+                "url": "/brand/app-preview.png"
+              },
+              {
+                "cache": "glukwave-shell-v13-native-auth-search",
+                "url": "/assets/nunito.ttf"
+              },
+              {
+                "cache": "glukwave-shell-v13-native-auth-search",
+                "url": "/brand/manrope-variable.woff2"
+              }
+            ],
+            "names": [
+              "glukwave-shell-v13-native-auth-search"
+            ]
+          }
+        },
+        {
+          "step": "offline app",
+          "app": true,
+          "landing": false,
+          "language": "en",
+          "mini": false,
+          "offline": true,
+          "overflow": false,
+          "url": "http://127.0.0.1:4100/app/#settings"
+        },
+        {
+          "step": "offline app",
+          "app": true,
+          "landing": false,
+          "language": "en",
+          "mini": false,
+          "offline": true,
+          "overflow": false,
+          "url": "http://127.0.0.1:4100/app/?invite=qa-offline-v8#rooms"
+        },
+        {
+          "step": "offline mini",
+          "app": false,
+          "landing": false,
+          "language": "en",
+          "mini": true,
+          "offline": true,
+          "overflow": false,
+          "url": "http://127.0.0.1:4100/mini.html"
+        },
+        {
+          "step": "offline landing",
+          "app": false,
+          "landing": true,
+          "language": "en",
+          "mini": false,
+          "offline": true,
+          "overflow": false,
+          "previewPixels": 1280,
+          "url": "http://127.0.0.1:4100/"
+        },
+        {
+          "step": "own actual app preview offline",
+          "app": false,
+          "landing": true,
+          "language": "en",
+          "mini": false,
+          "offline": true,
+          "overflow": false,
+          "previewPixels": 1280,
+          "url": "http://127.0.0.1:4100/"
+        }
+      ],
+      "finalCache": {
+        "entries": [
+          {
+            "cache": "glukwave-shell-v13-native-auth-search",
+            "url": "/brand/logo.png"
+          },
+          {
+            "cache": "glukwave-shell-v13-native-auth-search",
+            "url": "/brand/google-g.png"
+          },
+          {
+            "cache": "glukwave-shell-v13-native-auth-search",
+            "url": "/brand/app-preview.png"
+          },
+          {
+            "cache": "glukwave-shell-v13-native-auth-search",
+            "url": "/app/"
+          },
+          {
+            "cache": "glukwave-shell-v13-native-auth-search",
+            "url": "/assets/main-DrXH2QVn.js"
+          },
+          {
+            "cache": "glukwave-shell-v13-native-auth-search",
+            "url": "/assets/main-BIrtkRYJ.css"
+          },
+          {
+            "cache": "glukwave-shell-v13-native-auth-search",
+            "url": "/assets/types-COHna8Pv.js"
+          },
+          {
+            "cache": "glukwave-shell-v13-native-auth-search",
+            "url": "/brand/manrope-variable.woff2"
+          },
+          {
+            "cache": "glukwave-shell-v13-native-auth-search",
+            "url": "/assets/nunito.ttf"
+          },
+          {
+            "cache": "glukwave-shell-v13-native-auth-search",
+            "url": "/brand/logo.gif"
+          },
+          {
+            "cache": "glukwave-shell-v13-native-auth-search",
+            "url": "/brand/mark.svg"
+          },
+          {
+            "cache": "glukwave-shell-v13-native-auth-search",
+            "url": "/mini.html"
+          },
+          {
+            "cache": "glukwave-shell-v13-native-auth-search",
+            "url": "/assets/mini-eTIbfVzR.js"
+          },
+          {
+            "cache": "glukwave-shell-v13-native-auth-search",
+            "url": "/"
+          }
+        ],
+        "names": [
+          "glukwave-shell-v13-native-auth-search"
+        ]
+      }
+    },
+    "clientUpdates": {
+      "checkedAt": "2026-10-08T19:18:15.760Z",
+      "passed": true,
+      "isolatedServer": true,
+      "mutedBrowser": true,
+      "volumeBeforeReload": {
+        "saved": "0.05",
+        "value": "0.05"
+      },
+      "volumeAfterReload": {
+        "saved": "0.05",
+        "value": "0.05"
+      },
+      "muteAfterReload": {
+        "saved": "0",
+        "value": "0"
+      },
+      "artistResultAndSelection": true,
+      "artistTrackMatch": true,
+      "timedLyricsWordMatch": true
+    }
   },
   "native": {
-    "bytes": 205107898,
-    "builtAt": "2026-10-08T14:32:40.872799+00:00",
-    "sha256": "b3064a07b20c03c7476e5872a6becc8241294988c2f2ad473d75ce2b912bc63a",
-    "sourceFrozenAt": "2026-10-08T14:28:13.832516+00:00",
-    "sourceSha256": "6988a449893fb6a2df6d19ca6a5cf9663067101cfd20f53f246d8ce520c6f837",
-    "sourceFiles": 85,
-    "kernelSha256": "8f47193f4cff75303709c4d0011c76708d8816cf5e8a80e2a6162615a6b628a4",
+    "bytes": 182376749,
+    "builtAt": "2026-10-08T19:15:45.532900+00:00",
+    "sha256": "4e1e55fcdf1b811073d1edf5635298b53dbb9834d7e09442abd0f5cc40625c41",
+    "sourceFrozenAt": "2026-10-08T19:13:48.870890+00:00",
+    "sourceSha256": "a3bdb44d998ddbb0cce02595fb163e357e40587b505d38c6e82de04f439e00fd",
+    "sourceFiles": 91,
+    "kernelSha256": "50fbe1e4948b6e306546ca9d1074cfb52fd9ee08c43b4f441d909ac9d0651159",
     "kernelMatchesBuildOutput": true,
-    "compileDefine": "http://192.168.3.7:4000",
+    "compileDefine": "https://wave.gluk.tech",
     "kernelFeatureMarkers": {
-      "http://192.168.3.7:4000": true,
+      "https://wave.gluk.tech": true,
       "full-player": true,
       "player-cover-gesture": true,
       "language-selector": true,
@@ -114,7 +417,15 @@
       "locale:change": true,
       "lrcClock": true,
       "artworkForDisplay": true,
-      "-t500x500.": true
+      "-t500x500.": true,
+      "/api/diagnostics/events": true,
+      "ROOM_STATE": true,
+      "/lyrics/lrclib": true,
+      "Find on LRCLIB": true,
+      "deviceVolume": true,
+      "/api/auth/native-captcha": true,
+      "Invalid authentication expiry": true,
+      "desktop-quick-volume": true
     },
     "localCatalogsInKernel": {
       "en": true,
@@ -209,20 +520,20 @@
     "nunitoLicenseIncluded": true,
     "manifestVerified": true,
     "version": "1.0.0",
-    "versionCode": 1,
+    "versionCode": 3,
     "minSdk": 24,
     "targetSdk": 36,
     "outputMatchesBuild": true,
     "signatureVerified": true,
     "signatureScheme": "v2",
     "analyzerIssues": 0,
-    "standardTestsPassed": 72,
+    "standardTestsPassed": 87,
     "signature": "debug",
     "deviceRuntimeVerified": false,
     "manropeLicenseIncluded": true,
     "iosBuilt": false,
     "file": "outputs/GlukWave-android-debug.apk",
-    "testsPassed": 72,
+    "testsPassed": 87,
     "physicalDeviceVerified": false,
     "windowsExecutableBuilt": true,
     "nativeBackgroundSoundCloudVerified": false,
@@ -236,13 +547,23 @@
       "iosSourceIconsRegeneratedOpaque": 15
     },
     "windows": {
-      "checkedAt": "2026-10-08T15:53:45.859660+00:00",
+      "checkedAt": "2026-10-08T19:22:00.925224+00:00",
       "passed": true,
+      "bundle": "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\outputs\\GlukWave-windows-1.0.0+3",
+      "featureMarkers": {
+        "/api/diagnostics/events": true,
+        "/lyrics/lrclib": true,
+        "ROOM_STATE": true,
+        "Find on LRCLIB": true,
+        "deviceVolume": true,
+        "/api/auth/native-captcha": true,
+        "desktop-quick-volume": true
+      },
       "file": "outputs/GlukWave-windows.zip",
-      "bytes": 26820016,
-      "sha256": "d0c92949eac7a305bb21e09e2ad6d7cb947e06c9198c0382b843a34b1637620c",
-      "frozenOriginalFilesMatched": 85,
-      "compiledSourceFilesMatched": 65,
+      "bytes": 26901853,
+      "sha256": "54f57b8064364b47bcd41b8b59d0169a38c81eaf60df4d8577e5e0b2ee4a12a8",
+      "frozenOriginalFilesMatched": 91,
+      "compiledSourceFilesMatched": 71,
       "compiledSourcePaths": [
         "assets/app_icon.ico",
         "assets/coast.jpg",
@@ -258,6 +579,7 @@
         "assets/fonts/Nunito-Regular.ttf",
         "assets/fonts/Nunito-SemiBold.ttf",
         "assets/forest.jpg",
+        "assets/google-g.png",
         "assets/licenses/Manrope-OFL.txt",
         "assets/licenses/Nunito-OFL.txt",
         "assets/logo.gif",
@@ -279,12 +601,17 @@
         "lib/services/audio.dart",
         "lib/services/cache.dart",
         "lib/services/desktop.dart",
+        "lib/services/diagnostics.dart",
         "lib/services/presence_bridge.dart",
         "lib/services/push.dart",
+        "lib/services/volume_store.dart",
         "lib/services/waveform.dart",
         "lib/ui/album_stage.dart",
         "lib/ui/app.dart",
         "lib/ui/appearance_panel.dart",
+        "lib/ui/auth_page.dart",
+        "lib/ui/auth_visuals.dart",
+        "lib/ui/desktop_player.dart",
         "lib/ui/equalizer_panel.dart",
         "lib/ui/lofi.dart",
         "lib/ui/player.dart",
@@ -311,7 +638,7 @@
         "windows/runner/win32_window.h"
       ],
       "binarySha256": {
-        "glukwave.exe": "a7b65fcb4e0cef4a5064f79e08c5ce9a572814bad01acc5b64b6b302525166dc",
+        "glukwave.exe": "16d52dd9bb1aeca9af3021fc72cf8ec822a6ae38d7e80a5d8f5c149643860ffd",
         "flutter_windows.dll": "6840b8129fb105dd246f05f14eab97d7e8e9eade1428f9afde95de6b8e1a7808",
         "libmpv-2.dll": "0a5a0b476866c91a639a4e511e8153968f8fa23564461b0aa09acdba816164a4",
         "audio_service_win_plugin.dll": "ef9421be9fe1292eb8a3f2b75d1c0cfd61e404fe984c51e220e464d87892ea0d",
@@ -325,34 +652,64 @@
       "packageMatchesReleaseBuild": true,
       "zipCrcAndAllFilesMatched": true,
       "staticFontFaces": 11,
-      "compileDefine": "http://127.0.0.1:4000",
+      "compileDefine": "https://wave.gluk.tech",
       "buildMode": "release",
       "authenticodeSigned": false,
       "uiInteractionVerified": false,
       "physicalAudioVerified": false,
+      "installer": {
+        "platform": "windows",
+        "file": "GlukWave-Setup.exe",
+        "version": "1.0.0+3",
+        "signature": "release",
+        "channel": "beta",
+        "bytes": 22051019,
+        "sha256": "aedd013173ceff16ab002af3928ebd7e817327e49f02e872039ba77caea65089",
+        "builtAt": "2026-10-08T19:22:25.622Z",
+        "realSilentInstall": true,
+        "startMenuShortcutCreated": true,
+        "bundleFilesMatched": 66,
+        "realUninstallPassed": true,
+        "ownerRunningAppPreserved": true,
+        "passed": true,
+        "interactiveCheckboxesClicked": false,
+        "probeRegistryAndShortcutRemoved": true,
+        "checkedAt": "2026-10-08T19:26:39.0585346Z",
+        "unselectedTasksRespected": true,
+        "authenticodeSigned": false,
+        "actualHTTPDownloadMatched": true
+      },
       "runtime": {
+        "currentBinaryPhysicalUIVerified": false,
+        "previousVersionStartupPassed": true,
         "physicalAudioVerified": false,
-        "uiAutomationError": "failed to write kernel assets: missing path",
-        "title": "GlukWave",
-        "mediaRuntimeRegistered": true,
-        "stderrEmpty": true,
-        "trayInteractionVerified": false,
-        "miniWindowVerified": false,
-        "startupPassed": true,
-        "responding": true,
-        "checkedAt": "2026-10-08T15:56:27.5429894Z",
-        "uiAutomationAvailable": false,
-        "smtcStarted": true
+        "trayInteractionVerified": false
       }
     },
     "postRecoveryVerification": {
-      "analyzerIssues": 0,
-      "testsPassed": 72,
-      "sourceFrozenFilesMatched": 85
+      "sourceFiles": 91,
+      "sourceSha256": "a3bdb44d998ddbb0cce02595fb163e357e40587b505d38c6e82de04f439e00fd",
+      "currentBuildMatchesFrozenSources": true
+    },
+    "apk": "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\apps\\native\\build\\app\\outputs\\flutter-apk\\app-debug.apk",
+    "output": "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\outputs\\GlukWave-android-debug.apk",
+    "additionalLyricsEditorTestsPassed": 2,
+    "privacyAndRealHttpRecheckTestsPassed": 2,
+    "clientUpdates": {
+      "designEvaluation": "PASS",
+      "nineAuthDesktopWidgetTestsPassed": true,
+      "settingsAndRecoveryPreserved": true,
+      "sharedFlutterWindowModes": true,
+      "physicalTrayManualVerified": false,
+      "officialGoogleAsset": true,
+      "mobileQRGenerationHidden": true,
+      "loadingIsActualInitialization": true,
+      "nativeRegistrationForm": true,
+      "legacyProductionAuthBrowserFallback": true
     }
   },
   "downloads": {
-    "checkedAt": "2026-10-08T15:57:19.600Z",
+    "checkedAt": "2026-10-08T18:12:35.247Z",
     "passed": true,
     "checks": [
       {
@@ -361,8 +718,8 @@
         "metadataMatched": true,
         "rangeStatus": 206,
         "bytesMatched": 32,
-        "contentRange": "bytes 0-31/205107898",
-        "sha256": "b3064a07b20c03c7476e5872a6becc8241294988c2f2ad473d75ce2b912bc63a"
+        "contentRange": "bytes 0-31/182296490",
+        "sha256": "481c827024ba4fade560b31c535e5cfd29dcc6c9c1772abc2116cfb7544a631f"
       },
       {
         "origin": "http://127.0.0.1:4000",
@@ -370,8 +727,8 @@
         "metadataMatched": true,
         "rangeStatus": 206,
         "bytesMatched": 32,
-        "contentRange": "bytes 0-31/26820016",
-        "sha256": "d0c92949eac7a305bb21e09e2ad6d7cb947e06c9198c0382b843a34b1637620c"
+        "contentRange": "bytes 0-31/26301661",
+        "sha256": "0b3c00e250b353dd40097fa96a5f7ef40cf019c4f39e5d0cf0ff3d0f75deef3b"
       },
       {
         "origin": "http://127.0.0.1:4100",
@@ -379,8 +736,8 @@
         "metadataMatched": true,
         "rangeStatus": 206,
         "bytesMatched": 32,
-        "contentRange": "bytes 0-31/205107898",
-        "sha256": "b3064a07b20c03c7476e5872a6becc8241294988c2f2ad473d75ce2b912bc63a"
+        "contentRange": "bytes 0-31/182296490",
+        "sha256": "481c827024ba4fade560b31c535e5cfd29dcc6c9c1772abc2116cfb7544a631f"
       },
       {
         "origin": "http://127.0.0.1:4100",
@@ -388,8 +745,8 @@
         "metadataMatched": true,
         "rangeStatus": 206,
         "bytesMatched": 32,
-        "contentRange": "bytes 0-31/26820016",
-        "sha256": "d0c92949eac7a305bb21e09e2ad6d7cb947e06c9198c0382b843a34b1637620c"
+        "contentRange": "bytes 0-31/26301661",
+        "sha256": "0b3c00e250b353dd40097fa96a5f7ef40cf019c4f39e5d0cf0ff3d0f75deef3b"
       }
     ]
   },
@@ -398,7 +755,18 @@
     "independentAgentVerdict": "SKIPPED",
     "reason": "Selected model is at capacity; retry also failed.",
     "currentScreenshots": "outputs/preview-v8-*.png",
-    "previousPassAppliesToPreviousIterationOnly": true
+    "previousPassAppliesToPreviousIterationOnly": true,
+    "alignmentIndependentAgentVerdict": "SKIPPED",
+    "alignmentIndependentAgentReason": "Workspace out of credits; no successful independent verdict."
   },
-  "publicDomainDeployed": false
+  "publicDomainDeployed": false,
+  "production": {
+    "checkedAt": "2026-10-08T19:45:19.763Z",
+    "url": "https://wave.gluk.tech",
+    "readOnlyPublicConfigChecked": true,
+    "nativeCaptchaCapability": false,
+    "googleConfigured": false,
+    "newBackendDeployedThisTurn": false,
+    "existingAppStillRunning": true
+  }
 }

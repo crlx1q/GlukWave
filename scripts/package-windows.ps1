@@ -1,4 +1,4 @@
-param([string]$ReleaseRoot)
+param([string]$ReleaseRoot, [ValidatePattern('^[0-9]+\.[0-9]+\.[0-9]+(?:\+[0-9]+)?$')][string]$Version='1.0.0+3')
 $ErrorActionPreference = 'Stop'
 $projectRoot = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
 $releaseRoot = if ($ReleaseRoot) { [IO.Path]::GetFullPath($ReleaseRoot) } else { Join-Path $projectRoot 'apps/native/build/windows/x64/runner/Release' }
@@ -32,11 +32,11 @@ GlukWave for Windows
 
 Extract the entire GlukWave folder and run glukwave.exe.
 Keep the data directory and DLL files beside the application.
-This local test build connects to the GlukWave server on the computer at 127.0.0.1:4000.
-Start the Node server in the project first. Close hides the application in the tray;
-choose Quit in the tray menu to exit completely.
+This beta build connects to https://wave.gluk.tech.
+Close hides the application in the tray; choose Quit in the tray menu to exit completely.
+Use GlukWave-Setup.exe for installation, optional desktop shortcut and Windows startup.
 
-This package is not Authenticode-signed. It is intended for local testing.
+This beta package is not Authenticode-signed.
 Third-party notices: THIRD-PARTY.md and the licenses screen inside the application.
 '@ | Set-Content -LiteralPath (Join-Path $appDir 'START.txt') -Encoding utf8
 $temporaryZip = Join-Path $outputRoot ('GlukWave-windows.' + [guid]::NewGuid().ToString('N') + '.zip')
@@ -44,10 +44,27 @@ Compress-Archive -LiteralPath $appDir -DestinationPath $temporaryZip -Compressio
 $target = Join-Path $outputRoot 'GlukWave-windows.zip'
 Move-Item -LiteralPath $temporaryZip -Destination $target -Force
 $directoryTarget = Join-Path $outputRoot 'GlukWave-windows'
+# All recursive moves stay within the resolved outputs directory.
+function Assert-OutputPath([string]$Candidate) {
+  $resolved = [IO.Path]::GetFullPath($Candidate)
+  if (!$resolved.StartsWith(([IO.Path]::GetFullPath($outputRoot) + [IO.Path]::DirectorySeparatorChar), [StringComparison]::OrdinalIgnoreCase)) { throw 'Package move escaped outputs.' }
+}
+Assert-OutputPath $appDir
+Assert-OutputPath $directoryTarget
 # Existing deliveries are preserved until a complete replacement is prepared.
 if (Test-Path -LiteralPath $directoryTarget) {
-  Move-Item -LiteralPath $directoryTarget -Destination (Join-Path $outputRoot ('GlukWave-windows.previous.' + [guid]::NewGuid().ToString('N')))
+  $previousTarget = Join-Path $outputRoot ('GlukWave-windows.previous.' + [guid]::NewGuid().ToString('N'))
+  Assert-OutputPath $previousTarget
+  try { Move-Item -LiteralPath $directoryTarget -Destination $previousTarget -ErrorAction Stop }
+  catch {
+    $directoryTarget = Join-Path $outputRoot ('GlukWave-windows-' + $Version)
+    if (Test-Path -LiteralPath $directoryTarget) { $directoryTarget += '.' + [guid]::NewGuid().ToString('N') }
+    Assert-OutputPath $directoryTarget
+    Write-Output 'Existing running delivery preserved; new bundle saved separately.'
+  }
 }
 Move-Item -LiteralPath $appDir -Destination $directoryTarget
+New-Item -ItemType Directory -Path (Join-Path $projectRoot 'work/qa') -Force | Out-Null
+$directoryTarget | Set-Content -LiteralPath (Join-Path $projectRoot 'work/qa/windows-bundle-path.txt') -Encoding utf8
 Write-Output "Windows application: $directoryTarget\glukwave.exe"
 Write-Output "Windows download: $target"

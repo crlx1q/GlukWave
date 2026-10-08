@@ -1,0 +1,59 @@
+{
+  "liveLyrics": {
+    "passed": true,
+    "checkedAt": "2026-10-08T17:54:08.535Z",
+    "liveService": "https://lrclib.net",
+    "actualServerHTTP": true,
+    "isolatedDatabase": true,
+    "metadata": {
+      "title": "Blinding Lights",
+      "artist": "The Weeknd",
+      "duration": 200
+    },
+    "source": "lrclib",
+    "providerId": 390,
+    "synchronized": true,
+    "timedLines": 39,
+    "firstTimestamp": 13.13,
+    "lastTimestamp": 190.12,
+    "cacheReused": true,
+    "elapsedMs": 316,
+    "copyrightedTextPrinted": false
+  },
+  "browser": {
+    "passed": true,
+    "mutedBrowser": true,
+    "isolatedServer": true,
+    "steps": [
+      {
+        "step": "actual global ErrorEvent delivered and sanitized",
+        "count": 3,
+        "id": "93c87e42e8b62f98568b5b983ce1d326ca943eb0",
+        "message": "QA runtime collector 1791482728174 password=[redacted] token=[redacted] [email]",
+        "platform": "web",
+        "stack": "Error: QA runtime collector 1791482728174 password=[redacted] token=[redacted] [email]\n    at <anonymous>:1:52",
+        "state": "open"
+      },
+      {
+        "step": "actual admin UI resolves the report",
+        "state": "resolved",
+        "total": 1
+      },
+      {
+        "step": "real LRCLIB search, mobile editor and authenticated import",
+        "editor": {
+          "candidates": 10,
+          "length": 1760,
+          "lrc": true
+        },
+        "lines": 35,
+        "providerId": 37015057,
+        "source": "lrclib",
+        "synchronized": true
+      }
+    ]
+  },
+  "nativeHttpAndPrivacyTests": 2,
+  "nativeEditorLayoutTests": 2,
+  "serverRegressionTests": 6
+}

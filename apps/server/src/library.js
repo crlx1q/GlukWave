@@ -3,6 +3,8 @@ import {systemText} from './system-text.js';
 import {z} from 'zod';
 import {id,now,digest,parse,text,fail,asyncRoute,publicUser,mergeSettings,keyboardSuggestion,parseLyrics} from './util.js';
 import {sourceUrl,normalizeSpotify,normalizeYoutube,normalizeSoundcloud} from './providers.js';
+import rateLimit from 'express-rate-limit';
+import {matchedFields,artistsFromTracks,lyricsSignature} from './search.js';
 
 export function parseCSV(raw){const rows=[],row=[];let field='',quoted=false;for(let i=0;i<raw.length;i++){const c=raw[i];if(c==='"'){if(quoted&&raw[i+1]==='"'){field+='"';i++;}else quoted=!quoted;}else if(c===','&&!quoted){row.push(field);field='';}else if((c==='\n'||c==='\r')&&!quoted){if(c==='\r'&&raw[i+1]==='\n')i++;row.push(field);if(row.some(x=>x))rows.push([...row]);row.length=0;field='';}else field+=c;}if(quoted)fail(400,'INVALID_CSV','В CSV не закрыты кавычки.');row.push(field);if(row.some(x=>x))rows.push(row);const [headers,...records]=rows;return records.map(values=>Object.fromEntries((headers||[]).map((h,i)=>[h.trim().toLowerCase().replace(/^\uFEFF/,''),values[i]||''])));}
 
@@ -21,7 +23,14 @@ export function setupLibrary(app,ctx){
   app.get('/api/tracks',asyncRoute(async(req,res)=>res.json({tracks:await visibleTracks(req.auth?.user)})));
   app.get('/api/search',asyncRoute(async(req,res)=>{
     const q=parse(text(200),req.query.q),source=parse(z.enum(['all','local','youtube','spotify','soundcloud','yandex']),req.query.source||'all'),lower=q.toLowerCase();
-    const all=await visibleTracks(req.auth?.user),local=all.filter(t=>(source==='all'||source===t.source)&&`${t.title} ${t.artist} ${t.album}`.toLowerCase().includes(lower));
+    const all=await visibleTracks(req.auth?.user);
+    const savedLyrics=new Map((await store.entries('lyrics')).map(({id,value})=>[id,value]));
+    const cachedLyrics=new Map((await store.list('lyricsCache')).filter(value=>value.expiresAt>Date.now()).map(value=>[value.id,value.lyrics]));
+    const local=all.filter(t=>source==='all'||source===t.source).flatMap(track=>{
+      const lyrics=(req.auth?.user&&savedLyrics.get(`${req.auth.user.id}:${track.id}`))||savedLyrics.get(track.id)||cachedLyrics.get(lyricsSignature(track));
+      const fields=matchedFields(track,q,lyrics?.lines?.map(line=>line.text).join('\n'));
+      return fields.length?[{...track,matchedFields:fields}]:[];
+    });
     const providers=ctx.providerConfiguration(),requested=providers.filter(p=>(p.searchAvailable??p.configured)&&(source==='all'||p.id===source));
     const results=await Promise.allSettled(requested.map(p=>ctx.searchProvider(p.id,q,req.auth?.user.id))),tracks=[...local],errors=[];
     results.forEach((result,index)=>{if(result.status==='fulfilled')tracks.push(...result.value);else errors.push({provider:requested[index].id,message:result.reason.message});});
@@ -34,7 +43,9 @@ export function setupLibrary(app,ctx){
       const previous=unique.get(identity),quality=value=>(value.duration>0?2:0)+(value.artwork?1:0)+(value.metadataOrigin==='import'?0:1);
       if(!previous||quality(track)>quality(previous))unique.set(identity,track);
     }
-    res.json({tracks:[...unique.values()].map(track=>ctx.publicTrack(track,req.auth?.user)),suggestion:exact?null:keyboardSuggestion(q),providers,errors});
+    const matches=[...unique.values()].sort((a,b)=>(b.matchedFields?.includes('title')?1:0)-(a.matchedFields?.includes('title')?1:0)).slice(0,100);
+    const providerArtists=results.flatMap(result=>result.status==='fulfilled'?result.value.artists||[]:[]);
+    res.set('Cache-Control','private, no-store').json({tracks:matches.map(track=>ctx.publicTrack(track,req.auth?.user)),artists:artistsFromTracks([...matches,...all],q,providerArtists).filter(artist=>source==='all'||source===artist.source),suggestion:exact||local.length?null:keyboardSuggestion(q),providers,errors});
   }));
   app.post('/api/tracks/resolve',requireAuth,asyncRoute(async(req,res)=>{const b=parse(z.object({url:z.url().max(2048)}).strict(),req.body);res.json({track:ctx.publicTrack(await ctx.resolveSource(b.url))});}));
   app.get('/api/tracks/:id',asyncRoute(async(req,res)=>res.json({track:ctx.publicTrack(await requireTrack(req.params.id,req.auth?.user),req.auth?.user)})));
@@ -63,10 +74,24 @@ export function setupLibrary(app,ctx){
   app.get('/api/tracks/:id/comments',asyncRoute(async(req,res)=>{await requireTrack(req.params.id,req.auth?.user);const comments=await store.list('comments',c=>c.trackId===req.params.id);res.json({comments:comments.sort((a,b)=>a.createdAt.localeCompare(b.createdAt)).slice(-500)});}));
   app.post('/api/tracks/:id/comments',requireAuth,asyncRoute(ctx.quotaRoute('comment',async(req,res)=>{const t=await requireTrack(req.params.id,req.auth.user),b=parse(z.object({text:text(1000),position:z.number().finite().min(0).max(t.duration||86400).optional()}).strict(),req.body);const recent=await store.list('comments',c=>c.userId===req.auth.user.id&&Date.now()-Date.parse(c.createdAt)<60000);if(recent.length>=10)fail(429,'COMMENT_LIMIT','Подожди минуту перед новым комментарием.');const c={id:id(),trackId:t.id,userId:req.auth.user.id,displayName:req.auth.user.displayName,avatarUrl:req.auth.user.avatarUrl,text:b.text,position:b.position||0,createdAt:now()};await store.create('comments',c.id,c);res.status(201).json({comment:c});})));
   app.delete('/api/comments/:id',requireAuth,asyncRoute(async(req,res)=>{const c=await store.get('comments',req.params.id);if(!c||c.userId!==req.auth.user.id&&req.auth.user.role!=='admin')fail(404,'COMMENT_NOT_FOUND','Комментарий не найден.');await store.remove('comments',c.id);res.json({ok:true});}));
-  app.get('/api/tracks/:id/lyrics',asyncRoute(async(req,res)=>{
-    await requireTrack(req.params.id,req.auth?.user);
+  const lyricsLimiter=rateLimit({windowMs:60000,limit:20,standardHeaders:'draft-8',legacyHeaders:false});
+  app.get('/api/tracks/:id/lyrics',lyricsLimiter,asyncRoute(async(req,res)=>{
+    const track=await requireTrack(req.params.id,req.auth?.user);
     const personal=req.auth?.user?await store.get('lyrics',`${req.auth.user.id}:${req.params.id}`):null;
-    res.json(personal||await store.get('lyrics',req.params.id)||{lines:[],synchronized:false,source:null});
+    res.set('Cache-Control','private, no-store').json(personal||await store.get('lyrics',req.params.id)||await ctx.lyricsProvider.lookup(track));
+  }));
+  app.get('/api/tracks/:id/lyrics/search',lyricsLimiter,asyncRoute(async(req,res)=>{
+    const track=await requireTrack(req.params.id,req.auth?.user),query=parse(z.object({title:text(200).optional(),artist:text(200).optional()}).strict(),req.query);
+    const candidates=await ctx.lyricsProvider.search(query.title||track.title,query.artist||track.artist);
+    res.set('Cache-Control','private, no-store').json({candidates});
+  }));
+  app.post('/api/tracks/:id/lyrics/lrclib',requireAuth,lyricsLimiter,asyncRoute(async(req,res)=>{
+    const track=await requireTrack(req.params.id,req.auth.user);
+    if(track.source==='local'&&track.uploadedBy!==req.auth.user.id&&req.auth.user.role!=='admin')fail(403,'OWNER_REQUIRED','Текст может добавить автор загрузки.');
+    const body=parse(z.object({providerId:z.number().int().positive().max(2147483647)}).strict(),req.body),lyrics=await ctx.lyricsProvider.byId(body.providerId);
+    if(!lyrics||!lyrics.lines.length&&!lyrics.instrumental)fail(404,'LYRICS_NOT_FOUND','Текст не найден.');
+    const key=track.source==='local'?track.id:`${req.auth.user.id}:${track.id}`;
+    await store.put('lyrics',key,lyrics);res.json(lyrics);
   }));
   app.put('/api/tracks/:id/lyrics',requireAuth,asyncRoute(async(req,res)=>{
     const t=await requireTrack(req.params.id,req.auth.user);

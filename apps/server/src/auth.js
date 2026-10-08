@@ -31,6 +31,33 @@ export function setupAuth(app,ctx){
   app.post('/api/auth/reset',authLimiter,asyncRoute(async(req,res)=>{const b=parse(z.object({token:text(150),password:z.string().min(10).max(128)}).strict(),req.body);const key=digest(b.token);const entry=await store.get('emailTokens',key);if(!entry||entry.type!=='reset'||entry.expiresAt<Date.now())fail(400,'TOKEN_EXPIRED','Ссылка недействительна или устарела.');let consumed=false;await store.update('emailTokens',key,v=>{if(!v||v.used)fail(400,'TOKEN_USED','Ссылка уже использована.');consumed=true;return {...v,used:true};});if(!consumed)fail(400,'TOKEN_USED','Ссылка использована.');await store.update('users',entry.userId,async u=>({...u,passwordHash:await hashPassword(b.password)}));for(const s of await store.list('sessions',s=>s.userId===entry.userId))await store.remove('sessions',s.id);ctx.io?.in(`user:${entry.userId}`).disconnectSockets(true);res.json({ok:true});}));
   app.get('/api/auth/verify',asyncRoute(async(req,res)=>{const token=String(req.query.token||''),key=digest(token),entry=await store.get('emailTokens',key);if(!entry||entry.type!=='verify'||entry.expiresAt<Date.now()||entry.used)fail(400,'TOKEN_EXPIRED','Ссылка подтверждения недействительна.');await store.update('emailTokens',key,v=>{if(v.used)fail(400,'TOKEN_USED','Ссылка использована.');return {...v,used:true};});await store.update('users',entry.userId,u=>({...u,emailVerified:true}));res.redirect(`${config.appUrl}/?verified=1`);}));
   app.post('/api/auth/resend',authLimiter,asyncRoute(async(req,res)=>{if(!req.auth)fail(401,'AUTH_REQUIRED','Войди в свой аккаунт.');if(!req.auth.user.emailVerified)await sendMail(req.auth.user,'verify',req.language);res.json({ok:true});}));
+  app.post('/api/auth/native-captcha',authLimiter,asyncRoute(async(req,res)=>{
+    if(!config.turnstileSiteKey)fail(503,'CAPTCHA_UNAVAILABLE','Проверка сейчас недоступна.');
+    const token=secret(),entry={id:id(),kind:'captcha',secretHash:digest(token),status:'pending',expiresAt:Date.now()+120000};
+    await store.create('challenges',entry.id,entry);
+    res.status(201).set('Cache-Control','no-store').json({id:entry.id,secret:token,expiresAt:entry.expiresAt,url:`${config.appUrl}/app/?nativeCaptcha=${entry.id}&secret=${token}`});
+  }));
+  app.post('/api/auth/native-captcha/:id/approve',authLimiter,asyncRoute(async(req,res)=>{
+    const b=parse(z.object({secret:text(150),captchaToken:text(2048)}).strict(),req.body);
+    await store.update('challenges',req.params.id,entry=>{
+      if(!entry||entry.kind!=='captcha'||entry.status!=='pending'||entry.expiresAt<Date.now()||entry.secretHash!==digest(b.secret))fail(400,'CHALLENGE_EXPIRED','Проверка устарела.');
+      // Do not validate here: Turnstile tokens are one-use. The native email
+      // request validates it before creating a user or issuing a session.
+      return {...entry,status:'approved',captchaToken:b.captchaToken};
+    });res.json({ok:true});
+  }));
+  app.get('/api/auth/native-captcha/:id',asyncRoute(async(req,res)=>{
+    const entry=await store.get('challenges',req.params.id);
+    if(!entry||entry.kind!=='captcha'||entry.secretHash!==digest(String(req.query.secret||'')))fail(404,'CHALLENGE_NOT_FOUND','Проверка не найдена.');
+    res.set('Cache-Control','no-store');
+    if(entry.expiresAt<Date.now()||entry.status==='consumed')return res.json({status:'expired'});
+    if(entry.status!=='approved')return res.json({status:'pending'});
+    const token=await store.update('challenges',entry.id,value=>{
+      if(value.status!=='approved')fail(409,'CHALLENGE_USED','Проверка уже использована.');
+      const {captchaToken,...rest}=value;return {...rest,status:'consumed'};
+    }).then(()=>entry.captchaToken);
+    res.json({status:'approved',captchaToken:token});
+  }));
   for(const kind of ['qr','native']){
     app.post(`/api/auth/${kind}`,authLimiter,asyncRoute(async(req,res)=>{const b=parse(z.object({deviceName:text(100).optional(),method:z.enum(['google','email']).optional()}).strict(),req.body||{});const token=secret(),entry={id:id(),secretHash:digest(token),deviceName:b.deviceName||'GlukWave',status:'pending',expiresAt:Date.now()+(kind==='qr'?120000:600000),createdAt:now(),kind};await store.create('challenges',entry.id,entry);const url=kind==='qr'?`${config.appUrl}/?qr=${entry.id}`:b.method==='email'?`${config.appUrl}/?native=${entry.id}&secret=${token}`:`${config.appUrl}/api/auth/google/start?native=${entry.id}&secret=${token}`;res.status(201).json({id:entry.id,secret:token,url,expiresAt:entry.expiresAt});}));
     app.get(`/api/auth/${kind}/:id`,asyncRoute(async(req,res)=>{const key=req.params.id;const entry=await store.get('challenges',key);if(!entry||entry.kind!==kind||digest(String(req.query.secret||''))!==entry.secretHash)fail(404,'CHALLENGE_NOT_FOUND','Код не найден.');if(entry.expiresAt<Date.now()||entry.status==='consumed')return res.json({status:'expired'});if(entry.status!=='approved')return res.json({status:'pending'});await store.update('challenges',key,v=>{if(v.status!=='approved')fail(409,'CHALLENGE_USED','Код уже использован.');return {...v,status:'consumed'};});const user=await store.get('users',entry.userId);if(!user||user.blocked)fail(403,'ACCOUNT_BLOCKED','Аккаунт заблокирован.');const {_token,...data}=await issue(user,req,res);res.json({status:'approved',...data,...(kind==='native'?{token:_token}:{})});}));

@@ -1,7 +1,7 @@
 {
-  "frozenAt": "2026-10-08T14:28:13.832516+00:00",
-  "compileDefine": "http://192.168.3.7:4000",
-  "sourceSha256": "6988a449893fb6a2df6d19ca6a5cf9663067101cfd20f53f246d8ce520c6f837",
+  "frozenAt": "2026-10-08T19:13:48.870890+00:00",
+  "compileDefine": "https://wave.gluk.tech",
+  "sourceSha256": "a3bdb44d998ddbb0cce02595fb163e357e40587b505d38c6e82de04f439e00fd",
   "files": [
     {
       "path": "android/app/build.gradle.kts",
@@ -174,6 +174,11 @@
       "sha256": "b944abd87e265d383d021181a00eb153babf605d2746d859be6be910a2deb1ed"
     },
     {
+      "path": "assets/google-g.png",
+      "bytes": 33661,
+      "sha256": "d1ce9c2af0b10a7333abc99bc706f9a6a199e5b65bf3e3009624f076b8638e6a"
+    },
+    {
       "path": "assets/licenses/Manrope-OFL.txt",
       "bytes": 4387,
       "sha256": "58172e0c0fac2cda8a37b348164bb55e44b0e69051e557e92b1d3f6910141f7b"
@@ -205,8 +210,8 @@
     },
     {
       "path": "lib/core/api.dart",
-      "bytes": 5154,
-      "sha256": "7364b5b3d5b7f73560f39f615ba4a4ba49cd76af62f9acfc668e5b68acefa98f"
+      "bytes": 6068,
+      "sha256": "b6d899068ccad2587d2db59afaff79407811f28dc2538927a3476eced989f55a"
     },
     {
       "path": "lib/core/appearance.dart",
@@ -220,8 +225,8 @@
     },
     {
       "path": "lib/core/controller.dart",
-      "bytes": 44582,
-      "sha256": "d1a22d9283cf52723b0e70994a8857754e3e3329f63212be3901e132695a5026"
+      "bytes": 47130,
+      "sha256": "ac8cc3ff0c873b6452fbd26faaf9de44cb46142527d1c7975ab668f450bee729"
     },
     {
       "path": "lib/core/equalizer.dart",
@@ -230,8 +235,8 @@
     },
     {
       "path": "lib/core/models.dart",
-      "bytes": 4359,
-      "sha256": "597fa610c3a319bf7e1d74dbc4b974aadb924caedec2ad611a05c233e2fdb595"
+      "bytes": 4804,
+      "sha256": "6cfb17eec6740f2df781b9b8a2e5a085c94bb79560011ed08d0014d2a59ff59e"
     },
     {
       "path": "lib/core/wave_math.dart",
@@ -240,8 +245,8 @@
     },
     {
       "path": "lib/l10n/catalogs.dart",
-      "bytes": 211381,
-      "sha256": "d2243696da60fad6a68150aa55ad6a1976d03adf6f32a5c60c8cdce228f4141a"
+      "bytes": 218550,
+      "sha256": "8ac80755c40062ef72901fe86f6ff6daf7d64ccaa103e6d27b583b8cd11af666"
     },
     {
       "path": "lib/l10n/wave_localizations.dart",
@@ -250,8 +255,8 @@
     },
     {
       "path": "lib/main.dart",
-      "bytes": 2921,
-      "sha256": "6ebf1c7152e80bc14d90b3e55ef8731a0412ffcf7b05fe58dcad0dbdad9348f0"
+      "bytes": 3655,
+      "sha256": "c2269f6aa8fba8a3fdd39840baefe329d5e397d2fef0487878914e86cf41bd9c"
     },
     {
       "path": "lib/services/ambience.dart",
@@ -265,8 +270,8 @@
     },
     {
       "path": "lib/services/audio.dart",
-      "bytes": 16684,
-      "sha256": "5206c4eaf304b32c37c1ab0401ed0656e4e0ef0174cc319ed06e9adb2d2e7a93"
+      "bytes": 16789,
+      "sha256": "7c99c030875e8d8e8650a0097597d22ed3eb2cb313d3be684546a60c9b015c75"
     },
     {
       "path": "lib/services/cache.dart",
@@ -275,8 +280,13 @@
     },
     {
       "path": "lib/services/desktop.dart",
-      "bytes": 12039,
-      "sha256": "7ca0aaf2f5f7d5f04330d3b87b87fa78dfd44e91138775295f9f0a4d6de20260"
+      "bytes": 20315,
+      "sha256": "b16e82876e06292659fe1bebc281ad3ea5acbbbb3138d8c2131bf1fefba08f50"
+    },
+    {
+      "path": "lib/services/diagnostics.dart",
+      "bytes": 4837,
+      "sha256": "bbc1851ba61c920785fcaccc0a63ac4a6ffbb0f0004798908c624baf6163e357"
     },
     {
       "path": "lib/services/presence_bridge.dart",
@@ -287,6 +297,11 @@
       "path": "lib/services/push.dart",
       "bytes": 2190,
       "sha256": "6432613cfc56f413c8ca804e27f559ba9a4376b1a399e4273b32fbc8f20e1848"
+    },
+    {
+      "path": "lib/services/volume_store.dart",
+      "bytes": 751,
+      "sha256": "5b2ffdd1f968097b08f5a0aa314865e2c048bbc503189ee0d9ade176147fe110"
     },
     {
       "path": "lib/services/waveform.dart",
@@ -300,13 +315,28 @@
     },
     {
       "path": "lib/ui/app.dart",
-      "bytes": 178575,
-      "sha256": "03e580f74c8cb94b6a1c586846596b197be5198cd306ad617788816ac04a3642"
+      "bytes": 156071,
+      "sha256": "3ec27490cf3b5d877f6c672cb37e7845f88f1b30d19fca39e12981ce61f9412f"
     },
     {
       "path": "lib/ui/appearance_panel.dart",
       "bytes": 34526,
       "sha256": "7f72e17aa6fef396b4543c6530265fdbad103654b7886ce7e9360b1764764876"
+    },
+    {
+      "path": "lib/ui/auth_page.dart",
+      "bytes": 21130,
+      "sha256": "00c4977b211229f36b26cba026dc27a24db5cc84864a99b682e97ed1ae80bd1b"
+    },
+    {
+      "path": "lib/ui/auth_visuals.dart",
+      "bytes": 5526,
+      "sha256": "1db3ea01963e241febd11d714e9c3fec1a7c0805950572ea08517249cfea91da"
+    },
+    {
+      "path": "lib/ui/desktop_player.dart",
+      "bytes": 13302,
+      "sha256": "d27a24ab5900e97587fb1bb2e6cd318af9dacd1dc663d046ad434b211ec3fefc"
     },
     {
       "path": "lib/ui/equalizer_panel.dart",
@@ -320,8 +350,8 @@
     },
     {
       "path": "lib/ui/player.dart",
-      "bytes": 56135,
-      "sha256": "2180e416c93749753d4c599e4320833a264bfb15a2fe848e505dc2f2661e862d"
+      "bytes": 60796,
+      "sha256": "a61cab0678fc05afa989c8f84059d636b2312d7890b2a30ba1f9edddc3e1c774"
     },
     {
       "path": "lib/ui/player_gestures.dart",
@@ -355,8 +385,8 @@
     },
     {
       "path": "pubspec.yaml",
-      "bytes": 5585,
-      "sha256": "c2a4b6a5a6f3837a499cd34b4c1a75bcb68c250cec19a626086d5f1b2349efff"
+      "bytes": 5584,
+      "sha256": "96f504205152c50e7507306853c7ac3bf4315e485127521ce4584512578c2079"
     },
     {
       "path": "windows/CMakeLists.txt",
@@ -375,8 +405,8 @@
     },
     {
       "path": "windows/runner/flutter_window.cpp",
-      "bytes": 2193,
-      "sha256": "d615eedc06ae37321e59c2c00c7687d1887dcd97904eb7225fafd8dcb5b83da6"
+      "bytes": 2389,
+      "sha256": "1f1df2d792b3c1fa0b874ce208be3cad2f6a31710cb84d08d9fcf6cbce20b8db"
     },
     {
       "path": "windows/runner/flutter_window.h",

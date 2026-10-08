@@ -2,6 +2,7 @@ import { t, useLocale, setLanguageChoice } from './locale';
 import { createContext, useCallback, useContext, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from 'react';
 import type { Socket } from 'socket.io-client';
 import { api, errorText, post } from './api';
+import { resetDiagnostics } from './diagnostics';
 import { applyAppearance, mergeSettings, mergeSettingsPatches, normalizeSettings, normalizeSettingsPatch, readLocalSettings, readPendingSettings, writeLocalSettings, writeConfirmedSettings, writePendingSettings } from './preferences';
 import { clearPrivate, getCacheGeneration, readLibrary, saveLibrary } from './cache';
 import { type Config, type Library, type Settings, type SettingsPatch, type Track, type User } from './types';
@@ -29,7 +30,7 @@ export function StoreProvider({children}:{children:ReactNode}) {useLocale();
   const settingsServer=useRef(settings),pendingSettings=useRef<SettingsPatch>({}),serverRevision=useRef(-1),accountGeneration=useRef(0),settingsTimer=useRef<ReturnType<typeof setTimeout>|undefined>(undefined),settingsFlight=useRef<{userId:string;generation:number;controller:AbortController;partial:SettingsPatch}|null>(null),flushSettingsRef=useRef<(id:string)=>Promise<void>>(async()=>{});
   const userRef=useRef(user);userRef.current=user;const toastTimer=useRef<ReturnType<typeof setTimeout>|undefined>(undefined);
   const notify=useCallback((text:string,error=false)=>{clearTimeout(toastTimer.current);setToast({id:Date.now(),text,error});toastTimer.current=setTimeout(()=>setToast(null),6500);},[]);
-  const setUser=useCallback((next:User|null)=>{userRef.current=next;setUserState(next);if(next)localStorage.setItem('gw-user',JSON.stringify(next));else localStorage.removeItem('gw-user');},[]);
+  const setUser=useCallback((next:User|null)=>{if(userRef.current?.id!==next?.id)resetDiagnostics();userRef.current=next;setUserState(next);if(next)localStorage.setItem('gw-user',JSON.stringify(next));else localStorage.removeItem('gw-user');},[]);
   const navigate=useCallback((next:Route)=>{location.hash=next;setRoute(next);window.scrollTo({top:0,behavior:'instant'});},[]);
   const refreshLibrary=useCallback(async()=>{
     if(!user){setLibrary(emptyLibrary);setLibraryPending(false);setLibraryOwner(null);return;}

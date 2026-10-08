@@ -3,6 +3,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:ffi' hide Size;
 import 'dart:io';
+import 'dart:math' as math;
 import 'dart:typed_data';
 import 'package:ffi/ffi.dart';
 import 'package:flutter/material.dart';
@@ -216,12 +217,19 @@ class DiscordPresence extends ChangeNotifier {
 
 class DesktopShell extends ChangeNotifier with WindowListener, TrayListener {
   final WaveAudioHandler audio;
-  bool mini = false, initialized = false, _quitting = false;
+  bool mini = false, quick = false, initialized = false, _quitting = false;
   Rect? _normalBounds;
   bool _normalMaximized = false;
+  bool _mainVisibleBeforeQuick = false, _quickReady = false;
+  bool _miniBeforeQuick = false;
+  bool _changingWindow = false;
+  int _boundsRead = 0;
+  Rect? _miniBoundsBeforeQuick;
+  Timer? _trayClick;
+  Future<void> _windowWrites = Future.value();
   String? _title;
   DesktopShell(this.audio);
-  Future<void> initialize() async {
+  Future<void> initialize({bool startMinimized = false}) async {
     if (!Platform.isWindows) return;
     await windowManager.ensureInitialized();
     await windowManager.waitUntilReadyToShow(
@@ -233,10 +241,16 @@ class DesktopShell extends ChangeNotifier with WindowListener, TrayListener {
         backgroundColor: Color(0xffefede3),
       ),
       () async {
-        await windowManager.show();
-        await windowManager.focus();
+        if (!startMinimized) {
+          await windowManager.show();
+          await windowManager.focus();
+        }
       },
     );
+    final initialBounds = await windowManager.getBounds();
+    _normalBounds = _validNormalBounds(initialBounds)
+        ? initialBounds
+        : _centeredMainBounds();
     windowManager.addListener(this);
     trayManager.addListener(this);
     await trayManager.setIcon(
@@ -283,41 +297,270 @@ class DesktopShell extends ChangeNotifier with WindowListener, TrayListener {
     );
   }
 
-  Future<void> toggleMini() async {
+  Future<void> _serialize(Future<void> Function() action) {
+    final operation = _windowWrites.catchError((_) {}).then((_) async {
+      _changingWindow = true;
+      try {
+        await action();
+      } finally {
+        _changingWindow = false;
+      }
+    });
+    _windowWrites = operation;
+    return operation;
+  }
+
+  void _background(Future<void> operation) => unawaited(
+    operation.catchError(
+      (Object error) => audio.onError?.call(error.toString()),
+    ),
+  );
+
+  Future<void> _rememberMain() async {
+    if (mini || quick) return;
+    if (await windowManager.isMinimized()) {
+      _normalBounds ??= _centeredMainBounds();
+      return;
+    }
+    _normalMaximized = await windowManager.isMaximized();
+    if (_normalMaximized) await windowManager.unmaximize();
+    final bounds = await windowManager.getBounds();
+    if (_validNormalBounds(bounds)) _normalBounds = bounds;
+    _normalBounds ??= _centeredMainBounds();
+  }
+
+  bool _validNormalBounds(Rect bounds) =>
+      bounds.left.isFinite &&
+      bounds.top.isFinite &&
+      bounds.width.isFinite &&
+      bounds.height.isFinite &&
+      bounds.width >= 760 &&
+      bounds.height >= 540 &&
+      bounds.left > -30000 &&
+      bounds.top > -30000;
+
+  Rect _centeredMainBounds() {
+    final work = _displayPlacement().work;
+    return Rect.fromCenter(
+      center: work.center,
+      width: math.min(1280, work.width - 24),
+      height: math.min(860, work.height - 24),
+    );
+  }
+
+  Future<void> _captureMainBounds() async {
+    if (mini || quick || _changingWindow) return;
+    final request = ++_boundsRead;
+    if (await windowManager.isMinimized()) return;
+    final maximized = await windowManager.isMaximized();
+    if (request != _boundsRead || mini || quick || _changingWindow) return;
+    _normalMaximized = maximized;
+    if (maximized) return;
+    final bounds = await windowManager.getBounds();
+    if (request == _boundsRead &&
+        !mini &&
+        !quick &&
+        !_changingWindow &&
+        _validNormalBounds(bounds)) {
+      _normalBounds = bounds;
+    }
+  }
+
+  Future<void> _restoreMain() async {
+    _quickReady = false;
+    mini = quick = false;
+    await windowManager.setOpacity(1);
+    await windowManager.setTitleBarStyle(TitleBarStyle.normal);
+    await windowManager.setAlwaysOnTop(false);
+    await windowManager.setSkipTaskbar(false);
+    await windowManager.setResizable(true);
+    await windowManager.setMaximizable(true);
+    await windowManager.setMinimumSize(const Size(760, 540));
+    if (_normalBounds != null) await windowManager.setBounds(_normalBounds!);
+    if (_normalMaximized) await windowManager.maximize();
+    notifyListeners();
+  }
+
+  Future<void> showMain() => _serialize(() async {
+    if (!initialized) return;
+    if (mini || quick) await _restoreMain();
+    await windowManager.show();
+    if (await windowManager.isMinimized()) await windowManager.restore();
+    await windowManager.focus();
+  });
+
+  Future<void> toggleMain() => _serialize(() async {
+    if (!initialized) return;
+    if (mini || quick) {
+      await _restoreMain();
+      await windowManager.show();
+      await windowManager.focus();
+    } else if (await windowManager.isVisible() &&
+        !await windowManager.isMinimized()) {
+      await windowManager.hide();
+    } else {
+      await windowManager.show();
+      if (await windowManager.isMinimized()) await windowManager.restore();
+      await windowManager.focus();
+    }
+  });
+
+  Future<void> toggleMini() => _serialize(() async {
     if (!initialized) return;
     if (!mini) {
-      _normalMaximized = await windowManager.isMaximized();
-      if (_normalMaximized) {
-        await windowManager.unmaximize();
-      }
-      _normalBounds = await windowManager.getBounds();
-      await windowManager.setMinimumSize(const Size(370, 105));
-      await windowManager.setSize(const Size(420, 140));
+      await _rememberMain();
+      if (await windowManager.isMinimized()) await windowManager.restore();
+      _quickReady = false;
+      quick = false;
+      await windowManager.setMinimumSize(const Size(330, 116));
+      await windowManager.setAsFrameless();
+      await windowManager.setSize(const Size(410, 116));
       await windowManager.setAlwaysOnTop(true);
+      await windowManager.setSkipTaskbar(true);
+      await windowManager.setOpacity(.94);
+      await windowManager.setResizable(false);
       await windowManager.setMaximizable(false);
-    } else {
-      await windowManager.setAlwaysOnTop(false);
-      await windowManager.setMaximizable(true);
-      await windowManager.setMinimumSize(const Size(760, 540));
-      if (_normalBounds != null) await windowManager.setBounds(_normalBounds!);
-      if (_normalMaximized) {
-        await windowManager.maximize();
+      if (_normalBounds != null) {
+        final placement = await _cornerBounds(const Size(410, 116));
+        await windowManager.setBounds(placement);
       }
+      mini = true;
+    } else {
+      await _restoreMain();
     }
-    mini = !mini;
     notifyListeners();
     await windowManager.show();
+  });
+
+  /// Tray bounds and monitor work area are converted with the same Flutter DPI.
+  /// This keeps the popup above a bottom taskbar and inside side-taskbar screens.
+  ({Rect work, Offset anchor}) _displayPlacement() {
+    final ratio = windowManager.getDevicePixelRatio();
+    final cursor = calloc<POINT>(), info = calloc<MONITORINFO>();
+    Rect work;
+    Offset anchor;
+    try {
+      GetCursorPos(cursor);
+      anchor = Offset(cursor.ref.x / ratio, cursor.ref.y / ratio);
+      final monitor = MonitorFromPoint(cursor.ref, MONITOR_DEFAULTTONEAREST);
+      info.ref.cbSize = sizeOf<MONITORINFO>();
+      if (GetMonitorInfo(monitor, info) != 0) {
+        final area = info.ref.rcWork;
+        work = Rect.fromLTRB(
+          area.left / ratio,
+          area.top / ratio,
+          area.right / ratio,
+          area.bottom / ratio,
+        );
+      } else {
+        work = _normalBounds ?? const Rect.fromLTWH(0, 0, 1280, 860);
+      }
+    } finally {
+      calloc.free(cursor);
+      calloc.free(info);
+    }
+    return (work: work, anchor: anchor);
+  }
+
+  Future<Rect> _cornerBounds(Size requested) async {
+    final display = _displayPlacement(), work = display.work;
+    var anchor = display.anchor;
+    final tray = await trayManager.getBounds();
+    if (tray != null && !tray.isEmpty) anchor = tray.center;
+    final width = math.min(requested.width, work.width - 20);
+    final height = math.min(requested.height, work.height - 20);
+    return Rect.fromLTWH(
+      (anchor.dx - width / 2).clamp(work.left + 10, work.right - width - 10),
+      (anchor.dy - height - 12).clamp(work.top + 10, work.bottom - height - 10),
+      width,
+      height,
+    );
+  }
+
+  Future<void> toggleQuick() => _serialize(() async {
+    if (!initialized) return;
+    if (quick) {
+      await _dismissQuick();
+      return;
+    }
+    _miniBeforeQuick = mini;
+    _miniBoundsBeforeQuick = mini ? await windowManager.getBounds() : null;
+    final minimized = await windowManager.isMinimized();
+    _mainVisibleBeforeQuick =
+        !mini && !minimized && await windowManager.isVisible();
+    await _rememberMain();
+    if (minimized) await windowManager.restore();
+    mini = false;
+    await windowManager.setMinimumSize(const Size(300, 330));
+    await windowManager.setAsFrameless();
+    await windowManager.setAlwaysOnTop(true);
+    await windowManager.setSkipTaskbar(true);
+    await windowManager.setOpacity(1);
+    await windowManager.setResizable(false);
+    await windowManager.setMaximizable(false);
+    await windowManager.setBounds(await _cornerBounds(const Size(360, 420)));
+    quick = true;
+    notifyListeners();
+    await windowManager.show();
+    await windowManager.focus();
+    _quickReady = true;
+  });
+
+  Future<void> _dismissQuick() async {
+    if (!quick) return;
+    await windowManager.hide();
+    if (_miniBeforeQuick) {
+      _quickReady = false;
+      quick = false;
+      mini = true;
+      await windowManager.setMinimumSize(const Size(330, 116));
+      await windowManager.setOpacity(.94);
+      if (_miniBoundsBeforeQuick != null) {
+        await windowManager.setBounds(_miniBoundsBeforeQuick!);
+      }
+      notifyListeners();
+      await windowManager.show();
+      return;
+    }
+    await _restoreMain();
+    if (_mainVisibleBeforeQuick) await windowManager.show();
+  }
+
+  Future<void> dismissQuick() => _serialize(_dismissQuick);
+
+  Future<void> drag() async {
+    if (initialized) await windowManager.startDragging();
   }
 
   @override
   void onWindowClose() {
-    if (!_quitting) unawaited(windowManager.hide());
+    if (!_quitting) _background(windowManager.hide());
   }
 
   @override
+  void onWindowBlur() {
+    if (quick && _quickReady) _background(dismissQuick());
+  }
+
+  @override
+  void onWindowMove() => _background(_captureMainBounds());
+
+  @override
+  void onWindowResize() => _background(_captureMainBounds());
+
+  @override
   void onTrayIconMouseDown() {
-    unawaited(windowManager.show());
-    unawaited(windowManager.focus());
+    if (_trayClick?.isActive == true) {
+      _trayClick!.cancel();
+      _trayClick = null;
+      _background(toggleMain());
+      return;
+    }
+    final interval = Platform.isWindows ? GetDoubleClickTime() : 400;
+    _trayClick = Timer(Duration(milliseconds: interval), () {
+      _trayClick = null;
+      _background(toggleQuick());
+    });
   }
 
   @override
@@ -329,7 +572,7 @@ class DesktopShell extends ChangeNotifier with WindowListener, TrayListener {
   void onTrayMenuItemClick(MenuItem menuItem) {
     switch (menuItem.key) {
       case 'open':
-        onTrayIconMouseDown();
+        _background(showMain());
       case 'play':
         unawaited(
           (audio.player.playing ? audio.pause() : audio.play()).catchError((
@@ -352,6 +595,7 @@ class DesktopShell extends ChangeNotifier with WindowListener, TrayListener {
   }
 
   Future<void> quit() async {
+    _trayClick?.cancel();
     _quitting = true;
     await audio.localCommand('stop');
     await trayManager.destroy();
@@ -360,6 +604,7 @@ class DesktopShell extends ChangeNotifier with WindowListener, TrayListener {
 
   @override
   void dispose() {
+    _trayClick?.cancel();
     if (initialized) {
       windowManager.removeListener(this);
       trayManager.removeListener(this);

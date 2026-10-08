@@ -34,6 +34,10 @@ Manrope: [официальный каталог Google Fonts](https://github.com
 
 Для автоматического выбора языка используется локальная база **user-country** от [sapics/ip-location-db](https://github.com/sapics/ip-location-db), опубликованная под [PDDL1.0](https://opendatacommons.org/licenses/pddl/1-0/). IPv4/IPv6 CSV преобразованы в проверенные отсортированные диапазоны и gzip без изменения стран. Исходные и итоговые SHA-256, дата получения и число диапазонов сохранены в `apps/server/data/geoip/provenance.json`. Это страна сети, без координат/города; адрес посетителя не отправляется геосервису. Точный источник и способ обновления описаны рядом с базой.
 
+## LRCLIB
+
+Тексты загружаются во время использования из [LRCLIB](https://lrclib.net/docs), с указанием источника в метаданных. Они не включены в код, APK или Windows-пакет; общедоступность записи не означает передачу авторских прав на сам текст. Программная реализация клиента написана внутри GlukWave. Синхронизированный текст доступен только при наличии подходящей записи в каталоге.
+
 ## Windows audio runtime
 
 `just_audio_media_kit` / `media_kit` use MIT-licensed Dart/plugin wrappers. The separate bundled `libmpv-2.dll` is **not MIT**. `media_kit_libs_windows_audio 1.0.9` downloads the upstream [2023-09-24 audio build](https://github.com/media-kit/libmpv-win32-audio-build/releases/tag/2023-09-24), archive `mpv-dev-x86_64-20230924-git-652a1dd.7z`, MD5 `cd738e16e2a19626d7cfa48801524f8c` as required by that package. It is dynamically loaded; it can be replaced independently of the application.
@@ -41,3 +45,11 @@ Manrope: [официальный каталог Google Fonts](https://github.com
 The [mpv source at the embedded revision](https://github.com/mpv-player/mpv/tree/652a1dd), [audio build scripts](https://github.com/media-kit/libmpv-win32-audio-build), and [FFmpeg sources](https://github.com/FFmpeg/FFmpeg) are available upstream. The audio build scripts select `gpl=false` for mpv and `--disable-gpl --disable-nonfree --enable-version3` for FFmpeg. Full mpv copyright, GPL/LGPL and FFmpeg LGPL notices are preserved in `docs/licenses` and copied beside the Windows executable. The exact dependency source revisions and a reproducible source bundle still need a separate distribution audit before a public release; this local test package is not presented as a completed public distribution.
 
 The Windows folder also includes unmodified Microsoft Visual C++ CRT DLLs from the installed Build Tools redistributable directory. Microsoft retains their copyright; the [Visual Studio redistribution list and terms](https://learn.microsoft.com/en-us/visualstudio/releases/2022/redistribution) apply. They are neither GlukWave source nor covered by the plugin MIT licenses. The Windows ZIP is a portable local beta and is not Authenticode signed.
+
+## Client update 1.0.0+3
+
+The Google sign-in G is the unmodified [official asset](https://developers.google.com/static/identity/images/g-logo.png), displayed according to the [Google branding guide](https://developers.google.com/identity/branding-guidelines), with a white backing. It is a Google trademark, not a GlukWave icon.
+
+Lyrics lookup uses the public [LRCLIB API](https://lrclib.net/docs) and the fixed-host [lyrics.ovh service](https://github.com/NTag/lyrics.ovh) as a plain-text fallback. The provider service does not guarantee coverage. Track metadata and record length determine whether timed lyrics are safe to attach; users' saved lyrics take priority.
+
+The Windows installer is compiled with unmodified [Inno Setup](https://jrsoftware.org/isinfo.php) 6.7.3. Copyright (C) 1997–2026 Jordan Russell; portions Copyright (C) 2000–2026 Martijn Laan. Its original license is included in `docs/licenses/Inno-Setup.txt` and in the Windows bundle. The build uses a portable compiler and does not install developer tooling on the user's machine. The installer and application remain unsigned beta packages.

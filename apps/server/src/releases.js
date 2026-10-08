@@ -4,7 +4,7 @@ import crypto from 'node:crypto';
 import path from 'node:path';
 import {asyncRoute,fail} from './util.js';
 
-const platforms={android:'.apk',windows:'.zip',ios:'.ipa'};
+const platforms={android:['.apk'],windows:['.exe','.zip'],ios:['.ipa']};
 const hashes=new Map();
 async function fileHash(file,stat){
   const fingerprint=`${file}:${stat.size}:${stat.mtimeMs}:${stat.ctimeMs}`;
@@ -21,7 +21,7 @@ export async function verifiedReleases(directory){
   if(!Array.isArray(manifest.releases)||manifest.releases.length>12)return [];
   const releases=[];
   for(const record of manifest.releases){
-    if(!record||!Object.hasOwn(platforms,record.platform)||typeof record.file!=='string'||record.file!==path.basename(record.file)||/[\\/:]/.test(record.file)||path.extname(record.file).toLowerCase()!==platforms[record.platform])continue;
+    if(!record||!Object.hasOwn(platforms,record.platform)||typeof record.file!=='string'||record.file!==path.basename(record.file)||/[\\/:]/.test(record.file)||!platforms[record.platform].includes(path.extname(record.file).toLowerCase()))continue;
     if(!/^[a-f\d]{64}$/i.test(record.sha256||'')||!Number.isSafeInteger(record.bytes)||record.bytes<1||!/^\d+\.\d+\.\d+(?:[-+][\w.-]+)?$/.test(record.version||'')||!['beta','stable'].includes(record.channel)||!['debug','release'].includes(record.signature)||!Number.isFinite(Date.parse(record.builtAt)))continue;
     try{
       const candidate=path.join(root,record.file),actual=await fs.realpath(candidate);if(path.dirname(actual)!==root||actual!==candidate)continue;
@@ -33,7 +33,7 @@ export async function verifiedReleases(directory){
   }
   return releases;
 }
-const publicRelease=({platform,version,channel,bytes,sha256,builtAt,signature})=>({platform,version,channel,bytes,sha256,builtAt,signature,available:true,url:`/api/downloads/${platform}`});
+const publicRelease=({platform,file,version,channel,bytes,sha256,builtAt,signature})=>({platform,version,channel,bytes,sha256,builtAt,signature,format:path.extname(file)==='.exe'?'installer':path.extname(file)==='.zip'?'portable':'package',available:true,url:`/api/downloads/${platform}`});
 export function setupReleases(app,ctx){
   const directory=ctx.config.releasesDir||path.join(ctx.config.root,'outputs');
   app.get('/api/releases',asyncRoute(async(req,res)=>{res.set('Cache-Control','no-store');res.json({releases:(await verifiedReleases(directory)).map(publicRelease)});}));
