@@ -42,7 +42,10 @@ void main() {
         waveVisuals(tester.element(surface)).background,
         hexColor(WavePalette.dark.bg),
       );
-      await tester.tap(find.byKey(const Key('accent-#7ca8bb')));
+      final accent = find.byKey(const Key('accent-#7ca8bb'));
+      await tester.ensureVisible(accent);
+      await tester.pumpAndSettle();
+      await tester.tap(accent);
       await tester.pumpAndSettle();
       expect(store.current.appearance.dark.accent, '#7ca8bb');
       expect(waveVisuals(tester.element(surface)).accent, hexColor('#7ca8bb'));

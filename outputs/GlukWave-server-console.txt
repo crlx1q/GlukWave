@@ -1,0 +1,16 @@
+
+ ∿  GLUKWAVE  SERVER STUDIO
+ ╭────────────────────────────────────────────────────────────────────────────╮
+ │ ONLINE  ·  Local development                                               │
+ │                                                                            │
+ │ Listen      127.0.0.1:4102                                                 │
+ │ Web         http://127.0.0.1:4102                                          │
+ │ Database    SQLite · local                                                 │
+ │ Media       Local files · private                                          │
+ │                                                                            │
+ │ 0 devices   ·   0 listening rooms                                          │
+ │ Uptime 1m 23s   ·   Memory 351 MB                                          │
+ │ 3 API requests   ·   1 failed   ·   21 ms average                          │
+ ╰────────────────────────────────────────────────────────────────────────────╯
+ s / Enter  status    h  help    q  graceful shutdown
+

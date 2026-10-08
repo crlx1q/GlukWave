@@ -1,6 +1,28 @@
 import path from 'node:path';
 import {DatabaseSync} from 'node:sqlite';
 import {MongoClient} from 'mongodb';
+import {setTimeout as delay} from 'node:timers/promises';
+
+export async function updateMongoDocument(collection,id,fn){
+  for(let n=0;n<64;n++){
+    const original=await collection.findOne({_id:id});
+    const {_id,_v=0,...value}=original||{};
+    const next=await fn(original?value:null);
+    if(next===undefined)return value;
+    if(!original){
+      try{await collection.insertOne({_id:id,_v:0,...next});return next;}
+      catch(err){if(err.code!==11000)throw err;}
+    }else{
+      // Earlier imports may not have a revision field. Match its absence once,
+      // then persist a revision so competing writers still use compare-and-set.
+      const revision=Object.hasOwn(original,'_v')?_v:{$exists:false};
+      const result=await collection.replaceOne({_id:id,_v:revision},{_id:id,_v:_v+1,...next});
+      if(result.modifiedCount)return next;
+    }
+    await delay(Math.min(32,2**Math.min(n,5))+Math.floor(Math.random()*8));
+  }
+  throw new Error('Concurrent update failed');
+}
 
 export async function openStore(config) {
   if(config.storage==='mongo') {
@@ -15,7 +37,7 @@ export async function openStore(config) {
       async create(c,id,value){await db.collection(c).insertOne({_id:id,_v:0,...value});return value;},
       async put(c,id,value){await db.collection(c).replaceOne({_id:id},{_id:id,_v:0,...value},{upsert:true});return value;},
       async remove(c,id){await db.collection(c).deleteOne({_id:id});},
-      async update(c,id,fn){for(let n=0;n<10;n++){const original=await db.collection(c).findOne({_id:id});const {_id,_v=0,...value}=original||{};const next=await fn(original?value:null);if(next===undefined)return value;if(!original){try{await db.collection(c).insertOne({_id:id,_v:0,...next});return next;}catch(err){if(err.code!==11000)throw err;continue;}}const result=await db.collection(c).replaceOne({_id:id,_v},{_id:id,_v:_v+1,...next});if(result.modifiedCount)return next;}throw new Error('Concurrent update failed');},
+      async update(c,id,fn){return updateMongoDocument(db.collection(c),id,fn);},
       async close(){await client.close();},
     };
   }

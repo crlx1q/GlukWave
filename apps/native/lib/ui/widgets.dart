@@ -60,7 +60,7 @@ class Brand extends StatelessWidget {
           children: [
             const TextSpan(
               text: 'gluk ',
-              style: TextStyle(fontWeight: FontWeight.w900),
+              style: TextStyle(fontWeight: FontWeight.w800),
             ),
             const TextSpan(
               text: 'wave',
@@ -121,19 +121,11 @@ class PageHeading extends StatelessWidget {
                       ),
                     ),
                   ),
-                Text.rich(
-                  TextSpan(
-                    children: [
-                      TextSpan(text: title),
-                      TextSpan(
-                        text: '.',
-                        style: TextStyle(color: waveVisuals(context).accent),
-                      ),
-                    ],
-                  ),
+                Text(
+                  title,
                   style: TextStyle(
-                    fontSize: compact ? 29 : 40,
-                    fontWeight: FontWeight.w800,
+                    fontSize: compact ? 27 : 34,
+                    fontWeight: FontWeight.w700,
                     letterSpacing: -1.5,
                     height: 1.2,
                   ),
@@ -415,7 +407,9 @@ class _WaveHeroState extends State<WaveHero>
     duration: const Duration(seconds: 90),
   );
   double _energy = 0, _pointerActive = 0, _targetActive = 0;
-  Offset _pointer = const Offset(.5, .5), _pointerTarget = const Offset(.5, .5);
+  Offset _pointer = const Offset(.5, .5), _pointerTarget = const Offset(.5, .5), _velocity = Offset.zero;
+  ScrollPosition? _scroll;
+  bool _visible = true;
   Duration _lastFrame = Duration.zero;
   bool get reduced =>
       widget.reducedMotion ||
@@ -445,7 +439,10 @@ class _WaveHeroState extends State<WaveHero>
     setState(() {
       _energy = reduced ? 0 : easeEnergy(_energy, target, seconds);
       final movement = 1 - math.exp(-seconds * 16);
+      final before = _pointer;
       _pointer += (_pointerTarget - _pointer) * movement;
+      final targetVelocity = seconds > 0 ? (_pointer - before) / seconds : Offset.zero;
+      _velocity += (targetVelocity - _velocity) * (1 - math.exp(-seconds * 8));
       _pointerActive +=
           (_targetActive - _pointerActive) * (1 - math.exp(-seconds * 5));
     });
@@ -463,6 +460,13 @@ class _WaveHeroState extends State<WaveHero>
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    final scroll = Scrollable.maybeOf(context)?.position;
+    if (!identical(scroll, _scroll)) {
+      _scroll?.removeListener(_visibility);
+      _scroll = scroll;
+      _scroll?.addListener(_visibility);
+    }
+    WidgetsBinding.instance.addPostFrameCallback((_) { if (mounted) _visibility(); });
     _motion();
   }
 
@@ -473,15 +477,24 @@ class _WaveHeroState extends State<WaveHero>
   }
 
   void _motion() {
-    if (reduced) {
+    if (reduced || !_visible || !TickerMode.of(context)) {
       animation.stop();
     } else if (!animation.isAnimating) {
       animation.repeat();
     }
   }
 
+  void _visibility() {
+    final box = context.findRenderObject();
+    if (box is! RenderBox || !box.hasSize || !mounted) return;
+    final origin = box.localToGlobal(Offset.zero), viewport = MediaQuery.sizeOf(context);
+    _visible = origin.dy < viewport.height && origin.dy + box.size.height > 0;
+    _motion();
+  }
+
   @override
   void dispose() {
+    _scroll?.removeListener(_visibility);
     animation.dispose();
     super.dispose();
   }
@@ -493,22 +506,26 @@ class _WaveHeroState extends State<WaveHero>
       final compact = constraints.maxWidth < 600 || v.compact;
       final height = compact ? 224.0 : 310.0;
       return MouseRegion(
-        onHover: (event) =>
-            _readPointer(event.localPosition, constraints.maxWidth, height),
+        onHover: (event) => _readPointer(
+          event.localPosition,
+          constraints.maxWidth,
+          (context.findRenderObject() as RenderBox).size.height,
+        ),
         onExit: (_) => _targetActive = 0,
         child: Listener(
-          onPointerDown: (event) =>
-              _readPointer(event.localPosition, constraints.maxWidth, height),
-          onPointerMove: (event) =>
-              _readPointer(event.localPosition, constraints.maxWidth, height),
+          onPointerMove: (event) => _readPointer(
+            event.localPosition,
+            constraints.maxWidth,
+            (context.findRenderObject() as RenderBox).size.height,
+          ),
           onPointerUp: (_) => _targetActive = 0,
           onPointerCancel: (_) => _targetActive = 0,
           child: ClipRRect(
             borderRadius: BorderRadius.circular(
               waveRadius(context, compact ? 20 : 24),
             ),
-            child: SizedBox(
-              height: height,
+            child: ConstrainedBox(
+              constraints: BoxConstraints(minHeight: height),
               child: Stack(
                 children: [
                   Positioned.fill(child: Container(color: v.player)),
@@ -520,10 +537,12 @@ class _WaveHeroState extends State<WaveHero>
                               ? bloomPhase
                               : bloomPhase + animation.value * 90,
                           accentColor: v.accent,
+                          backgroundColor: v.surface,
                           style: v.waveStyle,
                           energy: reduced ? 0 : _energy,
                           pointer: reduced ? const Offset(.5, .5) : _pointer,
                           pointerActive: reduced ? 0 : _pointerActive,
+                          pointerVelocity: reduced ? Offset.zero : _velocity,
                         ),
                       ),
                     ),
@@ -545,16 +564,11 @@ class _WaveHeroState extends State<WaveHero>
                   Padding(
                     padding: EdgeInsets.all(compact ? 22 : 34),
                     child: Column(
+                      mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(
                           children: [
-                            Icon(
-                              Icons.circle,
-                              size: 5,
-                              color: waveVisuals(context).accent,
-                            ),
-                            SizedBox(width: 8),
                             Text(
                               wt('native.2bf6b84a6f', context: context),
                               style: TextStyle(
@@ -565,15 +579,15 @@ class _WaveHeroState extends State<WaveHero>
                             ),
                           ],
                         ),
-                        const Spacer(),
+                        SizedBox(height: compact ? 18 : 28),
                         Text(
                           wt('native.c56877fbe6', context: context),
                           style: TextStyle(
-                            fontSize: compact ? 34 : 50,
+                            fontSize: compact ? 28 : 36,
                             height: 1.1,
                             color: v.onPlayer,
-                            fontWeight: FontWeight.w800,
-                            letterSpacing: -2,
+                            fontWeight: FontWeight.w700,
+                            letterSpacing: -1,
                           ),
                         ),
                         const SizedBox(height: 8),
@@ -611,7 +625,7 @@ class _WaveHeroState extends State<WaveHero>
                                 : wt('native.5f266e04fe', context: context),
                           ),
                         ),
-                        const Spacer(),
+                        if (!compact) const SizedBox(height: 18),
                         if (!compact)
                           Row(
                             children: [
@@ -654,14 +668,17 @@ class _WaveHeroState extends State<WaveHero>
 class WavePainter extends CustomPainter {
   final double phase, energy, pointerActive;
   final Offset pointer;
-  final Color accentColor;
+  final Offset pointerVelocity;
+  final Color accentColor, backgroundColor;
   final String style;
   WavePainter(
     this.phase, {
     this.accentColor = accent,
+    this.backgroundColor = background,
     this.style = 'silk',
     this.energy = 0,
     this.pointer = const Offset(.5, .5),
+    this.pointerVelocity = Offset.zero,
     this.pointerActive = 0,
   });
   @override
@@ -759,6 +776,8 @@ class WavePainter extends CustomPainter {
       accentColor,
       pointer,
       pointerActive,
+      background: backgroundColor,
+      velocity: pointerVelocity,
     );
   }
 

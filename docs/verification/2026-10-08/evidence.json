@@ -1,0 +1,170 @@
+{
+  "verifiedAt": "2026-10-08T07:43:37.9327320Z",
+  "server": {
+    "skipped": 0,
+    "testsFailed": 0,
+    "cloud": {
+      "checkedAt": "2026-10-08T07:33:47.743Z",
+      "isolatedDatabase": true,
+      "productionUsersChanged": false,
+      "externalMessagesSent": false,
+      "paymentRequests": false,
+      "checks": {
+        "mongoRegistration": true,
+        "r2Upload": {
+          "bytes": 64044,
+          "sha256": "accf6fefd411145f6bd024235ec9498ae2e0608594e14e8fc0c0f46254e7419d",
+          "privateKeyHidden": true
+        },
+        "r2FullRangeDownload": {
+          "fullHashMatched": true,
+          "rangeMatched": true,
+          "downloadHashMatched": true,
+          "anonymousDenied": true,
+          "otherAccountDenied": true
+        },
+        "mongoDurabilityAndConcurrency": {
+          "secondConnectionRead": true,
+          "concurrentUpdates": 20,
+          "finalValue": 20
+        },
+        "mongoUnversionedDocument": true,
+        "r2DeletionVerified": true
+      },
+      "cleanup": {
+        "ownR2ObjectDeleted": true,
+        "ownDatabaseDropped": true,
+        "mailboxFiles": 0
+      },
+      "passed": true
+    },
+    "testsPassed": 32
+  },
+  "web": {
+    "liveRegressionPassed": true,
+    "pwaPassed": true,
+    "previouslyUnexplainedPause": true,
+    "languages": [
+      "en",
+      "ru",
+      "kk",
+      "uk",
+      "de",
+      "es"
+    ],
+    "checkPassed": true,
+    "javascript": "/assets/main-DsYw46_p.js",
+    "firstPosition": 0.7377160000357628,
+    "catalogMessagesPerLanguage": 838,
+    "pwaVersion": "glukwave-shell-v8-locales",
+    "unchangedOfficialPlayer": true,
+    "buildPassed": true,
+    "finalPosition": 22.39346400002384
+  },
+  "native": {
+    "signature": "debug",
+    "testsPassed": 67,
+    "signatureVerified": true,
+    "oflIncluded": true,
+    "sha256": "9c00763529bd62dcd2acbe82aa354ff2636b3e132fdb3e09d77c5e7f018bc6db",
+    "fontManifestVerified": true,
+    "nativeBackgroundSoundCloudVerified": false,
+    "rootVerified": {
+      "checkedAt": "2026-10-08T07:39:52.3760366Z",
+      "sha256": "9c00763529bd62dcd2acbe82aa354ff2636b3e132fdb3e09d77c5e7f018bc6db",
+      "bytes": 205079559,
+      "sourceFilesMatched": 62,
+      "bundledFontsMatched": 6,
+      "fontManifestWeights": [
+        400,
+        500,
+        600,
+        700,
+        800,
+        900
+      ],
+      "nunitoLicenseIncluded": true
+    },
+    "staticFontFaces": [
+      {
+        "asset": "assets/fonts/Nunito-Regular.ttf",
+        "weight": 400,
+        "variable": false,
+        "sha256": "29f17d41574376520b263bde34a4fecb11814233ff280c66befce6020c5e3cc4",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-Medium.ttf",
+        "weight": 500,
+        "variable": false,
+        "sha256": "818d89d5417ed2c7686c07097469f417d41dfe70b8e9514466637612f7ab9d8d",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-SemiBold.ttf",
+        "weight": 600,
+        "variable": false,
+        "sha256": "e6ac9b7051c6b3c4a23817a9272e2a8f7124896b36e68b30a3d46b452a0418a5",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-Bold.ttf",
+        "weight": 700,
+        "variable": false,
+        "sha256": "19acc4b8e7dc15b49c3802b6f2b53a1c41d7ee548733204a367052fa53387933",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-ExtraBold.ttf",
+        "weight": 800,
+        "variable": false,
+        "sha256": "9bc8f0d0c03926636f41ec699c6563dd01835b510c194e2086811eaf65a8e527",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-Black.ttf",
+        "weight": 900,
+        "variable": false,
+        "sha256": "b3628977111142f66472632770b76ee2c0665a40ae536bd64971a3bc19087717",
+        "matchesSource": true
+      }
+    ],
+    "file": "outputs/GlukWave-android-debug.apk",
+    "bytes": 205079559,
+    "iosBuilt": false,
+    "analyzerIssues": 0,
+    "sourceFiles": 62,
+    "sourceSha256": "126ea3b8289a71d8e7da389f3fb9bf03e5ffe4845495a9ed2b1ec85e28fedac2",
+    "builtAt": "2026-10-08T12:36:16.722102+05:00",
+    "windowsExecutableBuilt": false,
+    "physicalDeviceVerified": false
+  },
+  "downloads": {
+    "checkedAt": "2026-10-08T07:39:51.589Z",
+    "passed": true,
+    "checks": [
+      {
+        "origin": "http://127.0.0.1:4000",
+        "metadataMatched": true,
+        "rangeStatus": 206,
+        "bytesMatched": 32,
+        "contentRange": "bytes 0-31/205079559",
+        "sha256": "9c00763529bd62dcd2acbe82aa354ff2636b3e132fdb3e09d77c5e7f018bc6db"
+      },
+      {
+        "origin": "http://127.0.0.1:4100",
+        "metadataMatched": true,
+        "rangeStatus": 206,
+        "bytesMatched": 32,
+        "contentRange": "bytes 0-31/205079559",
+        "sha256": "9c00763529bd62dcd2acbe82aa354ff2636b3e132fdb3e09d77c5e7f018bc6db"
+      }
+    ]
+  },
+  "design": {
+    "provider": "OpenAI",
+    "independentAgentVerdict": "PASS",
+    "attempt": 2
+  },
+  "publicDomainDeployed": false
+}

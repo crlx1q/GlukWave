@@ -1,11 +1,13 @@
 import '../l10n/wave_localizations.dart';
 import 'dart:async';
 import 'dart:math';
+import 'dart:io';
 import 'package:audio_service/audio_service.dart';
 import 'package:audio_session/audio_session.dart';
 import 'package:just_audio/just_audio.dart';
 import '../core/api.dart';
 import '../core/models.dart';
+import '../core/equalizer.dart';
 import 'cache.dart';
 
 class WaveAudioHandler extends BaseAudioHandler {
@@ -13,7 +15,17 @@ class WaveAudioHandler extends BaseAudioHandler {
   final MusicCache cache;
   // Native players send authorization headers directly. Android does not need an
   // insecure loopback proxy in release builds.
-  final AudioPlayer player = AudioPlayer(useProxyForRequestHeaders: false);
+  late final AudioPlayer player;
+  final AndroidEqualizer? _equalizer = Platform.isAndroid ? AndroidEqualizer() : null;
+  final AndroidLoudnessEnhancer? _preamp = Platform.isAndroid ? AndroidLoudnessEnhancer() : null;
+  WaveEqualizer _processing = const WaveEqualizer();
+  double _volume = 1, _rate = 1;
+  bool _roomSpeed = false;
+  int _processingRevision = 0;
+  String equalizerStatus = Platform.isAndroid ? 'waiting' : 'unsupported';
+  int hardwareBandCount = 0;
+  double get volume => _volume;
+  bool get equalizerSupported => _equalizer != null;
   List<WaveTrack> tracks = [];
   WaveTrack? current;
   AudioServiceRepeatMode repeat = AudioServiceRepeatMode.none;
@@ -24,9 +36,15 @@ class WaveAudioHandler extends BaseAudioHandler {
   final _random = Random();
   final List<int> _history = [];
   Future<bool> Function(String command, Json payload)? onTransport;
+  Future<bool> Function(WaveTrack track, AudioServiceRepeatMode repeat)? onEnded;
+  void Function()? onProcessingChanged;
   void Function(String message)? onError;
   final List<StreamSubscription<dynamic>> _subscriptions = [];
   WaveAudioHandler(this.api, this.cache) {
+    player = AudioPlayer(
+      useProxyForRequestHeaders: false,
+      audioPipeline: AudioPipeline(androidAudioEffects: [if (_equalizer != null) _equalizer, if (_preamp != null) _preamp]),
+    );
     _subscriptions.add(
       player.playbackEventStream.listen(
         (_) => _broadcast(),
@@ -51,6 +69,76 @@ class WaveAudioHandler extends BaseAudioHandler {
         }
       }),
     );
+  }
+
+  /// Android exposes hardware-defined bands. Interpolate the shared logarithmic
+  /// curve at each real center frequency and obey the device gain limits.
+  Future<void> applyProcessing(WaveEqualizer preference, double rate, {bool inRoom = false}) async {
+    final changed = preference.enabled != _processing.enabled || preference.preamp != _processing.preamp ||
+        !_sameBands(preference.bands, _processing.bands);
+    _processing = preference;
+    _rate = rate.clamp(.5, 2);
+    _roomSpeed = inRoom;
+    if (player.speed != (inRoom ? 1 : _rate)) await player.setSpeed(inRoom ? 1 : _rate);
+    if (changed) await _configureEqualizer();
+  }
+
+  bool _sameBands(List<double> a, List<double> b) => a.length == b.length &&
+      List.generate(a.length, (i) => a[i] == b[i]).every((same) => same);
+
+  Future<void> _configureEqualizer() async {
+    final eq = _equalizer, enhancer = _preamp;
+    if (eq == null || enhancer == null) return;
+    final revision = ++_processingRevision;
+    final preference = _processing;
+    try {
+      await eq.setEnabled(preference.enabled);
+      await enhancer.setEnabled(preference.enabled && preference.preamp > 0);
+      await enhancer.setTargetGain(preference.enabled ? preference.preamp.clamp(0, 12) : 0);
+      await _setOutputVolume();
+      if (current == null || player.processingState == ProcessingState.idle || player.processingState == ProcessingState.loading) {
+        equalizerStatus = 'waiting';
+        onProcessingChanged?.call();
+        return;
+      }
+      final parameters = await eq.parameters.timeout(const Duration(seconds: 5));
+      if (revision != _processingRevision) return;
+      hardwareBandCount = parameters.bands.length;
+      for (final band in parameters.bands) {
+        if (revision != _processingRevision) return;
+        await band.setGain(preference.gainAt(band.centerFrequency).clamp(parameters.minDecibels, parameters.maxDecibels));
+      }
+      if (revision != _processingRevision) return;
+      equalizerStatus = 'ready';
+    } catch (_) {
+      if (revision != _processingRevision) return;
+      equalizerStatus = 'failed';
+      try {
+        await eq.setEnabled(false);
+        await enhancer.setEnabled(false);
+        await player.setVolume(_volume);
+      } catch (_) { }
+    }
+    onProcessingChanged?.call();
+  }
+
+  Future<void> _setOutputVolume() => player.setVolume(_volume *
+      (_equalizer != null && _processing.enabled && equalizerStatus != 'failed'
+          ? pow(10, _processing.preamp.clamp(-12, 0) / 20).toDouble() : 1));
+
+  /// A room revision supersedes an in-flight source lookup before it can start.
+  void cancelPendingLoad() => _loadRevision++;
+
+  Future<void> clear() async {
+    cancelPendingLoad();
+    await player.stop();
+    current = null;
+    tracks = [];
+    _index = -1;
+    cache.activeId = null;
+    mediaItem.add(null);
+    queue.add([]);
+    _broadcast();
   }
   Future<void> initializeSession() async {
     final session = await AudioSession.instance;
@@ -159,6 +247,9 @@ class WaveAudioHandler extends BaseAudioHandler {
       );
     }
     if (revision != _loadRevision) return;
+    await player.setSpeed(_roomSpeed ? 1 : _rate);
+    await _configureEqualizer();
+    if (revision != _loadRevision) return;
     _broadcast();
     if (playing) {
       await _startVerified();
@@ -174,6 +265,8 @@ class WaveAudioHandler extends BaseAudioHandler {
 
   Future<void> _completed() async {
     try {
+      final finished = current;
+      if (finished != null && await onEnded?.call(finished, repeat) == true) return;
       if (repeat == AudioServiceRepeatMode.one && current != null) {
         if (await _intercept('seek', {'position': 0})) return;
         await player.seek(Duration.zero);
@@ -198,7 +291,8 @@ class WaveAudioHandler extends BaseAudioHandler {
           Duration(milliseconds: (number(data['position']) * 1000).round()),
         );
       case 'volume':
-        await player.setVolume(number(data['volume'], .8).clamp(0, 1));
+        _volume = number(data['volume'], .8).clamp(0, 1);
+        await _setOutputVolume();
       case 'next':
         await _skip(1);
       case 'previous':

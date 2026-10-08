@@ -28,7 +28,7 @@ class WaveVisuals extends ThemeExtension<WaveVisuals> {
     Brightness brightness,
   ) {
     final a = customization.appearance;
-    final p = brightness == Brightness.dark ? a.dark : a.light;
+    final p = customization.theme == 'amoled' ? a.amoled : brightness == Brightness.dark ? a.dark : a.light;
     return WaveVisuals(
       background: hexColor(p.bg),
       surface: hexColor(p.surface),
@@ -46,11 +46,8 @@ class WaveVisuals extends ThemeExtension<WaveVisuals> {
   Color get muted => Color.lerp(background, ink, .72)!;
   Color get accentSoft => Color.lerp(background, accent, .18)!;
   Color get line => ink.withValues(alpha: .11);
-  Color get player => brightness == Brightness.dark
-      ? Color.lerp(surface, ink, .03)!
-      : const Color(0xff302f2c);
-  Color get onPlayer =>
-      brightness == Brightness.dark ? ink : const Color(0xffefede3);
+  Color get player => surface;
+  Color get onPlayer => ink;
   double corners([double original = 24]) => radius * original / 24;
   Duration duration(int milliseconds) =>
       Duration(milliseconds: reducedMotion ? 0 : milliseconds);
@@ -116,7 +113,8 @@ ThemeData buildWaveTheme(
     borderRadius: BorderRadius.circular(v.corners(14)),
   );
   return ThemeData(
-    fontFamily: 'Nunito',
+    fontFamily: 'Manrope',
+    fontFamilyFallback: const ['Nunito'],
     useMaterial3: true,
     brightness: brightness,
     extensions: [v],
@@ -151,8 +149,9 @@ ThemeData buildWaveTheme(
         padding: padding,
         shape: shape,
         textStyle: const TextStyle(
-          fontFamily: 'Nunito',
-          fontWeight: FontWeight.w800,
+          fontFamily: 'Manrope',
+          fontFamilyFallback: ['Nunito'],
+          fontWeight: FontWeight.w700,
         ),
       ),
     ),
@@ -204,7 +203,7 @@ ThemeData buildWaveTheme(
     ),
     snackBarTheme: SnackBarThemeData(
       backgroundColor: v.ink,
-      contentTextStyle: TextStyle(fontFamily: 'Nunito', color: v.background),
+      contentTextStyle: TextStyle(fontFamily: 'Manrope', fontFamilyFallback: const ['Nunito'], color: v.background),
       behavior: SnackBarBehavior.floating,
       shape: shape,
     ),

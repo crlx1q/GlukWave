@@ -1,5 +1,6 @@
 import '../l10n/wave_localizations.dart';
 import 'models.dart';
+import 'equalizer.dart';
 
 String normalizeHex(String value) {
   var hex = value.trim().toLowerCase();
@@ -46,8 +47,15 @@ Json unacknowledgedAppearancePatch(Json pending, Json acknowledged) {
 Json presentationPatch(Json changes, WaveCustomization normalized) {
   final settings = normalized.toSettings();
   final result = <String, dynamic>{};
-  for (final key in ['theme', 'reducedMotion', 'language']) {
+  for (final key in ['theme', 'reducedMotion', 'language', 'playbackRate']) {
     if (changes.containsKey(key)) result[key] = settings[key];
+  }
+  if (changes['equalizer'] is Map) {
+    final changed = object(changes['equalizer']);
+    result['equalizer'] = {
+      for (final key in ['enabled', 'preamp', 'bands'])
+        if (changed.containsKey(key)) key: object(settings['equalizer'])[key],
+    };
   }
   if (changes['appearance'] is Map) {
     final changed = object(changes['appearance']);
@@ -63,7 +71,7 @@ Json presentationPatch(Json changes, WaveCustomization normalized) {
         'coverKind',
       ])
         if (changed.containsKey(key)) key: appearance[key],
-      for (final mode in ['light', 'dark'])
+      for (final mode in ['light', 'dark', 'amoled'])
         if (changed[mode] is Map)
           mode: {
             for (final key in ['bg', 'surface', 'ink', 'accent'])
@@ -80,6 +88,7 @@ class WavePalette {
   const WavePalette(this.bg, this.surface, this.ink, this.accent);
   static const light = WavePalette('#efede3', '#f8f7f1', '#302f2c', '#a08369');
   static const dark = WavePalette('#141517', '#202225', '#eeeae3', '#b1a2de');
+  static const amoled = WavePalette('#000000', '#0b0b0b', '#f4f1f7', '#b1a2de');
   Json toJson() => {'bg': bg, 'surface': surface, 'ink': ink, 'accent': accent};
   WavePalette merge(Json values) {
     String color(String key, String fallback) {
@@ -101,13 +110,14 @@ class WavePalette {
 }
 
 class WaveAppearance {
-  final WavePalette light, dark;
+  final WavePalette light, dark, amoled;
   final double radius, speed;
   final bool compact, blur, cover3d;
   final String waveStyle, coverKind;
   const WaveAppearance({
     this.light = WavePalette.light,
     this.dark = WavePalette.dark,
+    this.amoled = WavePalette.amoled,
     this.radius = 24,
     this.speed = 1,
     this.compact = false,
@@ -119,6 +129,7 @@ class WaveAppearance {
   Json toJson() => {
     'light': light.toJson(),
     'dark': dark.toJson(),
+    'amoled': amoled.toJson(),
     'radius': radius,
     'speed': speed,
     'compact': compact,
@@ -130,6 +141,7 @@ class WaveAppearance {
   WaveAppearance merge(Json values) => WaveAppearance(
     light: light.merge(object(values['light'])),
     dark: dark.merge(object(values['dark'])),
+    amoled: amoled.merge(object(values['amoled'])),
     radius: number(values['radius'], radius).clamp(8, 38).toDouble(),
     speed: number(values['speed'], speed).clamp(.3, 2).toDouble(),
     compact: values['compact'] is bool ? values['compact'] as bool : compact,
@@ -149,11 +161,15 @@ class WaveCustomization {
   final String language;
   final WaveAppearance appearance;
   final bool reducedMotion;
+  final WaveEqualizer equalizer;
+  final double playbackRate;
   const WaveCustomization({
     this.theme = 'light',
     this.language = 'auto',
     this.appearance = const WaveAppearance(),
     this.reducedMotion = false,
+    this.equalizer = const WaveEqualizer(),
+    this.playbackRate = 1,
   });
   factory WaveCustomization.fromSettings(Json settings) =>
       const WaveCustomization().merge(settings);
@@ -170,23 +186,34 @@ class WaveCustomization {
         ].contains(settings['language'])
         ? settings['language'] as String
         : language,
-    theme: ['light', 'dark', 'system'].contains(settings['theme'])
+    theme: ['light', 'dark', 'amoled', 'system'].contains(settings['theme'])
         ? settings['theme'] as String
         : theme,
     appearance: appearance.merge(object(settings['appearance'])),
     reducedMotion: settings['reducedMotion'] is bool
         ? settings['reducedMotion'] as bool
         : reducedMotion,
+    equalizer: equalizer.merge(object(settings['equalizer'])),
+    playbackRate: settings['playbackRate'] is num && (settings['playbackRate'] as num).isFinite
+        ? (settings['playbackRate'] as num).toDouble().clamp(.5, 2)
+        : playbackRate,
   );
   Json toSettings() => {
     'language': language,
     'theme': theme,
     'appearance': appearance.toJson(),
     'reducedMotion': reducedMotion,
+    'equalizer': equalizer.toJson(),
+    'playbackRate': playbackRate,
   };
   Json resetPalette(String mode) => {
     'appearance': {
-      mode: (mode == 'dark' ? WavePalette.dark : WavePalette.light).toJson(),
+      mode: (mode == 'amoled'
+              ? WavePalette.amoled
+              : mode == 'dark'
+              ? WavePalette.dark
+              : WavePalette.light)
+          .toJson(),
       'radius': 24,
       'speed': 1,
       'compact': false,

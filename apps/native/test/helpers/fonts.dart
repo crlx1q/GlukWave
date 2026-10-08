@@ -7,12 +7,11 @@ Future<void> loadAppFonts() async {
   final manifest =
       jsonDecode(await rootBundle.loadString('FontManifest.json'))
           as List<dynamic>;
-  final family = manifest.cast<Map<String, dynamic>>().singleWhere(
-    (entry) => entry['family'] == 'Nunito',
-  );
-  final loader = FontLoader('Nunito');
-  for (final face in family['fonts'] as List<dynamic>) {
-    loader.addFont(rootBundle.load(face['asset'] as String));
+  for (final family in manifest.cast<Map<String, dynamic>>().where((entry) => ['Nunito', 'Manrope'].contains(entry['family']))) {
+    final loader = FontLoader(family['family'] as String);
+    for (final face in family['fonts'] as List<dynamic>) {
+      loader.addFont(rootBundle.load(face['asset'] as String));
+    }
+    await loader.load();
   }
-  await loader.load();
 }

@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
+import 'package:audio_service/audio_service.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart' show WidgetsBinding;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -126,6 +127,8 @@ class WaveController extends ChangeNotifier {
       devices = [],
       messages = [];
   Json? room;
+  bool _roomOutputActive = true;
+  int _roomGeneration = 0, _roomSyncGeneration = 0;
   bool loading = true, online = false, connected = false;
   double? uploadProgress;
   String? error, notice, suggestion;
@@ -164,6 +167,21 @@ class WaveController extends ChangeNotifier {
     desktop.addListener(notifyListeners);
     discord.addListener(notifyListeners);
     audio.onError = tell;
+    audio.onProcessingChanged = notifyListeners;
+    audio.onEnded = (track, repeat) async {
+      final active = room;
+      if (active == null) return false;
+      if (canControl && _roomOutputActive && object(active['state'])['trackId'] == track.id) {
+        await emitAck('room:command', {
+          'roomId': active['id'],
+          'command': 'ended',
+          'trackId': track.id,
+          'expectedRevision': _roomRevision,
+          'repeat': repeat == AudioServiceRepeatMode.one ? 'one' : repeat == AudioServiceRepeatMode.all ? 'all' : 'none',
+        });
+      }
+      return true;
+    };
     audio.onTransport = (command, data) async {
       if (room == null || command == 'volume') return false;
       await transport(command, data);
@@ -528,6 +546,8 @@ class WaveController extends ChangeNotifier {
     _applyLanguage();
     cache.limitMB = (settings['cacheLimitMB'] as num?)?.toInt() ?? 1024;
     audio.autoCache = settings['autoCache'] != false;
+    unawaited(audio.applyProcessing(customization.equalizer, customization.playbackRate, inRoom: room != null)
+        .catchError((Object error) { tell(error.toString()); }));
   }
 
   void _appearanceChanged() {
@@ -667,6 +687,7 @@ class WaveController extends ChangeNotifier {
       if (!canControl) {
         throw WaveException(wt('native.131b87ec38'));
       }
+      if (command == 'play' || command == 'track' || command == 'next' || command == 'previous') _roomOutputActive = true;
       await emitAck('room:command', {
         'roomId': room!['id'],
         'command': command,
@@ -867,9 +888,7 @@ class WaveController extends ChangeNotifier {
       notifyListeners();
       if (room != null) {
         unawaited(
-          emitAck('room:join', {
-            'roomId': room!['id'],
-          }).catchError((_) => <String, dynamic>{}),
+          _rejoinRoom().catchError((_) {}),
         );
       }
     });
@@ -956,7 +975,7 @@ class WaveController extends ChangeNotifier {
   PlaybackSnapshot snapshot() => PlaybackSnapshot(
     trackId: audio.current?.id,
     position: audio.player.position.inMilliseconds / 1000,
-    volume: audio.player.volume,
+    volume: audio.volume,
     playing: audio.player.playing,
     queue: audio.tracks.map((t) => t.id).toList(),
     updatedAt: DateTime.now().millisecondsSinceEpoch,
@@ -1046,6 +1065,9 @@ class WaveController extends ChangeNotifier {
 
   Future<void> _deviceCommand(Json data) async {
     final command = data['command'] as String? ?? '';
+    if (data['localOnly'] == true && data['outputActive'] is bool) {
+      _roomOutputActive = data['outputActive'] as bool;
+    }
     if (command == 'track' || command == 'transfer') {
       final id = data['trackId'] as String?;
       if (id == null) throw WaveException(wt('native.27962f8ac9'));
@@ -1093,6 +1115,8 @@ class WaveController extends ChangeNotifier {
         }
         rethrow;
       }
+    } else if (data['localOnly'] == true || command == 'volume') {
+      await audio.localCommand(command, data);
     } else {
       await transport(command, data);
     }
@@ -1136,25 +1160,54 @@ class WaveController extends ChangeNotifier {
 
   Future<void> enterRoom(Json target) async {
     if (room != null) await leaveRoom();
+    final generation = ++_roomGeneration;
+    final session = api.token, origin = api.server;
     room = target;
+    _roomOutputActive = true;
     _roomRevision = -1;
-    messages = objects(
+    _roomSyncGeneration++;
+    audio.cancelPendingLoad();
+    await audio.applyProcessing(customization.equalizer, customization.playbackRate, inRoom: true);
+    final history = objects(
       (await api.call('/api/rooms/${target['id']}/messages'))['messages'],
     );
-    await emitAck('room:join', {'roomId': target['id']});
-    await _roomState({'roomId': target['id'], 'state': target['state']});
+    if (generation != _roomGeneration || session != api.token || origin != api.server || room?['id'] != target['id']) return;
+    messages = history;
+    final joined = await emitAck('room:join', {'roomId': target['id']});
+    if (generation != _roomGeneration || session != api.token || origin != api.server || room?['id'] != target['id']) return;
+    final live = object(joined['room']);
+    if (live.isNotEmpty) room = {...target, ...live};
+    await _roomState({'roomId': target['id'], 'state': room!['state']}, force: true);
     notifyListeners();
+  }
+
+  Future<void> _rejoinRoom() async {
+    final id = room?['id'], generation = _roomGeneration;
+    final session = api.token, origin = api.server;
+    if (id == null) return;
+    final response = await emitAck('room:join', {'roomId': id});
+    if (room?['id'] != id || generation != _roomGeneration || session != api.token || origin != api.server) return;
+    final live = object(response['room']);
+    if (live.isNotEmpty) {
+      room!['members'] = live['members'];
+      await _roomState({'roomId': id, 'state': live['state']}, force: true);
+    }
   }
 
   Future<void> leaveRoom() async {
     if (room == null) return;
     final id = room!['id'];
+    _roomGeneration++;
+    _roomSyncGeneration++;
+    audio.cancelPendingLoad();
     await api.call('/api/rooms/$id/leave', method: 'POST');
     if (socket?.connected == true) await emitAck('room:leave', {'roomId': id});
     room = null;
+    _roomOutputActive = true;
     messages = [];
     _roomRevision = -1;
     await audio.localCommand('pause');
+    await audio.applyProcessing(customization.equalizer, customization.playbackRate);
     await refresh();
   }
 
@@ -1174,19 +1227,25 @@ class WaveController extends ChangeNotifier {
 
   Future<void> roomPermission(String id, bool allowed) async {
     if (room == null) return;
-    await api.call(
+    final roomId = room!['id'];
+    final response = await api.call(
       '/api/rooms/${room!['id']}/members/$id',
       method: 'PATCH',
       data: {'canControl': allowed},
     );
-    room = object((await api.call('/api/rooms/${room!['id']}'))['room']);
+    if (room?['id'] != roomId) return;
+    final changed = object(response['room']);
+    if (changed['members'] is List) room!['members'] = changed['members'];
     notifyListeners();
   }
 
-  Future<void> _roomState(Json update) async {
+  Future<void> _roomState(Json update, {bool force = false}) async {
     if (room == null || update['roomId'] != room!['id']) return;
     final state = PlaybackSnapshot.fromJson(object(update['state']));
-    if (state.revision <= _roomRevision) return;
+    if (state.revision < _roomRevision || (!force && state.revision == _roomRevision)) return;
+    final generation = ++_roomSyncGeneration;
+    final session = api.token, origin = api.server;
+    audio.cancelPendingLoad();
     _roomRevision = state.revision;
     room!['state'] = state.toJson();
     if (update['serverTime'] is num) {
@@ -1195,18 +1254,22 @@ class WaveController extends ChangeNotifier {
           DateTime.now().millisecondsSinceEpoch;
     }
     final activeRoom = room!['id'];
+    bool currentState() => room?['id'] == activeRoom && _roomRevision == state.revision &&
+        generation == _roomSyncGeneration && session == api.token && origin == api.server;
+    if (state.trackId == null) {
+      await audio.clear();
+      if (currentState()) { notifyListeners(); _report(); }
+      return;
+    }
     if (state.trackId != null && state.trackId != audio.current?.id) {
       final target = await requireTrack(state.trackId!);
-      if (room?['id'] != activeRoom || _roomRevision != state.revision) return;
+      if (!currentState()) return;
       if (!target.playable) {
         tell(wt('native.001bce4367', values: {'p0': (target.sourceName)}));
         return;
       }
-      final queue = <WaveTrack>[];
-      for (final id in state.queue) {
-        queue.add(await requireTrack(id));
-      }
-      if (room?['id'] != activeRoom || _roomRevision != state.revision) return;
+      final queue = await Future.wait(state.queue.map(requireTrack));
+      if (!currentState()) return;
       await audio.playTrack(
         target,
         list: queue,
@@ -1214,13 +1277,14 @@ class WaveController extends ChangeNotifier {
           DateTime.now().millisecondsSinceEpoch + _clockOffset,
           duration: target.duration,
         ),
-        playing: state.playing,
+        playing: state.playing && _roomOutputActive,
       );
     }
-    if (room?['id'] != activeRoom || _roomRevision != state.revision) return;
+    if (!currentState()) return;
     await _correctDrift();
-    if (state.playing != audio.player.playing && audio.current != null) {
-      await audio.localCommand(state.playing ? 'play' : 'pause');
+    final shouldPlay = state.playing && _roomOutputActive;
+    if (shouldPlay != audio.player.playing && audio.current != null) {
+      await audio.localCommand(shouldPlay ? 'play' : 'pause');
     }
     if (state.trackId == null) await audio.localCommand('pause');
     notifyListeners();
@@ -1256,6 +1320,10 @@ class WaveController extends ChangeNotifier {
   @override
   void dispose() {
     _disposed = true;
+    _roomGeneration++;
+    _roomSyncGeneration++;
+    audio.cancelPendingLoad();
+    audio.onProcessingChanged = null;
     _localeRequest++;
     waveforms.removeListener(notifyListeners);
     waveforms.dispose();

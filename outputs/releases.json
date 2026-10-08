@@ -6,9 +6,9 @@
       "version": "1.0.0",
       "signature": "debug",
       "channel": "beta",
-      "bytes": 205076410,
-      "sha256": "ce31a4ada3d247545d79aa25513420ce8aeb1ad32d02e188625182c4de632944",
-      "builtAt": "2026-10-07T13:49:18.880Z"
+      "bytes": 205079559,
+      "sha256": "9c00763529bd62dcd2acbe82aa354ff2636b3e132fdb3e09d77c5e7f018bc6db",
+      "builtAt": "2026-10-08T07:36:16.722Z"
     }
   ]
 }

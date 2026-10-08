@@ -3,7 +3,7 @@
  * never inferred from elapsed time. Pointer coordinates are normalized top-left.
  */
 export const BLOOM = {turn:.32,rest:.78,swell:1.1,cap:.55,reach:.32,phase:.8,cell:6} as const;
-export type WavePointer={x:number;y:number;active:number};
+export type WavePointer={x:number;y:number;active:number;vx?:number;vy?:number};
 export const clamp01=(value:number)=>Math.max(0,Math.min(1,value));
 export const smoothstep=(a:number,b:number,value:number)=>{const t=clamp01((value-a)/(b-a));return t*t*(3-2*t);};
 

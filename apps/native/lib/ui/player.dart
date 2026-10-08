@@ -215,7 +215,7 @@ class MiniPlayer extends StatelessWidget {
                               ),
                               Expanded(
                                 child: Slider(
-                                  value: c.audio.player.volume.clamp(0, 1),
+                                  value: c.audio.volume.clamp(0, 1),
                                   onChanged: (value) => _run(
                                     c,
                                     () => c.transport('volume', {
@@ -1030,7 +1030,7 @@ class _PlayerPageState extends State<PlayerPage> {
         content: SizedBox(
           width: 300,
           child: Slider(
-            value: c.audio.player.volume.clamp(0, 1),
+            value: c.audio.volume.clamp(0, 1),
             onChanged: (v) =>
                 _run(c, () => c.transport('volume', {'volume': v})),
           ),

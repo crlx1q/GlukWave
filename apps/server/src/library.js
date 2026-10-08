@@ -11,7 +11,8 @@ export function setupLibrary(app,ctx){
   const trackSchema=z.array(text(200)).max(10000);
   const color=z.string().regex(/^#[0-9a-f]{6}$/i).transform(value=>value.toLowerCase());
   const palette=z.object({bg:color.optional(),surface:color.optional(),ink:color.optional(),accent:color.optional()}).strict();
-  const appearance=z.object({light:palette.optional(),dark:palette.optional(),radius:z.number().int().min(8).max(38).optional(),speed:z.number().finite().min(.3).max(2).optional(),compact:z.boolean().optional(),blur:z.boolean().optional(),waveStyle:z.enum(['silk','particles','bloom']).optional(),cover3d:z.boolean().optional(),coverKind:z.enum(['vinyl','cd']).optional()}).strict();
+  const equalizer=z.object({enabled:z.boolean().optional(),preamp:z.number().finite().min(-12).max(12).optional(),bands:z.array(z.number().finite().min(-12).max(12)).length(10).optional()}).strict();
+  const appearance=z.object({light:palette.optional(),dark:palette.optional(),amoled:palette.optional(),radius:z.number().int().min(8).max(38).optional(),speed:z.number().finite().min(.3).max(2).optional(),compact:z.boolean().optional(),blur:z.boolean().optional(),waveStyle:z.enum(['silk','particles','bloom']).optional(),cover3d:z.boolean().optional(),coverKind:z.enum(['vinyl','cd']).optional()}).strict();
   async function visibleTracks(user){return (await store.list('tracks',t=>t.public||t.uploadedBy===user?.id)).map(t=>ctx.publicTrack(t,user));}
   async function requireTrack(tid,user){const t=await store.get('tracks',tid);if(!await ctx.canAccessTrack(t,user))fail(404,'TRACK_NOT_FOUND','Трек не найден.');return t;}
   ctx.requireTrack=requireTrack;
@@ -48,7 +49,7 @@ export function setupLibrary(app,ctx){
   app.patch('/api/settings',requireAuth,asyncRoute(async(req,res)=>{
     const expectedAccount=req.headers['x-glukwave-account'];
     if(expectedAccount!==undefined&&expectedAccount!==req.auth.user.id)fail(409,'SESSION_CHANGED','Аккаунт изменился. Открой настройки снова.');
-    const b=parse(z.object({autoCache:z.boolean().optional(),cacheLimitMB:z.number().int().min(128).max(req.auth.user.plan==='free'?2048:32768).optional(),lyrics:z.boolean().optional(),discordPresence:z.boolean().optional(),notifications:z.boolean().optional(),language:z.enum(['auto','en','ru','kk','uk','de','es']).optional(),theme:z.enum(['light','dark','system']).optional(),reducedMotion:z.boolean().optional(),appearance:appearance.optional()}).strict(),req.body);
+    const b=parse(z.object({autoCache:z.boolean().optional(),cacheLimitMB:z.number().int().min(128).max(req.auth.user.plan==='free'?2048:32768).optional(),lyrics:z.boolean().optional(),discordPresence:z.boolean().optional(),notifications:z.boolean().optional(),language:z.enum(['auto','en','ru','kk','uk','de','es']).optional(),theme:z.enum(['light','dark','amoled','system']).optional(),reducedMotion:z.boolean().optional(),appearance:appearance.optional(),equalizer:equalizer.optional(),playbackRate:z.number().finite().min(.5).max(2).optional()}).strict(),req.body);
     // Serialize persistence and its notification together so devices receive revisions in order.
     const settings=await ctx.withLock('settings:'+req.auth.user.id,async()=>{
       const saved=await store.update('settings',req.auth.user.id,v=>({...mergeSettings(v||{},b),revision:(Number.isSafeInteger(v?.revision)?v.revision:0)+1}));

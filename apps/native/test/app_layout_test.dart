@@ -207,15 +207,24 @@ void main() {
             reason: 'Settings $value at $width',
           );
           if (value == 'playback') {
-            await tester.tap(find.byKey(const Key('settings-cover-3d')));
+            final cover3d = find.byKey(const Key('settings-cover-3d'));
+            await tester.ensureVisible(cover3d);
+            await tester.pumpAndSettle();
+            await tester.tap(cover3d);
             await tester.pumpAndSettle();
             expect(c.customization.appearance.cover3d, isFalse);
-            await tester.tap(find.byKey(const Key('settings-cover-cd')));
+            final coverCd = find.byKey(const Key('settings-cover-cd'));
+            await tester.ensureVisible(coverCd);
+            await tester.pumpAndSettle();
+            await tester.tap(coverCd);
             await tester.pumpAndSettle();
             expect(c.customization.appearance.coverKind, 'cd');
           }
           if (value == 'hotkeys') {
-            await tester.tap(find.byKey(const Key('settings-hotkeys-toggle')));
+            final hotkeysToggle = find.byKey(const Key('settings-hotkeys-toggle'));
+            await tester.ensureVisible(hotkeysToggle);
+            await tester.pumpAndSettle();
+            await tester.tap(hotkeysToggle);
             await tester.pumpAndSettle();
             expect(c.preferences.getBool('nativeHotkeys'), isFalse);
           }

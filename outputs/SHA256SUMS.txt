@@ -1,0 +1,2 @@
+9c00763529bd62dcd2acbe82aa354ff2636b3e132fdb3e09d77c5e7f018bc6db  GlukWave-android-debug.apk
+792f8b063c4f97f89e4b8c5b3f5f7feb9dd9a793510cb5ca5e0bc31a1516a108  GlukWave-source.zip

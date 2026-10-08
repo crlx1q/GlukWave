@@ -2,7 +2,7 @@ import { t, useLocale, setLanguageChoice } from './locale';
 import { createContext, useCallback, useContext, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from 'react';
 import type { Socket } from 'socket.io-client';
 import { api, errorText, post } from './api';
-import { applyAppearance, mergeSettings, mergeSettingsPatches, normalizeSettings, normalizeSettingsPatch, readLocalSettings, readPendingSettings, writeLocalSettings, writePendingSettings } from './preferences';
+import { applyAppearance, mergeSettings, mergeSettingsPatches, normalizeSettings, normalizeSettingsPatch, readLocalSettings, readPendingSettings, writeLocalSettings, writeConfirmedSettings, writePendingSettings } from './preferences';
 import { clearPrivate, getCacheGeneration, readLibrary, saveLibrary } from './cache';
 import { type Config, type Library, type Settings, type SettingsPatch, type Track, type User } from './types';
 export type Route = 'home'|'search'|'library'|'sources'|'rooms'|'lofi'|'downloads'|'settings'|'profile'|'admin';
@@ -13,7 +13,7 @@ type Store = {
   route:Route; navigate:(route:Route)=>void; query:string; setQuery:(query:string)=>void; source:string; setSource:(source:string)=>void;
   authOpen:boolean; setAuthOpen:(open:boolean)=>void; setUser:(user:User|null)=>void; refresh:()=>Promise<void>; refreshLibrary:()=>Promise<void>;
   notify:(text:string,error?:boolean)=>void; toast:Toast|null; requireAuth:()=>boolean; logout:()=>Promise<void>;
-  saveSettings:(partial:SettingsPatch)=>Promise<void>; bindSettingsSync:(socket:Socket)=>()=>void; settingsSync:'saved'|'saving'|'local'; resolvedTheme:'light'|'dark'; motion:boolean; like:(track:Track)=>Promise<void>; remember:(tracks:Track[])=>void;
+  saveSettings:(partial:SettingsPatch)=>Promise<void>; bindSettingsSync:(socket:Socket)=>()=>void; settingsSync:'saved'|'saving'|'local'; resolvedTheme:'light'|'dark'|'amoled'; motion:boolean; like:(track:Track)=>Promise<void>; remember:(tracks:Track[])=>void;
   run:<T>(operation:()=>Promise<T>,success?:string)=>Promise<T|undefined>;
 };
 const Context = createContext<Store|null>(null);
@@ -69,7 +69,7 @@ export function StoreProvider({children}:{children:ReactNode}) {useLocale();
     if(userRef.current?.id!==id||accountGeneration.current!==generation)return;
     const revision=payload.revision??payload.settings.revision??0;
     if(!Number.isSafeInteger(revision)||revision<serverRevision.current)return;
-    serverRevision.current=revision;settingsServer.current=normalizeSettings(payload.settings);publishSettings(id);
+    serverRevision.current=revision;settingsServer.current=normalizeSettings(payload.settings);writeConfirmedSettings(id,settingsServer.current,revision);publishSettings(id);
   },[publishSettings]);
   const pullSettings=useCallback(async(id:string,generation:number,signal?:AbortSignal)=>{
     const payload=await api<SettingsSnapshot>('/settings',{signal});
@@ -114,10 +114,12 @@ export function StoreProvider({children}:{children:ReactNode}) {useLocale();
   useEffect(()=>{
     const appearance=matchMedia('(prefers-color-scheme: dark)'),motion=matchMedia('(prefers-reduced-motion: reduce)');const update=()=>{setSystemDark(appearance.matches);setSystemMotion(motion.matches);};appearance.addEventListener('change',update);motion.addEventListener('change',update);
     const sync=()=>{const id=userRef.current?.id;if(id&&navigator.onLine&&Object.keys(pendingSettings.current).length)scheduleSettings(id,100);};
-    const storage=(event:StorageEvent)=>{const id=userRef.current?.id||null;if(event.key!==`gw-settings:${id||'guest'}`)return;if(id){void pullSettings(id,accountGeneration.current).catch(()=>{});}else{const next=readLocalSettings(null);settingsServer.current=next;settingsRef.current=next;setSettings(next);}};
+    // Optimistic drafts in another tab are not a server snapshot. Reading them
+    // back through the API causes a ping-pong that resets the save debounce.
+    const storage=(event:StorageEvent)=>{const id=userRef.current?.id||null;if(id){if(event.key!==`gw-settings-confirmed:${id}`||!event.newValue)return;try{const confirmed=JSON.parse(event.newValue) as SettingsSnapshot;if(confirmed.settings&&Number.isSafeInteger(confirmed.revision))acceptSettings(id,accountGeneration.current,confirmed);}catch{/* Ignore invalid local metadata. */}}else if(event.key==='gw-settings:guest'){const next=readLocalSettings(null);settingsServer.current=next;settingsRef.current=next;setSettings(next);}};
     window.addEventListener('online',sync);window.addEventListener('storage',storage);
     return()=>{appearance.removeEventListener('change',update);motion.removeEventListener('change',update);window.removeEventListener('online',sync);window.removeEventListener('storage',storage);clearTimeout(settingsTimer.current);settingsFlight.current?.controller.abort();};
-  },[scheduleSettings,pullSettings]);
+  },[scheduleSettings,pullSettings,acceptSettings]);
   const resolvedTheme=settings.theme==='system'?(systemDark?'dark':'light'):settings.theme,motion=!settings.reducedMotion&&!systemMotion;
   useLayoutEffect(()=>applyAppearance(settings.appearance,resolvedTheme,motion),[settings.appearance,resolvedTheme,motion]);
   const requireAuth=useCallback(()=>{if(!user){setAuthOpen(true);return false;}if(offline){notify(t('copy.729'),true);return false;}return true;},[user,offline,notify]);

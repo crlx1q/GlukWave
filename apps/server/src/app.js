@@ -7,6 +7,8 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import rateLimit from 'express-rate-limit';
 import pino from 'pino';
+import {fileURLToPath} from 'node:url';
+import {consoleStyle} from './console-ui.js';
 import {openStore} from './store.js';
 import {setupAuth} from './auth.js';
 import {setupProviders} from './providers.js';
@@ -24,8 +26,8 @@ import {setupReleases} from './releases.js';
 import {id,now,HttpError} from './util.js';
 
 export async function createApp(config,overrides={}){
-  const log=overrides.log||pino({level:process.env.LOG_LEVEL||'info',redact:{paths:['req.headers.authorization','req.headers.cookie','password','token','secret','mongoUri'],censor:'[hidden]'},...(config.env!=='test'?{transport:{target:'pino-pretty',options:{colorize:true,translateTime:'HH:MM:ss',ignore:'pid,hostname'}}}:{})});
-  const store=overrides.store||await openStore(config),app=express(),server=http.createServer(app),ctx={store,config,log,HttpError};
+  const log=overrides.log||pino({level:process.env.LOG_LEVEL||'info',redact:{paths:['req.headers.authorization','req.headers.cookie','password','token','secret','mongoUri'],censor:'[hidden]'},...(config.env!=='test'&&consoleStyle(config)!=='json'?{transport:{target:fileURLToPath(new URL('./console-transport.js',import.meta.url)),options:{colorize:!process.env.NO_COLOR&&(process.stdout.isTTY||process.env.FORCE_COLOR==='1')}}}:{})});
+  const store=overrides.store||await openStore(config),app=express(),server=http.createServer(app),ctx={store,config,log,HttpError,metrics:{requests:0,failures:0,duration:0}};
   const locks=new Map();
   ctx.withLock=async(key,work)=>{const previous=locks.get(key)||Promise.resolve(),next=previous.then(work,work);const tail=next.catch(()=>{});locks.set(key,tail);try{return await next;}finally{if(locks.get(key)===tail)locks.delete(key);}};
   ctx.quotaRoute=(kind,handler)=>(req,res)=>ctx.withLock(kind+':'+req.auth.user.id,()=>handler(req,res));
@@ -39,7 +41,7 @@ export async function createApp(config,overrides={}){
   setupBillingWebhook(app,ctx);
   app.use(express.json({limit:'256kb'}));app.use(cookieParser());
   app.use('/api',rateLimit({windowMs:60000,limit:300,standardHeaders:'draft-8',legacyHeaders:false,message:{error:{code:'RATE_LIMIT',message:'Слишком много запросов. Подожди минуту.'}}}));
-  app.use('/api',(req,res,next)=>{const start=performance.now();res.on('finish',()=>{if(res.statusCode>=400)log.warn({method:req.method,path:req.path,status:res.statusCode,ms:Math.round(performance.now()-start)},'Request failed');});next();});
+  app.use('/api',(req,res,next)=>{const start=performance.now();res.on('finish',()=>{const elapsed=performance.now()-start;ctx.metrics.requests++;ctx.metrics.duration+=elapsed;if(res.statusCode>=400){ctx.metrics.failures++;log.warn({method:req.method,path:req.path,status:res.statusCode,ms:Math.round(elapsed)},'Request failed');}});next();});
   setupAuth(app,ctx);setupProviders(app,ctx);setupMedia(app,ctx);setupLibrary(app,ctx);setupWaveforms(app,ctx);setupRooms(app,ctx);setupPush(app,ctx);setupAdmin(app,ctx);setupBilling(app,ctx);setupRealtime(server,app,ctx);setupReleases(app,ctx);
   app.get('/api/locale',ctx.getLocale);
   app.get('/api/health',(req,res)=>res.json({status:'ok',storage:config.storage,version:'0.1.0'}));

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -56,6 +57,25 @@ Future<LayoutController> languageController({bool reset = true}) async {
   await c.customize({'reducedMotion': true});
   c.loading = false;
   return c;
+}
+
+void expectWholeLabel(WidgetTester tester, Finder label) {
+  final paragraph = tester.renderObject<RenderParagraph>(label);
+  final text = paragraph.text.toPlainText();
+  final boxes = paragraph.getBoxesForSelection(
+    TextSelection(baseOffset: 0, extentOffset: text.length),
+  );
+  expect(boxes, isNotEmpty, reason: 'Label should have text boxes: $text');
+  final firstTop = boxes.first.top;
+  final firstHeight = boxes.first.bottom - boxes.first.top;
+  final sameLine = boxes.every(
+    (b) => (b.top - firstTop).abs() < (firstHeight > 0 ? firstHeight * 0.5 : 10),
+  );
+  expect(
+    sameLine,
+    isTrue,
+    reason: 'Complete navigation label must occupy one line: $text',
+  );
 }
 
 void main() {
@@ -332,13 +352,26 @@ void main() {
             'playback': {'kind': 'audio'},
           });
           c.tracks = [track];
-          c.audio.tracks = [track];
+          c.audio.tracks = [
+            track,
+            WaveTrack({
+              'id': 'language-queue-next',
+              'title': 'Следующая запись',
+              'artist': 'Автор без перевода',
+              'duration': 181,
+              'playback': {'kind': 'audio'},
+            }),
+          ];
           c.audio.current = track;
           c.audio.mediaItem.add(c.audio.item(track));
           c.render();
           await tester.pumpAndSettle();
           expect(find.text('Вальс №2'), findsWidgets);
           expect(find.text(copy('Главная', language)), findsWidgets);
+          expectWholeLabel(
+            tester,
+            find.text(WaveStrings(language).text('native.90e8504b03')),
+          );
           await screenshot(tester, 'language-home-$language-${width.toInt()}');
           if (width < 900) {
             await tester.tap(find.byKey(const Key('mobile-menu')));
@@ -363,10 +396,37 @@ void main() {
           expect(find.text('Вальс №2'), findsWidgets);
           expect(find.text('Автор без перевода'), findsWidgets);
           expect(find.text('1:20:00'), findsWidgets);
+          for (var i = 0; i < 4; i++) {
+            final label = find.byKey(Key('player-tab-label-$i'));
+            expectWholeLabel(tester, label);
+            final target = find.ancestor(
+              of: label,
+              matching: find.byType(InkWell),
+            );
+            expect(tester.getSize(target).height, greaterThanOrEqualTo(44));
+          }
           await screenshot(
             tester,
             'language-player-$language-${width.toInt()}',
           );
+          if (width == 320 && (language == 'de' || language == 'uk')) {
+            final before = c.audio.current!.id;
+            final strip = find.byKey(const Key('player-tabs-scroll'));
+            expect(strip, findsOneWidget);
+            await tester.drag(strip, const Offset(-160, 0));
+            await tester.pumpAndSettle();
+            expect(c.audio.current!.id, before);
+            final index = language == 'de' ? 2 : 3;
+            final label = find.byKey(Key('player-tab-label-$index'));
+            await tester.ensureVisible(label);
+            await tester.tap(label);
+            await tester.pumpAndSettle();
+            expectWholeLabel(tester, label);
+            await screenshot(
+              tester,
+              'language-player-$language-320-selected-tab',
+            );
+          }
           expect(tester.takeException(), isNull);
           await clean(tester, c);
         },

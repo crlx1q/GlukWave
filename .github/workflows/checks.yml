@@ -3,6 +3,11 @@ on:
   push:
   pull_request:
   workflow_dispatch:
+    inputs:
+      server_url:
+        description: 'GlukWave Server URL'
+        required: false
+        default: 'https://wave.gluk.tech'
 permissions:
   contents: read
 jobs:
@@ -46,25 +51,31 @@ jobs:
       - run: flutter pub get
       - run: flutter analyze --no-pub
       - run: flutter test --no-pub
-      - name: Android debug build
+      - name: Android build
         if: runner.os == 'Linux'
-        run: flutter build apk --debug --dart-define=GLUKWAVE_SERVER=https://wave.gluk.tech
+        run: |
+          flutter build apk --debug --dart-define=GLUKWAVE_SERVER=${{ inputs.server_url || 'https://wave.gluk.tech' }}
+          cp build/app/outputs/flutter-apk/app-debug.apk build/app/outputs/flutter-apk/GlukWave.apk
       - name: Windows release build
         if: runner.os == 'Windows'
-        run: flutter build windows --release --dart-define=GLUKWAVE_SERVER=https://wave.gluk.tech
+        run: |
+          flutter build windows --release --dart-define=GLUKWAVE_SERVER=${{ inputs.server_url || 'https://wave.gluk.tech' }}
+          Compress-Archive -Path build\windows\x64\runner\Release\* -DestinationPath build\windows\x64\runner\GlukWave-windows-x64.zip -Force
       - name: iOS compile without signing
         if: runner.os == 'macOS'
-        run: flutter build ios --release --no-codesign --dart-define=GLUKWAVE_SERVER=https://wave.gluk.tech
+        run: flutter build ios --release --no-codesign --dart-define=GLUKWAVE_SERVER=${{ inputs.server_url || 'https://wave.gluk.tech' }}
       - uses: actions/upload-artifact@v4
         if: runner.os == 'Linux'
         with:
-          name: GlukWave-android-debug
-          path: apps/native/build/app/outputs/flutter-apk/app-debug.apk
+          name: GlukWave-Android-APK
+          path: apps/native/build/app/outputs/flutter-apk/GlukWave.apk
       - uses: actions/upload-artifact@v4
         if: runner.os == 'Windows'
         with:
-          name: GlukWave-windows
-          path: apps/native/build/windows/x64/runner/Release
+          name: GlukWave-Windows-x64
+          path: |
+            apps/native/build/windows/x64/runner/GlukWave-windows-x64.zip
+            apps/native/build/windows/x64/runner/Release/glukwave.exe
       - uses: actions/upload-artifact@v4
         if: runner.os == 'macOS'
         with:

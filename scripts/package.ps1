@@ -12,9 +12,9 @@ function Add-SourceFiles([string]$directory) {
   foreach ($entry in Get-ChildItem -LiteralPath $directory -Force) {
     if ($entry.Attributes -band [System.IO.FileAttributes]::ReparsePoint) { continue }
     if ($entry.PSIsContainer) {
-      if ($entry.Name -in @('node_modules', '.dart_tool', 'build', '.gradle', 'ephemeral', '.idea', '.vscode', '.symlinks', '.originkit')) { continue }
+      if ($entry.Name -in @('node_modules', '.git', '.dart_tool', 'build', '.gradle', 'ephemeral', '.idea', '.vscode', '.symlinks', '.originkit', '__pycache__', '.pytest_cache', 'xcuserdata')) { continue }
       Add-SourceFiles $entry.FullName
-    } elseif ($entry.Name -notmatch '^\.env($|\.)|^\.flutter-plugins|^local\.properties$|^key\.properties$|^Generated\.xcconfig$|^flutter_export_environment\.sh$|\.(jks|keystore|p12)$|\.tsbuildinfo$') {
+    } elseif ($entry.Name -notmatch '^\.env($|\.)|^\.flutter-plugins|^local\.properties$|^key\.properties$|^Generated\.xcconfig$|^flutter_export_environment\.sh$|\.(jks|keystore|p12|pyc|iml|apk|ipa|exe|sqlite|sqlite3|sqlite-wal|sqlite-shm)$|\.tsbuildinfo$') {
       $files.Add($entry.FullName)
     }
   }

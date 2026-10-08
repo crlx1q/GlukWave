@@ -9,6 +9,7 @@ import 'package:qr_flutter/qr_flutter.dart';
 import '../core/controller.dart';
 import '../core/appearance.dart';
 import '../core/models.dart';
+import 'equalizer_panel.dart';
 import '../services/desktop.dart';
 import 'widgets.dart';
 import 'player.dart';
@@ -125,7 +126,7 @@ class _GlukWaveAppState extends State<GlukWaveApp> with WidgetsBindingObserver {
         theme: _light,
         darkTheme: _dark,
         themeMode: switch (customization.theme) {
-          'dark' => ThemeMode.dark,
+          'dark' || 'amoled' => ThemeMode.dark,
           'system' => ThemeMode.system,
           _ => ThemeMode.light,
         },
@@ -447,7 +448,7 @@ class _WaveShellState extends State<WaveShell>
                     excluding: playerVisible,
                     child: IgnorePointer(
                       ignoring: playerVisible,
-                      child: child!,
+                      child: TickerMode(enabled: !playerVisible, child: child!),
                     ),
                   ),
                 ),
@@ -839,7 +840,13 @@ class _WaveShellState extends State<WaveShell>
         : desktop
         ? 86
         : 64,
-    padding: EdgeInsets.symmetric(horizontal: desktop ? 40 : 20),
+    padding: EdgeInsets.symmetric(
+      horizontal: desktop
+          ? 40
+          : MediaQuery.sizeOf(context).width < 360
+          ? 16
+          : 20,
+    ),
     decoration: BoxDecoration(
       border: Border(bottom: BorderSide(color: waveVisuals(context).line)),
     ),
@@ -1581,7 +1588,7 @@ class _WaveShellState extends State<WaveShell>
         wt('native.fb10bb6c43', context: context),
         eyebrow: wt('native.9bd84125bc', context: context),
       ),
-      TextField(
+      if (MediaQuery.sizeOf(context).width < 900) TextField(
         controller: search,
         onChanged: scheduleSearch,
         onSubmitted: (_) => doSearch(),
@@ -2627,7 +2634,7 @@ class _WaveShellState extends State<WaveShell>
                 const Icon(Icons.volume_down_rounded, size: 20),
                 Expanded(
                   child: Slider(
-                    value: c.audio.player.volume.clamp(0, 1),
+                    value: c.audio.volume.clamp(0, 1),
                     onChanged: (v) =>
                         run(c, () => c.transport('volume', {'volume': v})),
                   ),
@@ -3407,7 +3414,10 @@ class _WaveShellState extends State<WaveShell>
           ),
         ],
       ),
-      'playback' => Surface(
+      'playback' => Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        EqualizerPanel(controller: c),
+        const SizedBox(height: 18),
+        Surface(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -3470,6 +3480,7 @@ class _WaveShellState extends State<WaveShell>
           ],
         ),
       ),
+      ]),
       'storage' => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
