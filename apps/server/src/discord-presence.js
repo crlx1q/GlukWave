@@ -7,7 +7,7 @@ import {oauthSettings} from './oauth-config.js';
 // contract for this endpoint: keep it isolated from playback and account auth.
 export const discordScopes='openid sdk.social_layer_presence';
 const api='https://discord.com/api/v10';
-const hasPresence=record=>String(record?.scope||'').split(/\s+/).includes('sdk.social_layer_presence');
+const hasPresence=record=>String(record?.scope||'').split(/\s+/).some(s=>['sdk.social_layer_presence','activities.write'].includes(s));
 const eligible=user=>!!user&&!user.blocked&&planLimits(user).discordPresence;
 const safeImage=value=>{try{const u=new URL(value);if(u.protocol==='https:'&&!u.username&&!u.password&&!/^(localhost|127\.|10\.|192\.168\.|172\.(1[6-9]|2\d|3[01])\.|\[::1\])/.test(u.hostname))return u.href;}catch{}return null;};
 const bounded=value=>String(value||'').replace(/[\u0000-\u001f]/g,' ').slice(0,128);
