@@ -5,7 +5,7 @@ import {oauthSettings} from './oauth-config.js';
 
 // OAuth-authorized headless transport. Discord does not publish a stable REST
 // contract for this endpoint: keep it isolated from playback and account auth.
-export const discordScopes='identify openid sdk.social_layer_presence';
+export const discordScopes='openid sdk.social_layer_presence';
 const api='https://discord.com/api/v10';
 const hasPresence=record=>String(record?.scope||'').split(/\s+/).includes('sdk.social_layer_presence');
 const eligible=user=>!!user&&!user.blocked&&planLimits(user).discordPresence;
