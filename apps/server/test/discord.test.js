@@ -31,7 +31,7 @@ async function fixture(){
  const paid=async auth=>{await service.ctx.store.update('users',auth.user.id,u=>({...u,plan:'beta'}));};
  const linked=async(auth,extra={})=>{const record={id:auth.user.id+':discord',userId:auth.user.id,provider:'discord',providerUserId:identity,username:'listener',displayName:'A listener',avatarUrl:'https://cdn.discordapp.com/embed/avatars/1.png',scope:discordScopes,token:seal({access_token:'oauth-access',refresh_token:'oauth-refresh',scope:discordScopes,expiresAt:time+3600000},config.encryptionKey),...extra};await service.ctx.discordReplaceConnection(auth.user.id,record);};
  const connect=async(auth,kind='web')=>{const socket=io(base,{auth:{token:auth.token,deviceId:auth.user.id+'-'+kind,surfaceId:'main',name:'QA '+kind,kind},transports:['websocket'],reconnection:false});sockets.push(socket);await new Promise((resolve,reject)=>{socket.once('connect',resolve);socket.once('connect_error',reject);});assert((await socket.timeout(3000).emitWithAck('locale:change',{language:'en'})).ok);socket.on('device:command',(command,ack)=>ack({ok:true}));return socket;};
- const track=async(id='track')=>{const t={id,title:'Трек '+id,artist:'Artist',album:'Album',artwork:'https://images.example.test/cover.png',duration:180,source:'soundcloud',sourceUrl:'https://soundcloud.com/qa/'+id,public:true,createdAt:new Date().toISOString(),playback:{kind:'soundcloud',url:'https://soundcloud.com/qa/'+id}};await service.ctx.store.put('tracks',id,t);return t;};
+ const track=async(id='track',changes={})=>{const t={id,title:'Трек '+id,artist:'Artist',album:'Album',artwork:'https://images.example.test/cover.png',duration:180,source:'soundcloud',sourceUrl:'https://soundcloud.com/qa/'+id,public:true,createdAt:new Date().toISOString(),playback:{kind:'soundcloud',url:'https://soundcloud.com/qa/'+id},...changes};await service.ctx.store.put('tracks',id,t);return t;};
  const play=async(socket,changes={})=>{assert((await socket.timeout(3000).emitWithAck('device:state',{...initialState(),trackId:'track',queue:['track'],playing:true,position:25,outputActive:true,...changes})).ok);await service.ctx.discordSync(socket.auth.token===undefined?'':(await service.ctx.authenticate(socket.auth.token)).user.id);};
  return {service,calls,request,register,paid,linked,connect,track,play,base,advance:ms=>{time+=ms;},failure:value=>{failure=value;},tokenFailure:value=>{tokenFailure=value;},identity:value=>{identity=value;},hold:promise=>{hold=promise;},async close(){hold=null;failure=null;tokenFailure=null;for(const socket of sockets)socket.disconnect();await service.close();assert(directory.startsWith(qa+path.sep));await fs.rm(directory,{recursive:true,force:true,maxRetries:5,retryDelay:100});}};
 }
@@ -113,4 +113,18 @@ test('Listen together requires consent, friends and live host; then ordinary Jam
  assert(ready.data.room.members.some(member=>member.userId===guest.user.id));const guestSocket=await f.connect(guest);assert((await guestSocket.timeout(3000).emitWithAck('room:join',{roomId:ready.data.room.id})).ok);
  assert.equal((await f.request('/jams/'+ready.data.room.id+'/join',guest,{})).status,200);
  await f.request('/discord',host,{allowJoin:false},'PATCH');assert.equal((await f.request(url,guest,{})).status,404);assert.equal((await f.request('/discord',host)).data.activity.joinUrl,null);
+}finally{await f.close();}});
+
+test('Device state reports detected track duration and publishes end timestamp to Discord',async()=>{const f=await fixture();try{
+ const user=await f.register('ytuser');await f.paid(user);await f.linked(user);
+ await f.track('yt-1',{duration:0,source:'youtube'});
+ const socket=await f.connect(user);
+ await socket.timeout(3000).emitWithAck('device:state',{...initialState(),trackId:'yt-1',queue:['yt-1'],playing:true,position:10,duration:240,outputActive:true});
+ await f.service.ctx.discordSync(user.user.id);
+ const stored=await f.service.ctx.store.get('tracks','yt-1');
+ assert.equal(stored.duration,240);
+ const publishCalls=f.calls.filter(c=>c.url.endsWith('/headless-sessions'));
+ assert(publishCalls.length>0);
+ const act=publishCalls.at(-1).body.activities[0];
+ assert.ok(act.timestamps.end);
 }finally{await f.close();}});

@@ -38,8 +38,8 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
   useEffect(()=>()=>{loadRevision.current++;loadAbort.current?.abort();outputHereRef.current=false;audio.pause();audio.removeAttribute('src');audio.load();controller.current?.destroy?.();controller.current=null;const meter=audioMeter.current;audioMeter.current=null;if(meter)void meter.context.close().catch(()=>{});},[audio]);
   useEffect(()=>{if(socket?.connected)socket.emit('locale:change',{language:locale.language});},[socket,locale.language]);
   const setFull=useCallback((open:boolean,tab:PlayerTab='player')=>{setFullTab(tab);setRevealProgress(null);setFullState(open);},[]);
-  const networkDelay=useRef(0);const stateRef=useRef(state),trackRef=useRef(track),playbackRef=useRef(playback),queueRef=useRef(queue),roomRef=useRef(room),controller=useRef<EmbedController|null>(null),objectUrl=useRef<string|null>(null),artworkObjectUrl=useRef<string|null>(null),loadRevision=useRef(0),roomRevision=useRef(-1),roomSyncVersion=useRef(0),roomJoinVersion=useRef(0),desiredPlay=useRef(false),desiredPosition=useRef(0),settingsRef=useRef(store.settings),userRef=useRef(store.user),repeatRef=useRef(repeat),shuffleRef=useRef(shuffle);
-  stateRef.current=state;trackRef.current=track;queueRef.current=queue;roomRef.current=room;settingsRef.current=store.settings;userRef.current=store.user;repeatRef.current=repeat;shuffleRef.current=shuffle;
+  const networkDelay=useRef(0);const stateRef=useRef(state),trackRef=useRef(track),playbackRef=useRef(playback),queueRef=useRef(queue),roomRef=useRef(room),controller=useRef<EmbedController|null>(null),objectUrl=useRef<string|null>(null),artworkObjectUrl=useRef<string|null>(null),loadRevision=useRef(0),roomRevision=useRef(-1),roomSyncVersion=useRef(0),roomJoinVersion=useRef(0),desiredPlay=useRef(false),desiredPosition=useRef(0),settingsRef=useRef(store.settings),userRef=useRef(store.user),repeatRef=useRef(repeat),shuffleRef=useRef(shuffle),durationRef=useRef(duration);
+  stateRef.current=state;trackRef.current=track;queueRef.current=queue;roomRef.current=room;settingsRef.current=store.settings;userRef.current=store.user;repeatRef.current=repeat;shuffleRef.current=shuffle;durationRef.current=duration;
   const update=useCallback((partial:Partial<PlayerState>)=>{const next={...stateRef.current,...partial,updatedAt:Date.now(),revision:stateRef.current.revision+1};if(partial.volume!==undefined)saveVolume(next.volume);stateRef.current=next;setState(next);},[]);
   const roomOutputActive=useRef(true);
   useEffect(()=>{const graph=audioMeter.current?.graph;if(graph)configureEqualizer(graph,store.settings.equalizer);audio.playbackRate=room?1:store.settings.playbackRate;},[audio,room?.id,store.settings.equalizer,store.settings.playbackRate]);
@@ -110,7 +110,7 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
         if(!roomRef.current&&socket?.connected&&!connectRef.current?.activeDeviceId){const result=await socket.timeout(8000).emitWithAck('device:claim',{});if(result.error)throw new Error(result.error.message);setOutput(true);}
         if(!playbackRef.current&&trackRef.current&&next.command==='play')await applyTrackRef.current(trackRef.current,queueRef.current,true,stateRef.current.position);
         else await applyCommandRef.current(next);
-        if(socket?.connected)socket.emit('device:state',{...stateRef.current,outputActive:outputHereRef.current,roomId:null});
+        if(socket?.connected){const dur=durationRef.current>0?durationRef.current:(trackRef.current?.duration||0);socket.emit('device:state',{...stateRef.current,duration:dur>0?dur:undefined,outputActive:outputHereRef.current,roomId:null});}
       }
     }catch(error){store.notify(errorText(error),true);if(strict)throw error;}
   },[socket,store.notify,setOutput]);
@@ -128,7 +128,7 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
     try{if(roomRef.current||connectRef.current&&!connectRef.current.independent&&!outputHereRef.current)await command({command:'track',trackId:next.id,queue:(order||[next]).map(item=>item.id)});else {
       if(socket?.connected&&!connectRef.current?.activeDeviceId){const result=await socket.timeout(8000).emitWithAck('device:claim',{});if(result.error)throw new Error(result.error.message);setOutput(true);}
       await applyTrack(next,order);
-      if(socket?.connected)socket.emit('device:state',{...stateRef.current,outputActive:true,roomId:null});
+      if(socket?.connected){const dur=durationRef.current>0?durationRef.current:(trackRef.current?.duration||0);socket.emit('device:state',{...stateRef.current,duration:dur>0?dur:undefined,outputActive:true,roomId:null});}
     }}catch(error){store.notify(errorText(error),true);}
   },[applyTrack,command,socket,setOutput,store.notify]);
   const finish=useCallback(()=>{
@@ -232,7 +232,7 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
     connection.on('disconnect',()=>{setConnectionStatus(navigator.onLine?'connecting':'offline');if(roomRef.current){setOutput(false);roomOutputActive.current=false;desiredPlay.current=false;audio.pause();controller.current?.pause();}});
     connection.on('devices:changed',reloadDevices);
     connection.on('connect_error',()=>{setConnectionStatus(navigator.onLine?'connecting':'offline');if(navigator.onLine)reportError('Realtime connection failed','socket',{code:'CONNECT_ERROR'});});
-    const emitState=()=>{if(connection.connected&&(outputHereRef.current||roomRef.current))connection.emit('device:state',{...stateRef.current,playing:outputHereRef.current&&stateRef.current.playing,outputActive:outputHereRef.current,roomId:roomRef.current?.id||null});};
+    const emitState=()=>{if(connection.connected&&(outputHereRef.current||roomRef.current)){const dur=durationRef.current>0?durationRef.current:(trackRef.current?.duration||0);connection.emit('device:state',{...stateRef.current,duration:dur>0?dur:undefined,playing:outputHereRef.current&&stateRef.current.playing,outputActive:outputHereRef.current,roomId:roomRef.current?.id||null});}};
     connection.on('device:command',async(payload:Command,ack?:(result:unknown)=>void)=>{try{
       if(payload.roomId&&roomRef.current?.id!==payload.roomId)await adoptRoomRef.current(payload.roomId,true);
       else if(payload.roomId===null&&roomRef.current)clearRoom();
@@ -261,7 +261,7 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
   },[clearRoom,clearPlayback]);
   const updateRoomMembers=useCallback((roomId:string,members:Room['members'])=>{if(roomRef.current?.id===roomId){roomRef.current={...roomRef.current,members};setRoom(roomRef.current);}},[]);
   const embedReady=useCallback((embed:EmbedController)=>{if(!outputHereRef.current){embed.pause();embed.destroy?.();return;}controller.current=embed;const position=stateRef.current.position||desiredPosition.current;if(position)embed.seek(position);embed.volume?.(stateRef.current.volume);if(desiredPlay.current)Promise.resolve(embed.play()).catch(()=>{setAutoplayBlocked(true);store.notify(t('copy.722'));});},[store.notify]);
-  const embedUpdate=useCallback((position:number,playing:boolean,total?:number)=>{if(!outputHereRef.current)return;update({position,playing});if(playing)setAutoplayBlocked(false);if(total&&Number.isFinite(total))setDuration(total);},[update]);
+  const embedUpdate=useCallback((position:number,playing:boolean,total?:number)=>{if(!outputHereRef.current)return;update({position,playing});if(playing)setAutoplayBlocked(false);if(total&&Number.isFinite(total)&&total>0){durationRef.current=total;setDuration(total);}},[update]);
   const removeQueue=useCallback((id:string)=>{const remaining=queueRef.current.filter(item=>item.id!==id);if(roomRef.current){void command({command:'seek',position:stateRef.current.position,queue:remaining.map(item=>item.id)});return;}setQueue(remaining);queueRef.current=remaining;update({queue:remaining.map(item=>item.id)});},[update,command]);
   const channel=useMemo(()=>new BroadcastChannel(`glukwave-mini-${surfaceId}`),[]);
   const [miniActive,setMiniActive]=useState(false),miniWindow=useRef<Window|null>(null);

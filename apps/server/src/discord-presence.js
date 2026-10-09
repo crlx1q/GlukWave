@@ -73,7 +73,17 @@ export async function setupDiscord(app,ctx,fetchImpl=fetch,options={}){
  async function view(uid){
   const output=await ctx.discordOutput?.(uid),connect=output?.connect,track=connect?.track,state=connect?.state;
   if(!track||!state||!connect.activeDeviceId)return {activity:null,device:null};
-  const duration=Math.max(0,Number(track.duration)||0),position=Math.min(duration||86400,Math.max(0,state.position||0));
+  let duration=Math.max(0,Number(track.duration)||0);
+  if(duration<=0&&track.source==='youtube'&&track.sourceId&&config.youtubeKey){
+    try{
+      const remote=ctx.providerRemoteJson||fetchImpl;
+      const vr=await remote(`https://www.googleapis.com/youtube/v3/videos?${new URLSearchParams({part:'contentDetails',id:track.sourceId,key:config.youtubeKey})}`).then(r=>r?.json?r.json():r).catch(()=>null);
+      const m=String(vr?.items?.[0]?.contentDetails?.duration||'').match(/PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/);
+      const d=m?Number(m[1]||0)*3600+Number(m[2]||0)*60+Number(m[3]||0):0;
+      if(d>0){duration=d;await store.update('tracks',track.id,v=>v?{...v,duration:d}:v);}
+    }catch{}
+  }
+  const position=Math.min(duration||86400,Math.max(0,state.position||0));
   const record=await store.get('connections',`${uid}:discord`),user=await store.get('users',uid),playing=!!state.playing&&(!duration||position<duration);
   const trackUrl=new URL(`/app/?track=${encodeURIComponent(track.id)}`,config.appUrl).href;
   const canHost=!connect.roomId||connect.room?.type==='jam'&&connect.room.ownerId===uid;
