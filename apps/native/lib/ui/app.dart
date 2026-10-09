@@ -24,6 +24,7 @@ export 'auth_page.dart' show AuthPage;
 import 'desktop_player.dart';
 import 'provider_host.dart';
 import 'connect_panel.dart';
+import 'discord_panel.dart';
 import 'sessions_panel.dart';
 import 'device_labels.dart';
 import 'listening_rail.dart';
@@ -59,7 +60,9 @@ List<String> get pageLabels => [
   wt('native.eb0b9b0d90'),
   wt('native.7f17c7c62a'),
   wt('native.5a214bdfe9'),
-  ptLabel('Friends'), ptLabel('Artists'), ptLabel('Discover playlists'),
+  ptLabel('Friends'),
+  ptLabel('Artists'),
+  ptLabel('Discover playlists'),
 ];
 String ptLabel(String key) => parityLabel(WaveStrings.current.language, key);
 const pageIcons = [
@@ -173,7 +176,10 @@ class _GlukWaveAppState extends State<GlukWaveApp> with WidgetsBindingObserver {
         scaffoldMessengerKey: messenger,
         builder: (context, child) => MediaQuery(
           data: MediaQuery.of(context).copyWith(
-            textScaler: TextScaler.linear(MediaQuery.textScalerOf(context).scale(1) * customization.fontScale),
+            textScaler: TextScaler.linear(
+              MediaQuery.textScalerOf(context).scale(1) *
+                  customization.fontScale,
+            ),
             disableAnimations:
                 MediaQuery.disableAnimationsOf(context) ||
                 customization.reducedMotion,
@@ -302,7 +308,11 @@ class _WaveShellState extends State<WaveShell>
     paritySocket?.on('friends:changed', friendsChanged);
     paritySocket?.on('taste:changed', tasteChanged);
   }
-  void parityChanged() { if (mounted) setState(() {}); }
+
+  void parityChanged() {
+    if (mounted) setState(() {});
+  }
+
   @override
   void initState() {
     super.initState();
@@ -919,7 +929,9 @@ class _WaveShellState extends State<WaveShell>
         if (!desktop)
           Brand(
             size: 29,
-            compact: MediaQuery.sizeOf(context).width < 360 || MediaQuery.textScalerOf(context).scale(1) > 1.1,
+            compact:
+                MediaQuery.sizeOf(context).width < 360 ||
+                MediaQuery.textScalerOf(context).scale(1) > 1.1,
             animated: c.settings['reducedMotion'] != true,
           ),
         if (desktop)
@@ -1141,7 +1153,11 @@ class _WaveShellState extends State<WaveShell>
       WavePage.profile => profile(),
       WavePage.settings => settingsPage(),
       WavePage.admin => AdminPage(controller: c),
-      WavePage.friends => FriendsPage(controller: c, parity: parity, onRoom: () => navigate(WavePage.rooms)),
+      WavePage.friends => FriendsPage(
+        controller: c,
+        parity: parity,
+        onRoom: () => navigate(WavePage.rooms),
+      ),
       WavePage.artists => ArtistBrowse(controller: c),
       WavePage.discover => PublicPlaylists(controller: c),
     };
@@ -1204,7 +1220,27 @@ class _WaveShellState extends State<WaveShell>
             label: Text(wt('native.642fcf95d9', context: context)),
           ),
         ),
-        Wrap(spacing: 8, runSpacing: 8, children: [for (final entry in {'personal': 'Personal', 'relax': 'Relax', 'focus': 'Focus', 'energy': 'Energy', 'dream': 'Dream'}.entries) ChoiceChip(label: Text(pt(context, entry.value)), selected: mood == entry.key, onSelected: (_) { setState(() => mood = entry.key); unawaited(parity.load(mood: mood)); })]),
+        Wrap(
+          spacing: 8,
+          runSpacing: 8,
+          children: [
+            for (final entry in {
+              'personal': 'Personal',
+              'relax': 'Relax',
+              'focus': 'Focus',
+              'energy': 'Energy',
+              'dream': 'Dream',
+            }.entries)
+              ChoiceChip(
+                label: Text(pt(context, entry.value)),
+                selected: mood == entry.key,
+                onSelected: (_) {
+                  setState(() => mood = entry.key);
+                  unawaited(parity.load(mood: mood));
+                },
+              ),
+          ],
+        ),
         const SizedBox(height: 16),
         WaveHero(
           controller: c,
@@ -1218,11 +1254,41 @@ class _WaveShellState extends State<WaveShell>
                   () => c.play((local.toList()..shuffle()).first, list: local),
                 ),
         ),
-        if (parity.loading) const Padding(padding: EdgeInsets.only(top: 16), child: LinearProgressIndicator(minHeight: 2)),
-        if (parity.error != null) Padding(padding: const EdgeInsets.only(top: 12), child: Row(children: [Expanded(child: Text(pt(context, 'Unavailable detail'), style: TextStyle(color: waveVisuals(context).muted, fontSize: 12))), TextButton(onPressed: () => parity.load(mood: mood), child: Text(pt(context, 'Retry')))])),
-        if (local.isNotEmpty) ...[section(pt(context, 'Personal')), tracksList(local.take(5).toList())],
+        if (parity.loading)
+          const Padding(
+            padding: EdgeInsets.only(top: 16),
+            child: LinearProgressIndicator(minHeight: 2),
+          ),
+        if (parity.error != null)
+          Padding(
+            padding: const EdgeInsets.only(top: 12),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    pt(context, 'Unavailable detail'),
+                    style: TextStyle(
+                      color: waveVisuals(context).muted,
+                      fontSize: 12,
+                    ),
+                  ),
+                ),
+                TextButton(
+                  onPressed: () => parity.load(mood: mood),
+                  child: Text(pt(context, 'Retry')),
+                ),
+              ],
+            ),
+          ),
+        if (local.isNotEmpty) ...[
+          section(pt(context, 'Personal')),
+          tracksList(local.take(5).toList()),
+        ],
         const SizedBox(height: 24),
-        TasteInvitation(parity: parity, onOpen: () => openTaste(context, c, parity)),
+        TasteInvitation(
+          parity: parity,
+          onOpen: () => openTaste(context, c, parity),
+        ),
         LayoutBuilder(
           builder: (context, constraints) {
             final cardWidth = constraints.maxWidth < 450
@@ -1491,7 +1557,11 @@ class _WaveShellState extends State<WaveShell>
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    PlaylistArtwork(controller: c, playlist: playlist, size: width),
+                    PlaylistArtwork(
+                      controller: c,
+                      playlist: playlist,
+                      size: width,
+                    ),
                     const SizedBox(height: 10),
                     Text(
                       playlist['name'] as String,
@@ -1577,7 +1647,12 @@ class _WaveShellState extends State<WaveShell>
               icon: const Icon(Icons.add_rounded, size: 17),
               label: Text(wt('native.99855bf52d', context: context)),
             ),
-            if (selectedPlaylist == null) OutlinedButton.icon(onPressed: () => navigate(WavePage.discover), icon: const Icon(Icons.explore_outlined), label: Text(pt(context, 'Discover playlists'))),
+            if (selectedPlaylist == null)
+              OutlinedButton.icon(
+                onPressed: () => navigate(WavePage.discover),
+                icon: const Icon(Icons.explore_outlined),
+                label: Text(pt(context, 'Discover playlists')),
+              ),
             OutlinedButton.icon(
               onPressed: c.online ? newPlaylist : null,
               icon: const Icon(Icons.queue_music, size: 17),
@@ -1609,7 +1684,17 @@ class _WaveShellState extends State<WaveShell>
           )
         else
           tracksList(items),
-        if (selectedPlaylist != null) ...[const SizedBox(height: 24), PlaylistPublishing(controller: c, playlist: selectedPlaylist!, onChanged: (value) { if (mounted) setState(() => selectedPlaylist = value); }), const SizedBox(height: 16)],
+        if (selectedPlaylist != null) ...[
+          const SizedBox(height: 24),
+          PlaylistPublishing(
+            controller: c,
+            playlist: selectedPlaylist!,
+            onChanged: (value) {
+              if (mounted) setState(() => selectedPlaylist = value);
+            },
+          ),
+          const SizedBox(height: 16),
+        ],
         if (selectedPlaylist != null)
           Wrap(
             spacing: 12,
@@ -2755,7 +2840,8 @@ class _WaveShellState extends State<WaveShell>
                         ],
                       ),
                     ),
-                    if (c.room!['type'] != 'jam' && c.room!['ownerId'] == c.user!.id &&
+                    if (c.room!['type'] != 'jam' &&
+                        c.room!['ownerId'] == c.user!.id &&
                         member['userId'] != c.user!.id)
                       Switch(
                         value: member['canControl'] == true,
@@ -3250,29 +3336,30 @@ class _WaveShellState extends State<WaveShell>
               ),
             ),
             const SizedBox(height: 18),
-            if (c.user!.plan != 'beta') OutlinedButton.icon(
-              onPressed: object(c.config['billing'])['configured'] == true
-                  ? () => run(c, () async {
-                      final response = await c.api.call(
-                        c.user!.plan == 'unbound'
-                            ? '/api/billing/portal'
-                            : '/api/billing/checkout',
-                        method: 'POST',
-                        data: {},
-                      );
-                      await c.openUrl(response['url'] as String);
-                      c.tell(wt('native.ec812a93fb'));
-                    })
-                  : null,
-              icon: const Icon(Icons.auto_awesome_outlined, size: 18),
-              label: Text(
-                object(c.config['billing'])['configured'] == true
-                    ? c.user!.plan == 'unbound'
-                          ? wt('native.f545f066e3', context: context)
-                          : wt('native.52acff18e2', context: context)
-                    : wt('native.f7b2846451', context: context),
+            if (c.user!.plan != 'beta')
+              OutlinedButton.icon(
+                onPressed: object(c.config['billing'])['configured'] == true
+                    ? () => run(c, () async {
+                        final response = await c.api.call(
+                          c.user!.plan == 'unbound'
+                              ? '/api/billing/portal'
+                              : '/api/billing/checkout',
+                          method: 'POST',
+                          data: {},
+                        );
+                        await c.openUrl(response['url'] as String);
+                        c.tell(wt('native.ec812a93fb'));
+                      })
+                    : null,
+                icon: const Icon(Icons.auto_awesome_outlined, size: 18),
+                label: Text(
+                  object(c.config['billing'])['configured'] == true
+                      ? c.user!.plan == 'unbound'
+                            ? wt('native.f545f066e3', context: context)
+                            : wt('native.52acff18e2', context: context)
+                      : wt('native.f7b2846451', context: context),
+                ),
               ),
-            ),
           ],
         ),
       ),
@@ -3440,16 +3527,21 @@ class _WaveShellState extends State<WaveShell>
                   color: settingsSection == item.key ? v.ink : v.muted,
                 ),
                 const SizedBox(width: 10),
-                ConstrainedBox(constraints: BoxConstraints(maxWidth: desktop ? 128 : double.infinity), child: Text(
-                  item.value.$1,
-                  style: TextStyle(
-                    fontSize: 12,
-                    fontWeight: settingsSection == item.key
-                        ? FontWeight.w800
-                        : FontWeight.w600,
-                    color: settingsSection == item.key ? v.ink : v.muted,
+                ConstrainedBox(
+                  constraints: BoxConstraints(
+                    maxWidth: desktop ? 128 : double.infinity,
                   ),
-                )),
+                  child: Text(
+                    item.value.$1,
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: settingsSection == item.key
+                          ? FontWeight.w800
+                          : FontWeight.w600,
+                      color: settingsSection == item.key ? v.ink : v.muted,
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
@@ -3508,13 +3600,28 @@ class _WaveShellState extends State<WaveShell>
   Widget settingsDetail() {
     final v = waveVisuals(context), appearance = c.customization.appearance;
     return switch (settingsSection) {
-      'taste' => Surface(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [PageHeading(pt(context, 'Taste'), pt(context, 'Taste subtitle')), FilledButton.icon(onPressed: () => openTaste(context, c, parity), icon: const Icon(Icons.waves_rounded), label: Text(pt(context, 'Start')))])),
+      'taste' => Surface(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            PageHeading(pt(context, 'Taste'), pt(context, 'Taste subtitle')),
+            FilledButton.icon(
+              onPressed: () => openTaste(context, c, parity),
+              icon: const Icon(Icons.waves_rounded),
+              label: Text(pt(context, 'Start')),
+            ),
+          ],
+        ),
+      ),
       'privacy' => PrivacyPanel(controller: c),
       'appearance' => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (c.appearanceStore != null)
-            AppearanceEntry(store: c.appearanceStore!, advancedAllowed: c.user?.plan != 'free'),
+            AppearanceEntry(
+              store: c.appearanceStore!,
+              advancedAllowed: c.user?.plan != 'free',
+            ),
           const SizedBox(height: 18),
           TypographyPanel(controller: c),
           const SizedBox(height: 18),
@@ -3544,7 +3651,11 @@ class _WaveShellState extends State<WaveShell>
                 const Divider(height: 32),
                 settingSwitch(pt(context, 'Comments'), '', 'comments'),
                 const Divider(height: 32),
-                settingSwitch(pt(context, 'Lyrics under cover'), '', 'lyricsUnderCover'),
+                settingSwitch(
+                  pt(context, 'Lyrics under cover'),
+                  '',
+                  'lyricsUnderCover',
+                ),
                 const Divider(height: 32),
                 SwitchListTile(
                   key: const Key('settings-cover-3d'),
@@ -3691,76 +3802,9 @@ class _WaveShellState extends State<WaveShell>
       'connections' => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          DiscordPanel(controller: c),
+          const SizedBox(height: 24),
           sourcesPage(),
-          const SizedBox(height: 20),
-          Surface(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                settingSwitch(
-                  'Discord Rich Presence',
-                  Platform.isWindows
-                      ? c.discord.status
-                      : wt('native.f73970e14f', context: context),
-                  'discordPresence',
-                ),
-                const SizedBox(height: 14),
-                OutlinedButton.icon(
-                  onPressed:
-                      c.online &&
-                          c.integrations.any(
-                            (entry) =>
-                                entry['provider'] == 'discord' &&
-                                entry['configured'] == true,
-                          )
-                      ? () => run(c, () => c.connectProvider('discord'))
-                      : null,
-                  icon: const Icon(Icons.link_rounded, size: 17),
-                  label: Text(wt('native.2b03969a67', context: context)),
-                ),
-                if (Platform.isWindows) ...[
-                  TextButton(
-                    onPressed:
-                        (object(c.config['discord'])['clientId'] as String? ??
-                                '')
-                            .isEmpty
-                        ? null
-                        : () => run(
-                            c,
-                            () => c.discord.connect(
-                              object(c.config['discord'])['clientId'] as String,
-                            ),
-                          ),
-                    child: Text(wt('native.576be5b21a', context: context)),
-                  ),
-                  const Divider(height: 32),
-                  SwitchListTile(
-                    contentPadding: EdgeInsets.zero,
-                    title: Text(wt('native.d9b1f7556f', context: context)),
-                    subtitle: Text(wt('native.27b6476a48', context: context)),
-                    value: c.presenceBridge.enabled,
-                    onChanged: (value) =>
-                        run(c, () => c.togglePresenceBridge(value)),
-                  ),
-                  if (c.presenceBridge.enabled) ...[
-                    const SizedBox(height: 12),
-                    SelectableText(
-                      c.bridgePairing,
-                      style: TextStyle(color: v.muted, fontSize: 11),
-                    ),
-                    TextButton.icon(
-                      onPressed: () {
-                        Clipboard.setData(ClipboardData(text: c.bridgePairing));
-                        c.tell(wt('native.296b28d576', context: context));
-                      },
-                      icon: const Icon(Icons.copy_rounded, size: 17),
-                      label: Text(wt('native.bc56422bc2', context: context)),
-                    ),
-                  ],
-                ],
-              ],
-            ),
-          ),
         ],
       ),
       'notifications' => Surface(
@@ -3783,7 +3827,13 @@ class _WaveShellState extends State<WaveShell>
         ),
       ),
       'devices' => devicesPage(),
-      'security' => Column(children: [SessionsPanel(controller: c), const SizedBox(height: 18), AccountActions(controller: c)]),
+      'security' => Column(
+        children: [
+          SessionsPanel(controller: c),
+          const SizedBox(height: 18),
+          AccountActions(controller: c),
+        ],
+      ),
       'hotkeys' => Surface(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

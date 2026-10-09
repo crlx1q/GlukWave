@@ -66,6 +66,7 @@ export function setupLibrary(app,ctx){
   app.patch('/api/settings',requireAuth,asyncRoute(async(req,res)=>{
     const expectedAccount=req.headers['x-glukwave-account'];
     if(expectedAccount!==undefined&&expectedAccount!==req.auth.user.id)fail(409,'SESSION_CHANGED','Аккаунт изменился. Открой настройки снова.');
+    if(req.body?.discordPresence===true&&!planLimits(req.auth.user).discordPresence)fail(403,'PLAN_LIMIT','Discord доступен в Beta и Unbound.');
     const b=parse(z.object({autoCache:z.boolean().optional(),cacheLimitMB:z.number().int().min(128).max(req.auth.user.plan==='free'?2048:32768).optional(),lyrics:z.boolean().optional(),comments:z.boolean().optional(),lyricsUnderCover:z.boolean().optional(),fontFamily:z.enum(['manrope','nunito','system']).optional(),fontScale:z.number().finite().min(.85).max(1.25).optional(),discordPresence:z.boolean().optional(),notifications:z.boolean().optional(),language:z.enum(['auto','en','ru','kk','uk','de','es']).optional(),theme:z.enum(['light','dark','amoled','system']).optional(),reducedMotion:z.boolean().optional(),appearance:appearance.optional(),equalizer:equalizer.optional(),playbackRate:z.number().finite().min(.5).max(2).optional()}).strict(),req.body);
     // Serialize persistence and its notification together so devices receive revisions in order.
     const settings=await ctx.withLock('settings:'+req.auth.user.id,async()=>{
@@ -74,6 +75,7 @@ export function setupLibrary(app,ctx){
       ctx.io?.to(`user:${req.auth.user.id}`).emit('settings:changed',{settings:saved,revision:saved.revision});
       return saved;
     });
+    if(b.discordPresence!==undefined)ctx.discordPlaybackChanged?.(req.auth.user.id);
     res.json({settings});
   }));
   app.get('/api/profile/:id',asyncRoute(async(req,res)=>{const u=await store.get('users',req.params.id);if(!u||u.blocked)fail(404,'PROFILE_NOT_FOUND','Профиль не найден.');const {email,emailVerified,...user}=publicUser(u),playlists=[];for(const p of await store.list('playlists',p=>p.ownerId===u.id&&p.public)){try{await validatePublication(p.trackIds);playlists.push(await decoratePlaylist(p));}catch{}}const privacy=await ctx.profilePrivacy(u.id);res.json({user,playlists,stats:privacy.profileStats||req.auth?.user.id===u.id?await ctx.accountStats(u.id,req.auth?.user):null});}));

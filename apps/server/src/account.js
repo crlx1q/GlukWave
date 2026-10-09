@@ -43,6 +43,7 @@ export function setupAccount(app,ctx){
  ctx.deleteAccount=async(uid,check)=>ctx.withLock('credentials:'+uid,async()=>{
   const user=await store.get('users',uid);if(!user)return;await check?.(user);
   await store.update('users',uid,value=>({...value,blocked:true}));
+  await ctx.discordDisconnect?.(uid);
   for(const {value:session} of await store.entries('sessions'))if(session.userId===uid)await ctx.revokeSession(session,'account_deleted');
   for(const {value:room} of await store.entries('rooms'))if(room.members?.some(member=>member.userId===uid)){
    if(room.ownerId===uid){ctx.io?.to(`room:${room.id}`).emit('room:closed',{roomId:room.id});for(const member of room.members)await ctx.leaveAccountRoom?.(member.userId,room.id);await store.remove('rooms',room.id);for(const {id:key,value} of await store.entries('messages'))if(value.roomId===room.id)await store.remove('messages',key);}

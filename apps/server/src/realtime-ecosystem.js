@@ -35,8 +35,9 @@ export function setupRealtime(server,app,ctx){
     for(const track of tracks)if(track&&await ctx.canAccessTrack(track,user))visible.push(ctx.publicTrack(track,user));const byId=new Map(visible.map(track=>[track.id,track]));
     return {jamPaused:!!(joined&&room.type==='jam'&&value.jamPaused),independent:value.independent,activeDeviceId:owner?value.activeDeviceId:null,activeSurfaceId:owner?value.activeSurfaceId:null,roomId:joined?room.id:null,room:joined?{id:room.id,name:room.name,type:room.type||'room',ownerId:room.ownerId}:null,state,track:byId.get(state.trackId)||null,queueTracks:state.queue.map(tid=>byId.get(tid)).filter(Boolean),serverTime};
   }
-  const publish=async uid=>{const connect=await snapshot(uid);io.to(`user:${uid}`).emit('account:state',connect);return connect;};
-  ctx.publishAccountConnect=publish;
+  const publish=async uid=>{const connect=await snapshot(uid);io.to(`user:${uid}`).emit('account:state',connect);ctx.discordPlaybackChanged?.(uid);return connect;};
+  ctx.publishAccountConnect=publish;ctx.accountConnect=snapshot;
+  ctx.discordOutput=async uid=>{const value=await store.get('connect',uid);if(!value?.activeDeviceId)return null;const socket=outputSocket(keyFor(uid,value.activeDeviceId),value.activeSurfaceId);if(!socket||!await ctx.authenticate(socket.data.rawToken))return null;return {connect:await snapshot(uid),device:{name:socket.data.device.name,kind:socket.data.device.kind}};};
   async function dispatch(socket,command){
     if(!socket?.connected)fail(409,'DEVICE_OFFLINE','Устройство отключено.');
     try{const result=await socket.timeout(10000).emitWithAck('device:command',command);if(result?.error)fail(409,result.error.code||'PLAYBACK_FAILED',result.error.message||'Устройство не начало воспроизведение.');if(!result||result.ok!==true)fail(409,'PLAYBACK_FAILED','Устройство не подтвердило воспроизведение.');return result;}
@@ -44,6 +45,18 @@ export function setupRealtime(server,app,ctx){
   }
   // ACK waits cannot let a heartbeat change the selected output underneath a transfer.
   const mutate=async(uid,work)=>ctx.withLock('connect:'+uid,async()=>{changing.add(uid);try{return await work();}finally{changing.delete(uid);}});
+  ctx.attachDiscordJam=(uid,room)=>mutate(uid,async()=>{
+    const value=await store.get('connect',uid),socket=value?.activeDeviceId&&outputSocket(keyFor(uid,value.activeDeviceId),value.activeSurfaceId);
+    if(!socket||!await ctx.authenticate(socket.data.rawToken))fail(409,'DEVICE_OFFLINE','Ведущий сейчас не слушает музыку.');
+    if(value.roomId&&value.roomId!==room.id)fail(409,'ROOM_PERMISSION','Ведущий сейчас слушает в другой комнате.');
+    if(room.ownerId!==uid||room.type!=='jam')fail(403,'ROOM_PERMISSION','Джем недоступен.');
+    if(value.roomId===room.id)return;
+    await store.update('rooms',room.id,previous=>previous?{...previous,state:{...liveState(value.state),updatedAt:Date.now()}}:undefined);
+    socket.data.roomId=room.id;socket.join(`room:${room.id}`);
+    await store.update('devices',keyFor(uid,value.activeDeviceId),device=>device?{...device,roomId:room.id}:undefined);
+    await store.update('connect',uid,previous=>({...previous,roomId:room.id,jamPaused:false,state:{...previous.state,revision:(previous.state.revision||0)+1}}));
+    await publish(uid);await roomPresence(room.id);
+  });
   async function freezeOwner(uid,did,surface){await store.update('connect',uid,value=>value?.activeDeviceId===did&&(!surface||value.activeSurfaceId===surface)?{...value,activeDeviceId:null,activeSurfaceId:null,state:{...liveState(value.state),playing:false,updatedAt:Date.now(),revision:(value.state.revision||0)+1}}:undefined);}
   ctx.userOnline=uid=>[...io.sockets.sockets.values()].some(socket=>socket.connected&&socket.data.userId===uid);
   ctx.friendOutput=async uid=>{const value=await store.get('connect',uid);if(!value?.activeDeviceId)return null;const socket=outputSocket(keyFor(uid,value.activeDeviceId),value.activeSurfaceId);if(!socket)return null;const connect=await snapshot(uid);return {state:connect.state,device:{name:socket.data.device.name,kind:socket.data.device.kind}};};

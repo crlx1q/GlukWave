@@ -1,0 +1,24 @@
+✔ taste uses known artists, resumes across sessions and recommendations follow real listening (5430.0683ms)
+✔ friends are recipient-bound, jams are hidden and listener pause never changes host transport (4470.2337ms)
+✔ public playlist validation, collage, paid imports and uploaded-cover replacement clean actual assets (3937.2482ms)
+✔ email confirmation is one-use and account purge, bans, registration and release upload enforce authority (7145.3324ms)
+✔ media cleanup preserves failed deletes and still clears later assets (2781.0639ms)
+✔ deleting a playing own track publishes the cleared account transport (2850.9807ms)
+✔ Discord activity is OAuth headless Listening with real metadata, two URLs and progress (17.7522ms)
+✔ Free cannot start OAuth, opt in through either settings endpoint or join host presence (4682.4238ms)
+✔ OAuth uses PKCE and one-use session-bound state, stores identity and encrypted tokens, disallows duplicate link (3948.3233ms)
+✔ Canonical output publishes once, coalesces seeks, clears pause and resumes without client Discord (3382.8716ms)
+✔ Refresh rotates encrypted OAuth token and revoke/unlink cannot be resurrected by pending publish (3379.1092ms)
+✔ Rate limits back off, invalid grants require reconnect, and old identify grants cannot publish (3767.2975ms)
+✔ Only the selected output wins across controllers; independent mode does not publish two activities (3744.4165ms)
+✔ Failed unlink cleanup persists encrypted, retries after restart-style tick, never resurrects a connection (3194.4388ms)
+✔ Selected-device session expiry and plan downgrade clear the server activity (2848.7275ms)
+✔ Listen together requires consent, friends and live host; then ordinary Jam permissions remain (4365.6009ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 46736.2631

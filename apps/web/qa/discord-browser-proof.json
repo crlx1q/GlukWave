@@ -1,0 +1,79 @@
+{
+  "passed": true,
+  "scope": "Rendered application and UI interactions against isolated HTTP fixtures; not evidence of genuine Discord OAuth or publication.",
+  "steps": [
+    "Connected identity, live preview, server PATCH presence/privacy toggles and two Wave links",
+    "Active three-theme desktop/mobile rendered layout without horizontal overflow",
+    "Six translated languages at 125 percent font scale on phone",
+    "Idle, disconnected, reconnect-required, unavailable and retrying states retain truthful controls",
+    "Disconnect confirms then updates after actual isolated DELETE acknowledgement",
+    "Transient API error has a scoped retry and recovers",
+    "Free receives locked UI from the server eligibility response",
+    "Signed-out listen invitation requires explicit sign-in and can be dismissed without joining"
+  ],
+  "screenshots": [
+    "apps/web/qa/discord-active-light-desktop.png",
+    "apps/web/qa/discord-active-light-desktop.png",
+    "apps/web/qa/discord-active-light-mobile.png",
+    "apps/web/qa/discord-active-dark-desktop.png",
+    "apps/web/qa/discord-active-dark-mobile.png",
+    "apps/web/qa/discord-active-amoled-desktop.png",
+    "apps/web/qa/discord-active-amoled-mobile.png",
+    "apps/web/qa/discord-active-es-125-mobile.png",
+    "apps/web/qa/discord-idle-mobile.png",
+    "apps/web/qa/discord-disconnected-mobile.png",
+    "apps/web/qa/discord-reconnect_required-mobile.png",
+    "apps/web/qa/discord-unavailable-mobile.png",
+    "apps/web/qa/discord-retrying-mobile.png",
+    "apps/web/qa/discord-error-mobile.png",
+    "apps/web/qa/discord-free-mobile.png",
+    "apps/web/qa/discord-invite-signedout-mobile.png"
+  ],
+  "layouts": [
+    {
+      "theme": "light",
+      "size": "desktop",
+      "clipped": [],
+      "overflow": false,
+      "width": 987
+    },
+    {
+      "theme": "light",
+      "size": "mobile",
+      "clipped": [],
+      "overflow": false,
+      "width": 336
+    },
+    {
+      "theme": "dark",
+      "size": "desktop",
+      "clipped": [],
+      "overflow": false,
+      "width": 987
+    },
+    {
+      "theme": "dark",
+      "size": "mobile",
+      "clipped": [],
+      "overflow": false,
+      "width": 336
+    },
+    {
+      "theme": "amoled",
+      "size": "desktop",
+      "clipped": [],
+      "overflow": false,
+      "width": 987
+    },
+    {
+      "theme": "amoled",
+      "size": "mobile",
+      "clipped": [],
+      "overflow": false,
+      "width": 336
+    }
+  ],
+  "browserErrors": {
+    "errors": []
+  }
+}

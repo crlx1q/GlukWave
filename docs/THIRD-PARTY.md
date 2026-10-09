@@ -63,3 +63,6 @@ The Windows music DSP adapter in `apps/native/lib/services/windows_mpv_player.da
 The Flutter clients use flutter_inappwebview 6.1.5 (Apache-2.0). Its original license is preserved in docs/licenses/InAppWebView-Apache-2.0.txt and the Windows bundle. Windows uses Microsoft WebView2; the installer bundles Microsoft's signed Evergreen bootstrapper, which obtains the runtime from Microsoft when absent. The player remains visible and source media stays inside official SoundCloud/YouTube embeds. No extracted audio stream or provider account credential is included.
 
 Windows developer builds need NuGet, as documented by [InAppWebView](https://inappwebview.dev/docs/intro/#setup-windows) and [Microsoft](https://learn.microsoft.com/en-us/nuget/install-nuget-client-tools). scripts/prepare-nuget.ps1 obtains and verifies the Microsoft-signed tool; it is build tooling and is not included in the application.
+
+
+Discord protocol research (10 October 2026): official Social SDK/OAuth documentation, Neurobox repository (AGPL-3.0) and PreMiD repository were consulted. No Neurobox/PreMiD source code or runtime was copied or bundled. The small Node OAuth/headless HTTP adapter is original project code using existing dependencies. See DISCORD.md for references and unsupported REST-contract limitations.

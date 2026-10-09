@@ -32,7 +32,7 @@ export const config={
   spotify:{id:e.SPOTIFY_CLIENT_ID||'',secret:e.SPOTIFY_CLIENT_SECRET||'',redirectUri:e.SPOTIFY_REDIRECT_URI||''},
   soundcloud:{id:e.SOUNDCLOUD_CLIENT_ID||'',secret:e.SOUNDCLOUD_CLIENT_SECRET||'',redirectUri:e.SOUNDCLOUD_REDIRECT_URI||''},
   soundcloudPublicSearch:bool(e.SOUNDCLOUD_PUBLIC_SEARCH,true),
-  youtubeKey:e.YOUTUBE_API_KEY||'',discord:{id:e.DISCORD_CLIENT_ID||'',secret:e.DISCORD_CLIENT_SECRET||'',redirectUri:e.DISCORD_REDIRECT_URI||''},
+  youtubeKey:e.YOUTUBE_API_KEY||'',discord:{id:e.DISCORD_CLIENT_ID||'',secret:e.DISCORD_CLIENT_SECRET||'',redirectUri:e.DISCORD_REDIRECT_URI||'',headless:bool(e.DISCORD_HEADLESS_ENABLED,true),logoAsset:e.DISCORD_LOGO_ASSET||''},
   objectStorage:e.MEDIA_STORAGE||'local',r2:{endpoint:e.R2_ENDPOINT||'',bucket:e.R2_BUCKET||'',accessKey:e.R2_ACCESS_KEY_ID||'',secretKey:e.R2_SECRET_ACCESS_KEY||''},
   uploadLimitMB:Number(e.UPLOAD_LIMIT_MB||256),
   vapidPublic:e.VAPID_PUBLIC_KEY||'',vapidPrivate:e.VAPID_PRIVATE_KEY||'',vapidSubject:e.VAPID_SUBJECT||'mailto:admin@gluk.tech',

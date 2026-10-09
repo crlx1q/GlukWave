@@ -15,6 +15,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:uuid/uuid.dart';
 import 'api.dart';
 import 'models.dart';
+import 'discord.dart';
 import 'appearance.dart';
 import '../services/appearance_store.dart';
 import '../services/audio.dart';
@@ -22,7 +23,6 @@ import '../services/volume_store.dart';
 import '../services/cache.dart';
 import '../services/desktop.dart';
 import '../services/push.dart';
-import '../services/presence_bridge.dart';
 import '../services/waveform.dart';
 import '../l10n/wave_localizations.dart';
 import '../l10n/parity_strings.dart';
@@ -105,10 +105,10 @@ class WaveController extends ChangeNotifier {
 
   late DesktopShell desktop;
   late WavePush push;
-  final DiscordPresence discord = DiscordPresence();
-  final PresenceBridge presenceBridge = PresenceBridge();
-  String bridgePairing = '';
-  Json? _webPresence;
+  DiscordConnection? discordConnection;
+  bool discordLoading = false, discordChanging = false;
+  String? discordError;
+  int _discordGeneration = 0;
   io.Socket? socket;
   Timer? _heartbeat;
   final List<StreamSubscription<dynamic>> _subscriptions = [];
@@ -199,8 +199,13 @@ class WaveController extends ChangeNotifier {
           : 'Android'}';
   bool get loggedIn => user != null;
   bool get canControl =>
-      room == null || (user != null && (room!['type'] == 'jam' ? room!['ownerId'] == user!.id : mayControlRoom(room!, user!.id)));
-  bool get jamListener => room?['type'] == 'jam' && room?['ownerId'] != user?.id;
+      room == null ||
+      (user != null &&
+          (room!['type'] == 'jam'
+              ? room!['ownerId'] == user!.id
+              : mayControlRoom(room!, user!.id)));
+  bool get jamListener =>
+      room?['type'] == 'jam' && room?['ownerId'] != user?.id;
   bool get canTogglePlayback => canControl || jamListener;
   String get namespace => const Uuid().v5(
     Namespace.url.value,
@@ -221,7 +226,6 @@ class WaveController extends ChangeNotifier {
     push = WavePush(api);
     cache.addListener(notifyListeners);
     desktop.addListener(notifyListeners);
-    discord.addListener(notifyListeners);
     audio.onError = (message) {
       api.diagnostics.report(message, kind: 'playback');
       tell(message);
@@ -443,11 +447,7 @@ class WaveController extends ChangeNotifier {
         _applySettings();
         await _persist();
         _connectSocket();
-        await _connectDiscord();
-        if (Platform.isWindows &&
-            preferences.getBool('presenceBridge') == true) {
-          await togglePresenceBridge(true);
-        }
+        await refreshDiscord(silent: true);
       }
     } catch (e) {
       if (session != api.token || origin != api.server) return;
@@ -667,9 +667,10 @@ class WaveController extends ChangeNotifier {
     audio.tracks = [];
     audio.mediaItem.add(null);
     audio.queue.add([]);
-    discord.close();
-    await presenceBridge.stop();
-    _webPresence = null;
+    _discordGeneration++;
+    discordConnection = null;
+    discordLoading = discordChanging = false;
+    discordError = null;
     await push.disable();
     if (remote && online) {
       try {
@@ -763,8 +764,14 @@ class WaveController extends ChangeNotifier {
   }
 
   Future<void> customize(Json changes) async {
-    if (loggedIn && user?.plan == 'free' && requiresAdvancedAppearance(changes)) {
-      throw WaveException(parityLabel(resolvedLanguage, 'Advanced'), 'PLAN_LIMIT', 403);
+    if (loggedIn &&
+        user?.plan == 'free' &&
+        requiresAdvancedAppearance(changes)) {
+      throw WaveException(
+        parityLabel(resolvedLanguage, 'Advanced'),
+        'PLAN_LIMIT',
+        403,
+      );
     }
     if (changes.containsKey('language')) _localeRequest++;
     await appearanceStore?.change(changes);
@@ -786,18 +793,95 @@ class WaveController extends ChangeNotifier {
       expectedOrigin: origin,
     );
     if (session != api.token || origin != api.server) return;
-    if (changes.containsKey('discordPresence')) await _connectDiscord();
+    if (changes.containsKey('discordPresence')) {
+      await refreshDiscord(silent: true);
+    }
   }
 
-  Future<void> _connectDiscord() async {
-    if (settings['discordPresence'] != true || !Platform.isWindows) {
-      discord.close();
-      return;
+  /// Discord is updated by the server's canonical Connect output, not by this
+  /// client's playback or local Discord IPC. The endpoint is independently
+  /// recoverable so a temporary Discord outage cannot interrupt app startup.
+  Future<void> refreshDiscord({bool silent = false}) async {
+    final token = api.token, origin = api.server;
+    if (token == null || _disposed) return;
+    final generation = ++_discordGeneration;
+    discordLoading = true;
+    if (!silent) notifyListeners();
+    try {
+      final data = await api.call('/api/discord');
+      if (data['eligible'] is! bool) {
+        throw const FormatException('Discord snapshot');
+      }
+      if (_disposed ||
+          generation != _discordGeneration ||
+          token != api.token ||
+          origin != api.server) {
+        return;
+      }
+      discordConnection = DiscordConnection(data);
+      discordError = null;
+    } catch (_) {
+      if (_disposed ||
+          generation != _discordGeneration ||
+          token != api.token ||
+          origin != api.server) {
+        return;
+      }
+      // Provider details and internal errors do not belong in account settings.
+      discordError = 'refresh_failed';
+    } finally {
+      if (!_disposed &&
+          generation == _discordGeneration &&
+          token == api.token &&
+          origin == api.server) {
+        discordLoading = false;
+        notifyListeners();
+      }
     }
-    if (!discord.ready) {
-      await discord.connect(
-        object(config['discord'])['clientId'] as String? ?? '',
+  }
+
+  void receiveDiscordState(Json data) {
+    if (_disposed || api.token == null || data['eligible'] is! bool) return;
+    _discordGeneration++;
+    discordConnection = DiscordConnection(data);
+    discordError = null;
+    discordLoading = false;
+    notifyListeners();
+  }
+
+  Future<void> updateDiscord(Json changes) async {
+    if (discordChanging) return;
+    final token = api.token, origin = api.server;
+    final generation = ++_discordGeneration;
+    discordChanging = true;
+    discordLoading = false;
+    discordError = null;
+    notifyListeners();
+    try {
+      final data = await api.call(
+        '/api/discord',
+        method: 'PATCH',
+        data: changes,
       );
+      if (data['eligible'] is! bool) {
+        throw const FormatException('Discord snapshot');
+      }
+      if (_disposed ||
+          generation != _discordGeneration ||
+          token != api.token ||
+          origin != api.server) {
+        return;
+      }
+      discordConnection = DiscordConnection(data);
+    } catch (_) {
+      if (!_disposed && token == api.token && origin == api.server) {
+        discordError = 'save_failed';
+      }
+    } finally {
+      if (!_disposed && token == api.token && origin == api.server) {
+        discordChanging = false;
+        notifyListeners();
+      }
     }
   }
 
@@ -874,8 +958,16 @@ class WaveController extends ChangeNotifier {
 
   Future<void> transport(String command, [Json data = const {}]) async {
     if (jamListener && ['play', 'pause'].contains(command)) {
-      final result = await api.call('/api/jams/${room!['id']}/pause', method: 'POST', data: {'paused': command == 'pause'});
-      if (result['connect'] is Map) { await receiveAccountState(object(result['connect'])); } else { await refreshConnect(); }
+      final result = await api.call(
+        '/api/jams/${room!['id']}/pause',
+        method: 'POST',
+        data: {'paused': command == 'pause'},
+      );
+      if (result['connect'] is Map) {
+        await receiveAccountState(object(result['connect']));
+      } else {
+        await refreshConnect();
+      }
       return;
     }
     if (room != null && command != 'volume') {
@@ -1070,6 +1162,7 @@ class WaveController extends ChangeNotifier {
       }
       await refreshConnect();
       await refreshSessions();
+      await refreshDiscord(silent: true);
       notifyListeners();
     } catch (error) {
       if (pending != null && token == api.token && origin == api.server) {
@@ -1161,6 +1254,7 @@ class WaveController extends ChangeNotifier {
       notifyListeners();
       await refreshConnect();
       if (session != api.token || origin != api.server) return;
+      unawaited(refreshDiscord(silent: true));
       _report();
       if (room != null) {
         unawaited(_rejoinRoom().catchError((_) {}));
@@ -1199,6 +1293,19 @@ class WaveController extends ChangeNotifier {
     socket!.on('sessions:changed', (_) {
       if (session != api.token || origin != api.server) return;
       unawaited(refreshSessions());
+    });
+    socket!.on('integrations:changed', (_) {
+      if (session != api.token || origin != api.server) return;
+      unawaited(refreshDiscord(silent: true));
+    });
+    socket!.on('discord:changed', (data) {
+      if (session != api.token || origin != api.server) return;
+      final state = object(data);
+      if (state['eligible'] is bool) {
+        receiveDiscordState(state);
+      } else {
+        unawaited(refreshDiscord(silent: true));
+      }
     });
     socket!.on('account:state', (data) {
       if (session != api.token || origin != api.server) return;
@@ -1299,65 +1406,6 @@ class WaveController extends ChangeNotifier {
         'roomId': room?['id'],
       });
     }
-    final web = _webPresence;
-    if (web != null &&
-        !audio.outputPlaying &&
-        DateTime.now().millisecondsSinceEpoch - (web['receivedAt'] as int) <
-            30000) {
-      discord.update(
-        web['track'] as WaveTrack?,
-        web['playing'] == true,
-        number(web['position']) +
-            (web['playing'] == true
-                ? (DateTime.now().millisecondsSinceEpoch -
-                          (web['receivedAt'] as int)) /
-                      1000
-                : 0),
-        appUrl,
-      );
-      return;
-    }
-    discord.update(
-      audio.current,
-      audio.outputPlaying,
-      audio.outputPosition.inMilliseconds / 1000,
-      appUrl,
-      room: room,
-    );
-  }
-
-  Future<void> togglePresenceBridge(bool enabled) async {
-    if (!Platform.isWindows) {
-      throw WaveException(wt('native.b8b235d91f'));
-    }
-    if (enabled) {
-      bridgePairing =
-          preferences.getString('bridgePairing:$namespace') ??
-          const Uuid().v4();
-      await preferences.setString('bridgePairing:$namespace', bridgePairing);
-      await presenceBridge.start(
-        bridgePairing,
-        {Uri.parse(appUrl).origin, Uri.parse(api.server).origin},
-        (data) async {
-          if (user == null) {
-            throw const WaveException('Native session required');
-          }
-          final trackId = data['trackId'] as String?;
-          final target = trackId != null ? await requireTrack(trackId) : null;
-          _webPresence = {
-            ...data,
-            'track': target,
-            'receivedAt': DateTime.now().millisecondsSinceEpoch,
-          };
-          _report();
-        },
-      );
-    } else {
-      await presenceBridge.stop();
-      _webPresence = null;
-    }
-    await preferences.setBool('presenceBridge', enabled);
-    notifyListeners();
   }
 
   Future<Json> emitAck(String event, Json data) async {
@@ -2036,7 +2084,8 @@ class WaveController extends ChangeNotifier {
             DateTime.now().millisecondsSinceEpoch + _clockOffset,
             duration: target.duration,
           ),
-          playing: state.playing && !(jamListener && connect['jamPaused'] == true),
+          playing:
+              state.playing && !(jamListener && connect['jamPaused'] == true),
           volume: number(
             object(connect['state'])['volume'],
             audio.outputVolume,
@@ -2066,12 +2115,18 @@ class WaveController extends ChangeNotifier {
           DateTime.now().millisecondsSinceEpoch + _clockOffset,
           duration: target.duration,
         ),
-        playing: state.playing && _roomOutputActive && !(jamListener && connect['jamPaused'] == true),
+        playing:
+            state.playing &&
+            _roomOutputActive &&
+            !(jamListener && connect['jamPaused'] == true),
       );
     }
     if (!currentState()) return;
     await _correctDrift();
-    final shouldPlay = state.playing && _roomOutputActive && !(jamListener && connect['jamPaused'] == true);
+    final shouldPlay =
+        state.playing &&
+        _roomOutputActive &&
+        !(jamListener && connect['jamPaused'] == true);
     if (shouldPlay != audio.outputPlaying && audio.current != null) {
       await audio.localCommand(shouldPlay ? 'play' : 'pause');
     }
@@ -2084,7 +2139,8 @@ class WaveController extends ChangeNotifier {
     if (room == null ||
         audio.current == null ||
         !outputHere ||
-        !_roomOutputActive || jamListener && connect['jamPaused'] == true) {
+        !_roomOutputActive ||
+        jamListener && connect['jamPaused'] == true) {
       return;
     }
     final state = PlaybackSnapshot.fromJson(object(room!['state']));
@@ -2114,6 +2170,7 @@ class WaveController extends ChangeNotifier {
   @override
   void dispose() {
     _disposed = true;
+    _discordGeneration++;
     _roomGeneration++;
     _roomSyncGeneration++;
     audio.cancelPendingLoad();
@@ -2131,9 +2188,7 @@ class WaveController extends ChangeNotifier {
     }
     cache.removeListener(notifyListeners);
     desktop.removeListener(notifyListeners);
-    discord.removeListener(notifyListeners);
     desktop.dispose();
-    discord.dispose();
     api.diagnostics.dispose();
     super.dispose();
   }

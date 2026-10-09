@@ -1,4 +1,4 @@
-param([string]$ReleaseRoot, [ValidatePattern('^[0-9]+\.[0-9]+\.[0-9]+(?:\+[0-9]+)?$')][string]$Version='1.0.0+6')
+param([string]$ReleaseRoot, [ValidatePattern('^[0-9]+\.[0-9]+\.[0-9]+(?:\+[0-9]+)?$')][string]$Version='1.0.0+7')
 $ErrorActionPreference = 'Stop'
 $projectRoot = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
 $releaseRoot = if ($ReleaseRoot) { [IO.Path]::GetFullPath($ReleaseRoot) } else { Join-Path $projectRoot 'apps/native/build/windows/x64/runner/Release' }

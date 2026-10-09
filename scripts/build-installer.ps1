@@ -1,4 +1,4 @@
-param([string]$Compiler, [string]$Version='1.0.0+6', [string]$BundleRoot)
+param([string]$Compiler, [string]$Version='1.0.0+7', [string]$BundleRoot)
 $ErrorActionPreference = 'Stop'
 $projectRoot = Split-Path -Parent $PSScriptRoot
 $bundleRoot = if ($BundleRoot) { [IO.Path]::GetFullPath($BundleRoot) } else { Join-Path $projectRoot 'outputs\GlukWave-windows' }

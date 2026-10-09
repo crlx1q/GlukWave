@@ -78,6 +78,7 @@ void main() {
         {'deviceId': 'pc-install', 'name': 'Living room PC'},
       ];
       c.tracks = [connectedTrack];
+      final beforeSnapshot = DateTime.now().millisecondsSinceEpoch;
       await c.receiveAccountState({
         'independent': false,
         'activeDeviceId': 'pc-install',
@@ -99,7 +100,11 @@ void main() {
       expect(output.current, isNull);
       expect(output.playing, isTrue);
       expect(output.outputPlaying, isFalse);
-      expect(output.position.inMilliseconds, closeTo(12000, 300));
+      final remotePosition = output.position.inMilliseconds;
+      final elapsed = DateTime.now().millisecondsSinceEpoch - beforeSnapshot;
+      // The mirror advances with real time. Slow shared CI machines may take
+      // more than 300 ms between receiving the snapshot and these assertions.
+      expect(remotePosition, inInclusiveRange(12000, 12000 + elapsed));
       expect(output.viewTracks.single.id, connectedTrack.id);
       await c.transport('pause');
       await c.transport('volume', {'volume': .2});

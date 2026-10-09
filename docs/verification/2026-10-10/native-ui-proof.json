@@ -1,0 +1,141 @@
+{
+  "createdAt": "2026-10-09T19:20:10.993820+00:00",
+  "scope": "Actual Flutter widget renders and isolated public API fixtures; not installed-device QA or real Discord OAuth authorization.",
+  "fullSuite": {
+    "passed": 168,
+    "log": "work/qa/native-discord-full-tests.log",
+    "timing": "Before final conditional plan badge adjustment; final focused suite covers adjustment."
+  },
+  "focusedSuite": {
+    "passed": 23,
+    "controllerAndModelTests": 8,
+    "widgetAndLayoutTests": 15,
+    "log": "work/qa/native-discord-tests.log"
+  },
+  "analysis": {
+    "full": "work/qa/native-discord-analyze.log",
+    "updatedHarness": "work/qa/native-discord-layout-analyze.log",
+    "finalPanelAndHarness": "work/qa/native-discord-final-analyze.log",
+    "issues": 0
+  },
+  "locales": [
+    "en",
+    "ru",
+    "kk",
+    "uk",
+    "de",
+    "es"
+  ],
+  "layouts": {
+    "themes": [
+      "light",
+      "dark",
+      "amoled"
+    ],
+    "sizes": [
+      [
+        390,
+        844
+      ],
+      [
+        1280,
+        1000
+      ]
+    ],
+    "allLocalesNarrow": {
+      "width": 320,
+      "height": 900,
+      "textScale": 1.25
+    },
+    "artwork": "Existing bundled forest.jpg served by test-only HttpClient and exact provider precache; no external catalogue or account modified."
+  },
+  "checkedStates": [
+    "server Free lock",
+    "stale paid profile cannot override eligibility",
+    "no false paid badge for Free",
+    "OAuth browser handoff and resume",
+    "reconnect required",
+    "temporary unavailable",
+    "empty without fake playing track",
+    "scoped secret-free errors",
+    "failed save is not presented as success",
+    "server-authoritative enable and joining consent",
+    "unlink confirmation/cancel",
+    "older requests cannot replace live socket state",
+    "account change/disposal guards",
+    "canonical remote playback output",
+    "safe URL schemes",
+    "progress/pause/duration bounds",
+    "all locales with 125 percent text"
+  ],
+  "designEvaluation": {
+    "verdict": "PASS",
+    "scores": [
+      2,
+      2,
+      2,
+      2
+    ],
+    "independentAgent": "discord_design_eval"
+  },
+  "legacyRuntime": "No DiscordPresence or PresenceBridge instantiated by native controller; no local RPC/localhost publication path started.",
+  "screenshots": [
+    {
+      "path": "docs/verification/2026-10-10/native-discord-amoled-1280.png",
+      "width": 1280,
+      "height": 1000,
+      "sha256": "d7b51076292dc5209a829664ce43ee593ddf46ba3c19ea5a093a26bcab6c2e96"
+    },
+    {
+      "path": "docs/verification/2026-10-10/native-discord-amoled-390.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "ef03f38dcacbec53fcd6862f7d751e082f02be4b5be2a46ec47b1ae05f2f933c"
+    },
+    {
+      "path": "docs/verification/2026-10-10/native-discord-dark-1280.png",
+      "width": 1280,
+      "height": 1000,
+      "sha256": "f10733c83c8294d17e68e2e3e578ae60de7ee416e43ddb9c31db4dd13f1bfa41"
+    },
+    {
+      "path": "docs/verification/2026-10-10/native-discord-dark-390.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "5642fd54a602f46cd30acb97c6f037990fe9d65e07bbae89573a1f8ac1b092da"
+    },
+    {
+      "path": "docs/verification/2026-10-10/native-discord-dark-de-320-125.png",
+      "width": 320,
+      "height": 900,
+      "sha256": "c0c138d36a76b6d725daead5e11f8afb12351c42d684808947ea5e52d2261d99"
+    },
+    {
+      "path": "docs/verification/2026-10-10/native-discord-light-1280.png",
+      "width": 1280,
+      "height": 1000,
+      "sha256": "28148592d117d216306009ecd10d308f2a9e09ef45fffbab80f83a1ac83c6d2d"
+    },
+    {
+      "path": "docs/verification/2026-10-10/native-discord-light-390.png",
+      "width": 390,
+      "height": 844,
+      "sha256": "1b54a40e7e1e152009ed4025fccd398e67da12f67fc9c780c684bdaad1a55732"
+    }
+  ],
+  "sourceHashes": {
+    "apps/native/lib/core/controller.dart": "fd1aebf955b41ce344cb86b44ba785693d4bda7a502c60d0408b12ad8218fbad",
+    "apps/native/lib/core/discord.dart": "d2404d26d50d4349524461e6963cb8f250dd127fc91eff9b5e0365bcefd8c9d6",
+    "apps/native/lib/l10n/discord_strings.dart": "e9340660f7c413603c6a9f107f3dab6a52fa6dd953ea4e34bf2f3cc58613c944",
+    "apps/native/lib/ui/discord_panel.dart": "582020b64743387332b6fb39f0fa79fecb02869a5270b50f076b1792a3e1ec48",
+    "apps/native/lib/ui/app.dart": "a8e325e893ab740ebdab06806798f3704dafa22db6d0462ecdfb6b1eaa3334d2",
+    "apps/native/test/discord_test.dart": "87147a3abfa38341489d489c11cb025720c97c078795353975ce9de67bb8acfa",
+    "apps/native/test/discord_layout_test.dart": "cc1907c9e79cdf7d943a38e71d419e67c47dd9be6e363fc198374a2ea49d4b53",
+    "apps/native/test/connect_provider_test.dart": "cab98feb4d93f0313527c04d0367629da4a11d7b2269d4ef9c46f93a249ec8ec"
+  },
+  "limitations": [
+    "Live Discord card appearance and provider acceptance belong to backend verification.",
+    "Native preview buttons currently open server-provided web track/listen URLs; native app-specific deep-link routing is not added.",
+    "No physical Android or installed Windows UI automation performed in this UI task."
+  ]
+}
