@@ -40,6 +40,10 @@ test('Discord activity is OAuth headless Listening with real metadata, two URLs 
  const activity=discordActivity({title:'Monster',artist:'Skillet',album:'Awake',position:25,duration:178,cover:'https://images.example/awake.png',trackUrl:'https://wave.example/app/?track=one',joinUrl:'https://wave.example/app/?listen=host'},config,1000000);
  assert.equal(activity.type,2);assert.equal(activity.name,'Gluk Wave');assert.equal(activity.details,'Monster');assert.deepEqual(activity.timestamps,{start:'975000',end:'1153000'});assert.equal(activity.buttons.length,2);assert.deepEqual(activity.metadata.button_urls,activity.buttons.map(b=>b.url));
  assert.equal(discordActivity({title:'x',artist:'a',position:0,duration:0,cover:'http://127.0.0.1/private',trackUrl:'https://wave.example/app/?track=x'},config,1000).assets.large_image,undefined);
+ const single=discordActivity({title:'Alone',artist:'Alan Walker',album:'',cover:'https://images.example/alone.png',trackUrl:'https://wave.example/app/?track=alone'},config,1000);
+ assert.equal(single.assets.large_text,undefined);
+ const logoFallback=discordActivity({title:'x',artist:'a',trackUrl:'https://wave.example/app/?track=x'},{...config,appUrl:'https://wave.example.test',discord:{...config.discord,logoAsset:'logo'}},1000);
+ assert.equal(logoFallback.assets.small_image,'https://wave.example.test/brand/logo.png');
  const withoutLogo=discordActivity({title:'x',artist:'a',position:0,duration:0,trackUrl:'https://wave.example/app/?track=x'},{...config,appUrl:'http://127.0.0.1:4000',discord:{...config.discord,logoAsset:''}},1000);
  assert.equal(withoutLogo.assets.small_image,undefined);assert.equal(withoutLogo.state,'∿ a');
 });

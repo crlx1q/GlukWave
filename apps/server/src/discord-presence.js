@@ -14,8 +14,12 @@ const bounded=value=>String(value||'').replace(/[\u0000-\u001f]/g,' ').slice(0,1
 
 export function discordActivity(view,config,time=Date.now()){
  const urls=[view.joinUrl,view.trackUrl].filter(Boolean),buttons=urls.map(url=>({label:url===view.joinUrl?'Слушать вместе':'Открыть в Wave',url}));
- const cover=safeImage(view.cover,config.appUrl),logo=config.discord.logoAsset||safeImage('/brand/logo.png',config.appUrl);
- const activity={application_id:config.discord.id,type:2,name:'Gluk Wave',details:bounded(view.title),state:bounded((logo?'':'∿ ')+(view.artist||'Gluk Wave')),platform:'desktop',supported_platforms:['desktop','android','ios'],assets:{...(cover?{large_image:cover,large_text:bounded(view.album||view.title),large_url:view.trackUrl}:{}),...(logo?{small_image:logo,small_text:'Gluk Wave',small_url:config.appUrl}:{})},buttons,metadata:{button_urls:urls}};
+ const cover=safeImage(view.cover,config.appUrl),publicLogo=safeImage('/brand/logo.png',config.appUrl);
+ const logo=(config.discord.logoAsset&&config.discord.logoAsset!=='logo')
+   ?(safeImage(config.discord.logoAsset,config.appUrl)||config.discord.logoAsset)
+   :publicLogo;
+ const hasAlbum=Boolean(view.album&&view.album.trim()&&view.album.trim().toLowerCase()!==view.title?.trim().toLowerCase());
+ const activity={application_id:config.discord.id,type:2,name:'Gluk Wave',details:bounded(view.title),state:bounded((logo?'':'∿ ')+(view.artist||'Gluk Wave')),platform:'desktop',supported_platforms:['desktop','android','ios'],assets:{...(cover?{large_image:cover,...(hasAlbum?{large_text:bounded(view.album)}:{}),large_url:view.trackUrl}:{}),...(logo?{small_image:logo,small_text:'Gluk Wave',small_url:config.appUrl}:{})},buttons,metadata:{button_urls:urls}};
  // The headless wire format uses millisecond timestamps (unlike SDK seconds).
  activity.timestamps={start:String(Math.floor(time-view.position*1000)),...(view.duration>0?{end:String(Math.floor(time+(view.duration-view.position)*1000))}:{})};
  return activity;
