@@ -50,7 +50,8 @@ class _WaveStartupPageState extends State<WaveStartupPage>
   void didChangeDependencies() {
     super.didChangeDependencies();
     if (MediaQuery.disableAnimationsOf(context) ||
-        waveVisuals(context).reducedMotion) {
+        waveVisuals(context).reducedMotion ||
+        !TickerMode.of(context)) {
       motion.stop();
     } else if (!motion.isAnimating) {
       motion.repeat(reverse: true);
@@ -146,7 +147,8 @@ class _AuthAmbientWaveState extends State<AuthAmbientWave>
   void didChangeDependencies() {
     super.didChangeDependencies();
     if (MediaQuery.disableAnimationsOf(context) ||
-        waveVisuals(context).reducedMotion) {
+        waveVisuals(context).reducedMotion ||
+        !TickerMode.of(context)) {
       motion.stop();
     } else if (!motion.isAnimating) {
       motion.repeat();

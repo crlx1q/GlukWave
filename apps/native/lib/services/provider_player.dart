@@ -33,6 +33,7 @@ class ProviderPlayer extends ChangeNotifier {
     if (_started?.isCompleted == false) _started!.complete();
     // Release the old player before replacing its document.
     await command('pause');
+    if (generation != revision) return;
     track = value;
     this.position = position;
     duration = value.duration;
@@ -46,7 +47,9 @@ class ProviderPlayer extends ChangeNotifier {
       await _ready!.future.timeout(const Duration(seconds: 25));
       if (generation != revision) return;
       await command('volume', {'volume': volume});
+      if (generation != revision) return;
       if (position > 0) await command('seek', {'position': position});
+      if (generation != revision) return;
       if (playing) {
         _started = Completer<void>();
         await command('play');
@@ -122,7 +125,7 @@ class ProviderPlayer extends ChangeNotifier {
   }
 
   Future<void> clear() async {
-    await command('pause');
+    final paused = command('pause');
     generation++;
     _requestPending = false;
     if (_ready?.isCompleted == false) _ready!.complete();
@@ -132,6 +135,10 @@ class ProviderPlayer extends ChangeNotifier {
     position = duration = 0;
     evaluate = null;
     notifyListeners();
+    // The outgoing document may already have been disposed by the host.
+    try {
+      await paused.timeout(const Duration(seconds: 2));
+    } catch (_) {}
   }
 }
 
@@ -168,15 +175,19 @@ player.bind(SC.Widget.Events.PLAY_PROGRESS,e=>send({event:'position',position:e.
 window.waveCommand=(c,d)=>{if(c==='play')player.play();if(c==='pause'||c==='stop')player.pause();if(c==='seek')player.seekTo(d.position*1000);if(c==='volume')player.setVolume(d.volume*100);};
 '''
       : '''
-let player;
-window.onYouTubeIframeAPIReady=()=>{player=new YT.Player('provider',{width:'100%',height:'100%',videoId:${jsonEncode(sid)},playerVars:{playsinline:1,controls:1,origin:${jsonEncode(origin)}},events:{onReady:()=>send({event:'ready'}),onStateChange:e=>{send({event:'state',playing:e.data===1,loading:e.data===3});if(e.data===0)send({event:'ended'});},onError:()=>send({event:'error'}),onAutoplayBlocked:()=>send({event:'state',playing:false})}});};
+let player,positionTimer;
+function updatePosition(){if(player&&player.getCurrentTime)send({event:'position',position:player.getCurrentTime(),duration:player.getDuration()});}
+window.updateWavePositionTimer=()=>{clearInterval(positionTimer);positionTimer=null;if(visualForeground&&!document.hidden&&player&&player.getPlayerState&&[1,3].includes(player.getPlayerState()))positionTimer=setInterval(updatePosition,500);};
+document.addEventListener('visibilitychange',window.updateWavePositionTimer);
+window.addEventListener('pagehide',()=>clearInterval(positionTimer));
+window.onYouTubeIframeAPIReady=()=>{player=new YT.Player('provider',{width:'100%',height:'100%',videoId:${jsonEncode(sid)},playerVars:{playsinline:1,controls:1,origin:${jsonEncode(origin)}},events:{onReady:()=>{send({event:'ready'});updatePosition();},onStateChange:e=>{send({event:'state',playing:e.data===1,loading:e.data===3});updatePosition();window.updateWavePositionTimer();if(e.data===0)send({event:'ended'});},onError:()=>send({event:'error'}),onAutoplayBlocked:()=>send({event:'state',playing:false})}});};
 window.waveCommand=(c,d)=>{if(!player)return;if(c==='play')player.playVideo();if(c==='pause'||c==='stop')player.pauseVideo();if(c==='seek')player.seekTo(d.position,true);if(c==='volume')player.setVolume(d.volume*100);};
-setInterval(()=>{if(player&&player.getCurrentTime)send({event:'position',position:player.getCurrentTime(),duration:player.getDuration()});},500);
 ''';
   // The bridge handler belongs exclusively to this controlled top document.
   // Provider iframes communicate through their official postMessage APIs.
   return '''<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><style>html,body{margin:0;width:100%;height:100%;background:transparent;overflow:hidden}iframe,#provider{width:100%;height:100%;border:0;display:block}</style></head><body>$body<script>
 const pending=[];function send(data){if(window.flutter_inappwebview)window.flutter_inappwebview.callHandler('waveProvider',$generation,data);else pending.push(data);}
+let visualForeground=true;window.waveVisibility=value=>{visualForeground=Boolean(value);if(window.updateWavePositionTimer)window.updateWavePositionTimer();};
 window.addEventListener('flutterInAppWebViewPlatformReady',()=>{for(const data of pending.splice(0))send(data);});
 $setup
 </script></body></html>''';

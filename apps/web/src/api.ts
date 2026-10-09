@@ -1,12 +1,14 @@
 import { t, getLanguage } from './locale';
 import {reportError} from './diagnostics';
-import {deviceId,surfaceId} from './device-identity';
+import {deviceId,surfaceId,browserDeviceName} from './device-identity';
 export class ApiError extends Error { constructor(public code: string, message: string, public details?: unknown) { super(message); } }
 export async function api<T>(path: string, init: RequestInit = {}): Promise<T> {
   const headers = new Headers(init.headers);
   headers.set('Accept-Language',getLanguage());
   headers.set('X-GlukWave-Device',deviceId);
   headers.set('X-GlukWave-Surface',surfaceId);
+  headers.set('X-GlukWave-Kind','web');
+  headers.set('X-GlukWave-Device-Name',browserDeviceName);
   if (init.body && !(init.body instanceof FormData)) headers.set('Content-Type','application/json');
   let response: Response;
   try { response = await fetch(`/api${path}`, { ...init, headers, credentials: 'include' }); }
@@ -17,5 +19,5 @@ export async function api<T>(path: string, init: RequestInit = {}): Promise<T> {
 }
 export const post = <T>(path: string, data: unknown = {}) => api<T>(path,{method:'POST',body:JSON.stringify(data)});
 export const patch = <T>(path: string, data: unknown = {}) => api<T>(path,{method:'PATCH',body:JSON.stringify(data)});
-export function errorText(error: unknown) { const message=error instanceof Error?error.message:t('copy.168');return /(?:API|OAuth|RPC|Turnstile|VAPID|\.env|SMTP|credentials|provider.*key|ключ.*(?:сервис|сервер)|настро.{0,25}(?:сервер|разработ))/i.test(message)?t('copy.169'):message; }
+export function errorText(error: unknown) { if(error instanceof ApiError){const labels:Record<string,string>={PLAN_LIMIT:'parity.planLimit',REGISTRATION_CLOSED:'parity.registrationClosed',FRIEND_REQUESTS_DISABLED:'parity.friendRequestsDisabled',JAM_FULL:'parity.jamUnavailable',JAM_NOT_FOUND:'parity.jamUnavailable',PRIVATE_TRACK:'parity.publicAudioOnly',PRIVATE_TRACKS:'parity.publicAudioOnly',PLAYLIST_PRIVATE_TRACKS:'parity.publicAudioOnly',OWNER_ONLY:'parity.ownerOnly'};if(labels[error.code])return t(labels[error.code]);}const message=error instanceof Error?error.message:t('copy.168');return /(?:API|OAuth|RPC|Turnstile|VAPID|\.env|SMTP|credentials|provider.*key|ключ.*(?:сервис|сервер)|настро.{0,25}(?:сервер|разработ))/i.test(message)?t('copy.169'):message; }
 

@@ -1,7 +1,8 @@
 import { t } from './locale';
 import { openDB, type DBSchema } from 'idb';
 import type { Library, Track } from './types';
-export type CachedTrack = { key:string; userId:string; track:Track; blob:Blob; bytes:number; savedAt:number; manual:boolean };
+import { mediaDownloadPath, mediaArtworkPath } from './media-download';
+export type CachedTrack = { key:string; userId:string; track:Track; blob:Blob; artworkBlob?:Blob; bytes:number; savedAt:number; manual:boolean };
 interface WaveDB extends DBSchema {
   downloads:{key:string;value:CachedTrack;indexes:{userId:string}};
   library:{key:string;value:Library};
@@ -14,6 +15,17 @@ const database=openDB<WaveDB>('glukwave-private-v1',2,{upgrade(db){
 }});
 type DownloadOperation={controller:AbortController;promise:Promise<void>;manual:boolean;progress:((fraction:number)=>void)[]};
 const inFlight=new Map<string,DownloadOperation>();
+async function cachedArtwork(track:Track,signal:AbortSignal,budget:number):Promise<Blob|undefined>{
+ if(!track.artwork||budget<=0)return;
+ try{
+  const limit=Math.min(1024*1024,budget),response=await fetch(mediaArtworkPath(track.id,track.artwork,location.origin),{credentials:'include',signal:AbortSignal.any([signal,AbortSignal.timeout(3500)])});
+  const type=response.headers.get('Content-Type')?.split(';')[0]||'';
+  if(!response.ok||!/^image\/(png|jpe?g|webp|avif|gif)$/.test(type)||Number(response.headers.get('Content-Length'))>limit){await response.body?.cancel();return;}
+  const reader=response.body?.getReader();if(!reader)return;const parts:Uint8Array<ArrayBuffer>[]=[];let received=0;
+  while(true){const item=await reader.read();if(item.done)break;received+=item.value.byteLength;if(received>limit){await reader.cancel();return;}parts.push(new Uint8Array(item.value));}
+  return new Blob(parts,{type});
+ }catch{/* A missing thumbnail must not discard a valid offline track. */}
+}
 const changes=new BroadcastChannel('glukwave-cache-events');
 function announce(userId:string,trackId?:string){window.dispatchEvent(new Event('wave:cache'));changes.postMessage({userId,trackId});}
 function cancel(userId:string,trackId?:string){for(const[key,operation]of inFlight)if(key.startsWith(`${userId}:`)&&(!trackId||key===`${userId}:${trackId}`))operation.controller.abort();}
@@ -45,12 +57,13 @@ export async function saveLibrary(userId:string,library:Library,expectedGenerati
 export async function readLibrary(userId:string){return(await database).get('library',userId);}
 export async function saveTrack(userId:string,track:Track,limitMB:number,manual:boolean,progress?:(fraction:number)=>void){
   if(!track.playback.offline||track.playback.kind!=='audio')throw new Error(t('copy.275'));
+  const downloadUrl=mediaDownloadPath(track.id,track.playback.downloadUrl,location.origin);if(!downloadUrl)throw new Error(t('copy.275'));
   const key=`${userId}:${track.id}`,active=inFlight.get(key);
   if(active){active.manual||=manual;if(progress)active.progress.push(progress);return active.promise;}
   const operation:DownloadOperation={controller:new AbortController(),promise:Promise.resolve(),manual,progress:progress?[progress]:[]};
   operation.promise=(async()=>{
     const db=await database,generation=await getCacheGeneration(userId),trackGeneration=(await db.get('generation',key))||0;
-    const response=await fetch(`/api/media/${encodeURIComponent(track.id)}/download`,{credentials:'include',signal:operation.controller.signal});
+    const response=await fetch(downloadUrl,{credentials:'include',signal:operation.controller.signal});
     if(!response.ok){const body=await response.json().catch(()=>({}));throw new Error(body.error?.message||t('copy.276'));}
     const size=Number(response.headers.get('Content-Length')),limit=limitMB*1024*1024;
     if(size>limit){await response.body?.cancel();throw new Error(t('copy.277'));}
@@ -58,6 +71,7 @@ export async function saveTrack(userId:string,track:Track,limitMB:number,manual:
     if(response.body){const reader=response.body.getReader();while(true){const chunk=await reader.read();if(chunk.done)break;received+=chunk.value.byteLength;if(received>limit){await reader.cancel();throw new Error(t('copy.278'));}parts.push(new Uint8Array(chunk.value));for(const listener of operation.progress)listener(size?received/size:0);}}
     else parts.push(new Uint8Array(await response.arrayBuffer()));
     const blob=new Blob(parts,{type:response.headers.get('Content-Type')||'audio/mpeg'});
+    const artworkBlob=await cachedArtwork(track,operation.controller.signal,limit-blob.size),bytes=blob.size+(artworkBlob?.size||0);
     if(operation.controller.signal.aborted)throw new DOMException(t('copy.279'),'AbortError');
     // Quota decisions and writes share a transaction, including across different browser tabs.
     const tx=db.transaction(['downloads','generation'],'readwrite'),generations=tx.objectStore('generation');
@@ -65,9 +79,9 @@ export async function saveTrack(userId:string,track:Track,limitMB:number,manual:
     if(actualGeneration!==generation||actualTrackGeneration!==trackGeneration||operation.controller.signal.aborted){await tx.done;throw new DOMException(t('copy.279'),'AbortError');}
     const records=tx.objectStore('downloads'),existing=await records.get(key),rows=(await records.index('userId').getAll(userId)).filter(row=>row.key!==key).sort((a,b)=>a.savedAt-b.savedAt);
     let total=rows.reduce((sum,row)=>sum+row.bytes,0);
-    for(const row of rows.filter(row=>!row.manual))if(total+blob.size>limit){await records.delete(row.key);total-=row.bytes;}
-    if(total+blob.size>limit){tx.abort();await tx.done.catch(()=>{});throw new Error(t('copy.280'));}
-    try{await records.put({key,userId,track,blob,bytes:blob.size,savedAt:Date.now(),manual:operation.manual||!!existing?.manual});await tx.done;}
+    for(const row of rows.filter(row=>!row.manual))if(total+bytes>limit){await records.delete(row.key);total-=row.bytes;}
+    if(total+bytes>limit){tx.abort();await tx.done.catch(()=>{});throw new Error(t('copy.280'));}
+    try{await records.put({key,userId,track,blob,artworkBlob,bytes,savedAt:Date.now(),manual:operation.manual||!!existing?.manual});await tx.done;}
     catch(error){if(error instanceof DOMException&&error.name==='QuotaExceededError')throw new Error(t('copy.281'));throw error;}
     for(const listener of operation.progress)listener(1);window.dispatchEvent(new Event('wave:cache'));
   })().finally(()=>{if(inFlight.get(key)===operation)inFlight.delete(key);});

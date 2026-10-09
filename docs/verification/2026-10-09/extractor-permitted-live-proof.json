@@ -1,0 +1,47 @@
+{
+  "checkedAt": "2026-10-09T09:04:56.886Z",
+  "scope": "real CC-BY source; isolated API range/cover/conversion; no physical player smoke",
+  "source": {
+    "title": "Carefree",
+    "artist": "Kevin MacLeod",
+    "duration": 205.186,
+    "url": "https://soundcloud.com/kevin-9-1/carefree",
+    "license": "cc-by"
+  },
+  "descriptor": {
+    "kind": "audio",
+    "url": "/api/external-audio/permitted-live-carefree",
+    "downloadUrl": "/api/external-audio/permitted-live-carefree/download",
+    "offline": true
+  },
+  "range": {
+    "status": 206,
+    "type": "audio/mpeg",
+    "contentRange": "bytes 0-65535/3282650",
+    "receivedBytes": 31923
+  },
+  "cover": {
+    "status": 200,
+    "type": "image/jpeg",
+    "bytes": 107238
+  },
+  "conversion": {
+    "status": 200,
+    "type": "audio/mpeg",
+    "prefix": "ID3",
+    "receivedBytes": 45,
+    "abortedAfterProbe": true
+  },
+  "afterAbort": {
+    "active": 0,
+    "queued": 0,
+    "completed": 1,
+    "failed": 0,
+    "limit": 1,
+    "streams": 0,
+    "metadataEntries": 2,
+    "pending": 0,
+    "conversion": false
+  },
+  "passed": true
+}

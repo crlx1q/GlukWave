@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'dart:io';
+import '../l10n/parity_strings.dart';
 import 'package:flutter/material.dart';
 import '../core/controller.dart';
 import '../core/equalizer.dart';
@@ -40,7 +42,7 @@ class EqualizerPanel extends StatelessWidget {
             subtitle: Padding(
               padding: const EdgeInsets.only(top: 6),
               child: Text(
-                wt(
+                Platform.isWindows && status == 'eq.hardware' ? pt(context, 'Windows DSP') : wt(
                   status,
                   context: context,
                   values: {'p0': c.audio.hardwareBandCount},

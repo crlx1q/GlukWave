@@ -1,0 +1,11 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {ownsOutput,snapshotPosition} from '../src/connect-controller.ts';
+const state={trackId:'track',position:20,playing:true,volume:.08,queue:['track'],updatedAt:10000,revision:4};
+const shared={independent:false,activeDeviceId:'browser-installation',activeSurfaceId:'first-tab',state,track:null,queueTracks:[],serverTime:13000,roomId:null};
+test('same browser installation does not play from its second tab',()=>{assert.equal(ownsOutput(shared,'browser-installation','first-tab'),true);assert.equal(ownsOutput(shared,'browser-installation','second-tab'),false);assert.equal(ownsOutput(shared,'windows-app','first-tab'),false);});
+test('separate listening allows another personal output, but rooms still have one output',()=>{assert.equal(ownsOutput({...shared,independent:true},'windows-app','second-tab'),true);assert.equal(ownsOutput({...shared,independent:true,roomId:'room'},'windows-app','second-tab'),false);});
+test('an account with no selected online output can be claimed locally',()=>{assert.equal(ownsOutput({...shared,activeDeviceId:null,activeSurfaceId:null},'windows-app','tab'),true);});
+test('room with disconnected output stays silent until one surface is selected',()=>{assert.equal(ownsOutput({...shared,roomId:'room',activeDeviceId:null,activeSurfaceId:null},'browser-installation','first-tab'),false);assert.equal(ownsOutput({...shared,roomId:'room',activeDeviceId:null,activeSurfaceId:null},'browser-installation','second-tab'),false);});
+test('room mirror timeline includes elapsed server time and bounded network estimate',()=>{assert.equal(snapshotPosition(state,13000,100),23.1);assert.equal(snapshotPosition(state,9000),20);});
+test('paused room and disconnected owner keep their frozen position',()=>{assert.equal(snapshotPosition({...state,playing:false},13000,100),20);assert.equal(snapshotPosition({...state,position:-5,playing:false},13000),0);});

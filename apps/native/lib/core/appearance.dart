@@ -2,6 +2,16 @@ import '../l10n/wave_localizations.dart';
 import 'models.dart';
 import 'equalizer.dart';
 
+bool requiresAdvancedAppearance(Json changes) {
+  if (changes.containsKey('fontFamily')) return true;
+  final appearance = object(changes['appearance']);
+  for (final entry in appearance.entries) {
+    if (!['light', 'dark', 'amoled'].contains(entry.key)) return true;
+    if (object(entry.value).keys.any((key) => key != 'accent')) return true;
+  }
+  return false;
+}
+
 String normalizeHex(String value) {
   var hex = value.trim().toLowerCase();
   if (!hex.startsWith('#')) hex = '#$hex';
@@ -47,7 +57,7 @@ Json unacknowledgedAppearancePatch(Json pending, Json acknowledged) {
 Json presentationPatch(Json changes, WaveCustomization normalized) {
   final settings = normalized.toSettings();
   final result = <String, dynamic>{};
-  for (final key in ['theme', 'reducedMotion', 'language', 'playbackRate']) {
+  for (final key in ['theme', 'reducedMotion', 'language', 'playbackRate', 'fontFamily', 'fontScale']) {
     if (changes.containsKey(key)) result[key] = settings[key];
   }
   if (changes['equalizer'] is Map) {
@@ -163,6 +173,8 @@ class WaveCustomization {
   final bool reducedMotion;
   final WaveEqualizer equalizer;
   final double playbackRate;
+  final String fontFamily;
+  final double fontScale;
   const WaveCustomization({
     this.theme = 'light',
     this.language = 'auto',
@@ -170,10 +182,14 @@ class WaveCustomization {
     this.reducedMotion = false,
     this.equalizer = const WaveEqualizer(),
     this.playbackRate = 1,
+    this.fontFamily = 'manrope',
+    this.fontScale = 1,
   });
   factory WaveCustomization.fromSettings(Json settings) =>
       const WaveCustomization().merge(settings);
   WaveCustomization merge(Json settings) => WaveCustomization(
+    fontFamily: ['manrope', 'nunito', 'system'].contains(settings['fontFamily']) ? settings['fontFamily'] as String : fontFamily,
+    fontScale: settings['fontScale'] is num && (settings['fontScale'] as num).isFinite ? number(settings['fontScale'], fontScale).clamp(.85, 1.25) : fontScale,
     language:
         [
           'auto',
@@ -207,6 +223,8 @@ class WaveCustomization {
     'reducedMotion': reducedMotion,
     'equalizer': equalizer.toJson(),
     'playbackRate': playbackRate,
+    'fontFamily': fontFamily,
+    'fontScale': fontScale,
   };
   Json resetPalette(String mode) => {
     'appearance': {

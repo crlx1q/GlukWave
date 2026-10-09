@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs/promises';
+import {open,evaluate,run,useSession,snapshot,screenshot,click,fill} from './browser.mjs';
+process.env.AGENT_BROWSER_ARGS='--mute-audio';useSession('gluk-parity-web-delete-'+Date.now());
+const suffix=Date.now().toString(36),proof=JSON.parse(await fs.readFile('work/qa/parity-web-functional.json','utf8'));
+proof.previousHarnessError=proof.error;delete proof.error;delete proof.snapshot;
+const wait=expression=>{const end=Date.now()+15000;while(Date.now()<end){if(evaluate(expression))return snapshot();Atomics.wait(new Int32Array(new SharedArrayBuffer(4)),0,0,180);}throw Error('Condition did not become true: '+expression);};
+const helper=`window.__gw=function(key){const host=document.getElementById('root'),root=host[Object.keys(host).find(name=>name.startsWith('__reactContainer$'))]?.stateNode?.current,stack=[root];while(stack.length){const fiber=stack.pop();if(!fiber)continue;const value=fiber.memoizedProps?.value;if(value&&typeof value[key]==='function')return value;if(fiber.sibling)stack.push(fiber.sibling);if(fiber.child)stack.push(fiber.child);}throw Error('Missing context '+key);};window.__qaApi=async(route,body,method=body?'POST':'GET')=>(await import('/src/api.ts')).api(route,{method,...(body?{body:JSON.stringify(body)}:{})});`;
+try{
+ open('http://127.0.0.1:5177/app/#settings?section=account');wait(`!!document.querySelector('.app-shell')`);evaluate(helper);
+ const user=evaluate(`(async()=>{const result=await __qaApi('/auth/register',{email:'paritydelete_${suffix}@example.test',username:'paritydelete_${suffix}',displayName:'Disposable account deletion',password:'Parity-isolated-qa-2026'});await __gw('refresh').refresh();await __gw('saveSettings').saveSettings({language:'en'});return result.user;})()`);
+ wait(`__gw('refresh').user?.id===${JSON.stringify(user.id)}&&document.documentElement.lang==='en'&&!!document.querySelector('.account-parity-actions')`);snapshot();click('Delete account');fill('textbox',`Type ${user.username} to confirm`,user.username);fill('textbox','Current password','Parity-isolated-qa-2026');run('set','viewport','1440','1000');snapshot();const file='work/qa/parity-web-delete-account-confirmation-desktop.png';screenshot(file);proof.screenshots.push(file);click('Delete account');wait(`!__gw('refresh').user`);assert.equal(evaluate(`localStorage.getItem('gw-user')`),null);assert.equal(evaluate(`localStorage.getItem('gw-settings:'+${JSON.stringify(user.id)})`),null);
+ proof.steps.push('Actual account deletion requires password and exact username and clears private local state after server success');proof.passed=true;proof.completedAt=new Date().toISOString();proof.passesAcrossContinuations=true;console.log('Actual disposable account deletion and private state cleanup passed');
+}catch(error){proof.passed=false;proof.error=String(error);try{proof.snapshot=snapshot().snapshot;}catch{}throw error;}
+finally{await fs.writeFile('work/qa/parity-web-functional.json',JSON.stringify(proof,null,2));try{run('close');}catch{}}

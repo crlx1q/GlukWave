@@ -52,7 +52,7 @@ class Brand extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(waveRadius(context, size * .3)),
           child: Image.asset(
-            'assets/logo.${animated && !waveVisuals(context).reducedMotion && !MediaQuery.disableAnimationsOf(context) ? 'gif' : 'png'}',
+            'assets/logo.${animated && TickerMode.of(context) && !waveVisuals(context).reducedMotion && !MediaQuery.disableAnimationsOf(context) ? 'gif' : 'png'}',
             width: size,
             height: size,
             cacheWidth: 96,
@@ -316,7 +316,8 @@ class _WaveSkeletonBlockState extends State<WaveSkeletonBlock>
     super.didChangeDependencies();
     final still =
         waveVisuals(context).reducedMotion ||
-        MediaQuery.disableAnimationsOf(context);
+        MediaQuery.disableAnimationsOf(context) ||
+        !TickerMode.of(context);
     if (still) {
       pulse.stop();
     } else if (!pulse.isAnimating) {
@@ -395,8 +396,10 @@ class WaveHero extends StatefulWidget {
   final VoidCallback? onPlay;
   final bool reducedMotion;
   final bool empty;
+  final String? emptyActionLabel;
   const WaveHero({
     super.key,
+    this.emptyActionLabel,
     this.controller,
     this.onPlay,
     this.reducedMotion = false,
@@ -631,7 +634,7 @@ class _WaveHeroState extends State<WaveHero>
                           ),
                           label: Text(
                             widget.empty
-                                ? wt('native.99855bf52d', context: context)
+                                ? widget.emptyActionLabel ?? wt('native.99855bf52d', context: context)
                                 : wt('native.5f266e04fe', context: context),
                           ),
                         ),

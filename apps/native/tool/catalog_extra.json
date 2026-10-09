@@ -86,5 +86,229 @@
     "uk": "{count} треків, що відгукнулися",
     "de": "{count} Titel, die dich berühren",
     "es": "{count} pistas que te llegaron"
+  },
+  "devices.web": {
+    "en": "Web browser",
+    "ru": "Веб · браузер",
+    "kk": "Веб браузер",
+    "uk": "Веб · браузер",
+    "de": "Webbrowser",
+    "es": "Navegador web"
+  },
+  "devices.windows": {
+    "en": "Windows app",
+    "ru": "Приложение Windows",
+    "kk": "Windows қолданбасы",
+    "uk": "Застосунок Windows",
+    "de": "Windows-App",
+    "es": "Aplicación de Windows"
+  },
+  "devices.android": {
+    "en": "Android app",
+    "ru": "Приложение Android",
+    "kk": "Android қолданбасы",
+    "uk": "Застосунок Android",
+    "de": "Android-App",
+    "es": "Aplicación de Android"
+  },
+  "devices.ios": {
+    "en": "iPhone app",
+    "ru": "Приложение iPhone",
+    "kk": "iPhone қолданбасы",
+    "uk": "Застосунок iPhone",
+    "de": "iPhone-App",
+    "es": "Aplicación de iPhone"
+  },
+  "devices.desktop": {
+    "en": "Desktop app",
+    "ru": "Приложение на ПК",
+    "kk": "Компьютер қолданбасы",
+    "uk": "Застосунок на ПК",
+    "de": "Desktop-App",
+    "es": "Aplicación de escritorio"
+  },
+  "devices.refresh": {
+    "en": "Refresh",
+    "ru": "Обновить",
+    "kk": "Жаңарту",
+    "uk": "Оновити",
+    "de": "Aktualisieren",
+    "es": "Actualizar"
+  },
+  "devices.activeOutput": {
+    "en": "Music plays here",
+    "ru": "Музыка играет здесь",
+    "kk": "Музыка осында ойнап жатыр",
+    "uk": "Музика грає тут",
+    "de": "Musik wird hier abgespielt",
+    "es": "La música suena aquí"
+  },
+  "devices.selectedOutput": {
+    "en": "Selected output · paused",
+    "ru": "Выбранный источник · пауза",
+    "kk": "Таңдалған құрылғы · кідіртілді",
+    "uk": "Вибраний пристрій · пауза",
+    "de": "Gewählte Ausgabe · pausiert",
+    "es": "Salida seleccionada · en pausa"
+  },
+  "devices.sessionsCount": {
+    "en": "Sessions: {count}",
+    "ru": "Сеансов: {count}",
+    "kk": "Сеанстар: {count}",
+    "uk": "Сеансів: {count}",
+    "de": "Sitzungen: {count}",
+    "es": "Sesiones: {count}"
+  },
+  "connect.noOutput": {
+    "en": "Choose a device to listen",
+    "ru": "Выбери устройство для музыки",
+    "kk": "Музыка үшін құрылғыны таңда",
+    "uk": "Вибери пристрій для музики",
+    "de": "Wähle ein Gerät zum Hören",
+    "es": "Elige un dispositivo para escuchar"
+  },
+  "sessions.security": {
+    "en": "Security",
+    "ru": "Безопасность",
+    "kk": "Қауіпсіздік",
+    "uk": "Безпека",
+    "de": "Sicherheit",
+    "es": "Seguridad"
+  },
+  "sessions.title": {
+    "en": "Your sessions",
+    "ru": "Твои сеансы",
+    "kk": "Сенің сеанстарың",
+    "uk": "Твої сеанси",
+    "de": "Deine Sitzungen",
+    "es": "Tus sesiones"
+  },
+  "sessions.description": {
+    "en": "See where you are signed in and end any session you no longer use.",
+    "ru": "Проверь, где выполнен вход, и заверши ненужные сеансы.",
+    "kk": "Қай құрылғыларда кіргеніңді тексеріп, қажетсіз сеанстарды аяқта.",
+    "uk": "Перевір, де виконано вхід, і заверши непотрібні сеанси.",
+    "de": "Prüfe, wo du angemeldet bist, und beende nicht mehr benötigte Sitzungen.",
+    "es": "Revisa dónde has iniciado sesión y cierra las sesiones que ya no usas."
+  },
+  "sessions.current": {
+    "en": "This session",
+    "ru": "Этот сеанс",
+    "kk": "Осы сеанс",
+    "uk": "Цей сеанс",
+    "de": "Diese Sitzung",
+    "es": "Esta sesión"
+  },
+  "sessions.lastActive": {
+    "en": "Last active: {time}",
+    "ru": "Последняя активность: {time}",
+    "kk": "Соңғы белсенділік: {time}",
+    "uk": "Остання активність: {time}",
+    "de": "Zuletzt aktiv: {time}",
+    "es": "Última actividad: {time}"
+  },
+  "sessions.end": {
+    "en": "End session",
+    "ru": "Завершить сеанс",
+    "kk": "Сеансты аяқтау",
+    "uk": "Завершити сеанс",
+    "de": "Sitzung beenden",
+    "es": "Cerrar sesión"
+  },
+  "sessions.endOthers": {
+    "en": "Sign out everywhere else",
+    "ru": "Выйти на остальных устройствах",
+    "kk": "Басқа құрылғылардан шығу",
+    "uk": "Вийти на інших пристроях",
+    "de": "Alle anderen Sitzungen beenden",
+    "es": "Cerrar las demás sesiones"
+  },
+  "sessions.confirm": {
+    "en": "End this session? GlukWave will sign out there. Ending this session on your current device will also sign you out here.",
+    "ru": "Завершить этот сеанс? GlukWave выполнит выход на нём. Если это твой текущий сеанс, ты выйдешь и здесь.",
+    "kk": "Осы сеансты аяқтау керек пе? GlukWave сол жерде аккаунттан шығады. Ағымдағы сеансты аяқтасаң, осы жерден де шығасың.",
+    "uk": "Завершити цей сеанс? GlukWave виконає вихід на ньому. Якщо це твій поточний сеанс, ти вийдеш і тут.",
+    "de": "Diese Sitzung beenden? GlukWave meldet dich dort ab. Bei deiner aktuellen Sitzung wirst du auch hier abgemeldet.",
+    "es": "¿Cerrar esta sesión? GlukWave cerrará la cuenta allí. Si es tu sesión actual, también saldrás aquí."
+  },
+  "sessions.confirmOthers": {
+    "en": "All other sessions will be signed out. This session stays signed in.",
+    "ru": "Все остальные сеансы будут завершены. На этом устройстве ты останешься в аккаунте.",
+    "kk": "Басқа сеанстар аяқталады. Осы құрылғыда аккаунтта қаласың.",
+    "uk": "Усі інші сеанси буде завершено. На цьому пристрої ти залишишся в акаунті.",
+    "de": "Alle anderen Sitzungen werden abgemeldet. Diese Sitzung bleibt angemeldet.",
+    "es": "Se cerrarán las demás sesiones. Esta sesión seguirá abierta."
+  },
+  "sessions.preserveCurrent": {
+    "en": "Your current session remains signed in.",
+    "ru": "Текущий сеанс остаётся в аккаунте.",
+    "kk": "Ағымдағы сеанс аккаунтта қалады.",
+    "uk": "Поточний сеанс залишається в акаунті.",
+    "de": "Deine aktuelle Sitzung bleibt angemeldet.",
+    "es": "Tu sesión actual seguirá abierta."
+  },
+  "sessions.loadFailed": {
+    "en": "Sessions could not be loaded. Try again.",
+    "ru": "Не удалось загрузить сеансы. Попробуй ещё раз.",
+    "kk": "Сеанстар жүктелмеді. Қайта көр.",
+    "uk": "Не вдалося завантажити сеанси. Спробуй ще раз.",
+    "de": "Sitzungen konnten nicht geladen werden. Versuche es erneut.",
+    "es": "No se pudieron cargar las sesiones. Inténtalo de nuevo."
+  },
+  "sessions.actionFailed": {
+    "en": "The session was not ended. Try again when connected.",
+    "ru": "Сеанс не завершён. Попробуй ещё раз при подключении.",
+    "kk": "Сеанс аяқталмады. Қосылғанда қайта көр.",
+    "uk": "Сеанс не завершено. Спробуй ще раз після підключення.",
+    "de": "Die Sitzung wurde nicht beendet. Versuche es mit Verbindung erneut.",
+    "es": "La sesión no se cerró. Inténtalo cuando tengas conexión."
+  },
+  "sessions.unavailable": {
+    "en": "Session controls are temporarily unavailable",
+    "ru": "Управление сеансами временно недоступно",
+    "kk": "Сеанстарды басқару уақытша қолжетімсіз",
+    "uk": "Керування сеансами тимчасово недоступне",
+    "de": "Sitzungsverwaltung vorübergehend nicht verfügbar",
+    "es": "La gestión de sesiones no está disponible temporalmente"
+  },
+  "sessions.unavailableHint": {
+    "en": "You can still sign out a device in Your devices.",
+    "ru": "Можно завершить вход через раздел «Твои устройства».",
+    "kk": "«Құрылғыларың» бөлімінен аккаунттан шығуға болады.",
+    "uk": "Можна завершити вхід через розділ «Твої пристрої».",
+    "de": "Du kannst ein Gerät weiterhin unter Deine Geräte abmelden.",
+    "es": "Puedes cerrar la cuenta de un dispositivo en Tus dispositivos."
+  },
+  "sessions.empty": {
+    "en": "No sessions to display",
+    "ru": "Нет сеансов для отображения",
+    "kk": "Көрсетілетін сеанстар жоқ",
+    "uk": "Немає сеансів для відображення",
+    "de": "Keine Sitzungen zum Anzeigen",
+    "es": "No hay sesiones que mostrar"
+  },
+  "room.unavailable": {
+    "en": "This room is no longer available.",
+    "ru": "Эта комната больше недоступна.",
+    "kk": "Бұл бөлме енді қолжетімсіз.",
+    "uk": "Ця кімната більше недоступна.",
+    "de": "Dieser Raum ist nicht mehr verfügbar.",
+    "es": "Esta sala ya no está disponible."
+  },
+  "connections.connected": {
+    "en": "{name} is connected",
+    "ru": "{name} подключён",
+    "kk": "{name} қосылды",
+    "uk": "{name} підключено",
+    "de": "{name} ist verbunden",
+    "es": "{name} está conectado"
+  },
+  "connections.refreshFailed": {
+    "en": "The connection could not be checked. Refresh your music sources to try again.",
+    "ru": "Не удалось проверить подключение. Обнови музыкальные источники и попробуй ещё раз.",
+    "kk": "Қосылым тексерілмеді. Музыка көздерін жаңартып, қайта көр.",
+    "uk": "Не вдалося перевірити підключення. Онови музичні джерела та спробуй ще раз.",
+    "de": "Die Verbindung konnte nicht geprüft werden. Aktualisiere deine Musikquellen und versuche es erneut.",
+    "es": "No se pudo comprobar la conexión. Actualiza tus fuentes musicales e inténtalo de nuevo."
   }
 }

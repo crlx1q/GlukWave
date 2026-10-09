@@ -195,7 +195,11 @@ class AppearanceStore extends ChangeNotifier {
         if (_matchesScope(generation, token, origin)) notifyListeners();
       } catch (error) {
         if (!_matchesScope(generation, token, origin)) return;
-        _patch = mergeAppearancePatch(payload, _patch);
+        // A plan rejection is authoritative. Roll back the rejected edit while
+        // preserving changes made after it was sent; never retry it forever.
+        if (error is! WaveException || error.code.toUpperCase() != 'PLAN_LIMIT') {
+          _patch = mergeAppearancePatch(payload, _patch);
+        }
         _flight = {};
         _reconcile();
         lastError = error.toString();

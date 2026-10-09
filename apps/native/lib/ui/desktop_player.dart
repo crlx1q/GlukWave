@@ -1,3 +1,4 @@
+import 'motion_icons.dart';
 import 'dart:async';
 import 'package:audio_service/audio_service.dart';
 import 'package:flutter/gestures.dart';
@@ -87,7 +88,7 @@ class _DesktopCompactPlayerState extends State<DesktopCompactPlayer> {
           backgroundColor: v.ink,
           foregroundColor: v.background,
         ),
-        onPressed: c.canControl && c.audio.viewCurrent != null
+        onPressed: c.canTogglePlayback && c.audio.viewCurrent != null
             ? () => _run(c.audio.playing ? c.audio.pause : c.audio.play)
             : null,
         icon: busy
@@ -98,10 +99,8 @@ class _DesktopCompactPlayerState extends State<DesktopCompactPlayer> {
                   color: v.background,
                 ),
               )
-            : Icon(
-                c.audio.playing
-                    ? Icons.pause_rounded
-                    : Icons.play_arrow_rounded,
+            : WavePlayPauseIcon(
+                playing: c.audio.playing,
                 size: widget.quick ? 30 : 25,
               ),
       );

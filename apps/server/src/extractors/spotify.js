@@ -1,0 +1,2 @@
+import {audioMatch} from './matching.js';
+export const spotifyAdapter=(runtime,config)=>({id:'spotify',metadata:url=>runtime.execute('spotify',{action:'spotify-metadata',url,credentials:config.spotify}),async matches(track){const result=await runtime.execute('spotify',{action:'spotify-candidates',query:`${track.artist} ${track.title}`});return {...result,candidates:result.candidates.map(candidate=>({...candidate,match:audioMatch(track,candidate)})).sort((a,b)=>b.match.score-a.match.score)};}});

@@ -40,6 +40,7 @@ class _LofiPageState extends State<LofiPage>
   late String atmosphere;
   late double rainLevel;
   bool zen = false;
+  bool _visible = false;
   @override
   void initState() {
     super.initState();
@@ -53,9 +54,6 @@ class _LofiPageState extends State<LofiPage>
     atmosphere = c.preferences.getString('lofiAtmosphere') ?? 'glow';
     if (!['none', 'glow', 'rain'].contains(atmosphere)) atmosphere = 'glow';
     rainLevel = (c.preferences.getDouble('lofiRain') ?? 0).clamp(0, 1);
-    _clock = Timer.periodic(const Duration(seconds: 10), (_) {
-      if (mounted) setState(() => now = DateTime.now());
-    });
     if (rainLevel > 0) unawaited(_rain(rainLevel));
   }
 
@@ -73,8 +71,20 @@ class _LofiPageState extends State<LofiPage>
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    final visible = TickerMode.of(context);
+    if (_visible != visible) {
+      _visible = visible;
+      _clock?.cancel();
+      _clock = visible
+          ? Timer.periodic(const Duration(seconds: 10), (_) {
+              if (mounted) setState(() => now = DateTime.now());
+            })
+          : null;
+      now = DateTime.now();
+    }
     if (waveVisuals(context).reducedMotion ||
-        MediaQuery.disableAnimationsOf(context)) {
+        MediaQuery.disableAnimationsOf(context) ||
+        !visible) {
       motion.stop();
     } else if (!motion.isAnimating) {
       motion.repeat();

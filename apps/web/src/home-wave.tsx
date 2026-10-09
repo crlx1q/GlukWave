@@ -1,3 +1,4 @@
+import { recommendationMood } from './parity-model';
 import { t, useLocale } from './locale';
 import { useEffect, useRef, useState } from 'react';
 import { Cloud, Compass, Heart, Music2, Plus, SlidersHorizontal, Waves } from 'lucide-react';
@@ -25,15 +26,14 @@ export function PersonalWave({upload}:{upload:()=>void}) {useLocale();
  const start=async()=>{
   if(playing){await player.command({command:'pause'});return;}
   if(canResume){await player.command({command:'play'});return;}
-  if(selected==='personal'&&personal.length){setWaveQueue(personal);await player.playTrack(personal[Math.floor(Math.random()*personal.length)],personal);return;}
   const controller=new AbortController();request.current?.abort();request.current=controller;setBusy(true);
-  try{const result=await api<{tracks:Track[]}>(`/search?q=${encodeURIComponent(mood.query)}&source=all`,{signal:controller.signal});if(controller.signal.aborted)return;if(result.tracks.length){setWaveQueue(result.tracks);await player.playTrack(result.tracks[Math.floor(Math.random()*result.tracks.length)],result.tracks);}else{store.setQuery(mood.query);store.setSource('all');store.navigate('search');store.notify(t('copy.401'));}}
+  try{const result=await api<{tracks:Track[]}>(`/recommendations?mood=${recommendationMood(selected)}`,{signal:controller.signal});if(controller.signal.aborted)return;if(result.tracks.length){setWaveQueue(result.tracks);await player.playTrack(result.tracks[Math.floor(Math.random()*result.tracks.length)],result.tracks);}else{store.notify(t('parity.recommendationsEmpty'));store.navigate('search');}}
   catch(error){if(!controller.signal.aborted)store.notify(errorText(error),true);}finally{if(request.current===controller){request.current=null;setBusy(false);}}
  };
  return <section className={`personal-wave ${playing?'is-playing':''}`} aria-labelledby="personal-wave-title">
   <div className="wave-hero"><WaveVisual/>
    <header className="wave-heading"><div><h2 id="personal-wave-title">{t('copy.368')}</h2><p>{selected==='personal'&&personal.length?t('template.019',{v0:trackCount(personal.length)}):t('v7.wave.caption')}</p></div>
-    <div className="wave-actions"><IconButton title={t('copy.407')} onClick={upload}><Plus size={18}/></IconButton><IconButton title={t('v7.wave.settings')} onClick={()=>{store.navigate('settings');location.hash='settings?section=appearance';}}><SlidersHorizontal size={18}/></IconButton><button className="wave-play" disabled={busy} aria-label={busy?t('copy.403'):playing?t('copy.404'):t('copy.406')} onClick={()=>void start()}>{busy?<span className="loader"/>:<AnimatedIcon name={playing?'pause':'play'} size={23}/>}</button></div>
+    <div className="wave-actions"><IconButton title={t('copy.407')} onClick={upload}><Plus size={18}/></IconButton><IconButton title={t('v7.wave.settings')} onClick={()=>{store.navigate('settings');location.hash='settings?section=taste';}}><SlidersHorizontal size={18}/></IconButton><button className="wave-play" disabled={busy} aria-label={busy?t('copy.403'):playing?t('copy.404'):t('copy.406')} onClick={()=>void start()}>{busy?<span className="loader"/>:<AnimatedIcon name={playing?'pause':'play'} size={23}/>}</button></div>
    </header>
    {playing&&player.track&&<div className="wave-current"><span className="wave-live" aria-hidden="true"><i/><i/><i/><i/><i/></span><span>{player.track.artist}<b>{player.track.title}</b></span></div>}
   </div>

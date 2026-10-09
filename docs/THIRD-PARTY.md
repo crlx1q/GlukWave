@@ -1,5 +1,7 @@
 # Компоненты, материалы и лицензии
 
+Итерация 1.0.0+5 использует независимо установленные серверные yt-dlp/yt-dlp-ejs, ytmusicapi, spotDL и Deno; исходники и лицензии: https://github.com/yt-dlp/yt-dlp, https://github.com/yt-dlp/ejs, https://github.com/sigma67/ytmusicapi, https://github.com/spotDL/spotify-downloader, https://github.com/denoland/deno. Они не включены в клиентские APK/EXE. Условия зависимостей и лицензии медиа действуют отдельно; правила собственных разрешённых потоков описаны в PERMITTED-AUDIO.md.
+
 Основой оформления служит предоставленный пользователем `Gluk-Wave-v2.html`; `Gluk-Wave-v6-PC-fixed.html` уточняет мобильную компоновку и жесты. Неизменённые копии макетов входят в `docs/design-reference` для дальнейшей разработки. Файлы в `Downloads\d` не изменялись. Готовые пользовательские каталоги, чужие профили и демонстрационная музыка из макета в сервис не перенесены.
 
 ## Originkit
@@ -55,6 +57,8 @@ Lyrics lookup uses the public [LRCLIB API](https://lrclib.net/docs) and the fixe
 The Windows installer is compiled with unmodified [Inno Setup](https://jrsoftware.org/isinfo.php) 6.7.3. Copyright (C) 1997–2026 Jordan Russell; portions Copyright (C) 2000–2026 Martijn Laan. Its original license is included in `docs/licenses/Inno-Setup.txt` and in the Windows bundle. The build uses a portable compiler and does not install developer tooling on the user's machine. The installer and application remain unsigned beta packages.
 
 ## Official provider players in Flutter
+
+The Windows music DSP adapter in `apps/native/lib/services/windows_mpv_player.dart` is adapted from Pato05's `just_audio_media_kit` 2.1.0 `mediakit_player.dart`. The upstream implementation is public-domain software under the Unlicense; its full original text ships as `apps/native/assets/licenses/just_audio_media_kit-UNLICENSE.txt` and appears in the native licenses screen. GlukWave adds a checked mpv `af` bridge for ten lavfi equalizer bands, preceded by native float conversion because the pinned runtime omits FFmpeg resampling/volume filters. Preamp uses mpv software volume; matching the active music URI excludes the separate rain output. Rejected properties restore normal filters and volume. The existing media-kit/libmpv licenses and distribution obligations above still apply. A generated WAV passed the bundled DLL with null audio output; this and property-boundary tests do not establish physical Windows audio verification.
 
 The Flutter clients use flutter_inappwebview 6.1.5 (Apache-2.0). Its original license is preserved in docs/licenses/InAppWebView-Apache-2.0.txt and the Windows bundle. Windows uses Microsoft WebView2; the installer bundles Microsoft's signed Evergreen bootstrapper, which obtains the runtime from Microsoft when absent. The player remains visible and source media stays inside official SoundCloud/YouTube embeds. No extracted audio stream or provider account credential is included.
 

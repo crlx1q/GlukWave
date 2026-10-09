@@ -9,7 +9,7 @@ export function runtimeSnapshot(ctx){
   const sockets=ctx.io?.sockets.sockets;
   const rooms=ctx.io?.sockets.adapter.rooms;
   const metrics=ctx.metrics||{};
-  return {clients:sockets?.size||0,rooms:rooms?[...rooms.keys()].filter(key=>key.startsWith('room:')).length:0,uptime:Math.floor(process.uptime()),memoryMB:Math.round(process.memoryUsage().rss/1048576),requests:metrics.requests||0,failures:metrics.failures||0,averageMs:metrics.requests?Math.round(metrics.duration/metrics.requests):0};
+  return {clients:sockets?.size||0,rooms:rooms?[...rooms.keys()].filter(key=>key.startsWith('room:')).length:0,uptime:Math.floor(process.uptime()),memoryMB:Math.round(process.memoryUsage().rss/1048576),cpuPercent:ctx.resourceSnapshot?.().cpuOneCorePercent,requests:metrics.requests||0,failures:metrics.failures||0,averageMs:metrics.requests?Math.round(metrics.duration/metrics.requests):0};
 }
 export function formatConsoleCard(config,snapshot,{color=false,columns=80}={}){
   const width=Math.min(88,Math.max(44,columns-2)),inside=width-4;
@@ -18,7 +18,7 @@ export function formatConsoleCard(config,snapshot,{color=false,columns=80}={}){
   const elapsed=snapshot.uptime||0,hours=Math.floor(elapsed/3600),minutes=Math.floor(elapsed/60)%60,seconds=elapsed%60;
   const duration=hours?`${hours}h ${minutes}m`:`${minutes}m ${String(seconds).padStart(2,'0')}s`;
   const endpoints=[['Listen',`${config.host}:${config.port}`],['Web',config.appUrl],['Database',config.storage==='mongo'?'MongoDB':'SQLite · local'],['Media',config.objectStorage==='r2'?'Cloudflare R2 · private':'Local files · private']];
-  return ['',' '+paint('∿  GLUKWAVE','violet',color)+'  '+paint('SERVER STUDIO','muted',color),edge('╭','╮'),row('ONLINE  ·  '+(config.production?'Production':'Local development'),'mint'),row(),...endpoints.map(([name,value])=>row(name.padEnd(12)+safe(value))),row(),row(`${snapshot.clients||0} devices   ·   ${snapshot.rooms||0} listening rooms`,'violet'),row(`Uptime ${duration}   ·   Memory ${snapshot.memoryMB||0} MB`,'muted'),row(`${snapshot.requests||0} API requests   ·   ${snapshot.failures||0} failed   ·   ${snapshot.averageMs||0} ms average`,'muted'),edge('╰','╯'),' '+paint('s / Enter  status    h  help    q  graceful shutdown','muted',color),''].join('\n');
+  return ['',' '+paint('∿  GLUKWAVE','violet',color)+'  '+paint('SERVER STUDIO','muted',color),edge('╭','╮'),row('ONLINE  ·  '+(config.production?'Production':'Local development'),'mint'),row(),...endpoints.map(([name,value])=>row(name.padEnd(12)+safe(value))),row(),row(`${snapshot.clients||0} devices   ·   ${snapshot.rooms||0} listening rooms`,'violet'),row(`Uptime ${duration}   ·   Memory ${snapshot.memoryMB||0} MB   ·   CPU ${snapshot.cpuPercent??0}%`,'muted'),row(`${snapshot.requests||0} API requests   ·   ${snapshot.failures||0} failed   ·   ${snapshot.averageMs||0} ms average`,'muted'),edge('╰','╯'),' '+paint('s / Enter  status    h  help    q  graceful shutdown','muted',color),''].join('\n');
 }
 export function openServerConsole(config,ctx,onStop,{output=process.stdout,input=process.stdin}={}){
   if(consoleStyle(config)!=='studio')return ()=>{};

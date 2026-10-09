@@ -1,0 +1,39 @@
+{
+  "checkedAt": "2026-10-09T14:55:58.733Z",
+  "checks": [
+    {
+      "origin": "http://127.0.0.1:4000",
+      "platform": "android",
+      "version": "1.0.0+6",
+      "rangeStatus": 206,
+      "bytes": 184955721,
+      "sha256": "5ac78cdb1a0c427182701143df11fa6af843cc7556d822df58abfed26b233278"
+    },
+    {
+      "origin": "http://127.0.0.1:4000",
+      "platform": "windows",
+      "version": "1.0.0+6",
+      "rangeStatus": 206,
+      "bytes": 24279886,
+      "sha256": "673951fd087b21a338f31d17e92877e26f9855e1e3c8d08826b9798a9bfe3305"
+    },
+    {
+      "origin": "http://127.0.0.1:4200",
+      "platform": "android",
+      "version": "1.0.0+6",
+      "rangeStatus": 206,
+      "bytes": 184955721,
+      "sha256": "5ac78cdb1a0c427182701143df11fa6af843cc7556d822df58abfed26b233278"
+    },
+    {
+      "origin": "http://127.0.0.1:4200",
+      "platform": "windows",
+      "version": "1.0.0+6",
+      "rangeStatus": 206,
+      "bytes": 24279886,
+      "sha256": "673951fd087b21a338f31d17e92877e26f9855e1e3c8d08826b9798a9bfe3305"
+    }
+  ],
+  "fullInstallerDownloadMatched": true,
+  "passed": true
+}

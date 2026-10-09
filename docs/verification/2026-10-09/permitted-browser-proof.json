@@ -1,0 +1,22 @@
+{
+  "checkedAt": "2026-10-09T12:11:51.481Z",
+  "scope": "real CC-BY SoundCloud audio in muted browser, isolated local account; simulated document hidden; no hardware smoke",
+  "player": {
+    "effectiveKind": "audio",
+    "iframes": 0,
+    "kind": "audio",
+    "playing": true,
+    "position": 1.875011,
+    "source": "soundcloud",
+    "title": "Carefree"
+  },
+  "seek": true,
+  "audioContinuedUnderSimulatedHidden": true,
+  "cache": {
+    "artworkBytes": 107238,
+    "bytes": 3282650,
+    "downloadUrl": "/api/external-audio/permitted-browser-carefree/download",
+    "kind": "audio"
+  },
+  "passed": true
+}

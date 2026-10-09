@@ -70,6 +70,7 @@ test('locale, durable language settings, localized HTTP errors and real download
     const mismatch=await fetch(base+'/api/settings',{method:'PATCH',headers:{...headers,'X-GlukWave-Account':'previous-account'},body:JSON.stringify({language:'kk'})});
     assert.equal(mismatch.status,409);assert.equal((await mismatch.json()).error.code,'SESSION_CHANGED');
     assert.equal((await fetch(base+'/api/settings',{method:'PATCH',headers:{...headers,'X-GlukWave-Account':signup.user.id},body:JSON.stringify({language:'es'})})).status,200);
+    await service.ctx.store.update('users',signup.user.id,user=>({...user,plan:'beta'}));
     await fetch(base+'/api/settings',{method:'PATCH',headers,body:JSON.stringify({language:'de'})});await fetch(base+'/api/settings',{method:'PATCH',headers,body:JSON.stringify({appearance:{radius:17}})});
     const settings=(await (await fetch(base+'/api/settings',{headers})).json()).settings;assert.equal(settings.language,'de');assert.equal(settings.appearance.radius,17);assert.equal((await service.ctx.store.get('settings',signup.user.id)).language,'de');
     assert.deepEqual((await (await fetch(base+'/api/releases')).json()).releases,[]);assert.equal((await fetch(base+'/api/downloads/android')).status,404);

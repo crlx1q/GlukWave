@@ -1,3 +1,4 @@
+import 'motion_icons.dart';
 import '../l10n/wave_localizations.dart';
 import 'dart:async';
 import 'dart:ui' as ui;
@@ -129,10 +130,10 @@ class MiniPlayer extends StatelessWidget {
                           onPressed: c.online
                               ? () => _run(c, () => c.like(track))
                               : null,
-                          icon: Icon(
-                            c.likedIds.contains(track.id)
-                                ? Icons.favorite_rounded
-                                : Icons.favorite_border_rounded,
+                          icon: WaveToggleIcon(
+                            active: c.likedIds.contains(track.id),
+                            activeIcon: Icons.favorite_rounded,
+                            inactiveIcon: Icons.favorite_border_rounded,
                             color: c.likedIds.contains(track.id)
                                 ? v.accent
                                 : v.onPlayer.withValues(alpha: .7),
@@ -167,7 +168,7 @@ class MiniPlayer extends StatelessWidget {
                               minimumSize: const Size(44, 44),
                               maximumSize: const Size(44, 44),
                             ),
-                            onPressed: c.canControl && track != null
+                            onPressed: c.canTogglePlayback && track != null
                                 ? () => _run(
                                     c,
                                     c.audio.playing
@@ -184,10 +185,8 @@ class MiniPlayer extends StatelessWidget {
                                       color: v.player,
                                     ),
                                   )
-                                : Icon(
-                                    c.audio.playing
-                                        ? Icons.pause_rounded
-                                        : Icons.play_arrow_rounded,
+                                : WavePlayPauseIcon(
+                                    playing: c.audio.playing,
                                     size: 23,
                                   ),
                           );
@@ -221,8 +220,10 @@ class MiniPlayer extends StatelessWidget {
                           width: 130,
                           child: Row(
                             children: [
-                              Icon(
-                                Icons.volume_up_outlined,
+                              WaveToggleIcon(
+                                active: c.audio.volume == 0,
+                                activeIcon: Icons.volume_off_outlined,
+                                inactiveIcon: Icons.volume_up_outlined,
                                 color: v.onPlayer.withValues(alpha: .65),
                                 size: 19,
                               ),
@@ -379,7 +380,7 @@ class _PlayerPageState extends State<PlayerPage> {
     try {
       final result = await Future.wait([
         c.api.call('/api/tracks/$id/lyrics'),
-        c.api.call('/api/tracks/$id/comments'),
+        c.settings['comments'] == false ? Future<Json>.value({'comments': []}) : c.api.call('/api/tracks/$id/comments'),
       ]);
       if (!mounted || revision != _load) return;
       setState(() {
@@ -414,6 +415,7 @@ class _PlayerPageState extends State<PlayerPage> {
           ),
         );
       }
+      if (tab == 3 && c.settings['comments'] == false) tab = 0;
       final track = current!;
       final wide = MediaQuery.sizeOf(context).width >= 900;
       final v = waveVisuals(context);
@@ -629,6 +631,7 @@ class _PlayerPageState extends State<PlayerPage> {
       final row = Row(
         children: [
           for (var i = 0; i < labels.length; i++)
+            if (i != 3 || c.settings['comments'] != false)
             if (fits)
               Expanded(child: button(i))
             else
@@ -771,10 +774,10 @@ class _PlayerPageState extends State<PlayerPage> {
                   onPressed: c.online
                       ? () => _run(c, () => c.like(track))
                       : null,
-                  icon: Icon(
-                    c.likedIds.contains(track.id)
-                        ? Icons.favorite_rounded
-                        : Icons.favorite_border_rounded,
+                  icon: WaveToggleIcon(
+                    active: c.likedIds.contains(track.id),
+                    activeIcon: Icons.favorite_rounded,
+                    inactiveIcon: Icons.favorite_border_rounded,
                     color: c.likedIds.contains(track.id)
                         ? waveVisuals(context).accent
                         : waveVisuals(context).muted,
@@ -807,8 +810,10 @@ class _PlayerPageState extends State<PlayerPage> {
                   IconButton(
                     tooltip: wt('native.621777004a', context: context),
                     onPressed: () => showVolume(),
-                    icon: Icon(
-                      Icons.volume_up_outlined,
+                    icon: WaveToggleIcon(
+                      active: c.audio.volume == 0,
+                      activeIcon: Icons.volume_off_outlined,
+                      inactiveIcon: Icons.volume_up_outlined,
                       size: 20,
                       color: waveVisuals(context).muted,
                     ),
@@ -882,7 +887,7 @@ class _PlayerPageState extends State<PlayerPage> {
                   ),
                 ),
               ),
-            if (c.settings['lyrics'] == true && lyrics.isNotEmpty)
+            if (c.settings['lyrics'] == true && c.settings['lyricsUnderCover'] != false && lyrics.isNotEmpty)
               Padding(
                 padding: const EdgeInsets.only(top: 26),
                 child: StreamBuilder<Duration>(
@@ -895,7 +900,7 @@ class _PlayerPageState extends State<PlayerPage> {
                           )
                         : 0;
                     return InkWell(
-                      onTap: () => setState(() => tab = 1),
+                      onTap: synchronized && active && c.canControl ? () => _run(c, () => c.transport('seek', {'position': number(lyrics[index.clamp(0, lyrics.length - 1)]['time'])})) : () => setState(() => tab = 1),
                       child: Surface(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -1004,8 +1009,9 @@ class _PlayerPageState extends State<PlayerPage> {
                 : AudioServiceShuffleMode.all,
           ),
         ),
-        icon: Icon(
-          Icons.shuffle_rounded,
+        icon: WaveStateIcon(
+          state: c.audio.shuffle,
+          icon: Icons.shuffle_rounded,
           color: c.audio.shuffle
               ? waveVisuals(context).accent
               : waveVisuals(context).muted,
@@ -1023,7 +1029,7 @@ class _PlayerPageState extends State<PlayerPage> {
         tooltip: c.audio.playing
             ? wt('native.03498e395a', context: context)
             : wt('native.c750dc7d94', context: context),
-        onPressed: c.canControl
+        onPressed: c.canTogglePlayback
             ? () => _run(
                 c,
                 () => c.audio.playing ? c.audio.pause() : c.audio.play(),
@@ -1034,10 +1040,7 @@ class _PlayerPageState extends State<PlayerPage> {
           backgroundColor: waveVisuals(context).ink,
           foregroundColor: waveVisuals(context).background,
         ),
-        icon: Icon(
-          c.audio.playing ? Icons.pause_rounded : Icons.play_arrow_rounded,
-          size: 32,
-        ),
+        icon: WavePlayPauseIcon(playing: c.audio.playing, size: 32),
       ),
       IconButton(
         tooltip: wt('native.e9c094d2a9', context: context),
@@ -1066,8 +1069,9 @@ class _PlayerPageState extends State<PlayerPage> {
             _ => AudioServiceRepeatMode.none,
           }),
         ),
-        icon: Icon(
-          c.audio.repeat == AudioServiceRepeatMode.one
+        icon: WaveStateIcon(
+          state: c.audio.repeat,
+          icon: c.audio.repeat == AudioServiceRepeatMode.one
               ? Icons.repeat_one_rounded
               : Icons.repeat_rounded,
           color: c.audio.repeat == AudioServiceRepeatMode.none

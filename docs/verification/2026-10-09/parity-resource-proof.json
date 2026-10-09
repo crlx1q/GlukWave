@@ -1,0 +1,105 @@
+{
+  "checkedAt": "2026-10-09T13:02:15.668Z",
+  "scope": "isolated Node process; SQLite; one real socket; one room; 100 metadata queue entries; no physical audio",
+  "durationMs": 45985,
+  "heartbeats": 24,
+  "databaseWrites": 4,
+  "accountBroadcasts": 0,
+  "samples": [
+    {
+      "scope": "server-process",
+      "cpuOneCorePercent": 48.75,
+      "rssMB": 343.87,
+      "heapUsedMB": 121.5,
+      "heapTotalMB": 238.76,
+      "externalMB": 65.76,
+      "eventLoopP99Ms": 274.73,
+      "intervalMs": 1922,
+      "sampledAt": "2026-10-09T13:01:29.796Z"
+    },
+    {
+      "scope": "server-process",
+      "cpuOneCorePercent": 0.61,
+      "rssMB": 344.63,
+      "heapUsedMB": 122.66,
+      "heapTotalMB": 239.4,
+      "externalMB": 65.77,
+      "eventLoopP99Ms": 302.25,
+      "intervalMs": 2622,
+      "sampledAt": "2026-10-09T13:01:35.560Z"
+    },
+    {
+      "scope": "server-process",
+      "cpuOneCorePercent": 9.31,
+      "rssMB": 173.24,
+      "heapUsedMB": 106.04,
+      "heapTotalMB": 107.68,
+      "externalMB": 22.03,
+      "eventLoopP99Ms": 167.51,
+      "intervalMs": 3179,
+      "sampledAt": "2026-10-09T13:01:41.127Z"
+    },
+    {
+      "scope": "server-process",
+      "cpuOneCorePercent": 0.72,
+      "rssMB": 174.02,
+      "heapUsedMB": 106.15,
+      "heapTotalMB": 108.68,
+      "externalMB": 22.04,
+      "eventLoopP99Ms": 294.13,
+      "intervalMs": 4324,
+      "sampledAt": "2026-10-09T13:01:47.300Z"
+    },
+    {
+      "scope": "server-process",
+      "cpuOneCorePercent": 1.97,
+      "rssMB": 172.95,
+      "heapUsedMB": 104.44,
+      "heapTotalMB": 107.18,
+      "externalMB": 22.03,
+      "eventLoopP99Ms": 168.3,
+      "intervalMs": 4763,
+      "sampledAt": "2026-10-09T13:01:53.212Z"
+    },
+    {
+      "scope": "server-process",
+      "cpuOneCorePercent": 0.58,
+      "rssMB": 173.55,
+      "heapUsedMB": 105.04,
+      "heapTotalMB": 107.18,
+      "externalMB": 22.1,
+      "eventLoopP99Ms": 125.76,
+      "intervalMs": 5340,
+      "sampledAt": "2026-10-09T13:01:58.552Z"
+    },
+    {
+      "scope": "server-process",
+      "cpuOneCorePercent": 0,
+      "rssMB": 165.1,
+      "heapUsedMB": 104.55,
+      "heapTotalMB": 107.18,
+      "externalMB": 22.1,
+      "eventLoopP99Ms": 48.69,
+      "intervalMs": 1018,
+      "sampledAt": "2026-10-09T13:02:04.570Z"
+    },
+    {
+      "scope": "server-process",
+      "cpuOneCorePercent": 0,
+      "rssMB": 165.12,
+      "heapUsedMB": 104.63,
+      "heapTotalMB": 107.43,
+      "externalMB": 22.1,
+      "eventLoopP99Ms": 132.91,
+      "intervalMs": 1566,
+      "sampledAt": "2026-10-09T13:02:10.209Z"
+    }
+  ],
+  "finalRealtime": {
+    "sockets": 1,
+    "installations": 1,
+    "primaryOutputs": 1,
+    "pendingMutations": 0,
+    "pendingDisconnects": 0
+  }
+}

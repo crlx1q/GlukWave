@@ -1,0 +1,82 @@
+{
+  "passed": true,
+  "steps": [
+    "Onboarding saves step and closes for later without fake artists",
+    "Taste selects an actual owned-catalogue artist and persists",
+    "Explicit skip completes onboarding with zero selected artists",
+    "Artist page resolves catalogue tracks through the real artist API",
+    "Real friend request and acceptance updates both accounts",
+    "Hosted jam accepts only a real friend and stays out of public rooms",
+    "Publication with private uploaded audio is rejected and keeps the editor open",
+    "Public playlist discovery loads actual published playlists and an honest empty track list",
+    "Three themes retain readable privacy controls on desktop and phone",
+    "All six languages render translated product labels",
+    "Global font and 125 percent scale fit a phone with all header controls visible",
+    "Notifications expire after their actual 6.5 second timer",
+    "Email change shows confirmation after a real server acknowledgement",
+    "Profile listening totals come from actual server statistics",
+    "Actual account deletion requires password and exact username and clears private local state after server success"
+  ],
+  "screenshots": [
+    "work/qa/parity-web-home-light-desktop.png",
+    "work/qa/parity-web-onboarding-welcome-desktop.png",
+    "work/qa/parity-web-onboarding-artists-desktop.png",
+    "work/qa/parity-web-artist-desktop.png",
+    "work/qa/parity-web-friends-desktop.png",
+    "work/qa/parity-web-jam-host-desktop.png",
+    "work/qa/parity-web-playlist-cover-editor-desktop.png",
+    "work/qa/parity-web-playlist-directory-desktop.png",
+    "work/qa/parity-web-privacy-light-desktop.png",
+    "work/qa/parity-web-privacy-light-mobile.png",
+    "work/qa/parity-web-privacy-dark-desktop.png",
+    "work/qa/parity-web-privacy-dark-mobile.png",
+    "work/qa/parity-web-privacy-amoled-desktop.png",
+    "work/qa/parity-web-privacy-amoled-mobile.png",
+    "work/qa/parity-web-privacy-125-mobile.png",
+    "work/qa/parity-web-privacy-125-mobile.png",
+    "work/qa/parity-web-email-confirmation-mobile.png",
+    "work/qa/parity-web-statistics-desktop.png",
+    "work/qa/parity-web-delete-account-confirmation-desktop.png"
+  ],
+  "languageSamples": [
+    {
+      "language": "en",
+      "heading": "Privacy",
+      "overflow": false
+    },
+    {
+      "language": "ru",
+      "heading": "Приватность",
+      "overflow": false
+    },
+    {
+      "language": "kk",
+      "heading": "Құпиялық",
+      "overflow": false
+    },
+    {
+      "language": "uk",
+      "heading": "Приватність",
+      "overflow": false
+    },
+    {
+      "language": "de",
+      "heading": "Privatsphäre",
+      "overflow": false
+    },
+    {
+      "language": "es",
+      "heading": "Privacidad",
+      "overflow": false
+    }
+  ],
+  "previousAttemptError": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\ntrue !== false\n",
+  "scaleProof": {
+    "offenders": [],
+    "scroll": 380,
+    "width": 390
+  },
+  "previousHarnessError": "Error: Missing button: Delete account\n- link \"К содержимому\" [ref=e1]\n- button \"GlukWave — главная\" [ref=e2]\n- navigation \"Главная навигация\" [ref=e3]\n  - button \"Главная\" [ref=e29]\n  - button \"Исследовать\" [ref=e30]\n  - button \"Медиатека\" [ref=e31]\n  - button \"Слушать вместе\" [ref=e32]\n  - button \"Gluk Lo-Fi\" [ref=e33]\n- navigation \"Источники музыки\" [ref=e4]\n  - button \"SoundCloud\" [ref=e34]\n  - button \"Spotify\" [ref=e35]\n  - button \"Яндекс Музыка\" [ref=e36]\n  - button \"YouTube Music\" [ref=e37]\n- button \"Любимые\" [ref=e5]\n- button \"На устройстве\" [ref=e6]\n- button \"Настройки\" [ref=e7]\n- button \"Предыдущий экран\" [ref=e8]\n- button \"Следующий экран\" [disabled, ref=e9]\n- searchbox \"Найти музыку\" [ref=e10]\n- button \"Включить тёмную тему\" [ref=e11]\n- button \"Настройки\" [ref=e12]\n- button \"Уведомления\" [ref=e13]\n- button \"Открыть профиль\" [ref=e14]\n- heading \"Настройки\" [level=1, ref=e38]\n- navigation \"Разделы настроек\" [ref=e39]\n  - button \"Язык\" [ref=e40]\n  - button \"Аккаунт\" [ref=e41]\n  - button \"Безопасность\" [ref=e42]\n  - button \"Ваш музыкальный вкус\" [ref=e43]\n  - button \"Приватность\" [ref=e44]\n  - button \"Оформление\" [ref=e45]\n  - button \"Воспроизведение\" [ref=e46]\n  - button \"Музыка без сети\" [ref=e47]\n  - button \"Подключения\" [ref=e48]\n  - button \"Уведомления\" [ref=e49]\n  - button \"Устройства\" [ref=e50]\n  - button \"Клавиши\" [ref=e51]\n  - button \"О приложении\" [ref=e52]\n- heading \"Твой аккаунт\" [level=2, ref=e53]\n- button \"Сменить пароль\" [ref=e54]\n- button \"Изменить почту\" [ref=e55]\n- button \"Удалить аккаунт\" [ref=e56]\n- button \"Редактировать профиль\" [ref=e57]\n- button \"Выйти\" [ref=e58]\n- button \"Открыть музыку\" [ref=e15]\n- button \"На твоей волне Выбери музыку — и можно выдохнуть\" [ref=e16]\n- button \"Перемешать очередь\" [ref=e17]\n- button \"Предыдущий трек\" [disabled, ref=e18]\n- button \"Воспроизвести\" [disabled, ref=e19]\n- button \"Следующий трек\" [disabled, ref=e20]\n- button \"Включить повтор\" [ref=e21]\n- slider \"Позиция воспроизведения\" [disabled, ref=e22]: 0\n- button \"Эквалайзер\" [ref=e23]\n- button \"Развернуть плеер\" [disabled, ref=e24]\n- button \"Очередь воспроизведения\" [disabled, ref=e25]\n- button \"Устройства\" [ref=e26]\n- button \"Выключить звук\" [ref=e27]\n- slider \"Громкость\" [ref=e28]: 0.800000011920929",
+  "completedAt": "2026-10-09T14:35:45.511Z",
+  "passesAcrossContinuations": true
+}

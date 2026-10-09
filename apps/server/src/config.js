@@ -26,11 +26,13 @@ export const config={
   emailVerify:bool(e.REQUIRE_EMAIL_VERIFICATION,e.NODE_ENV==='production'),
   turnstileSiteKey:e.TURNSTILE_SITE_KEY||e.TURNSTILE_SITEKEY||'',turnstileSecret:e.TURNSTILE_SECRET_KEY||e.TURNSTILE_SECRET||'',
   smtp:e.SMTP_URL||'',mailFrom:e.MAIL_FROM||'GlukWave <noreply@wave.gluk.tech>',
-  google:{id:e.GOOGLE_CLIENT_ID||'',secret:e.GOOGLE_CLIENT_SECRET||''},
-  spotify:{id:e.SPOTIFY_CLIENT_ID||'',secret:e.SPOTIFY_CLIENT_SECRET||''},
-  soundcloud:{id:e.SOUNDCLOUD_CLIENT_ID||'',secret:e.SOUNDCLOUD_CLIENT_SECRET||''},
+  oauthBaseUrl:e.OAUTH_BASE_URL||'',
+  google:{id:e.GOOGLE_CLIENT_ID||'',secret:e.GOOGLE_CLIENT_SECRET||'',redirectUri:e.GOOGLE_REDIRECT_URI||''},
+  youtubeOAuth:{id:e.YOUTUBE_CLIENT_ID||'',secret:e.YOUTUBE_CLIENT_SECRET||'',redirectUri:e.YOUTUBE_REDIRECT_URI||''},
+  spotify:{id:e.SPOTIFY_CLIENT_ID||'',secret:e.SPOTIFY_CLIENT_SECRET||'',redirectUri:e.SPOTIFY_REDIRECT_URI||''},
+  soundcloud:{id:e.SOUNDCLOUD_CLIENT_ID||'',secret:e.SOUNDCLOUD_CLIENT_SECRET||'',redirectUri:e.SOUNDCLOUD_REDIRECT_URI||''},
   soundcloudPublicSearch:bool(e.SOUNDCLOUD_PUBLIC_SEARCH,true),
-  youtubeKey:e.YOUTUBE_API_KEY||'',discord:{id:e.DISCORD_CLIENT_ID||'',secret:e.DISCORD_CLIENT_SECRET||''},
+  youtubeKey:e.YOUTUBE_API_KEY||'',discord:{id:e.DISCORD_CLIENT_ID||'',secret:e.DISCORD_CLIENT_SECRET||'',redirectUri:e.DISCORD_REDIRECT_URI||''},
   objectStorage:e.MEDIA_STORAGE||'local',r2:{endpoint:e.R2_ENDPOINT||'',bucket:e.R2_BUCKET||'',accessKey:e.R2_ACCESS_KEY_ID||'',secretKey:e.R2_SECRET_ACCESS_KEY||''},
   uploadLimitMB:Number(e.UPLOAD_LIMIT_MB||256),
   vapidPublic:e.VAPID_PUBLIC_KEY||'',vapidPrivate:e.VAPID_PRIVATE_KEY||'',vapidSubject:e.VAPID_SUBJECT||'mailto:admin@gluk.tech',
@@ -39,6 +41,7 @@ export const config={
   lanDiscovery:bool(e.LAN_DISCOVERY),discoveryPort:Number(e.LAN_DISCOVERY_PORT||4001),
   geoipDir:path.resolve(root,e.GEOIP_DATA_DIR||'apps/server/data/geoip'),
   releasesDir:path.resolve(root,e.RELEASES_DIR||'outputs'),
+  extractors:{enabled:bool(e.EXTRACTORS_ENABLED,true),python:e.EXTRACTOR_PYTHON||'',spotdlPython:e.SPOTDL_PYTHON||'',deno:e.EXTRACTOR_DENO||'',concurrency:Math.max(1,Math.min(3,Number(e.EXTRACTOR_CONCURRENCY)||1)),timeout:Math.max(5000,Math.min(120000,Number(e.EXTRACTOR_TIMEOUT_MS)||45000)),cacheMB:Math.max(64,Math.min(8192,Number(e.EXTRACTOR_CACHE_MB)||512))},
 };
 export function validateConfig() {
   if(!['sqlite','mongo'].includes(config.storage)) throw new Error('DB_DRIVER must be sqlite or mongo');

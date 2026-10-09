@@ -6,8 +6,12 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:socket_io_client/socket_io_client.dart' as io;
 import '../core/controller.dart';
 import '../core/appearance.dart';
+import '../core/parity.dart';
+import '../l10n/parity_strings.dart';
+import 'parity_panels.dart';
 import '../core/models.dart';
 import 'equalizer_panel.dart';
 import '../services/desktop.dart';
@@ -20,6 +24,8 @@ export 'auth_page.dart' show AuthPage;
 import 'desktop_player.dart';
 import 'provider_host.dart';
 import 'connect_panel.dart';
+import 'sessions_panel.dart';
+import 'device_labels.dart';
 import 'listening_rail.dart';
 import 'lofi.dart';
 import '../l10n/wave_localizations.dart';
@@ -36,6 +42,9 @@ enum WavePage {
   profile,
   settings,
   admin,
+  friends,
+  artists,
+  discover,
 }
 
 List<String> get pageLabels => [
@@ -50,7 +59,9 @@ List<String> get pageLabels => [
   wt('native.eb0b9b0d90'),
   wt('native.7f17c7c62a'),
   wt('native.5a214bdfe9'),
+  ptLabel('Friends'), ptLabel('Artists'), ptLabel('Discover playlists'),
 ];
+String ptLabel(String key) => parityLabel(WaveStrings.current.language, key);
 const pageIcons = [
   Icons.home_outlined,
   Icons.library_music_outlined,
@@ -63,6 +74,9 @@ const pageIcons = [
   Icons.person_outline_rounded,
   Icons.tune_rounded,
   Icons.terminal_rounded,
+  Icons.people_outline_rounded,
+  Icons.album_outlined,
+  Icons.explore_outlined,
 ];
 
 class GlukWaveApp extends StatefulWidget {
@@ -75,6 +89,7 @@ class GlukWaveApp extends StatefulWidget {
 class _GlukWaveAppState extends State<GlukWaveApp> with WidgetsBindingObserver {
   final messenger = GlobalKey<ScaffoldMessengerState>();
   int _notice = 0;
+  bool _foreground = true;
   WaveCustomization? _customization;
   ThemeData? _light, _dark;
   @override
@@ -87,6 +102,20 @@ class _GlukWaveAppState extends State<GlukWaveApp> with WidgetsBindingObserver {
   @override
   void didChangeLocales(List<Locale>? locales) {
     unawaited(widget.controller.systemLocaleChanged());
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    final foreground =
+        state == AppLifecycleState.resumed ||
+        state == AppLifecycleState.inactive;
+    widget.controller.audio.setVisualUpdatesEnabled(foreground);
+    if (mounted && _foreground != foreground) {
+      setState(() => _foreground = foreground);
+    }
+    if (state == AppLifecycleState.resumed) {
+      unawaited(widget.controller.applicationResumed());
+    }
   }
 
   void _changed() {
@@ -144,11 +173,15 @@ class _GlukWaveAppState extends State<GlukWaveApp> with WidgetsBindingObserver {
         scaffoldMessengerKey: messenger,
         builder: (context, child) => MediaQuery(
           data: MediaQuery.of(context).copyWith(
+            textScaler: TextScaler.linear(MediaQuery.textScalerOf(context).scale(1) * customization.fontScale),
             disableAnimations:
                 MediaQuery.disableAnimationsOf(context) ||
                 customization.reducedMotion,
           ),
-          child: PersistentProviderHost(controller: c, child: child!),
+          child: TickerMode(
+            enabled: _foreground,
+            child: PersistentProviderHost(controller: c, child: child!),
+          ),
         ),
         home: Builder(
           builder: (context) {
@@ -256,12 +289,29 @@ class _WaveShellState extends State<WaveShell>
   int playerTransition = 0;
   int searchRequest = 0;
   String settingsSection = 'account';
+  late final WaveParity parity = WaveParity(c.api);
+  String mood = 'personal';
+  io.Socket? paritySocket;
+  void friendsChanged(dynamic _) => unawaited(parity.refreshFriends());
+  void tasteChanged(dynamic _) => unawaited(parity.refreshTaste());
+  void attachParitySocket() {
+    if (identical(paritySocket, c.socket)) return;
+    paritySocket?.off('friends:changed', friendsChanged);
+    paritySocket?.off('taste:changed', tasteChanged);
+    paritySocket = c.socket;
+    paritySocket?.on('friends:changed', friendsChanged);
+    paritySocket?.on('taste:changed', tasteChanged);
+  }
+  void parityChanged() { if (mounted) setState(() {}); }
   @override
   void initState() {
     super.initState();
     // Compact desktop modes do not otherwise touch the full player animation.
     // Create its ticker while this State is alive, before dispose can run.
     playerReveal;
+    parity.addListener(parityChanged);
+    attachParitySocket();
+    unawaited(parity.load());
   }
 
   @override
@@ -270,6 +320,10 @@ class _WaveShellState extends State<WaveShell>
     chat.dispose();
     _searchTimer?.cancel();
     playerReveal.dispose();
+    parity.removeListener(parityChanged);
+    parity.dispose();
+    paritySocket?.off('friends:changed', friendsChanged);
+    paritySocket?.off('taste:changed', tasteChanged);
     super.dispose();
   }
 
@@ -282,6 +336,7 @@ class _WaveShellState extends State<WaveShell>
 
   @override
   Widget build(BuildContext context) {
+    attachParitySocket();
     if (c.desktop.mini || c.desktop.quick) {
       return DesktopCompactPlayer(controller: c, quick: c.desktop.quick);
     }
@@ -669,6 +724,8 @@ class _WaveShellState extends State<WaveShell>
                     WavePage.search,
                     WavePage.liked,
                     WavePage.rooms,
+                    WavePage.friends,
+                    WavePage.artists,
                   ])
                     navItem(item),
                   ListTile(
@@ -862,7 +919,7 @@ class _WaveShellState extends State<WaveShell>
         if (!desktop)
           Brand(
             size: 29,
-            compact: MediaQuery.sizeOf(context).width < 360,
+            compact: MediaQuery.sizeOf(context).width < 360 || MediaQuery.textScalerOf(context).scale(1) > 1.1,
             animated: c.settings['reducedMotion'] != true,
           ),
         if (desktop)
@@ -950,6 +1007,9 @@ class _WaveShellState extends State<WaveShell>
             },
             itemBuilder: (_) => [
               for (final item in {
+                'friends': pt(context, 'Friends'),
+                'artists': pt(context, 'Artists'),
+                'discover': pt(context, 'Discover playlists'),
                 'rooms': wt('native.200ba6b661', context: context),
                 'lofi': wt('native.847e19da38', context: context),
                 'sources': wt('native.5384db72a4', context: context),
@@ -1081,6 +1141,9 @@ class _WaveShellState extends State<WaveShell>
       WavePage.profile => profile(),
       WavePage.settings => settingsPage(),
       WavePage.admin => AdminPage(controller: c),
+      WavePage.friends => FriendsPage(controller: c, parity: parity, onRoom: () => navigate(WavePage.rooms)),
+      WavePage.artists => ArtistBrowse(controller: c),
+      WavePage.discover => PublicPlaylists(controller: c),
     };
   }
 
@@ -1122,7 +1185,7 @@ class _WaveShellState extends State<WaveShell>
         : hour >= 5
         ? wt('native.d73c91bbc4', context: context)
         : wt('native.194858b25f', context: context);
-    final local = c.tracks.where((t) => t.playable).toList();
+    final local = parity.tracks.where((t) => t.playable).toList();
     final recent = c.history
         .map((entry) => c.track(entry['trackId'] as String?))
         .whereType<WaveTrack>()
@@ -1141,6 +1204,25 @@ class _WaveShellState extends State<WaveShell>
             label: Text(wt('native.642fcf95d9', context: context)),
           ),
         ),
+        Wrap(spacing: 8, runSpacing: 8, children: [for (final entry in {'personal': 'Personal', 'relax': 'Relax', 'focus': 'Focus', 'energy': 'Energy', 'dream': 'Dream'}.entries) ChoiceChip(label: Text(pt(context, entry.value)), selected: mood == entry.key, onSelected: (_) { setState(() => mood = entry.key); unawaited(parity.load(mood: mood)); })]),
+        const SizedBox(height: 16),
+        WaveHero(
+          controller: c,
+          emptyActionLabel: pt(context, 'Artists'),
+          empty: local.isEmpty,
+          reducedMotion: c.settings['reducedMotion'] == true,
+          onPlay: () => local.isEmpty
+              ? navigate(WavePage.artists)
+              : run(
+                  c,
+                  () => c.play((local.toList()..shuffle()).first, list: local),
+                ),
+        ),
+        if (parity.loading) const Padding(padding: EdgeInsets.only(top: 16), child: LinearProgressIndicator(minHeight: 2)),
+        if (parity.error != null) Padding(padding: const EdgeInsets.only(top: 12), child: Row(children: [Expanded(child: Text(pt(context, 'Unavailable detail'), style: TextStyle(color: waveVisuals(context).muted, fontSize: 12))), TextButton(onPressed: () => parity.load(mood: mood), child: Text(pt(context, 'Retry')))])),
+        if (local.isNotEmpty) ...[section(pt(context, 'Personal')), tracksList(local.take(5).toList())],
+        const SizedBox(height: 24),
+        TasteInvitation(parity: parity, onOpen: () => openTaste(context, c, parity)),
         LayoutBuilder(
           builder: (context, constraints) {
             final cardWidth = constraints.maxWidth < 450
@@ -1173,17 +1255,7 @@ class _WaveShellState extends State<WaveShell>
           },
         ),
         const SizedBox(height: 24),
-        WaveHero(
-          controller: c,
-          empty: local.isEmpty,
-          reducedMotion: c.settings['reducedMotion'] == true,
-          onPlay: () => local.isEmpty
-              ? run(c, c.uploadAudio)
-              : run(
-                  c,
-                  () => c.play((local.toList()..shuffle()).first, list: local),
-                ),
-        ),
+
         section(
           wt('native.d73ebed4df', context: context),
           trailing: TextButton(
@@ -1264,7 +1336,7 @@ class _WaveShellState extends State<WaveShell>
           child: ClipRRect(
             borderRadius: BorderRadius.circular(waveRadius(context, 22)),
             child: Container(
-              height: 196,
+              constraints: const BoxConstraints(minHeight: 196),
               decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage('assets/forest.jpg'),
@@ -1282,6 +1354,7 @@ class _WaveShellState extends State<WaveShell>
                 ),
                 padding: const EdgeInsets.all(26),
                 child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
@@ -1292,7 +1365,7 @@ class _WaveShellState extends State<WaveShell>
                         letterSpacing: 1.6,
                       ),
                     ),
-                    Spacer(),
+                    const SizedBox(height: 24),
                     Text(
                       wt('native.31c118bf9d', context: context),
                       style: TextStyle(
@@ -1418,13 +1491,7 @@ class _WaveShellState extends State<WaveShell>
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Artwork(
-                      controller: c,
-                      url: playlist['artwork'] as String?,
-                      size: width,
-                      radius: 17,
-                      icon: Icons.queue_music_rounded,
-                    ),
+                    PlaylistArtwork(controller: c, playlist: playlist, size: width),
                     const SizedBox(height: 10),
                     Text(
                       playlist['name'] as String,
@@ -1510,6 +1577,7 @@ class _WaveShellState extends State<WaveShell>
               icon: const Icon(Icons.add_rounded, size: 17),
               label: Text(wt('native.99855bf52d', context: context)),
             ),
+            if (selectedPlaylist == null) OutlinedButton.icon(onPressed: () => navigate(WavePage.discover), icon: const Icon(Icons.explore_outlined), label: Text(pt(context, 'Discover playlists'))),
             OutlinedButton.icon(
               onPressed: c.online ? newPlaylist : null,
               icon: const Icon(Icons.queue_music, size: 17),
@@ -1541,6 +1609,7 @@ class _WaveShellState extends State<WaveShell>
           )
         else
           tracksList(items),
+        if (selectedPlaylist != null) ...[const SizedBox(height: 24), PlaylistPublishing(controller: c, playlist: selectedPlaylist!, onChanged: (value) { if (mounted) setState(() => selectedPlaylist = value); }), const SizedBox(height: 16)],
         if (selectedPlaylist != null)
           Wrap(
             spacing: 12,
@@ -1705,10 +1774,7 @@ class _WaveShellState extends State<WaveShell>
                                 borderRadius: BorderRadius.circular(18),
                               ),
                             ),
-                            onPressed: () => run(c, () async {
-                              search.text = artist['name']?.toString() ?? '';
-                              await c.searchArtist(artist);
-                            }),
+                            onPressed: () => openArtist(context, c, artist),
                             child: Column(
                               children: [
                                 ClipOval(
@@ -2609,8 +2675,6 @@ class _WaveShellState extends State<WaveShell>
           ),
         ),
         const SizedBox(height: 18),
-        if (c.audio.viewCurrent != null)
-          MiniPlayer(controller: c, onOpen: showPlayer),
         section(wt('native.1d2a1d354c', context: context)),
         Surface(
           child: Column(
@@ -2650,10 +2714,48 @@ class _WaveShellState extends State<WaveShell>
                               fontSize: 11,
                             ),
                           ),
+                          const SizedBox(height: 6),
+                          Text(
+                            wt(
+                              member['online'] == true
+                                  ? 'room.online'
+                                  : 'native.67b99cc9bf',
+                              context: context,
+                            ),
+                            style: TextStyle(
+                              color: waveVisuals(context).muted,
+                              fontSize: 11,
+                            ),
+                          ),
+                          for (final device in objects(member['devices']))
+                            Padding(
+                              padding: const EdgeInsets.only(top: 5),
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    deviceKindIcon(device),
+                                    size: 14,
+                                    color: device['outputActive'] == true
+                                        ? waveVisuals(context).accent
+                                        : waveVisuals(context).muted,
+                                  ),
+                                  const SizedBox(width: 6),
+                                  Expanded(
+                                    child: Text(
+                                      '${deviceKindLabel(device, context: context)}${device['outputActive'] == true ? ' · ${wt(device['playing'] == true ? 'devices.activeOutput' : 'devices.selectedOutput', context: context)}' : ''}',
+                                      style: TextStyle(
+                                        fontSize: 11,
+                                        color: waveVisuals(context).muted,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                         ],
                       ),
                     ),
-                    if (c.room!['ownerId'] == c.user!.id &&
+                    if (c.room!['type'] != 'jam' && c.room!['ownerId'] == c.user!.id &&
                         member['userId'] != c.user!.id)
                       Switch(
                         value: member['canControl'] == true,
@@ -2804,8 +2906,10 @@ class _WaveShellState extends State<WaveShell>
                       ),
                     ),
                     Text(
-                      '${wt(c.connected ? 'room.online' : 'room.reconnecting', context: context)} · ${c.deviceKind}',
-                      style: TextStyle(fontSize: 9, color: v.muted),
+                      '${wt(c.connected ? 'room.online' : 'room.reconnecting', context: context)} · ${c.outputLabel}',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(fontSize: 11, color: v.muted),
                     ),
                   ],
                 ),
@@ -3146,7 +3250,7 @@ class _WaveShellState extends State<WaveShell>
               ),
             ),
             const SizedBox(height: 18),
-            OutlinedButton.icon(
+            if (c.user!.plan != 'beta') OutlinedButton.icon(
               onPressed: object(c.config['billing'])['configured'] == true
                   ? () => run(c, () async {
                       final response = await c.api.call(
@@ -3172,6 +3276,8 @@ class _WaveShellState extends State<WaveShell>
           ],
         ),
       ),
+      const SizedBox(height: 24),
+      ListeningStats(controller: c),
       section(wt('native.b7eea7b75e', context: context)),
       if (c.playlists.isNotEmpty)
         playlistGrid()
@@ -3271,9 +3377,15 @@ class _WaveShellState extends State<WaveShell>
           wt('native.5b16fcdd97', context: context),
           Icons.person_outline_rounded,
         ),
+        'taste': (pt(context, 'Taste'), Icons.waves_rounded),
+        'privacy': (pt(context, 'Privacy'), Icons.shield_outlined),
         'appearance': (
           wt('native.d206f1bed0', context: context),
           Icons.palette_outlined,
+        ),
+        'security': (
+          wt('sessions.security', context: context),
+          Icons.security_rounded,
         ),
         'playback': (
           wt('native.5dcbecbd1a', context: context),
@@ -3328,7 +3440,7 @@ class _WaveShellState extends State<WaveShell>
                   color: settingsSection == item.key ? v.ink : v.muted,
                 ),
                 const SizedBox(width: 10),
-                Text(
+                ConstrainedBox(constraints: BoxConstraints(maxWidth: desktop ? 128 : double.infinity), child: Text(
                   item.value.$1,
                   style: TextStyle(
                     fontSize: 12,
@@ -3337,7 +3449,7 @@ class _WaveShellState extends State<WaveShell>
                         : FontWeight.w600,
                     color: settingsSection == item.key ? v.ink : v.muted,
                   ),
-                ),
+                )),
               ],
             ),
           ),
@@ -3396,11 +3508,15 @@ class _WaveShellState extends State<WaveShell>
   Widget settingsDetail() {
     final v = waveVisuals(context), appearance = c.customization.appearance;
     return switch (settingsSection) {
+      'taste' => Surface(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [PageHeading(pt(context, 'Taste'), pt(context, 'Taste subtitle')), FilledButton.icon(onPressed: () => openTaste(context, c, parity), icon: const Icon(Icons.waves_rounded), label: Text(pt(context, 'Start')))])),
+      'privacy' => PrivacyPanel(controller: c),
       'appearance' => Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (c.appearanceStore != null)
-            AppearanceEntry(store: c.appearanceStore!),
+            AppearanceEntry(store: c.appearanceStore!, advancedAllowed: c.user?.plan != 'free'),
+          const SizedBox(height: 18),
+          TypographyPanel(controller: c),
           const SizedBox(height: 18),
           Surface(
             child: settingSwitch(
@@ -3425,6 +3541,10 @@ class _WaveShellState extends State<WaveShell>
                   wt('native.9c1a4954e3', context: context),
                   'lyrics',
                 ),
+                const Divider(height: 32),
+                settingSwitch(pt(context, 'Comments'), '', 'comments'),
+                const Divider(height: 32),
+                settingSwitch(pt(context, 'Lyrics under cover'), '', 'lyricsUnderCover'),
                 const Divider(height: 32),
                 SwitchListTile(
                   key: const Key('settings-cover-3d'),
@@ -3663,6 +3783,7 @@ class _WaveShellState extends State<WaveShell>
         ),
       ),
       'devices' => devicesPage(),
+      'security' => Column(children: [SessionsPanel(controller: c), const SizedBox(height: 18), AccountActions(controller: c)]),
       'hotkeys' => Surface(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -4107,32 +4228,7 @@ class _AdminPageState extends State<AdminPage> {
           ],
         ),
         const SizedBox(height: 24),
-        for (final user in objects(data['users']))
-          ListTile(
-            title: Text(
-              user['displayName'] as String? ??
-                  user['username'] as String? ??
-                  '',
-            ),
-            subtitle: Text(user['email'] as String? ?? ''),
-            trailing: DropdownButton<String>(
-              value: user['plan'] as String? ?? 'free',
-              items: ['free', 'beta', 'unbound']
-                  .map(
-                    (value) =>
-                        DropdownMenuItem(value: value, child: Text(value)),
-                  )
-                  .toList(),
-              onChanged: (value) => run(widget.controller, () async {
-                await widget.controller.api.call(
-                  '/api/admin/users/${user['id']}',
-                  method: 'PATCH',
-                  data: {'plan': value},
-                );
-                await load();
-              }),
-            ),
-          ),
+        AdminParity(controller: widget.controller),
         const SizedBox(height: 24),
         Text(
           wt('native.2355a3badd', context: context),

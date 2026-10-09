@@ -1,0 +1,110 @@
+taste|Your music taste|Ваш музыкальный вкус|Музыкалық талғамыңыз|Ваш музичний смак|Dein Musikgeschmack|Tu gusto musical
+tasteCaption|Choose artists to shape your personal wave.|Выберите артистов для вашей персональной волны.|Жеке толқыныңыз үшін орындаушыларды таңдаңыз.|Оберіть виконавців для персональної хвилі.|Wähle Künstler für deine persönliche Welle.|Elige artistas para tu onda personal.
+choose|Choose artists|Выбрать артистов|Орындаушыларды таңдау|Обрати виконавців|Künstler wählen|Elegir artistas
+resume|Continue setup|Продолжить настройку|Баптауды жалғастыру|Продовжити налаштування|Einrichtung fortsetzen|Continuar configuración
+later|Later|Позже|Кейін|Пізніше|Später|Más tarde
+noArtists|No artists selected|Артисты не выбраны|Орындаушылар таңдалмаған|Виконавців не обрано|Keine Künstler ausgewählt|Sin artistas seleccionados
+unavailable|Could not load this section|Не удалось загрузить раздел|Бөлімді жүктеу мүмкін болмады|Не вдалося завантажити розділ|Bereich konnte nicht geladen werden|No se pudo cargar esta sección
+progress|Step {step} of 3|Шаг {step} из 3|3 қадамның {step}-қадамы|Крок {step} із 3|Schritt {step} von 3|Paso {step} de 3
+welcome|Find your wavelength.|Найдите свою волну.|Өз толқыныңызды табыңыз.|Знайдіть свою хвилю.|Finde deine Wellenlänge.|Encuentra tu onda.
+welcomeCaption|A few favorite artists help us sort your library and catalogue. You can skip, save your progress, or change this later.|Любимые артисты помогут подобрать музыку из медиатеки и каталога. Можно пропустить, сохранить прогресс или изменить выбор позже.|Сүйікті орындаушылар медиатека мен каталогтан музыка таңдауға көмектеседі. Өткізіп, ілгерілеуді сақтап немесе кейін өзгертуге болады.|Улюблені виконавці допоможуть обрати музику з медіатеки й каталогу. Можна пропустити, зберегти поступ або змінити вибір пізніше.|Ein paar Lieblingskünstler helfen beim Sortieren deiner Musik und des Katalogs. Du kannst überspringen, speichern oder später ändern.|Tus artistas favoritos ayudan a ordenar tu biblioteca y catálogo. Puedes omitir, guardar el progreso o cambiarlo después.
+chooseCaption|Pick artists you actually listen to. There is no minimum.|Выберите артистов, которых слушаете. Минимального количества нет.|Тыңдайтын орындаушыларды таңдаңыз. Ең аз саны шектелмеген.|Оберіть виконавців, яких слухаєте. Мінімальної кількості немає.|Wähle Künstler, die du hörst. Es gibt keine Mindestanzahl.|Elige artistas que escuchas. No hay un mínimo.
+findArtists|Search artists|Найти артистов|Орындаушыларды іздеу|Знайти виконавців|Künstler suchen|Buscar artistas
+catalogueEmpty|Your catalogue has no matching artists yet. Add music or try another search.|В каталоге пока нет подходящих артистов. Добавьте музыку или измените поиск.|Каталогта сәйкес орындаушылар әлі жоқ. Музыка қосыңыз немесе іздеуді өзгертіңіз.|У каталозі поки немає відповідних виконавців. Додайте музику або змініть пошук.|Im Katalog gibt es noch keine passenden Künstler. Füge Musik hinzu oder suche anders.|Aún no hay artistas coincidentes. Añade música o prueba otra búsqueda.
+selected|Selected: {count}|Выбрано: {count}|Таңдалды: {count}|Обрано: {count}|Ausgewählt: {count}|Seleccionados: {count}
+next|Continue|Продолжить|Жалғастыру|Продовжити|Weiter|Continuar
+ready|Your wave starts here.|Ваша волна начинается здесь.|Толқыныңыз осы жерден басталады.|Ваша хвиля починається тут.|Hier beginnt deine Welle.|Tu onda empieza aquí.
+automatic|Learn from my listening|Учитывать мои прослушивания|Тыңдалымдарымды ескеру|Враховувати мої прослуховування|Aus meinem Hören lernen|Aprender de mis escuchas
+automaticCaption|Use actual listening history to refine recommendations. You can clear learned preferences.|Уточнять рекомендации по реальной истории. Изученные предпочтения можно удалить.|Нақты тыңдау тарихы бойынша ұсыныстарды нақтылау. Үйренген талғамдарды өшіруге болады.|Уточнювати рекомендації за справжньою історією. Вивчені вподобання можна видалити.|Empfehlungen anhand des Hörverlaufs verfeinern. Gelernte Vorlieben lassen sich löschen.|Usar tu historial real para afinar recomendaciones. Puedes borrar las preferencias aprendidas.
+saveTaste|Save my taste|Сохранить мой вкус|Талғамымды сақтау|Зберегти мій смак|Geschmack speichern|Guardar mis gustos
+back|Back to artists|Назад к артистам|Орындаушыларға оралу|Назад до виконавців|Zurück zu Künstlern|Volver a artistas
+saveLater|Save and continue later|Сохранить и продолжить позже|Сақтап, кейін жалғастыру|Зберегти й продовжити пізніше|Speichern und später fortsetzen|Guardar y continuar después
+skip|Skip without choosing|Пропустить без выбора|Таңдамай өткізу|Пропустити без вибору|Ohne Auswahl überspringen|Omitir sin elegir
+clearLearned|Clear learned preferences|Удалить изученные предпочтения|Үйренген талғамдарды өшіру|Видалити вивчені вподобання|Gelernte Vorlieben löschen|Borrar preferencias aprendidas
+noArtistTracks|No available tracks by this artist|Нет доступных треков этого артиста|Бұл орындаушының қолжетімді тректері жоқ|Немає доступних треків цього виконавця|Keine verfügbaren Titel dieses Künstlers|No hay canciones disponibles de este artista
+genres|Genres|Жанры|Жанрлар|Жанри|Genres|Géneros
+recommendationsEmpty|Add music or choose artists to start your personal wave.|Добавьте музыку или выберите артистов для вашей волны.|Толқыныңызды бастау үшін музыка қосыңыз немесе орындаушыларды таңдаңыз.|Додайте музику або оберіть виконавців для вашої хвилі.|Füge Musik hinzu oder wähle Künstler für deine Welle.|Añade música o elige artistas para iniciar tu onda.
+friends|Friends|Друзья|Достар|Друзі|Freunde|Amigos
+friendsCaption|Music feels closer together.|Музыка сближает.|Музыка жақындастырады.|Музика зближує.|Musik verbindet.|La música acerca.
+startJam|Start a jam|Начать джем|Джем бастау|Почати джем|Jam starten|Iniciar jam
+findFriends|Find by name or username|Найти по имени или никнейму|Аты немесе лақап аты бойынша іздеу|Знайти за ім'ям або нікнеймом|Nach Name oder Nutzername suchen|Buscar por nombre o usuario
+friend|Friends|В друзьях|Достар қатарында|У друзях|Befreundet|Amigos
+requestSent|Request sent|Запрос отправлен|Сұрау жіберілді|Запит надіслано|Anfrage gesendet|Solicitud enviada
+addFriend|Add friend|Добавить|Дос қосу|Додати|Hinzufügen|Añadir amigo
+noUsers|No matching users|Пользователи не найдены|Пайдаланушылар табылмады|Користувачів не знайдено|Keine passenden Nutzer|No se encontraron usuarios
+requests|Friend requests|Запросы в друзья|Достық сұраулары|Запити в друзі|Freundschaftsanfragen|Solicitudes de amistad
+accept|Accept request|Принять запрос|Сұрауды қабылдау|Прийняти запит|Anfrage annehmen|Aceptar solicitud
+decline|Decline request|Отклонить запрос|Сұрауды қабылдамау|Відхилити запит|Anfrage ablehnen|Rechazar solicitud
+sentRequests|Sent requests · {count}|Отправленные запросы · {count}|Жіберілген сұраулар · {count}|Надіслані запити · {count}|Gesendete Anfragen · {count}|Solicitudes enviadas · {count}
+listening|Listening now|Сейчас слушает|Қазір тыңдап жатыр|Зараз слухає|Hört gerade|Escuchando ahora
+paused|Paused|На паузе|Кідіртілген|На паузі|Pausiert|En pausa
+joinJam|Join jam|В джем|Джемге қосылу|До джему|Jam beitreten|Unirse al jam
+removeFriend|Remove friend|Удалить из друзей|Достардан өшіру|Видалити з друзів|Freund entfernen|Eliminar amigo
+noFriends|Find a friend to share your wave.|Найдите друзей и слушайте на одной волне.|Дос тауып, бір толқында тыңдаңыз.|Знайдіть друзів і слухайте на одній хвилі.|Finde Freunde für deine Welle.|Encuentra amigos para compartir tu onda.
+jamCaption|A private listening space for up to 5 friends. The host controls the queue. Leaving as host closes the jam.|Приватное прослушивание до 5 друзей. Очередью управляет ведущий. Выход ведущего завершает джем.|5 досқа дейін жеке тыңдау. Кезекті жүргізуші басқарады. Жүргізуші шықса, джем аяқталады.|Приватне прослуховування до 5 друзів. Чергою керує ведучий. Вихід ведучого завершує джем.|Privates Hören mit bis zu 5 Freunden. Der Gastgeber steuert die Warteschlange. Verlässt er den Jam, endet er.|Un espacio privado para hasta 5 amigos. El anfitrión controla la cola. Si sale, el jam termina.
+jam|Friends' jam|Джем с друзьями|Достармен джем|Джем із друзями|Jam mit Freunden|Jam de amigos
+privacy|Privacy|Приватность|Құпиялық|Приватність|Privatsphäre|Privacidad
+privacyCaption|Choose what friends can see.|Что видят ваши друзья.|Достарыңыз нені көретінін таңдаңыз.|Що бачать ваші друзі.|Bestimme, was Freunde sehen.|Elige qué pueden ver tus amigos.
+showActivity|Show listening activity|Показывать прослушивания|Тыңдау әрекетін көрсету|Показувати прослуховування|Höraktivität anzeigen|Mostrar actividad de escucha
+showActivityCaption|Let friends see your current track and device.|Друзья видят текущий трек и устройство.|Достар ағымдағы трек пен құрылғыны көреді.|Друзі бачать поточний трек і пристрій.|Freunde sehen den aktuellen Titel und das Gerät.|Tus amigos ven la canción y el dispositivo actuales.
+profileStats|Public listening statistics|Статистика в профиле|Профильдегі статистика|Статистика у профілі|Hörstatistik im Profil|Estadísticas en el perfil
+profileStatsCaption|Show your real listening totals on your profile.|Показывать реальные итоги прослушиваний.|Нақты тыңдау қорытындыларын көрсету.|Показувати справжні підсумки прослуховувань.|Zeige deine tatsächlichen Hörzahlen im Profil.|Mostrar tus totales reales de escucha.
+allowFriendRequests|Allow friend requests|Разрешить запросы в друзья|Достық сұрауларына рұқсат беру|Дозволити запити в друзі|Freundschaftsanfragen erlauben|Permitir solicitudes de amistad
+allowFriendRequestsCaption|Other users can send you a request.|Другие пользователи могут отправить запрос.|Басқа пайдаланушылар сұрау жібере алады.|Інші користувачі можуть надіслати запит.|Andere Nutzer können dir Anfragen senden.|Otros usuarios pueden enviarte solicitudes.
+changeEmail|Change email|Изменить почту|Поштаны өзгерту|Змінити пошту|E-Mail ändern|Cambiar correo
+deleteAccount|Delete account|Удалить аккаунт|Аккаунтты өшіру|Видалити акаунт|Konto löschen|Eliminar cuenta
+checkEmail|Check your new inbox|Проверьте новую почту|Жаңа поштаны тексеріңіз|Перевірте нову пошту|Prüfe dein neues Postfach|Revisa tu nuevo correo
+emailSent|Follow the confirmation link to finish changing your email.|Перейдите по ссылке для завершения смены почты.|Поштаны өзгертуді аяқтау үшін растау сілтемесіне өтіңіз.|Перейдіть за посиланням для завершення зміни пошти.|Öffne den Bestätigungslink, um die E-Mail zu ändern.|Abre el enlace para terminar el cambio de correo.
+emailCaption|Your current email stays active until the new address is confirmed.|Текущая почта действует до подтверждения нового адреса.|Жаңа мекенжай расталғанша қазіргі пошта белсенді.|Поточна пошта діє до підтвердження нової адреси.|Deine bisherige E-Mail bleibt bis zur Bestätigung aktiv.|Tu correo actual sigue activo hasta confirmar el nuevo.
+deleteCaption|This permanently removes your account, uploaded music, playlists, sessions and friendships. This cannot be undone.|Аккаунт, загруженная музыка, плейлисты, сеансы и друзья будут удалены навсегда. Отменить это нельзя.|Аккаунт, жүктелген музыка, плейлисттер, сеанстар және достықтар біржола өшіріледі. Қайтару мүмкін емес.|Акаунт, завантажена музика, плейлисти, сеанси та дружні зв'язки будуть видалені назавжди. Це незворотно.|Konto, hochgeladene Musik, Playlists, Sitzungen und Freundschaften werden dauerhaft gelöscht. Das ist unwiderruflich.|Se eliminarán permanentemente tu cuenta, música subida, listas, sesiones y amistades. No se puede deshacer.
+newEmail|New email address|Новый адрес почты|Жаңа пошта мекенжайы|Нова адреса пошти|Neue E-Mail-Adresse|Nuevo correo electrónico
+confirmUsername|Type {username} to confirm|Введите {username} для подтверждения|Растау үшін {username} енгізіңіз|Введіть {username} для підтвердження|Zur Bestätigung {username} eingeben|Escribe {username} para confirmar
+sendConfirmation|Send confirmation|Отправить подтверждение|Растауды жіберу|Надіслати підтвердження|Bestätigung senden|Enviar confirmación
+accountDeleted|Your account was deleted.|Ваш аккаунт удалён.|Аккаунтыңыз өшірілді.|Ваш акаунт видалено.|Dein Konto wurde gelöscht.|Tu cuenta se eliminó.
+confirmEmail|Confirm email change|Подтвердить смену почты|Пошта өзгерісін растау|Підтвердити зміну пошти|E-Mail-Änderung bestätigen|Confirmar cambio de correo
+confirmEmailCaption|Confirm the new address using this one-use link.|Подтвердите новый адрес этой одноразовой ссылкой.|Осы бір реттік сілтемемен жаңа мекенжайды растаңыз.|Підтвердіть нову адресу цим одноразовим посиланням.|Bestätige die neue Adresse mit diesem einmaligen Link.|Confirma la nueva dirección con este enlace de un solo uso.
+emailChanged|Email updated|Почта изменена|Пошта өзгертілді|Пошту змінено|E-Mail aktualisiert|Correo actualizado
+statistics|Your listening|Ваши прослушивания|Тыңдалымдарыңыз|Ваші прослуховування|Deine Hörstatistik|Tus escuchas
+statisticsCaption|Measured from actual playback, across your devices.|По фактическому воспроизведению на ваших устройствах.|Құрылғыларыңыздағы нақты ойнату бойынша.|За фактичним відтворенням на ваших пристроях.|Gemessen an der tatsächlichen Wiedergabe auf deinen Geräten.|Medido a partir de la reproducción real en tus dispositivos.
+statisticsEmpty|Listen to music to start your statistics.|Начните слушать музыку, чтобы появилась статистика.|Статистика үшін музыка тыңдауды бастаңыз.|Почніть слухати музику, щоб з'явилася статистика.|Höre Musik, um deine Statistik zu beginnen.|Escucha música para iniciar tus estadísticas.
+plays|plays|прослушиваний|тыңдалым|прослуховувань|Wiedergaben|reproducciones
+minutes|minutes|минут|минут|хвилин|Minuten|minutos
+topArtists|Most played artists|Любимые артисты|Жиі тыңдалған орындаушылар|Улюблені виконавці|Meistgehörte Künstler|Artistas más escuchados
+publicPlaylists|Public playlists|Публичные плейлисты|Жария плейлисттер|Публічні плейлисти|Öffentliche Playlists|Listas públicas
+noPublicPlaylists|No public playlists yet|Публичных плейлистов пока нет|Жария плейлисттер әлі жоқ|Публічних плейлистів поки немає|Noch keine öffentlichen Playlists|Aún no hay listas públicas
+publicPlaylist|Public playlist|Публичный плейлист|Жария плейлист|Публічний плейлист|Öffentliche Playlist|Lista pública
+publicPlaylistCaption|Visible in discovery and your public profile. Private audio cannot be published.|Виден в поиске и профиле. Приватное аудио нельзя публиковать.|Іздеу мен профильде көрінеді. Жеке аудионы жариялауға болмайды.|Видимий у пошуку та профілі. Приватне аудіо не можна публікувати.|In Suche und Profil sichtbar. Private Audiodateien sind nicht veröffentlichbar.|Visible en búsquedas y tu perfil. El audio privado no se puede publicar.
+public|Public|Публичный|Жария|Публічний|Öffentlich|Pública
+private|Private|Приватный|Жеке|Приватний|Privat|Privada
+customCover|Upload cover|Загрузить обложку|Мұқаба жүктеу|Завантажити обкладинку|Cover hochladen|Subir portada
+restoreCollage|Restore collage|Вернуть коллаж|Коллажды қайтару|Повернути колаж|Collage wiederherstellen|Restaurar collage
+coverCaption|PNG, JPEG or WebP. Without a cover, track artwork forms a collage.|PNG, JPEG или WebP. Без обложки используется коллаж треков.|PNG, JPEG немесе WebP. Мұқабасыз тректерден коллаж жасалады.|PNG, JPEG або WebP. Без обкладинки використовується колаж треків.|PNG, JPEG oder WebP. Ohne Cover entsteht eine Collage der Titelbilder.|PNG, JPEG o WebP. Sin portada se crea un collage de las canciones.
+findPlaylists|Find public playlists|Найти публичные плейлисты|Жария плейлисттерді іздеу|Знайти публічні плейлисти|Öffentliche Playlists suchen|Buscar listas públicas
+deleteUser|Delete user|Удалить пользователя|Пайдаланушыны өшіру|Видалити користувача|Nutzer löschen|Eliminar usuario
+adminDeleteCaption|Permanently delete {name}, including their files and active sessions.|Навсегда удалить {name}, включая файлы и активные сеансы.|{name} пайдаланушысын файлдары және белсенді сеанстарымен біржола өшіру.|Назавжди видалити {name}, включно з файлами та активними сеансами.|{name} einschließlich Dateien und aktiver Sitzungen dauerhaft löschen.|Eliminar permanentemente a {name}, incluidos sus archivos y sesiones.
+registration|Registration|Регистрация|Тіркелу|Реєстрація|Registrierung|Registro
+allowRegistration|Allow new accounts|Разрешить новые аккаунты|Жаңа аккаунттарға рұқсат|Дозволити нові акаунти|Neue Konten erlauben|Permitir nuevas cuentas
+registrationCaption|Existing users can still sign in when registration is closed.|При закрытой регистрации существующие пользователи могут входить.|Тіркелу жабық кезде бұрынғы пайдаланушылар кіре алады.|При закритій реєстрації наявні користувачі можуть входити.|Bestehende Nutzer können sich bei geschlossener Registrierung weiter anmelden.|Los usuarios existentes pueden entrar aunque el registro esté cerrado.
+registrationClosed|Registration is currently closed.|Регистрация сейчас закрыта.|Тіркелу қазір жабық.|Реєстрацію зараз закрито.|Die Registrierung ist derzeit geschlossen.|El registro está cerrado por ahora.
+releases|Application releases|Релизы приложений|Қолданба шығарылымдары|Релізи застосунків|App-Veröffentlichungen|Versiones de la aplicación
+releaseCaption|Owner only. Upload real packages. Signature is package metadata, not proof of store review or Windows Authenticode signing.|Только владелец. Загружайте реальные пакеты. Поле подписи — метаданные, а не подтверждение проверки магазина или Authenticode Windows.|Тек иесі. Нақты пакеттерді жүктеңіз. Қолтаңба өрісі — метадерек, дүкен тексеруінің не Windows Authenticode қолтаңбасының дәлелі емес.|Лише власник. Завантажуйте справжні пакети. Поле підпису — метадані, а не підтвердження перевірки магазину чи Authenticode Windows.|Nur Eigentümer. Echte Pakete hochladen. Signatur bezeichnet Paketmetadaten, keinen Store-Test oder Windows-Authenticode-Nachweis.|Solo el propietario. Sube paquetes reales. La firma es metadato, no prueba de revisión de tienda ni firma Authenticode de Windows.
+noReleases|No verified packages available|Нет проверенных пакетов|Тексерілген пакеттер жоқ|Немає перевірених пакетів|Keine geprüften Pakete verfügbar|No hay paquetes verificados disponibles
+platform|Platform|Платформа|Платформа|Платформа|Plattform|Plataforma
+version|Version|Версия|Нұсқа|Версія|Version|Versión
+channel|Channel|Канал|Арна|Канал|Kanal|Canal
+signature|Package signature metadata|Метаданные подписи пакета|Пакет қолтаңбасының метадеректері|Метадані підпису пакета|Signaturmetadaten des Pakets|Metadatos de firma del paquete
+package|Package file|Файл пакета|Пакет файлы|Файл пакета|Paketdatei|Archivo del paquete
+uploadRelease|Upload release|Загрузить релиз|Шығарылымды жүктеу|Завантажити реліз|Version hochladen|Subir versión
+releaseSaved|Package uploaded and verified.|Пакет загружен и проверен.|Пакет жүктеліп, тексерілді.|Пакет завантажено й перевірено.|Paket hochgeladen und geprüft.|Paquete subido y verificado.
+font|Interface font|Шрифт интерфейса|Интерфейс қарпі|Шрифт інтерфейсу|Schrift der Oberfläche|Fuente de la interfaz
+fontCaption|Choose the typeface throughout GlukWave.|Шрифт во всём GlukWave.|Бүкіл GlukWave қарпін таңдаңыз.|Шрифт у всьому GlukWave.|Schriftart für ganz GlukWave wählen.|Elige la tipografía de todo GlukWave.
+systemFont|System font|Системный шрифт|Жүйелік қаріп|Системний шрифт|Systemschrift|Fuente del sistema
+textSize|Interface size|Размер интерфейса|Интерфейс өлшемі|Розмір інтерфейсу|Größe der Oberfläche|Tamaño de la interfaz
+advancedAppearance|Themes, accents, size and reduced motion are free. Detailed styling is included in Beta and Unbound.|Темы, акценты, размер и уменьшение движения бесплатны. Подробная настройка доступна в Beta и Unbound.|Тақырыптар, акценттер, өлшем және қозғалысты азайту тегін. Толық баптау Beta және Unbound-та.|Теми, акценти, розмір і зменшення руху безкоштовні. Докладне налаштування доступне у Beta та Unbound.|Themen, Akzente, Größe und reduzierte Bewegung sind kostenlos. Weitere Gestaltung ist in Beta und Unbound enthalten.|Temas, acentos, tamaño y movimiento reducido son gratis. El diseño avanzado está incluido en Beta y Unbound.
+planLimit|This feature is included in Beta and Unbound.|Эта функция доступна в Beta и Unbound.|Бұл мүмкіндік Beta және Unbound-та қолжетімді.|Ця функція доступна у Beta та Unbound.|Diese Funktion ist in Beta und Unbound enthalten.|Esta función está incluida en Beta y Unbound.
+lyricsUnderCover|Lyrics beneath the cover|Строки под обложкой|Мұқаба астындағы мәтін|Рядки під обкладинкою|Liedtext unter dem Cover|Letra bajo la portada
+lyricsUnderCoverCaption|Show the current lines here. Synchronized lines can be tapped to seek.|Показывать текущие строки. Нажатие на синхронную строку перематывает трек.|Ағымдағы жолдарды көрсету. Синхрондалған жолды басу тректі жылжытады.|Показувати поточні рядки. Натискання на синхронний рядок перемотує трек.|Aktuelle Zeilen anzeigen. Tippe auf synchronisierte Zeilen zum Springen.|Mostrar las líneas actuales. Toca una línea sincronizada para saltar.
+commentsCaption|Show track comments in the full player.|Показывать комментарии к треку в полном плеере.|Толық ойнатқышта трек пікірлерін көрсету.|Показувати коментарі до треку в повному плеєрі.|Titelkommentare im vollständigen Player anzeigen.|Mostrar comentarios en el reproductor completo.
+friendRequestsDisabled|This user is not accepting requests.|Пользователь не принимает запросы.|Бұл пайдаланушы сұрауларды қабылдамайды.|Користувач не приймає запитів.|Dieser Nutzer nimmt keine Anfragen an.|Este usuario no acepta solicitudes.
+jamUnavailable|This jam has ended or is full.|Джем завершён или заполнен.|Джем аяқталды немесе толы.|Джем завершено або заповнено.|Dieser Jam ist beendet oder voll.|Este jam terminó o está lleno.
+publicAudioOnly|A public playlist can only contain publicly available tracks.|В публичном плейлисте допустимы только общедоступные треки.|Жария плейлистте тек ашық тректер болуы мүмкін.|У публічному плейлисті дозволені лише загальнодоступні треки.|Eine öffentliche Playlist darf nur öffentliche Titel enthalten.|Una lista pública solo puede contener canciones públicas.

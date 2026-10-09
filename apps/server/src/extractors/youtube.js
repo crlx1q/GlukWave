@@ -1,0 +1,1 @@
+export const youtubeAdapter=runtime=>({id:'youtube',metadata:url=>runtime.execute('youtube',{action:'extract',source:'youtube',url}),search:query=>runtime.execute('youtube',{action:'music-search',query,limit:10})});

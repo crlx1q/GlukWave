@@ -1,7 +1,8 @@
 import { t, useLocale, setLanguageChoice } from './locale';
 import { createContext, useCallback, useContext, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from 'react';
 import type { Socket } from 'socket.io-client';
-import { api, errorText, post } from './api';
+import { ApiError, api, errorText, post } from './api';
+import { advancedSettingsChange } from './parity-model';
 import { resetDiagnostics } from './diagnostics';
 import { applyAppearance, mergeSettings, mergeSettingsPatches, normalizeSettings, normalizeSettingsPatch, readLocalSettings, readPendingSettings, writeLocalSettings, writeConfirmedSettings, writePendingSettings } from './preferences';
 import { clearPrivate, getCacheGeneration, readLibrary, saveLibrary } from './cache';
@@ -30,6 +31,7 @@ export function StoreProvider({children}:{children:ReactNode}) {useLocale();
   const settingsServer=useRef(settings),pendingSettings=useRef<SettingsPatch>({}),serverRevision=useRef(-1),accountGeneration=useRef(0),settingsTimer=useRef<ReturnType<typeof setTimeout>|undefined>(undefined),settingsFlight=useRef<{userId:string;generation:number;controller:AbortController;partial:SettingsPatch}|null>(null),flushSettingsRef=useRef<(id:string)=>Promise<void>>(async()=>{});
   const userRef=useRef(user);userRef.current=user;const toastTimer=useRef<ReturnType<typeof setTimeout>|undefined>(undefined);
   const notify=useCallback((text:string,error=false)=>{clearTimeout(toastTimer.current);setToast({id:Date.now(),text,error});toastTimer.current=setTimeout(()=>setToast(null),6500);},[]);
+  useEffect(()=>()=>clearTimeout(toastTimer.current),[]);
   const setUser=useCallback((next:User|null)=>{if(userRef.current?.id!==next?.id)resetDiagnostics();userRef.current=next;setUserState(next);if(next)localStorage.setItem('gw-user',JSON.stringify(next));else localStorage.removeItem('gw-user');},[]);
   const navigate=useCallback((next:Route)=>{location.hash=next;setRoute(next);window.scrollTo({top:0,behavior:'instant'});},[]);
   const refreshLibrary=useCallback(async()=>{
@@ -94,9 +96,9 @@ export function StoreProvider({children}:{children:ReactNode}) {useLocale();
       const result=await api<SettingsSnapshot>('/settings',{method:'PATCH',headers:{'X-GlukWave-Account':id},body:JSON.stringify(sent),signal:flight.controller.signal});success=true;
       if(flight.controller.signal.aborted||userRef.current?.id!==id||accountGeneration.current!==flight.generation)return;
       settingsFlight.current=null;acceptSettings(id,flight.generation,result);publishSettings(id);
-    }catch {
+    }catch(error) {
       if(flight.controller.signal.aborted||userRef.current?.id!==id||accountGeneration.current!==flight.generation)return;
-      settingsFlight.current=null;pendingSettings.current=mergeSettingsPatches(sent,pendingSettings.current);publishSettings(id);setSettingsSync('local');
+      settingsFlight.current=null;if(error instanceof ApiError&&['PLAN_LIMIT','INVALID_SETTINGS','VALIDATION'].includes(error.code)){publishSettings(id);notify(errorText(error),true);return;}pendingSettings.current=mergeSettingsPatches(sent,pendingSettings.current);publishSettings(id);setSettingsSync('local');
     }finally {
       if(userRef.current?.id===id&&accountGeneration.current===flight.generation){if(settingsFlight.current===flight)settingsFlight.current=null;if(Object.keys(pendingSettings.current).length&&navigator.onLine)scheduleSettings(id,success?120:15000);}
     }
@@ -126,10 +128,11 @@ export function StoreProvider({children}:{children:ReactNode}) {useLocale();
   const requireAuth=useCallback(()=>{if(!user){setAuthOpen(true);return false;}if(offline){notify(t('copy.729'),true);return false;}return true;},[user,offline,notify]);
   const run=useCallback(async<T,>(operation:()=>Promise<T>,success?:string)=>{try{const result=await operation();if(success)notify(success);return result;}catch(error){notify(errorText(error),true);return undefined;}},[notify]);
   const saveSettings=useCallback(async(partial:SettingsPatch)=>{
-    const change=normalizeSettingsPatch(partial);if(!Object.keys(change).length)return;const id=userRef.current?.id||null;
+    const change=normalizeSettingsPatch(partial);if(!Object.keys(change).length)return;if(userRef.current?.plan==='free'&&advancedSettingsChange(change,settingsRef.current)){notify(t('parity.planLimit'),true);return;}const id=userRef.current?.id||null;
     if(!id){settingsServer.current=mergeSettings(settingsServer.current,change);publishSettings(null);return;}
     pendingSettings.current=mergeSettingsPatches(pendingSettings.current,change);publishSettings(id);if(navigator.onLine)scheduleSettings(id);
-  },[scheduleSettings,publishSettings]);
+  },[scheduleSettings,publishSettings,notify]);
+  useLayoutEffect(()=>{document.documentElement.style.setProperty('--font-scale',String(settings.fontScale));document.documentElement.dataset.textScale=settings.fontScale>1?'large':'normal';document.documentElement.style.setProperty('--app-font',settings.fontFamily==='system'?'system-ui, sans-serif':settings.fontFamily==='nunito'?"'Nunito', sans-serif":"'Manrope', 'Nunito', sans-serif");},[settings.fontScale,settings.fontFamily]);
   const like=useCallback(async(track:Track)=>{if(!requireAuth())return;const liked=!library.likedIds.includes(track.id);await api(`/library/likes/${encodeURIComponent(track.id)}`,{method:'PUT',body:JSON.stringify({liked})});await refreshLibrary();},[requireAuth,library.likedIds,refreshLibrary]);
   const remember=useCallback((tracks:Track[])=>{const known=new Map(tracks.map(track=>[track.id,track]));setLibrary(current=>({...current,tracks:current.tracks.map(track=>known.get(track.id)||track)}));},[]);
   const logout=useCallback(async()=>{if(user){await post('/auth/logout');await clearPrivate(user.id);}setUser(null);setLibrary(emptyLibrary);navigate('home');notify(t('copy.730'));},[user,setUser,navigate,notify]);

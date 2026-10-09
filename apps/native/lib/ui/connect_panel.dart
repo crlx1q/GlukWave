@@ -1,9 +1,11 @@
+import 'motion_icons.dart';
 import 'package:flutter/material.dart';
 import '../core/controller.dart';
 import '../core/models.dart';
 import '../l10n/wave_localizations.dart';
 import 'widgets.dart';
 import 'volume_slider.dart';
+import 'device_labels.dart';
 
 String installationId(Json device) =>
     (device['deviceId'] ?? device['id'] ?? '').toString();
@@ -85,7 +87,7 @@ class ConnectPanel extends StatelessWidget {
                   ),
                 ),
                 value: c.independentListening,
-                onChanged: c.online
+                onChanged: c.online && !c.connectChanging
                     ? (value) => _run(() => c.setIndependentListening(value))
                     : null,
               ),
@@ -112,16 +114,10 @@ class ConnectPanel extends StatelessWidget {
                           ),
                           const SizedBox(height: 4),
                           Text(
-                            c.controllingRemote
-                                ? wt(
-                                    'connect.playingOn',
-                                    values: {'name': c.activeDeviceName},
-                                    context: context,
-                                  )
-                                : c.deviceName,
+                            c.outputLabel,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
-                            style: TextStyle(color: v.accent, fontSize: 11),
+                            style: TextStyle(color: v.accent, fontSize: 12),
                           ),
                         ],
                       ),
@@ -131,18 +127,19 @@ class ConnectPanel extends StatelessWidget {
                         backgroundColor: v.ink,
                         foregroundColor: v.background,
                       ),
-                      onPressed: () =>
-                          _run(c.audio.playing ? c.audio.pause : c.audio.play),
+                      onPressed: c.room != null && !c.canTogglePlayback
+                          ? null
+                          : () => _run(
+                              c.audio.playing ? c.audio.pause : c.audio.play,
+                            ),
                       tooltip: wt(
                         c.audio.playing
                             ? 'native.03498e395a'
                             : 'native.c750dc7d94',
                         context: context,
                       ),
-                      icon: Icon(
-                        c.audio.playing
-                            ? Icons.pause_rounded
-                            : Icons.play_arrow_rounded,
+                      icon: WavePlayPauseIcon(
+                        playing: c.audio.playing,
                         color: v.background,
                       ),
                     ),
@@ -150,27 +147,51 @@ class ConnectPanel extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    Icon(Icons.volume_up_outlined, size: 18, color: v.muted),
+                    WaveToggleIcon(
+                      active: c.audio.volume == 0,
+                      activeIcon: Icons.volume_off_outlined,
+                      inactiveIcon: Icons.volume_up_outlined,
+                      size: 18,
+                      color: v.muted,
+                    ),
                     Expanded(
                       child: VolumeSlider(
                         value: c.audio.volume,
-                        onChanged: (value) => _run(
-                          () => c.transport('volume', {'volume': value}),
-                        ),
+                        onChanged:
+                            c.activeDeviceId == null && !c.independentListening
+                            ? null
+                            : (value) => _run(
+                                () => c.transport('volume', {'volume': value}),
+                              ),
                       ),
                     ),
                   ],
                 ),
-                if (c.controllingRemote)
+                if (c.room != null)
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 12),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.headphones_rounded,
+                          size: 16,
+                          color: v.muted,
+                        ),
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: Text(
+                            c.room!['name']?.toString() ?? '',
+                            style: TextStyle(color: v.muted, fontSize: 12),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                if (c.controllingRemote || c.room != null && !c.outputHere)
                   OutlinedButton.icon(
                     key: const Key('connect-play-here'),
-                    onPressed: c.connected
-                        ? () => _run(
-                            () => c.transfer(
-                              c.deviceId,
-                              targetSurfaceId: c.surfaceId,
-                            ),
-                          )
+                    onPressed: c.connected && c.pendingDeviceActions.isEmpty
+                        ? () => _run(c.listenHere)
                         : null,
                     icon: const Icon(Icons.speaker_outlined, size: 18),
                     label: Text(wt('connect.playHere', context: context)),
@@ -180,9 +201,23 @@ class ConnectPanel extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 24),
-        Text(
-          wt('connect.installations', context: context),
-          style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 17),
+        Row(
+          children: [
+            Expanded(
+              child: Text(
+                wt('connect.installations', context: context),
+                style: const TextStyle(
+                  fontWeight: FontWeight.w800,
+                  fontSize: 17,
+                ),
+              ),
+            ),
+            IconButton(
+              onPressed: c.online ? () => _run(c.refreshDevices) : null,
+              tooltip: wt('devices.refresh', context: context),
+              icon: const Icon(Icons.refresh_rounded, size: 20),
+            ),
+          ],
         ),
         const SizedBox(height: 10),
         for (final device in c.devices)
@@ -200,15 +235,7 @@ class ConnectPanel extends StatelessWidget {
             ),
             child: Row(
               children: [
-                Icon(
-                  ['android', 'ios'].contains(device['kind'])
-                      ? Icons.smartphone_rounded
-                      : device['kind'] == 'web'
-                      ? Icons.language_rounded
-                      : Icons.computer_outlined,
-                  size: 26,
-                  color: v.muted,
-                ),
+                Icon(deviceKindIcon(device), size: 26, color: v.muted),
                 const SizedBox(width: 14),
                 Expanded(
                   child: Column(
@@ -220,46 +247,109 @@ class ConnectPanel extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
                           fontWeight: FontWeight.w700,
-                          fontSize: 12,
+                          fontSize: 14,
                         ),
                       ),
                       const SizedBox(height: 5),
                       Text(
-                        installationId(device) == c.deviceId
-                            ? wt('native.4eca465a4a', context: context)
-                            : wt(
-                                device['online'] == true
-                                    ? 'native.011e2099f2'
-                                    : 'native.67b99cc9bf',
-                                context: context,
-                              ),
-                        style: TextStyle(fontSize: 10, color: v.muted),
+                        '${deviceKindLabel(device, context: context)} · ${installationId(device) == c.deviceId ? wt('native.4eca465a4a', context: context) : wt(device['online'] == true ? 'native.011e2099f2' : 'native.67b99cc9bf', context: context)}',
+                        style: TextStyle(fontSize: 12, color: v.muted),
                       ),
+                      if (installationId(device) == c.activeDeviceId)
+                        Padding(
+                          padding: const EdgeInsets.only(top: 7),
+                          child: Row(
+                            children: [
+                              Icon(
+                                c.audio.playing
+                                    ? Icons.graphic_eq_rounded
+                                    : Icons.pause_rounded,
+                                size: 15,
+                                color: v.accent,
+                              ),
+                              const SizedBox(width: 6),
+                              Expanded(
+                                child: Text(
+                                  wt(
+                                    c.audio.playing
+                                        ? 'devices.activeOutput'
+                                        : 'devices.selectedOutput',
+                                    context: context,
+                                  ),
+                                  style: TextStyle(
+                                    color: v.accent,
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      if (device['sessions'] is num)
+                        Padding(
+                          padding: const EdgeInsets.only(top: 6),
+                          child: Text(
+                            wt(
+                              'devices.sessionsCount',
+                              values: {'count': device['sessions']},
+                              context: context,
+                            ),
+                            style: TextStyle(color: v.muted, fontSize: 11),
+                          ),
+                        ),
                     ],
                   ),
                 ),
                 if (track != null &&
                     device['online'] == true &&
-                    installationId(device) != c.activeDeviceId)
+                    (installationId(device) != c.activeDeviceId ||
+                        installationId(device) == c.deviceId &&
+                            c.controllingRemote))
                   IconButton(
                     tooltip: wt('native.49daba7f72', context: context),
-                    onPressed: () => _run(
-                      () => c.transfer(
-                        installationId(device),
-                        targetSurfaceId: device['surfaceId']?.toString(),
-                      ),
-                    ),
-                    icon: Icon(
-                      Icons.speaker_outlined,
-                      size: 20,
-                      color: v.accent,
-                    ),
+                    onPressed: c.pendingDeviceActions.isNotEmpty
+                        ? null
+                        : () => _run(
+                            () => c.transfer(
+                              installationId(device),
+                              targetSurfaceId:
+                                  installationId(device) == c.deviceId
+                                  ? c.surfaceId
+                                  : device['surfaceId']?.toString(),
+                            ),
+                          ),
+                    icon:
+                        c.pendingDeviceActions.contains(
+                          'transfer:${installationId(device)}',
+                        )
+                        ? const SizedBox(
+                            width: 18,
+                            height: 18,
+                            child: CircularProgressIndicator(strokeWidth: 2),
+                          )
+                        : Icon(
+                            Icons.speaker_outlined,
+                            size: 20,
+                            color: v.accent,
+                          ),
                   ),
                 IconButton(
                   key: Key('connect-remove-${installationId(device)}'),
                   tooltip: wt('connect.remove', context: context),
-                  onPressed: () => _remove(context, device),
-                  icon: Icon(Icons.logout_rounded, size: 18, color: v.muted),
+                  onPressed: !c.online || c.pendingDeviceActions.isNotEmpty
+                      ? null
+                      : () => _remove(context, device),
+                  icon:
+                      c.pendingDeviceActions.contains(
+                        'revoke:${installationId(device)}',
+                      )
+                      ? const SizedBox(
+                          width: 18,
+                          height: 18,
+                          child: CircularProgressIndicator(strokeWidth: 2),
+                        )
+                      : Icon(Icons.logout_rounded, size: 18, color: v.muted),
                 ),
               ],
             ),

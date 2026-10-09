@@ -29,6 +29,12 @@ class WaveApi {
   String language = 'en';
   String? token;
   String deviceId = '', surfaceId = '';
+  String clientKind = Platform.isWindows
+      ? 'windows'
+      : Platform.isIOS
+      ? 'ios'
+      : 'android';
+  String deviceName = '';
   late final WaveDiagnostics diagnostics;
   WaveApi(String value) : server = validateServer(value) {
     diagnostics = WaveDiagnostics(() => server, () => headers);
@@ -58,6 +64,8 @@ class WaveApi {
   String url(String path) => Uri.parse('$server/').resolve(path).toString();
   Map<String, String> get headers => {
     'X-GlukWave-Client': 'native',
+    'X-GlukWave-Kind': clientKind,
+    if (deviceName.isNotEmpty) 'X-GlukWave-Device-Name': deviceName,
     'Accept-Language': language,
     if (deviceId.isNotEmpty) 'X-GlukWave-Device': deviceId,
     if (surfaceId.isNotEmpty) 'X-GlukWave-Surface': surfaceId,
@@ -178,7 +186,7 @@ class WaveApi {
   }) async {
     try {
       await dio.download(
-        url('/api/media/${Uri.encodeComponent(track.id)}/download'),
+        downloadUrl(track),
         target.path,
         options: Options(
           headers: headers,
@@ -199,5 +207,30 @@ class WaveApi {
       }
       throw WaveException(wt('native.5eb9f20ac7'), 'download');
     }
+  }
+
+  Future<WaveTrack> resolvePlayback(WaveTrack track) async {
+    final data = await call(
+      '/api/tracks/${Uri.encodeComponent(track.id)}/playback',
+    );
+    final descriptor = object(data['playback']);
+    if (descriptor.isEmpty) return track;
+    return WaveTrack({...track.json, 'playback': descriptor});
+  }
+
+  String downloadUrl(WaveTrack track) {
+    final supplied = track.playback['downloadUrl'];
+    if (supplied is String) {
+      final target = Uri.tryParse(url(supplied));
+      if (target != null &&
+          ['http', 'https'].contains(target.scheme) &&
+          target.userInfo.isEmpty &&
+          target.origin == Uri.parse(server).origin &&
+          target.path.startsWith('/api/')) {
+        return target.toString();
+      }
+      throw WaveException(wt('native.3d96e7d07c'), 'download_forbidden');
+    }
+    return url('/api/media/${Uri.encodeComponent(track.id)}/download');
   }
 }

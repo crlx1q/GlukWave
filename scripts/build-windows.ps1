@@ -44,4 +44,6 @@ try {
   & $flutterPath build windows --release --no-pub "--dart-define=GLUKWAVE_SERVER=$Server"
   if ($LASTEXITCODE -ne 0) { throw 'Windows compilation failed.' }
 } finally { Pop-Location; $env:PUB_CACHE = $oldPubCache; $env:PATH = $oldBuildPath }
-& (Join-Path $PSScriptRoot 'package-windows.ps1') -ReleaseRoot (Join-Path $buildWorkspace 'build/windows/x64/runner/Release')
+$versionLine = Select-String -LiteralPath (Join-Path $nativeRoot 'pubspec.yaml') -Pattern '^version:\s*(\S+)\s*$'
+if (!$versionLine) { throw 'Native package version is missing.' }
+& (Join-Path $PSScriptRoot 'package-windows.ps1') -ReleaseRoot (Join-Path $buildWorkspace 'build/windows/x64/runner/Release') -Version $versionLine.Matches.Groups[1].Value

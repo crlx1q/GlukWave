@@ -57,6 +57,16 @@ class _PersistentProviderHostState extends State<PersistentProviderHost>
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
+    final foreground = ![
+      AppLifecycleState.paused,
+      AppLifecycleState.hidden,
+      AppLifecycleState.detached,
+    ].contains(state);
+    unawaited(
+      player.evaluate
+          ?.call('window.waveVisibility?.(${foreground ? 'true' : 'false'});')
+          .catchError((Object _) {}),
+    );
     if (Platform.isAndroid &&
         player.track?.source == 'youtube' &&
         [
@@ -65,7 +75,7 @@ class _PersistentProviderHostState extends State<PersistentProviderHost>
           AppLifecycleState.detached,
         ].contains(state)) {
       // YouTube's official video player stays a foreground experience.
-      unawaited(player.command('pause'));
+      unawaited(widget.controller.audio.localCommand('pause'));
     }
   }
 

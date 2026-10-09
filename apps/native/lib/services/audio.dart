@@ -10,6 +10,7 @@ import '../core/models.dart';
 import '../core/equalizer.dart';
 import 'cache.dart';
 import 'provider_player.dart';
+import 'windows_equalizer.dart';
 
 class WaveAudioHandler extends BaseAudioHandler {
   final WaveApi api;
@@ -24,6 +25,10 @@ class WaveAudioHandler extends BaseAudioHandler {
   WaveTrack? get viewCurrent => _remote != null ? _remoteTrack : current;
   List<WaveTrack> get viewTracks => _remote != null ? _remoteQueue : tracks;
   bool get remote => _remote != null;
+  int get loadRevision => _loadRevision;
+  bool get sourceReady => current?.embedded == true
+      ? provider.ready
+      : player.processingState == ProcessingState.ready;
   bool get outputPlaying =>
       current?.embedded == true ? provider.playing : player.playing;
   Duration get outputPosition => current?.embedded == true
@@ -46,8 +51,44 @@ class WaveAudioHandler extends BaseAudioHandler {
       : current?.embedded == true
       ? Duration(milliseconds: (provider.duration * 1000).round())
       : player.duration;
-  Stream<Duration> get positionStream =>
-      Stream.periodic(const Duration(milliseconds: 250), (_) => position);
+  late final StreamController<Duration> _positions =
+      StreamController<Duration>.broadcast(
+        onListen: _updatePositionTimer,
+        onCancel: _updatePositionTimer,
+      );
+  Timer? _positionTimer;
+  bool _visualUpdatesEnabled = true, _released = false;
+  Stream<Duration> get positionStream => _positions.stream;
+  void setVisualUpdatesEnabled(bool enabled) {
+    _visualUpdatesEnabled = enabled;
+    _updatePositionTimer();
+  }
+
+  void _updatePositionTimer() {
+    if (_released) return;
+    _positionTimer?.cancel();
+    _positionTimer = null;
+    if (!_positions.hasListener || !_visualUpdatesEnabled) return;
+    scheduleMicrotask(() {
+      if (!_released && _positions.hasListener && _visualUpdatesEnabled) {
+        _positions.add(position);
+      }
+    });
+    if (playing) {
+      _positionTimer = Timer.periodic(const Duration(milliseconds: 250), (_) {
+        if (!_released && _visualUpdatesEnabled && _positions.hasListener) {
+          _positions.add(position);
+        }
+      });
+    }
+  }
+
+  Future<void> suspendLocalOutput() async {
+    cancelPendingLoad();
+    await player.pause();
+    await provider.clear();
+  }
+
   double get outputVolume => _volume;
   void showRemote(
     PlaybackSnapshot state,
@@ -91,17 +132,19 @@ class WaveAudioHandler extends BaseAudioHandler {
   bool _roomSpeed = false;
   int _processingRevision = 0;
   Future<void> _processingWrites = Future.value();
-  String equalizerStatus = Platform.isAndroid ? 'waiting' : 'unsupported';
+  String equalizerStatus = Platform.isAndroid || Platform.isWindows ? 'waiting' : 'unsupported';
   int hardwareBandCount = 0;
+  String? _nativeSource;
   double get volume => _remote?.volume ?? _volume;
   bool get equalizerSupported =>
-      _equalizer != null && current?.embedded != true && !remote;
+      (_equalizer != null || Platform.isWindows && WaveWindowsAudio.active != null) && current?.embedded != true && !remote;
   List<WaveTrack> tracks = [];
   WaveTrack? current;
   AudioServiceRepeatMode repeat = AudioServiceRepeatMode.none;
   bool shuffle = false;
   bool autoCache = true;
   int _index = -1, _loadRevision = 0;
+  Completer<void> _loadCancelled = Completer<void>();
   bool _advancing = false;
   final _random = Random();
   final List<int> _history = [];
@@ -112,7 +155,7 @@ class WaveAudioHandler extends BaseAudioHandler {
   Future<void> Function(double volume)? onVolumeChanged;
   void Function(String message)? onError;
   final List<StreamSubscription<dynamic>> _subscriptions = [];
-  WaveAudioHandler(this.api, this.cache) {
+  WaveAudioHandler(this.api, this.cache, {AudioPlayer? output}) {
     provider.addListener(_broadcast);
     provider.onError = (message) => onError?.call(wt(message));
     provider.onEnded = () {
@@ -121,19 +164,25 @@ class WaveAudioHandler extends BaseAudioHandler {
         unawaited(_completed().whenComplete(() => _advancing = false));
       }
     };
-    player = AudioPlayer(
-      useProxyForRequestHeaders: false,
-      audioPipeline: AudioPipeline(
-        androidAudioEffects: [
-          if (_equalizer != null) _equalizer,
-          if (_preamp != null) _preamp,
-        ],
-      ),
-    );
+    player =
+        output ??
+        AudioPlayer(
+          useProxyForRequestHeaders: false,
+          audioPipeline: AudioPipeline(
+            androidAudioEffects: [
+              if (_equalizer != null) _equalizer,
+              if (_preamp != null) _preamp,
+            ],
+          ),
+        );
     _subscriptions.add(
       player.playbackEventStream.listen(
         (_) => _broadcast(),
         onError: (Object error, StackTrace trace) {
+          if (Platform.isWindows && _processing.enabled) {
+            equalizerStatus = 'failed';
+            onProcessingChanged?.call();
+          }
           onError?.call(wt('native.fb89a335f1', values: {'p0': (error)}));
           _broadcast();
         },
@@ -194,6 +243,25 @@ class WaveAudioHandler extends BaseAudioHandler {
   }
 
   Future<void> _writeEqualizer(WaveEqualizer preference, int revision) async {
+    if (Platform.isWindows && WaveWindowsAudio.active != null) {
+      if (current == null || current!.embedded || player.processingState == ProcessingState.idle || player.processingState == ProcessingState.loading) {
+        equalizerStatus = 'waiting';
+        onProcessingChanged?.call();
+        return;
+      }
+      try {
+        await WaveWindowsAudio.active!.apply(preference, _nativeSource);
+        if (revision != _processingRevision) return;
+        hardwareBandCount = 10;
+        equalizerStatus = 'ready';
+      } catch (_) {
+        if (revision != _processingRevision) return;
+        equalizerStatus = 'failed';
+        try { await WaveWindowsAudio.active!.apply(const WaveEqualizer(), _nativeSource); } catch (_) {}
+      }
+      onProcessingChanged?.call();
+      return;
+    }
     final eq = _equalizer, enhancer = _preamp;
     if (eq == null || enhancer == null) return;
     try {
@@ -255,6 +323,8 @@ class WaveAudioHandler extends BaseAudioHandler {
   /// A room revision supersedes an in-flight source lookup before it can start.
   void cancelPendingLoad() {
     _loadRevision++;
+    if (!_loadCancelled.isCompleted) _loadCancelled.complete();
+    _loadCancelled = Completer<void>();
     provider.cancelPendingLoad();
   }
 
@@ -296,6 +366,7 @@ class WaveAudioHandler extends BaseAudioHandler {
     artUri: track.artwork.isNotEmpty ? Uri.parse(api.url(track.artwork)) : null,
   );
   void _broadcast() {
+    _updatePositionTimer();
     playbackState.add(
       PlaybackState(
         controls: [
@@ -350,12 +421,29 @@ class WaveAudioHandler extends BaseAudioHandler {
     double position = 0,
     bool playing = true,
   }) async {
-    if (!track.playable) {
-      throw WaveException(wt('native.266e43ddb8'));
+    cancelPendingLoad();
+    final revision = _loadRevision;
+    // A permitted cached download remains usable without a network lookup.
+    final local = await cache.fileFor(track.id);
+    if (revision != _loadRevision || _released) return;
+    Json? resolvedPlayback;
+    if (local != null) {
+      track = WaveTrack({
+        ...track.json,
+        'playback': {...track.playback, 'kind': 'audio', 'offline': true},
+      });
+    } else if (track.source != 'local') {
+      final effective = await api.resolvePlayback(track);
+      if (revision != _loadRevision) return;
+      track = effective;
+      resolvedPlayback = effective.playback;
     }
-    final revision = ++_loadRevision;
+    if (!track.playable) throw WaveException(wt('native.266e43ddb8'));
     clearRemote();
-    final available = (list ?? tracks).where((t) => t.playable).toList();
+    final available = (list ?? tracks)
+        .map((item) => item.id == track.id ? track : item)
+        .where((t) => t.playable)
+        .toList();
     tracks = available.any((t) => t.id == track.id)
         ? available
         : [track, ...available];
@@ -365,6 +453,7 @@ class WaveAudioHandler extends BaseAudioHandler {
     queue.add(tracks.map(item).toList());
     mediaItem.add(item(track));
     await player.pause();
+    if (revision != _loadRevision) return;
     if (track.embedded) {
       await provider.load(
         track,
@@ -377,23 +466,26 @@ class WaveAudioHandler extends BaseAudioHandler {
       return;
     }
     await provider.clear();
-    final local = await cache.fileFor(track.id);
     if (revision != _loadRevision) return;
     if (local != null) {
+      _nativeSource = Uri.file(local.path).toString();
       await player.setFilePath(
         local.path,
         initialPosition: Duration(milliseconds: (position * 1000).round()),
       );
     } else {
-      final playback = object(
-        (await api.call('/api/tracks/${track.id}/playback'))['playback'],
-      );
+      final playback =
+          resolvedPlayback ??
+          object(
+            (await api.call('/api/tracks/${track.id}/playback'))['playback'],
+          );
       if (revision != _loadRevision) return;
       final path = playback['url'] as String?;
       if (playback['kind'] != 'audio' || path == null) {
         throw WaveException(wt('native.c11b18779a'));
       }
       final uri = Uri.parse(api.url(path));
+      _nativeSource = uri.toString();
       // Never pass a GlukWave bearer token to an external CDN.
       await player.setUrl(
         uri.toString(),
@@ -409,8 +501,9 @@ class WaveAudioHandler extends BaseAudioHandler {
     if (revision != _loadRevision) return;
     _broadcast();
     if (playing) {
-      await _startVerified();
+      await _startVerified(revision: revision);
     }
+    if (revision != _loadRevision) return;
     if (local == null && autoCache && track.offline) {
       unawaited(
         cache.save(track).catchError((Object error) {
@@ -439,6 +532,7 @@ class WaveAudioHandler extends BaseAudioHandler {
   }
 
   Future<void> localCommand(String command, [Json data = const {}]) async {
+    if (command == 'pause' || command == 'stop') cancelPendingLoad();
     if (current?.embedded == true && !['next', 'previous'].contains(command)) {
       if (command == 'play' && !provider.ready && !provider.loading) {
         await provider.load(
@@ -460,7 +554,7 @@ class WaveAudioHandler extends BaseAudioHandler {
     switch (command) {
       case 'play':
         if (current == null) throw WaveException(wt('native.449b7110f6'));
-        await _startVerified();
+        await _startVerified(revision: _loadRevision);
       case 'pause':
         await player.pause();
       case 'seek':
@@ -481,8 +575,10 @@ class WaveAudioHandler extends BaseAudioHandler {
     _broadcast();
   }
 
-  Future<void> _startVerified() async {
+  Future<void> _startVerified({int? revision}) async {
     final failure = Completer<void>();
+    final ready = Completer<void>();
+    final cancelled = _loadCancelled.future;
     final errors = player.playbackEventStream.listen(
       (_) {},
       onError: (Object error, StackTrace trace) {
@@ -491,10 +587,13 @@ class WaveAudioHandler extends BaseAudioHandler {
         }
       },
     );
-    final ready = player.playerStateStream.firstWhere(
-      (state) =>
-          state.playing && state.processingState == ProcessingState.ready,
-    );
+    final states = player.playerStateStream.listen((state) {
+      if (state.playing &&
+          state.processingState == ProcessingState.ready &&
+          !ready.isCompleted) {
+        ready.complete();
+      }
+    });
     // just_audio.play() completes at the end of the track on Android. Observe
     // ready/playing and early native errors instead of awaiting that future.
     unawaited(
@@ -507,14 +606,17 @@ class WaveAudioHandler extends BaseAudioHandler {
     try {
       await Future.any<void>([
         failure.future,
-        ready.then(
+        ready.future.then(
           (_) => Future<void>.delayed(const Duration(milliseconds: 180)),
         ),
+        if (revision != null) cancelled,
       ]).timeout(const Duration(seconds: 8));
+      if (revision != null && revision != _loadRevision) return;
       if (!player.playing || player.processingState != ProcessingState.ready) {
         throw WaveException(wt('native.2f44180776'));
       }
     } catch (error) {
+      if (revision != null && revision != _loadRevision) return;
       await player.pause();
       rethrow;
     } finally {
@@ -522,6 +624,7 @@ class WaveAudioHandler extends BaseAudioHandler {
         failure.complete();
       }
       await errors.cancel();
+      await states.cancel();
     }
   }
 
@@ -619,6 +722,11 @@ class WaveAudioHandler extends BaseAudioHandler {
   }
 
   Future<void> release() async {
+    cancelPendingLoad();
+    _released = true;
+    _positionTimer?.cancel();
+    // A suspended UI subscription must not delay disposal of actual players.
+    unawaited(_positions.close());
     _processingRevision++;
     for (final sub in _subscriptions) {
       await sub.cancel();

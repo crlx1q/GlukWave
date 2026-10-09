@@ -175,7 +175,7 @@ void main() {
           'displayName': 'Слушатель',
           'username': 'listener',
           'email': 'listener@example.test',
-          'plan': 'free',
+          'plan': 'beta',
         });
         c.render();
         await tester.pumpAndSettle();

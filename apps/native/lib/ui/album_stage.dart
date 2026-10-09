@@ -71,6 +71,7 @@ class _AlbumStageState extends State<AlbumStage>
     final settings = widget.controller.customization;
     final animate =
         visible &&
+        TickerMode.of(context) &&
         settings.appearance.cover3d &&
         !settings.reducedMotion &&
         !MediaQuery.disableAnimationsOf(context);
@@ -81,6 +82,7 @@ class _AlbumStageState extends State<AlbumStage>
     }
     if (widget.playing &&
         visible &&
+        TickerMode.of(context) &&
         settings.appearance.cover3d &&
         !settings.reducedMotion &&
         !MediaQuery.disableAnimationsOf(context)) {

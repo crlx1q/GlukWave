@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "cache": {
+    "artworkBytes": 22044,
+    "audioBytes": 3840044,
+    "persistentArtwork": "/api/profile-assets/fb5effbc-85ca-4380-b7c2-e212f09d1bbf",
+    "total": 3862088
+  },
+  "cachedCoverAfterAssetRemoval": true,
+  "miniStateMessagesAfterClose": 0,
+  "cachedArtworkUrlRevoked": true,
+  "admin": {
+    "adapters": 3,
+    "metrics": 8,
+    "permissionCaption": "Record permission you already hold and link its source evidence. This record does not create a licence.",
+    "tracks": 1,
+    "permissionRequiredEvidence": true
+  }
+}

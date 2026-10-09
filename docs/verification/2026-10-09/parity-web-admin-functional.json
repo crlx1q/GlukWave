@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "steps": [
+    "Owner registration and release controls render with styled permission selects",
+    "Blocking a disposable account updates the server-backed moderation state",
+    "Admin deletion requires the exact username and removes the disposable account",
+    "Invalid package upload displays the actual rejection and no success",
+    "Owner release form fits a phone viewport"
+  ],
+  "screenshots": [
+    "work/qa/parity-web-admin-overview-desktop.png",
+    "work/qa/parity-web-admin-delete-confirmation-desktop.png",
+    "work/qa/parity-web-admin-invalid-package-desktop.png",
+    "work/qa/parity-web-admin-release-mobile.png"
+  ]
+}

@@ -9,6 +9,7 @@ import 'core/api.dart';
 import 'core/controller.dart';
 import 'services/audio.dart';
 import 'services/cache.dart';
+import 'services/windows_equalizer.dart';
 import 'ui/app.dart';
 import 'ui/auth_visuals.dart';
 import 'ui/widgets.dart';
@@ -24,11 +25,14 @@ Future<void> main(List<String> arguments) async {
       'assets/licenses/Manrope-OFL.txt',
     );
     yield LicenseEntryWithLineBreaks(['Manrope'], manrope);
+    final adapter = await rootBundle.loadString('assets/licenses/just_audio_media_kit-UNLICENSE.txt');
+    yield LicenseEntryWithLineBreaks(['just_audio_media_kit adapter'], adapter);
   });
   try {
     if (Platform.isWindows) {
       JustAudioMediaKit.ensureInitialized(windows: true, linux: false);
       JustAudioMediaKit.title = 'GlukWave';
+      WaveWindowsAudio.register();
     }
     const server = String.fromEnvironment('GLUKWAVE_SERVER');
     final api = WaveApi(

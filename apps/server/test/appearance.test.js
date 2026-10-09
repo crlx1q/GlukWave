@@ -14,6 +14,7 @@ test('appearance keeps separate palettes, validates colors and merges durable pa
   try{
     await new Promise(resolve=>service.server.listen(0,'127.0.0.1',resolve));const base=`http://127.0.0.1:${service.server.address().port}`;
     const auth=await (await fetch(base+'/api/auth/register',{method:'POST',headers:{'Content-Type':'application/json','X-GlukWave-Client':'native'},body:JSON.stringify({email:'appearance@example.test',username:'appearance_qa',password:'local-appearance-test-passphrase'})})).json();
+    await service.ctx.store.update('users',auth.user.id,user=>({...user,plan:'beta'}));
     const headers={'Content-Type':'application/json',Authorization:`Bearer ${auth.token}`};
     async function connect(token,deviceId){
       const socket=io(base,{auth:{token,deviceId,name:deviceId,kind:'web'},transports:['websocket'],reconnection:false});sockets.push(socket);

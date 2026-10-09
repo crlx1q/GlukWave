@@ -1,0 +1,88 @@
+{
+  "result": "PASS",
+  "dll": "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\outputs\\GlukWave-windows\\libmpv-2.dll",
+  "dllSha256": "0a5a0b476866c91a639a4e511e8153968f8fa23564461b0aa09acdba816164a4",
+  "audio": "Generated own 8-second 1000Hz WAV",
+  "hardwareOutputOpened": false,
+  "properties": {
+    "mpv-version": "mpv v0.36.0-403-g652a1dd907",
+    "af": "format=format=floatp,lavfi=graph=%317%equalizer=f=31:t=o:w=1:g=3.00,equalizer=f=62:t=o:w=1:g=2.00,equalizer=f=125:t=o:w=1:g=1.00,equalizer=f=250:t=o:w=1:g=0.00,equalizer=f=500:t=o:w=1:g=-1.00,equalizer=f=1000:t=o:w=1:g=4.00,equalizer=f=2000:t=o:w=1:g=0.00,equalizer=f=4000:t=o:w=1:g=-1.00,equalizer=f=8000:t=o:w=1:g=-2.00,equalizer=f=16000:t=o:w=1:g=-2.00",
+    "audio-params/samplerate": "48000",
+    "time-pos": "5.043143",
+    "current-ao": "null",
+    "volume": "49.556206"
+  },
+  "filterChain": "format=format=floatp,lavfi=[equalizer=f=31:t=o:w=1:g=3.00,equalizer=f=62:t=o:w=1:g=2.00,equalizer=f=125:t=o:w=1:g=1.00,equalizer=f=250:t=o:w=1:g=0.00,equalizer=f=500:t=o:w=1:g=-1.00,equalizer=f=1000:t=o:w=1:g=4.00,equalizer=f=2000:t=o:w=1:g=0.00,equalizer=f=4000:t=o:w=1:g=-1.00,equalizer=f=8000:t=o:w=1:g=-2.00,equalizer=f=16000:t=o:w=1:g=-2.00]",
+  "nativeFilterInitialized": true,
+  "disableClearsFilter": true,
+  "preampVolumeVerified": true,
+  "intentionalFault": {
+    "unsupportedLiveFilterReturn": 0,
+    "nativeReturnRejectsAllRuntimeErrors": false,
+    "manualClearAndRestoreVerified": true
+  },
+  "errorLogsDuringValidChain": [],
+  "filterLogs": [
+    {
+      "prefix": "cplayer",
+      "level": "v",
+      "text": "Set property: af=\"format=format=floatp,lavfi=[equalizer=f=31:t=o:w=1:g=3.00,equalizer=f=62:t=o:w=1:g=2.00,equalizer=f=125:t=o:w=1:g=1.00,equalizer=f=250:t=o:w=1:g=0.00,equalizer=f=500:t=o:w=1:g=-1.00,equalizer=f=1000:t=o:w=1:g=4.00,equalizer=f=2000:t=o:w=1:g=0.00,equalizer=f=4000:t=o:w=1:g=-1.00,equalizer=f=8000:t=o:w=1:g=-2.00,equalizer=f=16000:t=o:w=1:g=-2.00]\" -> 1"
+    },
+    {
+      "prefix": "af",
+      "level": "v",
+      "text": "User filter list:"
+    },
+    {
+      "prefix": "af",
+      "level": "v",
+      "text": "format (format.00)"
+    },
+    {
+      "prefix": "af",
+      "level": "v",
+      "text": "lavfi (lavfi.00)"
+    },
+    {
+      "prefix": "af",
+      "level": "v",
+      "text": "[in] 48000Hz mono 1ch s16"
+    },
+    {
+      "prefix": "af",
+      "level": "v",
+      "text": "[format] 48000Hz mono 1ch s16"
+    },
+    {
+      "prefix": "af",
+      "level": "v",
+      "text": "[lavfi] 48000Hz mono 1ch floatp"
+    },
+    {
+      "prefix": "af",
+      "level": "v",
+      "text": "[userspeed] 48000Hz mono 1ch floatp"
+    },
+    {
+      "prefix": "af",
+      "level": "v",
+      "text": "[userspeed] (disabled)"
+    },
+    {
+      "prefix": "af",
+      "level": "v",
+      "text": "[convert] 48000Hz mono 1ch floatp"
+    },
+    {
+      "prefix": "af",
+      "level": "v",
+      "text": "[convert] (disabled)"
+    },
+    {
+      "prefix": "af",
+      "level": "v",
+      "text": "[out] 48000Hz mono 1ch floatp"
+    }
+  ],
+  "physicalHardwareVerified": false
+}

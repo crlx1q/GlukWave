@@ -28,14 +28,18 @@ test('real sockets keep two playback surfaces online, reconnect at live position
     await new Promise(resolve=>service.server.listen(0,'127.0.0.1',resolve));const base=`http://127.0.0.1:${service.server.address().port}`;
     async function request(route,token,body,method=body?'POST':'GET'){const response=await fetch(base+'/api'+route,{method,headers:{'Content-Type':'application/json','X-GlukWave-Client':'native',...(token?{Authorization:`Bearer ${token}`}:{})},...(body?{body:JSON.stringify(body)}:{})});return {status:response.status,data:await response.json()};}
     const auth=(await request('/auth/register',null,{email:'sync@example.test',username:'sync_qa',password:'local-sync-test-passphrase'})).data;
+    await service.ctx.store.update('users',auth.user.id,user=>({...user,plan:'beta'}));
+    await service.ctx.store.update('users',auth.user.id,user=>({...user,plan:'beta'}));
     const other=(await request('/auth/register',null,{email:'listener@example.test',username:'listener_qa',password:'local-sync-test-passphrase'})).data;
     async function connect(token,deviceId){const socket=io(base,{auth:{token,deviceId,name:deviceId,kind:'web'},transports:['websocket'],reconnection:false});sockets.push(socket);await new Promise((resolve,reject)=>{socket.once('connect',resolve);socket.once('connect_error',reject);});return socket;}
-    const a=await connect(auth.token,'tab-one'),b=await connect(auth.token,'tab-two');
+    const second=(await request('/auth/login',null,{email:'sync@example.test',password:'local-sync-test-passphrase'})).data;
+    const a=await connect(auth.token,'tab-one'),b=await connect(second.token,'tab-two');
     const ack=(socket,event,payload)=>socket.timeout(3000).emitWithAck(event,payload);
     await ack(a,'device:state',initialState());await ack(b,'device:state',initialState());
     const devices=(await request('/devices',auth.token)).data.devices;assert.equal(devices.filter(device=>device.online).length,2);assert(a.connected&&b.connected);
     const commandsA=[],commandsB=[];a.on('device:command',(command,ack)=>{commandsA.push(command);ack({ok:true});});b.on('device:command',(command,ack)=>{commandsB.push(command);ack({ok:true});});
     const room=(await request('/rooms',auth.token,{name:'Sync verification'})).data.room;
+    await ack(a,'room:join',{roomId:room.id});await ack(b,'room:join',{roomId:room.id});
     await request('/rooms/join',other.token,{inviteCode:room.inviteCode});
     const c=await connect(other.token,'listener-tab');await ack(c,'room:join',{roomId:room.id});
     const tracks=['qa-first','qa-second','qa-third'];for(const id of tracks)await service.ctx.store.create('tracks',id,{id,title:id,artist:'QA',album:'',artwork:'',duration:30,public:false,uploadedBy:auth.user.id,source:'local',sourceId:id,playback:{kind:'audio',url:'/unused',offline:false}});
@@ -53,7 +57,7 @@ test('real sockets keep two playback surfaces online, reconnect at live position
     state=(await request('/rooms/'+room.id,auth.token)).data.room.state;
     const fresh=await ack(b,'room:join',{roomId:room.id});assert.equal(fresh.room.state.revision,state.revision);assert.equal(fresh.room.state.trackId,tracks[1]);assert(fresh.room.state.updatedAt>=state.updatedAt);
     const permission=await request(`/rooms/${room.id}/members/${other.user.id}`,auth.token,{canControl:true},'PATCH');assert.equal(permission.data.room.state.revision,state.revision);assert.equal(permission.data.room.state.trackId,tracks[1]);
-    await ack(a,'device:state',{...state,position:4,playing:true,updatedAt:Date.now()});
+    await ack(a,'device:state',{...state,position:4,playing:true,roomId:room.id,updatedAt:Date.now()});
     const transferred=await request('/devices/command',auth.token,{deviceId:'tab-two',fromDeviceId:'tab-one',command:'transfer'});assert.equal(transferred.status,200);
     assert.equal(commandsA.at(-1).command,'pause');assert.equal(commandsA.at(-1).localOnly,true);assert.equal(commandsA.at(-1).outputActive,false);
     assert.equal(commandsB.at(-1).trackId,tracks[1]);assert.equal(commandsB.at(-1).localOnly,true);assert.equal(commandsB.at(-1).outputActive,true);

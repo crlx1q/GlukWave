@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
 import { MorphIcon } from 'morphicons/react';
 import { useStore } from './store';
+import { useDocumentVisible } from './visual-lifecycle';
 
 const paths={
   play:'M8 4L20 12L8 20Z',pause:'M7 5V19M17 5V19',
@@ -29,8 +30,12 @@ const paths={
 
 /** The original icon paths become genuine interruptible morphicons animations. */
 export function AnimatedIcon({name,size=20,className}:{name:keyof typeof paths;size?:number;className?:string}) {
-  const store=useStore(),speed=store.settings.appearance.speed;
+  const store=useStore(),visible=useDocumentVisible();
+  return <MotionIcon name={name} size={size} className={className} speed={store.settings.appearance.speed} motion={store.motion&&visible}/>;
+}
+
+export function MotionIcon({name,size=20,className='',speed=1,motion=true}:{name:keyof typeof paths;size?:number;className?:string;speed?:number;motion?:boolean}){
   const spring=useMemo(()=>({stiffness:180*speed*speed,damping:24*speed}),[speed]);
-  if(name==='heart'||name==='heartFull')return <svg width={size} height={size} viewBox="0 0 24 24" className={`heart-icon ${name==='heartFull'?'filled':''} ${className||''}`} aria-hidden="true" fill={name==='heartFull'?'currentColor':'none'} stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/></svg>;
-  return <MorphIcon icon={paths[name]} size={size} className={`animated-icon ${className||''}`} strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round" fill="none" spring={spring} reducedMotion={store.motion?'user':'always'}/>;
+  if(name==='heart'||name==='heartFull')return <svg width={size} height={size} viewBox="0 0 24 24" className={`heart-icon icon-${name} ${name==='heartFull'?'filled':''} ${className}`} aria-hidden="true" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/></svg>;
+  return <MorphIcon icon={paths[name]} size={size} className={`animated-icon icon-${name} ${className}`} strokeWidth={1.75} strokeLinecap="round" strokeLinejoin="round" fill="none" spring={spring} reducedMotion={motion?'user':'always'}/>;
 }

@@ -1,0 +1,502 @@
+{
+  "checkedAt": "2026-10-09T12:14:20.638Z",
+  "version": "1.0.0+5",
+  "server": {
+    "testsPassed": 50,
+    "fullSuiteExitCode": 0,
+    "isolatedStorage": "sqlite",
+    "ownerEnvironmentEdited": false,
+    "publicDeploymentPerformed": false
+  },
+  "web": {
+    "typescriptPassed": true,
+    "productionBuildPassed": true,
+    "unitTestsPassed": 11,
+    "javascript": "/assets/main-C845IY9m.js",
+    "javascriptSha256": "8fddf2ab792b2c02f118c1ab0ad58d8926b4fc3f88a1ff0d3bbfd434d7971f04",
+    "serviceWorkerCache": "glukwave-shell-v16-motion-media",
+    "ecosystemFunctional": true,
+    "roomSamples": 10,
+    "motionThemes": [
+      "light",
+      "dark",
+      "amoled"
+    ],
+    "languages": [
+      "en",
+      "ru",
+      "kk",
+      "uk",
+      "de",
+      "es"
+    ],
+    "raf": {
+      "visible": 217,
+      "coveredByFullPlayer": 0,
+      "returned": 167,
+      "simulatedHidden": 0,
+      "reduced": 0
+    },
+    "cacheAndMini": {
+      "passed": true,
+      "cache": {
+        "artworkBytes": 22044,
+        "audioBytes": 3840044,
+        "persistentArtwork": "/api/profile-assets/fb5effbc-85ca-4380-b7c2-e212f09d1bbf",
+        "total": 3862088
+      },
+      "cachedCoverAfterAssetRemoval": true,
+      "miniStateMessagesAfterClose": 0,
+      "cachedArtworkUrlRevoked": true,
+      "admin": {
+        "adapters": 3,
+        "metrics": 8,
+        "permissionCaption": "Record permission you already hold and link its source evidence. This record does not create a licence.",
+        "tracks": 1,
+        "permissionRequiredEvidence": true
+      }
+    },
+    "largestSharedChunkKB": 598.02
+  },
+  "native": {
+    "apk": "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\apps\\native\\build\\app\\outputs\\flutter-apk\\app-debug.apk",
+    "bytes": 184828443,
+    "builtAt": "2026-10-09T09:03:01.229916+00:00",
+    "sha256": "910c0823f56cc621be974ee28bc145411b819b3dbc64196d6ee7a87f428b41d6",
+    "sourceFrozenAt": "2026-10-09T08:58:51.312089+00:00",
+    "sourceSha256": "d18026fff446e445c8cf6454770062fc7c89e7843102e567f7e768ed47df50bf",
+    "sourceFiles": 99,
+    "kernelSha256": "0314b75cbd1eda1ef023fad8678878c1b7e2f6fa385c21c706f95cf1d681afd7",
+    "kernelMatchesBuildOutput": true,
+    "compileDefine": "https://wave.gluk.tech",
+    "kernelFeatureMarkers": {
+      "https://wave.gluk.tech": true,
+      "full-player": true,
+      "player-cover-gesture": true,
+      "language-selector": true,
+      "language.auto": true,
+      "locale:change": true,
+      "lrcClock": true,
+      "artworkForDisplay": true,
+      "-t500x500.": true,
+      "/api/diagnostics/events": true,
+      "ROOM_STATE": true,
+      "/lyrics/lrclib": true,
+      "Find on LRCLIB": true,
+      "deviceVolume": true,
+      "/api/auth/native-captcha": true,
+      "Invalid authentication expiry": true,
+      "desktop-quick-volume": true,
+      "account:state": true,
+      "waveProvider": true,
+      "/connect": true,
+      "outputActive": true,
+      "/account/sessions": true,
+      "downloadUrl": true,
+      "adoptOnly": true
+    },
+    "localCatalogsInKernel": {
+      "en": true,
+      "ru": true,
+      "kk": true,
+      "uk": true,
+      "de": true,
+      "es": true
+    },
+    "qaTrackBundled": false,
+    "fontManifestVerified": true,
+    "staticFontFaces": [
+      {
+        "asset": "assets/fonts/Nunito-Regular.ttf",
+        "weight": 400,
+        "variable": false,
+        "sha256": "29f17d41574376520b263bde34a4fecb11814233ff280c66befce6020c5e3cc4",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-Medium.ttf",
+        "weight": 500,
+        "variable": false,
+        "sha256": "818d89d5417ed2c7686c07097469f417d41dfe70b8e9514466637612f7ab9d8d",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-SemiBold.ttf",
+        "weight": 600,
+        "variable": false,
+        "sha256": "e6ac9b7051c6b3c4a23817a9272e2a8f7124896b36e68b30a3d46b452a0418a5",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-Bold.ttf",
+        "weight": 700,
+        "variable": false,
+        "sha256": "19acc4b8e7dc15b49c3802b6f2b53a1c41d7ee548733204a367052fa53387933",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-ExtraBold.ttf",
+        "weight": 800,
+        "variable": false,
+        "sha256": "9bc8f0d0c03926636f41ec699c6563dd01835b510c194e2086811eaf65a8e527",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-Black.ttf",
+        "weight": 900,
+        "variable": false,
+        "sha256": "b3628977111142f66472632770b76ee2c0665a40ae536bd64971a3bc19087717",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Manrope-Regular.ttf",
+        "weight": 400,
+        "variable": false,
+        "sha256": "c443e2325b9ff17933ec2f5a99d835af430a545901d146f81f4fc9f4882b6623",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Manrope-Medium.ttf",
+        "weight": 500,
+        "variable": false,
+        "sha256": "78177fa989a3feb256c1750faca4a05ab0b70f093f5f45b12a537e7b939bae9c",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Manrope-SemiBold.ttf",
+        "weight": 600,
+        "variable": false,
+        "sha256": "1eea52be7b84d0841e39d6102cdf2f6777dbdbd6781d3a40a3323a8151163f07",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Manrope-Bold.ttf",
+        "weight": 700,
+        "variable": false,
+        "sha256": "06ef9bf16d6ce1b6b8d6b953ea8b9e6c30e4b3708cf039132224fb2a5aa77102",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Manrope-ExtraBold.ttf",
+        "weight": 800,
+        "variable": false,
+        "sha256": "63050130f7beccf497d740a2af39f8d5d49447e9ed777014e8d6d413442425ba",
+        "matchesSource": true
+      }
+    ],
+    "fontManifestSha256": "dc61e379e1f65f8de62057e95a64baaebcbbf8e5ee2450f736e2611705ca210f",
+    "nunitoLicenseIncluded": true,
+    "manifestVerified": true,
+    "version": "1.0.0",
+    "versionCode": 5,
+    "minSdk": 24,
+    "targetSdk": 36,
+    "output": "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\outputs\\GlukWave-android-debug.apk",
+    "outputMatchesBuild": true,
+    "signatureVerified": true,
+    "signatureScheme": "v2",
+    "analyzerIssues": 0,
+    "standardTestsPassed": 132,
+    "signature": "debug",
+    "deviceRuntimeVerified": false,
+    "manropeLicenseIncluded": true,
+    "iosBuilt": false,
+    "sourceFreezeFile": "docs/verification/2026-10-09/ecosystem-source-freeze.json",
+    "windowsExecutableBuilt": true,
+    "windows": {
+      "checkedAt": "2026-10-09T09:05:14.490710+00:00",
+      "passed": true,
+      "bundle": "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\outputs\\GlukWave-windows",
+      "featureMarkers": {
+        "/api/diagnostics/events": true,
+        "/lyrics/lrclib": true,
+        "ROOM_STATE": true,
+        "Find on LRCLIB": true,
+        "deviceVolume": true,
+        "/api/auth/native-captcha": true,
+        "desktop-quick-volume": true,
+        "/account/sessions": true,
+        "downloadUrl": true,
+        "adoptOnly": true
+      },
+      "file": "outputs/GlukWave-windows.zip",
+      "bytes": 27557736,
+      "sha256": "baeb87b5080893ac9578f606a01b5acc090bb6fed19973e8d4ba14f8d2614190",
+      "frozenOriginalFilesMatched": 99,
+      "compiledSourceFilesMatched": 79,
+      "compiledSourcePaths": [
+        "assets/app_icon.ico",
+        "assets/coast.jpg",
+        "assets/fonts/Manrope-Bold.ttf",
+        "assets/fonts/Manrope-ExtraBold.ttf",
+        "assets/fonts/Manrope-Medium.ttf",
+        "assets/fonts/Manrope-Regular.ttf",
+        "assets/fonts/Manrope-SemiBold.ttf",
+        "assets/fonts/Nunito-Black.ttf",
+        "assets/fonts/Nunito-Bold.ttf",
+        "assets/fonts/Nunito-ExtraBold.ttf",
+        "assets/fonts/Nunito-Medium.ttf",
+        "assets/fonts/Nunito-Regular.ttf",
+        "assets/fonts/Nunito-SemiBold.ttf",
+        "assets/forest.jpg",
+        "assets/google-g.png",
+        "assets/licenses/Manrope-OFL.txt",
+        "assets/licenses/Nunito-OFL.txt",
+        "assets/logo.gif",
+        "assets/logo.png",
+        "assets/mark.svg",
+        "assets/Nunito.ttf",
+        "lib/core/api.dart",
+        "lib/core/appearance.dart",
+        "lib/core/artwork.dart",
+        "lib/core/controller.dart",
+        "lib/core/equalizer.dart",
+        "lib/core/models.dart",
+        "lib/core/wave_math.dart",
+        "lib/l10n/catalogs.dart",
+        "lib/l10n/wave_localizations.dart",
+        "lib/main.dart",
+        "lib/services/ambience.dart",
+        "lib/services/appearance_store.dart",
+        "lib/services/audio.dart",
+        "lib/services/cache.dart",
+        "lib/services/desktop.dart",
+        "lib/services/diagnostics.dart",
+        "lib/services/presence_bridge.dart",
+        "lib/services/provider_player.dart",
+        "lib/services/push.dart",
+        "lib/services/volume_store.dart",
+        "lib/services/waveform.dart",
+        "lib/ui/album_stage.dart",
+        "lib/ui/app.dart",
+        "lib/ui/appearance_panel.dart",
+        "lib/ui/auth_page.dart",
+        "lib/ui/auth_visuals.dart",
+        "lib/ui/connect_panel.dart",
+        "lib/ui/desktop_player.dart",
+        "lib/ui/device_labels.dart",
+        "lib/ui/equalizer_panel.dart",
+        "lib/ui/listening_rail.dart",
+        "lib/ui/lofi.dart",
+        "lib/ui/motion_icons.dart",
+        "lib/ui/player.dart",
+        "lib/ui/player_gestures.dart",
+        "lib/ui/provider_host.dart",
+        "lib/ui/sessions_panel.dart",
+        "lib/ui/silk_wave.dart",
+        "lib/ui/theme.dart",
+        "lib/ui/theme_preview.dart",
+        "lib/ui/volume_slider.dart",
+        "lib/ui/widgets.dart",
+        "pubspec.lock",
+        "pubspec.yaml",
+        "windows/CMakeLists.txt",
+        "windows/flutter/CMakeLists.txt",
+        "windows/runner/CMakeLists.txt",
+        "windows/runner/flutter_window.cpp",
+        "windows/runner/flutter_window.h",
+        "windows/runner/main.cpp",
+        "windows/runner/resource.h",
+        "windows/runner/resources/app_icon.ico",
+        "windows/runner/runner.exe.manifest",
+        "windows/runner/Runner.rc",
+        "windows/runner/utils.cpp",
+        "windows/runner/utils.h",
+        "windows/runner/win32_window.cpp",
+        "windows/runner/win32_window.h"
+      ],
+      "binarySha256": {
+        "glukwave.exe": "98439aa34402c38df2229837faf34744d93be67f15e704dcfe01edfcd0ffb475",
+        "flutter_windows.dll": "6840b8129fb105dd246f05f14eab97d7e8e9eade1428f9afde95de6b8e1a7808",
+        "libmpv-2.dll": "0a5a0b476866c91a639a4e511e8153968f8fa23564461b0aa09acdba816164a4",
+        "audio_service_win_plugin.dll": "ef9421be9fe1292eb8a3f2b75d1c0cfd61e404fe984c51e220e464d87892ea0d",
+        "flutter_inappwebview_windows_plugin.dll": "e41be84c4dec12a7c0fb8ba402053f75ac818856a6f47128d1afd1820e8ceacd",
+        "flutter_secure_storage_windows_plugin.dll": "098a8c4a8b53e72029b2a8403768e3cf7ace15cbf3e84820e575254c428f4cde",
+        "tray_manager_plugin.dll": "1291abc69be060b15cf917332b10eb46103b335b329d4dc4232bb39e778867e6",
+        "window_manager_plugin.dll": "ac27838523201046c479646c9ed161eb994a4608f4d7b4759126c27da861c25c",
+        "msvcp140.dll": "0f885b509a685d2bbfa652fed26b5fb31d88fbdab0a978c641d1c7b8aa460aa9",
+        "vcruntime140.dll": "d5e4d9a3e835fa679450145d6a7d94e36573a509317111904d9b3712c30d9066",
+        "vcruntime140_1.dll": "1f2d41c4aa5db0bc33ebf7b66d72943a817d7ce6cbe880502a9403823633093f"
+      },
+      "packageMatchesReleaseBuild": true,
+      "zipCrcAndAllFilesMatched": true,
+      "staticFontFaces": 11,
+      "compileDefine": "https://wave.gluk.tech",
+      "buildMode": "release",
+      "authenticodeSigned": false,
+      "uiInteractionVerified": false,
+      "physicalAudioVerified": false,
+      "installer": {
+        "file": "outputs/GlukWave-Setup.exe",
+        "bytes": 24205261,
+        "sha256": "0c791a9a78882f10c00fbfdabedbb9705c695539428fb4b4c7d2364a487e988d",
+        "version": "1.0.0+5",
+        "singleFile": true,
+        "authenticodeSigned": false,
+        "probe": {
+          "startMenuShortcutCreated": true,
+          "probeRegistryAndShortcutRemoved": true,
+          "realSilentInstall": true,
+          "ownerRunningAppPreserved": true,
+          "interactiveCheckboxesClicked": false,
+          "realUninstallPassed": true,
+          "checkedAt": "2026-10-09T09:07:34.5755191Z",
+          "bundleFilesMatched": 72,
+          "passed": true,
+          "unselectedTasksRespected": true
+        }
+      }
+    }
+  },
+  "extractors": {
+    "installedVersions": {
+      "ytDlp": "2026.8.19",
+      "ytDlpEjs": "0.8.0",
+      "ytmusicapi": "1.12.3",
+      "spotdl": "4.5.2",
+      "deno": "2.9.7"
+    },
+    "realMetadataAndCandidateRequestsVerified": [
+      "soundcloud",
+      "youtube",
+      "ytmusicapi",
+      "spotdl-spotify-metadata",
+      "spotdl-audio-candidates"
+    ],
+    "licensedSourceRelay": {
+      "checkedAt": "2026-10-09T09:04:56.886Z",
+      "scope": "real CC-BY source; isolated API range/cover/conversion; no physical player smoke",
+      "source": {
+        "title": "Carefree",
+        "artist": "Kevin MacLeod",
+        "duration": 205.186,
+        "url": "https://soundcloud.com/kevin-9-1/carefree",
+        "license": "cc-by"
+      },
+      "descriptor": {
+        "kind": "audio",
+        "url": "/api/external-audio/permitted-live-carefree",
+        "downloadUrl": "/api/external-audio/permitted-live-carefree/download",
+        "offline": true
+      },
+      "range": {
+        "status": 206,
+        "type": "audio/mpeg",
+        "contentRange": "bytes 0-65535/3282650",
+        "receivedBytes": 31923
+      },
+      "cover": {
+        "status": 200,
+        "type": "image/jpeg",
+        "bytes": 107238
+      },
+      "conversion": {
+        "status": 200,
+        "type": "audio/mpeg",
+        "prefix": "ID3",
+        "receivedBytes": 45,
+        "abortedAfterProbe": true
+      },
+      "afterAbort": {
+        "active": 0,
+        "queued": 0,
+        "completed": 1,
+        "failed": 0,
+        "limit": 1,
+        "streams": 0,
+        "metadataEntries": 2,
+        "pending": 0,
+        "conversion": false
+      },
+      "passed": true
+    },
+    "allCatalogDirectAudio": false,
+    "permissionRequired": true,
+    "dockerImageBuilt": false,
+    "permittedBrowser": {
+      "checkedAt": "2026-10-09T12:11:51.481Z",
+      "scope": "real CC-BY SoundCloud audio in muted browser, isolated local account; simulated document hidden; no hardware smoke",
+      "player": {
+        "effectiveKind": "audio",
+        "iframes": 0,
+        "kind": "audio",
+        "playing": true,
+        "position": 1.875011,
+        "source": "soundcloud",
+        "title": "Carefree"
+      },
+      "seek": true,
+      "audioContinuedUnderSimulatedHidden": true,
+      "cache": {
+        "artworkBytes": 107238,
+        "bytes": 3282650,
+        "downloadUrl": "/api/external-audio/permitted-browser-carefree/download",
+        "kind": "audio"
+      },
+      "passed": true
+    }
+  },
+  "performance": {
+    "scope": "isolated Node process; SQLite; one real socket; one room; 100 metadata queue entries; no physical audio",
+    "durationMs": 43538,
+    "heartbeats": 24,
+    "databaseWrites": 4,
+    "accountBroadcasts": 0,
+    "productionLeakFreedomVerified": false
+  },
+  "releaseDownloads": {
+    "checkedAt": "2026-10-09T12:10:43.420Z",
+    "checks": [
+      {
+        "origin": "http://127.0.0.1:4000",
+        "platform": "android",
+        "version": "1.0.0+5",
+        "rangeStatus": 206,
+        "bytes": 184828443,
+        "sha256": "910c0823f56cc621be974ee28bc145411b819b3dbc64196d6ee7a87f428b41d6"
+      },
+      {
+        "origin": "http://127.0.0.1:4000",
+        "platform": "windows",
+        "version": "1.0.0+5",
+        "rangeStatus": 206,
+        "bytes": 24205261,
+        "sha256": "0c791a9a78882f10c00fbfdabedbb9705c695539428fb4b4c7d2364a487e988d"
+      },
+      {
+        "origin": "http://127.0.0.1:4200",
+        "platform": "android",
+        "version": "1.0.0+5",
+        "rangeStatus": 206,
+        "bytes": 184828443,
+        "sha256": "910c0823f56cc621be974ee28bc145411b819b3dbc64196d6ee7a87f428b41d6"
+      },
+      {
+        "origin": "http://127.0.0.1:4200",
+        "platform": "windows",
+        "version": "1.0.0+5",
+        "rangeStatus": 206,
+        "bytes": 24205261,
+        "sha256": "0c791a9a78882f10c00fbfdabedbb9705c695539428fb4b4c7d2364a487e988d"
+      }
+    ],
+    "fullInstallerDownloadMatched": true,
+    "passed": true
+  },
+  "evaluation": {
+    "baseEcosystemWeb": "PASS",
+    "nativeWidgetComposition": "PASS",
+    "freshNativeScreenshots": 30,
+    "expandedWebReview": "Interrupted by evaluator usage limit after confirming admin fix; no final expanded verdict",
+    "physicalNativeAudioVerified": false
+  },
+  "remaining": [
+    "Provider dashboard callbacks and real OAuth accounts",
+    "Physical Android screen-off / Windows tray / background next",
+    "Windows native DSP",
+    "Long-duration production CPU/RAM profile",
+    "Rights for other catalog audio",
+    "Public backend deployment",
+    "Onboarding / preferences / friends / temporary jams and other ROADMAP items"
+  ]
+}

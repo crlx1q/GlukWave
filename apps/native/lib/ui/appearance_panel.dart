@@ -5,8 +5,9 @@ import '../services/appearance_store.dart';
 import 'widgets.dart';
 import 'theme_preview.dart';
 import '../l10n/wave_localizations.dart';
+import '../l10n/parity_strings.dart';
 
-Future<void> showAppearance(BuildContext context, AppearanceStore store) =>
+Future<void> showAppearance(BuildContext context, AppearanceStore store, {bool advancedAllowed = true}) =>
     showModalBottomSheet<void>(
       context: context,
       isScrollControlled: true,
@@ -16,13 +17,14 @@ Future<void> showAppearance(BuildContext context, AppearanceStore store) =>
         padding: EdgeInsets.only(
           bottom: MediaQuery.viewInsetsOf(context).bottom,
         ),
-        child: AppearancePanel(store: store),
+        child: AppearancePanel(store: store, advancedAllowed: advancedAllowed),
       ),
     );
 
 class AppearanceEntry extends StatelessWidget {
   final AppearanceStore store;
-  const AppearanceEntry({super.key, required this.store});
+  final bool advancedAllowed;
+  const AppearanceEntry({super.key, required this.store, this.advancedAllowed = true});
   @override
   Widget build(BuildContext context) {
     final v = waveVisuals(context);
@@ -61,7 +63,7 @@ class AppearanceEntry extends StatelessWidget {
           const SizedBox(height: 18),
           OutlinedButton.icon(
             key: const Key('open-appearance'),
-            onPressed: () => showAppearance(context, store),
+            onPressed: () => showAppearance(context, store, advancedAllowed: advancedAllowed),
             icon: const Icon(Icons.tune_rounded, size: 18),
             label: Text(wt('native.2691b463f8', context: context)),
           ),
@@ -73,7 +75,8 @@ class AppearanceEntry extends StatelessWidget {
 
 class AppearancePanel extends StatefulWidget {
   final AppearanceStore store;
-  const AppearancePanel({super.key, required this.store});
+  final bool advancedAllowed;
+  const AppearancePanel({super.key, required this.store, this.advancedAllowed = true});
   @override
   State<AppearancePanel> createState() => _AppearancePanelState();
 }
@@ -90,6 +93,10 @@ class _AppearancePanelState extends State<AppearancePanel> {
   ];
   String? editing;
   void change(Map<String, dynamic> patch) {
+    if (!widget.advancedAllowed && requiresAdvancedAppearance(patch)) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(pt(context, 'Advanced'))));
+      return;
+    }
     unawaited(widget.store.change(patch));
   }
 
@@ -193,6 +200,7 @@ class _AppearancePanelState extends State<AppearancePanel> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        if (!widget.advancedAllowed) Padding(padding: const EdgeInsets.only(bottom: 18), child: Text(pt(context, 'Advanced'), style: TextStyle(color: v.muted, height: 1.6))),
                         DropdownButtonFormField<String>(
                           key: const Key('language-selector'),
                           initialValue: state.language,

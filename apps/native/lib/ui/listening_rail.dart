@@ -1,3 +1,4 @@
+import 'motion_icons.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import '../core/controller.dart';
@@ -234,7 +235,7 @@ class _DesktopListeningRailState extends State<DesktopListeningRail> {
                       backgroundColor: v.ink,
                       foregroundColor: v.background,
                     ),
-                    onPressed: c.canControl
+                    onPressed: c.canTogglePlayback
                         ? () => _run(
                             c.audio.playing ? c.audio.pause : c.audio.play,
                           )
@@ -245,10 +246,8 @@ class _DesktopListeningRailState extends State<DesktopListeningRail> {
                           : 'native.c750dc7d94',
                       context: context,
                     ),
-                    icon: Icon(
-                      c.audio.playing
-                          ? Icons.pause_rounded
-                          : Icons.play_arrow_rounded,
+                    icon: WavePlayPauseIcon(
+                      playing: c.audio.playing,
                       color: v.background,
                     ),
                   ),
@@ -269,10 +268,10 @@ class _DesktopListeningRailState extends State<DesktopListeningRail> {
                     onPressed: c.online
                         ? () => _run(() => c.like(track))
                         : null,
-                    icon: Icon(
-                      c.likedIds.contains(track.id)
-                          ? Icons.favorite_rounded
-                          : Icons.favorite_border_rounded,
+                    icon: WaveToggleIcon(
+                      active: c.likedIds.contains(track.id),
+                      activeIcon: Icons.favorite_rounded,
+                      inactiveIcon: Icons.favorite_border_rounded,
                       size: 19,
                       color: c.likedIds.contains(track.id) ? v.accent : v.muted,
                     ),
