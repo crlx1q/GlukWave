@@ -53,8 +53,7 @@ def extract(request):
     if source == 'youtube':
         options['extractor_args'] = {
             'youtube': {
-                'player_client': ['android', 'ios', 'web', 'mweb', 'tv'],
-                'player_skip': ['js', 'configs', 'webpage']
+                'player_client': ['android', 'ios', 'mweb', 'web', 'tv']
             }
         }
     if request.get('deno'):

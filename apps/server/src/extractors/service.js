@@ -51,8 +51,17 @@ export function setupExtractors(app,ctx,overrides={}){
     return licensePermission(track.sourcePermission?.license);
   }
   async function candidateAudio(track,{force=false}={}){
-    if(!track.artist||!track.title)return null;
-    const target={...track,artist:String(track.artist||'').replace(/\s*-\s*Topic$/i,'')};
+    if(!track.artist&&!track.title)return null;
+    let targetArtist=String(track.artist||'').replace(/\s*-\s*Topic$/i,'').replace(/vevo$/i,'').trim();
+    let targetTitle=String(track.title||'').trim();
+    const splitTitle=targetTitle.match(/^(.+?)\s*[-–—:]\s*(.+)$/);
+    if(splitTitle&&splitTitle[1]&&splitTitle[2]){
+      if(!targetArtist||track.source==='youtube'){
+        targetArtist=splitTitle[1].trim();
+        targetTitle=splitTitle[2].trim();
+      }
+    }
+    const target={...track,artist:targetArtist,title:targetTitle};
     const found=await cached('audio-candidates:'+track.id,async()=>{
       if(track.source==='spotify'&&runtime.available('spotify')){
         try{const result=await adapters.spotify.matches(target);if(result.candidates?.some(candidate=>candidate.match.accepted))return result.candidates;}catch{/* Independent YouTube Music metadata fallback. */}
@@ -61,8 +70,14 @@ export function setupExtractors(app,ctx,overrides={}){
       let scFound=[];
       if(ctx.searchProvider){
         try{
-          const sc=await ctx.searchProvider('soundcloud',target.artist+' '+target.title);
+          const query=target.artist?`${target.artist} ${target.title}`:target.title;
+          const sc=await ctx.searchProvider('soundcloud',query);
           scFound=sc.map(item=>({source:'soundcloud',source_url:item.sourceUrl,title:item.title,artist:item.artist,duration:item.duration,track_id:item.sourceId}));
+          if(scFound.length<3&&splitTitle){
+            const scAlt=await ctx.searchProvider('soundcloud',track.title).catch(()=>[]);
+            const seen=new Set(scFound.map(s=>s.source_url));
+            for(const item of scAlt)if(!seen.has(item.sourceUrl))scFound.push({source:'soundcloud',source_url:item.sourceUrl,title:item.title,artist:item.artist,duration:item.duration,track_id:item.sourceId});
+          }
         }catch{}
       }
       if(track.source==='youtube')return [...scFound,...ytFound];
@@ -92,7 +107,7 @@ export function setupExtractors(app,ctx,overrides={}){
         const fallback=await candidateAudio(track,{force}).catch(()=>null);
         if(fallback)return fallback;
       }
-      if(rights?.stream)fail(503,'EXTRACTOR_UNAVAILABLE','Трек временно недоступен. Повтори позже.');
+      if(rights?.basis==='license-agreement'||rights?.basis==='owner-permission')fail(503,'EXTRACTOR_UNAVAILABLE','Трек временно недоступен. Повтори позже.');
       return null;
     }
     if(force)metadata.delete('metadata:'+identity.url);
@@ -108,7 +123,8 @@ export function setupExtractors(app,ctx,overrides={}){
         const fallback=await candidateAudio(track,{force}).catch(()=>null);
         if(fallback)return fallback;
       }
-      throw error;
+      if(rights?.basis==='license-agreement'||rights?.basis==='owner-permission')throw error;
+      return null;
     }
   }
   ctx.extractorAvailable=source=>!!adapters[source]&&runtime.available(source);

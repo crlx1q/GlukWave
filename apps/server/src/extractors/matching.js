@@ -5,7 +5,10 @@ const variants=/\b(live|remix|cover|karaoke|instrumental|sped|slowed|acoustic)\b
 export function overlap(a,b){
   const left=new Set(searchText(a).split(' ').filter(Boolean)),right=new Set(searchText(b).split(' ').filter(Boolean));
   if(!left.size||!right.size)return 0;
-  return [...left].filter(word=>right.has(word)).length/Math.max(left.size,right.size);
+  const common=[...left].filter(word=>right.has(word)).length;
+  const jaccard=common/Math.max(left.size,right.size);
+  const containment=common/Math.min(left.size,right.size);
+  return Math.max(jaccard, containment>=0.85 ? 0.88 : containment*0.75);
 }
 
 export function cleanCandidateTitle(raw,trackArtist='',candArtist=''){
@@ -17,7 +20,7 @@ export function cleanCandidateTitle(raw,trackArtist='',candArtist=''){
     const art=trackArtist||candArtist||'';
     const prefixOv=overlap(art,split[1]);
     const normArt=searchText(art),normPrefix=searchText(split[1]);
-    if(prefixOv>=0.6||(normArt&&(normPrefix.includes(normArt)||normArt.includes(normPrefix)))){
+    if(prefixOv>=0.5||(normArt&&(normPrefix.includes(normArt)||normArt.includes(normPrefix)))){
       cleaned=split[2];
     }
   }
@@ -29,7 +32,8 @@ export function cleanCandidateArtist(candArtist,rawTitle='',trackArtist=''){
   const split=String(rawTitle||'').match(/^(.+?)\s*[-–—:]\s*(.+)$/);
   if(split){
     const prefixOv=overlap(trackArtist,split[1]);
-    if(prefixOv>=0.7){
+    const normArt=searchText(trackArtist),normPrefix=searchText(split[1]);
+    if(prefixOv>=0.5||(normArt&&(normPrefix.includes(normArt)||normArt.includes(normPrefix)))){
       cleaned=split[1].trim();
     }
   }
@@ -47,12 +51,12 @@ export function audioMatch(track,candidate){
   const candDur=Number(candidate.duration)||0;
   const difference=Math.abs(trackDur-candDur);
   const hasBothDur=trackDur>0&&candDur>0;
-  const durationScore=hasBothDur?Math.max(0,1-difference/Math.max(5,trackDur*0.05)):(trackDur===0&&candDur>0?1:0);
+  const durationScore=hasBothDur?Math.max(0,1-difference/Math.max(12,trackDur*0.08)):(trackDur===0&&candDur>0?1:0);
   const versionMismatch=JSON.stringify([...searchText(track.title).matchAll(variants)].map(m=>m[0]).sort())!==JSON.stringify([...searchText(candidate.title).matchAll(variants)].map(m=>m[0]).sort());
   const score=hasBothDur?(titleScore*.45+artistScore*.4+durationScore*.15):(titleScore*.5+artistScore*.5);
 
   const durationAccepted=hasBothDur
-    ?(difference<=Math.max(8,trackDur*0.04)&&durationScore>0)
+    ?(difference<=Math.max(15,trackDur*0.08)&&durationScore>0)
     :(trackDur===0&&candDur>0);
 
   return {
