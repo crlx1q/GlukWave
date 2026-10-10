@@ -1,0 +1,8 @@
+<resources>
+  <string name="widget_empty">Wähle deine Musik</string>
+  <string name="widget_sign_in">Öffne GlukWave zum Anmelden</string>
+  <string name="widget_wave_label">Meine Welle</string>
+  <string name="widget_open">GlukWave öffnen</string>
+  <string name="widget_player_name">Schnellplayer</string>
+  <string name="widget_wave_name">GlukWave · Meine Welle</string>
+</resources>

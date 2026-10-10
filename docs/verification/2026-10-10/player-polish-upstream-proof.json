@@ -1,0 +1,11 @@
+{
+  "ok": true,
+  "source": "soundcloud",
+  "title": "Flickermood",
+  "artist": "Forss",
+  "license": "all-rights-reserved",
+  "protocol": "m3u8_native",
+  "ext": "m4a",
+  "audioFound": true,
+  "downloadedAudio": false
+}

@@ -1,0 +1,81 @@
+{
+  "passed": true,
+  "scope": "Independent actual React app UI evaluation; no physical device or production account interaction",
+  "viewportWidths": [
+    1440,
+    768,
+    375
+  ],
+  "themes": [
+    "light",
+    "dark",
+    "amoled"
+  ],
+  "selectedAccents": [
+    "copper",
+    "blue"
+  ],
+  "topLayouts": 18,
+  "fullPageScrolledLayouts": 18,
+  "screenshots": 41,
+  "motionScreenshotsDifferent": true,
+  "reducedMotionScreenshotsEqual": true,
+  "files": [
+    "wave-evaluate-1791661485935-amoled-blue-1440-bottom.png",
+    "wave-evaluate-1791661485935-amoled-blue-1440.png",
+    "wave-evaluate-1791661485935-amoled-blue-375-bottom.png",
+    "wave-evaluate-1791661485935-amoled-blue-375.png",
+    "wave-evaluate-1791661485935-amoled-blue-768-bottom.png",
+    "wave-evaluate-1791661485935-amoled-blue-768.png",
+    "wave-evaluate-1791661485935-amoled-copper-1440-bottom.png",
+    "wave-evaluate-1791661485935-amoled-copper-1440.png",
+    "wave-evaluate-1791661485935-amoled-copper-375-bottom.png",
+    "wave-evaluate-1791661485935-amoled-copper-375.png",
+    "wave-evaluate-1791661485935-amoled-copper-768-bottom.png",
+    "wave-evaluate-1791661485935-amoled-copper-768.png",
+    "wave-evaluate-1791661485935-dark-blue-1440-bottom.png",
+    "wave-evaluate-1791661485935-dark-blue-1440.png",
+    "wave-evaluate-1791661485935-dark-blue-375-bottom.png",
+    "wave-evaluate-1791661485935-dark-blue-375.png",
+    "wave-evaluate-1791661485935-dark-blue-768-bottom.png",
+    "wave-evaluate-1791661485935-dark-blue-768.png",
+    "wave-evaluate-1791661485935-dark-copper-1440-bottom.png",
+    "wave-evaluate-1791661485935-dark-copper-1440.png",
+    "wave-evaluate-1791661485935-dark-copper-375-bottom.png",
+    "wave-evaluate-1791661485935-dark-copper-375.png",
+    "wave-evaluate-1791661485935-dark-copper-768-bottom.png",
+    "wave-evaluate-1791661485935-dark-copper-768.png",
+    "wave-evaluate-1791661485935-light-blue-1440-bottom.png",
+    "wave-evaluate-1791661485935-light-blue-1440.png",
+    "wave-evaluate-1791661485935-light-blue-375-bottom.png",
+    "wave-evaluate-1791661485935-light-blue-375.png",
+    "wave-evaluate-1791661485935-light-blue-768-bottom.png",
+    "wave-evaluate-1791661485935-light-blue-768.png",
+    "wave-evaluate-1791661485935-light-copper-1440-bottom.png",
+    "wave-evaluate-1791661485935-light-copper-1440.png",
+    "wave-evaluate-1791661485935-light-copper-375-bottom.png",
+    "wave-evaluate-1791661485935-light-copper-375.png",
+    "wave-evaluate-1791661485935-light-copper-768-bottom.png",
+    "wave-evaluate-1791661485935-light-copper-768.png",
+    "wave-evaluate-1791661485935-motion-after.png",
+    "wave-evaluate-1791661485935-motion-before.png",
+    "wave-evaluate-1791661485935-pointer.png",
+    "wave-evaluate-1791661485935-still-after.png",
+    "wave-evaluate-1791661485935-still-before.png"
+  ],
+  "audio": "Original isolated QA audio played by Catch a wave; no iframe present",
+  "limitations": [
+    "No physical phone launcher or audio tests requested by owner"
+  ],
+  "androidActualRemoteViews": {
+    "passed": true,
+    "layouts": 36,
+    "testCount": 6,
+    "directory": "C:/Users/alish/AppData/Local/Temp/widgets-1791661922436",
+    "fontScales": [
+      1,
+      1.3
+    ],
+    "compactCropFixed": true
+  }
+}

@@ -25,7 +25,7 @@ before(async()=>{
   base=`http://127.0.0.1:${service.server.address().port}`;
   user=(await request('/api/auth/register',{email:'billing@example.test',username:'billing_test',password:'secure-test-passphrase'},{'X-GlukWave-Client':'native'})).data;
 });
-after(async()=>{await service.close();await fs.rm(dir,{recursive:true,force:true});});
+after(async()=>{await service.close();await fs.rm(dir,{recursive:true,force:true,maxRetries:5,retryDelay:100});});
 
 test('billing verifies raw signatures and ignores unrelated events without granting a plan',async()=>{
   assert.equal((await request('/api/billing/webhook',{id:'unsigned'})).status,400);

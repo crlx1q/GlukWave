@@ -36,7 +36,7 @@ def normalized(info, source):
             'cover': info.get('thumbnail') or '', 'source': source,
             'source_url': info.get('webpage_url') or '', 'license': str(info.get('license') or '')[:500],
             'availability': info.get('availability'), 'audio_url': info.get('url'),
-            'codec': info.get('acodec'), 'ext': info.get('ext'),
+            'codec': info.get('acodec'), 'ext': info.get('ext'), 'protocol': info.get('protocol'),
             'http_headers': {k: v for k, v in (info.get('http_headers') or {}).items() if k.lower() in {'user-agent', 'accept'}}}
 
 
@@ -46,7 +46,7 @@ def extract(request):
     url = valid_url(request['url'], source)
     options = {'quiet': True, 'no_warnings': True, 'logger': QuietLogger(), 'noplaylist': True,
                'skip_download': True, 'cachedir': False, 'socket_timeout': 12, 'retries': 1,
-               'extractor_retries': 1, 'fragment_retries': 1, 'format': 'bestaudio[protocol=https][ext=m4a]/bestaudio[protocol=https]/bestaudio[protocol=http]',
+               'extractor_retries': 1, 'fragment_retries': 1, 'format': 'bestaudio[protocol=https][ext=m4a]/bestaudio[protocol=https]/bestaudio[protocol=m3u8_native]/bestaudio[protocol=m3u8]',
                'extract_flat': False, 'playlistend': 1, 'allow_unplayable_formats': False}
     if request.get('deno'):
         options['js_runtimes'] = {'deno': {'path': request['deno']}}

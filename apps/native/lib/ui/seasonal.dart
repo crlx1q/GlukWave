@@ -142,8 +142,30 @@ class SeasonalPainter extends CustomPainter {
         : size.width < 600
         ? 24
         : 40;
-    final amount = (intensity == 'normal' ? 0.92 : 0.48);
+    final amount = (intensity == 'normal' ? 0.76 : 0.37);
     final time = clock.value * 60;
+    if (mode == 'sun') {
+      final warm = dark ? const Color(0xffedc890) : const Color(0xffd9a976);
+      final radius = math.max(size.width, size.height) * .6;
+      for (var i = 0; i < 3; i++) {
+        final phase = time * math.pi / 30 + i * 2.1;
+        final center = Offset(
+          size.width * ([.12, .82, .56][i] + math.sin(phase) * .025),
+          size.height * ([.14, .32, .94][i] + math.cos(phase) * .03),
+        );
+        final paint = Paint()
+          ..shader = RadialGradient(
+            colors: [
+              warm.withValues(alpha: amount * .08),
+              warm.withValues(alpha: amount * .036),
+              warm.withValues(alpha: 0),
+            ],
+            stops: const [0, .45, 1],
+          ).createShader(Rect.fromCircle(center: center, radius: radius));
+        canvas.drawRect(Offset.zero & size, paint);
+      }
+      return;
+    }
     for (var i = 0; i < count; i++) {
       final x = seed(i, 1) * size.width,
           y =
@@ -157,7 +179,7 @@ class SeasonalPainter extends CustomPainter {
                   (size.height + 28)) -
               14,
           phase = time * .35 + seed(i, 3) * 6.28,
-          r = 2.7 + seed(i, 4) * 2.7;
+          r = 2.2 + seed(i, 4) * 2.6;
       final paint = Paint()
         ..color = (dark ? const Color(0xffedf6ff) : const Color(0xff536e83))
             .withValues(alpha: amount * (.5 + seed(i, 5) * .35));
@@ -167,7 +189,7 @@ class SeasonalPainter extends CustomPainter {
         paint
           ..color = (dark ? const Color(0xffa9d8ee) : const Color(0xff486f88))
               .withValues(alpha: amount * .7)
-          ..strokeWidth = 1.7;
+          ..strokeWidth = 1.45;
         canvas.drawLine(Offset(x, y), Offset(x - 3, y + 11 + r * 2.4), paint);
       } else if (mode == 'leaves') {
         canvas.save();
@@ -183,24 +205,6 @@ class SeasonalPainter extends CustomPainter {
           paint,
         );
         canvas.restore();
-      } else {
-        final start = size.width * .82,
-            angle =
-                -math.pi * .96 +
-                i / count * math.pi * .62 +
-                math.sin(phase) * .025;
-        paint
-          ..color = (dark ? const Color(0xffd8b67b) : const Color(0xffb8945f))
-              .withValues(alpha: amount * .14)
-          ..strokeWidth = preview ? 9 : 18;
-        canvas.drawLine(
-          Offset(start, 0),
-          Offset(
-            start + math.cos(angle) * size.width * 1.3,
-            math.sin(angle) * -size.height * 1.8,
-          ),
-          paint,
-        );
       }
     }
   }

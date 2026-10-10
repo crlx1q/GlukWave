@@ -17,6 +17,15 @@
     <receiver android:name="com.ryanheise.audioservice.MediaButtonReceiver" android:exported="true" tools:ignore="Instantiatable">
       <intent-filter><action android:name="android.intent.action.MEDIA_BUTTON" /></intent-filter>
     </receiver>
+    <receiver android:name=".WavePlayerWidget" android:exported="false" android:label="@string/widget_player_name">
+      <intent-filter><action android:name="android.appwidget.action.APPWIDGET_UPDATE" /></intent-filter>
+      <meta-data android:name="android.appwidget.provider" android:resource="@xml/glukwave_player_widget_info" />
+    </receiver>
+    <receiver android:name=".WaveLargeWidget" android:exported="false" android:label="@string/widget_wave_name">
+      <intent-filter><action android:name="android.appwidget.action.APPWIDGET_UPDATE" /></intent-filter>
+      <meta-data android:name="android.appwidget.provider" android:resource="@xml/glukwave_wave_widget_info" />
+    </receiver>
+    <receiver android:name=".WidgetCommandReceiver" android:exported="false" />
     <meta-data android:name="flutterEmbedding" android:value="2" />
     <meta-data android:name="com.google.firebase.messaging.default_notification_icon" android:resource="@drawable/ic_notification" />
   </application>

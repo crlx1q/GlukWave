@@ -13,7 +13,8 @@
     "check": "npm run check -w @glukwave/web",
     "keys": "node scripts/generate-keys.mjs",
     "migrate": "node scripts/migrate.mjs",
-    "geoip:update": "node scripts/update-geoip.mjs"
+    "geoip:update": "node scripts/update-geoip.mjs",
+    "audio:setup": "node scripts/prepare-extractors.mjs"
   },
   "devDependencies": {"concurrently": "^9.2.1", "agent-browser": "^0.21.0"}
 }

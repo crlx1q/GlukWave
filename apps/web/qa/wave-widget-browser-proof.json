@@ -1,0 +1,710 @@
+{
+  "passed": true,
+  "scope": "Actual isolated app + actual WebGL/Canvas shader with original fixture. No physical device or owner hosting checks.",
+  "layouts": [
+    {
+      "theme": "light",
+      "name": "copper",
+      "device": "desktop",
+      "background": "rgb(239, 237, 227)",
+      "buttons": [
+        {
+          "bottom": 262.6875,
+          "height": 44,
+          "right": 1282,
+          "width": 44
+        },
+        {
+          "bottom": 262.6875,
+          "height": 44,
+          "right": 1334,
+          "width": 44
+        },
+        {
+          "bottom": 264.6875,
+          "height": 48,
+          "right": 1390,
+          "width": 48
+        }
+      ],
+      "canvas": {
+        "bottom": 549.6875,
+        "height": 340,
+        "left": 128,
+        "right": 1390,
+        "top": 209.6875,
+        "width": 1262,
+        "x": 128,
+        "y": 209.6875
+      },
+      "clip": 0,
+      "hero": {
+        "bottom": 549.6875,
+        "height": 340,
+        "left": 128,
+        "right": 1390,
+        "top": 209.6875,
+        "width": 1262,
+        "x": 128,
+        "y": 209.6875
+      },
+      "scrollWidth": 1430,
+      "width": 1440
+    },
+    {
+      "theme": "light",
+      "name": "copper",
+      "device": "mobile",
+      "background": "rgb(239, 237, 227)",
+      "buttons": [
+        {
+          "bottom": 257.59375,
+          "height": 44,
+          "right": 310,
+          "width": 44
+        },
+        {
+          "bottom": 257.09375,
+          "height": 43,
+          "right": 358,
+          "width": 43
+        }
+      ],
+      "canvas": {
+        "bottom": 481.59375,
+        "height": 270,
+        "left": 0,
+        "right": 380,
+        "top": 211.59375,
+        "width": 380,
+        "x": 0,
+        "y": 211.59375
+      },
+      "clip": 0,
+      "hero": {
+        "bottom": 481.59375,
+        "height": 270,
+        "left": 0,
+        "right": 380,
+        "top": 211.59375,
+        "width": 380,
+        "x": 0,
+        "y": 211.59375
+      },
+      "scrollWidth": 380,
+      "width": 390
+    },
+    {
+      "theme": "light",
+      "name": "blue",
+      "device": "desktop",
+      "background": "rgb(239, 237, 227)",
+      "buttons": [
+        {
+          "bottom": 262.6875,
+          "height": 44,
+          "right": 1282,
+          "width": 44
+        },
+        {
+          "bottom": 262.6875,
+          "height": 44,
+          "right": 1334,
+          "width": 44
+        },
+        {
+          "bottom": 264.6875,
+          "height": 48,
+          "right": 1390,
+          "width": 48
+        }
+      ],
+      "canvas": {
+        "bottom": 549.6875,
+        "height": 340,
+        "left": 128,
+        "right": 1390,
+        "top": 209.6875,
+        "width": 1262,
+        "x": 128,
+        "y": 209.6875
+      },
+      "clip": 0,
+      "hero": {
+        "bottom": 549.6875,
+        "height": 340,
+        "left": 128,
+        "right": 1390,
+        "top": 209.6875,
+        "width": 1262,
+        "x": 128,
+        "y": 209.6875
+      },
+      "scrollWidth": 1430,
+      "width": 1440
+    },
+    {
+      "theme": "light",
+      "name": "blue",
+      "device": "mobile",
+      "background": "rgb(239, 237, 227)",
+      "buttons": [
+        {
+          "bottom": 257.59375,
+          "height": 44,
+          "right": 310,
+          "width": 44
+        },
+        {
+          "bottom": 257.09375,
+          "height": 43,
+          "right": 358,
+          "width": 43
+        }
+      ],
+      "canvas": {
+        "bottom": 481.59375,
+        "height": 270,
+        "left": 0,
+        "right": 380,
+        "top": 211.59375,
+        "width": 380,
+        "x": 0,
+        "y": 211.59375
+      },
+      "clip": 0,
+      "hero": {
+        "bottom": 481.59375,
+        "height": 270,
+        "left": 0,
+        "right": 380,
+        "top": 211.59375,
+        "width": 380,
+        "x": 0,
+        "y": 211.59375
+      },
+      "scrollWidth": 380,
+      "width": 390
+    },
+    {
+      "theme": "dark",
+      "name": "copper",
+      "device": "desktop",
+      "background": "rgb(20, 21, 23)",
+      "buttons": [
+        {
+          "bottom": 262.6875,
+          "height": 44,
+          "right": 1282,
+          "width": 44
+        },
+        {
+          "bottom": 262.6875,
+          "height": 44,
+          "right": 1334,
+          "width": 44
+        },
+        {
+          "bottom": 264.6875,
+          "height": 48,
+          "right": 1390,
+          "width": 48
+        }
+      ],
+      "canvas": {
+        "bottom": 549.6875,
+        "height": 340,
+        "left": 128,
+        "right": 1390,
+        "top": 209.6875,
+        "width": 1262,
+        "x": 128,
+        "y": 209.6875
+      },
+      "clip": 0,
+      "hero": {
+        "bottom": 549.6875,
+        "height": 340,
+        "left": 128,
+        "right": 1390,
+        "top": 209.6875,
+        "width": 1262,
+        "x": 128,
+        "y": 209.6875
+      },
+      "scrollWidth": 1430,
+      "width": 1440
+    },
+    {
+      "theme": "dark",
+      "name": "copper",
+      "device": "mobile",
+      "background": "rgb(20, 21, 23)",
+      "buttons": [
+        {
+          "bottom": 257.59375,
+          "height": 44,
+          "right": 310,
+          "width": 44
+        },
+        {
+          "bottom": 257.09375,
+          "height": 43,
+          "right": 358,
+          "width": 43
+        }
+      ],
+      "canvas": {
+        "bottom": 481.59375,
+        "height": 270,
+        "left": 0,
+        "right": 380,
+        "top": 211.59375,
+        "width": 380,
+        "x": 0,
+        "y": 211.59375
+      },
+      "clip": 0,
+      "hero": {
+        "bottom": 481.59375,
+        "height": 270,
+        "left": 0,
+        "right": 380,
+        "top": 211.59375,
+        "width": 380,
+        "x": 0,
+        "y": 211.59375
+      },
+      "scrollWidth": 380,
+      "width": 390
+    },
+    {
+      "theme": "dark",
+      "name": "blue",
+      "device": "desktop",
+      "background": "rgb(20, 21, 23)",
+      "buttons": [
+        {
+          "bottom": 262.6875,
+          "height": 44,
+          "right": 1282,
+          "width": 44
+        },
+        {
+          "bottom": 262.6875,
+          "height": 44,
+          "right": 1334,
+          "width": 44
+        },
+        {
+          "bottom": 264.6875,
+          "height": 48,
+          "right": 1390,
+          "width": 48
+        }
+      ],
+      "canvas": {
+        "bottom": 549.6875,
+        "height": 340,
+        "left": 128,
+        "right": 1390,
+        "top": 209.6875,
+        "width": 1262,
+        "x": 128,
+        "y": 209.6875
+      },
+      "clip": 0,
+      "hero": {
+        "bottom": 549.6875,
+        "height": 340,
+        "left": 128,
+        "right": 1390,
+        "top": 209.6875,
+        "width": 1262,
+        "x": 128,
+        "y": 209.6875
+      },
+      "scrollWidth": 1430,
+      "width": 1440
+    },
+    {
+      "theme": "dark",
+      "name": "blue",
+      "device": "mobile",
+      "background": "rgb(20, 21, 23)",
+      "buttons": [
+        {
+          "bottom": 257.59375,
+          "height": 44,
+          "right": 310,
+          "width": 44
+        },
+        {
+          "bottom": 257.09375,
+          "height": 43,
+          "right": 358,
+          "width": 43
+        }
+      ],
+      "canvas": {
+        "bottom": 481.59375,
+        "height": 270,
+        "left": 0,
+        "right": 380,
+        "top": 211.59375,
+        "width": 380,
+        "x": 0,
+        "y": 211.59375
+      },
+      "clip": 0,
+      "hero": {
+        "bottom": 481.59375,
+        "height": 270,
+        "left": 0,
+        "right": 380,
+        "top": 211.59375,
+        "width": 380,
+        "x": 0,
+        "y": 211.59375
+      },
+      "scrollWidth": 380,
+      "width": 390
+    },
+    {
+      "theme": "amoled",
+      "name": "copper",
+      "device": "desktop",
+      "background": "rgb(0, 0, 0)",
+      "buttons": [
+        {
+          "bottom": 262.6875,
+          "height": 44,
+          "right": 1282,
+          "width": 44
+        },
+        {
+          "bottom": 262.6875,
+          "height": 44,
+          "right": 1334,
+          "width": 44
+        },
+        {
+          "bottom": 264.6875,
+          "height": 48,
+          "right": 1390,
+          "width": 48
+        }
+      ],
+      "canvas": {
+        "bottom": 549.6875,
+        "height": 340,
+        "left": 128,
+        "right": 1390,
+        "top": 209.6875,
+        "width": 1262,
+        "x": 128,
+        "y": 209.6875
+      },
+      "clip": 0,
+      "hero": {
+        "bottom": 549.6875,
+        "height": 340,
+        "left": 128,
+        "right": 1390,
+        "top": 209.6875,
+        "width": 1262,
+        "x": 128,
+        "y": 209.6875
+      },
+      "scrollWidth": 1430,
+      "width": 1440
+    },
+    {
+      "theme": "amoled",
+      "name": "copper",
+      "device": "mobile",
+      "background": "rgb(0, 0, 0)",
+      "buttons": [
+        {
+          "bottom": 257.59375,
+          "height": 44,
+          "right": 310,
+          "width": 44
+        },
+        {
+          "bottom": 257.09375,
+          "height": 43,
+          "right": 358,
+          "width": 43
+        }
+      ],
+      "canvas": {
+        "bottom": 481.59375,
+        "height": 270,
+        "left": 0,
+        "right": 380,
+        "top": 211.59375,
+        "width": 380,
+        "x": 0,
+        "y": 211.59375
+      },
+      "clip": 0,
+      "hero": {
+        "bottom": 481.59375,
+        "height": 270,
+        "left": 0,
+        "right": 380,
+        "top": 211.59375,
+        "width": 380,
+        "x": 0,
+        "y": 211.59375
+      },
+      "scrollWidth": 380,
+      "width": 390
+    },
+    {
+      "theme": "amoled",
+      "name": "blue",
+      "device": "desktop",
+      "background": "rgb(0, 0, 0)",
+      "buttons": [
+        {
+          "bottom": 262.6875,
+          "height": 44,
+          "right": 1282,
+          "width": 44
+        },
+        {
+          "bottom": 262.6875,
+          "height": 44,
+          "right": 1334,
+          "width": 44
+        },
+        {
+          "bottom": 264.6875,
+          "height": 48,
+          "right": 1390,
+          "width": 48
+        }
+      ],
+      "canvas": {
+        "bottom": 549.6875,
+        "height": 340,
+        "left": 128,
+        "right": 1390,
+        "top": 209.6875,
+        "width": 1262,
+        "x": 128,
+        "y": 209.6875
+      },
+      "clip": 0,
+      "hero": {
+        "bottom": 549.6875,
+        "height": 340,
+        "left": 128,
+        "right": 1390,
+        "top": 209.6875,
+        "width": 1262,
+        "x": 128,
+        "y": 209.6875
+      },
+      "scrollWidth": 1430,
+      "width": 1440
+    },
+    {
+      "theme": "amoled",
+      "name": "blue",
+      "device": "mobile",
+      "background": "rgb(0, 0, 0)",
+      "buttons": [
+        {
+          "bottom": 257.59375,
+          "height": 44,
+          "right": 310,
+          "width": 44
+        },
+        {
+          "bottom": 257.09375,
+          "height": 43,
+          "right": 358,
+          "width": 43
+        }
+      ],
+      "canvas": {
+        "bottom": 481.59375,
+        "height": 270,
+        "left": 0,
+        "right": 380,
+        "top": 211.59375,
+        "width": 380,
+        "x": 0,
+        "y": 211.59375
+      },
+      "clip": 0,
+      "hero": {
+        "bottom": 481.59375,
+        "height": 270,
+        "left": 0,
+        "right": 380,
+        "top": 211.59375,
+        "width": 380,
+        "x": 0,
+        "y": 211.59375
+      },
+      "scrollWidth": 380,
+      "width": 390
+    }
+  ],
+  "renders": [
+    {
+      "theme": "light",
+      "name": "copper",
+      "count": 14437,
+      "fallback": {
+        "count": 10404,
+        "mean": [
+          138.3840830449827,
+          90.2245290272972,
+          57.43425605536332
+        ]
+      },
+      "mean": [
+        77.42571171295975,
+        50.559395996398145,
+        32.41504467687193
+      ],
+      "topAlpha": 0
+    },
+    {
+      "theme": "light",
+      "name": "blue",
+      "count": 14437,
+      "fallback": {
+        "count": 10404,
+        "mean": [
+          56.77902729719339,
+          101.9660707420223,
+          148.89513648596693
+        ]
+      },
+      "mean": [
+        32.05901503082358,
+        57.19166031724043,
+        83.35291265498373
+      ],
+      "topAlpha": 0
+    },
+    {
+      "theme": "dark",
+      "name": "copper",
+      "count": 14437,
+      "fallback": {
+        "count": 10404,
+        "mean": [
+          192.9979815455594,
+          133.79825067281814,
+          93.09919261822375
+        ]
+      },
+      "mean": [
+        106.98663157165616,
+        75.08215003116992,
+        53.53522199903027
+      ],
+      "topAlpha": 0
+    },
+    {
+      "theme": "dark",
+      "name": "blue",
+      "count": 14437,
+      "fallback": {
+        "count": 10404,
+        "mean": [
+          92.27393310265282,
+          148.0533448673587,
+          206.438677431757
+        ]
+      },
+      "mean": [
+        53.12121631917989,
+        82.94908914594444,
+        114.034356168179
+      ],
+      "topAlpha": 0
+    },
+    {
+      "theme": "amoled",
+      "name": "copper",
+      "count": 14437,
+      "fallback": {
+        "count": 10404,
+        "mean": [
+          192.9979815455594,
+          133.79825067281814,
+          93.09919261822375
+        ]
+      },
+      "mean": [
+        106.98663157165616,
+        75.08215003116992,
+        53.53522199903027
+      ],
+      "topAlpha": 0
+    },
+    {
+      "theme": "amoled",
+      "name": "blue",
+      "count": 14437,
+      "fallback": {
+        "count": 10404,
+        "mean": [
+          92.27393310265282,
+          148.0533448673587,
+          206.438677431757
+        ]
+      },
+      "mean": [
+        53.12121631917989,
+        82.94908914594444,
+        114.034356168179
+      ],
+      "topAlpha": 0
+    }
+  ],
+  "screenshots": [
+    "apps/web/qa/wave-widget-1791661552882-light-copper-desktop.png",
+    "apps/web/qa/wave-widget-1791661552882-light-copper-mobile.png",
+    "apps/web/qa/wave-widget-1791661552882-light-blue-desktop.png",
+    "apps/web/qa/wave-widget-1791661552882-light-blue-mobile.png",
+    "apps/web/qa/wave-widget-1791661552882-dark-copper-desktop.png",
+    "apps/web/qa/wave-widget-1791661552882-dark-copper-mobile.png",
+    "apps/web/qa/wave-widget-1791661552882-dark-blue-desktop.png",
+    "apps/web/qa/wave-widget-1791661552882-dark-blue-mobile.png",
+    "apps/web/qa/wave-widget-1791661552882-amoled-copper-desktop.png",
+    "apps/web/qa/wave-widget-1791661552882-amoled-copper-mobile.png",
+    "apps/web/qa/wave-widget-1791661552882-amoled-blue-desktop.png",
+    "apps/web/qa/wave-widget-1791661552882-amoled-blue-mobile.png",
+    "apps/web/qa/wave-widget-1791661552882-dark-copper-motion-own-audio.png"
+  ],
+  "checks": [
+    "12 actual home layouts: full-width transparent field, theme-aware selected pigment, no crop/overflow, visible transport inside hero",
+    "Six actual GPU + six actual Canvas fallback renders: copper/blue remain chromatic, transparent outer field",
+    "Reduced motion freezes actual mounted wave; enabled animation moves it; all three persisted wave styles render; original local audio plays without iframe"
+  ],
+  "motion": {
+    "frames": 40,
+    "samples": [
+      {
+        "hash": 1550248134,
+        "phase": 0.800000011920929
+      },
+      {
+        "hash": 3844460719,
+        "phase": 1.7128000259399414
+      }
+    ]
+  },
+  "browserErrors": {
+    "errors": []
+  }
+}

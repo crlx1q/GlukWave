@@ -6,7 +6,12 @@ import {fail} from '../util.js';
 export function createExtractorRuntime(config,{run}={}){
   const settings=config.extractors||{},directory=path.join(config.root,'work/tools/extractors');
   const executable=name=>path.join(directory,name,process.platform==='win32'?'Scripts/python.exe':'bin/python');
-  const python=settings.python||executable('ytdlp'),spotdlPython=settings.spotdlPython||executable('spotdl'),deno=settings.deno||path.join(directory,'deno',process.platform==='win32'?'deno.exe':'deno');
+  const firstExisting=paths=>paths.find(value=>fs.existsSync(value))||paths[0];
+  // Docker, project-local venv and conventional system venv deployments all
+  // work without a Windows-specific path leaking into a Linux installation.
+  const python=settings.python||firstExisting([executable('ytdlp'),'/opt/extractors/ytdlp/bin/python',path.join(config.root,'.venv/bin/python')]);
+  const spotdlPython=settings.spotdlPython||firstExisting([executable('spotdl'),'/opt/extractors/spotdl/bin/python']);
+  const deno=settings.deno||firstExisting([path.join(directory,'deno',process.platform==='win32'?'deno.exe':'deno'),'/usr/local/bin/deno','/usr/bin/deno']);
   const script=path.join(config.root,'apps/server/extractors/bridge.py'),queue=[],children=new Set(),limit=settings.concurrency||1;
   let active=0,closed=false,completed=0,failed=0;
   function stop(processHandle){

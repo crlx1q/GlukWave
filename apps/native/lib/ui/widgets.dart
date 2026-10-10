@@ -572,7 +572,7 @@ class _WaveHeroState extends State<WaveHero>
                         gradient: LinearGradient(
                           colors: [
                             v.player,
-                            v.player.withValues(alpha: .94),
+                            v.player.withValues(alpha: .72),
                             v.player.withValues(alpha: 0),
                           ],
                           stops: const [0, .32, 1],

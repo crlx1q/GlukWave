@@ -31,6 +31,8 @@ import 'device_labels.dart';
 import 'listening_rail.dart';
 import 'lofi.dart';
 import '../l10n/wave_localizations.dart';
+import '../l10n/home_widget_strings.dart';
+import 'home_widget_previews.dart';
 
 enum WavePage {
   home,
@@ -106,6 +108,11 @@ class _GlukWaveAppState extends State<GlukWaveApp> with WidgetsBindingObserver {
   @override
   void didChangeLocales(List<Locale>? locales) {
     unawaited(widget.controller.systemLocaleChanged());
+  }
+
+  @override
+  void didChangePlatformBrightness() {
+    widget.controller.refreshHomeWidgetAppearance();
   }
 
   @override
@@ -3484,6 +3491,11 @@ class _WaveShellState extends State<WaveShell>
           wt('native.5dcbecbd1a', context: context),
           Icons.graphic_eq_rounded,
         ),
+        if (Platform.isAndroid)
+          'homeWidgets': (
+            homeWidgetText('title', context: context),
+            Icons.widgets_outlined,
+          ),
         'storage': (
           wt('native.212ccf5938', context: context),
           Icons.download_for_offline_outlined,
@@ -3606,6 +3618,48 @@ class _WaveShellState extends State<WaveShell>
   Widget settingsDetail() {
     final v = waveVisuals(context), appearance = c.customization.appearance;
     return switch (settingsSection) {
+      'homeWidgets' => Surface(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              homeWidgetText('title', context: context),
+              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              homeWidgetText('detail', context: context),
+              style: TextStyle(color: v.muted),
+            ),
+            const SizedBox(height: 22),
+            HomeWidgetPreviews(
+              track: c.audio.viewCurrent,
+              playing: c.audio.playing,
+              loading: c.trackLoading,
+              signedIn: c.loggedIn,
+              liked: c.likedIds.contains(c.audio.viewCurrent?.id),
+              artwork: Artwork(
+                controller: c,
+                url: c.audio.viewCurrent?.artwork,
+                size: 44,
+              ),
+              labels: HomeWidgetPreviewLabels(
+                text: (key) => homeWidgetText(key, context: context),
+              ),
+              onPinPlayer: () => run(c, () async {
+                if (await c.homeWidgets?.pin('player') != true) {
+                  c.tell(homeWidgetText('manual'));
+                }
+              }),
+              onPinWave: () => run(c, () async {
+                if (await c.homeWidgets?.pin('wave') != true) {
+                  c.tell(homeWidgetText('manual'));
+                }
+              }),
+            ),
+          ],
+        ),
+      ),
       'taste' => Surface(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

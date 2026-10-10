@@ -20,3 +20,4 @@ outputs/*.partial*
 .playwright-cli/
 __pycache__/
 *.pyc
+output/

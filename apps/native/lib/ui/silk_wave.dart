@@ -2,6 +2,7 @@ import 'dart:math' as math;
 import 'dart:typed_data';
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
+import 'wave_colors.dart';
 
 double _seed(int index) {
   final value = math.sin(index * 127.1 + 311.7) * 43758.5453123;
@@ -89,20 +90,12 @@ void drawSilkWave(
       y * size.height,
     ]);
   }
-  final dark =
-      background.r * .2126 + background.g * .7152 + background.b * .0722 < .48;
-  final tint = [accent.r, accent.g, accent.b];
-  final base = tint.map((v) => dark ? .72 + v * .24 : v * .45).toList();
-  final highlight = tint.map((v) => dark ? .40 + v * .58 : v * .68).toList();
+  final palette = SilkPalette.from(accent, background);
   final paint = Paint()..strokeCap = StrokeCap.round;
   for (var band = 0; band < positions.length; band++) {
-    final rgb = band == 7 ? highlight : base;
-    paint.color = Color.from(
-      alpha: .32 + (band + .5) / 8 * .50,
-      red: rgb[0],
-      green: rgb[1],
-      blue: rgb[2],
-    );
+    paint.color = palette
+        .atDepth((band + .5) / 8)
+        .withValues(alpha: .32 + (band + .5) / 8 * .50);
     paint.strokeWidth = .84 + (band + .5) / 8 * .84;
     canvas.drawRawPoints(
       ui.PointMode.points,

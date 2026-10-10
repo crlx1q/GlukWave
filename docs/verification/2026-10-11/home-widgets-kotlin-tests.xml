@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="tech.gluk.glukwave.HomeWidgetsTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-10-10T19:51:50" hostname="DESKTOP-1GFOIA1" time="17.772">
+  <properties/>
+  <testcase name="coldControlsOpenActualAppAndRenderingDoesNotStartAPlayerEngine" classname="tech.gluk.glukwave.HomeWidgetsTest" time="11.026"/>
+  <testcase name="staleOrForeignBroadcastCannotLaunchOrControl" classname="tech.gluk.glukwave.HomeWidgetsTest" time="0.521"/>
+  <testcase name="outsideArtworkAndMalformedImagesAreRejected" classname="tech.gluk.glukwave.HomeWidgetsTest" time="0.372"/>
+  <testcase name="themesAndResizeInflateActualRemoteViewsWithReadableControlsAndNoLayoutOverflow" classname="tech.gluk.glukwave.HomeWidgetsTest" time="5.047"/>
+  <testcase name="controlsAreImmutableDistinctAndBoundToInstalledWidgetAndAccountEpoch" classname="tech.gluk.glukwave.HomeWidgetsTest" time="0.499"/>
+  <testcase name="snapshotIsPrivateBoundedAndDoesNotContainCredentialsOrUrls" classname="tech.gluk.glukwave.HomeWidgetsTest" time="0.304"/>
+  <system-out><![CDATA[WIDGET_RENDER_PROOF=C:\Users\alish\AppData\Local\Temp\widgets-1791661922436
+]]></system-out>
+  <system-err><![CDATA[[Robolectric] WARN: Android SDK 36 requires Java 21 (have Java 17). Tests won't be run on SDK 36 unless explicitly requested.
+[Robolectric] WARN: Android SDK 37 requires Java 21 (have Java 17). Tests won't be run on SDK 37 unless explicitly requested.
+]]></system-err>
+</testsuite>

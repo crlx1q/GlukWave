@@ -13,6 +13,7 @@ import {soundcloudAdapter} from './soundcloud.js';
 import {youtubeAdapter} from './youtube.js';
 import {spotifyAdapter} from './spotify.js';
 import {audioMatch} from './matching.js';
+import {setupExtractedHls} from './hls.js';
 
 // A playable URL is never itself a license. Only verified source licenses or an
 // administrator's recorded, track-specific permission enable native delivery.
@@ -48,28 +49,49 @@ export function setupExtractors(app,ctx,overrides={}){
     // service to relay or redistribute the track. Keep that flag as metadata.
     return licensePermission(track.sourcePermission?.license);
   }
+  async function candidateAudio(track,{force=false}={}){
+    if(!(track.duration>0)||!track.artist)return null;
+    const target={...track,artist:track.artist.replace(/\s*-\s*Topic$/i,'')};
+    const found=await cached('audio-candidates:'+track.id,async()=>{
+      if(track.source==='spotify'&&runtime.available('spotify')){
+        try{const result=await adapters.spotify.matches(target);if(result.candidates?.some(candidate=>candidate.match.accepted))return result.candidates;}catch{/* Independent YouTube Music metadata fallback. */}
+      }
+      return adapters.youtube.search(target.artist+' '+target.title);
+    },240000);
+    const candidates=found.filter(candidate=>audioMatch(target,candidate).accepted).slice(0,3);
+    for(const candidate of candidates){
+      try{const identity=sourceUrl(candidate.source_url);if(!runtime.available(identity.source))continue;if(force)metadata.delete('metadata:'+identity.url);
+        const info=await details(identity.source,identity.url),permission=licensePermission(info.license);
+        const credit={...info,artist:String(info.artist||'').replace(/\s*-\s*Topic$/i,'')};
+        if(permission?.stream&&audioMatch(target,credit).accepted&&safeCdn(info.audio_url,'hls'))return {info,permission};
+      }catch{/* A broken candidate must not block another exact licensed match. */}
+    }
+    return null;
+  }
   async function resolved(track,{force=false}={}){
     const rights=await rightFor(track),url=rights?.audioSourceUrl||track.sourceUrl;
     if(rights&&rights.stream===false)return null;
-    if(track.source==='spotify'&&!rights?.audioSourceUrl)return null;
-    if(!['soundcloud','youtube','spotify'].includes(track.source))return null;
+    if(!['soundcloud','youtube','spotify','yandex'].includes(track.source))return null;
+    if(['spotify','yandex'].includes(track.source)&&!rights?.audioSourceUrl)return candidateAudio(track,{force});
     const identity=sourceUrl(url);if(!['soundcloud','youtube'].includes(identity.source))return null;
     if(!runtime.available(identity.source)){if(rights?.stream)fail(503,'EXTRACTOR_UNAVAILABLE','Трек временно недоступен. Повтори позже.');return null;}
     if(force)metadata.delete('metadata:'+identity.url);
     const info=await details(identity.source,identity.url),permission=await rightFor(track)||licensePermission(info.license);
     if(!permission?.stream)return null;
     if(track.source==='spotify'&&!audioMatch(track,info).accepted)fail(409,'AUDIO_MATCH_REJECTED','Не найдено точное совпадение этого трека.');
-    if(!safeCdn(info.audio_url))fail(502,'AUDIO_FORMAT_UNAVAILABLE','Этот формат пока недоступен в плеере.');
+    if(!safeCdn(info.audio_url,'hls'))fail(502,'AUDIO_FORMAT_UNAVAILABLE','Этот формат пока недоступен в плеере.');
     return {info,permission};
   }
   ctx.extractorAvailable=source=>!!adapters[source]&&runtime.available(source);
   ctx.extractorExpected=async track=>!!(await rightFor(track))?.stream;
-  ctx.extractorStats=()=>({...runtime.stats(),streams,metadataEntries:metadata.size(),pending:pending.size,conversion});
+  const hls=setupExtractedHls(app,ctx,{cdn:value=>safeCdn(value,'hls'),resolve:resolved,fetcher});
+  ctx.extractorStats=()=>({...runtime.stats(),streams,metadataEntries:metadata.size(),pending:pending.size,conversion,hls:hls.stats()});
   ctx.extractorMetadata=async(source,url)=>details(source,url);
   ctx.extractorSearch=async query=>cached('music-search:'+query.normalize('NFC').toLowerCase(),()=>adapters.youtube.search(query));
-  ctx.extractorPlayback=async track=>{
+  ctx.extractorPlayback=async(track,user,sessionId)=>{
     const result=await resolved(track);if(!result)return null;
-    return {kind:'audio',url:`/api/external-audio/${encodeURIComponent(track.id)}`,offline:!!result.permission.download,...(result.permission.download?{downloadUrl:`/api/external-audio/${encodeURIComponent(track.id)}/download`}:{}),audioSource:result.info.source,license:result.permission.basis};
+    if(/m3u8/i.test(result.info.protocol||'')||/\.m3u8(?:\?|$)/i.test(result.info.audio_url))return hls.issue(track,result,user,sessionId);
+    return {kind:'audio',url:`/api/external-audio/${encodeURIComponent(track.id)}`,offline:!!result.permission.download,...(result.permission.download?{downloadUrl:`/api/external-audio/${encodeURIComponent(track.id)}/download`}:{}),audioSource:result.info.source,license:result.permission.basis,attribution:{source:result.info.source,artist:result.info.artist||track.artist,sourceUrl:result.info.source_url||track.sourceUrl}};
   };
   async function pull(url,options={}){
     let current=safeCdn(url,options.kind||'audio');if(!current)fail(502,'EXTRACTOR_URL','Источник не открыл аудио.');
@@ -100,6 +122,7 @@ export function setupExtractors(app,ctx,overrides={}){
     if(req.headers.range&&!/^bytes=(?:\d+-\d*|-\d+)$/.test(req.headers.range))fail(416,'INVALID_RANGE','Этот диапазон аудио недоступен.');
     const track=await ctx.requireTrack(req.params.id,req.auth.user);let result=await resolved(track);
     if(!result)fail(403,'DIRECT_AUDIO_UNAVAILABLE','Этот трек доступен только на площадке источника.');
+    if(!safeCdn(result.info.audio_url))fail(422,'AUDIO_FORMAT_UNAVAILABLE','Этот трек доступен для потокового прослушивания.');
     if(download&&!result.permission.download)fail(403,'OFFLINE_UNAVAILABLE','Скачивание этого трека недоступно.');
     const mp3=download&&req.query.format==='mp3';if(req.query.format&&req.query.format!=='mp3'&&req.query.format!=='original')fail(400,'AUDIO_FORMAT','Выбери исходный формат или MP3.');
     if(mp3&&(!result.permission.convert||!ffmpeg))fail(403,'CONVERSION_UNAVAILABLE','Конвертация этого трека недоступна.');
@@ -132,10 +155,10 @@ export function setupExtractors(app,ctx,overrides={}){
   app.get('/api/external-audio/:id/download',requireAuth,limiter,asyncRoute((req,res)=>serveAudio(req,res,true)));
   app.get('/api/catalog/search',limiter,asyncRoute(async(req,res)=>{const query=parse(text(200),req.query.q),source=parse(z.enum(['youtube','soundcloud','spotify']),req.query.source||'youtube');const tracks=source==='youtube'?await ctx.extractorSearch(query):await ctx.searchProvider(source,query,req.auth?.user?.id);res.set('Cache-Control','private, no-store').json({tracks:tracks.map(track=>({title:track.title,artist:track.artist,album:track.album,duration:track.duration,cover:track.cover||track.artwork,source,track_id:track.track_id||track.sourceId,audio_url:null}))});}));
   app.get('/api/tracks/:id/audio-matches',requireAuth,limiter,asyncRoute(async(req,res)=>{const track=await ctx.requireTrack(req.params.id,req.auth.user);if(track.source!=='spotify')fail(400,'UNSUPPORTED_URL','Сопоставление доступно для Spotify.');res.set('Cache-Control','private, no-store').json(await cached('matches:'+track.id,()=>adapters.spotify.matches(track)));}));
-  app.get('/api/admin/extractors',requireAdmin,asyncRoute(async(req,res)=>{if(Date.now()-versionsAt>300000){versions=await runtime.versions();versionsAt=Date.now();}res.set('Cache-Control','no-store').json({adapters:Object.keys(adapters).map(id=>({id,available:runtime.available(id)})),versions,queue:runtime.stats(),streaming:streams,metadataEntries:metadata.size(),pending:pending.size,conversion,ffmpeg:!!ffmpeg});}));
+  app.get('/api/admin/extractors',requireAdmin,asyncRoute(async(req,res)=>{if(Date.now()-versionsAt>300000){versions=await runtime.versions();versionsAt=Date.now();}res.set('Cache-Control','no-store').json({adapters:Object.keys(adapters).map(id=>({id,available:runtime.available(id)})),versions,queue:runtime.stats(),streaming:streams,metadataEntries:metadata.size(),pending:pending.size,conversion,hls:hls.stats(),ffmpeg:!!ffmpeg});}));
   const permissionSchema=z.object({stream:z.boolean(),download:z.boolean(),convert:z.boolean(),basis:z.enum(['owner-permission','license-agreement']),evidenceUrl:z.url().max(2048),audioSourceUrl:z.url().max(2048).optional(),expiresAt:z.number().int().positive().optional()}).strict();
   app.get('/api/admin/tracks/:id/audio-permission',requireAdmin,asyncRoute(async(req,res)=>{await ctx.requireTrack(req.params.id,req.auth.user);res.set('Cache-Control','no-store').json({permission:await store.get('audioPermissions',req.params.id)});}));
   app.put('/api/admin/tracks/:id/audio-permission',requireAdmin,asyncRoute(async(req,res)=>{const track=await ctx.requireTrack(req.params.id,req.auth.user),body=parse(permissionSchema,req.body);if(body.download&&!body.stream||body.convert&&!body.download)fail(400,'VALIDATION','Проверь разрешения аудио.');if(new URL(body.evidenceUrl).protocol!=='https:')fail(400,'INVALID_URL','Нужна HTTPS-ссылка на разрешение.');if(track.source==='spotify'&&!body.audioSourceUrl)fail(400,'AUDIO_MATCH_REQUIRED','Укажи точный источник аудио для Spotify.');if(body.audioSourceUrl&&!['soundcloud','youtube'].includes(sourceUrl(body.audioSourceUrl).source))fail(400,'UNSUPPORTED_URL','Нужен источник SoundCloud или YouTube.');const permission={id:track.id,...body,updatedBy:req.auth.user.id,updatedAt:now()};await store.put('audioPermissions',track.id,permission);await ctx.audit('audio.permission',req.auth.user.id,{trackId:track.id,stream:body.stream,download:body.download,convert:body.convert});res.json({permission});}));
   app.delete('/api/admin/tracks/:id/audio-permission',requireAdmin,asyncRoute(async(req,res)=>{await store.remove('audioPermissions',req.params.id);metadata.clear();await ctx.audit('audio.permission.remove',req.auth.user.id,{trackId:req.params.id});res.json({ok:true});}));
-  ctx.closeExtractors=async()=>{for(const controller of transfers)controller.abort();metadata.clear();await runtime.close();await Promise.allSettled([...pending.values()]);};
+  ctx.closeExtractors=async()=>{hls.close();for(const controller of transfers)controller.abort();metadata.clear();await runtime.close();await Promise.allSettled([...pending.values()]);};
 }

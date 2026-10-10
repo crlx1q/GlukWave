@@ -175,6 +175,8 @@ class WaveAudioHandler extends BaseAudioHandler {
   final _random = Random();
   final List<int> _history = [];
   Future<bool> Function(String command, Json payload)? onTransport;
+  Future<void> Function(String command, String scope)? onWidgetCommand;
+  String? widgetGrant;
   Future<bool> Function(WaveTrack track, AudioServiceRepeatMode repeat)?
   onEnded;
   void Function()? onProcessingChanged;
@@ -719,6 +721,24 @@ class WaveAudioHandler extends BaseAudioHandler {
       next = 0;
     }
     await playTrack(tracks[next], list: tracks);
+  }
+
+  @override
+  Future<dynamic> customAction(
+    String name, [
+    Map<String, dynamic>? extras,
+  ]) async {
+    if (name == 'glukwave.widget') {
+      final command = extras?['command'], scope = extras?['scope'];
+      if (command is String &&
+          scope is String &&
+          widgetGrant != null &&
+          extras?['grant'] == widgetGrant) {
+        await onWidgetCommand?.call(command, scope);
+      }
+      return null;
+    }
+    return super.customAction(name, extras);
   }
 
   @override

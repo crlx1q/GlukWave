@@ -1,6 +1,6 @@
 import {fail} from './util.js';
 
-export const playbackRevision = 2;
+export const playbackRevision = 3;
 export const playbackMode = 'native-audio';
 
 // Resolve at playback time. Catalog embed metadata is never a playable fallback.
@@ -28,7 +28,7 @@ export function createPlaybackResolver(ctx) {
       }catch(error){lastError=error;record(track,adapter,error);}
       return null;
     };
-    const extract=()=>attempt('licensed',()=>ctx.extractorPlayback?.(track));
+    const extract=()=>attempt('licensed',()=>ctx.extractorPlayback?.(track,user,sessionId));
     let audio=expected?await extract():null;
     if(!audio)audio=await attempt('soundcloud',()=>ctx.soundcloudPlayback?.(track,user,sessionId));
     if(!audio&&!expected)audio=await extract();

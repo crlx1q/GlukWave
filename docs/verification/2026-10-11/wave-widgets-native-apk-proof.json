@@ -1,0 +1,171 @@
+{
+  "apk": "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\apps\\native\\build\\app\\outputs\\flutter-apk\\app-debug.apk",
+  "bytes": 185477775,
+  "builtAt": "2026-10-10T19:58:22.377053+00:00",
+  "sha256": "6382475a003ad499b36120d440f833fa623f307d07d1704744f8fc8a2bda97d0",
+  "sourceFrozenAt": "2026-10-10T19:54:37.513206+00:00",
+  "sourceSha256": "19c860096c273cfc59de313d55b9e755d9e4997484771d58452a3aa98b128dd7",
+  "sourceFiles": 149,
+  "kernelSha256": "7cf999db1b346f75ba41175b51ad10318ead6dfd55dc55e39b753a11331655b5",
+  "kernelMatchesBuildOutput": true,
+  "compileDefine": "https://wave.gluk.tech",
+  "kernelFeatureMarkers": {
+    "tech.gluk.glukwave/home_widgets": true,
+    "glukwave.widget": true,
+    "Home screen widgets": true,
+    "https://wave.gluk.tech": true,
+    "full-player": true,
+    "player-cover-gesture": true,
+    "language-selector": true,
+    "language.auto": true,
+    "locale:change": true,
+    "lrcClock": true,
+    "artworkForDisplay": true,
+    "-t500x500.": true,
+    "/api/diagnostics/events": true,
+    "glukwave-lan-v1": true,
+    "LAN pairing": true,
+    "seasonalEffects": true,
+    "lan-enable": true,
+    "ROOM_STATE": true,
+    "/lrclib": true,
+    "Find on LRCLIB": true,
+    "/genius/preview": true,
+    "genius-preview": true,
+    "cover-ambient-transform": true,
+    "/discord": true,
+    "discord:changed": true,
+    "discordPresence": true,
+    "deviceVolume": true,
+    "/api/auth/native-captcha": true,
+    "Invalid authentication expiry": true,
+    "desktop-quick-volume": true,
+    "account:state": true,
+    "track-loading-cover": true,
+    "ScrollingLabel": true,
+    "/connect": true,
+    "outputActive": true,
+    "/account/sessions": true,
+    "downloadUrl": true,
+    "adoptOnly": true,
+    "/taste": true,
+    "/friends": true,
+    "/jams": true,
+    "/api/account/": true,
+    "currentPassword": true,
+    "Email sent": true,
+    "/playlists/discover": true
+  },
+  "localCatalogsInKernel": {
+    "en": true,
+    "ru": true,
+    "kk": true,
+    "uk": true,
+    "de": true,
+    "es": true
+  },
+  "qaTrackBundled": false,
+  "fontManifestVerified": true,
+  "staticFontFaces": [
+    {
+      "asset": "assets/fonts/Nunito-Regular.ttf",
+      "weight": 400,
+      "variable": false,
+      "sha256": "29f17d41574376520b263bde34a4fecb11814233ff280c66befce6020c5e3cc4",
+      "matchesSource": true
+    },
+    {
+      "asset": "assets/fonts/Nunito-Medium.ttf",
+      "weight": 500,
+      "variable": false,
+      "sha256": "818d89d5417ed2c7686c07097469f417d41dfe70b8e9514466637612f7ab9d8d",
+      "matchesSource": true
+    },
+    {
+      "asset": "assets/fonts/Nunito-SemiBold.ttf",
+      "weight": 600,
+      "variable": false,
+      "sha256": "e6ac9b7051c6b3c4a23817a9272e2a8f7124896b36e68b30a3d46b452a0418a5",
+      "matchesSource": true
+    },
+    {
+      "asset": "assets/fonts/Nunito-Bold.ttf",
+      "weight": 700,
+      "variable": false,
+      "sha256": "19acc4b8e7dc15b49c3802b6f2b53a1c41d7ee548733204a367052fa53387933",
+      "matchesSource": true
+    },
+    {
+      "asset": "assets/fonts/Nunito-ExtraBold.ttf",
+      "weight": 800,
+      "variable": false,
+      "sha256": "9bc8f0d0c03926636f41ec699c6563dd01835b510c194e2086811eaf65a8e527",
+      "matchesSource": true
+    },
+    {
+      "asset": "assets/fonts/Nunito-Black.ttf",
+      "weight": 900,
+      "variable": false,
+      "sha256": "b3628977111142f66472632770b76ee2c0665a40ae536bd64971a3bc19087717",
+      "matchesSource": true
+    },
+    {
+      "asset": "assets/fonts/Manrope-Regular.ttf",
+      "weight": 400,
+      "variable": false,
+      "sha256": "c443e2325b9ff17933ec2f5a99d835af430a545901d146f81f4fc9f4882b6623",
+      "matchesSource": true
+    },
+    {
+      "asset": "assets/fonts/Manrope-Medium.ttf",
+      "weight": 500,
+      "variable": false,
+      "sha256": "78177fa989a3feb256c1750faca4a05ab0b70f093f5f45b12a537e7b939bae9c",
+      "matchesSource": true
+    },
+    {
+      "asset": "assets/fonts/Manrope-SemiBold.ttf",
+      "weight": 600,
+      "variable": false,
+      "sha256": "1eea52be7b84d0841e39d6102cdf2f6777dbdbd6781d3a40a3323a8151163f07",
+      "matchesSource": true
+    },
+    {
+      "asset": "assets/fonts/Manrope-Bold.ttf",
+      "weight": 700,
+      "variable": false,
+      "sha256": "06ef9bf16d6ce1b6b8d6b953ea8b9e6c30e4b3708cf039132224fb2a5aa77102",
+      "matchesSource": true
+    },
+    {
+      "asset": "assets/fonts/Manrope-ExtraBold.ttf",
+      "weight": 800,
+      "variable": false,
+      "sha256": "63050130f7beccf497d740a2af39f8d5d49447e9ed777014e8d6d413442425ba",
+      "matchesSource": true
+    }
+  ],
+  "fontManifestSha256": "dc61e379e1f65f8de62057e95a64baaebcbbf8e5ee2450f736e2611705ca210f",
+  "nunitoLicenseIncluded": true,
+  "manifestVerified": true,
+  "androidWidgetReceiversPrivate": {
+    "WavePlayerWidget": true,
+    "WaveLargeWidget": true,
+    "WidgetCommandReceiver": true
+  },
+  "widgetTestRuntimeBundled": false,
+  "version": "1.0.0",
+  "versionCode": 11,
+  "minSdk": 24,
+  "targetSdk": 36,
+  "output": "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\outputs\\GlukWave-android-debug.apk",
+  "outputMatchesBuild": true,
+  "signatureVerified": true,
+  "signatureScheme": "v2",
+  "analyzerIssues": 0,
+  "standardTestsPassed": 228,
+  "signature": "debug",
+  "deviceRuntimeVerified": false,
+  "manropeLicenseIncluded": true,
+  "iosBuilt": false
+}

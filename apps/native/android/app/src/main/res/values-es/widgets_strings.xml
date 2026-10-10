@@ -1,0 +1,8 @@
+<resources>
+  <string name="widget_empty">Elige tu música</string>
+  <string name="widget_sign_in">Abre GlukWave para iniciar sesión</string>
+  <string name="widget_wave_label">Mi ola</string>
+  <string name="widget_open">Abrir GlukWave</string>
+  <string name="widget_player_name">Reproductor rápido</string>
+  <string name="widget_wave_name">GlukWave · Mi ola</string>
+</resources>

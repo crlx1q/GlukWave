@@ -1,0 +1,19 @@
+{
+  "checkedAt": "2026-10-10T20:03:06.736Z",
+  "passed": true,
+  "archiveBytes": 49306487,
+  "archiveSha256": "8d39726779e273853f557d5fd1b018f7010e8f900763c731029959bbe94fd647",
+  "entries": 821,
+  "allCrcAndSourceHashesMatched": true,
+  "textFilesScanned": 548,
+  "localPrivateValuesAbsent": true,
+  "liveCredentialPatternsAbsent": true,
+  "staticFontFaces": 6,
+  "manropeStaticFontFaces": 5,
+  "frozenNativeSourcesMatched": 149,
+  "currentWebBuild": "/assets/main-h9GP9llD.js",
+  "runtimeDataExcluded": true,
+  "apkSha256": "6382475a003ad499b36120d440f833fa623f307d07d1704744f8fc8a2bda97d0",
+  "windowsSha256": "c47bdbfae8199c208b70bb32ad816c4b7ebd6cddd8688c2ee0e18863307ddc6f",
+  "installerSha256": "7e357b0f66f365617a63d6dc8ac55253ebb74aea5eb3ec9e6c60fe76441eb8cb"
+}

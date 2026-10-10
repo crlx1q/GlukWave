@@ -1,0 +1,11 @@
+00:00 +0: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/home_widgets_test.dart
+00:00 +0: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/home_widgets_test.dart: cold action is consumed once; unknown commands and foreign arguments do not dispatch
+00:00 +1: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/home_widgets_test.dart: progress/heartbeat notifications with identical state do not rewrite launcher
+00:00 +2: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/home_widgets_test.dart: slow platform write coalesces to newest track and clear drops queued metadata
+00:00 +3: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/home_widgets_test.dart: pin only supports the two real provider variants
+00:00 +4: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/home_widgets_test.dart: all six locales ship every widget instruction and accessibility label
+00:01 +5: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/home_widget_controller_test.dart: media-session widget custom actions use existing account transport and like handlers
+00:01 +6: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/home_widget_controller_test.dart: signed-out, stale account and unknown commands never reach playback
+00:01 +7: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/home_widget_controller_test.dart: room listener cannot skip/start Wave; jam listener may toggle existing output
+00:01 +8: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/home_widget_controller_test.dart: Wave uses backend recommendations; a response after account switch cannot start music
+00:01 +9: All tests passed!

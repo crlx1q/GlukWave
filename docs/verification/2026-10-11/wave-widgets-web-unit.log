@@ -1,0 +1,36 @@
+✔ same browser installation does not play from its second tab (6.0494ms)
+✔ separate listening allows another personal output, but rooms still have one output (0.3883ms)
+✔ an account with no selected online output can be claimed locally (0.3816ms)
+✔ room with disconnected output stays silent until one surface is selected (0.4108ms)
+✔ room mirror timeline includes elapsed server time and bounded network estimate (0.512ms)
+✔ paused room and disconnected owner keep their frozen position (0.4464ms)
+✔ progress extrapolates only playing activity and clamps end or malformed values (2.6396ms)
+✔ authorization redirects only accept actual HTTPS Discord authorization endpoints (1.2028ms)
+✔ invite parsing keeps explicit listen or jam identity and refuses path injection (2.4615ms)
+✔ explicit invite intent survives an external sign-in return within a bounded lifetime (1.5007ms)
+✔ status refresh coalesces notifications without concurrent duplicate API calls (20.3187ms)
+✔ account panel cleanup aborts and discards old identity results including queued refresh (5.4866ms)
+✔ all Discord labels are present in six catalogs with matching interpolation (58.897ms)
+✔ Genius preview links are HTTPS lyrics pages on actual allowed hosts (3.4809ms)
+✔ Starting another preview aborts old request, closing discards pending result (1.0369ms)
+✔ artist preferences preserve distinct catalogue identities and do not mutate the input (11.6927ms)
+✔ playlist collage uses at most four distinct nonempty actual artwork URLs in track order (0.9164ms)
+✔ free accessibility and basic colors are allowed across every theme (0.9454ms)
+✔ free accounts retain prior advanced values, but changed advanced settings require a plan (1.3186ms)
+✔ legacy visual mood identifiers map to the server recommendation contract (0.7152ms)
+✔ all six catalogs contain every new feature label and preserve interpolation tokens (233.5121ms)
+✔ cancelled media readiness stops polling and rejects the pending transfer (35.2333ms)
+✔ cache artwork always uses owned API or known-track cover proxy (1.3357ms)
+✔ ready media detaches cancellation and cannot be rejected later (45.1053ms)
+✔ source that never becomes ready has a bounded failure (15.9802ms)
+✔ download permission selects only same-origin application API (1.7242ms)
+✔ Folded wave preserves chosen pigment in all themes with brighter sparse depth highlights (107.5022ms)
+✔ No depth extrapolation or neutral accent hue is invented (4.2628ms)
+ℹ tests 28
+ℹ suites 0
+ℹ pass 28
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1153.3642

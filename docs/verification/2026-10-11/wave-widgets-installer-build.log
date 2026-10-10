@@ -1,0 +1,177 @@
+
+Algorithm       Hash                                                                   Path
+---------       ----                                                                   ----
+SHA256          AA38A8CFCE6179B87181609B1C730A29EAF26138FC833AF5759E67576770F3A3       C:\Users\alish\Documents\Codex\2…
+Inno Setup 6 Command-Line Compiler
+Copyright (C) 1997-2026 Jordan Russell. All rights reserved.
+Portions Copyright (C) 2000-2026 Martijn Laan. All rights reserved.
+Portions Copyright (C) 2001-2004 Alex Yackimoff. All rights reserved.
+https://www.innosetup.com
+
+Compiler engine version: Inno Setup 6.7.3
+Non-commercial use only
+
+Preprocessing
+   Reading file: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\work\tools\inno-portable\tools\ISPPBuiltins.iss
+Parsing [Setup] section, line 12
+Parsing [Setup] section, line 13
+Parsing [Setup] section, line 14
+Parsing [Setup] section, line 15
+Parsing [Setup] section, line 16
+Parsing [Setup] section, line 17
+Parsing [Setup] section, line 18
+Parsing [Setup] section, line 19
+Parsing [Setup] section, line 20
+Parsing [Setup] section, line 21
+Parsing [Setup] section, line 22
+Parsing [Setup] section, line 23
+Parsing [Setup] section, line 24
+Parsing [Setup] section, line 25
+Parsing [Setup] section, line 26
+Parsing [Setup] section, line 27
+Parsing [Setup] section, line 28
+Parsing [Setup] section, line 29
+Parsing [Setup] section, line 30
+Parsing [Setup] section, line 31
+Parsing [Setup] section, line 32
+Parsing [Setup] section, line 33
+Parsing [Setup] section, line 34
+Parsing [Setup] section, line 35
+Parsing [Setup] section, line 36
+Parsing [Setup] section, line 37
+Reading file (WizardImageFile)
+Reading file (WizardSmallImageFile)
+Preparing Setup program executable
+   Verification successful
+   Updating icons (Setup.e32)
+   Updating version info (Setup.e32)
+Determining language code pages
+Parsing [Languages] section, line 40
+   Reading file: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\work\tools\inno-portable\tools\Default.isl
+Parsing [Languages] section, line 41
+   Reading file: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\work\tools\inno-portable\tools\Languages\Russian.isl
+Parsing [Languages] section, line 42
+   Reading file: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\work\tools\inno-portable\tools\Languages\Ukrainian.isl
+Parsing [Languages] section, line 43
+   Reading file: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\work\tools\inno-portable\tools\Languages\German.isl
+Parsing [Languages] section, line 44
+   Reading file: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\work\tools\inno-portable\tools\Languages\Spanish.isl
+   Messages in script file
+Reading default messages from Default.isl
+Parsing [Languages] section, line 40
+   Reading file: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\work\tools\inno-portable\tools\Default.isl
+Parsing [Languages] section, line 41
+   Reading file: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\work\tools\inno-portable\tools\Languages\Russian.isl
+Parsing [Languages] section, line 42
+   Reading file: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\work\tools\inno-portable\tools\Languages\Ukrainian.isl
+Parsing [Languages] section, line 43
+   Reading file: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\work\tools\inno-portable\tools\Languages\German.isl
+Parsing [Languages] section, line 44
+   Reading file: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\work\tools\inno-portable\tools\Languages\Spanish.isl
+Parsing [LangOptions], [Messages], and [CustomMessages] sections
+   Messages in script file
+Reading [Code] section
+Parsing [Tasks] section, line 64
+Parsing [Tasks] section, line 65
+Parsing [Icons] section, line 72
+Parsing [Icons] section, line 73
+Parsing [Registry] section, line 76
+Parsing [Registry] section, line 77
+Parsing [Run] section, line 80
+Parsing [Files] section, line 68
+Parsing [Files] section, line 69
+   Reading version info: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\work\tools\webview2\MicrosoftEdgeWebview2Setup.exe
+Compiling [Code] section
+Deleting GlukWave-Setup.exe from output directory
+Creating setup files
+   Verification successful
+   Updating icons (Setup.exe)
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\audio_service_win_plugin.dll
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\concrt140.dll
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\firebase_core_plugin.lib
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\flutter_inappwebview_windows_plugin.dll
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\flutter_secure_storage_windows_plugin.dll
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\flutter_windows.dll
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\glukwave.exe
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\glukwave.exp
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\glukwave.lib
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\libmpv-2.dll
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\media_kit_libs_windows_audio_plugin.dll
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\msvcp140.dll
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\msvcp140_1.dll
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\msvcp140_2.dll
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\msvcp140_atomic_wait.dll
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\msvcp140_codecvt_ids.dll
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\screen_retriever_windows_plugin.dll
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\START.txt
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\THIRD-PARTY.md
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\tray_manager_plugin.dll
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\url_launcher_windows_plugin.dll
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\vccorlib140.dll
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\vcruntime140.dll
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\vcruntime140_1.dll
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\vcruntime140_threads.dll
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\WebView2Loader.dll
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\window_manager_plugin.dll
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\data\app.so
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\data\icudtl.dat
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\data\flutter_assets\AssetManifest.bin
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\data\flutter_assets\AssetManifest.json
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\data\flutter_assets\FontManifest.json
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\data\flutter_assets\NativeAssetsManifest.json
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\data\flutter_assets\NOTICES.Z
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\data\flutter_assets\assets\app_icon.ico
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\data\flutter_assets\assets\coast.jpg
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\data\flutter_assets\assets\forest.jpg
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\data\flutter_assets\assets\google-g.png
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\data\flutter_assets\assets\logo.gif
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\data\flutter_assets\assets\logo.png
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\data\flutter_assets\assets\mark.svg
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\data\flutter_assets\assets\Nunito.ttf
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\data\flutter_assets\assets\fonts\Manrope-Bold.ttf
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\data\flutter_assets\assets\fonts\Manrope-ExtraBold.ttf
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\data\flutter_assets\assets\fonts\Manrope-Medium.ttf
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\data\flutter_assets\assets\fonts\Manrope-Regular.ttf
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\data\flutter_assets\assets\fonts\Manrope-SemiBold.ttf
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\data\flutter_assets\assets\fonts\Nunito-Black.ttf
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\data\flutter_assets\assets\fonts\Nunito-Bold.ttf
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\data\flutter_assets\assets\fonts\Nunito-ExtraBold.ttf
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\data\flutter_assets\assets\fonts\Nunito-Medium.ttf
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\data\flutter_assets\assets\fonts\Nunito-Regular.ttf
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\data\flutter_assets\assets\fonts\Nunito-SemiBold.ttf
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\data\flutter_assets\assets\licenses\just_audio_media_kit-UNLICENSE.txt
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\data\flutter_assets\assets\licenses\Manrope-OFL.txt
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\data\flutter_assets\assets\licenses\Nunito-OFL.txt
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\data\flutter_assets\fonts\MaterialIcons-Regular.otf
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\data\flutter_assets\packages\cupertino_icons\assets\CupertinoIcons.ttf
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\data\flutter_assets\packages\flutter_inappwebview\assets\t_rex_runner\t-rex.css
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\data\flutter_assets\packages\flutter_inappwebview\assets\t_rex_runner\t-rex.html
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\data\flutter_assets\packages\flutter_inappwebview_web\assets\web\web_support.js
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\data\flutter_assets\packages\media_kit\assets\web\hls1.4.10.js
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\data\flutter_assets\shaders\ink_sparkle.frag
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\licenses\Cryptography-Apache-2.0.txt
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\licenses\FFmpeg-LGPL-2.1.txt
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\licenses\FFmpeg-LGPL-3.0.txt
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\licenses\FFmpeg-static-GPL.txt
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\licenses\Hls-js-Apache-2.0.txt
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\licenses\InAppWebView-Apache-2.0.txt
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\licenses\Inno-Setup.txt
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\licenses\Morphicons-MIT.txt
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\licenses\MPV-Copyright.txt
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\licenses\MPV-GPL-2.0.txt
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\licenses\MPV-LGPL-2.1.txt
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-windows\licenses\Nunito-OFL.txt
+   Compressing: C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\work\tools\webview2\MicrosoftEdgeWebview2Setup.exe   (1.3.275.13)
+   Compressing Setup program executable
+   Updating version info (Setup.exe)
+   Updating manifest (Setup.exe)
+
+
+Successful compile (36,656 sec). Resulting Setup program filename is:
+C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-Setup.exe
+
+FullName : C:\Users\alish\Documents\Codex\2026-10-06\glukwave-soundcloud-yandex-music-youtube-spotify\outputs\GlukWave-Setup.exe
+Length   : 24332649
+
+SHA256          7E357B0F66F365617A63D6DC8AC55253EBB74AEA5EB3EC9E6C60FE76441EB8CB       C:\Users\alish\Documents\Codex\2…
+

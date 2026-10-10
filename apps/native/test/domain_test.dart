@@ -64,7 +64,9 @@ void main() {
       'source': 'spotify',
       'playback': {'kind': 'spotify', 'offline': true},
     });
-    expect(external.playable, isFalse);
+    // Metadata can enter the queue for server resolution, but cannot enter
+    // the offline cache or directly authorize an audio URL.
+    expect(external.playable, isTrue);
     expect(external.offline, isFalse);
     final local = WaveTrack({
       'id': 'audio-1',

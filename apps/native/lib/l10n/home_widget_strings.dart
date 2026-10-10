@@ -1,0 +1,166 @@
+import 'package:flutter/widgets.dart';
+import 'wave_localizations.dart';
+
+String homeWidgetText(String key, {BuildContext? context}) {
+  final language = context == null
+      ? WaveStrings.current.language
+      : WaveStrings.of(context).language;
+  final i = ['en', 'ru', 'kk', 'uk', 'de', 'es'].indexOf(language);
+  return homeWidgetStrings[key]?[i < 0 ? 0 : i] ?? key;
+}
+
+const homeWidgetStrings = <String, List<String>>{
+  'title': [
+    'Home screen widgets',
+    'Виджеты рабочего стола',
+    'Басты экран виджеттері',
+    'Віджети головного екрана',
+    'Startbildschirm-Widgets',
+    'Widgets de inicio',
+  ],
+  'detail': [
+    'Your music, one touch away. Resize widgets on your home screen.',
+    'Твоя музыка в одно касание. Размер можно менять на рабочем столе.',
+    'Музыка бір түртумен. Басты экранда өлшемін өзгертуге болады.',
+    'Твоя музика в один дотик. Розмір можна змінити на головному екрані.',
+    'Deine Musik mit einem Tippen. Die Größe lässt sich auf dem Startbildschirm ändern.',
+    'Tu música a un toque. Cambia el tamaño en la pantalla de inicio.',
+  ],
+  'player': [
+    'Quick player',
+    'Быстрый плеер',
+    'Жылдам плеер',
+    'Швидкий плеєр',
+    'Schnellplayer',
+    'Reproductor rápido',
+  ],
+  'wave': [
+    'My Wave',
+    'Моя волна',
+    'Менің толқыным',
+    'Моя хвиля',
+    'Meine Welle',
+    'Mi ola',
+  ],
+  'add': [
+    'Add widget',
+    'Добавить виджет',
+    'Виджет қосу',
+    'Додати віджет',
+    'Widget hinzufügen',
+    'Añadir widget',
+  ],
+  'manual': [
+    'Long press your home screen, choose Widgets and find GlukWave.',
+    'Зажми свободное место на рабочем столе, выбери «Виджеты» и найди GlukWave.',
+    'Басты экрандағы бос орынды басып ұстап, «Виджеттер» бөлімінен GlukWave таңда.',
+    'Затисни вільне місце на головному екрані, вибери «Віджети» й знайди GlukWave.',
+    'Halte eine freie Stelle auf dem Startbildschirm gedrückt, wähle Widgets und suche GlukWave.',
+    'Mantén pulsado un espacio en el inicio, elige Widgets y busca GlukWave.',
+  ],
+  'empty': [
+    'Choose your music',
+    'Выбери свою музыку',
+    'Музыкаңды таңда',
+    'Обери свою музику',
+    'Wähle deine Musik',
+    'Elige tu música',
+  ],
+  'signedOut': [
+    'Open GlukWave to sign in',
+    'Открой GlukWave, чтобы войти',
+    'Кіру үшін GlukWave аш',
+    'Відкрий GlukWave, щоб увійти',
+    'Öffne GlukWave zum Anmelden',
+    'Abre GlukWave para iniciar sesión',
+  ],
+  'loading': [
+    'Loading track…',
+    'Загружаем трек…',
+    'Трек жүктелуде…',
+    'Завантажуємо трек…',
+    'Titel wird geladen…',
+    'Cargando pista…',
+  ],
+  'paused': [
+    'Paused',
+    'На паузе',
+    'Кідіртілген',
+    'На паузі',
+    'Pausiert',
+    'En pausa',
+  ],
+  'ready': [
+    'On your frequency',
+    'На твоей частоте',
+    'Сенің жиілігіңде',
+    'На твоїй частоті',
+    'Auf deiner Frequenz',
+    'En tu frecuencia',
+  ],
+  'open': [
+    'Open GlukWave',
+    'Открыть GlukWave',
+    'GlukWave ашу',
+    'Відкрити GlukWave',
+    'GlukWave öffnen',
+    'Abrir GlukWave',
+  ],
+  'play': [
+    'Play',
+    'Воспроизвести',
+    'Ойнату',
+    'Відтворити',
+    'Abspielen',
+    'Reproducir',
+  ],
+  'pause': ['Pause', 'Пауза', 'Кідірту', 'Пауза', 'Pause', 'Pausa'],
+  'previous': [
+    'Previous track',
+    'Предыдущий трек',
+    'Алдыңғы трек',
+    'Попередній трек',
+    'Vorheriger Titel',
+    'Pista anterior',
+  ],
+  'next': [
+    'Next track',
+    'Следующий трек',
+    'Келесі трек',
+    'Наступний трек',
+    'Nächster Titel',
+    'Pista siguiente',
+  ],
+  'like': [
+    'Like track',
+    'Полюбить трек',
+    'Ұнату',
+    'Вподобати трек',
+    'Titel mögen',
+    'Me gusta',
+  ],
+  'unlike': [
+    'Unlike track',
+    'Убрать из любимых',
+    'Ұнатудан алып тастау',
+    'Прибрати з улюблених',
+    'Gefällt mir entfernen',
+    'Quitar me gusta',
+  ],
+  'permission': [
+    'This room’s host controls the queue.',
+    'Очередью управляет ведущий комнаты.',
+    'Кезекті бөлме жүргізушісі басқарады.',
+    'Чергою керує ведучий кімнати.',
+    'Die Warteschlange steuert der Gastgeber.',
+    'El anfitrión controla la cola.',
+  ],
+  'noTracks': [
+    'Choose artists or add tracks to tune your Wave.',
+    'Выбери артистов или добавь треки, чтобы настроить волну.',
+    'Толқыныңды баптау үшін орындаушыларды таңда немесе тректер қос.',
+    'Обери артистів або додай треки, щоб налаштувати хвилю.',
+    'Wähle Künstler oder füge Titel hinzu, um deine Welle einzustellen.',
+    'Elige artistas o añade pistas para ajustar tu ola.',
+  ],
+};

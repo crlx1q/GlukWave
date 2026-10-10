@@ -1,0 +1,510 @@
+{
+  "passed": true,
+  "scope": "Actual isolated browser, original audio fixture; viewport/theme/scroll transitions with one unchanged long track",
+  "cases": [
+    {
+      "theme": "light",
+      "w": 1440,
+      "labels": [
+        {
+          "animation": "wave-label-scroll",
+          "moving": "true",
+          "overflow": "true",
+          "rect": {
+            "bottom": 926.640625,
+            "height": 18.1875,
+            "left": 191,
+            "right": 454.703125,
+            "top": 908.453125,
+            "width": 263.703125,
+            "x": 191,
+            "y": 908.453125
+          },
+          "text": "A distant evening — an original GlukWave verification recording with a deliberately long descriptive title",
+          "textWidth": 634,
+          "width": 264
+        },
+        {
+          "animation": "wave-label-scroll",
+          "moving": "true",
+          "overflow": "true",
+          "rect": {
+            "bottom": 945.03125,
+            "height": 15.390625,
+            "left": 191,
+            "right": 454.703125,
+            "top": 929.640625,
+            "width": 263.703125,
+            "x": 191,
+            "y": 929.640625
+          },
+          "text": "Wave verification collective with a long artist credit and collaborators",
+          "textWidth": 346,
+          "width": 264
+        }
+      ]
+    },
+    {
+      "theme": "light",
+      "w": 768,
+      "labels": [
+        {
+          "animation": "wave-label-scroll",
+          "moving": "true",
+          "overflow": "true",
+          "rect": {
+            "bottom": 891.890625,
+            "height": 16.796875,
+            "left": 73,
+            "right": 651,
+            "top": 875.09375,
+            "width": 578,
+            "x": 73,
+            "y": 875.09375
+          },
+          "text": "A distant evening — an original GlukWave verification recording with a deliberately long descriptive title",
+          "textWidth": 585,
+          "width": 578
+        },
+        {
+          "animation": "none",
+          "moving": "false",
+          "overflow": "false",
+          "rect": {
+            "bottom": 907.890625,
+            "height": 14,
+            "left": 73,
+            "right": 387.953125,
+            "top": 893.890625,
+            "width": 314.953125,
+            "x": 73,
+            "y": 893.890625
+          },
+          "text": "Wave verification collective with a long artist credit and collaborators",
+          "textWidth": 315,
+          "width": 315
+        }
+      ]
+    },
+    {
+      "theme": "light",
+      "w": 375,
+      "labels": [
+        {
+          "animation": "wave-label-scroll",
+          "moving": "true",
+          "overflow": "true",
+          "rect": {
+            "bottom": 703.890625,
+            "height": 16.796875,
+            "left": 73,
+            "right": 258,
+            "top": 687.09375,
+            "width": 185,
+            "x": 73,
+            "y": 687.09375
+          },
+          "text": "A distant evening — an original GlukWave verification recording with a deliberately long descriptive title",
+          "textWidth": 585,
+          "width": 185
+        },
+        {
+          "animation": "wave-label-scroll",
+          "moving": "true",
+          "overflow": "true",
+          "rect": {
+            "bottom": 719.890625,
+            "height": 14,
+            "left": 73,
+            "right": 258,
+            "top": 705.890625,
+            "width": 185,
+            "x": 73,
+            "y": 705.890625
+          },
+          "text": "Wave verification collective with a long artist credit and collaborators",
+          "textWidth": 315,
+          "width": 185
+        }
+      ]
+    },
+    {
+      "theme": "light",
+      "w": 1440,
+      "labels": [
+        {
+          "animation": "wave-label-scroll",
+          "moving": "true",
+          "overflow": "true",
+          "rect": {
+            "bottom": 926.640625,
+            "height": 18.1875,
+            "left": 191,
+            "right": 454.703125,
+            "top": 908.453125,
+            "width": 263.703125,
+            "x": 191,
+            "y": 908.453125
+          },
+          "text": "A distant evening — an original GlukWave verification recording with a deliberately long descriptive title",
+          "textWidth": 634,
+          "width": 264
+        },
+        {
+          "animation": "wave-label-scroll",
+          "moving": "true",
+          "overflow": "true",
+          "rect": {
+            "bottom": 945.03125,
+            "height": 15.390625,
+            "left": 191,
+            "right": 454.703125,
+            "top": 929.640625,
+            "width": 263.703125,
+            "x": 191,
+            "y": 929.640625
+          },
+          "text": "Wave verification collective with a long artist credit and collaborators",
+          "textWidth": 346,
+          "width": 264
+        }
+      ]
+    },
+    {
+      "theme": "dark",
+      "w": 1440,
+      "labels": [
+        {
+          "animation": "wave-label-scroll",
+          "moving": "true",
+          "overflow": "true",
+          "rect": {
+            "bottom": 926.640625,
+            "height": 18.1875,
+            "left": 191,
+            "right": 454.703125,
+            "top": 908.453125,
+            "width": 263.703125,
+            "x": 191,
+            "y": 908.453125
+          },
+          "text": "A distant evening — an original GlukWave verification recording with a deliberately long descriptive title",
+          "textWidth": 634,
+          "width": 264
+        },
+        {
+          "animation": "wave-label-scroll",
+          "moving": "true",
+          "overflow": "true",
+          "rect": {
+            "bottom": 945.03125,
+            "height": 15.390625,
+            "left": 191,
+            "right": 454.703125,
+            "top": 929.640625,
+            "width": 263.703125,
+            "x": 191,
+            "y": 929.640625
+          },
+          "text": "Wave verification collective with a long artist credit and collaborators",
+          "textWidth": 346,
+          "width": 264
+        }
+      ]
+    },
+    {
+      "theme": "dark",
+      "w": 768,
+      "labels": [
+        {
+          "animation": "wave-label-scroll",
+          "moving": "true",
+          "overflow": "true",
+          "rect": {
+            "bottom": 891.890625,
+            "height": 16.796875,
+            "left": 73,
+            "right": 651,
+            "top": 875.09375,
+            "width": 578,
+            "x": 73,
+            "y": 875.09375
+          },
+          "text": "A distant evening — an original GlukWave verification recording with a deliberately long descriptive title",
+          "textWidth": 585,
+          "width": 578
+        },
+        {
+          "animation": "none",
+          "moving": "false",
+          "overflow": "false",
+          "rect": {
+            "bottom": 907.890625,
+            "height": 14,
+            "left": 73,
+            "right": 387.953125,
+            "top": 893.890625,
+            "width": 314.953125,
+            "x": 73,
+            "y": 893.890625
+          },
+          "text": "Wave verification collective with a long artist credit and collaborators",
+          "textWidth": 315,
+          "width": 315
+        }
+      ]
+    },
+    {
+      "theme": "dark",
+      "w": 375,
+      "labels": [
+        {
+          "animation": "wave-label-scroll",
+          "moving": "true",
+          "overflow": "true",
+          "rect": {
+            "bottom": 703.890625,
+            "height": 16.796875,
+            "left": 73,
+            "right": 258,
+            "top": 687.09375,
+            "width": 185,
+            "x": 73,
+            "y": 687.09375
+          },
+          "text": "A distant evening — an original GlukWave verification recording with a deliberately long descriptive title",
+          "textWidth": 585,
+          "width": 185
+        },
+        {
+          "animation": "wave-label-scroll",
+          "moving": "true",
+          "overflow": "true",
+          "rect": {
+            "bottom": 719.890625,
+            "height": 14,
+            "left": 73,
+            "right": 258,
+            "top": 705.890625,
+            "width": 185,
+            "x": 73,
+            "y": 705.890625
+          },
+          "text": "Wave verification collective with a long artist credit and collaborators",
+          "textWidth": 315,
+          "width": 185
+        }
+      ]
+    },
+    {
+      "theme": "dark",
+      "w": 1440,
+      "labels": [
+        {
+          "animation": "wave-label-scroll",
+          "moving": "true",
+          "overflow": "true",
+          "rect": {
+            "bottom": 926.640625,
+            "height": 18.1875,
+            "left": 191,
+            "right": 454.703125,
+            "top": 908.453125,
+            "width": 263.703125,
+            "x": 191,
+            "y": 908.453125
+          },
+          "text": "A distant evening — an original GlukWave verification recording with a deliberately long descriptive title",
+          "textWidth": 634,
+          "width": 264
+        },
+        {
+          "animation": "wave-label-scroll",
+          "moving": "true",
+          "overflow": "true",
+          "rect": {
+            "bottom": 945.03125,
+            "height": 15.390625,
+            "left": 191,
+            "right": 454.703125,
+            "top": 929.640625,
+            "width": 263.703125,
+            "x": 191,
+            "y": 929.640625
+          },
+          "text": "Wave verification collective with a long artist credit and collaborators",
+          "textWidth": 346,
+          "width": 264
+        }
+      ]
+    },
+    {
+      "theme": "amoled",
+      "w": 1440,
+      "labels": [
+        {
+          "animation": "wave-label-scroll",
+          "moving": "true",
+          "overflow": "true",
+          "rect": {
+            "bottom": 926.640625,
+            "height": 18.1875,
+            "left": 191,
+            "right": 454.703125,
+            "top": 908.453125,
+            "width": 263.703125,
+            "x": 191,
+            "y": 908.453125
+          },
+          "text": "A distant evening — an original GlukWave verification recording with a deliberately long descriptive title",
+          "textWidth": 634,
+          "width": 264
+        },
+        {
+          "animation": "wave-label-scroll",
+          "moving": "true",
+          "overflow": "true",
+          "rect": {
+            "bottom": 945.03125,
+            "height": 15.390625,
+            "left": 191,
+            "right": 454.703125,
+            "top": 929.640625,
+            "width": 263.703125,
+            "x": 191,
+            "y": 929.640625
+          },
+          "text": "Wave verification collective with a long artist credit and collaborators",
+          "textWidth": 346,
+          "width": 264
+        }
+      ]
+    },
+    {
+      "theme": "amoled",
+      "w": 768,
+      "labels": [
+        {
+          "animation": "wave-label-scroll",
+          "moving": "true",
+          "overflow": "true",
+          "rect": {
+            "bottom": 891.890625,
+            "height": 16.796875,
+            "left": 73,
+            "right": 651,
+            "top": 875.09375,
+            "width": 578,
+            "x": 73,
+            "y": 875.09375
+          },
+          "text": "A distant evening — an original GlukWave verification recording with a deliberately long descriptive title",
+          "textWidth": 585,
+          "width": 578
+        },
+        {
+          "animation": "none",
+          "moving": "false",
+          "overflow": "false",
+          "rect": {
+            "bottom": 907.890625,
+            "height": 14,
+            "left": 73,
+            "right": 387.953125,
+            "top": 893.890625,
+            "width": 314.953125,
+            "x": 73,
+            "y": 893.890625
+          },
+          "text": "Wave verification collective with a long artist credit and collaborators",
+          "textWidth": 315,
+          "width": 315
+        }
+      ]
+    },
+    {
+      "theme": "amoled",
+      "w": 375,
+      "labels": [
+        {
+          "animation": "wave-label-scroll",
+          "moving": "true",
+          "overflow": "true",
+          "rect": {
+            "bottom": 703.890625,
+            "height": 16.796875,
+            "left": 73,
+            "right": 258,
+            "top": 687.09375,
+            "width": 185,
+            "x": 73,
+            "y": 687.09375
+          },
+          "text": "A distant evening — an original GlukWave verification recording with a deliberately long descriptive title",
+          "textWidth": 585,
+          "width": 185
+        },
+        {
+          "animation": "wave-label-scroll",
+          "moving": "true",
+          "overflow": "true",
+          "rect": {
+            "bottom": 719.890625,
+            "height": 14,
+            "left": 73,
+            "right": 258,
+            "top": 705.890625,
+            "width": 185,
+            "x": 73,
+            "y": 705.890625
+          },
+          "text": "Wave verification collective with a long artist credit and collaborators",
+          "textWidth": 315,
+          "width": 185
+        }
+      ]
+    },
+    {
+      "theme": "amoled",
+      "w": 1440,
+      "labels": [
+        {
+          "animation": "wave-label-scroll",
+          "moving": "true",
+          "overflow": "true",
+          "rect": {
+            "bottom": 926.640625,
+            "height": 18.1875,
+            "left": 191,
+            "right": 454.703125,
+            "top": 908.453125,
+            "width": 263.703125,
+            "x": 191,
+            "y": 908.453125
+          },
+          "text": "A distant evening — an original GlukWave verification recording with a deliberately long descriptive title",
+          "textWidth": 634,
+          "width": 264
+        },
+        {
+          "animation": "wave-label-scroll",
+          "moving": "true",
+          "overflow": "true",
+          "rect": {
+            "bottom": 945.03125,
+            "height": 15.390625,
+            "left": 191,
+            "right": 454.703125,
+            "top": 929.640625,
+            "width": 263.703125,
+            "x": 191,
+            "y": 929.640625
+          },
+          "text": "Wave verification collective with a long artist credit and collaborators",
+          "textWidth": 346,
+          "width": 264
+        }
+      ]
+    }
+  ]
+}

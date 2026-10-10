@@ -87,6 +87,54 @@ void main() {
       restored.dispose();
     },
   );
+  test(
+    'Summer light is diffused, restrained, gently moving and intensity aware',
+    () async {
+      Future<({int maximum, int covered, List<int> samples})> render(
+        double phase,
+        String intensity,
+        bool dark,
+      ) async {
+        final recorder = ui.PictureRecorder(), canvas = Canvas(recorder);
+        SeasonalPainter(
+          clock: AlwaysStoppedAnimation(phase),
+          mode: 'sun',
+          intensity: intensity,
+          dark: dark,
+          amoled: dark,
+          preview: false,
+        ).paint(canvas, const Size(320, 640));
+        final picture = recorder.endRecording(),
+            image = await picture.toImage(320, 640);
+        final bytes = (await image.toByteData(
+          format: ui.ImageByteFormat.rawRgba,
+        ))!;
+        var maximum = 0, covered = 0;
+        final samples = <int>[];
+        for (var i = 3; i < bytes.lengthInBytes; i += 4) {
+          final alpha = bytes.getUint8(i);
+          maximum = mathMax(maximum, alpha);
+          if (alpha > 0) covered++;
+          if (i % 400 == 3) samples.add(alpha);
+        }
+        image.dispose();
+        picture.dispose();
+        return (maximum: maximum, covered: covered, samples: samples);
+      }
+
+      for (final dark in [false, true]) {
+        final normal = await render(0, 'normal', dark);
+        final subtle = await render(0, 'subtle', dark);
+        final moved = await render(.25, 'normal', dark);
+        final loop = await render(1, 'normal', dark);
+        expect(normal.maximum, inInclusiveRange(9, 39));
+        expect(normal.covered, greaterThan(320 * 640 * .6));
+        expect(subtle.maximum, lessThan(normal.maximum));
+        expect(moved.samples, isNot(equals(normal.samples)));
+        expect(loop.samples, equals(normal.samples));
+      }
+    },
+  );
   testWidgets(
     'Seasonal ticker stops/disappears for reduced motion, TickerMode and background; disabled preview stays still',
     (tester) async {
@@ -220,3 +268,5 @@ void main() {
     );
   }
 }
+
+int mathMax(int a, int b) => a > b ? a : b;

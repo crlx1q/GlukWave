@@ -25,6 +25,10 @@ android {
     namespace = "tech.gluk.glukwave"
     compileSdk = 36
     ndkVersion = flutter.ndkVersion
+    testOptions {
+        unitTests.isIncludeAndroidResources = true
+        unitTests.all { it.jvmArgs("--add-opens=java.base/java.lang=ALL-UNNAMED", "--add-opens=java.base/java.util=ALL-UNNAMED", "--add-opens=java.base/java.io=ALL-UNNAMED", "--add-opens=java.base/java.net=ALL-UNNAMED", "--add-opens=java.base/jdk.internal.access=ALL-UNNAMED") }
+    }
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -68,5 +72,13 @@ android {
 
 flutter {
     source = "../.."
+}
+
+dependencies {
+    // Already used by audio_service; expose the same MediaSession API to the
+    // launcher remote without introducing another playback framework.
+    implementation("androidx.media:media:1.7.0")
+    testImplementation("junit:junit:4.13.2")
+    testImplementation("org.robolectric:robolectric:4.17")
 }
 

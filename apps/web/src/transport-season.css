@@ -23,3 +23,17 @@
 @media(min-width:851px){@container(max-width:540px){.player .player-attribution>span:not(.source-badge),.player .player-attribution b{display:none}}}
 
 @media(min-width:851px){.player .player-track{grid-column:1;grid-row:1}.player .player-center{grid-column:2;grid-row:1;width:100%}.player .player-tools{grid-column:3;grid-row:1;width:100%}}
+
+/* The seek target and its time labels occupy their own rows, above transport. */
+.connected-player .full-seek{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:44px 18px;align-items:center;gap:0 10px;height:auto!important;min-height:62px;margin:0 0 12px!important}
+.connected-player .full-seek input.wave-range{grid-column:1/-1;grid-row:1;width:100%;height:44px;min-height:44px}
+.connected-player .full-seek>span{grid-row:2;line-height:18px;font-size:11px}
+.connected-player .full-seek>span:first-child{grid-column:1;text-align:left}
+.connected-player .full-seek>span:last-child{grid-column:2;text-align:right}
+.connected-player .np-listening,.connected-player .np-layout,.connected-player .np-side,.connected-player .lyrics-lines{scrollbar-width:thin;scrollbar-color:color-mix(in srgb,var(--muted) 28%,transparent) transparent;scrollbar-gutter:stable}
+.connected-player :is(.np-listening,.np-layout,.np-side,.lyrics-lines)::-webkit-scrollbar{width:4px;height:4px}
+.connected-player :is(.np-listening,.np-layout,.np-side,.lyrics-lines)::-webkit-scrollbar-track{background:transparent}
+.connected-player :is(.np-listening,.np-layout,.np-side,.lyrics-lines)::-webkit-scrollbar-thumb{border:0;border-radius:4px;background:color-mix(in srgb,var(--muted) 28%,transparent)}
+.connected-player :is(.np-listening,.np-layout,.np-side,.lyrics-lines)::-webkit-scrollbar-thumb:hover{background:color-mix(in srgb,var(--muted) 48%,transparent)}
+.connected-player :is(.np-listening,.np-layout,.np-side,.lyrics-lines)::-webkit-scrollbar-button{display:none;width:0;height:0}
+@supports selector(::-webkit-scrollbar){.connected-player .np-listening,.connected-player .np-layout,.connected-player .np-side,.connected-player .lyrics-lines{scrollbar-width:auto;scrollbar-color:auto}}

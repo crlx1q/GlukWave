@@ -1,12 +1,46 @@
 {
-  "passed": false,
+  "passed": true,
   "scope": "Isolated original audio fixtures, actual browser UI. No physical device or live provider checks.",
   "steps": [
     "Real delayed descriptor triggers cover pulse/aria-busy until original audio media starts; EQ enabled; no widget iframe",
     "Short title and artist stationary; long title/artist independently measured and animated only on overflow",
     "Old embedded descriptor and actual AUDIO_UNAVAILABLE response clear loading and never mount external players",
     "Changed track aborts delayed stale request; stale completion cannot re-enable pulse or replace active track",
-    "Truly centered transport and timeline <1.5px error across desktop, themes and six locales125%; no controls outside bar at 320/390/768/900/1280/1440"
+    "Truly centered transport and timeline <1.5px error across desktop, themes and six locales125%; no controls outside bar at 320/390/768/900/1280/1440",
+    {
+      "mode": "snow",
+      "alpha": {
+        "count": 1870,
+        "max": 161,
+        "mean": 0.12605694444444446
+      }
+    },
+    {
+      "mode": "rain",
+      "alpha": {
+        "count": 2065,
+        "max": 161,
+        "mean": 0.099725
+      }
+    },
+    {
+      "mode": "leaves",
+      "alpha": {
+        "count": 2614,
+        "max": 210,
+        "mean": 0.19364930555555557
+      }
+    },
+    {
+      "mode": "sun",
+      "alpha": {
+        "count": 1440000,
+        "max": 18,
+        "mean": 11.840483333333331
+      }
+    },
+    "Visible season overlay retains pointer transparency and single full-player layer; real hidden tab and reduced motion stop marquee/season decorations",
+    "Volume wheel and visible keyboard focus retained with replaced vector controls"
   ],
   "layouts": [
     {
@@ -371,15 +405,17 @@
     }
   ],
   "screenshots": [
-    "apps/web/qa/player-polish-loading.png",
-    "apps/web/qa/player-polish-light-desktop.png",
-    "apps/web/qa/player-polish-light-phone.png",
-    "apps/web/qa/player-polish-dark-desktop.png",
-    "apps/web/qa/player-polish-dark-phone.png",
-    "apps/web/qa/player-polish-amoled-desktop.png",
-    "apps/web/qa/player-polish-amoled-phone.png",
-    "apps/web/qa/player-polish-failure.png"
+    "apps/web/qa/player-polish-final-1791654979156-loading.png",
+    "apps/web/qa/player-polish-final-1791654979156-light-desktop.png",
+    "apps/web/qa/player-polish-final-1791654979156-light-phone.png",
+    "apps/web/qa/player-polish-final-1791654979156-dark-desktop.png",
+    "apps/web/qa/player-polish-final-1791654979156-dark-phone.png",
+    "apps/web/qa/player-polish-final-1791654979156-amoled-desktop.png",
+    "apps/web/qa/player-polish-final-1791654979156-amoled-phone.png",
+    "apps/web/qa/player-polish-final-1791654979156-full-player.png",
+    "apps/web/qa/player-polish-final-1791654979156-summer-diffused.png"
   ],
-  "error": "Error: Wait document.querySelector('.full-player')?.classList.contains('open')",
-  "snapshot": "- link \"Skip to content\" [ref=e1]\n- button \"Collapse player\" [ref=e3]\n- button \"Mini player over other windows\" [ref=e4]\n- navigation \"Player sections\" [ref=e2]\n  - button \"Player\" [ref=e5]\n  - button \"Lyrics\" [ref=e6]\n  - button \"Queue\" [ref=e7]\n  - button \"Comments\" [ref=e8]\n- button \"Flat\" [ref=e28]\n- button \"Vinyl\" [ref=e29]\n- button \"CD\" [ref=e30]\n- button \"Flip cover\" [disabled, ref=e31]\n- button \"Reset cover position\" [ref=e32]\n- heading \"A quiet place\" [level=1, ref=e9]\n- slider \"Playback position\" [ref=e10]: 108.8000030517578\n- button \"Add to favourites\" [ref=e11]\n- button \"Shuffle queue\" [ref=e12]\n- button \"Previous track\" [ref=e13]\n- button \"Pause\" [ref=e14]\n- button \"Next track\" [ref=e15]\n- button \"Enable repeat\" [ref=e16]\n- button \"Equalizer\" [ref=e17]\n- slider \"Volume\" [ref=e18]: 0.800000011920929\n- button \"Devices\" [ref=e19]\n- button \"Online player\" [disabled, ref=e20]\n- button \"To playlist\" [ref=e21]\n- button \"Add lyrics to this music\" [ref=e33]\n- heading \"Lyrics\" [level=2, ref=e22]\n- button \"Open lyrics\" [ref=e23]\n- heading \"Your queue\" [level=2, ref=e24]\n- button \"Playback queue\" [ref=e25]\n- heading \"Stay in the moment\" [level=3, ref=e26]\n- button \"Comments Comments in the moment +\" [ref=e27]"
+  "browserErrors": {
+    "errors": []
+  }
 }

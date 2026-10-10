@@ -1,0 +1,19 @@
+{
+  "checkedAt": "2026-10-10T18:06:22.909Z",
+  "passed": true,
+  "archiveBytes": 43708294,
+  "archiveSha256": "4ad150ff63d57e6b4cea126cc480591d659bf288ee0ea4c3dfbd14f3accca433",
+  "entries": 696,
+  "allCrcAndSourceHashesMatched": true,
+  "textFilesScanned": 501,
+  "localPrivateValuesAbsent": true,
+  "liveCredentialPatternsAbsent": true,
+  "staticFontFaces": 6,
+  "manropeStaticFontFaces": 5,
+  "frozenNativeSourcesMatched": 119,
+  "currentWebBuild": "/assets/main-DD5EbjHN.js",
+  "runtimeDataExcluded": true,
+  "apkSha256": "de0f7ebe6335b935b42a24080d68d057595c98cf3e830a4b6c869a737206b0fe",
+  "windowsSha256": "c60c8c262f790d0183b379e6502c1d5ecbd7ba55dcccadb623a827fa7d79aef0",
+  "installerSha256": "fd220ec8df53136908799f2ec4053deb9e9adf9903c1017417272ba29d0273b6"
+}

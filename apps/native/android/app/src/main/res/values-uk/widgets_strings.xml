@@ -1,0 +1,8 @@
+<resources>
+  <string name="widget_empty">Обери свою музику</string>
+  <string name="widget_sign_in">Відкрий GlukWave, щоб увійти</string>
+  <string name="widget_wave_label">Моя хвиля</string>
+  <string name="widget_open">Відкрити GlukWave</string>
+  <string name="widget_player_name">Швидкий плеєр</string>
+  <string name="widget_wave_name">GlukWave · Моя хвиля</string>
+</resources>

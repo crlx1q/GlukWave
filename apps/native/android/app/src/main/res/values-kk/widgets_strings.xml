@@ -1,0 +1,8 @@
+<resources>
+  <string name="widget_empty">Музыкаңды таңда</string>
+  <string name="widget_sign_in">Кіру үшін GlukWave аш</string>
+  <string name="widget_wave_label">Менің толқыным</string>
+  <string name="widget_open">GlukWave ашу</string>
+  <string name="widget_player_name">Жылдам плеер</string>
+  <string name="widget_wave_name">GlukWave · Менің толқыным</string>
+</resources>

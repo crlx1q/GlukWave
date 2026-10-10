@@ -77,7 +77,7 @@ test('Own-player SoundCloud streams are session bound, renewed, attributed, rang
   await store.put('tracks','sc-preview',{...track,id:'sc-preview'});preview=true;
   const unavailable=await req('/tracks/sc-preview/playback',owner.token);assert.equal(unavailable.status,422);assert.equal(unavailable.data.error.code,'AUDIO_UNAVAILABLE');assert(!JSON.stringify(unavailable).includes('embedUrl'));preview=false;
   await store.put('tracks','private',{...track,id:'private',public:false,uploadedBy:owner.user.id});assert.equal((await req('/tracks/private/playback',viewer.token)).status,404);
-  const health=(await req('/health')).data;assert.equal(health.playbackRevision,2);assert.equal(health.playbackMode,'native-audio');
+  const health=(await req('/health')).data;assert.equal(health.playbackRevision,3);assert.equal(health.playbackMode,'native-audio');
   assert.equal((await req('/admin/playback',owner.token)).status,403);
   assert.equal(service.ctx.playbackDiagnostics().counts.soundcloud,4);assert.equal(service.ctx.playbackDiagnostics().counts.unavailable,1);
   const settings=(await req('/settings',owner.token)).data.settings;assert.equal(settings.seasonalEffects.enabled,false);

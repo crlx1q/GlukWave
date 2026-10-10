@@ -1,0 +1,14 @@
+{
+  "checkedAt": "2026-10-10T17:56:04.813Z",
+  "origin": "https://wave.gluk.tech",
+  "readOnly": true,
+  "status": 200,
+  "health": {
+    "status": "ok",
+    "version": "0.1.0",
+    "playbackRevision": 2,
+    "playbackMode": "native-audio"
+  },
+  "expectedPlaybackRevision": 3,
+  "deployedByAgent": false
+}

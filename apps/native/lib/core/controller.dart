@@ -24,6 +24,8 @@ import '../services/cache.dart';
 import '../services/desktop.dart';
 import '../services/push.dart';
 import '../services/waveform.dart';
+import '../services/home_widgets.dart';
+import '../l10n/home_widget_strings.dart';
 import '../services/lan_transport.dart';
 import '../l10n/lan_strings.dart';
 import '../l10n/wave_localizations.dart';
@@ -34,6 +36,11 @@ class WaveController extends ChangeNotifier {
   final MusicCache cache;
   final WaveAudioHandler audio;
   final bool startMinimized;
+  HomeWidgetBridge? homeWidgets;
+  bool _homeWidgetsPaused = false, _homeArtworkBusy = false;
+  String? _homeArtworkKey, _homeArtworkPath;
+  DateTime _homeArtworkAttempt = DateTime.fromMillisecondsSinceEpoch(0);
+  bool _widgetCommandBusy = false;
   late final WaveformStore waveforms;
   final FlutterSecureStorage secure = const FlutterSecureStorage();
   late SharedPreferences preferences;
@@ -403,6 +410,33 @@ class WaveController extends ChangeNotifier {
     _applyLanguage();
     unawaited(resolveAutomaticLanguage());
     await refresh();
+    if (Platform.isAndroid) {
+      homeWidgets = HomeWidgetBridge(
+        onCommand: widgetCommand,
+        onGrantChanged: (grant) => audio.widgetGrant = grant,
+        onError: (error) => api.diagnostics.report(
+          error,
+          kind: 'background',
+          code: 'HOME_WIDGET',
+        ),
+      );
+      audio.onWidgetCommand = widgetCommand;
+      addListener(_updateHomeWidgets);
+      try {
+        await homeWidgets!.initialize();
+        audio.widgetGrant = homeWidgets!.grant;
+        _updateHomeWidgets();
+      } catch (error) {
+        api.diagnostics.report(
+          error,
+          kind: 'background',
+          code: 'HOME_WIDGET_INIT',
+        );
+        homeWidgets?.dispose();
+        homeWidgets = null;
+        audio.onWidgetCommand = null;
+      }
+    }
     _heartbeat = Timer.periodic(const Duration(seconds: 3), (_) {
       _report();
       if (room != null) unawaited(_correctDrift());
@@ -677,6 +711,18 @@ class WaveController extends ChangeNotifier {
   }
 
   Future<void> _performLogout({bool remote = true}) async {
+    _homeWidgetsPaused = true;
+    _homeArtworkKey = _homeArtworkPath = null;
+    try {
+      await homeWidgets?.clear();
+      audio.widgetGrant = homeWidgets?.grant;
+    } catch (error) {
+      api.diagnostics.report(
+        error,
+        kind: 'background',
+        code: 'HOME_WIDGET_CLEAR',
+      );
+    }
     await setLanEnabled(false);
     cancelAuth = true;
     _adoptingRoomId = null;
@@ -747,7 +793,159 @@ class WaveController extends ChangeNotifier {
     integrations = [];
     config = {};
     loading = false;
+    _homeWidgetsPaused = false;
     notifyListeners();
+  }
+
+  void _updateHomeWidgets() {
+    if (_disposed || _homeWidgetsPaused || homeWidgets == null) return;
+    final a = customization.appearance;
+    final dark =
+        customization.theme == 'dark' ||
+        customization.theme == 'amoled' ||
+        customization.theme == 'system' &&
+            WidgetsBinding
+                    .instance
+                    .platformDispatcher
+                    .platformBrightness
+                    .name ==
+                'dark';
+    final palette = customization.theme == 'amoled'
+        ? a.amoled
+        : dark
+        ? a.dark
+        : a.light;
+    final current = loggedIn ? audio.viewCurrent : null;
+    final uri = loggedIn ? audio.mediaItem.value?.artUri : null;
+    final artworkKey = '$namespace:$uri';
+    if (_homeArtworkKey != artworkKey) {
+      _homeArtworkKey = artworkKey;
+      _homeArtworkPath = null;
+      _homeArtworkAttempt = DateTime.fromMillisecondsSinceEpoch(0);
+    }
+    if (uri != null &&
+        _homeArtworkPath == null &&
+        !_homeArtworkBusy &&
+        DateTime.now().difference(_homeArtworkAttempt).inSeconds >= 10) {
+      _homeArtworkBusy = true;
+      _homeArtworkAttempt = DateTime.now();
+      unawaited(
+        HomeWidgetBridge.cachedArtwork(uri)
+            .then((path) {
+              if (!_disposed &&
+                  !_homeWidgetsPaused &&
+                  artworkKey == _homeArtworkKey &&
+                  path != null) {
+                _homeArtworkPath = path;
+                _updateHomeWidgets();
+              }
+            })
+            .whenComplete(() => _homeArtworkBusy = false),
+      );
+    }
+    // Progress is deliberately omitted: launcher updates follow real state
+    // transitions, not a timer or per-frame position stream.
+    homeWidgets!.update({
+      'scope': loggedIn ? namespace : '',
+      'signedIn': loggedIn,
+      'title': current?.title ?? homeWidgetText('empty'),
+      'artist': current?.artist ?? 'GlukWave',
+      'trackId': current?.id ?? '',
+      'artwork': _homeArtworkPath ?? '',
+      'playing': loggedIn && audio.playing,
+      'loading': loggedIn && trackLoading,
+      'liked': current != null && likedIds.contains(current.id),
+      'canToggle': loggedIn && current != null && canTogglePlayback,
+      'canSkip': loggedIn && current != null && canControl,
+      'canWave': loggedIn && canControl && !lanEnabled,
+      'status': !loggedIn
+          ? homeWidgetText('signedOut')
+          : trackLoading
+          ? homeWidgetText('loading')
+          : controllingRemote
+          ? outputLabel
+          : !canControl
+          ? homeWidgetText('permission')
+          : current != null && !audio.playing
+          ? homeWidgetText('paused')
+          : homeWidgetText('ready'),
+      'background': palette.surface,
+      'ink': palette.ink,
+      'accent': palette.accent,
+      'labels': {
+        for (final key in [
+          'wave',
+          'play',
+          'pause',
+          'previous',
+          'next',
+          'like',
+          'unlike',
+          'open',
+        ])
+          key: homeWidgetText(key),
+      },
+    });
+  }
+
+  void refreshHomeWidgetAppearance() => _updateHomeWidgets();
+
+  Future<void> widgetCommand(String command, String scope) async {
+    if (_disposed ||
+        _homeWidgetsPaused ||
+        !loggedIn ||
+        scope != namespace ||
+        !HomeWidgetBridge.commands.contains(command) ||
+        _widgetCommandBusy) {
+      return;
+    }
+    _widgetCommandBusy = true;
+    try {
+      if (command == 'like') {
+        final current = audio.viewCurrent;
+        if (current != null) await like(current);
+      } else if (command == 'wave') {
+        if (canControl && !lanEnabled) await startWave();
+      } else if (command == 'toggle') {
+        if (canTogglePlayback && audio.viewCurrent != null) {
+          await transport(audio.playing ? 'pause' : 'play');
+        }
+      } else if (canControl && audio.viewCurrent != null) {
+        await transport(command);
+      }
+    } catch (error) {
+      api.diagnostics.report(error, kind: 'playback', code: 'WIDGET_COMMAND');
+      tell(error.toString());
+    } finally {
+      _widgetCommandBusy = false;
+      _updateHomeWidgets();
+    }
+  }
+
+  Future<void> startWave({String mood = 'personal'}) async {
+    if (!loggedIn || !canControl || lanEnabled) return;
+    final scope = namespace, generation = _accountGeneration;
+    final response = await api.call(
+      '/api/recommendations',
+      query: {'mood': mood},
+    );
+    if (_disposed ||
+        !loggedIn ||
+        namespace != scope ||
+        generation != _accountGeneration ||
+        !canControl ||
+        lanEnabled) {
+      return;
+    }
+    final recommendations = objects(
+      response['tracks'],
+    ).map(WaveTrack.new).toList();
+    if (recommendations.isEmpty) {
+      throw WaveException(homeWidgetText('noTracks'));
+    }
+    // Resolve the selected source through the same permitted-audio pipeline as
+    // the full app. Do not filter every unresolved provider out of discovery.
+    await play(recommendations.first, list: recommendations);
   }
 
   void _applySettings() {
@@ -2616,6 +2814,10 @@ class WaveController extends ChangeNotifier {
   @override
   void dispose() {
     _disposed = true;
+    removeListener(_updateHomeWidgets);
+    homeWidgets?.dispose();
+    audio.onWidgetCommand = null;
+    audio.widgetGrant = null;
     audio.onLoadingChanged = null;
     unawaited(_lan?.close() ?? Future.value());
     _discordGeneration++;

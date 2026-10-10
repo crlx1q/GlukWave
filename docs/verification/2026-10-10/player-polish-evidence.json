@@ -1,0 +1,106 @@
+{
+  "checkedAt": "2026-10-10T18:06:13.778978+00:00",
+  "clientVersion": "1.0.0+10",
+  "scope": "Local implementation, isolated real HTTP/browser audio fixtures, native widget tests and static build audits. Physical tests waived by owner; no deployment.",
+  "server": {
+    "fullTestsPassed": 84,
+    "currentRevisionFocusedTestsPassed": 6,
+    "playbackRevision": 3,
+    "fullLog": "work/qa/player-polish-server-tests-final.log",
+    "focusedLog": "work/qa/player-polish-audio-revision3-tests.log"
+  },
+  "web": {
+    "testsPassed": 26,
+    "typecheckPassed": true,
+    "buildPassed": true,
+    "javascript": "/assets/main-DD5EbjHN.js",
+    "stylesheet": "/assets/main-CScApTGw.css",
+    "browserProof": "apps/web/qa/player-polish-browser-proof.json",
+    "layoutsPassed": 36,
+    "expandedCasesPassed": 24,
+    "marqueeResizeCasesPassed": 12,
+    "screenshots": [
+      "apps/web/qa/player-polish-final-1791654979156-loading.png",
+      "apps/web/qa/player-polish-final-1791654979156-light-desktop.png",
+      "apps/web/qa/player-polish-final-1791654979156-light-phone.png",
+      "apps/web/qa/player-polish-final-1791654979156-dark-desktop.png",
+      "apps/web/qa/player-polish-final-1791654979156-dark-phone.png",
+      "apps/web/qa/player-polish-final-1791654979156-amoled-desktop.png",
+      "apps/web/qa/player-polish-final-1791654979156-amoled-phone.png",
+      "apps/web/qa/player-polish-final-1791654979156-full-player.png",
+      "apps/web/qa/player-polish-final-1791654979156-summer-diffused.png"
+    ],
+    "largeChunkWarningRemains": true
+  },
+  "native": {
+    "testsPassed": 215,
+    "focusedUiTestsPassed": 19,
+    "analyzerIssues": 0,
+    "sourceFreezeFile": "docs/verification/2026-10-10/player-polish-native-source-freeze.json",
+    "sourceSha256": "ee2533f5cee25557f265bcb3bef12c660f91d45862683c78464c20e079193897",
+    "sha256": "de0f7ebe6335b935b42a24080d68d057595c98cf3e830a4b6c869a737206b0fe",
+    "bytes": 185372909,
+    "signature": "debug",
+    "previousTestCertificateMatched": true,
+    "windowsExecutableBuilt": true,
+    "windows": {
+      "sha256": "c60c8c262f790d0183b379e6502c1d5ecbd7ba55dcccadb623a827fa7d79aef0",
+      "bytes": 27727692,
+      "releaseInputsMatched": 99,
+      "installer": {
+        "platform": "windows",
+        "file": "GlukWave-Setup.exe",
+        "version": "1.0.0+10",
+        "signature": "release",
+        "channel": "stable",
+        "bytes": 24324128,
+        "sha256": "fd220ec8df53136908799f2ec4053deb9e9adf9903c1017417272ba29d0273b6",
+        "builtAt": "2026-10-10T18:04:22.693Z",
+        "singleFile": true,
+        "compilerSucceeded": true,
+        "installedOrLaunchedByAgent": false,
+        "authenticodeSigned": false
+      }
+    }
+  },
+  "releaseHttpProof": "docs/verification/2026-10-10/player-polish-release-download-proof.json",
+  "independentDesignEvaluation": {
+    "verdict": "PASS",
+    "attempt": 2,
+    "separateAgent": true,
+    "crossProvider": false,
+    "physicalRuntimeVerified": false
+  },
+  "hosting": {
+    "checkedAt": "2026-10-10T17:56:04.813Z",
+    "origin": "https://wave.gluk.tech",
+    "readOnly": true,
+    "status": 200,
+    "health": {
+      "status": "ok",
+      "version": "0.1.0",
+      "playbackRevision": 2,
+      "playbackMode": "native-audio"
+    },
+    "expectedPlaybackRevision": 3,
+    "deployedByAgent": false
+  },
+  "liveExtractorMetadataOnly": {
+    "ok": true,
+    "source": "soundcloud",
+    "title": "Flickermood",
+    "artist": "Forss",
+    "license": "all-rights-reserved",
+    "protocol": "m3u8_native",
+    "ext": "m4a",
+    "audioFound": true,
+    "downloadedAudio": false
+  },
+  "remaining": [
+    "Live catalogue availability/permission and server revision3 deployment",
+    "LAN discovery/IPv6/allowed file transfer/browser offline LAN",
+    "Quality tiers, full live OAuth/import and production resource profiling",
+    "Real delivery/payment checks, production Android/Windows signing and iOS",
+    "Physical background/next, tray/mini and inter-device network checks by owner"
+  ]
+}

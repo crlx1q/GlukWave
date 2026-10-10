@@ -1,0 +1,1257 @@
+{
+  "checkedAt": "2026-10-10T20:02:23.108266+00:00",
+  "version": "1.0.0+11",
+  "scope": "Wave colour and Android launcher widgets; prior implementation preserved",
+  "web": {
+    "javascript": "/assets/main-h9GP9llD.js",
+    "buildPassed": true,
+    "unitTestsPassed": 28,
+    "browserProof": {
+      "passed": true,
+      "scope": "Actual isolated app + actual WebGL/Canvas shader with original fixture. No physical device or owner hosting checks.",
+      "layouts": [
+        {
+          "theme": "light",
+          "name": "copper",
+          "device": "desktop",
+          "background": "rgb(239, 237, 227)",
+          "buttons": [
+            {
+              "bottom": 262.6875,
+              "height": 44,
+              "right": 1282,
+              "width": 44
+            },
+            {
+              "bottom": 262.6875,
+              "height": 44,
+              "right": 1334,
+              "width": 44
+            },
+            {
+              "bottom": 264.6875,
+              "height": 48,
+              "right": 1390,
+              "width": 48
+            }
+          ],
+          "canvas": {
+            "bottom": 549.6875,
+            "height": 340,
+            "left": 128,
+            "right": 1390,
+            "top": 209.6875,
+            "width": 1262,
+            "x": 128,
+            "y": 209.6875
+          },
+          "clip": 0,
+          "hero": {
+            "bottom": 549.6875,
+            "height": 340,
+            "left": 128,
+            "right": 1390,
+            "top": 209.6875,
+            "width": 1262,
+            "x": 128,
+            "y": 209.6875
+          },
+          "scrollWidth": 1430,
+          "width": 1440
+        },
+        {
+          "theme": "light",
+          "name": "copper",
+          "device": "mobile",
+          "background": "rgb(239, 237, 227)",
+          "buttons": [
+            {
+              "bottom": 257.59375,
+              "height": 44,
+              "right": 310,
+              "width": 44
+            },
+            {
+              "bottom": 257.09375,
+              "height": 43,
+              "right": 358,
+              "width": 43
+            }
+          ],
+          "canvas": {
+            "bottom": 481.59375,
+            "height": 270,
+            "left": 0,
+            "right": 380,
+            "top": 211.59375,
+            "width": 380,
+            "x": 0,
+            "y": 211.59375
+          },
+          "clip": 0,
+          "hero": {
+            "bottom": 481.59375,
+            "height": 270,
+            "left": 0,
+            "right": 380,
+            "top": 211.59375,
+            "width": 380,
+            "x": 0,
+            "y": 211.59375
+          },
+          "scrollWidth": 380,
+          "width": 390
+        },
+        {
+          "theme": "light",
+          "name": "blue",
+          "device": "desktop",
+          "background": "rgb(239, 237, 227)",
+          "buttons": [
+            {
+              "bottom": 262.6875,
+              "height": 44,
+              "right": 1282,
+              "width": 44
+            },
+            {
+              "bottom": 262.6875,
+              "height": 44,
+              "right": 1334,
+              "width": 44
+            },
+            {
+              "bottom": 264.6875,
+              "height": 48,
+              "right": 1390,
+              "width": 48
+            }
+          ],
+          "canvas": {
+            "bottom": 549.6875,
+            "height": 340,
+            "left": 128,
+            "right": 1390,
+            "top": 209.6875,
+            "width": 1262,
+            "x": 128,
+            "y": 209.6875
+          },
+          "clip": 0,
+          "hero": {
+            "bottom": 549.6875,
+            "height": 340,
+            "left": 128,
+            "right": 1390,
+            "top": 209.6875,
+            "width": 1262,
+            "x": 128,
+            "y": 209.6875
+          },
+          "scrollWidth": 1430,
+          "width": 1440
+        },
+        {
+          "theme": "light",
+          "name": "blue",
+          "device": "mobile",
+          "background": "rgb(239, 237, 227)",
+          "buttons": [
+            {
+              "bottom": 257.59375,
+              "height": 44,
+              "right": 310,
+              "width": 44
+            },
+            {
+              "bottom": 257.09375,
+              "height": 43,
+              "right": 358,
+              "width": 43
+            }
+          ],
+          "canvas": {
+            "bottom": 481.59375,
+            "height": 270,
+            "left": 0,
+            "right": 380,
+            "top": 211.59375,
+            "width": 380,
+            "x": 0,
+            "y": 211.59375
+          },
+          "clip": 0,
+          "hero": {
+            "bottom": 481.59375,
+            "height": 270,
+            "left": 0,
+            "right": 380,
+            "top": 211.59375,
+            "width": 380,
+            "x": 0,
+            "y": 211.59375
+          },
+          "scrollWidth": 380,
+          "width": 390
+        },
+        {
+          "theme": "dark",
+          "name": "copper",
+          "device": "desktop",
+          "background": "rgb(20, 21, 23)",
+          "buttons": [
+            {
+              "bottom": 262.6875,
+              "height": 44,
+              "right": 1282,
+              "width": 44
+            },
+            {
+              "bottom": 262.6875,
+              "height": 44,
+              "right": 1334,
+              "width": 44
+            },
+            {
+              "bottom": 264.6875,
+              "height": 48,
+              "right": 1390,
+              "width": 48
+            }
+          ],
+          "canvas": {
+            "bottom": 549.6875,
+            "height": 340,
+            "left": 128,
+            "right": 1390,
+            "top": 209.6875,
+            "width": 1262,
+            "x": 128,
+            "y": 209.6875
+          },
+          "clip": 0,
+          "hero": {
+            "bottom": 549.6875,
+            "height": 340,
+            "left": 128,
+            "right": 1390,
+            "top": 209.6875,
+            "width": 1262,
+            "x": 128,
+            "y": 209.6875
+          },
+          "scrollWidth": 1430,
+          "width": 1440
+        },
+        {
+          "theme": "dark",
+          "name": "copper",
+          "device": "mobile",
+          "background": "rgb(20, 21, 23)",
+          "buttons": [
+            {
+              "bottom": 257.59375,
+              "height": 44,
+              "right": 310,
+              "width": 44
+            },
+            {
+              "bottom": 257.09375,
+              "height": 43,
+              "right": 358,
+              "width": 43
+            }
+          ],
+          "canvas": {
+            "bottom": 481.59375,
+            "height": 270,
+            "left": 0,
+            "right": 380,
+            "top": 211.59375,
+            "width": 380,
+            "x": 0,
+            "y": 211.59375
+          },
+          "clip": 0,
+          "hero": {
+            "bottom": 481.59375,
+            "height": 270,
+            "left": 0,
+            "right": 380,
+            "top": 211.59375,
+            "width": 380,
+            "x": 0,
+            "y": 211.59375
+          },
+          "scrollWidth": 380,
+          "width": 390
+        },
+        {
+          "theme": "dark",
+          "name": "blue",
+          "device": "desktop",
+          "background": "rgb(20, 21, 23)",
+          "buttons": [
+            {
+              "bottom": 262.6875,
+              "height": 44,
+              "right": 1282,
+              "width": 44
+            },
+            {
+              "bottom": 262.6875,
+              "height": 44,
+              "right": 1334,
+              "width": 44
+            },
+            {
+              "bottom": 264.6875,
+              "height": 48,
+              "right": 1390,
+              "width": 48
+            }
+          ],
+          "canvas": {
+            "bottom": 549.6875,
+            "height": 340,
+            "left": 128,
+            "right": 1390,
+            "top": 209.6875,
+            "width": 1262,
+            "x": 128,
+            "y": 209.6875
+          },
+          "clip": 0,
+          "hero": {
+            "bottom": 549.6875,
+            "height": 340,
+            "left": 128,
+            "right": 1390,
+            "top": 209.6875,
+            "width": 1262,
+            "x": 128,
+            "y": 209.6875
+          },
+          "scrollWidth": 1430,
+          "width": 1440
+        },
+        {
+          "theme": "dark",
+          "name": "blue",
+          "device": "mobile",
+          "background": "rgb(20, 21, 23)",
+          "buttons": [
+            {
+              "bottom": 257.59375,
+              "height": 44,
+              "right": 310,
+              "width": 44
+            },
+            {
+              "bottom": 257.09375,
+              "height": 43,
+              "right": 358,
+              "width": 43
+            }
+          ],
+          "canvas": {
+            "bottom": 481.59375,
+            "height": 270,
+            "left": 0,
+            "right": 380,
+            "top": 211.59375,
+            "width": 380,
+            "x": 0,
+            "y": 211.59375
+          },
+          "clip": 0,
+          "hero": {
+            "bottom": 481.59375,
+            "height": 270,
+            "left": 0,
+            "right": 380,
+            "top": 211.59375,
+            "width": 380,
+            "x": 0,
+            "y": 211.59375
+          },
+          "scrollWidth": 380,
+          "width": 390
+        },
+        {
+          "theme": "amoled",
+          "name": "copper",
+          "device": "desktop",
+          "background": "rgb(0, 0, 0)",
+          "buttons": [
+            {
+              "bottom": 262.6875,
+              "height": 44,
+              "right": 1282,
+              "width": 44
+            },
+            {
+              "bottom": 262.6875,
+              "height": 44,
+              "right": 1334,
+              "width": 44
+            },
+            {
+              "bottom": 264.6875,
+              "height": 48,
+              "right": 1390,
+              "width": 48
+            }
+          ],
+          "canvas": {
+            "bottom": 549.6875,
+            "height": 340,
+            "left": 128,
+            "right": 1390,
+            "top": 209.6875,
+            "width": 1262,
+            "x": 128,
+            "y": 209.6875
+          },
+          "clip": 0,
+          "hero": {
+            "bottom": 549.6875,
+            "height": 340,
+            "left": 128,
+            "right": 1390,
+            "top": 209.6875,
+            "width": 1262,
+            "x": 128,
+            "y": 209.6875
+          },
+          "scrollWidth": 1430,
+          "width": 1440
+        },
+        {
+          "theme": "amoled",
+          "name": "copper",
+          "device": "mobile",
+          "background": "rgb(0, 0, 0)",
+          "buttons": [
+            {
+              "bottom": 257.59375,
+              "height": 44,
+              "right": 310,
+              "width": 44
+            },
+            {
+              "bottom": 257.09375,
+              "height": 43,
+              "right": 358,
+              "width": 43
+            }
+          ],
+          "canvas": {
+            "bottom": 481.59375,
+            "height": 270,
+            "left": 0,
+            "right": 380,
+            "top": 211.59375,
+            "width": 380,
+            "x": 0,
+            "y": 211.59375
+          },
+          "clip": 0,
+          "hero": {
+            "bottom": 481.59375,
+            "height": 270,
+            "left": 0,
+            "right": 380,
+            "top": 211.59375,
+            "width": 380,
+            "x": 0,
+            "y": 211.59375
+          },
+          "scrollWidth": 380,
+          "width": 390
+        },
+        {
+          "theme": "amoled",
+          "name": "blue",
+          "device": "desktop",
+          "background": "rgb(0, 0, 0)",
+          "buttons": [
+            {
+              "bottom": 262.6875,
+              "height": 44,
+              "right": 1282,
+              "width": 44
+            },
+            {
+              "bottom": 262.6875,
+              "height": 44,
+              "right": 1334,
+              "width": 44
+            },
+            {
+              "bottom": 264.6875,
+              "height": 48,
+              "right": 1390,
+              "width": 48
+            }
+          ],
+          "canvas": {
+            "bottom": 549.6875,
+            "height": 340,
+            "left": 128,
+            "right": 1390,
+            "top": 209.6875,
+            "width": 1262,
+            "x": 128,
+            "y": 209.6875
+          },
+          "clip": 0,
+          "hero": {
+            "bottom": 549.6875,
+            "height": 340,
+            "left": 128,
+            "right": 1390,
+            "top": 209.6875,
+            "width": 1262,
+            "x": 128,
+            "y": 209.6875
+          },
+          "scrollWidth": 1430,
+          "width": 1440
+        },
+        {
+          "theme": "amoled",
+          "name": "blue",
+          "device": "mobile",
+          "background": "rgb(0, 0, 0)",
+          "buttons": [
+            {
+              "bottom": 257.59375,
+              "height": 44,
+              "right": 310,
+              "width": 44
+            },
+            {
+              "bottom": 257.09375,
+              "height": 43,
+              "right": 358,
+              "width": 43
+            }
+          ],
+          "canvas": {
+            "bottom": 481.59375,
+            "height": 270,
+            "left": 0,
+            "right": 380,
+            "top": 211.59375,
+            "width": 380,
+            "x": 0,
+            "y": 211.59375
+          },
+          "clip": 0,
+          "hero": {
+            "bottom": 481.59375,
+            "height": 270,
+            "left": 0,
+            "right": 380,
+            "top": 211.59375,
+            "width": 380,
+            "x": 0,
+            "y": 211.59375
+          },
+          "scrollWidth": 380,
+          "width": 390
+        }
+      ],
+      "renders": [
+        {
+          "theme": "light",
+          "name": "copper",
+          "count": 14437,
+          "fallback": {
+            "count": 10404,
+            "mean": [
+              138.3840830449827,
+              90.2245290272972,
+              57.43425605536332
+            ]
+          },
+          "mean": [
+            77.42571171295975,
+            50.559395996398145,
+            32.41504467687193
+          ],
+          "topAlpha": 0
+        },
+        {
+          "theme": "light",
+          "name": "blue",
+          "count": 14437,
+          "fallback": {
+            "count": 10404,
+            "mean": [
+              56.77902729719339,
+              101.9660707420223,
+              148.89513648596693
+            ]
+          },
+          "mean": [
+            32.05901503082358,
+            57.19166031724043,
+            83.35291265498373
+          ],
+          "topAlpha": 0
+        },
+        {
+          "theme": "dark",
+          "name": "copper",
+          "count": 14437,
+          "fallback": {
+            "count": 10404,
+            "mean": [
+              192.9979815455594,
+              133.79825067281814,
+              93.09919261822375
+            ]
+          },
+          "mean": [
+            106.98663157165616,
+            75.08215003116992,
+            53.53522199903027
+          ],
+          "topAlpha": 0
+        },
+        {
+          "theme": "dark",
+          "name": "blue",
+          "count": 14437,
+          "fallback": {
+            "count": 10404,
+            "mean": [
+              92.27393310265282,
+              148.0533448673587,
+              206.438677431757
+            ]
+          },
+          "mean": [
+            53.12121631917989,
+            82.94908914594444,
+            114.034356168179
+          ],
+          "topAlpha": 0
+        },
+        {
+          "theme": "amoled",
+          "name": "copper",
+          "count": 14437,
+          "fallback": {
+            "count": 10404,
+            "mean": [
+              192.9979815455594,
+              133.79825067281814,
+              93.09919261822375
+            ]
+          },
+          "mean": [
+            106.98663157165616,
+            75.08215003116992,
+            53.53522199903027
+          ],
+          "topAlpha": 0
+        },
+        {
+          "theme": "amoled",
+          "name": "blue",
+          "count": 14437,
+          "fallback": {
+            "count": 10404,
+            "mean": [
+              92.27393310265282,
+              148.0533448673587,
+              206.438677431757
+            ]
+          },
+          "mean": [
+            53.12121631917989,
+            82.94908914594444,
+            114.034356168179
+          ],
+          "topAlpha": 0
+        }
+      ],
+      "screenshots": [
+        "apps/web/qa/wave-widget-1791661552882-light-copper-desktop.png",
+        "apps/web/qa/wave-widget-1791661552882-light-copper-mobile.png",
+        "apps/web/qa/wave-widget-1791661552882-light-blue-desktop.png",
+        "apps/web/qa/wave-widget-1791661552882-light-blue-mobile.png",
+        "apps/web/qa/wave-widget-1791661552882-dark-copper-desktop.png",
+        "apps/web/qa/wave-widget-1791661552882-dark-copper-mobile.png",
+        "apps/web/qa/wave-widget-1791661552882-dark-blue-desktop.png",
+        "apps/web/qa/wave-widget-1791661552882-dark-blue-mobile.png",
+        "apps/web/qa/wave-widget-1791661552882-amoled-copper-desktop.png",
+        "apps/web/qa/wave-widget-1791661552882-amoled-copper-mobile.png",
+        "apps/web/qa/wave-widget-1791661552882-amoled-blue-desktop.png",
+        "apps/web/qa/wave-widget-1791661552882-amoled-blue-mobile.png",
+        "apps/web/qa/wave-widget-1791661552882-dark-copper-motion-own-audio.png"
+      ],
+      "checks": [
+        "12 actual home layouts: full-width transparent field, theme-aware selected pigment, no crop/overflow, visible transport inside hero",
+        "Six actual GPU + six actual Canvas fallback renders: copper/blue remain chromatic, transparent outer field",
+        "Reduced motion freezes actual mounted wave; enabled animation moves it; all three persisted wave styles render; original local audio plays without iframe"
+      ],
+      "motion": {
+        "frames": 40,
+        "samples": [
+          {
+            "hash": 1550248134,
+            "phase": 0.800000011920929
+          },
+          {
+            "hash": 3844460719,
+            "phase": 1.7128000259399414
+          }
+        ]
+      },
+      "browserErrors": {
+        "errors": []
+      }
+    },
+    "independentProof": {
+      "passed": true,
+      "scope": "Independent actual React app UI evaluation; no physical device or production account interaction",
+      "viewportWidths": [
+        1440,
+        768,
+        375
+      ],
+      "themes": [
+        "light",
+        "dark",
+        "amoled"
+      ],
+      "selectedAccents": [
+        "copper",
+        "blue"
+      ],
+      "topLayouts": 18,
+      "fullPageScrolledLayouts": 18,
+      "screenshots": 41,
+      "motionScreenshotsDifferent": true,
+      "reducedMotionScreenshotsEqual": true,
+      "files": [
+        "wave-evaluate-1791661485935-amoled-blue-1440-bottom.png",
+        "wave-evaluate-1791661485935-amoled-blue-1440.png",
+        "wave-evaluate-1791661485935-amoled-blue-375-bottom.png",
+        "wave-evaluate-1791661485935-amoled-blue-375.png",
+        "wave-evaluate-1791661485935-amoled-blue-768-bottom.png",
+        "wave-evaluate-1791661485935-amoled-blue-768.png",
+        "wave-evaluate-1791661485935-amoled-copper-1440-bottom.png",
+        "wave-evaluate-1791661485935-amoled-copper-1440.png",
+        "wave-evaluate-1791661485935-amoled-copper-375-bottom.png",
+        "wave-evaluate-1791661485935-amoled-copper-375.png",
+        "wave-evaluate-1791661485935-amoled-copper-768-bottom.png",
+        "wave-evaluate-1791661485935-amoled-copper-768.png",
+        "wave-evaluate-1791661485935-dark-blue-1440-bottom.png",
+        "wave-evaluate-1791661485935-dark-blue-1440.png",
+        "wave-evaluate-1791661485935-dark-blue-375-bottom.png",
+        "wave-evaluate-1791661485935-dark-blue-375.png",
+        "wave-evaluate-1791661485935-dark-blue-768-bottom.png",
+        "wave-evaluate-1791661485935-dark-blue-768.png",
+        "wave-evaluate-1791661485935-dark-copper-1440-bottom.png",
+        "wave-evaluate-1791661485935-dark-copper-1440.png",
+        "wave-evaluate-1791661485935-dark-copper-375-bottom.png",
+        "wave-evaluate-1791661485935-dark-copper-375.png",
+        "wave-evaluate-1791661485935-dark-copper-768-bottom.png",
+        "wave-evaluate-1791661485935-dark-copper-768.png",
+        "wave-evaluate-1791661485935-light-blue-1440-bottom.png",
+        "wave-evaluate-1791661485935-light-blue-1440.png",
+        "wave-evaluate-1791661485935-light-blue-375-bottom.png",
+        "wave-evaluate-1791661485935-light-blue-375.png",
+        "wave-evaluate-1791661485935-light-blue-768-bottom.png",
+        "wave-evaluate-1791661485935-light-blue-768.png",
+        "wave-evaluate-1791661485935-light-copper-1440-bottom.png",
+        "wave-evaluate-1791661485935-light-copper-1440.png",
+        "wave-evaluate-1791661485935-light-copper-375-bottom.png",
+        "wave-evaluate-1791661485935-light-copper-375.png",
+        "wave-evaluate-1791661485935-light-copper-768-bottom.png",
+        "wave-evaluate-1791661485935-light-copper-768.png",
+        "wave-evaluate-1791661485935-motion-after.png",
+        "wave-evaluate-1791661485935-motion-before.png",
+        "wave-evaluate-1791661485935-pointer.png",
+        "wave-evaluate-1791661485935-still-after.png",
+        "wave-evaluate-1791661485935-still-before.png"
+      ],
+      "audio": "Original isolated QA audio played by Catch a wave; no iframe present",
+      "limitations": [
+        "No physical phone launcher or audio tests requested by owner"
+      ],
+      "androidActualRemoteViews": {
+        "passed": true,
+        "layouts": 36,
+        "testCount": 6,
+        "directory": "C:/Users/alish/AppData/Local/Temp/widgets-1791661922436",
+        "fontScales": [
+          1,
+          1.3
+        ],
+        "compactCropFixed": true
+      }
+    },
+    "evaluationVerdict": "PASS",
+    "evaluationAttempt": 1
+  },
+  "native": {
+    "apk": "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\apps\\native\\build\\app\\outputs\\flutter-apk\\app-debug.apk",
+    "bytes": 185477775,
+    "builtAt": "2026-10-10T19:58:22.377053+00:00",
+    "sha256": "6382475a003ad499b36120d440f833fa623f307d07d1704744f8fc8a2bda97d0",
+    "sourceFrozenAt": "2026-10-10T19:54:37.513206+00:00",
+    "sourceSha256": "19c860096c273cfc59de313d55b9e755d9e4997484771d58452a3aa98b128dd7",
+    "sourceFiles": 149,
+    "kernelSha256": "7cf999db1b346f75ba41175b51ad10318ead6dfd55dc55e39b753a11331655b5",
+    "kernelMatchesBuildOutput": true,
+    "compileDefine": "https://wave.gluk.tech",
+    "kernelFeatureMarkers": {
+      "tech.gluk.glukwave/home_widgets": true,
+      "glukwave.widget": true,
+      "Home screen widgets": true,
+      "https://wave.gluk.tech": true,
+      "full-player": true,
+      "player-cover-gesture": true,
+      "language-selector": true,
+      "language.auto": true,
+      "locale:change": true,
+      "lrcClock": true,
+      "artworkForDisplay": true,
+      "-t500x500.": true,
+      "/api/diagnostics/events": true,
+      "glukwave-lan-v1": true,
+      "LAN pairing": true,
+      "seasonalEffects": true,
+      "lan-enable": true,
+      "ROOM_STATE": true,
+      "/lrclib": true,
+      "Find on LRCLIB": true,
+      "/genius/preview": true,
+      "genius-preview": true,
+      "cover-ambient-transform": true,
+      "/discord": true,
+      "discord:changed": true,
+      "discordPresence": true,
+      "deviceVolume": true,
+      "/api/auth/native-captcha": true,
+      "Invalid authentication expiry": true,
+      "desktop-quick-volume": true,
+      "account:state": true,
+      "track-loading-cover": true,
+      "ScrollingLabel": true,
+      "/connect": true,
+      "outputActive": true,
+      "/account/sessions": true,
+      "downloadUrl": true,
+      "adoptOnly": true,
+      "/taste": true,
+      "/friends": true,
+      "/jams": true,
+      "/api/account/": true,
+      "currentPassword": true,
+      "Email sent": true,
+      "/playlists/discover": true
+    },
+    "localCatalogsInKernel": {
+      "en": true,
+      "ru": true,
+      "kk": true,
+      "uk": true,
+      "de": true,
+      "es": true
+    },
+    "qaTrackBundled": false,
+    "fontManifestVerified": true,
+    "staticFontFaces": [
+      {
+        "asset": "assets/fonts/Nunito-Regular.ttf",
+        "weight": 400,
+        "variable": false,
+        "sha256": "29f17d41574376520b263bde34a4fecb11814233ff280c66befce6020c5e3cc4",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-Medium.ttf",
+        "weight": 500,
+        "variable": false,
+        "sha256": "818d89d5417ed2c7686c07097469f417d41dfe70b8e9514466637612f7ab9d8d",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-SemiBold.ttf",
+        "weight": 600,
+        "variable": false,
+        "sha256": "e6ac9b7051c6b3c4a23817a9272e2a8f7124896b36e68b30a3d46b452a0418a5",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-Bold.ttf",
+        "weight": 700,
+        "variable": false,
+        "sha256": "19acc4b8e7dc15b49c3802b6f2b53a1c41d7ee548733204a367052fa53387933",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-ExtraBold.ttf",
+        "weight": 800,
+        "variable": false,
+        "sha256": "9bc8f0d0c03926636f41ec699c6563dd01835b510c194e2086811eaf65a8e527",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-Black.ttf",
+        "weight": 900,
+        "variable": false,
+        "sha256": "b3628977111142f66472632770b76ee2c0665a40ae536bd64971a3bc19087717",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Manrope-Regular.ttf",
+        "weight": 400,
+        "variable": false,
+        "sha256": "c443e2325b9ff17933ec2f5a99d835af430a545901d146f81f4fc9f4882b6623",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Manrope-Medium.ttf",
+        "weight": 500,
+        "variable": false,
+        "sha256": "78177fa989a3feb256c1750faca4a05ab0b70f093f5f45b12a537e7b939bae9c",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Manrope-SemiBold.ttf",
+        "weight": 600,
+        "variable": false,
+        "sha256": "1eea52be7b84d0841e39d6102cdf2f6777dbdbd6781d3a40a3323a8151163f07",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Manrope-Bold.ttf",
+        "weight": 700,
+        "variable": false,
+        "sha256": "06ef9bf16d6ce1b6b8d6b953ea8b9e6c30e4b3708cf039132224fb2a5aa77102",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Manrope-ExtraBold.ttf",
+        "weight": 800,
+        "variable": false,
+        "sha256": "63050130f7beccf497d740a2af39f8d5d49447e9ed777014e8d6d413442425ba",
+        "matchesSource": true
+      }
+    ],
+    "fontManifestSha256": "dc61e379e1f65f8de62057e95a64baaebcbbf8e5ee2450f736e2611705ca210f",
+    "nunitoLicenseIncluded": true,
+    "manifestVerified": true,
+    "androidWidgetReceiversPrivate": {
+      "WavePlayerWidget": true,
+      "WaveLargeWidget": true,
+      "WidgetCommandReceiver": true
+    },
+    "widgetTestRuntimeBundled": false,
+    "version": "1.0.0",
+    "versionCode": 11,
+    "minSdk": 24,
+    "targetSdk": 36,
+    "output": "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\outputs\\GlukWave-android-debug.apk",
+    "outputMatchesBuild": true,
+    "signatureVerified": true,
+    "signatureScheme": "v2",
+    "analyzerIssues": 0,
+    "standardTestsPassed": 228,
+    "signature": "debug",
+    "deviceRuntimeVerified": false,
+    "manropeLicenseIncluded": true,
+    "iosBuilt": false,
+    "sourceFreezeFile": "docs/verification/2026-10-11/wave-widgets-native-source-freeze.json",
+    "windowsExecutableBuilt": true,
+    "windows": {
+      "checkedAt": "2026-10-10T19:59:03.083115+00:00",
+      "passed": true,
+      "bundle": "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\outputs\\GlukWave-windows",
+      "featureMarkers": {
+        "track-loading-cover": true,
+        "glukwave-lan-v1": true,
+        "LAN pairing": true,
+        "seasonalEffects": true,
+        "lan-enable": true,
+        "/discord": true,
+        "discord:changed": true,
+        "discordPresence": true,
+        "/api/diagnostics/events": true,
+        "/lrclib": true,
+        "/genius/preview": true,
+        "genius-preview": true,
+        "cover-ambient-transform": true,
+        "ROOM_STATE": true,
+        "Find on LRCLIB": true,
+        "deviceVolume": true,
+        "/api/auth/native-captcha": true,
+        "desktop-quick-volume": true,
+        "/account/sessions": true,
+        "downloadUrl": true,
+        "adoptOnly": true,
+        "/taste": true,
+        "/friends": true,
+        "/jams": true,
+        "/api/account/": true,
+        "currentPassword": true,
+        "Email sent": true,
+        "/playlists/discover": true
+      },
+      "file": "outputs/GlukWave-windows.zip",
+      "bytes": 27741287,
+      "sha256": "c47bdbfae8199c208b70bb32ad816c4b7ebd6cddd8688c2ee0e18863307ddc6f",
+      "frozenOriginalFilesMatched": 149,
+      "compiledSourceFilesMatched": 103,
+      "compiledSourcePaths": [
+        "assets/app_icon.ico",
+        "assets/coast.jpg",
+        "assets/fonts/Manrope-Bold.ttf",
+        "assets/fonts/Manrope-ExtraBold.ttf",
+        "assets/fonts/Manrope-Medium.ttf",
+        "assets/fonts/Manrope-Regular.ttf",
+        "assets/fonts/Manrope-SemiBold.ttf",
+        "assets/fonts/Nunito-Black.ttf",
+        "assets/fonts/Nunito-Bold.ttf",
+        "assets/fonts/Nunito-ExtraBold.ttf",
+        "assets/fonts/Nunito-Medium.ttf",
+        "assets/fonts/Nunito-Regular.ttf",
+        "assets/fonts/Nunito-SemiBold.ttf",
+        "assets/forest.jpg",
+        "assets/google-g.png",
+        "assets/licenses/just_audio_media_kit-UNLICENSE.txt",
+        "assets/licenses/Manrope-OFL.txt",
+        "assets/licenses/Nunito-OFL.txt",
+        "assets/logo.gif",
+        "assets/logo.png",
+        "assets/mark.svg",
+        "assets/Nunito.ttf",
+        "lib/core/api.dart",
+        "lib/core/appearance.dart",
+        "lib/core/artwork.dart",
+        "lib/core/controller.dart",
+        "lib/core/discord.dart",
+        "lib/core/equalizer.dart",
+        "lib/core/lyrics.dart",
+        "lib/core/models.dart",
+        "lib/core/parity.dart",
+        "lib/core/wave_math.dart",
+        "lib/l10n/catalogs.dart",
+        "lib/l10n/discord_strings.dart",
+        "lib/l10n/home_widget_strings.dart",
+        "lib/l10n/lan_strings.dart",
+        "lib/l10n/lyrics_strings.dart",
+        "lib/l10n/parity_strings.dart",
+        "lib/l10n/season_strings.dart",
+        "lib/l10n/wave_localizations.dart",
+        "lib/main.dart",
+        "lib/services/ambience.dart",
+        "lib/services/appearance_store.dart",
+        "lib/services/audio.dart",
+        "lib/services/cache.dart",
+        "lib/services/desktop.dart",
+        "lib/services/diagnostics.dart",
+        "lib/services/home_widgets.dart",
+        "lib/services/lan_transport.dart",
+        "lib/services/presence_bridge.dart",
+        "lib/services/provider_player.dart",
+        "lib/services/push.dart",
+        "lib/services/volume_store.dart",
+        "lib/services/waveform.dart",
+        "lib/services/windows_dsp.dart",
+        "lib/services/windows_equalizer.dart",
+        "lib/services/windows_mpv_player.dart",
+        "lib/ui/album_stage.dart",
+        "lib/ui/app.dart",
+        "lib/ui/appearance_panel.dart",
+        "lib/ui/auth_page.dart",
+        "lib/ui/auth_visuals.dart",
+        "lib/ui/connect_panel.dart",
+        "lib/ui/cover_ambient.dart",
+        "lib/ui/desktop_player.dart",
+        "lib/ui/device_labels.dart",
+        "lib/ui/discord_panel.dart",
+        "lib/ui/equalizer_panel.dart",
+        "lib/ui/home_widget_previews.dart",
+        "lib/ui/lan_panel.dart",
+        "lib/ui/listening_rail.dart",
+        "lib/ui/lofi.dart",
+        "lib/ui/lyrics_editor.dart",
+        "lib/ui/motion_icons.dart",
+        "lib/ui/parity_panels.dart",
+        "lib/ui/player.dart",
+        "lib/ui/player_gestures.dart",
+        "lib/ui/provider_host.dart",
+        "lib/ui/scrolling_label.dart",
+        "lib/ui/seasonal.dart",
+        "lib/ui/sessions_panel.dart",
+        "lib/ui/silk_wave.dart",
+        "lib/ui/theme.dart",
+        "lib/ui/theme_preview.dart",
+        "lib/ui/volume_slider.dart",
+        "lib/ui/wave_colors.dart",
+        "lib/ui/widgets.dart",
+        "pubspec.lock",
+        "pubspec.yaml",
+        "windows/CMakeLists.txt",
+        "windows/flutter/CMakeLists.txt",
+        "windows/runner/CMakeLists.txt",
+        "windows/runner/flutter_window.cpp",
+        "windows/runner/flutter_window.h",
+        "windows/runner/main.cpp",
+        "windows/runner/resource.h",
+        "windows/runner/resources/app_icon.ico",
+        "windows/runner/runner.exe.manifest",
+        "windows/runner/Runner.rc",
+        "windows/runner/utils.cpp",
+        "windows/runner/utils.h",
+        "windows/runner/win32_window.cpp",
+        "windows/runner/win32_window.h"
+      ],
+      "binarySha256": {
+        "glukwave.exe": "a3a30be472550aa15037e5ff09b114a7fd6ddd94ae83cd0f57868b47131a674a",
+        "flutter_windows.dll": "6840b8129fb105dd246f05f14eab97d7e8e9eade1428f9afde95de6b8e1a7808",
+        "libmpv-2.dll": "0a5a0b476866c91a639a4e511e8153968f8fa23564461b0aa09acdba816164a4",
+        "audio_service_win_plugin.dll": "ef9421be9fe1292eb8a3f2b75d1c0cfd61e404fe984c51e220e464d87892ea0d",
+        "flutter_inappwebview_windows_plugin.dll": "e41be84c4dec12a7c0fb8ba402053f75ac818856a6f47128d1afd1820e8ceacd",
+        "flutter_secure_storage_windows_plugin.dll": "098a8c4a8b53e72029b2a8403768e3cf7ace15cbf3e84820e575254c428f4cde",
+        "tray_manager_plugin.dll": "1291abc69be060b15cf917332b10eb46103b335b329d4dc4232bb39e778867e6",
+        "window_manager_plugin.dll": "ac27838523201046c479646c9ed161eb994a4608f4d7b4759126c27da861c25c",
+        "msvcp140.dll": "0f885b509a685d2bbfa652fed26b5fb31d88fbdab0a978c641d1c7b8aa460aa9",
+        "vcruntime140.dll": "d5e4d9a3e835fa679450145d6a7d94e36573a509317111904d9b3712c30d9066",
+        "vcruntime140_1.dll": "1f2d41c4aa5db0bc33ebf7b66d72943a817d7ce6cbe880502a9403823633093f"
+      },
+      "packageMatchesReleaseBuild": true,
+      "zipCrcAndAllFilesMatched": true,
+      "staticFontFaces": 11,
+      "compileDefine": "https://wave.gluk.tech",
+      "buildMode": "release",
+      "authenticodeSigned": false,
+      "uiInteractionVerified": false,
+      "physicalAudioVerified": false,
+      "installer": {
+        "file": "outputs/GlukWave-Setup.exe",
+        "version": "1.0.0+11",
+        "bytes": 24332649,
+        "sha256": "7e357b0f66f365617a63d6dc8ac55253ebb74aea5eb3ec9e6c60fe76441eb8cb",
+        "singleFile": true,
+        "compilerSucceeded": true,
+        "authenticodeSigned": false,
+        "installedDuringIteration": false
+      }
+    },
+    "androidWidgetTestsPassed": 6,
+    "androidWidgetRenderCases": 36,
+    "androidWidgetPhysicalLauncherVerified": false,
+    "nativeWaveProof": {
+      "passed": true,
+      "scope": "Actual native renderer, fixed original field inputs, no physical device checks",
+      "screenshots": [
+        {
+          "theme": "light",
+          "accent": "copper",
+          "width": 390,
+          "file": "../../work/qa/wave-native-1791662186713-light-copper-390.png"
+        },
+        {
+          "theme": "light",
+          "accent": "copper",
+          "width": 900,
+          "file": "../../work/qa/wave-native-1791662186713-light-copper-900.png"
+        },
+        {
+          "theme": "light",
+          "accent": "blue",
+          "width": 390,
+          "file": "../../work/qa/wave-native-1791662186713-light-blue-390.png"
+        },
+        {
+          "theme": "light",
+          "accent": "blue",
+          "width": 900,
+          "file": "../../work/qa/wave-native-1791662186713-light-blue-900.png"
+        },
+        {
+          "theme": "dark",
+          "accent": "copper",
+          "width": 390,
+          "file": "../../work/qa/wave-native-1791662186713-dark-copper-390.png"
+        },
+        {
+          "theme": "dark",
+          "accent": "copper",
+          "width": 900,
+          "file": "../../work/qa/wave-native-1791662186713-dark-copper-900.png"
+        },
+        {
+          "theme": "dark",
+          "accent": "blue",
+          "width": 390,
+          "file": "../../work/qa/wave-native-1791662186713-dark-blue-390.png"
+        },
+        {
+          "theme": "dark",
+          "accent": "blue",
+          "width": 900,
+          "file": "../../work/qa/wave-native-1791662186713-dark-blue-900.png"
+        },
+        {
+          "theme": "amoled",
+          "accent": "copper",
+          "width": 390,
+          "file": "../../work/qa/wave-native-1791662186713-amoled-copper-390.png"
+        },
+        {
+          "theme": "amoled",
+          "accent": "copper",
+          "width": 900,
+          "file": "../../work/qa/wave-native-1791662186713-amoled-copper-900.png"
+        },
+        {
+          "theme": "amoled",
+          "accent": "blue",
+          "width": 390,
+          "file": "../../work/qa/wave-native-1791662186713-amoled-blue-390.png"
+        },
+        {
+          "theme": "amoled",
+          "accent": "blue",
+          "width": 900,
+          "file": "../../work/qa/wave-native-1791662186713-amoled-blue-900.png"
+        }
+      ]
+    }
+  },
+  "releaseDownloadProof": {
+    "checkedAt": "2026-10-10T20:01:04.046Z",
+    "isolatedLocalServer": true,
+    "checks": [
+      {
+        "platform": "android",
+        "version": "1.0.0+11",
+        "rangeStatus": 206,
+        "bytes": 185477775,
+        "sha256": "6382475a003ad499b36120d440f833fa623f307d07d1704744f8fc8a2bda97d0"
+      },
+      {
+        "platform": "windows",
+        "version": "1.0.0+11",
+        "rangeStatus": 206,
+        "bytes": 24332649,
+        "sha256": "7e357b0f66f365617a63d6dc8ac55253ebb74aea5eb3ec9e6c60fe76441eb8cb"
+      }
+    ],
+    "fullInstallerDownloadMatched": true,
+    "passed": true
+  },
+  "hostingDeployedDuringIteration": false,
+  "physicalChecksPerformed": false
+}

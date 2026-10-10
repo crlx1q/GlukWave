@@ -14,8 +14,8 @@ export function useDocumentVisible(){
  return useSyncExternalStore(subscribeDocument,documentSnapshot,()=>true);
 }
 
-export function useVisualVisibility<T extends Element>(ref:RefObject<T|null>,enabled=true){
+export function useVisualVisibility<T extends Element>(ref:RefObject<T|null>,enabled=true,geometryRevision?:unknown){
  const documentVisible=useDocumentVisible(),[inView,setInView]=useState(false);
- useEffect(()=>{const element=ref.current;if(!element||!enabled){setInView(false);return;}const observer=new IntersectionObserver(entries=>setInView(entries[0]?.isIntersecting||false));observer.observe(element);return()=>observer.disconnect();},[ref,enabled]);
+ useEffect(()=>{const element=ref.current;if(!element||!enabled){setInView(false);return;}let live=true;const observer=new IntersectionObserver(entries=>{if(live)setInView(entries.at(-1)?.isIntersecting||false);});observer.observe(element);return()=>{live=false;observer.disconnect();};},[ref,enabled,geometryRevision]);
  return enabled&&documentVisible&&inView;
 }

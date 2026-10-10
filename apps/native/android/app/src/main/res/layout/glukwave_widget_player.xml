@@ -1,0 +1,19 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/widget_root" android:layout_width="match_parent" android:layout_height="match_parent" android:padding="4dp">
+ <ImageView android:id="@+id/widget_panel" android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/widget_panel_background" android:scaleType="fitXY" android:importantForAccessibility="no" />
+ <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent" android:padding="8dp" android:orientation="vertical" android:gravity="center_vertical">
+  <LinearLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:orientation="horizontal" android:gravity="center_vertical">
+   <ImageView android:id="@+id/widget_cover" android:layout_width="44dp" android:layout_height="44dp" android:layout_gravity="center_vertical" android:scaleType="centerCrop" android:src="@drawable/widget_logo" android:contentDescription="" android:importantForAccessibility="no" />
+   <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_gravity="center_vertical" android:orientation="vertical" android:layout_marginStart="12dp" android:layout_marginEnd="6dp">
+    <TextView android:id="@+id/widget_title" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="GlukWave" android:textSize="13sp" android:textColor="#F4EDE3" android:fontFamily="@font/widget_manrope" android:includeFontPadding="false" android:singleLine="true" android:ellipsize="end" android:textStyle="bold" />
+    <TextView android:id="@+id/widget_artist" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="On your frequency" android:textSize="11sp" android:textColor="#BAB4AE" android:fontFamily="@font/widget_manrope" android:includeFontPadding="false" android:singleLine="true" android:ellipsize="end" android:layout_marginTop="3dp" />
+    <TextView android:id="@+id/widget_status" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="" android:textSize="9sp" android:textColor="#D99569" android:fontFamily="@font/widget_manrope" android:includeFontPadding="false" android:singleLine="true" android:ellipsize="end" android:layout_marginTop="3dp" />
+   </LinearLayout>
+   <ImageButton android:id="@+id/widget_previous" android:layout_width="44dp" android:layout_height="44dp" android:layout_gravity="center_vertical" android:background="@drawable/widget_touch_background" android:src="@drawable/widget_previous" android:padding="10dp" android:contentDescription="Previous" />
+   <ImageButton android:id="@+id/widget_play" android:layout_width="48dp" android:layout_height="48dp" android:layout_gravity="center_vertical" android:background="@drawable/widget_play_background" android:src="@drawable/widget_play" android:padding="12dp" android:contentDescription="Play" />
+   <ImageButton android:id="@+id/widget_next" android:layout_width="44dp" android:layout_height="44dp" android:layout_gravity="center_vertical" android:background="@drawable/widget_touch_background" android:src="@drawable/widget_next" android:padding="10dp" android:contentDescription="Next" />
+  </LinearLayout>
+  <LinearLayout android:layout_width="match_parent" android:layout_height="2dp" android:layout_marginTop="5dp" android:orientation="vertical" android:visibility="gone">
+   <ProgressBar android:id="@+id/widget_progress" style="?android:attr/progressBarStyleHorizontal" android:layout_width="match_parent" android:layout_height="2dp" android:max="1000" android:progress="0" android:indeterminate="false" android:progressDrawable="@drawable/widget_progress_background" android:importantForAccessibility="no" android:visibility="gone" />
+  </LinearLayout>
+ </LinearLayout>
+</FrameLayout>
