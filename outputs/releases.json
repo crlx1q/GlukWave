@@ -2,23 +2,23 @@
   "releases": [
     {
       "platform": "android",
-      "file": "GlukWave-android-debug-1.0.0+7.apk",
-      "version": "1.0.0+7",
+      "file": "GlukWave-android-debug.apk",
+      "version": "1.0.0+9",
       "signature": "debug",
       "channel": "beta",
-      "bytes": 184985213,
-      "sha256": "b5cd855c5e72ea84448111190031bf17d23c68d0a9c11f32cba429eb57072038",
-      "builtAt": "2026-10-09T19:25:21.358Z"
+      "bytes": 185483305,
+      "sha256": "64c776180db9f96a0da1cbe210a177db0b2467d5ef947c8fc0fb1f056c73e3f6",
+      "builtAt": "2026-10-10T10:24:07.878Z"
     },
     {
       "platform": "windows",
-      "file": "GlukWave-Setup-1.0.0+7.exe",
-      "version": "1.0.0+7",
+      "file": "GlukWave-Setup.exe",
+      "version": "1.0.0+9",
       "signature": "release",
       "channel": "stable",
-      "bytes": 24287416,
-      "sha256": "2f5c7f824c53fbd124211fdcbf74d077b141452aaa51e1966369c2ec2f424da5",
-      "builtAt": "2026-10-09T19:26:40.941Z"
+      "bytes": 24368602,
+      "sha256": "7e51b380af8a6b756e65ddd4cf174d4157d308da2faed366b4f2968bd7fa26d4",
+      "builtAt": "2026-10-10T10:39:25.176Z"
     }
   ]
 }

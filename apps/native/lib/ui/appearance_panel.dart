@@ -4,27 +4,33 @@ import '../core/appearance.dart';
 import '../services/appearance_store.dart';
 import 'widgets.dart';
 import 'theme_preview.dart';
+import 'seasonal.dart';
 import '../l10n/wave_localizations.dart';
 import '../l10n/parity_strings.dart';
 
-Future<void> showAppearance(BuildContext context, AppearanceStore store, {bool advancedAllowed = true}) =>
-    showModalBottomSheet<void>(
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-      useSafeArea: true,
-      builder: (context) => Padding(
-        padding: EdgeInsets.only(
-          bottom: MediaQuery.viewInsetsOf(context).bottom,
-        ),
-        child: AppearancePanel(store: store, advancedAllowed: advancedAllowed),
-      ),
-    );
+Future<void> showAppearance(
+  BuildContext context,
+  AppearanceStore store, {
+  bool advancedAllowed = true,
+}) => showModalBottomSheet<void>(
+  context: context,
+  isScrollControlled: true,
+  backgroundColor: Colors.transparent,
+  useSafeArea: true,
+  builder: (context) => Padding(
+    padding: EdgeInsets.only(bottom: MediaQuery.viewInsetsOf(context).bottom),
+    child: AppearancePanel(store: store, advancedAllowed: advancedAllowed),
+  ),
+);
 
 class AppearanceEntry extends StatelessWidget {
   final AppearanceStore store;
   final bool advancedAllowed;
-  const AppearanceEntry({super.key, required this.store, this.advancedAllowed = true});
+  const AppearanceEntry({
+    super.key,
+    required this.store,
+    this.advancedAllowed = true,
+  });
   @override
   Widget build(BuildContext context) {
     final v = waveVisuals(context);
@@ -63,7 +69,11 @@ class AppearanceEntry extends StatelessWidget {
           const SizedBox(height: 18),
           OutlinedButton.icon(
             key: const Key('open-appearance'),
-            onPressed: () => showAppearance(context, store, advancedAllowed: advancedAllowed),
+            onPressed: () => showAppearance(
+              context,
+              store,
+              advancedAllowed: advancedAllowed,
+            ),
             icon: const Icon(Icons.tune_rounded, size: 18),
             label: Text(wt('native.2691b463f8', context: context)),
           ),
@@ -76,7 +86,11 @@ class AppearanceEntry extends StatelessWidget {
 class AppearancePanel extends StatefulWidget {
   final AppearanceStore store;
   final bool advancedAllowed;
-  const AppearancePanel({super.key, required this.store, this.advancedAllowed = true});
+  const AppearancePanel({
+    super.key,
+    required this.store,
+    this.advancedAllowed = true,
+  });
   @override
   State<AppearancePanel> createState() => _AppearancePanelState();
 }
@@ -94,7 +108,9 @@ class _AppearancePanelState extends State<AppearancePanel> {
   String? editing;
   void change(Map<String, dynamic> patch) {
     if (!widget.advancedAllowed && requiresAdvancedAppearance(patch)) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(pt(context, 'Advanced'))));
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text(pt(context, 'Advanced'))));
       return;
     }
     unawaited(widget.store.change(patch));
@@ -200,7 +216,14 @@ class _AppearancePanelState extends State<AppearancePanel> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        if (!widget.advancedAllowed) Padding(padding: const EdgeInsets.only(bottom: 18), child: Text(pt(context, 'Advanced'), style: TextStyle(color: v.muted, height: 1.6))),
+                        if (!widget.advancedAllowed)
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 18),
+                            child: Text(
+                              pt(context, 'Advanced'),
+                              style: TextStyle(color: v.muted, height: 1.6),
+                            ),
+                          ),
                         DropdownButtonFormField<String>(
                           key: const Key('language-selector'),
                           initialValue: state.language,
@@ -600,6 +623,8 @@ class _AppearancePanelState extends State<AppearancePanel> {
                             ),
                           ),
                         ),
+                        const SizedBox(height: 18),
+                        SeasonalSettings(store: widget.store),
                         const SizedBox(height: 18),
                         TextButton.icon(
                           key: const Key('reset-appearance'),

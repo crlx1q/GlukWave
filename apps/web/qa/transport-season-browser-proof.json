@@ -1,0 +1,28 @@
+{
+  "passed": true,
+  "steps": [
+    "Actual HLS decoded into the existing AudioElement/EQ with no widget; hidden real tab advances to the next stream; attribution stays visible and stream is not marked downloadable",
+    "Bottom bar artwork/actions aligned, no clipping at desktop1440/1280, tablet768, phone390/320 across light/dark/AMOLED and six languages with real app scale125 percent",
+    "Real volume wheel raises/lowers sound; transport focus and range native keyboard semantics remain",
+    "Seasonal atmosphere off by default, opt-in checkbox, all modes/intensity preserve enabled state, six languages/125 percent fit; reduced motion removes full-screen animation; hidden tab resumes; saved off survives reload"
+  ],
+  "screenshots": [
+    "apps/web/qa/transport-season-light-desktop.png",
+    "apps/web/qa/transport-season-light-phone.png",
+    "apps/web/qa/transport-season-dark-desktop.png",
+    "apps/web/qa/transport-season-dark-phone.png",
+    "apps/web/qa/transport-season-amoled-desktop.png",
+    "apps/web/qa/transport-season-amoled-phone.png",
+    "apps/web/qa/transport-season-es-125-phone.png",
+    "apps/web/qa/transport-season-settings-phone.png",
+    "apps/web/qa/transport-season-settings-desktop.png"
+  ],
+  "hls": {
+    "energy": 0.01174293565428857,
+    "equalizerAvailable": true,
+    "offline": false
+  },
+  "browserErrors": {
+    "errors": []
+  }
+}

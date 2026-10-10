@@ -1,3 +1,4 @@
+import {AudioStreamLoader} from './audio-stream';
 import { t, useLocale, getLanguage } from './locale';
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { io, type Socket } from 'socket.io-client';
@@ -21,6 +22,7 @@ export const localDeviceId=deviceId;
 const emptyState:PlayerState={trackId:null,position:0,playing:false,volume:restoredVolume(),queue:[],updatedAt:Date.now(),revision:0};
 export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
   const locale=useLocale(),store=useStore(),audio=useMemo(()=>{const element=new Audio();element.crossOrigin='anonymous';return element;},[]),[track,setTrack]=useState<Track|null>(null),[playback,setPlayback]=useState<Playback|null>(null),[state,setState]=useState<PlayerState>(emptyState),[duration,setDuration]=useState(0),[queue,setQueue]=useState<Track[]>([]),[full,setFullState]=useState(false),[revealProgress,setRevealProgress]=useState<number|null>(null),[fullTab,setFullTab]=useState<PlayerTab>('player'),[addTrack,setAddTrack]=useState<Track|null>(null),[savedIds,setSavedIds]=useState(new Set<string>()),[manualIds,setManualIds]=useState(new Set<string>()),[shuffle,setShuffle]=useState(false),[repeat,setRepeat]=useState<'off'|'all'|'one'>('off'),[devices,setDevices]=useState<Device[]>([]),[devicesOpen,setDevicesOpen]=useState(false),[room,setRoom]=useState<Room|null>(null),[socket,setSocket]=useState<Socket|null>(null),[autoplayBlocked,setAutoplayBlocked]=useState(false);
+  const streamLoader=useRef(new AudioStreamLoader());
   const audioMeter=useRef<{context:AudioContext;graph:AudioGraph|null}|null>(null),loadAbort=useRef<AbortController|null>(null);
   const [connectState,setConnectState]=useState<ConnectState|null>(null),[outputHere,setOutputHere]=useState(true),[connectionStatus,setConnectionStatus]=useState<'online'|'connecting'|'offline'>('offline');
   const connectRef=useRef<ConnectState|null>(null),outputHereRef=useRef(true),remoteAnchor=useRef<{position:number;time:number}|null>(null);
@@ -35,7 +37,7 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
     if(current.context.state==='suspended')void current.context.resume().then(attach).catch(()=>{});else attach();
   },[audio]);
   const audioEnergy=useCallback(()=>{const graph=audioMeter.current?.graph;if(!graph||graph.context.state!=='running'||audio.paused)return null;graph.analyser.getByteTimeDomainData(graph.data);let square=0;for(const value of graph.data){const sample=(value-128)/128;square+=sample*sample;}return Math.min(1,Math.sqrt(square/graph.data.length)*2.2);},[audio]);
-  useEffect(()=>()=>{loadRevision.current++;loadAbort.current?.abort();outputHereRef.current=false;audio.pause();audio.removeAttribute('src');audio.load();controller.current?.destroy?.();controller.current=null;const meter=audioMeter.current;audioMeter.current=null;if(meter)void meter.context.close().catch(()=>{});},[audio]);
+  useEffect(()=>()=>{loadRevision.current++;loadAbort.current?.abort();outputHereRef.current=false;audio.pause();streamLoader.current.destroy();audio.removeAttribute('src');audio.load();controller.current?.destroy?.();controller.current=null;const meter=audioMeter.current;audioMeter.current=null;if(meter)void meter.context.close().catch(()=>{});},[audio]);
   useEffect(()=>{if(socket?.connected)socket.emit('locale:change',{language:locale.language});},[socket,locale.language]);
   const setFull=useCallback((open:boolean,tab:PlayerTab='player')=>{setFullTab(tab);setRevealProgress(null);setFullState(open);},[]);
   const networkDelay=useRef(0);const stateRef=useRef(state),trackRef=useRef(track),playbackRef=useRef(playback),queueRef=useRef(queue),roomRef=useRef(room),controller=useRef<EmbedController|null>(null),objectUrl=useRef<string|null>(null),artworkObjectUrl=useRef<string|null>(null),loadRevision=useRef(0),roomRevision=useRef(-1),roomSyncVersion=useRef(0),roomJoinVersion=useRef(0),desiredPlay=useRef(false),desiredPosition=useRef(0),settingsRef=useRef(store.settings),userRef=useRef(store.user),repeatRef=useRef(repeat),shuffleRef=useRef(shuffle),durationRef=useRef(duration);
@@ -43,12 +45,12 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
   const update=useCallback((partial:Partial<PlayerState>)=>{const next={...stateRef.current,...partial,updatedAt:Date.now(),revision:stateRef.current.revision+1};if(partial.volume!==undefined)saveVolume(next.volume);stateRef.current=next;setState(next);},[]);
   const roomOutputActive=useRef(true);
   useEffect(()=>{const graph=audioMeter.current?.graph;if(graph)configureEqualizer(graph,store.settings.equalizer);audio.playbackRate=room?1:store.settings.playbackRate;},[audio,room?.id,store.settings.equalizer,store.settings.playbackRate]);
-  const clearPlayback=useCallback(()=>{loadRevision.current++;loadAbort.current?.abort();desiredPlay.current=false;desiredPosition.current=0;audio.pause();audio.removeAttribute('src');audio.load();controller.current?.pause();controller.current?.destroy?.();controller.current=null;if(objectUrl.current){URL.revokeObjectURL(objectUrl.current);objectUrl.current=null;}if(artworkObjectUrl.current){URL.revokeObjectURL(artworkObjectUrl.current);artworkObjectUrl.current=null;}trackRef.current=null;playbackRef.current=null;queueRef.current=[];setTrack(null);setPlayback(null);setQueue([]);setDuration(0);update({trackId:null,position:0,playing:false,queue:[]});if('mediaSession'in navigator)navigator.mediaSession.metadata=null;},[audio,update]);
+  const clearPlayback=useCallback(()=>{loadRevision.current++;loadAbort.current?.abort();desiredPlay.current=false;desiredPosition.current=0;audio.pause();streamLoader.current.destroy();audio.removeAttribute('src');audio.load();controller.current?.pause();controller.current?.destroy?.();controller.current=null;if(objectUrl.current){URL.revokeObjectURL(objectUrl.current);objectUrl.current=null;}if(artworkObjectUrl.current){URL.revokeObjectURL(artworkObjectUrl.current);artworkObjectUrl.current=null;}trackRef.current=null;playbackRef.current=null;queueRef.current=[];setTrack(null);setPlayback(null);setQueue([]);setDuration(0);update({trackId:null,position:0,playing:false,queue:[]});if('mediaSession'in navigator)navigator.mediaSession.metadata=null;},[audio,update]);
   useEffect(()=>{const refresh=()=>{if(store.user)void downloads(store.user.id).then(rows=>{setSavedIds(new Set(rows.map(row=>row.track.id)));setManualIds(new Set(rows.filter(row=>row.manual).map(row=>row.track.id)));});else{setSavedIds(new Set());setManualIds(new Set());}};refresh();window.addEventListener('wave:cache',refresh);return()=>window.removeEventListener('wave:cache',refresh);},[store.user?.id]);
   const applyTrack=useCallback(async(next:Track,nextQueue:Track[]|undefined,playing=true,position=0,strict=false)=>{
     loadAbort.current?.abort();const request=new AbortController();loadAbort.current=request;
     const revision=++loadRevision.current,startedUserId=userRef.current?.id;
-    audio.pause();controller.current?.pause();controller.current?.destroy?.();controller.current=null;
+    audio.pause();streamLoader.current.destroy();controller.current?.pause();controller.current?.destroy?.();controller.current=null;
     if(objectUrl.current){URL.revokeObjectURL(objectUrl.current);objectUrl.current=null;}if(artworkObjectUrl.current){URL.revokeObjectURL(artworkObjectUrl.current);artworkObjectUrl.current=null;}
     trackRef.current=next;playbackRef.current=null;setTrack(next);setPlayback(null);setDuration(next.duration||0);desiredPlay.current=playing;desiredPosition.current=position;setAutoplayBlocked(false);
     const order=nextQueue?.length?nextQueue:queueRef.current.some(item=>item.id===next.id)?queueRef.current:[next];setQueue(order);store.remember([next]);update({trackId:next.id,position,playing:false,queue:order.map(item=>item.id)});
@@ -62,7 +64,10 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
       playbackRef.current=fresh;setPlayback(fresh);
       if(fresh.kind==='audio'){
         if(local)objectUrl.current=fresh.url!;
-        audio.src=fresh.url||`/api/media/${next.id}`;audio.volume=stateRef.current.volume;audio.currentTime=position;audio.playbackRate=roomRef.current?1:settingsRef.current.playbackRate;
+        const current=()=>revision===loadRevision.current&&startedUserId===userRef.current?.id&&!request.signal.aborted;
+        const failStream=(error:Error)=>{if(!current())return;reportError(error,'playback',{code:'HLS_STREAM'});update({playing:false});store.notify(errorText(error),true);};
+        const renewStream=async(error:Error)=>{if(!current())return;const resumePosition=Number.isFinite(audio.currentTime)?audio.currentTime:stateRef.current.position;audio.pause();try{const renewed=(await api<{playback:Playback}>(`/tracks/${encodeURIComponent(next.id)}/playback`,{signal:request.signal})).playback;if(!current())return;if(renewed.kind!=='audio'||!renewed.url)throw error;await streamLoader.current.attach(audio,renewed.url,renewed.format,request.signal,failStream);if(!current())return;playbackRef.current=renewed;setPlayback(renewed);audio.currentTime=resumePosition;audio.volume=stateRef.current.volume;audio.playbackRate=roomRef.current?1:settingsRef.current.playbackRate;if(desiredPlay.current){await audio.play();ensureAudioMeter();}}catch(reason){if(current())failStream(reason instanceof Error?reason:error);}};
+        await streamLoader.current.attach(audio,fresh.url||`/api/media/${next.id}`,fresh.format,request.signal,fresh.format==='hls'?renewStream:failStream);if(revision!==loadRevision.current||startedUserId!==userRef.current?.id||request.signal.aborted)return;audio.volume=stateRef.current.volume;audio.currentTime=position;audio.playbackRate=roomRef.current?1:settingsRef.current.playbackRate;
         if(playing) {try {await audio.play();ensureAudioMeter();}catch {setAutoplayBlocked(true);store.notify(t('copy.704'));if(strict)throw new Error(t('copy.705'));}}
         if(userRef.current&&settingsRef.current.autoCache&&!local&&fresh.offline)void saveTrack(userRef.current.id,effective,settingsRef.current.cacheLimitMB,false).catch(()=>{});
       } else if(fresh.kind==='yandex'&&playing){store.notify(t('copy.706'));if(strict)throw new Error(t('copy.707'));}
@@ -151,7 +156,7 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
       const target=snapshotPosition(payload.state,payload.serverTime,networkDelay.current);
       if(!isCurrent())return;
       if(!outputHereRef.current){
-        desiredPlay.current=false;audio.pause();controller.current?.pause();controller.current?.destroy?.();controller.current=null;playbackRef.current=null;setPlayback(null);
+        desiredPlay.current=false;audio.pause();streamLoader.current.destroy();controller.current?.pause();controller.current?.destroy?.();controller.current=null;playbackRef.current=null;setPlayback(null);
         trackRef.current=next;setTrack(next);queueRef.current=order;setQueue(order);setDuration(next.duration);
         stateRef.current={...payload.state,playing:payload.state.playing&&!connectRef.current?.jamPaused,position:target,volume:connectRef.current?.state.volume??stateRef.current.volume};setState({...stateRef.current});remoteAnchor.current={position:target,time:performance.now()};return;
       }
@@ -175,7 +180,7 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
     else if(value.roomId===null&&roomRef.current){clearRoom();clearPlayback();}
     if(value.independent&&!value.roomId&&!roomRef.current){if(wasRemote){remoteAnchor.current=null;desiredPlay.current=false;stateRef.current={...stateRef.current,playing:false,volume:restoredVolume()};setState({...stateRef.current});}return;}
     if(!here){
-      loadRevision.current++;desiredPlay.current=false;audio.pause();controller.current?.pause();controller.current?.destroy?.();controller.current=null;
+      loadRevision.current++;desiredPlay.current=false;audio.pause();streamLoader.current.destroy();controller.current?.pause();controller.current?.destroy?.();controller.current=null;
       playbackRef.current=null;setPlayback(null);trackRef.current=value.track;setTrack(value.track);queueRef.current=value.queueTracks;setQueue(value.queueTracks);setDuration(value.track?.duration||0);
       stateRef.current={...value.state,position:snapshotPosition(value.state,value.serverTime)};setState({...stateRef.current});remoteAnchor.current={position:stateRef.current.position,time:performance.now()};
     }else if(!playbackRef.current&&value.track){trackRef.current=value.track;setTrack(value.track);queueRef.current=value.queueTracks;setQueue(value.queueTracks);setDuration(value.track.duration);stateRef.current={...value.state,playing:false,volume:restoredVolume()};setState({...stateRef.current});}

@@ -33,7 +33,7 @@ const count=archive.readUInt16LE(end+10),offset=archive.readUInt32LE(end+16),dir
 requireCondition(count>0&&count<65535&&offset+directorySize===end,'Invalid ZIP directory');
 const allowed=new Set(['apps','docs','scripts','deploy','.github']);
 const rootFiles=new Set(['.env.example','.gitignore','.dockerignore','Dockerfile','compose.yaml','package.json','package-lock.json','README.md']);
-const outputFiles=new Set(['outputs/START.md','outputs/VERIFICATION.md','outputs/Start-GlukWave.ps1']);
+const outputFiles=new Set(['outputs/START.md','outputs/VERIFICATION.md','outputs/Start-GlukWave.ps1','outputs/GlukWave-server-console.txt','outputs/GlukWave-server-console.ansi.txt','outputs/GlukWave-server-console.png']);
 const forbidden=/(?:^|\/)(?:node_modules|\.git|\.originkit|work|var|build|\.dart_tool|\.gradle|ephemeral|\.symlinks|__pycache__|xcuserdata)(?:\/|$)|\.(?:sqlite(?:3)?(?:-wal|-shm)?|keystore|jks|p12|apk|ipa|exe|pyc)$/i;
 const textFile=/\.(?:md|txt|json|[cm]?js|tsx?|css|html|ya?ml|ps1|py|dart|xml|java|kt|kts|cpp|cc|c|h|rc|iss|properties|lock|cmake|xcconfig|plist|entitlements|example|gitignore|dockerignore)$|\/Dockerfile$/i;
 const names=new Set(),hashes=new Map();let cursor=offset,totalBytes=0,textFilesScanned=0;

@@ -18,6 +18,7 @@ import '../services/desktop.dart';
 import 'widgets.dart';
 import 'player.dart';
 import 'appearance_panel.dart';
+import 'seasonal.dart';
 import 'auth_visuals.dart';
 import 'auth_page.dart';
 export 'auth_page.dart' show AuthPage;
@@ -353,146 +354,149 @@ class _WaveShellState extends State<WaveShell>
     final desktop = MediaQuery.sizeOf(context).width >= 900;
     final shell = Scaffold(
       body: SafeArea(
-        child: Row(
-          children: [
-            if (desktop) sidebar(),
-            Expanded(
-              child: Column(
-                children: [
-                  topbar(desktop),
-                  if (c.room != null) roomPin(),
-                  if (c.error != null)
-                    Material(
-                      color: waveVisuals(context).accentSoft,
-                      child: Padding(
-                        padding: const EdgeInsets.fromLTRB(20, 10, 10, 10),
-                        child: Row(
-                          children: [
-                            Icon(
-                              c.online
-                                  ? Icons.info_outline
-                                  : Icons.wifi_off_rounded,
-                              size: 17,
-                            ),
-                            const SizedBox(width: 10),
-                            Expanded(
-                              child: Text(
+        child: SeasonalBackdrop(
+          settings: c.customization.seasonalEffects,
+          child: Row(
+            children: [
+              if (desktop) sidebar(),
+              Expanded(
+                child: Column(
+                  children: [
+                    topbar(desktop),
+                    if (c.room != null) roomPin(),
+                    if (c.error != null)
+                      Material(
+                        color: waveVisuals(context).accentSoft,
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(20, 10, 10, 10),
+                          child: Row(
+                            children: [
+                              Icon(
                                 c.online
-                                    ? c.error!
-                                    : wt(
-                                        'native.91cea4784a',
-                                        values: {'p0': (c.error)},
-                                        context: context,
-                                      ),
-                                style: const TextStyle(fontSize: 11),
+                                    ? Icons.info_outline
+                                    : Icons.wifi_off_rounded,
+                                size: 17,
                               ),
-                            ),
-                            TextButton(
-                              onPressed: () => run(c, c.refresh),
-                              child: Text(
-                                wt('native.9e506acb19', context: context),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  if (c.loading)
-                    LinearProgressIndicator(
-                      minHeight: 2,
-                      color: waveVisuals(context).accent,
-                      backgroundColor: waveVisuals(context).background,
-                    ),
-                  Expanded(
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: page == WavePage.settings
-                              ? Padding(
-                                  padding: EdgeInsets.fromLTRB(
-                                    desktop ? 32 : 20,
-                                    20,
-                                    desktop ? 32 : 20,
-                                    12,
-                                  ),
-                                  child: settingsPage(),
-                                )
-                              : AnimatedSwitcher(
-                                  duration: Duration(
-                                    milliseconds:
-                                        c.settings['reducedMotion'] == true
-                                        ? 0
-                                        : 220,
-                                  ),
-                                  child: SingleChildScrollView(
-                                    key: ValueKey(
-                                      '$page:${selectedPlaylist?['id']}',
-                                    ),
-                                    padding: EdgeInsets.fromLTRB(
-                                      waveVisuals(context).compact
-                                          ? 16
-                                          : desktop
-                                          ? 40
-                                          : 20,
-                                      waveVisuals(context).compact
-                                          ? 16
-                                          : desktop
-                                          ? 34
-                                          : 20,
-                                      waveVisuals(context).compact
-                                          ? 16
-                                          : desktop
-                                          ? 40
-                                          : 20,
-                                      32,
-                                    ),
-                                    child: ConstrainedBox(
-                                      constraints: const BoxConstraints(
-                                        maxWidth: 1450,
-                                      ),
-                                      child: content(),
-                                    ),
-                                  ),
+                              const SizedBox(width: 10),
+                              Expanded(
+                                child: Text(
+                                  c.online
+                                      ? c.error!
+                                      : wt(
+                                          'native.91cea4784a',
+                                          values: {'p0': (c.error)},
+                                          context: context,
+                                        ),
+                                  style: const TextStyle(fontSize: 11),
                                 ),
-                        ),
-                        if (MediaQuery.sizeOf(context).width >= 1240 &&
-                            [
-                              WavePage.home,
-                              WavePage.library,
-                              WavePage.search,
-                              WavePage.liked,
-                            ].contains(page))
-                          DesktopListeningRail(
-                            controller: c,
-                            onExpand: () => showPlayer(),
-                            onDevices: () => navigate(WavePage.devices),
+                              ),
+                              TextButton(
+                                onPressed: () => run(c, c.refresh),
+                                child: Text(
+                                  wt('native.9e506acb19', context: context),
+                                ),
+                              ),
+                            ],
                           ),
-                      ],
-                    ),
-                  ),
-                  if (c.audio.viewCurrent != null)
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(
-                        desktop ? 28 : 10,
-                        4,
-                        desktop ? 28 : 10,
-                        desktop ? 16 : 6,
+                        ),
                       ),
-                      child: MiniPlayer(
-                        controller: c,
-                        onOpen: showPlayer,
-                        artworkKey: miniArtwork,
-                        onDragStart: beginPlayerDrag,
-                        onDragUpdate: updatePlayerDrag,
-                        onDragEnd: finishPlayerOpen,
-                        onDragCancel: () => settlePlayer(false),
+                    if (c.loading)
+                      LinearProgressIndicator(
+                        minHeight: 2,
+                        color: waveVisuals(context).accent,
+                        backgroundColor: waveVisuals(context).background,
+                      ),
+                    Expanded(
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: page == WavePage.settings
+                                ? Padding(
+                                    padding: EdgeInsets.fromLTRB(
+                                      desktop ? 32 : 20,
+                                      20,
+                                      desktop ? 32 : 20,
+                                      12,
+                                    ),
+                                    child: settingsPage(),
+                                  )
+                                : AnimatedSwitcher(
+                                    duration: Duration(
+                                      milliseconds:
+                                          c.settings['reducedMotion'] == true
+                                          ? 0
+                                          : 220,
+                                    ),
+                                    child: SingleChildScrollView(
+                                      key: ValueKey(
+                                        '$page:${selectedPlaylist?['id']}',
+                                      ),
+                                      padding: EdgeInsets.fromLTRB(
+                                        waveVisuals(context).compact
+                                            ? 16
+                                            : desktop
+                                            ? 40
+                                            : 20,
+                                        waveVisuals(context).compact
+                                            ? 16
+                                            : desktop
+                                            ? 34
+                                            : 20,
+                                        waveVisuals(context).compact
+                                            ? 16
+                                            : desktop
+                                            ? 40
+                                            : 20,
+                                        32,
+                                      ),
+                                      child: ConstrainedBox(
+                                        constraints: const BoxConstraints(
+                                          maxWidth: 1450,
+                                        ),
+                                        child: content(),
+                                      ),
+                                    ),
+                                  ),
+                          ),
+                          if (MediaQuery.sizeOf(context).width >= 1240 &&
+                              [
+                                WavePage.home,
+                                WavePage.library,
+                                WavePage.search,
+                                WavePage.liked,
+                              ].contains(page))
+                            DesktopListeningRail(
+                              controller: c,
+                              onExpand: () => showPlayer(),
+                              onDevices: () => navigate(WavePage.devices),
+                            ),
+                        ],
                       ),
                     ),
-                  if (!desktop) bottomNavigation(),
-                ],
+                    if (c.audio.viewCurrent != null)
+                      Padding(
+                        padding: EdgeInsets.fromLTRB(
+                          desktop ? 28 : 10,
+                          4,
+                          desktop ? 28 : 10,
+                          desktop ? 16 : 6,
+                        ),
+                        child: MiniPlayer(
+                          controller: c,
+                          onOpen: showPlayer,
+                          artworkKey: miniArtwork,
+                          onDragStart: beginPlayerDrag,
+                          onDragUpdate: updatePlayerDrag,
+                          onDragEnd: finishPlayerOpen,
+                          onDragCancel: () => settlePlayer(false),
+                        ),
+                      ),
+                    if (!desktop) bottomNavigation(),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -3056,7 +3060,12 @@ class _WaveShellState extends State<WaveShell>
     }
     if (value == null || !mounted) return;
     await run(c, () async {
-      final info = await c.qrInfo(value!);
+      final uri = Uri.tryParse(value!);
+      if (uri?.scheme == 'glukwave' && uri?.host == 'lan') {
+        await c.connectLan(value);
+        return;
+      }
+      final info = await c.qrInfo(value);
       if (!mounted) return;
       final allow = await showWaveDialog<bool>(
         context: context,

@@ -1,0 +1,32 @@
+{
+  "passed": true,
+  "steps": [
+    "Actual audio state drives 32-second transform, freezes on pause, reduced motion and document hidden; resumes without polling",
+    "Genius preview is explicitly loaded and never persisted until Save; invalid/unavailable source preserves draft, unchanged Save retains Genius attribution",
+    "Editing imported plain text saves personal user lyrics with explicit original timestamps",
+    "Switching sources aborts and ignores a delayed preview; six languages remain readable at 125 percent on phone",
+    "Closing player freezes cover light"
+  ],
+  "screenshots": [
+    "apps/web/qa/ambient-light-desktop.png",
+    "apps/web/qa/ambient-light-mobile.png",
+    "apps/web/qa/ambient-dark-desktop.png",
+    "apps/web/qa/ambient-dark-mobile.png",
+    "apps/web/qa/ambient-amoled-desktop.png",
+    "apps/web/qa/ambient-amoled-mobile.png",
+    "apps/web/qa/ambient-genius-light-desktop.png",
+    "apps/web/qa/ambient-genius-light-mobile.png",
+    "apps/web/qa/ambient-genius-error-mobile.png",
+    "apps/web/qa/ambient-genius-es-125-mobile.png"
+  ],
+  "browserErrors": {
+    "errors": []
+  },
+  "motionCoverage": {
+    "appSetting": true,
+    "visibilitySignal": true,
+    "operatingSystemBrowserEmulation": false,
+    "note": "OS reduced-motion browser emulation did not produce matchMedia=true; native MediaQuery.disableAnimations covered. Independent evaluator additionally checked real hidden-tab switch."
+  },
+  "scaleCoverage": "See ambient-scale-proof.json for final actual app Interface size125 setting and bounds across six languages."
+}

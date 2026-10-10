@@ -1,0 +1,273 @@
+{
+  "passed": true,
+  "scale": 1.25,
+  "scaleKind": "Real app Interface size setting (root CSS zoom), not browser zoom emulation",
+  "checks": [
+    {
+      "kind": "real app125 player",
+      "bottom": 844,
+      "height": 844,
+      "layoutClient": 212,
+      "layoutScroll": 212,
+      "overlap": false,
+      "right": 320,
+      "smallTarget": false,
+      "viewport": 320
+    },
+    {
+      "kind": "real app125 player",
+      "bottom": 844,
+      "height": 844,
+      "layoutClient": 260,
+      "layoutScroll": 260,
+      "overlap": false,
+      "right": 390,
+      "smallTarget": false,
+      "viewport": 390
+    },
+    {
+      "kind": "real app125 editor",
+      "language": "en",
+      "bottom": 829,
+      "client": 222,
+      "height": 844,
+      "left": 15,
+      "overflow": [
+        {
+          "classes": "",
+          "client": 176,
+          "right": 265.25,
+          "scroll": 181,
+          "tag": "HEADER",
+          "text": "Lyrics for your track"
+        },
+        {
+          "classes": "",
+          "client": 145,
+          "right": 246.75,
+          "scroll": 309,
+          "tag": "INPUT",
+          "text": ""
+        },
+        {
+          "classes": "",
+          "client": 101,
+          "right": 171.234375,
+          "scroll": 228,
+          "tag": "INPUT",
+          "text": ""
+        }
+      ],
+      "rawKeys": false,
+      "right": 305,
+      "scroll": 222,
+      "top": 15,
+      "viewport": 320
+    },
+    {
+      "kind": "real app125 editor",
+      "language": "ru",
+      "bottom": 829,
+      "client": 222,
+      "height": 844,
+      "left": 15,
+      "overflow": [
+        {
+          "classes": "",
+          "client": 176,
+          "right": 265.25,
+          "scroll": 181,
+          "tag": "HEADER",
+          "text": "Слова к твоему треку"
+        },
+        {
+          "classes": "",
+          "client": 145,
+          "right": 246.75,
+          "scroll": 309,
+          "tag": "INPUT",
+          "text": ""
+        },
+        {
+          "classes": "",
+          "client": 123,
+          "right": 198.640625,
+          "scroll": 228,
+          "tag": "INPUT",
+          "text": ""
+        }
+      ],
+      "rawKeys": false,
+      "right": 305,
+      "scroll": 222,
+      "top": 15,
+      "viewport": 320
+    },
+    {
+      "kind": "real app125 editor",
+      "language": "kk",
+      "bottom": 829,
+      "client": 222,
+      "height": 844,
+      "left": 15,
+      "overflow": [
+        {
+          "classes": "",
+          "client": 176,
+          "right": 265.25,
+          "scroll": 181,
+          "tag": "HEADER",
+          "text": "Трегіңнің мәтіні"
+        },
+        {
+          "classes": "",
+          "client": 145,
+          "right": 246.75,
+          "scroll": 309,
+          "tag": "INPUT",
+          "text": ""
+        },
+        {
+          "classes": "",
+          "client": 102,
+          "right": 171.828125,
+          "scroll": 228,
+          "tag": "INPUT",
+          "text": ""
+        }
+      ],
+      "rawKeys": false,
+      "right": 305,
+      "scroll": 222,
+      "top": 15,
+      "viewport": 320
+    },
+    {
+      "kind": "real app125 editor",
+      "language": "uk",
+      "bottom": 829,
+      "client": 222,
+      "height": 844,
+      "left": 15,
+      "overflow": [
+        {
+          "classes": "",
+          "client": 176,
+          "right": 265.25,
+          "scroll": 181,
+          "tag": "HEADER",
+          "text": "Слова до твого треку"
+        },
+        {
+          "classes": "",
+          "client": 145,
+          "right": 246.75,
+          "scroll": 309,
+          "tag": "INPUT",
+          "text": ""
+        }
+      ],
+      "rawKeys": false,
+      "right": 305,
+      "scroll": 222,
+      "top": 15,
+      "viewport": 320
+    },
+    {
+      "kind": "real app125 editor",
+      "language": "de",
+      "bottom": 829,
+      "client": 222,
+      "height": 844,
+      "left": 15,
+      "overflow": [
+        {
+          "classes": "",
+          "client": 176,
+          "right": 265.25,
+          "scroll": 181,
+          "tag": "HEADER",
+          "text": "Liedtext für deinen Titel"
+        },
+        {
+          "classes": "",
+          "client": 145,
+          "right": 246.75,
+          "scroll": 309,
+          "tag": "INPUT",
+          "text": ""
+        },
+        {
+          "classes": "",
+          "client": 124,
+          "right": 199.421875,
+          "scroll": 228,
+          "tag": "INPUT",
+          "text": ""
+        }
+      ],
+      "rawKeys": false,
+      "right": 305,
+      "scroll": 222,
+      "top": 15,
+      "viewport": 320
+    },
+    {
+      "kind": "real app125 editor",
+      "language": "es",
+      "bottom": 829,
+      "client": 222,
+      "height": 844,
+      "left": 15,
+      "overflow": [
+        {
+          "classes": "",
+          "client": 176,
+          "right": 265.25,
+          "scroll": 181,
+          "tag": "HEADER",
+          "text": "Letra para tu pista"
+        },
+        {
+          "classes": "",
+          "client": 145,
+          "right": 246.75,
+          "scroll": 309,
+          "tag": "INPUT",
+          "text": ""
+        },
+        {
+          "classes": "",
+          "client": 89,
+          "right": 156,
+          "scroll": 228,
+          "tag": "INPUT",
+          "text": ""
+        }
+      ],
+      "rawKeys": false,
+      "right": 305,
+      "scroll": 222,
+      "top": 15,
+      "viewport": 320
+    },
+    {
+      "kind": "Spanish125 reachable Save",
+      "bottom": 829.25,
+      "height": 844,
+      "left": 44.75,
+      "right": 265.25,
+      "top": 774.75,
+      "viewport": 320
+    }
+  ],
+  "screenshots": [
+    "apps/web/qa/ambient-app125-player-320.png",
+    "apps/web/qa/ambient-app125-player-390.png",
+    "apps/web/qa/ambient-genius-es-125-mobile.png",
+    "apps/web/qa/ambient-genius-es-125-mobile-footer.png"
+  ],
+  "browserErrors": {
+    "errors": []
+  }
+}

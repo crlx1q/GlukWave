@@ -499,6 +499,8 @@ void main() {
         find.widgetWithText(TextField, 'Текст или LRC'),
         '[00:10.00] Моя строка',
       );
+      // Let the real text change enable Save before tapping it.
+      await tester.pump();
       await tester.tap(find.text('Сохранить'));
       await tester.pumpAndSettle();
       expect((c.api as LayoutApi).savedLyrics, {

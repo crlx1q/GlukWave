@@ -1,0 +1,2 @@
+import fs from 'node:fs/promises';import {open,useSession,evaluate,run,click,screenshot,snapshot} from './browser.mjs';
+useSession('gluk-lan-season-initial');open('http://127.0.0.1:5187/app/#library');run('set','viewport','1440','1000');snapshot();click('A quiet place Wave verification');screenshot('apps/web/qa/transport-initial.png'); console.log(evaluate(`Array.from(document.querySelectorAll('.player button,.player input')).map(e=>({name:e.ariaLabel||e.title||e.innerText,rect:(()=>{let r=e.getBoundingClientRect();return [r.x,r.y,r.width,r.height]})()}))`));

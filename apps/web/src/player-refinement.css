@@ -1,0 +1,102 @@
+/* A living cover light, slow enough to remain behind the music. The filter is
+   static and clipped; the compositor moves a generous, seam-free overscan. */
+.full-player{isolation:isolate}
+.full-player .np-backdrop{inset:0;filter:none;transform:none;opacity:.15;overflow:hidden;contain:strict;pointer-events:none}
+.np-backdrop-drift{position:absolute;inset:-18%;animation:cover-light-drift 32s ease-in-out infinite;animation-play-state:paused}
+.np-backdrop-image{position:absolute;inset:0;background-position:center;background-size:cover;filter:blur(90px);transform:scale(1.12)}
+.full-player .np-backdrop[data-ambient-moving=true] .np-backdrop-drift{animation-play-state:running}
+html[data-theme=dark] .full-player .np-backdrop{opacity:.22}
+html[data-theme=amoled] .full-player .np-backdrop{opacity:.1}
+html[data-visuals=paused] .full-player .np-backdrop-drift,html[data-motion=reduce] .full-player .np-backdrop-drift{animation-play-state:paused}
+@keyframes cover-light-drift{0%,100%{transform:translate3d(-3%,-2%,0) scale(1.02) rotate(-2deg)}35%{transform:translate3d(4%,-1%,0) scale(1.06) rotate(1deg)}70%{transform:translate3d(1%,4%,0) scale(1.03) rotate(2deg)}}
+@media(prefers-reduced-motion:reduce){.full-player .np-backdrop-drift{animation-play-state:paused!important}}
+@media(max-width:850px){.np-backdrop-image{filter:blur(64px)}}
+.lyrics-source-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 18px}
+.lyrics-source-tabs button{min-height:40px;padding:9px 16px;border:1px solid var(--line);border-radius:calc(var(--radius)*.45);font-size:12px;font-weight:800;color:var(--muted);background:transparent}
+.lyrics-source-tabs button[aria-pressed=true]{color:var(--ink);border-color:var(--accent);background:var(--accent-soft)}
+.lyrics-source-tabs button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.lyrics-genius-source{padding:17px 18px;border:1px solid var(--line);border-radius:calc(var(--radius)*.6);background:var(--surface);margin-bottom:17px}
+.lyrics-genius-source .field{margin:0;min-width:0}
+.lyrics-genius-url{display:flex;align-items:flex-end;gap:10px}
+.lyrics-genius-url .field{flex:1}
+.lyrics-genius-url button{flex:none;min-height:43px}
+.lyrics-source-help,.lyrics-preview-credit{font-size:12px;line-height:1.65;color:var(--muted);margin:12px 0 0;overflow-wrap:anywhere}
+.lyrics-source-error{font-size:12px;line-height:1.6;color:var(--danger,#b64545);margin:12px 0 0}
+.lyrics-preview-credit{padding:10px 0;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.lyrics-preview-credit a{color:var(--ink);text-underline-offset:3px;text-decoration:underline}
+.lyrics-editor-footer{position:sticky;bottom:-1px;z-index:2;padding:14px 0 0;background:var(--bg);border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.lyrics-editor-footer .lyric-import-note{flex:1;min-width:160px;margin:0}
+.lyrics-editor textarea{line-height:1.7}
+@media(max-width:600px){.lyrics-genius-url{align-items:stretch;flex-direction:column}.lyrics-genius-url button{align-self:flex-start}.lyrics-genius-source{padding:14px}.lyrics-editor-footer>.primary-button{width:100%}.lyrics-source-tabs{gap:6px}.lyrics-source-tabs button{padding:8px 11px}}
+/* Keep touch controls reachable, including narrow or zoomed phone viewports. */
+@media(max-width:500px){
+ .connected-player .np-cover-growth{max-width:100%;overflow:clip}
+ .connected-player .np-cover-growth .album-stage{max-width:100%;box-sizing:border-box}
+ .connected-player .np-transport-row{display:grid;grid-template-columns:44px minmax(0,1fr) 44px;align-items:center;gap:0;max-width:100%}
+ .connected-player .np-transport-row .transport.large{gap:0;justify-content:center;min-width:0}
+ .connected-player .np-transport-row .transport.large>.icon-btn,.connected-player .np-transport-row>.icon-btn{width:44px;height:44px;min-width:44px;flex:none}
+ .connected-player:is(.details-lyrics,.details-comments,.details-queue) .np-transport-row .transport.large .main-play{width:44px;height:44px;min-width:44px}
+}
+@media(max-width:360px){
+ .connected-player .np-transport-row{align-items:start}
+ .connected-player .np-transport-row>.icon-btn{margin-top:4px}
+ .connected-player:not(.details-lyrics):not(.details-comments):not(.details-queue) .np-transport-row .transport.large{display:grid;grid-template-columns:repeat(3,44px);grid-template-rows:52px 44px;gap:2px 0;justify-self:center}
+ .connected-player .np-transport-row .transport.large .main-play{width:44px;height:52px;min-width:44px;grid-column:2;grid-row:1}
+ .connected-player .np-transport-row .transport.large .previous{grid-column:1;grid-row:1}
+ .connected-player .np-transport-row .transport.large .next{grid-column:3;grid-row:1}
+ .connected-player .np-transport-row .transport.large .shuffle{grid-column:1;grid-row:2}
+ .connected-player .np-transport-row .transport.large .repeat{grid-column:3;grid-row:2}
+ .connected-player:is(.details-lyrics,.details-comments,.details-queue) .np-listening{display:flex;flex-direction:column;gap:12px;align-items:stretch}
+ .connected-player:is(.details-lyrics,.details-comments,.details-queue) .np-cover-growth{width:100%;align-items:center}
+}
+
+@media(max-width:280px){
+ .connected-player .np-transport-row{grid-template-columns:repeat(4,44px);grid-template-rows:52px 44px;justify-content:center;gap:4px 0}
+ .connected-player .np-transport-row .transport.large{display:contents!important}
+ .connected-player .np-transport-row .transport.large .previous{grid-column:1;grid-row:1}
+ .connected-player .np-transport-row .transport.large .main-play{grid-column:2 / span 2;grid-row:1;justify-self:center;align-self:center}
+ .connected-player .np-transport-row .transport.large .next{grid-column:4;grid-row:1}
+ .connected-player .np-transport-row>.np-like{grid-column:1;grid-row:2;margin:0}
+ .connected-player .np-transport-row .transport.large .shuffle{grid-column:2;grid-row:2}
+ .connected-player .np-transport-row .transport.large .repeat{grid-column:3;grid-row:2}
+ .connected-player .np-transport-row>.np-eq{grid-column:4;grid-row:2;margin:0}
+}
+
+/* App interface scale uses root zoom. Viewport-sized overlays need the actual
+   available CSS space; container rules follow that space instead of physical vw. */
+.modal:has(.lyrics-editor){max-width:calc(100vw / var(--font-scale,1) - 24px);max-height:calc(100dvh / var(--font-scale,1) - 24px)}
+.connected-player{width:calc(100vw / var(--font-scale,1) - 20px)!important;height:calc(100dvh / var(--font-scale,1) - 20px)!important}
+.connected-player .full-player-inner{container-type:inline-size;container-name:player-sheet}
+.connected-player .np-controls{container-type:inline-size;container-name:player-controls}
+@media(max-width:850px){.connected-player{width:calc(100vw / var(--font-scale,1))!important;height:calc(100dvh / var(--font-scale,1))!important}}
+@container player-sheet (max-width:316px){
+ .connected-player:is(.details-lyrics,.details-comments,.details-queue) .np-listening{display:flex;flex-direction:column;gap:12px;align-items:stretch}
+ .connected-player:is(.details-lyrics,.details-comments,.details-queue) .np-cover-growth{width:100%;align-items:center}
+}
+@container player-controls (max-width:328px){
+ .connected-player .np-transport-row{align-items:start}
+ .connected-player .np-transport-row>.icon-btn{margin-top:4px}
+ .connected-player:not(.details-lyrics):not(.details-comments):not(.details-queue) .np-transport-row .transport.large{display:grid;grid-template-columns:repeat(3,44px);grid-template-rows:52px 44px;gap:2px 0;justify-self:center}
+ .connected-player .np-transport-row .transport.large .main-play{width:44px;height:52px;min-width:44px;grid-column:2;grid-row:1}
+ .connected-player .np-transport-row .transport.large .previous{grid-column:1;grid-row:1}
+ .connected-player .np-transport-row .transport.large .next{grid-column:3;grid-row:1}
+ .connected-player .np-transport-row .transport.large .shuffle{grid-column:1;grid-row:2}
+ .connected-player .np-transport-row .transport.large .repeat{grid-column:3;grid-row:2}
+}
+@container player-controls (max-width:219px){
+ .connected-player .np-transport-row{grid-template-columns:repeat(4,44px);grid-template-rows:52px 44px;justify-content:center;gap:4px 0}
+ .connected-player .np-transport-row .transport.large{display:contents!important}
+ .connected-player .np-transport-row .transport.large .previous{grid-column:1;grid-row:1}
+ .connected-player .np-transport-row .transport.large .main-play{grid-column:2 / span 2;grid-row:1;justify-self:center;align-self:center}
+ .connected-player .np-transport-row .transport.large .next{grid-column:4;grid-row:1}
+ .connected-player .np-transport-row>.np-like{grid-column:1;grid-row:2;margin:0}
+ .connected-player .np-transport-row .transport.large .shuffle{grid-column:2;grid-row:2}
+ .connected-player .np-transport-row .transport.large .repeat{grid-column:3;grid-row:2}
+ .connected-player .np-transport-row>.np-eq{grid-column:4;grid-row:2;margin:0}
+}
+
+/* Long localized labels must wrap inside the scaled editor rather than widen it. */
+.modal:has(.lyrics-editor) .modal-content>header h2{min-width:0;overflow-wrap:anywhere}
+.modal:has(.lyrics-editor) .modal-content>header>.icon-btn{flex-shrink:0}
+.lyrics-editor .subtle-button,.lyrics-editor .primary-button{max-width:100%;white-space:normal;overflow-wrap:anywhere}
+.lyrics-editor-footer .lyric-import-note{min-width:min(160px,100%)}

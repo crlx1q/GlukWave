@@ -45,6 +45,7 @@ class NativeOutput extends AudioPlayer {
   final processing = StreamController<ProcessingState>.broadcast(sync: true);
   final loaded = <String>[];
   Map<String, String>? sentHeaders;
+  AudioSource? receivedSource;
   bool active = false, ready = false, disposed = false;
   NativeOutput()
     : super(handleInterruptions: false, handleAudioSessionActivation: false);
@@ -73,6 +74,22 @@ class NativeOutput extends AudioPlayer {
     sentHeaders = headers;
     ready = true;
     return const Duration(minutes: 3);
+  }
+
+  @override
+  Future<Duration?> setAudioSource(
+    AudioSource source, {
+    int? initialIndex,
+    Duration? initialPosition,
+    bool preload = true,
+  }) async {
+    receivedSource = source;
+    final uriSource = source as UriAudioSource;
+    return setUrl(
+      uriSource.uri.toString(),
+      headers: uriSource.headers,
+      initialPosition: initialPosition,
+    );
   }
 
   @override
@@ -170,6 +187,31 @@ void main() {
   );
 
   test(
+    'Extensionless SoundCloud descriptor uses native HLS with own EQ path and no offline permission',
+    () async {
+      final api = PlaybackApi()
+        ..token = 'isolated-token'
+        ..descriptor = {
+          'kind': 'audio',
+          'format': 'hls',
+          'provider': 'soundcloud',
+          'url': '/api/soundcloud-audio/track?grant=opaque',
+          'offline': false,
+        };
+      final output = NativeOutput(),
+          audio = WaveAudioHandler(api, PlaybackCache(api), output: output)
+            ..autoCache = false;
+      await audio.playTrack(external('hls'));
+      expect(output.receivedSource, isA<HlsAudioSource>());
+      expect(audio.current!.embedded, false);
+      expect(audio.current!.offline, false);
+      expect(output.active, true);
+      expect(output.sentHeaders?['Authorization'], 'Bearer isolated-token');
+      expect(audio.provider.track, isNull);
+      await close(audio);
+    },
+  );
+  test(
     'Metadata alone does not grant native playback or forward credentials to a CDN',
     () async {
       final api = PlaybackApi()..token = 'isolated-token';
@@ -194,6 +236,22 @@ void main() {
     },
   );
 
+  test(
+    'Autonomous playback never falls back to cloud when a cached file is missing',
+    () async {
+      final api = PlaybackApi(),
+          output = NativeOutput(),
+          audio = WaveAudioHandler(api, PlaybackCache(api), output: output)
+            ..offlineOnly = true;
+      await expectLater(
+        audio.playTrack(external('missing')),
+        throwsA(isA<WaveException>()),
+      );
+      expect(api.requests, isEmpty);
+      expect(output.loaded, isEmpty);
+      await close(audio);
+    },
+  );
   test(
     'Cached permitted audio plays without resolving an online embedded descriptor',
     () async {

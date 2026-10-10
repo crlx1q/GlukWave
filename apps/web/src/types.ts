@@ -1,7 +1,7 @@
 import { t, countLabel, number, type LanguageChoice, type LocaleResponse } from './locale';
 export type Source = 'local' | 'youtube' | 'spotify' | 'soundcloud' | 'yandex';
 export type User = { id: string; email: string; username: string; displayName: string; avatarUrl?: string; bannerUrl?: string; bio: string; tags: string[]; plan: 'free'|'beta'|'unbound'; role: 'user'|'admin'; emailVerified: boolean; createdAt: string };
-export type Playback = { kind: Source|'audio'; url?: string; embedUrl?: string; offline: boolean; downloadUrl?:string };
+export type Playback = { kind: Source|'audio'; url?: string; embedUrl?: string; offline: boolean; downloadUrl?:string;format?:'hls';provider?:Source;attribution?:{source:Source;artist:string;sourceUrl:string} };
 export type Track = { id: string; title: string; artist: string; album: string; artwork: string; duration: number; source: Source; sourceId: string; sourceUrl: string; playback: Playback; createdAt: string; liked?: boolean };
 export type Playlist = { id: string; name: string; description: string; artwork: string; trackIds: string[]; ownerId: string; createdAt: string; updatedAt: string; public?:boolean; coverArtworks?:string[] };
 export type Artist = {id:string;name:string;source:string;artwork:string;sourceUrl?:string;trackIds?:string[]};
@@ -16,8 +16,10 @@ export type PaletteMode = 'light'|'dark'|'amoled';
 export type Appearance = { light:PaletteColors; dark:PaletteColors; amoled:PaletteColors; radius:number; speed:number; compact:boolean; blur:boolean; waveStyle:'silk'|'particles'|'bloom'; cover3d:boolean; coverKind:'vinyl'|'cd' };
 export type AppearancePatch = Partial<Omit<Appearance,PaletteMode>> & { light?:Partial<PaletteColors>; dark?:Partial<PaletteColors>; amoled?:Partial<PaletteColors> };
 export type Equalizer = {enabled:boolean;preamp:number;bands:number[]};
-export type Settings = { language:LanguageChoice; autoCache: boolean; cacheLimitMB: number; lyrics: boolean; comments:boolean; lyricsUnderCover:boolean; fontFamily:'manrope'|'nunito'|'system';fontScale:number; discordPresence: boolean; notifications: boolean; theme:PaletteMode|'system'; reducedMotion:boolean; appearance:Appearance; equalizer:Equalizer; playbackRate:number };
-export type SettingsPatch = Omit<Partial<Settings>,'appearance'|'equalizer'> & { appearance?:AppearancePatch; equalizer?:Partial<Equalizer> };
+export type SeasonalEffects={enabled:boolean;mode:'auto'|'snow'|'rain'|'leaves'|'sun';intensity:'subtle'|'normal'};
+export const defaultSeasonalEffects:SeasonalEffects={enabled:false,mode:'auto',intensity:'subtle'};
+export type Settings = { language:LanguageChoice; autoCache: boolean; cacheLimitMB: number; lyrics: boolean; comments:boolean; lyricsUnderCover:boolean; fontFamily:'manrope'|'nunito'|'system';fontScale:number; discordPresence: boolean; notifications: boolean; theme:PaletteMode|'system'; reducedMotion:boolean; appearance:Appearance; equalizer:Equalizer; playbackRate:number;seasonalEffects:SeasonalEffects };
+export type SettingsPatch = Omit<Partial<Settings>,'appearance'|'equalizer'|'seasonalEffects'> & { appearance?:AppearancePatch; equalizer?:Partial<Equalizer>;seasonalEffects?:Partial<SeasonalEffects> };
 export type Provider = { id: string; name: string; configured: boolean; searchAvailable?:boolean; capabilities: string[]; reason?: string };
 export type Config = { localization?:LocaleResponse; appName: string; appUrl: string; environment: string; providers: Provider[]; auth: { google: boolean; turnstileSiteKey: string; requireEmailVerification?:boolean }; push: { enabled: boolean; vapidPublicKey?: string; fcmEnabled?:boolean }; discord?:{clientId:string;bridgeOrigin:string}; billing?:{configured:boolean;provider:string}; plans: { id?: string; name?: string; price?: number }[] };
 export type PlayerState = { trackId: string|null; position: number; playing: boolean; volume: number; queue: string[]; updatedAt: number; revision: number };
@@ -33,7 +35,7 @@ export type Connection = { provider: string; connected: boolean; displayName?: s
 export const sourceNames: Record<Source, string> = { get local(){return t('copy.191')}, youtube: 'YouTube Music', spotify: 'Spotify', soundcloud: 'SoundCloud', get yandex(){return t('copy.187')} };
 export const defaultAppearance:Appearance={light:{bg:'#efede3',surface:'#f8f7f1',ink:'#302f2c',accent:'#a08369'},dark:{bg:'#141517',surface:'#202225',ink:'#eeeae3',accent:'#b1a2de'},amoled:{bg:'#000000',surface:'#0b0b0b',ink:'#f4f1f7',accent:'#b1a2de'},radius:24,speed:1,compact:false,blur:true,waveStyle:'silk',cover3d:true,coverKind:'vinyl'};
 export const defaultEqualizer:Equalizer={enabled:false,preamp:0,bands:Array(10).fill(0)};
-export const defaultSettings:Settings={language:'auto',autoCache:true,cacheLimitMB:1024,lyrics:true,comments:true,lyricsUnderCover:true,fontFamily:'manrope',fontScale:1,discordPresence:true,notifications:false,theme:'light',reducedMotion:false,appearance:defaultAppearance,equalizer:defaultEqualizer,playbackRate:1};
+export const defaultSettings:Settings={language:'auto',autoCache:true,cacheLimitMB:1024,lyrics:true,comments:true,lyricsUnderCover:true,fontFamily:'manrope',fontScale:1,discordPresence:true,notifications:false,theme:'light',reducedMotion:false,appearance:defaultAppearance,equalizer:defaultEqualizer,playbackRate:1,seasonalEffects:defaultSeasonalEffects};
 export function time(seconds = 0) { const value = Math.max(0, Math.floor(Number.isFinite(seconds) ? seconds : 0)), minutes=Math.floor(value/60), tail=String(value%60).padStart(2,'0'); return value<3600?`${minutes}:${tail}`:`${Math.floor(value/3600)}:${String(minutes%60).padStart(2,'0')}:${tail}`; }
 export function bytes(value: number) { return value >= 1024*1024 ? t('template.002', {v0: number(value/1024/1024,{maximumFractionDigits:1})}) : t('template.018', {v0: number(Math.round(value/1024))}); }
 

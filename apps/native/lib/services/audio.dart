@@ -1,4 +1,5 @@
 import '../l10n/wave_localizations.dart';
+import '../l10n/lan_strings.dart';
 import 'dart:async';
 import 'dart:math';
 import 'dart:io';
@@ -13,6 +14,7 @@ import 'provider_player.dart';
 import 'windows_equalizer.dart';
 
 class WaveAudioHandler extends BaseAudioHandler {
+  bool offlineOnly = false;
   final WaveApi api;
   final MusicCache cache;
   // Native players send authorization headers directly. Android does not need an
@@ -132,12 +134,17 @@ class WaveAudioHandler extends BaseAudioHandler {
   bool _roomSpeed = false;
   int _processingRevision = 0;
   Future<void> _processingWrites = Future.value();
-  String equalizerStatus = Platform.isAndroid || Platform.isWindows ? 'waiting' : 'unsupported';
+  String equalizerStatus = Platform.isAndroid || Platform.isWindows
+      ? 'waiting'
+      : 'unsupported';
   int hardwareBandCount = 0;
   String? _nativeSource;
   double get volume => _remote?.volume ?? _volume;
   bool get equalizerSupported =>
-      (_equalizer != null || Platform.isWindows && WaveWindowsAudio.active != null) && current?.embedded != true && !remote;
+      (_equalizer != null ||
+          Platform.isWindows && WaveWindowsAudio.active != null) &&
+      current?.embedded != true &&
+      !remote;
   List<WaveTrack> tracks = [];
   WaveTrack? current;
   AudioServiceRepeatMode repeat = AudioServiceRepeatMode.none;
@@ -244,7 +251,10 @@ class WaveAudioHandler extends BaseAudioHandler {
 
   Future<void> _writeEqualizer(WaveEqualizer preference, int revision) async {
     if (Platform.isWindows && WaveWindowsAudio.active != null) {
-      if (current == null || current!.embedded || player.processingState == ProcessingState.idle || player.processingState == ProcessingState.loading) {
+      if (current == null ||
+          current!.embedded ||
+          player.processingState == ProcessingState.idle ||
+          player.processingState == ProcessingState.loading) {
         equalizerStatus = 'waiting';
         onProcessingChanged?.call();
         return;
@@ -257,7 +267,12 @@ class WaveAudioHandler extends BaseAudioHandler {
       } catch (_) {
         if (revision != _processingRevision) return;
         equalizerStatus = 'failed';
-        try { await WaveWindowsAudio.active!.apply(const WaveEqualizer(), _nativeSource); } catch (_) {}
+        try {
+          await WaveWindowsAudio.active!.apply(
+            const WaveEqualizer(),
+            _nativeSource,
+          );
+        } catch (_) {}
       }
       onProcessingChanged?.call();
       return;
@@ -426,6 +441,7 @@ class WaveAudioHandler extends BaseAudioHandler {
     // A permitted cached download remains usable without a network lookup.
     final local = await cache.fileFor(track.id);
     if (revision != _loadRevision || _released) return;
+    if (local == null && offlineOnly) throw WaveException(lanText('cache'));
     Json? resolvedPlayback;
     if (local != null) {
       track = WaveTrack({
@@ -487,13 +503,22 @@ class WaveAudioHandler extends BaseAudioHandler {
       final uri = Uri.parse(api.url(path));
       _nativeSource = uri.toString();
       // Never pass a GlukWave bearer token to an external CDN.
-      await player.setUrl(
-        uri.toString(),
-        headers: uri.origin == Uri.parse(api.server).origin
-            ? api.headers
-            : null,
-        initialPosition: Duration(milliseconds: (position * 1000).round()),
-      );
+      final headers = uri.origin == Uri.parse(api.server).origin
+          ? api.headers
+          : null;
+      final initialPosition = Duration(milliseconds: (position * 1000).round());
+      if (playback['format'] == 'hls') {
+        await player.setAudioSource(
+          HlsAudioSource(uri, headers: headers),
+          initialPosition: initialPosition,
+        );
+      } else {
+        await player.setUrl(
+          uri.toString(),
+          headers: headers,
+          initialPosition: initialPosition,
+        );
+      }
     }
     if (revision != _loadRevision) return;
     await player.setSpeed(_roomSpeed ? 1 : _rate);

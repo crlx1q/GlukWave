@@ -66,3 +66,7 @@ Windows developer builds need NuGet, as documented by [InAppWebView](https://ina
 
 
 Discord protocol research (10 October 2026): official Social SDK/OAuth documentation, Neurobox repository (AGPL-3.0) and PreMiD repository were consulted. No Neurobox/PreMiD source code or runtime was copied or bundled. The small Node OAuth/headless HTTP adapter is original project code using existing dependencies. See DISCORD.md for references and unsupported REST-contract limitations.
+
+## SoundCloud HLS и локальное сопряжение — 1.0.0+9
+
+Веб использует hls.js1.7.3 (Apache-2.0, Dailymotion), подключённый отдельным chunk только для HLS. Native использует cryptography2.9.0 (Apache-2.0) для AES-256-GCM/HKDF локального канала. Неизменённые лицензии сохранены в docs/licenses/Hls-js-Apache-2.0.txt и Cryptography-Apache-2.0.txt; оба уведомления включаются в Windows bundle. Официальные SoundCloud API-потоки используются по условиям платформы, сохраняют attribution и не выдаются за разрешённые offline-загрузки. Виджеты остаются лишь у источников без отдельного разрешённого аудиопути.

@@ -1,7 +1,9 @@
+import 'cover_ambient.dart';
+import 'seasonal.dart';
+import 'lyrics_editor.dart';
 import 'motion_icons.dart';
 import '../l10n/wave_localizations.dart';
 import 'dart:async';
-import 'dart:ui' as ui;
 import 'package:audio_service/audio_service.dart';
 import 'package:flutter/material.dart';
 import '../core/controller.dart';
@@ -11,6 +13,60 @@ import 'volume_slider.dart';
 import 'equalizer_panel.dart';
 import 'album_stage.dart';
 import 'player_gestures.dart';
+
+class SourceAttribution extends StatelessWidget {
+  final WaveController controller;
+  final WaveTrack track;
+  final bool compact;
+  const SourceAttribution({
+    super.key,
+    required this.controller,
+    required this.track,
+    this.compact = false,
+  });
+  @override
+  Widget build(BuildContext context) {
+    final credit = object(track.playback['attribution']),
+        url = credit['sourceUrl']?.toString() ?? '';
+    final uri = Uri.tryParse(url);
+    if (credit.isEmpty ||
+        uri?.scheme != 'https' ||
+        uri?.host.isEmpty != false) {
+      return compact
+          ? Text(
+              track.artist,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(color: waveVisuals(context).muted, fontSize: 10),
+            )
+          : const SizedBox.shrink();
+    }
+    final artist = credit['artist']?.toString() ?? track.artist;
+    final label =
+        '$artist · ${credit['source'] == 'soundcloud' ? 'SoundCloud' : credit['source']}';
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: InkWell(
+        key: const Key('source-attribution'),
+        onTap: () => controller.openUrl(url),
+        child: Padding(
+          padding: EdgeInsets.symmetric(vertical: compact ? 2 : 9),
+          child: Text(
+            label,
+            maxLines: compact ? 1 : 2,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+              color: waveVisuals(context).muted,
+              fontSize: compact ? 10 : 12,
+              decoration: TextDecoration.underline,
+              decorationColor: waveVisuals(context).muted,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
 
 class MiniPlayer extends StatelessWidget {
   final WaveController controller;
@@ -94,21 +150,28 @@ class MiniPlayer extends StatelessWidget {
                                         ),
                                       ),
                                       const SizedBox(height: 3),
-                                      Text(
-                                        track?.artist ??
-                                            wt(
-                                              'native.b196b73079',
-                                              context: context,
+                                      if (track?.playback['attribution'] is Map)
+                                        SourceAttribution(
+                                          controller: c,
+                                          track: track!,
+                                          compact: true,
+                                        )
+                                      else
+                                        Text(
+                                          track?.artist ??
+                                              wt(
+                                                'native.b196b73079',
+                                                context: context,
+                                              ),
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                            color: v.onPlayer.withValues(
+                                              alpha: .7,
                                             ),
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: TextStyle(
-                                          color: v.onPlayer.withValues(
-                                            alpha: .7,
+                                            fontSize: 10,
                                           ),
-                                          fontSize: 10,
                                         ),
-                                      ),
                                     ],
                                   ),
                                 ),
@@ -380,7 +443,9 @@ class _PlayerPageState extends State<PlayerPage> {
     try {
       final result = await Future.wait([
         c.api.call('/api/tracks/$id/lyrics'),
-        c.settings['comments'] == false ? Future<Json>.value({'comments': []}) : c.api.call('/api/tracks/$id/comments'),
+        c.settings['comments'] == false
+            ? Future<Json>.value({'comments': []})
+            : c.api.call('/api/tracks/$id/comments'),
       ]);
       if (!mounted || revision != _load) return;
       setState(() {
@@ -423,23 +488,16 @@ class _PlayerPageState extends State<PlayerPage> {
         children: [
           if (v.blur && track.artwork.isNotEmpty)
             Positioned.fill(
-              child: IgnorePointer(
-                child: Opacity(
-                  opacity: v.brightness == Brightness.dark ? .22 : .1,
-                  child: ImageFiltered(
-                    imageFilter: ui.ImageFilter.blur(sigmaX: 48, sigmaY: 48),
-                    child: LayoutBuilder(
-                      builder: (_, constraints) => Center(
-                        child: Artwork(
-                          controller: c,
-                          url: track.artwork,
-                          radius: 0,
-                          size: constraints.biggest.longestSide,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+              child: CoverAmbient(
+                controller: c,
+                artwork: track.artwork,
+                playing: c.audio.viewCurrent?.id == track.id && c.audio.playing,
+              ),
+            ),
+          if (c.customization.seasonalEffects.enabled)
+            Positioned.fill(
+              child: SeasonalAtmosphere(
+                settings: c.customization.seasonalEffects,
               ),
             ),
           Column(
@@ -632,10 +690,10 @@ class _PlayerPageState extends State<PlayerPage> {
         children: [
           for (var i = 0; i < labels.length; i++)
             if (i != 3 || c.settings['comments'] != false)
-            if (fits)
-              Expanded(child: button(i))
-            else
-              SizedBox(width: widths[i], child: button(i)),
+              if (fits)
+                Expanded(child: button(i))
+              else
+                SizedBox(width: widths[i], child: button(i)),
         ],
       );
       return fits
@@ -755,6 +813,7 @@ class _PlayerPageState extends State<PlayerPage> {
                           fontSize: 13,
                         ),
                       ),
+                      SourceAttribution(controller: c, track: track),
                       if (track.album.isNotEmpty)
                         Padding(
                           padding: const EdgeInsets.only(top: 3),
@@ -887,7 +946,9 @@ class _PlayerPageState extends State<PlayerPage> {
                   ),
                 ),
               ),
-            if (c.settings['lyrics'] == true && c.settings['lyricsUnderCover'] != false && lyrics.isNotEmpty)
+            if (c.settings['lyrics'] == true &&
+                c.settings['lyricsUnderCover'] != false &&
+                lyrics.isNotEmpty)
               Padding(
                 padding: const EdgeInsets.only(top: 26),
                 child: StreamBuilder<Duration>(
@@ -900,7 +961,19 @@ class _PlayerPageState extends State<PlayerPage> {
                           )
                         : 0;
                     return InkWell(
-                      onTap: synchronized && active && c.canControl ? () => _run(c, () => c.transport('seek', {'position': number(lyrics[index.clamp(0, lyrics.length - 1)]['time'])})) : () => setState(() => tab = 1),
+                      onTap: synchronized && active && c.canControl
+                          ? () => _run(
+                              c,
+                              () => c.transport('seek', {
+                                'position': number(
+                                  lyrics[index.clamp(
+                                    0,
+                                    lyrics.length - 1,
+                                  )]['time'],
+                                ),
+                              }),
+                            )
+                          : () => setState(() => tab = 1),
                       child: Surface(
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -1213,153 +1286,32 @@ class _PlayerPageState extends State<PlayerPage> {
     ],
   );
   Future<void> importLyrics() async {
-    final track = current!;
-    final text = TextEditingController(
-      text: lyrics
-          .map(
-            (line) => synchronized && line['time'] != null
-                ? '[${lrcClock(number(line['time']))}]${line['text']}'
-                : line['text'],
-          )
-          .join('\n'),
-    );
-    final title = TextEditingController(text: track.title),
-        artist = TextEditingController(text: track.artist);
-    List<Json>? candidates;
-    Json? selected;
-    var busy = false;
+    final track = current!, account = c.user?.id, server = c.api.server;
+    final draft = lyrics
+        .map(
+          (line) => synchronized && line['time'] != null
+              ? '[${lrcClock(number(line['time']))}]${line['text']}'
+              : line['text'],
+        )
+        .join('\n');
     await showWaveDialog<void>(
       context: context,
-      builder: (outer) => StatefulBuilder(
-        builder: (dialog, update) => AlertDialog(
-          title: Text(wt('native.da4b2995ca', context: context)),
-          content: SizedBox(
-            width: 550,
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  TextField(
-                    controller: title,
-                    maxLength: 200,
-                    decoration: InputDecoration(
-                      labelText: wt('lyrics.title', context: context),
-                    ),
-                  ),
-                  TextField(
-                    controller: artist,
-                    maxLength: 200,
-                    decoration: InputDecoration(
-                      labelText: wt('lyrics.artist', context: context),
-                    ),
-                  ),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: TextButton.icon(
-                      icon: const Icon(Icons.search),
-                      label: Text(wt('lyrics.search', context: context)),
-                      onPressed: busy
-                          ? null
-                          : () async {
-                              update(() => busy = true);
-                              try {
-                                final result = await c.api.call(
-                                  '/api/tracks/${track.id}/lyrics/search',
-                                  query: {
-                                    'title': title.text,
-                                    'artist': artist.text,
-                                  },
-                                );
-                                if (dialog.mounted) {
-                                  update(
-                                    () => candidates = objects(
-                                      result['candidates'],
-                                    ),
-                                  );
-                                }
-                              } catch (error) {
-                                c.tell(error.toString());
-                              } finally {
-                                if (dialog.mounted) update(() => busy = false);
-                              }
-                            },
-                    ),
-                  ),
-                  if (busy) const LinearProgressIndicator(),
-                  if (candidates != null && candidates!.isEmpty)
-                    Text(wt('lyrics.none', context: context)),
-                  if (candidates != null)
-                    ...candidates!.map(
-                      (candidate) => ListTile(
-                        selected:
-                            selected?['providerId'] == candidate['providerId'],
-                        title: Text(candidate['title'] as String? ?? ''),
-                        subtitle: Text(
-                          '${candidate['artist']} · ${candidate['synchronized'] == true ? wt('lyrics.synced', context: context) : wt('lyrics.plain', context: context)}',
-                        ),
-                        onTap: () => update(() {
-                          selected = candidate;
-                          text.text = candidate['raw'] as String? ?? '';
-                        }),
-                      ),
-                    ),
-                  TextField(
-                    controller: text,
-                    minLines: 8,
-                    maxLines: 15,
-                    maxLength: 100000,
-                    decoration: InputDecoration(
-                      labelText: wt('native.c157a9e867', context: context),
-                      hintText: wt('native.59f2a68e7e', context: context),
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  Text(
-                    wt('lyrics.attribution', context: context),
-                    style: Theme.of(context).textTheme.bodySmall,
-                  ),
-                ],
-              ),
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(dialog),
-              child: Text(wt('native.0ec753be8d', context: context)),
-            ),
-            FilledButton(
-              onPressed: busy
-                  ? null
-                  : () async {
-                      update(() => busy = true);
-                      await _run(c, () async {
-                        if (selected != null && text.text == selected!['raw']) {
-                          await c.api.call(
-                            '/api/tracks/${track.id}/lyrics/lrclib',
-                            method: 'POST',
-                            data: {'providerId': selected!['providerId']},
-                          );
-                        } else {
-                          await c.api.call(
-                            '/api/tracks/${track.id}/lyrics',
-                            method: 'PUT',
-                            data: {'text': text.text},
-                          );
-                        }
-                        if (dialog.mounted) Navigator.pop(dialog);
-                        if (current?.id == track.id) await loadDetails();
-                      });
-                      if (dialog.mounted) update(() => busy = false);
-                    },
-              child: Text(wt('native.4864057d62', context: context)),
-            ),
-          ],
-        ),
+      builder: (_) => LyricsEditor(
+        controller: c,
+        track: track,
+        initialText: draft,
+        isCurrent: () =>
+            mounted &&
+            current?.id == track.id &&
+            c.user?.id == account &&
+            c.api.server == server,
+        onSaved: () async {
+          if (mounted && current?.id == track.id && c.user?.id == account) {
+            await loadDetails();
+          }
+        },
       ),
     );
-    text.dispose();
-    title.dispose();
-    artist.dispose();
   }
 
   Widget queuePage() => Column(

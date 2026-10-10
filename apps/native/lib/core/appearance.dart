@@ -57,8 +57,23 @@ Json unacknowledgedAppearancePatch(Json pending, Json acknowledged) {
 Json presentationPatch(Json changes, WaveCustomization normalized) {
   final settings = normalized.toSettings();
   final result = <String, dynamic>{};
-  for (final key in ['theme', 'reducedMotion', 'language', 'playbackRate', 'fontFamily', 'fontScale']) {
+  for (final key in [
+    'theme',
+    'reducedMotion',
+    'language',
+    'playbackRate',
+    'fontFamily',
+    'fontScale',
+  ]) {
     if (changes.containsKey(key)) result[key] = settings[key];
+  }
+  if (changes['seasonalEffects'] is Map) {
+    final changed = object(changes['seasonalEffects']);
+    result['seasonalEffects'] = {
+      for (final key in ['enabled', 'mode', 'intensity'])
+        if (changed.containsKey(key))
+          key: object(settings['seasonalEffects'])[key],
+    };
   }
   if (changes['equalizer'] is Map) {
     final changed = object(changes['equalizer']);
@@ -166,10 +181,42 @@ class WaveAppearance {
   );
 }
 
+class WaveSeasonalEffects {
+  final bool enabled;
+  final String mode, intensity;
+  const WaveSeasonalEffects({
+    this.enabled = false,
+    this.mode = 'auto',
+    this.intensity = 'subtle',
+  });
+  WaveSeasonalEffects merge(Json value) => WaveSeasonalEffects(
+    enabled: value['enabled'] is bool ? value['enabled'] as bool : enabled,
+    mode: ['auto', 'snow', 'rain', 'leaves', 'sun'].contains(value['mode'])
+        ? value['mode'] as String
+        : mode,
+    intensity: ['subtle', 'normal'].contains(value['intensity'])
+        ? value['intensity'] as String
+        : intensity,
+  );
+  Json toJson() => {'enabled': enabled, 'mode': mode, 'intensity': intensity};
+  String resolve([DateTime? date]) {
+    if (mode != 'auto') return mode;
+    final month = (date ?? DateTime.now()).month;
+    return month == 12 || month <= 2
+        ? 'snow'
+        : month <= 5
+        ? 'rain'
+        : month <= 8
+        ? 'sun'
+        : 'leaves';
+  }
+}
+
 class WaveCustomization {
   final String theme;
   final String language;
   final WaveAppearance appearance;
+  final WaveSeasonalEffects seasonalEffects;
   final bool reducedMotion;
   final WaveEqualizer equalizer;
   final double playbackRate;
@@ -179,6 +226,7 @@ class WaveCustomization {
     this.theme = 'light',
     this.language = 'auto',
     this.appearance = const WaveAppearance(),
+    this.seasonalEffects = const WaveSeasonalEffects(),
     this.reducedMotion = false,
     this.equalizer = const WaveEqualizer(),
     this.playbackRate = 1,
@@ -188,8 +236,14 @@ class WaveCustomization {
   factory WaveCustomization.fromSettings(Json settings) =>
       const WaveCustomization().merge(settings);
   WaveCustomization merge(Json settings) => WaveCustomization(
-    fontFamily: ['manrope', 'nunito', 'system'].contains(settings['fontFamily']) ? settings['fontFamily'] as String : fontFamily,
-    fontScale: settings['fontScale'] is num && (settings['fontScale'] as num).isFinite ? number(settings['fontScale'], fontScale).clamp(.85, 1.25) : fontScale,
+    seasonalEffects: seasonalEffects.merge(object(settings['seasonalEffects'])),
+    fontFamily: ['manrope', 'nunito', 'system'].contains(settings['fontFamily'])
+        ? settings['fontFamily'] as String
+        : fontFamily,
+    fontScale:
+        settings['fontScale'] is num && (settings['fontScale'] as num).isFinite
+        ? number(settings['fontScale'], fontScale).clamp(.85, 1.25)
+        : fontScale,
     language:
         [
           'auto',
@@ -220,6 +274,7 @@ class WaveCustomization {
     'language': language,
     'theme': theme,
     'appearance': appearance.toJson(),
+    'seasonalEffects': seasonalEffects.toJson(),
     'reducedMotion': reducedMotion,
     'equalizer': equalizer.toJson(),
     'playbackRate': playbackRate,

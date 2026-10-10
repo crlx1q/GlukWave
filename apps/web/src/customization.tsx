@@ -1,3 +1,4 @@
+import {SeasonalSettings} from './seasonal';
 import { RangeInput } from './range-input';
 import { t, useLocale } from './locale';
 import { useEffect, useState, type CSSProperties } from 'react';
@@ -44,6 +45,7 @@ export function AppearanceSettings() {useLocale();
         <label className="appearance-range"><span>{t('copy.354')}<output>{appearance.speed.toFixed(1)}×</output></span><RangeInput min={.3} max={2} step={.1} value={appearance.speed} aria-label={t('copy.354')} onChange={event=>saveAppearance({speed:Number(event.target.value)})}/></label>
         <Toggle checked={!store.settings.reducedMotion} onChange={enabled=>void store.saveSettings({reducedMotion:!enabled})} label={t('copy.355')} description={store.motion?t('copy.356'):store.settings.reducedMotion?t('copy.357'):t('copy.358')}/>
         <Toggle checked={appearance.blur} onChange={blur=>saveAppearance({blur})} label={t('copy.359')} description={t('copy.360')}/>
+        <SeasonalSettings/>
         <Toggle checked={appearance.compact} onChange={compact=>saveAppearance({compact})} label={t('copy.361')} description={t('copy.362')}/>
         <Toggle checked={store.settings.lyrics} onChange={lyrics=>void store.saveSettings({lyrics})} label={t('copy.046')} description={t('copy.363')}/>
         <button type="button" className="subtle-button appearance-reset" onClick={reset}><RotateCcw size={15}/>{t('copy.364')}</button>

@@ -1,16 +1,33 @@
 
- ∿  GLUKWAVE  SERVER STUDIO
- ╭────────────────────────────────────────────────────────────────────────────╮
- │ ONLINE  ·  Local development                                               │
- │                                                                            │
- │ Listen      127.0.0.1:4102                                                 │
- │ Web         http://127.0.0.1:4102                                          │
- │ Database    SQLite · local                                                 │
- │ Media       Local files · private                                          │
- │                                                                            │
- │ 0 devices   ·   0 listening rooms                                          │
- │ Uptime 1m 23s   ·   Memory 351 MB                                          │
- │ 3 API requests   ·   1 failed   ·   21 ms average                          │
- ╰────────────────────────────────────────────────────────────────────────────╯
- s / Enter  status    h  help    q  graceful shutdown
+                          :-          #@@@:          @@@@-
+                          *@@        #@@@@@#        @@@@@@@
+                          *@@@-      @@@@@@@@      +@@@@@@@@.
+                           %@@@#    @@@@-#@@@@:    @@@%.+@@@@+
+                            *@@@@  #@@@    @@@@*  @@@@    @@@@%
+                              @@@@@@@@-     @@@@@@@@@.     #@@@.
+                               @@@@@@@       -@@@@@@#       .@@
+                                *@@@@         .@@@@@          *
+
+ GLUK WAVE  /  SERVER STUDIO
+ ╭──────────────────────────────────────────────────────────────────────────────────────╮
+ │ ● ONLINE  ·  Local development                                                       │
+ │                                                                                      │
+ │ ── CONNECTION                                                                        │
+ │ Listen     127.0.0.1:55090                                                           │
+ │ Web        https://wave.gluk.tech/                                                   │
+ │ Database   SQLite · local                                                            │
+ │ Media      Local files · private                                                     │
+ │                                                                                      │
+ │ ── LIVE SESSION                                                                      │
+ │ 0 connected clients  ·  0 rooms                                                      │
+ │ Uptime     0:10                                                                      │
+ │ Memory     363 MB RSS  ·  117 MB heap                                                │
+ │ CPU        55.7% / one core                                                          │
+ │                                                                                      │
+ │ ── API ACTIVITY                                                                      │
+ │ Requests   2                                                                         │
+ │ Failures   1                                                                         │
+ │ Latency    34 ms average                                                             │
+ ╰──────────────────────────────────────────────────────────────────────────────────────╯
+ s / Enter  status   h  help   q  stop
 

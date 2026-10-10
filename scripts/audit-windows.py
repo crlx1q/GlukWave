@@ -53,7 +53,7 @@ for name in ['glukwave.exe', 'data/app.so', 'flutter_windows.dll', 'libmpv-2.dll
     require(digest((release / name).read_bytes()) == digest((bundle / name).read_bytes()), 'Package differs from build: ' + name)
 require(b'https://wave.gluk.tech' in (bundle / 'data/app.so').read_bytes(), 'Official HTTPS server origin missing from AOT')
 feature_markers = {marker: marker.encode('utf-8') in (bundle / 'data/app.so').read_bytes()
-                   for marker in ['/discord', 'discord:changed', 'discordPresence', '/api/diagnostics/events', '/lyrics/lrclib', 'ROOM_STATE', 'Find on LRCLIB', 'deviceVolume', '/api/auth/native-captcha', 'desktop-quick-volume', '/account/sessions', 'downloadUrl', 'adoptOnly', '/taste', '/friends', '/jams', '/api/account/', 'currentPassword', 'Email sent', '/playlists/discover']}
+                   for marker in ['glukwave-lan-v1', 'LAN pairing', 'seasonalEffects', 'lan-enable', '/discord', 'discord:changed', 'discordPresence', '/api/diagnostics/events', '/lrclib', '/genius/preview', 'genius-preview', 'cover-ambient-transform', 'ROOM_STATE', 'Find on LRCLIB', 'deviceVolume', '/api/auth/native-captcha', 'desktop-quick-volume', '/account/sessions', 'downloadUrl', 'adoptOnly', '/taste', '/friends', '/jams', '/api/account/', 'currentPassword', 'Email sent', '/playlists/discover']}
 require(all(feature_markers.values()), 'Current diagnostics or LRCLIB import missing from AOT')
 
 manifest = json.loads((bundle / 'data/flutter_assets/FontManifest.json').read_text('utf-8'))

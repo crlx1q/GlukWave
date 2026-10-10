@@ -24,6 +24,8 @@ import '../services/cache.dart';
 import '../services/desktop.dart';
 import '../services/push.dart';
 import '../services/waveform.dart';
+import '../services/lan_transport.dart';
+import '../l10n/lan_strings.dart';
 import '../l10n/wave_localizations.dart';
 import '../l10n/parity_strings.dart';
 
@@ -153,6 +155,22 @@ class WaveController extends ChangeNotifier {
   String deviceId = '';
   final String surfaceId = const Uuid().v4();
   Json connect = {};
+  LanTransport? _lan;
+  String? _lanOutputId, lanInvite, lanError;
+  Json _lanState = {};
+  Future<void> _lanSerial = Future.value();
+  bool _lanReporting = false, _lanMutating = false;
+  bool get lanEnabled => _lan != null;
+  bool get lanHosting => _lan?.hosting == true;
+  bool get lanActive =>
+      _lan?.connected == true ||
+      (_lan?.peers.any((p) => p['online'] == true) ?? false);
+  String? get lanHostName => _lan?.hostName;
+  List<Json> get lanPeers =>
+      _lan?.peers
+          .map((peer) => {...peer, 'isActive': peer['id'] == _lanOutputId})
+          .toList() ??
+      [];
   bool _localOutputActive = false;
   bool _provisionalOutput = false;
   int _accountGeneration = 0;
@@ -160,32 +178,44 @@ class WaveController extends ChangeNotifier {
   int _accountRevision = -1;
   bool? _connectSupported;
   bool get independentListening => connect['independent'] == true;
-  String? get activeDeviceId => connect['activeDeviceId'] as String?;
+  String? get activeDeviceId =>
+      lanEnabled ? _lanOutputId : connect['activeDeviceId'] as String?;
   String? get activeSurfaceId => connect['activeSurfaceId'] as String?;
-  bool get controllingRemote =>
-      !_provisionalOutput &&
-      !independentListening &&
-      activeDeviceId != null &&
-      (activeDeviceId != deviceId ||
-          activeSurfaceId != null && activeSurfaceId != surfaceId);
-  bool get outputHere =>
-      _provisionalOutput ||
-      independentListening ||
-      activeDeviceId == deviceId &&
-          (activeSurfaceId == null || activeSurfaceId == surfaceId) ||
-      _connectSupported != true && _roomOutputActive;
+  bool get controllingRemote => lanEnabled
+      ? _lanOutputId != deviceId
+      : !_provisionalOutput &&
+            !independentListening &&
+            activeDeviceId != null &&
+            (activeDeviceId != deviceId ||
+                activeSurfaceId != null && activeSurfaceId != surfaceId);
+  bool get outputHere => lanEnabled
+      ? _lanOutputId == deviceId
+      : _provisionalOutput ||
+            independentListening ||
+            activeDeviceId == deviceId &&
+                (activeSurfaceId == null || activeSurfaceId == surfaceId) ||
+            _connectSupported != true && _roomOutputActive;
   String? get activeRoomId => connect['roomId'] as String?;
   String get outputLabel => activeDeviceId == null
       ? wt('connect.noOutput')
       : wt('connect.playingOn', values: {'name': activeDeviceName});
-  String get activeDeviceName =>
-      devices
-          .where(
-            (d) => d['deviceId'] == activeDeviceId || d['id'] == activeDeviceId,
-          )
-          .map((d) => d['name']?.toString() ?? '')
-          .firstOrNull ??
-      wt('connect.otherDevice');
+  String get activeDeviceName => lanEnabled
+      ? (_lanOutputId == deviceId
+            ? deviceName
+            : lanPeers
+                      .where((p) => p['id'] == _lanOutputId)
+                      .map((p) => p['name']?.toString() ?? '')
+                      .firstOrNull ??
+                  wt('connect.otherDevice'))
+      : devices
+                .where(
+                  (d) =>
+                      d['deviceId'] == activeDeviceId ||
+                      d['id'] == activeDeviceId,
+                )
+                .map((d) => d['name']?.toString() ?? '')
+                .firstOrNull ??
+            wt('connect.otherDevice');
   String get deviceKind => Platform.isWindows
       ? 'windows'
       : Platform.isIOS
@@ -232,6 +262,17 @@ class WaveController extends ChangeNotifier {
     };
     audio.onProcessingChanged = notifyListeners;
     audio.onEnded = (track, repeat) async {
+      if (lanEnabled) {
+        if (outputHere) {
+          if (repeat == AudioServiceRepeatMode.one) {
+            await transport('seek', {'position': 0});
+            await transport('play');
+          } else {
+            await transport('next');
+          }
+        }
+        return true;
+      }
       final active = room;
       if (active == null) return false;
       if (canControl &&
@@ -253,6 +294,10 @@ class WaveController extends ChangeNotifier {
       return true;
     };
     audio.onTransport = (command, data) async {
+      if (lanEnabled) {
+        await transport(command, data);
+        return true;
+      }
       if (room == null &&
           !controllingRemote &&
           !(command == 'play' &&
@@ -274,8 +319,8 @@ class WaveController extends ChangeNotifier {
     _subscriptions.add(
       audio.mediaItem.listen((item) {
         notifyListeners();
-        if (item != null) unawaited(waveforms.load(item.id));
-        if (item != null && online && !audio.remote) {
+        if (item != null && !lanEnabled) unawaited(waveforms.load(item.id));
+        if (item != null && online && !audio.remote && !lanEnabled) {
           unawaited(
             api
                 .call(
@@ -630,6 +675,7 @@ class WaveController extends ChangeNotifier {
   }
 
   Future<void> _performLogout({bool remote = true}) async {
+    await setLanEnabled(false);
     cancelAuth = true;
     _adoptingRoomId = null;
     _roomAdoption = null;
@@ -913,6 +959,14 @@ class WaveController extends ChangeNotifier {
         ),
       );
   Future<void> play(WaveTrack target, {List<WaveTrack>? list}) async {
+    if (lanEnabled) {
+      await _lanControl('transport', {
+        'command': 'track',
+        'trackId': target.id,
+        'queue': (list ?? tracks).map((t) => t.id).toList(),
+      });
+      return;
+    }
     if (!target.playable && target.source != 'local') {
       target = await api.resolvePlayback(target);
     }
@@ -957,6 +1011,10 @@ class WaveController extends ChangeNotifier {
   }
 
   Future<void> transport(String command, [Json data = const {}]) async {
+    if (lanEnabled) {
+      await _lanControl('transport', {'command': command, ...data});
+      return;
+    }
     if (jamListener && ['play', 'pause'].contains(command)) {
       final result = await api.call(
         '/api/jams/${room!['id']}/pause',
@@ -1388,6 +1446,376 @@ class WaveController extends ChangeNotifier {
     socket!.connect();
   }
 
+  Future<void> setLanEnabled(bool enabled) async {
+    if (enabled == lanEnabled) return;
+    if (!enabled) {
+      final previous = _lan;
+      _lan = null;
+      audio.offlineOnly = false;
+      await previous?.close();
+      if (previous != null) await audio.suspendLocalOutput();
+      audio.clearRemote();
+      _lanOutputId = null;
+      _lanState = {};
+      lanInvite = lanError = null;
+      _localOutputActive = false;
+      if (!_disposed) notifyListeners();
+      return;
+    }
+    if (user == null) throw WaveException(lanText('account'));
+    if (room != null) throw WaveException(lanText('room'));
+    Json trusted = {};
+    try {
+      trusted = object(
+        jsonDecode(await secure.read(key: 'lan:$namespace') ?? '{}'),
+      );
+    } catch (_) {}
+    final scope = namespace;
+    final local = LanTransport(
+      account: scope,
+      deviceId: deviceId,
+      name: deviceName,
+      kind: deviceKind,
+      maximumPeers: ['beta', 'unbound'].contains(user!.plan) ? 10 : 3,
+      trusted: trusted,
+      command: _lanCommand,
+      state: _receiveLanState,
+      changed: () {
+        if (!_disposed && _lan != null) {
+          _lanChanged();
+          notifyListeners();
+        }
+      },
+      persist: (value) =>
+          secure.write(key: 'lan:$scope', value: jsonEncode(value)),
+    );
+    _lan = local;
+    audio.offlineOnly = true;
+    _lanOutputId = deviceId;
+    _lanMutating = true;
+    try {
+      await local.start();
+      if (audio.current != null && !cache.contains(audio.current!.id)) {
+        await audio.suspendLocalOutput();
+      }
+      audio.tracks = audio.tracks
+          .where((t) => cache.contains(t.id))
+          .take(100)
+          .toList();
+      if (audio.current != null && cache.contains(audio.current!.id)) {
+        final before = snapshot();
+        await audio.playTrack(
+          await _lanCached(audio.current!.id),
+          list: audio.tracks,
+          position: before.position,
+          playing: before.playing,
+        );
+      }
+      audio.clearRemote();
+      _localOutputActive = false;
+      socket?.emit('device:state', {
+        ...snapshot().toJson(),
+        'playing': false,
+        'outputActive': false,
+        'roomId': null,
+      });
+      await _publishLan();
+      _lanMutating = false;
+    } catch (_) {
+      _lan = null;
+      audio.offlineOnly = false;
+      _lanMutating = false;
+      await local.close();
+      throw WaveException(lanText('network'));
+    }
+    notifyListeners();
+  }
+
+  Future<void> createLanInvite() async {
+    await setLanEnabled(true);
+    if (!lanHosting) throw WaveException(lanText('busy'));
+    try {
+      lanInvite = await _lan!.invite();
+      lanError = null;
+      notifyListeners();
+    } catch (_) {
+      throw WaveException(lanText('network'));
+    }
+  }
+
+  Future<void> connectLan(String invitation) async {
+    await setLanEnabled(true);
+    try {
+      await audio.suspendLocalOutput();
+      await _lan!.join(invitation);
+      lanInvite = lanError = null;
+      final state = await _lan!.request('snapshot', {});
+      await _receiveLanState(state);
+    } catch (error) {
+      lanError = lanText(
+        error is StateError
+            ? error.message.toString()
+            : error is FormatException && error.message == 'LAN account'
+            ? 'account'
+            : error is FormatException
+            ? 'invitation'
+            : 'network',
+      );
+      notifyListeners();
+      throw WaveException(lanError!);
+    }
+  }
+
+  Future<void> disconnectLan() async {
+    await setLanEnabled(false);
+  }
+
+  Future<void> removeLanPeer(String id) async {
+    await _lan?.remove(id);
+    _lanChanged();
+    if (!_disposed) notifyListeners();
+  }
+
+  void _lanChanged() {
+    final local = _lan;
+    if (local == null) return;
+    if (local.lastError != null) lanError = lanText('network');
+    final output = _lanOutputId;
+    final lost = local.hosting
+        ? output != null &&
+              output != deviceId &&
+              !local.peers.any((p) => p['id'] == output && p['online'] == true)
+        : !local.connected;
+    if (lost) {
+      if (output == deviceId) unawaited(audio.suspendLocalOutput());
+      final value = object(_lanState['state']);
+      if (value.isNotEmpty && value['playing'] == true) {
+        _lanState = {
+          ..._lanState,
+          'state': {
+            ...value,
+            'playing': false,
+            'updatedAt': DateTime.now().millisecondsSinceEpoch,
+          },
+        };
+        if (output != deviceId) {
+          audio.showRemote(
+            PlaybackSnapshot.fromJson(object(_lanState['state'])),
+            audio.viewCurrent,
+            audio.viewTracks,
+          );
+        }
+      }
+    }
+  }
+
+  Json _localLanState() => {
+    'state': snapshot().toJson(),
+    'track': audio.current?.json,
+    'queueTracks': audio.tracks.map((t) => t.json).toList(),
+    'activeDeviceId': _lanOutputId,
+    'activeDeviceName': activeDeviceName,
+  };
+  Future<void> _publishLan() async {
+    if (_lan?.hosting != true) return;
+    if (_lanOutputId == deviceId) _lanState = _localLanState();
+    await _lan!.broadcast(_lanState);
+  }
+
+  Future<void> _receiveLanState(Json value) async {
+    if (!lanEnabled || _disposed) return;
+    _lanState = value;
+    _lanOutputId = value['activeDeviceId'] as String?;
+    if (_lanOutputId == deviceId) {
+      audio.clearRemote();
+    } else {
+      await audio.suspendLocalOutput();
+      final current = object(value['track']);
+      audio.showRemote(
+        PlaybackSnapshot.fromJson(object(value['state'])),
+        current.isEmpty ? null : WaveTrack(current),
+        objects(value['queueTracks']).map(WaveTrack.new).toList(),
+      );
+    }
+    notifyListeners();
+  }
+
+  Future<void> _lanReport() async {
+    if (_lanReporting || _lanMutating || _disposed || _lan == null) return;
+    _lanReporting = true;
+    try {
+      if (lanHosting) {
+        await _publishLan();
+      } else if (_lan!.connected && _lanOutputId == deviceId) {
+        await _lan!.request('report', _localLanState());
+      }
+    } catch (_) {
+      lanError = lanText('network');
+    } finally {
+      _lanReporting = false;
+    }
+  }
+
+  Future<Json> _lanControl(String command, Json args) async {
+    try {
+      if (!lanHosting) return await _lan!.request(command, args);
+      return await _lanCommand(command, args, deviceId);
+    } catch (error) {
+      throw WaveException(
+        lanText(error is StateError ? error.message.toString() : 'network'),
+      );
+    }
+  }
+
+  Future<Json> _lanCommand(String command, Json args, String peerId) async {
+    if (_lan == null) throw StateError('network');
+    if (command == 'apply' && !lanHosting && peerId == _lan!.hostId) {
+      return _lanApply(args['command'] as String, args);
+    }
+    if (!lanHosting) throw StateError('network');
+    if (command == 'snapshot') return _lanState;
+    if (command == 'report') {
+      if (peerId != _lanOutputId || _lanMutating) return {};
+      _lanState = {
+        ...args,
+        'activeDeviceId': _lanOutputId,
+        'activeDeviceName': activeDeviceName,
+      };
+      audio.showRemote(
+        PlaybackSnapshot.fromJson(object(args['state'])),
+        object(args['track']).isEmpty ? null : WaveTrack(object(args['track'])),
+        objects(args['queueTracks']).map(WaveTrack.new).toList(),
+      );
+      await _publishLan();
+      return {};
+    }
+    if (!['transport', 'transfer'].contains(command)) {
+      throw StateError('network');
+    }
+    final predecessor = _lanSerial, release = Completer<void>();
+    _lanSerial = release.future;
+    await predecessor;
+    _lanMutating = true;
+    try {
+      if (_lan == null || !lanHosting) throw StateError('network');
+      if (command == 'transfer') {
+        await _lanTransfer(args['deviceId'] as String);
+      } else {
+        final result = await _lanOutput(args['command'] as String, args);
+        _lanState = {
+          ...result,
+          'activeDeviceId': _lanOutputId,
+          'activeDeviceName': activeDeviceName,
+        };
+      }
+      if (_lanOutputId != deviceId) await _receiveLanState(_lanState);
+      await _publishLan();
+      return _lanState;
+    } finally {
+      _lanMutating = false;
+      release.complete();
+    }
+  }
+
+  Future<Json> _lanOutput(String command, Json args, {String? target}) {
+    final id = target ?? _lanOutputId;
+    if (id == deviceId) return _lanApply(command, args);
+    return _lan!.request('apply', {'command': command, ...args}, peerId: id);
+  }
+
+  Future<WaveTrack> _lanCached(String id) async {
+    final data = object(object(cache.entries[id])['track']);
+    if (data['id'] != id || await cache.fileFor(id) == null) {
+      throw StateError('cache');
+    }
+    return WaveTrack({
+      ...data,
+      'playback': {
+        ...object(data['playback']),
+        'kind': 'audio',
+        'offline': true,
+      },
+    });
+  }
+
+  Future<Json> _lanApply(String command, Json args) async {
+    if (['track', 'prepare'].contains(command)) {
+      final track = await _lanCached(args['trackId'] as String);
+      final queue = <WaveTrack>[track];
+      for (final id in List<String>.from(args['queue'] ?? []).take(100)) {
+        if (id != track.id && cache.contains(id)) {
+          queue.add(await _lanCached(id));
+        }
+      }
+      await audio.playTrack(
+        track,
+        list: queue,
+        position: number(args['position']),
+        playing: command == 'track',
+      );
+      if (!audio.sourceReady) throw StateError('cache');
+    } else {
+      if (![
+        'play',
+        'pause',
+        'stop',
+        'seek',
+        'volume',
+        'next',
+        'previous',
+        'shuffle',
+        'repeat',
+      ].contains(command)) {
+        throw StateError('network');
+      }
+      if (command == 'play' &&
+          (audio.current == null || !cache.contains(audio.current!.id))) {
+        throw StateError('cache');
+      }
+      await audio.localCommand(command, args);
+    }
+    return _localLanState();
+  }
+
+  Future<void> _lanTransfer(String target) async {
+    if (target == _lanOutputId) return;
+    if (target != deviceId &&
+        !lanPeers.any((p) => p['id'] == target && p['online'] == true)) {
+      throw StateError('network');
+    }
+    final previous = _lanOutputId;
+    final state = PlaybackSnapshot.fromJson(object(_lanState['state']));
+    if (state.trackId == null) throw StateError('cache');
+    // Prepare and validate the receiver before pausing the current output.
+    await _lanOutput('prepare', {
+      'trackId': state.trackId,
+      'queue': state.queue,
+      'position': state.projectedPosition(
+        DateTime.now().millisecondsSinceEpoch,
+      ),
+    }, target: target);
+    try {
+      await _lanOutput('pause', {}, target: previous);
+      final result = await _lanOutput(
+        state.playing ? 'play' : 'pause',
+        {},
+        target: target,
+      );
+      _lanOutputId = target;
+      _lanState = {
+        ...result,
+        'activeDeviceId': target,
+        'activeDeviceName': activeDeviceName,
+      };
+    } catch (_) {
+      try {
+        await _lanOutput('pause', {}, target: target);
+        if (state.playing) await _lanOutput('play', {}, target: previous);
+      } catch (_) {}
+      rethrow;
+    }
+  }
+
   PlaybackSnapshot snapshot() => PlaybackSnapshot(
     trackId: audio.current?.id,
     position: audio.outputPosition.inMilliseconds / 1000,
@@ -1397,6 +1825,10 @@ class WaveController extends ChangeNotifier {
     updatedAt: DateTime.now().millisecondsSinceEpoch,
   );
   void _report() {
+    if (lanEnabled) {
+      unawaited(_lanReport());
+      return;
+    }
     if (socket?.connected == true) {
       socket!.emit('device:state', {
         ...snapshot().toJson(),
@@ -1427,6 +1859,7 @@ class WaveController extends ChangeNotifier {
   }
 
   Future<void> receiveDeviceCommand(Json data) async {
+    if (lanEnabled) throw WaveException(lanText('busy'));
     final command = data['command'];
     final generation = ['track', 'transfer', 'pause', 'stop'].contains(command)
         ? ++_deviceCommandGeneration
@@ -1549,16 +1982,21 @@ class WaveController extends ChangeNotifier {
     );
   }
 
-  Future<void> transfer(String id, {String? targetSurfaceId}) =>
-      _deviceAction('transfer:$id', () async {
-        await commandDevice(id, 'transfer', {
-          'fromDeviceId': activeDeviceId ?? deviceId,
-          if (targetSurfaceId != null) 'surfaceId': targetSurfaceId,
+  Future<void> transfer(String id, {String? targetSurfaceId}) => lanEnabled
+      ? _lanControl('transfer', {'deviceId': id}).then((_) {})
+      : _deviceAction('transfer:$id', () async {
+          await commandDevice(id, 'transfer', {
+            'fromDeviceId': activeDeviceId ?? deviceId,
+            if (targetSurfaceId != null) 'surfaceId': targetSurfaceId,
+          });
+          await refreshConnect();
         });
-        await refreshConnect();
-      });
 
   Future<void> listenHere() async {
+    if (lanEnabled) {
+      await _lanControl('transfer', {'deviceId': deviceId});
+      return;
+    }
     if (room != null && activeDeviceId == null && !independentListening) {
       await _deviceAction('transfer:$deviceId', () async {
         final joined = await emitAck('room:join', {'roomId': room!['id']});
@@ -1728,6 +2166,7 @@ class WaveController extends ChangeNotifier {
   }
 
   Future<void> receiveAccountState(Json incoming) async {
+    if (lanEnabled) return;
     if (incoming.isEmpty) return;
     final revision = (object(incoming['state'])['revision'] as num?)?.toInt();
     if (revision != null && revision < _accountRevision) return;
@@ -1833,6 +2272,7 @@ class WaveController extends ChangeNotifier {
   }
 
   Future<void> createRoom(String name, {bool public = false}) async {
+    if (lanEnabled) throw WaveException(lanText('room'));
     final data = await api.call(
       '/api/rooms',
       method: 'POST',
@@ -1842,6 +2282,7 @@ class WaveController extends ChangeNotifier {
   }
 
   Future<void> joinRoom(String code) async {
+    if (lanEnabled) throw WaveException(lanText('room'));
     final invite = Uri.tryParse(code)?.queryParameters['room'] ?? code.trim();
     final data = await api.call(
       '/api/rooms/join',
@@ -1852,6 +2293,7 @@ class WaveController extends ChangeNotifier {
   }
 
   Future<void> _adoptRoom(String id) async {
+    if (lanEnabled) return;
     if (room?['id'] == id) return;
     if (_adoptingRoomId == id && _roomAdoption != null) {
       await _roomAdoption;
@@ -1890,6 +2332,7 @@ class WaveController extends ChangeNotifier {
   }
 
   Future<void> enterRoom(Json target, {bool adoptOnly = false}) async {
+    if (lanEnabled) throw WaveException(lanText('room'));
     if (room != null && room?['id'] != target['id']) await leaveRoom();
     final generation = ++_roomGeneration;
     final session = api.token, origin = api.server;
@@ -2037,6 +2480,7 @@ class WaveController extends ChangeNotifier {
   }
 
   Future<void> receiveRoomState(Json update, {bool force = false}) async {
+    if (lanEnabled) return;
     if (room == null || update['roomId'] != room!['id']) return;
     final state = PlaybackSnapshot.fromJson(object(update['state']));
     if (state.revision < _roomRevision ||
@@ -2170,6 +2614,7 @@ class WaveController extends ChangeNotifier {
   @override
   void dispose() {
     _disposed = true;
+    unawaited(_lan?.close() ?? Future.value());
     _discordGeneration++;
     _roomGeneration++;
     _roomSyncGeneration++;

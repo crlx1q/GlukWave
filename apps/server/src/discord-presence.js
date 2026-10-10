@@ -9,6 +9,8 @@ export const discordScopes='openid sdk.social_layer_presence';
 const api='https://discord.com/api/v10';
 const hasPresence=record=>String(record?.scope||'').split(/\s+/).some(s=>['sdk.social_layer_presence','activities.write'].includes(s));
 const eligible=user=>!!user&&!user.blocked&&planLimits(user).discordPresence;
+// New links share invitations by default. Preserve every saved opt-out.
+const joinAllowed=record=>!!record&&record.allowJoin!==false;
 const safeImage=(value,base=null)=>{if(!value)return null;try{const u=base?new URL(value,base):new URL(value);if(u.protocol==='https:'&&!u.username&&!u.password&&!/^(localhost|127\.|10\.|192\.168\.|172\.(1[6-9]|2\d|3[01])\.|\[::1\])/.test(u.hostname))return u.href;}catch{}return null;};
 const bounded=value=>String(value||'').replace(/[\u0000-\u001f]/g,' ').slice(0,128);
 
@@ -87,14 +89,14 @@ export async function setupDiscord(app,ctx,fetchImpl=fetch,options={}){
   const record=await store.get('connections',`${uid}:discord`),user=await store.get('users',uid),playing=!!state.playing&&(!duration||position<duration);
   const trackUrl=new URL(`/app/?track=${encodeURIComponent(track.id)}`,config.appUrl).href;
   const canHost=!connect.roomId||connect.room?.type==='jam'&&connect.room.ownerId===uid;
-  return {device:output.device,activity:{trackId:track.id,title:track.title,artist:track.artist,album:track.album||'',cover:track.artwork||'',position,duration,playing,trackUrl,joinUrl:playing&&canHost&&eligible(user)&&record?.allowJoin?new URL(`/app/?listen=${encodeURIComponent(uid)}`,config.appUrl).href:null}};
+  return {device:output.device,activity:{trackId:track.id,title:track.title,artist:track.artist,album:track.album||'',cover:track.artwork||'',position,duration,playing,trackUrl,joinUrl:playing&&canHost&&eligible(user)&&joinAllowed(record)?new URL(`/app/?listen=${encodeURIComponent(uid)}`,config.appUrl).href:null}};
  }
  async function status(uid){
   const user=await store.get('users',uid),record=await store.get('connections',`${uid}:discord`),settings=mergeSettings(await store.get('settings',uid)||{}),allowed=eligible(user);
   const needsReconnect=!!record&&(!hasPresence(record)||record.presenceStatus==='reconnect_required');
   const live=allowed?await view(uid):{activity:null,device:null};
   const state=!allowed?'locked':!configured()?'unavailable':!record?'disconnected':needsReconnect?'reconnect_required':!settings.discordPresence?'disabled':!live.activity?.playing?'idle':!record.presenceStatus||record.presenceStatus==='idle'?'publishing':record.presenceStatus;
-  return {eligible:allowed,configured:configured(),connected:!!record,needsReconnect,identity:record?{id:record.providerUserId,username:record.username||'',displayName:record.displayName||'',avatarUrl:record.avatarUrl||''}:null,enabled:settings.discordPresence,allowJoin:!!record?.allowJoin,status:state,lastPublishedAt:record?.publishedAt||null,lastError:record?.lastError||null,...live};
+  return {eligible:allowed,configured:configured(),connected:!!record,needsReconnect,identity:record?{id:record.providerUserId,username:record.username||'',displayName:record.displayName||'',avatarUrl:record.avatarUrl||''}:null,enabled:settings.discordPresence,allowJoin:record?joinAllowed(record):true,status:state,lastPublishedAt:record?.publishedAt||null,lastError:record?.lastError||null,...live};
  }
  async function notify(uid){if(!closed)ctx.io?.to(`user:${uid}`).emit('discord:changed',await status(uid));}
  async function sync(uid){
@@ -139,7 +141,7 @@ export async function setupDiscord(app,ctx,fetchImpl=fetch,options={}){
   const user=await store.get('users',uid);if(!eligible(user))fail(403,'PLAN_LIMIT','Discord доступен в Beta и Unbound.');
   for(const other of await store.list('connections',r=>r.provider==='discord'&&r.providerUserId===record.providerUserId&&r.userId!==uid))if(other)fail(409,'DISCORD_ALREADY_LINKED','Этот Discord уже привязан к другому аккаунту Gluk Wave.');
   const old=await store.get('connections',record.id);if(old)await retire(old,false);
-  await store.put('connections',record.id,{...record,allowJoin:old?.providerUserId===record.providerUserId&&old?.allowJoin||false,presenceStatus:'idle'});workers.delete(uid);worker(uid);
+  await store.put('connections',record.id,{...record,allowJoin:old?.allowJoin!==false,presenceStatus:'idle'});workers.delete(uid);worker(uid);
  }));
  ctx.discordDisconnect=async uid=>{await ctx.withLock('discord:'+uid,async()=>{const record=await store.get('connections',`${uid}:discord`);if(record)await retire(record);await store.remove('connections',`${uid}:discord`);workers.delete(uid);});await notify(uid);};
  app.get('/api/discord',requireAuth,asyncRoute(async(req,res)=>res.set('Cache-Control','no-store').json(await status(req.auth.user.id))));
@@ -153,7 +155,7 @@ export async function setupDiscord(app,ctx,fetchImpl=fetch,options={}){
  }));
  app.post('/api/discord/listen/:userId',requireAuth,asyncRoute(async(req,res)=>ctx.withLock('discord:'+req.params.userId,async()=>{
   parse(z.object({}).strict(),req.body||{});const hostId=req.params.userId,host=await store.get('users',hostId),record=await store.get('connections',`${hostId}:discord`),settings=mergeSettings(await store.get('settings',hostId)||{});
-  if(!eligible(host)||!settings.discordPresence||!record?.allowJoin||!await ctx.areFriends(req.auth.user.id,hostId)||(await view(hostId)).activity?.playing!==true)fail(404,'JAM_NOT_FOUND','Совместное прослушивание недоступно.');
+  if(!eligible(host)||!settings.discordPresence||!joinAllowed(record)||!await ctx.areFriends(req.auth.user.id,hostId)||(await view(hostId)).activity?.playing!==true)fail(404,'JAM_NOT_FOUND','Совместное прослушивание недоступно.');
   const connect=await ctx.accountConnect(hostId);if(connect.roomId&&connect.room?.type!=='jam')fail(409,'ROOM_PERMISSION','Ведущий сейчас слушает в другой комнате.');
   for(const tid of [...new Set([connect.state.trackId,...connect.state.queue].filter(Boolean))])await ctx.requireTrack(tid,req.auth.user);
   const room=await ctx.ensureJam(host);await ctx.attachDiscordJam(hostId,room);res.set('Cache-Control','no-store').json({room:await ctx.joinJam(req.auth.user,room.id)});

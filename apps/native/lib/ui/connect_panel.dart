@@ -1,4 +1,5 @@
 import 'motion_icons.dart';
+import 'lan_panel.dart';
 import 'package:flutter/material.dart';
 import '../core/controller.dart';
 import '../core/models.dart';
@@ -87,7 +88,7 @@ class ConnectPanel extends StatelessWidget {
                   ),
                 ),
                 value: c.independentListening,
-                onChanged: c.online && !c.connectChanging
+                onChanged: c.online && !c.connectChanging && !c.lanEnabled
                     ? (value) => _run(() => c.setIndependentListening(value))
                     : null,
               ),
@@ -201,6 +202,8 @@ class ConnectPanel extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 24),
+        LanPanel(controller: c, scanQr: scanQr),
+        const SizedBox(height: 24),
         Row(
           children: [
             Expanded(
@@ -301,7 +304,8 @@ class ConnectPanel extends StatelessWidget {
                     ],
                   ),
                 ),
-                if (track != null &&
+                if (!c.lanEnabled &&
+                    track != null &&
                     device['online'] == true &&
                     (installationId(device) != c.activeDeviceId ||
                         installationId(device) == c.deviceId &&

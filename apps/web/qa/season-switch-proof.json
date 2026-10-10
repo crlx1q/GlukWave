@@ -1,0 +1,277 @@
+{
+  "passed": true,
+  "rows": [
+    {
+      "language": "en",
+      "width": 320,
+      "scale": 1,
+      "off": "none",
+      "on": "matrix(1, 0, 0, 1, 18, 0)",
+      "boxWidth": 44,
+      "inputHeight": 44,
+      "overflow": false,
+      "visualWidth": 40
+    },
+    {
+      "language": "ru",
+      "width": 320,
+      "scale": 1,
+      "off": "none",
+      "on": "matrix(1, 0, 0, 1, 18, 0)",
+      "boxWidth": 44,
+      "inputHeight": 44,
+      "overflow": false,
+      "visualWidth": 40
+    },
+    {
+      "language": "kk",
+      "width": 320,
+      "scale": 1,
+      "off": "none",
+      "on": "matrix(1, 0, 0, 1, 18, 0)",
+      "boxWidth": 44,
+      "inputHeight": 44,
+      "overflow": false,
+      "visualWidth": 40
+    },
+    {
+      "language": "uk",
+      "width": 320,
+      "scale": 1,
+      "off": "none",
+      "on": "matrix(1, 0, 0, 1, 18, 0)",
+      "boxWidth": 44,
+      "inputHeight": 44,
+      "overflow": false,
+      "visualWidth": 40
+    },
+    {
+      "language": "de",
+      "width": 320,
+      "scale": 1,
+      "off": "none",
+      "on": "matrix(1, 0, 0, 1, 18, 0)",
+      "boxWidth": 44,
+      "inputHeight": 44,
+      "overflow": false,
+      "visualWidth": 40
+    },
+    {
+      "language": "es",
+      "width": 320,
+      "scale": 1,
+      "off": "none",
+      "on": "matrix(1, 0, 0, 1, 18, 0)",
+      "boxWidth": 44,
+      "inputHeight": 44,
+      "overflow": false,
+      "visualWidth": 40
+    },
+    {
+      "language": "en",
+      "width": 320,
+      "scale": 1.25,
+      "off": "none",
+      "on": "matrix(1, 0, 0, 1, 18, 0)",
+      "boxWidth": 55,
+      "inputHeight": 55,
+      "overflow": false,
+      "visualWidth": 50
+    },
+    {
+      "language": "ru",
+      "width": 320,
+      "scale": 1.25,
+      "off": "none",
+      "on": "matrix(1, 0, 0, 1, 18, 0)",
+      "boxWidth": 55,
+      "inputHeight": 55,
+      "overflow": false,
+      "visualWidth": 50
+    },
+    {
+      "language": "kk",
+      "width": 320,
+      "scale": 1.25,
+      "off": "none",
+      "on": "matrix(1, 0, 0, 1, 18, 0)",
+      "boxWidth": 55,
+      "inputHeight": 55,
+      "overflow": false,
+      "visualWidth": 50
+    },
+    {
+      "language": "uk",
+      "width": 320,
+      "scale": 1.25,
+      "off": "none",
+      "on": "matrix(1, 0, 0, 1, 18, 0)",
+      "boxWidth": 55,
+      "inputHeight": 55,
+      "overflow": false,
+      "visualWidth": 50
+    },
+    {
+      "language": "de",
+      "width": 320,
+      "scale": 1.25,
+      "off": "none",
+      "on": "matrix(1, 0, 0, 1, 18, 0)",
+      "boxWidth": 55,
+      "inputHeight": 55,
+      "overflow": false,
+      "visualWidth": 50
+    },
+    {
+      "language": "es",
+      "width": 320,
+      "scale": 1.25,
+      "off": "none",
+      "on": "matrix(1, 0, 0, 1, 18, 0)",
+      "boxWidth": 55,
+      "inputHeight": 55,
+      "overflow": false,
+      "visualWidth": 50
+    },
+    {
+      "language": "en",
+      "width": 390,
+      "scale": 1,
+      "off": "none",
+      "on": "matrix(1, 0, 0, 1, 18, 0)",
+      "boxWidth": 44,
+      "inputHeight": 44,
+      "overflow": false,
+      "visualWidth": 40
+    },
+    {
+      "language": "ru",
+      "width": 390,
+      "scale": 1,
+      "off": "none",
+      "on": "matrix(1, 0, 0, 1, 18, 0)",
+      "boxWidth": 44,
+      "inputHeight": 44,
+      "overflow": false,
+      "visualWidth": 40
+    },
+    {
+      "language": "kk",
+      "width": 390,
+      "scale": 1,
+      "off": "none",
+      "on": "matrix(1, 0, 0, 1, 18, 0)",
+      "boxWidth": 44,
+      "inputHeight": 44,
+      "overflow": false,
+      "visualWidth": 40
+    },
+    {
+      "language": "uk",
+      "width": 390,
+      "scale": 1,
+      "off": "none",
+      "on": "matrix(1, 0, 0, 1, 18, 0)",
+      "boxWidth": 44,
+      "inputHeight": 44,
+      "overflow": false,
+      "visualWidth": 40
+    },
+    {
+      "language": "de",
+      "width": 390,
+      "scale": 1,
+      "off": "none",
+      "on": "matrix(1, 0, 0, 1, 18, 0)",
+      "boxWidth": 44,
+      "inputHeight": 44,
+      "overflow": false,
+      "visualWidth": 40
+    },
+    {
+      "language": "es",
+      "width": 390,
+      "scale": 1,
+      "off": "none",
+      "on": "matrix(1, 0, 0, 1, 18, 0)",
+      "boxWidth": 44,
+      "inputHeight": 44,
+      "overflow": false,
+      "visualWidth": 40
+    },
+    {
+      "language": "en",
+      "width": 390,
+      "scale": 1.25,
+      "off": "none",
+      "on": "matrix(1, 0, 0, 1, 18, 0)",
+      "boxWidth": 55,
+      "inputHeight": 55,
+      "overflow": false,
+      "visualWidth": 50
+    },
+    {
+      "language": "ru",
+      "width": 390,
+      "scale": 1.25,
+      "off": "none",
+      "on": "matrix(1, 0, 0, 1, 18, 0)",
+      "boxWidth": 55,
+      "inputHeight": 55,
+      "overflow": false,
+      "visualWidth": 50
+    },
+    {
+      "language": "kk",
+      "width": 390,
+      "scale": 1.25,
+      "off": "none",
+      "on": "matrix(1, 0, 0, 1, 18, 0)",
+      "boxWidth": 55,
+      "inputHeight": 55,
+      "overflow": false,
+      "visualWidth": 50
+    },
+    {
+      "language": "uk",
+      "width": 390,
+      "scale": 1.25,
+      "off": "none",
+      "on": "matrix(1, 0, 0, 1, 18, 0)",
+      "boxWidth": 55,
+      "inputHeight": 55,
+      "overflow": false,
+      "visualWidth": 50
+    },
+    {
+      "language": "de",
+      "width": 390,
+      "scale": 1.25,
+      "off": "none",
+      "on": "matrix(1, 0, 0, 1, 18, 0)",
+      "boxWidth": 55,
+      "inputHeight": 55,
+      "overflow": false,
+      "visualWidth": 50
+    },
+    {
+      "language": "es",
+      "width": 390,
+      "scale": 1.25,
+      "off": "none",
+      "on": "matrix(1, 0, 0, 1, 18, 0)",
+      "boxWidth": 55,
+      "inputHeight": 55,
+      "overflow": false,
+      "visualWidth": 50
+    }
+  ],
+  "screenshots": [
+    "apps/web/qa/transport-season-switch-ru-100-320.png",
+    "apps/web/qa/transport-season-switch-ru-125-320-off.png",
+    "apps/web/qa/transport-season-switch-ru-125-320.png"
+  ],
+  "browserErrors": {
+    "errors": []
+  }
+}

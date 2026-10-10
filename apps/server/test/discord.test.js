@@ -105,14 +105,26 @@ test('Selected-device session expiry and plan downgrade clear the server activit
  await f.service.ctx.store.update('users',user.user.id,u=>({...u,plan:'free'}));assert.equal((await f.service.ctx.discordStatus(user.user.id)).status,'locked');
 }finally{await f.close();}});
 
-test('Listen together requires consent, friends and live host; then ordinary Jam permissions remain',async()=>{const f=await fixture();try{
+test('Listen together defaults on but still requires friends and live host; opt-out keeps ordinary Jam permissions',async()=>{const f=await fixture();try{
  const host=await f.register('host'),guest=await f.register('guest');await f.paid(host);await f.linked(host);await f.track();const socket=await f.connect(host);await f.play(socket);const url='/discord/listen/'+host.user.id;
- assert.equal((await f.request(url,guest,{})).status,404);await f.request('/discord',host,{allowJoin:true},'PATCH');assert.equal((await f.request(url,guest,{})).status,404);
+ const status=(await f.request('/discord',host)).data;assert.equal(status.allowJoin,true);assert(status.activity.joinUrl);
+ assert.equal((await f.request(url,guest,{})).status,404);
  const request=await f.request('/friends/requests',guest,{userId:host.user.id});assert.equal((await f.request('/friends/requests/'+request.data.request.id,host,{accept:true},'PUT')).status,200);
  const ready=await f.request(url,guest,{});assert.equal(ready.status,200);assert.equal(ready.data.room.type,'jam');assert.equal((await f.request('/connect',host)).data.connect.roomId,ready.data.room.id);assert.equal(ready.data.room.state.trackId,'track');
  assert(ready.data.room.members.some(member=>member.userId===guest.user.id));const guestSocket=await f.connect(guest);assert((await guestSocket.timeout(3000).emitWithAck('room:join',{roomId:ready.data.room.id})).ok);
  assert.equal((await f.request('/jams/'+ready.data.room.id+'/join',guest,{})).status,200);
  await f.request('/discord',host,{allowJoin:false},'PATCH');assert.equal((await f.request(url,guest,{})).status,404);assert.equal((await f.request('/discord',host)).data.activity.joinUrl,null);
+}finally{await f.close();}});
+
+test('Discord join default handles missing preference without overwriting a saved opt-out on relink',async()=>{const f=await fixture();try{
+ const user=await f.register('joinpref');await f.paid(user);await f.linked(user);
+ assert.equal((await f.request('/discord',user)).data.allowJoin,true);
+ await f.request('/discord',user,{allowJoin:false},'PATCH');await f.linked(user);
+ assert.equal((await f.request('/discord',user)).data.allowJoin,false);
+ f.identity('23456789012345678');await f.linked(user);
+ assert.equal((await f.request('/discord',user)).data.allowJoin,false);
+ await f.service.ctx.store.update('connections',user.user.id+':discord',record=>{const {allowJoin,...legacy}=record;return legacy;});
+ assert.equal((await f.request('/discord',user)).data.allowJoin,true);
 }finally{await f.close();}});
 
 test('Device state reports detected track duration and publishes end timestamp to Discord',async()=>{const f=await fixture();try{

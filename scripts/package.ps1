@@ -20,7 +20,7 @@ function Add-SourceFiles([string]$directory) {
   }
 }
 foreach ($name in $allowedRoots) { $directory = Join-Path $projectRoot $name; if (Test-Path -LiteralPath $directory -PathType Container) { Add-SourceFiles $directory } }
-foreach ($name in @('START.md', 'VERIFICATION.md', 'Start-GlukWave.ps1')) { $candidate = Join-Path $outputDir $name; if (Test-Path -LiteralPath $candidate -PathType Leaf) { $files.Add($candidate) } }
+foreach ($name in @('START.md', 'VERIFICATION.md', 'Start-GlukWave.ps1', 'GlukWave-server-console.txt', 'GlukWave-server-console.ansi.txt', 'GlukWave-server-console.png')) { $candidate = Join-Path $outputDir $name; if (Test-Path -LiteralPath $candidate -PathType Leaf) { $files.Add($candidate) } }
 Add-Type -AssemblyName System.IO.Compression
 $stream = [System.IO.File]::Open($temporaryPath, [System.IO.FileMode]::CreateNew)
 $archive = [System.IO.Compression.ZipArchive]::new($stream, [System.IO.Compression.ZipArchiveMode]::Create)

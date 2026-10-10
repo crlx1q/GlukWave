@@ -9,6 +9,7 @@ import rateLimit from 'express-rate-limit';
 import pino from 'pino';
 import {fileURLToPath} from 'node:url';
 import {consoleStyle} from './console-ui.js';
+import {consoleColorLevel} from './console-brand.js';
 import {openStore} from './store.js';
 import {setupAuth} from './auth.js';
 import {setupProviders} from './providers.js';
@@ -25,6 +26,8 @@ import {installLocalizedResponses} from './messages.js';
 import {setupReleases} from './releases.js';
 import {setupDiagnostics} from './diagnostics.js';
 import {createLyricsProvider} from './lrclib.js';
+import {createGeniusProvider} from './genius.js';
+import {setupSoundcloudAudio} from './soundcloud-audio.js';
 import {setupExtractors} from './extractors/service.js';
 import {setupResources} from './resources.js';
 import {setupCommunity} from './community.js';
@@ -34,14 +37,14 @@ import {setupDiscord} from './discord-presence.js';
 import {id,now,HttpError,asyncRoute} from './util.js';
 
 export async function createApp(config,overrides={}){
-  const log=overrides.log||pino({level:process.env.LOG_LEVEL||'info',redact:{paths:['req.headers.authorization','req.headers.cookie','password','token','secret','mongoUri'],censor:'[hidden]'},...(config.env!=='test'&&consoleStyle(config)!=='json'?{transport:{target:fileURLToPath(new URL('./console-transport.js',import.meta.url)),options:{colorize:!process.env.NO_COLOR&&(process.stdout.isTTY||process.env.FORCE_COLOR==='1')}}}:{})});
+  const log=overrides.log||pino({level:process.env.LOG_LEVEL||'info',redact:{paths:['req.headers.authorization','req.headers.cookie','password','token','secret','mongoUri'],censor:'[hidden]'},...(config.env!=='test'&&consoleStyle(config)!=='json'?{transport:{target:fileURLToPath(new URL('./console-transport.js',import.meta.url)),options:{colorLevel:consoleColorLevel()}}}:{})});
   const store=overrides.store||await openStore(config),app=express(),server=http.createServer(app),ctx={store,config,log,HttpError,metrics:{requests:0,failures:0,duration:0}};
   const locks=new Map();
   ctx.withLock=async(key,work)=>{const previous=locks.get(key)||Promise.resolve(),next=previous.then(work,work);const tail=next.catch(()=>{});locks.set(key,tail);try{return await next;}finally{if(locks.get(key)===tail)locks.delete(key);}};
   ctx.quotaRoute=(kind,handler)=>(req,res)=>ctx.withLock(kind+':'+req.auth.user.id,()=>handler(req,res));
   ctx.audit=async(action,userId,details)=>{const event={id:id(),action,userId,details,createdAt:now()};await store.create('audit',event.id,event);};
   app.disable('x-powered-by');if(config.trustProxy)app.set('trust proxy',config.trustProxy);
-  app.use(helmet({crossOriginEmbedderPolicy:false,contentSecurityPolicy:{directives:{defaultSrc:["'self'"],scriptSrc:["'self'","'unsafe-inline'",'https://challenges.cloudflare.com','https://www.youtube.com','https://s.ytimg.com','https://w.soundcloud.com','https://sdk.scdn.co','https://open.spotify.com'],styleSrc:["'self'","'unsafe-inline'"],imgSrc:["'self'",'data:','blob:','https:'],mediaSrc:["'self'",'blob:','https:'],connectSrc:["'self'",...config.origins,'wss:','https://challenges.cloudflare.com','https://*.spotify.com','https://*.scdn.co','https://*.soundcloud.com','https://*.googleapis.com','http://127.0.0.1:4002'],frameSrc:['https://challenges.cloudflare.com','https://www.youtube.com','https://www.youtube-nocookie.com','https://w.soundcloud.com','https://open.spotify.com','https://music.yandex.ru','https://www.effectgames.com'],objectSrc:["'none'"],baseUri:["'self'"],frameAncestors:["'self'"],upgradeInsecureRequests:config.production?[]:null}}}));
+  app.use(helmet({crossOriginEmbedderPolicy:false,contentSecurityPolicy:{directives:{defaultSrc:["'self'"],scriptSrc:["'self'","'unsafe-inline'",'https://challenges.cloudflare.com','https://www.youtube.com','https://s.ytimg.com','https://w.soundcloud.com','https://sdk.scdn.co','https://open.spotify.com'],styleSrc:["'self'","'unsafe-inline'"],imgSrc:["'self'",'data:','blob:','https:'],mediaSrc:["'self'",'blob:','https:'],workerSrc:["'self'",'blob:'],connectSrc:["'self'",...config.origins,'wss:','https://challenges.cloudflare.com','https://*.spotify.com','https://*.scdn.co','https://*.soundcloud.com','https://*.googleapis.com','http://127.0.0.1:4002'],frameSrc:['https://challenges.cloudflare.com','https://www.youtube.com','https://www.youtube-nocookie.com','https://w.soundcloud.com','https://open.spotify.com','https://music.yandex.ru','https://www.effectgames.com'],objectSrc:["'none'"],baseUri:["'self'"],frameAncestors:["'self'"],upgradeInsecureRequests:config.production?[]:null}}}));
   app.use(cors({origin:(origin,callback)=>callback(null,!origin||config.origins.includes(origin)),credentials:true}));
   setupLocale(app,ctx,overrides.countryLookup);installLocalizedResponses(app,ctx);
   const isSameHost=(origin,host)=>{if(!origin||!host)return false;try{return new URL(origin).host===host;}catch{return false;}};
@@ -50,7 +53,7 @@ export async function createApp(config,overrides={}){
   app.use(express.json({limit:'256kb'}));app.use(cookieParser());
   app.use('/api',rateLimit({windowMs:60000,limit:300,standardHeaders:'draft-8',legacyHeaders:false,message:{error:{code:'RATE_LIMIT',message:'Слишком много запросов. Подожди минуту.'}}}));
   app.use('/api',(req,res,next)=>{const start=performance.now();res.on('finish',()=>{const elapsed=performance.now()-start;ctx.metrics.requests++;ctx.metrics.duration+=elapsed;if(res.statusCode>=400){ctx.metrics.failures++;log.warn({method:req.method,path:req.path,status:res.statusCode,ms:Math.round(elapsed)},'Request failed');}});next();});
-  setupAuth(app,ctx);setupDiagnostics(app,ctx);ctx.lyricsProvider=createLyricsProvider(ctx,overrides.lyricsFetch);ctx.providerRemoteJson=overrides.providerRemoteJson;setupProviders(app,ctx);setupMedia(app,ctx);setupLibrary(app,ctx);setupExtractors(app,ctx,overrides.extractors);setupWaveforms(app,ctx);setupRooms(app,ctx);setupPush(app,ctx);setupAdmin(app,ctx);setupBilling(app,ctx);setupRealtime(server,app,ctx);setupReleases(app,ctx);
+  setupAuth(app,ctx);setupDiagnostics(app,ctx);ctx.lyricsProvider=createLyricsProvider(ctx,overrides.lyricsFetch);ctx.geniusProvider=createGeniusProvider(overrides.geniusFetch);ctx.providerRemoteJson=overrides.providerRemoteJson;setupProviders(app,ctx);setupMedia(app,ctx);setupLibrary(app,ctx);setupExtractors(app,ctx,overrides.extractors);setupSoundcloudAudio(app,ctx,overrides.soundcloudAudioFetch);setupWaveforms(app,ctx);setupRooms(app,ctx);setupPush(app,ctx);setupAdmin(app,ctx);setupBilling(app,ctx);setupRealtime(server,app,ctx);setupReleases(app,ctx);
   setupCommunity(app,ctx);setupListening(app,ctx);setupAccount(app,ctx);await setupDiscord(app,ctx,overrides.discordFetch,overrides.discordOptions);
   app.get('/api/locale',ctx.getLocale);
   setupResources(app,ctx);
@@ -60,5 +63,5 @@ export async function createApp(config,overrides={}){
   const dist=path.join(config.root,'apps/web/dist');if(fs.existsSync(path.join(dist,'index.html'))){app.use(express.static(dist,{maxAge:config.production?'1h':0}));app.get('/{*path}',(req,res)=>res.sendFile(path.join(dist,'index.html')));}
   app.use((err,req,res,next)=>{if(res.headersSent)return next(err);if(err instanceof HttpError){log.warn({method:req.method,path:req.path,status:err.status,code:err.code,message:err.message,details:err.details},'Http error');return res.status(err.status).json({error:{code:err.code,message:err.message,...(err.details?{details:err.details}:{})}});}if(err.code==='LIMIT_FILE_SIZE')return res.status(413).json({error:{code:'UPLOAD_TOO_LARGE',message:'Файл превышает допустимый размер.'}});if(err.type==='entity.parse.failed')return res.status(400).json({error:{code:'INVALID_JSON',message:'Неверный JSON.'}});log.error({message:err.message,stack:err.stack},'Request error');res.status(500).json({error:{code:'SERVER_ERROR',message:'Не удалось выполнить действие. Попробуй ещё раз.'}});});
   const maintenance=setInterval(async()=>{try{await ctx.retryMediaCleanup?.();for(const collection of ['sessions','emailTokens','challenges','oauthStates'])for(const entry of await store.list(collection,v=>v.expiresAt<Date.now()-86400000))await store.remove(collection,entry.id);const events=(await store.list('audit')).sort((a,b)=>b.createdAt.localeCompare(a.createdAt));for(const event of events.slice(5000))await store.remove('audit',event.id);}catch(err){log.error({message:err.message},'Maintenance failed');}},3600000);maintenance.unref();
-  return {app,server,ctx,async close(){clearInterval(maintenance);ctx.closeResources();ctx.closeCommunity();await ctx.closeDiscord();await ctx.closeRealtime();await ctx.closeListening();await ctx.closeExtractors();if(server.listening)await new Promise(r=>server.close(r));await ctx.closeDiagnostics();await store.close();}};
+  return {app,server,ctx,async close(){clearInterval(maintenance);ctx.closeResources();ctx.closeCommunity();await ctx.closeDiscord();await ctx.closeRealtime();await ctx.closeListening();ctx.closeSoundcloudAudio();await ctx.closeExtractors();await ctx.geniusProvider.close();if(server.listening)await new Promise(r=>server.close(r));await ctx.closeDiagnostics();await store.close();}};
 }

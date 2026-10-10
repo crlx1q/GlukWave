@@ -67,7 +67,7 @@ export function setupLibrary(app,ctx){
     const expectedAccount=req.headers['x-glukwave-account'];
     if(expectedAccount!==undefined&&expectedAccount!==req.auth.user.id)fail(409,'SESSION_CHANGED','Аккаунт изменился. Открой настройки снова.');
     if(req.body?.discordPresence===true&&!planLimits(req.auth.user).discordPresence)fail(403,'PLAN_LIMIT','Discord доступен в Beta и Unbound.');
-    const b=parse(z.object({autoCache:z.boolean().optional(),cacheLimitMB:z.number().int().min(128).max(req.auth.user.plan==='free'?2048:32768).optional(),lyrics:z.boolean().optional(),comments:z.boolean().optional(),lyricsUnderCover:z.boolean().optional(),fontFamily:z.enum(['manrope','nunito','system']).optional(),fontScale:z.number().finite().min(.85).max(1.25).optional(),discordPresence:z.boolean().optional(),notifications:z.boolean().optional(),language:z.enum(['auto','en','ru','kk','uk','de','es']).optional(),theme:z.enum(['light','dark','amoled','system']).optional(),reducedMotion:z.boolean().optional(),appearance:appearance.optional(),equalizer:equalizer.optional(),playbackRate:z.number().finite().min(.5).max(2).optional()}).strict(),req.body);
+    const b=parse(z.object({autoCache:z.boolean().optional(),cacheLimitMB:z.number().int().min(128).max(req.auth.user.plan==='free'?2048:32768).optional(),lyrics:z.boolean().optional(),comments:z.boolean().optional(),lyricsUnderCover:z.boolean().optional(),fontFamily:z.enum(['manrope','nunito','system']).optional(),fontScale:z.number().finite().min(.85).max(1.25).optional(),discordPresence:z.boolean().optional(),notifications:z.boolean().optional(),language:z.enum(['auto','en','ru','kk','uk','de','es']).optional(),theme:z.enum(['light','dark','amoled','system']).optional(),reducedMotion:z.boolean().optional(),seasonalEffects:z.object({enabled:z.boolean().optional(),mode:z.enum(['auto','snow','rain','leaves','sun']).optional(),intensity:z.enum(['subtle','normal']).optional()}).strict().optional(),appearance:appearance.optional(),equalizer:equalizer.optional(),playbackRate:z.number().finite().min(.5).max(2).optional()}).strict(),req.body);
     // Serialize persistence and its notification together so devices receive revisions in order.
     const settings=await ctx.withLock('settings:'+req.auth.user.id,async()=>{
       if(!planLimits(req.auth.user).advancedAppearance&&b.appearance){const current=mergeSettings(await store.get('settings',req.auth.user.id)||{}).appearance;for(const [key,value] of Object.entries(b.appearance)){if(['light','dark','amoled'].includes(key)){for(const [field,color] of Object.entries(value))if(field!=='accent'&&color!==current[key][field])fail(403,'PLAN_LIMIT','Подробное оформление доступно в Unbound.');}else if(value!==current[key])fail(403,'PLAN_LIMIT','Подробное оформление доступно в Unbound.');}}
@@ -101,6 +101,25 @@ export function setupLibrary(app,ctx){
     if(!lyrics||!lyrics.lines.length&&!lyrics.instrumental)fail(404,'LYRICS_NOT_FOUND','Текст не найден.');
     const key=track.source==='local'?track.id:`${req.auth.user.id}:${track.id}`;
     await store.put('lyrics',key,lyrics);res.json(lyrics);
+  }));
+  app.post('/api/tracks/:id/lyrics/genius/preview',requireAuth,lyricsLimiter,asyncRoute(async(req,res)=>{
+    await requireTrack(req.params.id,req.auth.user);
+    const body=parse(z.object({url:text(2048)}).strict(),req.body);
+    res.set('Cache-Control','private, no-store').json(await ctx.geniusProvider.preview(body.url));
+  }));
+  app.post('/api/tracks/:id/lyrics/genius',requireAuth,lyricsLimiter,asyncRoute(async(req,res)=>{
+    const track=await requireTrack(req.params.id,req.auth.user);
+    if(track.source==='local'&&track.uploadedBy!==req.auth.user.id&&req.auth.user.role!=='admin')fail(403,'OWNER_REQUIRED','Текст может добавить автор загрузки.');
+    const body=parse(z.object({url:text(2048)}).strict(),req.body),lyrics=await ctx.geniusProvider.preview(body.url);
+    // A provider request can outlive logout, a ban, or the removal of room access.
+    if(req.aborted||res.destroyed)return;
+    const session=await store.get('sessions',req.auth.session.id),user=await store.get('users',req.auth.user.id);
+    if(!session||session.expiresAt<Date.now()||!user||user.blocked)fail(401,'AUTH_REQUIRED','Войди в GlukWave, чтобы продолжить.');
+    if(config.emailVerify&&!user.emailVerified)fail(403,'EMAIL_UNVERIFIED','Подтверди адрес электронной почты.');
+    const current=await requireTrack(track.id,user);
+    if(current.source==='local'&&current.uploadedBy!==user.id&&user.role!=='admin')fail(403,'OWNER_REQUIRED','Текст может добавить автор загрузки.');
+    const key=track.source==='local'?track.id:`${req.auth.user.id}:${track.id}`;
+    await store.put('lyrics',key,lyrics);res.set('Cache-Control','private, no-store').json(lyrics);
   }));
   app.put('/api/tracks/:id/lyrics',requireAuth,asyncRoute(async(req,res)=>{
     const t=await requireTrack(req.params.id,req.auth.user);
