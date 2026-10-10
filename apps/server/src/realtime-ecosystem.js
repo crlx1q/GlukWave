@@ -81,7 +81,7 @@ export function setupRealtime(server,app,ctx){
       await store.update('devices',key,value=>({id:key,deviceId:device.deviceId,userId,name:device.name,kind:device.kind,createdAt:value?.createdAt||Date.now(),lastSeen:Date.now(),online:true,roomId:value?.roomId||null,state:value?.state||initialState()}));
       const surfaces=live.get(key)||new Set();surfaces.add(socket.id);live.set(key,surfaces);if(!primary.has(key))primary.set(key,socket.id);socket.join(`user:${userId}`);socket.join(`session:${sessionId}`);
       await store.update('connect',userId,value=>{value||=defaultConnect(userId);if(value.activeDeviceId===device.deviceId&&!socketsFor(key).some(s=>s.id!==socket.id&&s.data.device.surfaceId===value.activeSurfaceId))return {...value,activeSurfaceId:device.surfaceId,state:{...value.state,playing:false,updatedAt:Date.now(),revision:(value.state.revision||0)+1}};return value;});
-    });if(socket.connected){changes(userId);io.to(`user:${userId}`).emit('sessions:changed',{});socket.emit('account:state',await snapshot(userId));}
+    });if(socket.connected){changes(userId);io.to(`user:${userId}`).emit('sessions:changed',{});await publish(userId);}
   }
   async function roomMembers(room){
     const sockets=[...io.sockets.sockets.values()].filter(socket=>socket.connected&&socket.data.roomId===room.id&&socket.rooms.has(`room:${room.id}`));

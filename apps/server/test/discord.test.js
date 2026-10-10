@@ -10,7 +10,7 @@ import {seal,unseal} from '../src/util.js';
 import {discordActivity,discordScopes} from '../src/discord-presence.js';
 import {initialState} from '../src/rooms.js';
 
-async function fixture(){
+async function fixture(opts={}){
  const qa=path.join(config.root,'work/qa'),directory=await fs.mkdtemp(path.join(qa,'discord-test-')),calls=[],sockets=[];
  let time=Date.now(),failure=null,tokenFailure=null,hold=null,identity='12345678901234567';
  const fake=async(url,options={})=>{
@@ -24,7 +24,7 @@ async function fixture(){
   return new Response(JSON.stringify({token:'headless-session-secret'}));
  };
  const service=await createApp({...config,env:'test',production:false,storage:'sqlite',objectStorage:'local',dataDir:directory,releasesDir:directory,emailVerify:false,turnstileSecret:'',turnstileSiteKey:'',smtp:'',adminEmails:['admin@example.test'],soundcloudPublicSearch:false,google:{id:'',secret:''},spotify:{id:'',secret:''},youtubeOAuth:{id:'',secret:''},soundcloud:{id:'',secret:''},discord:{id:'22222222222222222',secret:'qa-discord-client-secret'},youtubeKey:'',stripe:{secret:'',webhook:'',price:''},appUrl:'https://wave.example.test'},
-  {log:pino({level:'silent'}),discordFetch:fake,discordOptions:{clock:()=>time,scheduler:false,minInterval:12000},providerRemoteJson:async(url,options)=>{if(url==='https://discord.com/api/users/@me')return {id:identity,username:'discord_listener',global_name:'Discord Listener',avatar:'a_picture'};throw new Error('Unexpected provider '+url);}});
+  {log:pino({level:'silent'}),discordFetch:fake,discordOptions:{clock:()=>time,scheduler:false,minInterval:12000,...(opts.discordOptions||{})},providerRemoteJson:async(url,options)=>{if(url==='https://discord.com/api/users/@me')return {id:identity,username:'discord_listener',global_name:'Discord Listener',avatar:'a_picture'};throw new Error('Unexpected provider '+url);}});
  await new Promise(resolve=>service.server.listen(0,'127.0.0.1',resolve));const base=`http://127.0.0.1:${service.server.address().port}`;
  const request=async(route,auth,body,method=body?'POST':'GET')=>{const response=await fetch(base+'/api'+route,{method,redirect:'manual',headers:{'X-GlukWave-Client':'native',...(auth?{Authorization:'Bearer '+auth.token}:{}),...(body?{'Content-Type':'application/json'}:{})},...(body?{body:JSON.stringify(body)}:{})});return {status:response.status,location:response.headers.get('location'),data:response.headers.get('content-type')?.includes('json')?await response.json():null};};
  const register=async username=>{const r=await request('/auth/register',null,{email:username+'@example.test',username,password:'Discord-private-QA-test-2026'});assert.equal(r.status,201);return r.data;};
@@ -46,6 +46,9 @@ test('Discord activity is OAuth headless Listening with real metadata, two URLs 
  assert.equal(logoFallback.assets.small_image,'https://wave.example.test/brand/logo.png');
  const withoutLogo=discordActivity({title:'x',artist:'a',position:0,duration:0,trackUrl:'https://wave.example/app/?track=x'},{...config,appUrl:'http://127.0.0.1:4000',discord:{...config.discord,logoAsset:''}},1000);
  assert.equal(withoutLogo.assets.small_image,undefined);assert.equal(withoutLogo.state,'∿ a');
+ const idle=discordActivity({idle:true},config,1000);
+ assert.equal(idle.type,2);assert.equal(idle.details,'В приложении');assert.equal(idle.state,'На главной');
+ assert.equal(idle.buttons[0].label,'Открыть в Wave');
 });
 
 test('Free cannot start OAuth, opt in through either settings endpoint or join host presence',async()=>{const f=await fixture();try{
@@ -139,4 +142,30 @@ test('Device state reports detected track duration and publishes end timestamp t
  assert(publishCalls.length>0);
  const act=publishCalls.at(-1).body.activities[0];
  assert.ok(act.timestamps.end);
+}finally{await f.close();}});
+
+test('Idle presence displays in-app status when track is not playing and clears on disconnect',async()=>{const f=await fixture({discordOptions:{idlePresence:true}});try{
+ const user=await f.register('idleuser');await f.paid(user);await f.linked(user);
+ const socket=await f.connect(user);
+ await f.service.ctx.discordSync(user.user.id);
+ let writes=f.calls.filter(c=>c.url.endsWith('/headless-sessions'));
+ assert.equal(writes.length,1);
+ assert.equal(writes[0].body.activities[0].details,'В приложении');
+ assert.equal(writes[0].body.activities[0].state,'На главной');
+ f.advance(13000);
+ await f.track();await f.play(socket);
+ writes=f.calls.filter(c=>c.url.endsWith('/headless-sessions'));
+ assert.equal(writes.length,2);
+ assert.equal(writes[1].body.activities[0].details,'Трек track');
+ f.advance(13000);
+ await f.play(socket,{playing:false});
+ writes=f.calls.filter(c=>c.url.endsWith('/headless-sessions'));
+ assert.equal(writes.length,3);
+ assert.equal(writes[2].body.activities[0].details,'В приложении');
+ assert.equal(writes[2].body.activities[0].state,'На главной');
+ socket.disconnect();
+ await new Promise(r=>setTimeout(r,50));
+ f.advance(13000);
+ await f.service.ctx.discordSync(user.user.id);
+ assert(f.calls.some(c=>c.url.endsWith('/headless-sessions/delete')));
 }finally{await f.close();}});
