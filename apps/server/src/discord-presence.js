@@ -22,7 +22,9 @@ export function discordActivity(view,config,time=Date.now()){
     :publicLogo;
   const url=config.appUrl;
   const buttons=url?[{label:'Открыть в Wave',url}]:[];
-  return {application_id:config.discord.id,type:2,name:'Gluk Wave',details:bounded(view.details||'В приложении'),state:bounded(view.state||'На главной'),platform:'desktop',supported_platforms:['desktop','android','ios'],assets:{...(logo?{large_image:logo,large_text:'Gluk Wave',large_url:url}:{})},buttons,metadata:{button_urls:buttons.map(b=>b.url)}};
+  const activity={application_id:config.discord.id,type:2,name:'Gluk Wave',details:bounded(view.details||'В приложении'),state:bounded(view.state||'На главной'),platform:'desktop',supported_platforms:['desktop','android','ios'],assets:{...(logo?{large_image:logo,large_text:'Gluk Wave',large_url:url}:{})},buttons,metadata:{button_urls:buttons.map(b=>b.url)}};
+  if(view.idleSince)activity.timestamps={start:String(view.idleSince)};
+  return activity;
  }
  const urls=[view.joinUrl,view.trackUrl].filter(Boolean),buttons=urls.map(url=>({label:url===view.joinUrl?'Слушать вместе':'Открыть в Wave',url}));
  const cover=safeImage(view.cover,config.appUrl),publicLogo=safeImage('/brand/logo.png',config.appUrl);
@@ -130,11 +132,12 @@ export async function setupDiscord(app,ctx,fetchImpl=fetch,options={}){
       if(clock()-w.pausedSince<2500){w.due=w.pausedSince+2500;return;}
      }
      w.pausedSince=null;
-     await clear(record);w.key=null;w.anchor=null;w.trackId=null;w.due=clock()+25000;await saved(record,{presenceStatus:!eligible(user)?'locked':!configured()?'unavailable':!hasPresence(record)||record.presenceStatus==='reconnect_required'?'reconnect_required':record.presenceStatus==='unsupported'?'unsupported':!settings.discordPresence?'disabled':'idle',lastError:null});await notify(uid);return;
+     await clear(record);w.key=null;w.anchor=null;w.trackId=null;w.idleStart=null;w.due=clock()+25000;await saved(record,{presenceStatus:!eligible(user)?'locked':!configured()?'unavailable':!hasPresence(record)||record.presenceStatus==='reconnect_required'?'reconnect_required':record.presenceStatus==='unsupported'?'unsupported':!settings.discordPresence?'disabled':'idle',lastError:null});await notify(uid);return;
     }
     w.pausedSince=null;
     const isIdle=Boolean(next.activity.idle);
-    const anchor=isIdle?0:(clock()-next.activity.position*1000);
+    if(isIdle){if(!w.idleStart)w.idleStart=clock();}else{w.idleStart=null;}
+    const anchor=isIdle?(w.idleStart||0):(clock()-next.activity.position*1000);
     const key=isIdle
       ?'idle:online'
       :JSON.stringify([next.activity.trackId,next.activity.title,next.activity.artist,next.activity.album,next.activity.cover,next.activity.duration,next.activity.joinUrl,next.device]);
@@ -142,14 +145,16 @@ export async function setupDiscord(app,ctx,fetchImpl=fetch,options={}){
     const stateChanged=Boolean(w.key!==key);
     const changed=trackChanged||stateChanged||w.anchor===null||(!isIdle&&Math.abs(anchor-w.anchor)>2500);
     const minInterval=(trackChanged||stateChanged)?1500:(options.minInterval??12000);
+    const maxInterval=isIdle?300000:25000;
     if(w.lastSent&&clock()-w.lastSent<minInterval){w.due=w.lastSent+minInterval;return;}
-    if(!changed&&clock()-w.lastSent<25000){w.due=w.lastSent+25000;return;}
-    const payload={activities:[discordActivity(next.activity,config,clock())],...(record.headlessToken?{token:unseal(record.headlessToken,config.encryptionKey)}:{})};
+    if(!changed&&clock()-w.lastSent<maxInterval){w.due=w.lastSent+maxInterval;return;}
+    const activityPayload=isIdle&&w.idleStart?{...next.activity,idleSince:w.idleStart}:next.activity;
+    const payload={activities:[discordActivity(activityPayload,config,clock())],...(record.headlessToken?{token:unseal(record.headlessToken,config.encryptionKey)}:{})};
     let result;
     try{result=await authorized(record,'/users/@me/headless-sessions',payload);}catch(error){if(!record.headlessToken||![400,404].includes(error.status))throw error;await saved(record,{headlessToken:null});delete payload.token;result=await authorized(record,'/users/@me/headless-sessions',payload);}
     if(!result?.token&&!record.headlessToken)throw Object.assign(new Error('No headless session'),{code:'DISCORD_PROTOCOL'});
     await saved(record,{headlessToken:result.token?seal(String(result.token),config.encryptionKey):record.headlessToken,presenceStatus:'active',publishedAt:new Date(clock()).toISOString(),lastError:null});
-    w.lastSent=clock();w.anchor=anchor;w.key=key;w.trackId=isIdle?null:next.activity.trackId;w.retryUntil=0;w.due=clock()+25000;await notify(uid);
+    w.lastSent=clock();w.anchor=anchor;w.key=key;w.trackId=isIdle?null:next.activity.trackId;w.retryUntil=0;w.due=clock()+maxInterval;await notify(uid);
    }catch(error){
     const code=error.code||'DISCORD_PROVIDER_ERROR',permanent=['DISCORD_RECONNECT','DISCORD_SCOPE_UNAVAILABLE','DISCORD_UNSUPPORTED'].includes(code);
     await saved(record,{presenceStatus:code==='DISCORD_RECONNECT'?'reconnect_required':permanent?'unsupported':'retrying',lastError:code});
