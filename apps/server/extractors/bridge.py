@@ -45,9 +45,18 @@ def extract(request):
     source = request['source']
     url = valid_url(request['url'], source)
     options = {'quiet': True, 'no_warnings': True, 'logger': QuietLogger(), 'noplaylist': True,
-               'skip_download': True, 'cachedir': False, 'socket_timeout': 12, 'retries': 1,
-               'extractor_retries': 1, 'fragment_retries': 1, 'format': 'bestaudio[protocol=https][ext=m4a]/bestaudio[protocol=https]/bestaudio[protocol=m3u8_native]/bestaudio[protocol=m3u8]',
-               'extract_flat': False, 'playlistend': 1, 'allow_unplayable_formats': False}
+               'skip_download': True, 'cachedir': False, 'socket_timeout': 15, 'retries': 2,
+               'extractor_retries': 2, 'fragment_retries': 2,
+               'format': 'bestaudio[protocol=https][ext=m4a]/bestaudio[protocol=https]/bestaudio[protocol=m3u8_native]/bestaudio[protocol=m3u8]/bestaudio/best',
+               'extract_flat': False, 'playlistend': 1, 'allow_unplayable_formats': False,
+               'nocheckcertificate': True}
+    if source == 'youtube':
+        options['extractor_args'] = {
+            'youtube': {
+                'player_client': ['android', 'ios', 'web', 'mweb', 'tv'],
+                'player_skip': ['js', 'configs', 'webpage']
+            }
+        }
     if request.get('deno'):
         options['js_runtimes'] = {'deno': {'path': request['deno']}}
     with YoutubeDL(options) as ydl:
@@ -137,5 +146,6 @@ if __name__ == '__main__':
     except Exception as error:
         # Raw upstream errors can contain signed CDN URLs and credentials.
         name = type(error).__name__
-        sys.stdout.write(json.dumps({'ok': False, 'code': 'EXTRACTOR_UPSTREAM', 'type': name}))
+        msg = str(error)[:300]
+        sys.stdout.write(json.dumps({'ok': False, 'code': 'EXTRACTOR_UPSTREAM', 'type': name, 'message': msg}))
         sys.exit(1)

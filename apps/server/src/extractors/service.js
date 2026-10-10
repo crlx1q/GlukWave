@@ -35,7 +35,7 @@ export function createBoundedCache(limit=200){
 }
 export function setupExtractors(app,ctx,overrides={}){
   const {store,config,requireAuth,requireAdmin}=ctx,runtime=createExtractorRuntime(config,{run:overrides.run}),metadata=createBoundedCache(200),pending=new Map(),fetcher=overrides.fetch||fetch;
-  const adapters={soundcloud:soundcloudAdapter(runtime),youtube:youtubeAdapter(runtime),spotify:spotifyAdapter(runtime,config)};
+  const adapters={soundcloud:soundcloudAdapter(runtime,fetcher),youtube:youtubeAdapter(runtime),spotify:spotifyAdapter(runtime,config)};
   let streams=0,conversion=false,versions=null,versionsAt=0;const transfers=new Set();
   const directory=path.join(config.dataDir,'extractor-covers');
   const limiter=rateLimit({windowMs:60000,limit:24,standardHeaders:'draft-8',legacyHeaders:false});
@@ -57,15 +57,16 @@ export function setupExtractors(app,ctx,overrides={}){
       if(track.source==='spotify'&&runtime.available('spotify')){
         try{const result=await adapters.spotify.matches(target);if(result.candidates?.some(candidate=>candidate.match.accepted))return result.candidates;}catch{/* Independent YouTube Music metadata fallback. */}
       }
-      const ytFound=await adapters.youtube.search(target.artist+' '+target.title).catch(()=>[]);
-      if(ytFound.length)return ytFound;
+      const ytFound=runtime.available('youtube')?await adapters.youtube.search(target.artist+' '+target.title).catch(()=>[]):[];
+      let scFound=[];
       if(ctx.searchProvider){
         try{
           const sc=await ctx.searchProvider('soundcloud',target.artist+' '+target.title);
-          return sc.map(item=>({source:'soundcloud',source_url:item.sourceUrl,title:item.title,artist:item.artist,duration:item.duration,track_id:item.sourceId}));
+          scFound=sc.map(item=>({source:'soundcloud',source_url:item.sourceUrl,title:item.title,artist:item.artist,duration:item.duration,track_id:item.sourceId}));
         }catch{}
       }
-      return [];
+      if(track.source==='youtube')return [...scFound,...ytFound];
+      return [...ytFound,...scFound];
     },240000);
     const candidates=found.filter(candidate=>audioMatch(target,candidate).accepted).slice(0,3);
     for(const candidate of candidates){
@@ -86,14 +87,29 @@ export function setupExtractors(app,ctx,overrides={}){
     if(!['soundcloud','youtube','spotify','yandex'].includes(track.source))return null;
     if(['spotify','yandex'].includes(track.source)&&!rights?.audioSourceUrl)return candidateAudio(track,{force});
     const identity=sourceUrl(url);if(!['soundcloud','youtube'].includes(identity.source))return null;
-    if(!runtime.available(identity.source)){if(rights?.stream)fail(503,'EXTRACTOR_UNAVAILABLE','Трек временно недоступен. Повтори позже.');return null;}
+    if(!runtime.available(identity.source)){
+      if(track.source==='youtube'){
+        const fallback=await candidateAudio(track,{force}).catch(()=>null);
+        if(fallback)return fallback;
+      }
+      if(rights?.stream)fail(503,'EXTRACTOR_UNAVAILABLE','Трек временно недоступен. Повтори позже.');
+      return null;
+    }
     if(force)metadata.delete('metadata:'+identity.url);
-    const info=await details(identity.source,identity.url),permission=await rightFor(track)||licensePermission(info.license);
-    if(!permission?.stream)return null;
-    if(track.source==='spotify'&&!audioMatch(track,info).accepted)fail(409,'AUDIO_MATCH_REJECTED','Не найдено точное совпадение этого трека.');
-    if(!safeCdn(info.audio_url,'hls'))fail(502,'AUDIO_FORMAT_UNAVAILABLE','Этот формат пока недоступен в плеере.');
-    if(track.duration<=0&&info.duration>0)void store.update('tracks',track.id,t=>t?{...t,duration:info.duration}:undefined).catch(()=>{});
-    return {info,permission};
+    try{
+      const info=await details(identity.source,identity.url),permission=await rightFor(track)||licensePermission(info.license);
+      if(!permission?.stream)return null;
+      if(track.source==='spotify'&&!audioMatch(track,info).accepted)fail(409,'AUDIO_MATCH_REJECTED','Не найдено точное совпадение этого трека.');
+      if(!safeCdn(info.audio_url,'hls'))fail(502,'AUDIO_FORMAT_UNAVAILABLE','Этот формат пока недоступен в плеере.');
+      if(track.duration<=0&&info.duration>0)void store.update('tracks',track.id,t=>t?{...t,duration:info.duration}:undefined).catch(()=>{});
+      return {info,permission};
+    }catch(error){
+      if(track.source==='youtube'){
+        const fallback=await candidateAudio(track,{force}).catch(()=>null);
+        if(fallback)return fallback;
+      }
+      throw error;
+    }
   }
   ctx.extractorAvailable=source=>!!adapters[source]&&runtime.available(source);
   ctx.extractorExpected=async track=>!!(await rightFor(track))?.stream;
