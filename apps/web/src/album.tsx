@@ -1,3 +1,4 @@
+import {usePlayer} from './player';
 import { t, useLocale } from './locale';
 import { useEffect, useId, useRef, useState, type CSSProperties, type PointerEvent } from 'react';
 import { CircleDot, Disc3, FlipHorizontal, RotateCcw } from 'lucide-react';
@@ -7,7 +8,7 @@ import { sourceNames, type Track } from './types';
 import { useVisualVisibility } from './visual-lifecycle';
 
 export function AlbumCover({track,playing,gestureOwned=false,active=true}:{track:Track;playing:boolean;gestureOwned?:boolean;active?:boolean}) {useLocale();
-  const store=useStore(),appearance=store.settings.appearance,[rotation,setRotation]=useState({x:-9,y:-18}),[dragging,setDragging]=useState(false),[manual,setManual]=useState(false),[hovering,setHovering]=useState(false),hint=useId();
+  const player=usePlayer(),store=useStore(),appearance=store.settings.appearance,[rotation,setRotation]=useState({x:-9,y:-18}),[dragging,setDragging]=useState(false),[manual,setManual]=useState(false),[hovering,setHovering]=useState(false),hint=useId();
   const stage=useRef<HTMLDivElement>(null),visible=useVisualVisibility(stage,active),activeRef=useRef(active&&visible);activeRef.current=active&&visible;
   const angles=useRef(rotation),frame=useRef(0),motion=useRef(store.motion),speed=useRef(appearance.speed),drag=useRef<{pointerId:number;x:number;y:number;baseX:number;baseY:number;lastX:number;lastTime:number;velocity:number}|null>(null);motion.current=store.motion;speed.current=appearance.speed;
   const update=(next:{x:number;y:number})=>{angles.current=next;setRotation(next);};
@@ -33,7 +34,7 @@ export function AlbumCover({track,playing,gestureOwned=false,active=true}:{track
       onKeyDown={event=>{if(!appearance.cover3d||!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(event.key))return;event.preventDefault();cancel();setManual(true);update({x:Math.max(-75,Math.min(75,angles.current.x+(event.key==='ArrowUp'?-5:event.key==='ArrowDown'?5:0))),y:angles.current.y+(event.key==='ArrowLeft'?-10:event.key==='ArrowRight'?10:0)});}}>
       <div className="album-object" style={{transform,'--cover-transform':transform} as CSSProperties}>
         <div className={`vinyl ${appearance.coverKind==='cd'?'compact-disc':''}`}><div className="vinyl-label" style={track.artwork?{backgroundImage:`url(${JSON.stringify(track.artwork)})`}:undefined}/></div>
-        <Art track={track} className="album-cover" highResolution/>
+        <Art track={track} className="album-cover track-loading-cover" trackLoading={player.trackLoading} highResolution/>
         <div className="album-back"><Brand animated={false}/><span className="album-back-wave" aria-hidden="true">∿</span><b>{track.title}</b><span>{track.artist}</span><small>{track.album||sourceNames[track.source]}</small><p>{t('copy.157')}</p></div>
         <div className="album-spine" aria-hidden="true">{track.title} · {track.artist}</div>
       </div>

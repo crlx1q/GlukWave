@@ -1,0 +1,385 @@
+{
+  "passed": false,
+  "scope": "Isolated original audio fixtures, actual browser UI. No physical device or live provider checks.",
+  "steps": [
+    "Real delayed descriptor triggers cover pulse/aria-busy until original audio media starts; EQ enabled; no widget iframe",
+    "Short title and artist stationary; long title/artist independently measured and animated only on overflow",
+    "Old embedded descriptor and actual AUDIO_UNAVAILABLE response clear loading and never mount external players",
+    "Changed track aborts delayed stale request; stale completion cannot re-enable pulse or replace active track",
+    "Truly centered transport and timeline <1.5px error across desktop, themes and six locales125%; no controls outside bar at 320/390/768/900/1280/1440"
+  ],
+  "layouts": [
+    {
+      "theme": "light",
+      "w": 1440,
+      "scale": 1,
+      "centerOffset": 0,
+      "failures": [],
+      "overflow": false,
+      "timelineOffset": 0,
+      "width": 1304
+    },
+    {
+      "theme": "light",
+      "w": 1280,
+      "scale": 1,
+      "centerOffset": 0.0078125,
+      "failures": [],
+      "overflow": false,
+      "timelineOffset": 0.0078125,
+      "width": 1144
+    },
+    {
+      "theme": "light",
+      "w": 900,
+      "scale": 1,
+      "centerOffset": 0,
+      "failures": [],
+      "overflow": false,
+      "timelineOffset": 0,
+      "width": 764
+    },
+    {
+      "theme": "light",
+      "w": 768,
+      "scale": 1,
+      "centerOffset": 341,
+      "failures": [],
+      "overflow": false,
+      "timelineOffset": 0,
+      "width": 748
+    },
+    {
+      "theme": "light",
+      "w": 390,
+      "scale": 1,
+      "centerOffset": 152,
+      "failures": [],
+      "overflow": false,
+      "timelineOffset": 0,
+      "width": 370
+    },
+    {
+      "theme": "light",
+      "w": 320,
+      "scale": 1,
+      "centerOffset": 117,
+      "failures": [],
+      "overflow": false,
+      "timelineOffset": 0,
+      "width": 300
+    },
+    {
+      "theme": "dark",
+      "w": 1440,
+      "scale": 1,
+      "centerOffset": 0,
+      "failures": [],
+      "overflow": false,
+      "timelineOffset": 0,
+      "width": 1304
+    },
+    {
+      "theme": "dark",
+      "w": 1280,
+      "scale": 1,
+      "centerOffset": 0.0078125,
+      "failures": [],
+      "overflow": false,
+      "timelineOffset": 0.0078125,
+      "width": 1144
+    },
+    {
+      "theme": "dark",
+      "w": 900,
+      "scale": 1,
+      "centerOffset": 0,
+      "failures": [],
+      "overflow": false,
+      "timelineOffset": 0,
+      "width": 764
+    },
+    {
+      "theme": "dark",
+      "w": 768,
+      "scale": 1,
+      "centerOffset": 341,
+      "failures": [],
+      "overflow": false,
+      "timelineOffset": 0,
+      "width": 748
+    },
+    {
+      "theme": "dark",
+      "w": 390,
+      "scale": 1,
+      "centerOffset": 152,
+      "failures": [],
+      "overflow": false,
+      "timelineOffset": 0,
+      "width": 370
+    },
+    {
+      "theme": "dark",
+      "w": 320,
+      "scale": 1,
+      "centerOffset": 117,
+      "failures": [],
+      "overflow": false,
+      "timelineOffset": 0,
+      "width": 300
+    },
+    {
+      "theme": "amoled",
+      "w": 1440,
+      "scale": 1,
+      "centerOffset": 0,
+      "failures": [],
+      "overflow": false,
+      "timelineOffset": 0,
+      "width": 1304
+    },
+    {
+      "theme": "amoled",
+      "w": 1280,
+      "scale": 1,
+      "centerOffset": 0.0078125,
+      "failures": [],
+      "overflow": false,
+      "timelineOffset": 0.0078125,
+      "width": 1144
+    },
+    {
+      "theme": "amoled",
+      "w": 900,
+      "scale": 1,
+      "centerOffset": 0,
+      "failures": [],
+      "overflow": false,
+      "timelineOffset": 0,
+      "width": 764
+    },
+    {
+      "theme": "amoled",
+      "w": 768,
+      "scale": 1,
+      "centerOffset": 341,
+      "failures": [],
+      "overflow": false,
+      "timelineOffset": 0,
+      "width": 748
+    },
+    {
+      "theme": "amoled",
+      "w": 390,
+      "scale": 1,
+      "centerOffset": 152,
+      "failures": [],
+      "overflow": false,
+      "timelineOffset": 0,
+      "width": 370
+    },
+    {
+      "theme": "amoled",
+      "w": 320,
+      "scale": 1,
+      "centerOffset": 117,
+      "failures": [],
+      "overflow": false,
+      "timelineOffset": 0,
+      "width": 300
+    },
+    {
+      "language": "en",
+      "w": 1280,
+      "scale": 1.25,
+      "centerOffset": 0.0078125,
+      "failures": [],
+      "overflow": false,
+      "timelineOffset": 0.0078125,
+      "width": 1110
+    },
+    {
+      "language": "en",
+      "w": 900,
+      "scale": 1.25,
+      "centerOffset": 0,
+      "failures": [],
+      "overflow": false,
+      "timelineOffset": 0,
+      "width": 730
+    },
+    {
+      "language": "en",
+      "w": 320,
+      "scale": 1.25,
+      "centerOffset": 106.5,
+      "failures": [],
+      "overflow": false,
+      "timelineOffset": 0,
+      "width": 295
+    },
+    {
+      "language": "ru",
+      "w": 1280,
+      "scale": 1.25,
+      "centerOffset": 0.0078125,
+      "failures": [],
+      "overflow": false,
+      "timelineOffset": 0.0078125,
+      "width": 1110
+    },
+    {
+      "language": "ru",
+      "w": 900,
+      "scale": 1.25,
+      "centerOffset": 0,
+      "failures": [],
+      "overflow": false,
+      "timelineOffset": 0,
+      "width": 730
+    },
+    {
+      "language": "ru",
+      "w": 320,
+      "scale": 1.25,
+      "centerOffset": 106.5,
+      "failures": [],
+      "overflow": false,
+      "timelineOffset": 0,
+      "width": 295
+    },
+    {
+      "language": "kk",
+      "w": 1280,
+      "scale": 1.25,
+      "centerOffset": 0.0078125,
+      "failures": [],
+      "overflow": false,
+      "timelineOffset": 0.0078125,
+      "width": 1110
+    },
+    {
+      "language": "kk",
+      "w": 900,
+      "scale": 1.25,
+      "centerOffset": 0,
+      "failures": [],
+      "overflow": false,
+      "timelineOffset": 0,
+      "width": 730
+    },
+    {
+      "language": "kk",
+      "w": 320,
+      "scale": 1.25,
+      "centerOffset": 106.5,
+      "failures": [],
+      "overflow": false,
+      "timelineOffset": 0,
+      "width": 295
+    },
+    {
+      "language": "uk",
+      "w": 1280,
+      "scale": 1.25,
+      "centerOffset": 0.0078125,
+      "failures": [],
+      "overflow": false,
+      "timelineOffset": 0.0078125,
+      "width": 1110
+    },
+    {
+      "language": "uk",
+      "w": 900,
+      "scale": 1.25,
+      "centerOffset": 0,
+      "failures": [],
+      "overflow": false,
+      "timelineOffset": 0,
+      "width": 730
+    },
+    {
+      "language": "uk",
+      "w": 320,
+      "scale": 1.25,
+      "centerOffset": 106.5,
+      "failures": [],
+      "overflow": false,
+      "timelineOffset": 0,
+      "width": 295
+    },
+    {
+      "language": "de",
+      "w": 1280,
+      "scale": 1.25,
+      "centerOffset": 0.0078125,
+      "failures": [],
+      "overflow": false,
+      "timelineOffset": 0.0078125,
+      "width": 1110
+    },
+    {
+      "language": "de",
+      "w": 900,
+      "scale": 1.25,
+      "centerOffset": 0,
+      "failures": [],
+      "overflow": false,
+      "timelineOffset": 0,
+      "width": 730
+    },
+    {
+      "language": "de",
+      "w": 320,
+      "scale": 1.25,
+      "centerOffset": 106.5,
+      "failures": [],
+      "overflow": false,
+      "timelineOffset": 0,
+      "width": 295
+    },
+    {
+      "language": "es",
+      "w": 1280,
+      "scale": 1.25,
+      "centerOffset": 0.0078125,
+      "failures": [],
+      "overflow": false,
+      "timelineOffset": 0.0078125,
+      "width": 1110
+    },
+    {
+      "language": "es",
+      "w": 900,
+      "scale": 1.25,
+      "centerOffset": 0,
+      "failures": [],
+      "overflow": false,
+      "timelineOffset": 0,
+      "width": 730
+    },
+    {
+      "language": "es",
+      "w": 320,
+      "scale": 1.25,
+      "centerOffset": 106.5,
+      "failures": [],
+      "overflow": false,
+      "timelineOffset": 0,
+      "width": 295
+    }
+  ],
+  "screenshots": [
+    "apps/web/qa/player-polish-loading.png",
+    "apps/web/qa/player-polish-light-desktop.png",
+    "apps/web/qa/player-polish-light-phone.png",
+    "apps/web/qa/player-polish-dark-desktop.png",
+    "apps/web/qa/player-polish-dark-phone.png",
+    "apps/web/qa/player-polish-amoled-desktop.png",
+    "apps/web/qa/player-polish-amoled-phone.png",
+    "apps/web/qa/player-polish-failure.png"
+  ],
+  "error": "Error: Wait document.querySelector('.full-player')?.classList.contains('open')",
+  "snapshot": "- link \"Skip to content\" [ref=e1]\n- button \"Collapse player\" [ref=e3]\n- button \"Mini player over other windows\" [ref=e4]\n- navigation \"Player sections\" [ref=e2]\n  - button \"Player\" [ref=e5]\n  - button \"Lyrics\" [ref=e6]\n  - button \"Queue\" [ref=e7]\n  - button \"Comments\" [ref=e8]\n- button \"Flat\" [ref=e28]\n- button \"Vinyl\" [ref=e29]\n- button \"CD\" [ref=e30]\n- button \"Flip cover\" [disabled, ref=e31]\n- button \"Reset cover position\" [ref=e32]\n- heading \"A quiet place\" [level=1, ref=e9]\n- slider \"Playback position\" [ref=e10]: 108.8000030517578\n- button \"Add to favourites\" [ref=e11]\n- button \"Shuffle queue\" [ref=e12]\n- button \"Previous track\" [ref=e13]\n- button \"Pause\" [ref=e14]\n- button \"Next track\" [ref=e15]\n- button \"Enable repeat\" [ref=e16]\n- button \"Equalizer\" [ref=e17]\n- slider \"Volume\" [ref=e18]: 0.800000011920929\n- button \"Devices\" [ref=e19]\n- button \"Online player\" [disabled, ref=e20]\n- button \"To playlist\" [ref=e21]\n- button \"Add lyrics to this music\" [ref=e33]\n- heading \"Lyrics\" [level=2, ref=e22]\n- button \"Open lyrics\" [ref=e23]\n- heading \"Your queue\" [level=2, ref=e24]\n- button \"Playback queue\" [ref=e25]\n- heading \"Stay in the moment\" [level=3, ref=e26]\n- button \"Comments Comments in the moment +\" [ref=e27]"
+}

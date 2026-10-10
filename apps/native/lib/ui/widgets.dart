@@ -1,3 +1,4 @@
+import 'scrolling_label.dart';
 import '../l10n/wave_localizations.dart';
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
@@ -236,6 +237,7 @@ class Artwork extends StatelessWidget {
   final WaveController controller;
   final String? url;
   final double size, radius;
+  final bool trackLoading;
   final IconData icon;
   const Artwork({
     super.key,
@@ -244,6 +246,7 @@ class Artwork extends StatelessWidget {
     this.size = 46,
     this.radius = 11,
     this.icon = Icons.music_note_rounded,
+    this.trackLoading = false,
   });
   @override
   Widget build(BuildContext context) {
@@ -278,14 +281,17 @@ class Artwork extends StatelessWidget {
     );
     final original = uri?.toString() ?? '';
     final displayed = artworkForDisplay(original, large: size >= 96);
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(waveRadius(context, radius)),
-      child: SizedBox(
-        width: size,
-        height: size,
-        child: uri == null
-            ? fallback
-            : image(displayed, mayFallback: displayed != original),
+    return TrackLoadingCover(
+      loading: trackLoading,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(waveRadius(context, radius)),
+        child: SizedBox(
+          width: size,
+          height: size,
+          child: uri == null
+              ? fallback
+              : image(displayed, mayFallback: displayed != original),
+        ),
       ),
     );
   }
@@ -634,7 +640,8 @@ class _WaveHeroState extends State<WaveHero>
                           ),
                           label: Text(
                             widget.empty
-                                ? widget.emptyActionLabel ?? wt('native.99855bf52d', context: context)
+                                ? widget.emptyActionLabel ??
+                                      wt('native.99855bf52d', context: context)
                                 : wt('native.5f266e04fe', context: context),
                           ),
                         ),

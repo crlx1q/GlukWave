@@ -33,8 +33,9 @@ void main() {
       });
       final track = WaveTrack({
         'id': 'source-test',
-        'title': 'A quiet place',
-        'artist': 'Wave verification',
+        'title':
+            'An original evening recording with a deliberately long descriptive title and collaborators',
+        'artist': 'Wave verification collective and a long creator name',
         'duration': 4800,
         'source': 'soundcloud',
         'playback': {
@@ -43,7 +44,7 @@ void main() {
           'offline': false,
           'attribution': {
             'source': 'soundcloud',
-            'artist': 'Wave verification',
+            'artist': 'Wave verification collective and a long creator name',
             'sourceUrl': 'https://soundcloud.com/glukwave-verification',
           },
         },

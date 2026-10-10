@@ -1,3 +1,5 @@
+import 'player.dart' show SourceAttribution;
+import 'scrolling_label.dart';
 import 'motion_icons.dart';
 import 'dart:async';
 import 'package:audio_service/audio_service.dart';
@@ -64,7 +66,7 @@ class _DesktopCompactPlayerState extends State<DesktopCompactPlayer> {
     onPressed: c.canControl && c.audio.viewCurrent != null
         ? () => _run(action)
         : null,
-    icon: Icon(icon, size: widget.quick ? 23 : 20),
+    icon: WaveControlIcon(icon, size: widget.quick ? 23 : 20),
     visualDensity: VisualDensity.compact,
   );
 
@@ -128,10 +130,8 @@ class _DesktopCompactPlayerState extends State<DesktopCompactPlayer> {
             ? CrossAxisAlignment.center
             : CrossAxisAlignment.start,
         children: [
-          Text(
+          ScrollingLabel(
             track?.title ?? wt('native.899c8de911', context: context),
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
             textAlign: centered ? TextAlign.center : TextAlign.start,
             style: TextStyle(
               fontSize: centered ? 16 : 12,
@@ -139,13 +139,14 @@ class _DesktopCompactPlayerState extends State<DesktopCompactPlayer> {
             ),
           ),
           const SizedBox(height: 3),
-          Text(
-            track?.artist ?? wt('native.b196b73079', context: context),
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            textAlign: centered ? TextAlign.center : TextAlign.start,
-            style: TextStyle(color: v.muted, fontSize: centered ? 11 : 10),
-          ),
+          if (track?.playback['attribution'] is Map)
+            SourceAttribution(controller: c, track: track!, compact: true)
+          else
+            ScrollingLabel(
+              track?.artist ?? wt('native.b196b73079', context: context),
+              textAlign: centered ? TextAlign.center : TextAlign.start,
+              style: TextStyle(color: v.muted, fontSize: centered ? 11 : 10),
+            ),
         ],
       ),
     );
@@ -223,6 +224,7 @@ class _DesktopCompactPlayerState extends State<DesktopCompactPlayer> {
                             if (track != null)
                               Artwork(
                                 controller: c,
+                                trackLoading: c.trackLoading,
                                 url: track.artwork,
                                 size: 88,
                                 radius: 15,
@@ -271,7 +273,7 @@ class _DesktopCompactPlayerState extends State<DesktopCompactPlayer> {
                     const SizedBox(height: 8),
                     Row(
                       children: [
-                        Icon(
+                        WaveControlIcon(
                           Icons.volume_up_outlined,
                           color: v.muted,
                           size: 18,
@@ -306,6 +308,7 @@ class _DesktopCompactPlayerState extends State<DesktopCompactPlayer> {
                         if (track != null)
                           Artwork(
                             controller: c,
+                            trackLoading: c.trackLoading,
                             url: track.artwork,
                             size: 44,
                             radius: 9,

@@ -39,7 +39,11 @@ class WaveTrack {
   Json get playback => object(json['playback']);
   bool get embedded =>
       playback['kind'] == 'soundcloud' || playback['kind'] == 'youtube';
-  bool get playable => playback['kind'] == 'audio' || embedded;
+  // Catalog entries can be resolved by the server; an embed descriptor is
+  // metadata, never permission to mount a second player.
+  bool get playable =>
+      playback['kind'] == 'audio' ||
+      ['soundcloud', 'youtube', 'spotify', 'yandex'].contains(source);
   bool get offline =>
       playback['offline'] == true && playback['kind'] == 'audio';
   String get sourceName => switch (source) {

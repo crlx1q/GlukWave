@@ -26,27 +26,38 @@ export function setupSoundcloudAudio(app,ctx,fetcher=fetch){
   const configured=()=>!!(ctx.config.soundcloud.id&&ctx.config.soundcloud.secret);
   async function metadata(track,user){
     const privateTrack=track.public===false;
-    const linked=await ctx.store.get('connections',`${user.id}:soundcloud`);
+    const linked=privateTrack?await ctx.store.get('connections',`${user.id}:soundcloud`):null;
     if(privateTrack&&!linked)return null;
     const uid=linked?user.id:null;
     const call=pathname=>ctx.officialSoundcloudCall(pathname,uid);
     let resource;
     if(track.source==='soundcloud'){
       const sid=String(track.sourceId||'');
-      resource=await call(/^(?:soundcloud:tracks:)?\d+$/.test(sid)?`tracks/${encodeURIComponent(sid)}`:`resolve?${new URLSearchParams({url:track.sourceUrl})}`);
+      const urn=/^(?:soundcloud:tracks:)?\d+$/.test(sid)?(sid.startsWith('soundcloud:tracks:')?sid:`soundcloud:tracks:${sid}`):null;
+      resource=await call(urn?`tracks/${encodeURIComponent(urn)}`:`resolve?${new URLSearchParams({url:track.sourceUrl})}`);
     }else{
-      if(!['spotify','youtube'].includes(track.source)||!(track.duration>0)||!track.artist)return null;
+      if(!['spotify','youtube','yandex'].includes(track.source)||!(track.duration>0)||!track.artist)return null;
       const found=await call(`tracks?${new URLSearchParams({q:track.artist+' '+track.title,access:'playable',limit:'5',linked_partitioning:'true'})}`);
-      resource=(found.collection||[]).find(item=>audioMatch(track,{title:item.title,artist:item.metadata_artist||item.user?.username||'',duration:Number(item.duration)/1000}).accepted);
+      const target={...track,artist:track.artist.replace(/\s*-\s*Topic$/i,'')};
+      const matches=(found.collection||[]).flatMap(item=>{
+        const candidates=[{title:item.title,artist:item.metadata_artist||item.user?.username||'',duration:Number(item.duration)/1000}];
+        // Some uploaders put the actual artist in "Artist - Title". Only split
+        // explicit separators and still require all strict match thresholds.
+        const split=String(item.title||'').match(/^(.+?)\s+(?:-|–|—)\s+(.+)$/);
+        if(split)candidates.push({title:split[2],artist:split[1],duration:Number(item.duration)/1000});
+        return candidates.map(candidate=>({item,match:audioMatch(target,candidate)})).filter(value=>value.match.accepted);
+      }).sort((a,b)=>b.match.score-a.match.score);
+      resource=matches[0]?.item;
       if(!resource)return null;
     }
     if(resource.access==='blocked'||resource.access==='preview'||resource.streamable===false)return null;
-    const urn=resource.urn||String(resource.id||'');
+    const identity=resource.urn||String(resource.id||'');
+    const urn=/^\d+$/.test(identity)?`soundcloud:tracks:${identity}`:identity;
     if(!/^(?:soundcloud:tracks:)?\d+$/.test(urn))return null;
     const streams=await call(`tracks/${encodeURIComponent(urn)}/streams`);
     const url=streams.hls_aac_160_url||streams.hls_mp3_128_url;
     if(!soundcloudCdn(url))return null;
-    return {url,attribution:{source:'soundcloud',artist:resource.metadata_artist||resource.user?.username||track.artist,sourceUrl:resource.permalink_url||track.sourceUrl,creatorUrl:resource.user?.permalink_url||''}};
+    return {url,attribution:{source:'soundcloud',artist:resource.user?.username||resource.metadata_artist||track.artist,sourceUrl:resource.permalink_url||track.sourceUrl,creatorUrl:resource.user?.permalink_url||''}};
   }
   ctx.soundcloudPlayback=async(track,user,sessionId)=>{
     if(!configured()||!user||!sessionId||closed)return null;
@@ -117,4 +128,5 @@ export function setupSoundcloudAudio(app,ctx,fetcher=fetch){
     finally{clearTimeout(timer);res.removeListener('close',abort);controller.abort();transfers.delete(controller);}
   }));
   ctx.closeSoundcloudAudio=()=>{closed=true;for(const controller of transfers)controller.abort();grants.clear();partCount=0;};
+  ctx.soundcloudAudioStats=()=>({configured:configured(),activeTransfers:transfers.size,resolving:resolving.size,grants:grants.size,parts:partCount,limits:{transfers:24,resolving:12,grants:128,parts:32768}});
 }

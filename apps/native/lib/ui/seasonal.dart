@@ -17,9 +17,9 @@ class SeasonalBackdrop extends StatelessWidget {
   Widget build(BuildContext context) => Stack(
     fit: StackFit.expand,
     children: [
+      child,
       if (settings.enabled)
         Positioned.fill(child: SeasonalAtmosphere(settings: settings)),
-      child,
     ],
   );
 }
@@ -142,7 +142,7 @@ class SeasonalPainter extends CustomPainter {
         : size.width < 600
         ? 24
         : 40;
-    final amount = (intensity == 'normal' ? 0.68 : 0.42) * (amoled ? 0.45 : 1);
+    final amount = (intensity == 'normal' ? 0.92 : 0.48);
     final time = clock.value * 60;
     for (var i = 0; i < count; i++) {
       final x = seed(i, 1) * size.width,
@@ -157,29 +157,29 @@ class SeasonalPainter extends CustomPainter {
                   (size.height + 28)) -
               14,
           phase = time * .35 + seed(i, 3) * 6.28,
-          r = 1.6 + seed(i, 4) * 2;
+          r = 2.7 + seed(i, 4) * 2.7;
       final paint = Paint()
-        ..color = (dark ? const Color(0xffe8edf4) : const Color(0xff728492))
-            .withValues(alpha: amount * (.35 + seed(i, 5) * .4));
+        ..color = (dark ? const Color(0xffedf6ff) : const Color(0xff536e83))
+            .withValues(alpha: amount * (.5 + seed(i, 5) * .35));
       if (mode == 'snow') {
         canvas.drawCircle(Offset(x + math.sin(phase) * 12, y), r, paint);
       } else if (mode == 'rain') {
         paint
-          ..color = (dark ? const Color(0xff91bfd5) : const Color(0xff628999))
-              .withValues(alpha: amount * .5)
-          ..strokeWidth = 1.25;
-        canvas.drawLine(Offset(x, y), Offset(x - 3, y + 7 + r * 2), paint);
+          ..color = (dark ? const Color(0xffa9d8ee) : const Color(0xff486f88))
+              .withValues(alpha: amount * .7)
+          ..strokeWidth = 1.7;
+        canvas.drawLine(Offset(x, y), Offset(x - 3, y + 11 + r * 2.4), paint);
       } else if (mode == 'leaves') {
         canvas.save();
         canvas.translate(x + math.sin(phase) * 18, y);
         canvas.rotate(phase);
         paint.color = [
-          const Color(0xffb18c60),
-          const Color(0xffa59e75),
-          const Color(0xffbd916e),
-        ][i % 3].withValues(alpha: amount * .6);
+          dark ? const Color(0xffe0ad70) : const Color(0xff99622e),
+          dark ? const Color(0xffc4bd85) : const Color(0xff6f7b42),
+          dark ? const Color(0xffdb986e) : const Color(0xffaf6944),
+        ][i % 3].withValues(alpha: amount * .7);
         canvas.drawOval(
-          Rect.fromCenter(center: Offset.zero, width: r * 3, height: r * 1.3),
+          Rect.fromCenter(center: Offset.zero, width: r * 3.6, height: r * 1.6),
           paint,
         );
         canvas.restore();
@@ -191,8 +191,8 @@ class SeasonalPainter extends CustomPainter {
                 math.sin(phase) * .025;
         paint
           ..color = (dark ? const Color(0xffd8b67b) : const Color(0xffb8945f))
-              .withValues(alpha: amount * .15)
-          ..strokeWidth = preview ? 5 : 10;
+              .withValues(alpha: amount * .14)
+          ..strokeWidth = preview ? 9 : 18;
         canvas.drawLine(
           Offset(start, 0),
           Offset(

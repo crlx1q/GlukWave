@@ -1,3 +1,5 @@
+import {SourceMark} from './ui';
+import {ScrollingLabel} from './scrolling-label';
 import { createRoot } from 'react-dom/client';
 import { useEffect, useMemo, useState } from 'react';
 import { LocaleProvider, t, useLocale } from './locale';
@@ -7,7 +9,7 @@ import { ContinuousRange } from './continuous-range';
 import { useDocumentVisible } from './visual-lifecycle';
 import './motion-controls.css';
 
-type MiniState={track?:Track;state:Partial<PlayerState>;duration:number;palette?:PaletteColors;motion?:boolean;speed?:number};
+type MiniState={trackLoading?:boolean;track?:Track;state:Partial<PlayerState>;duration:number;palette?:PaletteColors;motion?:boolean;speed?:number};
 function Mini(){
  const locale=useLocale(),visible=useDocumentVisible(),id=new URLSearchParams(location.search).get('device'),channel=useMemo(()=>new BroadcastChannel('glukwave-mini-'+id),[id]),[data,setData]=useState<MiniState>({state:{playing:false},duration:0});
  useEffect(()=>{
@@ -24,7 +26,7 @@ function Mini(){
  },[data.palette,data.motion]);
  const send=(command:string,position?:number)=>channel.postMessage({command,position}),iconMotion=visible&&data.motion!==false;
  return <>
-  <header><img src={data.track?.artwork||'/brand/logo.png'} alt=""/><p><b>{data.track?.title||'GlukWave'}</b><small>{data.track?.artist||t('mini.empty')}</small></p></header>
+  <header><img className="track-loading-cover" data-loading={data.trackLoading} aria-busy={data.trackLoading} src={data.track?.artwork||'/brand/logo.png'} alt=""/><p><b><ScrollingLabel text={data.track?.title||'GlukWave'} motion={iconMotion}/></b><small><ScrollingLabel text={data.track?.artist||t('mini.empty')} motion={iconMotion}/></small>{data.track?.playback.attribution&&/^https:\/\//i.test(data.track.playback.attribution.sourceUrl)&&<a className="mini-source-credit" href={data.track.playback.attribution.sourceUrl} target="_blank" rel="noopener noreferrer"><SourceMark source={data.track.playback.attribution.source}/><span>{data.track.playback.attribution.artist}</span><b>{data.track.playback.attribution.source==='soundcloud'?'SoundCloud':data.track.playback.attribution.source}</b></a>}</p></header>
   <section>
    <button disabled={!data.track} onClick={()=>send('previous')} aria-label={t('copy.627')}><MotionIcon name="previous" size={20} motion={iconMotion} speed={data.speed}/></button>
    <button disabled={!data.track} onClick={()=>send(data.state.playing?'pause':'play')} aria-label={t(data.state.playing?'copy.628':'copy.629')}><MotionIcon name={data.state.playing?'pause':'play'} size={22} motion={iconMotion} speed={data.speed}/></button>

@@ -1207,5 +1207,18 @@
   "season.subtle": "Мягко",
   "season.normal": "Обычно",
   "season.preview": "Предпросмотр",
-  "season.motionHint": "Учитывает уменьшение движения и останавливается в фоне."
+  "season.motionHint": "Учитывает уменьшение движения и останавливается в фоне.",
+  "playbackDiagnostics.title": "Диагностика воспроизведения",
+  "playbackDiagnostics.revision": "Аудиопотоки · версия {revision}",
+  "playbackDiagnostics.local": "Локальная музыка",
+  "playbackDiagnostics.licensed": "Разрешённое аудио",
+  "playbackDiagnostics.soundcloud": "Аудио SoundCloud",
+  "playbackDiagnostics.unavailable": "Недоступно",
+  "playbackDiagnostics.failed": "Ошибки",
+  "playbackDiagnostics.ready": "Подключён",
+  "playbackDiagnostics.notReady": "Не подключён",
+  "playbackDiagnostics.active": "Активных потоков: {count}",
+  "playbackDiagnostics.recent": "Последние запросы воспроизведения",
+  "playbackDiagnostics.empty": "Запросов воспроизведения ещё нет.",
+  "playback.unavailable": "Этот трек сейчас недоступен в GlukWave. Выбери другой трек."
 }

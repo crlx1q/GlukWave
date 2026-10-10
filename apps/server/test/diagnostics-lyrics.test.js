@@ -30,7 +30,7 @@ test('diagnostics redact secrets, group concurrent repeats and protect admin wor
   assert.equal((await request('/diagnostics/events',{events:Array(11).fill(duplicate)})).status,400);
   assert.equal((await request('/diagnostics/events',{events:[{...duplicate,platform:'server'}]})).status,400);
   service.ctx.log.error({message:'Background worker failed',stack:'Worker stack'},'Worker failed');await service.ctx.withLock('diagnostics:write',async()=>{});assert((await request('/admin/errors?platform=server',null,owner.token)).body.total>=1);
- }finally{await service.close();await fs.rm(dir,{recursive:true,force:true});}
+ }finally{await service.close();await fs.rm(dir,{recursive:true,force:true,maxRetries:5,retryDelay:100});}
 });
 
 test('LRCLIB access checks, coalesced matching, search, import and manual priority',async()=>{
@@ -50,5 +50,5 @@ test('LRCLIB access checks, coalesced matching, search, import and manual priori
   await request('/tracks/'+track.id+'/lyrics',{text:'[00:02.00]My corrected line'},owner.token,'PUT');const previousCalls=calls;
   const manual=await request('/tracks/'+track.id+'/lyrics',null,owner.token);assert.equal(manual.body.source,'user');assert.equal(manual.body.lines[0].time,2);assert.equal(calls,previousCalls);
   await service.ctx.store.put('tracks','mismatch',{...track,id:'mismatch',title:'Another Song'});const mismatch=await request('/tracks/mismatch/lyrics',null,owner.token);assert.deepEqual(mismatch.body.lines,[]);
- }finally{await service.close();await fs.rm(dir,{recursive:true,force:true});}
+ }finally{await service.close();await fs.rm(dir,{recursive:true,force:true,maxRetries:5,retryDelay:100});}
 });

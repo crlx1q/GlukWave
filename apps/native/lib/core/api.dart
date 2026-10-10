@@ -214,7 +214,11 @@ class WaveApi {
       '/api/tracks/${Uri.encodeComponent(track.id)}/playback',
     );
     final descriptor = object(data['playback']);
-    if (descriptor.isEmpty) return track;
+    if (descriptor['kind'] != 'audio' ||
+        descriptor['url'] is! String ||
+        (descriptor['url'] as String).isEmpty) {
+      throw WaveException(wt('native.266e43ddb8'), 'AUDIO_UNAVAILABLE');
+    }
     return WaveTrack({...track.json, 'playback': descriptor});
   }
 

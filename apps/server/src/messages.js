@@ -2,6 +2,7 @@ import {browserLanguage,languageCodes} from './locale.js';
 
 const order=['en','kk','uk','de','es'];
 const groups=[
+  ['AUDIO_UNAVAILABLE','This track is not currently available to listen to in GlukWave. Choose another track.','Бұл трек қазір GlukWave ішінде тыңдау үшін қолжетімсіз. Басқа тректі таңдаңыз.','Цей трек наразі недоступний для прослуховування в GlukWave. Виберіть інший трек.','Dieser Titel ist derzeit in GlukWave nicht verfügbar. Wähle einen anderen Titel.','Esta canción no está disponible para escuchar en GlukWave. Elige otra canción.'],
   ['AUTH_REQUIRED','Sign in to your account.','Аккаунтыңызға кіріңіз.','Увійдіть у свій обліковий запис.','Melde dich bei deinem Konto an.','Inicia sesión en tu cuenta.'],
   ['EMAIL_UNVERIFIED','Verify your email address to continue.','Жалғастыру үшін поштаңызды растаңыз.','Підтвердьте адресу пошти, щоб продовжити.','Bestätige deine E-Mail-Adresse, um fortzufahren.','Verifica tu correo para continuar.'],
   ['ADMIN_REQUIRED','Administrator access is required.','Әкімші рұқсаты қажет.','Потрібен доступ адміністратора.','Administratorzugriff ist erforderlich.','Se requiere acceso de administrador.'],
@@ -64,9 +65,9 @@ export const errorCatalog=Object.fromEntries(groups.flatMap(([codes,...values])=
 export function localizedError(error,language){if(language==='ru')return {...error};return {...error,message:(errorCatalog[error.code]||errorCatalog.SERVER_ERROR)[language]||errorCatalog.SERVER_ERROR.en};}
 const descriptions={
   soundcloud:['Public track links and search are available. Connect your account to import its library.','Трек сілтемелері мен ашық іздеу қолжетімді. Кітапхананы импорттау үшін аккаунтты қосыңыз.','Публічні посилання й пошук доступні. Підключіть обліковий запис для імпорту бібліотеки.','Öffentliche Titellinks und Suche sind verfügbar. Verbinde dein Konto zum Bibliotheksimport.','Los enlaces públicos y la búsqueda están disponibles. Conecta tu cuenta para importar la biblioteca.'],
-  yandex:['Listen through the official player and import track lists from a file.','Ресми плеер арқылы тыңдап, тректер тізімін файлдан импорттаңыз.','Слухайте через офіційний плеєр та імпортуйте списки треків із файлу.','Höre über den offiziellen Player und importiere Titellisten aus einer Datei.','Escucha con el reproductor oficial e importa listas desde un archivo.'],
-  youtube:['Listen to supported videos in the official YouTube player.','Қолдау көрсетілетін бейнелерді ресми YouTube плеерінде тыңдаңыз.','Слухайте підтримувані відео в офіційному плеєрі YouTube.','Höre unterstützte Videos im offiziellen YouTube-Player.','Escucha vídeos compatibles en el reproductor oficial de YouTube.'],
-  spotify:['The original Spotify player determines playback availability.','Ойнатудың қолжетімділігін Spotify плеері анықтайды.','Доступність відтворення визначає оригінальний плеєр Spotify.','Der Original-Player von Spotify bestimmt die Verfügbarkeit der Wiedergabe.','El reproductor original de Spotify determina la disponibilidad.'],
+  yandex:['Import track lists from a file.','Тректер тізімін файлдан импорттаңыз.','Імпортуйте списки треків із файлу.','Importiere Titellisten aus einer Datei.','Importa listas de canciones desde un archivo.'],
+  youtube:['Search music and import your playlists.','Музыканы іздеп, плейлистеріңізді импорттаңыз.','Шукайте музику та імпортуйте плейлисти.','Suche Musik und importiere deine Playlists.','Busca música e importa tus listas.'],
+  spotify:['Find your music and import your library.','Музыкаңызды тауып, кітапханаңызды импорттаңыз.','Знаходьте свою музику та імпортуйте бібліотеку.','Finde deine Musik und importiere deine Bibliothek.','Encuentra tu música e importa tu biblioteca.'],
 };
 function localizedProvider(provider,language){
   if(language==='ru'||!provider.reason)return provider;

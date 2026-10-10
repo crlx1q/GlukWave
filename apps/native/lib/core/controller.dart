@@ -146,6 +146,7 @@ class WaveController extends ChangeNotifier {
   bool _roomOutputActive = true;
   int _roomGeneration = 0, _roomSyncGeneration = 0;
   bool loading = true, online = false, connected = false;
+  bool get trackLoading => audio.trackLoading;
   double? uploadProgress;
   String? error, notice, suggestion;
   int noticeRevision = 0,
@@ -309,6 +310,7 @@ class WaveController extends ChangeNotifier {
       await transport(command, data);
       return true;
     };
+    audio.onLoadingChanged = notifyListeners;
     _subscriptions.add(
       audio.playbackState.listen((state) {
         notifyListeners();
@@ -2614,6 +2616,7 @@ class WaveController extends ChangeNotifier {
   @override
   void dispose() {
     _disposed = true;
+    audio.onLoadingChanged = null;
     unawaited(_lan?.close() ?? Future.value());
     _discordGeneration++;
     _roomGeneration++;

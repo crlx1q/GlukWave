@@ -623,7 +623,8 @@ const waveCatalogs = <String, Map<String, String>>{
     'native.6d15d36f74': 'friend',
     'native.644d7351d1': 'The colour should look like #A08369.',
     'native.fb89a335f1': 'Couldn’t play the track: {p0}',
-    'native.266e43ddb8': 'This track plays on its official platform.',
+    'native.266e43ddb8':
+        'This track is not currently available in GlukWave. Choose another track.',
     'native.c11b18779a': 'The audio link is unavailable.',
     'native.310a7a8960': 'Automatic cache: {p0}',
     'native.449b7110f6': 'Choose a track first.',
@@ -1287,7 +1288,8 @@ const waveCatalogs = <String, Map<String, String>>{
     'native.6d15d36f74': 'друг',
     'native.644d7351d1': 'Цвет должен выглядеть как #A08369.',
     'native.fb89a335f1': 'Не удалось воспроизвести трек: {p0}',
-    'native.266e43ddb8': 'Этот трек воспроизводится на официальной площадке.',
+    'native.266e43ddb8':
+        'Этот трек сейчас недоступен в GlukWave. Выбери другой трек.',
     'native.c11b18779a': 'Ссылка на аудио недоступна.',
     'native.310a7a8960': 'Автокеш: {p0}',
     'native.449b7110f6': 'Сначала выбери трек.',
@@ -1943,7 +1945,8 @@ const waveCatalogs = <String, Map<String, String>>{
     'native.6d15d36f74': 'дос',
     'native.644d7351d1': 'Түс #A08369 түрінде болуы керек.',
     'native.fb89a335f1': 'Тректі ойнату мүмкін болмады: {p0}',
-    'native.266e43ddb8': 'Бұл трек ресми платформасында ойнатылады.',
+    'native.266e43ddb8':
+        'Бұл трек қазір GlukWave қолданбасында қолжетімсіз. Басқа трек таңда.',
     'native.c11b18779a': 'Аудио сілтемесі қолжетімсіз.',
     'native.310a7a8960': 'Автоматты кеш: {p0}',
     'native.449b7110f6': 'Алдымен трек таңда.',
@@ -2605,7 +2608,8 @@ const waveCatalogs = <String, Map<String, String>>{
     'native.6d15d36f74': 'друже',
     'native.644d7351d1': 'Колір має виглядати як #A08369.',
     'native.fb89a335f1': 'Не вдалося відтворити трек: {p0}',
-    'native.266e43ddb8': 'Цей трек відтворюється на офіційній платформі.',
+    'native.266e43ddb8':
+        'Цей трек зараз недоступний у GlukWave. Обери інший трек.',
     'native.c11b18779a': 'Посилання на аудіо недоступне.',
     'native.310a7a8960': 'Автокеш: {p0}',
     'native.449b7110f6': 'Спочатку обери трек.',
@@ -3290,7 +3294,7 @@ const waveCatalogs = <String, Map<String, String>>{
     'native.644d7351d1': 'Die Farbe sollte wie #A08369 aussehen.',
     'native.fb89a335f1': 'Titel konnte nicht abgespielt werden: {p0}',
     'native.266e43ddb8':
-        'Dieser Titel spielt auf seiner offiziellen Plattform.',
+        'Dieser Titel ist derzeit in GlukWave nicht verfügbar. Wähle einen anderen Titel.',
     'native.c11b18779a': 'Audiolink ist nicht verfügbar.',
     'native.310a7a8960': 'Automatischer Cache: {p0}',
     'native.449b7110f6': 'Wähle zuerst einen Titel.',
@@ -3971,7 +3975,8 @@ const waveCatalogs = <String, Map<String, String>>{
     'native.6d15d36f74': 'amigo',
     'native.644d7351d1': 'El color debe tener un formato como #A08369.',
     'native.fb89a335f1': 'No se pudo reproducir la pista: {p0}',
-    'native.266e43ddb8': 'Esta pista se reproduce en su plataforma oficial.',
+    'native.266e43ddb8':
+        'Esta canción no está disponible en GlukWave ahora. Elige otra canción.',
     'native.c11b18779a': 'El enlace de audio no está disponible.',
     'native.310a7a8960': 'Caché automática: {p0}',
     'native.449b7110f6': 'Elige una pista primero.',

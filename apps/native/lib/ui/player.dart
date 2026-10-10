@@ -1,3 +1,4 @@
+import 'scrolling_label.dart';
 import 'cover_ambient.dart';
 import 'seasonal.dart';
 import 'lyrics_editor.dart';
@@ -33,10 +34,8 @@ class SourceAttribution extends StatelessWidget {
         uri?.scheme != 'https' ||
         uri?.host.isEmpty != false) {
       return compact
-          ? Text(
+          ? ScrollingLabel(
               track.artist,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
               style: TextStyle(color: waveVisuals(context).muted, fontSize: 10),
             )
           : const SizedBox.shrink();
@@ -51,17 +50,49 @@ class SourceAttribution extends StatelessWidget {
         onTap: () => controller.openUrl(url),
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: compact ? 2 : 9),
-          child: Text(
-            label,
-            maxLines: compact ? 1 : 2,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(
-              color: waveVisuals(context).muted,
-              fontSize: compact ? 10 : 12,
-              decoration: TextDecoration.underline,
-              decorationColor: waveVisuals(context).muted,
-            ),
-          ),
+          child: compact
+              ? Row(
+                  children: [
+                    Expanded(
+                      child: ScrollingLabel(
+                        artist == track.artist
+                            ? artist
+                            : '${track.artist} · $artist',
+                        style: TextStyle(
+                          color: waveVisuals(context).muted,
+                          fontSize: 10,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 4),
+                    Icon(
+                      Icons.cloud_outlined,
+                      size: 12,
+                      color: waveVisuals(context).muted,
+                    ),
+                    const SizedBox(width: 3),
+                    Text(
+                      credit['source'] == 'soundcloud'
+                          ? 'SoundCloud'
+                          : credit['source'].toString(),
+                      style: TextStyle(
+                        color: waveVisuals(context).muted,
+                        fontSize: 8,
+                      ),
+                    ),
+                  ],
+                )
+              : Text(
+                  label,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: waveVisuals(context).muted,
+                    fontSize: 12,
+                    decoration: TextDecoration.underline,
+                    decorationColor: waveVisuals(context).muted,
+                  ),
+                ),
         ),
       ),
     );
@@ -124,6 +155,7 @@ class MiniPlayer extends StatelessWidget {
                                   Artwork(
                                     key: artworkKey,
                                     controller: c,
+                                    trackLoading: c.trackLoading,
                                     url: track.artwork,
                                     size: compact ? 44 : 52,
                                     radius: 8,
@@ -135,14 +167,12 @@ class MiniPlayer extends StatelessWidget {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text(
+                                      ScrollingLabel(
                                         track?.title ??
                                             wt(
                                               'native.899c8de911',
                                               context: context,
                                             ),
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
                                         style: TextStyle(
                                           color: v.onPlayer,
                                           fontWeight: FontWeight.w800,
@@ -157,14 +187,12 @@ class MiniPlayer extends StatelessWidget {
                                           compact: true,
                                         )
                                       else
-                                        Text(
+                                        ScrollingLabel(
                                           track?.artist ??
                                               wt(
                                                 'native.b196b73079',
                                                 context: context,
                                               ),
-                                          maxLines: 1,
-                                          overflow: TextOverflow.ellipsis,
                                           style: TextStyle(
                                             color: v.onPlayer.withValues(
                                               alpha: .7,
@@ -209,7 +237,7 @@ class MiniPlayer extends StatelessWidget {
                           onPressed: c.canControl
                               ? () => _run(c, c.audio.skipToPrevious)
                               : null,
-                          icon: Icon(
+                          icon: WaveControlIcon(
                             Icons.skip_previous_rounded,
                             color: v.onPlayer,
                           ),
@@ -261,7 +289,7 @@ class MiniPlayer extends StatelessWidget {
                           onPressed: c.canControl
                               ? () => _run(c, c.audio.skipToNext)
                               : null,
-                          icon: Icon(
+                          icon: WaveControlIcon(
                             Icons.skip_next_rounded,
                             color: v.onPlayer,
                             size: 23,
@@ -272,7 +300,7 @@ class MiniPlayer extends StatelessWidget {
                           key: const Key('mini-equalizer'),
                           tooltip: wt('eq.title', context: context),
                           onPressed: () => showPlayerEqualizer(context, c),
-                          icon: Icon(
+                          icon: WaveControlIcon(
                             Icons.graphic_eq_rounded,
                             color: v.onPlayer.withValues(alpha: .7),
                             size: 19,
@@ -796,7 +824,7 @@ class _PlayerPageState extends State<PlayerPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
+                      ScrollingLabel(
                         track.title,
                         style: const TextStyle(
                           fontSize: 28,
@@ -806,7 +834,7 @@ class _PlayerPageState extends State<PlayerPage> {
                         ),
                       ),
                       const SizedBox(height: 8),
-                      Text(
+                      ScrollingLabel(
                         track.artist,
                         style: TextStyle(
                           color: waveVisuals(context).muted,
@@ -860,7 +888,7 @@ class _PlayerPageState extends State<PlayerPage> {
                     key: const Key('player-equalizer'),
                     tooltip: wt('eq.title', context: context),
                     onPressed: () => showPlayerEqualizer(context, c),
-                    icon: Icon(
+                    icon: WaveControlIcon(
                       Icons.graphic_eq_rounded,
                       size: 20,
                       color: waveVisuals(context).muted,
@@ -1096,7 +1124,7 @@ class _PlayerPageState extends State<PlayerPage> {
         onPressed: c.canControl
             ? () => _run(c, () => c.audio.skipToPrevious())
             : null,
-        icon: const Icon(Icons.skip_previous_rounded, size: 33),
+        icon: const WaveControlIcon(Icons.skip_previous_rounded, size: 33),
       ),
       IconButton.filled(
         tooltip: c.audio.playing
@@ -1120,7 +1148,7 @@ class _PlayerPageState extends State<PlayerPage> {
         onPressed: c.canControl
             ? () => _run(c, () => c.audio.skipToNext())
             : null,
-        icon: const Icon(Icons.skip_next_rounded, size: 33),
+        icon: const WaveControlIcon(Icons.skip_next_rounded, size: 33),
       ),
       IconButton(
         tooltip: wt(

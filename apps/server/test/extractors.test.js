@@ -29,7 +29,7 @@ test('extractor work is bounded and shared jobs release their worker slots on su
   await assert.rejects(runtime.execute('youtube',{}));
 });
 
-test('permitted source audio uses native same-origin range/download endpoints, expires safely and unpermitted audio stays official',async()=>{
+test('permitted source audio uses native same-origin range/download endpoints, expires safely and unpermitted audio is unavailable without an external widget',async()=>{
   const directory=await fs.mkdtemp(path.join(config.root,'work/qa/extractors-test-')),calls=[];let generation=0;
   const info={track_id:'test-source',title:'Carefree',artist:'Kevin MacLeod',duration:205,source:'soundcloud',license:'all-rights-reserved',audio_url:'https://cf-media.sndcdn.com/audio.mp3',ext:'mp3',http_headers:{}};
   const service=await createApp({...config,env:'test',production:false,storage:'sqlite',objectStorage:'local',dataDir:directory,emailVerify:false,turnstileSecret:'',smtp:'',adminEmails:['extractor-admin@example.test'],extractors:{enabled:true,concurrency:1},soundcloudPublicSearch:false},{log:pino({level:'silent'}),extractors:{run:async(_adapter,request)=>{calls.push(request);return {...info,audio_url:info.audio_url+'?generation='+(++generation)};},fetch:async(url,options)=>{
@@ -47,7 +47,7 @@ test('permitted source audio uses native same-origin range/download endpoints, e
     calls.length=0;generation=0;
     const track={id:'extractor-source-track',title:info.title,artist:info.artist,duration:info.duration,source:'soundcloud',sourceId:'test-source',sourceUrl:'https://soundcloud.com/test/source',artwork:'',public:true,playback:{kind:'soundcloud',embedUrl:'https://w.soundcloud.com/player/',offline:false}};
     await service.ctx.store.put('tracks',track.id,track);
-    assert.equal((await request('/tracks/'+track.id+'/playback',user.token)).data.playback.kind,'soundcloud');
+    assert.equal((await request('/tracks/'+track.id+'/playback',user.token)).data.error.code,'AUDIO_UNAVAILABLE');
     const grant={stream:true,download:true,convert:false,basis:'owner-permission',evidenceUrl:'https://example.test/permission'};
     assert.equal((await request('/admin/tracks/'+track.id+'/audio-permission',user.token,grant,'PUT')).status,403);
     assert.equal((await request('/admin/tracks/'+track.id+'/audio-permission',admin.token,grant,'PUT')).status,200);
@@ -56,7 +56,7 @@ test('permitted source audio uses native same-origin range/download endpoints, e
     const unavailable=await fetch(base+'/external-audio/'+track.id,{headers:{Authorization:'Bearer '+user.token,Range:'bytes=100-'}});assert.equal(unavailable.status,416);assert.equal(unavailable.headers.get('content-range'),'bytes */6');assert.equal((await fetch(base+'/external-audio/'+track.id,{headers:{Authorization:'Bearer '+user.token,Range:'bytes=0-1,3-4'}})).status,416);
     const download=await fetch(base+playback.downloadUrl.slice(4),{headers:{Authorization:'Bearer '+user.token}});assert.equal(download.status,200);assert.equal(await download.text(),'abcdef');assert.equal((await request('/external-audio/'+track.id+'/download?format=mp3',user.token)).status,403);
     assert.equal((await request('/external-audio/'+track.id)).status,401);
-    await request('/admin/tracks/'+track.id+'/audio-permission',admin.token,{...grant,stream:false,download:false},'PUT');assert.equal((await request('/tracks/'+track.id+'/playback',user.token)).data.playback.kind,'soundcloud');
+    await request('/admin/tracks/'+track.id+'/audio-permission',admin.token,{...grant,stream:false,download:false},'PUT');assert.equal((await request('/tracks/'+track.id+'/playback',user.token)).data.error.code,'AUDIO_UNAVAILABLE');
     assert.equal((await request('/external-audio/'+track.id,user.token)).status,403);
-  }finally{await service.close();const qa=path.join(config.root,'work/qa');assert(directory.startsWith(qa+path.sep));await fs.rm(directory,{recursive:true,force:true});}
+  }finally{await service.close();const qa=path.join(config.root,'work/qa');assert(directory.startsWith(qa+path.sep));await fs.rm(directory,{recursive:true,force:true,maxRetries:5,retryDelay:100});}
 });

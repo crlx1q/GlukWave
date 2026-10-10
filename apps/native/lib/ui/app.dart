@@ -1,3 +1,4 @@
+import 'motion_icons.dart';
 import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
@@ -23,7 +24,6 @@ import 'auth_visuals.dart';
 import 'auth_page.dart';
 export 'auth_page.dart' show AuthPage;
 import 'desktop_player.dart';
-import 'provider_host.dart';
 import 'connect_panel.dart';
 import 'discord_panel.dart';
 import 'sessions_panel.dart';
@@ -76,7 +76,7 @@ const pageIcons = [
   Icons.download_for_offline_outlined,
   Icons.devices_rounded,
   Icons.person_outline_rounded,
-  Icons.tune_rounded,
+  Icons.settings_rounded,
   Icons.terminal_rounded,
   Icons.people_outline_rounded,
   Icons.album_outlined,
@@ -185,10 +185,7 @@ class _GlukWaveAppState extends State<GlukWaveApp> with WidgetsBindingObserver {
                 MediaQuery.disableAnimationsOf(context) ||
                 customization.reducedMotion,
           ),
-          child: TickerMode(
-            enabled: _foreground,
-            child: PersistentProviderHost(controller: c, child: child!),
-          ),
+          child: TickerMode(enabled: _foreground, child: child!),
         ),
         home: Builder(
           builder: (context) {
@@ -878,7 +875,7 @@ class _WaveShellState extends State<WaveShell>
             ),
             child: Row(
               children: [
-                Icon(
+                WaveControlIcon(
                   pageIcons[value.index],
                   size: 19,
                   color: active
@@ -1084,7 +1081,7 @@ class _WaveShellState extends State<WaveShell>
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(
+                    WaveControlIcon(
                       pageIcons[value.index],
                       color: page == value
                           ? waveVisuals(context).ink
@@ -3294,7 +3291,7 @@ class _WaveShellState extends State<WaveShell>
         children: [
           OutlinedButton.icon(
             onPressed: () => navigate(WavePage.settings),
-            icon: const Icon(Icons.tune_rounded),
+            icon: const WaveControlIcon(Icons.settings_rounded),
             label: Text(wt('native.7f17c7c62a', context: context)),
           ),
           OutlinedButton.icon(

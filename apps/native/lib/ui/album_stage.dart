@@ -123,6 +123,7 @@ class _AlbumStageState extends State<AlbumStage>
       child: Artwork(
         key: widget.artworkKey,
         controller: widget.controller,
+        trackLoading: widget.controller.trackLoading,
         url: widget.track.artwork,
         size: coverSize,
         radius: 14,

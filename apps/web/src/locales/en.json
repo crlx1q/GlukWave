@@ -1207,5 +1207,18 @@
   "season.subtle": "Subtle",
   "season.normal": "Normal",
   "season.preview": "Preview",
-  "season.motionHint": "Respects reduced motion and pauses when the app is hidden."
+  "season.motionHint": "Respects reduced motion and pauses when the app is hidden.",
+  "playbackDiagnostics.title": "Playback diagnostics",
+  "playbackDiagnostics.revision": "Audio resolver · revision {revision}",
+  "playbackDiagnostics.local": "Local audio",
+  "playbackDiagnostics.licensed": "Licensed audio",
+  "playbackDiagnostics.soundcloud": "SoundCloud audio",
+  "playbackDiagnostics.unavailable": "Unavailable",
+  "playbackDiagnostics.failed": "Errors",
+  "playbackDiagnostics.ready": "Connected",
+  "playbackDiagnostics.notReady": "Not connected",
+  "playbackDiagnostics.active": "{count} active streams",
+  "playbackDiagnostics.recent": "Recent playback requests",
+  "playbackDiagnostics.empty": "No playback requests yet.",
+  "playback.unavailable": "This track is not currently available in GlukWave. Choose another track."
 }

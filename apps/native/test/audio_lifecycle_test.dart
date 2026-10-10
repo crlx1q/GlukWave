@@ -237,6 +237,31 @@ void main() {
   );
 
   test(
+    'Old server widget descriptors are rejected and loading resets on failure',
+    () async {
+      for (final kind in ['soundcloud', 'youtube', 'spotify']) {
+        final api = PlaybackApi()
+          ..descriptor = {
+            'kind': kind,
+            'embedUrl': 'https://example.test/widget',
+          };
+        final output = NativeOutput();
+        final audio = WaveAudioHandler(api, PlaybackCache(api), output: output)
+          ..autoCache = false;
+        expect(external('song', kind: kind).playable, true);
+        await expectLater(
+          audio.playTrack(external('song', kind: kind)),
+          throwsA(isA<WaveException>()),
+        );
+        expect(audio.trackLoading, false);
+        expect(audio.provider.track, isNull);
+        expect(output.loaded, isEmpty);
+        await close(audio);
+      }
+    },
+  );
+
+  test(
     'Autonomous playback never falls back to cloud when a cached file is missing',
     () async {
       final api = PlaybackApi(),
@@ -279,7 +304,10 @@ void main() {
         ..autoCache = false;
       final loading = audio.playTrack(external('late'));
       await Future<void>.delayed(Duration.zero);
+      expect(audio.trackLoading, isTrue);
+      expect(audio.viewCurrent?.id, 'late');
       await audio.localCommand('pause');
+      expect(audio.trackLoading, isFalse);
       api.pending!.complete({'playback': api.descriptor});
       await loading;
       expect(output.loaded, isEmpty);

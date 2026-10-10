@@ -1207,5 +1207,18 @@
   "season.subtle": "Dezent",
   "season.normal": "Normal",
   "season.preview": "Vorschau",
-  "season.motionHint": "Beachtet reduzierte Bewegung und pausiert im Hintergrund."
+  "season.motionHint": "Beachtet reduzierte Bewegung und pausiert im Hintergrund.",
+  "playbackDiagnostics.title": "Wiedergabediagnose",
+  "playbackDiagnostics.revision": "Audiostreams · Version {revision}",
+  "playbackDiagnostics.local": "Lokale Musik",
+  "playbackDiagnostics.licensed": "Lizenziertes Audio",
+  "playbackDiagnostics.soundcloud": "SoundCloud-Audio",
+  "playbackDiagnostics.unavailable": "Nicht verfügbar",
+  "playbackDiagnostics.failed": "Fehler",
+  "playbackDiagnostics.ready": "Verbunden",
+  "playbackDiagnostics.notReady": "Nicht verbunden",
+  "playbackDiagnostics.active": "{count} aktive Streams",
+  "playbackDiagnostics.recent": "Letzte Wiedergabeanfragen",
+  "playbackDiagnostics.empty": "Noch keine Wiedergabeanfragen.",
+  "playback.unavailable": "Dieser Titel ist derzeit in GlukWave nicht verfügbar. Wähle einen anderen Titel."
 }

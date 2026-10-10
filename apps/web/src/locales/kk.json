@@ -1207,5 +1207,18 @@
   "season.subtle": "Жұмсақ",
   "season.normal": "Қалыпты",
   "season.preview": "Алдын ала көрініс",
-  "season.motionHint": "Қозғалысты азайту режимін ескеріп, фонда тоқтайды."
+  "season.motionHint": "Қозғалысты азайту режимін ескеріп, фонда тоқтайды.",
+  "playbackDiagnostics.title": "Ойнату диагностикасы",
+  "playbackDiagnostics.revision": "Аудио ағындары · нұсқа {revision}",
+  "playbackDiagnostics.local": "Жергілікті музыка",
+  "playbackDiagnostics.licensed": "Рұқсат етілген аудио",
+  "playbackDiagnostics.soundcloud": "SoundCloud аудиосы",
+  "playbackDiagnostics.unavailable": "Қолжетімсіз",
+  "playbackDiagnostics.failed": "Қателер",
+  "playbackDiagnostics.ready": "Қосылған",
+  "playbackDiagnostics.notReady": "Қосылмаған",
+  "playbackDiagnostics.active": "Белсенді ағындар: {count}",
+  "playbackDiagnostics.recent": "Соңғы ойнату сұраулары",
+  "playbackDiagnostics.empty": "Ойнату сұраулары әлі жоқ.",
+  "playback.unavailable": "Бұл трек қазір GlukWave қолданбасында қолжетімсіз. Басқа трек таңда."
 }

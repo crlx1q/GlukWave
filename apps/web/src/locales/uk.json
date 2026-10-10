@@ -1207,5 +1207,18 @@
   "season.subtle": "М’яко",
   "season.normal": "Звичайно",
   "season.preview": "Попередній перегляд",
-  "season.motionHint": "Враховує зменшення руху та зупиняється у фоні."
+  "season.motionHint": "Враховує зменшення руху та зупиняється у фоні.",
+  "playbackDiagnostics.title": "Діагностика відтворення",
+  "playbackDiagnostics.revision": "Аудіопотоки · версія {revision}",
+  "playbackDiagnostics.local": "Локальна музика",
+  "playbackDiagnostics.licensed": "Дозволене аудіо",
+  "playbackDiagnostics.soundcloud": "Аудіо SoundCloud",
+  "playbackDiagnostics.unavailable": "Недоступно",
+  "playbackDiagnostics.failed": "Помилки",
+  "playbackDiagnostics.ready": "Підключений",
+  "playbackDiagnostics.notReady": "Не підключений",
+  "playbackDiagnostics.active": "Активних потоків: {count}",
+  "playbackDiagnostics.recent": "Останні запити відтворення",
+  "playbackDiagnostics.empty": "Запитів відтворення ще немає.",
+  "playback.unavailable": "Цей трек зараз недоступний у GlukWave. Обери інший трек."
 }

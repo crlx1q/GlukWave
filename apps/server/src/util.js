@@ -40,5 +40,5 @@ export function parseLyrics(raw){
   }
   return {lines:lines.sort((a,b)=>(a.time??Infinity)-(b.time??Infinity)),synchronized:sync,source:'user'};
 }
-export async function remoteJson(url,options={}){const r=await fetch(url,{...options,signal:AbortSignal.timeout(12000)});if(!r.ok)fail(r.status===429?429:502,'PROVIDER_ERROR',`Площадка ответила ошибкой ${r.status}. Попробуй позже.`);return r.json();}
+export async function remoteJson(url,options={}){const r=await fetch(url,{...options,signal:AbortSignal.timeout(12000)});if(!r.ok)fail(r.status===429?429:502,'PROVIDER_ERROR',`Площадка ответила ошибкой ${r.status}. Попробуй позже.`,{upstreamStatus:r.status});return r.json();}
 export const asyncRoute=fn=>(req,res,next)=>Promise.resolve(fn(req,res,next)).catch(next);

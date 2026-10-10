@@ -24,7 +24,26 @@ class WaveAudioHandler extends BaseAudioHandler {
   PlaybackSnapshot? _remote;
   WaveTrack? _remoteTrack;
   List<WaveTrack> _remoteQueue = [];
-  WaveTrack? get viewCurrent => _remote != null ? _remoteTrack : current;
+  WaveTrack? _pendingTrack;
+  bool _resolving = false;
+  bool get trackLoading =>
+      !remote &&
+      (_resolving ||
+          player.playing &&
+              [
+                ProcessingState.loading,
+                ProcessingState.buffering,
+              ].contains(player.processingState));
+  void Function()? onLoadingChanged;
+  void _setResolving(bool value) {
+    if (_resolving == value) return;
+    _resolving = value;
+    onLoadingChanged?.call();
+    if (!_released) _broadcast();
+  }
+
+  WaveTrack? get viewCurrent =>
+      _remote != null ? _remoteTrack : _pendingTrack ?? current;
   List<WaveTrack> get viewTracks => _remote != null ? _remoteQueue : tracks;
   bool get remote => _remote != null;
   int get loadRevision => _loadRevision;
@@ -338,6 +357,8 @@ class WaveAudioHandler extends BaseAudioHandler {
   /// A room revision supersedes an in-flight source lookup before it can start.
   void cancelPendingLoad() {
     _loadRevision++;
+    _pendingTrack = null;
+    _setResolving(false);
     if (!_loadCancelled.isCompleted) _loadCancelled.complete();
     _loadCancelled = Completer<void>();
     provider.cancelPendingLoad();
@@ -398,6 +419,8 @@ class WaveAudioHandler extends BaseAudioHandler {
         },
         processingState: remote
             ? AudioProcessingState.ready
+            : _resolving
+            ? AudioProcessingState.loading
             : current?.embedded == true
             ? provider.loading
                   ? AudioProcessingState.loading
@@ -438,6 +461,34 @@ class WaveAudioHandler extends BaseAudioHandler {
   }) async {
     cancelPendingLoad();
     final revision = _loadRevision;
+    _pendingTrack = track;
+    _setResolving(true);
+    try {
+      await player.pause();
+      await provider.clear();
+      if (revision != _loadRevision || _released) return;
+      await _loadTrack(
+        track,
+        list: list,
+        position: position,
+        playing: playing,
+        revision: revision,
+      );
+    } finally {
+      if (revision == _loadRevision) {
+        _pendingTrack = null;
+        _setResolving(false);
+      }
+    }
+  }
+
+  Future<void> _loadTrack(
+    WaveTrack track, {
+    List<WaveTrack>? list,
+    required double position,
+    required bool playing,
+    required int revision,
+  }) async {
     // A permitted cached download remains usable without a network lookup.
     final local = await cache.fileFor(track.id);
     if (revision != _loadRevision || _released) return;
@@ -454,7 +505,9 @@ class WaveAudioHandler extends BaseAudioHandler {
       track = effective;
       resolvedPlayback = effective.playback;
     }
-    if (!track.playable) throw WaveException(wt('native.266e43ddb8'));
+    if (track.playback['kind'] != 'audio') {
+      throw WaveException(wt('native.266e43ddb8'), 'AUDIO_UNAVAILABLE');
+    }
     clearRemote();
     final available = (list ?? tracks)
         .map((item) => item.id == track.id ? track : item)
@@ -470,17 +523,6 @@ class WaveAudioHandler extends BaseAudioHandler {
     mediaItem.add(item(track));
     await player.pause();
     if (revision != _loadRevision) return;
-    if (track.embedded) {
-      await provider.load(
-        track,
-        position: position,
-        volume: _volume,
-        playing: playing,
-      );
-      if (revision != _loadRevision) return;
-      _broadcast();
-      return;
-    }
     await provider.clear();
     if (revision != _loadRevision) return;
     if (local != null) {

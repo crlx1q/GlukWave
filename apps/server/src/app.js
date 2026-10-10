@@ -28,6 +28,7 @@ import {setupDiagnostics} from './diagnostics.js';
 import {createLyricsProvider} from './lrclib.js';
 import {createGeniusProvider} from './genius.js';
 import {setupSoundcloudAudio} from './soundcloud-audio.js';
+import {playbackRevision,playbackMode} from './playback.js';
 import {setupExtractors} from './extractors/service.js';
 import {setupResources} from './resources.js';
 import {setupCommunity} from './community.js';
@@ -57,7 +58,7 @@ export async function createApp(config,overrides={}){
   setupCommunity(app,ctx);setupListening(app,ctx);setupAccount(app,ctx);await setupDiscord(app,ctx,overrides.discordFetch,overrides.discordOptions);
   app.get('/api/locale',ctx.getLocale);
   setupResources(app,ctx);
-  app.get('/api/health',(req,res)=>res.json({status:'ok',storage:config.storage,version:'0.1.0'}));
+  app.get('/api/health',(req,res)=>res.set('Cache-Control','no-store').json({status:'ok',storage:config.storage,version:'0.1.0',playbackRevision,playbackMode}));
   app.get('/api/config',asyncRoute(async(req,res)=>{res.set('Cache-Control','private, no-store');res.json({registration:{enabled:await ctx.registrationEnabled()},appName:'GlukWave',appUrl:config.appUrl,environment:config.env,localization:ctx.localeFor(req),providers:ctx.providerConfiguration(),auth:{google:!!(config.google.id&&config.google.secret),turnstileSiteKey:config.turnstileSiteKey,nativeCaptcha:true,requireEmailVerification:config.emailVerify},push:{enabled:!!(config.vapidPublic&&config.vapidPrivate),vapidPublicKey:config.vapidPublic,fcmEnabled:!!(config.fcmProject&&config.fcmEmail&&config.fcmKey)},discord:{clientId:config.discord.id,mode:'server',configured:!!(config.discord.id&&config.discord.secret)&&config.discord.headless!==false},lan:{enabled:config.lanDiscovery,discoveryPort:config.discoveryPort},plans:[{id:'free',name:'Free',paid:false,limits:{uploads:200,playlists:25,rooms:1,devices:3,roomMembers:10,cacheMB:2048}},{id:'beta',name:'Beta',paid:false,badge:{ru:'Бета-тестер',en:'Beta tester',kk:'Бета-тестер',uk:'Бета-тестер',de:'Betatester',es:'Probador beta'}[req.language],limits:{uploads:10000,playlists:1000,rooms:10,devices:10,roomMembers:30,cacheMB:32768}},{id:'unbound',name:'Unbound',paid:true,limits:{uploads:10000,playlists:1000,rooms:10,devices:10,roomMembers:30,cacheMB:32768}}],billing:{configured:ctx.billingEnabled,provider:'stripe'}});}));
   app.use('/api',(req,res)=>res.status(404).json({error:{code:'NOT_FOUND',message:'Запрошенная страница не найдена.'}}));
   const dist=path.join(config.root,'apps/web/dist');if(fs.existsSync(path.join(dist,'index.html'))){app.use(express.static(dist,{maxAge:config.production?'1h':0}));app.get('/{*path}',(req,res)=>res.sendFile(path.join(dist,'index.html')));}

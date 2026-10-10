@@ -1207,5 +1207,18 @@
   "season.subtle": "Suave",
   "season.normal": "Normal",
   "season.preview": "Vista previa",
-  "season.motionHint": "Respeta el movimiento reducido y se pausa en segundo plano."
+  "season.motionHint": "Respeta el movimiento reducido y se pausa en segundo plano.",
+  "playbackDiagnostics.title": "Diagnóstico de reproducción",
+  "playbackDiagnostics.revision": "Audio · revisión {revision}",
+  "playbackDiagnostics.local": "Música local",
+  "playbackDiagnostics.licensed": "Audio autorizado",
+  "playbackDiagnostics.soundcloud": "Audio SoundCloud",
+  "playbackDiagnostics.unavailable": "No disponible",
+  "playbackDiagnostics.failed": "Errores",
+  "playbackDiagnostics.ready": "Conectado",
+  "playbackDiagnostics.notReady": "Sin conexión",
+  "playbackDiagnostics.active": "{count} transmisiones activas",
+  "playbackDiagnostics.recent": "Solicitudes de reproducción recientes",
+  "playbackDiagnostics.empty": "Aún no hay solicitudes de reproducción.",
+  "playback.unavailable": "Esta canción no está disponible en GlukWave ahora. Elige otra canción."
 }
