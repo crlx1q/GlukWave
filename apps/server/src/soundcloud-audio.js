@@ -7,7 +7,7 @@ import {audioMatch} from './extractors/matching.js';
 export function soundcloudCdn(input){
   let url;try{url=new URL(input);}catch{return null;}
   return url.protocol==='https:'&&!url.username&&!url.password&&!url.port&&
-    ['sndcdn.com','soundcloud.com'].some(host=>url.hostname===host||url.hostname.endsWith('.'+host))?url:null;
+    ['sndcdn.com','soundcloud.com','soundcloud.cloud'].some(host=>url.hostname===host||url.hostname.endsWith('.'+host))?url:null;
 }
 export function rewriteSoundcloudManifest(raw,base,link){
   if(!raw.trimStart().startsWith('#EXTM3U'))fail(502,'AUDIO_FORMAT_UNAVAILABLE','Источник не открыл аудио.');

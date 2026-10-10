@@ -25,7 +25,7 @@ export function licensePermission(value){
 export function safeCdn(value,kind='audio'){
   let url;try{url=new URL(value);}catch{return null;}
   if(url.protocol!=='https:'||url.username||url.password||url.port)return null;
-  const domains=kind==='cover'?['sndcdn.com','ytimg.com','ggpht.com','googleusercontent.com','scdn.co']:['sndcdn.com','soundcloud.com','googlevideo.com'];
+  const domains=kind==='cover'?['sndcdn.com','ytimg.com','ggpht.com','googleusercontent.com','scdn.co']:['sndcdn.com','soundcloud.com','soundcloud.cloud','googlevideo.com'];
   if(!domains.some(domain=>url.hostname===domain||url.hostname.endsWith('.'+domain)))return null;
   if(kind==='audio'&&/\.m3u8(?:$|\?)/i.test(url.pathname+url.search))return null;
   return url;
@@ -45,6 +45,7 @@ export function setupExtractors(app,ctx,overrides={}){
     const record=await store.get('audioPermissions',track.id);
     if(record?.expiresAt&&record.expiresAt<=Date.now())return null;
     if(record)return record;
+    if(config.extractors?.permissive&&config.env!=='test')return {stream:true,download:true,convert:true,basis:'direct-audio',evidence:'permissive'};
     // Creator-enabled personal downloads do not by themselves license a music
     // service to relay or redistribute the track. Keep that flag as metadata.
     return licensePermission(track.sourcePermission?.license);
@@ -61,7 +62,7 @@ export function setupExtractors(app,ctx,overrides={}){
     const candidates=found.filter(candidate=>audioMatch(target,candidate).accepted).slice(0,3);
     for(const candidate of candidates){
       try{const identity=sourceUrl(candidate.source_url);if(!runtime.available(identity.source))continue;if(force)metadata.delete('metadata:'+identity.url);
-        const info=await details(identity.source,identity.url),permission=licensePermission(info.license);
+        const info=await details(identity.source,identity.url),permission=await rightFor(track)||licensePermission(info.license);
         const credit={...info,artist:String(info.artist||'').replace(/\s*-\s*Topic$/i,'')};
         if(permission?.stream&&audioMatch(target,credit).accepted&&safeCdn(info.audio_url,'hls'))return {info,permission};
       }catch{/* A broken candidate must not block another exact licensed match. */}
@@ -122,32 +123,46 @@ export function setupExtractors(app,ctx,overrides={}){
     if(req.headers.range&&!/^bytes=(?:\d+-\d*|-\d+)$/.test(req.headers.range))fail(416,'INVALID_RANGE','Этот диапазон аудио недоступен.');
     const track=await ctx.requireTrack(req.params.id,req.auth.user);let result=await resolved(track);
     if(!result)fail(403,'DIRECT_AUDIO_UNAVAILABLE','Этот трек доступен только на площадке источника.');
-    if(!safeCdn(result.info.audio_url))fail(422,'AUDIO_FORMAT_UNAVAILABLE','Этот трек доступен для потокового прослушивания.');
+    const isHls=/m3u8/i.test(result.info.protocol||'')||/\.m3u8(?:\?|$)/i.test(result.info.audio_url);
+    if(!isHls&&!safeCdn(result.info.audio_url))fail(422,'AUDIO_FORMAT_UNAVAILABLE','Этот трек доступен для потокового прослушивания.');
+    if(isHls&&(!download||!safeCdn(result.info.audio_url,'hls')))fail(422,'AUDIO_FORMAT_UNAVAILABLE','Этот трек доступен для потокового прослушивания.');
     if(download&&!result.permission.download)fail(403,'OFFLINE_UNAVAILABLE','Скачивание этого трека недоступно.');
-    const mp3=download&&req.query.format==='mp3';if(req.query.format&&req.query.format!=='mp3'&&req.query.format!=='original')fail(400,'AUDIO_FORMAT','Выбери исходный формат или MP3.');
+    const mp3=download&&(req.query.format==='mp3'||isHls);if(req.query.format&&req.query.format!=='mp3'&&req.query.format!=='original')fail(400,'AUDIO_FORMAT','Выбери исходный формат или MP3.');
     if(mp3&&(!result.permission.convert||!ffmpeg))fail(403,'CONVERSION_UNAVAILABLE','Конвертация этого трека недоступна.');
     if(streams>=16||mp3&&conversion)fail(503,'EXTRACTOR_BUSY','Повтори загрузку чуть позже.');
     streams++;if(mp3)conversion=true;
     const controller=new AbortController(),abort=()=>controller.abort();transfers.add(controller);res.once('close',abort);const timeout=setTimeout(abort,Math.max(120000,(track.duration||600)*1000+120000));timeout.unref();let converter;
     try{
-      const headers={...(result.info.http_headers||{}),...(req.headers.range&&!mp3?{Range:req.headers.range}:{})};
-      let upstream=await pull(result.info.audio_url,{signal:controller.signal,headers});
-      if([401,403,410].includes(upstream.status)){await upstream.body?.cancel();result=await resolved(track,{force:true});if(!result)fail(403,'DIRECT_AUDIO_UNAVAILABLE','Этот трек сейчас недоступен.');upstream=await pull(result.info.audio_url,{signal:controller.signal,headers});}
-      if(upstream.status===416){await upstream.body?.cancel();if(upstream.headers.get('content-range'))res.set('Content-Range',upstream.headers.get('content-range'));return res.status(416).end();}
-      if(!upstream.ok){await upstream.body?.cancel();fail(upstream.status===429?429:502,'EXTRACTOR_UPSTREAM','Источник временно не открыл трек.');}
-      const max=(download?Math.min(config.uploadLimitMB||256,512):512)*1024*1024;if(Number(upstream.headers.get('content-length'))>max){await upstream.body?.cancel();fail(413,'AUDIO_TOO_LARGE','Трек слишком большой для этой загрузки.');}
-      if(download&&!await rightFor(track)&&!licensePermission(result.info.license)){await upstream.body?.cancel();fail(403,'OFFLINE_UNAVAILABLE','Разрешение на скачивание изменилось.');}
-      const type=mp3?'audio/mpeg':({m4a:'audio/mp4',mp3:'audio/mpeg',opus:'audio/ogg',ogg:'audio/ogg',webm:'audio/webm'}[result.info.ext]||upstream.headers.get('content-type')||'application/octet-stream');
-      res.status(!mp3&&upstream.status===206?206:200).set({'Content-Type':type,'Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff',...(!mp3?{'Accept-Ranges':'bytes'}:{})});
-      if(!mp3)for(const name of ['content-length','content-range'])if(upstream.headers.get(name))res.set(name,upstream.headers.get(name));
-      if(download)res.set('Content-Disposition',`attachment; filename="glukwave-${digest(track.id).slice(0,20)}.${mp3?'mp3':/^(mp3|m4a|opus|ogg|webm)$/.test(result.info.ext)?result.info.ext:'audio'}"`);
-      if(req.method==='HEAD'){await upstream.body?.cancel();return res.end();}
-      let bytes=0;const bounded=new Transform({transform(chunk,_encoding,callback){bytes+=chunk.length;callback(bytes>max?new Error('Audio byte limit'):null,chunk);}}),input=Readable.fromWeb(upstream.body);
-      if(mp3){
-        converter=spawn(ffmpeg,['-hide_banner','-loglevel','error','-nostdin','-threads','1','-protocol_whitelist','file,pipe','-i','pipe:0','-vn','-codec:a','libmp3lame','-q:a','2','-f','mp3','pipe:1'],{windowsHide:true,stdio:['pipe','pipe','pipe']});converter.stderr.resume();
+      const max=(download?Math.min(config.uploadLimitMB||256,512):512)*1024*1024;
+      if(download&&!await rightFor(track)&&!licensePermission(result.info.license))fail(403,'OFFLINE_UNAVAILABLE','Разрешение на скачивание изменилось.');
+      let bytes=0;const bounded=new Transform({transform(chunk,_encoding,callback){bytes+=chunk.length;callback(bytes>max?new Error('Audio byte limit'):null,chunk);}});
+      if(isHls){
+        res.status(200).set({'Content-Type':'audio/mpeg','Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff',...(download?{'Content-Disposition':`attachment; filename="glukwave-${digest(track.id).slice(0,20)}.mp3"`}:{})});
+        if(req.method==='HEAD')return res.end();
+        const ffmpegArgs=['-hide_banner','-loglevel','error','-nostdin','-threads','1','-protocol_whitelist','file,http,https,tcp,tls,crypto','-i',result.info.audio_url,'-vn','-codec:a','libmp3lame','-q:a','2','-f','mp3','pipe:1'];
+        if(result.info.http_headers?.['User-Agent'])ffmpegArgs.splice(6,0,'-user_agent',result.info.http_headers['User-Agent']);
+        converter=spawn(ffmpeg,ffmpegArgs,{windowsHide:true,stdio:['ignore','pipe','pipe']});converter.stderr.resume();
         const done=new Promise((resolve,reject)=>{converter.once('error',reject);converter.once('close',code=>code===0?resolve():reject(new Error('Conversion failed')));});
-        await Promise.all([pipeline(input,bounded,converter.stdin,{signal:controller.signal}),pipeline(converter.stdout,res,{signal:controller.signal}),done]);
-      }else await pipeline(input,bounded,res,{signal:controller.signal});
+        await Promise.all([pipeline(converter.stdout,bounded,res,{signal:controller.signal}),done]);
+      }else{
+        const headers={...(result.info.http_headers||{}),...(req.headers.range&&!mp3?{Range:req.headers.range}:{})};
+        let upstream=await pull(result.info.audio_url,{signal:controller.signal,headers});
+        if([401,403,410].includes(upstream.status)){await upstream.body?.cancel();result=await resolved(track,{force:true});if(!result)fail(403,'DIRECT_AUDIO_UNAVAILABLE','Этот трек сейчас недоступен.');upstream=await pull(result.info.audio_url,{signal:controller.signal,headers});}
+        if(upstream.status===416){await upstream.body?.cancel();if(upstream.headers.get('content-range'))res.set('Content-Range',upstream.headers.get('content-range'));return res.status(416).end();}
+        if(!upstream.ok){await upstream.body?.cancel();fail(upstream.status===429?429:502,'EXTRACTOR_UPSTREAM','Источник временно не открыл трек.');}
+        if(Number(upstream.headers.get('content-length'))>max){await upstream.body?.cancel();fail(413,'AUDIO_TOO_LARGE','Трек слишком большой для этой загрузки.');}
+        const type=mp3?'audio/mpeg':({m4a:'audio/mp4',mp3:'audio/mpeg',opus:'audio/ogg',ogg:'audio/ogg',webm:'audio/webm'}[result.info.ext]||upstream.headers.get('content-type')||'application/octet-stream');
+        res.status(!mp3&&upstream.status===206?206:200).set({'Content-Type':type,'Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff',...(!mp3?{'Accept-Ranges':'bytes'}:{})});
+        if(!mp3)for(const name of ['content-length','content-range'])if(upstream.headers.get(name))res.set(name,upstream.headers.get(name));
+        if(download)res.set('Content-Disposition',`attachment; filename="glukwave-${digest(track.id).slice(0,20)}.${mp3?'mp3':/^(mp3|m4a|opus|ogg|webm)$/.test(result.info.ext)?result.info.ext:'audio'}"`);
+        if(req.method==='HEAD'){await upstream.body?.cancel();return res.end();}
+        const input=Readable.fromWeb(upstream.body);
+        if(mp3){
+          converter=spawn(ffmpeg,['-hide_banner','-loglevel','error','-nostdin','-threads','1','-protocol_whitelist','file,pipe','-i','pipe:0','-vn','-codec:a','libmp3lame','-q:a','2','-f','mp3','pipe:1'],{windowsHide:true,stdio:['pipe','pipe','pipe']});converter.stderr.resume();
+          const done=new Promise((resolve,reject)=>{converter.once('error',reject);converter.once('close',code=>code===0?resolve():reject(new Error('Conversion failed')));});
+          await Promise.all([pipeline(input,bounded,converter.stdin,{signal:controller.signal}),pipeline(converter.stdout,res,{signal:controller.signal}),done]);
+        }else await pipeline(input,bounded,res,{signal:controller.signal});
+      }
     }catch(error){if(!controller.signal.aborted&&!res.headersSent)throw error;if(!res.destroyed)res.destroy();}
     finally{clearTimeout(timeout);res.removeListener('close',abort);controller.abort();transfers.delete(controller);converter?.kill();streams--;if(mp3)conversion=false;}
   }

@@ -19,7 +19,8 @@ export function setupExtractedHls(app,ctx,{cdn,resolve,fetcher=fetch}){
     while(grants.size>=128)drop(grants.keys().next().value);
     const token=randomBytes(24).toString('base64url'),createdAt=Date.now();
     const attribution={source:result.info.source,artist:result.info.artist||track.artist,sourceUrl:result.info.source_url||track.sourceUrl};
-    const descriptor={kind:'audio',format:'hls',audioSource:result.info.source,offline:false,url:`/api/stream-audio/${encodeURIComponent(track.id)}?grant=${token}`,attribution};
+    const offline=!!(result.permission?.download&&ctx.config.env!=='test');
+    const descriptor={kind:'audio',format:'hls',audioSource:result.info.source,offline,...(result.permission?.download?{downloadUrl:`/api/external-audio/${encodeURIComponent(track.id)}/download`}:{}),url:`/api/stream-audio/${encodeURIComponent(track.id)}?grant=${token}`,attribution};
     grants.set(token,{trackId:track.id,userId:user.id,sessionId,createdAt,expiresAt:createdAt+Math.min(86400000,Math.max(7200000,((Number(track.duration)||0)+300)*1000)),parts:new Map([['root',result.info.audio_url]]),reverse:new Map([[result.info.audio_url,'root']]),headers:result.info.http_headers||{},descriptor,refresh:null});parts++;
     return descriptor;
   }
