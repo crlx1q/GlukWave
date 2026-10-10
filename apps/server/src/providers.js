@@ -84,9 +84,25 @@ export function setupProviders(app,ctx){
   ctx.resolveSource=async(input,metadata={},options={})=>{const s=sourceUrl(input);let track;
   if(s.source==='spotify'&&ctx.extractorAvailable?.('spotify'))try{const info=await ctx.extractorMetadata('spotify',s.url);track=normalizeSpotify({id:s.sourceId,name:info.title,artists:[{name:info.artist}],album:{name:info.album,images:[{url:info.cover}]},duration_ms:info.duration*1000});}catch{ /* Official API/oEmbed remains independent of spotDL. */ }
   if(!track&&s.source==='spotify'&&configured('spotify')){track=normalizeSpotify(await call('spotify',`tracks/${s.sourceId}`));}else if(!track&&s.source==='youtube'){if(config.youtubeKey){try{const vr=await remoteJson(`https://www.googleapis.com/youtube/v3/videos?${new URLSearchParams({part:'snippet,contentDetails',id:s.sourceId,key:config.youtubeKey})}`);if(vr?.items?.[0])track=normalizeYoutube(vr.items[0]);}catch{}}if(!track){const r=await remoteJson(`https://www.youtube.com/oembed?${new URLSearchParams({url:s.url,format:'json'})}`);track={...normalizeYoutube({id:s.sourceId,snippet:{title:r.title,channelTitle:r.author_name,thumbnails:{high:{url:r.thumbnail_url}}}})};}}else if(!track&&s.source==='soundcloud'){try{track=normalizeSoundcloud(await publicSoundcloud.track(s.url));}catch(error){if(error.status===429||error.code==='SOUNDCLOUD_BUSY')throw error;const r=await remoteJson(`https://soundcloud.com/oembed?${new URLSearchParams({url:s.url,format:'json'})}`),author=String(r.author_name||''),suffix=` by ${author}`;track=normalizeSoundcloud({urn:s.sourceId,title:author&&r.title?.endsWith(suffix)?r.title.slice(0,-suffix.length):r.title,user:{username:author},artwork_url:r.thumbnail_url,permalink_url:s.url});}}else if(!track&&s.source==='spotify'){const r=await remoteJson(`https://open.spotify.com/oembed?${new URLSearchParams({url:s.url})}`);track=normalizeSpotify({id:s.sourceId,name:r.title,artists:[],album:{images:[{url:r.thumbnail_url}]}});}else if(!track) {
-    // User export metadata is accepted explicitly; no fabricated titles or private API credentials.
-    if(!metadata.title)fail(422,'METADATA_REQUIRED','Не удалось прочитать название трека. Перенеси его из сохранённого плейлиста.');
-    track={id:`yandex-${s.sourceId}`,title:metadata.title,artist:metadata.artist||'',album:metadata.album||'',artwork:'',duration:0,source:'yandex',sourceId:s.sourceId,sourceUrl:s.url,playback:{kind:'yandex',embedUrl:`https://music.yandex.ru/iframe/#track/${s.sourceId}/${s.albumId}`,offline:false},createdAt:now(),public:true};
+    if(s.source==='yandex'){
+      try{
+        const ym=await remoteJson(`https://api.music.yandex.net/tracks/${s.sourceId}`);
+        const item=ym?.result?.[0];
+        if(item?.title){
+          const art=item.artists?.map(a=>a.name).filter(Boolean).join(', ')||metadata.artist||'';
+          const alb=item.albums?.[0]?.title||metadata.album||'';
+          const cover=item.coverUri||item.albums?.[0]?.coverUri||'';
+          const artwork=cover?'https://'+cover.replace('%%','400x400'):'';
+          const duration=item.durationMs?Math.round(item.durationMs/1000):(Number(metadata.duration)||0);
+          track={id:`yandex-${s.sourceId}`,title:item.title,artist:art,album:alb,artwork,duration,source:'yandex',sourceId:s.sourceId,sourceUrl:s.url,playback:{kind:'yandex',embedUrl:`https://music.yandex.ru/iframe/#track/${s.sourceId}/${s.albumId}`,offline:false},createdAt:now(),public:true};
+        }
+      }catch{}
+    }
+    if(!track){
+      // User export metadata is accepted explicitly; no fabricated titles or private API credentials.
+      if(!metadata.title)fail(422,'METADATA_REQUIRED','Не удалось прочитать название трека. Перенеси его из сохранённого плейлиста.');
+      track={id:`yandex-${s.sourceId}`,title:metadata.title,artist:metadata.artist||'',album:metadata.album||'',artwork:'',duration:Number(metadata.duration)||0,source:'yandex',sourceId:s.sourceId,sourceUrl:s.url,playback:{kind:'yandex',embedUrl:`https://music.yandex.ru/iframe/#track/${s.sourceId}/${s.albumId}`,offline:false},createdAt:now(),public:true};
+    }
   }if(options.persist!==false)await persist([track]);return track;};
   ctx.providerConfiguration=(options)=>providerConfiguration(config,options).map(provider=>({...provider,searchAvailable:provider.searchAvailable||provider.id==='youtube'&&!!ctx.extractorAvailable?.('youtube')}));
 

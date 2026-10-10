@@ -6,11 +6,20 @@ import {fail} from '../util.js';
 export function createExtractorRuntime(config,{run}={}){
   const settings=config.extractors||{},directory=path.join(config.root,'work/tools/extractors');
   const executable=name=>path.join(directory,name,process.platform==='win32'?'Scripts/python.exe':'bin/python');
-  const firstExisting=paths=>paths.find(value=>fs.existsSync(value))||paths[0];
-  // Docker, project-local venv and conventional system venv deployments all
-  // work without a Windows-specific path leaking into a Linux installation.
-  const python=settings.python||firstExisting([executable('ytdlp'),'/opt/extractors/ytdlp/bin/python',path.join(config.root,'.venv/bin/python')]);
-  const spotdlPython=settings.spotdlPython||firstExisting([executable('spotdl'),'/opt/extractors/spotdl/bin/python']);
+  const firstExisting=paths=>paths.find(value=>value&&fs.existsSync(value))||paths[0];
+  function findSystemExecutable(names){
+    const pathDirs=(process.env.PATH||'').split(path.delimiter).filter(Boolean);
+    for(const dir of pathDirs){
+      for(const name of names){
+        const full=path.join(dir,name);
+        if(fs.existsSync(full))return full;
+      }
+    }
+    return null;
+  }
+  const systemPython=findSystemExecutable(process.platform==='win32'?['python.exe','python3.exe','py.exe']:['python3','python']);
+  const python=settings.python||firstExisting([executable('ytdlp'),path.join(config.root,'.venv',process.platform==='win32'?'Scripts/python.exe':'bin/python'),path.join(config.root,'venv',process.platform==='win32'?'Scripts/python.exe':'bin/python'),'/opt/extractors/ytdlp/bin/python',systemPython].filter(Boolean));
+  const spotdlPython=settings.spotdlPython||firstExisting([executable('spotdl'),path.join(config.root,'.venv',process.platform==='win32'?'Scripts/python.exe':'bin/python'),'/opt/extractors/spotdl/bin/python',python].filter(Boolean));
   const deno=settings.deno||firstExisting([path.join(directory,'deno',process.platform==='win32'?'deno.exe':'deno'),'/usr/local/bin/deno','/usr/bin/deno']);
   const script=path.join(config.root,'apps/server/extractors/bridge.py'),queue=[],children=new Set(),limit=settings.concurrency||1;
   let active=0,closed=false,completed=0,failed=0;
@@ -18,7 +27,7 @@ export function createExtractorRuntime(config,{run}={}){
     if(process.platform==='win32'&&processHandle.pid){const kill=spawn('taskkill',['/PID',String(processHandle.pid),'/T','/F'],{windowsHide:true,stdio:'ignore'});kill.on('error',()=>processHandle.kill());}
     else {try{process.kill(-processHandle.pid,'SIGKILL');}catch{processHandle.kill('SIGKILL');}}
   }
-  const available=adapter=>settings.enabled!==false&&(config.env!=='test'||!!run)&&(!!run||fs.existsSync(adapter==='spotify'?spotdlPython:python));
+  const available=adapter=>settings.enabled!==false&&(config.env!=='test'||!!run)&&(!!run||fs.existsSync(adapter==='spotify'?(spotdlPython||python):python));
   async function execute(adapter,request){
     if(!available(adapter))fail(503,'EXTRACTOR_UNAVAILABLE','Этот источник временно недоступен.');
     if(closed||queue.length>=16)fail(503,'EXTRACTOR_BUSY','Музыка загружается. Повтори через немного времени.');

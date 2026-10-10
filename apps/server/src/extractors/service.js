@@ -51,20 +51,31 @@ export function setupExtractors(app,ctx,overrides={}){
     return licensePermission(track.sourcePermission?.license);
   }
   async function candidateAudio(track,{force=false}={}){
-    if(!(track.duration>0)||!track.artist)return null;
-    const target={...track,artist:track.artist.replace(/\s*-\s*Topic$/i,'')};
+    if(!track.artist||!track.title)return null;
+    const target={...track,artist:String(track.artist||'').replace(/\s*-\s*Topic$/i,'')};
     const found=await cached('audio-candidates:'+track.id,async()=>{
       if(track.source==='spotify'&&runtime.available('spotify')){
         try{const result=await adapters.spotify.matches(target);if(result.candidates?.some(candidate=>candidate.match.accepted))return result.candidates;}catch{/* Independent YouTube Music metadata fallback. */}
       }
-      return adapters.youtube.search(target.artist+' '+target.title);
+      const ytFound=await adapters.youtube.search(target.artist+' '+target.title).catch(()=>[]);
+      if(ytFound.length)return ytFound;
+      if(ctx.searchProvider){
+        try{
+          const sc=await ctx.searchProvider('soundcloud',target.artist+' '+target.title);
+          return sc.map(item=>({source:'soundcloud',source_url:item.sourceUrl,title:item.title,artist:item.artist,duration:item.duration,track_id:item.sourceId}));
+        }catch{}
+      }
+      return [];
     },240000);
     const candidates=found.filter(candidate=>audioMatch(target,candidate).accepted).slice(0,3);
     for(const candidate of candidates){
       try{const identity=sourceUrl(candidate.source_url);if(!runtime.available(identity.source))continue;if(force)metadata.delete('metadata:'+identity.url);
         const info=await details(identity.source,identity.url),permission=await rightFor(track)||licensePermission(info.license);
         const credit={...info,artist:String(info.artist||'').replace(/\s*-\s*Topic$/i,'')};
-        if(permission?.stream&&audioMatch(target,credit).accepted&&safeCdn(info.audio_url,'hls'))return {info,permission};
+        if(permission?.stream&&audioMatch(target,credit).accepted&&safeCdn(info.audio_url,'hls')){
+          if(track.duration<=0&&info.duration>0)void store.update('tracks',track.id,t=>t?{...t,duration:info.duration}:undefined).catch(()=>{});
+          return {info,permission};
+        }
       }catch{/* A broken candidate must not block another exact licensed match. */}
     }
     return null;
@@ -81,6 +92,7 @@ export function setupExtractors(app,ctx,overrides={}){
     if(!permission?.stream)return null;
     if(track.source==='spotify'&&!audioMatch(track,info).accepted)fail(409,'AUDIO_MATCH_REJECTED','Не найдено точное совпадение этого трека.');
     if(!safeCdn(info.audio_url,'hls'))fail(502,'AUDIO_FORMAT_UNAVAILABLE','Этот формат пока недоступен в плеере.');
+    if(track.duration<=0&&info.duration>0)void store.update('tracks',track.id,t=>t?{...t,duration:info.duration}:undefined).catch(()=>{});
     return {info,permission};
   }
   ctx.extractorAvailable=source=>!!adapters[source]&&runtime.available(source);
