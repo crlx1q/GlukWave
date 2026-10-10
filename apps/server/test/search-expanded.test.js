@@ -26,7 +26,7 @@ test('Search finds artist, genre and personal lyric words without leaking them',
    assert.deepEqual((await request('/search?q=silver%20river')).tracks,[]);
    assert.equal((await request('/search?q=elan%20moonlight')).tracks[0].id,track.id);
    const challenge=await request('/auth/native',{method:'email'});assert.equal(typeof challenge.expiresAt,'number');
- }finally{await service.close();await fs.rm(dir,{recursive:true,force:true});}
+ }finally{await service.close();await fs.rm(dir,{recursive:true,force:true,maxRetries:5,retryDelay:100});}
 });
 
 test('Lyrics normalize video credits, recover album mismatch and keep timing honest',async()=>{

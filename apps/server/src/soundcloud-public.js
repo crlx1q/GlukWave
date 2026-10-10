@@ -38,7 +38,7 @@ export function parseSoundcloudTrack(html,expectedUrl){
   if(!track||track.sharing&&track.sharing!=='public'||!soundcloudTrackUrl(track.permalink_url))return null;
   const title=typeof track.title==='string'?track.title.trim().slice(0,200):'',sid=track.urn||String(track.id||'');
   if(!title||!/^[\w:.-]{1,100}$/.test(sid))return null;
-  const artwork=value=>{try{const url=new URL(value);return url.protocol==='https:'&&/^(?:[a-z\d-]+\.)*sndcdn\.com$/i.test(url.hostname)?url.toString():'';}catch{return '';}};
+  const artwork=value=>{try{const url=new URL(value);return url.protocol==='https:'&&/^(?:[a-z\d-]+\.)*sndcdn\.com$/i.test(url.hostname)?url.toString().replace(/-large\./i,'-t500x500.'):'';}catch{return '';}};
   const duration=Number(track.duration);
   const artistPath=String(track.user?.permalink||'');
   return {id:track.id,urn:sid,title,downloadable:track.downloadable===true,license:String(track.license||'').slice(0,500),genre:String(track.genre||'').slice(0,200),tag_list:String(track.tag_list||'').slice(0,1000),user:{id:track.user?.id,permalink:artistPath,permalink_url:/^[\w-]+$/.test(artistPath)?`${origin}/${artistPath}`:'',username:String(track.user?.username||'').slice(0,200),avatar_url:artwork(track.user?.avatar_url)},artwork_url:artwork(track.artwork_url),waveform_url:soundcloudWaveformUrl(track.waveform_url),duration:Number.isFinite(duration)&&duration>0&&duration<=86400000?duration:0,permalink_url:soundcloudTrackUrl(track.permalink_url)||expectedUrl};

@@ -44,16 +44,20 @@ export function createExtractorRuntime(config,{run}={}){
     if(process.platform==='win32'&&processHandle.pid){const kill=spawn('taskkill',['/PID',String(processHandle.pid),'/T','/F'],{windowsHide:true,stdio:'ignore'});kill.on('error',()=>processHandle.kill());}
     else {try{process.kill(-processHandle.pid,'SIGKILL');}catch{processHandle.kill('SIGKILL');}}
   }
-  const available=adapter=>{
+  const hasPython=adapter=>{
     if(settings.enabled===false)return false;
-    if(adapter==='soundcloud')return true;
     if(config.env==='test'&&!run)return false;
     if(run)return true;
     const py=adapter==='spotify'?(spotdlPython||python):python;
     return fs.existsSync(py)&&testPythonModule(py,adapter==='spotify'?'spotdl':'yt_dlp');
   };
+  const available=adapter=>{
+    if(settings.enabled===false)return false;
+    if(adapter==='soundcloud')return true;
+    return hasPython(adapter);
+  };
   async function execute(adapter,request){
-    if(!available(adapter))fail(503,'EXTRACTOR_UNAVAILABLE','Этот источник временно недоступен.');
+    if(!hasPython(adapter))fail(503,'EXTRACTOR_UNAVAILABLE','Этот источник временно недоступен.');
     if(closed||queue.length>=16)fail(503,'EXTRACTOR_BUSY','Музыка загружается. Повтори через немного времени.');
     if(active>=limit)await new Promise((resolve,reject)=>queue.push({resolve,reject}));else active++;
     try{
@@ -83,5 +87,5 @@ export function createExtractorRuntime(config,{run}={}){
     });
     processHandle.stdin.end(JSON.stringify({...request,...(fs.existsSync(deno)?{deno}:{})}));
   });}
-  return {available,execute,stats:()=>({active,queued:queue.length,completed,failed,limit}),async versions(){const values=await Promise.allSettled(['youtube','spotify'].map(adapter=>execute(adapter,{action:'versions'})));return Object.fromEntries(values.map((value,index)=>[['youtube','spotify'][index],value.status==='fulfilled'?value.value:{available:false}]));},async close(){closed=true;for(const waiting of queue.splice(0))waiting.reject(new Error('Service closed'));await Promise.all([...children].map(child=>new Promise(resolve=>{child.once('close',resolve);stop(child);})));}};
+  return {available,hasPython,execute,stats:()=>({active,queued:queue.length,completed,failed,limit}),async versions(){const values=await Promise.allSettled(['youtube','spotify'].map(adapter=>execute(adapter,{action:'versions'})));return Object.fromEntries(values.map((value,index)=>[['youtube','spotify'][index],value.status==='fulfilled'?value.value:{available:false}]));},async close(){closed=true;for(const waiting of queue.splice(0))waiting.reject(new Error('Service closed'));await Promise.all([...children].map(child=>new Promise(resolve=>{child.once('close',resolve);stop(child);})));}};
 }
