@@ -3,10 +3,19 @@ import contextlib
 import importlib.metadata
 import io
 import json
+import os
 import sys
 from urllib.parse import urlparse, parse_qs
 
 sys.stdout.reconfigure(encoding='utf-8')
+
+vendor_dir = os.path.join(os.path.dirname(__file__), 'vendor')
+if os.path.isdir(vendor_dir):
+    for item in os.listdir(vendor_dir):
+        if item.endswith(('.zip', '.whl')):
+            pkg_path = os.path.join(vendor_dir, item)
+            if pkg_path not in sys.path:
+                sys.path.insert(0, pkg_path)
 
 
 def valid_url(value, source):
@@ -58,6 +67,8 @@ def extract(request):
         }
     if request.get('deno'):
         options['js_runtimes'] = {'deno': {'path': request['deno']}}
+    elif request.get('node'):
+        options['js_runtimes'] = {'node': {'path': request['node']}}
     with YoutubeDL(options) as ydl:
         info = ydl.extract_info(url, download=False)
     if not info or info.get('_type') in {'playlist', 'multi_video'}:
@@ -66,19 +77,38 @@ def extract(request):
 
 
 def music_search(request):
-    from ytmusicapi import YTMusic
-    results = YTMusic().search(str(request['query'])[:200], filter='songs', limit=min(15, request.get('limit', 10)))
-    tracks = []
-    for item in results[:15]:
-        if not item.get('videoId'): continue
-        thumbs = item.get('thumbnails') or []
-        tracks.append({'track_id': item['videoId'], 'title': item.get('title') or '',
-                       'artist': ', '.join(a['name'] for a in item.get('artists', []) if a.get('name')),
-                       'album': (item.get('album') or {}).get('name', ''),
-                       'duration': item.get('duration_seconds') or 0,
-                       'cover': thumbs[-1].get('url', '') if thumbs else '', 'source': 'youtube',
-                       'source_url': 'https://www.youtube.com/watch?v=' + item['videoId']})
-    return tracks
+    try:
+        from ytmusicapi import YTMusic
+        results = YTMusic().search(str(request['query'])[:200], filter='songs', limit=min(15, request.get('limit', 10)))
+        tracks = []
+        for item in results[:15]:
+            if not item.get('videoId'): continue
+            thumbs = item.get('thumbnails') or []
+            tracks.append({'track_id': item['videoId'], 'title': item.get('title') or '',
+                           'artist': ', '.join(a['name'] for a in item.get('artists', []) if a.get('name')),
+                           'album': (item.get('album') or {}).get('name', ''),
+                           'duration': item.get('duration_seconds') or 0,
+                           'cover': thumbs[-1].get('url', '') if thumbs else '', 'source': 'youtube',
+                           'source_url': 'https://www.youtube.com/watch?v=' + item['videoId']})
+        return tracks
+    except Exception:
+        from yt_dlp import YoutubeDL
+        limit = min(15, request.get('limit', 10))
+        query = str(request['query'])[:200]
+        options = {'quiet': True, 'no_warnings': True, 'logger': QuietLogger(), 'extract_flat': True, 'skip_download': True}
+        with YoutubeDL(options) as ydl:
+            res = ydl.extract_info(f"ytsearch{limit}:{query}", download=False)
+        tracks = []
+        for e in (res.get('entries') or []):
+            if not e or not e.get('id'): continue
+            thumbs = e.get('thumbnails') or []
+            cover = thumbs[-1].get('url', '') if thumbs else (e.get('thumbnail') or '')
+            tracks.append({'track_id': e['id'], 'title': str(e.get('title') or '')[:300],
+                           'artist': str(e.get('uploader') or e.get('channel') or '')[:300],
+                           'album': '', 'duration': e.get('duration') or 0,
+                           'cover': cover, 'source': 'youtube',
+                           'source_url': 'https://www.youtube.com/watch?v=' + e['id']})
+        return tracks
 
 
 def spotify_metadata(request):
@@ -131,7 +161,15 @@ def main():
             result = {}
             for name in ['yt-dlp', 'yt-dlp-ejs', 'ytmusicapi', 'spotdl']:
                 try: result[name] = importlib.metadata.version(name)
-                except importlib.metadata.PackageNotFoundError: result[name] = None
+                except Exception:
+                    if name == 'yt-dlp':
+                        try:
+                            import yt_dlp.version
+                            result[name] = yt_dlp.version.__version__
+                        except Exception:
+                            result[name] = None
+                    else:
+                        result[name] = None
         elif action == 'extract': result = extract(request)
         elif action == 'music-search': result = music_search(request)
         elif action == 'spotify-metadata': result = spotify_metadata(request)

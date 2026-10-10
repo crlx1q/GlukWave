@@ -3,14 +3,24 @@ import path from 'node:path';
 import {spawn,spawnSync} from 'node:child_process';
 import {fail,HttpError} from '../util.js';
 
-function testPythonModule(pythonPath,moduleName){
+function testPythonModule(pythonPath,moduleName,extraPaths=[]){
   if(!pythonPath||!fs.existsSync(pythonPath))return false;
-  try{const res=spawnSync(pythonPath,['-c',`import ${moduleName}`],{windowsHide:true,timeout:5000,stdio:'ignore'});return res.status===0;}
+  try{
+    const code=extraPaths.length
+      ?`import sys; [sys.path.insert(0, p) for p in ${JSON.stringify(extraPaths)}]; import ${moduleName}`
+      : `import ${moduleName}`;
+    const res=spawnSync(pythonPath,['-c',code],{windowsHide:true,timeout:5000,stdio:'ignore'});
+    return res.status===0;
+  }
   catch{return false;}
 }
 
 export function createExtractorRuntime(config,{run}={}){
   const settings=config.extractors||{},directory=path.join(config.root,'work/tools/extractors');
+  const vendorDir=path.join(config.root,'apps/server/extractors/vendor');
+  const vendorZips=fs.existsSync(vendorDir)
+    ? fs.readdirSync(vendorDir).filter(f=>f.endsWith('.zip')||f.endsWith('.whl')).map(f=>path.join(vendorDir,f))
+    : [];
   const executable=name=>path.join(directory,name,process.platform==='win32'?'Scripts/python.exe':'bin/python');
   const firstExisting=paths=>paths.find(value=>value&&fs.existsSync(value))||paths[0];
   function findSystemExecutable(names){
@@ -26,7 +36,8 @@ export function createExtractorRuntime(config,{run}={}){
   const systemPython=findSystemExecutable(process.platform==='win32'?['python.exe','python3.exe','py.exe']:['python3','python']);
   if(config.env!=='test'&&!run){
     const venvPython=executable('ytdlp');
-    if(!fs.existsSync(venvPython)||!testPythonModule(venvPython,'yt_dlp')){
+    const hasVendor=vendorZips.length>0&&testPythonModule(systemPython,'yt_dlp',vendorZips);
+    if(!hasVendor&&(!fs.existsSync(venvPython)||!testPythonModule(venvPython,'yt_dlp'))){
       try{
         const setupScript=path.join(config.root,'scripts/prepare-extractors.mjs');
         if(fs.existsSync(setupScript)){
@@ -49,7 +60,10 @@ export function createExtractorRuntime(config,{run}={}){
     if(config.env==='test'&&!run)return false;
     if(run)return true;
     const py=adapter==='spotify'?(spotdlPython||python):python;
-    return fs.existsSync(py)&&testPythonModule(py,adapter==='spotify'?'spotdl':'yt_dlp');
+    if(!py||!fs.existsSync(py))return false;
+    if(adapter==='spotify')return testPythonModule(py,'spotdl');
+    if(adapter==='youtube')return testPythonModule(py,'yt_dlp',vendorZips);
+    return false;
   };
   const available=adapter=>{
     if(settings.enabled===false)return false;
@@ -85,7 +99,7 @@ export function createExtractorRuntime(config,{run}={}){
       }
       resolve(response.result);
     });
-    processHandle.stdin.end(JSON.stringify({...request,...(fs.existsSync(deno)?{deno}:{})}));
+    processHandle.stdin.end(JSON.stringify({...request,node:process.execPath,...(fs.existsSync(deno)?{deno}:{})}));
   });}
   return {available,hasPython,execute,stats:()=>({active,queued:queue.length,completed,failed,limit}),async versions(){const values=await Promise.allSettled(['youtube','spotify'].map(adapter=>execute(adapter,{action:'versions'})));return Object.fromEntries(values.map((value,index)=>[['youtube','spotify'][index],value.status==='fulfilled'?value.value:{available:false}]));},async close(){closed=true;for(const waiting of queue.splice(0))waiting.reject(new Error('Service closed'));await Promise.all([...children].map(child=>new Promise(resolve=>{child.once('close',resolve);stop(child);})));}};
 }
