@@ -6,7 +6,7 @@ import { ApiError, api, errorText, post, patch } from './api';
 import {deviceId,surfaceId,browserDeviceName} from './device-identity';
 import { ownsOutput, snapshotPosition } from './connect-controller';
 import { reportError } from './diagnostics';
-import { waitForPlayback } from './playback-lifecycle';
+import { waitForPlayback, isPlaybackBlocked } from './playback-lifecycle';
 import { restoredVolume, saveVolume } from './volume';
 import { cached, downloads, saveTrack } from './cache';
 import { useStore } from './store';
@@ -52,7 +52,7 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
     loadAbort.current?.abort();const request=new AbortController();loadAbort.current=request;
     const revision=++loadRevision.current,startedUserId=userRef.current?.id;
     resolvingTrack.current=true;setTrackLoading(true);
-    audio.pause();streamLoader.current.destroy();controller.current?.pause();controller.current?.destroy?.();controller.current=null;
+    audio.pause();streamLoader.current.destroy(audio);controller.current?.pause();controller.current?.destroy?.();controller.current=null;
     if(objectUrl.current){URL.revokeObjectURL(objectUrl.current);objectUrl.current=null;}if(artworkObjectUrl.current){URL.revokeObjectURL(artworkObjectUrl.current);artworkObjectUrl.current=null;}
     trackRef.current=next;playbackRef.current=null;setTrack(next);setPlayback(null);setDuration(next.duration||0);desiredPlay.current=playing;desiredPosition.current=position;setAutoplayBlocked(false);
     const order=nextQueue?.length?nextQueue:queueRef.current.some(item=>item.id===next.id)?queueRef.current:[next];setQueue(order);store.remember([next]);update({trackId:next.id,position,playing:false,queue:order.map(item=>item.id)});
@@ -68,10 +68,25 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
       if(fresh.kind==='audio'){
         if(local)objectUrl.current=fresh.url!;
         const current=()=>revision===loadRevision.current&&startedUserId===userRef.current?.id&&!request.signal.aborted;
-        const failStream=(error:Error)=>{if(!current())return;resolvingTrack.current=false;setTrackLoading(false);reportError(error,'playback',{code:'HLS_STREAM'});update({playing:false});store.notify(errorText(error),true);};
-        const renewStream=async(error:Error)=>{if(!current())return;const resumePosition=Number.isFinite(audio.currentTime)?audio.currentTime:stateRef.current.position;audio.pause();setTrackLoading(true);try{const renewed=(await api<{playback:Playback}>(`/tracks/${encodeURIComponent(next.id)}/playback`,{signal:request.signal})).playback;if(!current())return;if(renewed.kind!=='audio'||!renewed.url)throw error;await streamLoader.current.attach(audio,renewed.url,renewed.format,request.signal,failStream);if(!current())return;playbackRef.current=renewed;setPlayback(renewed);audio.currentTime=resumePosition;audio.volume=stateRef.current.volume;audio.playbackRate=roomRef.current?1:settingsRef.current.playbackRate;if(desiredPlay.current){await audio.play();ensureAudioMeter();}}catch(reason){if(current())failStream(reason instanceof Error?reason:error);}};
+        const failStream=(error:Error)=>{if(!current())return;resolvingTrack.current=false;setTrackLoading(false);setAutoplayBlocked(false);reportError(error,'playback',{code:'HLS_STREAM'});update({playing:false});store.notify(t('copy.715'),true);};
+        let renewing=false;
+        const renewStream=async(error:Error)=>{
+          if(!current()||renewing)return;renewing=true;
+          const resumePosition=Number.isFinite(audio.currentTime)?audio.currentTime:stateRef.current.position;
+          audio.pause();setTrackLoading(true);resolvingTrack.current=true;
+          try{
+            const renewed=(await api<{playback:Playback}>(`/tracks/${encodeURIComponent(next.id)}/playback`,{signal:request.signal})).playback;
+            if(!current())return;if(renewed.kind!=='audio'||!renewed.url)throw error;
+            await streamLoader.current.attach(audio,renewed.url,renewed.format,request.signal,failStream);
+            if(resumePosition>0)await waitForPlayback(()=>audio.readyState>=1,request.signal,t('copy.715'));
+            if(!current())return;playbackRef.current=renewed;setPlayback(renewed);audio.currentTime=desiredPosition.current=resumePosition;
+            audio.volume=stateRef.current.volume;audio.playbackRate=roomRef.current?1:settingsRef.current.playbackRate;
+            if(desiredPlay.current){await audio.play();ensureAudioMeter();}
+          }catch(reason){if(current()){if(isPlaybackBlocked(reason)){setAutoplayBlocked(true);setTrackLoading(false);update({playing:false});store.notify(t('copy.704'));}else failStream(reason instanceof Error?reason:error);}}
+          finally{if(current()){resolvingTrack.current=false;setTrackLoading(desiredPlay.current&&!audio.paused&&audio.readyState<3);}}
+        };
         await streamLoader.current.attach(audio,fresh.url||`/api/media/${next.id}`,fresh.format,request.signal,fresh.format==='hls'?renewStream:failStream);if(revision!==loadRevision.current||startedUserId!==userRef.current?.id||request.signal.aborted)return;audio.volume=stateRef.current.volume;audio.currentTime=desiredPosition.current;audio.playbackRate=roomRef.current?1:settingsRef.current.playbackRate;
-        if(desiredPlay.current) {try {await audio.play();ensureAudioMeter();}catch {setTrackLoading(false);setAutoplayBlocked(true);store.notify(t('copy.704'));if(strict)throw new Error(t('copy.705'));}}
+        if(desiredPlay.current) {try {await audio.play();ensureAudioMeter();}catch(error) {if(!current())return;setTrackLoading(false);if(!isPlaybackBlocked(error)){setAutoplayBlocked(false);reportError(error,'playback',{code:'AUDIO_START'});throw new ApiError('AUDIO_FORMAT_UNAVAILABLE',t('copy.715'));}setAutoplayBlocked(true);store.notify(t('copy.704'));if(strict)throw new Error(t('copy.705'));}}
         if(userRef.current&&settingsRef.current.autoCache&&!local&&fresh.offline)void saveTrack(userRef.current.id,effective,settingsRef.current.cacheLimitMB,false).catch(()=>{});
       } else if(fresh.kind==='yandex'&&playing){store.notify(t('copy.706'));if(strict)throw new Error(t('copy.707'));}
       if(strict&&playing&&fresh.kind!=='audio')await waitForPlayback(()=>trackRef.current?.id===next.id&&stateRef.current.playing,request.signal,t('copy.708'));
@@ -97,7 +112,7 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
     if(command.command==='pause'){desiredPlay.current=false;setTrackLoading(false);audio.pause();controller.current?.pause();update({playing:false});return;}
     if(command.command==='play'){
       desiredPlay.current=true;
-      try {if(playback?.kind==='audio'){await audio.play();ensureAudioMeter();}else if(controller.current){await controller.current.play();if(strict&&loadAbort.current)await waitForPlayback(()=>stateRef.current.playing,loadAbort.current.signal,t('copy.711'));}else {store.notify(t('copy.712'));if(strict)throw new Error(t('copy.713'));return;}setAutoplayBlocked(false);}catch(error){setAutoplayBlocked(true);throw error;}
+      try {if(playbackRef.current?.kind==='audio'){await audio.play();ensureAudioMeter();}else if(controller.current){await controller.current.play();if(strict&&loadAbort.current)await waitForPlayback(()=>stateRef.current.playing,loadAbort.current.signal,t('copy.711'));}else {store.notify(t('copy.712'));if(strict)throw new Error(t('copy.713'));return;}setAutoplayBlocked(false);}catch(error){setAutoplayBlocked(isPlaybackBlocked(error));if(!isPlaybackBlocked(error))throw new ApiError('AUDIO_FORMAT_UNAVAILABLE',t('copy.715'));throw error;}
     }
   },[applyTrack,audio,ensureAudioMeter,playback,resolveQueue,store.library.tracks,store.navigate,store.notify,update]);
   const applyCommandRef=useRef(applyCommand);applyCommandRef.current=applyCommand;
@@ -124,21 +139,24 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
   },[socket,store.notify,setOutput]);
   const sendCommandRef=useRef(sendCommand);sendCommandRef.current=sendCommand;
   const command=useCallback((next:Command):Promise<void>=>{
+    // Resume the audio graph within the trusted tap, before room/device awaits.
+    if(next.command==='play'&&outputHereRef.current)ensureAudioMeter();
     const roomId=roomRef.current?.id;
     if(!roomId||!['volume','seek'].includes(next.command))return sendCommand(next);
     // Separate trailing lanes preserve both controls and keep fast drags below the socket quota.
     return new Promise(resolve=>{const key=next.command,current=sliderCommands.current.get(key);if(current){current.next=next;current.done.push(resolve);return;}
       const entry={next,roomId,done:[resolve],timer:setTimeout(()=>{sliderCommands.current.delete(key);void sendCommand(entry.next,entry.roomId).finally(()=>entry.done.forEach(done=>done()));},150)};sliderCommands.current.set(key,entry);
     });
-  },[sendCommand]);
+  },[sendCommand,ensureAudioMeter]);
   useEffect(()=>()=>{for(const entry of sliderCommands.current.values()){clearTimeout(entry.timer);entry.done.forEach(done=>done());}sliderCommands.current.clear();},[]);
   const playTrack=useCallback(async(next:Track,order?:Track[])=>{
+    if(outputHereRef.current)ensureAudioMeter();
     try{if(roomRef.current||connectRef.current&&!connectRef.current.independent&&!outputHereRef.current)await command({command:'track',trackId:next.id,queue:(order||[next]).map(item=>item.id)});else {
       if(socket?.connected&&!connectRef.current?.activeDeviceId){const result=await socket.timeout(8000).emitWithAck('device:claim',{});if(result.error)throw new Error(result.error.message);setOutput(true);}
       await applyTrack(next,order);
       if(socket?.connected){const dur=durationRef.current>0?durationRef.current:(trackRef.current?.duration||0);socket.emit('device:state',{...stateRef.current,duration:dur>0?dur:undefined,outputActive:true,roomId:null});}
     }}catch(error){store.notify(errorText(error),true);}
-  },[applyTrack,command,socket,setOutput,store.notify]);
+  },[applyTrack,command,socket,setOutput,store.notify,ensureAudioMeter]);
   const finish=useCallback(()=>{
     if(!outputHereRef.current)return;
     const currentRoom=roomRef.current;
@@ -217,7 +235,7 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
     const onTime=()=>{if(local())update({position:audio.currentTime});};const onPlay=()=>{if(local()){update({playing:true});if(!resolvingTrack.current)setTrackLoading(audio.readyState<3);}else audio.pause();};const onPause=()=>{if(local()){update({playing:false});if(!resolvingTrack.current)setTrackLoading(false);}};const onDuration=()=>{if(local()&&Number.isFinite(audio.duration))setDuration(audio.duration);};
     const onReady=()=>{if(local()&&!resolvingTrack.current)setTrackLoading(false);};const onWaiting=()=>{if(local()&&desiredPlay.current&&playbackRef.current?.kind==='audio')setTrackLoading(true);};
     const onEnded=()=>{if(local()){setTrackLoading(false);finish();}};
-    const onError=()=>{if(local()&&audio.error&&audio.src){setTrackLoading(false);reportError('Audio playback failed','playback',{code:`MEDIA_${audio.error.code}`});update({playing:false});store.notify(t('copy.715'),true);}};
+    const onError=()=>{if(local()&&audio.error&&audio.src&&!streamLoader.current.handlesMediaErrors&&!resolvingTrack.current){setTrackLoading(false);setAutoplayBlocked(false);reportError('Audio playback failed','playback',{code:`MEDIA_${audio.error.code}`});update({playing:false});store.notify(t('copy.715'),true);}};
     audio.addEventListener('canplay',onReady);audio.addEventListener('playing',onReady);audio.addEventListener('waiting',onWaiting);audio.addEventListener('stalled',onWaiting);audio.addEventListener('timeupdate',onTime);audio.addEventListener('play',onPlay);audio.addEventListener('pause',onPause);audio.addEventListener('durationchange',onDuration);audio.addEventListener('ended',onEnded);audio.addEventListener('error',onError);
     return()=>{audio.removeEventListener('canplay',onReady);audio.removeEventListener('playing',onReady);audio.removeEventListener('waiting',onWaiting);audio.removeEventListener('stalled',onWaiting);audio.removeEventListener('timeupdate',onTime);audio.removeEventListener('play',onPlay);audio.removeEventListener('pause',onPause);audio.removeEventListener('durationchange',onDuration);audio.removeEventListener('ended',onEnded);audio.removeEventListener('error',onError);};
   },[audio,finish,store.notify,update]);
@@ -274,7 +292,7 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
   const removeQueue=useCallback((id:string)=>{const remaining=queueRef.current.filter(item=>item.id!==id);if(roomRef.current){void command({command:'seek',position:stateRef.current.position,queue:remaining.map(item=>item.id)});return;}setQueue(remaining);queueRef.current=remaining;update({queue:remaining.map(item=>item.id)});},[update,command]);
   const channel=useMemo(()=>new BroadcastChannel(`glukwave-mini-${surfaceId}`),[]);
   const [miniActive,setMiniActive]=useState(false),miniWindow=useRef<Window|null>(null);
-  useEffect(()=>{const send=()=>channel.postMessage({type:'state',trackLoading,track:trackRef.current,state:stateRef.current,duration:audio.duration||trackRef.current?.duration||0,palette:settingsRef.current.appearance[store.resolvedTheme],motion:store.motion,speed:settingsRef.current.appearance.speed});channel.onmessage=event=>{if(event.data?.command)void command(event.data);else if(event.data?.type==='subscribe'){setMiniActive(true);send();}else if(event.data?.type==='unsubscribe')setMiniActive(false);};if(!miniActive)return()=>{channel.onmessage=null;};const interval=setInterval(()=>{if(miniWindow.current?.closed){setMiniActive(false);return;}send();},500);send();return()=>{clearInterval(interval);channel.onmessage=null;};},[channel,command,audio,miniActive,store.resolvedTheme,store.motion,trackLoading]);
+  useEffect(()=>{const send=()=>channel.postMessage({type:'state',trackLoading,track:trackRef.current,state:stateRef.current,duration:audio.duration||trackRef.current?.duration||0,palette:{...settingsRef.current.appearance[store.resolvedTheme],accent:store.renderAccent},motion:store.motion,speed:settingsRef.current.appearance.speed});channel.onmessage=event=>{if(event.data?.command)void command(event.data);else if(event.data?.type==='subscribe'){setMiniActive(true);send();}else if(event.data?.type==='unsubscribe')setMiniActive(false);};if(!miniActive)return()=>{channel.onmessage=null;};const interval=setInterval(()=>{if(miniWindow.current?.closed){setMiniActive(false);return;}send();},500);send();return()=>{clearInterval(interval);channel.onmessage=null;};},[channel,command,audio,miniActive,store.resolvedTheme,store.renderAccent,store.motion,trackLoading]);
   const mini=useCallback(async()=>{const pip=(window as Window & {documentPictureInPicture?:{requestWindow:(options:{width:number;height:number})=>Promise<Window>}}).documentPictureInPicture;const url=`/mini.html?device=${encodeURIComponent(surfaceId)}`;if(pip){const pipWindow=await pip.requestWindow({width:380,height:176});miniWindow.current=pipWindow;pipWindow.document.title='GlukWave';const iframe=pipWindow.document.createElement('iframe');iframe.src=url;iframe.style.cssText='border:0;width:100%;height:100vh';pipWindow.document.body.style.margin='0';pipWindow.document.body.appendChild(iframe);}else {const popup=window.open(url,'glukwave-mini','width=380,height=176,popup=yes');if(!popup)throw new Error(t('copy.723'));miniWindow.current=popup;store.notify(t('copy.724'));}},[store.notify]);
   useEffect(()=>{let timer:ReturnType<typeof setInterval>|undefined;const tick=()=>{const anchor=remoteAnchor.current;if(!document.hidden&&!outputHereRef.current&&stateRef.current.playing&&anchor){const position=anchor.position+(performance.now()-anchor.time)/1000;stateRef.current={...stateRef.current,position};setState({...stateRef.current});}};const schedule=()=>{clearInterval(timer);timer=undefined;if(!document.hidden&&state.playing&&!outputHere){tick();timer=setInterval(tick,250);}};schedule();document.addEventListener('visibilitychange',schedule);return()=>{clearInterval(timer);document.removeEventListener('visibilitychange',schedule);};},[state.playing,outputHere]);
   const setIndependent=useCallback(async(independent:boolean)=>{const result=await patch<{connect:ConnectState}>('/connect',{independent});syncConnectRef.current(result.connect);},[]);

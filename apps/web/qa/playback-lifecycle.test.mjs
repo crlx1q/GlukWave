@@ -1,7 +1,14 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {waitForPlayback} from '../src/playback-lifecycle.ts';
+import {waitForPlayback,isPlaybackBlocked} from '../src/playback-lifecycle.ts';
 import {mediaDownloadPath,mediaArtworkPath} from '../src/media-download.ts';
+
+test('unsupported and interrupted audio never masquerade as a missing user gesture',()=>{
+ assert.equal(isPlaybackBlocked(new DOMException('Tap required','NotAllowedError')),true);
+ assert.equal(isPlaybackBlocked(new DOMException('The element has no supported sources.','NotSupportedError')),false);
+ assert.equal(isPlaybackBlocked(new DOMException('Playback changed','AbortError')),false);
+ assert.equal(isPlaybackBlocked(Error('Failed to fetch')),false);
+});
 
 test('cancelled media readiness stops polling and rejects the pending transfer',async()=>{
  const controller=new AbortController();let reads=0;

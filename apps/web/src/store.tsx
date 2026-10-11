@@ -1,4 +1,5 @@
 import { t, useLocale, setLanguageChoice } from './locale';
+import {readableCoverAccent} from './cover-accent';
 import { createContext, useCallback, useContext, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from 'react';
 import type { Socket } from 'socket.io-client';
 import { ApiError, api, errorText, post } from './api';
@@ -17,16 +18,18 @@ type Store = {
   notify:(text:string,error?:boolean)=>void; toast:Toast|null; requireAuth:()=>boolean; logout:()=>Promise<void>;
   saveSettings:(partial:SettingsPatch)=>Promise<void>; bindSettingsSync:(socket:Socket)=>()=>void; settingsSync:'saved'|'saving'|'local'; resolvedTheme:'light'|'dark'|'amoled'; motion:boolean; like:(track:Track)=>Promise<void>; remember:(tracks:Track[])=>void;
   run:<T>(operation:()=>Promise<T>,success?:string)=>Promise<T|undefined>;
+  renderAccent:string;setCoverAccent:(value:string|null)=>void;
 };
 const Context = createContext<Store|null>(null);
 const emptyLibrary: Library = {tracks:[],likedIds:[],playlists:[],history:[]};
 const routes: Route[] = ['home','search','library','sources','rooms','lofi','downloads','settings','profile','admin'];
 function initialRoute():Route { const route=location.hash.slice(1).split('?')[0]; return routes.includes(route as Route)?route as Route:'home'; }
 export function StoreProvider({children}:{children:ReactNode}) {useLocale();
+  const [coverAccent,setCoverAccent]=useState<string|null>(null);
   const [user,setUserState]=useState<User|null>(null), [config,setConfig]=useState<Config|null>(null), [library,setLibrary]=useState<Library>(emptyLibrary), [settings,setSettings]=useState<Settings>(()=>readLocalSettings(null));
   const [libraryOwner,setLibraryOwner]=useState<string|null>(null),[libraryPending,setLibraryPending]=useState(false),libraryFlight=useRef(0);
   const [loading,setLoading]=useState(true),[offline,setOffline]=useState(!navigator.onLine),[route,setRoute]=useState<Route>(initialRoute),[query,setQuery]=useState(''),[source,setSource]=useState('all'),[authOpen,setAuthOpen]=useState(false),[toast,setToast]=useState<Toast|null>(null);
-  const [settingsSync,setSettingsSync]=useState<'saved'|'saving'|'local'>('local'),[systemDark,setSystemDark]=useState(()=>matchMedia('(prefers-color-scheme: dark)').matches),[systemMotion,setSystemMotion]=useState(()=>matchMedia('(prefers-reduced-motion: reduce)').matches);
+  const [settingsSync,setSettingsSync]=useState<'saved'|'saving'|'local'>('local'),[systemDark,setSystemDark]=useState(()=>matchMedia('(prefers-color-scheme: dark)').matches),[systemMotion,setSystemMotion]=useState(()=>matchMedia('(prefers-reduced-motion: reduce)').matches),[systemContrast,setSystemContrast]=useState(()=>matchMedia('(prefers-contrast: more)').matches);
   const settingsRef=useRef(settings);settingsRef.current=settings;
   const settingsServer=useRef(settings),pendingSettings=useRef<SettingsPatch>({}),serverRevision=useRef(-1),accountGeneration=useRef(0),settingsTimer=useRef<ReturnType<typeof setTimeout>|undefined>(undefined),settingsFlight=useRef<{userId:string;generation:number;controller:AbortController;partial:SettingsPatch}|null>(null),flushSettingsRef=useRef<(id:string)=>Promise<void>>(async()=>{});
   const userRef=useRef(user);userRef.current=user;const toastTimer=useRef<ReturnType<typeof setTimeout>|undefined>(undefined);
@@ -115,16 +118,17 @@ export function StoreProvider({children}:{children:ReactNode}) {useLocale();
     return()=>controller.abort();
   },[userId,pullSettings,scheduleSettings]);
   useEffect(()=>{
-    const appearance=matchMedia('(prefers-color-scheme: dark)'),motion=matchMedia('(prefers-reduced-motion: reduce)');const update=()=>{setSystemDark(appearance.matches);setSystemMotion(motion.matches);};appearance.addEventListener('change',update);motion.addEventListener('change',update);
+    const appearance=matchMedia('(prefers-color-scheme: dark)'),motion=matchMedia('(prefers-reduced-motion: reduce)'),contrast=matchMedia('(prefers-contrast: more)');const update=()=>{setSystemDark(appearance.matches);setSystemMotion(motion.matches);setSystemContrast(contrast.matches);};appearance.addEventListener('change',update);motion.addEventListener('change',update);contrast.addEventListener('change',update);
     const sync=()=>{const id=userRef.current?.id;if(id&&navigator.onLine&&Object.keys(pendingSettings.current).length)scheduleSettings(id,100);};
     // Optimistic drafts in another tab are not a server snapshot. Reading them
     // back through the API causes a ping-pong that resets the save debounce.
     const storage=(event:StorageEvent)=>{const id=userRef.current?.id||null;if(id){if(event.key!==`gw-settings-confirmed:${id}`||!event.newValue)return;try{const confirmed=JSON.parse(event.newValue) as SettingsSnapshot;if(confirmed.settings&&Number.isSafeInteger(confirmed.revision))acceptSettings(id,accountGeneration.current,confirmed);}catch{/* Ignore invalid local metadata. */}}else if(event.key==='gw-settings:guest'){const next=readLocalSettings(null);settingsServer.current=next;settingsRef.current=next;setSettings(next);}};
     window.addEventListener('online',sync);window.addEventListener('storage',storage);
-    return()=>{appearance.removeEventListener('change',update);motion.removeEventListener('change',update);window.removeEventListener('online',sync);window.removeEventListener('storage',storage);clearTimeout(settingsTimer.current);settingsFlight.current?.controller.abort();};
+    return()=>{appearance.removeEventListener('change',update);motion.removeEventListener('change',update);contrast.removeEventListener('change',update);window.removeEventListener('online',sync);window.removeEventListener('storage',storage);clearTimeout(settingsTimer.current);settingsFlight.current?.controller.abort();};
   },[scheduleSettings,pullSettings,acceptSettings]);
   const resolvedTheme=settings.theme==='system'?(systemDark?'dark':'light'):settings.theme,motion=!settings.reducedMotion&&!systemMotion;
-  useLayoutEffect(()=>applyAppearance(settings.appearance,resolvedTheme,motion),[settings.appearance,resolvedTheme,motion]);
+  const renderAccent=readableCoverAccent(settings.appearance.coverAccent?coverAccent:null,settings.appearance[resolvedTheme].bg,settings.appearance[resolvedTheme].accent,systemContrast);
+  useLayoutEffect(()=>applyAppearance(settings.appearance,resolvedTheme,motion,renderAccent),[settings.appearance,resolvedTheme,motion,renderAccent]);
   const requireAuth=useCallback(()=>{if(!user){setAuthOpen(true);return false;}if(offline){notify(t('copy.729'),true);return false;}return true;},[user,offline,notify]);
   const run=useCallback(async<T,>(operation:()=>Promise<T>,success?:string)=>{try{const result=await operation();if(success)notify(success);return result;}catch(error){notify(errorText(error),true);return undefined;}},[notify]);
   const saveSettings=useCallback(async(partial:SettingsPatch)=>{
@@ -136,7 +140,7 @@ export function StoreProvider({children}:{children:ReactNode}) {useLocale();
   const like=useCallback(async(track:Track)=>{if(!requireAuth())return;const liked=!library.likedIds.includes(track.id);await api(`/library/likes/${encodeURIComponent(track.id)}`,{method:'PUT',body:JSON.stringify({liked})});await refreshLibrary();},[requireAuth,library.likedIds,refreshLibrary]);
   const remember=useCallback((tracks:Track[])=>{const known=new Map(tracks.map(track=>[track.id,track]));setLibrary(current=>({...current,tracks:current.tracks.map(track=>known.get(track.id)||track)}));},[]);
   const logout=useCallback(async()=>{if(user){await post('/auth/logout');await clearPrivate(user.id);}setUser(null);setLibrary(emptyLibrary);navigate('home');notify(t('copy.730'));},[user,setUser,navigate,notify]);
-  return <Context.Provider value={{user,config,library,settings,settingsSync,resolvedTheme,motion,loading,libraryLoading:!!user&&(libraryPending||libraryOwner!==user.id),offline,route,navigate,query,setQuery,source,setSource,authOpen,setAuthOpen,setUser,refresh,refreshLibrary,notify,toast,requireAuth,logout,saveSettings,bindSettingsSync,like,remember,run}}>{children}</Context.Provider>;
+  return <Context.Provider value={{user,config,library,settings,renderAccent,setCoverAccent,settingsSync,resolvedTheme,motion,loading,libraryLoading:!!user&&(libraryPending||libraryOwner!==user.id),offline,route,navigate,query,setQuery,source,setSource,authOpen,setAuthOpen,setUser,refresh,refreshLibrary,notify,toast,requireAuth,logout,saveSettings,bindSettingsSync,like,remember,run}}>{children}</Context.Provider>;
 }
 export function useStore(){const context=useContext(Context);if(!context)throw new Error('Missing store');return context;}
 

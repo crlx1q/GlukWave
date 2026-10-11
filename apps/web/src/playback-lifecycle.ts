@@ -1,3 +1,7 @@
+/** Codec/network failures require a different response from autoplay policy. */
+export function isPlaybackBlocked(error:unknown):boolean{
+ return !!error&&typeof error==='object'&&'name'in error&&error.name==='NotAllowedError';
+}
 /** Readiness must never outlive the media load that requested it. */
 export function waitForPlayback(predicate:()=>boolean,signal:AbortSignal,message:string,timeout=7500,interval=100):Promise<void>{
  return new Promise((resolve,reject)=>{

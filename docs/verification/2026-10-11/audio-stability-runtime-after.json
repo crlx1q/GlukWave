@@ -1,0 +1,15 @@
+{
+  "createdMs": 12.962199999999996,
+  "availabilityChecks": 12,
+  "checksMs": 0.155900000000031,
+  "available": true,
+  "nodeCpuMs": 15,
+  "rssMB": 49.8828125,
+  "stats": {
+    "active": 0,
+    "queued": 0,
+    "completed": 0,
+    "failed": 0,
+    "limit": 1
+  }
+}

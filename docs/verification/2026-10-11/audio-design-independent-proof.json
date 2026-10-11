@@ -1,0 +1,907 @@
+{
+  "cases": [
+    {
+      "theme": "dark",
+      "w": 1440,
+      "h": 950,
+      "scale": 1,
+      "home": {
+        "overflow": false,
+        "player": {
+          "bottom": 932,
+          "height": 96,
+          "left": 112,
+          "right": 1416,
+          "top": 836,
+          "width": 1304,
+          "x": 112,
+          "y": 836
+        },
+        "wave": {
+          "bottom": 549.6875,
+          "height": 340,
+          "left": 128,
+          "right": 1390,
+          "top": 209.6875,
+          "width": 1262,
+          "x": 128,
+          "y": 209.6875
+        }
+      },
+      "full": {
+        "controls": {
+          "bottom": 714.71875,
+          "height": 320.71875,
+          "left": 34,
+          "right": 450.40625,
+          "top": 394,
+          "width": 416.40625,
+          "x": 34,
+          "y": 394
+        },
+        "cover": {
+          "bottom": 394,
+          "height": 288,
+          "left": 34,
+          "right": 450.40625,
+          "top": 106,
+          "width": 416.40625,
+          "x": 34,
+          "y": 106
+        },
+        "listening": {
+          "bottom": 936,
+          "height": 830,
+          "left": 30,
+          "right": 458.40625,
+          "top": 106,
+          "width": 428.40625,
+          "x": 30,
+          "y": 106
+        },
+        "overflow": false,
+        "queue": {
+          "bottom": 936,
+          "height": 830,
+          "left": 1057.90625,
+          "right": 1405.984375,
+          "top": 106,
+          "width": 348.078125,
+          "x": 1057.90625,
+          "y": 106
+        },
+        "queueDisplay": "block"
+      },
+      "eq": {
+        "bottom": 566.71875,
+        "height": 420.5,
+        "left": 8,
+        "right": 388,
+        "top": 146.21875,
+        "width": 380,
+        "x": 8,
+        "y": 146.21875
+      }
+    },
+    {
+      "theme": "dark",
+      "w": 1280,
+      "h": 800,
+      "scale": 1.25,
+      "home": {
+        "overflow": false,
+        "player": {
+          "bottom": 777.5,
+          "height": 120,
+          "left": 140,
+          "right": 1250,
+          "top": 657.5,
+          "width": 1110,
+          "x": 140,
+          "y": 657.5
+        },
+        "wave": {
+          "bottom": 683.03125,
+          "height": 425,
+          "left": 160,
+          "right": 1220,
+          "top": 258.03125,
+          "width": 1060,
+          "x": 160,
+          "y": 258.03125
+        }
+      },
+      "full": {
+        "controls": {
+          "bottom": 778.234375,
+          "height": 395.984375,
+          "left": 42.5,
+          "right": 391.9375,
+          "top": 382.25,
+          "width": 349.4375,
+          "x": 42.5,
+          "y": 382.25
+        },
+        "cover": {
+          "bottom": 382.25,
+          "height": 250,
+          "left": 42.5,
+          "right": 391.9375,
+          "top": 132.25,
+          "width": 349.4375,
+          "x": 42.5,
+          "y": 132.25
+        },
+        "listening": {
+          "bottom": 782.5,
+          "height": 650.25,
+          "left": 37.5,
+          "right": 401.9375,
+          "top": 132.25,
+          "width": 364.4375,
+          "x": 37.5,
+          "y": 132.25
+        },
+        "overflow": false,
+        "queue": {
+          "bottom": 782.5,
+          "height": 650.25,
+          "left": 937.484375,
+          "right": 1237.484375,
+          "top": 132.25,
+          "width": 300,
+          "x": 937.484375,
+          "y": 132.25
+        },
+        "queueDisplay": "block"
+      }
+    },
+    {
+      "theme": "dark",
+      "w": 768,
+      "h": 900,
+      "scale": 1,
+      "home": {
+        "overflow": false,
+        "player": {
+          "bottom": 821,
+          "height": 72,
+          "left": 10,
+          "right": 758,
+          "top": 749,
+          "width": 748,
+          "x": 10,
+          "y": 749
+        },
+        "wave": {
+          "bottom": 446.796875,
+          "height": 270,
+          "left": 0,
+          "right": 758,
+          "top": 176.796875,
+          "width": 758,
+          "x": 0,
+          "y": 176.796875
+        }
+      },
+      "full": {
+        "controls": {
+          "bottom": 315.390625,
+          "height": 186.390625,
+          "left": 120,
+          "right": 742,
+          "top": 129,
+          "width": 622,
+          "x": 120,
+          "y": 129
+        },
+        "cover": {
+          "bottom": 315.390625,
+          "height": 186.390625,
+          "left": 22,
+          "right": 104,
+          "top": 129,
+          "width": 82,
+          "x": 22,
+          "y": 129
+        },
+        "listening": {
+          "bottom": 333.390625,
+          "height": 210.390625,
+          "left": 22,
+          "right": 742,
+          "top": 123,
+          "width": 720,
+          "x": 22,
+          "y": 123
+        },
+        "overflow": false,
+        "queue": {
+          "bottom": 0,
+          "height": 0,
+          "left": 0,
+          "right": 0,
+          "top": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "queueDisplay": "none"
+      }
+    },
+    {
+      "theme": "dark",
+      "w": 375,
+      "h": 812,
+      "scale": 1,
+      "home": {
+        "overflow": false,
+        "player": {
+          "bottom": 733,
+          "height": 72,
+          "left": 10,
+          "right": 365,
+          "top": 661,
+          "width": 355,
+          "x": 10,
+          "y": 661
+        },
+        "wave": {
+          "bottom": 481.59375,
+          "height": 270,
+          "left": 0,
+          "right": 365,
+          "top": 211.59375,
+          "width": 365,
+          "x": 0,
+          "y": 211.59375
+        }
+      },
+      "full": {
+        "controls": {
+          "bottom": 319.390625,
+          "height": 190.390625,
+          "left": 120,
+          "right": 349,
+          "top": 129,
+          "width": 229,
+          "x": 120,
+          "y": 129
+        },
+        "cover": {
+          "bottom": 319.390625,
+          "height": 190.390625,
+          "left": 22,
+          "right": 104,
+          "top": 129,
+          "width": 82,
+          "x": 22,
+          "y": 129
+        },
+        "listening": {
+          "bottom": 337.390625,
+          "height": 214.390625,
+          "left": 22,
+          "right": 349,
+          "top": 123,
+          "width": 327,
+          "x": 22,
+          "y": 123
+        },
+        "overflow": false,
+        "queue": {
+          "bottom": 0,
+          "height": 0,
+          "left": 0,
+          "right": 0,
+          "top": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "queueDisplay": "none"
+      }
+    },
+    {
+      "theme": "dark",
+      "w": 320,
+      "h": 780,
+      "scale": 1.25,
+      "home": {
+        "overflow": false,
+        "player": {
+          "bottom": 681.25,
+          "height": 90,
+          "left": 12.5,
+          "right": 307.5,
+          "top": 591.25,
+          "width": 295,
+          "x": 12.5,
+          "y": 591.25
+        },
+        "wave": {
+          "bottom": 596,
+          "height": 337.5,
+          "left": 0,
+          "right": 310,
+          "top": 258.5,
+          "width": 310,
+          "x": 0,
+          "y": 258.5
+        }
+      },
+      "full": {
+        "controls": {
+          "bottom": 570.25,
+          "height": 303,
+          "left": 22.5,
+          "right": 292.5,
+          "top": 267.25,
+          "width": 270,
+          "x": 22.5,
+          "y": 267.25
+        },
+        "cover": {
+          "bottom": 252.25,
+          "height": 91.25,
+          "left": 22.5,
+          "right": 292.5,
+          "top": 161,
+          "width": 270,
+          "x": 22.5,
+          "y": 161
+        },
+        "listening": {
+          "bottom": 592.5,
+          "height": 439,
+          "left": 22.5,
+          "right": 292.5,
+          "top": 153.5,
+          "width": 270,
+          "x": 22.5,
+          "y": 153.5
+        },
+        "overflow": false,
+        "queue": {
+          "bottom": 0,
+          "height": 0,
+          "left": 0,
+          "right": 0,
+          "top": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "queueDisplay": "none"
+      },
+      "eq": {
+        "bottom": 507.625,
+        "height": 499.625,
+        "left": 8,
+        "right": 308,
+        "top": 8,
+        "width": 300,
+        "x": 8,
+        "y": 8
+      }
+    },
+    {
+      "theme": "light",
+      "w": 1440,
+      "h": 950,
+      "scale": 1,
+      "home": {
+        "overflow": false,
+        "player": {
+          "bottom": 932,
+          "height": 96,
+          "left": 112,
+          "right": 1416,
+          "top": 836,
+          "width": 1304,
+          "x": 112,
+          "y": 836
+        },
+        "wave": {
+          "bottom": 549.6875,
+          "height": 340,
+          "left": 128,
+          "right": 1390,
+          "top": 209.6875,
+          "width": 1262,
+          "x": 128,
+          "y": 209.6875
+        }
+      },
+      "full": {
+        "controls": {
+          "bottom": 714.71875,
+          "height": 320.71875,
+          "left": 34,
+          "right": 450.40625,
+          "top": 394,
+          "width": 416.40625,
+          "x": 34,
+          "y": 394
+        },
+        "cover": {
+          "bottom": 394,
+          "height": 288,
+          "left": 34,
+          "right": 450.40625,
+          "top": 106,
+          "width": 416.40625,
+          "x": 34,
+          "y": 106
+        },
+        "listening": {
+          "bottom": 936,
+          "height": 830,
+          "left": 30,
+          "right": 458.40625,
+          "top": 106,
+          "width": 428.40625,
+          "x": 30,
+          "y": 106
+        },
+        "overflow": false,
+        "queue": {
+          "bottom": 936,
+          "height": 830,
+          "left": 1057.90625,
+          "right": 1405.984375,
+          "top": 106,
+          "width": 348.078125,
+          "x": 1057.90625,
+          "y": 106
+        },
+        "queueDisplay": "block"
+      },
+      "eq": {
+        "bottom": 566.71875,
+        "height": 420.5,
+        "left": 8,
+        "right": 388,
+        "top": 146.21875,
+        "width": 380,
+        "x": 8,
+        "y": 146.21875
+      }
+    },
+    {
+      "theme": "light",
+      "w": 390,
+      "h": 844,
+      "scale": 1.25,
+      "home": {
+        "overflow": false,
+        "player": {
+          "bottom": 745.25,
+          "height": 90,
+          "left": 12.5,
+          "right": 377.5,
+          "top": 655.25,
+          "width": 365,
+          "x": 12.5,
+          "y": 655.25
+        },
+        "wave": {
+          "bottom": 602,
+          "height": 337.5,
+          "left": 0,
+          "right": 380,
+          "top": 264.5,
+          "width": 380,
+          "x": 0,
+          "y": 264.5
+        }
+      },
+      "full": {
+        "controls": {
+          "bottom": 520.25,
+          "height": 238,
+          "left": 27.5,
+          "right": 357.5,
+          "top": 282.25,
+          "width": 330,
+          "x": 27.5,
+          "y": 282.25
+        },
+        "cover": {
+          "bottom": 267.25,
+          "height": 106.25,
+          "left": 27.5,
+          "right": 357.5,
+          "top": 161,
+          "width": 330,
+          "x": 27.5,
+          "y": 161
+        },
+        "listening": {
+          "bottom": 542.5,
+          "height": 389,
+          "left": 27.5,
+          "right": 357.5,
+          "top": 153.5,
+          "width": 330,
+          "x": 27.5,
+          "y": 153.5
+        },
+        "overflow": false,
+        "queue": {
+          "bottom": 0,
+          "height": 0,
+          "left": 0,
+          "right": 0,
+          "top": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "queueDisplay": "none"
+      }
+    },
+    {
+      "theme": "amoled",
+      "w": 1440,
+      "h": 950,
+      "scale": 1,
+      "home": {
+        "overflow": false,
+        "player": {
+          "bottom": 932,
+          "height": 96,
+          "left": 112,
+          "right": 1416,
+          "top": 836,
+          "width": 1304,
+          "x": 112,
+          "y": 836
+        },
+        "wave": {
+          "bottom": 549.6875,
+          "height": 340,
+          "left": 128,
+          "right": 1390,
+          "top": 209.6875,
+          "width": 1262,
+          "x": 128,
+          "y": 209.6875
+        }
+      },
+      "full": {
+        "controls": {
+          "bottom": 714.71875,
+          "height": 320.71875,
+          "left": 34,
+          "right": 450.40625,
+          "top": 394,
+          "width": 416.40625,
+          "x": 34,
+          "y": 394
+        },
+        "cover": {
+          "bottom": 394,
+          "height": 288,
+          "left": 34,
+          "right": 450.40625,
+          "top": 106,
+          "width": 416.40625,
+          "x": 34,
+          "y": 106
+        },
+        "listening": {
+          "bottom": 936,
+          "height": 830,
+          "left": 30,
+          "right": 458.40625,
+          "top": 106,
+          "width": 428.40625,
+          "x": 30,
+          "y": 106
+        },
+        "overflow": false,
+        "queue": {
+          "bottom": 936,
+          "height": 830,
+          "left": 1057.90625,
+          "right": 1405.984375,
+          "top": 106,
+          "width": 348.078125,
+          "x": 1057.90625,
+          "y": 106
+        },
+        "queueDisplay": "block"
+      },
+      "eq": {
+        "bottom": 566.71875,
+        "height": 420.5,
+        "left": 8,
+        "right": 388,
+        "top": 146.21875,
+        "width": 380,
+        "x": 8,
+        "y": 146.21875
+      }
+    },
+    {
+      "theme": "amoled",
+      "w": 390,
+      "h": 844,
+      "scale": 1.25,
+      "home": {
+        "overflow": false,
+        "player": {
+          "bottom": 745.25,
+          "height": 90,
+          "left": 12.5,
+          "right": 377.5,
+          "top": 655.25,
+          "width": 365,
+          "x": 12.5,
+          "y": 655.25
+        },
+        "wave": {
+          "bottom": 602,
+          "height": 337.5,
+          "left": 0,
+          "right": 380,
+          "top": 264.5,
+          "width": 380,
+          "x": 0,
+          "y": 264.5
+        }
+      },
+      "full": {
+        "controls": {
+          "bottom": 520.25,
+          "height": 238,
+          "left": 27.5,
+          "right": 357.5,
+          "top": 282.25,
+          "width": 330,
+          "x": 27.5,
+          "y": 282.25
+        },
+        "cover": {
+          "bottom": 267.25,
+          "height": 106.25,
+          "left": 27.5,
+          "right": 357.5,
+          "top": 161,
+          "width": 330,
+          "x": 27.5,
+          "y": 161
+        },
+        "listening": {
+          "bottom": 542.5,
+          "height": 389,
+          "left": 27.5,
+          "right": 357.5,
+          "top": 153.5,
+          "width": 330,
+          "x": 27.5,
+          "y": 153.5
+        },
+        "overflow": false,
+        "queue": {
+          "bottom": 0,
+          "height": 0,
+          "left": 0,
+          "right": 0,
+          "top": 0,
+          "width": 0,
+          "x": 0,
+          "y": 0
+        },
+        "queueDisplay": "none"
+      }
+    },
+    {
+      "theme": "light",
+      "w": 320,
+      "h": 780,
+      "scale": 1.25,
+      "eq": {
+        "bottom": 507.625,
+        "height": 499.625,
+        "left": 8,
+        "right": 308,
+        "top": 8,
+        "width": 300,
+        "x": 8,
+        "y": 8
+      },
+      "overflow": false
+    },
+    {
+      "theme": "amoled",
+      "w": 320,
+      "h": 780,
+      "scale": 1.25,
+      "eq": {
+        "bottom": 507.625,
+        "height": 499.625,
+        "left": 8,
+        "right": 308,
+        "top": 8,
+        "width": 300,
+        "x": 8,
+        "y": 8
+      },
+      "overflow": false
+    }
+  ],
+  "checks": [
+    "Preset, band keyboard and saved curve changed actual settings",
+    {
+      "returnFocus": true
+    },
+    {
+      "autoAccents": [
+        "#5688ac",
+        "#9d603f"
+      ],
+      "manualAfterTrack": "#466a83"
+    },
+    {
+      "volume": 0,
+      "icon": "animated-icon icon-muted "
+    },
+    {
+      "volume": 0.25,
+      "icon": "animated-icon icon-volumeLow "
+    },
+    {
+      "volume": 0.75,
+      "icon": "animated-icon icon-volume "
+    },
+    {
+      "commentsCover": true,
+      "commentsQueue": "block"
+    },
+    {
+      "speed": 1.1,
+      "preamp": -2.5
+    },
+    "Outside click dismisses actual EQ"
+  ],
+  "screenshots": [
+    "work/qa/eval-audio-1-dark-1440-1-home.png",
+    "work/qa/eval-audio-1-dark-1440-1-full.png",
+    "work/qa/eval-audio-1-dark-1440-1-full-eq.png",
+    "work/qa/eval-audio-1-dark-1280-1.25-home.png",
+    "work/qa/eval-audio-1-dark-1280-1.25-full.png",
+    "work/qa/eval-audio-1-dark-768-1-home.png",
+    "work/qa/eval-audio-1-dark-768-1-full.png",
+    "work/qa/eval-audio-1-dark-375-1-home.png",
+    "work/qa/eval-audio-1-dark-375-1-full.png",
+    "work/qa/eval-audio-1-dark-320-1.25-home.png",
+    "work/qa/eval-audio-1-dark-320-1.25-full.png",
+    "work/qa/eval-audio-1-dark-320-1.25-full-eq.png",
+    "work/qa/eval-audio-1-light-1440-1-home.png",
+    "work/qa/eval-audio-1-light-1440-1-full.png",
+    "work/qa/eval-audio-1-light-1440-1-full-eq.png",
+    "work/qa/eval-audio-1-light-390-1.25-home.png",
+    "work/qa/eval-audio-1-light-390-1.25-full.png",
+    "work/qa/eval-audio-1-amoled-1440-1-home.png",
+    "work/qa/eval-audio-1-amoled-1440-1-full.png",
+    "work/qa/eval-audio-1-amoled-1440-1-full-eq.png",
+    "work/qa/eval-audio-1-amoled-390-1.25-home.png",
+    "work/qa/eval-audio-1-amoled-390-1.25-full.png",
+    "work/qa/eval-audio-1-comments.png",
+    "work/qa/eval-audio-1-queue.png",
+    "work/qa/eval-audio-1-home-below.png",
+    "work/qa/eval-audio-1-light-320-1.25-full-eq.png",
+    "work/qa/eval-audio-1-amoled-320-1.25-full-eq.png"
+  ],
+  "errors": {
+    "errors": []
+  },
+  "nativeEvidence": [
+    "work/qa/native-audio-design-1791714038814-dark-full-desktop.png",
+    "work/qa/native-audio-design-1791714038814-dark-1440.0-eq.png",
+    "work/qa/native-audio-design-1791714038814-dark-390.0-eq.png",
+    "work/qa/native-audio-design-1791714038814-light-390.0-eq.png",
+    "work/qa/native-audio-design-1791715104611-dark-320.0-eq.png",
+    "work/qa/native-audio-design-1791715104611-dark-390.0-eq.png",
+    "work/qa/native-audio-design-1791715104611-dark-1440.0-eq.png",
+    "work/qa/native-audio-design-1791715104611-light-320.0-eq.png",
+    "work/qa/native-audio-design-1791715104611-light-390.0-eq.png",
+    "work/qa/native-audio-design-1791715104611-light-1440.0-eq.png",
+    "work/qa/native-audio-design-1791715104611-amoled-320.0-eq.png",
+    "work/qa/native-audio-design-1791715104611-amoled-390.0-eq.png",
+    "work/qa/native-audio-design-1791715104611-amoled-1440.0-eq.png"
+  ],
+  "attempt": 2,
+  "passed": true,
+  "scope": "Fresh independent same-provider browser visual evaluation. Actual isolated production React app5189; native recorded Flutter widget captures and meaningful controller tests inspected, no physical devices or owner app. No autoplay override; muted sound.",
+  "issuesRemaining": [
+    {
+      "severity": "minor",
+      "issue": "At320px125percent compact cover/transport fills first fold; lyrics accessed by intentional vertical scroll.",
+      "blocking": false
+    }
+  ],
+  "revisions": [
+    {
+      "attempt": 2,
+      "scope": "Native signed-axis polish only; all nine fresh captured widgets inspected. Unchanged web matrix retained from attempt1, not rerun.",
+      "nativeCases": [
+        {
+          "theme": "dark",
+          "width": 320,
+          "height": 900,
+          "fontScale": 1.25,
+          "screenshot": "work/qa/native-audio-design-1791715104611-dark-320.0-eq.png"
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "height": 900,
+          "fontScale": 1.25,
+          "screenshot": "work/qa/native-audio-design-1791715104611-dark-390.0-eq.png"
+        },
+        {
+          "theme": "dark",
+          "width": 1440,
+          "height": 900,
+          "fontScale": 1.25,
+          "screenshot": "work/qa/native-audio-design-1791715104611-dark-1440.0-eq.png"
+        },
+        {
+          "theme": "light",
+          "width": 320,
+          "height": 900,
+          "fontScale": 1.25,
+          "screenshot": "work/qa/native-audio-design-1791715104611-light-320.0-eq.png"
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "height": 900,
+          "fontScale": 1.25,
+          "screenshot": "work/qa/native-audio-design-1791715104611-light-390.0-eq.png"
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "height": 900,
+          "fontScale": 1.25,
+          "screenshot": "work/qa/native-audio-design-1791715104611-light-1440.0-eq.png"
+        },
+        {
+          "theme": "amoled",
+          "width": 320,
+          "height": 900,
+          "fontScale": 1.25,
+          "screenshot": "work/qa/native-audio-design-1791715104611-amoled-320.0-eq.png"
+        },
+        {
+          "theme": "amoled",
+          "width": 390,
+          "height": 900,
+          "fontScale": 1.25,
+          "screenshot": "work/qa/native-audio-design-1791715104611-amoled-390.0-eq.png"
+        },
+        {
+          "theme": "amoled",
+          "width": 1440,
+          "height": 900,
+          "fontScale": 1.25,
+          "screenshot": "work/qa/native-audio-design-1791715104611-amoled-1440.0-eq.png"
+        }
+      ],
+      "checks": [
+        "+12 /0 / minus12 dB labels readable in all three themes at320/390/1440 widths125percent",
+        "Labels stay within popup and match gain-extreme/zero node positions",
+        "IgnorePointer labels do not intercept slider touches; semantic dB values retained",
+        "Existing slider range remains minus12..12 with48 divisions, existing actual controller/DSP callbacks unchanged"
+      ],
+      "result": "PASS"
+    }
+  ],
+  "resolvedIssues": [
+    "Native signed dB labels added and independently inspected at9 theme/width cases."
+  ]
+}

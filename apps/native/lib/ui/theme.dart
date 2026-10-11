@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../core/appearance.dart';
+import 'cover_accent.dart';
 
 Color hexColor(String hex) =>
     Color(0xff000000 | int.parse(hex.substring(1), radix: 16));
@@ -25,8 +26,10 @@ class WaveVisuals extends ThemeExtension<WaveVisuals> {
   });
   factory WaveVisuals.from(
     WaveCustomization customization,
-    Brightness brightness,
-  ) {
+    Brightness brightness, {
+    Color? coverAccent,
+    bool highContrast = false,
+  }) {
     final a = customization.appearance;
     final p = customization.theme == 'amoled'
         ? a.amoled
@@ -37,7 +40,12 @@ class WaveVisuals extends ThemeExtension<WaveVisuals> {
       background: hexColor(p.bg),
       surface: hexColor(p.surface),
       ink: hexColor(p.ink),
-      accent: hexColor(p.accent),
+      accent: readableCoverAccent(
+        a.coverAccent ? coverAccent : null,
+        hexColor(p.bg),
+        hexColor(p.accent),
+        highContrast: highContrast,
+      ),
       brightness: brightness,
       radius: a.radius,
       speed: a.speed,
@@ -102,9 +110,16 @@ double waveRadius(BuildContext context, double original) =>
 
 ThemeData buildWaveTheme(
   WaveCustomization customization,
-  Brightness brightness,
-) {
-  final v = WaveVisuals.from(customization, brightness);
+  Brightness brightness, {
+  Color? coverAccent,
+  bool highContrast = false,
+}) {
+  final v = WaveVisuals.from(
+    customization,
+    brightness,
+    coverAccent: coverAccent,
+    highContrast: highContrast,
+  );
   final shape = RoundedRectangleBorder(
     borderRadius: BorderRadius.circular(v.corners(16)),
   );
@@ -117,7 +132,11 @@ ThemeData buildWaveTheme(
     borderRadius: BorderRadius.circular(v.corners(14)),
   );
   return ThemeData(
-    fontFamily: customization.fontFamily == 'system' ? null : customization.fontFamily == 'nunito' ? 'Nunito' : 'Manrope',
+    fontFamily: customization.fontFamily == 'system'
+        ? null
+        : customization.fontFamily == 'nunito'
+        ? 'Nunito'
+        : 'Manrope',
     fontFamilyFallback: const ['Nunito'],
     useMaterial3: true,
     brightness: brightness,
@@ -145,7 +164,24 @@ ThemeData buildWaveTheme(
       bodySmall: TextStyle(color: v.muted, fontSize: 12),
     ),
     dividerColor: v.line,
-    appBarTheme: AppBarTheme(backgroundColor: v.background, foregroundColor: v.ink, elevation: 0, scrolledUnderElevation: 0, toolbarHeight: 64, titleTextStyle: TextStyle(fontFamily: customization.fontFamily == 'system' ? null : customization.fontFamily == 'nunito' ? 'Nunito' : 'Manrope', fontFamilyFallback: const ['Nunito'], color: v.ink, fontSize: 17, fontWeight: FontWeight.w800)),
+    appBarTheme: AppBarTheme(
+      backgroundColor: v.background,
+      foregroundColor: v.ink,
+      elevation: 0,
+      scrolledUnderElevation: 0,
+      toolbarHeight: 64,
+      titleTextStyle: TextStyle(
+        fontFamily: customization.fontFamily == 'system'
+            ? null
+            : customization.fontFamily == 'nunito'
+            ? 'Nunito'
+            : 'Manrope',
+        fontFamilyFallback: const ['Nunito'],
+        color: v.ink,
+        fontSize: 17,
+        fontWeight: FontWeight.w800,
+      ),
+    ),
     scrollbarTheme: ScrollbarThemeData(
       thickness: const WidgetStatePropertyAll(5),
       radius: const Radius.circular(5),
@@ -159,8 +195,29 @@ ThemeData buildWaveTheme(
       mainAxisMargin: 8,
     ),
     iconTheme: IconThemeData(color: v.ink, size: 22),
-    iconButtonTheme: IconButtonThemeData(style: IconButton.styleFrom(minimumSize: const Size(48, 48))),
-    chipTheme: ChipThemeData(backgroundColor: v.surface, selectedColor: v.accentSoft, side: BorderSide(color: v.line), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(v.corners(12))), padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 9), labelStyle: TextStyle(fontFamily: customization.fontFamily == 'system' ? null : customization.fontFamily == 'nunito' ? 'Nunito' : 'Manrope', fontFamilyFallback: const ['Nunito'], color: v.ink, fontSize: 12, fontWeight: FontWeight.w700)),
+    iconButtonTheme: IconButtonThemeData(
+      style: IconButton.styleFrom(minimumSize: const Size(48, 48)),
+    ),
+    chipTheme: ChipThemeData(
+      backgroundColor: v.surface,
+      selectedColor: v.accentSoft,
+      side: BorderSide(color: v.line),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(v.corners(12)),
+      ),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 9),
+      labelStyle: TextStyle(
+        fontFamily: customization.fontFamily == 'system'
+            ? null
+            : customization.fontFamily == 'nunito'
+            ? 'Nunito'
+            : 'Manrope',
+        fontFamilyFallback: const ['Nunito'],
+        color: v.ink,
+        fontSize: 12,
+        fontWeight: FontWeight.w700,
+      ),
+    ),
     filledButtonTheme: FilledButtonThemeData(
       style: FilledButton.styleFrom(
         backgroundColor: v.ink,
@@ -168,7 +225,11 @@ ThemeData buildWaveTheme(
         padding: padding,
         shape: shape,
         textStyle: TextStyle(
-          fontFamily: customization.fontFamily == 'system' ? null : customization.fontFamily == 'nunito' ? 'Nunito' : 'Manrope',
+          fontFamily: customization.fontFamily == 'system'
+              ? null
+              : customization.fontFamily == 'nunito'
+              ? 'Nunito'
+              : 'Manrope',
           fontFamilyFallback: ['Nunito'],
           fontWeight: FontWeight.w700,
         ),

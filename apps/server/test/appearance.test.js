@@ -40,5 +40,11 @@ test('appearance keeps separate palettes, validates colors and merges durable pa
     assert.deepEqual(received.map(event=>event.revision),[1,2,3,4,5]);assert.deepEqual(unrelatedEvents,[]);
     assert.equal(received.at(-1).settings.appearance.light.ink,'#111122');assert.equal(received.at(-1).settings.appearance.dark.bg,'#171717');assert.equal(received.at(-1).settings.lyrics,false);
     assert.equal((await patch({revision:99})).status,400);
+    const freeHeaders={'Content-Type':'application/json',Authorization:`Bearer ${other.token}`};
+    const freeDefault=await (await fetch(base+'/api/settings',{headers:freeHeaders})).json();assert.equal(freeDefault.settings.appearance.coverAccent,true);
+    const freePatch=async appearance=>fetch(base+'/api/settings',{method:'PATCH',headers:freeHeaders,body:JSON.stringify({appearance})});
+    const manual=await freePatch({coverAccent:false,dark:{accent:'#d78660'}});assert.equal(manual.status,200);assert.equal((await manual.json()).settings.appearance.coverAccent,false);
+    const auto=await freePatch({coverAccent:true});assert.equal(auto.status,200);assert.equal((await auto.json()).settings.appearance.dark.accent,'#d78660');
+    assert.equal((await freePatch({coverAccent:'yes'})).status,400);assert.equal((await freePatch({dark:{bg:'#111144'}})).status,403);
   }finally{for(const socket of sockets)socket.disconnect();await service.close();assert.ok(directory.startsWith(qa+path.sep));await fs.rm(directory,{recursive:true,force:true,maxRetries:8,retryDelay:150});}
 });

@@ -1220,5 +1220,9 @@
   "playbackDiagnostics.active": "{count} transmisiones activas",
   "playbackDiagnostics.recent": "Solicitudes de reproducción recientes",
   "playbackDiagnostics.empty": "Aún no hay solicitudes de reproducción.",
-  "playback.unavailable": "Esta canción no está disponible en GlukWave ahora. Elige otra canción."
+  "playback.unavailable": "Esta canción no está disponible en GlukWave ahora. Elige otra canción.",
+  "audioDesign.coverAccent": "Color de la portada",
+  "audioDesign.coverAccentCaption": "Los controles y la onda siguen el álbum. Desactiva para mantener tu paleta.",
+  "audioDesign.savePreset": "Guardar mi curva",
+  "audioDesign.savedPreset": "Mi curva"
 }

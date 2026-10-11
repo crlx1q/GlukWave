@@ -273,8 +273,8 @@ class _DesktopCompactPlayerState extends State<DesktopCompactPlayer> {
                     const SizedBox(height: 8),
                     Row(
                       children: [
-                        WaveControlIcon(
-                          Icons.volume_up_outlined,
+                        WaveVolumeIcon(
+                          volume: c.audio.volume,
                           color: v.muted,
                           size: 18,
                         ),

@@ -8,14 +8,15 @@ import {createApp} from '../src/app.js';
 
 test('unofficial extraction accepts licensed HLS, rewrites keys and segments, refreshes expiry and enforces session/permission limits',async()=>{
   const directory=await fs.mkdtemp(path.join(config.root,'work/qa/hls-extracted-'));
-  let generation=0,license='cc-by',escape=false;
+  let generation=0,license='cc-by',escape=false,expireSegments=false;
   const info={track_id:'licensed',title:'Evening',artist:'Wave artist',duration:120,source:'soundcloud',source_url:'https://soundcloud.com/wave/track',ext:'m4a',protocol:'m3u8_native',http_headers:{}};
   const service=await createApp({...config,env:'test',production:false,storage:'sqlite',objectStorage:'local',dataDir:directory,emailVerify:false,turnstileSecret:'',smtp:'',soundcloudPublicSearch:false,soundcloud:{id:'',secret:''},extractors:{enabled:true}},{log:pino({level:'silent'}),extractors:{run:async(_adapter,request)=>request.action==='versions'?{}:{...info,license,audio_url:`https://cf-media.sndcdn.com/master.m3u8?g=${++generation}`},fetch:async(url)=>{
     const value=new URL(url);
     if(value.pathname==='/master.m3u8'){
       if(value.searchParams.get('g')==='1')return new Response('',{status:403});
-      return new Response('#EXTM3U\n#EXT-X-KEY:METHOD=AES-128,URI="key.bin"\n#EXTINF:10,\n'+(escape?'https://127.0.0.1/private':'segment.aac')+'\n#EXT-X-ENDLIST',{headers:{'Content-Type':'application/vnd.apple.mpegurl'}});
+      return new Response('#EXTM3U\n#EXT-X-KEY:METHOD=AES-128,URI="key.bin"\n#EXTINF:10,\n'+(escape?'https://127.0.0.1/private':'segment.aac?g='+value.searchParams.get('g'))+'\n#EXT-X-ENDLIST',{headers:{'Content-Type':'application/vnd.apple.mpegurl'}});
     }
+    if(value.pathname==='/segment.aac'&&value.searchParams.get('g')==='2'&&expireSegments)return new Response(null,{status:403});
     return new Response(Buffer.from(value.pathname==='/key.bin'?'abcdefghijklmnop':'original-audio'),{headers:{'Content-Type':'audio/aac'}});
   }}});
   await new Promise(resolve=>service.server.listen(0,'127.0.0.1',resolve));const base=`http://127.0.0.1:${service.server.address().port}`;
@@ -29,6 +30,11 @@ test('unofficial extraction accepts licensed HLS, rewrites keys and segments, re
     const stream=await fetch(base+descriptor.url);assert.equal(stream.status,200);const manifest=await stream.text();assert(!manifest.includes('sndcdn.com'));assert.equal(generation,2,'Expired manifest URL refreshed once');
     const key=manifest.match(/URI="([^"]+)"/)[1],segment=manifest.split('\n').find(line=>line.startsWith('/api/'));
     assert.equal(await (await fetch(base+key)).text(),'abcdefghijklmnop');assert.equal(await (await fetch(base+segment)).text(),'original-audio');
+    expireSegments=true;
+    const expired=await Promise.all(Array.from({length:6},()=>fetch(base+segment)));
+    assert(expired.every(response=>response.status===410));assert.equal(generation,3,'One refresh for a group of expired segments, without re-extracting every fragment');
+    const renewedManifest=await (await fetch(base+descriptor.url)).text(),renewedSegment=renewedManifest.split('\n').find(line=>line.startsWith('/api/'));
+    assert.notEqual(renewedSegment,segment);assert.equal(await (await fetch(base+renewedSegment)).text(),'original-audio');assert.equal(generation,3);
     assert.equal((await fetch(base+segment,{headers:{Authorization:'Bearer '+other.token}})).status,403);
     assert.equal((await fetch(base+segment,{headers:{Range:'bytes=1-2,4-5'}})).status,416);
     assert.equal((await fetch(base+descriptor.url+'&part=unknown')).status,404);

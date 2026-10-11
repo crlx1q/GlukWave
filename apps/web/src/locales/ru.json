@@ -1220,5 +1220,9 @@
   "playbackDiagnostics.active": "Активных потоков: {count}",
   "playbackDiagnostics.recent": "Последние запросы воспроизведения",
   "playbackDiagnostics.empty": "Запросов воспроизведения ещё нет.",
-  "playback.unavailable": "Этот трек сейчас недоступен в GlukWave. Выбери другой трек."
+  "playback.unavailable": "Этот трек сейчас недоступен в GlukWave. Выбери другой трек.",
+  "audioDesign.coverAccent": "Цвет из обложки",
+  "audioDesign.coverAccentCaption": "Кнопки и волна следуют цвету альбома. Выключи, чтобы сохранить свою палитру.",
+  "audioDesign.savePreset": "Сохранить мою кривую",
+  "audioDesign.savedPreset": "Моя кривая"
 }

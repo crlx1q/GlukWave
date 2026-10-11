@@ -9,7 +9,7 @@ function palette(value:unknown,fallback:PaletteColors):PaletteColors{const sourc
 
 export function normalizeSettings(value:unknown):Settings {
   const source=object(value),appearance=object(source.appearance),equalizer=object(source.equalizer);
-  return {seasonalEffects:normalizeSeasonalEffects(source.seasonalEffects),comments:source.comments!==false,lyricsUnderCover:source.lyricsUnderCover!==false,fontFamily:source.fontFamily==='nunito'||source.fontFamily==='system'?source.fontFamily:'manrope',fontScale:number(source.fontScale,1,.85,1.25),language:isLanguageChoice(source.language)?source.language:getLanguageChoice(),autoCache:typeof source.autoCache==='boolean'?source.autoCache:defaultSettings.autoCache,cacheLimitMB:number(source.cacheLimitMB,1024,64,16384),lyrics:typeof source.lyrics==='boolean'?source.lyrics:true,discordPresence:typeof source.discordPresence==='boolean'?source.discordPresence:true,notifications:source.notifications===true,theme:source.theme==='dark'||source.theme==='amoled'||source.theme==='system'?source.theme:'light',reducedMotion:source.reducedMotion===true,equalizer:{enabled:equalizer.enabled===true,preamp:number(equalizer.preamp,0,-12,12),bands:Array.from({length:10},(_,index)=>number(Array.isArray(equalizer.bands)?equalizer.bands[index]:undefined,0,-12,12))},playbackRate:number(source.playbackRate,1,.5,2),appearance:{light:palette(appearance.light,defaultAppearance.light),dark:palette(appearance.dark,defaultAppearance.dark),amoled:palette(appearance.amoled,defaultAppearance.amoled),radius:number(appearance.radius,24,8,38),speed:number(appearance.speed,1,.3,2),compact:appearance.compact===true,blur:appearance.blur!==false,waveStyle:appearance.waveStyle==='bloom'?'bloom':appearance.waveStyle==='particles'?'particles':'silk',cover3d:appearance.cover3d!==false,coverKind:appearance.coverKind==='cd'?'cd':'vinyl'}};
+  return {seasonalEffects:normalizeSeasonalEffects(source.seasonalEffects),comments:source.comments!==false,lyricsUnderCover:source.lyricsUnderCover!==false,fontFamily:source.fontFamily==='nunito'||source.fontFamily==='system'?source.fontFamily:'manrope',fontScale:number(source.fontScale,1,.85,1.25),language:isLanguageChoice(source.language)?source.language:getLanguageChoice(),autoCache:typeof source.autoCache==='boolean'?source.autoCache:defaultSettings.autoCache,cacheLimitMB:number(source.cacheLimitMB,1024,64,16384),lyrics:typeof source.lyrics==='boolean'?source.lyrics:true,discordPresence:typeof source.discordPresence==='boolean'?source.discordPresence:true,notifications:source.notifications===true,theme:source.theme==='dark'||source.theme==='amoled'||source.theme==='system'?source.theme:'light',reducedMotion:source.reducedMotion===true,equalizer:{enabled:equalizer.enabled===true,preamp:number(equalizer.preamp,0,-12,12),bands:Array.from({length:10},(_,index)=>number(Array.isArray(equalizer.bands)?equalizer.bands[index]:undefined,0,-12,12))},playbackRate:number(source.playbackRate,1,.5,2),appearance:{light:palette(appearance.light,defaultAppearance.light),dark:palette(appearance.dark,defaultAppearance.dark),amoled:palette(appearance.amoled,defaultAppearance.amoled),radius:number(appearance.radius,24,8,38),speed:number(appearance.speed,1,.3,2),compact:appearance.compact===true,blur:appearance.blur!==false,waveStyle:appearance.waveStyle==='bloom'?'bloom':appearance.waveStyle==='particles'?'particles':'silk',cover3d:appearance.cover3d!==false,coverAccent:appearance.coverAccent!==false,coverKind:appearance.coverKind==='cd'?'cd':'vinyl'}};
 }
 
 export function mergeSettings(current:Settings,partial:SettingsPatch):Settings {
@@ -55,6 +55,7 @@ export function normalizeSettingsPatch(value:unknown):SettingsPatch {
       if(typeof input.compact==='boolean')appearance.compact=input.compact;
       if(typeof input.blur==='boolean')appearance.blur=input.blur;
       if(typeof input.cover3d==='boolean')appearance.cover3d=input.cover3d;
+      if(typeof input.coverAccent==='boolean')appearance.coverAccent=input.coverAccent;
       if(input.coverKind==='vinyl'||input.coverKind==='cd')appearance.coverKind=input.coverKind;
       if(input.waveStyle==='silk'||input.waveStyle==='particles'||input.waveStyle==='bloom')appearance.waveStyle=input.waveStyle;
       if(Object.keys(appearance).length)result.appearance=appearance;
@@ -73,8 +74,8 @@ export const getAppearancePresets=():{id:string;name:string;description:string;m
 ];
 export const accentSwatches=['#a08369','#b1a2de','#9bb99a','#7ca8bb','#d2939c','#dbb976','#df9978'];
 
-export function applyAppearance(appearance:Appearance,mode:PaletteMode,motion:boolean) {
-  const root=document.documentElement,colors=appearance[mode];
+export function applyAppearance(appearance:Appearance,mode:PaletteMode,motion:boolean,accentOverride?:string) {
+  const root=document.documentElement,colors={...appearance[mode],accent:accentOverride||appearance[mode].accent};
   for(const key of ['bg','surface','ink','accent'] as const)root.style.setProperty(`--${key}`,colors[key]);
   root.style.setProperty('--muted',`color-mix(in srgb,${colors.ink} 70%,${colors.bg})`);
   root.style.setProperty('--line',`color-mix(in srgb,${colors.ink} 11%,transparent)`);

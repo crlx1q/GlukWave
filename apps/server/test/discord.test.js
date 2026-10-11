@@ -164,7 +164,15 @@ test('Idle presence displays in-app status when track is not playing and clears 
  assert.equal(writes[2].body.activities[0].details,'В приложении');
  assert.equal(writes[2].body.activities[0].state,'На главной');
  socket.disconnect();
- await new Promise(r=>setTimeout(r,50));
+  // Wait for the server-side disconnect/Connect cleanup, not an arbitrary
+  // 50 ms that fails when the complete suite runs concurrently.
+  const disconnectDeadline=Date.now()+4000;
+  while(Date.now()<disconnectDeadline){
+    const output=await f.service.ctx.discordOutput(user.user.id);
+    if(!f.service.ctx.userOnline(user.user.id)&&!output?.connect?.activeDeviceId)break;
+    await new Promise(r=>setTimeout(r,10));
+  }
+  assert.equal(f.service.ctx.userOnline(user.user.id),false);
  f.advance(13000);
  await f.service.ctx.discordSync(user.user.id);
  assert(f.calls.some(c=>c.url.endsWith('/headless-sessions/delete')));

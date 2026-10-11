@@ -33,7 +33,7 @@ function Mini(){
    <button disabled={!data.track} onClick={()=>send('next')} aria-label={t('copy.630')}><MotionIcon name="next" size={20} motion={iconMotion} speed={data.speed}/></button>
   </section>
   <ContinuousRange value={Math.min(data.duration||1,data.state.position||0)} max={Math.max(1,data.duration)} step={.1} resetKey={data.track?.id} onCommit={position=>send('seek',position)} disabled={!data.track} label={t('copy.634')}/>
-  <div className="times"><span>{time(data.state.position)}</span><span>{time(data.duration)}</span></div>
+  <div className="times"><span>{time(data.state.position)}</span><label className="mini-volume"><button aria-label={t('copy.643')} onClick={()=>channel.postMessage({command:'volume',volume:data.state.volume?0:.8})}><MotionIcon name={!data.state.volume?'muted':data.state.volume<.5?'volumeLow':'volume'} size={15} motion={iconMotion} speed={data.speed}/></button><ContinuousRange value={data.state.volume??1} max={1} step={.01} label={t('copy.643')} onCommit={volume=>channel.postMessage({command:'volume',volume})}/></label><span>{time(data.duration)}</span></div>
  </>;
 }
 createRoot(document.getElementById('root')!).render(<LocaleProvider><Mini/></LocaleProvider>);

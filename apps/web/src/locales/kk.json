@@ -1220,5 +1220,9 @@
   "playbackDiagnostics.active": "Белсенді ағындар: {count}",
   "playbackDiagnostics.recent": "Соңғы ойнату сұраулары",
   "playbackDiagnostics.empty": "Ойнату сұраулары әлі жоқ.",
-  "playback.unavailable": "Бұл трек қазір GlukWave қолданбасында қолжетімсіз. Басқа трек таңда."
+  "playback.unavailable": "Бұл трек қазір GlukWave қолданбасында қолжетімсіз. Басқа трек таңда.",
+  "audioDesign.coverAccent": "Мұқаба түсі",
+  "audioDesign.coverAccentCaption": "Түймелер мен толқын альбом түсіне бейімделеді. Өз палитраң үшін өшір.",
+  "audioDesign.savePreset": "Қисықты сақтау",
+  "audioDesign.savedPreset": "Менің қисығым"
 }

@@ -826,143 +826,152 @@ class TrackRow extends StatelessWidget {
     this.queue,
   });
   @override
-  Widget build(BuildContext context) {
-    final active = controller.audio.viewCurrent?.id == track.id;
-    final compact = waveVisuals(context).compact;
-    final artworkSize = compact ? 38.0 : 46.0;
-    return Material(
-      color: active ? waveVisuals(context).surface : Colors.transparent,
-      borderRadius: BorderRadius.circular(waveRadius(context, 14)),
-      child: InkWell(
+  Widget build(BuildContext context) => LayoutBuilder(
+    builder: (context, constraints) {
+      final active = controller.audio.viewCurrent?.id == track.id;
+      final compact =
+          waveVisuals(context).compact || constraints.maxWidth < 300;
+      final artworkSize = compact ? 38.0 : 46.0;
+      return Material(
+        color: active ? waveVisuals(context).surface : Colors.transparent,
         borderRadius: BorderRadius.circular(waveRadius(context, 14)),
-        onTap: () => _run(() => controller.play(track, list: queue)),
-        child: Padding(
-          padding: EdgeInsets.symmetric(
-            vertical: compact ? 5 : 9,
-            horizontal: 10,
-          ),
-          child: Row(
-            children: [
-              Stack(
-                alignment: Alignment.center,
-                children: [
-                  Artwork(
-                    controller: controller,
-                    url: track.artwork,
-                    size: artworkSize,
-                  ),
-                  if (active)
-                    Container(
-                      width: artworkSize,
-                      height: artworkSize,
-                      decoration: BoxDecoration(
-                        color: waveVisuals(context).ink.withValues(alpha: .4),
-                        borderRadius: BorderRadius.circular(
-                          waveRadius(context, 11),
+        child: InkWell(
+          borderRadius: BorderRadius.circular(waveRadius(context, 14)),
+          onTap: () => _run(() => controller.play(track, list: queue)),
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: compact ? 5 : 9,
+              horizontal: 10,
+            ),
+            child: Row(
+              children: [
+                Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Artwork(
+                      controller: controller,
+                      url: track.artwork,
+                      size: artworkSize,
+                    ),
+                    if (active)
+                      Container(
+                        width: artworkSize,
+                        height: artworkSize,
+                        decoration: BoxDecoration(
+                          color: waveVisuals(context).ink.withValues(alpha: .4),
+                          borderRadius: BorderRadius.circular(
+                            waveRadius(context, 11),
+                          ),
+                        ),
+                        child: Icon(
+                          controller.audio.playing
+                              ? Icons.graphic_eq_rounded
+                              : Icons.play_arrow_rounded,
+                          color: waveVisuals(context).background,
+                          size: 21,
                         ),
                       ),
-                      child: Icon(
-                        controller.audio.playing
-                            ? Icons.graphic_eq_rounded
-                            : Icons.play_arrow_rounded,
-                        color: waveVisuals(context).background,
-                        size: 21,
+                  ],
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        track.title,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.w800,
+                          fontSize: 13,
+                        ),
                       ),
-                    ),
-                ],
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      track.title,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w800,
-                        fontSize: 13,
+                      const SizedBox(height: 2),
+                      Text(
+                        track.artist.isEmpty ? track.sourceName : track.artist,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          color: waveVisuals(context).muted,
+                          fontSize: 11,
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 2),
-                    Text(
-                      track.artist.isEmpty ? track.sourceName : track.artist,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
+                    ],
+                  ),
+                ),
+                if (constraints.maxWidth >= 600)
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Text(
+                      track.sourceName,
                       style: TextStyle(
                         color: waveVisuals(context).muted,
                         fontSize: 11,
                       ),
                     ),
-                  ],
-                ),
-              ),
-              if (MediaQuery.sizeOf(context).width >= 850)
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Text(
-                    track.sourceName,
-                    style: TextStyle(
-                      color: waveVisuals(context).muted,
-                      fontSize: 11,
+                  ),
+                if (controller.cache.contains(track.id))
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 4),
+                    child: Icon(
+                      Icons.offline_pin_outlined,
+                      size: 16,
+                      color: Color(0xff6d8c74),
                     ),
                   ),
-                ),
-              if (controller.cache.contains(track.id))
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 4),
-                  child: Icon(
-                    Icons.offline_pin_outlined,
-                    size: 16,
-                    color: Color(0xff6d8c74),
-                  ),
-                ),
-              if (track.duration > 0 && MediaQuery.sizeOf(context).width > 400)
-                Padding(
-                  padding: const EdgeInsets.only(left: 10),
-                  child: Text(
-                    clock(track.duration),
-                    style: TextStyle(
-                      color: waveVisuals(context).muted,
-                      fontSize: 11,
+                if (track.duration > 0 && constraints.maxWidth > 340)
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: Text(
+                      clock(track.duration),
+                      style: TextStyle(
+                        color: waveVisuals(context).muted,
+                        fontSize: 11,
+                      ),
                     ),
                   ),
+                IconButton(
+                  tooltip: controller.likedIds.contains(track.id)
+                      ? wt('native.4ddf34c036', context: context)
+                      : wt('native.5633e5c745', context: context),
+                  constraints: const BoxConstraints(
+                    minWidth: 44,
+                    minHeight: 44,
+                  ),
+                  onPressed: controller.online
+                      ? () => _run(() => controller.like(track))
+                      : null,
+                  icon: Icon(
+                    controller.likedIds.contains(track.id)
+                        ? Icons.favorite_rounded
+                        : Icons.favorite_border_rounded,
+                    color: controller.likedIds.contains(track.id)
+                        ? waveVisuals(context).accent
+                        : waveVisuals(context).muted,
+                    size: 19,
+                  ),
                 ),
-              IconButton(
-                tooltip: controller.likedIds.contains(track.id)
-                    ? wt('native.4ddf34c036', context: context)
-                    : wt('native.5633e5c745', context: context),
-                constraints: const BoxConstraints(minWidth: 44, minHeight: 44),
-                onPressed: controller.online
-                    ? () => _run(() => controller.like(track))
-                    : null,
-                icon: Icon(
-                  controller.likedIds.contains(track.id)
-                      ? Icons.favorite_rounded
-                      : Icons.favorite_border_rounded,
-                  color: controller.likedIds.contains(track.id)
-                      ? waveVisuals(context).accent
-                      : waveVisuals(context).muted,
-                  size: 19,
+                IconButton(
+                  tooltip: wt('native.30ef88c9b5', context: context),
+                  constraints: const BoxConstraints(
+                    minWidth: 44,
+                    minHeight: 44,
+                  ),
+                  onPressed: onMore,
+                  icon: Icon(
+                    Icons.more_horiz_rounded,
+                    size: 20,
+                    color: waveVisuals(context).muted,
+                  ),
                 ),
-              ),
-              IconButton(
-                tooltip: wt('native.30ef88c9b5', context: context),
-                constraints: const BoxConstraints(minWidth: 44, minHeight: 44),
-                onPressed: onMore,
-                icon: Icon(
-                  Icons.more_horiz_rounded,
-                  size: 20,
-                  color: waveVisuals(context).muted,
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
-      ),
-    );
-  }
+      );
+    },
+  );
 
   Future<void> _run(Future<void> Function() action) async {
     try {

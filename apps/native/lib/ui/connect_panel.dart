@@ -148,10 +148,8 @@ class ConnectPanel extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    WaveToggleIcon(
-                      active: c.audio.volume == 0,
-                      activeIcon: Icons.volume_off_outlined,
-                      inactiveIcon: Icons.volume_up_outlined,
+                    WaveVolumeIcon(
+                      volume: c.audio.volume,
                       size: 18,
                       color: v.muted,
                     ),

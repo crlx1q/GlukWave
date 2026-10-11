@@ -311,10 +311,8 @@ class MiniPlayer extends StatelessWidget {
                           width: 130,
                           child: Row(
                             children: [
-                              WaveToggleIcon(
-                                active: c.audio.volume == 0,
-                                activeIcon: Icons.volume_off_outlined,
-                                inactiveIcon: Icons.volume_up_outlined,
+                              WaveVolumeIcon(
+                                volume: c.audio.volume,
                                 color: v.onPlayer.withValues(alpha: .65),
                                 size: 19,
                               ),
@@ -379,28 +377,68 @@ Future<void> _run(WaveController c, Future<void> Function() action) async {
   }
 }
 
-Future<void> showPlayerEqualizer(BuildContext context, WaveController c) =>
-    showWaveDialog<void>(
-      context: context,
-      builder: (dialog) => AlertDialog(
-        title: Text(wt('eq.title', context: dialog)),
-        content: SizedBox(
-          width: 580,
-          child: SingleChildScrollView(
-            child: AnimatedBuilder(
-              animation: c,
-              builder: (_, _) => EqualizerPanel(controller: c),
+Future<void> showPlayerEqualizer(BuildContext context, WaveController c) {
+  final box = context.findRenderObject() as RenderBox?,
+      origin = box?.localToGlobal(Offset.zero) ?? Offset.zero,
+      size = box?.size;
+  return showGeneralDialog<void>(
+    context: context,
+    barrierDismissible: true,
+    barrierLabel: wt('native.398c7d4f7b', context: context),
+    barrierColor: Colors.transparent,
+    transitionDuration: waveVisuals(context).duration(160),
+    pageBuilder: (dialog, _, _) => LayoutBuilder(
+      builder: (dialog, constraints) {
+        final width = (constraints.maxWidth - 16).clamp(200.0, 380.0),
+            height =
+                (constraints.maxHeight -
+                        MediaQuery.paddingOf(dialog).vertical -
+                        24)
+                    .clamp(100.0, 460.0),
+            anchorY = size != null && size.height < 200
+                ? origin.dy
+                : constraints.maxHeight -
+                      90 -
+                      MediaQuery.paddingOf(dialog).bottom;
+        final top = (anchorY - height - 12).clamp(
+              MediaQuery.paddingOf(dialog).top + 8,
+              constraints.maxHeight - height - 8,
             ),
-          ),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(dialog),
-            child: Text(wt('native.398c7d4f7b', context: dialog)),
-          ),
-        ],
-      ),
-    );
+            left =
+                (origin.dx + (size?.width ?? constraints.maxWidth) - width - 12)
+                    .clamp(8.0, constraints.maxWidth - width - 8);
+        return Stack(
+          children: [
+            Positioned(
+              left: left,
+              top: top,
+              width: width,
+              height: height,
+              child: Material(
+                key: const Key('player-eq-popover'),
+                elevation: 16,
+                color: waveVisuals(context).surface,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(waveRadius(context, 14)),
+                  side: BorderSide(color: waveVisuals(context).line),
+                ),
+                clipBehavior: Clip.antiAlias,
+                child: SingleChildScrollView(
+                  child: CompactEqualizerPanel(
+                    controller: c,
+                    onClose: () => Navigator.pop(dialog),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        );
+      },
+    ),
+    transitionBuilder: (context, animation, _, child) =>
+        FadeTransition(opacity: animation, child: child),
+  );
+}
 
 class PlayerPage extends StatefulWidget {
   final WaveController controller;
@@ -589,9 +627,9 @@ class _PlayerPageState extends State<PlayerPage> {
                   color: waveVisuals(context).accent,
                 ),
               Expanded(
-                child: wide && tab != 2
+                child: wide
                     ? Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 56),
+                        padding: const EdgeInsets.symmetric(horizontal: 32),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -603,7 +641,7 @@ class _PlayerPageState extends State<PlayerPage> {
                                 child: listening(track),
                               ),
                             ),
-                            const SizedBox(width: 56),
+                            const SizedBox(width: 32),
                             Expanded(
                               child: SingleChildScrollView(
                                 key: Key(
@@ -616,9 +654,27 @@ class _PlayerPageState extends State<PlayerPage> {
                                 ),
                                 child: tab == 3
                                     ? commentPage(track)
+                                    : tab == 2 &&
+                                          MediaQuery.sizeOf(context).width <
+                                              1200
+                                    ? queuePage()
                                     : lyricPage(track),
                               ),
                             ),
+                            if (MediaQuery.sizeOf(context).width >= 1200) ...[
+                              const SizedBox(width: 24),
+                              SizedBox(
+                                width: 260,
+                                child: Surface(
+                                  padding: const EdgeInsets.all(14),
+                                  child: SingleChildScrollView(
+                                    key: const Key('player-queue-rail'),
+                                    padding: const EdgeInsets.only(bottom: 20),
+                                    child: queuePage(compact: true),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ],
                         ),
                       )
@@ -741,7 +797,9 @@ class _PlayerPageState extends State<PlayerPage> {
   );
   Widget listening(WaveTrack track) => LayoutBuilder(
     builder: (context, constraints) {
-      final size = (constraints.maxWidth * .94).clamp(170.0, 400.0);
+      final wide = MediaQuery.sizeOf(context).width >= 900;
+      final maxCover = wide ? MediaQuery.sizeOf(context).height * .30 : 400.0;
+      final size = (constraints.maxWidth * .94).clamp(170.0, maxCover);
       final active = c.audio.viewCurrent?.id == track.id;
       return ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 530),
@@ -767,7 +825,7 @@ class _PlayerPageState extends State<PlayerPage> {
                 ),
               ),
             ),
-            if (MediaQuery.sizeOf(context).width >= 900)
+            if (MediaQuery.sizeOf(context).width >= 900 && tab == 0)
               Wrap(
                 spacing: 5,
                 runSpacing: 2,
@@ -897,10 +955,8 @@ class _PlayerPageState extends State<PlayerPage> {
                   IconButton(
                     tooltip: wt('native.621777004a', context: context),
                     onPressed: () => showVolume(),
-                    icon: WaveToggleIcon(
-                      active: c.audio.volume == 0,
-                      activeIcon: Icons.volume_off_outlined,
-                      inactiveIcon: Icons.volume_up_outlined,
+                    icon: WaveVolumeIcon(
+                      volume: c.audio.volume,
                       size: 20,
                       color: waveVisuals(context).muted,
                     ),
@@ -1342,13 +1398,13 @@ class _PlayerPageState extends State<PlayerPage> {
     );
   }
 
-  Widget queuePage() => Column(
+  Widget queuePage({bool compact = false}) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       Text(
         wt('native.5a187c8ad3', context: context),
         style: TextStyle(
-          fontSize: 30,
+          fontSize: compact ? 17 : 30,
           fontWeight: FontWeight.w800,
           letterSpacing: -1,
         ),

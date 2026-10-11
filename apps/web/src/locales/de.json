@@ -1220,5 +1220,9 @@
   "playbackDiagnostics.active": "{count} aktive Streams",
   "playbackDiagnostics.recent": "Letzte Wiedergabeanfragen",
   "playbackDiagnostics.empty": "Noch keine Wiedergabeanfragen.",
-  "playback.unavailable": "Dieser Titel ist derzeit in GlukWave nicht verfügbar. Wähle einen anderen Titel."
+  "playback.unavailable": "Dieser Titel ist derzeit in GlukWave nicht verfügbar. Wähle einen anderen Titel.",
+  "audioDesign.coverAccent": "Farbe vom Cover",
+  "audioDesign.coverAccentCaption": "Bedienelemente und Welle folgen dem Album. Ausschalten, um deine Palette zu behalten.",
+  "audioDesign.savePreset": "Meine Kurve speichern",
+  "audioDesign.savedPreset": "Meine Kurve"
 }

@@ -85,6 +85,33 @@ class WaveToggleIcon extends StatelessWidget {
   );
 }
 
+/// Volume topology is shared by mobile, desktop, Connect and tray surfaces.
+class WaveVolumeIcon extends StatelessWidget {
+  final double volume, size;
+  final Color? color;
+  const WaveVolumeIcon({
+    super.key,
+    required this.volume,
+    this.size = 22,
+    this.color,
+  });
+  @override
+  Widget build(BuildContext context) => WaveStateIcon(
+    state: volume == 0
+        ? 0
+        : volume < .5
+        ? 1
+        : 2,
+    icon: volume == 0
+        ? Icons.volume_off_outlined
+        : volume < .5
+        ? Icons.volume_down_outlined
+        : Icons.volume_up_outlined,
+    size: size,
+    color: color,
+  );
+}
+
 class WaveStateIcon extends StatelessWidget {
   final Object state;
   final IconData icon;
@@ -139,6 +166,7 @@ class WaveControlIcon extends StatelessWidget {
     Icons.skip_next_rounded,
     Icons.graphic_eq_rounded,
     Icons.volume_up_outlined,
+    Icons.volume_down_outlined,
     Icons.volume_off_outlined,
     Icons.shuffle_rounded,
     Icons.repeat_rounded,
@@ -213,6 +241,7 @@ class _WaveControlPainter extends CustomPainter {
         path.addRRect(RRect.fromRectAndRadius(r, const Radius.circular(1)));
       }
     } else if (icon == Icons.volume_up_outlined ||
+        icon == Icons.volume_down_outlined ||
         icon == Icons.volume_off_outlined) {
       path.moveTo(4, 9);
       path.lineTo(7.5, 9);
@@ -227,8 +256,10 @@ class _WaveControlPainter extends CustomPainter {
       } else {
         path.moveTo(15.5, 8.5);
         path.cubicTo(18, 10.5, 18, 13.5, 15.5, 15.5);
-        path.moveTo(18.5, 5.5);
-        path.cubicTo(22.5, 9, 22.5, 15, 18.5, 18.5);
+        if (icon == Icons.volume_up_outlined) {
+          path.moveTo(18.5, 5.5);
+          path.cubicTo(22.5, 9, 22.5, 15, 18.5, 18.5);
+        }
       }
     } else if (icon == Icons.shuffle_rounded) {
       path.moveTo(3.5, 6.5);

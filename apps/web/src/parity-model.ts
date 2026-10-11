@@ -8,6 +8,7 @@ export function advancedSettingsChange(patch:SettingsPatch,current:Settings){
   if(patch.fontFamily!==undefined&&patch.fontFamily!==current.fontFamily)return true;
   const appearance=patch.appearance;if(!appearance)return false;
   for(const [key,value]of Object.entries(appearance)){
+    if(key==='coverAccent')continue;
     if(key==='light'||key==='dark'||key==='amoled'){
       for(const [color,next]of Object.entries(value||{}))if(color!=='accent'&&next!==current.appearance[key][color as 'bg'|'surface'|'ink'|'accent'])return true;
     }else if(value!==current.appearance[key as keyof typeof current.appearance])return true;

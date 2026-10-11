@@ -1,0 +1,19 @@
+{
+  "checkedAt": "2026-10-11T10:48:58.078Z",
+  "passed": true,
+  "archiveBytes": 63371269,
+  "archiveSha256": "f08238727ebd8511b118daf4dd06d5d86faded5fc744eb09e41d30512c1bd116",
+  "entries": 927,
+  "allCrcAndSourceHashesMatched": true,
+  "textFilesScanned": 571,
+  "localPrivateValuesAbsent": true,
+  "liveCredentialPatternsAbsent": true,
+  "staticFontFaces": 6,
+  "manropeStaticFontFaces": 5,
+  "frozenNativeSourcesMatched": 151,
+  "currentWebBuild": "/assets/main-BluxTrm1.js",
+  "runtimeDataExcluded": true,
+  "apkSha256": "d0ab92099dd0b774df765571a26455a5b5a61a633d18dd376e5f6ed83c4acde2",
+  "windowsSha256": "ed5cd482faf3973419891c2c93f1943543fe93fb013f3aba2ddc37549cfd6605",
+  "installerSha256": "7a4e7733114273188cc35811eede4f8f1ec246536bed05197ea2c1505cd21fef"
+}

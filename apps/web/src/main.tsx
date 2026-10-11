@@ -12,6 +12,7 @@ import './motion-controls.css';
 import './parity.css';
 import './player-refinement.css';
 import './transport-season.css';
+import './audio-design.css';
 import {installDiagnostics} from './diagnostics';
 installDiagnostics();
 const params=new URLSearchParams(location.search),legacyHash=['home','search','library','sources','rooms','lofi','downloads','settings','profile','admin'].includes(location.hash.slice(1).split('?')[0]),appQuery=['qr','native','secret','reset','invite','room','roomId','listen','jam','error','verified','signedIn','billing','track','connected','integration_error','emailConfirm'].some(key=>params.has(key));

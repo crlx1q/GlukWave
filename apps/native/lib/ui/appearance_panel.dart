@@ -1,4 +1,5 @@
 import 'dart:async';
+import '../l10n/audio_design_strings.dart';
 import 'package:flutter/material.dart';
 import '../core/appearance.dart';
 import '../services/appearance_store.dart';
@@ -159,6 +160,7 @@ class _AppearancePanelState extends State<AppearancePanel> {
     void colorChange(String key, String value) => change({
       'appearance': {
         mode: {key: value},
+        if (key == 'accent') 'coverAccent': false,
       },
     });
     final available =
@@ -448,6 +450,23 @@ class _AppearancePanelState extends State<AppearancePanel> {
                                 ),
                               ),
                           ],
+                        ),
+                        SwitchListTile(
+                          contentPadding: EdgeInsets.zero,
+                          key: const Key('cover-accent-auto'),
+                          title: Text(
+                            audioDesignText('coverAccent', context: context),
+                          ),
+                          subtitle: Text(
+                            audioDesignText(
+                              'coverAccentCaption',
+                              context: context,
+                            ),
+                            style: TextStyle(fontSize: 11, color: v.muted),
+                          ),
+                          value: appearance.coverAccent,
+                          onChanged: (value) =>
+                              appearanceChange('coverAccent', value),
                         ),
                         const SizedBox(height: 16),
                         _ColorEditor(

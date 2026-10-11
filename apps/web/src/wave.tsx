@@ -29,7 +29,7 @@ function drawCanvas(context:CanvasRenderingContext2D,frame:WaveFrame,style:Appea
 
 export function WaveVisual({className='wave-canvas',color,background:backgroundOverride,waveStyle,speed}:{className?:string;color?:string;background?:string;waveStyle?:Appearance['waveStyle'];speed?:number}) {
   const root=useRef<HTMLDivElement>(null),canvas=useRef<HTMLCanvasElement>(null),fallback=useRef<HTMLCanvasElement>(null),store=useStore(),player=usePlayer(),envelope=useRef<AudioEnvelope|null>(null);
-  const style=waveStyle||store.settings.appearance.waveStyle,velocity=speed??store.settings.appearance.speed,tint=color||store.settings.appearance[store.resolvedTheme].accent,motion=store.motion,paused=player.full;
+  const style=waveStyle||store.settings.appearance.waveStyle,velocity=speed??store.settings.appearance.speed,tint=color||store.renderAccent,motion=store.motion,paused=player.full;
   const audio=useRef({playing:player.state.playing,position:player.state.position,local:player.playback?.kind==='audio',sample:player.audioEnergy});audio.current={playing:player.state.playing,position:player.state.position,local:player.playback?.kind==='audio',sample:player.audioEnergy};
   useEffect(()=>{
     envelope.current=null;if(!player.track)return;const controller=new AbortController();

@@ -21,7 +21,7 @@ export function setupExtractedHls(app,ctx,{cdn,resolve,fetcher=fetch}){
     const attribution={source:result.info.source,artist:result.info.artist||track.artist,sourceUrl:result.info.source_url||track.sourceUrl};
     const offline=!!(result.permission?.download&&ctx.config.env!=='test');
     const descriptor={kind:'audio',format:'hls',audioSource:result.info.source,offline,...(result.permission?.download?{downloadUrl:`/api/external-audio/${encodeURIComponent(track.id)}/download`}:{}),url:`/api/stream-audio/${encodeURIComponent(track.id)}?grant=${token}`,attribution};
-    grants.set(token,{trackId:track.id,userId:user.id,sessionId,createdAt,expiresAt:createdAt+Math.min(86400000,Math.max(7200000,((Number(track.duration)||0)+300)*1000)),parts:new Map([['root',result.info.audio_url]]),reverse:new Map([[result.info.audio_url,'root']]),headers:result.info.http_headers||{},descriptor,refresh:null});parts++;
+    grants.set(token,{trackId:track.id,userId:user.id,sessionId,createdAt,expiresAt:createdAt+Math.min(86400000,Math.max(7200000,((Number(track.duration)||0)+300)*1000)),parts:new Map([['root',result.info.audio_url]]),partVersions:new Map([['root',0]]),sourceVersion:0,reverse:new Map([[result.info.audio_url,'root']]),headers:result.info.http_headers||{},descriptor,refresh:null});parts++;
     return descriptor;
   }
   async function pull(input,signal,headers){
@@ -48,20 +48,27 @@ export function setupExtractedHls(app,ctx,{cdn,resolve,fetcher=fetch}){
       const record=await ctx.store.get('audioPermissions',grant.trackId);
       if(record&&record.stream===false)fail(403,'DIRECT_AUDIO_UNAVAILABLE','Этот трек сейчас недоступен.');
     }
-    const resource=grant.parts.get(part);if(!resource)fail(404,'TRACK_NOT_FOUND','Трек не найден.');
+    const resource=grant.parts.get(part),requestedVersion=grant.partVersions.get(part)||0;if(!resource)fail(404,'TRACK_NOT_FOUND','Трек не найден.');
     const range=req.headers.range;if(range&&!/^bytes=(?:\d+-\d*|-\d+)$/.test(range))fail(416,'INVALID_RANGE','Этот диапазон аудио недоступен.');
     if(transfers.size>=24)fail(503,'EXTRACTOR_BUSY','Музыка загружается. Повтори чуть позже.');
     const controller=new AbortController(),abort=()=>controller.abort();transfers.add(controller);res.once('close',abort);
     const timeout=setTimeout(abort,30000);timeout.unref();
     try{
-      let {response,url}=await pull(resource,controller.signal,{...grant.headers,...(range?{Range:range}:{})});
-      if([401,403,410].includes(response.status)&&part==='root'){
+      let {response,url}=await pull(resource,controller.signal,{...grant.headers,...(range?{Range:range}:{})}),responseVersion=requestedVersion;
+      if([401,403,410].includes(response.status)){
         await response.body?.cancel();
-        track??=await ctx.requireTrack(grant.trackId,user);
-        grant.refresh??=resolve(track,{force:true}).finally(()=>{grant.refresh=null;});const fresh=await grant.refresh;
-        if(!fresh?.permission.stream)fail(403,'DIRECT_AUDIO_UNAVAILABLE','Этот трек сейчас недоступен.');
-        grant.reverse.delete(resource);grant.parts.set('root',fresh.info.audio_url);grant.reverse.set(fresh.info.audio_url,'root');grant.headers=fresh.info.http_headers||{};
-        ({response,url}=await pull(fresh.info.audio_url,controller.signal,grant.headers));
+        if(requestedVersion>=grant.sourceVersion){
+          track??=await ctx.requireTrack(grant.trackId,user);
+          grant.refresh??=resolve(track,{force:true}).then(fresh=>{
+            if(!fresh?.permission.stream)fail(403,'DIRECT_AUDIO_UNAVAILABLE','Этот трек сейчас недоступен.');
+            grant.reverse.delete(grant.parts.get('root'));grant.parts.set('root',fresh.info.audio_url);grant.reverse.set(fresh.info.audio_url,'root');grant.headers=fresh.info.http_headers||{};
+            grant.partVersions.set('root',++grant.sourceVersion);return fresh;
+          }).finally(()=>{grant.refresh=null;});await grant.refresh;
+        }
+        // An expired segment cannot be replaced by arbitrary new bytes. Ask the
+        // player to reload the now-fresh manifest and retain its playback time.
+        if(part!=='root')fail(410,'AUDIO_EXPIRED','Аудиопоток обновлён. Продолжи воспроизведение.');
+        ({response,url}=await pull(grant.parts.get('root'),controller.signal,grant.headers));responseVersion=grant.sourceVersion;
       }
       if(response.status===416){await response.body?.cancel();if(response.headers.get('content-range'))res.set('Content-Range',response.headers.get('content-range'));return res.status(416).end();}
       if(!response.ok){await response.body?.cancel();fail(response.status===429?429:502,'EXTRACTOR_UPSTREAM','Источник временно не открыл трек.');}
@@ -70,7 +77,7 @@ export function setupExtractedHls(app,ctx,{cdn,resolve,fetcher=fetch}){
       if(manifest){
         const chunks=[];let bytes=0;
         try{for await(const chunk of response.body){bytes+=chunk.length;if(bytes>512*1024)fail(413,'AUDIO_TOO_LARGE','Источник не открыл аудио.');chunks.push(Buffer.from(chunk));}}finally{await response.body?.cancel().catch(()=>{});}
-        const link=value=>{if(!cdn(value))fail(502,'EXTRACTOR_URL','Источник не открыл аудио.');let key=grant.reverse.get(value);if(!key){if(grant.parts.size>=8192||parts>=32768)fail(503,'EXTRACTOR_BUSY','Музыка загружается. Повтори чуть позже.');key=randomBytes(12).toString('base64url');grant.parts.set(key,value);grant.reverse.set(value,key);parts++;}return `/api/stream-audio/${encodeURIComponent(grant.trackId)}?grant=${token}&part=${key}`;};
+        const link=value=>{if(!cdn(value))fail(502,'EXTRACTOR_URL','Источник не открыл аудио.');let key=grant.reverse.get(value);if(!key){if(grant.parts.size>=8192||parts>=32768)fail(503,'EXTRACTOR_BUSY','Музыка загружается. Повтори чуть позже.');key=randomBytes(12).toString('base64url');grant.parts.set(key,value);grant.partVersions.set(key,responseVersion);grant.reverse.set(value,key);parts++;}return `/api/stream-audio/${encodeURIComponent(grant.trackId)}?grant=${token}&part=${key}`;};
         res.type('application/vnd.apple.mpegurl').send(rewriteSoundcloudManifest(Buffer.concat(chunks).toString('utf8'),url,link));
       }else{
         const max=32*1024*1024;if(Number(response.headers.get('content-length'))>max){await response.body?.cancel();fail(413,'AUDIO_TOO_LARGE','Фрагмент аудио слишком большой.');}

@@ -13,7 +13,7 @@ export type HistoryEntry = { trackId: string; position?: number; playedAt?: stri
 export type Library = { tracks: Track[]; likedIds: string[]; playlists: Playlist[]; history: HistoryEntry[] };
 export type PaletteColors = { bg:string; surface:string; ink:string; accent:string };
 export type PaletteMode = 'light'|'dark'|'amoled';
-export type Appearance = { light:PaletteColors; dark:PaletteColors; amoled:PaletteColors; radius:number; speed:number; compact:boolean; blur:boolean; waveStyle:'silk'|'particles'|'bloom'; cover3d:boolean; coverKind:'vinyl'|'cd' };
+export type Appearance = { light:PaletteColors; dark:PaletteColors; amoled:PaletteColors; radius:number; speed:number; compact:boolean; blur:boolean; waveStyle:'silk'|'particles'|'bloom'; cover3d:boolean; coverAccent:boolean; coverKind:'vinyl'|'cd' };
 export type AppearancePatch = Partial<Omit<Appearance,PaletteMode>> & { light?:Partial<PaletteColors>; dark?:Partial<PaletteColors>; amoled?:Partial<PaletteColors> };
 export type Equalizer = {enabled:boolean;preamp:number;bands:number[]};
 export type SeasonalEffects={enabled:boolean;mode:'auto'|'snow'|'rain'|'leaves'|'sun';intensity:'subtle'|'normal'};
@@ -33,7 +33,7 @@ export type ConnectState={jamPaused?:boolean;independent:boolean;activeDeviceId:
 export type AccountSession={id:string;current:boolean;deviceId:string|null;deviceName:string;kind:string;createdAt:number|string;lastActiveAt:number|string;expiresAt:number|string;online:boolean};
 export type Connection = { provider: string; connected: boolean; displayName?: string; configured: boolean; searchAvailable?:boolean; reason?: string };
 export const sourceNames: Record<Source, string> = { get local(){return t('copy.191')}, youtube: 'YouTube Music', spotify: 'Spotify', soundcloud: 'SoundCloud', get yandex(){return t('copy.187')} };
-export const defaultAppearance:Appearance={light:{bg:'#efede3',surface:'#f8f7f1',ink:'#302f2c',accent:'#a08369'},dark:{bg:'#141517',surface:'#202225',ink:'#eeeae3',accent:'#b1a2de'},amoled:{bg:'#000000',surface:'#0b0b0b',ink:'#f4f1f7',accent:'#b1a2de'},radius:24,speed:1,compact:false,blur:true,waveStyle:'silk',cover3d:true,coverKind:'vinyl'};
+export const defaultAppearance:Appearance={light:{bg:'#efede3',surface:'#f8f7f1',ink:'#302f2c',accent:'#a08369'},dark:{bg:'#141517',surface:'#202225',ink:'#eeeae3',accent:'#b1a2de'},amoled:{bg:'#000000',surface:'#0b0b0b',ink:'#f4f1f7',accent:'#b1a2de'},radius:24,speed:1,compact:false,blur:true,waveStyle:'silk',cover3d:true,coverAccent:true,coverKind:'vinyl'};
 export const defaultEqualizer:Equalizer={enabled:false,preamp:0,bands:Array(10).fill(0)};
 export const defaultSettings:Settings={language:'auto',autoCache:true,cacheLimitMB:1024,lyrics:true,comments:true,lyricsUnderCover:true,fontFamily:'manrope',fontScale:1,discordPresence:true,notifications:false,theme:'light',reducedMotion:false,appearance:defaultAppearance,equalizer:defaultEqualizer,playbackRate:1,seasonalEffects:defaultSeasonalEffects};
 export function time(seconds = 0) { const value = Math.max(0, Math.floor(Number.isFinite(seconds) ? seconds : 0)), minutes=Math.floor(value/60), tail=String(value%60).padStart(2,'0'); return value<3600?`${minutes}:${tail}`:`${Math.floor(value/3600)}:${String(minutes%60).padStart(2,'0')}:${tail}`; }

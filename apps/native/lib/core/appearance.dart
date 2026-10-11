@@ -6,7 +6,9 @@ bool requiresAdvancedAppearance(Json changes) {
   if (changes.containsKey('fontFamily')) return true;
   final appearance = object(changes['appearance']);
   for (final entry in appearance.entries) {
-    if (!['light', 'dark', 'amoled'].contains(entry.key)) return true;
+    if (!['light', 'dark', 'amoled', 'coverAccent'].contains(entry.key)) {
+      return true;
+    }
     if (object(entry.value).keys.any((key) => key != 'accent')) return true;
   }
   return false;
@@ -93,6 +95,7 @@ Json presentationPatch(Json changes, WaveCustomization normalized) {
         'blur',
         'waveStyle',
         'cover3d',
+        'coverAccent',
         'coverKind',
       ])
         if (changed.containsKey(key)) key: appearance[key],
@@ -137,7 +140,7 @@ class WavePalette {
 class WaveAppearance {
   final WavePalette light, dark, amoled;
   final double radius, speed;
-  final bool compact, blur, cover3d;
+  final bool compact, blur, cover3d, coverAccent;
   final String waveStyle, coverKind;
   const WaveAppearance({
     this.light = WavePalette.light,
@@ -149,6 +152,7 @@ class WaveAppearance {
     this.blur = true,
     this.waveStyle = 'silk',
     this.cover3d = true,
+    this.coverAccent = true,
     this.coverKind = 'vinyl',
   });
   Json toJson() => {
@@ -161,6 +165,7 @@ class WaveAppearance {
     'blur': blur,
     'waveStyle': waveStyle,
     'cover3d': cover3d,
+    'coverAccent': coverAccent,
     'coverKind': coverKind,
   };
   WaveAppearance merge(Json values) => WaveAppearance(
@@ -174,6 +179,9 @@ class WaveAppearance {
     waveStyle: ['silk', 'particles', 'bloom'].contains(values['waveStyle'])
         ? values['waveStyle'] as String
         : waveStyle,
+    coverAccent: values['coverAccent'] is bool
+        ? values['coverAccent'] as bool
+        : coverAccent,
     cover3d: values['cover3d'] is bool ? values['cover3d'] as bool : cover3d,
     coverKind: ['vinyl', 'cd'].contains(values['coverKind'])
         ? values['coverKind'] as String

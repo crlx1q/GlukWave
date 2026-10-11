@@ -9,6 +9,7 @@ import { AuthModal, LoginApproval, CaptchaApproval } from './auth';
 import { AdminPage, ProfilePage, SettingsPage } from './account';
 import { RoomsPage } from './community';
 import { DownloadsPage, HomePage, LibraryPage, SearchPage, SourcesPage, UploadModal } from './pages';
+import {CoverAccentBridge} from './cover-accent-bridge';
 import { PlayerProvider, usePlayer } from './player';
 import { DevicesModal, FullPlayer, PlayerBar } from './player-ui';
 import { StoreProvider, useStore, type Route } from './store';
@@ -20,7 +21,7 @@ import { LoFiPage } from './lofi';
 import { DiscordInvitationHandler } from './discord';
 const navigation=():[Route,string,typeof Home][]=>[['home',t('copy.170'),Home],['search',t('copy.171'),Search],['library',t('copy.172'),Library],['rooms',t('copy.173'),Users],['lofi','Gluk Lo-Fi',Waves]];
 class RenderBoundary extends Component<{children:ReactNode},{error:boolean}>{state={error:false};static getDerivedStateFromError(){return{error:true};}componentDidCatch(error:Error,info:ErrorInfo){reportError(error,'framework',{stack:(error.stack||'')+(info.componentStack||'')});}render(){if(this.state.error)return <div className="fatal-error"><img src="/brand/logo.png" alt="" width="60"/><h1>{t('copy.174')}</h1><p>{t('copy.175')}</p><button className="primary-button" onClick={()=>location.reload()}>{t('copy.176')}</button></div>;return this.props.children;}}
-export function App(){useLocale();return <RenderBoundary><StoreProvider><PlayerProvider><Shell/></PlayerProvider></StoreProvider></RenderBoundary>;}
+export function App(){useLocale();return <RenderBoundary><StoreProvider><PlayerProvider><CoverAccentBridge/><Shell/></PlayerProvider></StoreProvider></RenderBoundary>;}
 function Shell(){useLocale();const store=useStore(),player=usePlayer(),[upload,setUpload]=useState(false),[more,setMore]=useState(false),[notificationOpen,setNotificationOpen]=useState(false),[notifications,setNotifications]=useState<{title:string;body:string;url?:string}[]>([]),[connections,setConnections]=useState<Connection[]>([]),[linkedTrack,setLinkedTrack]=useState<Track|null>(null);const searchRef=useRef<HTMLInputElement>(null),lastRoute=useRef(store.route),historyWalking=useRef(false),[historyStack,setHistoryStack]=useState<Route[]>([store.route]),[historyIndex,setHistoryIndex]=useState(0);
  useEffect(()=>{if(store.route===lastRoute.current)return;lastRoute.current=store.route;if(historyWalking.current){historyWalking.current=false;return;}setHistoryStack(current=>[...current.slice(0,historyIndex+1),store.route]);setHistoryIndex(current=>current+1);},[store.route]);
  const moveHistory=(direction:number)=>{const next=historyIndex+direction;if(next<0||next>=historyStack.length)return;historyWalking.current=true;setHistoryIndex(next);store.navigate(historyStack[next]);};

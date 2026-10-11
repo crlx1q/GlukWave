@@ -1,4 +1,5 @@
 import 'motion_icons.dart';
+import 'cover_accent.dart';
 import 'dart:async';
 import 'dart:io';
 import 'package:flutter/material.dart';
@@ -98,6 +99,10 @@ class _GlukWaveAppState extends State<GlukWaveApp> with WidgetsBindingObserver {
   bool _foreground = true;
   WaveCustomization? _customization;
   ThemeData? _light, _dark;
+  final _coverSampler = CoverAccentSampler();
+  String? _coverKey;
+  Color? _coverAccent, _themeAccent;
+  bool _highContrast = false;
   @override
   void initState() {
     super.initState();
@@ -129,7 +134,38 @@ class _GlukWaveAppState extends State<GlukWaveApp> with WidgetsBindingObserver {
     }
   }
 
+  void _refreshCover() {
+    final c = widget.controller, track = c.audio.viewCurrent;
+    final key =
+        '${c.user?.id}:${track?.id}:${track?.artwork}:${c.customization.appearance.coverAccent}';
+    if (key == _coverKey) return;
+    _coverKey = key;
+    _coverSampler.cancel();
+    _coverAccent = null;
+    if (!c.customization.appearance.coverAccent ||
+        track == null ||
+        track.artwork.isEmpty) {
+      return;
+    }
+    final uri = Uri.tryParse(c.api.url(track.artwork));
+    if (uri == null || !['http', 'https'].contains(uri.scheme)) return;
+    _coverSampler.read(
+      key,
+      NetworkImage(
+        uri.toString(),
+        headers: uri.origin == Uri.parse(c.api.server).origin
+            ? c.api.headers
+            : null,
+      ),
+      (tone) {
+        if (!mounted || _coverKey != key) return;
+        setState(() => _coverAccent = tone);
+      },
+    );
+  }
+
   void _changed() {
+    _refreshCover();
     final c = widget.controller;
     if (c.noticeRevision == _notice || c.notice == null) return;
     _notice = c.noticeRevision;
@@ -148,8 +184,14 @@ class _GlukWaveAppState extends State<GlukWaveApp> with WidgetsBindingObserver {
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
     widget.controller.removeListener(_changed);
+    _coverSampler.dispose();
     timeDilation = 1;
     super.dispose();
+  }
+
+  @override
+  void didChangeAccessibilityFeatures() {
+    if (mounted) setState(() {});
   }
 
   @override
@@ -157,10 +199,30 @@ class _GlukWaveAppState extends State<GlukWaveApp> with WidgetsBindingObserver {
     animation: widget.controller,
     builder: (context, child) {
       final c = widget.controller, customization = c.customization;
-      if (!identical(_customization, customization)) {
+      final highContrast = WidgetsBinding
+          .instance
+          .platformDispatcher
+          .accessibilityFeatures
+          .highContrast;
+      _refreshCover();
+      if (!identical(_customization, customization) ||
+          _themeAccent != _coverAccent ||
+          _highContrast != highContrast) {
+        _highContrast = highContrast;
+        _themeAccent = _coverAccent;
         _customization = customization;
-        _light = buildWaveTheme(customization, Brightness.light);
-        _dark = buildWaveTheme(customization, Brightness.dark);
+        _light = buildWaveTheme(
+          customization,
+          Brightness.light,
+          coverAccent: _coverAccent,
+          highContrast: highContrast,
+        );
+        _dark = buildWaveTheme(
+          customization,
+          Brightness.dark,
+          coverAccent: _coverAccent,
+          highContrast: highContrast,
+        );
         // Flutter uses this clock for its transitions and animated GIF frames.
         // A single clock keeps the logo, wave and controls at the same speed.
         timeDilation = 1 / customization.appearance.speed;

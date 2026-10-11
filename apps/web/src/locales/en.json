@@ -1220,5 +1220,9 @@
   "playbackDiagnostics.active": "{count} active streams",
   "playbackDiagnostics.recent": "Recent playback requests",
   "playbackDiagnostics.empty": "No playback requests yet.",
-  "playback.unavailable": "This track is not currently available in GlukWave. Choose another track."
+  "playback.unavailable": "This track is not currently available in GlukWave. Choose another track.",
+  "audioDesign.coverAccent": "Colour from the cover",
+  "audioDesign.coverAccentCaption": "Your controls and wave follow the album. Turn off to keep your palette.",
+  "audioDesign.savePreset": "Save my curve",
+  "audioDesign.savedPreset": "My curve"
 }

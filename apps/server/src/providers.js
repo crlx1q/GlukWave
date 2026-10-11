@@ -56,9 +56,12 @@ export function setupProviders(app,ctx){
   ctx.providerToken=token;ctx.persistTracks=persist;
   ctx.searchProvider=async(p,q,userId)=>{
     if(p==='youtube'){
-      if(ctx.extractorAvailable?.('youtube'))try{const results=await ctx.extractorSearch(q);return persist(results.map(item=>({id:`youtube-${item.track_id}`,source:'youtube',sourceId:item.track_id,sourceUrl:item.source_url,title:item.title,artist:item.artist,album:item.album,artwork:item.cover,duration:Number(item.duration)||0,createdAt:now(),public:true,playback:{kind:'youtube',embedUrl:`https://www.youtube-nocookie.com/embed/${item.track_id}?enablejsapi=1`,offline:false}})));}catch(error){if(!config.youtubeKey)throw error;}
-      if(!config.youtubeKey)fail(503,'PROVIDER_NOT_CONFIGURED','Поиск YouTube сейчас недоступен. Можно открыть трек по ссылке.');
-      const r=await remoteJson(`https://www.googleapis.com/youtube/v3/search?${new URLSearchParams({part:'snippet',type:'video,channel',maxResults:'20',q,key:config.youtubeKey})}`);
+      const extractedSearch=async()=>{const results=await ctx.extractorSearch(q);return persist(results.map(item=>({id:`youtube-${item.track_id}`,source:'youtube',sourceId:item.track_id,sourceUrl:item.source_url,title:item.title,artist:item.artist,album:item.album,artwork:item.cover,duration:Number(item.duration)||0,createdAt:now(),public:true,playback:{kind:'youtube',embedUrl:`https://www.youtube-nocookie.com/embed/${item.track_id}?enablejsapi=1`,offline:false}})));};
+      if(!config.youtubeKey){if(ctx.extractorAvailable?.('youtube'))return extractedSearch();fail(503,'PROVIDER_NOT_CONFIGURED','Поиск YouTube сейчас недоступен. Можно открыть трек по ссылке.');}
+      // A configured metadata API avoids a new Python/JS engine per search;
+      // extraction remains an independent fallback and still resolves playback.
+      let r;try{r=await remoteJson(`https://www.googleapis.com/youtube/v3/search?${new URLSearchParams({part:'snippet',type:'video,channel',maxResults:'20',q,key:config.youtubeKey})}`);}
+      catch(error){if(ctx.extractorAvailable?.('youtube'))return extractedSearch();throw error;}
       const videoItems=(r.items||[]).filter(item=>item.id?.videoId);
       let videoMap=new Map();
       if(videoItems.length){

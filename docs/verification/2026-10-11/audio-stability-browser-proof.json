@@ -1,0 +1,39 @@
+{
+  "passed": true,
+  "autoplayOverride": false,
+  "physicalOutput": false,
+  "originalMedia": true,
+  "steps": [
+    {
+      "firstPlay": {
+        "blocked": true,
+        "name": "NotAllowedError"
+      }
+    },
+    {
+      "hls": {
+        "activation": true,
+        "events": [],
+        "graph": "running",
+        "kind": "hls",
+        "managed": true,
+        "readyState": 4,
+        "source": "blob:http://127.0.0.1:5192/9ebc9c40-f887-4d97-a3b1-33bb03acf08d",
+        "time": 0.797441
+      }
+    },
+    {
+      "progressive": {
+        "kind": "progressive",
+        "managed": false,
+        "time": 1.302639
+      }
+    },
+    {
+      "invalid": {
+        "blocked": false,
+        "error": "NotSupportedError"
+      }
+    }
+  ]
+}

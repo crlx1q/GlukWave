@@ -4,7 +4,9 @@ import importlib.metadata
 import io
 import json
 import os
+import re
 import sys
+import zipfile
 from urllib.parse import urlparse, parse_qs
 
 sys.stdout.reconfigure(encoding='utf-8')
@@ -38,6 +40,27 @@ class QuietLogger:
     def error(self, *_): pass
 
 
+def package_version(name):
+    # Diagnostics do not need to import the entire extraction engine. Prefer the
+    # vendored copy that actually wins sys.path, not an unrelated installed dist.
+    relative = {'yt-dlp': 'yt_dlp/version.py', 'yt-dlp-ejs': 'yt_dlp_ejs/_version.py'}.get(name)
+    if relative:
+        for entry in sys.path:
+            try:
+                if entry.endswith(('.zip', '.whl')):
+                    with zipfile.ZipFile(entry) as archive:
+                        value = archive.read(relative).decode('utf-8')
+                else:
+                    with open(os.path.join(entry, relative), encoding='utf-8') as file:
+                        value = file.read(16384)
+                match = re.search(r"^__version__\s*=\s*(?:version\s*=\s*)?['\"]([^'\"]+)['\"]", value, re.M)
+                if match: return match[1]
+            except (OSError, KeyError, zipfile.BadZipFile):
+                continue
+    try: return importlib.metadata.version(name)
+    except importlib.metadata.PackageNotFoundError: return None
+
+
 def normalized(info, source):
     return {'track_id': str(info.get('id') or ''), 'title': str(info.get('track') or info.get('title') or '')[:300],
             'artist': str(info.get('artist') or info.get('uploader') or info.get('channel') or '')[:300],
@@ -56,15 +79,11 @@ def extract(request):
     options = {'quiet': True, 'no_warnings': True, 'logger': QuietLogger(), 'noplaylist': True,
                'skip_download': True, 'cachedir': False, 'socket_timeout': 15, 'retries': 2,
                'extractor_retries': 2, 'fragment_retries': 2,
-               'format': 'bestaudio[protocol=https][ext=m4a]/bestaudio[protocol=https]/bestaudio[protocol=m3u8_native]/bestaudio[protocol=m3u8]/bestaudio/best',
-               'extract_flat': False, 'playlistend': 1, 'allow_unplayable_formats': False,
-               'nocheckcertificate': True}
-    if source == 'youtube':
-        options['extractor_args'] = {
-            'youtube': {
-                'player_client': ['android', 'ios', 'mweb', 'web', 'tv']
-            }
-        }
+               'format': 'bestaudio[protocol=https][ext=m4a]/bestaudio[protocol=https]/bestaudio[protocol=m3u8_native]/bestaudio[protocol=m3u8]/bestaudio',
+               'extract_flat': False, 'playlistend': 1, 'allow_unplayable_formats': False}
+    # Let the bundled extractor select its supported clients and fallbacks.
+    # Forcing five clients on every track increases network/JS work and includes
+    # clients whose formats require unavailable tokens. Never fall back to video.
     if request.get('deno'):
         options['js_runtimes'] = {'deno': {'path': request['deno']}}
     elif request.get('node'):
@@ -95,7 +114,9 @@ def music_search(request):
         from yt_dlp import YoutubeDL
         limit = min(15, request.get('limit', 10))
         query = str(request['query'])[:200]
-        options = {'quiet': True, 'no_warnings': True, 'logger': QuietLogger(), 'extract_flat': True, 'skip_download': True}
+        options = {'quiet': True, 'no_warnings': True, 'logger': QuietLogger(),
+                   'extract_flat': True, 'skip_download': True, 'cachedir': False,
+                   'socket_timeout': 10, 'retries': 1, 'extractor_retries': 1}
         with YoutubeDL(options) as ydl:
             res = ydl.extract_info(f"ytsearch{limit}:{query}", download=False)
         tracks = []
@@ -158,18 +179,7 @@ def main():
     action = request.get('action')
     with contextlib.redirect_stdout(io.StringIO()), contextlib.redirect_stderr(io.StringIO()):
         if action == 'versions':
-            result = {}
-            for name in ['yt-dlp', 'yt-dlp-ejs', 'ytmusicapi', 'spotdl']:
-                try: result[name] = importlib.metadata.version(name)
-                except Exception:
-                    if name == 'yt-dlp':
-                        try:
-                            import yt_dlp.version
-                            result[name] = yt_dlp.version.__version__
-                        except Exception:
-                            result[name] = None
-                    else:
-                        result[name] = None
+            result = {name: package_version(name) for name in ['yt-dlp', 'yt-dlp-ejs', 'ytmusicapi', 'spotdl']}
         elif action == 'extract': result = extract(request)
         elif action == 'music-search': result = music_search(request)
         elif action == 'spotify-metadata': result = spotify_metadata(request)
@@ -183,6 +193,6 @@ if __name__ == '__main__':
     except Exception as error:
         # Raw upstream errors can contain signed CDN URLs and credentials.
         name = type(error).__name__
-        msg = str(error)[:300]
-        sys.stdout.write(json.dumps({'ok': False, 'code': 'EXTRACTOR_UPSTREAM', 'type': name, 'message': msg}))
+        code = 'EXTRACTOR_MODULE' if isinstance(error, (ModuleNotFoundError, ImportError)) else 'EXTRACTOR_UPSTREAM'
+        sys.stdout.write(json.dumps({'ok': False, 'code': code, 'type': name}))
         sys.exit(1)

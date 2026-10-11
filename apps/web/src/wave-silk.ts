@@ -1,3 +1,5 @@
+import {ribbonSeeds,ribbonDrift} from './wave-silk-math';
+export {ribbonSeeds,ribbonDrift} from './wave-silk-math';
 import { type WaveFrame, type WaveRenderer } from './vendor/halftone-bloom';
 import { silkPalette, silkDepthColor } from './wave-colors';
 
@@ -31,6 +33,10 @@ void main(){
  float turn=influence*clamp(length(uVelocity),0.,1.8)*1.05;
  y+=(yy*cos(turn)-zz*sin(turn)-yy)*.19+influence*(uPointer.y-y)*.17;
  y+=influence*uVelocity.y*.025;x+=influence*uVelocity.x*.012*envelope;
+ float detached=mod(seed,13.)<1.?1.:0.;
+ float drift=.5+.5*sin(seed*.61+uTime*.14);
+ x+=detached*sin(seed*.37+uTime*.11)*(.004+drift*.012);
+ y+=detached*(mod(seed,2.)<1.?-1.:1.)*(.024+drift*.072+uEnergy*.022+influence*.018);
  gl_Position=vec4(x*2.-1.,1.-y*2.,0.,1.);
  gl_PointSize=(1.05+depth*1.05)*(1.+uEnergy*.13)*uRatio;
  vAlpha=(.38+depth*.53)*(.70+.30*sin(seed*8.)*sin(seed*8.));vAccent=depth*depth*depth;
@@ -40,8 +46,6 @@ uniform vec3 uColor,uAccent;
 varying float vAlpha,vAccent;
 void main(){vec2 p=gl_PointCoord-.5;float d=dot(p,p);if(d>.25)discard;
 gl_FragColor=vec4(mix(uColor,uAccent,vAccent),(1.-smoothstep(.045,.25,d))*vAlpha);}`;
-function random(index:number){const n=Math.sin(index*127.1+311.7)*43758.5453123;return n-Math.floor(n);}
-export function ribbonSeeds(count:number){const values=new Float32Array(count*4);for(let i=0;i<count;i++)values.set([random(i*4),random(i*4+1)*2-1,random(i*4+2)*1000,random(i*4+3)],i*4);return values;}
 const seeds=ribbonSeeds(20000);
 function colors(frame:WaveFrame){return silkPalette(frame.tint,frame.background);}
 export function createSilkWave(canvas:HTMLCanvasElement):WaveRenderer|null {
@@ -82,8 +86,8 @@ export function drawFlowRibbon(context:CanvasRenderingContext2D,frame:WaveFrame)
   let x=.018+u*.964+envelope*(fa*.026*Math.sin((u-.31)*18+t*.42)+fb*.020*Math.sin((u-.70)*24-t*.36)),y=.57+(cy+yy)*.19;
   const dx=(x-pointer.x)*width,dy=(y-pointer.y)*height,radius=Math.max(65,Math.min(145,height*.42)),influence=Math.exp(-(dx*dx+dy*dy)/(radius*radius))*pointer.active,turn=influence*Math.min(1.8,Math.hypot(pointer.vx||0,pointer.vy||0))*1.05;
   y+=(yy*Math.cos(turn)-zz*Math.sin(turn)-yy)*.19+influence*(pointer.y-y)*.17+influence*(pointer.vy||0)*.025;x+=influence*(pointer.vx||0)*.012*envelope;
+  const drift=ribbonDrift(seed,phase,energy,influence);x+=drift.x;y+=drift.y;
   const radiusDot=.42+depth*.42,path=paths[Math.min(7,Math.floor(depth*8))];path.moveTo(x*width+radiusDot,y*height);path.arc(x*width,y*height,radiusDot,0,Math.PI*2);
  }
  for(let index=0;index<8;index++){const tone=silkDepthColor(color,(index+.5)/8).map(v=>Math.round(v*255));context.fillStyle=`rgba(${tone.join(',')},${.32+(index+.5)/8*.50})`;context.fill(paths[index]);}
 }
-
