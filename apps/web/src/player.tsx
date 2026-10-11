@@ -8,7 +8,8 @@ import { ownsOutput, snapshotPosition } from './connect-controller';
 import { reportError } from './diagnostics';
 import { waitForPlayback, isPlaybackBlocked } from './playback-lifecycle';
 import { restoredVolume, saveVolume } from './volume';
-import { cached, downloads, saveTrack } from './cache';
+import { cached, downloads, saveTrack, deleteDownload } from './cache';
+import {canRetryCachedAudio} from './audio-cache-validation';
 import { useStore } from './store';
 import { configureEqualizer, createAudioGraph, type AudioGraph } from './audio-processing';
 import type { ConnectState, Device, Playback, PlayerState, Room, Track } from './types';
@@ -48,7 +49,7 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
   useEffect(()=>{const graph=audioMeter.current?.graph;if(graph)configureEqualizer(graph,store.settings.equalizer);audio.playbackRate=room?1:store.settings.playbackRate;},[audio,room?.id,store.settings.equalizer,store.settings.playbackRate]);
   const clearPlayback=useCallback(()=>{resolvingTrack.current=false;setTrackLoading(false);loadRevision.current++;loadAbort.current?.abort();desiredPlay.current=false;desiredPosition.current=0;audio.pause();streamLoader.current.destroy();audio.removeAttribute('src');audio.load();controller.current?.pause();controller.current?.destroy?.();controller.current=null;if(objectUrl.current){URL.revokeObjectURL(objectUrl.current);objectUrl.current=null;}if(artworkObjectUrl.current){URL.revokeObjectURL(artworkObjectUrl.current);artworkObjectUrl.current=null;}trackRef.current=null;playbackRef.current=null;queueRef.current=[];setTrack(null);setPlayback(null);setQueue([]);setDuration(0);update({trackId:null,position:0,playing:false,queue:[]});if('mediaSession'in navigator)navigator.mediaSession.metadata=null;},[audio,update]);
   useEffect(()=>{const refresh=()=>{if(store.user)void downloads(store.user.id).then(rows=>{setSavedIds(new Set(rows.map(row=>row.track.id)));setManualIds(new Set(rows.filter(row=>row.manual).map(row=>row.track.id)));});else{setSavedIds(new Set());setManualIds(new Set());}};refresh();window.addEventListener('wave:cache',refresh);return()=>window.removeEventListener('wave:cache',refresh);},[store.user?.id]);
-  const applyTrack=useCallback(async(next:Track,nextQueue:Track[]|undefined,playing=true,position=0,strict=false)=>{
+  const applyTrack=useCallback(async(next:Track,nextQueue:Track[]|undefined,playing=true,position=0,strict=false):Promise<void>=>{
     loadAbort.current?.abort();const request=new AbortController();loadAbort.current=request;
     const revision=++loadRevision.current,startedUserId=userRef.current?.id;
     resolvingTrack.current=true;setTrackLoading(true);
@@ -56,8 +57,10 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
     if(objectUrl.current){URL.revokeObjectURL(objectUrl.current);objectUrl.current=null;}if(artworkObjectUrl.current){URL.revokeObjectURL(artworkObjectUrl.current);artworkObjectUrl.current=null;}
     trackRef.current=next;playbackRef.current=null;setTrack(next);setPlayback(null);setDuration(next.duration||0);desiredPlay.current=playing;desiredPosition.current=position;setAutoplayBlocked(false);
     const order=nextQueue?.length?nextQueue:queueRef.current.some(item=>item.id===next.id)?queueRef.current:[next];setQueue(order);store.remember([next]);update({trackId:next.id,position,playing:false,queue:order.map(item=>item.id)});
+    let usedCache=false;
     try {
       const local=userRef.current?await cached(userRef.current.id,next.id):undefined;
+      usedCache=!!local;
       const fresh=local?{kind:'audio' as const,url:URL.createObjectURL(local.blob),offline:true}:(await api<{playback:Playback}>(`/tracks/${encodeURIComponent(next.id)}/playback`,{signal:request.signal})).playback;
       if(revision!==loadRevision.current||startedUserId!==userRef.current?.id){if(local&&fresh.url)URL.revokeObjectURL(fresh.url);return;}
       if(fresh.kind!=='audio'||!fresh.url)throw new ApiError('AUDIO_UNAVAILABLE',t('playback.unavailable'));
@@ -91,7 +94,14 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
       } else if(fresh.kind==='yandex'&&playing){store.notify(t('copy.706'));if(strict)throw new Error(t('copy.707'));}
       if(strict&&playing&&fresh.kind!=='audio')await waitForPlayback(()=>trackRef.current?.id===next.id&&stateRef.current.playing,request.signal,t('copy.708'));
       if(userRef.current&&startedUserId===userRef.current.id)void post('/history',{trackId:next.id,position}).then(()=>store.refreshLibrary()).catch(()=>{});
-    }catch(error){if(revision===loadRevision.current){resolvingTrack.current=false;setTrackLoading(false);update({playing:false});store.notify(errorText(error),true);}throw error;}finally{if(revision===loadRevision.current){resolvingTrack.current=false;setTrackLoading(desiredPlay.current&&!audio.paused&&audio.readyState<3);}}
+    }catch(error){
+      if(revision===loadRevision.current&&startedUserId===userRef.current?.id&&startedUserId&&canRetryCachedAudio(error,usedCache,navigator.onLine!==false)){
+        await deleteDownload(startedUserId,next.id);
+        if(revision!==loadRevision.current||startedUserId!==userRef.current?.id)return;
+        return applyTrackRef.current(next,order,desiredPlay.current,desiredPosition.current,strict);
+      }
+      if(revision===loadRevision.current){resolvingTrack.current=false;setTrackLoading(false);update({playing:false});store.notify(errorText(error),true);}throw error;
+    }finally{if(revision===loadRevision.current){resolvingTrack.current=false;setTrackLoading(desiredPlay.current&&!audio.paused&&audio.readyState<3);}}
   },[audio,ensureAudioMeter,store.remember,store.notify,store.refreshLibrary,update]);
   const resolveQueue=useCallback(async(ids?:string[])=>{if(!ids?.length)return queueRef.current;const tracks:Track[]=[];for(const id of ids){const known=store.library.tracks.find(item=>item.id===id)||queueRef.current.find(item=>item.id===id);if(known)tracks.push(known);else try{tracks.push((await api<{track:Track}>(`/tracks/${id}`)).track);}catch{/* A deleted queue item is omitted. */}}return tracks;},[store.library.tracks]);
   const applyCommand=useCallback(async(command:Command,strict=false)=>{

@@ -8,6 +8,7 @@ import 'package:glukwave/services/cache.dart';
 
 class DownloadApi extends WaveApi {
   bool slow = false;
+  String? document;
   DownloadApi() : super('http://127.0.0.1:4000');
   @override
   Future<void> download(
@@ -26,7 +27,9 @@ class DownloadApi extends WaveApi {
       }
     }
     await Future<void>.delayed(const Duration(milliseconds: 20));
-    await target.writeAsBytes(List.filled(600 * 1024, 42));
+    await target.writeAsBytes(
+      document == null ? List.filled(600 * 1024, 42) : utf8.encode(document!),
+    );
     progress?.call(1);
   }
 }
@@ -64,6 +67,51 @@ void main() {
     );
     expect(manifest.keys.toSet(), cache.entries.keys.toSet());
   });
+  test(
+    'Successful manifest or HTML response is not saved as offline audio',
+    () async {
+      for (final body in [
+        '#EXTM3U\n#EXTINF:4,\nold.ts',
+        '<!DOCTYPE html><html>Error</html>',
+        '{"error":{"code":"EXPIRED"}}',
+        '',
+      ]) {
+        api.document = body;
+        await expectLater(
+          cache.save(track('document')),
+          throwsA(isA<WaveException>()),
+        );
+        expect(cache.contains('document'), isFalse);
+        expect(
+          directory.listSync().where((file) => file.path.endsWith('.part')),
+          isEmpty,
+        );
+      }
+    },
+  );
+  test(
+    'Historical cached playlist is removed so normal playback resolves a fresh stream',
+    () async {
+      final file = File('${directory.path}/old.audio');
+      await file.writeAsString('\uFEFF  #EXTM3U\nold.ts');
+      cache.entries['old'] = {
+        'file': 'old.audio',
+        'bytes': await file.length(),
+        'manual': true,
+      };
+      expect(await cache.fileFor('old'), isNull);
+      expect(cache.contains('old'), isFalse);
+      expect(await file.exists(), isFalse);
+      expect(
+        object(
+          jsonDecode(
+            await File('${directory.path}/manifest.json').readAsString(),
+          ),
+        ),
+        isEmpty,
+      );
+    },
+  );
   test('Pinned downloads are preserved when quota is exhausted', () async {
     await cache.save(track('one'), manual: true);
     await expectLater(cache.save(track('two')), throwsA(isA<WaveException>()));

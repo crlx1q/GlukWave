@@ -1224,5 +1224,7 @@
   "audioDesign.coverAccent": "Farbe vom Cover",
   "audioDesign.coverAccentCaption": "Bedienelemente und Welle folgen dem Album. Ausschalten, um deine Palette zu behalten.",
   "audioDesign.savePreset": "Meine Kurve speichern",
-  "audioDesign.savedPreset": "Meine Kurve"
+  "audioDesign.savedPreset": "Meine Kurve",
+  "focusedPlayer.nowPlaying": "Läuft gerade",
+  "focusedPlayer.more": "Weitere Aktionen"
 }

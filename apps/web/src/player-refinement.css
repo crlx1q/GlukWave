@@ -30,69 +30,69 @@ html[data-visuals=paused] .full-player .np-backdrop-drift,html[data-motion=reduc
 @media(max-width:600px){.lyrics-genius-url{align-items:stretch;flex-direction:column}.lyrics-genius-url button{align-self:flex-start}.lyrics-genius-source{padding:14px}.lyrics-editor-footer>.primary-button{width:100%}.lyrics-source-tabs{gap:6px}.lyrics-source-tabs button{padding:8px 11px}}
 /* Keep touch controls reachable, including narrow or zoomed phone viewports. */
 @media(max-width:500px){
- .connected-player .np-cover-growth{max-width:100%;overflow:clip}
- .connected-player .np-cover-growth .album-stage{max-width:100%;box-sizing:border-box}
- .connected-player .np-transport-row{display:grid;grid-template-columns:44px minmax(0,1fr) 44px;align-items:center;gap:0;max-width:100%}
- .connected-player .np-transport-row .transport.large{gap:0;justify-content:center;min-width:0}
- .connected-player .np-transport-row .transport.large>.icon-btn,.connected-player .np-transport-row>.icon-btn{width:44px;height:44px;min-width:44px;flex:none}
- .connected-player:is(.details-lyrics,.details-comments,.details-queue) .np-transport-row .transport.large .main-play{width:44px;height:44px;min-width:44px}
+ .connected-player:not(.focused-player) .np-cover-growth{max-width:100%;overflow:clip}
+ .connected-player:not(.focused-player) .np-cover-growth .album-stage{max-width:100%;box-sizing:border-box}
+ .connected-player:not(.focused-player) .np-transport-row{display:grid;grid-template-columns:44px minmax(0,1fr) 44px;align-items:center;gap:0;max-width:100%}
+ .connected-player:not(.focused-player) .np-transport-row .transport.large{gap:0;justify-content:center;min-width:0}
+ .connected-player:not(.focused-player) .np-transport-row .transport.large>.icon-btn,.connected-player:not(.focused-player) .np-transport-row>.icon-btn{width:44px;height:44px;min-width:44px;flex:none}
+ .connected-player:not(.focused-player):is(.details-lyrics,.details-comments,.details-queue) .np-transport-row .transport.large .main-play{width:44px;height:44px;min-width:44px}
 }
 @media(max-width:360px){
- .connected-player .np-transport-row{align-items:start}
- .connected-player .np-transport-row>.icon-btn{margin-top:4px}
- .connected-player:not(.details-lyrics):not(.details-comments):not(.details-queue) .np-transport-row .transport.large{display:grid;grid-template-columns:repeat(3,44px);grid-template-rows:52px 44px;gap:2px 0;justify-self:center}
- .connected-player .np-transport-row .transport.large .main-play{width:44px;height:52px;min-width:44px;grid-column:2;grid-row:1}
- .connected-player .np-transport-row .transport.large .previous{grid-column:1;grid-row:1}
- .connected-player .np-transport-row .transport.large .next{grid-column:3;grid-row:1}
- .connected-player .np-transport-row .transport.large .shuffle{grid-column:1;grid-row:2}
- .connected-player .np-transport-row .transport.large .repeat{grid-column:3;grid-row:2}
- .connected-player:is(.details-lyrics,.details-comments,.details-queue) .np-listening{display:flex;flex-direction:column;gap:12px;align-items:stretch}
- .connected-player:is(.details-lyrics,.details-comments,.details-queue) .np-cover-growth{width:100%;align-items:center}
+ .connected-player:not(.focused-player) .np-transport-row{align-items:start}
+ .connected-player:not(.focused-player) .np-transport-row>.icon-btn{margin-top:4px}
+ .connected-player:not(.focused-player):not(.details-lyrics):not(.details-comments):not(.details-queue) .np-transport-row .transport.large{display:grid;grid-template-columns:repeat(3,44px);grid-template-rows:52px 44px;gap:2px 0;justify-self:center}
+ .connected-player:not(.focused-player) .np-transport-row .transport.large .main-play{width:44px;height:52px;min-width:44px;grid-column:2;grid-row:1}
+ .connected-player:not(.focused-player) .np-transport-row .transport.large .previous{grid-column:1;grid-row:1}
+ .connected-player:not(.focused-player) .np-transport-row .transport.large .next{grid-column:3;grid-row:1}
+ .connected-player:not(.focused-player) .np-transport-row .transport.large .shuffle{grid-column:1;grid-row:2}
+ .connected-player:not(.focused-player) .np-transport-row .transport.large .repeat{grid-column:3;grid-row:2}
+ .connected-player:not(.focused-player):is(.details-lyrics,.details-comments,.details-queue) .np-listening{display:flex;flex-direction:column;gap:12px;align-items:stretch}
+ .connected-player:not(.focused-player):is(.details-lyrics,.details-comments,.details-queue) .np-cover-growth{width:100%;align-items:center}
 }
 
 @media(max-width:280px){
- .connected-player .np-transport-row{grid-template-columns:repeat(4,44px);grid-template-rows:52px 44px;justify-content:center;gap:4px 0}
- .connected-player .np-transport-row .transport.large{display:contents!important}
- .connected-player .np-transport-row .transport.large .previous{grid-column:1;grid-row:1}
- .connected-player .np-transport-row .transport.large .main-play{grid-column:2 / span 2;grid-row:1;justify-self:center;align-self:center}
- .connected-player .np-transport-row .transport.large .next{grid-column:4;grid-row:1}
- .connected-player .np-transport-row>.np-like{grid-column:1;grid-row:2;margin:0}
- .connected-player .np-transport-row .transport.large .shuffle{grid-column:2;grid-row:2}
- .connected-player .np-transport-row .transport.large .repeat{grid-column:3;grid-row:2}
- .connected-player .np-transport-row>.np-eq{grid-column:4;grid-row:2;margin:0}
+ .connected-player:not(.focused-player) .np-transport-row{grid-template-columns:repeat(4,44px);grid-template-rows:52px 44px;justify-content:center;gap:4px 0}
+ .connected-player:not(.focused-player) .np-transport-row .transport.large{display:contents!important}
+ .connected-player:not(.focused-player) .np-transport-row .transport.large .previous{grid-column:1;grid-row:1}
+ .connected-player:not(.focused-player) .np-transport-row .transport.large .main-play{grid-column:2 / span 2;grid-row:1;justify-self:center;align-self:center}
+ .connected-player:not(.focused-player) .np-transport-row .transport.large .next{grid-column:4;grid-row:1}
+ .connected-player:not(.focused-player) .np-transport-row>.np-like{grid-column:1;grid-row:2;margin:0}
+ .connected-player:not(.focused-player) .np-transport-row .transport.large .shuffle{grid-column:2;grid-row:2}
+ .connected-player:not(.focused-player) .np-transport-row .transport.large .repeat{grid-column:3;grid-row:2}
+ .connected-player:not(.focused-player) .np-transport-row>.np-eq{grid-column:4;grid-row:2;margin:0}
 }
 
 /* App interface scale uses root zoom. Viewport-sized overlays need the actual
    available CSS space; container rules follow that space instead of physical vw. */
 .modal:has(.lyrics-editor){max-width:calc(100vw / var(--font-scale,1) - 24px);max-height:calc(100dvh / var(--font-scale,1) - 24px)}
-.connected-player{width:calc(100vw / var(--font-scale,1) - 20px)!important;height:calc(100dvh / var(--font-scale,1) - 20px)!important}
-.connected-player .full-player-inner{container-type:inline-size;container-name:player-sheet}
-.connected-player .np-controls{container-type:inline-size;container-name:player-controls}
-@media(max-width:850px){.connected-player{width:calc(100vw / var(--font-scale,1))!important;height:calc(100dvh / var(--font-scale,1))!important}}
+.connected-player:not(.focused-player){width:calc(100vw / var(--font-scale,1) - 20px)!important;height:calc(100dvh / var(--font-scale,1) - 20px)!important}
+.connected-player:not(.focused-player) .full-player-inner{container-type:inline-size;container-name:player-sheet}
+.connected-player:not(.focused-player) .np-controls{container-type:inline-size;container-name:player-controls}
+@media(max-width:850px){.connected-player:not(.focused-player){width:calc(100vw / var(--font-scale,1))!important;height:calc(100dvh / var(--font-scale,1))!important}}
 @container player-sheet (max-width:316px){
- .connected-player:is(.details-lyrics,.details-comments,.details-queue) .np-listening{display:flex;flex-direction:column;gap:12px;align-items:stretch}
- .connected-player:is(.details-lyrics,.details-comments,.details-queue) .np-cover-growth{width:100%;align-items:center}
+ .connected-player:not(.focused-player):is(.details-lyrics,.details-comments,.details-queue) .np-listening{display:flex;flex-direction:column;gap:12px;align-items:stretch}
+ .connected-player:not(.focused-player):is(.details-lyrics,.details-comments,.details-queue) .np-cover-growth{width:100%;align-items:center}
 }
 @container player-controls (max-width:328px){
- .connected-player .np-transport-row{align-items:start}
- .connected-player .np-transport-row>.icon-btn{margin-top:4px}
- .connected-player:not(.details-lyrics):not(.details-comments):not(.details-queue) .np-transport-row .transport.large{display:grid;grid-template-columns:repeat(3,44px);grid-template-rows:52px 44px;gap:2px 0;justify-self:center}
- .connected-player .np-transport-row .transport.large .main-play{width:44px;height:52px;min-width:44px;grid-column:2;grid-row:1}
- .connected-player .np-transport-row .transport.large .previous{grid-column:1;grid-row:1}
- .connected-player .np-transport-row .transport.large .next{grid-column:3;grid-row:1}
- .connected-player .np-transport-row .transport.large .shuffle{grid-column:1;grid-row:2}
- .connected-player .np-transport-row .transport.large .repeat{grid-column:3;grid-row:2}
+ .connected-player:not(.focused-player) .np-transport-row{align-items:start}
+ .connected-player:not(.focused-player) .np-transport-row>.icon-btn{margin-top:4px}
+ .connected-player:not(.focused-player):not(.details-lyrics):not(.details-comments):not(.details-queue) .np-transport-row .transport.large{display:grid;grid-template-columns:repeat(3,44px);grid-template-rows:52px 44px;gap:2px 0;justify-self:center}
+ .connected-player:not(.focused-player) .np-transport-row .transport.large .main-play{width:44px;height:52px;min-width:44px;grid-column:2;grid-row:1}
+ .connected-player:not(.focused-player) .np-transport-row .transport.large .previous{grid-column:1;grid-row:1}
+ .connected-player:not(.focused-player) .np-transport-row .transport.large .next{grid-column:3;grid-row:1}
+ .connected-player:not(.focused-player) .np-transport-row .transport.large .shuffle{grid-column:1;grid-row:2}
+ .connected-player:not(.focused-player) .np-transport-row .transport.large .repeat{grid-column:3;grid-row:2}
 }
 @container player-controls (max-width:219px){
- .connected-player .np-transport-row{grid-template-columns:repeat(4,44px);grid-template-rows:52px 44px;justify-content:center;gap:4px 0}
- .connected-player .np-transport-row .transport.large{display:contents!important}
- .connected-player .np-transport-row .transport.large .previous{grid-column:1;grid-row:1}
- .connected-player .np-transport-row .transport.large .main-play{grid-column:2 / span 2;grid-row:1;justify-self:center;align-self:center}
- .connected-player .np-transport-row .transport.large .next{grid-column:4;grid-row:1}
- .connected-player .np-transport-row>.np-like{grid-column:1;grid-row:2;margin:0}
- .connected-player .np-transport-row .transport.large .shuffle{grid-column:2;grid-row:2}
- .connected-player .np-transport-row .transport.large .repeat{grid-column:3;grid-row:2}
- .connected-player .np-transport-row>.np-eq{grid-column:4;grid-row:2;margin:0}
+ .connected-player:not(.focused-player) .np-transport-row{grid-template-columns:repeat(4,44px);grid-template-rows:52px 44px;justify-content:center;gap:4px 0}
+ .connected-player:not(.focused-player) .np-transport-row .transport.large{display:contents!important}
+ .connected-player:not(.focused-player) .np-transport-row .transport.large .previous{grid-column:1;grid-row:1}
+ .connected-player:not(.focused-player) .np-transport-row .transport.large .main-play{grid-column:2 / span 2;grid-row:1;justify-self:center;align-self:center}
+ .connected-player:not(.focused-player) .np-transport-row .transport.large .next{grid-column:4;grid-row:1}
+ .connected-player:not(.focused-player) .np-transport-row>.np-like{grid-column:1;grid-row:2;margin:0}
+ .connected-player:not(.focused-player) .np-transport-row .transport.large .shuffle{grid-column:2;grid-row:2}
+ .connected-player:not(.focused-player) .np-transport-row .transport.large .repeat{grid-column:3;grid-row:2}
+ .connected-player:not(.focused-player) .np-transport-row>.np-eq{grid-column:4;grid-row:2;margin:0}
 }
 
 /* Long localized labels must wrap inside the scaled editor rather than widen it. */

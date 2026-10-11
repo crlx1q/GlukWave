@@ -393,41 +393,41 @@ void main() {
           await tester.tap(find.byKey(const Key('mini-gesture')));
           await tester.pumpAndSettle();
           expect(find.byKey(const Key('full-player')), findsOneWidget);
-          expect(find.text(copy('Трек', language)), findsWidgets);
+          expect(find.byKey(const Key('player-centered-view')), findsOneWidget);
           expect(find.text('Вальс №2'), findsWidgets);
           expect(find.text('Автор без перевода'), findsWidgets);
           expect(find.text('1:20:00'), findsWidgets);
-          for (var i = 0; i < 4; i++) {
-            final label = find.byKey(Key('player-tab-label-$i'));
-            expectWholeLabel(tester, label);
-            final target = find.ancestor(
-              of: label,
-              matching: find.byType(InkWell),
+          for (final entry in [
+            ('player-lyrics-toggle', 'native.93970437e2'),
+            ('player-queue-toggle', 'native.aec93b16ba'),
+          ]) {
+            final button = find.byKey(Key(entry.$1));
+            expect(button, findsOneWidget);
+            expect(
+              tester.widget<IconButton>(button).tooltip,
+              WaveStrings(language).text(entry.$2),
             );
-            expect(tester.getSize(target).height, greaterThanOrEqualTo(44));
           }
           await screenshot(
             tester,
             'language-player-$language-${width.toInt()}',
           );
-          if (width == 320 && (language == 'de' || language == 'uk')) {
-            final before = c.audio.current!.id;
-            final strip = find.byKey(const Key('player-tabs-scroll'));
-            expect(strip, findsOneWidget);
-            await tester.drag(strip, const Offset(-160, 0));
-            await tester.pumpAndSettle();
-            expect(c.audio.current!.id, before);
-            final index = language == 'de' ? 2 : 3;
-            final label = find.byKey(Key('player-tab-label-$index'));
-            await tester.ensureVisible(label);
-            await tester.tap(label);
-            await tester.pumpAndSettle();
-            expectWholeLabel(tester, label);
-            await screenshot(
-              tester,
-              'language-player-$language-320-selected-tab',
-            );
-          }
+          final before = c.audio.current!.id;
+          await tester.tap(find.byKey(const Key('player-queue-toggle')));
+          await tester.pumpAndSettle();
+          expect(find.text('Следующая запись'), findsOneWidget);
+          expect(c.audio.current!.id, before);
+          await tester.tap(find.byKey(const Key('player-lyrics-toggle')));
+          await tester.pumpAndSettle();
+          expect(find.text('Следующая запись'), findsNothing);
+          expect(
+            find.text(copy('Здесь будут слова', language)),
+            findsOneWidget,
+          );
+          await screenshot(
+            tester,
+            'language-player-$language-${width.toInt()}-lyrics',
+          );
           expect(tester.takeException(), isNull);
           await clean(tester, c);
         },

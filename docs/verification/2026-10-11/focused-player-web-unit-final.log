@@ -1,0 +1,48 @@
+✔ manifests and successful HTML/JSON error responses cannot become audio files (7.156ms)
+✔ real file headers and unknown binary containers remain available to the decoder (4.0156ms)
+✔ only cached decoder failures retry online, never policy/network/cancellation errors or fresh sources (1.0032ms)
+✔ Real cover pixels choose chromatic pigment while ignoring white/transparent labels (7.4111ms)
+✔ Auto accents retain chosen hue and useful contrast; unavailable sampling preserves manual palette (2.7009ms)
+✔ Detached silk population remains sparse and follows real energy/hover without another renderer loop (69.1694ms)
+✔ MSE HLS owns a clean audio element even when native HLS is advertised (16.0882ms)
+✔ late events from an old track cannot stop the new stream or send errors (5.6566ms)
+✔ fatal errors produce one renewal; expired URLs are not retried unchanged (3.0434ms)
+✔ initial incompatible source fails once without telling the player to request it forever (2.0924ms)
+✔ network recovery is bounded before a single fatal report (2.1451ms)
+✔ same browser installation does not play from its second tab (2.0266ms)
+✔ separate listening allows another personal output, but rooms still have one output (0.2882ms)
+✔ an account with no selected online output can be claimed locally (0.3486ms)
+✔ room with disconnected output stays silent until one surface is selected (0.3266ms)
+✔ room mirror timeline includes elapsed server time and bounded network estimate (0.3279ms)
+✔ paused room and disconnected owner keep their frozen position (0.329ms)
+✔ progress extrapolates only playing activity and clamps end or malformed values (3.1591ms)
+✔ authorization redirects only accept actual HTTPS Discord authorization endpoints (0.9699ms)
+✔ invite parsing keeps explicit listen or jam identity and refuses path injection (2.7103ms)
+✔ explicit invite intent survives an external sign-in return within a bounded lifetime (1.5523ms)
+✔ status refresh coalesces notifications without concurrent duplicate API calls (20.9169ms)
+✔ account panel cleanup aborts and discards old identity results including queued refresh (1.4248ms)
+✔ all Discord labels are present in six catalogs with matching interpolation (46.9899ms)
+✔ Genius preview links are HTTPS lyrics pages on actual allowed hosts (3.561ms)
+✔ Starting another preview aborts old request, closing discards pending result (1.6475ms)
+✔ artist preferences preserve distinct catalogue identities and do not mutate the input (6.9145ms)
+✔ playlist collage uses at most four distinct nonempty actual artwork URLs in track order (0.6034ms)
+✔ free accessibility and basic colors are allowed across every theme (0.7452ms)
+✔ free accounts retain prior advanced values, but changed advanced settings require a plan (0.4906ms)
+✔ legacy visual mood identifiers map to the server recommendation contract (0.469ms)
+✔ all six catalogs contain every new feature label and preserve interpolation tokens (256.619ms)
+✔ unsupported and interrupted audio never masquerade as a missing user gesture (3.0767ms)
+✔ cancelled media readiness stops polling and rejects the pending transfer (43.0492ms)
+✔ cache artwork always uses owned API or known-track cover proxy (2.0587ms)
+✔ ready media detaches cancellation and cannot be rejected later (46.4955ms)
+✔ source that never becomes ready has a bounded failure (12.6928ms)
+✔ download permission selects only same-origin application API (2.3697ms)
+✔ Folded wave preserves chosen pigment in all themes with brighter sparse depth highlights (34.2009ms)
+✔ No depth extrapolation or neutral accent hue is invented (3.332ms)
+ℹ tests 40
+ℹ suites 0
+ℹ pass 40
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1030.5958

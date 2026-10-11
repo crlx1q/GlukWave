@@ -2,6 +2,7 @@ import { t } from './locale';
 import { openDB, type DBSchema } from 'idb';
 import type { Library, Track } from './types';
 import { mediaDownloadPath, mediaArtworkPath } from './media-download';
+import {isAudioFile} from './audio-cache-validation';
 export type CachedTrack = { key:string; userId:string; track:Track; blob:Blob; artworkBlob?:Blob; bytes:number; savedAt:number; manual:boolean };
 interface WaveDB extends DBSchema {
   downloads:{key:string;value:CachedTrack;indexes:{userId:string}};
@@ -31,7 +32,11 @@ function announce(userId:string,trackId?:string){window.dispatchEvent(new Event(
 function cancel(userId:string,trackId?:string){for(const[key,operation]of inFlight)if(key.startsWith(`${userId}:`)&&(!trackId||key===`${userId}:${trackId}`))operation.controller.abort();}
 changes.onmessage=event=>{cancel(event.data.userId,event.data.trackId);window.dispatchEvent(new Event('wave:cache'));};
 export async function getCacheGeneration(userId:string){return(await(await database).get('generation',userId))||0;}
-export async function cached(userId:string,trackId:string){return(await database).get('downloads',`${userId}:${trackId}`);}
+export async function cached(userId:string,trackId:string){
+ const row=await(await database).get('downloads',`${userId}:${trackId}`);
+ if(row&&!await isAudioFile(row.blob)){await deleteDownload(userId,trackId);return undefined;}
+ return row;
+}
 export async function downloads(userId:string){return(await database).getAllFromIndex('downloads','userId',userId);}
 export async function deleteDownload(userId:string,trackId:string){
   cancel(userId,trackId);const db=await database,key=`${userId}:${trackId}`,tx=db.transaction(['downloads','generation'],'readwrite');
@@ -71,6 +76,7 @@ export async function saveTrack(userId:string,track:Track,limitMB:number,manual:
     if(response.body){const reader=response.body.getReader();while(true){const chunk=await reader.read();if(chunk.done)break;received+=chunk.value.byteLength;if(received>limit){await reader.cancel();throw new Error(t('copy.278'));}parts.push(new Uint8Array(chunk.value));for(const listener of operation.progress)listener(size?received/size:0);}}
     else parts.push(new Uint8Array(await response.arrayBuffer()));
     const blob=new Blob(parts,{type:response.headers.get('Content-Type')||'audio/mpeg'});
+    if(!await isAudioFile(blob))throw new Error(t('copy.715'));
     const artworkBlob=await cachedArtwork(track,operation.controller.signal,limit-blob.size),bytes=blob.size+(artworkBlob?.size||0);
     if(operation.controller.signal.aborted)throw new DOMException(t('copy.279'),'AbortError');
     // Quota decisions and writes share a transaction, including across different browser tabs.

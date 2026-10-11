@@ -1,0 +1,22 @@
+00:00 +0: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_lifecycle_test.dart
+00:00 +0: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_lifecycle_test.dart: Permitted external source resolves before provider choice and retains its descriptor in current/queue
+00:00 +1: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_lifecycle_test.dart: Extensionless SoundCloud descriptor uses native HLS with own EQ path and no offline permission
+00:00 +2: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_lifecycle_test.dart: Metadata alone does not grant native playback or forward credentials to a CDN
+00:01 +3: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/cache_test.dart: Concurrent downloads commit quota and manifest atomically
+00:01 +4: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/cache_test.dart: Concurrent downloads commit quota and manifest atomically
+00:01 +5: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_lifecycle_test.dart: Autonomous playback never falls back to cloud when a cached file is missing
+00:01 +6: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/cache_test.dart: Successful manifest or HTML response is not saved as offline audio
+00:01 +7: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_lifecycle_test.dart: Cached permitted audio plays without resolving an online embedded descriptor
+00:01 +8: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/cache_test.dart: Historical cached playlist is removed so normal playback resolves a fresh stream
+00:01 +9: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_lifecycle_test.dart: Cached native decoder failure resolves once and preserves paused position and queue
+00:01 +10: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/cache_test.dart: Pinned downloads are preserved when quota is exhausted
+00:01 +11: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/cache_test.dart: Pinned downloads are preserved when quota is exhausted
+00:01 +12: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/cache_test.dart: Pinned downloads are preserved when quota is exhausted
+00:01 +13: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/cache_test.dart: Pinned downloads are preserved when quota is exhausted
+00:01 +14: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_lifecycle_test.dart: Background visual suspension preserves real native completion and starts the next direct source
+00:01 +15: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_lifecycle_test.dart: Background visual suspension preserves real native completion and starts the next direct source
+00:01 +16: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_lifecycle_test.dart: Background visual suspension preserves real native completion and starts the next direct source
+00:03 +17: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_lifecycle_test.dart: Download descriptor is restricted to the authenticated own origin
+00:03 +18: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_lifecycle_test.dart: Provider cancellation during an outgoing pause cannot install a late document
+00:03 +19: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_lifecycle_test.dart: Clearing an outgoing provider never clears a newer ready document
+00:03 +20: All tests passed!

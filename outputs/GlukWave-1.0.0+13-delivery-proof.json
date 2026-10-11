@@ -1,0 +1,43 @@
+{
+  "passed": true,
+  "newDeliveriesMatched": true,
+  "previousDeliveriesUnchanged": true,
+  "files": [
+    {
+      "file": "GlukWave-android-debug-1.0.0+13.apk",
+      "bytes": 185518451,
+      "sha256": "80757082e89a4cb43ae4ed24bc59319da3d2a628f24c7bd7defd1cfef1f92883",
+      "matched": true
+    },
+    {
+      "file": "GlukWave-Setup-1.0.0+13.exe",
+      "bytes": 24360952,
+      "sha256": "8cd1ec45f7b71436d7cbf4c577e40943a26312af5e22b606847b2839af7265e4",
+      "matched": true
+    },
+    {
+      "file": "GlukWave-source-2026-10-11-focused-player.zip",
+      "bytes": 91649761,
+      "sha256": "0c6722a75485d8abb7fe32965b7625c0a488fe25b5d1a7d3f4711a9a39fb3862",
+      "matched": true
+    },
+    {
+      "file": "GlukWave-android-debug-1.0.0+12.apk",
+      "bytes": 185503759,
+      "sha256": "d0ab92099dd0b774df765571a26455a5b5a61a633d18dd376e5f6ed83c4acde2",
+      "matched": true
+    },
+    {
+      "file": "GlukWave-Setup-1.0.0+12.exe",
+      "bytes": 24346939,
+      "sha256": "7a4e7733114273188cc35811eede4f8f1ec246536bed05197ea2c1505cd21fef",
+      "matched": true
+    },
+    {
+      "file": "GlukWave-source-2026-10-11-audio-design.zip",
+      "bytes": 63371269,
+      "sha256": "f08238727ebd8511b118daf4dd06d5d86faded5fc744eb09e41d30512c1bd116",
+      "matched": true
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "checkedAt": "2026-10-11T13:31:40.316Z",
+  "passed": true,
+  "archiveBytes": 91649761,
+  "archiveSha256": "0c6722a75485d8abb7fe32965b7625c0a488fe25b5d1a7d3f4711a9a39fb3862",
+  "entries": 1135,
+  "allCrcAndSourceHashesMatched": true,
+  "textFilesScanned": 594,
+  "localPrivateValuesAbsent": true,
+  "liveCredentialPatternsAbsent": true,
+  "staticFontFaces": 6,
+  "manropeStaticFontFaces": 5,
+  "frozenNativeSourcesMatched": 152,
+  "currentWebBuild": "/assets/main-CRNjy5Oq.js",
+  "runtimeDataExcluded": true,
+  "apkSha256": "80757082e89a4cb43ae4ed24bc59319da3d2a628f24c7bd7defd1cfef1f92883",
+  "windowsSha256": "6d2c6ba9c0d0bde764938934ffb4b715896e57201ab2c906075022a39f1c64b7",
+  "installerSha256": "8cd1ec45f7b71436d7cbf4c577e40943a26312af5e22b606847b2839af7265e4"
+}

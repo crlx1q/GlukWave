@@ -1,0 +1,6287 @@
+{
+  "passed": true,
+  "layouts": [
+    {
+      "theme": "dark",
+      "width": 1440,
+      "height": 950,
+      "resized": {
+        "buttons": [
+          {
+            "label": "Shuffle queue",
+            "rect": {
+              "bottom": 738.65625,
+              "height": 55,
+              "left": 528.75,
+              "right": 573.75,
+              "top": 683.65625,
+              "width": 45,
+              "x": 528.75,
+              "y": 683.65625
+            }
+          },
+          {
+            "label": "Previous track",
+            "rect": {
+              "bottom": 738.65625,
+              "height": 55,
+              "left": 586.25,
+              "right": 631.25,
+              "top": 683.65625,
+              "width": 45,
+              "x": 586.25,
+              "y": 683.65625
+            }
+          },
+          {
+            "label": "Pause",
+            "rect": {
+              "bottom": 751.15625,
+              "height": 80,
+              "left": 643.75,
+              "right": 723.75,
+              "top": 671.15625,
+              "width": 80,
+              "x": 643.75,
+              "y": 671.15625
+            }
+          },
+          {
+            "label": "Next track",
+            "rect": {
+              "bottom": 738.65625,
+              "height": 55,
+              "left": 736.25,
+              "right": 781.25,
+              "top": 683.65625,
+              "width": 45,
+              "x": 736.25,
+              "y": 683.65625
+            }
+          },
+          {
+            "label": "Enable repeat",
+            "rect": {
+              "bottom": 738.65625,
+              "height": 55,
+              "left": 793.75,
+              "right": 838.75,
+              "top": 683.65625,
+              "width": 45,
+              "x": 793.75,
+              "y": 683.65625
+            }
+          },
+          {
+            "label": "Equalizer",
+            "rect": {
+              "bottom": 738.65625,
+              "height": 55,
+              "left": 846.25,
+              "right": 891.25,
+              "top": 683.65625,
+              "width": 45,
+              "x": 846.25,
+              "y": 683.65625
+            }
+          }
+        ],
+        "clientHeight": 663,
+        "cover": {
+          "bottom": 480.1875,
+          "height": 357.75,
+          "left": 534.25,
+          "right": 885.75,
+          "top": 122.4375,
+          "width": 351.5,
+          "x": 534.25,
+          "y": 122.4375
+        },
+        "display": "flex",
+        "full": {
+          "bottom": 950,
+          "height": 950,
+          "left": 0,
+          "right": 1440,
+          "top": 0,
+          "width": 1440,
+          "x": 0,
+          "y": 0
+        },
+        "header": {
+          "bottom": 85,
+          "height": 55,
+          "left": 37.5,
+          "right": 1402.5,
+          "top": 30,
+          "width": 1365,
+          "x": 37.5,
+          "y": 30
+        },
+        "listening": {
+          "bottom": 924.40625,
+          "height": 828.8125,
+          "left": 465,
+          "right": 965,
+          "top": 95.59375,
+          "width": 500,
+          "x": 465,
+          "y": 95.59375
+        },
+        "scrollColor": "color(srgb 0.933333 0.917647 0.890196 / 0.22) rgba(0, 0, 0, 0)",
+        "scrollHeight": 663,
+        "scrollTop": 0,
+        "title": {
+          "bottom": 587.40625,
+          "height": 72.875,
+          "left": 472.5,
+          "right": 947.5,
+          "top": 514.53125,
+          "width": 475,
+          "x": 472.5,
+          "y": 514.53125
+        }
+      },
+      "lyrics": {
+        "buttons": [
+          {
+            "label": "Shuffle queue",
+            "rect": {
+              "bottom": 696.4375,
+              "height": 55,
+              "left": 77.4375,
+              "right": 122.4375,
+              "top": 641.4375,
+              "width": 45,
+              "x": 77.4375,
+              "y": 641.4375
+            }
+          },
+          {
+            "label": "Previous track",
+            "rect": {
+              "bottom": 696.4375,
+              "height": 55,
+              "left": 134.9375,
+              "right": 179.9375,
+              "top": 641.4375,
+              "width": 45,
+              "x": 134.9375,
+              "y": 641.4375
+            }
+          },
+          {
+            "label": "Pause",
+            "rect": {
+              "bottom": 708.9375,
+              "height": 80,
+              "left": 192.4375,
+              "right": 272.4375,
+              "top": 628.9375,
+              "width": 80,
+              "x": 192.4375,
+              "y": 628.9375
+            }
+          },
+          {
+            "label": "Next track",
+            "rect": {
+              "bottom": 696.4375,
+              "height": 55,
+              "left": 284.9375,
+              "right": 329.9375,
+              "top": 641.4375,
+              "width": 45,
+              "x": 284.9375,
+              "y": 641.4375
+            }
+          },
+          {
+            "label": "Enable repeat",
+            "rect": {
+              "bottom": 696.4375,
+              "height": 55,
+              "left": 342.4375,
+              "right": 387.4375,
+              "top": 641.4375,
+              "width": 45,
+              "x": 342.4375,
+              "y": 641.4375
+            }
+          },
+          {
+            "label": "Equalizer",
+            "rect": {
+              "bottom": 696.4375,
+              "height": 55,
+              "left": 394.9375,
+              "right": 439.9375,
+              "top": 641.4375,
+              "width": 45,
+              "x": 394.9375,
+              "y": 641.4375
+            }
+          }
+        ],
+        "clientHeight": 596,
+        "cover": {
+          "bottom": 450.6875,
+          "height": 291.25,
+          "left": 116.1875,
+          "right": 401.1875,
+          "top": 159.4375,
+          "width": 285,
+          "x": 116.1875,
+          "y": 159.4375
+        },
+        "display": "flex",
+        "full": {
+          "bottom": 950,
+          "height": 950,
+          "left": 0,
+          "right": 1440,
+          "top": 0,
+          "width": 1440,
+          "x": 0,
+          "y": 0
+        },
+        "header": {
+          "bottom": 85,
+          "height": 55,
+          "left": 37.5,
+          "right": 1402.5,
+          "top": 30,
+          "width": 1365,
+          "x": 37.5,
+          "y": 30
+        },
+        "listening": {
+          "bottom": 882.1875,
+          "height": 744.375,
+          "left": 37.5,
+          "right": 489.875,
+          "top": 137.8125,
+          "width": 452.375,
+          "x": 37.5,
+          "y": 137.8125
+        },
+        "scrollColor": "color(srgb 0.933333 0.917647 0.890196 / 0.22) rgba(0, 0, 0, 0)",
+        "scrollHeight": 596,
+        "scrollTop": 0,
+        "title": {
+          "bottom": 545.1875,
+          "height": 72.875,
+          "left": 47.5,
+          "right": 469.875,
+          "top": 472.3125,
+          "width": 422.375,
+          "x": 47.5,
+          "y": 472.3125
+        }
+      },
+      "reopened": {
+        "buttons": [
+          {
+            "label": "Shuffle queue",
+            "rect": {
+              "bottom": 738.65625,
+              "height": 55,
+              "left": 528.75,
+              "right": 573.75,
+              "top": 683.65625,
+              "width": 45,
+              "x": 528.75,
+              "y": 683.65625
+            }
+          },
+          {
+            "label": "Previous track",
+            "rect": {
+              "bottom": 738.65625,
+              "height": 55,
+              "left": 586.25,
+              "right": 631.25,
+              "top": 683.65625,
+              "width": 45,
+              "x": 586.25,
+              "y": 683.65625
+            }
+          },
+          {
+            "label": "Pause",
+            "rect": {
+              "bottom": 751.15625,
+              "height": 80,
+              "left": 643.75,
+              "right": 723.75,
+              "top": 671.15625,
+              "width": 80,
+              "x": 643.75,
+              "y": 671.15625
+            }
+          },
+          {
+            "label": "Next track",
+            "rect": {
+              "bottom": 738.65625,
+              "height": 55,
+              "left": 736.25,
+              "right": 781.25,
+              "top": 683.65625,
+              "width": 45,
+              "x": 736.25,
+              "y": 683.65625
+            }
+          },
+          {
+            "label": "Enable repeat",
+            "rect": {
+              "bottom": 738.65625,
+              "height": 55,
+              "left": 793.75,
+              "right": 838.75,
+              "top": 683.65625,
+              "width": 45,
+              "x": 793.75,
+              "y": 683.65625
+            }
+          },
+          {
+            "label": "Equalizer",
+            "rect": {
+              "bottom": 738.65625,
+              "height": 55,
+              "left": 846.25,
+              "right": 891.25,
+              "top": 683.65625,
+              "width": 45,
+              "x": 846.25,
+              "y": 683.65625
+            }
+          }
+        ],
+        "clientHeight": 663,
+        "cover": {
+          "bottom": 480.1875,
+          "height": 357.75,
+          "left": 534.25,
+          "right": 885.75,
+          "top": 122.4375,
+          "width": 351.5,
+          "x": 534.25,
+          "y": 122.4375
+        },
+        "display": "flex",
+        "full": {
+          "bottom": 950,
+          "height": 950,
+          "left": 0,
+          "right": 1440,
+          "top": 0,
+          "width": 1440,
+          "x": 0,
+          "y": 0
+        },
+        "header": {
+          "bottom": 85,
+          "height": 55,
+          "left": 37.5,
+          "right": 1402.5,
+          "top": 30,
+          "width": 1365,
+          "x": 37.5,
+          "y": 30
+        },
+        "listening": {
+          "bottom": 924.40625,
+          "height": 828.8125,
+          "left": 465,
+          "right": 965,
+          "top": 95.59375,
+          "width": 500,
+          "x": 465,
+          "y": 95.59375
+        },
+        "scrollColor": "color(srgb 0.933333 0.917647 0.890196 / 0.22) rgba(0, 0, 0, 0)",
+        "scrollHeight": 663,
+        "scrollTop": 0,
+        "title": {
+          "bottom": 587.40625,
+          "height": 72.875,
+          "left": 472.5,
+          "right": 947.5,
+          "top": 514.53125,
+          "width": 475,
+          "x": 472.5,
+          "y": 514.53125
+        }
+      }
+    },
+    {
+      "theme": "dark",
+      "width": 1280,
+      "height": 820,
+      "resized": {
+        "buttons": [
+          {
+            "label": "Shuffle queue",
+            "rect": {
+              "bottom": 612.1875,
+              "height": 55,
+              "left": 448.75,
+              "right": 493.75,
+              "top": 557.1875,
+              "width": 45,
+              "x": 448.75,
+              "y": 557.1875
+            }
+          },
+          {
+            "label": "Previous track",
+            "rect": {
+              "bottom": 612.1875,
+              "height": 55,
+              "left": 506.25,
+              "right": 551.25,
+              "top": 557.1875,
+              "width": 45,
+              "x": 506.25,
+              "y": 557.1875
+            }
+          },
+          {
+            "label": "Pause",
+            "rect": {
+              "bottom": 624.6875,
+              "height": 80,
+              "left": 563.75,
+              "right": 643.75,
+              "top": 544.6875,
+              "width": 80,
+              "x": 563.75,
+              "y": 544.6875
+            }
+          },
+          {
+            "label": "Next track",
+            "rect": {
+              "bottom": 612.1875,
+              "height": 55,
+              "left": 656.25,
+              "right": 701.25,
+              "top": 557.1875,
+              "width": 45,
+              "x": 656.25,
+              "y": 557.1875
+            }
+          },
+          {
+            "label": "Enable repeat",
+            "rect": {
+              "bottom": 612.1875,
+              "height": 55,
+              "left": 713.75,
+              "right": 758.75,
+              "top": 557.1875,
+              "width": 45,
+              "x": 713.75,
+              "y": 557.1875
+            }
+          },
+          {
+            "label": "Equalizer",
+            "rect": {
+              "bottom": 612.1875,
+              "height": 55,
+              "left": 766.25,
+              "right": 811.25,
+              "top": 557.1875,
+              "width": 45,
+              "x": 766.25,
+              "y": 557.1875
+            }
+          }
+        ],
+        "clientHeight": 545,
+        "cover": {
+          "bottom": 365.484375,
+          "height": 235.84375,
+          "left": 515.203125,
+          "right": 744.796875,
+          "top": 129.640625,
+          "width": 229.59375,
+          "x": 515.203125,
+          "y": 129.640625
+        },
+        "display": "flex",
+        "full": {
+          "bottom": 820,
+          "height": 820,
+          "left": 0,
+          "right": 1280,
+          "top": 0,
+          "width": 1280,
+          "x": 0,
+          "y": 0
+        },
+        "header": {
+          "bottom": 85,
+          "height": 55,
+          "left": 37.5,
+          "right": 1242.5,
+          "top": 30,
+          "width": 1205,
+          "x": 37.5,
+          "y": 30
+        },
+        "listening": {
+          "bottom": 785.4375,
+          "height": 680.875,
+          "left": 385,
+          "right": 885,
+          "top": 104.5625,
+          "width": 500,
+          "x": 385,
+          "y": 104.5625
+        },
+        "scrollColor": "color(srgb 0.933333 0.917647 0.890196 / 0.22) rgba(0, 0, 0, 0)",
+        "scrollHeight": 545,
+        "scrollTop": 0,
+        "title": {
+          "bottom": 460.9375,
+          "height": 72.875,
+          "left": 392.5,
+          "right": 867.5,
+          "top": 388.0625,
+          "width": 475,
+          "x": 392.5,
+          "y": 388.0625
+        }
+      },
+      "lyrics": {
+        "buttons": [
+          {
+            "label": "Shuffle queue",
+            "rect": {
+              "bottom": 603.984375,
+              "height": 55,
+              "left": 49.4375,
+              "right": 94.4375,
+              "top": 548.984375,
+              "width": 45,
+              "x": 49.4375,
+              "y": 548.984375
+            }
+          },
+          {
+            "label": "Previous track",
+            "rect": {
+              "bottom": 603.984375,
+              "height": 55,
+              "left": 106.9375,
+              "right": 151.9375,
+              "top": 548.984375,
+              "width": 45,
+              "x": 106.9375,
+              "y": 548.984375
+            }
+          },
+          {
+            "label": "Pause",
+            "rect": {
+              "bottom": 616.484375,
+              "height": 80,
+              "left": 164.4375,
+              "right": 244.4375,
+              "top": 536.484375,
+              "width": 80,
+              "x": 164.4375,
+              "y": 536.484375
+            }
+          },
+          {
+            "label": "Next track",
+            "rect": {
+              "bottom": 603.984375,
+              "height": 55,
+              "left": 256.9375,
+              "right": 301.9375,
+              "top": 548.984375,
+              "width": 45,
+              "x": 256.9375,
+              "y": 548.984375
+            }
+          },
+          {
+            "label": "Enable repeat",
+            "rect": {
+              "bottom": 603.984375,
+              "height": 55,
+              "left": 314.4375,
+              "right": 359.4375,
+              "top": 548.984375,
+              "width": 45,
+              "x": 314.4375,
+              "y": 548.984375
+            }
+          },
+          {
+            "label": "Equalizer",
+            "rect": {
+              "bottom": 603.984375,
+              "height": 55,
+              "left": 366.9375,
+              "right": 411.9375,
+              "top": 548.984375,
+              "width": 45,
+              "x": 366.9375,
+              "y": 548.984375
+            }
+          }
+        ],
+        "clientHeight": 532,
+        "cover": {
+          "bottom": 357.28125,
+          "height": 219.4375,
+          "left": 124.09375,
+          "right": 337.28125,
+          "top": 137.84375,
+          "width": 213.1875,
+          "x": 124.09375,
+          "y": 137.84375
+        },
+        "display": "flex",
+        "full": {
+          "bottom": 820,
+          "height": 820,
+          "left": 0,
+          "right": 1280,
+          "top": 0,
+          "width": 1280,
+          "x": 0,
+          "y": 0
+        },
+        "header": {
+          "bottom": 85,
+          "height": 55,
+          "left": 37.5,
+          "right": 1242.5,
+          "top": 30,
+          "width": 1205,
+          "x": 37.5,
+          "y": 30
+        },
+        "listening": {
+          "bottom": 777.234375,
+          "height": 664.46875,
+          "left": 37.5,
+          "right": 433.875,
+          "top": 112.765625,
+          "width": 396.375,
+          "x": 37.5,
+          "y": 112.765625
+        },
+        "scrollColor": "color(srgb 0.933333 0.917647 0.890196 / 0.22) rgba(0, 0, 0, 0)",
+        "scrollHeight": 532,
+        "scrollTop": 0,
+        "title": {
+          "bottom": 452.734375,
+          "height": 72.875,
+          "left": 47.5,
+          "right": 413.875,
+          "top": 379.859375,
+          "width": 366.375,
+          "x": 47.5,
+          "y": 379.859375
+        }
+      },
+      "reopened": {
+        "buttons": [
+          {
+            "label": "Shuffle queue",
+            "rect": {
+              "bottom": 612.1875,
+              "height": 55,
+              "left": 448.75,
+              "right": 493.75,
+              "top": 557.1875,
+              "width": 45,
+              "x": 448.75,
+              "y": 557.1875
+            }
+          },
+          {
+            "label": "Previous track",
+            "rect": {
+              "bottom": 612.1875,
+              "height": 55,
+              "left": 506.25,
+              "right": 551.25,
+              "top": 557.1875,
+              "width": 45,
+              "x": 506.25,
+              "y": 557.1875
+            }
+          },
+          {
+            "label": "Pause",
+            "rect": {
+              "bottom": 624.6875,
+              "height": 80,
+              "left": 563.75,
+              "right": 643.75,
+              "top": 544.6875,
+              "width": 80,
+              "x": 563.75,
+              "y": 544.6875
+            }
+          },
+          {
+            "label": "Next track",
+            "rect": {
+              "bottom": 612.1875,
+              "height": 55,
+              "left": 656.25,
+              "right": 701.25,
+              "top": 557.1875,
+              "width": 45,
+              "x": 656.25,
+              "y": 557.1875
+            }
+          },
+          {
+            "label": "Enable repeat",
+            "rect": {
+              "bottom": 612.1875,
+              "height": 55,
+              "left": 713.75,
+              "right": 758.75,
+              "top": 557.1875,
+              "width": 45,
+              "x": 713.75,
+              "y": 557.1875
+            }
+          },
+          {
+            "label": "Equalizer",
+            "rect": {
+              "bottom": 612.1875,
+              "height": 55,
+              "left": 766.25,
+              "right": 811.25,
+              "top": 557.1875,
+              "width": 45,
+              "x": 766.25,
+              "y": 557.1875
+            }
+          }
+        ],
+        "clientHeight": 545,
+        "cover": {
+          "bottom": 365.484375,
+          "height": 235.84375,
+          "left": 515.203125,
+          "right": 744.796875,
+          "top": 129.640625,
+          "width": 229.59375,
+          "x": 515.203125,
+          "y": 129.640625
+        },
+        "display": "flex",
+        "full": {
+          "bottom": 820,
+          "height": 820,
+          "left": 0,
+          "right": 1280,
+          "top": 0,
+          "width": 1280,
+          "x": 0,
+          "y": 0
+        },
+        "header": {
+          "bottom": 85,
+          "height": 55,
+          "left": 37.5,
+          "right": 1242.5,
+          "top": 30,
+          "width": 1205,
+          "x": 37.5,
+          "y": 30
+        },
+        "listening": {
+          "bottom": 785.4375,
+          "height": 680.875,
+          "left": 385,
+          "right": 885,
+          "top": 104.5625,
+          "width": 500,
+          "x": 385,
+          "y": 104.5625
+        },
+        "scrollColor": "color(srgb 0.933333 0.917647 0.890196 / 0.22) rgba(0, 0, 0, 0)",
+        "scrollHeight": 545,
+        "scrollTop": 0,
+        "title": {
+          "bottom": 460.9375,
+          "height": 72.875,
+          "left": 392.5,
+          "right": 867.5,
+          "top": 388.0625,
+          "width": 475,
+          "x": 392.5,
+          "y": 388.0625
+        }
+      }
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "height": 844,
+      "resized": {
+        "buttons": [
+          {
+            "label": "Shuffle queue",
+            "rect": {
+              "bottom": 630.765625,
+              "height": 52.5,
+              "left": 46.25,
+              "right": 85,
+              "top": 578.265625,
+              "width": 38.75,
+              "x": 46.25,
+              "y": 578.265625
+            }
+          },
+          {
+            "label": "Previous track",
+            "rect": {
+              "bottom": 630.765625,
+              "height": 52.5,
+              "left": 90,
+              "right": 128.75,
+              "top": 578.265625,
+              "width": 38.75,
+              "x": 90,
+              "y": 578.265625
+            }
+          },
+          {
+            "label": "Pause",
+            "rect": {
+              "bottom": 640.765625,
+              "height": 72.5,
+              "left": 133.75,
+              "right": 206.25,
+              "top": 568.265625,
+              "width": 72.5,
+              "x": 133.75,
+              "y": 568.265625
+            }
+          },
+          {
+            "label": "Next track",
+            "rect": {
+              "bottom": 630.765625,
+              "height": 52.5,
+              "left": 211.25,
+              "right": 250,
+              "top": 578.265625,
+              "width": 38.75,
+              "x": 211.25,
+              "y": 578.265625
+            }
+          },
+          {
+            "label": "Enable repeat",
+            "rect": {
+              "bottom": 630.765625,
+              "height": 52.5,
+              "left": 255,
+              "right": 293.75,
+              "top": 578.265625,
+              "width": 38.75,
+              "x": 255,
+              "y": 578.265625
+            }
+          },
+          {
+            "label": "Equalizer",
+            "rect": {
+              "bottom": 630.765625,
+              "height": 52.5,
+              "left": 295,
+              "right": 333.75,
+              "top": 578.265625,
+              "width": 38.75,
+              "x": 295,
+              "y": 578.265625
+            }
+          }
+        ],
+        "clientHeight": 559,
+        "cover": {
+          "bottom": 387.71875,
+          "height": 259.4375,
+          "left": 63.40625,
+          "right": 316.59375,
+          "top": 128.28125,
+          "width": 253.1875,
+          "x": 63.40625,
+          "y": 128.28125
+        },
+        "display": "flex",
+        "full": {
+          "bottom": 844,
+          "height": 844,
+          "left": 0,
+          "right": 390,
+          "top": 0,
+          "width": 390,
+          "x": 0,
+          "y": 0
+        },
+        "header": {
+          "bottom": 75,
+          "height": 50,
+          "left": 22.5,
+          "right": 367.5,
+          "top": 25,
+          "width": 345,
+          "x": 22.5,
+          "y": 25
+        },
+        "listening": {
+          "bottom": 805.265625,
+          "height": 699.015625,
+          "left": 22.5,
+          "right": 357.5,
+          "top": 106.25,
+          "width": 335,
+          "x": 22.5,
+          "y": 106.25
+        },
+        "scrollColor": "color(srgb 0.933333 0.917647 0.890196 / 0.22) rgba(0, 0, 0, 0)",
+        "scrollHeight": 559,
+        "scrollTop": 0,
+        "title": {
+          "bottom": 484.515625,
+          "height": 64.75,
+          "left": 22.5,
+          "right": 357.5,
+          "top": 419.765625,
+          "width": 335,
+          "x": 22.5,
+          "y": 419.765625
+        }
+      },
+      "lyrics": {
+        "buttons": [
+          {
+            "label": "Shuffle queue",
+            "rect": {
+              "bottom": 537.609375,
+              "height": 52.5,
+              "left": 46.25,
+              "right": 85,
+              "top": 485.109375,
+              "width": 38.75,
+              "x": 46.25,
+              "y": 485.109375
+            }
+          },
+          {
+            "label": "Previous track",
+            "rect": {
+              "bottom": 537.609375,
+              "height": 52.5,
+              "left": 90,
+              "right": 128.75,
+              "top": 485.109375,
+              "width": 38.75,
+              "x": 90,
+              "y": 485.109375
+            }
+          },
+          {
+            "label": "Pause",
+            "rect": {
+              "bottom": 547.609375,
+              "height": 72.5,
+              "left": 133.75,
+              "right": 206.25,
+              "top": 475.109375,
+              "width": 72.5,
+              "x": 133.75,
+              "y": 475.109375
+            }
+          },
+          {
+            "label": "Next track",
+            "rect": {
+              "bottom": 537.609375,
+              "height": 52.5,
+              "left": 211.25,
+              "right": 250,
+              "top": 485.109375,
+              "width": 38.75,
+              "x": 211.25,
+              "y": 485.109375
+            }
+          },
+          {
+            "label": "Enable repeat",
+            "rect": {
+              "bottom": 537.609375,
+              "height": 52.5,
+              "left": 255,
+              "right": 293.75,
+              "top": 485.109375,
+              "width": 38.75,
+              "x": 255,
+              "y": 485.109375
+            }
+          },
+          {
+            "label": "Equalizer",
+            "rect": {
+              "bottom": 537.609375,
+              "height": 52.5,
+              "left": 295,
+              "right": 333.75,
+              "top": 485.109375,
+              "width": 38.75,
+              "x": 295,
+              "y": 485.109375
+            }
+          }
+        ],
+        "clientHeight": 445,
+        "cover": {
+          "bottom": 282.078125,
+          "height": 175.046875,
+          "left": 105.59375,
+          "right": 274.390625,
+          "top": 107.03125,
+          "width": 168.796875,
+          "x": 105.59375,
+          "y": 107.03125
+        },
+        "display": "flex",
+        "full": {
+          "bottom": 844,
+          "height": 844,
+          "left": 0,
+          "right": 390,
+          "top": 0,
+          "width": 390,
+          "x": 0,
+          "y": 0
+        },
+        "header": {
+          "bottom": 75,
+          "height": 50,
+          "left": 22.5,
+          "right": 367.5,
+          "top": 25,
+          "width": 345,
+          "x": 22.5,
+          "y": 25
+        },
+        "listening": {
+          "bottom": 639.859375,
+          "height": 557.359375,
+          "left": 22.5,
+          "right": 357.5,
+          "top": 82.5,
+          "width": 335,
+          "x": 22.5,
+          "y": 82.5
+        },
+        "scrollColor": "color(srgb 0.933333 0.917647 0.890196 / 0.22) rgba(0, 0, 0, 0)",
+        "scrollHeight": 445,
+        "scrollTop": 0,
+        "title": {
+          "bottom": 391.359375,
+          "height": 64.75,
+          "left": 22.5,
+          "right": 357.5,
+          "top": 326.609375,
+          "width": 335,
+          "x": 22.5,
+          "y": 326.609375
+        }
+      },
+      "reopened": {
+        "buttons": [
+          {
+            "label": "Shuffle queue",
+            "rect": {
+              "bottom": 630.765625,
+              "height": 52.5,
+              "left": 46.25,
+              "right": 85,
+              "top": 578.265625,
+              "width": 38.75,
+              "x": 46.25,
+              "y": 578.265625
+            }
+          },
+          {
+            "label": "Previous track",
+            "rect": {
+              "bottom": 630.765625,
+              "height": 52.5,
+              "left": 90,
+              "right": 128.75,
+              "top": 578.265625,
+              "width": 38.75,
+              "x": 90,
+              "y": 578.265625
+            }
+          },
+          {
+            "label": "Pause",
+            "rect": {
+              "bottom": 640.765625,
+              "height": 72.5,
+              "left": 133.75,
+              "right": 206.25,
+              "top": 568.265625,
+              "width": 72.5,
+              "x": 133.75,
+              "y": 568.265625
+            }
+          },
+          {
+            "label": "Next track",
+            "rect": {
+              "bottom": 630.765625,
+              "height": 52.5,
+              "left": 211.25,
+              "right": 250,
+              "top": 578.265625,
+              "width": 38.75,
+              "x": 211.25,
+              "y": 578.265625
+            }
+          },
+          {
+            "label": "Enable repeat",
+            "rect": {
+              "bottom": 630.765625,
+              "height": 52.5,
+              "left": 255,
+              "right": 293.75,
+              "top": 578.265625,
+              "width": 38.75,
+              "x": 255,
+              "y": 578.265625
+            }
+          },
+          {
+            "label": "Equalizer",
+            "rect": {
+              "bottom": 630.765625,
+              "height": 52.5,
+              "left": 295,
+              "right": 333.75,
+              "top": 578.265625,
+              "width": 38.75,
+              "x": 295,
+              "y": 578.265625
+            }
+          }
+        ],
+        "clientHeight": 559,
+        "cover": {
+          "bottom": 387.71875,
+          "height": 259.4375,
+          "left": 63.40625,
+          "right": 316.59375,
+          "top": 128.28125,
+          "width": 253.1875,
+          "x": 63.40625,
+          "y": 128.28125
+        },
+        "display": "flex",
+        "full": {
+          "bottom": 844,
+          "height": 844,
+          "left": 0,
+          "right": 390,
+          "top": 0,
+          "width": 390,
+          "x": 0,
+          "y": 0
+        },
+        "header": {
+          "bottom": 75,
+          "height": 50,
+          "left": 22.5,
+          "right": 367.5,
+          "top": 25,
+          "width": 345,
+          "x": 22.5,
+          "y": 25
+        },
+        "listening": {
+          "bottom": 805.265625,
+          "height": 699.015625,
+          "left": 22.5,
+          "right": 357.5,
+          "top": 106.25,
+          "width": 335,
+          "x": 22.5,
+          "y": 106.25
+        },
+        "scrollColor": "color(srgb 0.933333 0.917647 0.890196 / 0.22) rgba(0, 0, 0, 0)",
+        "scrollHeight": 559,
+        "scrollTop": 0,
+        "title": {
+          "bottom": 484.515625,
+          "height": 64.75,
+          "left": 22.5,
+          "right": 357.5,
+          "top": 419.765625,
+          "width": 335,
+          "x": 22.5,
+          "y": 419.765625
+        }
+      }
+    },
+    {
+      "theme": "dark",
+      "width": 375,
+      "height": 812,
+      "resized": {
+        "buttons": [
+          {
+            "label": "Shuffle queue",
+            "rect": {
+              "bottom": 609.484375,
+              "height": 52.5,
+              "left": 38.75,
+              "right": 77.5,
+              "top": 556.984375,
+              "width": 38.75,
+              "x": 38.75,
+              "y": 556.984375
+            }
+          },
+          {
+            "label": "Previous track",
+            "rect": {
+              "bottom": 609.484375,
+              "height": 52.5,
+              "left": 82.5,
+              "right": 121.25,
+              "top": 556.984375,
+              "width": 38.75,
+              "x": 82.5,
+              "y": 556.984375
+            }
+          },
+          {
+            "label": "Pause",
+            "rect": {
+              "bottom": 619.484375,
+              "height": 72.5,
+              "left": 126.25,
+              "right": 198.75,
+              "top": 546.984375,
+              "width": 72.5,
+              "x": 126.25,
+              "y": 546.984375
+            }
+          },
+          {
+            "label": "Next track",
+            "rect": {
+              "bottom": 609.484375,
+              "height": 52.5,
+              "left": 203.75,
+              "right": 242.5,
+              "top": 556.984375,
+              "width": 38.75,
+              "x": 203.75,
+              "y": 556.984375
+            }
+          },
+          {
+            "label": "Enable repeat",
+            "rect": {
+              "bottom": 609.484375,
+              "height": 52.5,
+              "left": 247.5,
+              "right": 286.25,
+              "top": 556.984375,
+              "width": 38.75,
+              "x": 247.5,
+              "y": 556.984375
+            }
+          },
+          {
+            "label": "Equalizer",
+            "rect": {
+              "bottom": 609.484375,
+              "height": 52.5,
+              "left": 287.5,
+              "right": 326.25,
+              "top": 556.984375,
+              "width": 38.75,
+              "x": 287.5,
+              "y": 556.984375
+            }
+          }
+        ],
+        "clientHeight": 551,
+        "cover": {
+          "bottom": 366.921875,
+          "height": 249.84375,
+          "left": 60.703125,
+          "right": 304.296875,
+          "top": 117.078125,
+          "width": 243.59375,
+          "x": 60.703125,
+          "y": 117.078125
+        },
+        "display": "flex",
+        "full": {
+          "bottom": 812,
+          "height": 812,
+          "left": 0,
+          "right": 375,
+          "top": 0,
+          "width": 375,
+          "x": 0,
+          "y": 0
+        },
+        "header": {
+          "bottom": 75,
+          "height": 50,
+          "left": 22.5,
+          "right": 352.5,
+          "top": 25,
+          "width": 330,
+          "x": 22.5,
+          "y": 25
+        },
+        "listening": {
+          "bottom": 783.984375,
+          "height": 688.453125,
+          "left": 22.5,
+          "right": 342.5,
+          "top": 95.53125,
+          "width": 320,
+          "x": 22.5,
+          "y": 95.53125
+        },
+        "scrollColor": "color(srgb 0.933333 0.917647 0.890196 / 0.22) rgba(0, 0, 0, 0)",
+        "scrollHeight": 551,
+        "scrollTop": 0,
+        "title": {
+          "bottom": 463.234375,
+          "height": 64.75,
+          "left": 22.5,
+          "right": 342.5,
+          "top": 398.484375,
+          "width": 320,
+          "x": 22.5,
+          "y": 398.484375
+        }
+      },
+      "lyrics": {
+        "buttons": [
+          {
+            "label": "Shuffle queue",
+            "rect": {
+              "bottom": 530.25,
+              "height": 52.5,
+              "left": 38.75,
+              "right": 77.5,
+              "top": 477.75,
+              "width": 38.75,
+              "x": 38.75,
+              "y": 477.75
+            }
+          },
+          {
+            "label": "Previous track",
+            "rect": {
+              "bottom": 530.25,
+              "height": 52.5,
+              "left": 82.5,
+              "right": 121.25,
+              "top": 477.75,
+              "width": 38.75,
+              "x": 82.5,
+              "y": 477.75
+            }
+          },
+          {
+            "label": "Pause",
+            "rect": {
+              "bottom": 540.25,
+              "height": 72.5,
+              "left": 126.25,
+              "right": 198.75,
+              "top": 467.75,
+              "width": 72.5,
+              "x": 126.25,
+              "y": 467.75
+            }
+          },
+          {
+            "label": "Next track",
+            "rect": {
+              "bottom": 530.25,
+              "height": 52.5,
+              "left": 203.75,
+              "right": 242.5,
+              "top": 477.75,
+              "width": 38.75,
+              "x": 203.75,
+              "y": 477.75
+            }
+          },
+          {
+            "label": "Enable repeat",
+            "rect": {
+              "bottom": 530.25,
+              "height": 52.5,
+              "left": 247.5,
+              "right": 286.25,
+              "top": 477.75,
+              "width": 38.75,
+              "x": 247.5,
+              "y": 477.75
+            }
+          },
+          {
+            "label": "Equalizer",
+            "rect": {
+              "bottom": 530.25,
+              "height": 52.5,
+              "left": 287.5,
+              "right": 326.25,
+              "top": 477.75,
+              "width": 38.75,
+              "x": 287.5,
+              "y": 477.75
+            }
+          }
+        ],
+        "clientHeight": 439,
+        "cover": {
+          "bottom": 275.1875,
+          "height": 168.640625,
+          "left": 101.296875,
+          "right": 263.6875,
+          "top": 106.546875,
+          "width": 162.390625,
+          "x": 101.296875,
+          "y": 106.546875
+        },
+        "display": "flex",
+        "full": {
+          "bottom": 812,
+          "height": 812,
+          "left": 0,
+          "right": 375,
+          "top": 0,
+          "width": 375,
+          "x": 0,
+          "y": 0
+        },
+        "header": {
+          "bottom": 75,
+          "height": 50,
+          "left": 22.5,
+          "right": 352.5,
+          "top": 25,
+          "width": 330,
+          "x": 22.5,
+          "y": 25
+        },
+        "listening": {
+          "bottom": 632.5,
+          "height": 550,
+          "left": 22.5,
+          "right": 342.5,
+          "top": 82.5,
+          "width": 320,
+          "x": 22.5,
+          "y": 82.5
+        },
+        "scrollColor": "color(srgb 0.933333 0.917647 0.890196 / 0.22) rgba(0, 0, 0, 0)",
+        "scrollHeight": 439,
+        "scrollTop": 0,
+        "title": {
+          "bottom": 384,
+          "height": 64.75,
+          "left": 22.5,
+          "right": 342.5,
+          "top": 319.25,
+          "width": 320,
+          "x": 22.5,
+          "y": 319.25
+        }
+      },
+      "reopened": {
+        "buttons": [
+          {
+            "label": "Shuffle queue",
+            "rect": {
+              "bottom": 609.484375,
+              "height": 52.5,
+              "left": 38.75,
+              "right": 77.5,
+              "top": 556.984375,
+              "width": 38.75,
+              "x": 38.75,
+              "y": 556.984375
+            }
+          },
+          {
+            "label": "Previous track",
+            "rect": {
+              "bottom": 609.484375,
+              "height": 52.5,
+              "left": 82.5,
+              "right": 121.25,
+              "top": 556.984375,
+              "width": 38.75,
+              "x": 82.5,
+              "y": 556.984375
+            }
+          },
+          {
+            "label": "Pause",
+            "rect": {
+              "bottom": 619.484375,
+              "height": 72.5,
+              "left": 126.25,
+              "right": 198.75,
+              "top": 546.984375,
+              "width": 72.5,
+              "x": 126.25,
+              "y": 546.984375
+            }
+          },
+          {
+            "label": "Next track",
+            "rect": {
+              "bottom": 609.484375,
+              "height": 52.5,
+              "left": 203.75,
+              "right": 242.5,
+              "top": 556.984375,
+              "width": 38.75,
+              "x": 203.75,
+              "y": 556.984375
+            }
+          },
+          {
+            "label": "Enable repeat",
+            "rect": {
+              "bottom": 609.484375,
+              "height": 52.5,
+              "left": 247.5,
+              "right": 286.25,
+              "top": 556.984375,
+              "width": 38.75,
+              "x": 247.5,
+              "y": 556.984375
+            }
+          },
+          {
+            "label": "Equalizer",
+            "rect": {
+              "bottom": 609.484375,
+              "height": 52.5,
+              "left": 287.5,
+              "right": 326.25,
+              "top": 556.984375,
+              "width": 38.75,
+              "x": 287.5,
+              "y": 556.984375
+            }
+          }
+        ],
+        "clientHeight": 551,
+        "cover": {
+          "bottom": 366.921875,
+          "height": 249.84375,
+          "left": 60.703125,
+          "right": 304.296875,
+          "top": 117.078125,
+          "width": 243.59375,
+          "x": 60.703125,
+          "y": 117.078125
+        },
+        "display": "flex",
+        "full": {
+          "bottom": 812,
+          "height": 812,
+          "left": 0,
+          "right": 375,
+          "top": 0,
+          "width": 375,
+          "x": 0,
+          "y": 0
+        },
+        "header": {
+          "bottom": 75,
+          "height": 50,
+          "left": 22.5,
+          "right": 352.5,
+          "top": 25,
+          "width": 330,
+          "x": 22.5,
+          "y": 25
+        },
+        "listening": {
+          "bottom": 783.984375,
+          "height": 688.453125,
+          "left": 22.5,
+          "right": 342.5,
+          "top": 95.53125,
+          "width": 320,
+          "x": 22.5,
+          "y": 95.53125
+        },
+        "scrollColor": "color(srgb 0.933333 0.917647 0.890196 / 0.22) rgba(0, 0, 0, 0)",
+        "scrollHeight": 551,
+        "scrollTop": 0,
+        "title": {
+          "bottom": 463.234375,
+          "height": 64.75,
+          "left": 22.5,
+          "right": 342.5,
+          "top": 398.484375,
+          "width": 320,
+          "x": 22.5,
+          "y": 398.484375
+        }
+      }
+    },
+    {
+      "theme": "dark",
+      "width": 320,
+      "height": 820,
+      "resized": {
+        "buttons": [
+          {
+            "label": "Shuffle queue",
+            "rect": {
+              "bottom": 599.09375,
+              "height": 52.5,
+              "left": 16.25,
+              "right": 55,
+              "top": 546.59375,
+              "width": 38.75,
+              "x": 16.25,
+              "y": 546.59375
+            }
+          },
+          {
+            "label": "Previous track",
+            "rect": {
+              "bottom": 599.09375,
+              "height": 52.5,
+              "left": 57.5,
+              "right": 96.25,
+              "top": 546.59375,
+              "width": 38.75,
+              "x": 57.5,
+              "y": 546.59375
+            }
+          },
+          {
+            "label": "Pause",
+            "rect": {
+              "bottom": 609.09375,
+              "height": 72.5,
+              "left": 98.75,
+              "right": 171.25,
+              "top": 536.59375,
+              "width": 72.5,
+              "x": 98.75,
+              "y": 536.59375
+            }
+          },
+          {
+            "label": "Next track",
+            "rect": {
+              "bottom": 599.09375,
+              "height": 52.5,
+              "left": 173.75,
+              "right": 212.5,
+              "top": 546.59375,
+              "width": 38.75,
+              "x": 173.75,
+              "y": 546.59375
+            }
+          },
+          {
+            "label": "Enable repeat",
+            "rect": {
+              "bottom": 599.09375,
+              "height": 52.5,
+              "left": 215,
+              "right": 253.75,
+              "top": 546.59375,
+              "width": 38.75,
+              "x": 215,
+              "y": 546.59375
+            }
+          },
+          {
+            "label": "Equalizer",
+            "rect": {
+              "bottom": 599.09375,
+              "height": 52.5,
+              "left": 255,
+              "right": 293.75,
+              "top": 546.59375,
+              "width": 38.75,
+              "x": 255,
+              "y": 546.59375
+            }
+          }
+        ],
+        "clientHeight": 589,
+        "cover": {
+          "bottom": 352.171875,
+          "height": 243.75,
+          "left": 36.25,
+          "right": 273.75,
+          "top": 108.421875,
+          "width": 237.5,
+          "x": 36.25,
+          "y": 108.421875
+        },
+        "display": "flex",
+        "full": {
+          "bottom": 820,
+          "height": 820,
+          "left": 0,
+          "right": 320,
+          "top": 0,
+          "width": 320,
+          "x": 0,
+          "y": 0
+        },
+        "header": {
+          "bottom": 75,
+          "height": 50,
+          "left": 22.5,
+          "right": 297.5,
+          "top": 25,
+          "width": 275,
+          "x": 22.5,
+          "y": 25
+        },
+        "listening": {
+          "bottom": 818.59375,
+          "height": 736.09375,
+          "left": 22.5,
+          "right": 287.5,
+          "top": 82.5,
+          "width": 265,
+          "x": 22.5,
+          "y": 82.5
+        },
+        "scrollColor": "color(srgb 0.933333 0.917647 0.890196 / 0.22) rgba(0, 0, 0, 0)",
+        "scrollHeight": 589,
+        "scrollTop": 0,
+        "title": {
+          "bottom": 452.84375,
+          "height": 64.75,
+          "left": 22.5,
+          "right": 287.5,
+          "top": 388.09375,
+          "width": 265,
+          "x": 22.5,
+          "y": 388.09375
+        }
+      },
+      "lyrics": {
+        "buttons": [
+          {
+            "label": "Shuffle queue",
+            "rect": {
+              "bottom": 527.09375,
+              "height": 52.5,
+              "left": 16.25,
+              "right": 55,
+              "top": 474.59375,
+              "width": 38.75,
+              "x": 16.25,
+              "y": 474.59375
+            }
+          },
+          {
+            "label": "Previous track",
+            "rect": {
+              "bottom": 527.09375,
+              "height": 52.5,
+              "left": 57.5,
+              "right": 96.25,
+              "top": 474.59375,
+              "width": 38.75,
+              "x": 57.5,
+              "y": 474.59375
+            }
+          },
+          {
+            "label": "Pause",
+            "rect": {
+              "bottom": 537.09375,
+              "height": 72.5,
+              "left": 98.75,
+              "right": 171.25,
+              "top": 464.59375,
+              "width": 72.5,
+              "x": 98.75,
+              "y": 464.59375
+            }
+          },
+          {
+            "label": "Next track",
+            "rect": {
+              "bottom": 527.09375,
+              "height": 52.5,
+              "left": 173.75,
+              "right": 212.5,
+              "top": 474.59375,
+              "width": 38.75,
+              "x": 173.75,
+              "y": 474.59375
+            }
+          },
+          {
+            "label": "Enable repeat",
+            "rect": {
+              "bottom": 527.09375,
+              "height": 52.5,
+              "left": 215,
+              "right": 253.75,
+              "top": 474.59375,
+              "width": 38.75,
+              "x": 215,
+              "y": 474.59375
+            }
+          },
+          {
+            "label": "Equalizer",
+            "rect": {
+              "bottom": 527.09375,
+              "height": 52.5,
+              "left": 255,
+              "right": 293.75,
+              "top": 474.59375,
+              "width": 38.75,
+              "x": 255,
+              "y": 474.59375
+            }
+          }
+        ],
+        "clientHeight": 473,
+        "cover": {
+          "bottom": 276.921875,
+          "height": 170.25,
+          "left": 73,
+          "right": 237,
+          "top": 106.671875,
+          "width": 164,
+          "x": 73,
+          "y": 106.671875
+        },
+        "display": "flex",
+        "full": {
+          "bottom": 820,
+          "height": 820,
+          "left": 0,
+          "right": 320,
+          "top": 0,
+          "width": 320,
+          "x": 0,
+          "y": 0
+        },
+        "header": {
+          "bottom": 75,
+          "height": 50,
+          "left": 22.5,
+          "right": 297.5,
+          "top": 25,
+          "width": 275,
+          "x": 22.5,
+          "y": 25
+        },
+        "listening": {
+          "bottom": 674.34375,
+          "height": 591.84375,
+          "left": 22.5,
+          "right": 287.5,
+          "top": 82.5,
+          "width": 265,
+          "x": 22.5,
+          "y": 82.5
+        },
+        "scrollColor": "color(srgb 0.933333 0.917647 0.890196 / 0.22) rgba(0, 0, 0, 0)",
+        "scrollHeight": 473,
+        "scrollTop": 0,
+        "title": {
+          "bottom": 380.84375,
+          "height": 64.75,
+          "left": 22.5,
+          "right": 287.5,
+          "top": 316.09375,
+          "width": 265,
+          "x": 22.5,
+          "y": 316.09375
+        }
+      },
+      "reopened": {
+        "buttons": [
+          {
+            "label": "Shuffle queue",
+            "rect": {
+              "bottom": 599.09375,
+              "height": 52.5,
+              "left": 16.25,
+              "right": 55,
+              "top": 546.59375,
+              "width": 38.75,
+              "x": 16.25,
+              "y": 546.59375
+            }
+          },
+          {
+            "label": "Previous track",
+            "rect": {
+              "bottom": 599.09375,
+              "height": 52.5,
+              "left": 57.5,
+              "right": 96.25,
+              "top": 546.59375,
+              "width": 38.75,
+              "x": 57.5,
+              "y": 546.59375
+            }
+          },
+          {
+            "label": "Pause",
+            "rect": {
+              "bottom": 609.09375,
+              "height": 72.5,
+              "left": 98.75,
+              "right": 171.25,
+              "top": 536.59375,
+              "width": 72.5,
+              "x": 98.75,
+              "y": 536.59375
+            }
+          },
+          {
+            "label": "Next track",
+            "rect": {
+              "bottom": 599.09375,
+              "height": 52.5,
+              "left": 173.75,
+              "right": 212.5,
+              "top": 546.59375,
+              "width": 38.75,
+              "x": 173.75,
+              "y": 546.59375
+            }
+          },
+          {
+            "label": "Enable repeat",
+            "rect": {
+              "bottom": 599.09375,
+              "height": 52.5,
+              "left": 215,
+              "right": 253.75,
+              "top": 546.59375,
+              "width": 38.75,
+              "x": 215,
+              "y": 546.59375
+            }
+          },
+          {
+            "label": "Equalizer",
+            "rect": {
+              "bottom": 599.09375,
+              "height": 52.5,
+              "left": 255,
+              "right": 293.75,
+              "top": 546.59375,
+              "width": 38.75,
+              "x": 255,
+              "y": 546.59375
+            }
+          }
+        ],
+        "clientHeight": 589,
+        "cover": {
+          "bottom": 352.171875,
+          "height": 243.75,
+          "left": 36.25,
+          "right": 273.75,
+          "top": 108.421875,
+          "width": 237.5,
+          "x": 36.25,
+          "y": 108.421875
+        },
+        "display": "flex",
+        "full": {
+          "bottom": 820,
+          "height": 820,
+          "left": 0,
+          "right": 320,
+          "top": 0,
+          "width": 320,
+          "x": 0,
+          "y": 0
+        },
+        "header": {
+          "bottom": 75,
+          "height": 50,
+          "left": 22.5,
+          "right": 297.5,
+          "top": 25,
+          "width": 275,
+          "x": 22.5,
+          "y": 25
+        },
+        "listening": {
+          "bottom": 818.59375,
+          "height": 736.09375,
+          "left": 22.5,
+          "right": 287.5,
+          "top": 82.5,
+          "width": 265,
+          "x": 22.5,
+          "y": 82.5
+        },
+        "scrollColor": "color(srgb 0.933333 0.917647 0.890196 / 0.22) rgba(0, 0, 0, 0)",
+        "scrollHeight": 589,
+        "scrollTop": 0,
+        "title": {
+          "bottom": 452.84375,
+          "height": 64.75,
+          "left": 22.5,
+          "right": 287.5,
+          "top": 388.09375,
+          "width": 265,
+          "x": 22.5,
+          "y": 388.09375
+        }
+      }
+    },
+    {
+      "theme": "amoled",
+      "width": 1440,
+      "height": 950,
+      "resized": {
+        "buttons": [
+          {
+            "label": "Shuffle queue",
+            "rect": {
+              "bottom": 738.65625,
+              "height": 55,
+              "left": 528.75,
+              "right": 573.75,
+              "top": 683.65625,
+              "width": 45,
+              "x": 528.75,
+              "y": 683.65625
+            }
+          },
+          {
+            "label": "Previous track",
+            "rect": {
+              "bottom": 738.65625,
+              "height": 55,
+              "left": 586.25,
+              "right": 631.25,
+              "top": 683.65625,
+              "width": 45,
+              "x": 586.25,
+              "y": 683.65625
+            }
+          },
+          {
+            "label": "Pause",
+            "rect": {
+              "bottom": 751.15625,
+              "height": 80,
+              "left": 643.75,
+              "right": 723.75,
+              "top": 671.15625,
+              "width": 80,
+              "x": 643.75,
+              "y": 671.15625
+            }
+          },
+          {
+            "label": "Next track",
+            "rect": {
+              "bottom": 738.65625,
+              "height": 55,
+              "left": 736.25,
+              "right": 781.25,
+              "top": 683.65625,
+              "width": 45,
+              "x": 736.25,
+              "y": 683.65625
+            }
+          },
+          {
+            "label": "Enable repeat",
+            "rect": {
+              "bottom": 738.65625,
+              "height": 55,
+              "left": 793.75,
+              "right": 838.75,
+              "top": 683.65625,
+              "width": 45,
+              "x": 793.75,
+              "y": 683.65625
+            }
+          },
+          {
+            "label": "Equalizer",
+            "rect": {
+              "bottom": 738.65625,
+              "height": 55,
+              "left": 846.25,
+              "right": 891.25,
+              "top": 683.65625,
+              "width": 45,
+              "x": 846.25,
+              "y": 683.65625
+            }
+          }
+        ],
+        "clientHeight": 663,
+        "cover": {
+          "bottom": 480.1875,
+          "height": 357.75,
+          "left": 534.25,
+          "right": 885.75,
+          "top": 122.4375,
+          "width": 351.5,
+          "x": 534.25,
+          "y": 122.4375
+        },
+        "display": "flex",
+        "full": {
+          "bottom": 950,
+          "height": 950,
+          "left": 0,
+          "right": 1440,
+          "top": 0,
+          "width": 1440,
+          "x": 0,
+          "y": 0
+        },
+        "header": {
+          "bottom": 85,
+          "height": 55,
+          "left": 37.5,
+          "right": 1402.5,
+          "top": 30,
+          "width": 1365,
+          "x": 37.5,
+          "y": 30
+        },
+        "listening": {
+          "bottom": 924.40625,
+          "height": 828.8125,
+          "left": 465,
+          "right": 965,
+          "top": 95.59375,
+          "width": 500,
+          "x": 465,
+          "y": 95.59375
+        },
+        "scrollColor": "color(srgb 0.956863 0.945098 0.968627 / 0.22) rgba(0, 0, 0, 0)",
+        "scrollHeight": 663,
+        "scrollTop": 0,
+        "title": {
+          "bottom": 587.40625,
+          "height": 72.875,
+          "left": 472.5,
+          "right": 947.5,
+          "top": 514.53125,
+          "width": 475,
+          "x": 472.5,
+          "y": 514.53125
+        }
+      },
+      "lyrics": {
+        "buttons": [
+          {
+            "label": "Shuffle queue",
+            "rect": {
+              "bottom": 696.4375,
+              "height": 55,
+              "left": 77.4375,
+              "right": 122.4375,
+              "top": 641.4375,
+              "width": 45,
+              "x": 77.4375,
+              "y": 641.4375
+            }
+          },
+          {
+            "label": "Previous track",
+            "rect": {
+              "bottom": 696.4375,
+              "height": 55,
+              "left": 134.9375,
+              "right": 179.9375,
+              "top": 641.4375,
+              "width": 45,
+              "x": 134.9375,
+              "y": 641.4375
+            }
+          },
+          {
+            "label": "Pause",
+            "rect": {
+              "bottom": 708.9375,
+              "height": 80,
+              "left": 192.4375,
+              "right": 272.4375,
+              "top": 628.9375,
+              "width": 80,
+              "x": 192.4375,
+              "y": 628.9375
+            }
+          },
+          {
+            "label": "Next track",
+            "rect": {
+              "bottom": 696.4375,
+              "height": 55,
+              "left": 284.9375,
+              "right": 329.9375,
+              "top": 641.4375,
+              "width": 45,
+              "x": 284.9375,
+              "y": 641.4375
+            }
+          },
+          {
+            "label": "Enable repeat",
+            "rect": {
+              "bottom": 696.4375,
+              "height": 55,
+              "left": 342.4375,
+              "right": 387.4375,
+              "top": 641.4375,
+              "width": 45,
+              "x": 342.4375,
+              "y": 641.4375
+            }
+          },
+          {
+            "label": "Equalizer",
+            "rect": {
+              "bottom": 696.4375,
+              "height": 55,
+              "left": 394.9375,
+              "right": 439.9375,
+              "top": 641.4375,
+              "width": 45,
+              "x": 394.9375,
+              "y": 641.4375
+            }
+          }
+        ],
+        "clientHeight": 596,
+        "cover": {
+          "bottom": 450.6875,
+          "height": 291.25,
+          "left": 116.1875,
+          "right": 401.1875,
+          "top": 159.4375,
+          "width": 285,
+          "x": 116.1875,
+          "y": 159.4375
+        },
+        "display": "flex",
+        "full": {
+          "bottom": 950,
+          "height": 950,
+          "left": 0,
+          "right": 1440,
+          "top": 0,
+          "width": 1440,
+          "x": 0,
+          "y": 0
+        },
+        "header": {
+          "bottom": 85,
+          "height": 55,
+          "left": 37.5,
+          "right": 1402.5,
+          "top": 30,
+          "width": 1365,
+          "x": 37.5,
+          "y": 30
+        },
+        "listening": {
+          "bottom": 882.1875,
+          "height": 744.375,
+          "left": 37.5,
+          "right": 489.875,
+          "top": 137.8125,
+          "width": 452.375,
+          "x": 37.5,
+          "y": 137.8125
+        },
+        "scrollColor": "color(srgb 0.956863 0.945098 0.968627 / 0.22) rgba(0, 0, 0, 0)",
+        "scrollHeight": 596,
+        "scrollTop": 0,
+        "title": {
+          "bottom": 545.1875,
+          "height": 72.875,
+          "left": 47.5,
+          "right": 469.875,
+          "top": 472.3125,
+          "width": 422.375,
+          "x": 47.5,
+          "y": 472.3125
+        }
+      },
+      "reopened": {
+        "buttons": [
+          {
+            "label": "Shuffle queue",
+            "rect": {
+              "bottom": 738.65625,
+              "height": 55,
+              "left": 528.75,
+              "right": 573.75,
+              "top": 683.65625,
+              "width": 45,
+              "x": 528.75,
+              "y": 683.65625
+            }
+          },
+          {
+            "label": "Previous track",
+            "rect": {
+              "bottom": 738.65625,
+              "height": 55,
+              "left": 586.25,
+              "right": 631.25,
+              "top": 683.65625,
+              "width": 45,
+              "x": 586.25,
+              "y": 683.65625
+            }
+          },
+          {
+            "label": "Pause",
+            "rect": {
+              "bottom": 751.15625,
+              "height": 80,
+              "left": 643.75,
+              "right": 723.75,
+              "top": 671.15625,
+              "width": 80,
+              "x": 643.75,
+              "y": 671.15625
+            }
+          },
+          {
+            "label": "Next track",
+            "rect": {
+              "bottom": 738.65625,
+              "height": 55,
+              "left": 736.25,
+              "right": 781.25,
+              "top": 683.65625,
+              "width": 45,
+              "x": 736.25,
+              "y": 683.65625
+            }
+          },
+          {
+            "label": "Enable repeat",
+            "rect": {
+              "bottom": 738.65625,
+              "height": 55,
+              "left": 793.75,
+              "right": 838.75,
+              "top": 683.65625,
+              "width": 45,
+              "x": 793.75,
+              "y": 683.65625
+            }
+          },
+          {
+            "label": "Equalizer",
+            "rect": {
+              "bottom": 738.65625,
+              "height": 55,
+              "left": 846.25,
+              "right": 891.25,
+              "top": 683.65625,
+              "width": 45,
+              "x": 846.25,
+              "y": 683.65625
+            }
+          }
+        ],
+        "clientHeight": 663,
+        "cover": {
+          "bottom": 480.1875,
+          "height": 357.75,
+          "left": 534.25,
+          "right": 885.75,
+          "top": 122.4375,
+          "width": 351.5,
+          "x": 534.25,
+          "y": 122.4375
+        },
+        "display": "flex",
+        "full": {
+          "bottom": 950,
+          "height": 950,
+          "left": 0,
+          "right": 1440,
+          "top": 0,
+          "width": 1440,
+          "x": 0,
+          "y": 0
+        },
+        "header": {
+          "bottom": 85,
+          "height": 55,
+          "left": 37.5,
+          "right": 1402.5,
+          "top": 30,
+          "width": 1365,
+          "x": 37.5,
+          "y": 30
+        },
+        "listening": {
+          "bottom": 924.40625,
+          "height": 828.8125,
+          "left": 465,
+          "right": 965,
+          "top": 95.59375,
+          "width": 500,
+          "x": 465,
+          "y": 95.59375
+        },
+        "scrollColor": "color(srgb 0.956863 0.945098 0.968627 / 0.22) rgba(0, 0, 0, 0)",
+        "scrollHeight": 663,
+        "scrollTop": 0,
+        "title": {
+          "bottom": 587.40625,
+          "height": 72.875,
+          "left": 472.5,
+          "right": 947.5,
+          "top": 514.53125,
+          "width": 475,
+          "x": 472.5,
+          "y": 514.53125
+        }
+      }
+    },
+    {
+      "theme": "amoled",
+      "width": 1280,
+      "height": 820,
+      "resized": {
+        "buttons": [
+          {
+            "label": "Shuffle queue",
+            "rect": {
+              "bottom": 612.1875,
+              "height": 55,
+              "left": 448.75,
+              "right": 493.75,
+              "top": 557.1875,
+              "width": 45,
+              "x": 448.75,
+              "y": 557.1875
+            }
+          },
+          {
+            "label": "Previous track",
+            "rect": {
+              "bottom": 612.1875,
+              "height": 55,
+              "left": 506.25,
+              "right": 551.25,
+              "top": 557.1875,
+              "width": 45,
+              "x": 506.25,
+              "y": 557.1875
+            }
+          },
+          {
+            "label": "Pause",
+            "rect": {
+              "bottom": 624.6875,
+              "height": 80,
+              "left": 563.75,
+              "right": 643.75,
+              "top": 544.6875,
+              "width": 80,
+              "x": 563.75,
+              "y": 544.6875
+            }
+          },
+          {
+            "label": "Next track",
+            "rect": {
+              "bottom": 612.1875,
+              "height": 55,
+              "left": 656.25,
+              "right": 701.25,
+              "top": 557.1875,
+              "width": 45,
+              "x": 656.25,
+              "y": 557.1875
+            }
+          },
+          {
+            "label": "Enable repeat",
+            "rect": {
+              "bottom": 612.1875,
+              "height": 55,
+              "left": 713.75,
+              "right": 758.75,
+              "top": 557.1875,
+              "width": 45,
+              "x": 713.75,
+              "y": 557.1875
+            }
+          },
+          {
+            "label": "Equalizer",
+            "rect": {
+              "bottom": 612.1875,
+              "height": 55,
+              "left": 766.25,
+              "right": 811.25,
+              "top": 557.1875,
+              "width": 45,
+              "x": 766.25,
+              "y": 557.1875
+            }
+          }
+        ],
+        "clientHeight": 545,
+        "cover": {
+          "bottom": 365.484375,
+          "height": 235.84375,
+          "left": 515.203125,
+          "right": 744.796875,
+          "top": 129.640625,
+          "width": 229.59375,
+          "x": 515.203125,
+          "y": 129.640625
+        },
+        "display": "flex",
+        "full": {
+          "bottom": 820,
+          "height": 820,
+          "left": 0,
+          "right": 1280,
+          "top": 0,
+          "width": 1280,
+          "x": 0,
+          "y": 0
+        },
+        "header": {
+          "bottom": 85,
+          "height": 55,
+          "left": 37.5,
+          "right": 1242.5,
+          "top": 30,
+          "width": 1205,
+          "x": 37.5,
+          "y": 30
+        },
+        "listening": {
+          "bottom": 785.4375,
+          "height": 680.875,
+          "left": 385,
+          "right": 885,
+          "top": 104.5625,
+          "width": 500,
+          "x": 385,
+          "y": 104.5625
+        },
+        "scrollColor": "color(srgb 0.956863 0.945098 0.968627 / 0.22) rgba(0, 0, 0, 0)",
+        "scrollHeight": 545,
+        "scrollTop": 0,
+        "title": {
+          "bottom": 460.9375,
+          "height": 72.875,
+          "left": 392.5,
+          "right": 867.5,
+          "top": 388.0625,
+          "width": 475,
+          "x": 392.5,
+          "y": 388.0625
+        }
+      },
+      "lyrics": {
+        "buttons": [
+          {
+            "label": "Shuffle queue",
+            "rect": {
+              "bottom": 603.984375,
+              "height": 55,
+              "left": 49.4375,
+              "right": 94.4375,
+              "top": 548.984375,
+              "width": 45,
+              "x": 49.4375,
+              "y": 548.984375
+            }
+          },
+          {
+            "label": "Previous track",
+            "rect": {
+              "bottom": 603.984375,
+              "height": 55,
+              "left": 106.9375,
+              "right": 151.9375,
+              "top": 548.984375,
+              "width": 45,
+              "x": 106.9375,
+              "y": 548.984375
+            }
+          },
+          {
+            "label": "Pause",
+            "rect": {
+              "bottom": 616.484375,
+              "height": 80,
+              "left": 164.4375,
+              "right": 244.4375,
+              "top": 536.484375,
+              "width": 80,
+              "x": 164.4375,
+              "y": 536.484375
+            }
+          },
+          {
+            "label": "Next track",
+            "rect": {
+              "bottom": 603.984375,
+              "height": 55,
+              "left": 256.9375,
+              "right": 301.9375,
+              "top": 548.984375,
+              "width": 45,
+              "x": 256.9375,
+              "y": 548.984375
+            }
+          },
+          {
+            "label": "Enable repeat",
+            "rect": {
+              "bottom": 603.984375,
+              "height": 55,
+              "left": 314.4375,
+              "right": 359.4375,
+              "top": 548.984375,
+              "width": 45,
+              "x": 314.4375,
+              "y": 548.984375
+            }
+          },
+          {
+            "label": "Equalizer",
+            "rect": {
+              "bottom": 603.984375,
+              "height": 55,
+              "left": 366.9375,
+              "right": 411.9375,
+              "top": 548.984375,
+              "width": 45,
+              "x": 366.9375,
+              "y": 548.984375
+            }
+          }
+        ],
+        "clientHeight": 532,
+        "cover": {
+          "bottom": 357.28125,
+          "height": 219.4375,
+          "left": 124.09375,
+          "right": 337.28125,
+          "top": 137.84375,
+          "width": 213.1875,
+          "x": 124.09375,
+          "y": 137.84375
+        },
+        "display": "flex",
+        "full": {
+          "bottom": 820,
+          "height": 820,
+          "left": 0,
+          "right": 1280,
+          "top": 0,
+          "width": 1280,
+          "x": 0,
+          "y": 0
+        },
+        "header": {
+          "bottom": 85,
+          "height": 55,
+          "left": 37.5,
+          "right": 1242.5,
+          "top": 30,
+          "width": 1205,
+          "x": 37.5,
+          "y": 30
+        },
+        "listening": {
+          "bottom": 777.234375,
+          "height": 664.46875,
+          "left": 37.5,
+          "right": 433.875,
+          "top": 112.765625,
+          "width": 396.375,
+          "x": 37.5,
+          "y": 112.765625
+        },
+        "scrollColor": "color(srgb 0.956863 0.945098 0.968627 / 0.22) rgba(0, 0, 0, 0)",
+        "scrollHeight": 532,
+        "scrollTop": 0,
+        "title": {
+          "bottom": 452.734375,
+          "height": 72.875,
+          "left": 47.5,
+          "right": 413.875,
+          "top": 379.859375,
+          "width": 366.375,
+          "x": 47.5,
+          "y": 379.859375
+        }
+      },
+      "reopened": {
+        "buttons": [
+          {
+            "label": "Shuffle queue",
+            "rect": {
+              "bottom": 612.1875,
+              "height": 55,
+              "left": 448.75,
+              "right": 493.75,
+              "top": 557.1875,
+              "width": 45,
+              "x": 448.75,
+              "y": 557.1875
+            }
+          },
+          {
+            "label": "Previous track",
+            "rect": {
+              "bottom": 612.1875,
+              "height": 55,
+              "left": 506.25,
+              "right": 551.25,
+              "top": 557.1875,
+              "width": 45,
+              "x": 506.25,
+              "y": 557.1875
+            }
+          },
+          {
+            "label": "Pause",
+            "rect": {
+              "bottom": 624.6875,
+              "height": 80,
+              "left": 563.75,
+              "right": 643.75,
+              "top": 544.6875,
+              "width": 80,
+              "x": 563.75,
+              "y": 544.6875
+            }
+          },
+          {
+            "label": "Next track",
+            "rect": {
+              "bottom": 612.1875,
+              "height": 55,
+              "left": 656.25,
+              "right": 701.25,
+              "top": 557.1875,
+              "width": 45,
+              "x": 656.25,
+              "y": 557.1875
+            }
+          },
+          {
+            "label": "Enable repeat",
+            "rect": {
+              "bottom": 612.1875,
+              "height": 55,
+              "left": 713.75,
+              "right": 758.75,
+              "top": 557.1875,
+              "width": 45,
+              "x": 713.75,
+              "y": 557.1875
+            }
+          },
+          {
+            "label": "Equalizer",
+            "rect": {
+              "bottom": 612.1875,
+              "height": 55,
+              "left": 766.25,
+              "right": 811.25,
+              "top": 557.1875,
+              "width": 45,
+              "x": 766.25,
+              "y": 557.1875
+            }
+          }
+        ],
+        "clientHeight": 545,
+        "cover": {
+          "bottom": 365.484375,
+          "height": 235.84375,
+          "left": 515.203125,
+          "right": 744.796875,
+          "top": 129.640625,
+          "width": 229.59375,
+          "x": 515.203125,
+          "y": 129.640625
+        },
+        "display": "flex",
+        "full": {
+          "bottom": 820,
+          "height": 820,
+          "left": 0,
+          "right": 1280,
+          "top": 0,
+          "width": 1280,
+          "x": 0,
+          "y": 0
+        },
+        "header": {
+          "bottom": 85,
+          "height": 55,
+          "left": 37.5,
+          "right": 1242.5,
+          "top": 30,
+          "width": 1205,
+          "x": 37.5,
+          "y": 30
+        },
+        "listening": {
+          "bottom": 785.4375,
+          "height": 680.875,
+          "left": 385,
+          "right": 885,
+          "top": 104.5625,
+          "width": 500,
+          "x": 385,
+          "y": 104.5625
+        },
+        "scrollColor": "color(srgb 0.956863 0.945098 0.968627 / 0.22) rgba(0, 0, 0, 0)",
+        "scrollHeight": 545,
+        "scrollTop": 0,
+        "title": {
+          "bottom": 460.9375,
+          "height": 72.875,
+          "left": 392.5,
+          "right": 867.5,
+          "top": 388.0625,
+          "width": 475,
+          "x": 392.5,
+          "y": 388.0625
+        }
+      }
+    },
+    {
+      "theme": "amoled",
+      "width": 390,
+      "height": 844,
+      "resized": {
+        "buttons": [
+          {
+            "label": "Shuffle queue",
+            "rect": {
+              "bottom": 630.765625,
+              "height": 52.5,
+              "left": 46.25,
+              "right": 85,
+              "top": 578.265625,
+              "width": 38.75,
+              "x": 46.25,
+              "y": 578.265625
+            }
+          },
+          {
+            "label": "Previous track",
+            "rect": {
+              "bottom": 630.765625,
+              "height": 52.5,
+              "left": 90,
+              "right": 128.75,
+              "top": 578.265625,
+              "width": 38.75,
+              "x": 90,
+              "y": 578.265625
+            }
+          },
+          {
+            "label": "Pause",
+            "rect": {
+              "bottom": 640.765625,
+              "height": 72.5,
+              "left": 133.75,
+              "right": 206.25,
+              "top": 568.265625,
+              "width": 72.5,
+              "x": 133.75,
+              "y": 568.265625
+            }
+          },
+          {
+            "label": "Next track",
+            "rect": {
+              "bottom": 630.765625,
+              "height": 52.5,
+              "left": 211.25,
+              "right": 250,
+              "top": 578.265625,
+              "width": 38.75,
+              "x": 211.25,
+              "y": 578.265625
+            }
+          },
+          {
+            "label": "Enable repeat",
+            "rect": {
+              "bottom": 630.765625,
+              "height": 52.5,
+              "left": 255,
+              "right": 293.75,
+              "top": 578.265625,
+              "width": 38.75,
+              "x": 255,
+              "y": 578.265625
+            }
+          },
+          {
+            "label": "Equalizer",
+            "rect": {
+              "bottom": 630.765625,
+              "height": 52.5,
+              "left": 295,
+              "right": 333.75,
+              "top": 578.265625,
+              "width": 38.75,
+              "x": 295,
+              "y": 578.265625
+            }
+          }
+        ],
+        "clientHeight": 559,
+        "cover": {
+          "bottom": 387.71875,
+          "height": 259.4375,
+          "left": 63.40625,
+          "right": 316.59375,
+          "top": 128.28125,
+          "width": 253.1875,
+          "x": 63.40625,
+          "y": 128.28125
+        },
+        "display": "flex",
+        "full": {
+          "bottom": 844,
+          "height": 844,
+          "left": 0,
+          "right": 390,
+          "top": 0,
+          "width": 390,
+          "x": 0,
+          "y": 0
+        },
+        "header": {
+          "bottom": 75,
+          "height": 50,
+          "left": 22.5,
+          "right": 367.5,
+          "top": 25,
+          "width": 345,
+          "x": 22.5,
+          "y": 25
+        },
+        "listening": {
+          "bottom": 805.265625,
+          "height": 699.015625,
+          "left": 22.5,
+          "right": 357.5,
+          "top": 106.25,
+          "width": 335,
+          "x": 22.5,
+          "y": 106.25
+        },
+        "scrollColor": "color(srgb 0.956863 0.945098 0.968627 / 0.22) rgba(0, 0, 0, 0)",
+        "scrollHeight": 559,
+        "scrollTop": 0,
+        "title": {
+          "bottom": 484.515625,
+          "height": 64.75,
+          "left": 22.5,
+          "right": 357.5,
+          "top": 419.765625,
+          "width": 335,
+          "x": 22.5,
+          "y": 419.765625
+        }
+      },
+      "lyrics": {
+        "buttons": [
+          {
+            "label": "Shuffle queue",
+            "rect": {
+              "bottom": 537.609375,
+              "height": 52.5,
+              "left": 46.25,
+              "right": 85,
+              "top": 485.109375,
+              "width": 38.75,
+              "x": 46.25,
+              "y": 485.109375
+            }
+          },
+          {
+            "label": "Previous track",
+            "rect": {
+              "bottom": 537.609375,
+              "height": 52.5,
+              "left": 90,
+              "right": 128.75,
+              "top": 485.109375,
+              "width": 38.75,
+              "x": 90,
+              "y": 485.109375
+            }
+          },
+          {
+            "label": "Pause",
+            "rect": {
+              "bottom": 547.609375,
+              "height": 72.5,
+              "left": 133.75,
+              "right": 206.25,
+              "top": 475.109375,
+              "width": 72.5,
+              "x": 133.75,
+              "y": 475.109375
+            }
+          },
+          {
+            "label": "Next track",
+            "rect": {
+              "bottom": 537.609375,
+              "height": 52.5,
+              "left": 211.25,
+              "right": 250,
+              "top": 485.109375,
+              "width": 38.75,
+              "x": 211.25,
+              "y": 485.109375
+            }
+          },
+          {
+            "label": "Enable repeat",
+            "rect": {
+              "bottom": 537.609375,
+              "height": 52.5,
+              "left": 255,
+              "right": 293.75,
+              "top": 485.109375,
+              "width": 38.75,
+              "x": 255,
+              "y": 485.109375
+            }
+          },
+          {
+            "label": "Equalizer",
+            "rect": {
+              "bottom": 537.609375,
+              "height": 52.5,
+              "left": 295,
+              "right": 333.75,
+              "top": 485.109375,
+              "width": 38.75,
+              "x": 295,
+              "y": 485.109375
+            }
+          }
+        ],
+        "clientHeight": 445,
+        "cover": {
+          "bottom": 282.078125,
+          "height": 175.046875,
+          "left": 105.59375,
+          "right": 274.390625,
+          "top": 107.03125,
+          "width": 168.796875,
+          "x": 105.59375,
+          "y": 107.03125
+        },
+        "display": "flex",
+        "full": {
+          "bottom": 844,
+          "height": 844,
+          "left": 0,
+          "right": 390,
+          "top": 0,
+          "width": 390,
+          "x": 0,
+          "y": 0
+        },
+        "header": {
+          "bottom": 75,
+          "height": 50,
+          "left": 22.5,
+          "right": 367.5,
+          "top": 25,
+          "width": 345,
+          "x": 22.5,
+          "y": 25
+        },
+        "listening": {
+          "bottom": 639.859375,
+          "height": 557.359375,
+          "left": 22.5,
+          "right": 357.5,
+          "top": 82.5,
+          "width": 335,
+          "x": 22.5,
+          "y": 82.5
+        },
+        "scrollColor": "color(srgb 0.956863 0.945098 0.968627 / 0.22) rgba(0, 0, 0, 0)",
+        "scrollHeight": 445,
+        "scrollTop": 0,
+        "title": {
+          "bottom": 391.359375,
+          "height": 64.75,
+          "left": 22.5,
+          "right": 357.5,
+          "top": 326.609375,
+          "width": 335,
+          "x": 22.5,
+          "y": 326.609375
+        }
+      },
+      "reopened": {
+        "buttons": [
+          {
+            "label": "Shuffle queue",
+            "rect": {
+              "bottom": 630.765625,
+              "height": 52.5,
+              "left": 46.25,
+              "right": 85,
+              "top": 578.265625,
+              "width": 38.75,
+              "x": 46.25,
+              "y": 578.265625
+            }
+          },
+          {
+            "label": "Previous track",
+            "rect": {
+              "bottom": 630.765625,
+              "height": 52.5,
+              "left": 90,
+              "right": 128.75,
+              "top": 578.265625,
+              "width": 38.75,
+              "x": 90,
+              "y": 578.265625
+            }
+          },
+          {
+            "label": "Pause",
+            "rect": {
+              "bottom": 640.765625,
+              "height": 72.5,
+              "left": 133.75,
+              "right": 206.25,
+              "top": 568.265625,
+              "width": 72.5,
+              "x": 133.75,
+              "y": 568.265625
+            }
+          },
+          {
+            "label": "Next track",
+            "rect": {
+              "bottom": 630.765625,
+              "height": 52.5,
+              "left": 211.25,
+              "right": 250,
+              "top": 578.265625,
+              "width": 38.75,
+              "x": 211.25,
+              "y": 578.265625
+            }
+          },
+          {
+            "label": "Enable repeat",
+            "rect": {
+              "bottom": 630.765625,
+              "height": 52.5,
+              "left": 255,
+              "right": 293.75,
+              "top": 578.265625,
+              "width": 38.75,
+              "x": 255,
+              "y": 578.265625
+            }
+          },
+          {
+            "label": "Equalizer",
+            "rect": {
+              "bottom": 630.765625,
+              "height": 52.5,
+              "left": 295,
+              "right": 333.75,
+              "top": 578.265625,
+              "width": 38.75,
+              "x": 295,
+              "y": 578.265625
+            }
+          }
+        ],
+        "clientHeight": 559,
+        "cover": {
+          "bottom": 387.71875,
+          "height": 259.4375,
+          "left": 63.40625,
+          "right": 316.59375,
+          "top": 128.28125,
+          "width": 253.1875,
+          "x": 63.40625,
+          "y": 128.28125
+        },
+        "display": "flex",
+        "full": {
+          "bottom": 844,
+          "height": 844,
+          "left": 0,
+          "right": 390,
+          "top": 0,
+          "width": 390,
+          "x": 0,
+          "y": 0
+        },
+        "header": {
+          "bottom": 75,
+          "height": 50,
+          "left": 22.5,
+          "right": 367.5,
+          "top": 25,
+          "width": 345,
+          "x": 22.5,
+          "y": 25
+        },
+        "listening": {
+          "bottom": 805.265625,
+          "height": 699.015625,
+          "left": 22.5,
+          "right": 357.5,
+          "top": 106.25,
+          "width": 335,
+          "x": 22.5,
+          "y": 106.25
+        },
+        "scrollColor": "color(srgb 0.956863 0.945098 0.968627 / 0.22) rgba(0, 0, 0, 0)",
+        "scrollHeight": 559,
+        "scrollTop": 0,
+        "title": {
+          "bottom": 484.515625,
+          "height": 64.75,
+          "left": 22.5,
+          "right": 357.5,
+          "top": 419.765625,
+          "width": 335,
+          "x": 22.5,
+          "y": 419.765625
+        }
+      }
+    },
+    {
+      "theme": "amoled",
+      "width": 375,
+      "height": 812,
+      "resized": {
+        "buttons": [
+          {
+            "label": "Shuffle queue",
+            "rect": {
+              "bottom": 609.484375,
+              "height": 52.5,
+              "left": 38.75,
+              "right": 77.5,
+              "top": 556.984375,
+              "width": 38.75,
+              "x": 38.75,
+              "y": 556.984375
+            }
+          },
+          {
+            "label": "Previous track",
+            "rect": {
+              "bottom": 609.484375,
+              "height": 52.5,
+              "left": 82.5,
+              "right": 121.25,
+              "top": 556.984375,
+              "width": 38.75,
+              "x": 82.5,
+              "y": 556.984375
+            }
+          },
+          {
+            "label": "Pause",
+            "rect": {
+              "bottom": 619.484375,
+              "height": 72.5,
+              "left": 126.25,
+              "right": 198.75,
+              "top": 546.984375,
+              "width": 72.5,
+              "x": 126.25,
+              "y": 546.984375
+            }
+          },
+          {
+            "label": "Next track",
+            "rect": {
+              "bottom": 609.484375,
+              "height": 52.5,
+              "left": 203.75,
+              "right": 242.5,
+              "top": 556.984375,
+              "width": 38.75,
+              "x": 203.75,
+              "y": 556.984375
+            }
+          },
+          {
+            "label": "Enable repeat",
+            "rect": {
+              "bottom": 609.484375,
+              "height": 52.5,
+              "left": 247.5,
+              "right": 286.25,
+              "top": 556.984375,
+              "width": 38.75,
+              "x": 247.5,
+              "y": 556.984375
+            }
+          },
+          {
+            "label": "Equalizer",
+            "rect": {
+              "bottom": 609.484375,
+              "height": 52.5,
+              "left": 287.5,
+              "right": 326.25,
+              "top": 556.984375,
+              "width": 38.75,
+              "x": 287.5,
+              "y": 556.984375
+            }
+          }
+        ],
+        "clientHeight": 551,
+        "cover": {
+          "bottom": 366.921875,
+          "height": 249.84375,
+          "left": 60.703125,
+          "right": 304.296875,
+          "top": 117.078125,
+          "width": 243.59375,
+          "x": 60.703125,
+          "y": 117.078125
+        },
+        "display": "flex",
+        "full": {
+          "bottom": 812,
+          "height": 812,
+          "left": 0,
+          "right": 375,
+          "top": 0,
+          "width": 375,
+          "x": 0,
+          "y": 0
+        },
+        "header": {
+          "bottom": 75,
+          "height": 50,
+          "left": 22.5,
+          "right": 352.5,
+          "top": 25,
+          "width": 330,
+          "x": 22.5,
+          "y": 25
+        },
+        "listening": {
+          "bottom": 783.984375,
+          "height": 688.453125,
+          "left": 22.5,
+          "right": 342.5,
+          "top": 95.53125,
+          "width": 320,
+          "x": 22.5,
+          "y": 95.53125
+        },
+        "scrollColor": "color(srgb 0.956863 0.945098 0.968627 / 0.22) rgba(0, 0, 0, 0)",
+        "scrollHeight": 551,
+        "scrollTop": 0,
+        "title": {
+          "bottom": 463.234375,
+          "height": 64.75,
+          "left": 22.5,
+          "right": 342.5,
+          "top": 398.484375,
+          "width": 320,
+          "x": 22.5,
+          "y": 398.484375
+        }
+      },
+      "lyrics": {
+        "buttons": [
+          {
+            "label": "Shuffle queue",
+            "rect": {
+              "bottom": 530.25,
+              "height": 52.5,
+              "left": 38.75,
+              "right": 77.5,
+              "top": 477.75,
+              "width": 38.75,
+              "x": 38.75,
+              "y": 477.75
+            }
+          },
+          {
+            "label": "Previous track",
+            "rect": {
+              "bottom": 530.25,
+              "height": 52.5,
+              "left": 82.5,
+              "right": 121.25,
+              "top": 477.75,
+              "width": 38.75,
+              "x": 82.5,
+              "y": 477.75
+            }
+          },
+          {
+            "label": "Pause",
+            "rect": {
+              "bottom": 540.25,
+              "height": 72.5,
+              "left": 126.25,
+              "right": 198.75,
+              "top": 467.75,
+              "width": 72.5,
+              "x": 126.25,
+              "y": 467.75
+            }
+          },
+          {
+            "label": "Next track",
+            "rect": {
+              "bottom": 530.25,
+              "height": 52.5,
+              "left": 203.75,
+              "right": 242.5,
+              "top": 477.75,
+              "width": 38.75,
+              "x": 203.75,
+              "y": 477.75
+            }
+          },
+          {
+            "label": "Enable repeat",
+            "rect": {
+              "bottom": 530.25,
+              "height": 52.5,
+              "left": 247.5,
+              "right": 286.25,
+              "top": 477.75,
+              "width": 38.75,
+              "x": 247.5,
+              "y": 477.75
+            }
+          },
+          {
+            "label": "Equalizer",
+            "rect": {
+              "bottom": 530.25,
+              "height": 52.5,
+              "left": 287.5,
+              "right": 326.25,
+              "top": 477.75,
+              "width": 38.75,
+              "x": 287.5,
+              "y": 477.75
+            }
+          }
+        ],
+        "clientHeight": 439,
+        "cover": {
+          "bottom": 275.1875,
+          "height": 168.640625,
+          "left": 101.296875,
+          "right": 263.6875,
+          "top": 106.546875,
+          "width": 162.390625,
+          "x": 101.296875,
+          "y": 106.546875
+        },
+        "display": "flex",
+        "full": {
+          "bottom": 812,
+          "height": 812,
+          "left": 0,
+          "right": 375,
+          "top": 0,
+          "width": 375,
+          "x": 0,
+          "y": 0
+        },
+        "header": {
+          "bottom": 75,
+          "height": 50,
+          "left": 22.5,
+          "right": 352.5,
+          "top": 25,
+          "width": 330,
+          "x": 22.5,
+          "y": 25
+        },
+        "listening": {
+          "bottom": 632.5,
+          "height": 550,
+          "left": 22.5,
+          "right": 342.5,
+          "top": 82.5,
+          "width": 320,
+          "x": 22.5,
+          "y": 82.5
+        },
+        "scrollColor": "color(srgb 0.956863 0.945098 0.968627 / 0.22) rgba(0, 0, 0, 0)",
+        "scrollHeight": 439,
+        "scrollTop": 0,
+        "title": {
+          "bottom": 384,
+          "height": 64.75,
+          "left": 22.5,
+          "right": 342.5,
+          "top": 319.25,
+          "width": 320,
+          "x": 22.5,
+          "y": 319.25
+        }
+      },
+      "reopened": {
+        "buttons": [
+          {
+            "label": "Shuffle queue",
+            "rect": {
+              "bottom": 609.484375,
+              "height": 52.5,
+              "left": 38.75,
+              "right": 77.5,
+              "top": 556.984375,
+              "width": 38.75,
+              "x": 38.75,
+              "y": 556.984375
+            }
+          },
+          {
+            "label": "Previous track",
+            "rect": {
+              "bottom": 609.484375,
+              "height": 52.5,
+              "left": 82.5,
+              "right": 121.25,
+              "top": 556.984375,
+              "width": 38.75,
+              "x": 82.5,
+              "y": 556.984375
+            }
+          },
+          {
+            "label": "Pause",
+            "rect": {
+              "bottom": 619.484375,
+              "height": 72.5,
+              "left": 126.25,
+              "right": 198.75,
+              "top": 546.984375,
+              "width": 72.5,
+              "x": 126.25,
+              "y": 546.984375
+            }
+          },
+          {
+            "label": "Next track",
+            "rect": {
+              "bottom": 609.484375,
+              "height": 52.5,
+              "left": 203.75,
+              "right": 242.5,
+              "top": 556.984375,
+              "width": 38.75,
+              "x": 203.75,
+              "y": 556.984375
+            }
+          },
+          {
+            "label": "Enable repeat",
+            "rect": {
+              "bottom": 609.484375,
+              "height": 52.5,
+              "left": 247.5,
+              "right": 286.25,
+              "top": 556.984375,
+              "width": 38.75,
+              "x": 247.5,
+              "y": 556.984375
+            }
+          },
+          {
+            "label": "Equalizer",
+            "rect": {
+              "bottom": 609.484375,
+              "height": 52.5,
+              "left": 287.5,
+              "right": 326.25,
+              "top": 556.984375,
+              "width": 38.75,
+              "x": 287.5,
+              "y": 556.984375
+            }
+          }
+        ],
+        "clientHeight": 551,
+        "cover": {
+          "bottom": 366.921875,
+          "height": 249.84375,
+          "left": 60.703125,
+          "right": 304.296875,
+          "top": 117.078125,
+          "width": 243.59375,
+          "x": 60.703125,
+          "y": 117.078125
+        },
+        "display": "flex",
+        "full": {
+          "bottom": 812,
+          "height": 812,
+          "left": 0,
+          "right": 375,
+          "top": 0,
+          "width": 375,
+          "x": 0,
+          "y": 0
+        },
+        "header": {
+          "bottom": 75,
+          "height": 50,
+          "left": 22.5,
+          "right": 352.5,
+          "top": 25,
+          "width": 330,
+          "x": 22.5,
+          "y": 25
+        },
+        "listening": {
+          "bottom": 783.984375,
+          "height": 688.453125,
+          "left": 22.5,
+          "right": 342.5,
+          "top": 95.53125,
+          "width": 320,
+          "x": 22.5,
+          "y": 95.53125
+        },
+        "scrollColor": "color(srgb 0.956863 0.945098 0.968627 / 0.22) rgba(0, 0, 0, 0)",
+        "scrollHeight": 551,
+        "scrollTop": 0,
+        "title": {
+          "bottom": 463.234375,
+          "height": 64.75,
+          "left": 22.5,
+          "right": 342.5,
+          "top": 398.484375,
+          "width": 320,
+          "x": 22.5,
+          "y": 398.484375
+        }
+      }
+    },
+    {
+      "theme": "amoled",
+      "width": 320,
+      "height": 820,
+      "resized": {
+        "buttons": [
+          {
+            "label": "Shuffle queue",
+            "rect": {
+              "bottom": 599.09375,
+              "height": 52.5,
+              "left": 16.25,
+              "right": 55,
+              "top": 546.59375,
+              "width": 38.75,
+              "x": 16.25,
+              "y": 546.59375
+            }
+          },
+          {
+            "label": "Previous track",
+            "rect": {
+              "bottom": 599.09375,
+              "height": 52.5,
+              "left": 57.5,
+              "right": 96.25,
+              "top": 546.59375,
+              "width": 38.75,
+              "x": 57.5,
+              "y": 546.59375
+            }
+          },
+          {
+            "label": "Pause",
+            "rect": {
+              "bottom": 609.09375,
+              "height": 72.5,
+              "left": 98.75,
+              "right": 171.25,
+              "top": 536.59375,
+              "width": 72.5,
+              "x": 98.75,
+              "y": 536.59375
+            }
+          },
+          {
+            "label": "Next track",
+            "rect": {
+              "bottom": 599.09375,
+              "height": 52.5,
+              "left": 173.75,
+              "right": 212.5,
+              "top": 546.59375,
+              "width": 38.75,
+              "x": 173.75,
+              "y": 546.59375
+            }
+          },
+          {
+            "label": "Enable repeat",
+            "rect": {
+              "bottom": 599.09375,
+              "height": 52.5,
+              "left": 215,
+              "right": 253.75,
+              "top": 546.59375,
+              "width": 38.75,
+              "x": 215,
+              "y": 546.59375
+            }
+          },
+          {
+            "label": "Equalizer",
+            "rect": {
+              "bottom": 599.09375,
+              "height": 52.5,
+              "left": 255,
+              "right": 293.75,
+              "top": 546.59375,
+              "width": 38.75,
+              "x": 255,
+              "y": 546.59375
+            }
+          }
+        ],
+        "clientHeight": 589,
+        "cover": {
+          "bottom": 352.171875,
+          "height": 243.75,
+          "left": 36.25,
+          "right": 273.75,
+          "top": 108.421875,
+          "width": 237.5,
+          "x": 36.25,
+          "y": 108.421875
+        },
+        "display": "flex",
+        "full": {
+          "bottom": 820,
+          "height": 820,
+          "left": 0,
+          "right": 320,
+          "top": 0,
+          "width": 320,
+          "x": 0,
+          "y": 0
+        },
+        "header": {
+          "bottom": 75,
+          "height": 50,
+          "left": 22.5,
+          "right": 297.5,
+          "top": 25,
+          "width": 275,
+          "x": 22.5,
+          "y": 25
+        },
+        "listening": {
+          "bottom": 818.59375,
+          "height": 736.09375,
+          "left": 22.5,
+          "right": 287.5,
+          "top": 82.5,
+          "width": 265,
+          "x": 22.5,
+          "y": 82.5
+        },
+        "scrollColor": "color(srgb 0.956863 0.945098 0.968627 / 0.22) rgba(0, 0, 0, 0)",
+        "scrollHeight": 589,
+        "scrollTop": 0,
+        "title": {
+          "bottom": 452.84375,
+          "height": 64.75,
+          "left": 22.5,
+          "right": 287.5,
+          "top": 388.09375,
+          "width": 265,
+          "x": 22.5,
+          "y": 388.09375
+        }
+      },
+      "lyrics": {
+        "buttons": [
+          {
+            "label": "Shuffle queue",
+            "rect": {
+              "bottom": 527.09375,
+              "height": 52.5,
+              "left": 16.25,
+              "right": 55,
+              "top": 474.59375,
+              "width": 38.75,
+              "x": 16.25,
+              "y": 474.59375
+            }
+          },
+          {
+            "label": "Previous track",
+            "rect": {
+              "bottom": 527.09375,
+              "height": 52.5,
+              "left": 57.5,
+              "right": 96.25,
+              "top": 474.59375,
+              "width": 38.75,
+              "x": 57.5,
+              "y": 474.59375
+            }
+          },
+          {
+            "label": "Pause",
+            "rect": {
+              "bottom": 537.09375,
+              "height": 72.5,
+              "left": 98.75,
+              "right": 171.25,
+              "top": 464.59375,
+              "width": 72.5,
+              "x": 98.75,
+              "y": 464.59375
+            }
+          },
+          {
+            "label": "Next track",
+            "rect": {
+              "bottom": 527.09375,
+              "height": 52.5,
+              "left": 173.75,
+              "right": 212.5,
+              "top": 474.59375,
+              "width": 38.75,
+              "x": 173.75,
+              "y": 474.59375
+            }
+          },
+          {
+            "label": "Enable repeat",
+            "rect": {
+              "bottom": 527.09375,
+              "height": 52.5,
+              "left": 215,
+              "right": 253.75,
+              "top": 474.59375,
+              "width": 38.75,
+              "x": 215,
+              "y": 474.59375
+            }
+          },
+          {
+            "label": "Equalizer",
+            "rect": {
+              "bottom": 527.09375,
+              "height": 52.5,
+              "left": 255,
+              "right": 293.75,
+              "top": 474.59375,
+              "width": 38.75,
+              "x": 255,
+              "y": 474.59375
+            }
+          }
+        ],
+        "clientHeight": 473,
+        "cover": {
+          "bottom": 276.921875,
+          "height": 170.25,
+          "left": 73,
+          "right": 237,
+          "top": 106.671875,
+          "width": 164,
+          "x": 73,
+          "y": 106.671875
+        },
+        "display": "flex",
+        "full": {
+          "bottom": 820,
+          "height": 820,
+          "left": 0,
+          "right": 320,
+          "top": 0,
+          "width": 320,
+          "x": 0,
+          "y": 0
+        },
+        "header": {
+          "bottom": 75,
+          "height": 50,
+          "left": 22.5,
+          "right": 297.5,
+          "top": 25,
+          "width": 275,
+          "x": 22.5,
+          "y": 25
+        },
+        "listening": {
+          "bottom": 674.34375,
+          "height": 591.84375,
+          "left": 22.5,
+          "right": 287.5,
+          "top": 82.5,
+          "width": 265,
+          "x": 22.5,
+          "y": 82.5
+        },
+        "scrollColor": "color(srgb 0.956863 0.945098 0.968627 / 0.22) rgba(0, 0, 0, 0)",
+        "scrollHeight": 473,
+        "scrollTop": 0,
+        "title": {
+          "bottom": 380.84375,
+          "height": 64.75,
+          "left": 22.5,
+          "right": 287.5,
+          "top": 316.09375,
+          "width": 265,
+          "x": 22.5,
+          "y": 316.09375
+        }
+      },
+      "reopened": {
+        "buttons": [
+          {
+            "label": "Shuffle queue",
+            "rect": {
+              "bottom": 599.09375,
+              "height": 52.5,
+              "left": 16.25,
+              "right": 55,
+              "top": 546.59375,
+              "width": 38.75,
+              "x": 16.25,
+              "y": 546.59375
+            }
+          },
+          {
+            "label": "Previous track",
+            "rect": {
+              "bottom": 599.09375,
+              "height": 52.5,
+              "left": 57.5,
+              "right": 96.25,
+              "top": 546.59375,
+              "width": 38.75,
+              "x": 57.5,
+              "y": 546.59375
+            }
+          },
+          {
+            "label": "Pause",
+            "rect": {
+              "bottom": 609.09375,
+              "height": 72.5,
+              "left": 98.75,
+              "right": 171.25,
+              "top": 536.59375,
+              "width": 72.5,
+              "x": 98.75,
+              "y": 536.59375
+            }
+          },
+          {
+            "label": "Next track",
+            "rect": {
+              "bottom": 599.09375,
+              "height": 52.5,
+              "left": 173.75,
+              "right": 212.5,
+              "top": 546.59375,
+              "width": 38.75,
+              "x": 173.75,
+              "y": 546.59375
+            }
+          },
+          {
+            "label": "Enable repeat",
+            "rect": {
+              "bottom": 599.09375,
+              "height": 52.5,
+              "left": 215,
+              "right": 253.75,
+              "top": 546.59375,
+              "width": 38.75,
+              "x": 215,
+              "y": 546.59375
+            }
+          },
+          {
+            "label": "Equalizer",
+            "rect": {
+              "bottom": 599.09375,
+              "height": 52.5,
+              "left": 255,
+              "right": 293.75,
+              "top": 546.59375,
+              "width": 38.75,
+              "x": 255,
+              "y": 546.59375
+            }
+          }
+        ],
+        "clientHeight": 589,
+        "cover": {
+          "bottom": 352.171875,
+          "height": 243.75,
+          "left": 36.25,
+          "right": 273.75,
+          "top": 108.421875,
+          "width": 237.5,
+          "x": 36.25,
+          "y": 108.421875
+        },
+        "display": "flex",
+        "full": {
+          "bottom": 820,
+          "height": 820,
+          "left": 0,
+          "right": 320,
+          "top": 0,
+          "width": 320,
+          "x": 0,
+          "y": 0
+        },
+        "header": {
+          "bottom": 75,
+          "height": 50,
+          "left": 22.5,
+          "right": 297.5,
+          "top": 25,
+          "width": 275,
+          "x": 22.5,
+          "y": 25
+        },
+        "listening": {
+          "bottom": 818.59375,
+          "height": 736.09375,
+          "left": 22.5,
+          "right": 287.5,
+          "top": 82.5,
+          "width": 265,
+          "x": 22.5,
+          "y": 82.5
+        },
+        "scrollColor": "color(srgb 0.956863 0.945098 0.968627 / 0.22) rgba(0, 0, 0, 0)",
+        "scrollHeight": 589,
+        "scrollTop": 0,
+        "title": {
+          "bottom": 452.84375,
+          "height": 64.75,
+          "left": 22.5,
+          "right": 287.5,
+          "top": 388.09375,
+          "width": 265,
+          "x": 22.5,
+          "y": 388.09375
+        }
+      }
+    },
+    {
+      "theme": "light",
+      "width": 1440,
+      "height": 950,
+      "resized": {
+        "buttons": [
+          {
+            "label": "Shuffle queue",
+            "rect": {
+              "bottom": 738.65625,
+              "height": 55,
+              "left": 528.75,
+              "right": 573.75,
+              "top": 683.65625,
+              "width": 45,
+              "x": 528.75,
+              "y": 683.65625
+            }
+          },
+          {
+            "label": "Previous track",
+            "rect": {
+              "bottom": 738.65625,
+              "height": 55,
+              "left": 586.25,
+              "right": 631.25,
+              "top": 683.65625,
+              "width": 45,
+              "x": 586.25,
+              "y": 683.65625
+            }
+          },
+          {
+            "label": "Pause",
+            "rect": {
+              "bottom": 751.15625,
+              "height": 80,
+              "left": 643.75,
+              "right": 723.75,
+              "top": 671.15625,
+              "width": 80,
+              "x": 643.75,
+              "y": 671.15625
+            }
+          },
+          {
+            "label": "Next track",
+            "rect": {
+              "bottom": 738.65625,
+              "height": 55,
+              "left": 736.25,
+              "right": 781.25,
+              "top": 683.65625,
+              "width": 45,
+              "x": 736.25,
+              "y": 683.65625
+            }
+          },
+          {
+            "label": "Enable repeat",
+            "rect": {
+              "bottom": 738.65625,
+              "height": 55,
+              "left": 793.75,
+              "right": 838.75,
+              "top": 683.65625,
+              "width": 45,
+              "x": 793.75,
+              "y": 683.65625
+            }
+          },
+          {
+            "label": "Equalizer",
+            "rect": {
+              "bottom": 738.65625,
+              "height": 55,
+              "left": 846.25,
+              "right": 891.25,
+              "top": 683.65625,
+              "width": 45,
+              "x": 846.25,
+              "y": 683.65625
+            }
+          }
+        ],
+        "clientHeight": 663,
+        "cover": {
+          "bottom": 480.1875,
+          "height": 357.75,
+          "left": 534.25,
+          "right": 885.75,
+          "top": 122.4375,
+          "width": 351.5,
+          "x": 534.25,
+          "y": 122.4375
+        },
+        "display": "flex",
+        "full": {
+          "bottom": 950,
+          "height": 950,
+          "left": 0,
+          "right": 1440,
+          "top": 0,
+          "width": 1440,
+          "x": 0,
+          "y": 0
+        },
+        "header": {
+          "bottom": 85,
+          "height": 55,
+          "left": 37.5,
+          "right": 1402.5,
+          "top": 30,
+          "width": 1365,
+          "x": 37.5,
+          "y": 30
+        },
+        "listening": {
+          "bottom": 924.40625,
+          "height": 828.8125,
+          "left": 465,
+          "right": 965,
+          "top": 95.59375,
+          "width": 500,
+          "x": 465,
+          "y": 95.59375
+        },
+        "scrollColor": "color(srgb 0.188235 0.184314 0.172549 / 0.22) rgba(0, 0, 0, 0)",
+        "scrollHeight": 663,
+        "scrollTop": 0,
+        "title": {
+          "bottom": 587.40625,
+          "height": 72.875,
+          "left": 472.5,
+          "right": 947.5,
+          "top": 514.53125,
+          "width": 475,
+          "x": 472.5,
+          "y": 514.53125
+        }
+      },
+      "lyrics": {
+        "buttons": [
+          {
+            "label": "Shuffle queue",
+            "rect": {
+              "bottom": 696.4375,
+              "height": 55,
+              "left": 77.4375,
+              "right": 122.4375,
+              "top": 641.4375,
+              "width": 45,
+              "x": 77.4375,
+              "y": 641.4375
+            }
+          },
+          {
+            "label": "Previous track",
+            "rect": {
+              "bottom": 696.4375,
+              "height": 55,
+              "left": 134.9375,
+              "right": 179.9375,
+              "top": 641.4375,
+              "width": 45,
+              "x": 134.9375,
+              "y": 641.4375
+            }
+          },
+          {
+            "label": "Pause",
+            "rect": {
+              "bottom": 708.9375,
+              "height": 80,
+              "left": 192.4375,
+              "right": 272.4375,
+              "top": 628.9375,
+              "width": 80,
+              "x": 192.4375,
+              "y": 628.9375
+            }
+          },
+          {
+            "label": "Next track",
+            "rect": {
+              "bottom": 696.4375,
+              "height": 55,
+              "left": 284.9375,
+              "right": 329.9375,
+              "top": 641.4375,
+              "width": 45,
+              "x": 284.9375,
+              "y": 641.4375
+            }
+          },
+          {
+            "label": "Enable repeat",
+            "rect": {
+              "bottom": 696.4375,
+              "height": 55,
+              "left": 342.4375,
+              "right": 387.4375,
+              "top": 641.4375,
+              "width": 45,
+              "x": 342.4375,
+              "y": 641.4375
+            }
+          },
+          {
+            "label": "Equalizer",
+            "rect": {
+              "bottom": 696.4375,
+              "height": 55,
+              "left": 394.9375,
+              "right": 439.9375,
+              "top": 641.4375,
+              "width": 45,
+              "x": 394.9375,
+              "y": 641.4375
+            }
+          }
+        ],
+        "clientHeight": 596,
+        "cover": {
+          "bottom": 450.6875,
+          "height": 291.25,
+          "left": 116.1875,
+          "right": 401.1875,
+          "top": 159.4375,
+          "width": 285,
+          "x": 116.1875,
+          "y": 159.4375
+        },
+        "display": "flex",
+        "full": {
+          "bottom": 950,
+          "height": 950,
+          "left": 0,
+          "right": 1440,
+          "top": 0,
+          "width": 1440,
+          "x": 0,
+          "y": 0
+        },
+        "header": {
+          "bottom": 85,
+          "height": 55,
+          "left": 37.5,
+          "right": 1402.5,
+          "top": 30,
+          "width": 1365,
+          "x": 37.5,
+          "y": 30
+        },
+        "listening": {
+          "bottom": 882.1875,
+          "height": 744.375,
+          "left": 37.5,
+          "right": 489.875,
+          "top": 137.8125,
+          "width": 452.375,
+          "x": 37.5,
+          "y": 137.8125
+        },
+        "scrollColor": "color(srgb 0.188235 0.184314 0.172549 / 0.22) rgba(0, 0, 0, 0)",
+        "scrollHeight": 596,
+        "scrollTop": 0,
+        "title": {
+          "bottom": 545.1875,
+          "height": 72.875,
+          "left": 47.5,
+          "right": 469.875,
+          "top": 472.3125,
+          "width": 422.375,
+          "x": 47.5,
+          "y": 472.3125
+        }
+      },
+      "reopened": {
+        "buttons": [
+          {
+            "label": "Shuffle queue",
+            "rect": {
+              "bottom": 738.65625,
+              "height": 55,
+              "left": 528.75,
+              "right": 573.75,
+              "top": 683.65625,
+              "width": 45,
+              "x": 528.75,
+              "y": 683.65625
+            }
+          },
+          {
+            "label": "Previous track",
+            "rect": {
+              "bottom": 738.65625,
+              "height": 55,
+              "left": 586.25,
+              "right": 631.25,
+              "top": 683.65625,
+              "width": 45,
+              "x": 586.25,
+              "y": 683.65625
+            }
+          },
+          {
+            "label": "Pause",
+            "rect": {
+              "bottom": 751.15625,
+              "height": 80,
+              "left": 643.75,
+              "right": 723.75,
+              "top": 671.15625,
+              "width": 80,
+              "x": 643.75,
+              "y": 671.15625
+            }
+          },
+          {
+            "label": "Next track",
+            "rect": {
+              "bottom": 738.65625,
+              "height": 55,
+              "left": 736.25,
+              "right": 781.25,
+              "top": 683.65625,
+              "width": 45,
+              "x": 736.25,
+              "y": 683.65625
+            }
+          },
+          {
+            "label": "Enable repeat",
+            "rect": {
+              "bottom": 738.65625,
+              "height": 55,
+              "left": 793.75,
+              "right": 838.75,
+              "top": 683.65625,
+              "width": 45,
+              "x": 793.75,
+              "y": 683.65625
+            }
+          },
+          {
+            "label": "Equalizer",
+            "rect": {
+              "bottom": 738.65625,
+              "height": 55,
+              "left": 846.25,
+              "right": 891.25,
+              "top": 683.65625,
+              "width": 45,
+              "x": 846.25,
+              "y": 683.65625
+            }
+          }
+        ],
+        "clientHeight": 663,
+        "cover": {
+          "bottom": 480.1875,
+          "height": 357.75,
+          "left": 534.25,
+          "right": 885.75,
+          "top": 122.4375,
+          "width": 351.5,
+          "x": 534.25,
+          "y": 122.4375
+        },
+        "display": "flex",
+        "full": {
+          "bottom": 950,
+          "height": 950,
+          "left": 0,
+          "right": 1440,
+          "top": 0,
+          "width": 1440,
+          "x": 0,
+          "y": 0
+        },
+        "header": {
+          "bottom": 85,
+          "height": 55,
+          "left": 37.5,
+          "right": 1402.5,
+          "top": 30,
+          "width": 1365,
+          "x": 37.5,
+          "y": 30
+        },
+        "listening": {
+          "bottom": 924.40625,
+          "height": 828.8125,
+          "left": 465,
+          "right": 965,
+          "top": 95.59375,
+          "width": 500,
+          "x": 465,
+          "y": 95.59375
+        },
+        "scrollColor": "color(srgb 0.188235 0.184314 0.172549 / 0.22) rgba(0, 0, 0, 0)",
+        "scrollHeight": 663,
+        "scrollTop": 0,
+        "title": {
+          "bottom": 587.40625,
+          "height": 72.875,
+          "left": 472.5,
+          "right": 947.5,
+          "top": 514.53125,
+          "width": 475,
+          "x": 472.5,
+          "y": 514.53125
+        }
+      }
+    },
+    {
+      "theme": "light",
+      "width": 1280,
+      "height": 820,
+      "resized": {
+        "buttons": [
+          {
+            "label": "Shuffle queue",
+            "rect": {
+              "bottom": 612.1875,
+              "height": 55,
+              "left": 448.75,
+              "right": 493.75,
+              "top": 557.1875,
+              "width": 45,
+              "x": 448.75,
+              "y": 557.1875
+            }
+          },
+          {
+            "label": "Previous track",
+            "rect": {
+              "bottom": 612.1875,
+              "height": 55,
+              "left": 506.25,
+              "right": 551.25,
+              "top": 557.1875,
+              "width": 45,
+              "x": 506.25,
+              "y": 557.1875
+            }
+          },
+          {
+            "label": "Pause",
+            "rect": {
+              "bottom": 624.6875,
+              "height": 80,
+              "left": 563.75,
+              "right": 643.75,
+              "top": 544.6875,
+              "width": 80,
+              "x": 563.75,
+              "y": 544.6875
+            }
+          },
+          {
+            "label": "Next track",
+            "rect": {
+              "bottom": 612.1875,
+              "height": 55,
+              "left": 656.25,
+              "right": 701.25,
+              "top": 557.1875,
+              "width": 45,
+              "x": 656.25,
+              "y": 557.1875
+            }
+          },
+          {
+            "label": "Enable repeat",
+            "rect": {
+              "bottom": 612.1875,
+              "height": 55,
+              "left": 713.75,
+              "right": 758.75,
+              "top": 557.1875,
+              "width": 45,
+              "x": 713.75,
+              "y": 557.1875
+            }
+          },
+          {
+            "label": "Equalizer",
+            "rect": {
+              "bottom": 612.1875,
+              "height": 55,
+              "left": 766.25,
+              "right": 811.25,
+              "top": 557.1875,
+              "width": 45,
+              "x": 766.25,
+              "y": 557.1875
+            }
+          }
+        ],
+        "clientHeight": 545,
+        "cover": {
+          "bottom": 365.484375,
+          "height": 235.84375,
+          "left": 515.203125,
+          "right": 744.796875,
+          "top": 129.640625,
+          "width": 229.59375,
+          "x": 515.203125,
+          "y": 129.640625
+        },
+        "display": "flex",
+        "full": {
+          "bottom": 820,
+          "height": 820,
+          "left": 0,
+          "right": 1280,
+          "top": 0,
+          "width": 1280,
+          "x": 0,
+          "y": 0
+        },
+        "header": {
+          "bottom": 85,
+          "height": 55,
+          "left": 37.5,
+          "right": 1242.5,
+          "top": 30,
+          "width": 1205,
+          "x": 37.5,
+          "y": 30
+        },
+        "listening": {
+          "bottom": 785.4375,
+          "height": 680.875,
+          "left": 385,
+          "right": 885,
+          "top": 104.5625,
+          "width": 500,
+          "x": 385,
+          "y": 104.5625
+        },
+        "scrollColor": "color(srgb 0.188235 0.184314 0.172549 / 0.22) rgba(0, 0, 0, 0)",
+        "scrollHeight": 545,
+        "scrollTop": 0,
+        "title": {
+          "bottom": 460.9375,
+          "height": 72.875,
+          "left": 392.5,
+          "right": 867.5,
+          "top": 388.0625,
+          "width": 475,
+          "x": 392.5,
+          "y": 388.0625
+        }
+      },
+      "lyrics": {
+        "buttons": [
+          {
+            "label": "Shuffle queue",
+            "rect": {
+              "bottom": 603.984375,
+              "height": 55,
+              "left": 49.4375,
+              "right": 94.4375,
+              "top": 548.984375,
+              "width": 45,
+              "x": 49.4375,
+              "y": 548.984375
+            }
+          },
+          {
+            "label": "Previous track",
+            "rect": {
+              "bottom": 603.984375,
+              "height": 55,
+              "left": 106.9375,
+              "right": 151.9375,
+              "top": 548.984375,
+              "width": 45,
+              "x": 106.9375,
+              "y": 548.984375
+            }
+          },
+          {
+            "label": "Pause",
+            "rect": {
+              "bottom": 616.484375,
+              "height": 80,
+              "left": 164.4375,
+              "right": 244.4375,
+              "top": 536.484375,
+              "width": 80,
+              "x": 164.4375,
+              "y": 536.484375
+            }
+          },
+          {
+            "label": "Next track",
+            "rect": {
+              "bottom": 603.984375,
+              "height": 55,
+              "left": 256.9375,
+              "right": 301.9375,
+              "top": 548.984375,
+              "width": 45,
+              "x": 256.9375,
+              "y": 548.984375
+            }
+          },
+          {
+            "label": "Enable repeat",
+            "rect": {
+              "bottom": 603.984375,
+              "height": 55,
+              "left": 314.4375,
+              "right": 359.4375,
+              "top": 548.984375,
+              "width": 45,
+              "x": 314.4375,
+              "y": 548.984375
+            }
+          },
+          {
+            "label": "Equalizer",
+            "rect": {
+              "bottom": 603.984375,
+              "height": 55,
+              "left": 366.9375,
+              "right": 411.9375,
+              "top": 548.984375,
+              "width": 45,
+              "x": 366.9375,
+              "y": 548.984375
+            }
+          }
+        ],
+        "clientHeight": 532,
+        "cover": {
+          "bottom": 357.28125,
+          "height": 219.4375,
+          "left": 124.09375,
+          "right": 337.28125,
+          "top": 137.84375,
+          "width": 213.1875,
+          "x": 124.09375,
+          "y": 137.84375
+        },
+        "display": "flex",
+        "full": {
+          "bottom": 820,
+          "height": 820,
+          "left": 0,
+          "right": 1280,
+          "top": 0,
+          "width": 1280,
+          "x": 0,
+          "y": 0
+        },
+        "header": {
+          "bottom": 85,
+          "height": 55,
+          "left": 37.5,
+          "right": 1242.5,
+          "top": 30,
+          "width": 1205,
+          "x": 37.5,
+          "y": 30
+        },
+        "listening": {
+          "bottom": 777.234375,
+          "height": 664.46875,
+          "left": 37.5,
+          "right": 433.875,
+          "top": 112.765625,
+          "width": 396.375,
+          "x": 37.5,
+          "y": 112.765625
+        },
+        "scrollColor": "color(srgb 0.188235 0.184314 0.172549 / 0.22) rgba(0, 0, 0, 0)",
+        "scrollHeight": 532,
+        "scrollTop": 0,
+        "title": {
+          "bottom": 452.734375,
+          "height": 72.875,
+          "left": 47.5,
+          "right": 413.875,
+          "top": 379.859375,
+          "width": 366.375,
+          "x": 47.5,
+          "y": 379.859375
+        }
+      },
+      "reopened": {
+        "buttons": [
+          {
+            "label": "Shuffle queue",
+            "rect": {
+              "bottom": 612.1875,
+              "height": 55,
+              "left": 448.75,
+              "right": 493.75,
+              "top": 557.1875,
+              "width": 45,
+              "x": 448.75,
+              "y": 557.1875
+            }
+          },
+          {
+            "label": "Previous track",
+            "rect": {
+              "bottom": 612.1875,
+              "height": 55,
+              "left": 506.25,
+              "right": 551.25,
+              "top": 557.1875,
+              "width": 45,
+              "x": 506.25,
+              "y": 557.1875
+            }
+          },
+          {
+            "label": "Pause",
+            "rect": {
+              "bottom": 624.6875,
+              "height": 80,
+              "left": 563.75,
+              "right": 643.75,
+              "top": 544.6875,
+              "width": 80,
+              "x": 563.75,
+              "y": 544.6875
+            }
+          },
+          {
+            "label": "Next track",
+            "rect": {
+              "bottom": 612.1875,
+              "height": 55,
+              "left": 656.25,
+              "right": 701.25,
+              "top": 557.1875,
+              "width": 45,
+              "x": 656.25,
+              "y": 557.1875
+            }
+          },
+          {
+            "label": "Enable repeat",
+            "rect": {
+              "bottom": 612.1875,
+              "height": 55,
+              "left": 713.75,
+              "right": 758.75,
+              "top": 557.1875,
+              "width": 45,
+              "x": 713.75,
+              "y": 557.1875
+            }
+          },
+          {
+            "label": "Equalizer",
+            "rect": {
+              "bottom": 612.1875,
+              "height": 55,
+              "left": 766.25,
+              "right": 811.25,
+              "top": 557.1875,
+              "width": 45,
+              "x": 766.25,
+              "y": 557.1875
+            }
+          }
+        ],
+        "clientHeight": 545,
+        "cover": {
+          "bottom": 365.484375,
+          "height": 235.84375,
+          "left": 515.203125,
+          "right": 744.796875,
+          "top": 129.640625,
+          "width": 229.59375,
+          "x": 515.203125,
+          "y": 129.640625
+        },
+        "display": "flex",
+        "full": {
+          "bottom": 820,
+          "height": 820,
+          "left": 0,
+          "right": 1280,
+          "top": 0,
+          "width": 1280,
+          "x": 0,
+          "y": 0
+        },
+        "header": {
+          "bottom": 85,
+          "height": 55,
+          "left": 37.5,
+          "right": 1242.5,
+          "top": 30,
+          "width": 1205,
+          "x": 37.5,
+          "y": 30
+        },
+        "listening": {
+          "bottom": 785.4375,
+          "height": 680.875,
+          "left": 385,
+          "right": 885,
+          "top": 104.5625,
+          "width": 500,
+          "x": 385,
+          "y": 104.5625
+        },
+        "scrollColor": "color(srgb 0.188235 0.184314 0.172549 / 0.22) rgba(0, 0, 0, 0)",
+        "scrollHeight": 545,
+        "scrollTop": 0,
+        "title": {
+          "bottom": 460.9375,
+          "height": 72.875,
+          "left": 392.5,
+          "right": 867.5,
+          "top": 388.0625,
+          "width": 475,
+          "x": 392.5,
+          "y": 388.0625
+        }
+      }
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "height": 844,
+      "resized": {
+        "buttons": [
+          {
+            "label": "Shuffle queue",
+            "rect": {
+              "bottom": 630.765625,
+              "height": 52.5,
+              "left": 46.25,
+              "right": 85,
+              "top": 578.265625,
+              "width": 38.75,
+              "x": 46.25,
+              "y": 578.265625
+            }
+          },
+          {
+            "label": "Previous track",
+            "rect": {
+              "bottom": 630.765625,
+              "height": 52.5,
+              "left": 90,
+              "right": 128.75,
+              "top": 578.265625,
+              "width": 38.75,
+              "x": 90,
+              "y": 578.265625
+            }
+          },
+          {
+            "label": "Pause",
+            "rect": {
+              "bottom": 640.765625,
+              "height": 72.5,
+              "left": 133.75,
+              "right": 206.25,
+              "top": 568.265625,
+              "width": 72.5,
+              "x": 133.75,
+              "y": 568.265625
+            }
+          },
+          {
+            "label": "Next track",
+            "rect": {
+              "bottom": 630.765625,
+              "height": 52.5,
+              "left": 211.25,
+              "right": 250,
+              "top": 578.265625,
+              "width": 38.75,
+              "x": 211.25,
+              "y": 578.265625
+            }
+          },
+          {
+            "label": "Enable repeat",
+            "rect": {
+              "bottom": 630.765625,
+              "height": 52.5,
+              "left": 255,
+              "right": 293.75,
+              "top": 578.265625,
+              "width": 38.75,
+              "x": 255,
+              "y": 578.265625
+            }
+          },
+          {
+            "label": "Equalizer",
+            "rect": {
+              "bottom": 630.765625,
+              "height": 52.5,
+              "left": 295,
+              "right": 333.75,
+              "top": 578.265625,
+              "width": 38.75,
+              "x": 295,
+              "y": 578.265625
+            }
+          }
+        ],
+        "clientHeight": 559,
+        "cover": {
+          "bottom": 387.71875,
+          "height": 259.4375,
+          "left": 63.40625,
+          "right": 316.59375,
+          "top": 128.28125,
+          "width": 253.1875,
+          "x": 63.40625,
+          "y": 128.28125
+        },
+        "display": "flex",
+        "full": {
+          "bottom": 844,
+          "height": 844,
+          "left": 0,
+          "right": 390,
+          "top": 0,
+          "width": 390,
+          "x": 0,
+          "y": 0
+        },
+        "header": {
+          "bottom": 75,
+          "height": 50,
+          "left": 22.5,
+          "right": 367.5,
+          "top": 25,
+          "width": 345,
+          "x": 22.5,
+          "y": 25
+        },
+        "listening": {
+          "bottom": 805.265625,
+          "height": 699.015625,
+          "left": 22.5,
+          "right": 357.5,
+          "top": 106.25,
+          "width": 335,
+          "x": 22.5,
+          "y": 106.25
+        },
+        "scrollColor": "color(srgb 0.188235 0.184314 0.172549 / 0.22) rgba(0, 0, 0, 0)",
+        "scrollHeight": 559,
+        "scrollTop": 0,
+        "title": {
+          "bottom": 484.515625,
+          "height": 64.75,
+          "left": 22.5,
+          "right": 357.5,
+          "top": 419.765625,
+          "width": 335,
+          "x": 22.5,
+          "y": 419.765625
+        }
+      },
+      "lyrics": {
+        "buttons": [
+          {
+            "label": "Shuffle queue",
+            "rect": {
+              "bottom": 537.609375,
+              "height": 52.5,
+              "left": 46.25,
+              "right": 85,
+              "top": 485.109375,
+              "width": 38.75,
+              "x": 46.25,
+              "y": 485.109375
+            }
+          },
+          {
+            "label": "Previous track",
+            "rect": {
+              "bottom": 537.609375,
+              "height": 52.5,
+              "left": 90,
+              "right": 128.75,
+              "top": 485.109375,
+              "width": 38.75,
+              "x": 90,
+              "y": 485.109375
+            }
+          },
+          {
+            "label": "Pause",
+            "rect": {
+              "bottom": 547.609375,
+              "height": 72.5,
+              "left": 133.75,
+              "right": 206.25,
+              "top": 475.109375,
+              "width": 72.5,
+              "x": 133.75,
+              "y": 475.109375
+            }
+          },
+          {
+            "label": "Next track",
+            "rect": {
+              "bottom": 537.609375,
+              "height": 52.5,
+              "left": 211.25,
+              "right": 250,
+              "top": 485.109375,
+              "width": 38.75,
+              "x": 211.25,
+              "y": 485.109375
+            }
+          },
+          {
+            "label": "Enable repeat",
+            "rect": {
+              "bottom": 537.609375,
+              "height": 52.5,
+              "left": 255,
+              "right": 293.75,
+              "top": 485.109375,
+              "width": 38.75,
+              "x": 255,
+              "y": 485.109375
+            }
+          },
+          {
+            "label": "Equalizer",
+            "rect": {
+              "bottom": 537.609375,
+              "height": 52.5,
+              "left": 295,
+              "right": 333.75,
+              "top": 485.109375,
+              "width": 38.75,
+              "x": 295,
+              "y": 485.109375
+            }
+          }
+        ],
+        "clientHeight": 445,
+        "cover": {
+          "bottom": 282.078125,
+          "height": 175.046875,
+          "left": 105.59375,
+          "right": 274.390625,
+          "top": 107.03125,
+          "width": 168.796875,
+          "x": 105.59375,
+          "y": 107.03125
+        },
+        "display": "flex",
+        "full": {
+          "bottom": 844,
+          "height": 844,
+          "left": 0,
+          "right": 390,
+          "top": 0,
+          "width": 390,
+          "x": 0,
+          "y": 0
+        },
+        "header": {
+          "bottom": 75,
+          "height": 50,
+          "left": 22.5,
+          "right": 367.5,
+          "top": 25,
+          "width": 345,
+          "x": 22.5,
+          "y": 25
+        },
+        "listening": {
+          "bottom": 639.859375,
+          "height": 557.359375,
+          "left": 22.5,
+          "right": 357.5,
+          "top": 82.5,
+          "width": 335,
+          "x": 22.5,
+          "y": 82.5
+        },
+        "scrollColor": "color(srgb 0.188235 0.184314 0.172549 / 0.22) rgba(0, 0, 0, 0)",
+        "scrollHeight": 445,
+        "scrollTop": 0,
+        "title": {
+          "bottom": 391.359375,
+          "height": 64.75,
+          "left": 22.5,
+          "right": 357.5,
+          "top": 326.609375,
+          "width": 335,
+          "x": 22.5,
+          "y": 326.609375
+        }
+      },
+      "reopened": {
+        "buttons": [
+          {
+            "label": "Shuffle queue",
+            "rect": {
+              "bottom": 630.765625,
+              "height": 52.5,
+              "left": 46.25,
+              "right": 85,
+              "top": 578.265625,
+              "width": 38.75,
+              "x": 46.25,
+              "y": 578.265625
+            }
+          },
+          {
+            "label": "Previous track",
+            "rect": {
+              "bottom": 630.765625,
+              "height": 52.5,
+              "left": 90,
+              "right": 128.75,
+              "top": 578.265625,
+              "width": 38.75,
+              "x": 90,
+              "y": 578.265625
+            }
+          },
+          {
+            "label": "Pause",
+            "rect": {
+              "bottom": 640.765625,
+              "height": 72.5,
+              "left": 133.75,
+              "right": 206.25,
+              "top": 568.265625,
+              "width": 72.5,
+              "x": 133.75,
+              "y": 568.265625
+            }
+          },
+          {
+            "label": "Next track",
+            "rect": {
+              "bottom": 630.765625,
+              "height": 52.5,
+              "left": 211.25,
+              "right": 250,
+              "top": 578.265625,
+              "width": 38.75,
+              "x": 211.25,
+              "y": 578.265625
+            }
+          },
+          {
+            "label": "Enable repeat",
+            "rect": {
+              "bottom": 630.765625,
+              "height": 52.5,
+              "left": 255,
+              "right": 293.75,
+              "top": 578.265625,
+              "width": 38.75,
+              "x": 255,
+              "y": 578.265625
+            }
+          },
+          {
+            "label": "Equalizer",
+            "rect": {
+              "bottom": 630.765625,
+              "height": 52.5,
+              "left": 295,
+              "right": 333.75,
+              "top": 578.265625,
+              "width": 38.75,
+              "x": 295,
+              "y": 578.265625
+            }
+          }
+        ],
+        "clientHeight": 559,
+        "cover": {
+          "bottom": 387.71875,
+          "height": 259.4375,
+          "left": 63.40625,
+          "right": 316.59375,
+          "top": 128.28125,
+          "width": 253.1875,
+          "x": 63.40625,
+          "y": 128.28125
+        },
+        "display": "flex",
+        "full": {
+          "bottom": 844,
+          "height": 844,
+          "left": 0,
+          "right": 390,
+          "top": 0,
+          "width": 390,
+          "x": 0,
+          "y": 0
+        },
+        "header": {
+          "bottom": 75,
+          "height": 50,
+          "left": 22.5,
+          "right": 367.5,
+          "top": 25,
+          "width": 345,
+          "x": 22.5,
+          "y": 25
+        },
+        "listening": {
+          "bottom": 805.265625,
+          "height": 699.015625,
+          "left": 22.5,
+          "right": 357.5,
+          "top": 106.25,
+          "width": 335,
+          "x": 22.5,
+          "y": 106.25
+        },
+        "scrollColor": "color(srgb 0.188235 0.184314 0.172549 / 0.22) rgba(0, 0, 0, 0)",
+        "scrollHeight": 559,
+        "scrollTop": 0,
+        "title": {
+          "bottom": 484.515625,
+          "height": 64.75,
+          "left": 22.5,
+          "right": 357.5,
+          "top": 419.765625,
+          "width": 335,
+          "x": 22.5,
+          "y": 419.765625
+        }
+      }
+    },
+    {
+      "theme": "light",
+      "width": 375,
+      "height": 812,
+      "resized": {
+        "buttons": [
+          {
+            "label": "Shuffle queue",
+            "rect": {
+              "bottom": 609.484375,
+              "height": 52.5,
+              "left": 38.75,
+              "right": 77.5,
+              "top": 556.984375,
+              "width": 38.75,
+              "x": 38.75,
+              "y": 556.984375
+            }
+          },
+          {
+            "label": "Previous track",
+            "rect": {
+              "bottom": 609.484375,
+              "height": 52.5,
+              "left": 82.5,
+              "right": 121.25,
+              "top": 556.984375,
+              "width": 38.75,
+              "x": 82.5,
+              "y": 556.984375
+            }
+          },
+          {
+            "label": "Pause",
+            "rect": {
+              "bottom": 619.484375,
+              "height": 72.5,
+              "left": 126.25,
+              "right": 198.75,
+              "top": 546.984375,
+              "width": 72.5,
+              "x": 126.25,
+              "y": 546.984375
+            }
+          },
+          {
+            "label": "Next track",
+            "rect": {
+              "bottom": 609.484375,
+              "height": 52.5,
+              "left": 203.75,
+              "right": 242.5,
+              "top": 556.984375,
+              "width": 38.75,
+              "x": 203.75,
+              "y": 556.984375
+            }
+          },
+          {
+            "label": "Enable repeat",
+            "rect": {
+              "bottom": 609.484375,
+              "height": 52.5,
+              "left": 247.5,
+              "right": 286.25,
+              "top": 556.984375,
+              "width": 38.75,
+              "x": 247.5,
+              "y": 556.984375
+            }
+          },
+          {
+            "label": "Equalizer",
+            "rect": {
+              "bottom": 609.484375,
+              "height": 52.5,
+              "left": 287.5,
+              "right": 326.25,
+              "top": 556.984375,
+              "width": 38.75,
+              "x": 287.5,
+              "y": 556.984375
+            }
+          }
+        ],
+        "clientHeight": 551,
+        "cover": {
+          "bottom": 366.921875,
+          "height": 249.84375,
+          "left": 60.703125,
+          "right": 304.296875,
+          "top": 117.078125,
+          "width": 243.59375,
+          "x": 60.703125,
+          "y": 117.078125
+        },
+        "display": "flex",
+        "full": {
+          "bottom": 812,
+          "height": 812,
+          "left": 0,
+          "right": 375,
+          "top": 0,
+          "width": 375,
+          "x": 0,
+          "y": 0
+        },
+        "header": {
+          "bottom": 75,
+          "height": 50,
+          "left": 22.5,
+          "right": 352.5,
+          "top": 25,
+          "width": 330,
+          "x": 22.5,
+          "y": 25
+        },
+        "listening": {
+          "bottom": 783.984375,
+          "height": 688.453125,
+          "left": 22.5,
+          "right": 342.5,
+          "top": 95.53125,
+          "width": 320,
+          "x": 22.5,
+          "y": 95.53125
+        },
+        "scrollColor": "color(srgb 0.188235 0.184314 0.172549 / 0.22) rgba(0, 0, 0, 0)",
+        "scrollHeight": 551,
+        "scrollTop": 0,
+        "title": {
+          "bottom": 463.234375,
+          "height": 64.75,
+          "left": 22.5,
+          "right": 342.5,
+          "top": 398.484375,
+          "width": 320,
+          "x": 22.5,
+          "y": 398.484375
+        }
+      },
+      "lyrics": {
+        "buttons": [
+          {
+            "label": "Shuffle queue",
+            "rect": {
+              "bottom": 530.25,
+              "height": 52.5,
+              "left": 38.75,
+              "right": 77.5,
+              "top": 477.75,
+              "width": 38.75,
+              "x": 38.75,
+              "y": 477.75
+            }
+          },
+          {
+            "label": "Previous track",
+            "rect": {
+              "bottom": 530.25,
+              "height": 52.5,
+              "left": 82.5,
+              "right": 121.25,
+              "top": 477.75,
+              "width": 38.75,
+              "x": 82.5,
+              "y": 477.75
+            }
+          },
+          {
+            "label": "Pause",
+            "rect": {
+              "bottom": 540.25,
+              "height": 72.5,
+              "left": 126.25,
+              "right": 198.75,
+              "top": 467.75,
+              "width": 72.5,
+              "x": 126.25,
+              "y": 467.75
+            }
+          },
+          {
+            "label": "Next track",
+            "rect": {
+              "bottom": 530.25,
+              "height": 52.5,
+              "left": 203.75,
+              "right": 242.5,
+              "top": 477.75,
+              "width": 38.75,
+              "x": 203.75,
+              "y": 477.75
+            }
+          },
+          {
+            "label": "Enable repeat",
+            "rect": {
+              "bottom": 530.25,
+              "height": 52.5,
+              "left": 247.5,
+              "right": 286.25,
+              "top": 477.75,
+              "width": 38.75,
+              "x": 247.5,
+              "y": 477.75
+            }
+          },
+          {
+            "label": "Equalizer",
+            "rect": {
+              "bottom": 530.25,
+              "height": 52.5,
+              "left": 287.5,
+              "right": 326.25,
+              "top": 477.75,
+              "width": 38.75,
+              "x": 287.5,
+              "y": 477.75
+            }
+          }
+        ],
+        "clientHeight": 439,
+        "cover": {
+          "bottom": 275.1875,
+          "height": 168.640625,
+          "left": 101.296875,
+          "right": 263.6875,
+          "top": 106.546875,
+          "width": 162.390625,
+          "x": 101.296875,
+          "y": 106.546875
+        },
+        "display": "flex",
+        "full": {
+          "bottom": 812,
+          "height": 812,
+          "left": 0,
+          "right": 375,
+          "top": 0,
+          "width": 375,
+          "x": 0,
+          "y": 0
+        },
+        "header": {
+          "bottom": 75,
+          "height": 50,
+          "left": 22.5,
+          "right": 352.5,
+          "top": 25,
+          "width": 330,
+          "x": 22.5,
+          "y": 25
+        },
+        "listening": {
+          "bottom": 632.5,
+          "height": 550,
+          "left": 22.5,
+          "right": 342.5,
+          "top": 82.5,
+          "width": 320,
+          "x": 22.5,
+          "y": 82.5
+        },
+        "scrollColor": "color(srgb 0.188235 0.184314 0.172549 / 0.22) rgba(0, 0, 0, 0)",
+        "scrollHeight": 439,
+        "scrollTop": 0,
+        "title": {
+          "bottom": 384,
+          "height": 64.75,
+          "left": 22.5,
+          "right": 342.5,
+          "top": 319.25,
+          "width": 320,
+          "x": 22.5,
+          "y": 319.25
+        }
+      },
+      "reopened": {
+        "buttons": [
+          {
+            "label": "Shuffle queue",
+            "rect": {
+              "bottom": 609.484375,
+              "height": 52.5,
+              "left": 38.75,
+              "right": 77.5,
+              "top": 556.984375,
+              "width": 38.75,
+              "x": 38.75,
+              "y": 556.984375
+            }
+          },
+          {
+            "label": "Previous track",
+            "rect": {
+              "bottom": 609.484375,
+              "height": 52.5,
+              "left": 82.5,
+              "right": 121.25,
+              "top": 556.984375,
+              "width": 38.75,
+              "x": 82.5,
+              "y": 556.984375
+            }
+          },
+          {
+            "label": "Pause",
+            "rect": {
+              "bottom": 619.484375,
+              "height": 72.5,
+              "left": 126.25,
+              "right": 198.75,
+              "top": 546.984375,
+              "width": 72.5,
+              "x": 126.25,
+              "y": 546.984375
+            }
+          },
+          {
+            "label": "Next track",
+            "rect": {
+              "bottom": 609.484375,
+              "height": 52.5,
+              "left": 203.75,
+              "right": 242.5,
+              "top": 556.984375,
+              "width": 38.75,
+              "x": 203.75,
+              "y": 556.984375
+            }
+          },
+          {
+            "label": "Enable repeat",
+            "rect": {
+              "bottom": 609.484375,
+              "height": 52.5,
+              "left": 247.5,
+              "right": 286.25,
+              "top": 556.984375,
+              "width": 38.75,
+              "x": 247.5,
+              "y": 556.984375
+            }
+          },
+          {
+            "label": "Equalizer",
+            "rect": {
+              "bottom": 609.484375,
+              "height": 52.5,
+              "left": 287.5,
+              "right": 326.25,
+              "top": 556.984375,
+              "width": 38.75,
+              "x": 287.5,
+              "y": 556.984375
+            }
+          }
+        ],
+        "clientHeight": 551,
+        "cover": {
+          "bottom": 366.921875,
+          "height": 249.84375,
+          "left": 60.703125,
+          "right": 304.296875,
+          "top": 117.078125,
+          "width": 243.59375,
+          "x": 60.703125,
+          "y": 117.078125
+        },
+        "display": "flex",
+        "full": {
+          "bottom": 812,
+          "height": 812,
+          "left": 0,
+          "right": 375,
+          "top": 0,
+          "width": 375,
+          "x": 0,
+          "y": 0
+        },
+        "header": {
+          "bottom": 75,
+          "height": 50,
+          "left": 22.5,
+          "right": 352.5,
+          "top": 25,
+          "width": 330,
+          "x": 22.5,
+          "y": 25
+        },
+        "listening": {
+          "bottom": 783.984375,
+          "height": 688.453125,
+          "left": 22.5,
+          "right": 342.5,
+          "top": 95.53125,
+          "width": 320,
+          "x": 22.5,
+          "y": 95.53125
+        },
+        "scrollColor": "color(srgb 0.188235 0.184314 0.172549 / 0.22) rgba(0, 0, 0, 0)",
+        "scrollHeight": 551,
+        "scrollTop": 0,
+        "title": {
+          "bottom": 463.234375,
+          "height": 64.75,
+          "left": 22.5,
+          "right": 342.5,
+          "top": 398.484375,
+          "width": 320,
+          "x": 22.5,
+          "y": 398.484375
+        }
+      }
+    },
+    {
+      "theme": "light",
+      "width": 320,
+      "height": 820,
+      "resized": {
+        "buttons": [
+          {
+            "label": "Shuffle queue",
+            "rect": {
+              "bottom": 599.09375,
+              "height": 52.5,
+              "left": 16.25,
+              "right": 55,
+              "top": 546.59375,
+              "width": 38.75,
+              "x": 16.25,
+              "y": 546.59375
+            }
+          },
+          {
+            "label": "Previous track",
+            "rect": {
+              "bottom": 599.09375,
+              "height": 52.5,
+              "left": 57.5,
+              "right": 96.25,
+              "top": 546.59375,
+              "width": 38.75,
+              "x": 57.5,
+              "y": 546.59375
+            }
+          },
+          {
+            "label": "Pause",
+            "rect": {
+              "bottom": 609.09375,
+              "height": 72.5,
+              "left": 98.75,
+              "right": 171.25,
+              "top": 536.59375,
+              "width": 72.5,
+              "x": 98.75,
+              "y": 536.59375
+            }
+          },
+          {
+            "label": "Next track",
+            "rect": {
+              "bottom": 599.09375,
+              "height": 52.5,
+              "left": 173.75,
+              "right": 212.5,
+              "top": 546.59375,
+              "width": 38.75,
+              "x": 173.75,
+              "y": 546.59375
+            }
+          },
+          {
+            "label": "Enable repeat",
+            "rect": {
+              "bottom": 599.09375,
+              "height": 52.5,
+              "left": 215,
+              "right": 253.75,
+              "top": 546.59375,
+              "width": 38.75,
+              "x": 215,
+              "y": 546.59375
+            }
+          },
+          {
+            "label": "Equalizer",
+            "rect": {
+              "bottom": 599.09375,
+              "height": 52.5,
+              "left": 255,
+              "right": 293.75,
+              "top": 546.59375,
+              "width": 38.75,
+              "x": 255,
+              "y": 546.59375
+            }
+          }
+        ],
+        "clientHeight": 589,
+        "cover": {
+          "bottom": 352.171875,
+          "height": 243.75,
+          "left": 36.25,
+          "right": 273.75,
+          "top": 108.421875,
+          "width": 237.5,
+          "x": 36.25,
+          "y": 108.421875
+        },
+        "display": "flex",
+        "full": {
+          "bottom": 820,
+          "height": 820,
+          "left": 0,
+          "right": 320,
+          "top": 0,
+          "width": 320,
+          "x": 0,
+          "y": 0
+        },
+        "header": {
+          "bottom": 75,
+          "height": 50,
+          "left": 22.5,
+          "right": 297.5,
+          "top": 25,
+          "width": 275,
+          "x": 22.5,
+          "y": 25
+        },
+        "listening": {
+          "bottom": 818.59375,
+          "height": 736.09375,
+          "left": 22.5,
+          "right": 287.5,
+          "top": 82.5,
+          "width": 265,
+          "x": 22.5,
+          "y": 82.5
+        },
+        "scrollColor": "color(srgb 0.188235 0.184314 0.172549 / 0.22) rgba(0, 0, 0, 0)",
+        "scrollHeight": 589,
+        "scrollTop": 0,
+        "title": {
+          "bottom": 452.84375,
+          "height": 64.75,
+          "left": 22.5,
+          "right": 287.5,
+          "top": 388.09375,
+          "width": 265,
+          "x": 22.5,
+          "y": 388.09375
+        }
+      },
+      "lyrics": {
+        "buttons": [
+          {
+            "label": "Shuffle queue",
+            "rect": {
+              "bottom": 527.09375,
+              "height": 52.5,
+              "left": 16.25,
+              "right": 55,
+              "top": 474.59375,
+              "width": 38.75,
+              "x": 16.25,
+              "y": 474.59375
+            }
+          },
+          {
+            "label": "Previous track",
+            "rect": {
+              "bottom": 527.09375,
+              "height": 52.5,
+              "left": 57.5,
+              "right": 96.25,
+              "top": 474.59375,
+              "width": 38.75,
+              "x": 57.5,
+              "y": 474.59375
+            }
+          },
+          {
+            "label": "Pause",
+            "rect": {
+              "bottom": 537.09375,
+              "height": 72.5,
+              "left": 98.75,
+              "right": 171.25,
+              "top": 464.59375,
+              "width": 72.5,
+              "x": 98.75,
+              "y": 464.59375
+            }
+          },
+          {
+            "label": "Next track",
+            "rect": {
+              "bottom": 527.09375,
+              "height": 52.5,
+              "left": 173.75,
+              "right": 212.5,
+              "top": 474.59375,
+              "width": 38.75,
+              "x": 173.75,
+              "y": 474.59375
+            }
+          },
+          {
+            "label": "Enable repeat",
+            "rect": {
+              "bottom": 527.09375,
+              "height": 52.5,
+              "left": 215,
+              "right": 253.75,
+              "top": 474.59375,
+              "width": 38.75,
+              "x": 215,
+              "y": 474.59375
+            }
+          },
+          {
+            "label": "Equalizer",
+            "rect": {
+              "bottom": 527.09375,
+              "height": 52.5,
+              "left": 255,
+              "right": 293.75,
+              "top": 474.59375,
+              "width": 38.75,
+              "x": 255,
+              "y": 474.59375
+            }
+          }
+        ],
+        "clientHeight": 473,
+        "cover": {
+          "bottom": 276.921875,
+          "height": 170.25,
+          "left": 73,
+          "right": 237,
+          "top": 106.671875,
+          "width": 164,
+          "x": 73,
+          "y": 106.671875
+        },
+        "display": "flex",
+        "full": {
+          "bottom": 820,
+          "height": 820,
+          "left": 0,
+          "right": 320,
+          "top": 0,
+          "width": 320,
+          "x": 0,
+          "y": 0
+        },
+        "header": {
+          "bottom": 75,
+          "height": 50,
+          "left": 22.5,
+          "right": 297.5,
+          "top": 25,
+          "width": 275,
+          "x": 22.5,
+          "y": 25
+        },
+        "listening": {
+          "bottom": 674.34375,
+          "height": 591.84375,
+          "left": 22.5,
+          "right": 287.5,
+          "top": 82.5,
+          "width": 265,
+          "x": 22.5,
+          "y": 82.5
+        },
+        "scrollColor": "color(srgb 0.188235 0.184314 0.172549 / 0.22) rgba(0, 0, 0, 0)",
+        "scrollHeight": 473,
+        "scrollTop": 0,
+        "title": {
+          "bottom": 380.84375,
+          "height": 64.75,
+          "left": 22.5,
+          "right": 287.5,
+          "top": 316.09375,
+          "width": 265,
+          "x": 22.5,
+          "y": 316.09375
+        }
+      },
+      "reopened": {
+        "buttons": [
+          {
+            "label": "Shuffle queue",
+            "rect": {
+              "bottom": 599.09375,
+              "height": 52.5,
+              "left": 16.25,
+              "right": 55,
+              "top": 546.59375,
+              "width": 38.75,
+              "x": 16.25,
+              "y": 546.59375
+            }
+          },
+          {
+            "label": "Previous track",
+            "rect": {
+              "bottom": 599.09375,
+              "height": 52.5,
+              "left": 57.5,
+              "right": 96.25,
+              "top": 546.59375,
+              "width": 38.75,
+              "x": 57.5,
+              "y": 546.59375
+            }
+          },
+          {
+            "label": "Pause",
+            "rect": {
+              "bottom": 609.09375,
+              "height": 72.5,
+              "left": 98.75,
+              "right": 171.25,
+              "top": 536.59375,
+              "width": 72.5,
+              "x": 98.75,
+              "y": 536.59375
+            }
+          },
+          {
+            "label": "Next track",
+            "rect": {
+              "bottom": 599.09375,
+              "height": 52.5,
+              "left": 173.75,
+              "right": 212.5,
+              "top": 546.59375,
+              "width": 38.75,
+              "x": 173.75,
+              "y": 546.59375
+            }
+          },
+          {
+            "label": "Enable repeat",
+            "rect": {
+              "bottom": 599.09375,
+              "height": 52.5,
+              "left": 215,
+              "right": 253.75,
+              "top": 546.59375,
+              "width": 38.75,
+              "x": 215,
+              "y": 546.59375
+            }
+          },
+          {
+            "label": "Equalizer",
+            "rect": {
+              "bottom": 599.09375,
+              "height": 52.5,
+              "left": 255,
+              "right": 293.75,
+              "top": 546.59375,
+              "width": 38.75,
+              "x": 255,
+              "y": 546.59375
+            }
+          }
+        ],
+        "clientHeight": 589,
+        "cover": {
+          "bottom": 352.171875,
+          "height": 243.75,
+          "left": 36.25,
+          "right": 273.75,
+          "top": 108.421875,
+          "width": 237.5,
+          "x": 36.25,
+          "y": 108.421875
+        },
+        "display": "flex",
+        "full": {
+          "bottom": 820,
+          "height": 820,
+          "left": 0,
+          "right": 320,
+          "top": 0,
+          "width": 320,
+          "x": 0,
+          "y": 0
+        },
+        "header": {
+          "bottom": 75,
+          "height": 50,
+          "left": 22.5,
+          "right": 297.5,
+          "top": 25,
+          "width": 275,
+          "x": 22.5,
+          "y": 25
+        },
+        "listening": {
+          "bottom": 818.59375,
+          "height": 736.09375,
+          "left": 22.5,
+          "right": 287.5,
+          "top": 82.5,
+          "width": 265,
+          "x": 22.5,
+          "y": 82.5
+        },
+        "scrollColor": "color(srgb 0.188235 0.184314 0.172549 / 0.22) rgba(0, 0, 0, 0)",
+        "scrollHeight": 589,
+        "scrollTop": 0,
+        "title": {
+          "bottom": 452.84375,
+          "height": 64.75,
+          "left": 22.5,
+          "right": 287.5,
+          "top": 388.09375,
+          "width": 265,
+          "x": 22.5,
+          "y": 388.09375
+        }
+      }
+    }
+  ],
+  "screenshots": [
+    "work/qa/focused-player-layout-1791724688533-dark-1440-centered.png",
+    "work/qa/focused-player-layout-1791724688533-dark-1440-lyrics.png",
+    "work/qa/focused-player-layout-1791724688533-dark-1280-centered.png",
+    "work/qa/focused-player-layout-1791724688533-dark-1280-lyrics.png",
+    "work/qa/focused-player-layout-1791724688533-dark-390-centered.png",
+    "work/qa/focused-player-layout-1791724688533-dark-390-lyrics.png",
+    "work/qa/focused-player-layout-1791724688533-dark-375-centered.png",
+    "work/qa/focused-player-layout-1791724688533-dark-375-lyrics.png",
+    "work/qa/focused-player-layout-1791724688533-dark-320-centered.png",
+    "work/qa/focused-player-layout-1791724688533-dark-320-lyrics.png",
+    "work/qa/focused-player-layout-1791724688533-amoled-1440-centered.png",
+    "work/qa/focused-player-layout-1791724688533-amoled-1440-lyrics.png",
+    "work/qa/focused-player-layout-1791724688533-amoled-1280-centered.png",
+    "work/qa/focused-player-layout-1791724688533-amoled-1280-lyrics.png",
+    "work/qa/focused-player-layout-1791724688533-amoled-390-centered.png",
+    "work/qa/focused-player-layout-1791724688533-amoled-390-lyrics.png",
+    "work/qa/focused-player-layout-1791724688533-amoled-375-centered.png",
+    "work/qa/focused-player-layout-1791724688533-amoled-375-lyrics.png",
+    "work/qa/focused-player-layout-1791724688533-amoled-320-centered.png",
+    "work/qa/focused-player-layout-1791724688533-amoled-320-lyrics.png",
+    "work/qa/focused-player-layout-1791724688533-light-1440-centered.png",
+    "work/qa/focused-player-layout-1791724688533-light-1440-lyrics.png",
+    "work/qa/focused-player-layout-1791724688533-light-1280-centered.png",
+    "work/qa/focused-player-layout-1791724688533-light-1280-lyrics.png",
+    "work/qa/focused-player-layout-1791724688533-light-390-centered.png",
+    "work/qa/focused-player-layout-1791724688533-light-390-lyrics.png",
+    "work/qa/focused-player-layout-1791724688533-light-375-centered.png",
+    "work/qa/focused-player-layout-1791724688533-light-375-lyrics.png",
+    "work/qa/focused-player-layout-1791724688533-light-320-centered.png",
+    "work/qa/focused-player-layout-1791724688533-light-320-lyrics.png",
+    "work/qa/focused-player-layout-1791724688533-amoled-375-preset-list.png"
+  ],
+  "checks": [
+    "15 actual layouts across three themes at125%; all six transport/EQ controls remain in one row, pairwise nonintersecting and within viewport.",
+    "Actual cover remains below the fixed header and above title after persistent window resizing and after returning from a scrolled lyrics view.",
+    "Desktop centered content fits without unnecessary vertical scrolling; fallback/detail scrollbars are explicitly themed."
+  ],
+  "scope": "Real React application, original audio and cover assets on own5190; normal autoplay policy; physical sound muted.",
+  "errors": {
+    "errors": []
+  }
+}

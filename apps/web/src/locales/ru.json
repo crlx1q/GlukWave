@@ -1224,5 +1224,7 @@
   "audioDesign.coverAccent": "Цвет из обложки",
   "audioDesign.coverAccentCaption": "Кнопки и волна следуют цвету альбома. Выключи, чтобы сохранить свою палитру.",
   "audioDesign.savePreset": "Сохранить мою кривую",
-  "audioDesign.savedPreset": "Моя кривая"
+  "audioDesign.savedPreset": "Моя кривая",
+  "focusedPlayer.nowPlaying": "Сейчас играет",
+  "focusedPlayer.more": "Другие действия"
 }

@@ -1,0 +1,73 @@
+{
+  "passed": true,
+  "tests": 13,
+  "scope": "Actual Flutter widgets, controller/settings and menus; physical DSP and network unavailable in widget tests. Real cover fallback shown.",
+  "matrix": [
+    "light",
+    "dark",
+    "amoled"
+  ],
+  "widths": [
+    1440,
+    1280,
+    390,
+    320
+  ],
+  "height1280": 820,
+  "otherHeights": 950,
+  "fontScale": 1.25,
+  "radius": [
+    8,
+    38
+  ],
+  "checks": [
+    "Centered default with lyrics under cover off",
+    "Actual lyrics split or stacked; genuine cover/transport retained",
+    "Actual queue toggle replaces lyrics and toggles back",
+    "Compact themed EQ fits every viewport and obeys radius",
+    "Actual bass preset changes bands/preamp",
+    "Keyboard arrow/Enter changes selected preset and preserves current track",
+    "Quiet touch overlay and readable theme font",
+    "No render/layout exceptions"
+  ],
+  "log": "focused-player-native-focused.log",
+  "analyzer": "focused-player-native-analyze.log",
+  "screenshots": [
+    "native-focused-player-1791723522499-amoled-1280-centered.png",
+    "native-focused-player-1791723522499-amoled-1280-lyrics.png",
+    "native-focused-player-1791723522499-amoled-1280-presets.png",
+    "native-focused-player-1791723522499-amoled-1440-centered.png",
+    "native-focused-player-1791723522499-amoled-1440-lyrics.png",
+    "native-focused-player-1791723522499-amoled-1440-presets.png",
+    "native-focused-player-1791723522499-amoled-320-centered.png",
+    "native-focused-player-1791723522499-amoled-320-lyrics.png",
+    "native-focused-player-1791723522499-amoled-320-presets.png",
+    "native-focused-player-1791723522499-amoled-390-centered.png",
+    "native-focused-player-1791723522499-amoled-390-lyrics.png",
+    "native-focused-player-1791723522499-amoled-390-presets.png",
+    "native-focused-player-1791723522499-dark-1280-centered.png",
+    "native-focused-player-1791723522499-dark-1280-lyrics.png",
+    "native-focused-player-1791723522499-dark-1280-presets.png",
+    "native-focused-player-1791723522499-dark-1440-centered.png",
+    "native-focused-player-1791723522499-dark-1440-lyrics.png",
+    "native-focused-player-1791723522499-dark-1440-presets.png",
+    "native-focused-player-1791723522499-dark-320-centered.png",
+    "native-focused-player-1791723522499-dark-320-lyrics.png",
+    "native-focused-player-1791723522499-dark-320-presets.png",
+    "native-focused-player-1791723522499-dark-390-centered.png",
+    "native-focused-player-1791723522499-dark-390-lyrics.png",
+    "native-focused-player-1791723522499-dark-390-presets.png",
+    "native-focused-player-1791723522499-light-1280-centered.png",
+    "native-focused-player-1791723522499-light-1280-lyrics.png",
+    "native-focused-player-1791723522499-light-1280-presets.png",
+    "native-focused-player-1791723522499-light-1440-centered.png",
+    "native-focused-player-1791723522499-light-1440-lyrics.png",
+    "native-focused-player-1791723522499-light-1440-presets.png",
+    "native-focused-player-1791723522499-light-320-centered.png",
+    "native-focused-player-1791723522499-light-320-lyrics.png",
+    "native-focused-player-1791723522499-light-320-presets.png",
+    "native-focused-player-1791723522499-light-390-centered.png",
+    "native-focused-player-1791723522499-light-390-lyrics.png",
+    "native-focused-player-1791723522499-light-390-presets.png"
+  ]
+}

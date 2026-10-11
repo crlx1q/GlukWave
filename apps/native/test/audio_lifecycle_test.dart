@@ -33,9 +33,15 @@ class PlaybackApi extends WaveApi {
 
 class PlaybackCache extends MusicCache {
   File? cached;
+  final removed = <String>[];
   PlaybackCache(super.api);
   @override
   Future<File?> fileFor(String id) async => cached;
+  @override
+  Future<void> remove(String id) async {
+    removed.add(id);
+    cached = null;
+  }
 }
 
 // Exercise the real WaveAudioHandler through the native player boundary.
@@ -47,6 +53,9 @@ class NativeOutput extends AudioPlayer {
   Map<String, String>? sentHeaders;
   AudioSource? receivedSource;
   bool active = false, ready = false, disposed = false;
+  PlayerException? fileError;
+  PlayerException? urlError;
+  Duration? loadedPosition;
   NativeOutput()
     : super(handleInterruptions: false, handleAudioSessionActivation: false);
   @override
@@ -71,6 +80,8 @@ class NativeOutput extends AudioPlayer {
     dynamic tag,
   }) async {
     loaded.add(url);
+    loadedPosition = initialPosition;
+    if (urlError != null) throw urlError!;
     sentHeaders = headers;
     ready = true;
     return const Duration(minutes: 3);
@@ -100,6 +111,8 @@ class NativeOutput extends AudioPlayer {
     dynamic tag,
   }) async {
     loaded.add(path);
+    loadedPosition = initialPosition;
+    if (fileError != null) throw fileError!;
     ready = true;
     return const Duration(minutes: 3);
   }
@@ -291,6 +304,81 @@ void main() {
       expect(output.loaded, ['isolated-cached-song.mp3']);
       expect(audio.current?.embedded, isFalse);
       expect(audio.provider.track, isNull);
+      await close(audio);
+    },
+  );
+
+  test(
+    'Cached native decoder failure resolves once and preserves paused position and queue',
+    () async {
+      final api = PlaybackApi();
+      final cache = PlaybackCache(api)..cached = File('broken-cached-song.mp3');
+      final output = NativeOutput()
+        ..fileError = PlayerException(4, 'Unsupported file', null);
+      final audio = WaveAudioHandler(api, cache, output: output)
+        ..autoCache = false;
+      final song = external('cached'), next = external('next');
+      await audio.playTrack(
+        song,
+        list: [song, next],
+        position: 42,
+        playing: false,
+      );
+      expect(cache.removed, ['cached']);
+      expect(api.requests, ['/api/tracks/cached/playback']);
+      expect(output.loaded, [
+        'broken-cached-song.mp3',
+        'http://127.0.0.1:4000/api/external-audio/source',
+      ]);
+      expect(output.loadedPosition, const Duration(seconds: 42));
+      expect(output.active, false);
+      expect(audio.tracks.map((t) => t.id), ['cached', 'next']);
+      expect(audio.trackLoading, false);
+      await close(audio);
+    },
+  );
+
+  test(
+    'Offline decoder failure preserves the download and never resolves online',
+    () async {
+      final api = PlaybackApi();
+      final cache = PlaybackCache(api)
+        ..cached = File('unsupported-cached-song.mp3');
+      final output = NativeOutput()
+        ..fileError = PlayerException(4, 'Unsupported file', null);
+      final audio = WaveAudioHandler(api, cache, output: output)
+        ..offlineOnly = true;
+      await expectLater(
+        audio.playTrack(external('cached')),
+        throwsA(isA<PlayerException>()),
+      );
+      expect(cache.removed, isEmpty);
+      expect(api.requests, isEmpty);
+      expect(output.loaded, ['unsupported-cached-song.mp3']);
+      expect(audio.trackLoading, false);
+      await close(audio);
+    },
+  );
+
+  test(
+    'A failed fresh source after cache recovery is not retried indefinitely',
+    () async {
+      final api = PlaybackApi();
+      final cache = PlaybackCache(api)..cached = File('broken-cached-song.mp3');
+      final freshFailure = PlayerException(0, 'Source unavailable', null);
+      final output = NativeOutput()
+        ..fileError = PlayerException(4, 'Unsupported file', null)
+        ..urlError = freshFailure;
+      final audio = WaveAudioHandler(api, cache, output: output)
+        ..autoCache = false;
+      await expectLater(
+        audio.playTrack(external('cached')),
+        throwsA(same(freshFailure)),
+      );
+      expect(cache.removed, ['cached']);
+      expect(api.requests, ['/api/tracks/cached/playback']);
+      expect(output.loaded.length, 2);
+      expect(audio.trackLoading, false);
       await close(audio);
     },
   );

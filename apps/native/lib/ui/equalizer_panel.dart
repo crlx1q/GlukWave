@@ -258,302 +258,305 @@ class _CompactEqualizerPanelState extends State<CompactEqualizerPanel> {
                     ).every((same) => same),
               )
               .firstOrNull;
-      return Padding(
-        padding: const EdgeInsets.all(15),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Row(
+      return SliderTheme(
+        data: SliderTheme.of(context).copyWith(
+          overlayColor: Colors.transparent,
+          overlayShape: SliderComponentShape.noOverlay,
+          showValueIndicator: ShowValueIndicator.never,
+        ),
+        child: Theme(
+          data: Theme.of(context).copyWith(
+            splashFactory: NoSplash.splashFactory,
+            highlightColor: Colors.transparent,
+            splashColor: Colors.transparent,
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(15),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
-                Expanded(
-                  child: Text(
-                    wt('eq.title', context: context),
-                    style: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w800,
-                    ),
-                  ),
-                ),
-                IconButton(
-                  key: const Key('compact-eq-enabled'),
-                  tooltip: wt('eq.title', context: context),
-                  isSelected: eq.enabled,
-                  onPressed: available
-                      ? () => change({'enabled': !eq.enabled})
-                      : null,
-                  icon: Icon(
-                    Icons.power_settings_new_rounded,
-                    size: 18,
-                    color: eq.enabled ? v.accent : v.muted,
-                  ),
-                ),
-                IconButton(
-                  tooltip: audioDesignText('reset', context: context),
-                  onPressed: () =>
-                      change({'bands': List.filled(10, 0), 'preamp': 0}),
-                  icon: const Icon(Icons.restart_alt_rounded, size: 17),
-                ),
-                IconButton(
-                  tooltip: wt('native.398c7d4f7b', context: context),
-                  onPressed: widget.onClose,
-                  icon: const Icon(Icons.close_rounded, size: 18),
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                Expanded(
-                  child: DropdownButtonFormField<String>(
-                    key: ValueKey('compact-eq-${preset?.key ?? 'custom'}'),
-                    initialValue: preset?.key ?? 'custom',
-                    isExpanded: true,
-                    decoration: const InputDecoration(
-                      isDense: true,
-                      contentPadding: EdgeInsets.symmetric(
-                        horizontal: 10,
-                        vertical: 8,
-                      ),
-                    ),
-                    items: [
-                      DropdownMenuItem(
-                        value: 'custom',
-                        enabled: false,
-                        child: Text(
-                          wt('eq.curve', context: context),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      for (final p in equalizerPresets.keys)
-                        DropdownMenuItem(
-                          value: p,
-                          child: Text(EqualizerPanel._presetLabel(context, p)),
-                        ),
-                      if (saved != null)
-                        DropdownMenuItem(
-                          value: 'saved',
-                          child: Text(
-                            audioDesignText('savedPreset', context: context),
-                          ),
-                        ),
-                    ],
-                    onChanged: available
-                        ? (key) {
-                            final p = key == 'saved'
-                                ? saved
-                                : equalizerPresets[key];
-                            if (p != null) change(p.toJson());
-                          }
-                        : null,
-                  ),
-                ),
-                IconButton(
-                  tooltip: audioDesignText('savePreset', context: context),
-                  onPressed: available
-                      ? () {
-                          setState(() => saved = eq);
-                          unawaited(
-                            c.preferences.setString(
-                              'eq-curve:${c.user?.id}',
-                              jsonEncode(eq.toJson()),
-                            ),
-                          );
-                        }
-                      : null,
-                  icon: const Icon(Icons.save_outlined, size: 17),
-                ),
-              ],
-            ),
-            const SizedBox(height: 11),
-            Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    wt('eq.speed', context: context),
-                    style: TextStyle(fontSize: 10, color: v.muted),
-                  ),
-                ),
-                Text(
-                  '${(c.room != null ? 1 : c.customization.playbackRate).toStringAsFixed(2)}×',
-                  style: const TextStyle(
-                    fontSize: 11,
-                    fontFeatures: [FontFeature.tabularFigures()],
-                  ),
-                ),
-              ],
-            ),
-            Slider(
-              key: const Key('compact-eq-rate'),
-              min: .5,
-              max: 2,
-              divisions: 30,
-              value: c.room != null ? 1 : c.customization.playbackRate,
-              onChanged: c.room != null || !available
-                  ? null
-                  : (value) => unawaited(
-                      c
-                          .customize({'playbackRate': value})
-                          .catchError(
-                            (Object error) => c.tell(error.toString()),
-                          ),
-                    ),
-            ),
-            Container(
-              key: const Key('compact-eq-chart'),
-              height: 166,
-              decoration: BoxDecoration(
-                color: v.accentSoft.withValues(alpha: .35),
-                border: Border.all(color: v.line),
-                borderRadius: BorderRadius.circular(v.corners(11)),
-              ),
-              child: LayoutBuilder(
-                builder: (context, constraints) => Stack(
-                  clipBehavior: Clip.none,
+                Row(
                   children: [
-                    Positioned.fill(
-                      top: 7,
-                      bottom: 21,
-                      left: 0,
-                      right: 0,
-                      child: CustomPaint(
-                        key: const Key('compact-eq-curve'),
-                        painter: _EqualizerCurve(eq.bands, v),
+                    Expanded(
+                      child: Text(
+                        wt('eq.title', context: context),
+                        style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w800,
+                        ),
                       ),
                     ),
-                    Row(
+                    IconButton(
+                      key: const Key('compact-eq-enabled'),
+                      tooltip: wt('eq.title', context: context),
+                      isSelected: eq.enabled,
+                      onPressed: available
+                          ? () => change({'enabled': !eq.enabled})
+                          : null,
+                      icon: Icon(
+                        Icons.power_settings_new_rounded,
+                        size: 18,
+                        color: eq.enabled ? v.accent : v.muted,
+                      ),
+                    ),
+                    IconButton(
+                      tooltip: audioDesignText('reset', context: context),
+                      onPressed: () =>
+                          change({'bands': List.filled(10, 0), 'preamp': 0}),
+                      icon: const Icon(Icons.restart_alt_rounded, size: 17),
+                    ),
+                    IconButton(
+                      tooltip: wt('native.398c7d4f7b', context: context),
+                      onPressed: widget.onClose,
+                      icon: const Icon(Icons.close_rounded, size: 18),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: _EqualizerPresetMenu(
+                        selected:
+                            preset?.key ??
+                            (saved != null &&
+                                    saved!.preamp == eq.preamp &&
+                                    List.generate(
+                                      10,
+                                      (i) => saved!.bands[i] == eq.bands[i],
+                                    ).every((same) => same)
+                                ? 'saved'
+                                : 'custom'),
+                        saved: saved != null,
+                        enabled: available,
+                        onSelected: (key) {
+                          final p = key == 'saved'
+                              ? saved
+                              : equalizerPresets[key];
+                          if (p != null) {
+                            change({...p.toJson(), 'enabled': true});
+                          }
+                        },
+                      ),
+                    ),
+                    IconButton(
+                      tooltip: audioDesignText('savePreset', context: context),
+                      onPressed: available
+                          ? () {
+                              setState(() => saved = eq);
+                              unawaited(
+                                c.preferences.setString(
+                                  'eq-curve:${c.user?.id}',
+                                  jsonEncode(eq.toJson()),
+                                ),
+                              );
+                            }
+                          : null,
+                      icon: const Icon(Icons.save_outlined, size: 17),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 11),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        wt('eq.speed', context: context),
+                        style: TextStyle(fontSize: 10, color: v.muted),
+                      ),
+                    ),
+                    Text(
+                      '${(c.room != null ? 1 : c.customization.playbackRate).toStringAsFixed(2)}×',
+                      style: const TextStyle(
+                        fontSize: 11,
+                        fontFeatures: [FontFeature.tabularFigures()],
+                      ),
+                    ),
+                  ],
+                ),
+                Slider(
+                  key: const Key('compact-eq-rate'),
+                  min: .5,
+                  max: 2,
+                  divisions: 30,
+                  value: c.room != null ? 1 : c.customization.playbackRate,
+                  onChanged: c.room != null || !available
+                      ? null
+                      : (value) => unawaited(
+                          c
+                              .customize({'playbackRate': value})
+                              .catchError(
+                                (Object error) => c.tell(error.toString()),
+                              ),
+                        ),
+                ),
+                Container(
+                  key: const Key('compact-eq-chart'),
+                  height: 166,
+                  decoration: BoxDecoration(
+                    color: v.accentSoft.withValues(alpha: .35),
+                    border: Border.all(color: v.line),
+                    borderRadius: BorderRadius.circular(v.corners(11)),
+                  ),
+                  child: LayoutBuilder(
+                    builder: (context, constraints) => Stack(
+                      clipBehavior: Clip.none,
                       children: [
-                        for (var i = 0; i < 10; i++)
-                          Expanded(
-                            child: Column(
-                              children: [
-                                Expanded(
-                                  child: RotatedBox(
-                                    quarterTurns: 3,
-                                    child: SliderTheme(
-                                      data: SliderTheme.of(context).copyWith(
-                                        trackHeight: 1,
-                                        activeTrackColor: Colors.transparent,
-                                        inactiveTrackColor: Colors.transparent,
-                                        thumbShape: const RoundSliderThumbShape(
-                                          enabledThumbRadius: 3.5,
+                        Positioned.fill(
+                          top: 7,
+                          bottom: 21,
+                          left: 0,
+                          right: 0,
+                          child: TweenAnimationBuilder<List<double>>(
+                            tween: _BandsTween(end: eq.bands),
+                            duration: v.duration((220 / v.speed).round()),
+                            curve: Curves.easeOutCubic,
+                            builder: (_, bands, _) => CustomPaint(
+                              key: const Key('compact-eq-curve'),
+                              painter: _EqualizerCurve(bands, v),
+                            ),
+                          ),
+                        ),
+                        Row(
+                          children: [
+                            for (var i = 0; i < 10; i++)
+                              Expanded(
+                                child: Column(
+                                  children: [
+                                    Expanded(
+                                      child: RotatedBox(
+                                        quarterTurns: 3,
+                                        child: SliderTheme(
+                                          data: SliderTheme.of(context)
+                                              .copyWith(
+                                                trackHeight: 1,
+                                                activeTrackColor:
+                                                    Colors.transparent,
+                                                inactiveTrackColor:
+                                                    Colors.transparent,
+                                                thumbShape:
+                                                    const RoundSliderThumbShape(
+                                                      enabledThumbRadius: 3.5,
+                                                    ),
+                                                overlayShape:
+                                                    SliderComponentShape
+                                                        .noOverlay,
+                                                overlayColor:
+                                                    Colors.transparent,
+                                                showValueIndicator:
+                                                    ShowValueIndicator.never,
+                                              ),
+                                          child: Slider(
+                                            key: Key('compact-eq-band-$i'),
+                                            min: -12,
+                                            max: 12,
+                                            divisions: 48,
+                                            value: eq.bands[i],
+                                            label:
+                                                '${eq.bands[i].toStringAsFixed(1)} dB',
+                                            semanticFormatterCallback: (value) =>
+                                                '${equalizerFrequencies[i].round()} Hz, ${value.toStringAsFixed(1)} dB',
+                                            onChanged: available && eq.enabled
+                                                ? (value) => change({
+                                                    'bands': [...eq.bands]
+                                                      ..[i] = value,
+                                                  })
+                                                : null,
+                                          ),
                                         ),
-                                        overlayShape:
-                                            const RoundSliderOverlayShape(
-                                              overlayRadius: 9,
-                                            ),
-                                        showValueIndicator:
-                                            ShowValueIndicator.onlyForDiscrete,
-                                      ),
-                                      child: Slider(
-                                        key: Key('compact-eq-band-$i'),
-                                        min: -12,
-                                        max: 12,
-                                        divisions: 48,
-                                        value: eq.bands[i],
-                                        label:
-                                            '${eq.bands[i].toStringAsFixed(1)} dB',
-                                        semanticFormatterCallback: (value) =>
-                                            '${equalizerFrequencies[i].round()} Hz, ${value.toStringAsFixed(1)} dB',
-                                        onChanged: available && eq.enabled
-                                            ? (value) => change({
-                                                'bands': [...eq.bands]
-                                                  ..[i] = value,
-                                              })
-                                            : null,
                                       ),
                                     ),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 22,
-                                  child: Center(
-                                    child: Text(
-                                      equalizerFrequencies[i] >= 1000
-                                          ? '${(equalizerFrequencies[i] / 1000).round()}k'
-                                          : '${equalizerFrequencies[i].round()}',
-                                      style: TextStyle(
-                                        fontSize: 8,
-                                        color: v.muted,
+                                    SizedBox(
+                                      height: 22,
+                                      child: Center(
+                                        child: Text(
+                                          equalizerFrequencies[i] >= 1000
+                                              ? '${(equalizerFrequencies[i] / 1000).round()}k'
+                                              : '${equalizerFrequencies[i].round()}',
+                                          style: TextStyle(
+                                            fontSize: 8,
+                                            color: v.muted,
+                                          ),
+                                        ),
                                       ),
                                     ),
+                                  ],
+                                ),
+                              ),
+                          ],
+                        ),
+                        // Use the popup's existing inner gutter, preserving the
+                        // frequency sliders' positions and touch areas.
+                        for (final axis in [
+                          ('max', '+12', 31.0),
+                          ('zero', '0', (constraints.maxHeight - 14) / 2),
+                          ('min', '−12', constraints.maxHeight - 45),
+                        ])
+                          Positioned(
+                            left: -14,
+                            top: axis.$3 - 10,
+                            width: 22,
+                            height: 20,
+                            child: IgnorePointer(
+                              child: Center(
+                                child: Text(
+                                  axis.$2,
+                                  key: Key('compact-eq-db-${axis.$1}'),
+                                  semanticsLabel: '${axis.$2} dB',
+                                  style: TextStyle(
+                                    fontSize: 9,
+                                    color: v.muted,
+                                    fontFeatures: const [
+                                      FontFeature.tabularFigures(),
+                                    ],
                                   ),
                                 ),
-                              ],
+                              ),
                             ),
                           ),
                       ],
                     ),
-                    // Use the popup's existing inner gutter, preserving the
-                    // frequency sliders' positions and touch areas.
-                    for (final axis in [
-                      ('max', '+12', 31.0),
-                      ('zero', '0', (constraints.maxHeight - 14) / 2),
-                      ('min', '−12', constraints.maxHeight - 45),
-                    ])
-                      Positioned(
-                        left: -14,
-                        top: axis.$3 - 10,
-                        width: 22,
-                        height: 20,
-                        child: IgnorePointer(
-                          child: Center(
-                            child: Text(
-                              axis.$2,
-                              key: Key('compact-eq-db-${axis.$1}'),
-                              semanticsLabel: '${axis.$2} dB',
-                              style: TextStyle(
-                                fontSize: 9,
-                                color: v.muted,
-                                fontFeatures: const [
-                                  FontFeature.tabularFigures(),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
+                  ),
+                ),
+                const SizedBox(height: 10),
+                Row(
+                  children: [
+                    Text(
+                      wt('eq.preamp', context: context),
+                      style: TextStyle(fontSize: 10, color: v.muted),
+                    ),
+                    Expanded(
+                      child: Slider(
+                        key: const Key('compact-eq-preamp'),
+                        min: -12,
+                        max: 12,
+                        divisions: 48,
+                        value: eq.preamp,
+                        onChanged: available && eq.enabled
+                            ? (value) => change({'preamp': value})
+                            : null,
                       ),
+                    ),
+                    Text(
+                      '${eq.preamp.toStringAsFixed(1)} dB',
+                      style: TextStyle(
+                        fontSize: 10,
+                        color: v.muted,
+                        fontFeatures: const [FontFeature.tabularFigures()],
+                      ),
+                    ),
                   ],
                 ),
-              ),
-            ),
-            const SizedBox(height: 10),
-            Row(
-              children: [
-                Text(
-                  wt('eq.preamp', context: context),
-                  style: TextStyle(fontSize: 10, color: v.muted),
-                ),
-                Expanded(
-                  child: Slider(
-                    key: const Key('compact-eq-preamp'),
-                    min: -12,
-                    max: 12,
-                    divisions: 48,
-                    value: eq.preamp,
-                    onChanged: available && eq.enabled
-                        ? (value) => change({'preamp': value})
-                        : null,
+                if (c.room != null || !available)
+                  Text(
+                    wt(
+                      c.room != null ? 'eq.roomSpeed' : 'eq.waiting',
+                      context: context,
+                    ),
+                    style: TextStyle(fontSize: 10, color: v.muted, height: 1.4),
                   ),
-                ),
-                Text(
-                  '${eq.preamp.toStringAsFixed(1)} dB',
-                  style: TextStyle(
-                    fontSize: 10,
-                    color: v.muted,
-                    fontFeatures: const [FontFeature.tabularFigures()],
-                  ),
-                ),
               ],
             ),
-            if (c.room != null || !available)
-              Text(
-                wt(
-                  c.room != null ? 'eq.roomSpeed' : 'eq.waiting',
-                  context: context,
-                ),
-                style: TextStyle(fontSize: 10, color: v.muted, height: 1.4),
-              ),
-          ],
+          ),
         ),
       );
     },
@@ -599,4 +602,160 @@ class _EqualizerCurve extends CustomPainter {
   @override
   bool shouldRepaint(_EqualizerCurve old) =>
       old.bands != bands || old.v.accent != v.accent;
+}
+
+class _BandsTween extends Tween<List<double>> {
+  _BandsTween({super.end});
+  @override
+  List<double> lerp(double t) =>
+      List.generate(10, (i) => begin![i] + (end![i] - begin![i]) * t);
+}
+
+class _EqualizerPresetMenu extends StatefulWidget {
+  final String selected;
+  final bool saved, enabled;
+  final ValueChanged<String> onSelected;
+  const _EqualizerPresetMenu({
+    required this.selected,
+    required this.saved,
+    required this.enabled,
+    required this.onSelected,
+  });
+  @override
+  State<_EqualizerPresetMenu> createState() => _EqualizerPresetMenuState();
+}
+
+class _EqualizerPresetMenuState extends State<_EqualizerPresetMenu> {
+  final triggerFocus = FocusNode();
+  final optionFocus = <String, FocusNode>{};
+  @override
+  void dispose() {
+    triggerFocus.dispose();
+    for (final node in optionFocus.values) {
+      node.dispose();
+    }
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final v = waveVisuals(context),
+        labels = <String, String>{
+          for (final p in equalizerPresets.keys)
+            p: EqualizerPanel._presetLabel(context, p),
+          if (widget.saved)
+            'saved': audioDesignText('savedPreset', context: context),
+        };
+    BorderSide focus(Set<WidgetState> states) => BorderSide(
+      color:
+          states.contains(WidgetState.focused) &&
+              FocusManager.instance.highlightMode ==
+                  FocusHighlightMode.traditional
+          ? v.accent
+          : v.line,
+    );
+    return LayoutBuilder(
+      builder: (context, box) => MenuAnchor(
+        childFocusNode: triggerFocus,
+        onOpen: () => WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (mounted) {
+            (optionFocus[widget.selected] ?? optionFocus[labels.keys.first])
+                ?.requestFocus();
+          }
+        }),
+        style: MenuStyle(
+          backgroundColor: WidgetStatePropertyAll(v.surface),
+          surfaceTintColor: const WidgetStatePropertyAll(Colors.transparent),
+          minimumSize: WidgetStatePropertyAll(Size(box.maxWidth, 0)),
+          maximumSize: WidgetStatePropertyAll(Size(box.maxWidth, 300)),
+          padding: const WidgetStatePropertyAll(EdgeInsets.all(5)),
+          shape: WidgetStatePropertyAll(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(v.corners(10)),
+              side: BorderSide(color: v.line),
+            ),
+          ),
+        ),
+        menuChildren: [
+          for (final item in labels.entries)
+            MenuItemButton(
+              key: Key('compact-eq-preset-${item.key}'),
+              focusNode: optionFocus.putIfAbsent(item.key, FocusNode.new),
+              style: ButtonStyle(
+                overlayColor: const WidgetStatePropertyAll(Colors.transparent),
+                backgroundColor: WidgetStateProperty.resolveWith(
+                  (states) => states.contains(WidgetState.hovered)
+                      ? v.line
+                      : Colors.transparent,
+                ),
+                side: WidgetStateProperty.resolveWith(
+                  (states) =>
+                      states.contains(WidgetState.focused) &&
+                          FocusManager.instance.highlightMode ==
+                              FocusHighlightMode.traditional
+                      ? BorderSide(color: v.accent)
+                      : BorderSide.none,
+                ),
+                shape: WidgetStatePropertyAll(
+                  RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(v.corners(7)),
+                  ),
+                ),
+                padding: const WidgetStatePropertyAll(
+                  EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                ),
+                textStyle: WidgetStatePropertyAll(
+                  Theme.of(
+                    context,
+                  ).textTheme.labelLarge?.copyWith(fontSize: 12, color: v.ink),
+                ),
+              ),
+              trailingIcon: item.key == widget.selected
+                  ? Icon(Icons.check_rounded, size: 14, color: v.accent)
+                  : null,
+              onPressed: () => widget.onSelected(item.key),
+              child: Text(
+                item.value,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+        ],
+        builder: (context, menu, _) => OutlinedButton(
+          key: const Key('compact-eq-presets'),
+          focusNode: triggerFocus,
+          style: ButtonStyle(
+            overlayColor: const WidgetStatePropertyAll(Colors.transparent),
+            backgroundColor: WidgetStatePropertyAll(v.background),
+            side: WidgetStateProperty.resolveWith(focus),
+            shape: WidgetStatePropertyAll(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(v.corners(8)),
+              ),
+            ),
+            padding: const WidgetStatePropertyAll(
+              EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            ),
+            minimumSize: const WidgetStatePropertyAll(Size(0, 38)),
+          ),
+          onPressed: widget.enabled
+              ? () => menu.isOpen ? menu.close() : menu.open()
+              : null,
+          child: Row(
+            children: [
+              Expanded(
+                child: Text(
+                  labels[widget.selected] ?? wt('eq.curve', context: context),
+                  style: TextStyle(color: v.ink, fontSize: 12),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+              const Icon(Icons.keyboard_arrow_down_rounded, size: 18),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }

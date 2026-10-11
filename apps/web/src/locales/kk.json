@@ -1224,5 +1224,7 @@
   "audioDesign.coverAccent": "Мұқаба түсі",
   "audioDesign.coverAccentCaption": "Түймелер мен толқын альбом түсіне бейімделеді. Өз палитраң үшін өшір.",
   "audioDesign.savePreset": "Қисықты сақтау",
-  "audioDesign.savedPreset": "Менің қисығым"
+  "audioDesign.savedPreset": "Менің қисығым",
+  "focusedPlayer.nowPlaying": "Қазір ойнап тұр",
+  "focusedPlayer.more": "Қосымша әрекеттер"
 }

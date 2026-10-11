@@ -21,6 +21,7 @@ class LayoutApi extends WaveApi {
   int? importedProvider;
   Completer<Json>? searchPending, lyricsPending;
   List<Json> lyricLines = [];
+  bool lyricSynchronized = false;
   LayoutApi() : super('http://127.0.0.1:4000');
   @override
   Future<Json> call(
@@ -54,7 +55,7 @@ class LayoutApi extends WaveApi {
       if (method == 'GET' && lyricsPending != null) {
         return lyricsPending!.future;
       }
-      return {'lines': lyricLines, 'synchronized': false};
+      return {'lines': lyricLines, 'synchronized': lyricSynchronized};
     }
     if (path == '/api/search' && searchPending != null) {
       return searchPending!.future;
@@ -371,19 +372,27 @@ void main() {
         );
         await tester.pumpAndSettle();
         expect(c.audio.current!.id, tracks[2].id);
-        await tester.tap(find.text('Текст').last);
+        await tester.tap(find.byKey(const Key('player-lyrics-toggle')));
         await tester.pumpAndSettle();
         final scroll = tester.widget<SingleChildScrollView>(
-          find.byKey(const Key('player-content-scroll')),
+          find.byKey(
+            Key(
+              width >= 851 ? 'desktop-lyrics-scroll' : 'player-detail-view-1',
+            ),
+          ),
         );
         expect(scroll.scrollDirection, Axis.vertical);
         await tester.drag(
-          find.byKey(const Key('player-content-scroll')),
+          find.byKey(
+            Key(
+              width >= 851 ? 'desktop-lyrics-scroll' : 'player-detail-view-1',
+            ),
+          ),
           const Offset(0, -250),
         );
         await tester.pumpAndSettle();
         expect(find.byKey(const Key('full-player')), findsOneWidget);
-        await tester.tap(find.text('Трек').last);
+        await tester.tap(find.byKey(const Key('player-lyrics-toggle')));
         await tester.pumpAndSettle();
         final close = await tester.startGesture(
           tester.getCenter(find.byKey(const Key('player-dismiss-handle'))),
@@ -445,7 +454,7 @@ void main() {
         ),
       );
       await tester.pump();
-      await tester.tap(find.text('Текст'));
+      await tester.tap(find.byKey(const Key('player-lyrics-toggle')));
       await tester.pump();
       expect(
         find.byWidgetPredicate(
@@ -491,7 +500,7 @@ void main() {
         ),
       );
       await tester.pumpAndSettle();
-      await tester.tap(find.text('Текст'));
+      await tester.tap(find.byKey(const Key('player-lyrics-toggle')));
       await tester.pumpAndSettle();
       await tester.tap(find.text('Добавить текст'));
       await tester.pumpAndSettle();
@@ -538,7 +547,7 @@ void main() {
           ),
         );
         await tester.pumpAndSettle();
-        await tester.tap(find.text('Текст'));
+        await tester.tap(find.byKey(const Key('player-lyrics-toggle')));
         await tester.pumpAndSettle();
         await tester.tap(find.text('Добавить текст'));
         await tester.pumpAndSettle();

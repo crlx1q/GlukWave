@@ -1,0 +1,41 @@
+{
+  "passed": true,
+  "originalAudio": true,
+  "physicalOutput": false,
+  "autoplayOverride": false,
+  "steps": [
+    {
+      "historicalManifestRecovered": {
+        "errors": [],
+        "format": "hls",
+        "iframes": 0,
+        "kind": "audio",
+        "playing": true,
+        "ready": 4,
+        "time": 0.441179
+      }
+    },
+    {
+      "cachedDecoderFailureRetriesOnce": {
+        "errors": [
+          {
+            "code": 4,
+            "name": "NotSupportedError"
+          }
+        ],
+        "playing": true,
+        "source": "/qa-silence.wav",
+        "time": 0.576,
+        "toast": ""
+      }
+    },
+    {
+      "downloadsValidated": {
+        "badRow": false,
+        "rejected": true,
+        "wavBytes": 3840044,
+        "wavType": "audio/wav"
+      }
+    }
+  ]
+}

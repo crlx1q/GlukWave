@@ -27,6 +27,25 @@ class MusicCache extends ChangeNotifier {
   );
   bool contains(String id) => entries.containsKey(id);
 
+  // Downloads are files, never an HLS playlist or an HTTP error document.
+  // Only inspect the prefix; unknown binary containers go to the decoder.
+  Future<bool> _isAudioFile(File file) async {
+    if (await file.length() == 0) return false;
+    final handle = await file.open();
+    try {
+      final prefix = utf8
+          .decode(await handle.read(256), allowMalformed: true)
+          .replaceFirst(RegExp(r'^\uFEFF'), '')
+          .trimLeft();
+      return !RegExp(
+        r'^(?:#EXTM3U|<!doctype\b|<html\b|<\?xml\b|[\[{])',
+        caseSensitive: false,
+      ).hasMatch(prefix);
+    } finally {
+      await handle.close();
+    }
+  }
+
   // All metadata, eviction, quota checks and manifest writes are serialized.
   // Network I/O stays outside the lock so downloads can run concurrently.
   Future<T> _exclusive<T>(Future<T> Function() action) async {
@@ -84,8 +103,9 @@ class MusicCache extends ChangeNotifier {
     final entry = object(entries[id]);
     if (entry.isEmpty) return null;
     final file = File(p.join(directory.path, entry['file'] as String));
-    if (!await file.exists()) {
+    if (!await file.exists() || !await _isAudioFile(file)) {
       entries.remove(id);
+      if (await file.exists()) await file.delete();
       await _saveUnlocked();
       return null;
     }
@@ -151,6 +171,13 @@ class MusicCache extends ChangeNotifier {
           notifyListeners();
         },
       );
+      if (!await _isAudioFile(temp)) {
+        await temp.delete();
+        throw WaveException(
+          wt('native.c11b18779a'),
+          'AUDIO_FORMAT_UNAVAILABLE',
+        );
+      }
     } catch (error) {
       if (token.isCancelled) {
         return;

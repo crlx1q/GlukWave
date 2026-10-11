@@ -1224,5 +1224,7 @@
   "audioDesign.coverAccent": "Колір з обкладинки",
   "audioDesign.coverAccentCaption": "Кнопки й хвиля слідують кольору альбому. Вимкни, щоб зберегти свою палітру.",
   "audioDesign.savePreset": "Зберегти мою криву",
-  "audioDesign.savedPreset": "Моя крива"
+  "audioDesign.savedPreset": "Моя крива",
+  "focusedPlayer.nowPlaying": "Зараз грає",
+  "focusedPlayer.more": "Інші дії"
 }

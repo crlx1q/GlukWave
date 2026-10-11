@@ -322,7 +322,7 @@ void main() {
         ),
       );
       await tester.pumpAndSettle();
-      await tester.tap(find.byType(DropdownButtonFormField<String>));
+      await tester.tap(find.byKey(const Key('compact-eq-presets')));
       await tester.pumpAndSettle();
       await tester.tap(find.text(wt('eq.bass')).last);
       await tester.pumpAndSettle();
@@ -385,7 +385,7 @@ void main() {
     }
   });
   testWidgets(
-    'Expanded desktop retains cover transport middle lyrics and queue rail',
+    'Expanded desktop starts centered and discloses only the requested lyrics or queue',
     (tester) async {
       final c = (await tester.runAsync(makeController))!;
       (c.api as fixture.LayoutApi).lyricLines = [
@@ -402,7 +402,11 @@ void main() {
       );
       await tester.pumpAndSettle();
       expect(tester.takeException(), isNull);
-      expect(find.byKey(const Key('player-queue-rail')), findsOneWidget);
+      expect(find.byKey(const Key('player-centered-view')), findsOneWidget);
+      expect(find.byKey(const Key('desktop-lyrics-scroll')), findsNothing);
+      expect(find.byKey(const Key('player-queue-rail')), findsNothing);
+      await tester.tap(find.byKey(const Key('player-lyrics-toggle')));
+      await tester.pumpAndSettle();
       expect(
         find.descendant(
           of: find.byKey(const Key('desktop-lyrics-scroll')),
@@ -416,6 +420,13 @@ void main() {
       );
       expect(find.byKey(const Key('compact-eq-band-0')), findsNothing);
       await fixture.screenshot(tester, 'audio-design-$runId-dark-full-desktop');
+      await tester.tap(find.byKey(const Key('player-queue-toggle')));
+      await tester.pumpAndSettle();
+      expect(find.byKey(const Key('desktop-lyrics-scroll')), findsNothing);
+      expect(find.text('An original quiet evening 1'), findsOneWidget);
+      await tester.tap(find.byKey(const Key('player-queue-toggle')));
+      await tester.pumpAndSettle();
+      expect(find.byKey(const Key('player-centered-view')), findsOneWidget);
       await fixture.clean(tester, c);
     },
   );

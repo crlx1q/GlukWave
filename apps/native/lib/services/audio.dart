@@ -490,6 +490,7 @@ class WaveAudioHandler extends BaseAudioHandler {
     required double position,
     required bool playing,
     required int revision,
+    bool retryCached = true,
   }) async {
     // A permitted cached download remains usable without a network lookup.
     final local = await cache.fileFor(track.id);
@@ -529,10 +530,32 @@ class WaveAudioHandler extends BaseAudioHandler {
     if (revision != _loadRevision) return;
     if (local != null) {
       _nativeSource = Uri.file(local.path).toString();
-      await player.setFilePath(
-        local.path,
-        initialPosition: Duration(milliseconds: (position * 1000).round()),
-      );
+      try {
+        await player.setFilePath(
+          local.path,
+          initialPosition: Duration(milliseconds: (position * 1000).round()),
+        );
+      } on PlayerException {
+        // A binary file can still fail the native decoder. Evict only this
+        // failed download and resolve once; cancellation/offline stay local.
+        if (!retryCached ||
+            offlineOnly ||
+            revision != _loadRevision ||
+            _released) {
+          rethrow;
+        }
+        cache.activeId = null;
+        await cache.remove(track.id);
+        if (revision != _loadRevision || _released) return;
+        return _loadTrack(
+          track,
+          list: list,
+          position: position,
+          playing: playing,
+          revision: revision,
+          retryCached: false,
+        );
+      }
     } else {
       final playback =
           resolvedPlayback ??

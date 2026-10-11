@@ -1224,5 +1224,7 @@
   "audioDesign.coverAccent": "Color de la portada",
   "audioDesign.coverAccentCaption": "Los controles y la onda siguen el álbum. Desactiva para mantener tu paleta.",
   "audioDesign.savePreset": "Guardar mi curva",
-  "audioDesign.savedPreset": "Mi curva"
+  "audioDesign.savedPreset": "Mi curva",
+  "focusedPlayer.nowPlaying": "Reproduciendo",
+  "focusedPlayer.more": "Más controles"
 }
