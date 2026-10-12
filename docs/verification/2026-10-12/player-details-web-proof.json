@@ -1,0 +1,1738 @@
+{
+  "passed": true,
+  "scope": "Actual React components on isolated own5196, original local QA recording and shipped artwork; normal autoplay policy.",
+  "layouts": [
+    {
+      "theme": "dark",
+      "width": 1440,
+      "height": 520,
+      "font": 1,
+      "flat": {
+        "client": 390,
+        "faces": [
+          {
+            "class": "art album-cover track-loading-cover ",
+            "rect": {
+              "bottom": 236,
+              "height": 132,
+              "left": 649,
+              "right": 781,
+              "top": 104,
+              "width": 132,
+              "x": 649,
+              "y": 104
+            }
+          }
+        ],
+        "scroll": 390,
+        "size": "132px",
+        "stage": {
+          "bottom": 248,
+          "height": 156,
+          "left": 526,
+          "right": 904,
+          "top": 92,
+          "width": 378,
+          "x": 526,
+          "y": 92
+        }
+      },
+      "threeD": {
+        "client": 390,
+        "faces": [
+          {
+            "class": "vinyl ",
+            "rect": {
+              "bottom": 224.109375,
+              "height": 108.21875,
+              "left": 668.5106201171875,
+              "right": 776.7293701171875,
+              "top": 115.890625,
+              "width": 108.21875,
+              "x": 668.5106201171875,
+              "y": 115.890625
+            }
+          },
+          {
+            "class": "art album-cover track-loading-cover ",
+            "rect": {
+              "bottom": 228.35250854492188,
+              "height": 116.70501708984376,
+              "left": 640.3087768554688,
+              "right": 757.0137939453125,
+              "top": 111.64749145507812,
+              "width": 116.70501708984376,
+              "x": 640.3087768554688,
+              "y": 111.64749145507812
+            }
+          },
+          {
+            "class": "album-back",
+            "rect": {
+              "bottom": 227.8682556152344,
+              "height": 115.73651123046876,
+              "left": 640.9286499023438,
+              "right": 756.6651611328125,
+              "top": 112.13174438476562,
+              "width": 115.73651123046876,
+              "x": 640.9286499023438,
+              "y": 112.13174438476562
+            }
+          },
+          {
+            "class": "album-spine",
+            "rect": {
+              "bottom": 228.109375,
+              "height": 116.21875,
+              "left": 645.6199951171875,
+              "right": 646.136474609375,
+              "top": 111.890625,
+              "width": 0.5164794921875,
+              "x": 645.6199951171875,
+              "y": 111.890625
+            }
+          }
+        ],
+        "scroll": 390,
+        "size": "116.219px",
+        "stage": {
+          "bottom": 248,
+          "height": 156,
+          "left": 526,
+          "right": 904,
+          "top": 92,
+          "width": 378,
+          "x": 526,
+          "y": 92
+        }
+      },
+      "radii": [
+        {
+          "radius": 8,
+          "values": [
+            {
+              "class": "eq-popover ",
+              "overflow": "auto",
+              "radius": 8
+            },
+            {
+              "class": "eq-preset-trigger",
+              "overflow": "visible",
+              "radius": 6.4
+            },
+            {
+              "class": "eq-speed",
+              "overflow": "visible",
+              "radius": 6.4
+            },
+            {
+              "class": "eq-curve enabled",
+              "overflow": "hidden",
+              "radius": 6.4
+            }
+          ]
+        },
+        {
+          "radius": 24,
+          "values": [
+            {
+              "class": "eq-popover ",
+              "overflow": "auto",
+              "radius": 24
+            },
+            {
+              "class": "eq-preset-trigger",
+              "overflow": "visible",
+              "radius": 19.2
+            },
+            {
+              "class": "eq-speed",
+              "overflow": "visible",
+              "radius": 19.2
+            },
+            {
+              "class": "eq-curve enabled",
+              "overflow": "hidden",
+              "radius": 19.2
+            }
+          ]
+        },
+        {
+          "radius": 38,
+          "values": [
+            {
+              "class": "eq-popover ",
+              "overflow": "auto",
+              "radius": 38
+            },
+            {
+              "class": "eq-preset-trigger",
+              "overflow": "visible",
+              "radius": 30.4
+            },
+            {
+              "class": "eq-speed",
+              "overflow": "visible",
+              "radius": 30.4
+            },
+            {
+              "class": "eq-curve enabled",
+              "overflow": "hidden",
+              "radius": 30.4
+            }
+          ]
+        }
+      ],
+      "search": {
+        "focused": true,
+        "outline": "none",
+        "shadow": "none"
+      }
+    },
+    {
+      "theme": "dark",
+      "width": 390,
+      "height": 700,
+      "font": 1,
+      "flat": {
+        "client": 344,
+        "faces": [
+          {
+            "class": "art album-cover track-loading-cover ",
+            "rect": {
+              "bottom": 323,
+              "height": 235,
+              "left": 72.5,
+              "right": 307.5,
+              "top": 88,
+              "width": 235,
+              "x": 72.5,
+              "y": 88
+            }
+          }
+        ],
+        "scroll": 344,
+        "size": "235px",
+        "stage": {
+          "bottom": 335,
+          "height": 259,
+          "left": 18,
+          "right": 362,
+          "top": 76,
+          "width": 344,
+          "x": 18,
+          "y": 76
+        }
+      },
+      "threeD": {
+        "client": 344,
+        "faces": [
+          {
+            "class": "vinyl ",
+            "rect": {
+              "bottom": 303.15625,
+              "height": 195.3125,
+              "left": 100.53624725341795,
+              "right": 295.84874725341797,
+              "top": 107.84375,
+              "width": 195.3125,
+              "x": 100.53624725341795,
+              "y": 107.84375
+            }
+          },
+          {
+            "class": "art album-cover track-loading-cover ",
+            "rect": {
+              "bottom": 307.58160400390625,
+              "height": 204.16319274902344,
+              "left": 59.33556365966797,
+              "right": 263.49874114990234,
+              "top": 103.4184112548828,
+              "width": 204.1631774902344,
+              "x": 59.33556365966797,
+              "y": 103.4184112548828
+            }
+          },
+          {
+            "class": "album-back",
+            "rect": {
+              "bottom": 306.73443603515625,
+              "height": 202.4688720703125,
+              "left": 60.41991424560547,
+              "right": 262.88878631591797,
+              "top": 104.26556396484376,
+              "width": 202.4688720703125,
+              "x": 60.41991424560547,
+              "y": 104.26556396484376
+            }
+          },
+          {
+            "class": "album-spine",
+            "rect": {
+              "bottom": 307.15625,
+              "height": 203.3125,
+              "left": 64.87999725341797,
+              "right": 65.81141662597656,
+              "top": 103.84375,
+              "width": 0.9314193725585938,
+              "x": 64.87999725341797,
+              "y": 103.84375
+            }
+          }
+        ],
+        "scroll": 344,
+        "size": "203.312px",
+        "stage": {
+          "bottom": 335,
+          "height": 259,
+          "left": 18,
+          "right": 362,
+          "top": 76,
+          "width": 344,
+          "x": 18,
+          "y": 76
+        }
+      },
+      "radii": [
+        {
+          "radius": 8,
+          "values": [
+            {
+              "class": "eq-popover ",
+              "overflow": "auto",
+              "radius": 8
+            },
+            {
+              "class": "eq-preset-trigger",
+              "overflow": "visible",
+              "radius": 6.4
+            },
+            {
+              "class": "eq-speed",
+              "overflow": "visible",
+              "radius": 6.4
+            },
+            {
+              "class": "eq-curve enabled",
+              "overflow": "hidden",
+              "radius": 6.4
+            }
+          ]
+        },
+        {
+          "radius": 24,
+          "values": [
+            {
+              "class": "eq-popover ",
+              "overflow": "auto",
+              "radius": 24
+            },
+            {
+              "class": "eq-preset-trigger",
+              "overflow": "visible",
+              "radius": 19.2
+            },
+            {
+              "class": "eq-speed",
+              "overflow": "visible",
+              "radius": 19.2
+            },
+            {
+              "class": "eq-curve enabled",
+              "overflow": "hidden",
+              "radius": 19.2
+            }
+          ]
+        },
+        {
+          "radius": 38,
+          "values": [
+            {
+              "class": "eq-popover ",
+              "overflow": "auto",
+              "radius": 38
+            },
+            {
+              "class": "eq-preset-trigger",
+              "overflow": "visible",
+              "radius": 30.4
+            },
+            {
+              "class": "eq-speed",
+              "overflow": "visible",
+              "radius": 30.4
+            },
+            {
+              "class": "eq-curve enabled",
+              "overflow": "hidden",
+              "radius": 30.4
+            }
+          ]
+        }
+      ],
+      "search": {
+        "focused": true,
+        "outline": "none",
+        "shadow": "none"
+      }
+    },
+    {
+      "theme": "dark",
+      "width": 320,
+      "height": 568,
+      "font": 1.25,
+      "flat": {
+        "client": 212,
+        "faces": [
+          {
+            "class": "art album-cover track-loading-cover ",
+            "rect": {
+              "bottom": 290,
+              "height": 195,
+              "left": 57.5,
+              "right": 252.5,
+              "top": 95,
+              "width": 195,
+              "x": 57.5,
+              "y": 95
+            }
+          }
+        ],
+        "scroll": 212,
+        "size": "156px",
+        "stage": {
+          "bottom": 305,
+          "height": 225,
+          "left": 22.5,
+          "right": 287.5,
+          "top": 80,
+          "width": 265,
+          "x": 22.5,
+          "y": 80
+        }
+      },
+      "threeD": {
+        "client": 212,
+        "faces": [
+          {
+            "class": "vinyl ",
+            "rect": {
+              "bottom": 268.5625,
+              "height": 152.140625,
+              "left": 96.61280822753906,
+              "right": 248.75343322753903,
+              "top": 116.421875,
+              "width": 152.140625,
+              "x": 96.61280822753906,
+              "y": 116.421875
+            }
+          },
+          {
+            "class": "art album-cover track-loading-cover ",
+            "rect": {
+              "bottom": 273.9016647338867,
+              "height": 162.81903076171875,
+              "left": 50.78797149658203,
+              "right": 213.6070022583008,
+              "top": 111.08263397216795,
+              "width": 162.81903076171875,
+              "x": 50.78797149658203,
+              "y": 111.08263397216795
+            }
+          },
+          {
+            "class": "album-back",
+            "rect": {
+              "bottom": 273.22613525390625,
+              "height": 161.46783447265625,
+              "left": 51.652801513671875,
+              "right": 213.12063598632812,
+              "top": 111.75830078125,
+              "width": 161.46783447265625,
+              "x": 51.652801513671875,
+              "y": 111.75830078125
+            }
+          },
+          {
+            "class": "album-spine",
+            "rect": {
+              "bottom": 273.5625,
+              "height": 162.140625,
+              "left": 57.47218704223633,
+              "right": 58.19820022583008,
+              "top": 111.421875,
+              "width": 0.72601318359375,
+              "x": 57.47218704223633,
+              "y": 111.421875
+            }
+          }
+        ],
+        "scroll": 212,
+        "size": "129.712px",
+        "stage": {
+          "bottom": 305,
+          "height": 225,
+          "left": 22.5,
+          "right": 287.5,
+          "top": 80,
+          "width": 265,
+          "x": 22.5,
+          "y": 80
+        }
+      },
+      "radii": [
+        {
+          "radius": 8,
+          "values": [
+            {
+              "class": "eq-popover ",
+              "overflow": "auto",
+              "radius": 8
+            },
+            {
+              "class": "eq-preset-trigger",
+              "overflow": "visible",
+              "radius": 6.4
+            },
+            {
+              "class": "eq-speed",
+              "overflow": "visible",
+              "radius": 6.4
+            },
+            {
+              "class": "eq-curve enabled",
+              "overflow": "hidden",
+              "radius": 6.4
+            }
+          ]
+        },
+        {
+          "radius": 24,
+          "values": [
+            {
+              "class": "eq-popover ",
+              "overflow": "auto",
+              "radius": 24
+            },
+            {
+              "class": "eq-preset-trigger",
+              "overflow": "visible",
+              "radius": 19.2
+            },
+            {
+              "class": "eq-speed",
+              "overflow": "visible",
+              "radius": 19.2
+            },
+            {
+              "class": "eq-curve enabled",
+              "overflow": "hidden",
+              "radius": 19.2
+            }
+          ]
+        },
+        {
+          "radius": 38,
+          "values": [
+            {
+              "class": "eq-popover ",
+              "overflow": "auto",
+              "radius": 38
+            },
+            {
+              "class": "eq-preset-trigger",
+              "overflow": "visible",
+              "radius": 30.4
+            },
+            {
+              "class": "eq-speed",
+              "overflow": "visible",
+              "radius": 30.4
+            },
+            {
+              "class": "eq-curve enabled",
+              "overflow": "hidden",
+              "radius": 30.4
+            }
+          ]
+        }
+      ],
+      "search": {
+        "focused": true,
+        "outline": "none",
+        "shadow": "none"
+      }
+    },
+    {
+      "theme": "light",
+      "width": 1440,
+      "height": 520,
+      "font": 1,
+      "flat": {
+        "client": 390,
+        "faces": [
+          {
+            "class": "art album-cover track-loading-cover ",
+            "rect": {
+              "bottom": 236,
+              "height": 132,
+              "left": 649,
+              "right": 781,
+              "top": 104,
+              "width": 132,
+              "x": 649,
+              "y": 104
+            }
+          }
+        ],
+        "scroll": 390,
+        "size": "132px",
+        "stage": {
+          "bottom": 248,
+          "height": 156,
+          "left": 526,
+          "right": 904,
+          "top": 92,
+          "width": 378,
+          "x": 526,
+          "y": 92
+        }
+      },
+      "threeD": {
+        "client": 390,
+        "faces": [
+          {
+            "class": "vinyl ",
+            "rect": {
+              "bottom": 224.109375,
+              "height": 108.21875,
+              "left": 668.5106201171875,
+              "right": 776.7293701171875,
+              "top": 115.890625,
+              "width": 108.21875,
+              "x": 668.5106201171875,
+              "y": 115.890625
+            }
+          },
+          {
+            "class": "art album-cover track-loading-cover ",
+            "rect": {
+              "bottom": 228.35250854492188,
+              "height": 116.70501708984376,
+              "left": 640.3087768554688,
+              "right": 757.0137939453125,
+              "top": 111.64749145507812,
+              "width": 116.70501708984376,
+              "x": 640.3087768554688,
+              "y": 111.64749145507812
+            }
+          },
+          {
+            "class": "album-back",
+            "rect": {
+              "bottom": 227.8682556152344,
+              "height": 115.73651123046876,
+              "left": 640.9286499023438,
+              "right": 756.6651611328125,
+              "top": 112.13174438476562,
+              "width": 115.73651123046876,
+              "x": 640.9286499023438,
+              "y": 112.13174438476562
+            }
+          },
+          {
+            "class": "album-spine",
+            "rect": {
+              "bottom": 228.109375,
+              "height": 116.21875,
+              "left": 645.6199951171875,
+              "right": 646.136474609375,
+              "top": 111.890625,
+              "width": 0.5164794921875,
+              "x": 645.6199951171875,
+              "y": 111.890625
+            }
+          }
+        ],
+        "scroll": 390,
+        "size": "116.219px",
+        "stage": {
+          "bottom": 248,
+          "height": 156,
+          "left": 526,
+          "right": 904,
+          "top": 92,
+          "width": 378,
+          "x": 526,
+          "y": 92
+        }
+      },
+      "radii": [
+        {
+          "radius": 8,
+          "values": [
+            {
+              "class": "eq-popover ",
+              "overflow": "auto",
+              "radius": 8
+            },
+            {
+              "class": "eq-preset-trigger",
+              "overflow": "visible",
+              "radius": 6.4
+            },
+            {
+              "class": "eq-speed",
+              "overflow": "visible",
+              "radius": 6.4
+            },
+            {
+              "class": "eq-curve enabled",
+              "overflow": "hidden",
+              "radius": 6.4
+            }
+          ]
+        },
+        {
+          "radius": 24,
+          "values": [
+            {
+              "class": "eq-popover ",
+              "overflow": "auto",
+              "radius": 24
+            },
+            {
+              "class": "eq-preset-trigger",
+              "overflow": "visible",
+              "radius": 19.2
+            },
+            {
+              "class": "eq-speed",
+              "overflow": "visible",
+              "radius": 19.2
+            },
+            {
+              "class": "eq-curve enabled",
+              "overflow": "hidden",
+              "radius": 19.2
+            }
+          ]
+        },
+        {
+          "radius": 38,
+          "values": [
+            {
+              "class": "eq-popover ",
+              "overflow": "auto",
+              "radius": 38
+            },
+            {
+              "class": "eq-preset-trigger",
+              "overflow": "visible",
+              "radius": 30.4
+            },
+            {
+              "class": "eq-speed",
+              "overflow": "visible",
+              "radius": 30.4
+            },
+            {
+              "class": "eq-curve enabled",
+              "overflow": "hidden",
+              "radius": 30.4
+            }
+          ]
+        }
+      ],
+      "search": {
+        "focused": true,
+        "outline": "none",
+        "shadow": "none"
+      }
+    },
+    {
+      "theme": "light",
+      "width": 390,
+      "height": 700,
+      "font": 1,
+      "flat": {
+        "client": 344,
+        "faces": [
+          {
+            "class": "art album-cover track-loading-cover ",
+            "rect": {
+              "bottom": 323,
+              "height": 235,
+              "left": 72.5,
+              "right": 307.5,
+              "top": 88,
+              "width": 235,
+              "x": 72.5,
+              "y": 88
+            }
+          }
+        ],
+        "scroll": 344,
+        "size": "235px",
+        "stage": {
+          "bottom": 335,
+          "height": 259,
+          "left": 18,
+          "right": 362,
+          "top": 76,
+          "width": 344,
+          "x": 18,
+          "y": 76
+        }
+      },
+      "threeD": {
+        "client": 344,
+        "faces": [
+          {
+            "class": "vinyl ",
+            "rect": {
+              "bottom": 303.15625,
+              "height": 195.3125,
+              "left": 100.53624725341795,
+              "right": 295.84874725341797,
+              "top": 107.84375,
+              "width": 195.3125,
+              "x": 100.53624725341795,
+              "y": 107.84375
+            }
+          },
+          {
+            "class": "art album-cover track-loading-cover ",
+            "rect": {
+              "bottom": 307.58160400390625,
+              "height": 204.16319274902344,
+              "left": 59.33556365966797,
+              "right": 263.49874114990234,
+              "top": 103.4184112548828,
+              "width": 204.1631774902344,
+              "x": 59.33556365966797,
+              "y": 103.4184112548828
+            }
+          },
+          {
+            "class": "album-back",
+            "rect": {
+              "bottom": 306.73443603515625,
+              "height": 202.4688720703125,
+              "left": 60.41991424560547,
+              "right": 262.88878631591797,
+              "top": 104.26556396484376,
+              "width": 202.4688720703125,
+              "x": 60.41991424560547,
+              "y": 104.26556396484376
+            }
+          },
+          {
+            "class": "album-spine",
+            "rect": {
+              "bottom": 307.15625,
+              "height": 203.3125,
+              "left": 64.87999725341797,
+              "right": 65.81141662597656,
+              "top": 103.84375,
+              "width": 0.9314193725585938,
+              "x": 64.87999725341797,
+              "y": 103.84375
+            }
+          }
+        ],
+        "scroll": 344,
+        "size": "203.312px",
+        "stage": {
+          "bottom": 335,
+          "height": 259,
+          "left": 18,
+          "right": 362,
+          "top": 76,
+          "width": 344,
+          "x": 18,
+          "y": 76
+        }
+      },
+      "radii": [
+        {
+          "radius": 8,
+          "values": [
+            {
+              "class": "eq-popover ",
+              "overflow": "auto",
+              "radius": 8
+            },
+            {
+              "class": "eq-preset-trigger",
+              "overflow": "visible",
+              "radius": 6.4
+            },
+            {
+              "class": "eq-speed",
+              "overflow": "visible",
+              "radius": 6.4
+            },
+            {
+              "class": "eq-curve enabled",
+              "overflow": "hidden",
+              "radius": 6.4
+            }
+          ]
+        },
+        {
+          "radius": 24,
+          "values": [
+            {
+              "class": "eq-popover ",
+              "overflow": "auto",
+              "radius": 24
+            },
+            {
+              "class": "eq-preset-trigger",
+              "overflow": "visible",
+              "radius": 19.2
+            },
+            {
+              "class": "eq-speed",
+              "overflow": "visible",
+              "radius": 19.2
+            },
+            {
+              "class": "eq-curve enabled",
+              "overflow": "hidden",
+              "radius": 19.2
+            }
+          ]
+        },
+        {
+          "radius": 38,
+          "values": [
+            {
+              "class": "eq-popover ",
+              "overflow": "auto",
+              "radius": 38
+            },
+            {
+              "class": "eq-preset-trigger",
+              "overflow": "visible",
+              "radius": 30.4
+            },
+            {
+              "class": "eq-speed",
+              "overflow": "visible",
+              "radius": 30.4
+            },
+            {
+              "class": "eq-curve enabled",
+              "overflow": "hidden",
+              "radius": 30.4
+            }
+          ]
+        }
+      ],
+      "search": {
+        "focused": true,
+        "outline": "none",
+        "shadow": "none"
+      }
+    },
+    {
+      "theme": "light",
+      "width": 320,
+      "height": 568,
+      "font": 1.25,
+      "flat": {
+        "client": 212,
+        "faces": [
+          {
+            "class": "art album-cover track-loading-cover ",
+            "rect": {
+              "bottom": 290,
+              "height": 195,
+              "left": 57.5,
+              "right": 252.5,
+              "top": 95,
+              "width": 195,
+              "x": 57.5,
+              "y": 95
+            }
+          }
+        ],
+        "scroll": 212,
+        "size": "156px",
+        "stage": {
+          "bottom": 305,
+          "height": 225,
+          "left": 22.5,
+          "right": 287.5,
+          "top": 80,
+          "width": 265,
+          "x": 22.5,
+          "y": 80
+        }
+      },
+      "threeD": {
+        "client": 212,
+        "faces": [
+          {
+            "class": "vinyl ",
+            "rect": {
+              "bottom": 268.5625,
+              "height": 152.140625,
+              "left": 96.61280822753906,
+              "right": 248.75343322753903,
+              "top": 116.421875,
+              "width": 152.140625,
+              "x": 96.61280822753906,
+              "y": 116.421875
+            }
+          },
+          {
+            "class": "art album-cover track-loading-cover ",
+            "rect": {
+              "bottom": 273.9016647338867,
+              "height": 162.81903076171875,
+              "left": 50.78797149658203,
+              "right": 213.6070022583008,
+              "top": 111.08263397216795,
+              "width": 162.81903076171875,
+              "x": 50.78797149658203,
+              "y": 111.08263397216795
+            }
+          },
+          {
+            "class": "album-back",
+            "rect": {
+              "bottom": 273.22613525390625,
+              "height": 161.46783447265625,
+              "left": 51.652801513671875,
+              "right": 213.12063598632812,
+              "top": 111.75830078125,
+              "width": 161.46783447265625,
+              "x": 51.652801513671875,
+              "y": 111.75830078125
+            }
+          },
+          {
+            "class": "album-spine",
+            "rect": {
+              "bottom": 273.5625,
+              "height": 162.140625,
+              "left": 57.47218704223633,
+              "right": 58.19820022583008,
+              "top": 111.421875,
+              "width": 0.72601318359375,
+              "x": 57.47218704223633,
+              "y": 111.421875
+            }
+          }
+        ],
+        "scroll": 212,
+        "size": "129.712px",
+        "stage": {
+          "bottom": 305,
+          "height": 225,
+          "left": 22.5,
+          "right": 287.5,
+          "top": 80,
+          "width": 265,
+          "x": 22.5,
+          "y": 80
+        }
+      },
+      "radii": [
+        {
+          "radius": 8,
+          "values": [
+            {
+              "class": "eq-popover ",
+              "overflow": "auto",
+              "radius": 8
+            },
+            {
+              "class": "eq-preset-trigger",
+              "overflow": "visible",
+              "radius": 6.4
+            },
+            {
+              "class": "eq-speed",
+              "overflow": "visible",
+              "radius": 6.4
+            },
+            {
+              "class": "eq-curve enabled",
+              "overflow": "hidden",
+              "radius": 6.4
+            }
+          ]
+        },
+        {
+          "radius": 24,
+          "values": [
+            {
+              "class": "eq-popover ",
+              "overflow": "auto",
+              "radius": 24
+            },
+            {
+              "class": "eq-preset-trigger",
+              "overflow": "visible",
+              "radius": 19.2
+            },
+            {
+              "class": "eq-speed",
+              "overflow": "visible",
+              "radius": 19.2
+            },
+            {
+              "class": "eq-curve enabled",
+              "overflow": "hidden",
+              "radius": 19.2
+            }
+          ]
+        },
+        {
+          "radius": 38,
+          "values": [
+            {
+              "class": "eq-popover ",
+              "overflow": "auto",
+              "radius": 38
+            },
+            {
+              "class": "eq-preset-trigger",
+              "overflow": "visible",
+              "radius": 30.4
+            },
+            {
+              "class": "eq-speed",
+              "overflow": "visible",
+              "radius": 30.4
+            },
+            {
+              "class": "eq-curve enabled",
+              "overflow": "hidden",
+              "radius": 30.4
+            }
+          ]
+        }
+      ],
+      "search": {
+        "focused": true,
+        "outline": "none",
+        "shadow": "none"
+      }
+    },
+    {
+      "theme": "amoled",
+      "width": 1440,
+      "height": 520,
+      "font": 1,
+      "flat": {
+        "client": 390,
+        "faces": [
+          {
+            "class": "art album-cover track-loading-cover ",
+            "rect": {
+              "bottom": 236,
+              "height": 132,
+              "left": 649,
+              "right": 781,
+              "top": 104,
+              "width": 132,
+              "x": 649,
+              "y": 104
+            }
+          }
+        ],
+        "scroll": 390,
+        "size": "132px",
+        "stage": {
+          "bottom": 248,
+          "height": 156,
+          "left": 526,
+          "right": 904,
+          "top": 92,
+          "width": 378,
+          "x": 526,
+          "y": 92
+        }
+      },
+      "threeD": {
+        "client": 390,
+        "faces": [
+          {
+            "class": "vinyl ",
+            "rect": {
+              "bottom": 224.109375,
+              "height": 108.21875,
+              "left": 668.5106201171875,
+              "right": 776.7293701171875,
+              "top": 115.890625,
+              "width": 108.21875,
+              "x": 668.5106201171875,
+              "y": 115.890625
+            }
+          },
+          {
+            "class": "art album-cover track-loading-cover ",
+            "rect": {
+              "bottom": 228.35250854492188,
+              "height": 116.70501708984376,
+              "left": 640.3087768554688,
+              "right": 757.0137939453125,
+              "top": 111.64749145507812,
+              "width": 116.70501708984376,
+              "x": 640.3087768554688,
+              "y": 111.64749145507812
+            }
+          },
+          {
+            "class": "album-back",
+            "rect": {
+              "bottom": 227.8682556152344,
+              "height": 115.73651123046876,
+              "left": 640.9286499023438,
+              "right": 756.6651611328125,
+              "top": 112.13174438476562,
+              "width": 115.73651123046876,
+              "x": 640.9286499023438,
+              "y": 112.13174438476562
+            }
+          },
+          {
+            "class": "album-spine",
+            "rect": {
+              "bottom": 228.109375,
+              "height": 116.21875,
+              "left": 645.6199951171875,
+              "right": 646.136474609375,
+              "top": 111.890625,
+              "width": 0.5164794921875,
+              "x": 645.6199951171875,
+              "y": 111.890625
+            }
+          }
+        ],
+        "scroll": 390,
+        "size": "116.219px",
+        "stage": {
+          "bottom": 248,
+          "height": 156,
+          "left": 526,
+          "right": 904,
+          "top": 92,
+          "width": 378,
+          "x": 526,
+          "y": 92
+        }
+      },
+      "radii": [
+        {
+          "radius": 8,
+          "values": [
+            {
+              "class": "eq-popover ",
+              "overflow": "auto",
+              "radius": 8
+            },
+            {
+              "class": "eq-preset-trigger",
+              "overflow": "visible",
+              "radius": 6.4
+            },
+            {
+              "class": "eq-speed",
+              "overflow": "visible",
+              "radius": 6.4
+            },
+            {
+              "class": "eq-curve enabled",
+              "overflow": "hidden",
+              "radius": 6.4
+            }
+          ]
+        },
+        {
+          "radius": 24,
+          "values": [
+            {
+              "class": "eq-popover ",
+              "overflow": "auto",
+              "radius": 24
+            },
+            {
+              "class": "eq-preset-trigger",
+              "overflow": "visible",
+              "radius": 19.2
+            },
+            {
+              "class": "eq-speed",
+              "overflow": "visible",
+              "radius": 19.2
+            },
+            {
+              "class": "eq-curve enabled",
+              "overflow": "hidden",
+              "radius": 19.2
+            }
+          ]
+        },
+        {
+          "radius": 38,
+          "values": [
+            {
+              "class": "eq-popover ",
+              "overflow": "auto",
+              "radius": 38
+            },
+            {
+              "class": "eq-preset-trigger",
+              "overflow": "visible",
+              "radius": 30.4
+            },
+            {
+              "class": "eq-speed",
+              "overflow": "visible",
+              "radius": 30.4
+            },
+            {
+              "class": "eq-curve enabled",
+              "overflow": "hidden",
+              "radius": 30.4
+            }
+          ]
+        }
+      ],
+      "search": {
+        "focused": true,
+        "outline": "none",
+        "shadow": "none"
+      }
+    },
+    {
+      "theme": "amoled",
+      "width": 390,
+      "height": 700,
+      "font": 1,
+      "flat": {
+        "client": 344,
+        "faces": [
+          {
+            "class": "art album-cover track-loading-cover ",
+            "rect": {
+              "bottom": 323,
+              "height": 235,
+              "left": 72.5,
+              "right": 307.5,
+              "top": 88,
+              "width": 235,
+              "x": 72.5,
+              "y": 88
+            }
+          }
+        ],
+        "scroll": 344,
+        "size": "235px",
+        "stage": {
+          "bottom": 335,
+          "height": 259,
+          "left": 18,
+          "right": 362,
+          "top": 76,
+          "width": 344,
+          "x": 18,
+          "y": 76
+        }
+      },
+      "threeD": {
+        "client": 344,
+        "faces": [
+          {
+            "class": "vinyl ",
+            "rect": {
+              "bottom": 303.15625,
+              "height": 195.3125,
+              "left": 100.53624725341795,
+              "right": 295.84874725341797,
+              "top": 107.84375,
+              "width": 195.3125,
+              "x": 100.53624725341795,
+              "y": 107.84375
+            }
+          },
+          {
+            "class": "art album-cover track-loading-cover ",
+            "rect": {
+              "bottom": 307.58160400390625,
+              "height": 204.16319274902344,
+              "left": 59.33556365966797,
+              "right": 263.49874114990234,
+              "top": 103.4184112548828,
+              "width": 204.1631774902344,
+              "x": 59.33556365966797,
+              "y": 103.4184112548828
+            }
+          },
+          {
+            "class": "album-back",
+            "rect": {
+              "bottom": 306.73443603515625,
+              "height": 202.4688720703125,
+              "left": 60.41991424560547,
+              "right": 262.88878631591797,
+              "top": 104.26556396484376,
+              "width": 202.4688720703125,
+              "x": 60.41991424560547,
+              "y": 104.26556396484376
+            }
+          },
+          {
+            "class": "album-spine",
+            "rect": {
+              "bottom": 307.15625,
+              "height": 203.3125,
+              "left": 64.87999725341797,
+              "right": 65.81141662597656,
+              "top": 103.84375,
+              "width": 0.9314193725585938,
+              "x": 64.87999725341797,
+              "y": 103.84375
+            }
+          }
+        ],
+        "scroll": 344,
+        "size": "203.312px",
+        "stage": {
+          "bottom": 335,
+          "height": 259,
+          "left": 18,
+          "right": 362,
+          "top": 76,
+          "width": 344,
+          "x": 18,
+          "y": 76
+        }
+      },
+      "radii": [
+        {
+          "radius": 8,
+          "values": [
+            {
+              "class": "eq-popover ",
+              "overflow": "auto",
+              "radius": 8
+            },
+            {
+              "class": "eq-preset-trigger",
+              "overflow": "visible",
+              "radius": 6.4
+            },
+            {
+              "class": "eq-speed",
+              "overflow": "visible",
+              "radius": 6.4
+            },
+            {
+              "class": "eq-curve enabled",
+              "overflow": "hidden",
+              "radius": 6.4
+            }
+          ]
+        },
+        {
+          "radius": 24,
+          "values": [
+            {
+              "class": "eq-popover ",
+              "overflow": "auto",
+              "radius": 24
+            },
+            {
+              "class": "eq-preset-trigger",
+              "overflow": "visible",
+              "radius": 19.2
+            },
+            {
+              "class": "eq-speed",
+              "overflow": "visible",
+              "radius": 19.2
+            },
+            {
+              "class": "eq-curve enabled",
+              "overflow": "hidden",
+              "radius": 19.2
+            }
+          ]
+        },
+        {
+          "radius": 38,
+          "values": [
+            {
+              "class": "eq-popover ",
+              "overflow": "auto",
+              "radius": 38
+            },
+            {
+              "class": "eq-preset-trigger",
+              "overflow": "visible",
+              "radius": 30.4
+            },
+            {
+              "class": "eq-speed",
+              "overflow": "visible",
+              "radius": 30.4
+            },
+            {
+              "class": "eq-curve enabled",
+              "overflow": "hidden",
+              "radius": 30.4
+            }
+          ]
+        }
+      ],
+      "search": {
+        "focused": true,
+        "outline": "none",
+        "shadow": "none"
+      }
+    },
+    {
+      "theme": "amoled",
+      "width": 320,
+      "height": 568,
+      "font": 1.25,
+      "flat": {
+        "client": 212,
+        "faces": [
+          {
+            "class": "art album-cover track-loading-cover ",
+            "rect": {
+              "bottom": 290,
+              "height": 195,
+              "left": 57.5,
+              "right": 252.5,
+              "top": 95,
+              "width": 195,
+              "x": 57.5,
+              "y": 95
+            }
+          }
+        ],
+        "scroll": 212,
+        "size": "156px",
+        "stage": {
+          "bottom": 305,
+          "height": 225,
+          "left": 22.5,
+          "right": 287.5,
+          "top": 80,
+          "width": 265,
+          "x": 22.5,
+          "y": 80
+        }
+      },
+      "threeD": {
+        "client": 212,
+        "faces": [
+          {
+            "class": "vinyl ",
+            "rect": {
+              "bottom": 268.5625,
+              "height": 152.140625,
+              "left": 96.61280822753906,
+              "right": 248.75343322753903,
+              "top": 116.421875,
+              "width": 152.140625,
+              "x": 96.61280822753906,
+              "y": 116.421875
+            }
+          },
+          {
+            "class": "art album-cover track-loading-cover ",
+            "rect": {
+              "bottom": 273.9016647338867,
+              "height": 162.81903076171875,
+              "left": 50.78797149658203,
+              "right": 213.6070022583008,
+              "top": 111.08263397216795,
+              "width": 162.81903076171875,
+              "x": 50.78797149658203,
+              "y": 111.08263397216795
+            }
+          },
+          {
+            "class": "album-back",
+            "rect": {
+              "bottom": 273.22613525390625,
+              "height": 161.46783447265625,
+              "left": 51.652801513671875,
+              "right": 213.12063598632812,
+              "top": 111.75830078125,
+              "width": 161.46783447265625,
+              "x": 51.652801513671875,
+              "y": 111.75830078125
+            }
+          },
+          {
+            "class": "album-spine",
+            "rect": {
+              "bottom": 273.5625,
+              "height": 162.140625,
+              "left": 57.47218704223633,
+              "right": 58.19820022583008,
+              "top": 111.421875,
+              "width": 0.72601318359375,
+              "x": 57.47218704223633,
+              "y": 111.421875
+            }
+          }
+        ],
+        "scroll": 212,
+        "size": "129.712px",
+        "stage": {
+          "bottom": 305,
+          "height": 225,
+          "left": 22.5,
+          "right": 287.5,
+          "top": 80,
+          "width": 265,
+          "x": 22.5,
+          "y": 80
+        }
+      },
+      "radii": [
+        {
+          "radius": 8,
+          "values": [
+            {
+              "class": "eq-popover ",
+              "overflow": "auto",
+              "radius": 8
+            },
+            {
+              "class": "eq-preset-trigger",
+              "overflow": "visible",
+              "radius": 6.4
+            },
+            {
+              "class": "eq-speed",
+              "overflow": "visible",
+              "radius": 6.4
+            },
+            {
+              "class": "eq-curve enabled",
+              "overflow": "hidden",
+              "radius": 6.4
+            }
+          ]
+        },
+        {
+          "radius": 24,
+          "values": [
+            {
+              "class": "eq-popover ",
+              "overflow": "auto",
+              "radius": 24
+            },
+            {
+              "class": "eq-preset-trigger",
+              "overflow": "visible",
+              "radius": 19.2
+            },
+            {
+              "class": "eq-speed",
+              "overflow": "visible",
+              "radius": 19.2
+            },
+            {
+              "class": "eq-curve enabled",
+              "overflow": "hidden",
+              "radius": 19.2
+            }
+          ]
+        },
+        {
+          "radius": 38,
+          "values": [
+            {
+              "class": "eq-popover ",
+              "overflow": "auto",
+              "radius": 38
+            },
+            {
+              "class": "eq-preset-trigger",
+              "overflow": "visible",
+              "radius": 30.4
+            },
+            {
+              "class": "eq-speed",
+              "overflow": "visible",
+              "radius": 30.4
+            },
+            {
+              "class": "eq-curve enabled",
+              "overflow": "hidden",
+              "radius": 30.4
+            }
+          ]
+        }
+      ],
+      "search": {
+        "focused": true,
+        "outline": "none",
+        "shadow": "none"
+      }
+    }
+  ],
+  "screenshots": [
+    "work/qa/player-details-1791800121829-dark-1440-flat.png",
+    "work/qa/player-details-1791800121829-dark-1440-3d.png",
+    "work/qa/player-details-1791800121829-dark-1440-eq.png",
+    "work/qa/player-details-1791800121829-dark-1440-search.png",
+    "work/qa/player-details-1791800121829-dark-390-flat.png",
+    "work/qa/player-details-1791800121829-dark-390-3d.png",
+    "work/qa/player-details-1791800121829-dark-390-eq.png",
+    "work/qa/player-details-1791800121829-dark-390-search.png",
+    "work/qa/player-details-1791800121829-dark-320-flat.png",
+    "work/qa/player-details-1791800121829-dark-320-3d.png",
+    "work/qa/player-details-1791800121829-dark-320-eq.png",
+    "work/qa/player-details-1791800121829-dark-320-search.png",
+    "work/qa/player-details-1791800121829-light-1440-flat.png",
+    "work/qa/player-details-1791800121829-light-1440-3d.png",
+    "work/qa/player-details-1791800121829-light-1440-eq.png",
+    "work/qa/player-details-1791800121829-light-1440-search.png",
+    "work/qa/player-details-1791800121829-light-390-flat.png",
+    "work/qa/player-details-1791800121829-light-390-3d.png",
+    "work/qa/player-details-1791800121829-light-390-eq.png",
+    "work/qa/player-details-1791800121829-light-390-search.png",
+    "work/qa/player-details-1791800121829-light-320-flat.png",
+    "work/qa/player-details-1791800121829-light-320-3d.png",
+    "work/qa/player-details-1791800121829-light-320-eq.png",
+    "work/qa/player-details-1791800121829-light-320-search.png",
+    "work/qa/player-details-1791800121829-amoled-1440-flat.png",
+    "work/qa/player-details-1791800121829-amoled-1440-3d.png",
+    "work/qa/player-details-1791800121829-amoled-1440-eq.png",
+    "work/qa/player-details-1791800121829-amoled-1440-search.png",
+    "work/qa/player-details-1791800121829-amoled-390-flat.png",
+    "work/qa/player-details-1791800121829-amoled-390-3d.png",
+    "work/qa/player-details-1791800121829-amoled-390-eq.png",
+    "work/qa/player-details-1791800121829-amoled-390-search.png",
+    "work/qa/player-details-1791800121829-amoled-320-flat.png",
+    "work/qa/player-details-1791800121829-amoled-320-3d.png",
+    "work/qa/player-details-1791800121829-amoled-320-eq.png",
+    "work/qa/player-details-1791800121829-amoled-320-search.png",
+    "work/qa/player-details-1791800121829-actual-resolving.png"
+  ],
+  "checks": [
+    "9 actual light/dark/AMOLED layouts: short 1440x520 desktop,390x700 and320x568 at125% font. Flat and3D faces/disc/spine all remain inside stage, with actual stage containment; separate motion proof covers all intermediate manual rotation frames.",
+    "EQ persists enabled highlight after closing and clears on actual disable; aria-pressed is enabled state. Preset keyboard/ArrowDown/Enter and pointer are quiet, usable; search typing has computed outline none and box-shadow none. Lyrics and queue share selected transform; reduced motion removes it.",
+    "Actual3s playback resolution: disabled seek and no command seek drift, muted progress, loading play orbit, next enabled. Success/error/rapid cancellation end indicator and return seek control."
+  ],
+  "icons": {
+    "lyrics": "matrix(0.990268, -0.139173, 0.139173, 0.990268, 0, -1)",
+    "queue": "matrix(0.990268, -0.139173, 0.139173, 0.990268, 0, -1)",
+    "reduced": "none"
+  }
+}

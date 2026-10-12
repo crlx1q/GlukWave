@@ -1,0 +1,424 @@
+Resolving dependencies...
+Downloading packages...
+  archive 4.3.0 (4.5.1 available)
+  characters 1.4.0 (1.4.1 available)
+  clock 1.1.2 (1.1.3 available)
+  cross_file 0.3.5+2 (0.4.0 available)
+  cupertino_icons 1.0.9 (2.0.0 available)
+  dbus 0.7.15 (0.8.0 available)
+  file_picker 11.0.3 (13.1.0 available)
+  flutter_lints 5.0.0 (6.0.0 available)
+  flutter_plugin_android_lifecycle 2.0.34 (2.0.35 available)
+  flutter_secure_storage 10.3.4 (11.2.0 available)
+  flutter_secure_storage_darwin 0.3.2 (0.4.3 available)
+  flutter_secure_storage_windows 4.1.0 (4.2.2 available)
+  image 4.10.1 (4.10.2 available)
+  intl 0.20.2 (0.20.3 available)
+  lints 5.1.1 (6.1.0 available)
+  matcher 0.12.17 (0.12.20 available)
+  material_color_utilities 0.11.1 (0.13.1 available)
+  meta 1.16.0 (1.19.0 available)
+  path_provider 2.1.5 (2.1.6 available)
+  path_provider_android 2.2.23 (2.3.1 available)
+  path_provider_foundation 2.5.1 (2.6.0 available)
+  path_provider_linux 2.2.1 (2.2.2 available)
+  path_provider_platform_interface 2.1.2 (2.1.3 available)
+  petitparser 7.0.2 (7.1.0 available)
+  platform 3.1.6 (3.2.0 available)
+  qr 3.0.2 (4.0.0 available)
+  screen_retriever 0.2.2 (0.3.0 available)
+  shared_preferences 2.5.5 (2.5.6 available)
+  shared_preferences_android 2.4.23 (2.4.28 available)
+  shared_preferences_foundation 2.5.6 (2.5.7 available)
+  sqflite 2.4.2 (2.4.4+1 available)
+  sqflite_android 2.4.2+2 (2.4.4 available)
+  sqflite_common 2.5.6 (2.5.13+1 available)
+  sqflite_darwin 2.4.2 (2.4.4 available)
+  sqflite_platform_interface 2.4.0 (2.4.2 available)
+  stack_trace 1.12.1 (1.12.2 available)
+  synchronized 3.4.0 (3.4.2 available)
+  test_api 0.7.6 (0.7.15 available)
+  tray_manager 0.5.3 (0.8.0 available)
+  url_launcher 6.3.2 (6.3.3 available)
+  url_launcher_android 6.3.29 (6.3.33 available)
+  url_launcher_ios 6.3.6 (6.4.2 available)
+  url_launcher_linux 3.2.2 (3.2.3 available)
+  url_launcher_macos 3.2.5 (3.2.6 available)
+  url_launcher_web 2.4.1 (2.4.3 available)
+  url_launcher_windows 3.1.5 (3.1.6 available)
+  vector_math 2.2.0 (2.4.3 available)
+  win32 5.15.0 (6.4.0 available)
+  xml 6.6.1 (7.1.0 available)
+Got dependencies!
+49 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+00:00 +0: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ambient_lyrics_test.dart
+00:00 +0: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ambient_lyrics_test.dart: (setUpAll)
+00:00 +0: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ambient_lyrics_test.dart: Genius URL validation matches HTTPS page, blocks lookalikes and escapes
+00:00 +1: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ambient_lyrics_test.dart: Genius labels are available in all six supported languages
+00:00 +2: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ambient_lyrics_test.dart: Preview leaves server unchanged, unchanged explicit save retains Genius source
+00:06 +3: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ambient_lyrics_test.dart: Edited Genius lyrics save user text, failure and invalid links preserve draft
+00:08 +4: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ambient_lyrics_test.dart: Changed account and dismissed editor ignore a late preview
+00:09 +5: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ambient_lyrics_test.dart: Cover light freezes on pause, hidden lifecycle, TickerMode and reduced motion
+00:09 +6: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ambient_lyrics_test.dart: Genius editor narrow phone at 125 percent text scale
+00:10 +7: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ambient_lyrics_test.dart: Genius editor light at 390.0
+00:11 +8: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ambient_lyrics_test.dart: Genius editor dark at 390.0
+00:12 +9: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ambient_lyrics_test.dart: Genius editor amoled at 390.0
+00:13 +10: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ambient_lyrics_test.dart: Genius editor light at 1280.0
+00:14 +11: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ambient_lyrics_test.dart: Genius editor dark at 1280.0
+00:14 +12: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ambient_lyrics_test.dart: Genius editor amoled at 1280.0
+00:15 +13: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ambient_lyrics_test.dart: (tearDownAll)
+00:15 +13: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/api_connection_test.dart
+00:17 +13: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/api_connection_test.dart: real native HTTP accepts Unicode device names and polls audio through a transient edge failure
+00:18 +14: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/appearance_layout_test.dart
+00:20 +14: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/appearance_layout_test.dart: (setUpAll)
+00:20 +14: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/appearance_layout_test.dart: Live custom palette and controls fit width 320.0
+00:41 +15: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/appearance_layout_test.dart: Live custom palette and controls fit width 390.0
+00:49 +16: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/appearance_layout_test.dart: Live custom palette and controls fit width 768.0
+00:53 +17: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/appearance_layout_test.dart: Live custom palette and controls fit width 1280.0
+00:56 +18: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/appearance_layout_test.dart: System mode follows OS brightness and custom corners/density apply to real components
+00:57 +19: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/appearance_layout_test.dart: (tearDownAll)
+00:57 +19: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/appearance_test.dart
+00:59 +19: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/appearance_test.dart: Hex accepts short input and invalid colors never replace a working palette
+00:59 +20: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/appearance_test.dart: Palette edits and reset preserve the opposite theme
+00:59 +21: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/appearance_test.dart: Guest changes survive restart and do not cross account scopes
+00:59 +22: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/appearance_test.dart: Offline PATCH retries from disk and preserves a remote edit of the other palette
+01:00 +23: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/appearance_test.dart: An old account response cannot change guest appearance after logout
+01:00 +24: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/appearance_test.dart: Newer socket settings survive an older PATCH while sparse local edits stay visible
+01:00 +25: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/appearance_test.dart: In-flight sparse edits overlay remote events and survive a failed transport restart
+01:00 +26: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/appearance_test.dart: Old session and origin cannot reconcile or block a new account request
+01:00 +27: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart
+01:02 +27: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart: (setUpAll)
+01:02 +27: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart: Actual auth, offline Lo-Fi, profile and settings fit width 320.0 without setup copy
+01:16 +28: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart: Actual auth, offline Lo-Fi, profile and settings fit width 390.0 without setup copy
+01:22 +29: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart: Actual auth, offline Lo-Fi, profile and settings fit width 768.0 without setup copy
+01:27 +30: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart: Actual auth, offline Lo-Fi, profile and settings fit width 1280.0 without setup copy
+01:33 +31: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart: Fullscreen, real bounded queue gestures and scrolling at 320.0
+01:35 +32: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart: Fullscreen, real bounded queue gestures and scrolling at 390.0
+01:37 +33: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart: Fullscreen, real bounded queue gestures and scrolling at 768.0
+01:39 +34: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart: Fullscreen, real bounded queue gestures and scrolling at 1280.0
+01:42 +35: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart: Search and lyric skeletons follow pending API work, without fake waits
+01:44 +36: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart: External track accepts personal lyrics through the actual mobile editor
+01:45 +37: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart: LRCLIB selection saves provider ID through the real editor at 320.0
+01:47 +38: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart: LRCLIB selection saves provider ID through the real editor at 1280.0
+01:48 +39: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart: (tearDownAll)
+01:48 +39: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/artwork_test.dart
+01:50 +39: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/artwork_test.dart: Large public SoundCloud artwork preserves metadata URL and query
+01:50 +40: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/artwork_test.dart: Unrelated or unsafe artwork URLs are never rewritten
+01:50 +41: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/artwork_test.dart: Failed high-resolution artwork retries the original then settles
+01:54 +42: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_design_test.dart
+01:57 +42: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_design_test.dart: (setUpAll)
+01:57 +42: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_design_test.dart: Bounded chromatic sample, contrast, basic auto preference and six translated labels
+01:57 +43: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_design_test.dart: Tiny image decode returns real colour; canceled cached callback cannot publish
+01:58 +44: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_design_test.dart: Actual anchored compact EQ fits dark 320.0 at125 percent font
+02:02 +45: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_design_test.dart: Actual anchored compact EQ fits dark 390.0 at125 percent font
+02:03 +46: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_design_test.dart: Actual anchored compact EQ fits dark 1440.0 at125 percent font
+02:06 +47: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_design_test.dart: Actual anchored compact EQ fits amoled 320.0 at125 percent font
+02:07 +48: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_design_test.dart: Actual anchored compact EQ fits amoled 390.0 at125 percent font
+02:09 +49: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_design_test.dart: Actual anchored compact EQ fits amoled 1440.0 at125 percent font
+02:11 +50: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_design_test.dart: Actual anchored compact EQ fits light 320.0 at125 percent font
+02:13 +51: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_design_test.dart: Actual anchored compact EQ fits light 390.0 at125 percent font
+02:15 +52: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_design_test.dart: Actual anchored compact EQ fits light 1440.0 at125 percent font
+02:17 +53: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_design_test.dart: EQ actions update real controller, processing boundary and persisted custom curve
+02:22 +54: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_design_test.dart: Native volume retains zero / one arc / two arc topology
+02:23 +55: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_design_test.dart: Expanded desktop starts centered and discloses only the requested lyrics or queue
+02:31 +56: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_design_test.dart: (tearDownAll)
+02:32 +56: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_lifecycle_test.dart
+02:34 +56: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_lifecycle_test.dart: Permitted external source resolves before provider choice and retains its descriptor in current/queue
+02:35 +57: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_lifecycle_test.dart: Extensionless SoundCloud descriptor uses native HLS with own EQ path and no offline permission
+02:35 +58: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_lifecycle_test.dart: Metadata alone does not grant native playback or forward credentials to a CDN
+02:35 +59: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_lifecycle_test.dart: Old server widget descriptors are rejected and loading resets on failure
+02:35 +60: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_lifecycle_test.dart: Autonomous playback never falls back to cloud when a cached file is missing
+02:35 +61: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_lifecycle_test.dart: Cached permitted audio plays without resolving an online embedded descriptor
+02:35 +62: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_lifecycle_test.dart: Cached native decoder failure resolves once and preserves paused position and queue
+02:35 +63: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_lifecycle_test.dart: Offline decoder failure preserves the download and never resolves online
+02:35 +64: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_lifecycle_test.dart: A failed fresh source after cache recovery is not retried indefinitely
+02:35 +65: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_lifecycle_test.dart: Pause cancels source resolution before late native loading or playback
+02:35 +66: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_lifecycle_test.dart: Background visual suspension preserves real native completion and starts the next direct source
+02:37 +67: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_lifecycle_test.dart: Download descriptor is restricted to the authenticated own origin
+02:37 +68: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_lifecycle_test.dart: Provider cancellation during an outgoing pause cannot install a late document
+02:37 +69: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_lifecycle_test.dart: Clearing an outgoing provider never clears a newer ready document
+02:37 +70: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/cache_test.dart
+02:38 +70: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/cache_test.dart: Concurrent downloads commit quota and manifest atomically
+02:39 +71: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/cache_test.dart: Successful manifest or HTML response is not saved as offline audio
+02:39 +72: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/cache_test.dart: Historical cached playlist is removed so normal playback resolves a fresh stream
+02:39 +73: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/cache_test.dart: Pinned downloads are preserved when quota is exhausted
+02:39 +74: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/cache_test.dart: Concurrent LRU accesses and manual pinning cannot lose metadata
+02:39 +75: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/cache_test.dart: Clearing private files cancels downloads and leaves no audio
+02:39 +76: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/connect_layout_test.dart
+02:41 +76: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/connect_layout_test.dart: (setUpAll)
+02:41 +76: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/connect_layout_test.dart: Connected playback, device controls and pinned room fit light Size(390.0, 844.0)
+02:47 +77: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/connect_layout_test.dart: Connected playback, device controls and pinned room fit light Size(1280.0, 900.0)
+02:50 +78: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/connect_layout_test.dart: Connected playback, device controls and pinned room fit dark Size(390.0, 844.0)
+02:51 +79: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/connect_layout_test.dart: Connected playback, device controls and pinned room fit dark Size(1280.0, 900.0)
+02:52 +80: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/connect_layout_test.dart: Connected playback, device controls and pinned room fit amoled Size(390.0, 844.0)
+02:53 +81: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/connect_layout_test.dart: Connected playback, device controls and pinned room fit amoled Size(1280.0, 900.0)
+02:55 +82: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/connect_layout_test.dart: A mouse wheel adjusts volume within bounds rather than scrolling the page
+02:55 +83: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/connect_layout_test.dart: (tearDownAll)
+02:55 +83: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/connect_provider_test.dart
+02:58 +83: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/connect_provider_test.dart: Account Connect mirrors remote playback and routes controls without local playback
+02:58 +84: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/connect_provider_test.dart: Same installation and another runtime remains a remote output
+02:58 +85: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/connect_provider_test.dart: Late Connect responses cannot replace new revisions and legacy 404 is immediate
+02:58 +86: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/connect_provider_test.dart: Own-output Connect keeps saved volume while remote volume is only mirrored
+02:58 +87: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/connect_provider_test.dart: Official provider document validates identities and carries no account token
+02:58 +88: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/connect_provider_test.dart: Provider transport derives playing/time/ended from official callbacks, rejecting old generations
+02:59 +89: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/desktop_window_test.dart
+03:01 +89: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/desktop_window_test.dart: Tray click modes preserve full and mini bounds and restore frame
+03:02 +90: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/diagnostics_test.dart
+03:05 +90: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/diagnostics_test.dart: diagnostics scrub credentials, URLs, emails and local paths
+03:05 +91: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/diagnostics_test.dart: real HTTP delivery deduplicates reports and clears the queue after ACK
+03:05 +92: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/discord_layout_test.dart
+03:08 +92: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/discord_layout_test.dart: (setUpAll)
+03:08 +92: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/discord_layout_test.dart: Discord actual panel composes at Size(390.0, 844.0) in light with artwork and live state
+03:11 +93: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/discord_layout_test.dart: Discord actual panel composes at Size(1280.0, 1000.0) in light with artwork and live state
+03:12 +94: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/discord_layout_test.dart: Discord actual panel composes at Size(390.0, 844.0) in dark with artwork and live state
+03:12 +95: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/discord_layout_test.dart: Discord actual panel composes at Size(1280.0, 1000.0) in dark with artwork and live state
+03:12 +96: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/discord_layout_test.dart: Discord actual panel composes at Size(390.0, 844.0) in amoled with artwork and live state
+03:12 +97: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/discord_layout_test.dart: Discord actual panel composes at Size(1280.0, 1000.0) in amoled with artwork and live state
+03:14 +98: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/discord_layout_test.dart: Server Free lock has upgrade and no enabled connect or sharing controls
+03:14 +99: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/discord_layout_test.dart: Disconnected, reconnect, unavailable, error and empty states are real and scoped
+03:14 +100: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/discord_layout_test.dart: Disable and join privacy persist through server; unlink requires confirmation
+03:15 +101: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/discord_layout_test.dart: Narrow Discord panel remains readable in en with 125 percent text
+03:15 +102: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/discord_layout_test.dart: Narrow Discord panel remains readable in ru with 125 percent text
+03:15 +103: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/discord_layout_test.dart: Narrow Discord panel remains readable in kk with 125 percent text
+03:15 +104: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/discord_layout_test.dart: Narrow Discord panel remains readable in uk with 125 percent text
+03:15 +105: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/discord_layout_test.dart: Narrow Discord panel remains readable in de with 125 percent text
+03:22 +106: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/discord_layout_test.dart: Narrow Discord panel remains readable in es with 125 percent text
+03:23 +107: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/discord_layout_test.dart: (tearDownAll)
+03:23 +107: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/discord_test.dart
+03:25 +107: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/discord_test.dart: Public activity progresses locally without sending playback to Discord
+03:25 +108: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/discord_test.dart: Native presence loads server canonical output rather than local player
+03:26 +109: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/discord_test.dart: Older pending request cannot replace a new authoritative socket snapshot
+03:26 +110: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/discord_test.dart: Changing accounts during a request does not expose previous identity
+03:26 +111: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/discord_test.dart: Errors stay scoped and omit provider secrets; save waits for server
+03:26 +112: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/discord_test.dart: OAuth browser handoff refreshes actual server link when app resumes
+03:26 +113: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/discord_test.dart: Free server status is authoritative even with stale paid client profile
+03:26 +114: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/discord_test.dart: Disposed request completion does not notify or recreate status
+03:26 +115: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/domain_test.dart
+03:27 +115: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/domain_test.dart: Duration uses hours at the exact boundary and guards invalid values
+03:27 +116: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/domain_test.dart: Room access comes from the owner or explicit control grant
+03:27 +117: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/domain_test.dart: Authoritative timeline projects only while playing and clamps to duration
+03:27 +118: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/domain_test.dart: External metadata does not become downloadable music
+03:27 +119: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/domain_test.dart: Synchronized lyrics choose the preceding timed line
+03:27 +120: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/domain_test.dart: Server addresses reject credentials, paths and invalid schemes
+03:27 +121: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/domain_test.dart: Native API sends bearer separately and preserves server errors
+03:27 +122: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ecosystem_layout_test.dart
+03:29 +122: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ecosystem_layout_test.dart: (setUpAll)
+03:29 +122: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ecosystem_layout_test.dart: Real device controls and session security compose at Size(390.0, 844.0) in light
+03:35 +123: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ecosystem_layout_test.dart: Real device controls and session security compose at Size(1280.0, 900.0) in light
+03:38 +124: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ecosystem_layout_test.dart: Real device controls and session security compose at Size(390.0, 844.0) in dark
+03:40 +125: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ecosystem_layout_test.dart: Real device controls and session security compose at Size(1280.0, 900.0) in dark
+03:42 +126: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ecosystem_layout_test.dart: Real device controls and session security compose at Size(390.0, 844.0) in amoled
+03:44 +127: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ecosystem_layout_test.dart: Real device controls and session security compose at Size(1280.0, 900.0) in amoled
+03:46 +128: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ecosystem_layout_test.dart: (tearDownAll)
+03:46 +128: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ecosystem_test.dart
+03:47 +128: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ecosystem_test.dart: Joining on a second client mirrors a room and remote volume targets the selected output
+03:48 +129: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ecosystem_test.dart: Account room adoption before socket connection does not claim output or start duplicate sound
+03:48 +130: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ecosystem_test.dart: Only the selected room output loads audio; a stale revision cannot reclaim it
+03:48 +131: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ecosystem_test.dart: Room listeners without control rights still adjust output volume but cannot change the room track
+03:48 +132: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ecosystem_test.dart: A room without an output owner stays a silent mirror and Listen here claims through a real room join
+03:48 +133: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ecosystem_test.dart: Session actions use real server results; failures do not remove rows and other-session logout preserves current
+03:48 +134: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ecosystem_test.dart: Late session responses cannot cross an account boundary; legacy missing routes are honest unavailable
+03:48 +135: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ecosystem_test.dart: Duplicate transfer taps serialize until the real response and refreshed ownership arrive
+03:48 +136: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ecosystem_test.dart: A room transfer command adopts participation then awaits ready playback without sending room-wide commands
+03:48 +137: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ecosystem_test.dart: Failed room-source readiness does not retain provisional ownership
+03:48 +138: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ecosystem_test.dart: A transfer rollback pause cancels a delayed source instead of allowing late autoplay or an obsolete ACK
+03:48 +139: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ecosystem_test.dart: Native requests explicitly distinguish the app from a browser without carrying callback keys
+03:48 +140: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ecosystem_test.dart: Returning from OAuth refreshes actual connections instead of assuming the browser completed sign-in
+03:48 +141: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/equalizer_test.dart
+03:49 +141: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/equalizer_test.dart: Hardware center frequencies interpolate the shared curve in logarithmic space
+03:49 +142: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/equalizer_test.dart: Sparse processing changes preserve synced bands and reject invalid values
+03:49 +143: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/equalizer_test.dart: Older two-theme settings migrate without losing palettes or resetting processing
+03:49 +144: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/focused_player_test.dart
+03:51 +144: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/focused_player_test.dart: (setUpAll)
+03:51 +144: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/focused_player_test.dart: Focused player dark 1440.0 at125 percent, centered/split, preset menu and themed corners
+03:55 +145: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/focused_player_test.dart: Focused player dark 1280.0 at125 percent, centered/split, preset menu and themed corners
+03:56 +146: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/focused_player_test.dart: Focused player dark 390.0 at125 percent, centered/split, preset menu and themed corners
+03:58 +147: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/focused_player_test.dart: Focused player dark 320.0 at125 percent, centered/split, preset menu and themed corners
+03:59 +148: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/focused_player_test.dart: Focused player amoled 1440.0 at125 percent, centered/split, preset menu and themed corners
+04:00 +149: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/focused_player_test.dart: Focused player amoled 1280.0 at125 percent, centered/split, preset menu and themed corners
+04:01 +150: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/focused_player_test.dart: Focused player amoled 390.0 at125 percent, centered/split, preset menu and themed corners
+04:02 +151: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/focused_player_test.dart: Focused player amoled 320.0 at125 percent, centered/split, preset menu and themed corners
+04:03 +152: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/focused_player_test.dart: Focused player light 1440.0 at125 percent, centered/split, preset menu and themed corners
+04:04 +153: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/focused_player_test.dart: Focused player light 1280.0 at125 percent, centered/split, preset menu and themed corners
+04:05 +154: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/focused_player_test.dart: Focused player light 390.0 at125 percent, centered/split, preset menu and themed corners
+04:06 +155: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/focused_player_test.dart: Focused player light 320.0 at125 percent, centered/split, preset menu and themed corners
+04:07 +156: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/focused_player_test.dart: Native preset keyboard opens/selects without changing track, slider touch overlay is quiet
+04:07 +157: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/focused_player_test.dart: (tearDownAll)
+04:07 +157: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/font_test.dart
+04:08 +157: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/font_test.dart: (setUpAll)
+04:08 +157: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/font_test.dart: App font manifest maps six genuine static faces with matching metadata
+04:08 +158: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/font_test.dart: Actual registered rounded bold outlines render heavier than normal
+04:08 +159: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/font_test.dart: Manrope default registers genuine regular and extra-bold outlines
+04:08 +160: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/font_test.dart: (tearDownAll)
+04:09 +160: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/home_widgets_test.dart
+04:10 +160: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/home_widgets_test.dart: cold action is consumed once; unknown commands and foreign arguments do not dispatch
+04:10 +161: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/home_widgets_test.dart: progress/heartbeat notifications with identical state do not rewrite launcher
+04:10 +162: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/home_widgets_test.dart: slow platform write coalesces to newest track and clear drops queued metadata
+04:10 +163: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/home_widgets_test.dart: pin only supports the two real provider variants
+04:10 +164: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/home_widgets_test.dart: all six locales ship every widget instruction and accessibility label
+04:10 +165: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/home_widget_controller_test.dart
+04:11 +165: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/home_widget_controller_test.dart: media-session widget custom actions use existing account transport and like handlers
+04:12 +166: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/home_widget_controller_test.dart: signed-out, stale account and unknown commands never reach playback
+04:12 +167: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/home_widget_controller_test.dart: room listener cannot skip/start Wave; jam listener may toggle existing output
+04:12 +168: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/home_widget_controller_test.dart: Wave uses backend recommendations; a response after account switch cannot start music
+04:12 +169: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/lan_controller_test.dart
+04:13 +169: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/lan_controller_test.dart: LAN controllers mirror, control and transfer one output without cloud requests; missing cache retains sender
+04:14 +170: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/lan_layout_test.dart
+04:15 +170: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/lan_layout_test.dart: (setUpAll)
+04:15 +170: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/lan_layout_test.dart: LAN invitation, QR and trusted peers fit320 at125 percent en
+04:18 +171: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/lan_layout_test.dart: LAN invitation, QR and trusted peers fit320 at125 percent ru
+04:18 +172: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/lan_layout_test.dart: LAN invitation, QR and trusted peers fit320 at125 percent kk
+04:19 +173: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/lan_layout_test.dart: LAN invitation, QR and trusted peers fit320 at125 percent uk
+04:19 +174: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/lan_layout_test.dart: LAN invitation, QR and trusted peers fit320 at125 percent de
+04:19 +175: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/lan_layout_test.dart: LAN invitation, QR and trusted peers fit320 at125 percent es
+04:19 +176: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/lan_layout_test.dart: LAN trust removal confirms and disconnect affects local mode only
+04:20 +177: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/lan_layout_test.dart: (tearDownAll)
+04:20 +177: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/lan_transport_test.dart
+04:21 +177: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/lan_transport_test.dart: AEAD authenticates direction, sequence, session and refuses replay
+04:21 +178: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/lan_transport_test.dart: Invitations reject public origins, invalid keys and expiry
+04:21 +179: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/lan_transport_test.dart: Real sockets pair, forward to the requesting peer, broadcast and revoke trust
+04:21 +180: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/lan_transport_test.dart: Account mismatch and device limits are rejected during pairing
+04:22 +181: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/layout_test.dart
+04:23 +181: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/layout_test.dart: (setUpAll)
+04:23 +181: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/layout_test.dart: Warm reference layout fits width 320.0 with reduced motion
+04:24 +182: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/layout_test.dart: Warm reference layout fits width 390.0 with reduced motion
+04:24 +183: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/layout_test.dart: Warm reference layout fits width 768.0 with reduced motion
+04:24 +184: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/layout_test.dart: Warm reference layout fits width 1280.0 with reduced motion
+04:24 +185: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/layout_test.dart: (tearDownAll)
+04:25 +185: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/listening_polish_test.dart
+04:26 +185: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/listening_polish_test.dart: (setUpAll)
+04:26 +185: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/listening_polish_test.dart: Listening polish shell and typed discovery dark 1440.0 at125%
+04:33 +186: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/listening_polish_test.dart: Listening polish shell and typed discovery dark 1100.0 at125%
+04:36 +187: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/listening_polish_test.dart: Listening polish shell and typed discovery dark 390.0 at125%
+04:38 +188: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/listening_polish_test.dart: Listening polish shell and typed discovery dark 320.0 at125%
+04:39 +189: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/listening_polish_test.dart: Listening polish shell and typed discovery amoled 1440.0 at125%
+04:42 +190: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/listening_polish_test.dart: Listening polish shell and typed discovery amoled 1100.0 at125%
+04:44 +191: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/listening_polish_test.dart: Listening polish shell and typed discovery amoled 390.0 at125%
+04:46 +192: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/listening_polish_test.dart: Listening polish shell and typed discovery amoled 320.0 at125%
+04:47 +193: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/listening_polish_test.dart: Listening polish shell and typed discovery light 1440.0 at125%
+04:49 +194: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/listening_polish_test.dart: Listening polish shell and typed discovery light 1100.0 at125%
+04:51 +195: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/listening_polish_test.dart: Listening polish shell and typed discovery light 390.0 at125%
+04:53 +196: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/listening_polish_test.dart: Listening polish shell and typed discovery light 320.0 at125%
+04:54 +197: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/listening_polish_test.dart: Compact synchronized lyrics show two separate rows; cover menu closes on selection/Escape
+04:56 +198: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/listening_polish_test.dart: Preset pointer focus has no ring; keyboard focus uses a quiet background
+04:57 +199: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/listening_polish_test.dart: Six language new labels and custom primary outline icons are present
+04:57 +200: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/listening_polish_test.dart: (tearDownAll)
+04:57 +200: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/localization_test.dart
+04:58 +200: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/localization_test.dart: (setUpAll)
+04:59 +200: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/localization_test.dart: All six offline catalogs have identical complete keys and interpolation parameters
+04:59 +201: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/localization_test.dart: English fallback, regional locales, plural forms and localized numbers/dates are real
+04:59 +202: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/localization_test.dart: Language persists for guests and account offline edits stay sparse across stale revisions
+04:59 +203: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/localization_test.dart: Late region results cannot replace manual choices or another account scope
+04:59 +204: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/localization_test.dart: The actual guest language picker changes Flutter locale and persists offline
+05:06 +205: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/localization_test.dart: Actual en auth, home, settings and player at width 320.0 preserve music titles
+05:08 +206: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/localization_test.dart: Actual en auth, home, settings and player at width 390.0 preserve music titles
+05:10 +207: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/localization_test.dart: Actual en auth, home, settings and player at width 1280.0 preserve music titles
+05:14 +208: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/localization_test.dart: Actual ru auth, home, settings and player at width 320.0 preserve music titles
+05:17 +209: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/localization_test.dart: Actual ru auth, home, settings and player at width 390.0 preserve music titles
+05:20 +210: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/localization_test.dart: Actual kk auth, home, settings and player at width 320.0 preserve music titles
+05:22 +211: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/localization_test.dart: Actual kk auth, home, settings and player at width 390.0 preserve music titles
+05:23 +212: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/localization_test.dart: Actual uk auth, home, settings and player at width 320.0 preserve music titles
+05:25 +213: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/localization_test.dart: Actual uk auth, home, settings and player at width 390.0 preserve music titles
+05:26 +214: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/localization_test.dart: Actual de auth, home, settings and player at width 320.0 preserve music titles
+05:27 +215: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/localization_test.dart: Actual de auth, home, settings and player at width 390.0 preserve music titles
+05:29 +216: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/localization_test.dart: Actual de auth, home, settings and player at width 1280.0 preserve music titles
+05:31 +217: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/localization_test.dart: Actual es auth, home, settings and player at width 320.0 preserve music titles
+05:32 +218: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/localization_test.dart: Actual es auth, home, settings and player at width 390.0 preserve music titles
+05:33 +219: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/localization_test.dart: (tearDownAll)
+05:33 +219: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/motion_controls_test.dart
+05:35 +219: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/motion_controls_test.dart: Play morph reverses without resizing its hitbox and settles immediately offscreen
+05:37 +220: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/motion_controls_test.dart: Unified light slider is touch usable and disabled control does not seek
+05:37 +221: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/motion_controls_test.dart: Unified dark slider is touch usable and disabled control does not seek
+05:38 +222: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/motion_controls_test.dart: Unified amoled slider is touch usable and disabled control does not seek
+05:38 +223: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/native_auth_desktop_test.dart
+05:39 +223: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/native_auth_desktop_test.dart: (setUpAll)
+05:39 +223: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/native_auth_desktop_test.dart: Compact window reserves visible official source controls
+05:39 +224: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/native_auth_desktop_test.dart: Native email registration and login are real fields at Size(320.0, 740.0)
+05:43 +225: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/native_auth_desktop_test.dart: Native email registration and login are real fields at Size(390.0, 844.0)
+05:44 +226: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/native_auth_desktop_test.dart: Native email registration and login are real fields at Size(1280.0, 860.0)
+05:45 +227: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/native_auth_desktop_test.dart: Startup belongs to actual initialization state
+05:45 +228: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/native_auth_desktop_test.dart: Legacy CAPTCHA server is an honest browser fallback
+05:45 +229: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/native_auth_desktop_test.dart: Tray quick player and frameless mini fit light, wheel changes queue
+05:46 +230: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/native_auth_desktop_test.dart: Tray quick player and frameless mini fit dark, wheel changes queue
+05:46 +231: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/native_auth_desktop_test.dart: Tray quick player and frameless mini fit amoled, wheel changes queue
+05:46 +232: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/native_auth_desktop_test.dart: (tearDownAll)
+05:46 +232: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity_test.dart
+05:48 +232: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity_test.dart: Windows native property bridge applies finite DSP only to the selected music output and clears it on disable
+05:48 +233: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity_test.dart: Rejected native DSP clears the filter and restores requested volume
+05:48 +234: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity_test.dart: Taste persists catalogue selections and explicit skip completes with zero artists
+05:48 +235: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity_test.dart: A late taste response cannot populate a different account scope
+05:48 +236: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity_test.dart: Typography remains bounded and free accessibility edits do not require detailed customization
+05:48 +237: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity_test.dart: Plan rejection restores authoritative appearance and does not queue an endless retry
+05:48 +238: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity_test.dart: Jam listener toggles its own pause using the REST endpoint without host transport permissions
+05:49 +239: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity_test.dart: Playlist visibility uses PATCH and verifies the returned public state
+05:50 +240: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity_test.dart: Privacy switch sends only its accepted boolean and reloads authoritative server state
+05:50 +241: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity_test.dart: Friend request accept/decline use real request identifiers and explicit boolean
+05:51 +242: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity_test.dart: Failed account deletion retains private account state and displays an error
+05:52 +243: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity_test.dart: Unavailable optional endpoint remains an honest error with retry and no counters
+05:52 +244: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity_test.dart: Admin release form is visible only for configured owner rights
+05:52 +245: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/player_details_test.dart
+05:54 +245: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/player_details_test.dart: (setUpAll)
+05:54 +245: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/player_details_test.dart: Live EQ outer, chart, speed and preset radius; quiet keyboard focus dark
+05:58 +246: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/player_details_test.dart: Entire native cover at125% dark Size(1440.0, 600.0) flat/3D/extreme tilt
+05:59 +247: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/player_details_test.dart: Entire native cover at125% dark Size(390.0, 700.0) flat/3D/extreme tilt
+06:00 +248: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/player_details_test.dart: Entire native cover at125% dark Size(320.0, 568.0) flat/3D/extreme tilt
+06:00 +249: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/player_details_test.dart: Live EQ outer, chart, speed and preset radius; quiet keyboard focus amoled
+06:02 +250: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/player_details_test.dart: Entire native cover at125% amoled Size(1440.0, 600.0) flat/3D/extreme tilt
+06:02 +251: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/player_details_test.dart: Entire native cover at125% amoled Size(390.0, 700.0) flat/3D/extreme tilt
+06:03 +252: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/player_details_test.dart: Entire native cover at125% amoled Size(320.0, 568.0) flat/3D/extreme tilt
+06:03 +253: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/player_details_test.dart: Live EQ outer, chart, speed and preset radius; quiet keyboard focus light
+06:05 +254: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/player_details_test.dart: Entire native cover at125% light Size(1440.0, 600.0) flat/3D/extreme tilt
+06:05 +255: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/player_details_test.dart: Entire native cover at125% light Size(390.0, 700.0) flat/3D/extreme tilt
+06:06 +256: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/player_details_test.dart: Entire native cover at125% light Size(320.0, 568.0) flat/3D/extreme tilt
+06:06 +257: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/player_details_test.dart: Persisted compact EQ highlight survives closing and toggles off with DSP
+06:07 +258: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/player_details_test.dart: Lyrics and queue use same active icon treatment and respect motion off
+06:07 +259: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/player_details_test.dart: Real resolving success/error/cancel resets loading; user seeks blocked, internal sync preserved
+06:09 +260: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/player_details_test.dart: (tearDownAll)
+06:09 +260: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/player_polish_test.dart
+06:11 +260: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/player_polish_test.dart: (setUpAll)
+06:11 +260: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/player_polish_test.dart: Overflow scrolls after start pause; fitting/reduced/hidden text stays still with complete semantics
+06:12 +261: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/player_polish_test.dart: Loading cover breathes only while busy; reduced/TickerMode stable and disposal cancels ticker
+06:12 +262: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/player_polish_test.dart: Project control vectors retain bounded geometry at icon sizes
+06:12 +263: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/player_polish_test.dart: (tearDownAll)
+06:12 +263: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/room_playback_test.dart
+06:14 +263: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/room_playback_test.dart: Actual room completion sends validated repeat and current track/revision identity
+06:14 +264: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/seasonal_test.dart
+06:15 +264: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/seasonal_test.dart: (setUpAll)
+06:16 +264: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/seasonal_test.dart: Season choice is opt-in, month auto detection and sparse edits preserve choices
+06:16 +265: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/seasonal_test.dart: Guest seasonal settings survive restart and stay separate from another account
+06:16 +266: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/seasonal_test.dart: Summer light is diffused, restrained, gently moving and intensity aware
+06:16 +267: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/seasonal_test.dart: Seasonal ticker stops/disappears for reduced motion, TickerMode and background; disabled preview stays still
+06:17 +268: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/seasonal_test.dart: Season settings narrow125 percent render and labels en
+06:18 +269: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/seasonal_test.dart: Season settings narrow125 percent render and labels ru
+06:18 +270: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/seasonal_test.dart: Season settings narrow125 percent render and labels kk
+06:18 +271: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/seasonal_test.dart: Season settings narrow125 percent render and labels uk
+06:19 +272: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/seasonal_test.dart: Season settings narrow125 percent render and labels de
+06:19 +273: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/seasonal_test.dart: Season settings narrow125 percent render and labels es
+06:19 +274: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/seasonal_test.dart: (tearDownAll)
+06:19 +274: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/transport_player_layout_test.dart
+06:21 +274: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/transport_player_layout_test.dart: (setUpAll)
+06:21 +274: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/transport_player_layout_test.dart: Expanded source/season single layer320/125 en
+06:24 +275: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/transport_player_layout_test.dart: Expanded source/season single layer320/125 ru
+06:25 +276: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/transport_player_layout_test.dart: Expanded source/season single layer320/125 kk
+06:26 +277: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/transport_player_layout_test.dart: Expanded source/season single layer320/125 uk
+06:26 +278: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/transport_player_layout_test.dart: Expanded source/season single layer320/125 de
+06:27 +279: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/transport_player_layout_test.dart: Expanded source/season single layer320/125 es
+06:27 +280: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/transport_player_layout_test.dart: (tearDownAll)
+06:27 +280: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/volume_auth_test.dart
+06:29 +280: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/volume_auth_test.dart: Native and QR challenges accept the server epoch and legacy ISO
+06:29 +281: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/volume_auth_test.dart: Volume survives recreation, preserves mute and serializes changes
+06:29 +282: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/wave_color_test.dart
+06:30 +282: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/wave_color_test.dart: (setUpAll)
+06:30 +282: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/wave_color_test.dart: Native eight colour batches match real web palette in six colour/theme combinations
+06:31 +283: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/wave_color_test.dart: Actual native folded renderer stays transparent outside field; colour does not move geometry; inputs move field
+06:31 +284: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/wave_color_test.dart: Actual native field screenshots cover light dark AMOLED, both accents and widths
+06:31 +285: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/wave_color_test.dart: Widget previews use actual metadata, responsive controls, all states and six locales125 without overflow
+06:35 +286: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/wave_color_test.dart: (tearDownAll)
+06:35 +286: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/wave_test.dart
+06:37 +286: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/wave_test.dart: Flutter Bloom matches actual exported web equations at varied pointer and audio states
+06:37 +287: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/wave_test.dart: Only measured valid envelopes drive energy and pause always silences the response
+06:37 +288: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/wave_test.dart: Real waveform HTTP response is cached per account and reloads offline
+06:39 +289: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/wave_test.dart: A delayed envelope cannot leak into another session, account cache or visible field
+06:39 +290: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/wave_test.dart: Local rain is decodable non-clipping mono PCM with a continuous loop boundary
+06:39 +291: All tests passed!

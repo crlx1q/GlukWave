@@ -127,9 +127,12 @@ class _AlbumStageState extends State<AlbumStage>
         url: widget.track.artwork,
         size: coverSize,
         radius: 14,
+        fit: BoxFit.contain,
       ),
     );
     return SizedBox(
+      key: const Key('album-stage-bounds'),
+      width: size,
       height: size + 45,
       child: Center(
         child: appearance.cover3d
@@ -209,9 +212,8 @@ class _AlbumStageState extends State<AlbumStage>
                       duration: dragging ? Duration.zero : v.duration(260),
                       builder: (context, value, child) => AnimatedBuilder(
                         animation: drift,
-                        builder: (_, child) => Transform(
-                          alignment: Alignment.center,
-                          transform: Matrix4.identity()
+                        builder: (_, child) {
+                          final matrix = Matrix4.identity()
                             ..setEntry(3, 2, .0014)
                             ..rotateX(
                               -.06 -
@@ -229,9 +231,54 @@ class _AlbumStageState extends State<AlbumStage>
                                             .06
                                       : 0),
                             )
-                            ..rotateZ(-.025),
-                          child: child,
-                        ),
+                            ..rotateZ(-.025);
+                          // A perspective transform's painted bounds exceed
+                          // its layout box. Fit the projected corners before
+                          // painting, including the strongest touch tilt.
+                          final rect = Rect.fromCenter(
+                            center: Offset.zero,
+                            width: size,
+                            height: size,
+                          );
+                          final projected = [
+                            rect.topLeft,
+                            rect.topRight,
+                            rect.bottomLeft,
+                            rect.bottomRight,
+                          ].map((p) => MatrixUtils.transformPoint(matrix, p));
+                          final left = projected
+                                  .map((p) => p.dx)
+                                  .reduce(math.min),
+                              right = projected
+                                  .map((p) => p.dx)
+                                  .reduce(math.max),
+                              top = projected.map((p) => p.dy).reduce(math.min),
+                              bottom = projected
+                                  .map((p) => p.dy)
+                                  .reduce(math.max),
+                              fit = math.min(
+                                1.0,
+                                math.min(
+                                  (size - 16) / (right - left),
+                                  (size + 21) / (bottom - top),
+                                ),
+                              );
+                          final fitted = Matrix4.identity()
+                            ..translateByDouble(
+                              -(left + right) * .5 * fit,
+                              -(top + bottom) * .5 * fit,
+                              0,
+                              1,
+                            )
+                            ..scaleByDouble(fit, fit, 1, 1)
+                            ..multiply(matrix);
+                          return Transform(
+                            key: const Key('album-3d-transform'),
+                            alignment: Alignment.center,
+                            transform: fitted,
+                            child: child,
+                          );
+                        },
                         child: child,
                       ),
                       child: SizedBox(

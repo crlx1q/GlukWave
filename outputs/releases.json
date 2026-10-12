@@ -3,22 +3,22 @@
     {
       "platform": "android",
       "file": "GlukWave-android-debug.apk",
-      "version": "1.0.0+14",
+      "version": "1.0.0+15",
       "signature": "debug",
       "channel": "beta",
-      "bytes": 185551215,
-      "sha256": "21f4690cec451929cd454f77f5a0b196a6317703ff871daf142d43652fdd2d3b",
-      "builtAt": "2026-10-11T17:43:51.511Z"
+      "bytes": 185556475,
+      "sha256": "b667a42ac1051df207c86351b6ee7ae0ae5c2b4d35e3e3c2009d285062dd3ad3",
+      "builtAt": "2026-10-12T10:34:34.864Z"
     },
     {
       "platform": "windows",
       "file": "GlukWave-Setup.exe",
-      "version": "1.0.0+14",
+      "version": "1.0.0+15",
       "signature": "release",
       "channel": "stable",
-      "bytes": 24380648,
-      "sha256": "4c05d3c2fe90ab5593e8902592212b08264550731057b5b1d0a1f35aefb65990",
-      "builtAt": "2026-10-11T17:45:41.587Z"
+      "bytes": 24382563,
+      "sha256": "2fef5f1aa30415f0168fb105bd4a19b5070da3ebd6cc35cb6bf226acab07ffcd",
+      "builtAt": "2026-10-12T10:38:51.074Z"
     }
   ]
 }

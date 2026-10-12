@@ -152,7 +152,10 @@ class MiniPlayer extends StatelessWidget {
                             widthFactor: value,
                             heightFactor: 1,
                             child: ColoredBox(
-                              color: v.accent.withValues(alpha: .16),
+                              color: (c.trackLoading ? v.muted : v.accent)
+                                  .withValues(
+                                    alpha: c.trackLoading ? .08 : .16,
+                                  ),
                             ),
                           ),
                         ),
@@ -281,10 +284,7 @@ class MiniPlayer extends StatelessWidget {
                               StreamBuilder<PlaybackState>(
                                 stream: c.audio.playbackState,
                                 builder: (context, state) {
-                                  final busy = const [
-                                    AudioProcessingState.buffering,
-                                    AudioProcessingState.loading,
-                                  ].contains(state.data?.processingState);
+                                  final busy = c.trackLoading;
                                   return IconButton.filled(
                                     tooltip: c.audio.playing
                                         ? wt(
@@ -302,7 +302,9 @@ class MiniPlayer extends StatelessWidget {
                                       maximumSize: const Size(44, 44),
                                     ),
                                     onPressed:
-                                        c.canTogglePlayback && track != null
+                                        c.canTogglePlayback &&
+                                            track != null &&
+                                            (!busy || c.audio.playing)
                                         ? () => _run(
                                             c,
                                             c.audio.playing
@@ -310,19 +312,11 @@ class MiniPlayer extends StatelessWidget {
                                                 : c.audio.play,
                                           )
                                         : null,
-                                    icon: busy
-                                        ? SizedBox(
-                                            width: 17,
-                                            height: 17,
-                                            child: CircularProgressIndicator(
-                                              strokeWidth: 2,
-                                              color: v.player,
-                                            ),
-                                          )
-                                        : WavePlayPauseIcon(
-                                            playing: c.audio.playing,
-                                            size: 23,
-                                          ),
+                                    icon: WavePlaybackIcon(
+                                      playing: c.audio.playing,
+                                      loading: busy,
+                                      size: 23,
+                                    ),
                                   );
                                 },
                               ),
@@ -345,11 +339,20 @@ class MiniPlayer extends StatelessWidget {
                                 IconButton(
                                   key: const Key('mini-equalizer'),
                                   tooltip: wt('eq.title', context: context),
+                                  isSelected: c.customization.equalizer.enabled,
+                                  style: IconButton.styleFrom(
+                                    backgroundColor:
+                                        c.customization.equalizer.enabled
+                                        ? v.accentSoft
+                                        : Colors.transparent,
+                                  ),
                                   onPressed: () =>
                                       showPlayerEqualizer(context, c),
                                   icon: WaveControlIcon(
                                     Icons.graphic_eq_rounded,
-                                    color: v.onPlayer.withValues(alpha: .7),
+                                    color: c.customization.equalizer.enabled
+                                        ? v.accent
+                                        : v.onPlayer.withValues(alpha: .7),
                                     size: 19,
                                   ),
                                 ),
@@ -408,7 +411,7 @@ class MiniPlayer extends StatelessWidget {
                                         .clamp(0, 1)
                                   : 0,
                               minHeight: 2,
-                              color: v.accent,
+                              color: c.trackLoading ? v.muted : v.accent,
                               backgroundColor: v.onPlayer.withValues(
                                 alpha: .12,
                               ),
@@ -447,51 +450,72 @@ Future<void> showPlayerEqualizer(BuildContext context, WaveController c) {
     transitionDuration: waveVisuals(
       context,
     ).duration((220 / waveVisuals(context).speed).round()),
-    pageBuilder: (dialog, _, _) => LayoutBuilder(
-      builder: (dialog, constraints) {
-        final width = (constraints.maxWidth - 16).clamp(200.0, 380.0),
-            height =
-                (constraints.maxHeight -
-                        MediaQuery.paddingOf(dialog).vertical -
-                        24)
-                    .clamp(100.0, 460.0),
-            anchorY = size != null && size.height < 200
-                ? origin.dy
-                : constraints.maxHeight -
-                      90 -
-                      MediaQuery.paddingOf(dialog).bottom;
-        final top = (anchorY - height - 12).clamp(
-              MediaQuery.paddingOf(dialog).top + 8,
-              constraints.maxHeight - height - 8,
+    pageBuilder: (dialog, _, _) => AnimatedBuilder(
+      animation: c,
+      builder: (dialog, _) {
+        final inherited = Theme.of(dialog),
+            liveVisuals = waveVisuals(dialog).copyWith(
+              radius: c.customization.appearance.radius,
+              speed: c.customization.appearance.speed,
+              reducedMotion: c.customization.reducedMotion,
+            );
+        return Theme(
+          data: inherited.copyWith(extensions: [liveVisuals]),
+          child: Builder(
+            builder: (dialog) => LayoutBuilder(
+              builder: (dialog, constraints) {
+                final width = (constraints.maxWidth - 16).clamp(200.0, 380.0),
+                    height =
+                        (constraints.maxHeight -
+                                MediaQuery.paddingOf(dialog).vertical -
+                                24)
+                            .clamp(100.0, 460.0),
+                    anchorY = size != null && size.height < 200
+                        ? origin.dy
+                        : constraints.maxHeight -
+                              90 -
+                              MediaQuery.paddingOf(dialog).bottom;
+                final top = (anchorY - height - 12).clamp(
+                      MediaQuery.paddingOf(dialog).top + 8,
+                      constraints.maxHeight - height - 8,
+                    ),
+                    left =
+                        (origin.dx +
+                                (size?.width ?? constraints.maxWidth) -
+                                width -
+                                12)
+                            .clamp(8.0, constraints.maxWidth - width - 8);
+                return Stack(
+                  children: [
+                    Positioned(
+                      left: left,
+                      top: top,
+                      width: width,
+                      height: height,
+                      child: Material(
+                        key: const Key('player-eq-popover'),
+                        elevation: 16,
+                        color: waveVisuals(dialog).surface,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(
+                            waveRadius(dialog, 24),
+                          ),
+                          side: BorderSide(color: waveVisuals(dialog).line),
+                        ),
+                        clipBehavior: Clip.antiAlias,
+                        child: SingleChildScrollView(
+                          child: CompactEqualizerPanel(
+                            controller: c,
+                            onClose: () => Navigator.pop(dialog),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+              },
             ),
-            left =
-                (origin.dx + (size?.width ?? constraints.maxWidth) - width - 12)
-                    .clamp(8.0, constraints.maxWidth - width - 8);
-        return Stack(
-          children: [
-            Positioned(
-              left: left,
-              top: top,
-              width: width,
-              height: height,
-              child: Material(
-                key: const Key('player-eq-popover'),
-                elevation: 16,
-                color: waveVisuals(context).surface,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(waveRadius(context, 14)),
-                  side: BorderSide(color: waveVisuals(context).line),
-                ),
-                clipBehavior: Clip.antiAlias,
-                child: SingleChildScrollView(
-                  child: CompactEqualizerPanel(
-                    controller: c,
-                    onClose: () => Navigator.pop(dialog),
-                  ),
-                ),
-              ),
-            ),
-          ],
+          ),
         );
       },
     ),
@@ -552,21 +576,25 @@ class _PlayerPageState extends State<PlayerPage> {
     current = widget.initialTrack ?? c.audio.viewCurrent;
     unawaited(loadDetails());
     if (widget.initialTrack == null) {
-      _media = c.audio.mediaItem.listen((item) {
-        if (!mounted) return;
-        final track = c.audio.viewCurrent;
-        if (track?.id != current?.id) {
-          setState(() {
-            current = track;
-            lyrics = [];
-            comments = [];
-            _lyricKeys.clear();
-            _lastLyric = -2;
-          });
-          unawaited(loadDetails());
-        }
-      });
+      _media = c.audio.mediaItem.listen((_) => _syncCurrent());
+      // viewCurrent also includes a track awaiting its audio descriptor;
+      // mediaItem is deliberately published only after that descriptor arrives.
+      c.addListener(_syncCurrent);
     }
+  }
+
+  void _syncCurrent() {
+    if (!mounted) return;
+    final track = c.audio.viewCurrent;
+    if (track?.id == current?.id) return;
+    setState(() {
+      current = track;
+      lyrics = [];
+      comments = [];
+      _lyricKeys.clear();
+      _lastLyric = -2;
+    });
+    unawaited(loadDetails());
   }
 
   Future<void> loadDetails() async {
@@ -600,6 +628,7 @@ class _PlayerPageState extends State<PlayerPage> {
 
   @override
   void dispose() {
+    c.removeListener(_syncCurrent);
     unawaited(_media?.cancel());
     comment.dispose();
     _lyricsScroll.dispose();
@@ -698,8 +727,9 @@ class _PlayerPageState extends State<PlayerPage> {
                               : Colors.transparent,
                         ),
                         onPressed: () => setState(() => tab = tab == 1 ? 0 : 1),
-                        icon: const WaveControlIcon(
+                        icon: WaveViewIcon(
                           Icons.lyrics_outlined,
+                          active: tab == 1,
                           size: 19,
                         ),
                       ),
@@ -716,8 +746,9 @@ class _PlayerPageState extends State<PlayerPage> {
                             : Colors.transparent,
                       ),
                       onPressed: () => setState(() => tab = tab == 2 ? 0 : 2),
-                      icon: const WaveControlIcon(
+                      icon: WaveViewIcon(
                         Icons.queue_music_rounded,
+                        active: tab == 2,
                         size: 19,
                       ),
                     ),
@@ -948,75 +979,83 @@ class _PlayerPageState extends State<PlayerPage> {
               onVerticalCancel: widget.onDragCancel,
               child: Opacity(
                 opacity: widget.hideAlbum ? 0 : 1,
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    ClipRect(
-                      child: AlbumStage(
-                        controller: c,
-                        track: track,
-                        size: size,
-                        playing: active && c.audio.playing,
-                        artworkKey: widget.artworkKey,
-                        touchTilt: false,
+                child: SizedBox(
+                  width: double.infinity,
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      ClipRect(
+                        child: AlbumStage(
+                          controller: c,
+                          track: track,
+                          size: size,
+                          playing: active && c.audio.playing,
+                          artworkKey: widget.artworkKey,
+                          touchTilt: false,
+                        ),
                       ),
-                    ),
-                    Positioned(
-                      right: (constraints.maxWidth - size) / 2 + 8,
-                      bottom: 17,
-                      child: WavePress(
-                        child: PopupMenuButton<String>(
-                          key: const Key('player-cover-options'),
-                          tooltip: polishText('cover', context),
-                          onSelected: (value) => _run(
-                            c,
-                            () => c.customize({
-                              'appearance': {
-                                'cover3d': value != 'flat',
-                                if (value != 'flat') 'coverKind': value,
-                              },
-                            }),
-                          ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(
-                              waveRadius(context, 15),
+                      Positioned(
+                        right: (constraints.maxWidth - size) / 2 + 8,
+                        bottom: 17,
+                        child: WavePress(
+                          child: PopupMenuButton<String>(
+                            key: const Key('player-cover-options'),
+                            tooltip: polishText('cover', context),
+                            onSelected: (value) => _run(
+                              c,
+                              () => c.customize({
+                                'appearance': {
+                                  'cover3d': value != 'flat',
+                                  if (value != 'flat') 'coverKind': value,
+                                },
+                              }),
                             ),
-                            side: BorderSide(color: waveVisuals(context).line),
-                          ),
-                          itemBuilder: (_) => [
-                            PopupMenuItem(
-                              value: 'flat',
-                              child: Text(polishText('flat', context)),
-                            ),
-                            const PopupMenuItem(
-                              value: 'vinyl',
-                              child: Text('VINYL'),
-                            ),
-                            const PopupMenuItem(value: 'cd', child: Text('CD')),
-                          ],
-                          child: Container(
-                            padding: const EdgeInsets.all(11),
-                            decoration: BoxDecoration(
-                              color: waveVisuals(
-                                context,
-                              ).surface.withValues(alpha: .92),
+                            shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(
-                                waveRadius(context, 13),
+                                waveRadius(context, 15),
                               ),
-                              border: Border.all(
+                              side: BorderSide(
                                 color: waveVisuals(context).line,
                               ),
                             ),
-                            child: WaveControlIcon(
-                              Icons.album_outlined,
-                              size: 18,
-                              color: waveVisuals(context).muted,
+                            itemBuilder: (_) => [
+                              PopupMenuItem(
+                                value: 'flat',
+                                child: Text(polishText('flat', context)),
+                              ),
+                              const PopupMenuItem(
+                                value: 'vinyl',
+                                child: Text('VINYL'),
+                              ),
+                              const PopupMenuItem(
+                                value: 'cd',
+                                child: Text('CD'),
+                              ),
+                            ],
+                            child: Container(
+                              padding: const EdgeInsets.all(11),
+                              decoration: BoxDecoration(
+                                color: waveVisuals(
+                                  context,
+                                ).surface.withValues(alpha: .92),
+                                borderRadius: BorderRadius.circular(
+                                  waveRadius(context, 13),
+                                ),
+                                border: Border.all(
+                                  color: waveVisuals(context).line,
+                                ),
+                              ),
+                              child: WaveControlIcon(
+                                Icons.album_outlined,
+                                size: 18,
+                                color: waveVisuals(context).muted,
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -1158,6 +1197,15 @@ class _PlayerPageState extends State<PlayerPage> {
                       child: IconButton(
                         key: const Key('player-equalizer'),
                         tooltip: wt('eq.title', context: context),
+                        isSelected: c.customization.equalizer.enabled,
+                        style: IconButton.styleFrom(
+                          foregroundColor: c.customization.equalizer.enabled
+                              ? waveVisuals(context).accent
+                              : waveVisuals(context).muted,
+                          backgroundColor: c.customization.equalizer.enabled
+                              ? waveVisuals(context).accentSoft
+                              : Colors.transparent,
+                        ),
                         onPressed: () => showPlayerEqualizer(context, c),
                         icon: const WaveControlIcon(
                           Icons.graphic_eq_rounded,
@@ -1265,7 +1313,7 @@ class _PlayerPageState extends State<PlayerPage> {
                           )
                         : 0;
                     return InkWell(
-                      onTap: synchronized && active && c.canControl
+                      onTap: synchronized && active && c.canSeek
                           ? () => _run(
                               c,
                               () => c.transport('seek', {
@@ -1380,9 +1428,10 @@ class _PlayerPageState extends State<PlayerPage> {
       return Column(
         children: [
           Slider(
+            key: const Key('player-seek'),
             value: current,
             max: total > 0 ? total : 1,
-            onChanged: c.canControl && total > 0
+            onChanged: c.canSeek && total > 0
                 ? (v) => _run(
                     c,
                     () => c.audio.seek(Duration(milliseconds: v.round())),
@@ -1445,10 +1494,11 @@ class _PlayerPageState extends State<PlayerPage> {
         icon: const WaveControlIcon(Icons.skip_previous_rounded, size: 33),
       ),
       IconButton.filled(
+        key: const Key('player-play'),
         tooltip: c.audio.playing
             ? wt('native.03498e395a', context: context)
             : wt('native.c750dc7d94', context: context),
-        onPressed: c.canTogglePlayback
+        onPressed: c.canTogglePlayback && (!c.trackLoading || c.audio.playing)
             ? () => _run(
                 c,
                 () => c.audio.playing ? c.audio.pause() : c.audio.play(),
@@ -1459,7 +1509,11 @@ class _PlayerPageState extends State<PlayerPage> {
           backgroundColor: waveVisuals(context).ink,
           foregroundColor: waveVisuals(context).background,
         ),
-        icon: WavePlayPauseIcon(playing: c.audio.playing, size: 32),
+        icon: WavePlaybackIcon(
+          playing: c.audio.playing,
+          loading: c.trackLoading,
+          size: 32,
+        ),
       ),
       IconButton(
         tooltip: wt('native.e9c094d2a9', context: context),
@@ -1613,7 +1667,7 @@ class _PlayerPageState extends State<PlayerPage> {
                       key: _lyricKeys.putIfAbsent(i, () => GlobalKey()),
                       onTap:
                           synchronized &&
-                              c.canControl &&
+                              c.canSeek &&
                               c.audio.viewCurrent?.id == track.id
                           ? () => _run(
                               c,
@@ -1774,7 +1828,8 @@ class _PlayerPageState extends State<PlayerPage> {
                             '${entry['displayName']} · ${clock(number(entry['position']))}',
                         child: GestureDetector(
                           onTap: () {
-                            if (c.audio.viewCurrent?.id == track.id) {
+                            if (c.canSeek &&
+                                c.audio.viewCurrent?.id == track.id) {
                               _run(
                                 c,
                                 () => c.audio.seek(
@@ -1908,7 +1963,8 @@ class _PlayerPageState extends State<PlayerPage> {
                           ),
                         ),
                         TextButton(
-                          onPressed: c.audio.viewCurrent?.id == track.id
+                          onPressed:
+                              c.canSeek && c.audio.viewCurrent?.id == track.id
                               ? () => _run(
                                   c,
                                   () => c.audio.seek(

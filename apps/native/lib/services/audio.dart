@@ -776,6 +776,7 @@ class WaveAudioHandler extends BaseAudioHandler {
 
   @override
   Future<void> seek(Duration position) async {
+    if (trackLoading) return;
     final data = {'position': position.inMilliseconds / 1000};
     if (!await _intercept('seek', data)) await localCommand('seek', data);
   }

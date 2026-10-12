@@ -251,9 +251,9 @@ ThemeData buildWaveTheme(
       hintStyle: TextStyle(color: v.muted),
       border: border,
       enabledBorder: border,
-      focusedBorder: border.copyWith(
-        borderSide: BorderSide(color: v.accent, width: 1.5),
-      ),
+      // Keep the field's existing edge while typing, rather than adding a
+      // second accent ring inside its surrounding search surface.
+      focusedBorder: border,
     ),
     dialogTheme: DialogThemeData(
       backgroundColor: v.background,

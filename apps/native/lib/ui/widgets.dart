@@ -238,6 +238,7 @@ class Artwork extends StatelessWidget {
   final String? url;
   final double size, radius;
   final bool trackLoading;
+  final BoxFit fit;
   final IconData icon;
   const Artwork({
     super.key,
@@ -247,6 +248,7 @@ class Artwork extends StatelessWidget {
     this.radius = 11,
     this.icon = Icons.music_note_rounded,
     this.trackLoading = false,
+    this.fit = BoxFit.cover,
   });
   @override
   Widget build(BuildContext context) {
@@ -266,7 +268,7 @@ class Artwork extends StatelessWidget {
         : null;
     Widget image(String address, {bool mayFallback = false}) => Image.network(
       address,
-      fit: BoxFit.cover,
+      fit: fit,
       headers: uri!.origin == Uri.parse(controller.api.server).origin
           ? controller.api.headers
           : null,

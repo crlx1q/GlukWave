@@ -154,6 +154,7 @@ class WaveController extends ChangeNotifier {
   int _roomGeneration = 0, _roomSyncGeneration = 0;
   bool loading = true, online = false, connected = false;
   bool get trackLoading => audio.trackLoading;
+  bool get canSeek => canControl && !trackLoading;
   double? uploadProgress;
   String? error, notice, suggestion;
   int noticeRevision = 0,
@@ -1216,6 +1217,9 @@ class WaveController extends ChangeNotifier {
   }
 
   Future<void> transport(String command, [Json data = const {}]) async {
+    // A user seek must not target the old source while its replacement loads.
+    // Internal room/Connect synchronization still uses audio.localCommand.
+    if (command == 'seek' && trackLoading) return;
     if (lanEnabled) {
       await _lanControl('transport', {'command': command, ...data});
       return;

@@ -1,0 +1,41 @@
+{
+  "passed": true,
+  "cases": [
+    {
+      "width": 1440,
+      "height": 520,
+      "font": 1,
+      "frames": 96,
+      "transforms": 39,
+      "allFacesInside": true
+    },
+    {
+      "width": 390,
+      "height": 700,
+      "font": 1,
+      "frames": 96,
+      "transforms": 55,
+      "allFacesInside": true
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "font": 1.25,
+      "frames": 96,
+      "transforms": 48,
+      "allFacesInside": true
+    }
+  ],
+  "screenshots": [
+    "work/qa/player-details-1791800718879-motion-1440.png",
+    "work/qa/player-details-1791800718879-motion-390.png",
+    "work/qa/player-details-1791800718879-motion-320.png",
+    "work/qa/player-details-1791800718879-radius24.png",
+    "work/qa/player-details-1791800718879-mini-loading.png"
+  ],
+  "mini": {
+    "actualBroadcastChannel": true,
+    "loadingSeekDisabled": true,
+    "readySeekEnabled": true
+  }
+}

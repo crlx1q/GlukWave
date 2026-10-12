@@ -359,47 +359,65 @@ class _CompactEqualizerPanelState extends State<CompactEqualizerPanel> {
                   ],
                 ),
                 const SizedBox(height: 11),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        wt('eq.speed', context: context),
-                        style: TextStyle(fontSize: 10, color: v.muted),
+                Container(
+                  key: const Key('compact-eq-speed-surface'),
+                  padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                  decoration: BoxDecoration(
+                    color: v.background,
+                    border: Border.all(color: v.line),
+                    borderRadius: BorderRadius.circular(v.corners(18)),
+                  ),
+                  child: Column(
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              wt('eq.speed', context: context),
+                              style: TextStyle(fontSize: 10, color: v.muted),
+                            ),
+                          ),
+                          Text(
+                            '${(c.room != null ? 1 : c.customization.playbackRate).toStringAsFixed(2)}×',
+                            style: const TextStyle(
+                              fontSize: 11,
+                              fontFeatures: [FontFeature.tabularFigures()],
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                    Text(
-                      '${(c.room != null ? 1 : c.customization.playbackRate).toStringAsFixed(2)}×',
-                      style: const TextStyle(
-                        fontSize: 11,
-                        fontFeatures: [FontFeature.tabularFigures()],
-                      ),
-                    ),
-                  ],
-                ),
-                Slider(
-                  key: const Key('compact-eq-rate'),
-                  min: .5,
-                  max: 2,
-                  divisions: 30,
-                  value: c.room != null ? 1 : c.customization.playbackRate,
-                  onChanged: c.room != null || !available
-                      ? null
-                      : (value) => unawaited(
-                          c
-                              .customize({'playbackRate': value})
-                              .catchError(
-                                (Object error) => c.tell(error.toString()),
+                      Slider(
+                        key: const Key('compact-eq-rate'),
+                        min: .5,
+                        max: 2,
+                        divisions: 30,
+                        value: c.room != null
+                            ? 1
+                            : c.customization.playbackRate,
+                        onChanged: c.room != null || !available
+                            ? null
+                            : (value) => unawaited(
+                                c
+                                    .customize({'playbackRate': value})
+                                    .catchError(
+                                      (Object error) =>
+                                          c.tell(error.toString()),
+                                    ),
                               ),
-                        ),
+                      ),
+                    ],
+                  ),
                 ),
+                const SizedBox(height: 11),
                 Container(
                   key: const Key('compact-eq-chart'),
                   height: 166,
                   decoration: BoxDecoration(
                     color: v.accentSoft.withValues(alpha: .35),
                     border: Border.all(color: v.line),
-                    borderRadius: BorderRadius.circular(v.corners(11)),
+                    borderRadius: BorderRadius.circular(v.corners(18)),
                   ),
+                  clipBehavior: Clip.antiAlias,
                   child: LayoutBuilder(
                     builder: (context, constraints) => Stack(
                       clipBehavior: Clip.none,
@@ -407,7 +425,7 @@ class _CompactEqualizerPanelState extends State<CompactEqualizerPanel> {
                         Positioned.fill(
                           top: 7,
                           bottom: 21,
-                          left: 0,
+                          left: 22,
                           right: 0,
                           child: TweenAnimationBuilder<List<double>>(
                             tween: _BandsTween(end: eq.bands),
@@ -419,83 +437,86 @@ class _CompactEqualizerPanelState extends State<CompactEqualizerPanel> {
                             ),
                           ),
                         ),
-                        Row(
-                          children: [
-                            for (var i = 0; i < 10; i++)
-                              Expanded(
-                                child: Column(
-                                  children: [
-                                    Expanded(
-                                      child: RotatedBox(
-                                        quarterTurns: 3,
-                                        child: SliderTheme(
-                                          data: SliderTheme.of(context)
-                                              .copyWith(
-                                                trackHeight: 1,
-                                                activeTrackColor:
-                                                    Colors.transparent,
-                                                inactiveTrackColor:
-                                                    Colors.transparent,
-                                                thumbShape:
-                                                    const RoundSliderThumbShape(
-                                                      enabledThumbRadius: 3.5,
-                                                    ),
-                                                overlayShape:
-                                                    SliderComponentShape
-                                                        .noOverlay,
-                                                overlayColor:
-                                                    Colors.transparent,
-                                                showValueIndicator:
-                                                    ShowValueIndicator.never,
-                                              ),
-                                          child: Slider(
-                                            key: Key('compact-eq-band-$i'),
-                                            min: -12,
-                                            max: 12,
-                                            divisions: 48,
-                                            value: eq.bands[i],
-                                            label:
-                                                '${eq.bands[i].toStringAsFixed(1)} dB',
-                                            semanticFormatterCallback: (value) =>
-                                                '${equalizerFrequencies[i].round()} Hz, ${value.toStringAsFixed(1)} dB',
-                                            onChanged: available && eq.enabled
-                                                ? (value) => change({
-                                                    'bands': [...eq.bands]
-                                                      ..[i] = value,
-                                                  })
-                                                : null,
+                        Padding(
+                          padding: const EdgeInsets.only(left: 22),
+                          child: Row(
+                            children: [
+                              for (var i = 0; i < 10; i++)
+                                Expanded(
+                                  child: Column(
+                                    children: [
+                                      Expanded(
+                                        child: RotatedBox(
+                                          quarterTurns: 3,
+                                          child: SliderTheme(
+                                            data: SliderTheme.of(context)
+                                                .copyWith(
+                                                  trackHeight: 1,
+                                                  activeTrackColor:
+                                                      Colors.transparent,
+                                                  inactiveTrackColor:
+                                                      Colors.transparent,
+                                                  thumbShape:
+                                                      const RoundSliderThumbShape(
+                                                        enabledThumbRadius: 3.5,
+                                                      ),
+                                                  overlayShape:
+                                                      SliderComponentShape
+                                                          .noOverlay,
+                                                  overlayColor:
+                                                      Colors.transparent,
+                                                  showValueIndicator:
+                                                      ShowValueIndicator.never,
+                                                ),
+                                            child: Slider(
+                                              key: Key('compact-eq-band-$i'),
+                                              min: -12,
+                                              max: 12,
+                                              divisions: 48,
+                                              value: eq.bands[i],
+                                              label:
+                                                  '${eq.bands[i].toStringAsFixed(1)} dB',
+                                              semanticFormatterCallback: (value) =>
+                                                  '${equalizerFrequencies[i].round()} Hz, ${value.toStringAsFixed(1)} dB',
+                                              onChanged: available && eq.enabled
+                                                  ? (value) => change({
+                                                      'bands': [...eq.bands]
+                                                        ..[i] = value,
+                                                    })
+                                                  : null,
+                                            ),
                                           ),
                                         ),
                                       ),
-                                    ),
-                                    SizedBox(
-                                      height: 22,
-                                      child: Center(
-                                        child: Text(
-                                          equalizerFrequencies[i] >= 1000
-                                              ? '${(equalizerFrequencies[i] / 1000).round()}k'
-                                              : '${equalizerFrequencies[i].round()}',
-                                          style: TextStyle(
-                                            fontSize: 8,
-                                            color: v.muted,
+                                      SizedBox(
+                                        height: 22,
+                                        child: Center(
+                                          child: Text(
+                                            equalizerFrequencies[i] >= 1000
+                                                ? '${(equalizerFrequencies[i] / 1000).round()}k'
+                                                : '${equalizerFrequencies[i].round()}',
+                                            style: TextStyle(
+                                              fontSize: 8,
+                                              color: v.muted,
+                                            ),
                                           ),
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
-                              ),
-                          ],
+                            ],
+                          ),
                         ),
-                        // Use the popup's existing inner gutter, preserving the
-                        // frequency sliders' positions and touch areas.
+                        // Keep the dB scale inside the rounded chart without
+                        // overlapping the first frequency's thumb.
                         for (final axis in [
                           ('max', '+12', 31.0),
                           ('zero', '0', (constraints.maxHeight - 14) / 2),
                           ('min', '−12', constraints.maxHeight - 45),
                         ])
                           Positioned(
-                            left: -14,
+                            left: 0,
                             top: axis.$3 - 10,
                             width: 22,
                             height: 20,
@@ -650,11 +671,7 @@ class _EqualizerPresetMenuState extends State<_EqualizerPresetMenu> {
           if (widget.saved)
             'saved': audioDesignText('savedPreset', context: context),
         };
-    BorderSide focus(Set<WidgetState> states) => BorderSide(
-      color: states.contains(WidgetState.focused) && keyboardFocus
-          ? v.accent
-          : v.line,
-    );
+    BorderSide focus(Set<WidgetState> states) => BorderSide(color: v.line);
     return Focus(
       onKeyEvent: (_, event) {
         if (event is KeyDownEvent && !keyboardFocus) {
@@ -685,7 +702,7 @@ class _EqualizerPresetMenuState extends State<_EqualizerPresetMenu> {
               padding: const WidgetStatePropertyAll(EdgeInsets.all(5)),
               shape: WidgetStatePropertyAll(
                 RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(v.corners(10)),
+                  borderRadius: BorderRadius.circular(v.corners(18)),
                   side: BorderSide(color: v.line),
                 ),
               ),
@@ -707,17 +724,14 @@ class _EqualizerPresetMenuState extends State<_EqualizerPresetMenu> {
                         Colors.transparent,
                       ),
                       backgroundColor: WidgetStateProperty.resolveWith(
-                        (states) => states.contains(WidgetState.hovered)
+                        (states) =>
+                            states.contains(WidgetState.hovered) ||
+                                states.contains(WidgetState.focused) &&
+                                    keyboardFocus
                             ? v.line
                             : Colors.transparent,
                       ),
-                      side: WidgetStateProperty.resolveWith(
-                        (states) =>
-                            states.contains(WidgetState.focused) &&
-                                keyboardFocus
-                            ? BorderSide(color: v.accent)
-                            : BorderSide.none,
-                      ),
+                      side: const WidgetStatePropertyAll(BorderSide.none),
                       shape: WidgetStatePropertyAll(
                         RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(v.corners(7)),
@@ -750,11 +764,16 @@ class _EqualizerPresetMenuState extends State<_EqualizerPresetMenu> {
               focusNode: triggerFocus,
               style: ButtonStyle(
                 overlayColor: const WidgetStatePropertyAll(Colors.transparent),
-                backgroundColor: WidgetStatePropertyAll(v.background),
+                backgroundColor: WidgetStateProperty.resolveWith(
+                  (states) =>
+                      states.contains(WidgetState.focused) && keyboardFocus
+                      ? Color.alphaBlend(v.line, v.background)
+                      : v.background,
+                ),
                 side: WidgetStateProperty.resolveWith(focus),
                 shape: WidgetStatePropertyAll(
                   RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(v.corners(8)),
+                    borderRadius: BorderRadius.circular(v.corners(18)),
                   ),
                 ),
                 padding: const WidgetStatePropertyAll(

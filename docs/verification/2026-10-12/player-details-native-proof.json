@@ -1,0 +1,97 @@
+{
+  "status": "PASSED",
+  "runId": 1791801732026,
+  "boundary": "Actual native widgets, live controller settings and real audio source lifecycle with isolated native output. No physical installation, owner data or hosted writes.",
+  "cases": [
+    {
+      "name": "dark live radius 8/24/38 and quiet focus",
+      "passed": true
+    },
+    {
+      "name": "dark Size(1440.0, 600.0) entire flat/3D art and touch tilt",
+      "passed": true
+    },
+    {
+      "name": "dark Size(390.0, 700.0) entire flat/3D art and touch tilt",
+      "passed": true
+    },
+    {
+      "name": "dark Size(320.0, 568.0) entire flat/3D art and touch tilt",
+      "passed": true
+    },
+    {
+      "name": "amoled live radius 8/24/38 and quiet focus",
+      "passed": true
+    },
+    {
+      "name": "amoled Size(1440.0, 600.0) entire flat/3D art and touch tilt",
+      "passed": true
+    },
+    {
+      "name": "amoled Size(390.0, 700.0) entire flat/3D art and touch tilt",
+      "passed": true
+    },
+    {
+      "name": "amoled Size(320.0, 568.0) entire flat/3D art and touch tilt",
+      "passed": true
+    },
+    {
+      "name": "light live radius 8/24/38 and quiet focus",
+      "passed": true
+    },
+    {
+      "name": "light Size(1440.0, 600.0) entire flat/3D art and touch tilt",
+      "passed": true
+    },
+    {
+      "name": "light Size(390.0, 700.0) entire flat/3D art and touch tilt",
+      "passed": true
+    },
+    {
+      "name": "light Size(320.0, 568.0) entire flat/3D art and touch tilt",
+      "passed": true
+    },
+    {
+      "name": "Persisted compact DSP highlight independent of popup",
+      "passed": true
+    },
+    {
+      "name": "Lyrics/queue active treatment with motion disabled",
+      "passed": true
+    },
+    {
+      "name": "Real source lifecycle, guarded user seek and unblocked internal sync",
+      "passed": true
+    }
+  ],
+  "screenshots": [
+    "native-player-details-1791801732026-amoled-1440-3d.png",
+    "native-player-details-1791801732026-amoled-1440-flat.png",
+    "native-player-details-1791801732026-amoled-320-3d.png",
+    "native-player-details-1791801732026-amoled-320-flat.png",
+    "native-player-details-1791801732026-amoled-390-3d.png",
+    "native-player-details-1791801732026-amoled-390-flat.png",
+    "native-player-details-1791801732026-amoled-eq-24.png",
+    "native-player-details-1791801732026-amoled-eq-38.png",
+    "native-player-details-1791801732026-amoled-eq-8.png",
+    "native-player-details-1791801732026-dark-1440-3d.png",
+    "native-player-details-1791801732026-dark-1440-flat.png",
+    "native-player-details-1791801732026-dark-320-3d.png",
+    "native-player-details-1791801732026-dark-320-flat.png",
+    "native-player-details-1791801732026-dark-390-3d.png",
+    "native-player-details-1791801732026-dark-390-flat.png",
+    "native-player-details-1791801732026-dark-eq-24.png",
+    "native-player-details-1791801732026-dark-eq-38.png",
+    "native-player-details-1791801732026-dark-eq-8.png",
+    "native-player-details-1791801732026-light-1440-3d.png",
+    "native-player-details-1791801732026-light-1440-flat.png",
+    "native-player-details-1791801732026-light-320-3d.png",
+    "native-player-details-1791801732026-light-320-flat.png",
+    "native-player-details-1791801732026-light-390-3d.png",
+    "native-player-details-1791801732026-light-390-flat.png",
+    "native-player-details-1791801732026-light-eq-24.png",
+    "native-player-details-1791801732026-light-eq-38.png",
+    "native-player-details-1791801732026-light-eq-8.png",
+    "native-player-details-1791801732026-loading.png"
+  ]
+}

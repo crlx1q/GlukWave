@@ -103,7 +103,7 @@ void main() {
               tester.widget<Material>(popup).shape! as RoundedRectangleBorder;
           expect(
             shape.borderRadius.resolve(TextDirection.ltr).topLeft.x,
-            closeTo(radius * 14 / 24, .01),
+            closeTo(radius, .01),
           );
           final chart =
               tester
@@ -114,7 +114,7 @@ void main() {
                   as BoxDecoration;
           expect(
             chart.borderRadius!.resolve(TextDirection.ltr).topLeft.x,
-            closeTo(radius * 11 / 24, .01),
+            closeTo(radius * 18 / 24, .01),
           );
           expect(find.byType(DropdownButtonFormField<String>), findsNothing);
           await tester.tap(find.byKey(const Key('compact-eq-presets')));

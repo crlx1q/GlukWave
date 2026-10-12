@@ -1,0 +1,19 @@
+{
+  "checkedAt": "2026-10-12T10:46:16.787Z",
+  "passed": true,
+  "archiveBytes": 114234572,
+  "archiveSha256": "0c3092d6ed06d87d597c885f9c35ea3128b033b2435d04be3bfaee56aafe805e",
+  "entries": 1400,
+  "allCrcAndSourceHashesMatched": true,
+  "textFilesScanned": 634,
+  "localPrivateValuesAbsent": true,
+  "liveCredentialPatternsAbsent": true,
+  "staticFontFaces": 6,
+  "manropeStaticFontFaces": 5,
+  "frozenNativeSourcesMatched": 154,
+  "currentWebBuild": "/assets/main-Bi1KEma7.js",
+  "runtimeDataExcluded": true,
+  "apkSha256": "b667a42ac1051df207c86351b6ee7ae0ae5c2b4d35e3e3c2009d285062dd3ad3",
+  "windowsSha256": "85e65521536c02606697c765af2e881218513d323e6a56360e0d816ca434f143",
+  "installerSha256": "2fef5f1aa30415f0168fb105bd4a19b5070da3ebd6cc35cb6bf226acab07ffcd"
+}

@@ -2,6 +2,69 @@ import 'package:flutter/material.dart';
 import 'dart:math' as math;
 import 'theme.dart';
 
+/// Loading represents the real source lifecycle, shared by every play button.
+/// Reduced motion keeps a clear static arc rather than an endless animation.
+class WavePlaybackIcon extends StatelessWidget {
+  final bool playing, loading;
+  final double size;
+  final Color? color;
+  const WavePlaybackIcon({
+    super.key,
+    required this.playing,
+    required this.loading,
+    this.size = 26,
+    this.color,
+  });
+  @override
+  Widget build(BuildContext context) {
+    final v = waveVisuals(context),
+        reduced =
+            v.reducedMotion ||
+            MediaQuery.disableAnimationsOf(context) ||
+            !TickerMode.of(context);
+    return AnimatedSwitcher(
+      duration: reduced ? Duration.zero : v.duration(180),
+      child: loading
+          ? SizedBox.square(
+              key: const Key('playback-loading-indicator'),
+              dimension: size,
+              child: CircularProgressIndicator(
+                value: reduced ? .68 : null,
+                color: v.accent,
+                strokeWidth: 2,
+                strokeCap: StrokeCap.round,
+                backgroundColor: v.accent.withValues(alpha: .15),
+              ),
+            )
+          : WavePlayPauseIcon(playing: playing, size: size, color: color),
+    );
+  }
+}
+
+/// Lyrics and queue use the same settling motion when their view is selected.
+class WaveViewIcon extends StatelessWidget {
+  final IconData icon;
+  final bool active;
+  final double size;
+  const WaveViewIcon(
+    this.icon, {
+    super.key,
+    required this.active,
+    this.size = 19,
+  });
+  @override
+  Widget build(BuildContext context) {
+    final v = waveVisuals(context),
+        reduced = v.reducedMotion || MediaQuery.disableAnimationsOf(context);
+    return AnimatedRotation(
+      turns: active && !reduced ? -.025 : 0,
+      duration: reduced ? Duration.zero : v.duration(180),
+      curve: Curves.easeOutCubic,
+      child: WaveControlIcon(icon, size: size),
+    );
+  }
+}
+
 /// One reversible shape animation shared by every transport surface.
 class WavePlayPauseIcon extends StatefulWidget {
   final bool playing;

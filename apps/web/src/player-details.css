@@ -1,0 +1,30 @@
+/* Actual settings values govern the editor, including its clipped chart. */
+.eq-popover{border-radius:var(--radius)}
+.eq-popover :is(.eq-speed,.eq-curve,.eq-preset-trigger,.eq-preset-options){border-radius:calc(var(--radius)*.8)}
+.eq-popover .eq-preset-options>[role=option]{border-radius:calc(var(--radius)*.55)}
+.eq-popover .eq-curve{overflow:hidden;isolation:isolate}
+.eq-popover .eq-curve>svg{overflow:hidden}
+
+/* Typing has no inner orange ring. Focus stays legible through a quiet fill. */
+:is(input:not([type=range]):not([type=checkbox]):not([type=radio]),textarea,select):is(:focus,:focus-visible),
+.search-wrap input:is(:focus,:focus-visible),.eq-popover :is(.eq-preset-trigger,.eq-preset-options):is(:focus,:focus-visible){outline:none;outline-offset:0;box-shadow:none}
+.search-wrap:focus-within,.discovery-query:focus-within{background:color-mix(in srgb,var(--surface) 92%,var(--ink));border-color:var(--line)}
+.eq-popover :is(.eq-preset-trigger,.eq-preset-options):focus-visible{background:color-mix(in srgb,var(--bg) 94%,var(--ink));border-color:var(--line)}
+.eq-popover input.wave-range:is(:focus,:focus-visible){outline:none;box-shadow:none}
+.eq-popover input.wave-range:focus-visible{background-color:color-mix(in srgb,var(--ink) 4%,transparent)}
+
+.player .player-eq.selected,.focused-player .np-eq.selected{background:var(--accent-soft);color:var(--accent)}
+html[data-motion=full] .focused-player .np-view-actions :is(.np-lyrics-toggle,.np-queue-toggle).selected>svg{transform:translateY(-1px) rotate(-8deg)}
+html[data-motion=full] .focused-player .np-view-actions :is(.np-lyrics-toggle,.np-queue-toggle).selected:active>svg{transform:translate(1px,1px) rotate(-8deg) scale(.91)}
+html[data-motion=reduce] .focused-player .np-view-actions :is(.np-lyrics-toggle,.np-queue-toggle)>svg{transform:none!important}
+
+/* Size against the actual stage, not only the viewport: rotations need headroom. */
+.full-player.focused-player.connected-player .np-cover-growth .album-stage{container-type:size;overflow:clip;overflow-clip-margin:0}
+.full-player.focused-player.connected-player .np-cover-growth .album-stage .album-object{width:var(--cover-fit,min(62cqw,64cqh,340px));height:var(--cover-fit,min(62cqw,64cqh,340px));max-width:none;min-width:0;aspect-ratio:1}
+.full-player.focused-player.connected-player .np-cover-growth .album-stage.flat .album-object{width:var(--cover-fit,min(90cqw,90cqh,340px));height:var(--cover-fit,min(90cqw,90cqh,340px));translate:none}
+.full-player.focused-player.connected-player .np-cover-growth .album-stage.three-dimensional .album-object{max-width:none;translate:-14% 0}
+.focused-player .album-cover,.focused-player .album-cover>img{object-fit:contain}
+.focused-player .album-stage.manual-rotation .album-object{transition:none}
+
+@media(prefers-reduced-motion:reduce){.focused-player .np-view-actions :is(.np-lyrics-toggle,.np-queue-toggle)>svg{transform:none!important}}
+@media(forced-colors:active){:is(input:not([type=range]),textarea,select):focus-visible,.eq-popover :is(.eq-preset-trigger,.eq-preset-options):focus-visible{outline:1px solid Highlight}}

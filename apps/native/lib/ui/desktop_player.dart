@@ -73,10 +73,7 @@ class _DesktopCompactPlayerState extends State<DesktopCompactPlayer> {
     stream: c.audio.playbackState,
     builder: (context, snapshot) {
       final v = waveVisuals(context);
-      final busy = [
-        AudioProcessingState.loading,
-        AudioProcessingState.buffering,
-      ].contains(snapshot.data?.processingState);
+      final busy = c.trackLoading;
       return IconButton.filled(
         key: const Key('desktop-quick-play'),
         tooltip: wt(
@@ -89,21 +86,17 @@ class _DesktopCompactPlayerState extends State<DesktopCompactPlayer> {
           backgroundColor: v.ink,
           foregroundColor: v.background,
         ),
-        onPressed: c.canTogglePlayback && c.audio.viewCurrent != null
+        onPressed:
+            c.canTogglePlayback &&
+                c.audio.viewCurrent != null &&
+                (!busy || c.audio.playing)
             ? () => _run(c.audio.playing ? c.audio.pause : c.audio.play)
             : null,
-        icon: busy
-            ? SizedBox.square(
-                dimension: 18,
-                child: CircularProgressIndicator(
-                  strokeWidth: 2,
-                  color: v.background,
-                ),
-              )
-            : WavePlayPauseIcon(
-                playing: c.audio.playing,
-                size: widget.quick ? 30 : 25,
-              ),
+        icon: WavePlaybackIcon(
+          playing: c.audio.playing,
+          loading: busy,
+          size: widget.quick ? 30 : 25,
+        ),
       );
     },
   );
@@ -344,7 +337,7 @@ class _DesktopCompactPlayerState extends State<DesktopCompactPlayer> {
                                     .clamp(0, 1)
                               : 0,
                           backgroundColor: v.line,
-                          color: v.accent,
+                          color: c.trackLoading ? v.muted : v.accent,
                         ),
                       ),
                     ),

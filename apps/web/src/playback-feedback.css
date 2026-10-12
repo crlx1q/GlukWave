@@ -1,0 +1,12 @@
+/* The transport remains usable for pause/next; only unresolved seeking is muted. */
+.progress-line.is-loading{opacity:.48;filter:grayscale(.75);transition:opacity var(--motion-duration)}
+.progress-line.is-loading input.wave-range:disabled{cursor:default}
+.main-play.is-loading{position:relative;isolation:isolate}
+.main-play.is-loading>svg{opacity:.42}
+.play-loading-orbit{position:absolute;inset:5px;border:2px solid color-mix(in srgb,var(--accent) 22%,transparent);border-top-color:var(--accent);border-right-color:var(--accent);border-radius:50%;pointer-events:none;animation:play-loading-orbit calc(1.15s / var(--motion-speed,1)) linear infinite}
+@keyframes play-loading-orbit{to{rotate:1turn}}
+
+
+@media(prefers-reduced-motion:reduce){.play-loading-orbit{animation:none;border-right-color:var(--accent)}.progress-line.is-loading{transition:none}}
+html[data-motion=reduce] .play-loading-orbit{animation:none}
+@media(forced-colors:active){.play-loading-orbit{border-color:CanvasText;border-top-color:Highlight}}

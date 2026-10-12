@@ -1,0 +1,2366 @@
+{
+  "checkedAt": "2026-10-12T10:44:49.594152+00:00",
+  "deliveryLocalDate": "2026-10-12",
+  "version": "1.0.0+15",
+  "scope": "Actual EQ radii, quiet input focus, persistent DSP feedback, loading lifecycle and whole cover containment",
+  "server": {
+    "sourceChangedDuringIteration": false,
+    "suiteRerunDuringIteration": false
+  },
+  "web": {
+    "javascript": "/assets/main-Bi1KEma7.js",
+    "buildPassed": true,
+    "unitTestsPassed": 48,
+    "browserProof": {
+      "passed": true,
+      "scope": "Actual React components on isolated own5196, original local QA recording and shipped artwork; normal autoplay policy.",
+      "layouts": [
+        {
+          "theme": "dark",
+          "width": 1440,
+          "height": 520,
+          "font": 1,
+          "flat": {
+            "client": 390,
+            "faces": [
+              {
+                "class": "art album-cover track-loading-cover ",
+                "rect": {
+                  "bottom": 236,
+                  "height": 132,
+                  "left": 649,
+                  "right": 781,
+                  "top": 104,
+                  "width": 132,
+                  "x": 649,
+                  "y": 104
+                }
+              }
+            ],
+            "scroll": 390,
+            "size": "132px",
+            "stage": {
+              "bottom": 248,
+              "height": 156,
+              "left": 526,
+              "right": 904,
+              "top": 92,
+              "width": 378,
+              "x": 526,
+              "y": 92
+            }
+          },
+          "threeD": {
+            "client": 390,
+            "faces": [
+              {
+                "class": "vinyl ",
+                "rect": {
+                  "bottom": 224.109375,
+                  "height": 108.21875,
+                  "left": 668.5106201171875,
+                  "right": 776.7293701171875,
+                  "top": 115.890625,
+                  "width": 108.21875,
+                  "x": 668.5106201171875,
+                  "y": 115.890625
+                }
+              },
+              {
+                "class": "art album-cover track-loading-cover ",
+                "rect": {
+                  "bottom": 228.35250854492188,
+                  "height": 116.70501708984376,
+                  "left": 640.3087768554688,
+                  "right": 757.0137939453125,
+                  "top": 111.64749145507812,
+                  "width": 116.70501708984376,
+                  "x": 640.3087768554688,
+                  "y": 111.64749145507812
+                }
+              },
+              {
+                "class": "album-back",
+                "rect": {
+                  "bottom": 227.8682556152344,
+                  "height": 115.73651123046876,
+                  "left": 640.9286499023438,
+                  "right": 756.6651611328125,
+                  "top": 112.13174438476562,
+                  "width": 115.73651123046876,
+                  "x": 640.9286499023438,
+                  "y": 112.13174438476562
+                }
+              },
+              {
+                "class": "album-spine",
+                "rect": {
+                  "bottom": 228.109375,
+                  "height": 116.21875,
+                  "left": 645.6199951171875,
+                  "right": 646.136474609375,
+                  "top": 111.890625,
+                  "width": 0.5164794921875,
+                  "x": 645.6199951171875,
+                  "y": 111.890625
+                }
+              }
+            ],
+            "scroll": 390,
+            "size": "116.219px",
+            "stage": {
+              "bottom": 248,
+              "height": 156,
+              "left": 526,
+              "right": 904,
+              "top": 92,
+              "width": 378,
+              "x": 526,
+              "y": 92
+            }
+          },
+          "radii": [
+            {
+              "radius": 8,
+              "values": [
+                {
+                  "class": "eq-popover ",
+                  "overflow": "auto",
+                  "radius": 8
+                },
+                {
+                  "class": "eq-preset-trigger",
+                  "overflow": "visible",
+                  "radius": 6.4
+                },
+                {
+                  "class": "eq-speed",
+                  "overflow": "visible",
+                  "radius": 6.4
+                },
+                {
+                  "class": "eq-curve enabled",
+                  "overflow": "hidden",
+                  "radius": 6.4
+                }
+              ]
+            },
+            {
+              "radius": 24,
+              "values": [
+                {
+                  "class": "eq-popover ",
+                  "overflow": "auto",
+                  "radius": 24
+                },
+                {
+                  "class": "eq-preset-trigger",
+                  "overflow": "visible",
+                  "radius": 19.2
+                },
+                {
+                  "class": "eq-speed",
+                  "overflow": "visible",
+                  "radius": 19.2
+                },
+                {
+                  "class": "eq-curve enabled",
+                  "overflow": "hidden",
+                  "radius": 19.2
+                }
+              ]
+            },
+            {
+              "radius": 38,
+              "values": [
+                {
+                  "class": "eq-popover ",
+                  "overflow": "auto",
+                  "radius": 38
+                },
+                {
+                  "class": "eq-preset-trigger",
+                  "overflow": "visible",
+                  "radius": 30.4
+                },
+                {
+                  "class": "eq-speed",
+                  "overflow": "visible",
+                  "radius": 30.4
+                },
+                {
+                  "class": "eq-curve enabled",
+                  "overflow": "hidden",
+                  "radius": 30.4
+                }
+              ]
+            }
+          ],
+          "search": {
+            "focused": true,
+            "outline": "none",
+            "shadow": "none"
+          }
+        },
+        {
+          "theme": "dark",
+          "width": 390,
+          "height": 700,
+          "font": 1,
+          "flat": {
+            "client": 344,
+            "faces": [
+              {
+                "class": "art album-cover track-loading-cover ",
+                "rect": {
+                  "bottom": 323,
+                  "height": 235,
+                  "left": 72.5,
+                  "right": 307.5,
+                  "top": 88,
+                  "width": 235,
+                  "x": 72.5,
+                  "y": 88
+                }
+              }
+            ],
+            "scroll": 344,
+            "size": "235px",
+            "stage": {
+              "bottom": 335,
+              "height": 259,
+              "left": 18,
+              "right": 362,
+              "top": 76,
+              "width": 344,
+              "x": 18,
+              "y": 76
+            }
+          },
+          "threeD": {
+            "client": 344,
+            "faces": [
+              {
+                "class": "vinyl ",
+                "rect": {
+                  "bottom": 303.15625,
+                  "height": 195.3125,
+                  "left": 100.53624725341795,
+                  "right": 295.84874725341797,
+                  "top": 107.84375,
+                  "width": 195.3125,
+                  "x": 100.53624725341795,
+                  "y": 107.84375
+                }
+              },
+              {
+                "class": "art album-cover track-loading-cover ",
+                "rect": {
+                  "bottom": 307.58160400390625,
+                  "height": 204.16319274902344,
+                  "left": 59.33556365966797,
+                  "right": 263.49874114990234,
+                  "top": 103.4184112548828,
+                  "width": 204.1631774902344,
+                  "x": 59.33556365966797,
+                  "y": 103.4184112548828
+                }
+              },
+              {
+                "class": "album-back",
+                "rect": {
+                  "bottom": 306.73443603515625,
+                  "height": 202.4688720703125,
+                  "left": 60.41991424560547,
+                  "right": 262.88878631591797,
+                  "top": 104.26556396484376,
+                  "width": 202.4688720703125,
+                  "x": 60.41991424560547,
+                  "y": 104.26556396484376
+                }
+              },
+              {
+                "class": "album-spine",
+                "rect": {
+                  "bottom": 307.15625,
+                  "height": 203.3125,
+                  "left": 64.87999725341797,
+                  "right": 65.81141662597656,
+                  "top": 103.84375,
+                  "width": 0.9314193725585938,
+                  "x": 64.87999725341797,
+                  "y": 103.84375
+                }
+              }
+            ],
+            "scroll": 344,
+            "size": "203.312px",
+            "stage": {
+              "bottom": 335,
+              "height": 259,
+              "left": 18,
+              "right": 362,
+              "top": 76,
+              "width": 344,
+              "x": 18,
+              "y": 76
+            }
+          },
+          "radii": [
+            {
+              "radius": 8,
+              "values": [
+                {
+                  "class": "eq-popover ",
+                  "overflow": "auto",
+                  "radius": 8
+                },
+                {
+                  "class": "eq-preset-trigger",
+                  "overflow": "visible",
+                  "radius": 6.4
+                },
+                {
+                  "class": "eq-speed",
+                  "overflow": "visible",
+                  "radius": 6.4
+                },
+                {
+                  "class": "eq-curve enabled",
+                  "overflow": "hidden",
+                  "radius": 6.4
+                }
+              ]
+            },
+            {
+              "radius": 24,
+              "values": [
+                {
+                  "class": "eq-popover ",
+                  "overflow": "auto",
+                  "radius": 24
+                },
+                {
+                  "class": "eq-preset-trigger",
+                  "overflow": "visible",
+                  "radius": 19.2
+                },
+                {
+                  "class": "eq-speed",
+                  "overflow": "visible",
+                  "radius": 19.2
+                },
+                {
+                  "class": "eq-curve enabled",
+                  "overflow": "hidden",
+                  "radius": 19.2
+                }
+              ]
+            },
+            {
+              "radius": 38,
+              "values": [
+                {
+                  "class": "eq-popover ",
+                  "overflow": "auto",
+                  "radius": 38
+                },
+                {
+                  "class": "eq-preset-trigger",
+                  "overflow": "visible",
+                  "radius": 30.4
+                },
+                {
+                  "class": "eq-speed",
+                  "overflow": "visible",
+                  "radius": 30.4
+                },
+                {
+                  "class": "eq-curve enabled",
+                  "overflow": "hidden",
+                  "radius": 30.4
+                }
+              ]
+            }
+          ],
+          "search": {
+            "focused": true,
+            "outline": "none",
+            "shadow": "none"
+          }
+        },
+        {
+          "theme": "dark",
+          "width": 320,
+          "height": 568,
+          "font": 1.25,
+          "flat": {
+            "client": 212,
+            "faces": [
+              {
+                "class": "art album-cover track-loading-cover ",
+                "rect": {
+                  "bottom": 290,
+                  "height": 195,
+                  "left": 57.5,
+                  "right": 252.5,
+                  "top": 95,
+                  "width": 195,
+                  "x": 57.5,
+                  "y": 95
+                }
+              }
+            ],
+            "scroll": 212,
+            "size": "156px",
+            "stage": {
+              "bottom": 305,
+              "height": 225,
+              "left": 22.5,
+              "right": 287.5,
+              "top": 80,
+              "width": 265,
+              "x": 22.5,
+              "y": 80
+            }
+          },
+          "threeD": {
+            "client": 212,
+            "faces": [
+              {
+                "class": "vinyl ",
+                "rect": {
+                  "bottom": 268.5625,
+                  "height": 152.140625,
+                  "left": 96.61280822753906,
+                  "right": 248.75343322753903,
+                  "top": 116.421875,
+                  "width": 152.140625,
+                  "x": 96.61280822753906,
+                  "y": 116.421875
+                }
+              },
+              {
+                "class": "art album-cover track-loading-cover ",
+                "rect": {
+                  "bottom": 273.9016647338867,
+                  "height": 162.81903076171875,
+                  "left": 50.78797149658203,
+                  "right": 213.6070022583008,
+                  "top": 111.08263397216795,
+                  "width": 162.81903076171875,
+                  "x": 50.78797149658203,
+                  "y": 111.08263397216795
+                }
+              },
+              {
+                "class": "album-back",
+                "rect": {
+                  "bottom": 273.22613525390625,
+                  "height": 161.46783447265625,
+                  "left": 51.652801513671875,
+                  "right": 213.12063598632812,
+                  "top": 111.75830078125,
+                  "width": 161.46783447265625,
+                  "x": 51.652801513671875,
+                  "y": 111.75830078125
+                }
+              },
+              {
+                "class": "album-spine",
+                "rect": {
+                  "bottom": 273.5625,
+                  "height": 162.140625,
+                  "left": 57.47218704223633,
+                  "right": 58.19820022583008,
+                  "top": 111.421875,
+                  "width": 0.72601318359375,
+                  "x": 57.47218704223633,
+                  "y": 111.421875
+                }
+              }
+            ],
+            "scroll": 212,
+            "size": "129.712px",
+            "stage": {
+              "bottom": 305,
+              "height": 225,
+              "left": 22.5,
+              "right": 287.5,
+              "top": 80,
+              "width": 265,
+              "x": 22.5,
+              "y": 80
+            }
+          },
+          "radii": [
+            {
+              "radius": 8,
+              "values": [
+                {
+                  "class": "eq-popover ",
+                  "overflow": "auto",
+                  "radius": 8
+                },
+                {
+                  "class": "eq-preset-trigger",
+                  "overflow": "visible",
+                  "radius": 6.4
+                },
+                {
+                  "class": "eq-speed",
+                  "overflow": "visible",
+                  "radius": 6.4
+                },
+                {
+                  "class": "eq-curve enabled",
+                  "overflow": "hidden",
+                  "radius": 6.4
+                }
+              ]
+            },
+            {
+              "radius": 24,
+              "values": [
+                {
+                  "class": "eq-popover ",
+                  "overflow": "auto",
+                  "radius": 24
+                },
+                {
+                  "class": "eq-preset-trigger",
+                  "overflow": "visible",
+                  "radius": 19.2
+                },
+                {
+                  "class": "eq-speed",
+                  "overflow": "visible",
+                  "radius": 19.2
+                },
+                {
+                  "class": "eq-curve enabled",
+                  "overflow": "hidden",
+                  "radius": 19.2
+                }
+              ]
+            },
+            {
+              "radius": 38,
+              "values": [
+                {
+                  "class": "eq-popover ",
+                  "overflow": "auto",
+                  "radius": 38
+                },
+                {
+                  "class": "eq-preset-trigger",
+                  "overflow": "visible",
+                  "radius": 30.4
+                },
+                {
+                  "class": "eq-speed",
+                  "overflow": "visible",
+                  "radius": 30.4
+                },
+                {
+                  "class": "eq-curve enabled",
+                  "overflow": "hidden",
+                  "radius": 30.4
+                }
+              ]
+            }
+          ],
+          "search": {
+            "focused": true,
+            "outline": "none",
+            "shadow": "none"
+          }
+        },
+        {
+          "theme": "light",
+          "width": 1440,
+          "height": 520,
+          "font": 1,
+          "flat": {
+            "client": 390,
+            "faces": [
+              {
+                "class": "art album-cover track-loading-cover ",
+                "rect": {
+                  "bottom": 236,
+                  "height": 132,
+                  "left": 649,
+                  "right": 781,
+                  "top": 104,
+                  "width": 132,
+                  "x": 649,
+                  "y": 104
+                }
+              }
+            ],
+            "scroll": 390,
+            "size": "132px",
+            "stage": {
+              "bottom": 248,
+              "height": 156,
+              "left": 526,
+              "right": 904,
+              "top": 92,
+              "width": 378,
+              "x": 526,
+              "y": 92
+            }
+          },
+          "threeD": {
+            "client": 390,
+            "faces": [
+              {
+                "class": "vinyl ",
+                "rect": {
+                  "bottom": 224.109375,
+                  "height": 108.21875,
+                  "left": 668.5106201171875,
+                  "right": 776.7293701171875,
+                  "top": 115.890625,
+                  "width": 108.21875,
+                  "x": 668.5106201171875,
+                  "y": 115.890625
+                }
+              },
+              {
+                "class": "art album-cover track-loading-cover ",
+                "rect": {
+                  "bottom": 228.35250854492188,
+                  "height": 116.70501708984376,
+                  "left": 640.3087768554688,
+                  "right": 757.0137939453125,
+                  "top": 111.64749145507812,
+                  "width": 116.70501708984376,
+                  "x": 640.3087768554688,
+                  "y": 111.64749145507812
+                }
+              },
+              {
+                "class": "album-back",
+                "rect": {
+                  "bottom": 227.8682556152344,
+                  "height": 115.73651123046876,
+                  "left": 640.9286499023438,
+                  "right": 756.6651611328125,
+                  "top": 112.13174438476562,
+                  "width": 115.73651123046876,
+                  "x": 640.9286499023438,
+                  "y": 112.13174438476562
+                }
+              },
+              {
+                "class": "album-spine",
+                "rect": {
+                  "bottom": 228.109375,
+                  "height": 116.21875,
+                  "left": 645.6199951171875,
+                  "right": 646.136474609375,
+                  "top": 111.890625,
+                  "width": 0.5164794921875,
+                  "x": 645.6199951171875,
+                  "y": 111.890625
+                }
+              }
+            ],
+            "scroll": 390,
+            "size": "116.219px",
+            "stage": {
+              "bottom": 248,
+              "height": 156,
+              "left": 526,
+              "right": 904,
+              "top": 92,
+              "width": 378,
+              "x": 526,
+              "y": 92
+            }
+          },
+          "radii": [
+            {
+              "radius": 8,
+              "values": [
+                {
+                  "class": "eq-popover ",
+                  "overflow": "auto",
+                  "radius": 8
+                },
+                {
+                  "class": "eq-preset-trigger",
+                  "overflow": "visible",
+                  "radius": 6.4
+                },
+                {
+                  "class": "eq-speed",
+                  "overflow": "visible",
+                  "radius": 6.4
+                },
+                {
+                  "class": "eq-curve enabled",
+                  "overflow": "hidden",
+                  "radius": 6.4
+                }
+              ]
+            },
+            {
+              "radius": 24,
+              "values": [
+                {
+                  "class": "eq-popover ",
+                  "overflow": "auto",
+                  "radius": 24
+                },
+                {
+                  "class": "eq-preset-trigger",
+                  "overflow": "visible",
+                  "radius": 19.2
+                },
+                {
+                  "class": "eq-speed",
+                  "overflow": "visible",
+                  "radius": 19.2
+                },
+                {
+                  "class": "eq-curve enabled",
+                  "overflow": "hidden",
+                  "radius": 19.2
+                }
+              ]
+            },
+            {
+              "radius": 38,
+              "values": [
+                {
+                  "class": "eq-popover ",
+                  "overflow": "auto",
+                  "radius": 38
+                },
+                {
+                  "class": "eq-preset-trigger",
+                  "overflow": "visible",
+                  "radius": 30.4
+                },
+                {
+                  "class": "eq-speed",
+                  "overflow": "visible",
+                  "radius": 30.4
+                },
+                {
+                  "class": "eq-curve enabled",
+                  "overflow": "hidden",
+                  "radius": 30.4
+                }
+              ]
+            }
+          ],
+          "search": {
+            "focused": true,
+            "outline": "none",
+            "shadow": "none"
+          }
+        },
+        {
+          "theme": "light",
+          "width": 390,
+          "height": 700,
+          "font": 1,
+          "flat": {
+            "client": 344,
+            "faces": [
+              {
+                "class": "art album-cover track-loading-cover ",
+                "rect": {
+                  "bottom": 323,
+                  "height": 235,
+                  "left": 72.5,
+                  "right": 307.5,
+                  "top": 88,
+                  "width": 235,
+                  "x": 72.5,
+                  "y": 88
+                }
+              }
+            ],
+            "scroll": 344,
+            "size": "235px",
+            "stage": {
+              "bottom": 335,
+              "height": 259,
+              "left": 18,
+              "right": 362,
+              "top": 76,
+              "width": 344,
+              "x": 18,
+              "y": 76
+            }
+          },
+          "threeD": {
+            "client": 344,
+            "faces": [
+              {
+                "class": "vinyl ",
+                "rect": {
+                  "bottom": 303.15625,
+                  "height": 195.3125,
+                  "left": 100.53624725341795,
+                  "right": 295.84874725341797,
+                  "top": 107.84375,
+                  "width": 195.3125,
+                  "x": 100.53624725341795,
+                  "y": 107.84375
+                }
+              },
+              {
+                "class": "art album-cover track-loading-cover ",
+                "rect": {
+                  "bottom": 307.58160400390625,
+                  "height": 204.16319274902344,
+                  "left": 59.33556365966797,
+                  "right": 263.49874114990234,
+                  "top": 103.4184112548828,
+                  "width": 204.1631774902344,
+                  "x": 59.33556365966797,
+                  "y": 103.4184112548828
+                }
+              },
+              {
+                "class": "album-back",
+                "rect": {
+                  "bottom": 306.73443603515625,
+                  "height": 202.4688720703125,
+                  "left": 60.41991424560547,
+                  "right": 262.88878631591797,
+                  "top": 104.26556396484376,
+                  "width": 202.4688720703125,
+                  "x": 60.41991424560547,
+                  "y": 104.26556396484376
+                }
+              },
+              {
+                "class": "album-spine",
+                "rect": {
+                  "bottom": 307.15625,
+                  "height": 203.3125,
+                  "left": 64.87999725341797,
+                  "right": 65.81141662597656,
+                  "top": 103.84375,
+                  "width": 0.9314193725585938,
+                  "x": 64.87999725341797,
+                  "y": 103.84375
+                }
+              }
+            ],
+            "scroll": 344,
+            "size": "203.312px",
+            "stage": {
+              "bottom": 335,
+              "height": 259,
+              "left": 18,
+              "right": 362,
+              "top": 76,
+              "width": 344,
+              "x": 18,
+              "y": 76
+            }
+          },
+          "radii": [
+            {
+              "radius": 8,
+              "values": [
+                {
+                  "class": "eq-popover ",
+                  "overflow": "auto",
+                  "radius": 8
+                },
+                {
+                  "class": "eq-preset-trigger",
+                  "overflow": "visible",
+                  "radius": 6.4
+                },
+                {
+                  "class": "eq-speed",
+                  "overflow": "visible",
+                  "radius": 6.4
+                },
+                {
+                  "class": "eq-curve enabled",
+                  "overflow": "hidden",
+                  "radius": 6.4
+                }
+              ]
+            },
+            {
+              "radius": 24,
+              "values": [
+                {
+                  "class": "eq-popover ",
+                  "overflow": "auto",
+                  "radius": 24
+                },
+                {
+                  "class": "eq-preset-trigger",
+                  "overflow": "visible",
+                  "radius": 19.2
+                },
+                {
+                  "class": "eq-speed",
+                  "overflow": "visible",
+                  "radius": 19.2
+                },
+                {
+                  "class": "eq-curve enabled",
+                  "overflow": "hidden",
+                  "radius": 19.2
+                }
+              ]
+            },
+            {
+              "radius": 38,
+              "values": [
+                {
+                  "class": "eq-popover ",
+                  "overflow": "auto",
+                  "radius": 38
+                },
+                {
+                  "class": "eq-preset-trigger",
+                  "overflow": "visible",
+                  "radius": 30.4
+                },
+                {
+                  "class": "eq-speed",
+                  "overflow": "visible",
+                  "radius": 30.4
+                },
+                {
+                  "class": "eq-curve enabled",
+                  "overflow": "hidden",
+                  "radius": 30.4
+                }
+              ]
+            }
+          ],
+          "search": {
+            "focused": true,
+            "outline": "none",
+            "shadow": "none"
+          }
+        },
+        {
+          "theme": "light",
+          "width": 320,
+          "height": 568,
+          "font": 1.25,
+          "flat": {
+            "client": 212,
+            "faces": [
+              {
+                "class": "art album-cover track-loading-cover ",
+                "rect": {
+                  "bottom": 290,
+                  "height": 195,
+                  "left": 57.5,
+                  "right": 252.5,
+                  "top": 95,
+                  "width": 195,
+                  "x": 57.5,
+                  "y": 95
+                }
+              }
+            ],
+            "scroll": 212,
+            "size": "156px",
+            "stage": {
+              "bottom": 305,
+              "height": 225,
+              "left": 22.5,
+              "right": 287.5,
+              "top": 80,
+              "width": 265,
+              "x": 22.5,
+              "y": 80
+            }
+          },
+          "threeD": {
+            "client": 212,
+            "faces": [
+              {
+                "class": "vinyl ",
+                "rect": {
+                  "bottom": 268.5625,
+                  "height": 152.140625,
+                  "left": 96.61280822753906,
+                  "right": 248.75343322753903,
+                  "top": 116.421875,
+                  "width": 152.140625,
+                  "x": 96.61280822753906,
+                  "y": 116.421875
+                }
+              },
+              {
+                "class": "art album-cover track-loading-cover ",
+                "rect": {
+                  "bottom": 273.9016647338867,
+                  "height": 162.81903076171875,
+                  "left": 50.78797149658203,
+                  "right": 213.6070022583008,
+                  "top": 111.08263397216795,
+                  "width": 162.81903076171875,
+                  "x": 50.78797149658203,
+                  "y": 111.08263397216795
+                }
+              },
+              {
+                "class": "album-back",
+                "rect": {
+                  "bottom": 273.22613525390625,
+                  "height": 161.46783447265625,
+                  "left": 51.652801513671875,
+                  "right": 213.12063598632812,
+                  "top": 111.75830078125,
+                  "width": 161.46783447265625,
+                  "x": 51.652801513671875,
+                  "y": 111.75830078125
+                }
+              },
+              {
+                "class": "album-spine",
+                "rect": {
+                  "bottom": 273.5625,
+                  "height": 162.140625,
+                  "left": 57.47218704223633,
+                  "right": 58.19820022583008,
+                  "top": 111.421875,
+                  "width": 0.72601318359375,
+                  "x": 57.47218704223633,
+                  "y": 111.421875
+                }
+              }
+            ],
+            "scroll": 212,
+            "size": "129.712px",
+            "stage": {
+              "bottom": 305,
+              "height": 225,
+              "left": 22.5,
+              "right": 287.5,
+              "top": 80,
+              "width": 265,
+              "x": 22.5,
+              "y": 80
+            }
+          },
+          "radii": [
+            {
+              "radius": 8,
+              "values": [
+                {
+                  "class": "eq-popover ",
+                  "overflow": "auto",
+                  "radius": 8
+                },
+                {
+                  "class": "eq-preset-trigger",
+                  "overflow": "visible",
+                  "radius": 6.4
+                },
+                {
+                  "class": "eq-speed",
+                  "overflow": "visible",
+                  "radius": 6.4
+                },
+                {
+                  "class": "eq-curve enabled",
+                  "overflow": "hidden",
+                  "radius": 6.4
+                }
+              ]
+            },
+            {
+              "radius": 24,
+              "values": [
+                {
+                  "class": "eq-popover ",
+                  "overflow": "auto",
+                  "radius": 24
+                },
+                {
+                  "class": "eq-preset-trigger",
+                  "overflow": "visible",
+                  "radius": 19.2
+                },
+                {
+                  "class": "eq-speed",
+                  "overflow": "visible",
+                  "radius": 19.2
+                },
+                {
+                  "class": "eq-curve enabled",
+                  "overflow": "hidden",
+                  "radius": 19.2
+                }
+              ]
+            },
+            {
+              "radius": 38,
+              "values": [
+                {
+                  "class": "eq-popover ",
+                  "overflow": "auto",
+                  "radius": 38
+                },
+                {
+                  "class": "eq-preset-trigger",
+                  "overflow": "visible",
+                  "radius": 30.4
+                },
+                {
+                  "class": "eq-speed",
+                  "overflow": "visible",
+                  "radius": 30.4
+                },
+                {
+                  "class": "eq-curve enabled",
+                  "overflow": "hidden",
+                  "radius": 30.4
+                }
+              ]
+            }
+          ],
+          "search": {
+            "focused": true,
+            "outline": "none",
+            "shadow": "none"
+          }
+        },
+        {
+          "theme": "amoled",
+          "width": 1440,
+          "height": 520,
+          "font": 1,
+          "flat": {
+            "client": 390,
+            "faces": [
+              {
+                "class": "art album-cover track-loading-cover ",
+                "rect": {
+                  "bottom": 236,
+                  "height": 132,
+                  "left": 649,
+                  "right": 781,
+                  "top": 104,
+                  "width": 132,
+                  "x": 649,
+                  "y": 104
+                }
+              }
+            ],
+            "scroll": 390,
+            "size": "132px",
+            "stage": {
+              "bottom": 248,
+              "height": 156,
+              "left": 526,
+              "right": 904,
+              "top": 92,
+              "width": 378,
+              "x": 526,
+              "y": 92
+            }
+          },
+          "threeD": {
+            "client": 390,
+            "faces": [
+              {
+                "class": "vinyl ",
+                "rect": {
+                  "bottom": 224.109375,
+                  "height": 108.21875,
+                  "left": 668.5106201171875,
+                  "right": 776.7293701171875,
+                  "top": 115.890625,
+                  "width": 108.21875,
+                  "x": 668.5106201171875,
+                  "y": 115.890625
+                }
+              },
+              {
+                "class": "art album-cover track-loading-cover ",
+                "rect": {
+                  "bottom": 228.35250854492188,
+                  "height": 116.70501708984376,
+                  "left": 640.3087768554688,
+                  "right": 757.0137939453125,
+                  "top": 111.64749145507812,
+                  "width": 116.70501708984376,
+                  "x": 640.3087768554688,
+                  "y": 111.64749145507812
+                }
+              },
+              {
+                "class": "album-back",
+                "rect": {
+                  "bottom": 227.8682556152344,
+                  "height": 115.73651123046876,
+                  "left": 640.9286499023438,
+                  "right": 756.6651611328125,
+                  "top": 112.13174438476562,
+                  "width": 115.73651123046876,
+                  "x": 640.9286499023438,
+                  "y": 112.13174438476562
+                }
+              },
+              {
+                "class": "album-spine",
+                "rect": {
+                  "bottom": 228.109375,
+                  "height": 116.21875,
+                  "left": 645.6199951171875,
+                  "right": 646.136474609375,
+                  "top": 111.890625,
+                  "width": 0.5164794921875,
+                  "x": 645.6199951171875,
+                  "y": 111.890625
+                }
+              }
+            ],
+            "scroll": 390,
+            "size": "116.219px",
+            "stage": {
+              "bottom": 248,
+              "height": 156,
+              "left": 526,
+              "right": 904,
+              "top": 92,
+              "width": 378,
+              "x": 526,
+              "y": 92
+            }
+          },
+          "radii": [
+            {
+              "radius": 8,
+              "values": [
+                {
+                  "class": "eq-popover ",
+                  "overflow": "auto",
+                  "radius": 8
+                },
+                {
+                  "class": "eq-preset-trigger",
+                  "overflow": "visible",
+                  "radius": 6.4
+                },
+                {
+                  "class": "eq-speed",
+                  "overflow": "visible",
+                  "radius": 6.4
+                },
+                {
+                  "class": "eq-curve enabled",
+                  "overflow": "hidden",
+                  "radius": 6.4
+                }
+              ]
+            },
+            {
+              "radius": 24,
+              "values": [
+                {
+                  "class": "eq-popover ",
+                  "overflow": "auto",
+                  "radius": 24
+                },
+                {
+                  "class": "eq-preset-trigger",
+                  "overflow": "visible",
+                  "radius": 19.2
+                },
+                {
+                  "class": "eq-speed",
+                  "overflow": "visible",
+                  "radius": 19.2
+                },
+                {
+                  "class": "eq-curve enabled",
+                  "overflow": "hidden",
+                  "radius": 19.2
+                }
+              ]
+            },
+            {
+              "radius": 38,
+              "values": [
+                {
+                  "class": "eq-popover ",
+                  "overflow": "auto",
+                  "radius": 38
+                },
+                {
+                  "class": "eq-preset-trigger",
+                  "overflow": "visible",
+                  "radius": 30.4
+                },
+                {
+                  "class": "eq-speed",
+                  "overflow": "visible",
+                  "radius": 30.4
+                },
+                {
+                  "class": "eq-curve enabled",
+                  "overflow": "hidden",
+                  "radius": 30.4
+                }
+              ]
+            }
+          ],
+          "search": {
+            "focused": true,
+            "outline": "none",
+            "shadow": "none"
+          }
+        },
+        {
+          "theme": "amoled",
+          "width": 390,
+          "height": 700,
+          "font": 1,
+          "flat": {
+            "client": 344,
+            "faces": [
+              {
+                "class": "art album-cover track-loading-cover ",
+                "rect": {
+                  "bottom": 323,
+                  "height": 235,
+                  "left": 72.5,
+                  "right": 307.5,
+                  "top": 88,
+                  "width": 235,
+                  "x": 72.5,
+                  "y": 88
+                }
+              }
+            ],
+            "scroll": 344,
+            "size": "235px",
+            "stage": {
+              "bottom": 335,
+              "height": 259,
+              "left": 18,
+              "right": 362,
+              "top": 76,
+              "width": 344,
+              "x": 18,
+              "y": 76
+            }
+          },
+          "threeD": {
+            "client": 344,
+            "faces": [
+              {
+                "class": "vinyl ",
+                "rect": {
+                  "bottom": 303.15625,
+                  "height": 195.3125,
+                  "left": 100.53624725341795,
+                  "right": 295.84874725341797,
+                  "top": 107.84375,
+                  "width": 195.3125,
+                  "x": 100.53624725341795,
+                  "y": 107.84375
+                }
+              },
+              {
+                "class": "art album-cover track-loading-cover ",
+                "rect": {
+                  "bottom": 307.58160400390625,
+                  "height": 204.16319274902344,
+                  "left": 59.33556365966797,
+                  "right": 263.49874114990234,
+                  "top": 103.4184112548828,
+                  "width": 204.1631774902344,
+                  "x": 59.33556365966797,
+                  "y": 103.4184112548828
+                }
+              },
+              {
+                "class": "album-back",
+                "rect": {
+                  "bottom": 306.73443603515625,
+                  "height": 202.4688720703125,
+                  "left": 60.41991424560547,
+                  "right": 262.88878631591797,
+                  "top": 104.26556396484376,
+                  "width": 202.4688720703125,
+                  "x": 60.41991424560547,
+                  "y": 104.26556396484376
+                }
+              },
+              {
+                "class": "album-spine",
+                "rect": {
+                  "bottom": 307.15625,
+                  "height": 203.3125,
+                  "left": 64.87999725341797,
+                  "right": 65.81141662597656,
+                  "top": 103.84375,
+                  "width": 0.9314193725585938,
+                  "x": 64.87999725341797,
+                  "y": 103.84375
+                }
+              }
+            ],
+            "scroll": 344,
+            "size": "203.312px",
+            "stage": {
+              "bottom": 335,
+              "height": 259,
+              "left": 18,
+              "right": 362,
+              "top": 76,
+              "width": 344,
+              "x": 18,
+              "y": 76
+            }
+          },
+          "radii": [
+            {
+              "radius": 8,
+              "values": [
+                {
+                  "class": "eq-popover ",
+                  "overflow": "auto",
+                  "radius": 8
+                },
+                {
+                  "class": "eq-preset-trigger",
+                  "overflow": "visible",
+                  "radius": 6.4
+                },
+                {
+                  "class": "eq-speed",
+                  "overflow": "visible",
+                  "radius": 6.4
+                },
+                {
+                  "class": "eq-curve enabled",
+                  "overflow": "hidden",
+                  "radius": 6.4
+                }
+              ]
+            },
+            {
+              "radius": 24,
+              "values": [
+                {
+                  "class": "eq-popover ",
+                  "overflow": "auto",
+                  "radius": 24
+                },
+                {
+                  "class": "eq-preset-trigger",
+                  "overflow": "visible",
+                  "radius": 19.2
+                },
+                {
+                  "class": "eq-speed",
+                  "overflow": "visible",
+                  "radius": 19.2
+                },
+                {
+                  "class": "eq-curve enabled",
+                  "overflow": "hidden",
+                  "radius": 19.2
+                }
+              ]
+            },
+            {
+              "radius": 38,
+              "values": [
+                {
+                  "class": "eq-popover ",
+                  "overflow": "auto",
+                  "radius": 38
+                },
+                {
+                  "class": "eq-preset-trigger",
+                  "overflow": "visible",
+                  "radius": 30.4
+                },
+                {
+                  "class": "eq-speed",
+                  "overflow": "visible",
+                  "radius": 30.4
+                },
+                {
+                  "class": "eq-curve enabled",
+                  "overflow": "hidden",
+                  "radius": 30.4
+                }
+              ]
+            }
+          ],
+          "search": {
+            "focused": true,
+            "outline": "none",
+            "shadow": "none"
+          }
+        },
+        {
+          "theme": "amoled",
+          "width": 320,
+          "height": 568,
+          "font": 1.25,
+          "flat": {
+            "client": 212,
+            "faces": [
+              {
+                "class": "art album-cover track-loading-cover ",
+                "rect": {
+                  "bottom": 290,
+                  "height": 195,
+                  "left": 57.5,
+                  "right": 252.5,
+                  "top": 95,
+                  "width": 195,
+                  "x": 57.5,
+                  "y": 95
+                }
+              }
+            ],
+            "scroll": 212,
+            "size": "156px",
+            "stage": {
+              "bottom": 305,
+              "height": 225,
+              "left": 22.5,
+              "right": 287.5,
+              "top": 80,
+              "width": 265,
+              "x": 22.5,
+              "y": 80
+            }
+          },
+          "threeD": {
+            "client": 212,
+            "faces": [
+              {
+                "class": "vinyl ",
+                "rect": {
+                  "bottom": 268.5625,
+                  "height": 152.140625,
+                  "left": 96.61280822753906,
+                  "right": 248.75343322753903,
+                  "top": 116.421875,
+                  "width": 152.140625,
+                  "x": 96.61280822753906,
+                  "y": 116.421875
+                }
+              },
+              {
+                "class": "art album-cover track-loading-cover ",
+                "rect": {
+                  "bottom": 273.9016647338867,
+                  "height": 162.81903076171875,
+                  "left": 50.78797149658203,
+                  "right": 213.6070022583008,
+                  "top": 111.08263397216795,
+                  "width": 162.81903076171875,
+                  "x": 50.78797149658203,
+                  "y": 111.08263397216795
+                }
+              },
+              {
+                "class": "album-back",
+                "rect": {
+                  "bottom": 273.22613525390625,
+                  "height": 161.46783447265625,
+                  "left": 51.652801513671875,
+                  "right": 213.12063598632812,
+                  "top": 111.75830078125,
+                  "width": 161.46783447265625,
+                  "x": 51.652801513671875,
+                  "y": 111.75830078125
+                }
+              },
+              {
+                "class": "album-spine",
+                "rect": {
+                  "bottom": 273.5625,
+                  "height": 162.140625,
+                  "left": 57.47218704223633,
+                  "right": 58.19820022583008,
+                  "top": 111.421875,
+                  "width": 0.72601318359375,
+                  "x": 57.47218704223633,
+                  "y": 111.421875
+                }
+              }
+            ],
+            "scroll": 212,
+            "size": "129.712px",
+            "stage": {
+              "bottom": 305,
+              "height": 225,
+              "left": 22.5,
+              "right": 287.5,
+              "top": 80,
+              "width": 265,
+              "x": 22.5,
+              "y": 80
+            }
+          },
+          "radii": [
+            {
+              "radius": 8,
+              "values": [
+                {
+                  "class": "eq-popover ",
+                  "overflow": "auto",
+                  "radius": 8
+                },
+                {
+                  "class": "eq-preset-trigger",
+                  "overflow": "visible",
+                  "radius": 6.4
+                },
+                {
+                  "class": "eq-speed",
+                  "overflow": "visible",
+                  "radius": 6.4
+                },
+                {
+                  "class": "eq-curve enabled",
+                  "overflow": "hidden",
+                  "radius": 6.4
+                }
+              ]
+            },
+            {
+              "radius": 24,
+              "values": [
+                {
+                  "class": "eq-popover ",
+                  "overflow": "auto",
+                  "radius": 24
+                },
+                {
+                  "class": "eq-preset-trigger",
+                  "overflow": "visible",
+                  "radius": 19.2
+                },
+                {
+                  "class": "eq-speed",
+                  "overflow": "visible",
+                  "radius": 19.2
+                },
+                {
+                  "class": "eq-curve enabled",
+                  "overflow": "hidden",
+                  "radius": 19.2
+                }
+              ]
+            },
+            {
+              "radius": 38,
+              "values": [
+                {
+                  "class": "eq-popover ",
+                  "overflow": "auto",
+                  "radius": 38
+                },
+                {
+                  "class": "eq-preset-trigger",
+                  "overflow": "visible",
+                  "radius": 30.4
+                },
+                {
+                  "class": "eq-speed",
+                  "overflow": "visible",
+                  "radius": 30.4
+                },
+                {
+                  "class": "eq-curve enabled",
+                  "overflow": "hidden",
+                  "radius": 30.4
+                }
+              ]
+            }
+          ],
+          "search": {
+            "focused": true,
+            "outline": "none",
+            "shadow": "none"
+          }
+        }
+      ],
+      "screenshots": [
+        "work/qa/player-details-1791800121829-dark-1440-flat.png",
+        "work/qa/player-details-1791800121829-dark-1440-3d.png",
+        "work/qa/player-details-1791800121829-dark-1440-eq.png",
+        "work/qa/player-details-1791800121829-dark-1440-search.png",
+        "work/qa/player-details-1791800121829-dark-390-flat.png",
+        "work/qa/player-details-1791800121829-dark-390-3d.png",
+        "work/qa/player-details-1791800121829-dark-390-eq.png",
+        "work/qa/player-details-1791800121829-dark-390-search.png",
+        "work/qa/player-details-1791800121829-dark-320-flat.png",
+        "work/qa/player-details-1791800121829-dark-320-3d.png",
+        "work/qa/player-details-1791800121829-dark-320-eq.png",
+        "work/qa/player-details-1791800121829-dark-320-search.png",
+        "work/qa/player-details-1791800121829-light-1440-flat.png",
+        "work/qa/player-details-1791800121829-light-1440-3d.png",
+        "work/qa/player-details-1791800121829-light-1440-eq.png",
+        "work/qa/player-details-1791800121829-light-1440-search.png",
+        "work/qa/player-details-1791800121829-light-390-flat.png",
+        "work/qa/player-details-1791800121829-light-390-3d.png",
+        "work/qa/player-details-1791800121829-light-390-eq.png",
+        "work/qa/player-details-1791800121829-light-390-search.png",
+        "work/qa/player-details-1791800121829-light-320-flat.png",
+        "work/qa/player-details-1791800121829-light-320-3d.png",
+        "work/qa/player-details-1791800121829-light-320-eq.png",
+        "work/qa/player-details-1791800121829-light-320-search.png",
+        "work/qa/player-details-1791800121829-amoled-1440-flat.png",
+        "work/qa/player-details-1791800121829-amoled-1440-3d.png",
+        "work/qa/player-details-1791800121829-amoled-1440-eq.png",
+        "work/qa/player-details-1791800121829-amoled-1440-search.png",
+        "work/qa/player-details-1791800121829-amoled-390-flat.png",
+        "work/qa/player-details-1791800121829-amoled-390-3d.png",
+        "work/qa/player-details-1791800121829-amoled-390-eq.png",
+        "work/qa/player-details-1791800121829-amoled-390-search.png",
+        "work/qa/player-details-1791800121829-amoled-320-flat.png",
+        "work/qa/player-details-1791800121829-amoled-320-3d.png",
+        "work/qa/player-details-1791800121829-amoled-320-eq.png",
+        "work/qa/player-details-1791800121829-amoled-320-search.png",
+        "work/qa/player-details-1791800121829-actual-resolving.png"
+      ],
+      "checks": [
+        "9 actual light/dark/AMOLED layouts: short 1440x520 desktop,390x700 and320x568 at125% font. Flat and3D faces/disc/spine all remain inside stage, with actual stage containment; separate motion proof covers all intermediate manual rotation frames.",
+        "EQ persists enabled highlight after closing and clears on actual disable; aria-pressed is enabled state. Preset keyboard/ArrowDown/Enter and pointer are quiet, usable; search typing has computed outline none and box-shadow none. Lyrics and queue share selected transform; reduced motion removes it.",
+        "Actual3s playback resolution: disabled seek and no command seek drift, muted progress, loading play orbit, next enabled. Success/error/rapid cancellation end indicator and return seek control."
+      ],
+      "icons": {
+        "lyrics": "matrix(0.990268, -0.139173, 0.139173, 0.990268, 0, -1)",
+        "queue": "matrix(0.990268, -0.139173, 0.139173, 0.990268, 0, -1)",
+        "reduced": "none"
+      }
+    },
+    "motionAndMiniProof": {
+      "passed": true,
+      "cases": [
+        {
+          "width": 1440,
+          "height": 520,
+          "font": 1,
+          "frames": 96,
+          "transforms": 39,
+          "allFacesInside": true
+        },
+        {
+          "width": 390,
+          "height": 700,
+          "font": 1,
+          "frames": 96,
+          "transforms": 55,
+          "allFacesInside": true
+        },
+        {
+          "width": 320,
+          "height": 568,
+          "font": 1.25,
+          "frames": 96,
+          "transforms": 48,
+          "allFacesInside": true
+        }
+      ],
+      "screenshots": [
+        "work/qa/player-details-1791800718879-motion-1440.png",
+        "work/qa/player-details-1791800718879-motion-390.png",
+        "work/qa/player-details-1791800718879-motion-320.png",
+        "work/qa/player-details-1791800718879-radius24.png",
+        "work/qa/player-details-1791800718879-mini-loading.png"
+      ],
+      "mini": {
+        "actualBroadcastChannel": true,
+        "loadingSeekDisabled": true,
+        "readySeekEnabled": true
+      }
+    },
+    "independentProof": {
+      "passed": true,
+      "verdict": "PASS",
+      "attempt": 1,
+      "screenshots": [
+        "work/qa/player-details-independent-1440-flat-125.png",
+        "work/qa/player-details-independent-1440-3d-125.png",
+        "work/qa/player-details-independent-1440-3d-angle-125.png",
+        "work/qa/player-details-independent-1440-bottom-125.png",
+        "work/qa/player-details-independent-768-flat-125.png",
+        "work/qa/player-details-independent-768-3d-125.png",
+        "work/qa/player-details-independent-768-3d-angle-125.png",
+        "work/qa/player-details-independent-768-bottom-125.png",
+        "work/qa/player-details-independent-375-flat-125.png",
+        "work/qa/player-details-independent-375-3d-125.png",
+        "work/qa/player-details-independent-375-3d-angle-125.png",
+        "work/qa/player-details-independent-375-bottom-125.png",
+        "work/qa/player-details-independent-390-flat-125.png",
+        "work/qa/player-details-independent-390-3d-125.png",
+        "work/qa/player-details-independent-390-3d-angle-125.png",
+        "work/qa/player-details-independent-390-bottom-125.png",
+        "work/qa/player-details-independent-320-flat-125.png",
+        "work/qa/player-details-independent-320-3d-125.png",
+        "work/qa/player-details-independent-320-3d-angle-125.png",
+        "work/qa/player-details-independent-320-bottom-125.png",
+        "work/qa/player-details-independent-dark-eq-8.png",
+        "work/qa/player-details-independent-dark-eq-24.png",
+        "work/qa/player-details-independent-dark-eq-38.png",
+        "work/qa/player-details-independent-light-eq-8.png",
+        "work/qa/player-details-independent-light-eq-24.png",
+        "work/qa/player-details-independent-light-eq-38.png",
+        "work/qa/player-details-independent-amoled-eq-8.png",
+        "work/qa/player-details-independent-amoled-eq-24.png",
+        "work/qa/player-details-independent-amoled-eq-38.png",
+        "work/qa/player-details-independent-eq-closed-selected.png",
+        "work/qa/player-details-independent-1440-search-typing.png",
+        "work/qa/player-details-independent-320-search-typing.png",
+        "work/qa/player-details-independent-lyrics-active.png",
+        "work/qa/player-details-independent-queue-active.png",
+        "work/qa/player-details-independent-real-loading.png",
+        "work/qa/native-player-details-1791801246711-dark-1440-3d.png",
+        "work/qa/native-player-details-1791801246711-dark-320-3d.png",
+        "work/qa/native-player-details-1791801246711-light-390-flat.png",
+        "work/qa/native-player-details-1791801246711-amoled-eq-8.png",
+        "work/qa/native-player-details-1791801246711-dark-eq-24.png",
+        "work/qa/native-player-details-1791801246711-light-eq-38.png",
+        "work/qa/native-player-details-1791801246711-loading.png"
+      ],
+      "checks": [
+        "Owner reference images inspected directly; current UI addresses the pictured sharp EQ interiors and colored search focus ring.",
+        "Independent live web EQ checks in dark/light/AMOLED at radius 8/24/38 measured outer 8/24/38 and inner preset/speed/chart/list 6.4/19.2/30.4; chart clipping is hidden and visibly follows rounded shape.",
+        "Actual keyboard preset selection works; focused preset trigger computes outline none and box-shadow none.",
+        "Desktop and 320px search were filled and typed into; focused text input and enclosing container compute outline none and box-shadow none.",
+        "Closing the EQ and full player leaves compact equalizer aria-pressed true, selected class and accent color.",
+        "Real Lyrics and Queue view buttons share the same selected transform; reduced motion and inactive queue compute transform none.",
+        "Actual delayed playback-source resolution shows aria-busy true, accent orbit, disabled seek and progress opacity 0.48; next stays enabled.",
+        "Actual source success/error/cancellation clear the loading indicator and restore seek; visible Next track escapes pending resolution. Reduced motion computes loading animation none.",
+        "Independent flat/3D geometry and screenshots at 1440x520,768x650,375x667,390x700,320x568, all at125% font: cover/vinyl/back/spine stay inside stage with no horizontal overflow. All320 sampled intermediate-angle frames remained contained.",
+        "Lower player content was scrolled and captured at every independently checked size; real cover menu opens and closes.",
+        "Reviewed supplementary web9-layout/37-screenshot proof and motion-mini288-frame proof, including actual mini BroadcastChannel loading-to-ready evidence.",
+        "Final native run1791801246711 actual widget screenshots were visually inspected for short desktop and320px3D,390pxflat, live EQ8/24/38 and real source loading. Source freeze39b6f9a27d1d287b21bf522044caaa1832d8028018f91b0860f1cfae6ca8f95b.",
+        "Reviewed completed native focused15-case pass log and analyzer result with no issues; evaluator did not launch native tests."
+      ],
+      "boundaries": [
+        "Independent own browser session used only isolated http://127.0.0.1:5196/app/ and local original QA audio with shipped artwork; session is closed and fixture server left running for root.",
+        "Product source files were not edited; owner browser sessions, localhost5173/4000 and hosting were not touched.",
+        "Native review used actual final widget captures and completed focused logs, without a physical PC/Android installation. Owner performs physical acceptance.",
+        "Full native suite and release packaging remain root-owned; this evaluator did not rerun them.",
+        "The isolated source lifecycle is real production component behavior against a controlled local fixture. Production external-provider/network behavior is outside this review.",
+        "Only available OpenAI provider used; no cross-provider evaluation claimed."
+      ]
+    },
+    "evaluationVerdict": "PASS",
+    "evaluationAttempt": 1,
+    "capturesAfterFinalSource": true,
+    "earliestCaptureUtc": "2026-10-12T10:16:02.213816+00:00"
+  },
+  "native": {
+    "apk": "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\apps\\native\\build\\app\\outputs\\flutter-apk\\app-debug.apk",
+    "bytes": 185556475,
+    "builtAt": "2026-10-12T10:34:34.864316+00:00",
+    "sha256": "b667a42ac1051df207c86351b6ee7ae0ae5c2b4d35e3e3c2009d285062dd3ad3",
+    "sourceFrozenAt": "2026-10-12T10:33:05.351423+00:00",
+    "sourceSha256": "39b6f9a27d1d287b21bf522044caaa1832d8028018f91b0860f1cfae6ca8f95b",
+    "sourceFiles": 154,
+    "kernelSha256": "a0a9324d9e3be51acc92ade8b8c14306d1ee33651194113f05ab88af27b398e4",
+    "kernelMatchesBuildOutput": true,
+    "compileDefine": "https://wave.gluk.tech",
+    "kernelFeatureMarkers": {
+      "tech.gluk.glukwave/home_widgets": true,
+      "glukwave.widget": true,
+      "Home screen widgets": true,
+      "https://wave.gluk.tech": true,
+      "full-player": true,
+      "player-cover-gesture": true,
+      "language-selector": true,
+      "language.auto": true,
+      "locale:change": true,
+      "lrcClock": true,
+      "artworkForDisplay": true,
+      "-t500x500.": true,
+      "/api/diagnostics/events": true,
+      "glukwave-lan-v1": true,
+      "LAN pairing": true,
+      "seasonalEffects": true,
+      "lan-enable": true,
+      "ROOM_STATE": true,
+      "/lrclib": true,
+      "Find on LRCLIB": true,
+      "/genius/preview": true,
+      "genius-preview": true,
+      "cover-ambient-transform": true,
+      "/discord": true,
+      "discord:changed": true,
+      "discordPresence": true,
+      "deviceVolume": true,
+      "/api/auth/native-captcha": true,
+      "Invalid authentication expiry": true,
+      "desktop-quick-volume": true,
+      "account:state": true,
+      "track-loading-cover": true,
+      "ScrollingLabel": true,
+      "/connect": true,
+      "outputActive": true,
+      "/account/sessions": true,
+      "downloadUrl": true,
+      "adoptOnly": true,
+      "/taste": true,
+      "/friends": true,
+      "/jams": true,
+      "/api/account/": true,
+      "currentPassword": true,
+      "Email sent": true,
+      "/playlists/discover": true,
+      "mini-card-progress": true,
+      "search-source-menu": true,
+      "search-type-": true,
+      "player-transport-capsule": true,
+      "player-secondary-capsule": true,
+      "X-GlukWave-Playback-Wait": true,
+      "player-centered-view": true,
+      "player-detail-view-": true,
+      "player-lyrics-toggle": true,
+      "compact-eq-presets": true,
+      "#EXTM3U": true,
+      "Colour from the cover": true,
+      "coverAccent": true,
+      "compact-eq-enabled": true,
+      "compact-eq-band-": true,
+      "compact-eq-preamp": true,
+      "compact-eq-rate": true
+    },
+    "localCatalogsInKernel": {
+      "en": true,
+      "ru": true,
+      "kk": true,
+      "uk": true,
+      "de": true,
+      "es": true
+    },
+    "qaTrackBundled": false,
+    "fontManifestVerified": true,
+    "staticFontFaces": [
+      {
+        "asset": "assets/fonts/Nunito-Regular.ttf",
+        "weight": 400,
+        "variable": false,
+        "sha256": "29f17d41574376520b263bde34a4fecb11814233ff280c66befce6020c5e3cc4",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-Medium.ttf",
+        "weight": 500,
+        "variable": false,
+        "sha256": "818d89d5417ed2c7686c07097469f417d41dfe70b8e9514466637612f7ab9d8d",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-SemiBold.ttf",
+        "weight": 600,
+        "variable": false,
+        "sha256": "e6ac9b7051c6b3c4a23817a9272e2a8f7124896b36e68b30a3d46b452a0418a5",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-Bold.ttf",
+        "weight": 700,
+        "variable": false,
+        "sha256": "19acc4b8e7dc15b49c3802b6f2b53a1c41d7ee548733204a367052fa53387933",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-ExtraBold.ttf",
+        "weight": 800,
+        "variable": false,
+        "sha256": "9bc8f0d0c03926636f41ec699c6563dd01835b510c194e2086811eaf65a8e527",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-Black.ttf",
+        "weight": 900,
+        "variable": false,
+        "sha256": "b3628977111142f66472632770b76ee2c0665a40ae536bd64971a3bc19087717",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Manrope-Regular.ttf",
+        "weight": 400,
+        "variable": false,
+        "sha256": "c443e2325b9ff17933ec2f5a99d835af430a545901d146f81f4fc9f4882b6623",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Manrope-Medium.ttf",
+        "weight": 500,
+        "variable": false,
+        "sha256": "78177fa989a3feb256c1750faca4a05ab0b70f093f5f45b12a537e7b939bae9c",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Manrope-SemiBold.ttf",
+        "weight": 600,
+        "variable": false,
+        "sha256": "1eea52be7b84d0841e39d6102cdf2f6777dbdbd6781d3a40a3323a8151163f07",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Manrope-Bold.ttf",
+        "weight": 700,
+        "variable": false,
+        "sha256": "06ef9bf16d6ce1b6b8d6b953ea8b9e6c30e4b3708cf039132224fb2a5aa77102",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Manrope-ExtraBold.ttf",
+        "weight": 800,
+        "variable": false,
+        "sha256": "63050130f7beccf497d740a2af39f8d5d49447e9ed777014e8d6d413442425ba",
+        "matchesSource": true
+      }
+    ],
+    "fontManifestSha256": "dc61e379e1f65f8de62057e95a64baaebcbbf8e5ee2450f736e2611705ca210f",
+    "nunitoLicenseIncluded": true,
+    "manifestVerified": true,
+    "androidWidgetReceiversPrivate": {
+      "WavePlayerWidget": true,
+      "WaveLargeWidget": true,
+      "WidgetCommandReceiver": true
+    },
+    "widgetTestRuntimeBundled": false,
+    "version": "1.0.0",
+    "versionCode": 15,
+    "minSdk": 24,
+    "targetSdk": 36,
+    "output": "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\outputs\\GlukWave-android-debug.apk",
+    "outputMatchesBuild": true,
+    "signatureVerified": true,
+    "signatureScheme": "v2",
+    "certificateSha256": "d631b0271019e5b3a9df153929ac0de07708b0766fc4c132fbce862b67a56748",
+    "updateCertificateMatchesPrevious": true,
+    "analyzerIssues": 0,
+    "standardTestsPassed": 291,
+    "signature": "debug",
+    "deviceRuntimeVerified": false,
+    "manropeLicenseIncluded": true,
+    "iosBuilt": false,
+    "uiFocusedProof": {
+      "status": "PASSED",
+      "runId": 1791801732026,
+      "boundary": "Actual native widgets, live controller settings and real audio source lifecycle with isolated native output. No physical installation, owner data or hosted writes.",
+      "cases": [
+        {
+          "name": "dark live radius 8/24/38 and quiet focus",
+          "passed": true
+        },
+        {
+          "name": "dark Size(1440.0, 600.0) entire flat/3D art and touch tilt",
+          "passed": true
+        },
+        {
+          "name": "dark Size(390.0, 700.0) entire flat/3D art and touch tilt",
+          "passed": true
+        },
+        {
+          "name": "dark Size(320.0, 568.0) entire flat/3D art and touch tilt",
+          "passed": true
+        },
+        {
+          "name": "amoled live radius 8/24/38 and quiet focus",
+          "passed": true
+        },
+        {
+          "name": "amoled Size(1440.0, 600.0) entire flat/3D art and touch tilt",
+          "passed": true
+        },
+        {
+          "name": "amoled Size(390.0, 700.0) entire flat/3D art and touch tilt",
+          "passed": true
+        },
+        {
+          "name": "amoled Size(320.0, 568.0) entire flat/3D art and touch tilt",
+          "passed": true
+        },
+        {
+          "name": "light live radius 8/24/38 and quiet focus",
+          "passed": true
+        },
+        {
+          "name": "light Size(1440.0, 600.0) entire flat/3D art and touch tilt",
+          "passed": true
+        },
+        {
+          "name": "light Size(390.0, 700.0) entire flat/3D art and touch tilt",
+          "passed": true
+        },
+        {
+          "name": "light Size(320.0, 568.0) entire flat/3D art and touch tilt",
+          "passed": true
+        },
+        {
+          "name": "Persisted compact DSP highlight independent of popup",
+          "passed": true
+        },
+        {
+          "name": "Lyrics/queue active treatment with motion disabled",
+          "passed": true
+        },
+        {
+          "name": "Real source lifecycle, guarded user seek and unblocked internal sync",
+          "passed": true
+        }
+      ],
+      "screenshots": [
+        "native-player-details-1791801732026-amoled-1440-3d.png",
+        "native-player-details-1791801732026-amoled-1440-flat.png",
+        "native-player-details-1791801732026-amoled-320-3d.png",
+        "native-player-details-1791801732026-amoled-320-flat.png",
+        "native-player-details-1791801732026-amoled-390-3d.png",
+        "native-player-details-1791801732026-amoled-390-flat.png",
+        "native-player-details-1791801732026-amoled-eq-24.png",
+        "native-player-details-1791801732026-amoled-eq-38.png",
+        "native-player-details-1791801732026-amoled-eq-8.png",
+        "native-player-details-1791801732026-dark-1440-3d.png",
+        "native-player-details-1791801732026-dark-1440-flat.png",
+        "native-player-details-1791801732026-dark-320-3d.png",
+        "native-player-details-1791801732026-dark-320-flat.png",
+        "native-player-details-1791801732026-dark-390-3d.png",
+        "native-player-details-1791801732026-dark-390-flat.png",
+        "native-player-details-1791801732026-dark-eq-24.png",
+        "native-player-details-1791801732026-dark-eq-38.png",
+        "native-player-details-1791801732026-dark-eq-8.png",
+        "native-player-details-1791801732026-light-1440-3d.png",
+        "native-player-details-1791801732026-light-1440-flat.png",
+        "native-player-details-1791801732026-light-320-3d.png",
+        "native-player-details-1791801732026-light-320-flat.png",
+        "native-player-details-1791801732026-light-390-3d.png",
+        "native-player-details-1791801732026-light-390-flat.png",
+        "native-player-details-1791801732026-light-eq-24.png",
+        "native-player-details-1791801732026-light-eq-38.png",
+        "native-player-details-1791801732026-light-eq-8.png",
+        "native-player-details-1791801732026-loading.png"
+      ]
+    },
+    "sourceFreezeFile": "docs/verification/2026-10-12/player-details-native-source-freeze.json",
+    "windowsExecutableBuilt": true,
+    "windows": {
+      "checkedAt": "2026-10-12T10:38:03.426207+00:00",
+      "passed": true,
+      "bundle": "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\outputs\\GlukWave-windows",
+      "featureMarkers": {
+        "track-loading-cover": true,
+        "glukwave-lan-v1": true,
+        "LAN pairing": true,
+        "seasonalEffects": true,
+        "lan-enable": true,
+        "/discord": true,
+        "discord:changed": true,
+        "discordPresence": true,
+        "/api/diagnostics/events": true,
+        "/lrclib": true,
+        "/genius/preview": true,
+        "genius-preview": true,
+        "cover-ambient-transform": true,
+        "ROOM_STATE": true,
+        "Find on LRCLIB": true,
+        "deviceVolume": true,
+        "/api/auth/native-captcha": true,
+        "desktop-quick-volume": true,
+        "/account/sessions": true,
+        "downloadUrl": true,
+        "adoptOnly": true,
+        "/taste": true,
+        "/friends": true,
+        "/jams": true,
+        "/api/account/": true,
+        "currentPassword": true,
+        "Email sent": true,
+        "/playlists/discover": true
+      },
+      "file": "outputs/GlukWave-windows.zip",
+      "bytes": 27816115,
+      "sha256": "85e65521536c02606697c765af2e881218513d323e6a56360e0d816ca434f143",
+      "frozenOriginalFilesMatched": 154,
+      "compiledSourceFilesMatched": 108,
+      "compiledSourcePaths": [
+        "assets/app_icon.ico",
+        "assets/coast.jpg",
+        "assets/fonts/Manrope-Bold.ttf",
+        "assets/fonts/Manrope-ExtraBold.ttf",
+        "assets/fonts/Manrope-Medium.ttf",
+        "assets/fonts/Manrope-Regular.ttf",
+        "assets/fonts/Manrope-SemiBold.ttf",
+        "assets/fonts/Nunito-Black.ttf",
+        "assets/fonts/Nunito-Bold.ttf",
+        "assets/fonts/Nunito-ExtraBold.ttf",
+        "assets/fonts/Nunito-Medium.ttf",
+        "assets/fonts/Nunito-Regular.ttf",
+        "assets/fonts/Nunito-SemiBold.ttf",
+        "assets/forest.jpg",
+        "assets/google-g.png",
+        "assets/licenses/just_audio_media_kit-UNLICENSE.txt",
+        "assets/licenses/Manrope-OFL.txt",
+        "assets/licenses/Nunito-OFL.txt",
+        "assets/logo.gif",
+        "assets/logo.png",
+        "assets/mark.svg",
+        "assets/Nunito.ttf",
+        "lib/core/api.dart",
+        "lib/core/appearance.dart",
+        "lib/core/artwork.dart",
+        "lib/core/controller.dart",
+        "lib/core/discord.dart",
+        "lib/core/equalizer.dart",
+        "lib/core/lyrics.dart",
+        "lib/core/models.dart",
+        "lib/core/parity.dart",
+        "lib/core/wave_math.dart",
+        "lib/l10n/audio_design_strings.dart",
+        "lib/l10n/catalogs.dart",
+        "lib/l10n/discord_strings.dart",
+        "lib/l10n/focused_player_strings.dart",
+        "lib/l10n/home_widget_strings.dart",
+        "lib/l10n/lan_strings.dart",
+        "lib/l10n/listening_polish_strings.dart",
+        "lib/l10n/lyrics_strings.dart",
+        "lib/l10n/parity_strings.dart",
+        "lib/l10n/season_strings.dart",
+        "lib/l10n/wave_localizations.dart",
+        "lib/main.dart",
+        "lib/services/ambience.dart",
+        "lib/services/appearance_store.dart",
+        "lib/services/audio.dart",
+        "lib/services/cache.dart",
+        "lib/services/desktop.dart",
+        "lib/services/diagnostics.dart",
+        "lib/services/home_widgets.dart",
+        "lib/services/lan_transport.dart",
+        "lib/services/presence_bridge.dart",
+        "lib/services/provider_player.dart",
+        "lib/services/push.dart",
+        "lib/services/volume_store.dart",
+        "lib/services/waveform.dart",
+        "lib/services/windows_dsp.dart",
+        "lib/services/windows_equalizer.dart",
+        "lib/services/windows_mpv_player.dart",
+        "lib/ui/album_stage.dart",
+        "lib/ui/app.dart",
+        "lib/ui/appearance_panel.dart",
+        "lib/ui/auth_page.dart",
+        "lib/ui/auth_visuals.dart",
+        "lib/ui/connect_panel.dart",
+        "lib/ui/cover_accent.dart",
+        "lib/ui/cover_ambient.dart",
+        "lib/ui/desktop_player.dart",
+        "lib/ui/device_labels.dart",
+        "lib/ui/discord_panel.dart",
+        "lib/ui/discovery.dart",
+        "lib/ui/equalizer_panel.dart",
+        "lib/ui/home_widget_previews.dart",
+        "lib/ui/lan_panel.dart",
+        "lib/ui/listening_rail.dart",
+        "lib/ui/lofi.dart",
+        "lib/ui/lyrics_editor.dart",
+        "lib/ui/motion_icons.dart",
+        "lib/ui/parity_panels.dart",
+        "lib/ui/player.dart",
+        "lib/ui/player_gestures.dart",
+        "lib/ui/provider_host.dart",
+        "lib/ui/scrolling_label.dart",
+        "lib/ui/seasonal.dart",
+        "lib/ui/sessions_panel.dart",
+        "lib/ui/silk_wave.dart",
+        "lib/ui/theme.dart",
+        "lib/ui/theme_preview.dart",
+        "lib/ui/volume_slider.dart",
+        "lib/ui/wave_colors.dart",
+        "lib/ui/widgets.dart",
+        "pubspec.lock",
+        "pubspec.yaml",
+        "windows/CMakeLists.txt",
+        "windows/flutter/CMakeLists.txt",
+        "windows/runner/CMakeLists.txt",
+        "windows/runner/flutter_window.cpp",
+        "windows/runner/flutter_window.h",
+        "windows/runner/main.cpp",
+        "windows/runner/resource.h",
+        "windows/runner/resources/app_icon.ico",
+        "windows/runner/runner.exe.manifest",
+        "windows/runner/Runner.rc",
+        "windows/runner/utils.cpp",
+        "windows/runner/utils.h",
+        "windows/runner/win32_window.cpp",
+        "windows/runner/win32_window.h"
+      ],
+      "binarySha256": {
+        "glukwave.exe": "2630858f7e6bbbd52a2def2123675f4c35fa8ce8791edad1e792a9ef05f3a2bf",
+        "flutter_windows.dll": "6840b8129fb105dd246f05f14eab97d7e8e9eade1428f9afde95de6b8e1a7808",
+        "libmpv-2.dll": "0a5a0b476866c91a639a4e511e8153968f8fa23564461b0aa09acdba816164a4",
+        "audio_service_win_plugin.dll": "ef9421be9fe1292eb8a3f2b75d1c0cfd61e404fe984c51e220e464d87892ea0d",
+        "flutter_inappwebview_windows_plugin.dll": "e41be84c4dec12a7c0fb8ba402053f75ac818856a6f47128d1afd1820e8ceacd",
+        "flutter_secure_storage_windows_plugin.dll": "098a8c4a8b53e72029b2a8403768e3cf7ace15cbf3e84820e575254c428f4cde",
+        "tray_manager_plugin.dll": "1291abc69be060b15cf917332b10eb46103b335b329d4dc4232bb39e778867e6",
+        "window_manager_plugin.dll": "ac27838523201046c479646c9ed161eb994a4608f4d7b4759126c27da861c25c",
+        "msvcp140.dll": "0f885b509a685d2bbfa652fed26b5fb31d88fbdab0a978c641d1c7b8aa460aa9",
+        "vcruntime140.dll": "d5e4d9a3e835fa679450145d6a7d94e36573a509317111904d9b3712c30d9066",
+        "vcruntime140_1.dll": "1f2d41c4aa5db0bc33ebf7b66d72943a817d7ce6cbe880502a9403823633093f"
+      },
+      "packageMatchesReleaseBuild": true,
+      "zipCrcAndAllFilesMatched": true,
+      "staticFontFaces": 11,
+      "compileDefine": "https://wave.gluk.tech",
+      "buildMode": "release",
+      "authenticodeSigned": false,
+      "uiInteractionVerified": false,
+      "physicalAudioVerified": false,
+      "installer": {
+        "file": "outputs/GlukWave-Setup.exe",
+        "version": "1.0.0+15",
+        "singleFile": true,
+        "bytes": 24382563,
+        "sha256": "2fef5f1aa30415f0168fb105bd4a19b5070da3ebd6cc35cb6bf226acab07ffcd",
+        "fileVersion": "1.0.0.15",
+        "productVersion": "1.0.0+15",
+        "compilerSucceeded": true,
+        "installedDuringIteration": false,
+        "authenticodeSigned": false
+      }
+    }
+  },
+  "releaseDownloadProof": {
+    "checkedAt": "2026-10-12T10:44:11.429Z",
+    "isolatedLocalServer": true,
+    "checks": [
+      {
+        "platform": "android",
+        "version": "1.0.0+15",
+        "rangeStatus": 206,
+        "bytes": 185556475,
+        "sha256": "b667a42ac1051df207c86351b6ee7ae0ae5c2b4d35e3e3c2009d285062dd3ad3"
+      },
+      {
+        "platform": "windows",
+        "version": "1.0.0+15",
+        "rangeStatus": 206,
+        "bytes": 24382563,
+        "sha256": "2fef5f1aa30415f0168fb105bd4a19b5070da3ebd6cc35cb6bf226acab07ffcd"
+      }
+    ],
+    "fullInstallerDownloadMatched": true,
+    "passed": true
+  },
+  "hostingDeployedDuringIteration": false,
+  "physicalChecksPerformed": false
+}

@@ -355,7 +355,7 @@ void main() {
     },
   );
   testWidgets(
-    'Preset pointer focus has no ring; keyboard focus remains outlined',
+    'Preset pointer focus has no ring; keyboard focus uses a quiet background',
     (tester) async {
       final c = (await tester.runAsync(polishController))!;
       await f.viewport(tester, const Size(390, 850));
@@ -385,8 +385,12 @@ void main() {
         find.byKey(const Key('compact-eq-preset-warm')),
       );
       expect(
-        keyboardButton.style!.side!.resolve({WidgetState.focused})!.style,
-        BorderStyle.solid,
+        keyboardButton.style!.side!.resolve({WidgetState.focused}),
+        BorderSide.none,
+      );
+      expect(
+        keyboardButton.style!.backgroundColor!.resolve({WidgetState.focused}),
+        isNot(Colors.transparent),
       );
       expect(tester.takeException(), isNull);
       proofs.add({

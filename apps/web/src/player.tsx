@@ -23,7 +23,8 @@ export const localDeviceId=deviceId;
 const emptyState:PlayerState={trackId:null,position:0,playing:false,volume:restoredVolume(),queue:[],updatedAt:Date.now(),revision:0};
 export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
   const locale=useLocale(),store=useStore(),audio=useMemo(()=>{const element=new Audio();element.crossOrigin='anonymous';return element;},[]),[track,setTrack]=useState<Track|null>(null),[playback,setPlayback]=useState<Playback|null>(null),[state,setState]=useState<PlayerState>(emptyState),[duration,setDuration]=useState(0),[queue,setQueue]=useState<Track[]>([]),[full,setFullState]=useState(false),[revealProgress,setRevealProgress]=useState<number|null>(null),[fullTab,setFullTab]=useState<PlayerTab>('player'),[addTrack,setAddTrack]=useState<Track|null>(null),[savedIds,setSavedIds]=useState(new Set<string>()),[manualIds,setManualIds]=useState(new Set<string>()),[shuffle,setShuffle]=useState(false),[repeat,setRepeat]=useState<'off'|'all'|'one'>('off'),[devices,setDevices]=useState<Device[]>([]),[devicesOpen,setDevicesOpen]=useState(false),[room,setRoom]=useState<Room|null>(null),[socket,setSocket]=useState<Socket|null>(null),[autoplayBlocked,setAutoplayBlocked]=useState(false);
-  const [trackLoading,setTrackLoading]=useState(false),resolvingTrack=useRef(false);
+  const [trackLoading,setTrackLoadingState]=useState(false),trackLoadingRef=useRef(false),resolvingTrack=useRef(false);
+  const setTrackLoading=useCallback((loading:boolean)=>{trackLoadingRef.current=loading;setTrackLoadingState(loading);},[]);
   const streamLoader=useRef(new AudioStreamLoader());
   const audioMeter=useRef<{context:AudioContext;graph:AudioGraph|null}|null>(null),loadAbort=useRef<AbortController|null>(null);
   const [connectState,setConnectState]=useState<ConnectState|null>(null),[outputHere,setOutputHere]=useState(true),[connectionStatus,setConnectionStatus]=useState<'online'|'connecting'|'offline'>('offline');
@@ -71,7 +72,7 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
       if(fresh.kind==='audio'){
         if(local)objectUrl.current=fresh.url!;
         const current=()=>revision===loadRevision.current&&startedUserId===userRef.current?.id&&!request.signal.aborted;
-        const failStream=(error:Error)=>{if(!current())return;resolvingTrack.current=false;setTrackLoading(false);setAutoplayBlocked(false);reportError(error,'playback',{code:'HLS_STREAM'});update({playing:false});store.notify(t('copy.715'),true);};
+        const failStream=(error:Error)=>{if(!current())return;desiredPlay.current=false;resolvingTrack.current=false;setTrackLoading(false);audio.pause();setAutoplayBlocked(false);reportError(error,'playback',{code:'HLS_STREAM'});update({playing:false});store.notify(t('copy.715'),true);};
         let renewing=false;
         const renewStream=async(error:Error)=>{
           if(!current()||renewing)return false;renewing=true;
@@ -104,7 +105,7 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
         if(revision!==loadRevision.current||startedUserId!==userRef.current?.id)return;
         return applyTrackRef.current(next,order,desiredPlay.current,desiredPosition.current,strict);
       }
-      if(revision===loadRevision.current){resolvingTrack.current=false;setTrackLoading(false);update({playing:false});store.notify(errorText(error),true);}throw error;
+      if(revision===loadRevision.current){desiredPlay.current=false;resolvingTrack.current=false;setTrackLoading(false);audio.pause();update({playing:false});store.notify(errorText(error),true);}throw error;
     }finally{if(revision===loadRevision.current){resolvingTrack.current=false;setTrackLoading(desiredPlay.current&&!audio.paused&&audio.readyState<3);}}
   },[audio,ensureAudioMeter,store.remember,store.notify,store.refreshLibrary,update]);
   const resolveQueue=useCallback(async(ids?:string[])=>{if(!ids?.length)return queueRef.current;const tracks:Track[]=[];for(const id of ids){const known=store.library.tracks.find(item=>item.id===id)||queueRef.current.find(item=>item.id===id);if(known)tracks.push(known);else try{tracks.push((await api<{track:Track}>(`/tracks/${id}`)).track);}catch{/* A deleted queue item is omitted. */}}return tracks;},[store.library.tracks]);
@@ -136,6 +137,7 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
   const sendCommand=useCallback(async(next:Command,expectedRoomId?:string,strict=false)=>{
     try {
       if(expectedRoomId&&expectedRoomId!==roomRef.current?.id)return;
+      if(next.command==='seek'&&outputHereRef.current&&(resolvingTrack.current||trackLoadingRef.current))return;
       const currentRoom=roomRef.current;
       if(currentRoom?.type==='jam'&&currentRoom.ownerId!==userRef.current?.id&&['play','pause'].includes(next.command)){const result=await post<{connect:ConnectState}>(`/jams/${currentRoom.id}/pause`,{paused:next.command==='pause'});syncConnectRef.current(result.connect);await syncRoomStateRef.current({roomId:currentRoom.id,state:currentRoom.state,serverTime:result.connect.serverTime},true);return;}
       if(next.command==='play'&&roomRef.current&&!connectRef.current?.activeDeviceId)await enterRoomRef.current(roomRef.current);
@@ -153,6 +155,7 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
   },[socket,store.notify,setOutput]);
   const sendCommandRef=useRef(sendCommand);sendCommandRef.current=sendCommand;
   const command=useCallback((next:Command):Promise<void>=>{
+    if(next.command==='seek'&&outputHereRef.current&&(resolvingTrack.current||trackLoadingRef.current))return Promise.resolve();
     // Resume the audio graph within the trusted tap, before room/device awaits.
     if(next.command==='play'&&outputHereRef.current)ensureAudioMeter();
     const roomId=roomRef.current?.id;
@@ -247,9 +250,9 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
   useEffect(()=>{
     const local=()=>outputHereRef.current;
     const onTime=()=>{if(local())update({position:audio.currentTime});};const onPlay=()=>{if(local()){update({playing:true});if(!resolvingTrack.current)setTrackLoading(audio.readyState<3);}else audio.pause();};const onPause=()=>{if(local()){update({playing:false});if(!resolvingTrack.current)setTrackLoading(false);}};const onDuration=()=>{if(local()&&Number.isFinite(audio.duration))setDuration(audio.duration);};
-    const onReady=()=>{if(local()&&!resolvingTrack.current)setTrackLoading(false);};const onWaiting=()=>{if(local()&&desiredPlay.current&&playbackRef.current?.kind==='audio')setTrackLoading(true);};
+    const onReady=()=>{if(local()&&!resolvingTrack.current)setTrackLoading(false);};const onWaiting=()=>{if(local()&&!audio.paused&&desiredPlay.current&&playbackRef.current?.kind==='audio')setTrackLoading(true);};
     const onEnded=()=>{if(local()){setTrackLoading(false);finish();}};
-    const onError=()=>{if(local()&&audio.error&&audio.src&&!streamLoader.current.handlesMediaErrors&&!resolvingTrack.current){setTrackLoading(false);setAutoplayBlocked(false);reportError('Audio playback failed','playback',{code:`MEDIA_${audio.error.code}`});update({playing:false});store.notify(t('copy.715'),true);}};
+    const onError=()=>{if(local()&&audio.error&&audio.src&&!streamLoader.current.handlesMediaErrors&&!resolvingTrack.current){desiredPlay.current=false;setTrackLoading(false);audio.pause();setAutoplayBlocked(false);reportError('Audio playback failed','playback',{code:`MEDIA_${audio.error.code}`});update({playing:false});store.notify(t('copy.715'),true);}};
     audio.addEventListener('canplay',onReady);audio.addEventListener('playing',onReady);audio.addEventListener('waiting',onWaiting);audio.addEventListener('stalled',onWaiting);audio.addEventListener('timeupdate',onTime);audio.addEventListener('play',onPlay);audio.addEventListener('pause',onPause);audio.addEventListener('durationchange',onDuration);audio.addEventListener('ended',onEnded);audio.addEventListener('error',onError);
     return()=>{audio.removeEventListener('canplay',onReady);audio.removeEventListener('playing',onReady);audio.removeEventListener('waiting',onWaiting);audio.removeEventListener('stalled',onWaiting);audio.removeEventListener('timeupdate',onTime);audio.removeEventListener('play',onPlay);audio.removeEventListener('pause',onPause);audio.removeEventListener('durationchange',onDuration);audio.removeEventListener('ended',onEnded);audio.removeEventListener('error',onError);};
   },[audio,finish,store.notify,update]);
