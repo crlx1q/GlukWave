@@ -46,7 +46,13 @@ export function createExtractorRuntime(config,{run}={}){
   async function execute(adapter,request){
     if(!hasPython(adapter))fail(503,'EXTRACTOR_UNAVAILABLE','Этот источник временно недоступен.');
     if(closed||queue.length>=16)fail(503,'EXTRACTOR_BUSY','Музыка загружается. Повтори через немного времени.');
-    if(active>=limit)await new Promise((resolve,reject)=>queue.push({resolve,reject}));else active++;
+    if(active>=limit)await new Promise((resolve,reject)=>{
+      const waiting={resolve:()=>{clearTimeout(timer);resolve();},reject:error=>{clearTimeout(timer);reject(error);}};
+      const timer=setTimeout(()=>{
+        const index=queue.indexOf(waiting);if(index<0)return;queue.splice(index,1);failed++;
+        reject(new HttpError(503,'EXTRACTOR_BUSY','Музыка загружается. Повтори чуть позже.'));
+      },settings.queueTimeout||15000);timer.unref();queue.push(waiting);
+    });else active++;
     try{
       if(closed||!hasPython(adapter))fail(503,'EXTRACTOR_UNAVAILABLE','Этот источник временно недоступен.');
       const result=run?await run(adapter,request):await child(adapter,request);completed++;return result;

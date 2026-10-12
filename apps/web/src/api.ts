@@ -1,6 +1,7 @@
 import { t, getLanguage } from './locale';
 import {reportError} from './diagnostics';
 import {deviceId,surfaceId,browserDeviceName} from './device-identity';
+import {playbackRequest} from './playback-request';
 export class ApiError extends Error { constructor(public code: string, message: string, public details?: unknown) { super(message); } }
 export async function api<T>(path: string, init: RequestInit = {}): Promise<T> {
   const headers = new Headers(init.headers);
@@ -8,10 +9,12 @@ export async function api<T>(path: string, init: RequestInit = {}): Promise<T> {
   headers.set('X-GlukWave-Device',deviceId);
   headers.set('X-GlukWave-Surface',surfaceId);
   headers.set('X-GlukWave-Kind','web');
-  headers.set('X-GlukWave-Device-Name',browserDeviceName);
+  headers.set('X-GlukWave-Device-Name',encodeURIComponent(browserDeviceName));
   if (init.body && !(init.body instanceof FormData)) headers.set('Content-Type','application/json');
   let response: Response;
-  try { response = await fetch(`/api${path}`, { ...init, headers, credentials: 'include' }); }
+  const playback=/^\/tracks\/[^/]+\/playback$/.test(path);
+  if(playback)headers.set('X-GlukWave-Playback-Wait','poll');
+  try { response = await (playback?playbackRequest:fetch)(`/api${path}`, { ...init, headers, credentials: 'include' }); }
   catch (error) { if ((error as Error).name === 'AbortError') throw error;reportError(error,'network',{code:'FETCH_FAILED'}); throw new ApiError('NETWORK',t('copy.166')); }
   const body = await response.json().catch(() => ({}));
   if (!response.ok){const error=new ApiError(body.error?.code || `HTTP_${response.status}`, body.error?.message || t('copy.167'), body.error?.details);if(response.status>=500)reportError(error,'network',{code:error.code,status:response.status});throw error;}

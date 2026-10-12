@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
-import { silkPalette, silkDepthColor } from '../src/wave-colors.ts';
+import { silkPalette, silkDepthColor, easeWaveColor, waveColorHex } from '../src/wave-colors.ts';
 
 const themes={light:'#efede3',dark:'#141517',amoled:'#000000'},accents={copper:'#d98c58',blue:'#579fea'};
 const fixture=[];
@@ -25,4 +25,13 @@ test('No depth extrapolation or neutral accent hue is invented',()=>{
  assert.deepEqual(silkDepthColor(palette,-1),palette.base);
  assert.deepEqual(silkDepthColor(palette,2),palette.accent);
  for(const depth of [0,.25,.75,1]){const rgb=silkDepthColor(palette,depth);assert.equal(rgb[0],rgb[1]);assert.equal(rgb[1],rgb[2]);}
+});
+test('Cover colour changes approach their target smoothly and can retarget mid-transition',()=>{
+ const copper=[.8,.3,.1],blue=[.1,.4,.9];let current=copper;
+ current=easeWaveColor(current,blue,1/30);
+ assert(current[0]<copper[0]&&current[0]>blue[0]);assert(current[2]>copper[2]&&current[2]<blue[2]);
+ const before=[...current];current=easeWaveColor(current,copper,1/30);assert(current[0]>before[0]&&current[0]<copper[0]);
+ for(let i=0;i<120;i++)current=easeWaveColor(current,blue,1/30);
+ assert(current.every((value,index)=>Math.abs(value-blue[index])<.0001));
+ assert.equal(waveColorHex([-1,.5,2]),'#0080ff');assert.deepEqual(easeWaveColor(current,blue,0),current);
 });

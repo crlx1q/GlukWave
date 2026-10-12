@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "checkedAt": "2026-10-11T17:48:55.9220048Z",
+  "version": "1.0.0.14",
+  "productVersion": "1.0.0+14",
+  "file": "outputs/GlukWave-Setup.exe",
+  "singleFile": true,
+  "bytes": 24380648,
+  "sha256": "4c05d3c2fe90ab5593e8902592212b08264550731057b5b1d0a1f35aefb65990",
+  "compilerSucceeded": true,
+  "installedDuringIteration": false,
+  "authenticodeSigned": false
+}

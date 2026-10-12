@@ -173,6 +173,18 @@ class WaveControlIcon extends StatelessWidget {
     Icons.repeat_one_rounded,
     Icons.settings_rounded,
     Icons.devices_rounded,
+    Icons.home_outlined,
+    Icons.search_rounded,
+    Icons.library_music_outlined,
+    Icons.favorite_border_rounded,
+    Icons.lyrics_outlined,
+    Icons.queue_music_rounded,
+    Icons.more_horiz_rounded,
+    Icons.person_outline_rounded,
+    Icons.spatial_audio_off_outlined,
+    Icons.people_outline_rounded,
+    Icons.album_outlined,
+    Icons.explore_outlined,
   ];
   @override
   Widget build(BuildContext context) {
@@ -308,6 +320,70 @@ class _WaveControlPainter extends CustomPainter {
       }
       path.close();
       path.addOval(const Rect.fromLTWH(8.8, 8.8, 6.4, 6.4));
+    } else if (icon == Icons.home_outlined) {
+      path.moveTo(3, 11);
+      path.lineTo(12, 3.5);
+      path.lineTo(21, 11);
+      path.moveTo(5.5, 10);
+      path.lineTo(5.5, 20);
+      path.lineTo(10, 20);
+      path.lineTo(10, 14);
+      path.lineTo(14, 14);
+      path.lineTo(14, 20);
+      path.lineTo(18.5, 20);
+      path.lineTo(18.5, 10);
+    } else if (icon == Icons.search_rounded) {
+      path.addOval(const Rect.fromLTWH(3, 3, 12.5, 12.5));
+      line(14, 14, 21, 21);
+    } else if (icon == Icons.library_music_outlined) {
+      line(4, 4, 4, 20);
+      line(9, 4, 9, 20);
+      line(14, 5, 18, 20);
+      line(19, 4, 22, 17);
+    } else if (icon == Icons.favorite_border_rounded) {
+      path.moveTo(12, 20);
+      path.cubicTo(7, 16, 2.7, 12, 3, 7.7);
+      path.cubicTo(3.4, 2.6, 9.6, 2.5, 12, 7);
+      path.cubicTo(14.4, 2.5, 20.6, 2.6, 21, 7.7);
+      path.cubicTo(21.3, 12, 17, 16, 12, 20);
+      path.close();
+    } else if (icon == Icons.lyrics_outlined) {
+      line(5, 5, 19, 5);
+      line(12, 5, 12, 20);
+      line(9, 20, 15, 20);
+      line(5, 5, 5, 8);
+      line(19, 5, 19, 8);
+    } else if (icon == Icons.queue_music_rounded) {
+      line(3, 5, 20, 5);
+      line(3, 11, 16, 11);
+      line(3, 17, 10, 17);
+      path.moveTo(17, 15);
+      path.lineTo(22, 18);
+      path.lineTo(17, 21);
+      path.close();
+    } else if (icon == Icons.more_horiz_rounded) {
+      for (final x in [5.0, 12.0, 19.0]) {
+        path.addOval(Rect.fromCircle(center: Offset(x, 12), radius: 1.25));
+      }
+    } else if (icon == Icons.person_outline_rounded ||
+        icon == Icons.people_outline_rounded ||
+        icon == Icons.spatial_audio_off_outlined) {
+      path.addOval(const Rect.fromLTWH(8, 3, 8, 8));
+      path.moveTo(4, 21);
+      path.lineTo(4, 18);
+      path.cubicTo(4, 12, 20, 12, 20, 18);
+      path.lineTo(20, 21);
+      if (icon != Icons.person_outline_rounded) {
+        path.moveTo(19, 4);
+        path.cubicTo(24, 5, 23, 10, 20, 11);
+      }
+    } else if (icon == Icons.album_outlined || icon == Icons.explore_outlined) {
+      path.addOval(const Rect.fromLTWH(3, 3, 18, 18));
+      path.addOval(const Rect.fromLTWH(10, 10, 4, 4));
+      if (icon == Icons.explore_outlined) {
+        line(8, 16, 10, 10);
+        line(14, 14, 16, 8);
+      }
     } else {
       path.addRRect(
         RRect.fromRectAndRadius(
@@ -331,4 +407,50 @@ class _WaveControlPainter extends CustomPainter {
   @override
   bool shouldRepaint(_WaveControlPainter old) =>
       old.icon != icon || old.color != color;
+}
+
+/// Shared short displacement for primary actions. No repeating animation and
+/// no pointer highlight; keyboard focus remains with the actual button.
+class WavePress extends StatefulWidget {
+  final Widget child;
+  const WavePress({super.key, required this.child});
+  @override
+  State<WavePress> createState() => _WavePressState();
+}
+
+class _WavePressState extends State<WavePress> {
+  bool pressed = false, hovered = false;
+  @override
+  Widget build(BuildContext context) {
+    final v = waveVisuals(context),
+        still = v.reducedMotion || MediaQuery.disableAnimationsOf(context);
+    return MouseRegion(
+      onEnter: (_) => setState(() => hovered = true),
+      onExit: (_) => setState(() {
+        hovered = false;
+        pressed = false;
+      }),
+      child: Listener(
+        onPointerDown: (_) => setState(() => pressed = true),
+        onPointerUp: (_) => setState(() => pressed = false),
+        onPointerCancel: (_) => setState(() => pressed = false),
+        child: AnimatedContainer(
+          duration: still ? Duration.zero : v.duration(160),
+          curve: Curves.easeOutCubic,
+          transform: Matrix4.translationValues(
+            0,
+            still
+                ? 0
+                : pressed
+                ? 2
+                : hovered
+                ? -2
+                : 0,
+            0,
+          ),
+          child: widget.child,
+        ),
+      ),
+    );
+  }
 }

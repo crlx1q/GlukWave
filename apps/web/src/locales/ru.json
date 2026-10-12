@@ -1226,5 +1226,16 @@
   "audioDesign.savePreset": "Сохранить мою кривую",
   "audioDesign.savedPreset": "Моя кривая",
   "focusedPlayer.nowPlaying": "Сейчас играет",
-  "focusedPlayer.more": "Другие действия"
+  "focusedPlayer.more": "Другие действия",
+  "polish.search.all": "Всё",
+  "polish.search.tracks": "Треки",
+  "polish.search.artists": "Артисты",
+  "polish.search.playlists": "Плейлисты",
+  "polish.search.results": "Результаты поиска",
+  "polish.search.types": "Что найти",
+  "polish.search.sources": "Музыкальные сервисы",
+  "polish.search.seeAll": "Все",
+  "polish.search.empty": "Пока ничего не найдено",
+  "polish.search.emptyHint": "Попробуй другое написание или поиск по всем сервисам.",
+  "polish.search.reset": "Искать везде"
 }

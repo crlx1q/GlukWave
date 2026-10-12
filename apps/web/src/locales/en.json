@@ -1226,5 +1226,16 @@
   "audioDesign.savePreset": "Save my curve",
   "audioDesign.savedPreset": "My curve",
   "focusedPlayer.nowPlaying": "Now playing",
-  "focusedPlayer.more": "More controls"
+  "focusedPlayer.more": "More controls",
+  "polish.search.all": "All",
+  "polish.search.tracks": "Tracks",
+  "polish.search.artists": "Artists",
+  "polish.search.playlists": "Playlists",
+  "polish.search.results": "Search results",
+  "polish.search.types": "Result type",
+  "polish.search.sources": "Music services",
+  "polish.search.seeAll": "See all",
+  "polish.search.empty": "Nothing here yet",
+  "polish.search.emptyHint": "Try another spelling or search across all music services.",
+  "polish.search.reset": "Search everything"
 }

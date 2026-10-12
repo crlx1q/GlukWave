@@ -1,4 +1,3 @@
-import 'player.dart' show SourceAttribution;
 import 'scrolling_label.dart';
 import 'motion_icons.dart';
 import 'dart:async';
@@ -139,14 +138,11 @@ class _DesktopCompactPlayerState extends State<DesktopCompactPlayer> {
             ),
           ),
           const SizedBox(height: 3),
-          if (track?.playback['attribution'] is Map)
-            SourceAttribution(controller: c, track: track!, compact: true)
-          else
-            ScrollingLabel(
-              track?.artist ?? wt('native.b196b73079', context: context),
-              textAlign: centered ? TextAlign.center : TextAlign.start,
-              style: TextStyle(color: v.muted, fontSize: centered ? 11 : 10),
-            ),
+          ScrollingLabel(
+            track?.artist ?? wt('native.b196b73079', context: context),
+            textAlign: centered ? TextAlign.center : TextAlign.start,
+            style: TextStyle(color: v.muted, fontSize: centered ? 11 : 10),
+          ),
         ],
       ),
     );

@@ -74,27 +74,31 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
         const failStream=(error:Error)=>{if(!current())return;resolvingTrack.current=false;setTrackLoading(false);setAutoplayBlocked(false);reportError(error,'playback',{code:'HLS_STREAM'});update({playing:false});store.notify(t('copy.715'),true);};
         let renewing=false;
         const renewStream=async(error:Error)=>{
-          if(!current()||renewing)return;renewing=true;
+          if(!current()||renewing)return false;renewing=true;
           const resumePosition=Number.isFinite(audio.currentTime)?audio.currentTime:stateRef.current.position;
           audio.pause();setTrackLoading(true);resolvingTrack.current=true;
           try{
             const renewed=(await api<{playback:Playback}>(`/tracks/${encodeURIComponent(next.id)}/playback`,{signal:request.signal})).playback;
-            if(!current())return;if(renewed.kind!=='audio'||!renewed.url)throw error;
+            if(!current())return false;if(renewed.kind!=='audio'||!renewed.url)throw error;
             await streamLoader.current.attach(audio,renewed.url,renewed.format,request.signal,failStream);
             if(resumePosition>0)await waitForPlayback(()=>audio.readyState>=1,request.signal,t('copy.715'));
-            if(!current())return;playbackRef.current=renewed;setPlayback(renewed);audio.currentTime=desiredPosition.current=resumePosition;
+            if(!current())return false;playbackRef.current=renewed;setPlayback(renewed);audio.currentTime=desiredPosition.current=resumePosition;
             audio.volume=stateRef.current.volume;audio.playbackRate=roomRef.current?1:settingsRef.current.playbackRate;
             if(desiredPlay.current){await audio.play();ensureAudioMeter();}
-          }catch(reason){if(current()){if(isPlaybackBlocked(reason)){setAutoplayBlocked(true);setTrackLoading(false);update({playing:false});store.notify(t('copy.704'));}else failStream(reason instanceof Error?reason:error);}}
+            return true;
+          }catch(reason){if(current()){if(isPlaybackBlocked(reason)){setAutoplayBlocked(true);setTrackLoading(false);update({playing:false});store.notify(t('copy.704'));}else failStream(reason instanceof Error?reason:error);}if(strict)throw reason;return false;}
           finally{if(current()){resolvingTrack.current=false;setTrackLoading(desiredPlay.current&&!audio.paused&&audio.readyState<3);}}
         };
-        await streamLoader.current.attach(audio,fresh.url||`/api/media/${next.id}`,fresh.format,request.signal,fresh.format==='hls'?renewStream:failStream);if(revision!==loadRevision.current||startedUserId!==userRef.current?.id||request.signal.aborted)return;audio.volume=stateRef.current.volume;audio.currentTime=desiredPosition.current;audio.playbackRate=roomRef.current?1:settingsRef.current.playbackRate;
+        try{await streamLoader.current.attach(audio,fresh.url||`/api/media/${next.id}`,fresh.format,request.signal,fresh.format==='hls'?renewStream:failStream);}
+        catch(error){if(!current())return;if(fresh.format!=='hls')throw error;if(!await renewStream(error instanceof Error?error:Error('Stream unavailable')))return;}
+        if(!current())return;audio.volume=stateRef.current.volume;audio.currentTime=desiredPosition.current;audio.playbackRate=roomRef.current?1:settingsRef.current.playbackRate;
         if(desiredPlay.current) {try {await audio.play();ensureAudioMeter();}catch(error) {if(!current())return;setTrackLoading(false);if(!isPlaybackBlocked(error)){setAutoplayBlocked(false);reportError(error,'playback',{code:'AUDIO_START'});throw new ApiError('AUDIO_FORMAT_UNAVAILABLE',t('copy.715'));}setAutoplayBlocked(true);store.notify(t('copy.704'));if(strict)throw new Error(t('copy.705'));}}
         if(userRef.current&&settingsRef.current.autoCache&&!local&&fresh.offline)void saveTrack(userRef.current.id,effective,settingsRef.current.cacheLimitMB,false).catch(()=>{});
       } else if(fresh.kind==='yandex'&&playing){store.notify(t('copy.706'));if(strict)throw new Error(t('copy.707'));}
       if(strict&&playing&&fresh.kind!=='audio')await waitForPlayback(()=>trackRef.current?.id===next.id&&stateRef.current.playing,request.signal,t('copy.708'));
       if(userRef.current&&startedUserId===userRef.current.id)void post('/history',{trackId:next.id,position}).then(()=>store.refreshLibrary()).catch(()=>{});
     }catch(error){
+      if(request.signal.aborted||revision!==loadRevision.current||startedUserId!==userRef.current?.id)return;
       if(revision===loadRevision.current&&startedUserId===userRef.current?.id&&startedUserId&&canRetryCachedAudio(error,usedCache,navigator.onLine!==false)){
         await deleteDownload(startedUserId,next.id);
         if(revision!==loadRevision.current||startedUserId!==userRef.current?.id)return;

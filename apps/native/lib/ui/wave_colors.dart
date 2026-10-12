@@ -9,15 +9,19 @@ class SilkPalette {
     final dark =
         background.r * .2126 + background.g * .7152 + background.b * .0722 <
         .48;
+    final channels = [accent.r, accent.g, accent.b]..sort();
+    final middle = (channels.first + channels.last) / 2;
+    double pigment(double channel) =>
+        (middle + (channel - middle) * 1.4).clamp(0, 1);
     Color tone(double scale, double lift) => Color.from(
       alpha: 1,
-      red: accent.r * scale + lift,
-      green: accent.g * scale + lift,
-      blue: accent.b * scale + lift,
+      red: pigment(accent.r) * scale + lift,
+      green: pigment(accent.g) * scale + lift,
+      blue: pigment(accent.b) * scale + lift,
     );
     return SilkPalette(
-      tone(dark ? .82 : .56, 0),
-      tone(dark ? .68 : .76, dark ? .30 : .03),
+      tone(dark ? .88 : .50, 0),
+      tone(dark ? .82 : .72, dark ? .17 : .02),
     );
   }
   Color atDepth(double depth) {

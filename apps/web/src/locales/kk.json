@@ -1226,5 +1226,16 @@
   "audioDesign.savePreset": "Қисықты сақтау",
   "audioDesign.savedPreset": "Менің қисығым",
   "focusedPlayer.nowPlaying": "Қазір ойнап тұр",
-  "focusedPlayer.more": "Қосымша әрекеттер"
+  "focusedPlayer.more": "Қосымша әрекеттер",
+  "polish.search.all": "Барлығы",
+  "polish.search.tracks": "Тректер",
+  "polish.search.artists": "Орындаушылар",
+  "polish.search.playlists": "Плейлисттер",
+  "polish.search.results": "Іздеу нәтижелері",
+  "polish.search.types": "Нәтиже түрі",
+  "polish.search.sources": "Музыка сервистері",
+  "polish.search.seeAll": "Барлығын көру",
+  "polish.search.empty": "Әзірге ештеңе табылмады",
+  "polish.search.emptyHint": "Басқаша жазып немесе барлық сервистен іздеп көр.",
+  "polish.search.reset": "Барлық жерден іздеу"
 }

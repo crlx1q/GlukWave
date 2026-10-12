@@ -1,4 +1,5 @@
 import '../l10n/wave_localizations.dart';
+import 'dart:async';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
@@ -35,8 +36,11 @@ class WaveApi {
       ? 'ios'
       : 'android';
   String deviceName = '';
+  final Future<void> Function(Duration) playbackDelay;
   late final WaveDiagnostics diagnostics;
-  WaveApi(String value) : server = validateServer(value) {
+  WaveApi(String value, {Future<void> Function(Duration)? playbackDelay})
+    : server = validateServer(value),
+      playbackDelay = playbackDelay ?? Future<void>.delayed {
     diagnostics = WaveDiagnostics(() => server, () => headers);
     dio.interceptors.add(
       InterceptorsWrapper(
@@ -50,9 +54,9 @@ class WaveApi {
                   : 'Server request failed',
               kind: 'network',
               stack: error.stackTrace,
-              code:
-                  object(object(error.response?.data)['error'])['code']
-                      as String?,
+              code: object(
+                object(error.response?.data)['error'],
+              )['code']?.toString(),
               status: status,
             );
           }
@@ -65,7 +69,9 @@ class WaveApi {
   Map<String, String> get headers => {
     'X-GlukWave-Client': 'native',
     'X-GlukWave-Kind': clientKind,
-    if (deviceName.isNotEmpty) 'X-GlukWave-Device-Name': deviceName,
+    // dart:io rejects Unicode header values before making a connection.
+    if (deviceName.isNotEmpty)
+      'X-GlukWave-Device-Name': Uri.encodeComponent(deviceName),
     'Accept-Language': language,
     if (deviceId.isNotEmpty) 'X-GlukWave-Device': deviceId,
     if (surfaceId.isNotEmpty) 'X-GlukWave-Surface': surfaceId,
@@ -106,22 +112,77 @@ class WaveApi {
     dynamic data,
     Json? query,
   }) async {
-    try {
-      final result = await dio.request<dynamic>(
-        url(path),
-        data: data,
-        queryParameters: query,
-        options: Options(method: method, headers: headers),
-      );
-      return object(result.data);
-    } on DioException catch (error) {
-      final detail = object(object(error.response?.data)['error']);
-      throw WaveException(
-        detail['message'] as String? ?? wt('native.5918da6940'),
-        detail['code'] as String? ??
-            (error.response?.statusCode == 401 ? 'unauthorized' : 'network'),
-        error.response?.statusCode,
-      );
+    final playback =
+        method == 'GET' &&
+        RegExp(r'^/api/tracks/[^/]+/playback$').hasMatch(path);
+    final deadline = DateTime.now().add(const Duration(minutes: 2));
+    var retries = 0;
+    while (true) {
+      if (playback && !DateTime.now().isBefore(deadline)) {
+        throw WaveException(wt('native.5918da6940'), 'PLAYBACK_TIMEOUT');
+      }
+      final cancellation = playback ? CancelToken() : null;
+      final budget = playback
+          ? Timer(
+              deadline.difference(DateTime.now()),
+              () => cancellation!.cancel('Playback resolution deadline'),
+            )
+          : null;
+      try {
+        final result = await dio.request<dynamic>(
+          url(path),
+          data: data,
+          queryParameters: query,
+          cancelToken: cancellation,
+          options: Options(
+            method: method,
+            headers: {
+              ...headers,
+              if (playback) 'X-GlukWave-Playback-Wait': 'poll',
+            },
+            receiveTimeout: playback ? const Duration(seconds: 15) : null,
+          ),
+        );
+        if (playback && result.statusCode == 202) {
+          if (DateTime.now().isAfter(deadline)) {
+            throw WaveException(wt('native.5918da6940'), 'PLAYBACK_TIMEOUT');
+          }
+          final seconds =
+              (int.tryParse(result.headers.value('retry-after') ?? '') ?? 2)
+                  .clamp(1, 4);
+          await playbackDelay(Duration(seconds: seconds));
+          continue;
+        }
+        return object(result.data);
+      } on DioException catch (error) {
+        if (playback && !DateTime.now().isBefore(deadline)) {
+          throw WaveException(wt('native.5918da6940'), 'PLAYBACK_TIMEOUT');
+        }
+        final status = error.response?.statusCode;
+        final temporary =
+            [502, 503, 504].contains(status) ||
+            [
+              DioExceptionType.connectionTimeout,
+              DioExceptionType.receiveTimeout,
+              DioExceptionType.connectionError,
+            ].contains(error.type);
+        if (playback &&
+            temporary &&
+            retries < 2 &&
+            DateTime.now().isBefore(deadline)) {
+          await playbackDelay(Duration(milliseconds: 600 * ++retries));
+          continue;
+        }
+        final detail = object(object(error.response?.data)['error']);
+        throw WaveException(
+          detail['message']?.toString() ?? wt('native.5918da6940'),
+          detail['code']?.toString() ??
+              (error.response?.statusCode == 401 ? 'unauthorized' : 'network'),
+          error.response?.statusCode,
+        );
+      } finally {
+        budget?.cancel();
+      }
     }
   }
 

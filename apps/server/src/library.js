@@ -49,7 +49,17 @@ export function setupLibrary(app,ctx){
     }
     const matches=[...unique.values()].sort((a,b)=>(b.matchedFields?.includes('title')?1:0)-(a.matchedFields?.includes('title')?1:0)).slice(0,100);
     const providerArtists=results.flatMap(result=>result.status==='fulfilled'?result.value.artists||[]:[]);
-    res.set('Cache-Control','private, no-store').json({tracks:matches.map(track=>ctx.publicTrack(track,req.auth?.user)),artists:artistsFromTracks([...matches,...all],q,providerArtists).filter(artist=>source==='all'||source===artist.source),suggestion:exact||local.length?null:keyboardSuggestion(q),providers,errors});
+    const searchable=new Map(all.map(track=>[track.id,track])),playlists=[];
+    for(const playlist of await store.list('playlists',p=>p.public||p.ownerId===req.auth?.user.id)){
+      // An invalid public playlist must never disclose its private contents.
+      const entries=playlist.trackIds.map(id=>searchable.get(id)).filter(Boolean);
+      if(entries.length!==playlist.trackIds.length)continue;
+      if(playlist.public){try{await validatePublication(playlist.trackIds);}catch{continue;}}
+      if(source!=='all'&&!entries.some(track=>track.source===source))continue;
+      if(!matchedFields({title:playlist.name,artist:'',album:playlist.description},q).length&&!entries.some(track=>matchedFields(track,q).length))continue;
+      playlists.push(await decoratePlaylist(playlist));if(playlists.length>=24)break;
+    }
+    res.set('Cache-Control','private, no-store').json({tracks:matches.map(track=>ctx.publicTrack(track,req.auth?.user)),artists:artistsFromTracks([...matches,...all],q,providerArtists).filter(artist=>source==='all'||source===artist.source),playlists,suggestion:exact||local.length?null:keyboardSuggestion(q),providers,errors});
   }));
   app.post('/api/tracks/resolve',requireAuth,asyncRoute(async(req,res)=>{const b=parse(z.object({url:z.url().max(2048)}).strict(),req.body);res.json({track:ctx.publicTrack(await ctx.resolveSource(b.url))});}));
   app.get('/api/tracks/:id',asyncRoute(async(req,res)=>res.json({track:ctx.publicTrack(await requireTrack(req.params.id,req.auth?.user),req.auth?.user)})));

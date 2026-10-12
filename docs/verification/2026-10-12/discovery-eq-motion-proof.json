@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "scope": "Actual React EQ reset button, existing original QA audio, own muted browser and normal autoplay policy.",
+  "curve": {
+    "finalPoints": "15,72 45,72 75,72 105,72 135,72 165,72 195,72 225,72 255,72 285,72",
+    "intermediateFrames": 13,
+    "radius": "17.4px"
+  },
+  "screenshot": "work/qa/discovery-eq-motion-1791740866963.png"
+}

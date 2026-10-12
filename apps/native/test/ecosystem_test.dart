@@ -504,7 +504,7 @@ void main() {
       api.deviceName = 'GlukWave · Windows';
       expect(api.headers['X-GlukWave-Client'], 'native');
       expect(api.headers['X-GlukWave-Kind'], 'windows');
-      expect(api.headers['X-GlukWave-Device-Name'], 'GlukWave · Windows');
+      expect(Uri.decodeComponent(api.headers['X-GlukWave-Device-Name']!), 'GlukWave · Windows');
       expect(api.headers.keys.any((key) => key.contains('API_KEY')), isFalse);
       api.dio.close(force: true);
     },

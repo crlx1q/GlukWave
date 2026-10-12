@@ -1,0 +1,38 @@
+{
+  "passed": true,
+  "verdict": "PASS",
+  "attempt": 1,
+  "checkedAt": "2026-10-11T17:41:25Z",
+  "screenshots": [
+    "work/qa/eval-polish-1-desktop-home.png",
+    "work/qa/eval-polish-1-desktop-player.png",
+    "work/qa/eval-polish-1-tablet-player.png",
+    "work/qa/eval-polish-1-mobile-player.png",
+    "work/qa/eval-polish-1-mobile-mini.png",
+    "work/qa/eval-polish-1-mobile-search.png",
+    "work/qa/eval-polish-1-mobile-artist-detail.png",
+    "work/qa/eval-polish-1-mobile-playlist-detail.png",
+    "work/qa/eval-polish-1-small125-coveroptions.png",
+    "work/qa/eval-polish-1-small125-eq.png",
+    "work/qa/eval-polish-1-small125-player-final.png",
+    "work/qa/eval-polish-1-375-final-player.png",
+    "work/qa/discovery-polish-1791740337713-dark-320-player.png",
+    "work/qa/discovery-polish-1791740337713-dark-390-search.png",
+    "work/qa/discovery-polish-1791740337713-amoled-1440-home.png",
+    "work/qa/native-listening-polish-1791740079776-dark-390-player.png",
+    "work/qa/native-listening-polish-1791740079776-light-1440-search.png",
+    "work/qa/native-listening-polish-1791740079776-amoled-320-home.png"
+  ],
+  "checks": [
+    "All six user reference screenshots inspected.",
+    "Actual React app independently inspected at 1440, 768, 390, 375 and 320 widths, including 125% small-screen typography.",
+    "Actual player, EQ preset menu, dismissible cover options, artist detail and playlist detail exercised.",
+    "320px full-player and listening scroll widths equal client widths after final CSS fix.",
+    "Mobile compact seek hidden; visual progress ignores pointer input; duplicate compact attribution absent.",
+    "EQ pointer focus outline and shadow both none; themed preset list renders five options.",
+    "Actual PiP mini iframe loads GlukWave track text without blocked-content output.",
+    "Fresh Flutter widget/controller captures inspected across dark, AMOLED and light desktop/mobile layouts.",
+    "Independent browser reported no page errors and was closed after inspection."
+  ],
+  "boundary": "Independent visual and real UI-handler evaluation on isolated QA fixture and actual Flutter widget renders. Same available provider; no cross-provider claim. No owner account, deployment, physical-device audio, installation or real-provider uptime claim. Private evaluation criteria/report are excluded from this public proof."
+}

@@ -24,9 +24,30 @@ test('Search finds artist, genre and personal lyric words without leaking them',
    await service.ctx.store.put('lyrics',`${owner.user.id}:${track.id}`,{lines:[{time:1,text:'Hidden silver river'}],source:'user'});
    assert.equal((await request('/search?q=silver%20river',null,owner.token)).tracks[0].id,track.id);
    assert.deepEqual((await request('/search?q=silver%20river')).tracks,[]);
-   assert.equal((await request('/search?q=elan%20moonlight')).tracks[0].id,track.id);
+   const combined=await request('/search?q=elan%20moonlight');assert.equal(combined.tracks[0].id,track.id);assert.equal(combined.artists[0].name,'Élan');
+   const pub=await request('/playlists',{name:'Moonlight collection',trackIds:[track.id],public:true},owner.token);
+   const own=await request('/playlists',{name:'Moonlight private',trackIds:[track.id],public:false},owner.token);
+   const publicResults=await request('/search?q=moonlight');assert(publicResults.playlists.some(p=>p.id===pub.playlist.id));assert(!publicResults.playlists.some(p=>p.id===own.playlist.id));
+   const personal=await request('/search?q=moonlight',null,owner.token);assert(personal.playlists.some(p=>p.id===own.playlist.id));
+   await service.ctx.store.put('playlists','invalid-public',{...pub.playlist,id:'invalid-public',trackIds:['missing-private-track']});
+   assert(!(await request('/search?q=moonlight',null,owner.token)).playlists.some(p=>p.id==='invalid-public'));
    const challenge=await request('/auth/native',{method:'email'});assert.equal(typeof challenge.expiresAt,'number');
  }finally{await service.close();await fs.rm(dir,{recursive:true,force:true,maxRetries:5,retryDelay:100});}
+});
+
+test('Automatic lyrics recover a failed exact request and use the manual title-only fallback',async()=>{
+ const cache=new Map(),calls=[];
+ const ctx={store:{get:async(c,k)=>cache.get(k),list:async()=>[...cache.values()],put:async(c,k,v)=>cache.set(k,v),remove:async(c,k)=>cache.delete(k)}};
+ const record={id:123,trackName:'Example',artistName:'Test Artist',duration:180,syncedLyrics:'[00:03]Verified text',plainLyrics:'Verified text'};
+ const provider=createLyricsProvider(ctx,async url=>{
+  calls.push(url.href);if(url.pathname.endsWith('/get'))return new Response('',{status:503});
+  if(url.searchParams.has('artist_name'))return Response.json([]);
+  return Response.json([{...record,id:124,artistName:'Unrelated Artist'},record]);
+ });
+ const track={title:'Example (Official Audio)',artist:'Test Artist',duration:180,source:'youtube'};
+ const result=await provider.lookup(track);assert.equal(result.providerId,123);assert.equal(result.lines[0].time,3);assert.equal(calls.length,3);
+ assert.equal((await provider.lookup(track)).providerId,123);assert.equal(calls.length,3);
+ assert.equal([...cache.values()][0].providerVersion,3);
 });
 
 test('Lyrics normalize video credits, recover album mismatch and keep timing honest',async()=>{

@@ -1,0 +1,19 @@
+{
+  "checkedAt": "2026-10-12T09:04:38.424Z",
+  "passed": true,
+  "archiveBytes": 105189098,
+  "archiveSha256": "84335672449f7b00e493a68c1b9a0ab29d523380667f869d2db923b75811764b",
+  "entries": 1262,
+  "allCrcAndSourceHashesMatched": true,
+  "textFilesScanned": 618,
+  "localPrivateValuesAbsent": true,
+  "liveCredentialPatternsAbsent": true,
+  "staticFontFaces": 6,
+  "manropeStaticFontFaces": 5,
+  "frozenNativeSourcesMatched": 154,
+  "currentWebBuild": "/assets/main-BlPPc_hf.js",
+  "runtimeDataExcluded": true,
+  "apkSha256": "21f4690cec451929cd454f77f5a0b196a6317703ff871daf142d43652fdd2d3b",
+  "windowsSha256": "de41d341c76780636335dfa5c1397f269c677b668e7fddb27fb28b171f9d1992",
+  "installerSha256": "4c05d3c2fe90ab5593e8902592212b08264550731057b5b1d0a1f35aefb65990"
+}

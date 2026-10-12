@@ -1,4 +1,6 @@
 import 'motion_icons.dart';
+import 'discovery.dart';
+import '../l10n/listening_polish_strings.dart';
 import 'cover_accent.dart';
 import 'dart:async';
 import 'dart:io';
@@ -141,10 +143,10 @@ class _GlukWaveAppState extends State<GlukWaveApp> with WidgetsBindingObserver {
     if (key == _coverKey) return;
     _coverKey = key;
     _coverSampler.cancel();
-    _coverAccent = null;
     if (!c.customization.appearance.coverAccent ||
         track == null ||
         track.artwork.isEmpty) {
+      _coverAccent = null;
       return;
     }
     final uri = Uri.tryParse(c.api.url(track.artwork));
@@ -241,7 +243,7 @@ class _GlukWaveAppState extends State<GlukWaveApp> with WidgetsBindingObserver {
         },
         themeAnimationDuration: customization.reducedMotion
             ? Duration.zero
-            : const Duration(milliseconds: 220),
+            : const Duration(milliseconds: 900),
         debugShowCheckedModeBanner: false,
         scaffoldMessengerKey: messenger,
         builder: (context, child) => MediaQuery(
@@ -345,7 +347,7 @@ class _WaveShellState extends State<WaveShell>
     with SingleTickerProviderStateMixin {
   WaveController get c => widget.controller;
   WavePage page = WavePage.home;
-  String filter = 'all', source = 'all';
+  String filter = 'all', source = 'all', searchType = 'all';
   Json? selectedPlaylist;
   final search = TextEditingController(), chat = TextEditingController();
   Timer? _searchTimer;
@@ -770,124 +772,221 @@ class _WaveShellState extends State<WaveShell>
     return KeyEventResult.handled;
   }
 
-  Widget sidebar() => Container(
-    width: 232,
-    decoration: BoxDecoration(
-      border: Border(right: BorderSide(color: waveVisuals(context).line)),
-    ),
-    child: Padding(
-      padding: const EdgeInsets.fromLTRB(21, 28, 21, 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Brand(animated: c.settings['reducedMotion'] != true),
-          const SizedBox(height: 36),
-          Padding(
-            padding: EdgeInsets.only(left: 12, bottom: 12),
-            child: Text(
-              wt('native.0c456a489e', context: context),
-              style: TextStyle(
-                color: waveVisuals(context).muted,
-                fontSize: 9,
-                fontWeight: FontWeight.w800,
-                letterSpacing: 1.5,
-              ),
+  Widget sidebar() => MediaQuery.sizeOf(context).width < 1180
+      ? compactSidebar()
+      : Container(
+          width: 232,
+          decoration: BoxDecoration(
+            border: Border(right: BorderSide(color: waveVisuals(context).line)),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(21, 28, 21, 20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Brand(animated: c.settings['reducedMotion'] != true),
+                const SizedBox(height: 36),
+                Padding(
+                  padding: EdgeInsets.only(left: 12, bottom: 12),
+                  child: Text(
+                    wt('native.0c456a489e', context: context),
+                    style: TextStyle(
+                      color: waveVisuals(context).muted,
+                      fontSize: 9,
+                      fontWeight: FontWeight.w800,
+                      letterSpacing: 1.5,
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        for (final item in [
+                          WavePage.home,
+                          WavePage.library,
+                          WavePage.search,
+                          WavePage.liked,
+                          WavePage.rooms,
+                          WavePage.friends,
+                          WavePage.artists,
+                        ])
+                          navItem(item),
+                        ListTile(
+                          contentPadding: const EdgeInsets.symmetric(
+                            horizontal: 14,
+                          ),
+                          leading: Icon(
+                            Icons.nightlight_outlined,
+                            size: 19,
+                            color: waveVisuals(context).muted,
+                          ),
+                          title: Text(
+                            wt('native.a3e784c186', context: context),
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.w800,
+                              color: waveVisuals(context).muted,
+                            ),
+                          ),
+                          onTap: () => Navigator.push(
+                            context,
+                            MaterialPageRoute<void>(
+                              builder: (_) =>
+                                  LofiPage(controller: c, onMore: more),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 22),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Padding(
+                            padding: EdgeInsets.only(left: 12, bottom: 9),
+                            child: Text(
+                              wt('native.0a0be598ca', context: context),
+                              style: TextStyle(
+                                color: waveVisuals(context).muted,
+                                fontSize: 9,
+                                letterSpacing: 1.5,
+                              ),
+                            ),
+                          ),
+                        ),
+                        for (final item in [
+                          WavePage.sources,
+                          WavePage.downloads,
+                          WavePage.devices,
+                        ])
+                          navItem(item),
+                        if (c.playlists.isNotEmpty) const SizedBox(height: 20),
+                        for (final playlist in c.playlists.take(4))
+                          InkWell(
+                            borderRadius: BorderRadius.circular(
+                              waveRadius(context, 12),
+                            ),
+                            onTap: () {
+                              setState(() {
+                                selectedPlaylist = playlist;
+                                page = WavePage.library;
+                              });
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 10,
+                                vertical: 8,
+                              ),
+                              child: Row(
+                                children: [
+                                  Artwork(
+                                    controller: c,
+                                    url: playlist['artwork'] as String?,
+                                    size: 32,
+                                  ),
+                                  const SizedBox(width: 10),
+                                  Expanded(
+                                    child: Text(
+                                      playlist['name'] as String,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: const TextStyle(
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w700,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 12),
+                navItem(WavePage.settings),
+                if (c.user?.admin == true) navItem(WavePage.admin),
+                const SizedBox(height: 16),
+                Row(
+                  children: [
+                    Icon(
+                      Icons.circle,
+                      size: 6,
+                      color: c.connected
+                          ? const Color(0xff88a58d)
+                          : waveVisuals(context).muted,
+                    ),
+                    const SizedBox(width: 7),
+                    Text(
+                      c.connected
+                          ? wt('native.cf696d8d96', context: context)
+                          : wt('native.1c8ad826bb', context: context),
+                      style: TextStyle(
+                        fontSize: 9,
+                        color: waveVisuals(context).muted,
+                      ),
+                    ),
+                    const Spacer(),
+                    Text(
+                      'β',
+                      style: TextStyle(color: waveVisuals(context).accent),
+                    ),
+                  ],
+                ),
+              ],
             ),
           ),
+        );
+  Widget compactSidebar() {
+    final v = waveVisuals(context);
+    return Container(
+      key: const Key('desktop-navigation-rail'),
+      width: 84,
+      decoration: BoxDecoration(
+        border: Border(right: BorderSide(color: v.line)),
+      ),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 22),
+      child: Column(
+        children: [
+          Brand(compact: true, size: 38, animated: !v.reducedMotion),
+          const SizedBox(height: 28),
           Expanded(
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  for (final item in [
+                  for (final value in [
                     WavePage.home,
-                    WavePage.library,
                     WavePage.search,
-                    WavePage.liked,
+                    WavePage.library,
                     WavePage.rooms,
                     WavePage.friends,
-                    WavePage.artists,
-                  ])
-                    navItem(item),
-                  ListTile(
-                    contentPadding: const EdgeInsets.symmetric(horizontal: 14),
-                    leading: Icon(
-                      Icons.nightlight_outlined,
-                      size: 19,
-                      color: waveVisuals(context).muted,
-                    ),
-                    title: Text(
-                      wt('native.a3e784c186', context: context),
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w800,
-                        color: waveVisuals(context).muted,
-                      ),
-                    ),
-                    onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute<void>(
-                        builder: (_) => LofiPage(controller: c, onMore: more),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 22),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Padding(
-                      padding: EdgeInsets.only(left: 12, bottom: 9),
-                      child: Text(
-                        wt('native.0a0be598ca', context: context),
-                        style: TextStyle(
-                          color: waveVisuals(context).muted,
-                          fontSize: 9,
-                          letterSpacing: 1.5,
-                        ),
-                      ),
-                    ),
-                  ),
-                  for (final item in [
                     WavePage.sources,
                     WavePage.downloads,
                     WavePage.devices,
                   ])
-                    navItem(item),
-                  if (c.playlists.isNotEmpty) const SizedBox(height: 20),
-                  for (final playlist in c.playlists.take(4))
-                    InkWell(
-                      borderRadius: BorderRadius.circular(
-                        waveRadius(context, 12),
-                      ),
-                      onTap: () {
-                        setState(() {
-                          selectedPlaylist = playlist;
-                          page = WavePage.library;
-                        });
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 10,
-                          vertical: 8,
-                        ),
-                        child: Row(
-                          children: [
-                            Artwork(
-                              controller: c,
-                              url: playlist['artwork'] as String?,
-                              size: 32,
-                            ),
-                            const SizedBox(width: 10),
-                            Expanded(
-                              child: Text(
-                                playlist['name'] as String,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w700,
-                                ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      child: WavePress(
+                        child: IconButton(
+                          key: Key('nav-${value.name}'),
+                          tooltip: pageLabels[value.index],
+                          onPressed: () => navigate(value),
+                          isSelected: page == value,
+                          style: IconButton.styleFrom(
+                            minimumSize: const Size(54, 54),
+                            backgroundColor: page == value
+                                ? v.accentSoft
+                                : Colors.transparent,
+                            foregroundColor: page == value ? v.ink : v.muted,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(
+                                v.corners(16),
                               ),
                             ),
-                          ],
+                          ),
+                          icon: WaveControlIcon(
+                            pageIcons[value.index],
+                            size: 22,
+                          ),
                         ),
                       ),
                     ),
@@ -895,37 +994,26 @@ class _WaveShellState extends State<WaveShell>
               ),
             ),
           ),
-          const SizedBox(height: 12),
-          navItem(WavePage.settings),
-          if (c.user?.admin == true) navItem(WavePage.admin),
-          const SizedBox(height: 16),
-          Row(
-            children: [
-              Icon(
-                Icons.circle,
-                size: 6,
-                color: c.connected
-                    ? const Color(0xff88a58d)
-                    : waveVisuals(context).muted,
-              ),
-              const SizedBox(width: 7),
-              Text(
-                c.connected
-                    ? wt('native.cf696d8d96', context: context)
-                    : wt('native.1c8ad826bb', context: context),
-                style: TextStyle(
-                  fontSize: 9,
-                  color: waveVisuals(context).muted,
-                ),
-              ),
-              const Spacer(),
-              Text('β', style: TextStyle(color: waveVisuals(context).accent)),
-            ],
+          WavePress(
+            child: IconButton(
+              key: const Key('nav-settings'),
+              tooltip: pageLabels[WavePage.settings.index],
+              onPressed: () => navigate(WavePage.settings),
+              icon: const WaveControlIcon(Icons.settings_rounded),
+            ),
           ),
+          if (c.user?.admin == true)
+            IconButton(
+              key: const Key('nav-admin'),
+              tooltip: pageLabels[WavePage.admin.index],
+              onPressed: () => navigate(WavePage.admin),
+              icon: const Icon(Icons.terminal_rounded, size: 20),
+            ),
         ],
       ),
-    ),
-  );
+    );
+  }
+
   Widget navItem(WavePage value) {
     final active = page == value;
     return Padding(
@@ -1136,43 +1224,57 @@ class _WaveShellState extends State<WaveShell>
     ),
   );
   Widget bottomNavigation() => Padding(
-    padding: const EdgeInsets.fromLTRB(5, 5, 5, 8),
+    padding: const EdgeInsets.fromLTRB(12, 5, 12, 8),
     child: Row(
       children: [
         for (final value in [WavePage.home, WavePage.search, WavePage.library])
           Expanded(
-            child: InkWell(
-              onTap: () => navigate(value),
-              key: Key('nav-${value.name}'),
-              borderRadius: BorderRadius.circular(waveRadius(context, 12)),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 9),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    WaveControlIcon(
-                      pageIcons[value.index],
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 4),
+              child: WavePress(
+                child: InkWell(
+                  onTap: () => navigate(value),
+                  key: Key('nav-${value.name}'),
+                  borderRadius: BorderRadius.circular(waveRadius(context, 19)),
+                  child: AnimatedContainer(
+                    duration: waveVisuals(context).duration(220),
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    decoration: BoxDecoration(
                       color: page == value
-                          ? waveVisuals(context).ink
-                          : waveVisuals(context).muted,
-                      size: 23,
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      value == WavePage.rooms
-                          ? wt('native.11688c1649', context: context)
-                          : pageLabels[value.index],
-                      style: TextStyle(
-                        fontSize: 9,
-                        color: page == value
-                            ? waveVisuals(context).ink
-                            : waveVisuals(context).muted,
-                        fontWeight: page == value
-                            ? FontWeight.w800
-                            : FontWeight.w500,
+                          ? waveVisuals(context).accentSoft
+                          : Colors.transparent,
+                      borderRadius: BorderRadius.circular(
+                        waveRadius(context, 19),
                       ),
                     ),
-                  ],
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        WaveControlIcon(
+                          pageIcons[value.index],
+                          size: 22,
+                          color: page == value
+                              ? waveVisuals(context).ink
+                              : waveVisuals(context).muted,
+                        ),
+                        const SizedBox(height: 5),
+                        Text(
+                          pageLabels[value.index],
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: 10,
+                            fontWeight: page == value
+                                ? FontWeight.w800
+                                : FontWeight.w500,
+                            color: page == value
+                                ? waveVisuals(context).ink
+                                : waveVisuals(context).muted,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -1262,6 +1364,60 @@ class _WaveShellState extends State<WaveShell>
         ),
     ],
   );
+  Widget homeTrackRail(List<WaveTrack> items) {
+    final v = waveVisuals(context),
+        size = MediaQuery.sizeOf(context).width < 700 ? 142.0 : 164.0;
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          for (final track in items)
+            Padding(
+              padding: const EdgeInsets.only(right: 14),
+              child: SizedBox(
+                width: size,
+                child: WavePress(
+                  child: InkWell(
+                    borderRadius: BorderRadius.circular(v.corners(16)),
+                    onTap: () => run(c, () => c.play(track, list: items)),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Artwork(
+                          controller: c,
+                          url: track.artwork,
+                          size: size,
+                          radius: 16,
+                        ),
+                        const SizedBox(height: 11),
+                        Text(
+                          track.title,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.w800,
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          track.artist,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(color: v.muted, fontSize: 11),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+
   Widget home() {
     final hour = DateTime.now().hour;
     final greeting = hour >= 18
@@ -1290,6 +1446,19 @@ class _WaveShellState extends State<WaveShell>
             label: Text(wt('native.642fcf95d9', context: context)),
           ),
         ),
+        WaveHero(
+          controller: c,
+          emptyActionLabel: pt(context, 'Artists'),
+          empty: local.isEmpty,
+          reducedMotion: c.settings['reducedMotion'] == true,
+          onPlay: () => local.isEmpty
+              ? navigate(WavePage.artists)
+              : run(
+                  c,
+                  () => c.play((local.toList()..shuffle()).first, list: local),
+                ),
+        ),
+        const SizedBox(height: 16),
         Wrap(
           spacing: 8,
           runSpacing: 8,
@@ -1312,18 +1481,6 @@ class _WaveShellState extends State<WaveShell>
           ],
         ),
         const SizedBox(height: 16),
-        WaveHero(
-          controller: c,
-          emptyActionLabel: pt(context, 'Artists'),
-          empty: local.isEmpty,
-          reducedMotion: c.settings['reducedMotion'] == true,
-          onPlay: () => local.isEmpty
-              ? navigate(WavePage.artists)
-              : run(
-                  c,
-                  () => c.play((local.toList()..shuffle()).first, list: local),
-                ),
-        ),
         if (parity.loading)
           const Padding(
             padding: EdgeInsets.only(top: 16),
@@ -1352,7 +1509,7 @@ class _WaveShellState extends State<WaveShell>
           ),
         if (local.isNotEmpty) ...[
           section(pt(context, 'Personal')),
-          tracksList(local.take(5).toList()),
+          homeTrackRail(local.take(8).toList()),
         ],
         const SizedBox(height: 24),
         TasteInvitation(
@@ -1447,9 +1604,9 @@ class _WaveShellState extends State<WaveShell>
               : wt('native.b73d4d1b29', context: context),
         ),
         if (recent.isNotEmpty)
-          tracksList(recent)
+          homeTrackRail(recent)
         else if (c.tracks.isNotEmpty)
-          tracksList(c.tracks.take(5).toList())
+          homeTrackRail(c.tracks.take(8).toList())
         else
           EmptyState(
             wt('native.c55ae9eb3e', context: context),
@@ -1829,159 +1986,66 @@ class _WaveShellState extends State<WaveShell>
   Widget searchPage() => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      PageHeading(
-        wt('native.682466a401', context: context),
-        wt('native.fb10bb6c43', context: context),
-        eyebrow: wt('native.9bd84125bc', context: context),
-      ),
+      if (search.text.trim().isEmpty)
+        PageHeading(
+          polishText('browse', context),
+          polishText('browseDetail', context),
+          eyebrow: wt('native.9bd84125bc', context: context),
+        ),
       if (MediaQuery.sizeOf(context).width < 900)
-        TextField(
-          controller: search,
-          onChanged: scheduleSearch,
-          onSubmitted: (_) => doSearch(),
-          decoration: InputDecoration(
-            prefixIcon: const Icon(Icons.search_rounded),
-            hintText: wt('native.bbd9181561', context: context),
-            suffixIcon: IconButton(
-              onPressed: doSearch,
-              tooltip: wt('native.58212e541c', context: context),
-              icon: const Icon(Icons.arrow_forward_rounded),
-            ),
-          ),
-        ),
-      const SizedBox(height: 16),
-      SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          children: [
-            for (final entry in {
-              'all': wt('native.58b59eb005', context: context),
-              'local': wt('native.1aa3589e13', context: context),
-              'youtube': 'YouTube',
-              'spotify': 'Spotify',
-              'soundcloud': 'SoundCloud',
-              'yandex': wt('native.0fb8bc0888', context: context),
-            }.entries)
-              Padding(
-                padding: const EdgeInsets.only(right: 8),
-                child: ChoiceChip(
-                  label: Text(entry.value),
-                  selected: source == entry.key,
-                  showCheckmark: false,
-                  selectedColor: waveVisuals(context).accentSoft,
-                  onSelected: (_) {
-                    setState(() => source = entry.key);
-                    doSearch();
-                  },
-                ),
-              ),
-          ],
-        ),
-      ),
-      if (c.suggestion != null)
         Padding(
-          padding: const EdgeInsets.only(top: 15),
-          child: TextButton(
-            onPressed: () {
-              search.text = c.suggestion!;
-              doSearch();
-            },
-            child: Text(
-              wt(
-                'native.f1b3941857',
-                values: {'p0': (c.suggestion)},
-                context: context,
+          padding: const EdgeInsets.only(bottom: 18),
+          child: TextField(
+            key: const Key('discovery-query'),
+            controller: search,
+            onChanged: scheduleSearch,
+            onSubmitted: (_) => doSearch(),
+            decoration: InputDecoration(
+              prefixIcon: const Padding(
+                padding: EdgeInsets.all(14),
+                child: WaveControlIcon(Icons.search_rounded, size: 20),
+              ),
+              hintText: wt('native.bbd9181561', context: context),
+              suffixIcon: IconButton(
+                onPressed: doSearch,
+                tooltip: wt('native.58212e541c', context: context),
+                icon: const Icon(Icons.arrow_forward_rounded),
               ),
             ),
           ),
         ),
-      const SizedBox(height: 20),
-      if (searching)
-        const WaveLoadingList(key: Key('search-loading'))
-      else if (c.results.isNotEmpty || c.artistResults.isNotEmpty)
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            if (c.artistResults.isNotEmpty) ...[
-              Text(
-                wt('search.artists', context: context),
-                style: const TextStyle(
-                  fontSize: 17,
-                  fontWeight: FontWeight.w800,
-                ),
-              ),
-              const SizedBox(height: 14),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    for (final artist in c.artistResults)
-                      Padding(
-                        padding: const EdgeInsets.only(right: 12),
-                        child: SizedBox(
-                          width: 176,
-                          child: OutlinedButton(
-                            key: ValueKey('search-artist-${artist['id']}'),
-                            style: OutlinedButton.styleFrom(
-                              padding: const EdgeInsets.all(14),
-                              backgroundColor: waveVisuals(context).surface,
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(18),
-                              ),
-                            ),
-                            onPressed: () => openArtist(context, c, artist),
-                            child: Column(
-                              children: [
-                                ClipOval(
-                                  child: Artwork(
-                                    controller: c,
-                                    url: artist['artwork']?.toString() ?? '',
-                                    size: 66,
-                                    radius: 0,
-                                  ),
-                                ),
-                                const SizedBox(height: 11),
-                                Text(
-                                  artist['name']?.toString() ?? '',
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: const TextStyle(
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w800,
-                                  ),
-                                ),
-                                const SizedBox(height: 4),
-                                Text(
-                                  providerName(
-                                    artist['source']?.toString() ?? 'local',
-                                  ),
-                                  style: TextStyle(
-                                    fontSize: 10,
-                                    color: waveVisuals(context).muted,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                  ],
-                ),
-              ),
-              const SizedBox(height: 25),
-            ],
-            if (c.results.isNotEmpty) tracksList(c.results),
-          ],
-        )
-      else
-        EmptyState(
-          search.text.isEmpty
-              ? wt('native.6d7be8c94d', context: context)
-              : wt('native.e61d08951b', context: context),
-          search.text.isEmpty
-              ? wt('native.01529b9d5e', context: context)
-              : wt('native.10c727a4cc', context: context),
+      if (c.suggestion != null)
+        TextButton(
+          onPressed: () {
+            search.text = c.suggestion!;
+            doSearch();
+          },
+          child: Text(
+            wt(
+              'native.f1b3941857',
+              values: {'p0': c.suggestion},
+              context: context,
+            ),
+          ),
         ),
+      DiscoveryView(
+        controller: c,
+        query: search.text,
+        type: searchType,
+        source: source,
+        loading: searching,
+        onType: (value) => setState(() => searchType = value),
+        onSource: (value) {
+          setState(() => source = value);
+          doSearch();
+        },
+        onQuery: (value) {
+          search.text = value;
+          doSearch();
+        },
+        onPlaylist: (playlist) => openDiscoveryPlaylist(context, c, playlist),
+        onMore: more,
+      ),
       if (search.text.startsWith('https://'))
         OutlinedButton.icon(
           onPressed: () => run(c, () => c.resolve(search.text)),

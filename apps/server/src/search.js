@@ -12,13 +12,15 @@ export function matchedFields(track, query, lyrics = '') {
   return Object.entries(normalized).filter(([, value]) => words.some(word => value.includes(word))).map(([key]) => key);
 }
 export function artistsFromTracks(tracks, query, providerArtists = []) {
-  const found = new Map();
+  const found = new Map(), contextual = new Set();
+  const words = searchText(query).split(' ').filter(Boolean);
   for (const track of tracks) {
     const artists = track.artists?.length ? track.artists : [{name: track.artist, artwork: track.artistArtwork || '', sourceUrl: track.artistUrl || ''}];
     for (const artist of artists) {
       if (!artist.name) continue;
       const key = `${track.source}:${artist.sourceId || searchText(artist.name)}`;
       const previous = found.get(key);
+      if (matchedFields(track, query).length && words.some(word => searchText(artist.name).includes(word))) contextual.add(key);
       found.set(key, {...artist, id: artist.id || `artist-${digest(key).slice(0,24)}`,
         name: artist.name, source: track.source, artwork: artist.artwork || previous?.artwork || '',
         trackIds: [...new Set([...(previous?.trackIds || []), track.id])]});
@@ -29,7 +31,6 @@ export function artistsFromTracks(tracks, query, providerArtists = []) {
     const key = `${artist.source}:${artist.sourceId || searchText(artist.name)}`;
     found.set(key, {...found.get(key), ...artist, trackIds: found.get(key)?.trackIds || []});
   }
-  const words = searchText(query).split(' ').filter(Boolean);
-  return [...found.values()].filter(artist => words.every(word => searchText(artist.name).includes(word)))
+  return [...found.entries()].filter(([key,artist]) => contextual.has(key) || words.every(word => searchText(artist.name).includes(word))).map(([,artist])=>artist)
     .sort((a,b) => b.trackIds.length-a.trackIds.length).slice(0,12);
 }

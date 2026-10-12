@@ -523,7 +523,7 @@ class _WaveHeroState extends State<WaveHero>
     builder: (context, constraints) {
       final v = waveVisuals(context);
       final compact = constraints.maxWidth < 600 || v.compact;
-      final height = compact ? 224.0 : 310.0;
+      final height = compact ? 300.0 : 380.0;
       return MouseRegion(
         onHover: (event) => _readPointer(
           event.localPosition,
@@ -572,10 +572,10 @@ class _WaveHeroState extends State<WaveHero>
                         gradient: LinearGradient(
                           colors: [
                             v.player,
-                            v.player.withValues(alpha: .72),
+                            v.player.withValues(alpha: .44),
                             v.player.withValues(alpha: 0),
                           ],
-                          stops: const [0, .32, 1],
+                          stops: const [0, .20, .82],
                         ),
                       ),
                     ),

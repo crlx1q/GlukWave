@@ -131,7 +131,7 @@ class WaveController extends ChangeNotifier {
         'reducedMotion': false,
       };
   List<WaveTrack> tracks = [], results = [];
-  List<Json> artistResults = [];
+  List<Json> artistResults = [], playlistResults = [];
   List<String> likedIds = [];
   List<Json> playlists = [],
       history = [],
@@ -481,6 +481,7 @@ class WaveController extends ChangeNotifier {
   Future<void> refresh() async {
     final session = api.token, origin = api.server;
     final localeRequest = _localeRequest;
+    var reachedServer = false, verifiedSession = false;
     loading = true;
     error = null;
     notifyListeners();
@@ -488,6 +489,7 @@ class WaveController extends ChangeNotifier {
       final serverConfig = await api.call('/api/config');
       if (session != api.token || origin != api.server) return;
       config = serverConfig;
+      reachedServer = true;
       final locale = object(serverConfig['localization'])['language'];
       if (localeRequest == _localeRequest &&
           customization.language == 'auto' &&
@@ -505,6 +507,7 @@ class WaveController extends ChangeNotifier {
           return;
         }
         user = WaveUser(current);
+        verifiedSession = true;
         final data = await api.call('/api/library');
         if (session != api.token || origin != api.server) return;
         tracks = objects(data['tracks']).map(WaveTrack.new).toList();
@@ -532,11 +535,13 @@ class WaveController extends ChangeNotifier {
       }
     } catch (e) {
       if (session != api.token || origin != api.server) return;
-      if (e is WaveException && e.code == 'unauthorized') {
+      if (e is WaveException && (e.code == 'unauthorized' || e.status == 401)) {
         await logout(remote: false);
         error = wt('native.b217602ba0');
       } else {
-        online = false;
+        // A failed library/settings call is not an absent internet connection.
+        online = reachedServer;
+        if (verifiedSession) _connectSocket();
         error = e.toString();
       }
     } finally {
@@ -1286,6 +1291,7 @@ class WaveController extends ChangeNotifier {
     if (query.trim().isEmpty) {
       results = [];
       artistResults = [];
+      playlistResults = [];
       suggestion = null;
       notifyListeners();
       return;
@@ -1297,6 +1303,7 @@ class WaveController extends ChangeNotifier {
     if (revision != _searchRevision) return;
     results = objects(data['tracks']).map(WaveTrack.new).toList();
     artistResults = objects(data['artists']);
+    playlistResults = objects(data['playlists']);
     suggestion = data['suggestion'] as String?;
     final failures = objects(data['errors']);
     if (failures.isNotEmpty) {

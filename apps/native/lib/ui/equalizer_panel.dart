@@ -4,6 +4,7 @@ import '../l10n/audio_design_strings.dart';
 import 'dart:io';
 import '../l10n/parity_strings.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../core/controller.dart';
 import '../core/equalizer.dart';
 import '../core/models.dart';
@@ -269,6 +270,8 @@ class _CompactEqualizerPanelState extends State<CompactEqualizerPanel> {
             splashFactory: NoSplash.splashFactory,
             highlightColor: Colors.transparent,
             splashColor: Colors.transparent,
+            focusColor: Colors.transparent,
+            hoverColor: Colors.transparent,
           ),
           child: Padding(
             padding: const EdgeInsets.all(15),
@@ -626,6 +629,7 @@ class _EqualizerPresetMenu extends StatefulWidget {
 }
 
 class _EqualizerPresetMenuState extends State<_EqualizerPresetMenu> {
+  bool keyboardFocus = false;
   final triggerFocus = FocusNode();
   final optionFocus = <String, FocusNode>{};
   @override
@@ -647,112 +651,135 @@ class _EqualizerPresetMenuState extends State<_EqualizerPresetMenu> {
             'saved': audioDesignText('savedPreset', context: context),
         };
     BorderSide focus(Set<WidgetState> states) => BorderSide(
-      color:
-          states.contains(WidgetState.focused) &&
-              FocusManager.instance.highlightMode ==
-                  FocusHighlightMode.traditional
+      color: states.contains(WidgetState.focused) && keyboardFocus
           ? v.accent
           : v.line,
     );
-    return LayoutBuilder(
-      builder: (context, box) => MenuAnchor(
-        childFocusNode: triggerFocus,
-        onOpen: () => WidgetsBinding.instance.addPostFrameCallback((_) {
-          if (mounted) {
-            (optionFocus[widget.selected] ?? optionFocus[labels.keys.first])
-                ?.requestFocus();
-          }
-        }),
-        style: MenuStyle(
-          backgroundColor: WidgetStatePropertyAll(v.surface),
-          surfaceTintColor: const WidgetStatePropertyAll(Colors.transparent),
-          minimumSize: WidgetStatePropertyAll(Size(box.maxWidth, 0)),
-          maximumSize: WidgetStatePropertyAll(Size(box.maxWidth, 300)),
-          padding: const WidgetStatePropertyAll(EdgeInsets.all(5)),
-          shape: WidgetStatePropertyAll(
-            RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(v.corners(10)),
-              side: BorderSide(color: v.line),
+    return Focus(
+      onKeyEvent: (_, event) {
+        if (event is KeyDownEvent && !keyboardFocus) {
+          setState(() => keyboardFocus = true);
+        }
+        return KeyEventResult.ignored;
+      },
+      child: Listener(
+        onPointerDown: (_) {
+          if (keyboardFocus) setState(() => keyboardFocus = false);
+        },
+        child: LayoutBuilder(
+          builder: (context, box) => MenuAnchor(
+            childFocusNode: triggerFocus,
+            onOpen: () => WidgetsBinding.instance.addPostFrameCallback((_) {
+              if (mounted) {
+                (optionFocus[widget.selected] ?? optionFocus[labels.keys.first])
+                    ?.requestFocus();
+              }
+            }),
+            style: MenuStyle(
+              backgroundColor: WidgetStatePropertyAll(v.surface),
+              surfaceTintColor: const WidgetStatePropertyAll(
+                Colors.transparent,
+              ),
+              minimumSize: WidgetStatePropertyAll(Size(box.maxWidth, 0)),
+              maximumSize: WidgetStatePropertyAll(Size(box.maxWidth, 300)),
+              padding: const WidgetStatePropertyAll(EdgeInsets.all(5)),
+              shape: WidgetStatePropertyAll(
+                RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(v.corners(10)),
+                  side: BorderSide(color: v.line),
+                ),
+              ),
             ),
-          ),
-        ),
-        menuChildren: [
-          for (final item in labels.entries)
-            MenuItemButton(
-              key: Key('compact-eq-preset-${item.key}'),
-              focusNode: optionFocus.putIfAbsent(item.key, FocusNode.new),
+            menuChildren: [
+              for (final item in labels.entries)
+                Focus(
+                  onKeyEvent: (_, event) {
+                    if (event is KeyDownEvent && !keyboardFocus) {
+                      setState(() => keyboardFocus = true);
+                    }
+                    return KeyEventResult.ignored;
+                  },
+                  child: MenuItemButton(
+                    key: Key('compact-eq-preset-${item.key}'),
+                    focusNode: optionFocus.putIfAbsent(item.key, FocusNode.new),
+                    style: ButtonStyle(
+                      overlayColor: const WidgetStatePropertyAll(
+                        Colors.transparent,
+                      ),
+                      backgroundColor: WidgetStateProperty.resolveWith(
+                        (states) => states.contains(WidgetState.hovered)
+                            ? v.line
+                            : Colors.transparent,
+                      ),
+                      side: WidgetStateProperty.resolveWith(
+                        (states) =>
+                            states.contains(WidgetState.focused) &&
+                                keyboardFocus
+                            ? BorderSide(color: v.accent)
+                            : BorderSide.none,
+                      ),
+                      shape: WidgetStatePropertyAll(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(v.corners(7)),
+                        ),
+                      ),
+                      padding: const WidgetStatePropertyAll(
+                        EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                      ),
+                      textStyle: WidgetStatePropertyAll(
+                        Theme.of(context).textTheme.labelLarge?.copyWith(
+                          fontSize: 12,
+                          color: v.ink,
+                        ),
+                      ),
+                    ),
+                    trailingIcon: item.key == widget.selected
+                        ? Icon(Icons.check_rounded, size: 14, color: v.accent)
+                        : null,
+                    onPressed: () => widget.onSelected(item.key),
+                    child: Text(
+                      item.value,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ),
+            ],
+            builder: (context, menu, _) => OutlinedButton(
+              key: const Key('compact-eq-presets'),
+              focusNode: triggerFocus,
               style: ButtonStyle(
                 overlayColor: const WidgetStatePropertyAll(Colors.transparent),
-                backgroundColor: WidgetStateProperty.resolveWith(
-                  (states) => states.contains(WidgetState.hovered)
-                      ? v.line
-                      : Colors.transparent,
-                ),
-                side: WidgetStateProperty.resolveWith(
-                  (states) =>
-                      states.contains(WidgetState.focused) &&
-                          FocusManager.instance.highlightMode ==
-                              FocusHighlightMode.traditional
-                      ? BorderSide(color: v.accent)
-                      : BorderSide.none,
-                ),
+                backgroundColor: WidgetStatePropertyAll(v.background),
+                side: WidgetStateProperty.resolveWith(focus),
                 shape: WidgetStatePropertyAll(
                   RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(v.corners(7)),
+                    borderRadius: BorderRadius.circular(v.corners(8)),
                   ),
                 ),
                 padding: const WidgetStatePropertyAll(
                   EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                 ),
-                textStyle: WidgetStatePropertyAll(
-                  Theme.of(
-                    context,
-                  ).textTheme.labelLarge?.copyWith(fontSize: 12, color: v.ink),
-                ),
+                minimumSize: const WidgetStatePropertyAll(Size(0, 38)),
               ),
-              trailingIcon: item.key == widget.selected
-                  ? Icon(Icons.check_rounded, size: 14, color: v.accent)
+              onPressed: widget.enabled
+                  ? () => menu.isOpen ? menu.close() : menu.open()
                   : null,
-              onPressed: () => widget.onSelected(item.key),
-              child: Text(
-                item.value,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      labels[widget.selected] ??
+                          wt('eq.curve', context: context),
+                      style: TextStyle(color: v.ink, fontSize: 12),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                  const Icon(Icons.keyboard_arrow_down_rounded, size: 18),
+                ],
               ),
             ),
-        ],
-        builder: (context, menu, _) => OutlinedButton(
-          key: const Key('compact-eq-presets'),
-          focusNode: triggerFocus,
-          style: ButtonStyle(
-            overlayColor: const WidgetStatePropertyAll(Colors.transparent),
-            backgroundColor: WidgetStatePropertyAll(v.background),
-            side: WidgetStateProperty.resolveWith(focus),
-            shape: WidgetStatePropertyAll(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(v.corners(8)),
-              ),
-            ),
-            padding: const WidgetStatePropertyAll(
-              EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-            ),
-            minimumSize: const WidgetStatePropertyAll(Size(0, 38)),
-          ),
-          onPressed: widget.enabled
-              ? () => menu.isOpen ? menu.close() : menu.open()
-              : null,
-          child: Row(
-            children: [
-              Expanded(
-                child: Text(
-                  labels[widget.selected] ?? wt('eq.curve', context: context),
-                  style: TextStyle(color: v.ink, fontSize: 12),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
-              const Icon(Icons.keyboard_arrow_down_rounded, size: 18),
-            ],
           ),
         ),
       ),

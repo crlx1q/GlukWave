@@ -318,16 +318,47 @@ class _DesktopListeningRailState extends State<DesktopListeningRail> {
                       child: Align(
                         key: ValueKey(active),
                         alignment: Alignment.centerLeft,
-                        child: Text(
-                          active >= 0
-                              ? lines[active]['text']?.toString() ?? ''
-                              : '…',
-                          style: TextStyle(
-                            fontSize: 19,
-                            height: 1.45,
-                            fontWeight: FontWeight.w800,
-                            color: v.ink,
-                          ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            for (
+                              var index = active.clamp(0, lines.length - 1);
+                              index < lines.length &&
+                                  index < active.clamp(0, lines.length - 1) + 2;
+                              index++
+                            )
+                              Padding(
+                                padding: EdgeInsets.only(
+                                  top:
+                                      index == active.clamp(0, lines.length - 1)
+                                      ? 0
+                                      : 10,
+                                ),
+                                child: Text(
+                                  lines[index]['text']?.toString() ?? '',
+                                  maxLines: 3,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                    fontSize:
+                                        index ==
+                                            active.clamp(0, lines.length - 1)
+                                        ? 18
+                                        : 15,
+                                    height: 1.45,
+                                    fontWeight:
+                                        index ==
+                                            active.clamp(0, lines.length - 1)
+                                        ? FontWeight.w700
+                                        : FontWeight.w500,
+                                    color:
+                                        index ==
+                                            active.clamp(0, lines.length - 1)
+                                        ? v.ink
+                                        : v.muted,
+                                  ),
+                                ),
+                              ),
+                          ],
                         ),
                       ),
                     );

@@ -1,0 +1,24 @@
+
+> @glukwave/web@0.1.0 build
+> tsc -b && vite build
+
+vite v8.3.2 building client environment for production...
+transforming...
+✓ 1868 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                             0.84 kB │ gzip:   0.46 kB
+dist/mini.html                              1.67 kB │ gzip:   0.86 kB
+dist/assets/motion-controls-CmiEdlXY.css   10.09 kB │ gzip:   2.64 kB
+dist/assets/main-BJ-ZpmCp.css             318.66 kB │ gzip:  57.02 kB
+dist/assets/mini-qhTJwqez.js                3.68 kB │ gzip:   1.41 kB
+dist/assets/main-BlPPc_hf.js              305.65 kB │ gzip:  83.20 kB
+dist/assets/hls-yYrq3lUc.js               575.70 kB │ gzip: 179.33 kB
+dist/assets/motion-controls-q9ZMDIby.js   777.37 kB │ gzip: 235.26 kB
+
+✓ built in 1.75s
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.

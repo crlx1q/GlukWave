@@ -22,10 +22,11 @@ export class AudioStreamLoader {
     const {default:Hls}=await this.loadHls();active();
     if(Hls.isSupported()){
      audio.removeAttribute('src');audio.load();
-     const hls=new Hls({enableWorker:true,lowLatencyMode:false,maxBufferLength:24,maxMaxBufferLength:36,backBufferLength:6,maxBufferSize:12*1024*1024});
+     const policy={default:{maxTimeToFirstByteMs:10000,maxLoadTimeMs:20000,timeoutRetry:{maxNumRetry:2,retryDelayMs:700,maxRetryDelayMs:2500},errorRetry:{maxNumRetry:2,retryDelayMs:700,maxRetryDelayMs:2500}}};
+     const hls=new Hls({enableWorker:true,lowLatencyMode:false,maxBufferLength:24,maxMaxBufferLength:36,backBufferLength:6,maxBufferSize:12*1024*1024,manifestLoadPolicy:policy,playlistLoadPolicy:policy,fragLoadPolicy:policy});
      this.hls=hls;
      let networkRetries=0,mediaRetries=0;
-     await new Promise<void>((resolve,reject)=>{let ready=false,settled=false,failed=false;const timeout=setTimeout(()=>fail(Error('Audio stream did not respond. Try again.')),15000);
+     await new Promise<void>((resolve,reject)=>{let ready=false,settled=false,failed=false;const timeout=setTimeout(()=>fail(Error('Audio stream did not respond. Try again.')),30000);
       const cancelled=()=>{clearTimeout(timeout);if(!settled){settled=true;reject(new DOMException('Playback changed','AbortError'));}};
       const clean=()=>{clearTimeout(timeout);scope.signal.removeEventListener('abort',cancelled);};
       const fail=(error:Error)=>{if(stale()||failed)return;failed=true;if(!ready){if(!settled){settled=true;clean();hls.destroy();if(this.hls===hls)this.hls=null;reject(error);}}else{hls.destroy();if(this.hls===hls)this.hls=null;onFatal(error);}};

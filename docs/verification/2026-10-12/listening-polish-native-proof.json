@@ -1,0 +1,147 @@
+{
+  "status": "PASSED",
+  "runId": 1791740079776,
+  "boundary": "Actual Flutter widgets/controller and local shipped coast artwork; no physical audio, account, LAN or installation.",
+  "cases": [
+    {
+      "name": "dark 1440.0 actualshell/discovery",
+      "passed": true,
+      "screenshots": [
+        "native-listening-polish-1791740079776-dark-1440-home.png",
+        "native-listening-polish-1791740079776-dark-1440-search.png"
+      ]
+    },
+    {
+      "name": "dark 1100.0 actualshell/discovery",
+      "passed": true,
+      "screenshots": [
+        "native-listening-polish-1791740079776-dark-1100-home.png",
+        "native-listening-polish-1791740079776-dark-1100-search.png"
+      ]
+    },
+    {
+      "name": "dark 390.0 actualshell/discovery",
+      "passed": true,
+      "screenshots": [
+        "native-listening-polish-1791740079776-dark-390-home.png",
+        "native-listening-polish-1791740079776-dark-390-search.png"
+      ]
+    },
+    {
+      "name": "dark 320.0 actualshell/discovery",
+      "passed": true,
+      "screenshots": [
+        "native-listening-polish-1791740079776-dark-320-home.png",
+        "native-listening-polish-1791740079776-dark-320-search.png"
+      ]
+    },
+    {
+      "name": "amoled 1440.0 actualshell/discovery",
+      "passed": true,
+      "screenshots": [
+        "native-listening-polish-1791740079776-amoled-1440-home.png",
+        "native-listening-polish-1791740079776-amoled-1440-search.png"
+      ]
+    },
+    {
+      "name": "amoled 1100.0 actualshell/discovery",
+      "passed": true,
+      "screenshots": [
+        "native-listening-polish-1791740079776-amoled-1100-home.png",
+        "native-listening-polish-1791740079776-amoled-1100-search.png"
+      ]
+    },
+    {
+      "name": "amoled 390.0 actualshell/discovery",
+      "passed": true,
+      "screenshots": [
+        "native-listening-polish-1791740079776-amoled-390-home.png",
+        "native-listening-polish-1791740079776-amoled-390-search.png"
+      ]
+    },
+    {
+      "name": "amoled 320.0 actualshell/discovery",
+      "passed": true,
+      "screenshots": [
+        "native-listening-polish-1791740079776-amoled-320-home.png",
+        "native-listening-polish-1791740079776-amoled-320-search.png"
+      ]
+    },
+    {
+      "name": "light 1440.0 actualshell/discovery",
+      "passed": true,
+      "screenshots": [
+        "native-listening-polish-1791740079776-light-1440-home.png",
+        "native-listening-polish-1791740079776-light-1440-search.png"
+      ]
+    },
+    {
+      "name": "light 1100.0 actualshell/discovery",
+      "passed": true,
+      "screenshots": [
+        "native-listening-polish-1791740079776-light-1100-home.png",
+        "native-listening-polish-1791740079776-light-1100-search.png"
+      ]
+    },
+    {
+      "name": "light 390.0 actualshell/discovery",
+      "passed": true,
+      "screenshots": [
+        "native-listening-polish-1791740079776-light-390-home.png",
+        "native-listening-polish-1791740079776-light-390-search.png"
+      ]
+    },
+    {
+      "name": "light 320.0 actualshell/discovery",
+      "passed": true,
+      "screenshots": [
+        "native-listening-polish-1791740079776-light-320-home.png",
+        "native-listening-polish-1791740079776-light-320-search.png"
+      ]
+    },
+    {
+      "name": "Two block lyrics and dismissible cover options",
+      "passed": true,
+      "screenshots": [
+        "native-listening-polish-1791740079776-dark-390-player.png",
+        "native-listening-polish-1791740079776-mini-lyrics.png"
+      ]
+    },
+    {
+      "name": "Pointer quiet and real keyboard menu focus",
+      "passed": true
+    },
+    {
+      "name": "Six language and native custom icon coverage",
+      "passed": true
+    }
+  ],
+  "screenshots": [
+    "native-listening-polish-1791740079776-dark-1440-home.png",
+    "native-listening-polish-1791740079776-dark-1440-search.png",
+    "native-listening-polish-1791740079776-dark-1100-home.png",
+    "native-listening-polish-1791740079776-dark-1100-search.png",
+    "native-listening-polish-1791740079776-dark-390-home.png",
+    "native-listening-polish-1791740079776-dark-390-search.png",
+    "native-listening-polish-1791740079776-dark-320-home.png",
+    "native-listening-polish-1791740079776-dark-320-search.png",
+    "native-listening-polish-1791740079776-amoled-1440-home.png",
+    "native-listening-polish-1791740079776-amoled-1440-search.png",
+    "native-listening-polish-1791740079776-amoled-1100-home.png",
+    "native-listening-polish-1791740079776-amoled-1100-search.png",
+    "native-listening-polish-1791740079776-amoled-390-home.png",
+    "native-listening-polish-1791740079776-amoled-390-search.png",
+    "native-listening-polish-1791740079776-amoled-320-home.png",
+    "native-listening-polish-1791740079776-amoled-320-search.png",
+    "native-listening-polish-1791740079776-light-1440-home.png",
+    "native-listening-polish-1791740079776-light-1440-search.png",
+    "native-listening-polish-1791740079776-light-1100-home.png",
+    "native-listening-polish-1791740079776-light-1100-search.png",
+    "native-listening-polish-1791740079776-light-390-home.png",
+    "native-listening-polish-1791740079776-light-390-search.png",
+    "native-listening-polish-1791740079776-light-320-home.png",
+    "native-listening-polish-1791740079776-light-320-search.png",
+    "native-listening-polish-1791740079776-dark-390-player.png",
+    "native-listening-polish-1791740079776-mini-lyrics.png"
+  ]
+}

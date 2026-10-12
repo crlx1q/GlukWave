@@ -6,6 +6,11 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import {id,now,secret,digest,parse,text,publicUser,hashPassword,verifyPassword,fail,asyncRoute,remoteJson} from './util.js';
 
+export function decodedDeviceName(value){
+  let name=String(value||'GlukWave');try{name=decodeURIComponent(name);}catch{}
+  return name.replace(/[\x00-\x1f\x7f]/g,'').slice(0,150);
+}
+
 export function setupAuth(app,ctx){
   const {store,config,log}=ctx;
   const cookieOptions={httpOnly:true,secure:config.production,sameSite:'lax',path:'/',maxAge:30*86400000};
@@ -16,7 +21,7 @@ export function setupAuth(app,ctx){
   const requireAuth=(req,res,next)=>{if(!req.auth)return next(new ctx.HttpError(401,'AUTH_REQUIRED','Войди в GlukWave, чтобы продолжить.'));if(config.emailVerify&&!req.auth.user.emailVerified)return next(new ctx.HttpError(403,'EMAIL_UNVERIFIED','Подтверди адрес электронной почты.'));next();};
   const requireAdmin=(req,res,next)=>requireAuth(req,res,err=>{if(err)return next(err);if(req.auth.user.role!=='admin')return next(new ctx.HttpError(403,'ADMIN_REQUIRED','Доступ только для администратора.'));next();});
   ctx.requireAuth=requireAuth;ctx.requireAdmin=requireAdmin;
-  async function issue(user,req,res){const token=secret(),key=digest(token),installation=req.headers['x-glukwave-device'];const deviceId=typeof installation==='string'&&/^[\w-]{1,100}$/.test(installation)?installation:undefined;const kind=['web','windows','android','ios','macos','linux'].includes(req.headers['x-glukwave-kind'])?req.headers['x-glukwave-kind']:'web';await store.create('sessions',key,{id:key,userId:user.id,expiresAt:Date.now()+30*86400000,createdAt:now(),lastActiveAt:now(),kind,deviceName:String(req.body?.deviceName||req.headers['x-glukwave-device-name']||req.headers['user-agent']||'GlukWave').slice(0,150),...(deviceId?{deviceId,deviceIds:[deviceId]}:{})});if(res)res.cookie('gw_session',token,cookieOptions);ctx.io?.to(`user:${user.id}`).emit('sessions:changed',{});return {user:publicUser(user),...(req.headers['x-glukwave-client']==='native'?{token}:{}),_token:token};}
+  async function issue(user,req,res){const token=secret(),key=digest(token),installation=req.headers['x-glukwave-device'];const deviceId=typeof installation==='string'&&/^[\w-]{1,100}$/.test(installation)?installation:undefined;const kind=['web','windows','android','ios','macos','linux'].includes(req.headers['x-glukwave-kind'])?req.headers['x-glukwave-kind']:'web';await store.create('sessions',key,{id:key,userId:user.id,expiresAt:Date.now()+30*86400000,createdAt:now(),lastActiveAt:now(),kind,deviceName:decodedDeviceName(req.body?.deviceName||req.headers['x-glukwave-device-name']||req.headers['user-agent']),...(deviceId?{deviceId,deviceIds:[deviceId]}:{})});if(res)res.cookie('gw_session',token,cookieOptions);ctx.io?.to(`user:${user.id}`).emit('sessions:changed',{});return {user:publicUser(user),...(req.headers['x-glukwave-client']==='native'?{token}:{}),_token:token};}
   ctx.issue=issue;
   ctx.revokeSession=async(session,reason='session_removed')=>{
     await store.remove('sessions',session.id);

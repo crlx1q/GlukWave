@@ -42,7 +42,7 @@ export function createLyricsProvider(ctx,fetcher=fetch){
   const signature=lyricsSignature;
   async function lookup(track){
     const key=signature(track),cached=await ctx.store.get('lyricsCache',key);
-    if(cached&&cached.providerVersion===2&&cached.expiresAt>Date.now())return cached.lyrics;
+    if(cached&&cached.providerVersion===3&&cached.expiresAt>Date.now())return cached.lyrics;
     if(inflight.has(key))return inflight.get(key);
     if(inflight.size>=20)return {...empty,unavailable:true};
     const task=(async()=>{
@@ -55,14 +55,17 @@ export function createLyricsProvider(ctx,fetcher=fetch){
         try{
           const result=await request('get',params,deadline);
           if(matches(result,{title:track.title,artist:track.artist},track))lyrics=lrclibLyrics(result);
-          if(!lyrics){
-            // Search handles uploader credits and absent/mismatched album names.
-            const results=await request('search',{track_name:metadata.title.slice(0,200),artist_name:metadata.artist.slice(0,200)},deadline);
-            const candidates=(Array.isArray(results)?results:[]).filter(record=>matches(record,metadata,{...track,duration:0}));
+        }catch(error){primaryFailure=error;}
+        if(!lyrics&&!deadline.aborted){
+          // An unavailable exact lookup must not suppress the search path.
+          const accept=results=>(Array.isArray(results)?results:[]).filter(record=>matches(record,metadata,{...track,duration:0}));
+          let candidates=[];
+          try{candidates=accept(await request('search',{track_name:metadata.title.slice(0,200),artist_name:metadata.artist.slice(0,200)},deadline));}catch(error){primaryFailure ||= error;}
+          // Match manual LRCLIB search, but still verify the artist and version.
+          if(!candidates.length&&!deadline.aborted){try{candidates=accept(await request('search',{track_name:metadata.title.slice(0,200)},deadline));}catch(error){primaryFailure ||= error;}}
             candidates.sort((a,b)=>(matches(b,metadata,track)&&b.syncedLyrics?1:0)-(matches(a,metadata,track)&&a.syncedLyrics?1:0));
             lyrics=candidates.map(record=>lrclibLyrics(matches(record,metadata,track)?record:{...record,syncedLyrics:'',instrumental:false})).find(value=>value&&(value.lines.length||value.instrumental))||null;
-          }
-        }catch(error){primaryFailure=error;}
+        }
         if(!lyrics?.lines.length&&!lyrics?.instrumental&&metadata.title&&metadata.artist&&!deadline.aborted){
           try{
             const url=new URL(`https://api.lyrics.ovh/v1/${encodeURIComponent(metadata.artist)}/${encodeURIComponent(metadata.title)}`);
@@ -73,13 +76,13 @@ export function createLyricsProvider(ctx,fetcher=fetch){
         const found=lyrics&&(lyrics.lines.length||lyrics.instrumental),output=found?lyrics:{...empty,...(primaryFailure?{unavailable:true}:{})};
         if(primaryFailure&&!found)void ctx.reportError?.({platform:'server',kind:'background',message:primaryFailure.message,code:'LYRICS_LOOKUP',version:'0.1.0'}).catch(()=>{});
         const groups=await ctx.store.list('lyricsCache');if(groups.length>=2000){const old=groups.sort((a,b)=>a.expiresAt-b.expiresAt)[0];await ctx.store.remove('lyricsCache',old.id);}
-        await ctx.store.put('lyricsCache',key,{id:key,providerVersion:2,lyrics:output,createdAt:now(),expiresAt:Date.now()+(found?86400000:primaryFailure?60000:1800000)});
+        await ctx.store.put('lyricsCache',key,{id:key,providerVersion:3,lyrics:output,createdAt:now(),expiresAt:Date.now()+(found?86400000:primaryFailure?60000:1800000)});
         return output;
       }catch(error){
         const output={...empty,unavailable:true};
         void ctx.reportError?.({platform:'server',kind:'background',message:error.message,code:'LRCLIB_LOOKUP',version:'0.1.0'}).catch(()=>{});
         // A short cooldown prevents retry storms without suppressing recovery.
-        await ctx.store.put('lyricsCache',key,{id:key,providerVersion:2,lyrics:output,createdAt:now(),expiresAt:Date.now()+60000});
+        await ctx.store.put('lyricsCache',key,{id:key,providerVersion:3,lyrics:output,createdAt:now(),expiresAt:Date.now()+60000});
         return output;
       }
     })();inflight.set(key,task);try{return await task;}finally{inflight.delete(key);}

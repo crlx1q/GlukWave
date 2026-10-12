@@ -1226,5 +1226,16 @@
   "audioDesign.savePreset": "Зберегти мою криву",
   "audioDesign.savedPreset": "Моя крива",
   "focusedPlayer.nowPlaying": "Зараз грає",
-  "focusedPlayer.more": "Інші дії"
+  "focusedPlayer.more": "Інші дії",
+  "polish.search.all": "Усе",
+  "polish.search.tracks": "Треки",
+  "polish.search.artists": "Виконавці",
+  "polish.search.playlists": "Плейлисти",
+  "polish.search.results": "Результати пошуку",
+  "polish.search.types": "Що знайти",
+  "polish.search.sources": "Музичні сервіси",
+  "polish.search.seeAll": "Усі",
+  "polish.search.empty": "Поки нічого не знайдено",
+  "polish.search.emptyHint": "Спробуй інше написання або пошук у всіх сервісах.",
+  "polish.search.reset": "Шукати всюди"
 }

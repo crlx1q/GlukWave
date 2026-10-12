@@ -5,6 +5,7 @@ import 'lyrics_editor.dart';
 import 'motion_icons.dart';
 import '../l10n/wave_localizations.dart';
 import '../l10n/focused_player_strings.dart';
+import '../l10n/listening_polish_strings.dart';
 import 'dart:async';
 import 'package:audio_service/audio_service.dart';
 import 'package:flutter/material.dart';
@@ -127,243 +128,299 @@ class MiniPlayer extends StatelessWidget {
       ),
       child: Material(
         color: v.player,
-        child: SizedBox(
-          height: compact || v.compact ? 66 : 84,
-          child: Column(
-            children: [
-              Expanded(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: compact ? 8 : 18,
-                    vertical: 6,
+        child: StreamBuilder<Duration>(
+          stream: c.audio.positionStream,
+          builder: (context, snapshot) {
+            final total =
+                c.audio.duration?.inMilliseconds.toDouble() ??
+                (track?.duration ?? 0) * 1000;
+            final value = total > 0
+                ? ((snapshot.data?.inMilliseconds ?? 0) / total).clamp(0.0, 1.0)
+                : 0.0;
+            return Stack(
+              children: [
+                if (compact)
+                  Positioned.fill(
+                    child: IgnorePointer(
+                      child: Semantics(
+                        label: polishText('progress', context),
+                        value: '${(value * 100).round()}%',
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: FractionallySizedBox(
+                            key: const Key('mini-card-progress'),
+                            widthFactor: value,
+                            heightFactor: 1,
+                            child: ColoredBox(
+                              color: v.accent.withValues(alpha: .16),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
-                  child: Row(
+                SizedBox(
+                  height: compact || v.compact ? 72 : 84,
+                  child: Column(
                     children: [
                       Expanded(
-                        child: PlayerGestureSurface(
-                          key: const Key('mini-gesture'),
-                          controller: c,
-                          opensPlayer: true,
-                          onVerticalStart: onDragStart,
-                          onVerticalUpdate: onDragUpdate,
-                          onVerticalEnd: onDragEnd,
-                          onVerticalCancel: onDragCancel,
-                          child: InkWell(
-                            onTap: onOpen,
-                            child: Row(
-                              children: [
-                                if (track != null)
-                                  Artwork(
-                                    key: artworkKey,
-                                    controller: c,
-                                    trackLoading: c.trackLoading,
-                                    url: track.artwork,
-                                    size: compact ? 44 : 52,
-                                    radius: 8,
-                                  ),
-                                const SizedBox(width: 10),
-                                Expanded(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      ScrollingLabel(
-                                        track?.title ??
-                                            wt(
-                                              'native.899c8de911',
-                                              context: context,
-                                            ),
-                                        style: TextStyle(
-                                          color: v.onPlayer,
-                                          fontWeight: FontWeight.w800,
-                                          fontSize: 13,
-                                        ),
-                                      ),
-                                      const SizedBox(height: 3),
-                                      if (track?.playback['attribution'] is Map)
-                                        SourceAttribution(
-                                          controller: c,
-                                          track: track!,
-                                          compact: true,
-                                        )
-                                      else
-                                        ScrollingLabel(
-                                          track?.artist ??
-                                              wt(
-                                                'native.b196b73079',
-                                                context: context,
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: compact ? 8 : 18,
+                            vertical: 6,
+                          ),
+                          child: Row(
+                            children: [
+                              Expanded(
+                                child: PlayerGestureSurface(
+                                  key: const Key('mini-gesture'),
+                                  controller: c,
+                                  opensPlayer: true,
+                                  onVerticalStart: onDragStart,
+                                  onVerticalUpdate: onDragUpdate,
+                                  onVerticalEnd: onDragEnd,
+                                  onVerticalCancel: onDragCancel,
+                                  child: InkWell(
+                                    onTap: onOpen,
+                                    child: Row(
+                                      children: [
+                                        if (track != null)
+                                          Artwork(
+                                            key: artworkKey,
+                                            controller: c,
+                                            trackLoading: c.trackLoading,
+                                            url: track.artwork,
+                                            size: compact ? 44 : 52,
+                                            radius: 8,
+                                          ),
+                                        const SizedBox(width: 10),
+                                        Expanded(
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              ScrollingLabel(
+                                                track?.title ??
+                                                    wt(
+                                                      'native.899c8de911',
+                                                      context: context,
+                                                    ),
+                                                style: TextStyle(
+                                                  color: v.onPlayer,
+                                                  fontWeight: FontWeight.w800,
+                                                  fontSize: 13,
+                                                ),
                                               ),
-                                          style: TextStyle(
-                                            color: v.onPlayer.withValues(
-                                              alpha: .7,
-                                            ),
-                                            fontSize: 10,
+                                              const SizedBox(height: 3),
+                                              ScrollingLabel(
+                                                track?.artist ??
+                                                    wt(
+                                                      'native.b196b73079',
+                                                      context: context,
+                                                    ),
+                                                style: TextStyle(
+                                                  color: v.onPlayer.withValues(
+                                                    alpha: .7,
+                                                  ),
+                                                  fontSize: 10,
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                         ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              if (track != null)
+                                IconButton(
+                                  key: const Key('mini-like'),
+                                  tooltip: c.likedIds.contains(track.id)
+                                      ? wt(
+                                          'native.4ddf34c036',
+                                          context: context,
+                                        )
+                                      : wt(
+                                          'native.5633e5c745',
+                                          context: context,
+                                        ),
+                                  constraints: const BoxConstraints(
+                                    minWidth: 44,
+                                    minHeight: 44,
+                                  ),
+                                  onPressed: c.online
+                                      ? () => _run(c, () => c.like(track))
+                                      : null,
+                                  icon: WaveToggleIcon(
+                                    active: c.likedIds.contains(track.id),
+                                    activeIcon: Icons.favorite_rounded,
+                                    inactiveIcon: Icons.favorite_border_rounded,
+                                    color: c.likedIds.contains(track.id)
+                                        ? v.accent
+                                        : v.onPlayer.withValues(alpha: .7),
+                                    size: 21,
+                                  ),
+                                ),
+                              if (!compact)
+                                IconButton(
+                                  tooltip: wt(
+                                    'native.8e1abb9475',
+                                    context: context,
+                                  ),
+                                  onPressed: c.canControl
+                                      ? () => _run(c, c.audio.skipToPrevious)
+                                      : null,
+                                  icon: WaveControlIcon(
+                                    Icons.skip_previous_rounded,
+                                    color: v.onPlayer,
+                                  ),
+                                ),
+                              StreamBuilder<PlaybackState>(
+                                stream: c.audio.playbackState,
+                                builder: (context, state) {
+                                  final busy = const [
+                                    AudioProcessingState.buffering,
+                                    AudioProcessingState.loading,
+                                  ].contains(state.data?.processingState);
+                                  return IconButton.filled(
+                                    tooltip: c.audio.playing
+                                        ? wt(
+                                            'native.03498e395a',
+                                            context: context,
+                                          )
+                                        : wt(
+                                            'native.c750dc7d94',
+                                            context: context,
+                                          ),
+                                    style: IconButton.styleFrom(
+                                      backgroundColor: v.onPlayer,
+                                      foregroundColor: v.player,
+                                      minimumSize: const Size(44, 44),
+                                      maximumSize: const Size(44, 44),
+                                    ),
+                                    onPressed:
+                                        c.canTogglePlayback && track != null
+                                        ? () => _run(
+                                            c,
+                                            c.audio.playing
+                                                ? c.audio.pause
+                                                : c.audio.play,
+                                          )
+                                        : null,
+                                    icon: busy
+                                        ? SizedBox(
+                                            width: 17,
+                                            height: 17,
+                                            child: CircularProgressIndicator(
+                                              strokeWidth: 2,
+                                              color: v.player,
+                                            ),
+                                          )
+                                        : WavePlayPauseIcon(
+                                            playing: c.audio.playing,
+                                            size: 23,
+                                          ),
+                                  );
+                                },
+                              ),
+                              if (!compact)
+                                IconButton(
+                                  tooltip: wt(
+                                    'native.c97fa8b29b',
+                                    context: context,
+                                  ),
+                                  onPressed: c.canControl
+                                      ? () => _run(c, c.audio.skipToNext)
+                                      : null,
+                                  icon: WaveControlIcon(
+                                    Icons.skip_next_rounded,
+                                    color: v.onPlayer,
+                                    size: 23,
+                                  ),
+                                ),
+                              if (!compact)
+                                IconButton(
+                                  key: const Key('mini-equalizer'),
+                                  tooltip: wt('eq.title', context: context),
+                                  onPressed: () =>
+                                      showPlayerEqualizer(context, c),
+                                  icon: WaveControlIcon(
+                                    Icons.graphic_eq_rounded,
+                                    color: v.onPlayer.withValues(alpha: .7),
+                                    size: 19,
+                                  ),
+                                ),
+                              if (!compact)
+                                SizedBox(
+                                  width: 130,
+                                  child: Row(
+                                    children: [
+                                      WaveVolumeIcon(
+                                        volume: c.audio.volume,
+                                        color: v.onPlayer.withValues(
+                                          alpha: .65,
+                                        ),
+                                        size: 19,
+                                      ),
+                                      Expanded(
+                                        child: VolumeSlider(
+                                          value: c.audio.volume.clamp(0, 1),
+                                          onChanged: (value) => _run(
+                                            c,
+                                            () => c.transport('volume', {
+                                              'volume': value,
+                                            }),
+                                          ),
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                      if (track != null)
-                        IconButton(
-                          key: const Key('mini-like'),
-                          tooltip: c.likedIds.contains(track.id)
-                              ? wt('native.4ddf34c036', context: context)
-                              : wt('native.5633e5c745', context: context),
-                          constraints: const BoxConstraints(
-                            minWidth: 44,
-                            minHeight: 44,
-                          ),
-                          onPressed: c.online
-                              ? () => _run(c, () => c.like(track))
-                              : null,
-                          icon: WaveToggleIcon(
-                            active: c.likedIds.contains(track.id),
-                            activeIcon: Icons.favorite_rounded,
-                            inactiveIcon: Icons.favorite_border_rounded,
-                            color: c.likedIds.contains(track.id)
-                                ? v.accent
-                                : v.onPlayer.withValues(alpha: .7),
-                            size: 21,
-                          ),
-                        ),
-                      if (!compact)
-                        IconButton(
-                          tooltip: wt('native.8e1abb9475', context: context),
-                          onPressed: c.canControl
-                              ? () => _run(c, c.audio.skipToPrevious)
-                              : null,
-                          icon: WaveControlIcon(
-                            Icons.skip_previous_rounded,
-                            color: v.onPlayer,
-                          ),
-                        ),
-                      StreamBuilder<PlaybackState>(
-                        stream: c.audio.playbackState,
-                        builder: (context, state) {
-                          final busy = const [
-                            AudioProcessingState.buffering,
-                            AudioProcessingState.loading,
-                          ].contains(state.data?.processingState);
-                          return IconButton.filled(
-                            tooltip: c.audio.playing
-                                ? wt('native.03498e395a', context: context)
-                                : wt('native.c750dc7d94', context: context),
-                            style: IconButton.styleFrom(
-                              backgroundColor: v.onPlayer,
-                              foregroundColor: v.player,
-                              minimumSize: const Size(44, 44),
-                              maximumSize: const Size(44, 44),
-                            ),
-                            onPressed: c.canTogglePlayback && track != null
-                                ? () => _run(
-                                    c,
-                                    c.audio.playing
-                                        ? c.audio.pause
-                                        : c.audio.play,
-                                  )
-                                : null,
-                            icon: busy
-                                ? SizedBox(
-                                    width: 17,
-                                    height: 17,
-                                    child: CircularProgressIndicator(
-                                      strokeWidth: 2,
-                                      color: v.player,
-                                    ),
-                                  )
-                                : WavePlayPauseIcon(
-                                    playing: c.audio.playing,
-                                    size: 23,
+                              if (!compact)
+                                IconButton(
+                                  tooltip: wt(
+                                    'native.d66131f711',
+                                    context: context,
                                   ),
-                          );
-                        },
-                      ),
-                      if (!compact)
-                        IconButton(
-                          tooltip: wt('native.c97fa8b29b', context: context),
-                          onPressed: c.canControl
-                              ? () => _run(c, c.audio.skipToNext)
-                              : null,
-                          icon: WaveControlIcon(
-                            Icons.skip_next_rounded,
-                            color: v.onPlayer,
-                            size: 23,
-                          ),
-                        ),
-                      if (!compact)
-                        IconButton(
-                          key: const Key('mini-equalizer'),
-                          tooltip: wt('eq.title', context: context),
-                          onPressed: () => showPlayerEqualizer(context, c),
-                          icon: WaveControlIcon(
-                            Icons.graphic_eq_rounded,
-                            color: v.onPlayer.withValues(alpha: .7),
-                            size: 19,
-                          ),
-                        ),
-                      if (!compact)
-                        SizedBox(
-                          width: 130,
-                          child: Row(
-                            children: [
-                              WaveVolumeIcon(
-                                volume: c.audio.volume,
-                                color: v.onPlayer.withValues(alpha: .65),
-                                size: 19,
-                              ),
-                              Expanded(
-                                child: VolumeSlider(
-                                  value: c.audio.volume.clamp(0, 1),
-                                  onChanged: (value) => _run(
-                                    c,
-                                    () => c.transport('volume', {
-                                      'volume': value,
-                                    }),
+                                  onPressed: onOpen,
+                                  icon: Icon(
+                                    Icons.open_in_full_rounded,
+                                    color: v.onPlayer,
+                                    size: 19,
                                   ),
                                 ),
-                              ),
                             ],
                           ),
                         ),
+                      ),
                       if (!compact)
-                        IconButton(
-                          tooltip: wt('native.d66131f711', context: context),
-                          onPressed: onOpen,
-                          icon: Icon(
-                            Icons.open_in_full_rounded,
-                            color: v.onPlayer,
-                            size: 19,
-                          ),
+                        StreamBuilder<Duration>(
+                          stream: c.audio.positionStream,
+                          builder: (context, snapshot) {
+                            final total = c.audio.duration?.inMilliseconds ?? 0;
+                            return LinearProgressIndicator(
+                              value: total > 0
+                                  ? ((snapshot.data?.inMilliseconds ?? 0) /
+                                            total)
+                                        .clamp(0, 1)
+                                  : 0,
+                              minHeight: 2,
+                              color: v.accent,
+                              backgroundColor: v.onPlayer.withValues(
+                                alpha: .12,
+                              ),
+                            );
+                          },
                         ),
                     ],
                   ),
                 ),
-              ),
-              StreamBuilder<Duration>(
-                stream: c.audio.positionStream,
-                builder: (context, snapshot) {
-                  final total = c.audio.duration?.inMilliseconds ?? 0;
-                  return LinearProgressIndicator(
-                    value: total > 0
-                        ? ((snapshot.data?.inMilliseconds ?? 0) / total).clamp(
-                            0,
-                            1,
-                          )
-                        : 0,
-                    minHeight: 2,
-                    color: v.accent,
-                    backgroundColor: v.onPlayer.withValues(alpha: .12),
-                  );
-                },
-              ),
-            ],
-          ),
+              ],
+            );
+          },
         ),
       ),
     );
@@ -641,7 +698,10 @@ class _PlayerPageState extends State<PlayerPage> {
                               : Colors.transparent,
                         ),
                         onPressed: () => setState(() => tab = tab == 1 ? 0 : 1),
-                        icon: const Icon(Icons.lyrics_outlined, size: 19),
+                        icon: const WaveControlIcon(
+                          Icons.lyrics_outlined,
+                          size: 19,
+                        ),
                       ),
                     IconButton(
                       key: const Key('player-queue-toggle'),
@@ -656,12 +716,18 @@ class _PlayerPageState extends State<PlayerPage> {
                             : Colors.transparent,
                       ),
                       onPressed: () => setState(() => tab = tab == 2 ? 0 : 2),
-                      icon: const Icon(Icons.queue_music_rounded, size: 19),
+                      icon: const WaveControlIcon(
+                        Icons.queue_music_rounded,
+                        size: 19,
+                      ),
                     ),
                     PopupMenuButton<String>(
                       key: const Key('player-more'),
                       tooltip: focusedPlayerText('more', context: context),
-                      icon: const Icon(Icons.more_horiz_rounded, size: 20),
+                      icon: const WaveControlIcon(
+                        Icons.more_horiz_rounded,
+                        size: 20,
+                      ),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(v.corners(12)),
                       ),
@@ -835,12 +901,15 @@ class _PlayerPageState extends State<PlayerPage> {
                           color: waveVisuals(context).accent,
                         )
                       : null,
-                  onTap: () => _run(
-                    c,
-                    () => c.customize({
-                      'appearance': {'coverKind': kind},
-                    }),
-                  ),
+                  onTap: () {
+                    Navigator.pop(dialog);
+                    _run(
+                      c,
+                      () => c.customize({
+                        'appearance': {'coverKind': kind, 'cover3d': true},
+                      }),
+                    );
+                  },
                 ),
             ],
           ),
@@ -859,8 +928,8 @@ class _PlayerPageState extends State<PlayerPage> {
       final wide = MediaQuery.sizeOf(context).width >= 851;
       final maxCover =
           MediaQuery.sizeOf(context).height *
-          (tab == 0 ? (wide ? .43 : .35) : (wide ? .32 : .24));
-      final size = (constraints.maxWidth * .90).clamp(
+          (tab == 0 ? (wide ? .43 : .40) : (wide ? .32 : .29));
+      final size = (constraints.maxWidth * .98).clamp(
         100.0,
         maxCover.clamp(100.0, 400.0),
       );
@@ -879,13 +948,75 @@ class _PlayerPageState extends State<PlayerPage> {
               onVerticalCancel: widget.onDragCancel,
               child: Opacity(
                 opacity: widget.hideAlbum ? 0 : 1,
-                child: AlbumStage(
-                  controller: c,
-                  track: track,
-                  size: size,
-                  playing: active && c.audio.playing,
-                  artworkKey: widget.artworkKey,
-                  touchTilt: false,
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    ClipRect(
+                      child: AlbumStage(
+                        controller: c,
+                        track: track,
+                        size: size,
+                        playing: active && c.audio.playing,
+                        artworkKey: widget.artworkKey,
+                        touchTilt: false,
+                      ),
+                    ),
+                    Positioned(
+                      right: (constraints.maxWidth - size) / 2 + 8,
+                      bottom: 17,
+                      child: WavePress(
+                        child: PopupMenuButton<String>(
+                          key: const Key('player-cover-options'),
+                          tooltip: polishText('cover', context),
+                          onSelected: (value) => _run(
+                            c,
+                            () => c.customize({
+                              'appearance': {
+                                'cover3d': value != 'flat',
+                                if (value != 'flat') 'coverKind': value,
+                              },
+                            }),
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(
+                              waveRadius(context, 15),
+                            ),
+                            side: BorderSide(color: waveVisuals(context).line),
+                          ),
+                          itemBuilder: (_) => [
+                            PopupMenuItem(
+                              value: 'flat',
+                              child: Text(polishText('flat', context)),
+                            ),
+                            const PopupMenuItem(
+                              value: 'vinyl',
+                              child: Text('VINYL'),
+                            ),
+                            const PopupMenuItem(value: 'cd', child: Text('CD')),
+                          ],
+                          child: Container(
+                            padding: const EdgeInsets.all(11),
+                            decoration: BoxDecoration(
+                              color: waveVisuals(
+                                context,
+                              ).surface.withValues(alpha: .92),
+                              borderRadius: BorderRadius.circular(
+                                waveRadius(context, 13),
+                              ),
+                              border: Border.all(
+                                color: waveVisuals(context).line,
+                              ),
+                            ),
+                            child: WaveControlIcon(
+                              Icons.album_outlined,
+                              size: 18,
+                              color: waveVisuals(context).muted,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -912,7 +1043,17 @@ class _PlayerPageState extends State<PlayerPage> {
                           fontSize: 13,
                         ),
                       ),
-                      SourceAttribution(controller: c, track: track),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 7),
+                        child: Text(
+                          track.sourceName,
+                          key: const Key('source-attribution'),
+                          style: TextStyle(
+                            color: waveVisuals(context).muted,
+                            fontSize: 10,
+                          ),
+                        ),
+                      ),
                       if (track.album.isNotEmpty)
                         Padding(
                           padding: const EdgeInsets.only(top: 3),
@@ -948,7 +1089,21 @@ class _PlayerPageState extends State<PlayerPage> {
               const SizedBox(height: 18),
               progress(track),
               const SizedBox(height: 9),
-              transport(),
+              Container(
+                key: const Key('player-transport-capsule'),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 2,
+                  vertical: 10,
+                ),
+                decoration: BoxDecoration(
+                  color: waveVisuals(context).surface.withValues(alpha: .76),
+                  borderRadius: BorderRadius.circular(waveRadius(context, 27)),
+                  border: Border.all(
+                    color: waveVisuals(context).line.withValues(alpha: .5),
+                  ),
+                ),
+                child: transport(),
+              ),
               const SizedBox(height: 12),
               Center(
                 child: ConstrainedBox(
@@ -989,35 +1144,62 @@ class _PlayerPageState extends State<PlayerPage> {
                   ),
                 ),
               ),
-              Center(
-                child: Wrap(
-                  alignment: WrapAlignment.center,
-                  crossAxisAlignment: WrapCrossAlignment.center,
-                  spacing: 4,
+              const SizedBox(height: 12),
+              Container(
+                key: const Key('player-secondary-capsule'),
+                decoration: BoxDecoration(
+                  color: waveVisuals(context).surface.withValues(alpha: .55),
+                  borderRadius: BorderRadius.circular(waveRadius(context, 22)),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    IconButton(
-                      key: const Key('player-equalizer'),
-                      tooltip: wt('eq.title', context: context),
-                      onPressed: () => showPlayerEqualizer(context, c),
-                      icon: WaveControlIcon(
-                        Icons.graphic_eq_rounded,
-                        size: 20,
-                        color: waveVisuals(context).muted,
+                    WavePress(
+                      child: IconButton(
+                        key: const Key('player-equalizer'),
+                        tooltip: wt('eq.title', context: context),
+                        onPressed: () => showPlayerEqualizer(context, c),
+                        icon: const WaveControlIcon(
+                          Icons.graphic_eq_rounded,
+                          size: 21,
+                        ),
+                      ),
+                    ),
+                    WavePress(
+                      child: IconButton(
+                        tooltip: focusedPlayerText(
+                          'coverStyle',
+                          context: context,
+                        ),
+                        onPressed: showCoverStyle,
+                        icon: const WaveControlIcon(
+                          Icons.album_outlined,
+                          size: 21,
+                        ),
+                      ),
+                    ),
+                    WavePress(
+                      child: IconButton(
+                        tooltip: focusedPlayerText('more', context: context),
+                        onPressed: () => widget.onMore(track),
+                        icon: const WaveControlIcon(
+                          Icons.more_horiz_rounded,
+                          size: 22,
+                        ),
                       ),
                     ),
                     if (track.offline)
-                      TextButton.icon(
-                        onPressed: () =>
-                            _run(c, () => c.cache.save(track, manual: true)),
-                        icon: Icon(
-                          c.cache.contains(track.id)
-                              ? Icons.offline_pin_outlined
-                              : Icons.download_rounded,
-                          size: 16,
-                        ),
-                        label: Text(
-                          wt('native.ca25d9c93e', context: context),
-                          style: const TextStyle(fontSize: 10),
+                      WavePress(
+                        child: IconButton(
+                          tooltip: wt('native.ca25d9c93e', context: context),
+                          onPressed: () =>
+                              _run(c, () => c.cache.save(track, manual: true)),
+                          icon: Icon(
+                            c.cache.contains(track.id)
+                                ? Icons.offline_pin_outlined
+                                : Icons.download_rounded,
+                            size: 20,
+                          ),
                         ),
                       ),
                   ],
@@ -1110,26 +1292,68 @@ class _PlayerPageState extends State<PlayerPage> {
                             ),
                             const SizedBox(height: 12),
                             AnimatedSwitcher(
-                              duration: Duration(
-                                milliseconds:
-                                    c.settings['reducedMotion'] == true
-                                    ? 0
-                                    : 280,
-                              ),
-                              child: Text(
-                                lyrics[index.clamp(
-                                          0,
-                                          lyrics.length - 1,
-                                        )]['text']
-                                        as String? ??
-                                    '',
+                              duration: waveVisuals(context).duration(280),
+                              child: Column(
                                 key: ValueKey(index),
-                                style: const TextStyle(
-                                  fontSize: 25,
-                                  fontWeight: FontWeight.w800,
-                                  height: 1.25,
-                                  letterSpacing: -.6,
-                                ),
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  for (
+                                    var line = index.clamp(
+                                      0,
+                                      lyrics.length - 1,
+                                    );
+                                    line < lyrics.length &&
+                                        line <
+                                            index.clamp(0, lyrics.length - 1) +
+                                                2;
+                                    line++
+                                  )
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                        top:
+                                            line ==
+                                                index.clamp(
+                                                  0,
+                                                  lyrics.length - 1,
+                                                )
+                                            ? 0
+                                            : 9,
+                                      ),
+                                      child: Text(
+                                        lyrics[line]['text']?.toString() ?? '',
+                                        key: Key('mini-lyric-$line'),
+                                        maxLines: 2,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                          fontSize:
+                                              line ==
+                                                  index.clamp(
+                                                    0,
+                                                    lyrics.length - 1,
+                                                  )
+                                              ? 19
+                                              : 16,
+                                          color:
+                                              line ==
+                                                  index.clamp(
+                                                    0,
+                                                    lyrics.length - 1,
+                                                  )
+                                              ? waveVisuals(context).ink
+                                              : waveVisuals(context).muted,
+                                          fontWeight:
+                                              line ==
+                                                  index.clamp(
+                                                    0,
+                                                    lyrics.length - 1,
+                                                  )
+                                              ? FontWeight.w700
+                                              : FontWeight.w500,
+                                          height: 1.35,
+                                        ),
+                                      ),
+                                    ),
+                                ],
                               ),
                             ),
                           ],
