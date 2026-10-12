@@ -34,7 +34,7 @@ WizardStyle=modern
 CloseApplications=yes
 RestartApplications=no
 SetupLogging=yes
-VersionInfoVersion=1.0.0.15
+VersionInfoVersion=1.0.0.16
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"

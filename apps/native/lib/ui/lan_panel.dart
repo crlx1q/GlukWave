@@ -269,7 +269,7 @@ class _LanPanelState extends State<LanPanel> {
                 padding: const EdgeInsets.symmetric(vertical: 5),
                 child: Row(
                   children: [
-                    Icon(deviceKindIcon(peer), color: v.muted, size: 22),
+                    DevicePlatformIcon(device: peer, color: v.muted, size: 22),
                     const SizedBox(width: 10),
                     Expanded(
                       child: Column(

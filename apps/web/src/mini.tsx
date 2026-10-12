@@ -4,7 +4,7 @@ import { createRoot } from 'react-dom/client';
 import { useEffect, useMemo, useState } from 'react';
 import { LocaleProvider, t, useLocale } from './locale';
 import { time, type PaletteColors, type PlayerState, type Track } from './types';
-import { MotionIcon } from './morph-icon';
+import { MotionIcon,PlaybackMotionIcon } from './morph-icon';
 import { ContinuousRange } from './continuous-range';
 import { useDocumentVisible } from './visual-lifecycle';
 import './motion-controls.css';
@@ -30,7 +30,7 @@ function Mini(){
   <header><img className="track-loading-cover" data-loading={data.trackLoading} aria-busy={data.trackLoading} src={data.track?.artwork||'/brand/logo.png'} alt=""/><p><b><ScrollingLabel text={data.track?.title||'GlukWave'} motion={iconMotion}/></b><small><ScrollingLabel text={data.track?.artist||t('mini.empty')} motion={iconMotion}/></small>{data.track?.playback.attribution&&/^https:\/\//i.test(data.track.playback.attribution.sourceUrl)&&<a className="mini-source-credit" href={data.track.playback.attribution.sourceUrl} target="_blank" rel="noopener noreferrer"><SourceMark source={data.track.playback.attribution.source}/><span>{data.track.playback.attribution.artist}</span><b>{data.track.playback.attribution.source==='soundcloud'?'SoundCloud':data.track.playback.attribution.source}</b></a>}</p></header>
   <section>
    <button disabled={!data.track} onClick={()=>send('previous')} aria-label={t('copy.627')}><MotionIcon name="previous" size={20} motion={iconMotion} speed={data.speed}/></button>
-   <button className={`main-play ${data.trackLoading?'is-loading':''}`} aria-busy={!!data.trackLoading} data-loading={!!data.trackLoading} disabled={!data.track} onClick={()=>send(data.state.playing?'pause':'play')} aria-label={t(data.state.playing?'copy.628':'copy.629')}><MotionIcon name={data.state.playing?'pause':'play'} size={22} motion={iconMotion} speed={data.speed}/>{data.trackLoading&&<span className="play-loading-orbit" aria-hidden="true"/>}</button>
+   <button className={`main-play ${data.trackLoading?'is-loading':''}`} aria-busy={!!data.trackLoading} data-loading={!!data.trackLoading} disabled={!data.track} onClick={()=>send(data.state.playing?'pause':'play')} aria-label={t(data.state.playing?'copy.628':'copy.629')}><PlaybackMotionIcon playing={!!data.state.playing} loading={!!data.trackLoading} size={22} motion={iconMotion} speed={data.speed}/></button>
    <button disabled={!data.track} onClick={()=>send('next')} aria-label={t('copy.630')}><MotionIcon name="next" size={20} motion={iconMotion} speed={data.speed}/></button>
   </section>
   <div className={`progress-line ${data.trackLoading?'is-loading':''}`} aria-busy={!!data.trackLoading}><ContinuousRange value={Math.min(data.duration||1,data.state.position||0)} max={Math.max(1,data.duration)} step={.1} resetKey={data.track?.id} onCommit={position=>send('seek',position)} disabled={!data.track||data.trackLoading} label={t('copy.634')}/></div>

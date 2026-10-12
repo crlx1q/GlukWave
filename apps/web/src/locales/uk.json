@@ -1237,5 +1237,17 @@
   "polish.search.seeAll": "Усі",
   "polish.search.empty": "Поки нічого не знайдено",
   "polish.search.emptyHint": "Спробуй інше написання або пошук у всіх сервісах.",
-  "polish.search.reset": "Шукати всюди"
+  "polish.search.reset": "Шукати всюди",
+  "ecosystem.queueAdd": "Додати до черги",
+  "ecosystem.queueDrag": "Затисни й перетягни трек. З клавіатури: вибери ручку та натискай стрілки.",
+  "ecosystem.queueMove": "Перемістити {track} у черзі",
+  "ecosystem.queueEmpty": "Черга порожня",
+  "ecosystem.queueSearch": "Знайти треки для черги",
+  "ecosystem.queueSearchError": "Пошук тимчасово недоступний. Спробуй ще раз.",
+  "ecosystem.queueEmptySearch": "Треки не знайдено",
+  "ecosystem.manageDevices": "Керування пристроями",
+  "ecosystem.listeningCount": "Слухають: {count} · У мережі: {online}",
+  "ecosystem.resourceBudget": "Ліміт контейнера: {cpu} CPU · {ram} ОЗП",
+  "ecosystem.resourceUnrestricted": "Обмеження CPU/ОЗП контейнера не виявлено",
+  "ecosystem.heapBudget": "Ліміт пам’яті середовища: {heap}"
 }

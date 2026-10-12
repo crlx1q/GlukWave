@@ -28,12 +28,31 @@ class AppearanceStore extends ChangeNotifier {
   String? _scopeToken;
   String _scopeOrigin = '';
   bool _disposed = false;
+  final Set<Object> _edits = {};
   AppearanceStore(this.api, this.preferences);
+
+  /// Presentation previews remain live while a pointer or color field is held.
+  /// Tokens also prevent an old route/account from ending a newer edit.
+  Object beginEdit() {
+    final token = Object();
+    _edits.add(token);
+    _timer?.cancel();
+    return token;
+  }
+
+  void endEdit(Object? token) {
+    if (!_edits.remove(token) || _edits.isNotEmpty || _disposed) return;
+    _timer?.cancel();
+    if (pending && authenticated) {
+      _timer = Timer(Duration.zero, () => unawaited(flush()));
+    }
+  }
 
   Future<void> selectScope(String? scope, {Json fallback = const {}}) async {
     final generation = ++_generation;
     _revision++;
     _timer?.cancel();
+    _edits.clear();
     _syncing = null;
     _flight = {};
     _scopeToken = api.token;
@@ -94,6 +113,7 @@ class AppearanceStore extends ChangeNotifier {
 
   Future<void> change(Json changes) async {
     final generation = _generation;
+    final held = _edits.isNotEmpty;
     current = current.merge(changes);
     _patch = mergeAppearancePatch(_patch, presentationPatch(changes, current));
     _revision++;
@@ -103,9 +123,9 @@ class AppearanceStore extends ChangeNotifier {
     await _persist();
     if (generation != _generation || _disposed) return;
     _timer?.cancel();
-    if (authenticated) {
+    if (authenticated && _edits.isEmpty) {
       _timer = Timer(
-        const Duration(milliseconds: 550),
+        held ? Duration.zero : const Duration(milliseconds: 550),
         () => unawaited(flush()),
       );
     }
@@ -153,12 +173,13 @@ class AppearanceStore extends ChangeNotifier {
     await _persist();
     if (!_matchesScope(generation, token, origin)) return false;
     notifyListeners();
-    if (pending && _syncing == null) await flush();
+    if (pending && _syncing == null && _edits.isEmpty) await flush();
     return _matchesScope(generation, token, origin);
   }
 
   Future<void> flush() async {
     _timer?.cancel();
+    if (_edits.isNotEmpty) return;
     if (_syncing != null) {
       await _syncing;
       return;
@@ -197,7 +218,8 @@ class AppearanceStore extends ChangeNotifier {
         if (!_matchesScope(generation, token, origin)) return;
         // A plan rejection is authoritative. Roll back the rejected edit while
         // preserving changes made after it was sent; never retry it forever.
-        if (error is! WaveException || error.code.toUpperCase() != 'PLAN_LIMIT') {
+        if (error is! WaveException ||
+            error.code.toUpperCase() != 'PLAN_LIMIT') {
           _patch = mergeAppearancePatch(payload, _patch);
         }
         _flight = {};
@@ -214,6 +236,7 @@ class AppearanceStore extends ChangeNotifier {
       if (identical(_syncing, operation)) _syncing = null;
       if (pending &&
           authenticated &&
+          _edits.isEmpty &&
           _matchesScope(generation, token, origin)) {
         _timer = Timer(
           Duration(milliseconds: revision == _revision ? 15000 : 550),

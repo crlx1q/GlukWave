@@ -233,7 +233,7 @@ class EmptyState extends StatelessWidget {
   );
 }
 
-class Artwork extends StatelessWidget {
+class Artwork extends StatefulWidget {
   final WaveController controller;
   final String? url;
   final double size, radius;
@@ -250,6 +250,20 @@ class Artwork extends StatelessWidget {
     this.trackLoading = false,
     this.fit = BoxFit.cover,
   });
+  @override
+  State<Artwork> createState() => _ArtworkState();
+}
+
+class _ArtworkState extends State<Artwork> {
+  String? shown, requested, failed;
+  bool scheduled = false;
+  WaveController get controller => widget.controller;
+  String? get url => widget.url;
+  double get size => widget.size;
+  double get radius => widget.radius;
+  bool get trackLoading => widget.trackLoading;
+  BoxFit get fit => widget.fit;
+  IconData get icon => widget.icon;
   @override
   Widget build(BuildContext context) {
     final fallback = Container(
@@ -269,7 +283,10 @@ class Artwork extends StatelessWidget {
     Widget image(String address, {bool mayFallback = false}) => Image.network(
       address,
       fit: fit,
-      headers: uri!.origin == Uri.parse(controller.api.server).origin
+      gaplessPlayback: true,
+      headers:
+          Uri.tryParse(address)?.origin ==
+              Uri.parse(controller.api.server).origin
           ? controller.api.headers
           : null,
       cacheWidth: (size * MediaQuery.devicePixelRatioOf(context)).ceil().clamp(
@@ -283,6 +300,69 @@ class Artwork extends StatelessWidget {
     );
     final original = uri?.toString() ?? '';
     final displayed = artworkForDisplay(original, large: size >= 96);
+    shown ??= displayed;
+    if (shown == '') shown = displayed;
+    requested = displayed;
+    Widget active = uri == null
+        ? fallback
+        : image(shown!, mayFallback: shown != original);
+    final changing = uri != null && shown != displayed && failed != displayed;
+    if (changing) {
+      final next = displayed;
+      active = Stack(
+        fit: StackFit.expand,
+        children: [
+          active,
+          Opacity(
+            opacity: 0,
+            child: Image.network(
+              next,
+              cacheWidth: (size * MediaQuery.devicePixelRatioOf(context))
+                  .ceil()
+                  .clamp(64, 1024),
+              headers: uri.origin == Uri.parse(controller.api.server).origin
+                  ? controller.api.headers
+                  : null,
+              frameBuilder: (_, child, frame, synchronous) {
+                if ((synchronous || frame != null) && !scheduled) {
+                  scheduled = true;
+                  WidgetsBinding.instance.addPostFrameCallback((_) {
+                    scheduled = false;
+                    if (mounted && requested == next) {
+                      setState(() => shown = next);
+                    }
+                  });
+                }
+                return child;
+              },
+              errorBuilder: (_, error, trace) {
+                if (!scheduled) {
+                  scheduled = true;
+                  WidgetsBinding.instance.addPostFrameCallback((_) {
+                    scheduled = false;
+                    if (mounted && requested == next) {
+                      setState(() {
+                        shown = original;
+                        failed = next;
+                      });
+                    }
+                  });
+                }
+                return const SizedBox.shrink();
+              },
+            ),
+          ),
+        ],
+      );
+    }
+    final artwork = AnimatedSwitcher(
+      duration: waveVisuals(context).duration(420),
+      layoutBuilder: (current, previous) => Stack(
+        fit: StackFit.expand,
+        children: [if (previous.isNotEmpty) previous.last, ?current],
+      ),
+      child: KeyedSubtree(key: ValueKey(shown), child: active),
+    );
     return TrackLoadingCover(
       loading: trackLoading,
       child: ClipRRect(
@@ -290,9 +370,7 @@ class Artwork extends StatelessWidget {
         child: SizedBox(
           width: size,
           height: size,
-          child: uri == null
-              ? fallback
-              : image(displayed, mayFallback: displayed != original),
+          child: uri == null ? fallback : artwork,
         ),
       ),
     );

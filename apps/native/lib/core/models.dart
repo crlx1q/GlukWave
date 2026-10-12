@@ -77,6 +77,8 @@ class PlaybackSnapshot {
   final String? trackId;
   final double position, volume;
   final bool playing;
+  final bool? shuffle;
+  final String? repeat;
   final List<String> queue;
   final int updatedAt, revision;
   const PlaybackSnapshot({
@@ -84,6 +86,8 @@ class PlaybackSnapshot {
     this.position = 0,
     this.volume = .8,
     this.playing = false,
+    this.shuffle,
+    this.repeat,
     this.queue = const [],
     this.updatedAt = 0,
     this.revision = 0,
@@ -93,6 +97,10 @@ class PlaybackSnapshot {
     position: number(j['position']),
     volume: number(j['volume'], .8).clamp(0, 1),
     playing: j['playing'] == true,
+    shuffle: j['shuffle'] is bool ? j['shuffle'] as bool : null,
+    repeat: ['off', 'all', 'one'].contains(j['repeat'])
+        ? j['repeat'] as String
+        : null,
     queue: List<String>.from(j['queue'] ?? []),
     updatedAt: (j['updatedAt'] as num?)?.toInt() ?? 0,
     revision: (j['revision'] as num?)?.toInt() ?? 0,
@@ -108,6 +116,8 @@ class PlaybackSnapshot {
     'position': position,
     'volume': volume,
     'playing': playing,
+    if (shuffle != null) 'shuffle': shuffle,
+    if (repeat != null) 'repeat': repeat,
     'queue': queue,
     'updatedAt': updatedAt,
     'revision': revision,

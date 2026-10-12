@@ -1,0 +1,31 @@
+{
+  "status": "PASSED",
+  "runId": 1791830726448,
+  "boundary": "Actual shared playback vector and native audio lifecycle through isolated output; rasterized animation frames, accessibility, speed, reduced motion and lifecycle. No physical sound or hosted writes.",
+  "cases": [
+    {
+      "name": "Real animated wave frames and gentle retained Play/Pause transitions",
+      "passed": true
+    },
+    {
+      "name": "Reduced/system/route/lifecycle static fallback, hidden mount, resume and cleanup",
+      "passed": true
+    },
+    {
+      "name": "Actual pixels prove 2× appearance speed without size changes",
+      "passed": true
+    },
+    {
+      "name": "Actual full player resolution, buffering, ready, pause, error and cancellation",
+      "passed": true
+    }
+  ],
+  "screenshots": [
+    "native-playback-vector-1791830726448-entry.png",
+    "native-playback-vector-1791830726448-frame-a.png",
+    "native-playback-vector-1791830726448-frame-b.png",
+    "native-playback-vector-1791830726448-full-buffering.png",
+    "native-playback-vector-1791830726448-full-pending.png",
+    "native-playback-vector-1791830726448-reduced-static.png"
+  ]
+}

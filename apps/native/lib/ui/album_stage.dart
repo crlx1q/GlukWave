@@ -105,9 +105,16 @@ class _AlbumStageState extends State<AlbumStage>
     final v = waveVisuals(context),
         appearance = widget.controller.customization.appearance;
     final size = widget.size;
-    final coverSize = appearance.cover3d ? size * .81 : size;
+    final coverSize = appearance.cover3d ? size * .86 : size;
     final cover = Container(
+      key: const Key('album-front-sleeve'),
       decoration: BoxDecoration(
+        // Contained non-square artwork keeps its aspect ratio; the sleeve
+        // underneath remains opaque so the rear record never shows through.
+        color: Color.alphaBlend(
+          v.accent.withValues(alpha: .12),
+          v.background,
+        ).withValues(alpha: 1),
         borderRadius: BorderRadius.circular(v.corners(14)),
         boxShadow: v.blur
             ? [
@@ -132,8 +139,8 @@ class _AlbumStageState extends State<AlbumStage>
     );
     return SizedBox(
       key: const Key('album-stage-bounds'),
-      width: size,
-      height: size + 45,
+      width: size + 32,
+      height: appearance.cover3d ? size * 1.15 + 32 : size + 32,
       child: Center(
         child: appearance.cover3d
             ? Semantics(
@@ -214,7 +221,7 @@ class _AlbumStageState extends State<AlbumStage>
                         animation: drift,
                         builder: (_, child) {
                           final matrix = Matrix4.identity()
-                            ..setEntry(3, 2, .0014)
+                            ..setEntry(3, 2, .0008)
                             ..rotateX(
                               -.06 -
                                   value.dy +
@@ -232,50 +239,12 @@ class _AlbumStageState extends State<AlbumStage>
                                       : 0),
                             )
                             ..rotateZ(-.025);
-                          // A perspective transform's painted bounds exceed
-                          // its layout box. Fit the projected corners before
-                          // painting, including the strongest touch tilt.
-                          final rect = Rect.fromCenter(
-                            center: Offset.zero,
-                            width: size,
-                            height: size,
-                          );
-                          final projected = [
-                            rect.topLeft,
-                            rect.topRight,
-                            rect.bottomLeft,
-                            rect.bottomRight,
-                          ].map((p) => MatrixUtils.transformPoint(matrix, p));
-                          final left = projected
-                                  .map((p) => p.dx)
-                                  .reduce(math.min),
-                              right = projected
-                                  .map((p) => p.dx)
-                                  .reduce(math.max),
-                              top = projected.map((p) => p.dy).reduce(math.min),
-                              bottom = projected
-                                  .map((p) => p.dy)
-                                  .reduce(math.max),
-                              fit = math.min(
-                                1.0,
-                                math.min(
-                                  (size - 16) / (right - left),
-                                  (size + 21) / (bottom - top),
-                                ),
-                              );
-                          final fitted = Matrix4.identity()
-                            ..translateByDouble(
-                              -(left + right) * .5 * fit,
-                              -(top + bottom) * .5 * fit,
-                              0,
-                              1,
-                            )
-                            ..scaleByDouble(fit, fit, 1, 1)
-                            ..multiply(matrix);
+                          // The scene owns generous vertical headroom. Artwork never
+                          // breathes/shrinks as its perspective changes.
                           return Transform(
                             key: const Key('album-3d-transform'),
                             alignment: Alignment.center,
-                            transform: fitted,
+                            transform: matrix,
                             child: child,
                           );
                         },

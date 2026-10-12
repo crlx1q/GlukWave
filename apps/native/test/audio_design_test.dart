@@ -415,6 +415,19 @@ void main() {
         findsOneWidget,
       );
       expect(
+        tester.getSize(find.byKey(const Key('album-stage-bounds'))).width,
+        greaterThan(350),
+      );
+      await tester.drag(
+        find.byKey(const Key('player-listening-scroll')),
+        const Offset(0, -350),
+      );
+      await tester.pumpAndSettle();
+      expect(
+        tester.getRect(find.byKey(const Key('player-equalizer'))).top,
+        greaterThanOrEqualTo(0),
+      );
+      expect(
         tester.getRect(find.byKey(const Key('player-equalizer'))).bottom,
         lessThanOrEqualTo(950),
       );

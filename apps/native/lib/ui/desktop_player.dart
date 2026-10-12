@@ -62,7 +62,7 @@ class _DesktopCompactPlayerState extends State<DesktopCompactPlayer> {
   }) => IconButton(
     key: key,
     tooltip: label,
-    onPressed: c.canControl && c.audio.viewCurrent != null
+    onPressed: c.canControl && !c.trackLoading && c.audio.viewCurrent != null
         ? () => _run(action)
         : null,
     icon: WaveControlIcon(icon, size: widget.quick ? 23 : 20),
@@ -269,6 +269,7 @@ class _DesktopCompactPlayerState extends State<DesktopCompactPlayer> {
                         ),
                         Expanded(
                           child: VolumeSlider(
+                            scope: '${c.activeDeviceId}:${c.activeSurfaceId}',
                             key: const Key('desktop-quick-volume'),
                             value: c.audio.volume.clamp(0, 1),
                             onChanged: (value) => _run(

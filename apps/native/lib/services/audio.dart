@@ -24,16 +24,22 @@ class WaveAudioHandler extends BaseAudioHandler {
   PlaybackSnapshot? _remote;
   WaveTrack? _remoteTrack;
   List<WaveTrack> _remoteQueue = [];
-  WaveTrack? _pendingTrack;
+  WaveTrack? _pendingTrack, _selectedTrack;
+  void showPendingSelection(WaveTrack? track) {
+    _selectedTrack = track;
+    onLoadingChanged?.call();
+  }
+
   bool _resolving = false;
   bool get trackLoading =>
+      _selectedTrack != null ||
       !remote &&
-      (_resolving ||
-          player.playing &&
-              [
-                ProcessingState.loading,
-                ProcessingState.buffering,
-              ].contains(player.processingState));
+          (_resolving ||
+              player.playing &&
+                  [
+                    ProcessingState.loading,
+                    ProcessingState.buffering,
+                  ].contains(player.processingState));
   void Function()? onLoadingChanged;
   void _setResolving(bool value) {
     if (_resolving == value) return;
@@ -43,7 +49,8 @@ class WaveAudioHandler extends BaseAudioHandler {
   }
 
   WaveTrack? get viewCurrent =>
-      _remote != null ? _remoteTrack : _pendingTrack ?? current;
+      _selectedTrack ??
+      (_remote != null ? _remoteTrack : _pendingTrack ?? current);
   List<WaveTrack> get viewTracks => _remote != null ? _remoteQueue : tracks;
   bool get remote => _remote != null;
   int get loadRevision => _loadRevision;
@@ -122,13 +129,39 @@ class WaveAudioHandler extends BaseAudioHandler {
       volume: state.volume,
       playing: state.playing,
       queue: state.queue,
+      shuffle: state.shuffle,
+      repeat: state.repeat,
       updatedAt: DateTime.now().millisecondsSinceEpoch,
       revision: state.revision,
     );
+    applyPlaybackModes(state);
     _remoteTrack = track;
     _remoteQueue = queue;
     mediaItem.add(track == null ? null : item(track));
     this.queue.add(queue.map(item).toList());
+    _broadcast();
+  }
+
+  void applyPlaybackModes(PlaybackSnapshot state) {
+    if (state.shuffle != null) shuffle = state.shuffle!;
+    if (state.repeat != null) {
+      repeat = switch (state.repeat!) {
+        'one' => AudioServiceRepeatMode.one,
+        'all' => AudioServiceRepeatMode.all,
+        _ => AudioServiceRepeatMode.none,
+      };
+    }
+  }
+
+  void replaceQueue(List<WaveTrack> items) {
+    if (remote) {
+      _remoteQueue = List.of(items);
+    } else {
+      tracks = List.of(items);
+      _index = tracks.indexWhere((track) => track.id == current?.id);
+      _history.clear();
+    }
+    queue.add(items.map(item).toList());
     _broadcast();
   }
 
@@ -611,7 +644,9 @@ class WaveAudioHandler extends BaseAudioHandler {
       if (finished != null && await onEnded?.call(finished, repeat) == true) {
         return;
       }
-      if (repeat == AudioServiceRepeatMode.one && current != null) {
+      if (repeat == AudioServiceRepeatMode.one &&
+          current != null &&
+          tracks.any((track) => track.id == current!.id)) {
         if (await _intercept('seek', {'position': 0})) return;
         await localCommand('seek', {'position': 0});
         await localCommand('play');
@@ -661,6 +696,30 @@ class WaveAudioHandler extends BaseAudioHandler {
         await _skip(1);
       case 'previous':
         await _skip(-1);
+      case 'shuffle':
+        shuffle = data['enabled'] == true;
+      case 'repeat':
+        repeat = switch (data['repeat']) {
+          'one' => AudioServiceRepeatMode.one,
+          'all' => AudioServiceRepeatMode.all,
+          _ => AudioServiceRepeatMode.none,
+        };
+      case 'queue':
+        final items = <WaveTrack>[];
+        for (final id in List<String>.from(data['queue'] ?? [])) {
+          final existing = tracks.where((track) => track.id == id).firstOrNull;
+          items.add(
+            existing ??
+                WaveTrack(
+                  object(
+                    (await api.call(
+                      '/api/tracks/${Uri.encodeComponent(id)}',
+                    ))['track'],
+                  ),
+                ),
+          );
+        }
+        replaceQueue(items);
       case 'stop':
         await player.stop();
     }
@@ -721,13 +780,17 @@ class WaveAudioHandler extends BaseAudioHandler {
   }
 
   Future<void> _skip(int direction) async {
-    if (tracks.isEmpty) return;
+    if (trackLoading) return;
+    if (tracks.isEmpty) {
+      if (direction > 0) await localCommand('pause');
+      return;
+    }
     if (direction < 0 && outputPosition > const Duration(seconds: 3)) {
       await localCommand('seek', {'position': 0});
       return;
     }
     var next = _index + direction;
-    if (direction > 0 && shuffle && tracks.length > 1) {
+    if (direction > 0 && _index >= 0 && shuffle && tracks.length > 1) {
       _history.add(_index);
       do {
         next = _random.nextInt(tracks.length);
@@ -810,14 +873,20 @@ class WaveAudioHandler extends BaseAudioHandler {
 
   @override
   Future<void> setRepeatMode(AudioServiceRepeatMode repeatMode) async {
-    repeat = repeatMode;
-    _broadcast();
+    final data = {
+      'repeat': repeatMode == AudioServiceRepeatMode.one
+          ? 'one'
+          : repeatMode == AudioServiceRepeatMode.all
+          ? 'all'
+          : 'off',
+    };
+    if (!await _intercept('repeat', data)) await localCommand('repeat', data);
   }
 
   @override
   Future<void> setShuffleMode(AudioServiceShuffleMode shuffleMode) async {
-    shuffle = shuffleMode != AudioServiceShuffleMode.none;
-    _broadcast();
+    final data = {'enabled': shuffleMode != AudioServiceShuffleMode.none};
+    if (!await _intercept('shuffle', data)) await localCommand('shuffle', data);
   }
 
   @override

@@ -1237,5 +1237,17 @@
   "polish.search.seeAll": "See all",
   "polish.search.empty": "Nothing here yet",
   "polish.search.emptyHint": "Try another spelling or search across all music services.",
-  "polish.search.reset": "Search everything"
+  "polish.search.reset": "Search everything",
+  "ecosystem.queueAdd": "Add tracks to queue",
+  "ecosystem.queueDrag": "Hold and drag to reorder, or focus the handle and use the arrow keys.",
+  "ecosystem.queueMove": "Move {track} in queue",
+  "ecosystem.queueEmpty": "Your queue is empty",
+  "ecosystem.queueSearch": "Search tracks to add",
+  "ecosystem.queueSearchError": "Search is temporarily unavailable. Try again.",
+  "ecosystem.queueEmptySearch": "No tracks found",
+  "ecosystem.manageDevices": "Manage devices",
+  "ecosystem.listeningCount": "{count} listening · {online} online",
+  "ecosystem.resourceBudget": "Container budget: {cpu} CPU · {ram} RAM",
+  "ecosystem.resourceUnrestricted": "No container CPU/RAM limits detected",
+  "ecosystem.heapBudget": "Runtime heap limit: {heap}"
 }

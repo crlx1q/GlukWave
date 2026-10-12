@@ -1,3 +1,5 @@
+import 'connect_picker.dart';
+import 'listening_presence.dart';
 import 'motion_icons.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
@@ -153,41 +155,23 @@ class _DesktopListeningRailState extends State<DesktopListeningRail> {
                 overflow: TextOverflow.ellipsis,
               ),
               const SizedBox(height: 10),
-              InkWell(
-                onTap: widget.onDevices,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 7),
-                  child: Row(
-                    children: [
-                      Icon(
-                        c.controllingRemote
-                            ? Icons.devices_rounded
-                            : Icons.speaker_outlined,
-                        color: v.accent,
-                        size: 14,
-                      ),
-                      const SizedBox(width: 6),
-                      Expanded(
-                        child: Text(
-                          c.controllingRemote
-                              ? c.activeDeviceName
-                              : c.deviceName,
-                          style: TextStyle(color: v.accent, fontSize: 9),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      const Icon(Icons.chevron_right_rounded, size: 15),
-                    ],
-                  ),
+              PlayingOutput(
+                controller: c,
+                onTap: () => showConnectPicker(
+                  context,
+                  c,
+                  onAllDevices: widget.onDevices,
                 ),
               ),
+              ListeningPresence(controller: c),
               StreamBuilder<Duration>(
                 stream: c.audio.positionStream,
                 initialData: c.audio.position,
                 builder: (_, position) => Column(
                   children: [
-                    Slider(
+                    DraftSlider(
+                      scope:
+                          '${c.audio.viewCurrent?.id}:${c.activeDeviceId}:${c.activeSurfaceId}',
                       value: (position.data?.inMilliseconds ?? 0)
                           .toDouble()
                           .clamp(
@@ -195,7 +179,7 @@ class _DesktopListeningRailState extends State<DesktopListeningRail> {
                             track.duration > 0 ? track.duration * 1000 : 1,
                           ),
                       max: track.duration > 0 ? track.duration * 1000 : 1,
-                      onChanged: c.canControl && track.duration > 0
+                      onChanged: c.canSeek && track.duration > 0
                           ? (value) => _run(
                               () => c.audio.seek(
                                 Duration(milliseconds: value.round()),
@@ -224,7 +208,7 @@ class _DesktopListeningRailState extends State<DesktopListeningRail> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   IconButton(
-                    onPressed: c.canControl
+                    onPressed: c.canControl && !c.trackLoading
                         ? () => _run(c.audio.skipToPrevious)
                         : null,
                     tooltip: wt('native.8e1abb9475', context: context),
@@ -235,7 +219,9 @@ class _DesktopListeningRailState extends State<DesktopListeningRail> {
                       backgroundColor: v.ink,
                       foregroundColor: v.background,
                     ),
-                    onPressed: c.canTogglePlayback
+                    onPressed:
+                        c.canTogglePlayback &&
+                            (!c.trackLoading || c.audio.playing)
                         ? () => _run(
                             c.audio.playing ? c.audio.pause : c.audio.play,
                           )
@@ -246,13 +232,14 @@ class _DesktopListeningRailState extends State<DesktopListeningRail> {
                           : 'native.c750dc7d94',
                       context: context,
                     ),
-                    icon: WavePlayPauseIcon(
+                    icon: WavePlaybackIcon(
                       playing: c.audio.playing,
+                      loading: c.trackLoading,
                       color: v.background,
                     ),
                   ),
                   IconButton(
-                    onPressed: c.canControl
+                    onPressed: c.canControl && !c.trackLoading
                         ? () => _run(c.audio.skipToNext)
                         : null,
                     tooltip: wt('native.c97fa8b29b', context: context),
@@ -288,6 +275,7 @@ class _DesktopListeningRailState extends State<DesktopListeningRail> {
                 ],
               ),
               VolumeSlider(
+                scope: '${c.activeDeviceId}:${c.activeSurfaceId}',
                 value: c.audio.volume,
                 onChanged: (value) =>
                     _run(() => c.transport('volume', {'volume': value})),

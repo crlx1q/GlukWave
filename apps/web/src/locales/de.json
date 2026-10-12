@@ -1237,5 +1237,17 @@
   "polish.search.seeAll": "Alle anzeigen",
   "polish.search.empty": "Noch nichts gefunden",
   "polish.search.emptyHint": "Versuche eine andere Schreibweise oder suche in allen Musikdiensten.",
-  "polish.search.reset": "Überall suchen"
+  "polish.search.reset": "Überall suchen",
+  "ecosystem.queueAdd": "Titel zur Warteschlange hinzufügen",
+  "ecosystem.queueDrag": "Gedrückt halten und ziehen. Oder den Griff fokussieren und die Pfeiltasten verwenden.",
+  "ecosystem.queueMove": "{track} in der Warteschlange verschieben",
+  "ecosystem.queueEmpty": "Deine Warteschlange ist leer",
+  "ecosystem.queueSearch": "Titel zum Hinzufügen suchen",
+  "ecosystem.queueSearchError": "Die Suche ist vorübergehend nicht verfügbar. Bitte erneut versuchen.",
+  "ecosystem.queueEmptySearch": "Keine Titel gefunden",
+  "ecosystem.manageDevices": "Geräte verwalten",
+  "ecosystem.listeningCount": "{count} hören zu · {online} online",
+  "ecosystem.resourceBudget": "Container-Budget: {cpu} CPU · {ram} RAM",
+  "ecosystem.resourceUnrestricted": "Keine Container-Limits für CPU/RAM erkannt",
+  "ecosystem.heapBudget": "Heap-Limit der Laufzeit: {heap}"
 }

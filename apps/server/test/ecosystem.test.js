@@ -55,6 +55,11 @@ test('room listening has one account output, deduplicated tabs, accurate transfe
     await ack(tab,'device:state',{...initialState(),roomId:room.id,outputActive:false});
     const devices=(await request('/devices',owner.token)).data.devices;assert.equal(devices.length,2);assert.equal(devices.find(d=>d.id==='browser').state.trackId,track.id);assert.equal(devices.find(d=>d.id==='browser').surfaceCount,2);
     const members=(await request('/rooms/'+room.id,owner.token)).data.room.members;assert.equal(members[0].devices.length,2);assert.equal(members[0].devices.filter(d=>d.outputActive).length,1);
+    assert.equal(members[0].devices.filter(d=>d.playing).length,1);assert.equal(members[0].devices.find(d=>d.playing).trackId,track.id);
+    await ack(pc,'device:state',{...initialState(),trackId:track.id,queue:[track.id],playing:false,trackLoading:true,position:25,roomId:room.id,outputActive:true});
+    const loading=(await request('/rooms',owner.token)).data.rooms.find(item=>item.id===room.id).members[0];assert.equal(loading.online,true);assert(loading.devices.some(d=>d.trackLoading));assert(!loading.devices.some(d=>d.playing),'Room timeline playing alone does not imply decoded audio');
+    await ack(pc,'device:state',{...initialState(),trackId:track.id,queue:[track.id],playing:true,position:25,roomId:room.id,outputActive:true});
+
     const originalUpdate=service.ctx.store.update;let heartbeatWrites=0;service.ctx.store.update=async(...args)=>{if(['connect','devices'].includes(args[0]))heartbeatWrites++;return originalUpdate(...args);};
     for(let tick=0;tick<12;tick++)await ack(pc,'device:state',{...initialState(),trackId:track.id,queue:[track.id],playing:true,position:25,roomId:room.id,outputActive:true});
     assert.equal(heartbeatWrites,0,'Routine room ticks neither rewrite output nor broadcast queue metadata');service.ctx.store.update=originalUpdate;

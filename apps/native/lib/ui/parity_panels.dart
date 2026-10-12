@@ -7,6 +7,7 @@ import '../core/parity.dart';
 import '../l10n/parity_strings.dart';
 import '../l10n/wave_localizations.dart';
 import 'widgets.dart';
+import 'settings_edit.dart';
 
 String paritySourceName(BuildContext context, dynamic source) =>
     switch (source) {
@@ -1989,15 +1990,18 @@ class TypographyPanel extends StatelessWidget {
             Text('${(controller.customization.fontScale * 100).round()}%'),
           ],
         ),
-        Slider(
-          key: const Key('font-scale'),
-          min: .85,
-          max: 1.25,
-          divisions: 8,
-          value: controller.customization.fontScale,
-          onChanged: (v) => parityRun(
-            controller,
-            () => controller.customize({'fontScale': v}),
+        SettingsEditBoundary(
+          store: controller.appearanceStore,
+          child: Slider(
+            key: const Key('font-scale'),
+            min: .85,
+            max: 1.25,
+            divisions: 8,
+            value: controller.customization.fontScale,
+            onChanged: (v) => parityRun(
+              controller,
+              () => controller.customize({'fontScale': v}),
+            ),
           ),
         ),
       ],

@@ -1,12 +1,18 @@
-/* The transport remains usable for pause/next; only unresolved seeking is muted. */
+/* Seeking follows real pending state; playback glyphs share the existing SVG morph engine. */
 .progress-line.is-loading{opacity:.48;filter:grayscale(.75);transition:opacity var(--motion-duration)}
 .progress-line.is-loading input.wave-range:disabled{cursor:default}
 .main-play.is-loading{position:relative;isolation:isolate}
-.main-play.is-loading>svg{opacity:.42}
-.play-loading-orbit{position:absolute;inset:5px;border:2px solid color-mix(in srgb,var(--accent) 22%,transparent);border-top-color:var(--accent);border-right-color:var(--accent);border-radius:50%;pointer-events:none;animation:play-loading-orbit calc(1.15s / var(--motion-speed,1)) linear infinite}
-@keyframes play-loading-orbit{to{rotate:1turn}}
-
-
-@media(prefers-reduced-motion:reduce){.play-loading-orbit{animation:none;border-right-color:var(--accent)}.progress-line.is-loading{transition:none}}
-html[data-motion=reduce] .play-loading-orbit{animation:none}
-@media(forced-colors:active){.play-loading-orbit{border-color:CanvasText;border-top-color:Highlight}}
+.playback-glyph{display:inline-grid;place-items:center;position:relative;flex:none;color:inherit;transition:color var(--playback-enter,.22s) ease}
+.playback-glyph>svg{grid-area:1/1;display:block}
+.playback-glyph>.animated-icon{opacity:1;transition:opacity var(--playback-enter,.22s) ease}
+.playback-glyph[data-loading=true]{color:color-mix(in srgb,var(--accent) 65%,currentColor)}
+.playback-glyph[data-loading=true][data-animated=true]>.animated-icon{opacity:.18}
+.playback-glyph>.playback-flow{pointer-events:none;opacity:0}
+.playback-glyph[data-animated=true]>.playback-flow{animation:playback-wave-reveal var(--playback-enter,.22s) ease both}
+.playback-flow>path{stroke-dasharray:14 34;stroke-dashoffset:48;animation:playback-wave-travel var(--playback-cycle,1.2s) linear infinite;animation-play-state:paused}
+.playback-glyph[data-animated=true]>.playback-flow>path{animation-play-state:running}
+@keyframes playback-wave-travel{to{stroke-dashoffset:0}}
+@keyframes playback-wave-reveal{from{opacity:0}to{opacity:1}}
+html[data-motion=reduce] .playback-glyph>.animated-icon{opacity:1!important}html[data-motion=reduce] .playback-glyph>.playback-flow{display:none}
+@media(prefers-reduced-motion:reduce){.playback-glyph>.animated-icon{opacity:1!important}.playback-glyph>.playback-flow{display:none}.playback-glyph,.progress-line.is-loading{transition:none}}
+@media(forced-colors:active){.playback-glyph[data-loading=true]{color:ButtonText}}

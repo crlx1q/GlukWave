@@ -111,8 +111,8 @@ class _SessionsPanelState extends State<SessionsPanel> {
                       color: v.accentSoft,
                       borderRadius: BorderRadius.circular(v.corners(13)),
                     ),
-                    child: Icon(
-                      deviceKindIcon(session),
+                    child: DevicePlatformIcon(
+                      device: session,
                       color: v.accent,
                       size: 22,
                     ),

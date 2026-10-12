@@ -6,6 +6,7 @@ import '../services/appearance_store.dart';
 import 'widgets.dart';
 import 'theme_preview.dart';
 import 'seasonal.dart';
+import 'settings_edit.dart';
 import '../l10n/wave_localizations.dart';
 import '../l10n/parity_strings.dart';
 
@@ -470,6 +471,7 @@ class _AppearancePanelState extends State<AppearancePanel> {
                         ),
                         const SizedBox(height: 16),
                         _ColorEditor(
+                          store: widget.store,
                           key: ValueKey('accent-editor-$mode'),
                           label: wt('native.984126b8b7', context: context),
                           value: palette.accent,
@@ -506,6 +508,7 @@ class _AppearancePanelState extends State<AppearancePanel> {
                               Padding(
                                 padding: const EdgeInsets.only(top: 9),
                                 child: _ColorEditor(
+                                  store: widget.store,
                                   key: ValueKey('${item.key}-editor-$mode'),
                                   label: item.value.$1,
                                   value: item.value.$2,
@@ -757,14 +760,17 @@ class _AppearancePanelState extends State<AppearancePanel> {
             ),
           ],
         ),
-        Slider(
-          key: Key(key),
-          value: position,
-          min: min,
-          max: max,
-          divisions: divisions,
-          label: value,
-          onChanged: onChanged,
+        SettingsEditBoundary(
+          store: widget.store,
+          child: Slider(
+            key: Key(key),
+            value: position,
+            min: min,
+            max: max,
+            divisions: divisions,
+            label: value,
+            onChanged: onChanged,
+          ),
         ),
       ],
     ),
@@ -814,11 +820,13 @@ class _AppearancePanelState extends State<AppearancePanel> {
 class _ColorEditor extends StatefulWidget {
   final String label, value;
   final ValueChanged<String> onChanged;
+  final AppearanceStore store;
   const _ColorEditor({
     super.key,
     required this.label,
     required this.value,
     required this.onChanged,
+    required this.store,
   });
   @override
   State<_ColorEditor> createState() => _ColorEditorState();
@@ -842,6 +850,7 @@ class _ColorEditorState extends State<_ColorEditor> {
       setState(() => error = null);
       text.text = hex;
       widget.onChanged(hex);
+      focus.unfocus();
     } on FormatException {
       setState(() => error = wt('native.dd0ee1385e', context: context));
     }
@@ -855,40 +864,44 @@ class _ColorEditorState extends State<_ColorEditor> {
   }
 
   @override
-  Widget build(BuildContext context) => TextField(
-    controller: text,
-    focusNode: focus,
-    autocorrect: false,
-    enableSuggestions: false,
-    maxLength: 7,
-    decoration: InputDecoration(
-      labelText: widget.label,
-      errorText: error,
-      counterText: '',
-      prefixIcon: Padding(
-        padding: const EdgeInsets.all(13),
-        child: Container(
-          width: 18,
-          height: 18,
-          decoration: BoxDecoration(
-            color: hexColor(widget.value),
-            shape: BoxShape.circle,
-            border: Border.all(color: waveVisuals(context).line),
+  Widget build(BuildContext context) => SettingsEditBoundary(
+    store: widget.store,
+    holdFocus: true,
+    child: TextField(
+      controller: text,
+      focusNode: focus,
+      autocorrect: false,
+      enableSuggestions: false,
+      maxLength: 7,
+      decoration: InputDecoration(
+        labelText: widget.label,
+        errorText: error,
+        counterText: '',
+        prefixIcon: Padding(
+          padding: const EdgeInsets.all(13),
+          child: Container(
+            width: 18,
+            height: 18,
+            decoration: BoxDecoration(
+              color: hexColor(widget.value),
+              shape: BoxShape.circle,
+              border: Border.all(color: waveVisuals(context).line),
+            ),
           ),
         ),
+        suffixIcon: IconButton(
+          tooltip: wt('native.405576c78f', context: context),
+          onPressed: () => submit(text.text),
+          icon: const Icon(Icons.check_rounded, size: 19),
+        ),
       ),
-      suffixIcon: IconButton(
-        tooltip: wt('native.405576c78f', context: context),
-        onPressed: () => submit(text.text),
-        icon: const Icon(Icons.check_rounded, size: 19),
-      ),
+      onSubmitted: submit,
+      onChanged: (value) {
+        if (RegExp(r'^#?[0-9a-fA-F]{6}$').hasMatch(value)) {
+          setState(() => error = null);
+          widget.onChanged(normalizeHex(value));
+        }
+      },
     ),
-    onSubmitted: submit,
-    onChanged: (value) {
-      if (RegExp(r'^#?[0-9a-fA-F]{6}$').hasMatch(value)) {
-        setState(() => error = null);
-        widget.onChanged(normalizeHex(value));
-      }
-    },
   );
 }

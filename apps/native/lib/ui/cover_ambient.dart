@@ -98,11 +98,17 @@ class _CoverAmbientState extends State<CoverAmbient>
                         : .14,
                     child: ImageFiltered(
                       imageFilter: ui.ImageFilter.blur(sigmaX: 48, sigmaY: 48),
-                      child: Artwork(
-                        controller: widget.controller,
-                        url: widget.artwork,
-                        radius: 0,
-                        size: size,
+                      child: AnimatedSwitcher(
+                        duration: v.duration(900),
+                        switchInCurve: Curves.easeInOut,
+                        switchOutCurve: Curves.easeInOut,
+                        child: Artwork(
+                          key: ValueKey(widget.artwork),
+                          controller: widget.controller,
+                          url: widget.artwork,
+                          radius: 0,
+                          size: size,
+                        ),
                       ),
                     ),
                   ),

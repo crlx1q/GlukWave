@@ -152,7 +152,7 @@ class _TrackLoadingCoverState extends State<TrackLoadingCover>
     with SingleTickerProviderStateMixin, WidgetsBindingObserver {
   late final clock = AnimationController(
     vsync: this,
-    duration: const Duration(milliseconds: 850),
+    duration: const Duration(milliseconds: 1250),
     value: 1,
   );
   bool foreground = true;
@@ -208,11 +208,10 @@ class _TrackLoadingCoverState extends State<TrackLoadingCover>
       child: widget.child,
       builder: (_, child) => Opacity(
         key: const Key('track-loading-cover'),
-        opacity: widget.loading ? .65 + .35 * clock.value : 1,
-        child: Transform.scale(
-          scale: widget.loading ? .975 + .025 * clock.value : 1,
-          child: child,
-        ),
+        opacity: widget.loading
+            ? .82 + .18 * Curves.easeInOut.transform(clock.value)
+            : 1,
+        child: Transform.scale(scale: 1, child: child),
       ),
     ),
   );

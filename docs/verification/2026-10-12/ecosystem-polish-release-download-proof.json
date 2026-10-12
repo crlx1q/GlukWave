@@ -1,0 +1,22 @@
+{
+  "checkedAt": "2026-10-12T18:57:04.940Z",
+  "isolatedLocalServer": true,
+  "checks": [
+    {
+      "platform": "android",
+      "version": "1.0.0+16",
+      "rangeStatus": 206,
+      "bytes": 214012107,
+      "sha256": "a2b3adac02adf6027ad8e64f0105003a36a2cca8e8578efeca75dc17cdca31fb"
+    },
+    {
+      "platform": "windows",
+      "version": "1.0.0+16",
+      "rangeStatus": 206,
+      "bytes": 24438701,
+      "sha256": "157212bc0c0ab3458025c394d72bf1135728a1c6050463579f71946838e34ac0"
+    }
+  ],
+  "fullInstallerDownloadMatched": true,
+  "passed": true
+}

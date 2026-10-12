@@ -16,6 +16,7 @@ import 'app_layout_test.dart' as f;
 import 'audio_design_test.dart' as a;
 import 'audio_lifecycle_test.dart' as lifecycle;
 import 'helpers/fonts.dart';
+import 'helpers/artwork_fixture.dart';
 
 class SeekOutput extends lifecycle.NativeOutput {
   final positions = <Duration>[];
@@ -111,9 +112,10 @@ void main() {
     )..addFont(rootBundle.load('fonts/MaterialIcons-Regular.otf'))).load();
   });
   tearDownAll(() async {
+    clearArtworkFixture();
     await File('../../work/qa/player-details-native-proof.json').writeAsString(
       const JsonEncoder.withIndent('  ').convert({
-        'status': cases.length == 15 ? 'PASSED' : 'INCOMPLETE',
+        'status': cases.length == 18 ? 'PASSED' : 'INCOMPLETE',
         'runId': runId,
         'boundary':
             'Actual native widgets, live controller settings and real audio source lifecycle with isolated native output. No physical installation, owner data or hosted writes.',
@@ -226,14 +228,26 @@ void main() {
       },
     );
     for (final viewport in [
+      const Size(1440, 950),
       const Size(1440, 600),
       const Size(390, 700),
       const Size(320, 568),
     ]) {
-      testWidgets(
-        'Entire native cover at125% $mode $viewport flat/3D/extreme tilt',
-        (tester) async {
+      testWidgets('Entire native cover at125% $mode $viewport flat/3D/extreme tilt', (
+        tester,
+      ) async {
+        await tester.runAsync(installArtworkFixture);
+        try {
           final c = (await tester.runAsync(a.makeController))!;
+          c.tracks = [
+            for (final track in c.tracks)
+              WaveTrack({
+                ...track.json,
+                'artwork': 'https://fixture.invalid/coast.jpg',
+              }),
+          ];
+          c.audio.current = c.tracks.first;
+          c.audio.tracks = c.tracks;
           await f.viewport(tester, viewport);
           await tester.pumpWidget(
             liveShell(
@@ -249,7 +263,31 @@ void main() {
               }),
             );
             await tester.pumpAndSettle();
+            await tester.ensureVisible(
+              find.byKey(const Key('album-stage-bounds')),
+            );
+            await tester.runAsync(
+              () => Future<void>.delayed(const Duration(milliseconds: 35)),
+            );
+            await tester.pumpAndSettle();
             expectContained(tester);
+            final sleeve = tester.widget<Container>(
+              find.byKey(const Key('album-front-sleeve')),
+            );
+            expect((sleeve.decoration! as BoxDecoration).color!.a, 1);
+            expect(
+              tester
+                  .widgetList<RawImage>(
+                    find.descendant(
+                      of: find.byType(AlbumStage),
+                      matching: find.byType(RawImage),
+                    ),
+                  )
+                  .any((image) => image.image != null),
+              true,
+              reason:
+                  'Full captures contain decoded project artwork, not a placeholder.',
+            );
             if (threeD) {
               final gesture = await tester.startGesture(
                 tester.getCenter(find.byKey(const Key('album-3d'))),
@@ -263,7 +301,33 @@ void main() {
             }
             await f.screenshot(
               tester,
-              'player-details-$runId-$mode-${viewport.width.toInt()}-${threeD ? '3d' : 'flat'}',
+              'player-details-$runId-$mode-${viewport.width.toInt()}-${viewport.height.toInt()}-${threeD ? '3d' : 'flat'}-top',
+            );
+            final originalSize = tester.getSize(
+              find.byKey(const Key('album-stage-bounds')),
+            );
+            await tester.drag(
+              find.byKey(const Key('player-content-scroll')),
+              const Offset(0, -650),
+            );
+            await tester.pumpAndSettle();
+            final controls = tester.getRect(
+              find.byKey(const Key('player-equalizer')),
+            );
+            expect(controls.top, greaterThanOrEqualTo(0));
+            expect(controls.bottom, lessThanOrEqualTo(viewport.height));
+            expect(
+              tester.getSize(find.byKey(const Key('album-stage-bounds'))),
+              originalSize,
+            );
+            await tester.tap(find.byKey(const Key('player-equalizer')));
+            await tester.pumpAndSettle();
+            expect(find.byKey(const Key('player-eq-popover')), findsOneWidget);
+            await tester.tapAt(const Offset(5, 5));
+            await tester.pumpAndSettle();
+            await f.screenshot(
+              tester,
+              'player-details-$runId-$mode-${viewport.width.toInt()}-${viewport.height.toInt()}-${threeD ? '3d' : 'flat'}-controls',
             );
           }
           expect(tester.takeException(), isNull);
@@ -272,8 +336,10 @@ void main() {
             'passed': true,
           });
           await f.clean(tester, c);
-        },
-      );
+        } finally {
+          clearArtworkFixture();
+        }
+      });
     }
   }
   testWidgets(

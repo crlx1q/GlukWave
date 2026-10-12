@@ -1,3 +1,5 @@
+import 'listening_presence.dart';
+import '../l10n/ecosystem_polish_strings.dart';
 import 'motion_icons.dart';
 import 'discovery.dart';
 import '../l10n/listening_polish_strings.dart';
@@ -2901,14 +2903,13 @@ class _WaveShellState extends State<WaveShell>
               for (final member in objects(c.room!['members']))
                 Row(
                   children: [
-                    CircleAvatar(
-                      radius: 18,
-                      backgroundColor: waveVisuals(context).accentSoft,
-                      child: Text(
-                        (member['displayName'] as String? ?? '?').substring(
-                          0,
-                          1,
-                        ),
+                    ClipOval(
+                      child: Artwork(
+                        controller: c,
+                        url: member['avatarUrl']?.toString(),
+                        size: 36,
+                        radius: 0,
+                        icon: Icons.person_outline_rounded,
                       ),
                     ),
                     const SizedBox(width: 13),
@@ -2935,12 +2936,14 @@ class _WaveShellState extends State<WaveShell>
                           ),
                           const SizedBox(height: 6),
                           Text(
-                            wt(
-                              member['online'] == true
-                                  ? 'room.online'
-                                  : 'native.67b99cc9bf',
-                              context: context,
-                            ),
+                            memberListening(member)
+                                ? ecosystemText('listening', context)
+                                : wt(
+                                    member['online'] == true
+                                        ? 'room.online'
+                                        : 'native.67b99cc9bf',
+                                    context: context,
+                                  ),
                             style: TextStyle(
                               color: waveVisuals(context).muted,
                               fontSize: 11,
@@ -2951,8 +2954,8 @@ class _WaveShellState extends State<WaveShell>
                               padding: const EdgeInsets.only(top: 5),
                               child: Row(
                                 children: [
-                                  Icon(
-                                    deviceKindIcon(device),
+                                  DevicePlatformIcon(
+                                    device: device,
                                     size: 14,
                                     color: device['outputActive'] == true
                                         ? waveVisuals(context).accent
@@ -2961,7 +2964,7 @@ class _WaveShellState extends State<WaveShell>
                                   const SizedBox(width: 6),
                                   Expanded(
                                     child: Text(
-                                      '${deviceKindLabel(device, context: context)}${device['outputActive'] == true ? ' · ${wt(device['playing'] == true ? 'devices.activeOutput' : 'devices.selectedOutput', context: context)}' : ''}',
+                                      '${deviceKindLabel(device, context: context)}${device['name'] != null ? ' · ${device['name']}' : ''}${device['outputActive'] == true ? ' · ${wt(device['playing'] == true ? 'devices.activeOutput' : 'devices.selectedOutput', context: context)}' : ''}',
                                       style: TextStyle(
                                         fontSize: 11,
                                         color: waveVisuals(context).muted,
@@ -3109,6 +3112,12 @@ class _WaveShellState extends State<WaveShell>
           padding: const EdgeInsets.fromLTRB(18, 8, 8, 8),
           child: Row(
             children: [
+              ListeningPresence(
+                controller: c,
+                compact: true,
+                onTap: () => navigate(WavePage.rooms),
+              ),
+              const SizedBox(width: 6),
               Icon(Icons.headphones_rounded, color: v.accent, size: 19),
               const SizedBox(width: 11),
               Expanded(

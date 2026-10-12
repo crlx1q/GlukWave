@@ -10,11 +10,11 @@ export function coverBounds(size:number,x:number,y:number) {
 }
 
 export function fitCover(width:number,height:number,threeD:boolean,x:number,y:number) {
- if(!width||!height)return 0;
- const padding=12,limit=Math.max(0,Math.min(340,width-padding*2,height-padding*2));
- if(!threeD)return limit;
- // The existing idle animation adds a small rotation/vertical drift; reserve it.
- const fits=(size:number)=>[-2,0,2].every(dx=>[-5,0,5].every(dy=>{const b=coverBounds(size,x+dx,y+dy);return b.left>=-width/2+padding&&b.right<=width/2-padding&&b.top>=-height/2+padding+4&&b.bottom<=height/2-padding;}));
- let low=0,high=limit;for(let i=0;i<16;i++){const mid=(low+high)/2;if(fits(mid))low=mid;else high=mid;}
- return Math.floor(low*100)/100;
+ // Height and current angle deliberately do not affect artwork size. Short screens scroll.
+ void height;void x;void y;
+ if(!width)return 0;
+ return Math.floor(Math.min(340,Math.max(0,width-24)/(threeD?1.62:1))*100)/100;
 }
+
+/** Reserve actual projected height without changing the artwork dimensions. */
+export function coverSceneHeight(size:number,bounds?:ReturnType<typeof coverBounds>){return Math.ceil(Math.max(size+36,bounds?bounds.bottom-bounds.top+60:0));}

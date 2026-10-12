@@ -1,0 +1,243 @@
+{
+  "status": "PASSED",
+  "runId": 1791830691202,
+  "cases": [
+    {
+      "name": "Actual appearance range held >550ms and valid color focus: live local preview, one final PATCH each",
+      "passed": true
+    },
+    {
+      "name": "Real native completion after current removal advances to first remainder or pauses when empty, even with repeat-one/shuffle",
+      "passed": true
+    },
+    {
+      "name": "One cloud handoff for repeated taps; no output before ACK",
+      "passed": true
+    },
+    {
+      "name": "Failed handoff clears spinner and preserves confirmed output",
+      "passed": true
+    },
+    {
+      "name": "Shared queue/shuffle/repeat server commands and listener permission guard",
+      "passed": true
+    },
+    {
+      "name": "Connect/room/LAN snapshots preserve shuffle and repeat",
+      "passed": true
+    },
+    {
+      "name": "Local queue mutations preserve current audio and explicit ordering",
+      "passed": true
+    },
+    {
+      "name": "Trusted provider miniature image URLs with original fallback",
+      "passed": true
+    },
+    {
+      "name": "Actual long drag commits exactly one command on release",
+      "passed": true
+    },
+    {
+      "name": "Wheel emits once after quiet interval; old output draft discarded",
+      "passed": true
+    },
+    {
+      "name": "Actual queue cover tap, settling removal and real catalog add",
+      "passed": true
+    },
+    {
+      "name": "Accessible reorder menu and room listener disabled editing",
+      "passed": true
+    },
+    {
+      "name": "Playing/online distinction and three-avatar +N group",
+      "passed": true
+    },
+    {
+      "name": "Actual compact Connect picker with named Chrome mark and playing waveform",
+      "passed": true
+    },
+    {
+      "name": "Intended cover size and generous fixed scene with short-window scrolling",
+      "passed": true
+    },
+    {
+      "name": "Immediate actual pending source and failure rollback without stale spinner",
+      "passed": true
+    },
+    {
+      "name": "Actual touch/mouse long-press reorder persists queue order",
+      "passed": true
+    },
+    {
+      "name": "Actual wave pixels move during play and remain static paused/offscreen",
+      "passed": true
+    }
+  ],
+  "screenshots": [
+    "native-ecosystem-polish-1791830691202-connect-390.png",
+    "native-ecosystem-polish-1791830691202-cover-390-short.png",
+    "native-ecosystem-polish-1791830691202-drag-active.png",
+    "native-ecosystem-polish-1791830691202-presence.png",
+    "native-ecosystem-polish-1791830691202-queue-390.png",
+    "native-player-details-1791830727297-amoled-1440-600-3d-controls.png",
+    "native-player-details-1791830727297-amoled-1440-600-3d-top.png",
+    "native-player-details-1791830727297-amoled-1440-600-flat-controls.png",
+    "native-player-details-1791830727297-amoled-1440-600-flat-top.png",
+    "native-player-details-1791830727297-amoled-1440-950-3d-controls.png",
+    "native-player-details-1791830727297-amoled-1440-950-3d-top.png",
+    "native-player-details-1791830727297-amoled-1440-950-flat-controls.png",
+    "native-player-details-1791830727297-amoled-1440-950-flat-top.png",
+    "native-player-details-1791830727297-amoled-320-568-3d-controls.png",
+    "native-player-details-1791830727297-amoled-320-568-3d-top.png",
+    "native-player-details-1791830727297-amoled-320-568-flat-controls.png",
+    "native-player-details-1791830727297-amoled-320-568-flat-top.png",
+    "native-player-details-1791830727297-amoled-390-700-3d-controls.png",
+    "native-player-details-1791830727297-amoled-390-700-3d-top.png",
+    "native-player-details-1791830727297-amoled-390-700-flat-controls.png",
+    "native-player-details-1791830727297-amoled-390-700-flat-top.png",
+    "native-player-details-1791830727297-amoled-eq-24.png",
+    "native-player-details-1791830727297-amoled-eq-38.png",
+    "native-player-details-1791830727297-amoled-eq-8.png",
+    "native-player-details-1791830727297-dark-1440-600-3d-controls.png",
+    "native-player-details-1791830727297-dark-1440-600-3d-top.png",
+    "native-player-details-1791830727297-dark-1440-600-flat-controls.png",
+    "native-player-details-1791830727297-dark-1440-600-flat-top.png",
+    "native-player-details-1791830727297-dark-1440-950-3d-controls.png",
+    "native-player-details-1791830727297-dark-1440-950-3d-top.png",
+    "native-player-details-1791830727297-dark-1440-950-flat-controls.png",
+    "native-player-details-1791830727297-dark-1440-950-flat-top.png",
+    "native-player-details-1791830727297-dark-320-568-3d-controls.png",
+    "native-player-details-1791830727297-dark-320-568-3d-top.png",
+    "native-player-details-1791830727297-dark-320-568-flat-controls.png",
+    "native-player-details-1791830727297-dark-320-568-flat-top.png",
+    "native-player-details-1791830727297-dark-390-700-3d-controls.png",
+    "native-player-details-1791830727297-dark-390-700-3d-top.png",
+    "native-player-details-1791830727297-dark-390-700-flat-controls.png",
+    "native-player-details-1791830727297-dark-390-700-flat-top.png",
+    "native-player-details-1791830727297-dark-eq-24.png",
+    "native-player-details-1791830727297-dark-eq-38.png",
+    "native-player-details-1791830727297-dark-eq-8.png",
+    "native-player-details-1791830727297-light-1440-600-3d-controls.png",
+    "native-player-details-1791830727297-light-1440-600-3d-top.png",
+    "native-player-details-1791830727297-light-1440-600-flat-controls.png",
+    "native-player-details-1791830727297-light-1440-600-flat-top.png",
+    "native-player-details-1791830727297-light-1440-950-3d-controls.png",
+    "native-player-details-1791830727297-light-1440-950-3d-top.png",
+    "native-player-details-1791830727297-light-1440-950-flat-controls.png",
+    "native-player-details-1791830727297-light-1440-950-flat-top.png",
+    "native-player-details-1791830727297-light-320-568-3d-controls.png",
+    "native-player-details-1791830727297-light-320-568-3d-top.png",
+    "native-player-details-1791830727297-light-320-568-flat-controls.png",
+    "native-player-details-1791830727297-light-320-568-flat-top.png",
+    "native-player-details-1791830727297-light-390-700-3d-controls.png",
+    "native-player-details-1791830727297-light-390-700-3d-top.png",
+    "native-player-details-1791830727297-light-390-700-flat-controls.png",
+    "native-player-details-1791830727297-light-390-700-flat-top.png",
+    "native-player-details-1791830727297-light-eq-24.png",
+    "native-player-details-1791830727297-light-eq-38.png",
+    "native-player-details-1791830727297-light-eq-8.png",
+    "native-player-details-1791830727297-loading.png",
+    "native-playback-vector-1791830726448-entry.png",
+    "native-playback-vector-1791830726448-frame-a.png",
+    "native-playback-vector-1791830726448-frame-b.png",
+    "native-playback-vector-1791830726448-full-buffering.png",
+    "native-playback-vector-1791830726448-full-pending.png",
+    "native-playback-vector-1791830726448-reduced-static.png"
+  ],
+  "boundary": "Actual Flutter widgets/controller, isolated network and audio output. No physical installations or production accounts.",
+  "wholePlayerCases": [
+    {
+      "name": "dark live radius 8/24/38 and quiet focus",
+      "passed": true
+    },
+    {
+      "name": "dark Size(1440.0, 950.0) entire flat/3D art and touch tilt",
+      "passed": true
+    },
+    {
+      "name": "dark Size(1440.0, 600.0) entire flat/3D art and touch tilt",
+      "passed": true
+    },
+    {
+      "name": "dark Size(390.0, 700.0) entire flat/3D art and touch tilt",
+      "passed": true
+    },
+    {
+      "name": "dark Size(320.0, 568.0) entire flat/3D art and touch tilt",
+      "passed": true
+    },
+    {
+      "name": "amoled live radius 8/24/38 and quiet focus",
+      "passed": true
+    },
+    {
+      "name": "amoled Size(1440.0, 950.0) entire flat/3D art and touch tilt",
+      "passed": true
+    },
+    {
+      "name": "amoled Size(1440.0, 600.0) entire flat/3D art and touch tilt",
+      "passed": true
+    },
+    {
+      "name": "amoled Size(390.0, 700.0) entire flat/3D art and touch tilt",
+      "passed": true
+    },
+    {
+      "name": "amoled Size(320.0, 568.0) entire flat/3D art and touch tilt",
+      "passed": true
+    },
+    {
+      "name": "light live radius 8/24/38 and quiet focus",
+      "passed": true
+    },
+    {
+      "name": "light Size(1440.0, 950.0) entire flat/3D art and touch tilt",
+      "passed": true
+    },
+    {
+      "name": "light Size(1440.0, 600.0) entire flat/3D art and touch tilt",
+      "passed": true
+    },
+    {
+      "name": "light Size(390.0, 700.0) entire flat/3D art and touch tilt",
+      "passed": true
+    },
+    {
+      "name": "light Size(320.0, 568.0) entire flat/3D art and touch tilt",
+      "passed": true
+    },
+    {
+      "name": "Persisted compact DSP highlight independent of popup",
+      "passed": true
+    },
+    {
+      "name": "Lyrics/queue active treatment with motion disabled",
+      "passed": true
+    },
+    {
+      "name": "Real source lifecycle, guarded user seek and unblocked internal sync",
+      "passed": true
+    }
+  ],
+  "vectorCases": [
+    {
+      "name": "Real animated wave frames and gentle retained Play/Pause transitions",
+      "passed": true
+    },
+    {
+      "name": "Reduced/system/route/lifecycle static fallback, hidden mount, resume and cleanup",
+      "passed": true
+    },
+    {
+      "name": "Actual pixels prove 2× appearance speed without size changes",
+      "passed": true
+    },
+    {
+      "name": "Actual full player resolution, buffering, ready, pause, error and cancellation",
+      "passed": true
+    }
+  ],
+  "consolidatedAt": "2026-10-12T18:56:06.441836+00:00"
+}

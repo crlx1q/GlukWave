@@ -70,6 +70,11 @@ void main() {
           expect(find.byKey(const Key('player-cover-gesture')), findsOneWidget);
           expect(find.byKey(const Key('player-equalizer')), findsOneWidget);
           if (width >= 851) {
+            await tester.drag(
+              find.byKey(const Key('player-listening-scroll')),
+              const Offset(0, -250),
+            );
+            await tester.pumpAndSettle();
             final controls = tester.getRect(
                   find.byKey(const Key('player-equalizer')),
                 ),
@@ -77,6 +82,7 @@ void main() {
                   find.byKey(const Key('desktop-lyrics-scroll')),
                 );
             expect(controls.right, lessThan(pane.left));
+            expect(controls.top, greaterThanOrEqualTo(0));
             expect(controls.bottom, lessThanOrEqualTo(height));
           }
           await f.screenshot(

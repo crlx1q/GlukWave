@@ -15,9 +15,9 @@ test('end notifications consume only the expected track/revision; repeat and fin
   const next=applyTrackEnded(state,ended,30,1000);assert.equal(next.revision,8);
   assert.deepEqual(applyTrackEnded(next,ended,30,1000),next);
   assert.deepEqual(applyTrackEnded({...state,position:1},ended,30,1000),{...state,position:1});
-  const repeated=applyTrackEnded(state,{...ended,repeat:'one'},30,1000);assert.equal(repeated.trackId,'a');assert.equal(repeated.position,0);assert.equal(repeated.revision,8);
+  const repeated=applyTrackEnded({...state,repeat:'one'},{...ended,repeat:'off'},30,1000);assert.equal(repeated.trackId,'a');assert.equal(repeated.position,0);assert.equal(repeated.revision,8);
   const final={...state,trackId:'c'},stopped=applyTrackEnded(final,{...ended,trackId:'c'},30,1000);assert.equal(stopped.playing,false);assert.equal(stopped.position,30);
-  assert.equal(applyTrackEnded(final,{...ended,trackId:'c',repeat:'all'},30,1000).trackId,'a');
+  assert.equal(applyTrackEnded({...final,repeat:'all'},{...ended,trackId:'c',repeat:'off'},30,1000).trackId,'a');
 });
 
 test('real sockets keep two playback surfaces online, reconnect at live position and deduplicate concurrent room endings',async()=>{

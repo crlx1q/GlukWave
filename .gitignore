@@ -4,6 +4,7 @@ node_modules/
 var/
 work/
 apps/web/dist/
+*.tsbuildinfo
 apps/native/.dart_tool/
 apps/native/.flutter-plugins*
 apps/native/build/
@@ -17,6 +18,10 @@ outputs/*.exe
 outputs/*.png
 outputs/GlukWave-windows*/
 outputs/*.partial*
+outputs/archive/**/*.zip
+outputs/archive/**/*.apk
+outputs/archive/**/*.exe
+outputs/archive/**/*.png
 .playwright-cli/
 __pycache__/
 *.pyc

@@ -16,6 +16,9 @@ import 'volume_slider.dart';
 import 'equalizer_panel.dart';
 import 'album_stage.dart';
 import 'player_gestures.dart';
+import 'queue_panel.dart';
+import 'connect_picker.dart';
+import 'listening_presence.dart';
 
 class SourceAttribution extends StatelessWidget {
   final WaveController controller;
@@ -273,7 +276,7 @@ class MiniPlayer extends StatelessWidget {
                                     'native.8e1abb9475',
                                     context: context,
                                   ),
-                                  onPressed: c.canControl
+                                  onPressed: c.canControl && !c.trackLoading
                                       ? () => _run(c, c.audio.skipToPrevious)
                                       : null,
                                   icon: WaveControlIcon(
@@ -326,7 +329,7 @@ class MiniPlayer extends StatelessWidget {
                                     'native.c97fa8b29b',
                                     context: context,
                                   ),
-                                  onPressed: c.canControl
+                                  onPressed: c.canControl && !c.trackLoading
                                       ? () => _run(c, c.audio.skipToNext)
                                       : null,
                                   icon: WaveControlIcon(
@@ -357,6 +360,20 @@ class MiniPlayer extends StatelessWidget {
                                   ),
                                 ),
                               if (!compact)
+                                IconButton(
+                                  key: const Key('mini-connect'),
+                                  tooltip: 'GlukWave Connect',
+                                  onPressed: () =>
+                                      showConnectPicker(context, c),
+                                  icon: WaveControlIcon(
+                                    Icons.devices_rounded,
+                                    color: c.controllingRemote
+                                        ? v.accent
+                                        : v.onPlayer.withValues(alpha: .7),
+                                    size: 19,
+                                  ),
+                                ),
+                              if (!compact)
                                 SizedBox(
                                   width: 130,
                                   child: Row(
@@ -370,6 +387,8 @@ class MiniPlayer extends StatelessWidget {
                                       ),
                                       Expanded(
                                         child: VolumeSlider(
+                                          scope:
+                                              '${c.activeDeviceId}:${c.activeSurfaceId}',
                                           value: c.audio.volume.clamp(0, 1),
                                           onChanged: (value) => _run(
                                             c,
@@ -829,6 +848,7 @@ class _PlayerPageState extends State<PlayerPage> {
                               flex: 4,
                               child: Center(
                                 child: SingleChildScrollView(
+                                  key: const Key('player-listening-scroll'),
                                   padding: const EdgeInsets.symmetric(
                                     vertical: 16,
                                     horizontal: 8,
@@ -956,14 +976,9 @@ class _PlayerPageState extends State<PlayerPage> {
   );
   Widget listening(WaveTrack track) => LayoutBuilder(
     builder: (context, constraints) {
-      final wide = MediaQuery.sizeOf(context).width >= 851;
-      final maxCover =
-          MediaQuery.sizeOf(context).height *
-          (tab == 0 ? (wide ? .43 : .40) : (wide ? .32 : .29));
-      final size = (constraints.maxWidth * .98).clamp(
-        100.0,
-        maxCover.clamp(100.0, 400.0),
-      );
+      // Cover size follows usable width, never viewport height or tilt angle.
+      // Short windows scroll the listening composition instead of shrinking it.
+      final size = (constraints.maxWidth - 32).clamp(100.0, 368.0);
       final active = c.audio.viewCurrent?.id == track.id;
       return ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 530),
@@ -984,15 +999,13 @@ class _PlayerPageState extends State<PlayerPage> {
                   child: Stack(
                     alignment: Alignment.center,
                     children: [
-                      ClipRect(
-                        child: AlbumStage(
-                          controller: c,
-                          track: track,
-                          size: size,
-                          playing: active && c.audio.playing,
-                          artworkKey: widget.artworkKey,
-                          touchTilt: false,
-                        ),
+                      AlbumStage(
+                        controller: c,
+                        track: track,
+                        size: size,
+                        playing: active && c.audio.playing,
+                        artworkKey: widget.artworkKey,
+                        touchTilt: false,
                       ),
                       Positioned(
                         right: (constraints.maxWidth - size) / 2 + 8,
@@ -1125,7 +1138,13 @@ class _PlayerPageState extends State<PlayerPage> {
               ],
             ),
             if (active) ...[
-              const SizedBox(height: 18),
+              const SizedBox(height: 8),
+              PlayingOutput(
+                controller: c,
+                onTap: () => showConnectPicker(context, c),
+              ),
+              ListeningPresence(controller: c),
+              const SizedBox(height: 10),
               progress(track),
               const SizedBox(height: 9),
               Container(
@@ -1164,6 +1183,7 @@ class _PlayerPageState extends State<PlayerPage> {
                         ),
                         Expanded(
                           child: VolumeSlider(
+                            scope: '${c.activeDeviceId}:${c.activeSurfaceId}',
                             value: c.audio.volume.clamp(0, 1),
                             onChanged: (v) => _run(
                               c,
@@ -1427,8 +1447,10 @@ class _PlayerPageState extends State<PlayerPage> {
           .toDouble();
       return Column(
         children: [
-          Slider(
-            key: const Key('player-seek'),
+          DraftSlider(
+            sliderKey: const Key('player-seek'),
+            scope:
+                '${c.audio.viewCurrent?.id}:${c.activeDeviceId}:${c.activeSurfaceId}',
             value: current,
             max: total > 0 ? total : 1,
             onChanged: c.canSeek && total > 0
@@ -1469,14 +1491,16 @@ class _PlayerPageState extends State<PlayerPage> {
     children: [
       IconButton(
         tooltip: wt('native.d8a9b54429', context: context),
-        onPressed: () => _run(
-          c,
-          () => c.audio.setShuffleMode(
-            c.audio.shuffle
-                ? AudioServiceShuffleMode.none
-                : AudioServiceShuffleMode.all,
-          ),
-        ),
+        onPressed: !c.canControl
+            ? null
+            : () => _run(
+                c,
+                () => c.audio.setShuffleMode(
+                  c.audio.shuffle
+                      ? AudioServiceShuffleMode.none
+                      : AudioServiceShuffleMode.all,
+                ),
+              ),
         icon: WaveStateIcon(
           state: c.audio.shuffle,
           icon: Icons.shuffle_rounded,
@@ -1488,7 +1512,7 @@ class _PlayerPageState extends State<PlayerPage> {
       ),
       IconButton(
         tooltip: wt('native.3a2d254d6e', context: context),
-        onPressed: c.canControl
+        onPressed: c.canControl && !c.trackLoading
             ? () => _run(c, () => c.audio.skipToPrevious())
             : null,
         icon: const WaveControlIcon(Icons.skip_previous_rounded, size: 33),
@@ -1517,7 +1541,7 @@ class _PlayerPageState extends State<PlayerPage> {
       ),
       IconButton(
         tooltip: wt('native.e9c094d2a9', context: context),
-        onPressed: c.canControl
+        onPressed: c.canControl && !c.trackLoading
             ? () => _run(c, () => c.audio.skipToNext())
             : null,
         icon: const WaveControlIcon(Icons.skip_next_rounded, size: 33),
@@ -1534,14 +1558,16 @@ class _PlayerPageState extends State<PlayerPage> {
           },
           context: context,
         ),
-        onPressed: () => _run(
-          c,
-          () => c.audio.setRepeatMode(switch (c.audio.repeat) {
-            AudioServiceRepeatMode.none => AudioServiceRepeatMode.all,
-            AudioServiceRepeatMode.all => AudioServiceRepeatMode.one,
-            _ => AudioServiceRepeatMode.none,
-          }),
-        ),
+        onPressed: !c.canControl
+            ? null
+            : () => _run(
+                c,
+                () => c.audio.setRepeatMode(switch (c.audio.repeat) {
+                  AudioServiceRepeatMode.none => AudioServiceRepeatMode.all,
+                  AudioServiceRepeatMode.all => AudioServiceRepeatMode.one,
+                  _ => AudioServiceRepeatMode.none,
+                }),
+              ),
         icon: WaveStateIcon(
           state: c.audio.repeat,
           icon: c.audio.repeat == AudioServiceRepeatMode.one
@@ -1563,7 +1589,8 @@ class _PlayerPageState extends State<PlayerPage> {
         title: Text(wt('native.621777004a', context: context)),
         content: SizedBox(
           width: 300,
-          child: Slider(
+          child: VolumeSlider(
+            scope: '${c.activeDeviceId}:${c.activeSurfaceId}',
             value: c.audio.volume.clamp(0, 1),
             onChanged: (v) =>
                 _run(c, () => c.transport('volume', {'volume': v})),
@@ -1771,13 +1798,7 @@ class _PlayerPageState extends State<PlayerPage> {
           wt('native.f11290c0ba', context: context),
           icon: Icons.queue_music,
         ),
-      for (final track in c.audio.viewTracks)
-        TrackRow(
-          controller: c,
-          track: track,
-          queue: c.audio.viewTracks,
-          onMore: () => widget.onMore(track),
-        ),
+      QueuePanel(controller: c, onMore: widget.onMore),
     ],
   );
   Widget commentPage(WaveTrack track) => Column(

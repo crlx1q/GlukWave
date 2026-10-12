@@ -16,7 +16,7 @@ type Store = {
   route:Route; navigate:(route:Route)=>void; query:string; setQuery:(query:string)=>void; source:string; setSource:(source:string)=>void;
   authOpen:boolean; setAuthOpen:(open:boolean)=>void; setUser:(user:User|null)=>void; refresh:()=>Promise<void>; refreshLibrary:()=>Promise<void>;
   notify:(text:string,error?:boolean)=>void; toast:Toast|null; requireAuth:()=>boolean; logout:()=>Promise<void>;
-  saveSettings:(partial:SettingsPatch)=>Promise<void>; bindSettingsSync:(socket:Socket)=>()=>void; settingsSync:'saved'|'saving'|'local'; resolvedTheme:'light'|'dark'|'amoled'; motion:boolean; like:(track:Track)=>Promise<void>; remember:(tracks:Track[])=>void;
+  saveSettings:(partial:SettingsPatch)=>Promise<void>; beginSettingsEdit:()=>()=>void; bindSettingsSync:(socket:Socket)=>()=>void; settingsSync:'saved'|'saving'|'local'; resolvedTheme:'light'|'dark'|'amoled'; motion:boolean; like:(track:Track)=>Promise<void>; remember:(tracks:Track[])=>void;
   run:<T>(operation:()=>Promise<T>,success?:string)=>Promise<T|undefined>;
   renderAccent:string;setCoverAccent:(value:string|null)=>void;
 };
@@ -31,6 +31,7 @@ export function StoreProvider({children}:{children:ReactNode}) {useLocale();
   const [loading,setLoading]=useState(true),[offline,setOffline]=useState(!navigator.onLine),[route,setRoute]=useState<Route>(initialRoute),[query,setQuery]=useState(''),[source,setSource]=useState('all'),[authOpen,setAuthOpen]=useState(false),[toast,setToast]=useState<Toast|null>(null);
   const [settingsSync,setSettingsSync]=useState<'saved'|'saving'|'local'>('local'),[systemDark,setSystemDark]=useState(()=>matchMedia('(prefers-color-scheme: dark)').matches),[systemMotion,setSystemMotion]=useState(()=>matchMedia('(prefers-reduced-motion: reduce)').matches),[systemContrast,setSystemContrast]=useState(()=>matchMedia('(prefers-contrast: more)').matches);
   const settingsRef=useRef(settings);settingsRef.current=settings;
+  const settingsHolds=useRef(0);
   const settingsServer=useRef(settings),pendingSettings=useRef<SettingsPatch>({}),serverRevision=useRef(-1),accountGeneration=useRef(0),settingsTimer=useRef<ReturnType<typeof setTimeout>|undefined>(undefined),settingsFlight=useRef<{userId:string;generation:number;controller:AbortController;partial:SettingsPatch}|null>(null),flushSettingsRef=useRef<(id:string)=>Promise<void>>(async()=>{});
   const userRef=useRef(user);userRef.current=user;const toastTimer=useRef<ReturnType<typeof setTimeout>|undefined>(undefined);
   const notify=useCallback((text:string,error=false)=>{clearTimeout(toastTimer.current);setToast({id:Date.now(),text,error});toastTimer.current=setTimeout(()=>setToast(null),6500);},[]);
@@ -61,7 +62,7 @@ export function StoreProvider({children}:{children:ReactNode}) {useLocale();
     return()=>{cancelled=true;window.removeEventListener('hashchange',handleHash);window.removeEventListener('online',online);window.removeEventListener('offline',online);};
   },[refresh,setUser]);
   useEffect(()=>{if(user)void refreshLibrary().catch(error=>notify(errorText(error),true));else setLibrary(emptyLibrary);},[user,refreshLibrary,notify]);
-  const scheduleSettings=useCallback((id:string,delay=550)=>{clearTimeout(settingsTimer.current);settingsTimer.current=setTimeout(()=>void flushSettingsRef.current(id),delay);},[]);
+  const scheduleSettings=useCallback((id:string,delay=550)=>{clearTimeout(settingsTimer.current);if(settingsHolds.current)return;settingsTimer.current=setTimeout(()=>void flushSettingsRef.current(id),delay);},[]);
   // Keep the accepted server snapshot separate from edits that have not been acknowledged.
   // A later socket event can then update other fields without undoing the user's current drag.
   const publishSettings=useCallback((id:string|null)=>{
@@ -91,7 +92,7 @@ export function StoreProvider({children}:{children:ReactNode}) {useLocale();
     return()=>{controller.abort();socket.off('settings:changed',changed);socket.off('connect',connected);};
   },[acceptSettings,pullSettings]);
   flushSettingsRef.current=async(id:string)=>{
-    if(userRef.current?.id!==id||!Object.keys(pendingSettings.current).length)return;
+    if(settingsHolds.current||userRef.current?.id!==id||!Object.keys(pendingSettings.current).length)return;
     if(!navigator.onLine){setSettingsSync('local');return;}
     if(settingsFlight.current?.userId===id)return;
     const sent=pendingSettings.current;pendingSettings.current={};const flight={userId:id,generation:accountGeneration.current,partial:sent,controller:new AbortController()};settingsFlight.current=flight;writePendingSettings(id,sent);setSettingsSync('saving');let success=false;
@@ -108,7 +109,7 @@ export function StoreProvider({children}:{children:ReactNode}) {useLocale();
   };
   const userId=user?.id||null;
   useLayoutEffect(()=>{
-    clearTimeout(settingsTimer.current);settingsFlight.current?.controller.abort();settingsFlight.current=null;accountGeneration.current++;serverRevision.current=-1;
+    clearTimeout(settingsTimer.current);settingsFlight.current?.controller.abort();settingsFlight.current=null;accountGeneration.current++;settingsHolds.current=0;serverRevision.current=-1;
     pendingSettings.current=userId?readPendingSettings(userId):{};settingsServer.current=readLocalSettings(userId);publishSettings(userId);
     return()=>{clearTimeout(settingsTimer.current);settingsFlight.current?.controller.abort();};
   },[userId,publishSettings]);
@@ -131,6 +132,10 @@ export function StoreProvider({children}:{children:ReactNode}) {useLocale();
   useLayoutEffect(()=>applyAppearance(settings.appearance,resolvedTheme,motion,renderAccent),[settings.appearance,resolvedTheme,motion,renderAccent]);
   const requireAuth=useCallback(()=>{if(!user){setAuthOpen(true);return false;}if(offline){notify(t('copy.729'),true);return false;}return true;},[user,offline,notify]);
   const run=useCallback(async<T,>(operation:()=>Promise<T>,success?:string)=>{try{const result=await operation();if(success)notify(success);return result;}catch(error){notify(errorText(error),true);return undefined;}},[notify]);
+  const beginSettingsEdit=useCallback(()=>{
+    const generation=accountGeneration.current;settingsHolds.current++;clearTimeout(settingsTimer.current);let released=false;
+    return()=>{if(released||generation!==accountGeneration.current)return;released=true;settingsHolds.current=Math.max(0,settingsHolds.current-1);const id=userRef.current?.id;if(!settingsHolds.current&&id&&Object.keys(pendingSettings.current).length)scheduleSettings(id,0);};
+  },[scheduleSettings]);
   const saveSettings=useCallback(async(partial:SettingsPatch)=>{
     const change=normalizeSettingsPatch(partial);if(!Object.keys(change).length)return;if(userRef.current?.plan==='free'&&advancedSettingsChange(change,settingsRef.current)){notify(t('parity.planLimit'),true);return;}const id=userRef.current?.id||null;
     if(!id){settingsServer.current=mergeSettings(settingsServer.current,change);publishSettings(null);return;}
@@ -140,7 +145,7 @@ export function StoreProvider({children}:{children:ReactNode}) {useLocale();
   const like=useCallback(async(track:Track)=>{if(!requireAuth())return;const liked=!library.likedIds.includes(track.id);await api(`/library/likes/${encodeURIComponent(track.id)}`,{method:'PUT',body:JSON.stringify({liked})});await refreshLibrary();},[requireAuth,library.likedIds,refreshLibrary]);
   const remember=useCallback((tracks:Track[])=>{const known=new Map(tracks.map(track=>[track.id,track]));setLibrary(current=>({...current,tracks:current.tracks.map(track=>known.get(track.id)||track)}));},[]);
   const logout=useCallback(async()=>{if(user){await post('/auth/logout');await clearPrivate(user.id);}setUser(null);setLibrary(emptyLibrary);navigate('home');notify(t('copy.730'));},[user,setUser,navigate,notify]);
-  return <Context.Provider value={{user,config,library,settings,renderAccent,setCoverAccent,settingsSync,resolvedTheme,motion,loading,libraryLoading:!!user&&(libraryPending||libraryOwner!==user.id),offline,route,navigate,query,setQuery,source,setSource,authOpen,setAuthOpen,setUser,refresh,refreshLibrary,notify,toast,requireAuth,logout,saveSettings,bindSettingsSync,like,remember,run}}>{children}</Context.Provider>;
+  return <Context.Provider value={{user,config,library,settings,renderAccent,setCoverAccent,settingsSync,resolvedTheme,motion,loading,libraryLoading:!!user&&(libraryPending||libraryOwner!==user.id),offline,route,navigate,query,setQuery,source,setSource,authOpen,setAuthOpen,setUser,refresh,refreshLibrary,notify,toast,requireAuth,logout,saveSettings,beginSettingsEdit,bindSettingsSync,like,remember,run}}>{children}</Context.Provider>;
 }
 export function useStore(){const context=useContext(Context);if(!context)throw new Error('Missing store');return context;}
 

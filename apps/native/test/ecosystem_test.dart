@@ -363,7 +363,11 @@ void main() {
         targetSurfaceId: 'target-surface',
       );
       expect(c.pendingDeviceActions, contains('transfer:target-device'));
-      await c.transfer('target-device', targetSurfaceId: 'target-surface');
+      final duplicate = c.transfer(
+        'target-device',
+        targetSurfaceId: 'target-surface',
+      );
+      expect(identical(pending, duplicate), true);
       expect(
         api.requests.where((r) => r['path'] == '/api/devices/command').length,
         1,
@@ -375,6 +379,7 @@ void main() {
       };
       api.commandPending!.complete({'ok': true});
       await pending;
+      await duplicate;
       expect(c.pendingDeviceActions, isEmpty);
       expect(c.activeDeviceId, 'target-device');
       await close(c);
@@ -504,7 +509,10 @@ void main() {
       api.deviceName = 'GlukWave · Windows';
       expect(api.headers['X-GlukWave-Client'], 'native');
       expect(api.headers['X-GlukWave-Kind'], 'windows');
-      expect(Uri.decodeComponent(api.headers['X-GlukWave-Device-Name']!), 'GlukWave · Windows');
+      expect(
+        Uri.decodeComponent(api.headers['X-GlukWave-Device-Name']!),
+        'GlukWave · Windows',
+      );
       expect(api.headers.keys.any((key) => key.contains('API_KEY')), isFalse);
       api.dio.close(force: true);
     },

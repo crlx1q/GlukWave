@@ -10,6 +10,14 @@ String audioDesignText(String key, {BuildContext? context}) {
 }
 
 const audioDesignStrings = <String, List<String>>{
+  'loadingPlayback': [
+    'Loading audio',
+    'Загружаем трек',
+    'Трек жүктелуде',
+    'Завантажуємо трек',
+    'Audio wird geladen',
+    'Cargando audio',
+  ],
   'coverAccent': [
     'Colour from the cover',
     'Цвет из обложки',

@@ -10,6 +10,7 @@ import '../core/equalizer.dart';
 import '../core/models.dart';
 import '../l10n/wave_localizations.dart';
 import 'widgets.dart';
+import 'settings_edit.dart';
 
 class EqualizerPanel extends StatelessWidget {
   final WaveController controller;
@@ -31,162 +32,170 @@ class EqualizerPanel extends StatelessWidget {
         : c.audio.equalizerStatus == 'ready'
         ? 'eq.hardware'
         : 'eq.waiting';
-    return Surface(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SwitchListTile(
-            key: const Key('equalizer-enabled'),
-            contentPadding: EdgeInsets.zero,
-            title: Text(
-              wt('eq.title', context: context),
-              style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 18),
-            ),
-            subtitle: Padding(
-              padding: const EdgeInsets.only(top: 6),
-              child: Text(
-                Platform.isWindows && status == 'eq.hardware'
-                    ? pt(context, 'Windows DSP')
-                    : wt(
-                        status,
-                        context: context,
-                        values: {'p0': c.audio.hardwareBandCount},
-                      ),
-                style: TextStyle(color: v.muted, height: 1.5, fontSize: 12),
-              ),
-            ),
-            value: eq.enabled,
-            onChanged: c.audio.equalizerSupported
-                ? (value) => change({'enabled': value})
-                : null,
-          ),
-          const SizedBox(height: 18),
-          Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            children: [
-              for (final preset in equalizerPresets.entries)
-                ActionChip(
-                  key: Key('equalizer-${preset.key}'),
-                  label: Text(_presetLabel(context, preset.key)),
-                  onPressed: () => change(preset.value.toJson()),
+    return SettingsEditBoundary(
+      store: c.appearanceStore,
+      child: Surface(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SwitchListTile(
+              key: const Key('equalizer-enabled'),
+              contentPadding: EdgeInsets.zero,
+              title: Text(
+                wt('eq.title', context: context),
+                style: const TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 18,
                 ),
-            ],
-          ),
-          const SizedBox(height: 16),
-          Text(
-            wt('eq.curve', context: context),
-            style: TextStyle(color: v.muted, fontSize: 11, height: 1.5),
-          ),
-          const SizedBox(height: 10),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
+              ),
+              subtitle: Padding(
+                padding: const EdgeInsets.only(top: 6),
+                child: Text(
+                  Platform.isWindows && status == 'eq.hardware'
+                      ? pt(context, 'Windows DSP')
+                      : wt(
+                          status,
+                          context: context,
+                          values: {'p0': c.audio.hardwareBandCount},
+                        ),
+                  style: TextStyle(color: v.muted, height: 1.5, fontSize: 12),
+                ),
+              ),
+              value: eq.enabled,
+              onChanged: c.audio.equalizerSupported
+                  ? (value) => change({'enabled': value})
+                  : null,
+            ),
+            const SizedBox(height: 18),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
               children: [
-                for (var band = 0; band < equalizerFrequencies.length; band++)
-                  SizedBox(
-                    width: 54,
-                    child: Column(
-                      children: [
-                        Text(
-                          '${eq.bands[band] > 0 ? '+' : ''}${eq.bands[band].toStringAsFixed(1)}',
-                          style: TextStyle(color: v.muted, fontSize: 10),
-                        ),
-                        SizedBox(
-                          height: 145,
-                          child: RotatedBox(
-                            quarterTurns: 3,
-                            child: Slider(
-                              key: Key('equalizer-band-$band'),
-                              value: eq.bands[band],
-                              min: -12,
-                              max: 12,
-                              divisions: 48,
-                              semanticFormatterCallback: (value) =>
-                                  '${equalizerFrequencies[band].round()} Hz, ${value.toStringAsFixed(1)} dB',
-                              onChanged: (value) => change({
-                                'bands': [...eq.bands]..[band] = value,
-                              }),
-                            ),
-                          ),
-                        ),
-                        Text(
-                          equalizerFrequencies[band] >= 1000
-                              ? '${(equalizerFrequencies[band] / 1000).round()}k'
-                              : '${equalizerFrequencies[band].round()}',
-                          style: const TextStyle(
-                            fontSize: 11,
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ],
-                    ),
+                for (final preset in equalizerPresets.entries)
+                  ActionChip(
+                    key: Key('equalizer-${preset.key}'),
+                    label: Text(_presetLabel(context, preset.key)),
+                    onPressed: () => change(preset.value.toJson()),
                   ),
               ],
             ),
-          ),
-          const Divider(height: 36),
-          Row(
-            children: [
-              Expanded(
-                child: Text(
-                  wt('eq.preamp', context: context),
-                  style: const TextStyle(fontWeight: FontWeight.w600),
-                ),
-              ),
-              Text(
-                '${eq.preamp.toStringAsFixed(1)} dB',
-                style: TextStyle(color: v.muted, fontSize: 12),
-              ),
-            ],
-          ),
-          Slider(
-            key: const Key('equalizer-preamp'),
-            value: eq.preamp,
-            min: -12,
-            max: 12,
-            divisions: 48,
-            semanticFormatterCallback: (value) =>
-                '${value.toStringAsFixed(1)} dB',
-            onChanged: (value) => change({'preamp': value}),
-          ),
-          const Divider(height: 32),
-          Row(
-            children: [
-              Expanded(
-                child: Text(
-                  wt('eq.speed', context: context),
-                  style: const TextStyle(fontWeight: FontWeight.w600),
-                ),
-              ),
-              Text(
-                '${c.room != null ? '1.00' : c.customization.playbackRate.toStringAsFixed(2)}×',
-                style: TextStyle(color: v.muted, fontSize: 12),
-              ),
-            ],
-          ),
-          Slider(
-            key: const Key('playback-rate'),
-            min: .5,
-            max: 2,
-            divisions: 30,
-            value: c.room != null ? 1 : c.customization.playbackRate,
-            semanticFormatterCallback: (value) =>
-                '${value.toStringAsFixed(2)}×',
-            onChanged: c.room != null
-                ? null
-                : (value) => unawaited(
-                    c.customize({'playbackRate': value}).catchError((Object e) {
-                      c.tell(e.toString());
-                    }),
-                  ),
-          ),
-          if (c.room != null)
+            const SizedBox(height: 16),
             Text(
-              wt('eq.roomSpeed', context: context),
-              style: TextStyle(color: v.muted, fontSize: 12, height: 1.5),
+              wt('eq.curve', context: context),
+              style: TextStyle(color: v.muted, fontSize: 11, height: 1.5),
             ),
-        ],
+            const SizedBox(height: 10),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  for (var band = 0; band < equalizerFrequencies.length; band++)
+                    SizedBox(
+                      width: 54,
+                      child: Column(
+                        children: [
+                          Text(
+                            '${eq.bands[band] > 0 ? '+' : ''}${eq.bands[band].toStringAsFixed(1)}',
+                            style: TextStyle(color: v.muted, fontSize: 10),
+                          ),
+                          SizedBox(
+                            height: 145,
+                            child: RotatedBox(
+                              quarterTurns: 3,
+                              child: Slider(
+                                key: Key('equalizer-band-$band'),
+                                value: eq.bands[band],
+                                min: -12,
+                                max: 12,
+                                divisions: 48,
+                                semanticFormatterCallback: (value) =>
+                                    '${equalizerFrequencies[band].round()} Hz, ${value.toStringAsFixed(1)} dB',
+                                onChanged: (value) => change({
+                                  'bands': [...eq.bands]..[band] = value,
+                                }),
+                              ),
+                            ),
+                          ),
+                          Text(
+                            equalizerFrequencies[band] >= 1000
+                                ? '${(equalizerFrequencies[band] / 1000).round()}k'
+                                : '${equalizerFrequencies[band].round()}',
+                            style: const TextStyle(
+                              fontSize: 11,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                ],
+              ),
+            ),
+            const Divider(height: 36),
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    wt('eq.preamp', context: context),
+                    style: const TextStyle(fontWeight: FontWeight.w600),
+                  ),
+                ),
+                Text(
+                  '${eq.preamp.toStringAsFixed(1)} dB',
+                  style: TextStyle(color: v.muted, fontSize: 12),
+                ),
+              ],
+            ),
+            Slider(
+              key: const Key('equalizer-preamp'),
+              value: eq.preamp,
+              min: -12,
+              max: 12,
+              divisions: 48,
+              semanticFormatterCallback: (value) =>
+                  '${value.toStringAsFixed(1)} dB',
+              onChanged: (value) => change({'preamp': value}),
+            ),
+            const Divider(height: 32),
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    wt('eq.speed', context: context),
+                    style: const TextStyle(fontWeight: FontWeight.w600),
+                  ),
+                ),
+                Text(
+                  '${c.room != null ? '1.00' : c.customization.playbackRate.toStringAsFixed(2)}×',
+                  style: TextStyle(color: v.muted, fontSize: 12),
+                ),
+              ],
+            ),
+            Slider(
+              key: const Key('playback-rate'),
+              min: .5,
+              max: 2,
+              divisions: 30,
+              value: c.room != null ? 1 : c.customization.playbackRate,
+              semanticFormatterCallback: (value) =>
+                  '${value.toStringAsFixed(2)}×',
+              onChanged: c.room != null
+                  ? null
+                  : (value) => unawaited(
+                      c.customize({'playbackRate': value}).catchError((
+                        Object e,
+                      ) {
+                        c.tell(e.toString());
+                      }),
+                    ),
+            ),
+            if (c.room != null)
+              Text(
+                wt('eq.roomSpeed', context: context),
+                style: TextStyle(color: v.muted, fontSize: 12, height: 1.5),
+              ),
+          ],
+        ),
       ),
     );
   }
@@ -259,326 +268,340 @@ class _CompactEqualizerPanelState extends State<CompactEqualizerPanel> {
                     ).every((same) => same),
               )
               .firstOrNull;
-      return SliderTheme(
-        data: SliderTheme.of(context).copyWith(
-          overlayColor: Colors.transparent,
-          overlayShape: SliderComponentShape.noOverlay,
-          showValueIndicator: ShowValueIndicator.never,
-        ),
-        child: Theme(
-          data: Theme.of(context).copyWith(
-            splashFactory: NoSplash.splashFactory,
-            highlightColor: Colors.transparent,
-            splashColor: Colors.transparent,
-            focusColor: Colors.transparent,
-            hoverColor: Colors.transparent,
+      return SettingsEditBoundary(
+        store: c.appearanceStore,
+        child: SliderTheme(
+          data: SliderTheme.of(context).copyWith(
+            overlayColor: Colors.transparent,
+            overlayShape: SliderComponentShape.noOverlay,
+            showValueIndicator: ShowValueIndicator.never,
           ),
-          child: Padding(
-            padding: const EdgeInsets.all(15),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        wt('eq.title', context: context),
-                        style: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w800,
+          child: Theme(
+            data: Theme.of(context).copyWith(
+              splashFactory: NoSplash.splashFactory,
+              highlightColor: Colors.transparent,
+              splashColor: Colors.transparent,
+              focusColor: Colors.transparent,
+              hoverColor: Colors.transparent,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(15),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          wt('eq.title', context: context),
+                          style: const TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w800,
+                          ),
                         ),
                       ),
-                    ),
-                    IconButton(
-                      key: const Key('compact-eq-enabled'),
-                      tooltip: wt('eq.title', context: context),
-                      isSelected: eq.enabled,
-                      onPressed: available
-                          ? () => change({'enabled': !eq.enabled})
-                          : null,
-                      icon: Icon(
-                        Icons.power_settings_new_rounded,
-                        size: 18,
-                        color: eq.enabled ? v.accent : v.muted,
+                      IconButton(
+                        key: const Key('compact-eq-enabled'),
+                        tooltip: wt('eq.title', context: context),
+                        isSelected: eq.enabled,
+                        onPressed: available
+                            ? () => change({'enabled': !eq.enabled})
+                            : null,
+                        icon: Icon(
+                          Icons.power_settings_new_rounded,
+                          size: 18,
+                          color: eq.enabled ? v.accent : v.muted,
+                        ),
                       ),
-                    ),
-                    IconButton(
-                      tooltip: audioDesignText('reset', context: context),
-                      onPressed: () =>
-                          change({'bands': List.filled(10, 0), 'preamp': 0}),
-                      icon: const Icon(Icons.restart_alt_rounded, size: 17),
-                    ),
-                    IconButton(
-                      tooltip: wt('native.398c7d4f7b', context: context),
-                      onPressed: widget.onClose,
-                      icon: const Icon(Icons.close_rounded, size: 18),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: _EqualizerPresetMenu(
-                        selected:
-                            preset?.key ??
-                            (saved != null &&
-                                    saved!.preamp == eq.preamp &&
-                                    List.generate(
-                                      10,
-                                      (i) => saved!.bands[i] == eq.bands[i],
-                                    ).every((same) => same)
-                                ? 'saved'
-                                : 'custom'),
-                        saved: saved != null,
-                        enabled: available,
-                        onSelected: (key) {
-                          final p = key == 'saved'
-                              ? saved
-                              : equalizerPresets[key];
-                          if (p != null) {
-                            change({...p.toJson(), 'enabled': true});
-                          }
-                        },
+                      IconButton(
+                        tooltip: audioDesignText('reset', context: context),
+                        onPressed: () =>
+                            change({'bands': List.filled(10, 0), 'preamp': 0}),
+                        icon: const Icon(Icons.restart_alt_rounded, size: 17),
                       ),
-                    ),
-                    IconButton(
-                      tooltip: audioDesignText('savePreset', context: context),
-                      onPressed: available
-                          ? () {
-                              setState(() => saved = eq);
-                              unawaited(
-                                c.preferences.setString(
-                                  'eq-curve:${c.user?.id}',
-                                  jsonEncode(eq.toJson()),
-                                ),
-                              );
-                            }
-                          : null,
-                      icon: const Icon(Icons.save_outlined, size: 17),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 11),
-                Container(
-                  key: const Key('compact-eq-speed-surface'),
-                  padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-                  decoration: BoxDecoration(
-                    color: v.background,
-                    border: Border.all(color: v.line),
-                    borderRadius: BorderRadius.circular(v.corners(18)),
-                  ),
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Text(
-                              wt('eq.speed', context: context),
-                              style: TextStyle(fontSize: 10, color: v.muted),
-                            ),
-                          ),
-                          Text(
-                            '${(c.room != null ? 1 : c.customization.playbackRate).toStringAsFixed(2)}×',
-                            style: const TextStyle(
-                              fontSize: 11,
-                              fontFeatures: [FontFeature.tabularFigures()],
-                            ),
-                          ),
-                        ],
-                      ),
-                      Slider(
-                        key: const Key('compact-eq-rate'),
-                        min: .5,
-                        max: 2,
-                        divisions: 30,
-                        value: c.room != null
-                            ? 1
-                            : c.customization.playbackRate,
-                        onChanged: c.room != null || !available
-                            ? null
-                            : (value) => unawaited(
-                                c
-                                    .customize({'playbackRate': value})
-                                    .catchError(
-                                      (Object error) =>
-                                          c.tell(error.toString()),
-                                    ),
-                              ),
+                      IconButton(
+                        tooltip: wt('native.398c7d4f7b', context: context),
+                        onPressed: widget.onClose,
+                        icon: const Icon(Icons.close_rounded, size: 18),
                       ),
                     ],
                   ),
-                ),
-                const SizedBox(height: 11),
-                Container(
-                  key: const Key('compact-eq-chart'),
-                  height: 166,
-                  decoration: BoxDecoration(
-                    color: v.accentSoft.withValues(alpha: .35),
-                    border: Border.all(color: v.line),
-                    borderRadius: BorderRadius.circular(v.corners(18)),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: _EqualizerPresetMenu(
+                          selected:
+                              preset?.key ??
+                              (saved != null &&
+                                      saved!.preamp == eq.preamp &&
+                                      List.generate(
+                                        10,
+                                        (i) => saved!.bands[i] == eq.bands[i],
+                                      ).every((same) => same)
+                                  ? 'saved'
+                                  : 'custom'),
+                          saved: saved != null,
+                          enabled: available,
+                          onSelected: (key) {
+                            final p = key == 'saved'
+                                ? saved
+                                : equalizerPresets[key];
+                            if (p != null) {
+                              change({...p.toJson(), 'enabled': true});
+                            }
+                          },
+                        ),
+                      ),
+                      IconButton(
+                        tooltip: audioDesignText(
+                          'savePreset',
+                          context: context,
+                        ),
+                        onPressed: available
+                            ? () {
+                                setState(() => saved = eq);
+                                unawaited(
+                                  c.preferences.setString(
+                                    'eq-curve:${c.user?.id}',
+                                    jsonEncode(eq.toJson()),
+                                  ),
+                                );
+                              }
+                            : null,
+                        icon: const Icon(Icons.save_outlined, size: 17),
+                      ),
+                    ],
                   ),
-                  clipBehavior: Clip.antiAlias,
-                  child: LayoutBuilder(
-                    builder: (context, constraints) => Stack(
-                      clipBehavior: Clip.none,
+                  const SizedBox(height: 11),
+                  Container(
+                    key: const Key('compact-eq-speed-surface'),
+                    padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                    decoration: BoxDecoration(
+                      color: v.background,
+                      border: Border.all(color: v.line),
+                      borderRadius: BorderRadius.circular(v.corners(18)),
+                    ),
+                    child: Column(
                       children: [
-                        Positioned.fill(
-                          top: 7,
-                          bottom: 21,
-                          left: 22,
-                          right: 0,
-                          child: TweenAnimationBuilder<List<double>>(
-                            tween: _BandsTween(end: eq.bands),
-                            duration: v.duration((220 / v.speed).round()),
-                            curve: Curves.easeOutCubic,
-                            builder: (_, bands, _) => CustomPaint(
-                              key: const Key('compact-eq-curve'),
-                              painter: _EqualizerCurve(bands, v),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                wt('eq.speed', context: context),
+                                style: TextStyle(fontSize: 10, color: v.muted),
+                              ),
+                            ),
+                            Text(
+                              '${(c.room != null ? 1 : c.customization.playbackRate).toStringAsFixed(2)}×',
+                              style: const TextStyle(
+                                fontSize: 11,
+                                fontFeatures: [FontFeature.tabularFigures()],
+                              ),
+                            ),
+                          ],
+                        ),
+                        Slider(
+                          key: const Key('compact-eq-rate'),
+                          min: .5,
+                          max: 2,
+                          divisions: 30,
+                          value: c.room != null
+                              ? 1
+                              : c.customization.playbackRate,
+                          onChanged: c.room != null || !available
+                              ? null
+                              : (value) => unawaited(
+                                  c
+                                      .customize({'playbackRate': value})
+                                      .catchError(
+                                        (Object error) =>
+                                            c.tell(error.toString()),
+                                      ),
+                                ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 11),
+                  Container(
+                    key: const Key('compact-eq-chart'),
+                    height: 166,
+                    decoration: BoxDecoration(
+                      color: v.accentSoft.withValues(alpha: .35),
+                      border: Border.all(color: v.line),
+                      borderRadius: BorderRadius.circular(v.corners(18)),
+                    ),
+                    clipBehavior: Clip.antiAlias,
+                    child: LayoutBuilder(
+                      builder: (context, constraints) => Stack(
+                        clipBehavior: Clip.none,
+                        children: [
+                          Positioned.fill(
+                            top: 7,
+                            bottom: 21,
+                            left: 22,
+                            right: 0,
+                            child: TweenAnimationBuilder<List<double>>(
+                              tween: _BandsTween(end: eq.bands),
+                              duration: v.duration((220 / v.speed).round()),
+                              curve: Curves.easeOutCubic,
+                              builder: (_, bands, _) => CustomPaint(
+                                key: const Key('compact-eq-curve'),
+                                painter: _EqualizerCurve(bands, v),
+                              ),
                             ),
                           ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 22),
-                          child: Row(
-                            children: [
-                              for (var i = 0; i < 10; i++)
-                                Expanded(
-                                  child: Column(
-                                    children: [
-                                      Expanded(
-                                        child: RotatedBox(
-                                          quarterTurns: 3,
-                                          child: SliderTheme(
-                                            data: SliderTheme.of(context)
-                                                .copyWith(
-                                                  trackHeight: 1,
-                                                  activeTrackColor:
-                                                      Colors.transparent,
-                                                  inactiveTrackColor:
-                                                      Colors.transparent,
-                                                  thumbShape:
-                                                      const RoundSliderThumbShape(
-                                                        enabledThumbRadius: 3.5,
-                                                      ),
-                                                  overlayShape:
-                                                      SliderComponentShape
-                                                          .noOverlay,
-                                                  overlayColor:
-                                                      Colors.transparent,
-                                                  showValueIndicator:
-                                                      ShowValueIndicator.never,
-                                                ),
-                                            child: Slider(
-                                              key: Key('compact-eq-band-$i'),
-                                              min: -12,
-                                              max: 12,
-                                              divisions: 48,
-                                              value: eq.bands[i],
-                                              label:
-                                                  '${eq.bands[i].toStringAsFixed(1)} dB',
-                                              semanticFormatterCallback: (value) =>
-                                                  '${equalizerFrequencies[i].round()} Hz, ${value.toStringAsFixed(1)} dB',
-                                              onChanged: available && eq.enabled
-                                                  ? (value) => change({
-                                                      'bands': [...eq.bands]
-                                                        ..[i] = value,
-                                                    })
-                                                  : null,
+                          Padding(
+                            padding: const EdgeInsets.only(left: 22),
+                            child: Row(
+                              children: [
+                                for (var i = 0; i < 10; i++)
+                                  Expanded(
+                                    child: Column(
+                                      children: [
+                                        Expanded(
+                                          child: RotatedBox(
+                                            quarterTurns: 3,
+                                            child: SliderTheme(
+                                              data: SliderTheme.of(context)
+                                                  .copyWith(
+                                                    trackHeight: 1,
+                                                    activeTrackColor:
+                                                        Colors.transparent,
+                                                    inactiveTrackColor:
+                                                        Colors.transparent,
+                                                    thumbShape:
+                                                        const RoundSliderThumbShape(
+                                                          enabledThumbRadius:
+                                                              3.5,
+                                                        ),
+                                                    overlayShape:
+                                                        SliderComponentShape
+                                                            .noOverlay,
+                                                    overlayColor:
+                                                        Colors.transparent,
+                                                    showValueIndicator:
+                                                        ShowValueIndicator
+                                                            .never,
+                                                  ),
+                                              child: Slider(
+                                                key: Key('compact-eq-band-$i'),
+                                                min: -12,
+                                                max: 12,
+                                                divisions: 48,
+                                                value: eq.bands[i],
+                                                label:
+                                                    '${eq.bands[i].toStringAsFixed(1)} dB',
+                                                semanticFormatterCallback:
+                                                    (value) =>
+                                                        '${equalizerFrequencies[i].round()} Hz, ${value.toStringAsFixed(1)} dB',
+                                                onChanged:
+                                                    available && eq.enabled
+                                                    ? (value) => change({
+                                                        'bands': [...eq.bands]
+                                                          ..[i] = value,
+                                                      })
+                                                    : null,
+                                              ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                      SizedBox(
-                                        height: 22,
-                                        child: Center(
-                                          child: Text(
-                                            equalizerFrequencies[i] >= 1000
-                                                ? '${(equalizerFrequencies[i] / 1000).round()}k'
-                                                : '${equalizerFrequencies[i].round()}',
-                                            style: TextStyle(
-                                              fontSize: 8,
-                                              color: v.muted,
+                                        SizedBox(
+                                          height: 22,
+                                          child: Center(
+                                            child: Text(
+                                              equalizerFrequencies[i] >= 1000
+                                                  ? '${(equalizerFrequencies[i] / 1000).round()}k'
+                                                  : '${equalizerFrequencies[i].round()}',
+                                              style: TextStyle(
+                                                fontSize: 8,
+                                                color: v.muted,
+                                              ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
-                                ),
-                            ],
+                              ],
+                            ),
                           ),
-                        ),
-                        // Keep the dB scale inside the rounded chart without
-                        // overlapping the first frequency's thumb.
-                        for (final axis in [
-                          ('max', '+12', 31.0),
-                          ('zero', '0', (constraints.maxHeight - 14) / 2),
-                          ('min', '−12', constraints.maxHeight - 45),
-                        ])
-                          Positioned(
-                            left: 0,
-                            top: axis.$3 - 10,
-                            width: 22,
-                            height: 20,
-                            child: IgnorePointer(
-                              child: Center(
-                                child: Text(
-                                  axis.$2,
-                                  key: Key('compact-eq-db-${axis.$1}'),
-                                  semanticsLabel: '${axis.$2} dB',
-                                  style: TextStyle(
-                                    fontSize: 9,
-                                    color: v.muted,
-                                    fontFeatures: const [
-                                      FontFeature.tabularFigures(),
-                                    ],
+                          // Keep the dB scale inside the rounded chart without
+                          // overlapping the first frequency's thumb.
+                          for (final axis in [
+                            ('max', '+12', 31.0),
+                            ('zero', '0', (constraints.maxHeight - 14) / 2),
+                            ('min', '−12', constraints.maxHeight - 45),
+                          ])
+                            Positioned(
+                              left: 0,
+                              top: axis.$3 - 10,
+                              width: 22,
+                              height: 20,
+                              child: IgnorePointer(
+                                child: Center(
+                                  child: Text(
+                                    axis.$2,
+                                    key: Key('compact-eq-db-${axis.$1}'),
+                                    semanticsLabel: '${axis.$2} dB',
+                                    style: TextStyle(
+                                      fontSize: 9,
+                                      color: v.muted,
+                                      fontFeatures: const [
+                                        FontFeature.tabularFigures(),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
-                          ),
-                      ],
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 10),
-                Row(
-                  children: [
-                    Text(
-                      wt('eq.preamp', context: context),
-                      style: TextStyle(fontSize: 10, color: v.muted),
-                    ),
-                    Expanded(
-                      child: Slider(
-                        key: const Key('compact-eq-preamp'),
-                        min: -12,
-                        max: 12,
-                        divisions: 48,
-                        value: eq.preamp,
-                        onChanged: available && eq.enabled
-                            ? (value) => change({'preamp': value})
-                            : null,
+                        ],
                       ),
                     ),
+                  ),
+                  const SizedBox(height: 10),
+                  Row(
+                    children: [
+                      Text(
+                        wt('eq.preamp', context: context),
+                        style: TextStyle(fontSize: 10, color: v.muted),
+                      ),
+                      Expanded(
+                        child: Slider(
+                          key: const Key('compact-eq-preamp'),
+                          min: -12,
+                          max: 12,
+                          divisions: 48,
+                          value: eq.preamp,
+                          onChanged: available && eq.enabled
+                              ? (value) => change({'preamp': value})
+                              : null,
+                        ),
+                      ),
+                      Text(
+                        '${eq.preamp.toStringAsFixed(1)} dB',
+                        style: TextStyle(
+                          fontSize: 10,
+                          color: v.muted,
+                          fontFeatures: const [FontFeature.tabularFigures()],
+                        ),
+                      ),
+                    ],
+                  ),
+                  if (c.room != null || !available)
                     Text(
-                      '${eq.preamp.toStringAsFixed(1)} dB',
+                      wt(
+                        c.room != null ? 'eq.roomSpeed' : 'eq.waiting',
+                        context: context,
+                      ),
                       style: TextStyle(
                         fontSize: 10,
                         color: v.muted,
-                        fontFeatures: const [FontFeature.tabularFigures()],
+                        height: 1.4,
                       ),
                     ),
-                  ],
-                ),
-                if (c.room != null || !available)
-                  Text(
-                    wt(
-                      c.room != null ? 'eq.roomSpeed' : 'eq.waiting',
-                      context: context,
-                    ),
-                    style: TextStyle(fontSize: 10, color: v.muted, height: 1.4),
-                  ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

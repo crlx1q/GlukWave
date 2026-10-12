@@ -1237,5 +1237,17 @@
   "polish.search.seeAll": "Барлығын көру",
   "polish.search.empty": "Әзірге ештеңе табылмады",
   "polish.search.emptyHint": "Басқаша жазып немесе барлық сервистен іздеп көр.",
-  "polish.search.reset": "Барлық жерден іздеу"
+  "polish.search.reset": "Барлық жерден іздеу",
+  "ecosystem.queueAdd": "Кезекке трек қосу",
+  "ecosystem.queueDrag": "Тректі басып тұрып жылжытыңыз. Пернетақтада тұтқаны таңдап, көрсеткілерді басыңыз.",
+  "ecosystem.queueMove": "{track} трегін кезекте жылжыту",
+  "ecosystem.queueEmpty": "Кезек бос",
+  "ecosystem.queueSearch": "Кезекке қосылатын тректі іздеу",
+  "ecosystem.queueSearchError": "Іздеу уақытша қолжетімсіз. Қайталап көріңіз.",
+  "ecosystem.queueEmptySearch": "Тректер табылмады",
+  "ecosystem.manageDevices": "Құрылғыларды басқару",
+  "ecosystem.listeningCount": "Тыңдап отыр: {count} · Онлайн: {online}",
+  "ecosystem.resourceBudget": "Контейнер шегі: {cpu} CPU · {ram} жедел жад",
+  "ecosystem.resourceUnrestricted": "Контейнердің CPU/жад шектеулері анықталмады",
+  "ecosystem.heapBudget": "Орындау ортасының жад шегі: {heap}"
 }

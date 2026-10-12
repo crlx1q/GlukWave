@@ -2,6 +2,11 @@ services:
   wave:
     build: .
     restart: unless-stopped
+    # Budget for the shared Oracle host; includes Python/FFmpeg child processes.
+    cpus: 1.0
+    mem_limit: 4g
+    memswap_limit: 4g
+    pids_limit: 256
     env_file: .env
     environment:
       NODE_ENV: production
@@ -12,6 +17,8 @@ services:
       REQUIRE_EMAIL_VERIFICATION: 'true'
       TRUST_PROXY: 1
       RELEASES_DIR: /app/releases
+      NODE_OPTIONS: --max-old-space-size=2048
+      EXTRACTOR_CONCURRENCY: 1
     ports:
       - '127.0.0.1:4000:4000'
     volumes:

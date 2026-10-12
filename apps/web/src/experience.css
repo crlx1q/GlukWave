@@ -1,6 +1,6 @@
 /* Restored physical album and quiet Lo-Fi world. All movement follows the user's preferences. */
 .wave-layer{display:block;position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
-html{scroll-padding-bottom:145px}.wave-live i{animation:none!important}.wave-play:disabled{opacity:.8;cursor:wait}
+html{scroll-padding-bottom:145px}.wave-play:disabled{opacity:.8;cursor:wait}
 html[data-motion=full] .main-play:active{transform:scale(.93)}html[data-motion=full] .subtle-button:active,html[data-motion=full] .primary-button:active,html[data-motion=full] .appearance-modes button:active{transform:scale(.98)}
 /* Restrained soft presses and lyric edge treatment informed by Skiper4/3/41. */
 .lyrics-lines{mask-image:linear-gradient(to bottom,transparent 0,#000 24px,#000 calc(100% - 26px),transparent 100%);padding-top:26px;padding-bottom:40px}

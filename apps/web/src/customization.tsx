@@ -1,7 +1,7 @@
 import {SeasonalSettings} from './seasonal';
-import { RangeInput } from './range-input';
+import { SettingsRange as RangeInput } from './settings-range';
 import { t, useLocale } from './locale';
-import { useEffect, useState, type CSSProperties } from 'react';
+import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import { Check, Monitor, Moon, Palette, RotateCcw, Sun, Waves } from 'lucide-react';
 import { useStore } from './store';
 import { usePlayer } from './player';
@@ -12,8 +12,10 @@ import { WaveVisual } from './wave';
 
 function contrast(a:string,b:string){const luminance=(hex:string)=>{const rgb=[1,3,5].map(index=>parseInt(hex.slice(index,index+2),16)/255).map(value=>value<=.04045?value/12.92:((value+.055)/1.055)**2.4);return rgb[0]*.2126+rgb[1]*.7152+rgb[2]*.0722;};const x=luminance(a),y=luminance(b);return (Math.max(x,y)+.05)/(Math.min(x,y)+.05);}
 function ColorField({label,value,onChange}:{label:string;value:string;onChange:(color:string)=>void}) {useLocale();
-  const [text,setText]=useState(value);useEffect(()=>setText(value),[value]);
-  return <label className="appearance-color-field"><span>{label}</span><div><input type="color" value={value} onChange={event=>onChange(event.target.value)} aria-label={t('template.005', {v0: label})}/><input type="text" value={text} maxLength={7} spellCheck={false} autoComplete="off" aria-label={`HEX: ${label}`} onChange={event=>{const next=event.target.value;setText(next);if(/^#[\da-f]{6}$/i.test(next))onChange(next.toLowerCase());}} onBlur={()=>setText(value)}/></div></label>;
+  const store=useStore(),[text,setText]=useState(value),color=useRef<HTMLInputElement>(null),release=useRef<(()=>void)|null>(null),timer=useRef<ReturnType<typeof setTimeout>|undefined>(undefined);useEffect(()=>setText(value),[value]);
+  const begin=()=>{if(!release.current)release.current=store.beginSettingsEdit();},finish=()=>{clearTimeout(timer.current);release.current?.();release.current=null;};
+  useEffect(()=>{const node=color.current,committed=()=>queueMicrotask(finish);node?.addEventListener('change',committed);return()=>{node?.removeEventListener('change',committed);finish();};},[]);
+  return <label className="appearance-color-field"><span>{label}</span><div><input ref={color} type="color" value={value} onFocus={begin} onPointerDown={begin} onChange={event=>{begin();onChange(event.target.value);}} onBlur={finish} aria-label={t('template.005', {v0: label})}/><input type="text" value={text} maxLength={7} spellCheck={false} autoComplete="off" aria-label={`HEX: ${label}`} onChange={event=>{const next=event.target.value;setText(next);begin();clearTimeout(timer.current);if(/^#[\da-f]{6}$/i.test(next))onChange(next.toLowerCase());timer.current=setTimeout(finish,300);}} onBlur={()=>{finish();setText(value);}}/></div></label>;
 }
 
 export function AppearanceSettings() {useLocale();

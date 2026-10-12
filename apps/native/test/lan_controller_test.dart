@@ -157,6 +157,20 @@ void main() {
         );
         expect(phoneAudio.seconds, 0);
         expect(phoneAudio.sounds, true);
+        phoneAudio.replaceQueue([
+          WaveTrack({...localTrack.json, 'id': 'queued-next'}),
+        ]);
+        phoneAudio.commands.clear();
+        expect(
+          await phone.audio.onEnded!(localTrack, AudioServiceRepeatMode.one),
+          true,
+        );
+        expect(
+          phoneAudio.commands,
+          ['next'],
+          reason: 'LAN repeat-one cannot replay a removed current track.',
+        );
+        phoneAudio.replaceQueue([localTrack]);
         await phone.listenHere();
         await host.listenHere();
         expect(hostAudio.sounds, true);

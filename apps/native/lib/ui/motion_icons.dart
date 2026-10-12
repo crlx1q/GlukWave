@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 import 'theme.dart';
+import '../l10n/audio_design_strings.dart';
 
 /// Loading represents the real source lifecycle, shared by every play button.
-/// Reduced motion keeps a clear static arc rather than an endless animation.
-class WavePlaybackIcon extends StatelessWidget {
+/// The same travelling wave as the web SVG, with no platform spinner or asset.
+class WavePlaybackIcon extends StatefulWidget {
   final bool playing, loading;
   final double size;
   final Color? color;
@@ -16,29 +17,177 @@ class WavePlaybackIcon extends StatelessWidget {
     this.color,
   });
   @override
+  State<WavePlaybackIcon> createState() => _WavePlaybackIconState();
+}
+
+class _WavePlaybackIconState extends State<WavePlaybackIcon>
+    with TickerProviderStateMixin, WidgetsBindingObserver {
+  late final entry = AnimationController(
+    vsync: this,
+    value: widget.loading ? 1 : 0,
+  );
+  late final loop = AnimationController(vsync: this);
+  late final blend = CurvedAnimation(
+    parent: entry,
+    curve: Curves.easeInOutCubic,
+  );
+  bool visible = true, animate = false;
+  @override
+  void initState() {
+    super.initState();
+    visible = ![
+      AppLifecycleState.hidden,
+      AppLifecycleState.paused,
+      AppLifecycleState.detached,
+    ].contains(WidgetsBinding.instance.lifecycleState);
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  void sync() {
+    final v = waveVisuals(context), speed = v.speed.clamp(.3, 2.0);
+    animate =
+        visible &&
+        TickerMode.of(context) &&
+        !v.reducedMotion &&
+        !MediaQuery.disableAnimationsOf(context);
+    final period = Duration(milliseconds: (1200 / speed).round());
+    entry.duration = Duration(milliseconds: (220 / speed).round());
+    if (animate) {
+      entry.animateTo(widget.loading ? 1 : 0);
+    } else {
+      entry.value = widget.loading ? 1 : 0;
+    }
+    if (widget.loading && animate) {
+      if (loop.duration != period || !loop.isAnimating) {
+        loop.duration = period;
+        loop.repeat();
+      }
+    } else {
+      loop.stop();
+    }
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    sync();
+  }
+
+  @override
+  void didUpdateWidget(WavePlaybackIcon oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    sync();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    setState(() {
+      visible = ![
+        AppLifecycleState.hidden,
+        AppLifecycleState.paused,
+        AppLifecycleState.detached,
+      ].contains(state);
+      sync();
+    });
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    blend.dispose();
+    entry.dispose();
+    loop.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final v = waveVisuals(context),
-        reduced =
-            v.reducedMotion ||
-            MediaQuery.disableAnimationsOf(context) ||
-            !TickerMode.of(context);
-    return AnimatedSwitcher(
-      duration: reduced ? Duration.zero : v.duration(180),
-      child: loading
-          ? SizedBox.square(
-              key: const Key('playback-loading-indicator'),
-              dimension: size,
-              child: CircularProgressIndicator(
-                value: reduced ? .68 : null,
-                color: v.accent,
-                strokeWidth: 2,
-                strokeCap: StrokeCap.round,
-                backgroundColor: v.accent.withValues(alpha: .15),
+    final color =
+        widget.color ?? IconTheme.of(context).color ?? waveVisuals(context).ink;
+    return Semantics(
+      label: widget.loading
+          ? audioDesignText('loadingPlayback', context: context)
+          : null,
+      liveRegion: widget.loading,
+      child: TickerMode(
+        enabled: visible && TickerMode.of(context),
+        child: SizedBox.square(
+          dimension: widget.size,
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              FadeTransition(
+                opacity: ReverseAnimation(blend),
+                child: ScaleTransition(
+                  scale: Tween<double>(begin: 1, end: .88).animate(blend),
+                  child: WavePlayPauseIcon(
+                    playing: widget.playing,
+                    size: widget.size,
+                    color: color,
+                  ),
+                ),
               ),
-            )
-          : WavePlayPauseIcon(playing: playing, size: size, color: color),
+              FadeTransition(
+                opacity: blend,
+                child: CustomPaint(
+                  key: widget.loading
+                      ? const Key('playback-loading-indicator')
+                      : null,
+                  size: Size.square(widget.size),
+                  painter: _PlaybackWavePainter(loop, blend, color, animate),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
+}
+
+class _PlaybackWavePainter extends CustomPainter {
+  final Animation<double> phase, entry;
+  final Color color;
+  final bool animate;
+  _PlaybackWavePainter(this.phase, this.entry, this.color, this.animate)
+    : super(repaint: Listenable.merge([phase, entry]));
+  @override
+  void paint(Canvas canvas, Size size) {
+    canvas.save();
+    canvas.scale(size.width / 24, size.height / 24);
+    final height = 6 * entry.value;
+    final path = Path()
+      ..moveTo(3, 12)
+      ..cubicTo(5, 12, 5, 12 - height, 7.5, 12 - height)
+      ..cubicTo(10, 12 - height, 10, 12 + height, 12.5, 12 + height)
+      ..cubicTo(15, 12 + height, 15, 12 - height, 17.5, 12 - height)
+      ..cubicTo(20, 12 - height, 20, 12, 21, 12);
+    final pen = Paint()
+      ..color = color.withValues(alpha: animate ? .18 : 1)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 2.1
+      ..strokeCap = StrokeCap.round
+      ..strokeJoin = StrokeJoin.round;
+    canvas.drawPath(path, pen);
+    if (animate) {
+      final metric = path.computeMetrics().first;
+      final length = metric.length,
+          end = phase.value * (length * 1.32),
+          start = end - length * .32;
+      canvas.drawPath(
+        metric.extractPath(start.clamp(0, length), end.clamp(0, length)),
+        pen..color = color,
+      );
+    }
+    canvas.restore();
+  }
+
+  @override
+  bool shouldRepaint(_PlaybackWavePainter old) =>
+      old.phase != phase ||
+      old.entry != entry ||
+      old.color != color ||
+      old.animate != animate;
 }
 
 /// Lyrics and queue use the same settling motion when their view is selected.
@@ -88,6 +237,9 @@ class _WavePlayPauseIconState extends State<WavePlayPauseIcon>
     value: widget.playing ? 1 : 0,
   );
   void sync() {
+    motion.duration = Duration(
+      milliseconds: (230 / waveVisuals(context).speed.clamp(.3, 2)).round(),
+    );
     final target = widget.playing ? 1.0 : 0.0;
     if (waveVisuals(context).reducedMotion ||
         MediaQuery.disableAnimationsOf(context) ||

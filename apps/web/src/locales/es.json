@@ -1237,5 +1237,17 @@
   "polish.search.seeAll": "Ver todo",
   "polish.search.empty": "Aún no hay resultados",
   "polish.search.emptyHint": "Prueba otra escritura o busca en todos los servicios de música.",
-  "polish.search.reset": "Buscar en todo"
+  "polish.search.reset": "Buscar en todo",
+  "ecosystem.queueAdd": "Añadir pistas a la cola",
+  "ecosystem.queueDrag": "Mantén pulsado y arrastra. O enfoca el control y usa las flechas del teclado.",
+  "ecosystem.queueMove": "Mover {track} en la cola",
+  "ecosystem.queueEmpty": "Tu cola está vacía",
+  "ecosystem.queueSearch": "Buscar pistas para añadir",
+  "ecosystem.queueSearchError": "La búsqueda no está disponible. Inténtalo de nuevo.",
+  "ecosystem.queueEmptySearch": "No se encontraron pistas",
+  "ecosystem.manageDevices": "Gestionar dispositivos",
+  "ecosystem.listeningCount": "{count} escuchando · {online} en línea",
+  "ecosystem.resourceBudget": "Límite del contenedor: {cpu} CPU · {ram} RAM",
+  "ecosystem.resourceUnrestricted": "No se detectaron límites de CPU/RAM del contenedor",
+  "ecosystem.heapBudget": "Límite de memoria del entorno: {heap}"
 }

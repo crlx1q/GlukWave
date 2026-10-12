@@ -201,6 +201,8 @@ void main() {
           scrollDelta: const Offset(0, -120),
         ),
       );
+      expect(volume, .5, reason: 'Wheel preview stays local until quiet.');
+      await tester.pump(const Duration(milliseconds: 280));
       expect(volume, .6);
       await tester.sendEventToBinding(
         PointerScrollEvent(
@@ -208,6 +210,8 @@ void main() {
           scrollDelta: const Offset(0, 1200),
         ),
       );
+      expect(volume, .6);
+      await tester.pump(const Duration(milliseconds: 280));
       expect(volume, 0);
       await tester.pumpWidget(const SizedBox());
     },

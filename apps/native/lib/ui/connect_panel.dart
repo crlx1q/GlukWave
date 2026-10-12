@@ -7,6 +7,7 @@ import '../l10n/wave_localizations.dart';
 import 'widgets.dart';
 import 'volume_slider.dart';
 import 'device_labels.dart';
+import 'listening_presence.dart';
 
 String installationId(Json device) =>
     (device['deviceId'] ?? device['id'] ?? '').toString();
@@ -128,7 +129,9 @@ class ConnectPanel extends StatelessWidget {
                         backgroundColor: v.ink,
                         foregroundColor: v.background,
                       ),
-                      onPressed: c.room != null && !c.canTogglePlayback
+                      onPressed:
+                          (c.room != null && !c.canTogglePlayback) ||
+                              (c.trackLoading && !c.audio.playing)
                           ? null
                           : () => _run(
                               c.audio.playing ? c.audio.pause : c.audio.play,
@@ -139,8 +142,9 @@ class ConnectPanel extends StatelessWidget {
                             : 'native.c750dc7d94',
                         context: context,
                       ),
-                      icon: WavePlayPauseIcon(
+                      icon: WavePlaybackIcon(
                         playing: c.audio.playing,
+                        loading: c.trackLoading,
                         color: v.background,
                       ),
                     ),
@@ -155,6 +159,7 @@ class ConnectPanel extends StatelessWidget {
                     ),
                     Expanded(
                       child: VolumeSlider(
+                        scope: '${c.activeDeviceId}:${c.activeSurfaceId}',
                         value: c.audio.volume,
                         onChanged:
                             c.activeDeviceId == null && !c.independentListening
@@ -166,6 +171,7 @@ class ConnectPanel extends StatelessWidget {
                     ),
                   ],
                 ),
+                if (c.room != null) ListeningPresence(controller: c),
                 if (c.room != null)
                   Padding(
                     padding: const EdgeInsets.only(bottom: 12),
@@ -236,7 +242,7 @@ class ConnectPanel extends StatelessWidget {
             ),
             child: Row(
               children: [
-                Icon(deviceKindIcon(device), size: 26, color: v.muted),
+                DevicePlatformIcon(device: device, size: 26, color: v.muted),
                 const SizedBox(width: 14),
                 Expanded(
                   child: Column(
@@ -261,10 +267,8 @@ class ConnectPanel extends StatelessWidget {
                           padding: const EdgeInsets.only(top: 7),
                           child: Row(
                             children: [
-                              Icon(
-                                c.audio.playing
-                                    ? Icons.graphic_eq_rounded
-                                    : Icons.pause_rounded,
+                              ListeningWave(
+                                playing: c.audio.playing,
                                 size: 15,
                                 color: v.accent,
                               ),
