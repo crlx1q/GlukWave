@@ -1,7 +1,7 @@
 /** Project every face and the fully extended disc into the stage's perspective. */
 export function coverBounds(size:number,x:number,y:number) {
  const rx=x*Math.PI/180,ry=y*Math.PI/180,cx=Math.cos(rx),sx=Math.sin(rx),cy=Math.cos(ry),sy=Math.sin(ry),points:{x:number;y:number}[]=[];
- for(const [left,right,top,bottom,z] of [[-.5,.5,-.5,.5,5],[-.5,.5,-.5,.5,-5],[-.14,.86,-.5,.5,0]])
+ for(const [left,right,top,bottom,z] of [[-.5,.5,-.5,.5,9],[-.5,.5,-.5,.5,-9],[-.04,.9,-.47,.47,0]])
   for(const xx of [left*size,right*size])for(const yy of [top*size,bottom*size]){
    const tx=cy*xx+sy*z,tz=-sy*xx+cy*z,ty=cx*yy-sx*tz,depth=sx*yy+cx*tz,projection=1200/(1200-depth);
    points.push({x:tx*projection-.14*size,y:ty*projection});

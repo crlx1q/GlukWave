@@ -400,6 +400,19 @@ class WaveControlIcon extends StatelessWidget {
     Icons.people_outline_rounded,
     Icons.album_outlined,
     Icons.explore_outlined,
+    Icons.download_for_offline_outlined,
+    Icons.download_rounded,
+    Icons.offline_pin_outlined,
+    Icons.qr_code_scanner_rounded,
+    Icons.shield_outlined,
+    Icons.battery_saver_outlined,
+    Icons.chevron_right_rounded,
+    Icons.arrow_back_rounded,
+    Icons.keyboard_arrow_down_rounded,
+    Icons.close_rounded,
+    Icons.refresh_rounded,
+    Icons.hub_outlined,
+    Icons.nightlight_outlined,
   ];
   @override
   Widget build(BuildContext context) {
@@ -599,6 +612,91 @@ class _WaveControlPainter extends CustomPainter {
         line(8, 16, 10, 10);
         line(14, 14, 16, 8);
       }
+    } else if (icon == Icons.download_for_offline_outlined ||
+        icon == Icons.download_rounded ||
+        icon == Icons.offline_pin_outlined) {
+      line(12, 3, 12, 15);
+      line(7, 10, 12, 15);
+      line(12, 15, 17, 10);
+      path.moveTo(4, 16);
+      path.lineTo(4, 20);
+      path.lineTo(20, 20);
+      path.lineTo(20, 16);
+    } else if (icon == Icons.chevron_right_rounded ||
+        icon == Icons.arrow_back_rounded ||
+        icon == Icons.keyboard_arrow_down_rounded) {
+      if (icon == Icons.keyboard_arrow_down_rounded) {
+        line(6, 9, 12, 15);
+        line(12, 15, 18, 9);
+      } else if (icon == Icons.arrow_back_rounded) {
+        line(20, 12, 4, 12);
+        line(4, 12, 10, 6);
+        line(4, 12, 10, 18);
+      } else {
+        line(9, 5, 16, 12);
+        line(16, 12, 9, 19);
+      }
+    } else if (icon == Icons.close_rounded) {
+      line(6, 6, 18, 18);
+      line(18, 6, 6, 18);
+    } else if (icon == Icons.qr_code_scanner_rounded) {
+      path.moveTo(8, 3);
+      path.lineTo(3, 3);
+      path.lineTo(3, 8);
+      path.moveTo(16, 3);
+      path.lineTo(21, 3);
+      path.lineTo(21, 8);
+      path.moveTo(21, 16);
+      path.lineTo(21, 21);
+      path.lineTo(16, 21);
+      path.moveTo(8, 21);
+      path.lineTo(3, 21);
+      path.lineTo(3, 16);
+      line(7, 9, 17, 9);
+      line(7, 15, 17, 15);
+      line(10, 7, 10, 17);
+      line(14, 7, 14, 17);
+    } else if (icon == Icons.shield_outlined) {
+      path.moveTo(12, 2.5);
+      path.lineTo(21, 6);
+      path.lineTo(20, 13);
+      path.quadraticBezierTo(19, 18, 12, 22);
+      path.quadraticBezierTo(5, 18, 4, 13);
+      path.lineTo(3, 6);
+      path.close();
+      line(8, 12, 11, 15);
+      line(11, 15, 16, 9);
+    } else if (icon == Icons.battery_saver_outlined) {
+      path.addRRect(
+        RRect.fromRectAndRadius(
+          const Rect.fromLTWH(3, 6, 17, 12),
+          const Radius.circular(2),
+        ),
+      );
+      line(22, 10, 22, 14);
+      line(11.5, 8, 9, 12);
+      line(9, 12, 14, 12);
+      line(14, 12, 11.5, 16);
+    } else if (icon == Icons.refresh_rounded) {
+      path.addArc(const Rect.fromLTWH(4, 4, 16, 16), .4, 5.0);
+      line(19, 3, 19, 9);
+      line(13, 9, 19, 9);
+    } else if (icon == Icons.hub_outlined) {
+      path.addOval(const Rect.fromLTWH(9, 9, 6, 6));
+      for (final point in const [
+        Offset(5, 4),
+        Offset(19, 4),
+        Offset(5, 20),
+        Offset(19, 20),
+      ]) {
+        path.addOval(Rect.fromCircle(center: point, radius: 2));
+        line(point.dx, point.dy, 12, 12);
+      }
+    } else if (icon == Icons.nightlight_outlined) {
+      path.moveTo(17, 3);
+      path.cubicTo(7, 2, 1, 14, 10, 20);
+      path.cubicTo(15, 24, 22, 19, 22, 14);
+      path.cubicTo(14, 18, 10, 8, 17, 3);
     } else {
       path.addRRect(
         RRect.fromRectAndRadius(

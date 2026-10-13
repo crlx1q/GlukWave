@@ -165,6 +165,7 @@ class _QueuePanelState extends State<QueuePanel> {
                                       () => c.play(
                                         track,
                                         list: c.audio.viewTracks,
+                                        preserveWave: c.waveActive,
                                       ),
                                     )
                                   : null,
@@ -187,6 +188,7 @@ class _QueuePanelState extends State<QueuePanel> {
                                         () => c.play(
                                           track,
                                           list: c.audio.viewTracks,
+                                          preserveWave: c.waveActive,
                                         ),
                                       )
                                     : null,

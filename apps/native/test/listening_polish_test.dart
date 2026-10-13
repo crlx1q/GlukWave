@@ -324,8 +324,25 @@ void main() {
       expect(find.byKey(const Key('mini-lyric-2')), findsOneWidget);
       expect(find.byKey(const Key('mini-lyric-3')), findsOneWidget);
       expect(find.byKey(const Key('mini-lyric-4')), findsNothing);
-      final current = tester.getRect(find.byKey(const Key('mini-lyric-2'))),
-          next = tester.getRect(find.byKey(const Key('mini-lyric-3')));
+      final previewCurrent = tester.getRect(
+            find.byKey(const Key('mini-lyric-2')),
+          ),
+          previewNext = tester.getRect(find.byKey(const Key('mini-lyric-3')));
+      expect(previewNext.top, greaterThanOrEqualTo(previewCurrent.bottom));
+      await tester.tap(find.byKey(const Key('player-lyrics-toggle')));
+      await settleArtwork(tester);
+      expect(find.byKey(const Key('album-stage-bounds')), findsNothing);
+      expect(find.byKey(const Key('player-compact-lyrics')), findsNothing);
+      expect(
+        find.byKey(const Key('lyrics-persistent-controls')),
+        findsOneWidget,
+      );
+      final currentLine = find.text('An original listening line 2');
+      final nextLine = find.text('An original listening line 3');
+      expect(currentLine, findsOneWidget);
+      expect(nextLine, findsOneWidget);
+      final current = tester.getRect(currentLine),
+          next = tester.getRect(nextLine);
       expect(next.top, greaterThanOrEqualTo(current.bottom));
       final centered = 'listening-polish-$runId-dark-390-player';
       await f.screenshot(tester, centered);

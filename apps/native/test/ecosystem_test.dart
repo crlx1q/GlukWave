@@ -97,6 +97,7 @@ class ProtocolAudio extends ConnectAudio {
     List<WaveTrack>? list,
     double position = 0,
     bool playing = true,
+    bool recover = true,
   }) async {
     cancelPendingLoad();
     final revision = loadRevision;

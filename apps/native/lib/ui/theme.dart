@@ -139,6 +139,9 @@ ThemeData buildWaveTheme(
         : 'Manrope',
     fontFamilyFallback: const ['Nunito'],
     useMaterial3: true,
+    splashFactory: NoSplash.splashFactory,
+    highlightColor: Colors.transparent,
+    hoverColor: v.accentSoft.withValues(alpha: .35),
     brightness: brightness,
     extensions: [v],
     scaffoldBackgroundColor: v.background,
@@ -196,7 +199,35 @@ ThemeData buildWaveTheme(
     ),
     iconTheme: IconThemeData(color: v.ink, size: 22),
     iconButtonTheme: IconButtonThemeData(
-      style: IconButton.styleFrom(minimumSize: const Size(48, 48)),
+      style: IconButton.styleFrom(
+        minimumSize: const Size(48, 48),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(v.corners(15)),
+        ),
+      ),
+    ),
+    tooltipTheme: TooltipThemeData(
+      decoration: BoxDecoration(
+        color: v.ink,
+        borderRadius: BorderRadius.circular(v.corners(8)),
+      ),
+      textStyle: TextStyle(
+        fontFamily: 'Manrope',
+        color: v.background,
+        fontSize: 11,
+      ),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      waitDuration: const Duration(milliseconds: 500),
+    ),
+    popupMenuTheme: PopupMenuThemeData(
+      color: v.surface,
+      surfaceTintColor: Colors.transparent,
+      elevation: 14,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(v.corners(17)),
+        side: BorderSide(color: v.line),
+      ),
+      textStyle: TextStyle(fontFamily: 'Manrope', color: v.ink, fontSize: 12),
     ),
     chipTheme: ChipThemeData(
       backgroundColor: v.surface,
@@ -293,6 +324,8 @@ ThemeData buildWaveTheme(
       ),
     ),
     switchTheme: SwitchThemeData(
+      trackOutlineColor: const WidgetStatePropertyAll(Colors.transparent),
+      materialTapTargetSize: MaterialTapTargetSize.padded,
       thumbColor: WidgetStateProperty.resolveWith(
         (s) => s.contains(WidgetState.selected) ? v.surface : v.muted,
       ),

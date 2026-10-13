@@ -15,8 +15,10 @@ import 'windows_equalizer.dart';
 
 class WaveAudioHandler extends BaseAudioHandler {
   bool offlineOnly = false;
+  bool prepareNext = true;
   final WaveApi api;
   final MusicCache cache;
+  final Duration sourceLoadTimeout;
   // Native players send authorization headers directly. Android does not need an
   // insecure loopback proxy in release builds.
   late final AudioPlayer player;
@@ -88,7 +90,8 @@ class WaveAudioHandler extends BaseAudioHandler {
       );
   Timer? _positionTimer;
   bool _visualUpdatesEnabled = true, _released = false;
-  Stream<Duration> get positionStream => _positions.stream;
+  Stream<Duration> get positionStream =>
+      _positions.stream.where((_) => _visualUpdatesEnabled && !_released);
   void setVisualUpdatesEnabled(bool enabled) {
     _visualUpdatesEnabled = enabled;
     _updatePositionTimer();
@@ -278,8 +281,14 @@ class WaveAudioHandler extends BaseAudioHandler {
   void Function()? onProcessingChanged;
   Future<void> Function(double volume)? onVolumeChanged;
   void Function(String message)? onError;
+  Future<bool> Function(WaveTrack track, Object error)? onSourceFailure;
   final List<StreamSubscription<dynamic>> _subscriptions = [];
-  WaveAudioHandler(this.api, this.cache, {AudioPlayer? output}) {
+  WaveAudioHandler(
+    this.api,
+    this.cache, {
+    AudioPlayer? output,
+    this.sourceLoadTimeout = const Duration(seconds: 30),
+  }) {
     provider.addListener(_broadcast);
     provider.onError = (message) => onError?.call(wt(message));
     provider.onEnded = () {
@@ -308,6 +317,13 @@ class WaveAudioHandler extends BaseAudioHandler {
             onProcessingChanged?.call();
           }
           onError?.call(wt('native.fb89a335f1', values: {'p0': (error)}));
+          final failed = current;
+          if (failed != null &&
+              !trackLoading &&
+              !_released &&
+              onSourceFailure != null) {
+            unawaited(onSourceFailure!(failed, error).catchError((_) => false));
+          }
           _broadcast();
         },
       ),
@@ -556,16 +572,20 @@ class WaveAudioHandler extends BaseAudioHandler {
     List<WaveTrack>? list,
     double position = 0,
     bool playing = true,
+    bool recover = true,
   }) async {
     if (current?.id == track.id &&
         current?.playback['kind'] == 'audio' &&
         !trackLoading &&
         player.processingState != ProcessingState.idle &&
         player.processingState != ProcessingState.loading) {
+      cancelPendingLoad();
+      final revision = _loadRevision;
       replaceQueue(list ?? tracks);
       await player.seek(Duration(milliseconds: (position * 1000).round()));
+      if (revision != _loadRevision || _released) return;
       if (playing) {
-        await _startVerified(revision: _loadRevision);
+        await _startVerified(revision: revision);
       } else {
         await player.pause();
       }
@@ -574,12 +594,23 @@ class WaveAudioHandler extends BaseAudioHandler {
     }
     cancelPendingLoad();
     final revision = _loadRevision;
+    final previousTrack = current,
+        previousTracks = tracks,
+        previousIndex = _index;
     _pendingTrack = track;
     _setResolving(true);
     try {
       await player.pause();
       await provider.clear();
       if (revision != _loadRevision || _released) return;
+      // The selected queue exists locally before a descriptor arrives. This
+      // also lets a failed lookup advance the selected item, not the old song.
+      clearRemote();
+      final order = (list ?? tracks).where((item) => item.playable).toList();
+      tracks = order.any((item) => item.id == track.id)
+          ? order
+          : [track, ...order];
+      queue.add(tracks.map(item).toList());
       await _loadTrack(
         track,
         list: list,
@@ -587,6 +618,16 @@ class WaveAudioHandler extends BaseAudioHandler {
         playing: playing,
         revision: revision,
       );
+    } catch (error) {
+      if (revision != _loadRevision || _released) return;
+      if (recover && await onSourceFailure?.call(track, error) == true) return;
+      if (mediaItem.value?.id != track.id) {
+        current = previousTrack;
+        tracks = previousTracks;
+        _index = previousIndex;
+        queue.add(tracks.map(item).toList());
+      }
+      rethrow;
     } finally {
       if (revision == _loadRevision) {
         _pendingTrack = null;
@@ -602,6 +643,8 @@ class WaveAudioHandler extends BaseAudioHandler {
     required bool playing,
     required int revision,
     bool retryCached = true,
+    bool renewStream = true,
+    bool fresh = false,
   }) async {
     // A permitted cached download remains usable without a network lookup.
     final local = await cache.fileFor(track.id);
@@ -614,7 +657,7 @@ class WaveAudioHandler extends BaseAudioHandler {
         'playback': {...track.playback, 'kind': 'audio', 'offline': true},
       });
     } else {
-      final effective = await api.resolvePlayback(track);
+      final effective = await api.resolvePlayback(track, fresh: fresh);
       if (revision != _loadRevision) return;
       track = effective;
       resolvedPlayback = effective.playback;
@@ -665,6 +708,8 @@ class WaveAudioHandler extends BaseAudioHandler {
           playing: playing,
           revision: revision,
           retryCached: false,
+          renewStream: false,
+          fresh: true,
         );
       }
     } else {
@@ -685,16 +730,41 @@ class WaveAudioHandler extends BaseAudioHandler {
           ? api.headers
           : null;
       final initialPosition = Duration(milliseconds: (position * 1000).round());
-      if (playback['format'] == 'hls') {
-        await player.setAudioSource(
-          HlsAudioSource(uri, headers: headers),
-          initialPosition: initialPosition,
-        );
-      } else {
-        await player.setUrl(
-          uri.toString(),
-          headers: headers,
-          initialPosition: initialPosition,
+      try {
+        final load = playback['format'] == 'hls'
+            ? player.setAudioSource(
+                HlsAudioSource(uri, headers: headers),
+                initialPosition: initialPosition,
+              )
+            : player.setUrl(
+                uri.toString(),
+                headers: headers,
+                initialPosition: initialPosition,
+              );
+        await Future.any([
+          load.timeout(sourceLoadTimeout),
+          _loadCancelled.future.then<Duration?>((_) => null),
+        ]);
+      } catch (error) {
+        if (revision != _loadRevision || _released) return;
+        await player.stop();
+        // A grant may disappear on a server restart. Resolve a new capability
+        // once using this device's session; never reuse another device's URL.
+        if (renewStream && !offlineOnly) {
+          return _loadTrack(
+            track,
+            list: list,
+            position: position,
+            playing: playing,
+            revision: revision,
+            retryCached: retryCached,
+            renewStream: false,
+            fresh: true,
+          );
+        }
+        throw WaveException(
+          wt('native.fb5429ae1b'),
+          'AUDIO_FORMAT_UNAVAILABLE',
         );
       }
     }
@@ -717,7 +787,11 @@ class WaveAudioHandler extends BaseAudioHandler {
         }),
       );
     }
-    if (playing && !offlineOnly && _index >= 0 && _index + 1 < tracks.length) {
+    if (playing &&
+        prepareNext &&
+        !offlineOnly &&
+        _index >= 0 &&
+        _index + 1 < tracks.length) {
       final next = tracks[_index + 1], account = api.token, origin = api.server;
       unawaited(
         () async {

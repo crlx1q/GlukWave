@@ -14,7 +14,7 @@ test('account Connect mirrors a single output, retains tabs, revokes oldest devi
   const sockets=[];
   try{
     await new Promise(resolve=>service.server.listen(0,'127.0.0.1',resolve));const base=`http://127.0.0.1:${service.server.address().port}`;
-    const request=async(route,token,body,method=body?'POST':'GET',deviceId)=>{const response=await fetch(base+'/api'+route,{method,headers:{...(token?{Authorization:`Bearer ${token}`}:{ }),...(body?{'Content-Type':'application/json'}:{}),'X-GlukWave-Client':'native',...(deviceId?{'X-GlukWave-Device':deviceId}:{})},...(body?{body:JSON.stringify(body)}:{})});return {status:response.status,data:await response.json()};};
+    const request=async(route,token,body,method=body?'POST':'GET',deviceId,extraHeaders={})=>{const response=await fetch(base+'/api'+route,{method,headers:{...(token?{Authorization:`Bearer ${token}`}:{ }),...(body?{'Content-Type':'application/json'}:{}),'X-GlukWave-Client':'native',...(deviceId?{'X-GlukWave-Device':deviceId}:{}),...extraHeaders},...(body?{body:JSON.stringify(body)}:{})});return {status:response.status,data:await response.json()};};
     const password='Connect-password-2026',auth=(await request('/auth/register',null,{email:'connect@example.test',username:'connect_user',password},'POST','pc')).data;
     const ack=(socket,event,payload)=>socket.timeout(3000).emitWithAck(event,payload);
     const connect=async(token,did,surface)=>{const socket=io(base,{auth:{token,deviceId:did,surfaceId:surface,name:did,kind:'web'},transports:['websocket'],reconnection:false});sockets.push(socket);await new Promise((resolve,reject)=>{socket.once('connect',resolve);socket.once('connect_error',reject);});assert.equal((await ack(socket,'locale:change',{language:'en'})).ok,true);return socket;};
@@ -32,15 +32,26 @@ test('account Connect mirrors a single output, retains tabs, revokes oldest devi
     const phone=await connect(phoneAuth.token,'phone','phone-one');let account=(await request('/connect',phoneAuth.token)).data.connect;
     assert.equal(account.activeDeviceId,'pc');assert.equal(account.activeSurfaceId,'pc-one');assert.equal(account.track.title,track.title);assert(account.state.position>=42);assert(account.state.playing);
     await ack(phone,'device:state',{...initialState(),outputActive:false});account=(await request('/connect',phoneAuth.token)).data.connect;assert.equal(account.state.trackId,track.id);assert.equal(account.activeDeviceId,'pc');
-    const commands=[];let rejectTrack=false;pc.on('device:command',async(command,reply)=>{commands.push(command);reply({ok:true});});phone.on('device:command',(command,reply)=>{commands.push(command);reply(rejectTrack&&command.command==='track'?{error:{code:'PLAYBACK_FAILED',message:'Blocked playback'}}:{ok:true});});
+    const commands=[];let rejectTrack=false,slowPrepare=false;pc.on('device:command',async(command,reply)=>{commands.push(command);reply({ok:true});});phone.on('device:command',async(command,reply)=>{commands.push(command);if(slowPrepare&&command.command==='track')await new Promise(resolve=>setTimeout(resolve,6500));reply(rejectTrack&&command.command==='track'?{error:{code:'PLAYBACK_FAILED',message:'Blocked playback'}}:{ok:true});});
     assert.equal((await request('/devices/command',phoneAuth.token,{deviceId:'pc',command:'seek',position:87})).status,200);assert.equal(commands.at(-1).position,87);
     assert.equal((await request('/devices/command',phoneAuth.token,{deviceId:'pc',surfaceId:'closed-tab',command:'play'})).status,409);
     rejectTrack=true;assert.equal((await request('/devices/command',phoneAuth.token,{deviceId:'phone',fromDeviceId:'pc',command:'transfer'})).status,409);assert.equal((await request('/connect',auth.token)).data.connect.activeDeviceId,'pc');assert.equal(commands.at(-1).command,'play');assert.equal(commands.at(-1).outputActive,true);rejectTrack=false;
-    const transfer=await request('/devices/command',phoneAuth.token,{deviceId:'phone',fromDeviceId:'pc',command:'transfer'});assert.equal(transfer.status,200);account=(await request('/connect',auth.token)).data.connect;assert.equal(account.activeDeviceId,'phone');assert.equal(account.activeSurfaceId,'phone-one');assert(account.state.playing);assert.equal(commands.find(command=>command.outputActive===false).command,'pause');
+    const transfer=await request('/devices/command',phoneAuth.token,{deviceId:'phone',fromDeviceId:'pc',command:'transfer'});assert.equal(transfer.status,200);account=(await request('/connect',auth.token)).data.connect;assert.equal(account.activeDeviceId,'phone');assert.equal(account.activeSurfaceId,'phone-one');assert(account.state.playing);assert.equal(commands.find(command=>command.outputActive===false&&command.command==='pause').command,'pause');
     assert.equal((await request('/devices',auth.token)).data.devices.find(device=>device.id==='pc').state.playing,false);
     const beforeNoop=commands.length;assert.equal((await request('/devices/command',phoneAuth.token,{deviceId:'phone',fromDeviceId:'pc',command:'transfer'})).status,200);assert.equal(commands.length,beforeNoop,'Already selected output is an idempotent no-op');
     const beforeConcurrent=commands.length;const concurrent=await Promise.all([request('/devices/command',phoneAuth.token,{deviceId:'pc',fromDeviceId:'phone',command:'transfer'}),request('/devices/command',phoneAuth.token,{deviceId:'pc',fromDeviceId:'phone',command:'transfer'})]);assert(concurrent.every(result=>result.status===200));assert.equal(commands.slice(beforeConcurrent).filter(command=>command.command==='track').length,1,'Duplicate concurrent handoffs load only one target track');assert(concurrent.every(result=>result.data.connect.activeDeviceId==='pc'));
 
+    slowPrepare=true;
+    const intentHeaders={'X-GlukWave-Command-Wait':'poll','X-GlukWave-Intent':'slow-transfer-20'};
+    const beforeSlow=commands.length,slowBody={deviceId:'phone',fromDeviceId:'pc',command:'transfer'};
+    const preparing=await request('/devices/command',phoneAuth.token,slowBody,'POST',undefined,intentHeaders);
+    assert.equal(preparing.status,202);assert.equal(commands.slice(beforeSlow).filter(c=>c.command==='pause'&&c.outputActive===false).length,0,'Sender keeps playing during target preparation');
+    const ready=await request('/devices/command',phoneAuth.token,slowBody,'POST',undefined,intentHeaders);
+    assert.equal(ready.status,200);assert.equal(ready.data.connect.activeDeviceId,'phone');
+    assert.equal(commands.slice(beforeSlow).filter(c=>c.command==='track').length,1,'Polling must not restart the decoder');
+    const prepared=commands.slice(beforeSlow).find(c=>c.command==='track');assert.equal(prepared.playing,false);assert.equal(prepared.outputActive,false);
+    const finalCommands=commands.length;
+    assert.equal((await request('/devices/command',phoneAuth.token,slowBody,'POST',undefined,intentHeaders)).status,200);assert.equal(commands.length,finalCommands);
     assert.equal((await request('/connect',phoneAuth.token,{independent:true},'PATCH')).data.connect.independent,true);
     assert.equal((await request('/connect',phoneAuth.token,{independent:false},'PATCH')).data.connect.independent,false);
     await Promise.all(['tablet','fourth'].map(async did=>{const session=(await request('/auth/login',null,{email:'connect_user',password},'POST',did)).data;await connect(session.token,did,did+'-one');}));

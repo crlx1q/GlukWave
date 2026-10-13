@@ -130,6 +130,12 @@ class NativeOutput extends AudioPlayer {
   }
 
   @override
+  Future<void> stop() async {
+    active = false;
+    ready = false;
+  }
+
+  @override
   Future<void> setSpeed(double speed) async {}
   @override
   Future<void> setVolume(double volume) async {}
@@ -373,7 +379,13 @@ void main() {
         ..autoCache = false;
       await expectLater(
         audio.playTrack(external('cached')),
-        throwsA(same(freshFailure)),
+        throwsA(
+          isA<WaveException>().having(
+            (error) => error.code,
+            'code',
+            'AUDIO_FORMAT_UNAVAILABLE',
+          ),
+        ),
       );
       expect(cache.removed, ['cached']);
       expect(api.requests, ['/api/tracks/cached/playback']);

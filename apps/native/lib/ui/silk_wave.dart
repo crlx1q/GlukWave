@@ -88,7 +88,9 @@ void drawSilkWave(
     if (seed % 13 < 1) {
       final drift = .5 + .5 * math.sin(seed * .61 + phase * .14);
       x += math.sin(seed * .37 + phase * .11) * (.004 + drift * .012);
-      y += (seed % 2 < 1 ? -1 : 1) * (.024 + drift * .072 + energy * .022 + influence * .018);
+      y +=
+          (seed % 2 < 1 ? -1 : 1) *
+          (.024 + drift * .072 + energy * .022 + influence * .018);
     }
     positions[(depth * 8).floor().clamp(0, 7)].addAll([
       x * size.width,

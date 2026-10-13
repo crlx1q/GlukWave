@@ -432,6 +432,7 @@ void main() {
     (tester) async {
       final c = (await tester.runAsync(controller))!;
       c.user = WaveUser({'id': 'pending-fixture', 'username': 'listener'});
+      c.online = true;
       final api = c.api as LayoutApi;
       api.searchPending = Completer<Json>();
       await viewport(tester, const Size(390, 850));

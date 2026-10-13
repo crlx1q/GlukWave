@@ -1,3 +1,4 @@
+import {unavailableAudio} from './playback-recovery';
 import {AudioStreamLoader} from './audio-stream';
 import { t, useLocale, getLanguage } from './locale';
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
@@ -18,7 +19,7 @@ import {canRetryCachedAudio} from './audio-cache-validation';
 import { useStore } from './store';
 import { configureEqualizer, createAudioGraph, type AudioGraph } from './audio-processing';
 import type { ConnectState, Device, Playback, PlayerState, Room, Track } from './types';
-type Command = { command:string; trackId?:string; queue?:string[]; position?:number; volume?:number; expectedRevision?:number; repeat?:'off'|'all'|'one'; enabled?:boolean; localOnly?:boolean; outputActive?:boolean; roomId?:string|null;waveMode?:WaveSelection['mode'];waveMood?:WaveSelection['mood'];waveActive?:boolean };
+type Command = { command:string; playing?:boolean; trackId?:string; queue?:string[]; position?:number; volume?:number; expectedRevision?:number; repeat?:'off'|'all'|'one'; enabled?:boolean; localOnly?:boolean; outputActive?:boolean; roomId?:string|null;waveMode?:WaveSelection['mode'];waveMood?:WaveSelection['mood'];waveActive?:boolean };
 export type EmbedController = { play:()=>Promise<void>|void; pause:()=>void; seek:(position:number)=>void; volume?:(volume:number)=>void; destroy?:()=>void };
 export type PlayerTab='player'|'lyrics'|'queue'|'comments';
 export type {WaveOptions,WaveSelection} from './wave-session';
@@ -41,6 +42,8 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
   const [waveOptions,setWaveOptions]=useState<WaveSelection>(defaultWave),[waveActive,setWaveActive]=useState(false);
   const waveOptionsRef=useRef(waveOptions),waveVersion=useRef(0),tailFlight=useRef<Promise<boolean>|null>(null),finishFlight=useRef(false);
   waveOptionsRef.current=waveOptions;
+  const waveActiveRef=useRef(waveActive),waveRetryAfter=useRef(0);waveActiveRef.current=waveActive;
+  const recoverAudioRef=useRef<(failed:Track,error:unknown)=>Promise<boolean>>(async()=>false),failedAudio=useRef({scope:'',at:0,ids:new Set<string>()});
   useEffect(()=>{warmup.current.reset(store.user?.id||'guest');waveVersion.current++;tailFlight.current=null;setWaveActive(false);setWaveOptions(defaultWave);},[store.user?.id]);
   const audioMeter=useRef<{context:AudioContext;graph:AudioGraph|null}|null>(null),loadAbort=useRef<AbortController|null>(null);
   const [connectState,setConnectState]=useState<ConnectState|null>(null),[outputHere,setOutputHere]=useState(true),[connectionStatus,setConnectionStatus]=useState<'online'|'connecting'|'offline'>('offline');
@@ -106,7 +109,7 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
       if(fresh.kind==='audio'){
         if(local)objectUrl.current=fresh.url!;
         const current=()=>revision===loadRevision.current&&startedUserId===userRef.current?.id&&!request.signal.aborted;
-        const failStream=(error:Error)=>{if(!current())return;desiredPlay.current=false;resolvingTrack.current=false;setTrackLoading(false);audio.pause();setAutoplayBlocked(false);reportError(error,'playback',{code:'HLS_STREAM'});update({playing:false});store.notify(t('copy.715'),true);};
+        const failStream=(error:Error)=>{if(!current())return;const canRecover=!strict||!resolvingTrack.current;desiredPlay.current=false;resolvingTrack.current=false;setTrackLoading(false);audio.pause();setAutoplayBlocked(false);reportError(error,'playback',{code:'HLS_STREAM'});update({playing:false});if(canRecover)void recoverAudioRef.current(next,new ApiError('AUDIO_FORMAT_UNAVAILABLE',t('copy.715'))).then(recovered=>{if(!recovered&&current())store.notify(t('copy.715'),true);}).catch(()=>{});else store.notify(t('copy.715'),true);};
         let renewing=false;
         const renewStream=async(error:Error)=>{
           if(!current()||renewing)return false;renewing=true;
@@ -128,6 +131,7 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
         catch(error){if(!current())return;if(fresh.format!=='hls')throw error;if(!await renewStream(error instanceof Error?error:Error('Stream unavailable')))return;}
         if(!current())return;audio.volume=stateRef.current.volume;audio.currentTime=desiredPosition.current;audio.playbackRate=roomRef.current?1:settingsRef.current.playbackRate;
         if(desiredPlay.current) {try {await audio.play();ensureAudioMeter();}catch(error) {if(!current())return;setTrackLoading(false);if(!isPlaybackBlocked(error)){setAutoplayBlocked(false);reportError(error,'playback',{code:'AUDIO_START'});throw new ApiError('AUDIO_FORMAT_UNAVAILABLE',t('copy.715'));}setAutoplayBlocked(true);if(strict)throw new ApiError('AUTOPLAY_BLOCKED',t('copy.705'));store.notify(t('copy.704'));}}
+        if(strict&&!playing)await waitForPlayback(()=>audio.readyState>=1,request.signal,t('copy.715'));
         if(userRef.current&&settingsRef.current.autoCache&&!local&&fresh.offline&&fresh.format!=='hls')void saveTrack(userRef.current.id,effective,settingsRef.current.cacheLimitMB,false).catch(()=>{});
       } else if(fresh.kind==='yandex'&&playing){store.notify(t('copy.706'));if(strict)throw new Error(t('copy.707'));}
       if(strict&&playing&&fresh.kind!=='audio')await waitForPlayback(()=>trackRef.current?.id===next.id&&stateRef.current.playing,request.signal,t('copy.708'));
@@ -139,7 +143,7 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
         if(revision!==loadRevision.current||startedUserId!==userRef.current?.id)return;
         return applyTrackRef.current(next,order,desiredPlay.current,desiredPosition.current,strict);
       }
-      if(revision===loadRevision.current){desiredPlay.current=false;resolvingTrack.current=false;setTrackLoading(false);audio.pause();update({playing:false});if(!strict)store.notify(errorText(error),true);}throw error;
+      if(revision===loadRevision.current){desiredPlay.current=false;resolvingTrack.current=false;setTrackLoading(false);audio.pause();update({playing:false});if(!strict&&await recoverAudioRef.current(next,error))return;if(!strict)store.notify(errorText(error),true);}throw error;
     }finally{if(revision===loadRevision.current){resolvingTrack.current=false;setTrackLoading(desiredPlay.current&&!audio.paused&&audio.readyState<3);}}
   },[audio,ensureAudioMeter,store.remember,store.notify,store.refreshLibrary,update]);
   const resolveQueue=useCallback(async(ids?:string[])=>{if(ids===undefined)return queueRef.current;const tracks:Track[]=[];for(const id of ids){const known=queueCandidates.current.get(id)||store.library.tracks.find(item=>item.id===id)||queueRef.current.find(item=>item.id===id);if(known)tracks.push(known);else try{tracks.push((await api<{track:Track}>(`/tracks/${id}`)).track);}catch{/* A deleted queue item is omitted. */}}return tracks;},[store.library.tracks]);
@@ -149,7 +153,7 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
       if(command.waveMode&&command.waveMood){waveOptionsRef.current={mode:command.waveMode,mood:command.waveMood};setWaveOptions(waveOptionsRef.current);setWaveActive(!!command.waveActive);update({waveMode:command.waveMode,waveMood:command.waveMood,waveActive:command.waveActive});}
       if(command.repeat!==undefined){repeatRef.current=command.repeat;setRepeatState(command.repeat);update({repeat:command.repeat});}if(command.enabled!==undefined){shuffleRef.current=command.enabled;setShuffleState(command.enabled);update({shuffle:command.enabled});}
       const next=store.library.tracks.find(item=>item.id===command.trackId)||queueRef.current.find(item=>item.id===command.trackId)||(await api<{track:Track}>(`/tracks/${command.trackId}`)).track;
-      if(command.volume!==undefined){audio.volume=command.volume;update({volume:command.volume});}await applyTrack(next,await resolveQueue(command.queue),true,command.position||0,strict);return;
+      if(command.volume!==undefined){audio.volume=command.volume;update({volume:command.volume});}await applyTrack(next,await resolveQueue(command.queue),command.playing!==false,command.position||0,strict);return;
     }
     if(command.command==='next'||command.command==='previous'){
       const current=queueRef.current.findIndex(item=>item.id===trackRef.current?.id),order=queueRef.current;
@@ -192,9 +196,10 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
     }catch(error){store.notify(errorText(error),true);if(strict)throw error;}
   },[socket,store.notify,setOutput]);
   const sendCommandRef=useRef(sendCommand);sendCommandRef.current=sendCommand;
-  const refillWave=useCallback(():Promise<boolean>=>{
+  const refillWave=useCallback((early=false):Promise<boolean>=>{
     if(tailFlight.current)return tailFlight.current;
     const current=trackRef.current;if(!current)return Promise.resolve(false);
+    if(early&&(!waveActiveRef.current||Date.now()<waveRetryAfter.current||queueRef.current.length-1-queueRef.current.findIndex(item=>item.id===current.id)>3))return Promise.resolve(false);
     const currentRoom=roomRef.current,user=userRef.current;
     if(currentRoom&&user?.role!=='admin'&&!currentRoom.members.some(member=>member.userId===user?.id&&member.canControl))return Promise.resolve(false);
     const scope=controlScope(),version=waveVersion.current,options={...waveOptionsRef.current,seedTrackId:current.id};
@@ -202,8 +207,11 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
       const ids=queueRef.current.map(item=>item.id),nonce=String(Date.now());
       let result=await api<{tracks:Track[]}>(`/recommendations?${recommendationQuery(options,ids,nonce)}`);
       if(!result.tracks.length&&options.mode!=='discovery')result=await api<{tracks:Track[]}>(`/recommendations?${recommendationQuery(options,[current.id],nonce)}`);
-      if(version!==waveVersion.current||scope!==controlScope()||current.id!==trackRef.current?.id||!result.tracks.length)return false;
+      if(version!==waveVersion.current||scope!==controlScope()||current.id!==trackRef.current?.id)return false;
+      if(!result.tracks.length){waveRetryAfter.current=Date.now()+20000;return false;}
       const seen=new Set(ids),fresh=result.tracks.filter(item=>!seen.has(item.id));
+      waveRetryAfter.current=Date.now()+20000;
+      if(early&&!fresh.length)return false;
       // A finite catalogue may be exhausted: only then recycle older songs, never the current one.
       const additions=fresh.length?fresh:result.tracks.filter(item=>item.id!==current.id);if(!additions.length)return false;
       for(const item of additions)queueCandidates.current.set(item.id,item);store.remember(additions);
@@ -212,9 +220,31 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
       await sendCommandRef.current({command:'queue',trackId:current.id,queue:order.map(item=>item.id),waveMode:options.mode,waveMood:options.mood,waveActive:true},currentRoom?.id,true);
       if(version!==waveVersion.current||scope!==controlScope()||current.id!==trackRef.current?.id)return false;
       setWaveActive(true);return true;
-    })().finally(()=>{if(tailFlight.current===promise)tailFlight.current=null;});
+    })().catch(error=>{waveRetryAfter.current=Date.now()+20000;throw error;}).finally(()=>{if(tailFlight.current===promise)tailFlight.current=null;});
     tailFlight.current=promise;return promise;
   },[controlScope,store.remember,update]);
+  recoverAudioRef.current=async(failed,error)=>{
+    if(!unavailableAudio(error)||!outputHereRef.current||navigator.onLine===false||trackRef.current?.id!==failed.id)return false;
+    const scope=JSON.stringify([userRef.current?.id,roomRef.current?.id]),ledger=failedAudio.current;
+    if(ledger.scope!==scope||Date.now()-ledger.at>60000||stateRef.current.position>5){ledger.scope=scope;ledger.at=Date.now();ledger.ids.clear();}
+    if(ledger.ids.has(failed.id)||ledger.ids.size>=5)return false;
+    const order=queueRef.current,index=order.findIndex(item=>item.id===failed.id);if(index<0)return false;
+    const active=roomRef.current;
+    if(active){
+      if(active.state.trackId!==failed.id||!active.state.playing||userRef.current?.role!=='admin'&&!active.members.some(member=>member.userId===userRef.current?.id&&member.canControl))return false;
+      ledger.ids.add(failed.id);
+      await sendCommandRef.current({command:'failed',trackId:failed.id,expectedRevision:active.state.revision},active.id,true);return true;
+    }
+    ledger.ids.add(failed.id);
+    const remaining=order.filter(item=>!ledger.ids.has(item.id));
+    const next=order.slice(index+1).find(item=>!ledger.ids.has(item.id))||(repeatRef.current==='all'?remaining[0]:null);
+    queueRef.current=remaining;setQueueState(remaining);update({queue:remaining.map(item=>item.id)});
+    if(!next)return false;
+    await applyTrackRef.current(next,remaining,true);return true;
+  };
+  useEffect(()=>{
+    if(waveActive&&state.playing&&outputHere&&!trackLoading&&repeat==='off')void refillWave(true).catch(()=>{});
+  },[waveActive,state.playing,outputHere,trackLoading,repeat,track?.id,queue.length,refillWave]);
   const command=useCallback((next:Command):Promise<void>=>{
     if(next.command==='seek'&&outputHereRef.current&&(resolvingTrack.current||trackLoadingRef.current))return Promise.resolve();
     if(['play','next','previous','track'].includes(next.command)){ensureAudioMeter();audioGesture.current.prime(audio);}
@@ -379,10 +409,10 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
   };
   useEffect(()=>{
     const local=()=>outputHereRef.current&&!audioGesture.current.owns(audio);
-    const onTime=()=>{if(local())update({position:audio.currentTime});};const onPlay=()=>{if(local()){update({playing:true});if(!resolvingTrack.current)setTrackLoading(audio.readyState<3);}else audio.pause();};const onPause=()=>{if(local()){update({playing:false});if(!resolvingTrack.current)setTrackLoading(false);}};const onDuration=()=>{if(local()&&Number.isFinite(audio.duration))setDuration(audio.duration);};
+    const onTime=()=>{if(local()){if(audio.currentTime>5)failedAudio.current.ids.clear();update({position:audio.currentTime});}};const onPlay=()=>{if(local()){update({playing:true});if(!resolvingTrack.current)setTrackLoading(audio.readyState<3);}else audio.pause();};const onPause=()=>{if(local()){update({playing:false});if(!resolvingTrack.current)setTrackLoading(false);}};const onDuration=()=>{if(local()&&Number.isFinite(audio.duration))setDuration(audio.duration);};
     const onReady=()=>{if(local()&&!resolvingTrack.current)setTrackLoading(false);};const onWaiting=()=>{if(local()&&!audio.paused&&desiredPlay.current&&playbackRef.current?.kind==='audio')setTrackLoading(true);};
     const onEnded=()=>{if(local()){setTrackLoading(false);finish();}};
-    const onError=()=>{if(local()&&audio.error&&audio.src&&!streamLoader.current.handlesMediaErrors&&!resolvingTrack.current){desiredPlay.current=false;setTrackLoading(false);audio.pause();setAutoplayBlocked(false);reportError('Audio playback failed','playback',{code:`MEDIA_${audio.error.code}`});update({playing:false});store.notify(t('copy.715'),true);}};
+    const onError=()=>{if(local()&&audio.error&&audio.src&&!streamLoader.current.handlesMediaErrors&&!resolvingTrack.current){desiredPlay.current=false;setTrackLoading(false);audio.pause();setAutoplayBlocked(false);reportError('Audio playback failed','playback',{code:`MEDIA_${audio.error.code}`});update({playing:false});const failed=trackRef.current;if(failed)void recoverAudioRef.current(failed,new ApiError('AUDIO_FORMAT_UNAVAILABLE',t('copy.715'))).then(recovered=>{if(!recovered&&failed.id===trackRef.current?.id)store.notify(t('copy.715'),true);}).catch(()=>{});}};
     audio.addEventListener('canplay',onReady);audio.addEventListener('playing',onReady);audio.addEventListener('waiting',onWaiting);audio.addEventListener('stalled',onWaiting);audio.addEventListener('timeupdate',onTime);audio.addEventListener('play',onPlay);audio.addEventListener('pause',onPause);audio.addEventListener('durationchange',onDuration);audio.addEventListener('ended',onEnded);audio.addEventListener('error',onError);
     return()=>{audio.removeEventListener('canplay',onReady);audio.removeEventListener('playing',onReady);audio.removeEventListener('waiting',onWaiting);audio.removeEventListener('stalled',onWaiting);audio.removeEventListener('timeupdate',onTime);audio.removeEventListener('play',onPlay);audio.removeEventListener('pause',onPause);audio.removeEventListener('durationchange',onDuration);audio.removeEventListener('ended',onEnded);audio.removeEventListener('error',onError);};
   },[audio,finish,store.notify,update]);
@@ -408,6 +438,7 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
   },[state.playing,track,pendingTrack,trackLoading,transportPending,command,locale.language]);
   useEffect(()=>{if(!store.user||store.offline)return;setConnectionStatus('connecting');const account=store.user.id,connection=io({withCredentials:true,auth:{language:getLanguage(),deviceId,surfaceId,name:browserDeviceName,kind:'web'}});socketRef.current=connection;setSocket(connection);const unbindSettings=store.bindSettingsSync(connection);
     const reloadDevices=()=>void refreshDevices();
+    connection.on('library:changed',()=>void store.refreshLibrary());
     connection.on('connect',()=>{setConnectionStatus('online');reloadDevices();
       const restore=async()=>{try{const value=(await api<{connect:ConnectState}>('/connect')).connect;if(account!==userRef.current?.id||!connection.connected)return;syncConnectRef.current(value,false);
         const pinned=value.roomId??(value.roomId===undefined?localStorage.getItem(`gw-room-${account}`):null);if(pinned){const adoptOnly=Boolean(value.activeDeviceId);if(roomRef.current?.id===pinned)await enterRoom(roomRef.current,adoptOnly);else await adoptRoomRef.current(pinned,adoptOnly);if(roomRef.current?.id===pinned)await syncRoomStateRef.current({roomId:pinned,state:roomRef.current.state,serverTime:Date.now()},true);}

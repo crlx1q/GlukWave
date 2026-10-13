@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "distinctTestsVerified": 390,
+  "runs": [
+    {
+      "log": "refinement20-native-final.jsonl",
+      "runnerSuccess": true,
+      "completed": 390,
+      "failed": 0,
+      "failures": []
+    }
+  ],
+  "unresolved": [],
+  "scope": "Actual Flutter CLI outcomes. Earlier failures retained; recovery replaces the same named scenario only."
+}

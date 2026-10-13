@@ -117,14 +117,30 @@ class WaveApi {
     final playback =
         method == 'GET' &&
         RegExp(r'^/api/tracks/[^/]+/playback$').hasMatch(path);
-    final deadline = DateTime.now().add(const Duration(minutes: 2));
+    final action =
+        method == 'POST' &&
+        (path == '/api/devices/command' ||
+            RegExp(r'^/api/integrations/[^/]+/import$').hasMatch(path));
+    final intent = action
+        ? (object(data)['requestId']?.toString() ??
+              'native-${DateTime.now().microsecondsSinceEpoch}')
+        : '';
+    final poll = playback || action;
+    final account = token, origin = server;
+    final deadline = DateTime.now().add(Duration(minutes: action ? 5 : 2));
     var retries = 0;
     while (true) {
-      if (playback && !DateTime.now().isBefore(deadline)) {
-        throw WaveException(wt('native.5918da6940'), 'PLAYBACK_TIMEOUT');
+      if (poll &&
+          (!DateTime.now().isBefore(deadline) ||
+              account != token ||
+              origin != server)) {
+        throw WaveException(
+          wt('native.5918da6940'),
+          action ? 'ACTION_TIMEOUT' : 'PLAYBACK_TIMEOUT',
+        );
       }
-      final cancellation = playback ? CancelToken() : null;
-      final budget = playback
+      final cancellation = poll ? CancelToken() : null;
+      final budget = poll
           ? Timer(
               deadline.difference(DateTime.now()),
               () => cancellation!.cancel('Playback resolution deadline'),
@@ -141,13 +157,18 @@ class WaveApi {
             headers: {
               ...headers,
               if (playback) 'X-GlukWave-Playback-Wait': 'poll',
+              if (action) 'X-GlukWave-Command-Wait': 'poll',
+              if (action) 'X-GlukWave-Intent': intent,
             },
-            receiveTimeout: playback ? const Duration(seconds: 15) : null,
+            receiveTimeout: poll ? const Duration(seconds: 15) : null,
           ),
         );
-        if (playback && result.statusCode == 202) {
+        if (poll && result.statusCode == 202) {
           if (DateTime.now().isAfter(deadline)) {
-            throw WaveException(wt('native.5918da6940'), 'PLAYBACK_TIMEOUT');
+            throw WaveException(
+              wt('native.5918da6940'),
+              action ? 'ACTION_TIMEOUT' : 'PLAYBACK_TIMEOUT',
+            );
           }
           final seconds =
               (int.tryParse(result.headers.value('retry-after') ?? '') ?? 2)
@@ -157,8 +178,11 @@ class WaveApi {
         }
         return object(result.data);
       } on DioException catch (error) {
-        if (playback && !DateTime.now().isBefore(deadline)) {
-          throw WaveException(wt('native.5918da6940'), 'PLAYBACK_TIMEOUT');
+        if (poll && !DateTime.now().isBefore(deadline)) {
+          throw WaveException(
+            wt('native.5918da6940'),
+            action ? 'ACTION_TIMEOUT' : 'PLAYBACK_TIMEOUT',
+          );
         }
         final status = error.response?.statusCode;
         final temporary =
@@ -168,7 +192,7 @@ class WaveApi {
               DioExceptionType.receiveTimeout,
               DioExceptionType.connectionError,
             ].contains(error.type);
-        if (playback &&
+        if (poll &&
             temporary &&
             retries < 2 &&
             DateTime.now().isBefore(deadline)) {

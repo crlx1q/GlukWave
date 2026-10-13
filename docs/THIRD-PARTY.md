@@ -70,3 +70,7 @@ Discord protocol research (10 October 2026): official Social SDK/OAuth documenta
 ## SoundCloud HLS и локальное сопряжение — 1.0.0+9
 
 Веб использует hls.js1.7.3 (Apache-2.0, Dailymotion), подключённый отдельным chunk только для HLS. Native использует cryptography2.9.0 (Apache-2.0) для AES-256-GCM/HKDF локального канала. Неизменённые лицензии сохранены в docs/licenses/Hls-js-Apache-2.0.txt и Cryptography-Apache-2.0.txt; оба уведомления включаются в Windows bundle. Официальные SoundCloud API-потоки используются по условиям платформы, сохраняют attribution и не выдаются за разрешённые offline-загрузки. Виджеты остаются лишь у источников без отдельного разрешённого аудиопути.
+
+## Bundled extraction runtime — 1.0.0+20
+
+The server source includes the unmodified official yt-dlp 2026.08.19 Python zip application and its bundled yt-dlp-ejs JavaScript resources. Exact upstream URL, size and SHA-256 are in `apps/server/extractors/vendor/manifest.json`; original Unlicense texts are preserved alongside it. The previously bundled 2026.03.03 runtime silently took precedence over the newer pinned dependency. The current runtime matches `requirements-ytdlp.txt`. No extractor is included in the native APK/EXE. Existing platform permissions and runtime availability still apply.

@@ -67,6 +67,7 @@ def normalized(info, source):
             'album': str(info.get('album') or '')[:300], 'duration': info.get('duration') or 0,
             'cover': info.get('thumbnail') or '', 'source': source,
             'source_url': info.get('webpage_url') or '', 'license': str(info.get('license') or '')[:500],
+            'genres': (info.get('genres') or [])[:30], 'tags': (info.get('tags') or [])[:30],
             'availability': info.get('availability'), 'audio_url': info.get('url'),
             'codec': info.get('acodec'), 'ext': info.get('ext'), 'protocol': info.get('protocol'),
             'http_headers': {k: v for k, v in (info.get('http_headers') or {}).items() if k.lower() in {'user-agent', 'accept'}}}

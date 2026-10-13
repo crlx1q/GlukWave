@@ -1,0 +1,24 @@
+import {getLanguage} from './locale';
+export function refinementText(key:string){const values=copy[key];return values?.[getLanguage()]||values?.en||key;}
+const copy:Record<string,Record<string,string>>={
+ waveContinues:{en:'This wave continues as you listen',ru:'Эта волна продолжается, пока ты слушаешь',kk:'Тыңдаған сайын толқын жалғасады',uk:'Ця хвиля триває, поки ти слухаєш',de:'Diese Welle läuft weiter, während du hörst',es:'Esta ola continúa mientras escuchas'},
+ waveStartChoice:{en:'Choose your wave, then press Play',ru:'Выбери свою волну и нажми Play',kk:'Толқынды таңдап, Play бас',uk:'Обери хвилю й натисни Play',de:'Wähle deine Welle und drücke Play',es:'Elige tu ola y pulsa Play'},
+ forYou:{en:'Made for your taste',ru:'На твоей частоте',kk:'Сенің талғамыңа сай',uk:'На твоїй частоті',de:'Auf deiner Frequenz',es:'En tu frecuencia'},
+ discover:{en:'A little further from familiar',ru:'Немного дальше привычного',kk:'Таныс музыкадан сәл әрі',uk:'Трохи далі звичного',de:'Etwas weiter als gewohnt',es:'Un poco más allá de lo conocido'},
+ popular:{en:'Popular now',ru:'Сейчас на слуху',kk:'Қазір танымал',uk:'Зараз на слуху',de:'Gerade beliebt',es:'Popular ahora'},
+ playlists:{en:'Your playlists, within reach',ru:'Твои плейлисты рядом',kk:'Плейлистерің жаныңда',uk:'Твої плейлісти поруч',de:'Deine Playlists griffbereit',es:'Tus listas, a mano'},
+ importPlaylist:{en:'As a playlist',ru:'В плейлист',kk:'Плейлистке',uk:'У плейліст',de:'Als Playlist',es:'Como lista'},
+ importLikes:{en:'To favourites',ru:'В любимые',kk:'Таңдаулыларға',uk:'До улюблених',de:'Zu Favoriten',es:'A favoritos'},
+ importAll:{en:'Import the entire collection',ru:'Перенести всю подборку',kk:'Барлық жинақты көшіру',uk:'Перенести всю добірку',de:'Gesamte Sammlung importieren',es:'Importar toda la colección'},
+ loadMore:{en:'Show more tracks',ru:'Показать ещё треки',kk:'Тағы тректерді көрсету',uk:'Показати ще треки',de:'Weitere Titel anzeigen',es:'Ver más canciones'},
+ selectAll:{en:'Select loaded tracks',ru:'Выбрать загруженные',kk:'Жүктелгендерді таңдау',uk:'Обрати завантажені',de:'Geladene Titel auswählen',es:'Seleccionar canciones cargadas'},
+ imported:{en:'Music is now in Gluk Wave',ru:'Музыка уже в Gluk Wave',kk:'Музыка енді Gluk Wave ішінде',uk:'Музика вже у Gluk Wave',de:'Deine Musik ist jetzt in Gluk Wave',es:'Tu música ya está en Gluk Wave'},
+ tasteSeed:{en:'Your selection also helps personalise the wave.',ru:'Твой выбор также поможет волне узнать твой вкус.',kk:'Таңдауың толқынға талғамыңды білуге көмектеседі.',uk:'Твій вибір також допоможе хвилі дізнатися твій смак.',de:'Deine Auswahl hilft auch, die Welle zu personalisieren.',es:'Tu selección también ayuda a personalizar la ola.'},
+ selection:{en:'Selected',ru:'Выбрано',kk:'Таңдалды',uk:'Обрано',de:'Ausgewählt',es:'Seleccionadas'},
+ retry:{en:'Try again',ru:'Повторить',kk:'Қайталау',uk:'Повторити',de:'Erneut versuchen',es:'Reintentar'},
+ importing:{en:'Bringing your music over…',ru:'Переносим твою музыку…',kk:'Музыкаңды көшіріп жатырмыз…',uk:'Переносимо твою музику…',de:'Deine Musik wird übertragen…',es:'Transfiriendo tu música…'},
+ empty:{en:'This collection has no tracks',ru:'В этой подборке пока нет треков',kk:'Бұл жинақта әлі тректер жоқ',uk:'У цій добірці поки немає треків',de:'Diese Sammlung enthält keine Titel',es:'Esta colección no tiene canciones'},
+ duplicates:{en:'Already in your library',ru:'Уже в твоей медиатеке',kk:'Медиатекаңда бұрыннан бар',uk:'Уже у твоїй медіатеці',de:'Bereits in deiner Sammlung',es:'Ya en tu biblioteca'},
+ unavailable:{en:'Currently unavailable',ru:'Пока недоступны',kk:'Қазір қолжетімсіз',uk:'Поки недоступні',de:'Derzeit nicht verfügbar',es:'No disponibles ahora'},
+ recommendationsUnavailable:{en:'These recommendations are temporarily unavailable.',ru:'Эта подборка пока недоступна.',kk:'Бұл жинақ уақытша қолжетімсіз.',uk:'Ця добірка поки недоступна.',de:'Diese Empfehlungen sind vorübergehend nicht verfügbar.',es:'Estas recomendaciones no están disponibles ahora.'},
+};

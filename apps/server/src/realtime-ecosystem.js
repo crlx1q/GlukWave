@@ -1,4 +1,6 @@
 import {Server} from 'socket.io';
+import {createActionJobs} from './action-jobs.js';
+import {digest} from './util.js';
 import {z} from 'zod';
 import {parse,text,fail,asyncRoute} from './util.js';
 import {stateSchema,commandSchema,initialState,liveState} from './rooms.js';
@@ -9,6 +11,7 @@ import {planLimits} from './plans.js';
 export function setupRealtime(server,app,ctx){
   const {store,config,requireAuth}=ctx;
   const io=new Server(server,{cors:{origin:config.origins,credentials:true},maxHttpBufferSize:64*1024,allowRequest:(req,cb)=>cb(null,!req.headers.origin||config.origins.includes(req.headers.origin))});ctx.io=io;
+  const commandJobs=createActionJobs();
   const live=new Map(),primary=new Map(),changing=new Set(),disconnects=new Set();
   let directoryTimer=null;ctx.invalidateRoomDirectory=()=>{if(directoryTimer)return;directoryTimer=setTimeout(()=>{directoryTimer=null;io.emit('room:directory',{changed:true});},1000);directoryTimer.unref();};
   ctx.realtimeStats=()=>({sockets:io.sockets.sockets.size,installations:live.size,primaryOutputs:primary.size,pendingMutations:changing.size,pendingDisconnects:disconnects.size});
@@ -41,8 +44,8 @@ export function setupRealtime(server,app,ctx){
   ctx.discordOutput=async uid=>{const value=await store.get('connect',uid);if(!value?.activeDeviceId)return null;const socket=outputSocket(keyFor(uid,value.activeDeviceId),value.activeSurfaceId);if(!socket||!await ctx.authenticate(socket.data.rawToken))return null;return {connect:await snapshot(uid),device:{name:socket.data.device.name,kind:socket.data.device.kind}};};
   async function dispatch(socket,command){
     if(!socket?.connected)fail(409,'DEVICE_OFFLINE','Устройство отключено.');
-    try{const result=await socket.timeout(10000).emitWithAck('device:command',command);if(result?.error)fail(409,result.error.code||'PLAYBACK_FAILED',result.error.message||'Устройство не начало воспроизведение.');if(!result||result.ok!==true)fail(409,'PLAYBACK_FAILED','Устройство не подтвердило воспроизведение.');return result;}
-    catch(err){if(err.status)throw err;fail(504,'DEVICE_TIMEOUT','Устройство не подтвердило команду. Открой приложение и разреши воспроизведение.');}
+    try{const result=await socket.timeout(['track','transfer'].includes(command.command)?210000:10000).emitWithAck('device:command',command);if(result?.error)fail(409,result.error.code||'PLAYBACK_FAILED',result.error.message||'Устройство не начало воспроизведение.');if(!result||result.ok!==true)fail(409,'PLAYBACK_FAILED','Устройство не подтвердило воспроизведение.');return result;}
+    catch(err){if(err.status)throw err;fail(504,'DEVICE_TIMEOUT','Устройство не завершило команду. Проверь подключение и повтори.');}
   }
   // ACK waits cannot let a heartbeat change the selected output underneath a transfer.
   const mutate=async(uid,work)=>ctx.withLock('connect:'+uid,async()=>{changing.add(uid);try{return await work();}finally{changing.delete(uid);}});
@@ -144,16 +147,21 @@ export function setupRealtime(server,app,ctx){
   app.get('/api/connect',requireAuth,asyncRoute(async(req,res)=>res.set('Cache-Control','no-store').json({connect:await snapshot(req.auth.user.id)})));
   app.patch('/api/connect',requireAuth,asyncRoute(async(req,res)=>{const {independent}=parse(z.object({independent:z.boolean()}).strict(),req.body),uid=req.auth.user.id;await mutate(uid,async()=>{const value=await store.get('connect',uid)||defaultConnect(uid);if(!independent)for(const [key] of live)if(key.startsWith(uid+':'))for(const socket of socketsFor(key))if(socket.data.device.surfaceId!==value.activeSurfaceId&&socket.data.lastState?.playing)await dispatch(socket,{command:'pause',localOnly:true,outputActive:false,roomId:socket.data.roomId||null});await store.update('connect',uid,v=>{v||=defaultConnect(uid);return {...v,independent,state:{...v.state,revision:(v.state.revision||0)+1}};});});res.json({connect:await publish(uid)});}));
   app.post('/api/devices/command',requireAuth,asyncRoute(async(req,res)=>{
+    if(req.headers['x-glukwave-account']&&req.headers['x-glukwave-account']!==req.auth.user.id)fail(409,'ACCOUNT_CHANGED','Аккаунт изменился. Повтори действие.');
     const {deviceId,surfaceId,...command}=parse(commandSchema.safeExtend({deviceId:text(100),surfaceId:text(100).optional()}),req.body),uid=req.auth.user.id,key=keyFor(uid,deviceId);for(const tid of [...(command.queue||[]),...(command.trackId?[command.trackId]:[])])await ctx.requireTrack(tid,req.auth.user);
+    const execute=async()=>{
     if(command.command==='transfer')await mutate(uid,async()=>{
       const target=outputSocket(key,surfaceId);if(!target)fail(409,'DEVICE_OFFLINE','Устройство сейчас отключено.');const value=await store.get('connect',uid)||defaultConnect(uid);if(value.activeDeviceId===deviceId&&value.activeSurfaceId===target.data.device.surfaceId)return;const sourceDid=command.fromDeviceId||value.activeDeviceId,sourceKey=keyFor(uid,sourceDid),source=await store.get('devices',sourceKey),sourceSocket=outputSocket(sourceKey,value.activeDeviceId===sourceDid?value.activeSurfaceId:undefined);
       if(!source||!sourceSocket)fail(409,'SOURCE_OFFLINE','На исходном устройстве нет активного трека.');if(sourceSocket.id===target.id)fail(400,'SOURCE_DEVICE','Выбери другое устройство.');
       const active=value.activeDeviceId===sourceDid,roomId=active?value.roomId||null:source.roomId||null,room=roomId?await ctx.requireRoom(roomId,uid):null,state={...liveState(room?{...room.state,volume:value.state.volume}:active?value.state:source.state),updatedAt:Date.now()};if(room?.type==='jam'&&value.jamPaused)state.playing=false;if(!state.trackId)fail(409,'SOURCE_OFFLINE','На исходном устройстве нет активного трека.');for(const tid of new Set([state.trackId,...state.queue]))await ctx.requireTrack(tid,req.auth.user);
       io.to(`user:${uid}`).emit('connect:transfer',{status:'pending',deviceId,fromDeviceId:sourceDid});
       try{
+        // Prepare the target decoder while the source keeps playing. Only switch
+        // ownership after it is ready; failed preparation leaves the source audible.
+        await dispatch(target,{command:'track',trackId:state.trackId,position:state.position,queue:state.queue,volume:state.volume,repeat:state.repeat,enabled:state.shuffle,waveMode:state.waveMode,waveMood:state.waveMood,waveActive:state.waveActive,playing:false,localOnly:true,outputActive:false,roomId});
+        if(state.playing){state.position+=Math.max(0,Date.now()-state.updatedAt)/1000;state.updatedAt=Date.now();await dispatch(target,{command:'seek',position:state.position,localOnly:true,outputActive:false,roomId});}
         await dispatch(sourceSocket,{command:'pause',localOnly:true,outputActive:false,roomId});
-        await dispatch(target,{command:'track',trackId:state.trackId,position:state.position,queue:state.queue,volume:state.volume,repeat:state.repeat,enabled:state.shuffle,waveMode:state.waveMode,waveMood:state.waveMood,waveActive:state.waveActive,localOnly:true,outputActive:true,roomId});
-        if(!state.playing)await dispatch(target,{command:'pause',localOnly:true,outputActive:true,roomId});
+        await dispatch(target,{command:state.playing?'play':'pause',localOnly:true,outputActive:true,roomId});
         // Loading can outlive a login. A late player ACK cannot revive an expired output.
         await ensure(target);
         const requestingSession=await store.get('sessions',req.auth.session.id);
@@ -167,7 +175,13 @@ export function setupRealtime(server,app,ctx){
       }
       catch(err){await dispatch(target,{command:'pause',localOnly:true,outputActive:false,roomId}).catch(()=>{});await dispatch(sourceSocket,{command:state.playing?'play':'pause',localOnly:true,outputActive:true,roomId}).catch(()=>{});io.to(`user:${uid}`).emit('connect:transfer',{status:'failed',deviceId});throw err;}
       finally{await publish(uid);changes(uid);if(roomId)await roomPresence(roomId);}
-    });else{if(command.command==='ended')fail(400,'INVALID_COMMAND','Неверная команда устройства.');const target=outputSocket(key,surfaceId);if(!target)fail(409,'DEVICE_OFFLINE','Устройство сейчас отключено.');if(target.data.roomId&&command.command!=='volume'){const room=await ctx.requireRoom(target.data.roomId,uid);if(room.type==='jam'&&room.ownerId!==uid&&req.auth.user.role!=='admin'&&['play','pause'].includes(command.command))await ctx.pauseJamListener(uid,room,command.command==='pause');else await ctx.roomCommand(uid,target.data.roomId,command);}else await dispatch(target,{...command,...(target.data.roomId?{localOnly:true,roomId:target.data.roomId}:{})});}res.json({ok:true,...(command.command==='transfer'?{connect:await snapshot(uid)}:{})});
+    });else{if(command.command==='ended')fail(400,'INVALID_COMMAND','Неверная команда устройства.');const target=outputSocket(key,surfaceId);if(!target)fail(409,'DEVICE_OFFLINE','Устройство сейчас отключено.');if(target.data.roomId&&command.command!=='volume'){const room=await ctx.requireRoom(target.data.roomId,uid);if(room.type==='jam'&&room.ownerId!==uid&&req.auth.user.role!=='admin'&&['play','pause'].includes(command.command))await ctx.pauseJamListener(uid,room,command.command==='pause');else await ctx.roomCommand(uid,target.data.roomId,command);}else await dispatch(target,{...command,...(target.data.roomId?{localOnly:true,roomId:target.data.roomId}:{})});}return {ok:true,...(command.command==='transfer'?{connect:await snapshot(uid)}:{})};};
+    res.set('Cache-Control','private, no-store');
+    if(req.headers['x-glukwave-command-wait']==='poll'){
+      const intent=String(req.headers['x-glukwave-intent']||'');if(!/^[\w-]{8,100}$/.test(intent))fail(400,'INVALID_COMMAND','Неверный идентификатор команды.');
+      const result=await commandJobs.wait(req.auth.session.id+':'+intent+':'+digest(JSON.stringify({deviceId,surfaceId,...command})),execute);
+      if(result.pending)res.status(202).set('Retry-After','1');res.json(result);
+    }else res.json(await execute());
   }));
-  ctx.closeRealtime=async()=>{clearTimeout(directoryTimer);await new Promise(resolve=>io.close(resolve));await Promise.allSettled([...disconnects]);};
+  ctx.closeRealtime=async()=>{commandJobs.close();clearTimeout(directoryTimer);await new Promise(resolve=>io.close(resolve));await Promise.allSettled([...disconnects]);};
 }

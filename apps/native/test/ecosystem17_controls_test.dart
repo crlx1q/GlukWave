@@ -350,6 +350,7 @@ void main() {
         }),
       );
       await tester.runAsync(installArtworkFixture);
+      c.online = true;
       const art = 'https://wave-fixture.invalid/coast.jpg';
       final track = WaveTrack({
         'id': 'owned-art',
@@ -381,19 +382,14 @@ void main() {
         isTrue,
       );
       expect(tester.takeException(), isNull);
-      final scroll = tester.state<ScrollableState>(
-        find
-            .descendant(
-              of: find.byKey(const Key('player-content-scroll')),
-              matching: find.byType(Scrollable),
-            )
-            .first,
-      );
       expect(
-        scroll.position.maxScrollExtent,
-        lessThanOrEqualTo(1),
+        find.descendant(
+          of: find.byKey(const Key('player-content-scroll')),
+          matching: find.byType(SingleChildScrollView),
+        ),
+        findsNothing,
         reason:
-            'Ordinary fullscreen must fit without a whole-player scrollbar.',
+            'Fullscreen artwork and transport fit the viewport without an outer scroll.',
       );
       final play = tester.getRect(find.byKey(const Key('player-play')));
       expect(play.bottom, lessThan(size.height));

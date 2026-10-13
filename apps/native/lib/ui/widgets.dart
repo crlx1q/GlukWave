@@ -1,4 +1,5 @@
 import 'motion_icons.dart';
+import 'dart:io';
 import 'scrolling_label.dart';
 import '../l10n/wave_localizations.dart';
 import 'dart:math' as math;
@@ -234,6 +235,22 @@ class EmptyState extends StatelessWidget {
   );
 }
 
+/// Resolves durable cover files before attempting the network. Shared by the
+/// artwork, ambient scene and the once-per-cover accent sampler.
+ImageProvider? waveArtworkProvider(WaveController controller, String value) {
+  final local = controller.cache.artworkForUrl(value);
+  if (local != null) return FileImage(File(local));
+  if (!controller.online || value.isEmpty) return null;
+  final uri = Uri.tryParse(controller.api.url(value));
+  if (uri == null || !['http', 'https'].contains(uri.scheme)) return null;
+  return NetworkImage(
+    uri.toString(),
+    headers: uri.origin == Uri.parse(controller.api.server).origin
+        ? controller.api.headers
+        : null,
+  );
+}
+
 class Artwork extends StatefulWidget {
   final WaveController controller;
   final String? url;
@@ -278,7 +295,7 @@ class _ArtworkState extends State<Artwork> {
       ),
     );
     final value = url ?? '';
-    final uri = value.isNotEmpty
+    final uri = value.isNotEmpty && controller.online
         ? Uri.tryParse(controller.api.url(value))
         : null;
     Widget image(String address, {bool mayFallback = false}) => Image.network(
@@ -299,6 +316,19 @@ class _ArtworkState extends State<Artwork> {
       errorBuilder: (_, error, trace) =>
           mayFallback ? image(uri.toString()) : fallback,
     );
+    final cachedArtwork = controller.cache.artworkForUrl(value);
+    final localArtwork = cachedArtwork == null
+        ? null
+        : Image.file(
+            File(cachedArtwork),
+            fit: fit,
+            gaplessPlayback: true,
+            cacheWidth: (size * MediaQuery.devicePixelRatioOf(context))
+                .ceil()
+                .clamp(64, 1024),
+            errorBuilder: (_, error, trace) =>
+                uri == null ? fallback : image(uri.toString()),
+          );
     final original = uri?.toString() ?? '';
     final displayed = artworkForDisplay(original, large: size >= 96);
     shown ??= displayed;
@@ -371,7 +401,7 @@ class _ArtworkState extends State<Artwork> {
         child: SizedBox(
           width: size,
           height: size,
-          child: uri == null ? fallback : artwork,
+          child: localArtwork ?? (uri == null ? fallback : artwork),
         ),
       ),
     );
@@ -606,166 +636,112 @@ class _WaveHeroState extends State<WaveHero>
   @override
   Widget build(BuildContext context) => LayoutBuilder(
     builder: (context, constraints) {
-      final v = waveVisuals(context);
-      final compact = constraints.maxWidth < 600 || v.compact;
-      final height = compact ? 300.0 : 380.0;
+      final v = waveVisuals(context),
+          compact = constraints.maxWidth < 600 || v.compact;
+      final height = compact ? 260.0 : 310.0;
       return MouseRegion(
-        onHover: (event) => _readPointer(
-          event.localPosition,
-          constraints.maxWidth,
-          (context.findRenderObject() as RenderBox).size.height,
-        ),
+        onHover: (event) =>
+            _readPointer(event.localPosition, constraints.maxWidth, height),
         onExit: (_) => _targetActive = 0,
         child: Listener(
-          onPointerMove: (event) => _readPointer(
-            event.localPosition,
-            constraints.maxWidth,
-            (context.findRenderObject() as RenderBox).size.height,
-          ),
+          onPointerMove: (event) =>
+              _readPointer(event.localPosition, constraints.maxWidth, height),
           onPointerUp: (_) => _targetActive = 0,
           onPointerCancel: (_) => _targetActive = 0,
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(
-              waveRadius(context, compact ? 20 : 24),
-            ),
-            child: ConstrainedBox(
-              constraints: BoxConstraints(minHeight: height),
-              child: Stack(
-                children: [
-                  Positioned.fill(child: Container(color: v.player)),
-                  Positioned.fill(
-                    child: RepaintBoundary(
-                      child: CustomPaint(
-                        painter: WavePainter(
-                          reduced
-                              ? bloomPhase
-                              : bloomPhase + animation.value * 90,
-                          accentColor: v.accent,
-                          backgroundColor: v.surface,
-                          style: v.waveStyle,
-                          energy: reduced ? 0 : _energy,
-                          pointer: reduced ? const Offset(.5, .5) : _pointer,
-                          pointerActive: reduced ? 0 : _pointerActive,
-                          pointerVelocity: reduced ? Offset.zero : _velocity,
-                        ),
+          child: SizedBox(
+            height: height,
+            child: Stack(
+              children: [
+                Positioned(
+                  left: 0,
+                  right: 0,
+                  top: 62,
+                  bottom: 0,
+                  child: RepaintBoundary(
+                    child: CustomPaint(
+                      painter: WavePainter(
+                        reduced
+                            ? bloomPhase
+                            : bloomPhase + animation.value * 90,
+                        accentColor: v.accent,
+                        backgroundColor: v.background,
+                        style: v.waveStyle,
+                        energy: reduced ? 0 : _energy,
+                        pointer: reduced ? const Offset(.5, .5) : _pointer,
+                        pointerActive: reduced ? 0 : _pointerActive,
+                        pointerVelocity: reduced ? Offset.zero : _velocity,
                       ),
                     ),
                   ),
-                  Positioned.fill(
-                    child: DecoratedBox(
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            v.player,
-                            v.player.withValues(alpha: .44),
-                            v.player.withValues(alpha: 0),
-                          ],
-                          stops: const [0, .20, .82],
-                        ),
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            wt('native.c56877fbe6', context: context),
+                            style: TextStyle(
+                              fontSize: compact ? 26 : 31,
+                              height: 1.15,
+                              fontWeight: FontWeight.w800,
+                              letterSpacing: -.9,
+                              color: v.ink,
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          Text(
+                            widget.caption ??
+                                (widget.empty
+                                    ? wt('native.c1a1b57faa', context: context)
+                                    : wt(
+                                        'native.642189648a',
+                                        context: context,
+                                      )),
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              color: v.muted,
+                              fontSize: compact ? 11 : 13,
+                              height: 1.6,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(compact ? 22 : 34),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            Text(
-                              wt('native.2bf6b84a6f', context: context),
-                              style: TextStyle(
-                                color: v.onPlayer.withValues(alpha: .66),
-                                letterSpacing: 1.8,
-                                fontSize: 9,
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: compact ? 18 : 28),
-                        Text(
-                          wt('native.c56877fbe6', context: context),
-                          style: TextStyle(
-                            fontSize: compact ? 28 : 36,
-                            height: 1.1,
-                            color: v.onPlayer,
-                            fontWeight: FontWeight.w700,
-                            letterSpacing: -1,
+                    const SizedBox(width: 14),
+                    WavePress(
+                      child: FilledButton(
+                        onPressed: widget.onPlay,
+                        style: FilledButton.styleFrom(
+                          minimumSize: const Size(54, 54),
+                          maximumSize: const Size(54, 54),
+                          padding: EdgeInsets.zero,
+                          backgroundColor: v.ink,
+                          foregroundColor: v.background,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(v.corners(18)),
                           ),
                         ),
-                        const SizedBox(height: 8),
-                        Text(
-                          widget.caption ??
-                              (widget.empty
-                                  ? wt('native.c1a1b57faa', context: context)
-                                  : wt('native.642189648a', context: context)),
-                          style: TextStyle(
-                            color: v.onPlayer.withValues(alpha: .72),
-                            fontSize: compact ? 11 : 13,
-                            height: 1.7,
-                          ),
-                        ),
-                        const SizedBox(height: 20),
-                        FilledButton.icon(
-                          onPressed: widget.onPlay,
-                          style: FilledButton.styleFrom(
-                            backgroundColor: v.onPlayer,
-                            foregroundColor: v.player,
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 20,
-                              vertical: 14,
-                            ),
-                            shape: const StadiumBorder(),
-                          ),
-                          icon: widget.empty
-                              ? const Icon(Icons.add_rounded, size: 19)
+                        child: Semantics(
+                          label: widget.playing
+                              ? wt('native.03498e395a', context: context)
+                              : wt('native.5f266e04fe', context: context),
+                          child: widget.empty
+                              ? const Icon(Icons.add_rounded, size: 24)
                               : WavePlaybackIcon(
                                   playing: widget.playing,
                                   loading: widget.loading,
-                                  size: 19,
+                                  size: 27,
                                 ),
-                          label: Text(
-                            widget.empty
-                                ? widget.emptyActionLabel ??
-                                      wt('native.99855bf52d', context: context)
-                                : widget.playing
-                                ? wt('native.03498e395a', context: context)
-                                : wt('native.5f266e04fe', context: context),
-                          ),
                         ),
-                        if (!compact) const SizedBox(height: 18),
-                        if (!compact)
-                          Row(
-                            children: [
-                              Icon(
-                                Icons.graphic_eq,
-                                color: waveVisuals(context).accent,
-                                size: 16,
-                              ),
-                              SizedBox(width: 8),
-                              Text(
-                                wt('native.c4ea2e3005', context: context),
-                                style: TextStyle(
-                                  color: v.onPlayer.withValues(alpha: .65),
-                                  fontSize: 10,
-                                ),
-                              ),
-                              Spacer(),
-                              Text(
-                                '∞',
-                                style: TextStyle(
-                                  color: waveVisuals(context).accent,
-                                  fontSize: 28,
-                                ),
-                              ),
-                            ],
-                          ),
-                      ],
+                      ),
                     ),
-                  ),
-                ],
-              ),
+                  ],
+                ),
+              ],
             ),
           ),
         ),
@@ -906,12 +882,14 @@ class TrackRow extends StatelessWidget {
   final WaveController controller;
   final WaveTrack track;
   final VoidCallback? onMore;
+  final Future<void> Function()? onPlay;
   final List<WaveTrack>? queue;
   const TrackRow({
     super.key,
     required this.controller,
     required this.track,
     this.onMore,
+    this.onPlay,
     this.queue,
   });
   @override
@@ -926,7 +904,8 @@ class TrackRow extends StatelessWidget {
         borderRadius: BorderRadius.circular(waveRadius(context, 14)),
         child: InkWell(
           borderRadius: BorderRadius.circular(waveRadius(context, 14)),
-          onTap: () => _run(() => controller.play(track, list: queue)),
+          onTap: () =>
+              _run(onPlay ?? () => controller.play(track, list: queue)),
           child: Padding(
             padding: EdgeInsets.symmetric(
               vertical: compact ? 5 : 9,

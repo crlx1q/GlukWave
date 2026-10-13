@@ -39,6 +39,15 @@ export function setupExtractors(app,ctx,overrides={}){
   let streams=0,conversion=false,versions=null,versionsAt=0,versionsJob=null;const transfers=new Set();
   const directory=path.join(config.dataDir,'extractor-covers');
   const limiter=rateLimit({windowMs:60000,limit:24,standardHeaders:'draft-8',legacyHeaders:false});
+  async function enrichTrack(track,info){
+    const tags=(info.tags||[]).filter(value=>typeof value==='string'&&value.length<60).slice(0,30);
+    const genre=(info.genres||[]).find(value=>typeof value==='string'&&value.length<60);
+    if(track.duration>0&&(track.tags?.length||!tags.length)&&(track.genre||!genre))return;
+    await store.update('tracks',track.id,previous=>previous?{...previous,
+      ...(previous.duration<=0&&info.duration>0?{duration:info.duration}:{}),
+      ...(!previous.tags?.length&&tags.length?{tags}:{}),...(!previous.genre&&genre?{genre}:{}),
+    }:undefined);
+  }
   async function cached(key,operation,ttl=300000){const value=metadata.get(key);if(value)return value;if(pending.has(key))return pending.get(key);if(pending.size>=16)fail(503,'EXTRACTOR_BUSY','Музыка загружается. Повтори чуть позже.');const task=operation().then(result=>{metadata.set(key,result,ttl);return result;});pending.set(key,task);try{return await task;}finally{pending.delete(key);}}
   async function details(source,url){const canonical=sourceUrl(url);if(canonical.source!==source||!adapters[source])fail(400,'UNSUPPORTED_URL','Этот источник недоступен.');return cached('metadata:'+canonical.url,()=>adapters[source].metadata(canonical.url),240000);}
   async function rightFor(track){
@@ -89,7 +98,7 @@ export function setupExtractors(app,ctx,overrides={}){
         const info=await details(identity.source,identity.url),permission=await rightFor(track)||licensePermission(info.license);
         const credit={...info,artist:String(info.artist||'').replace(/\s*-\s*Topic$/i,'')};
         if(permission?.stream&&audioMatch(target,credit).accepted&&safeCdn(info.audio_url,'hls')){
-          if(track.duration<=0&&info.duration>0)void store.update('tracks',track.id,t=>t?{...t,duration:info.duration}:undefined).catch(()=>{});
+          await enrichTrack(track,info);
           return {info,permission};
         }
       }catch{/* A broken candidate must not block another exact licensed match. */}
@@ -116,7 +125,7 @@ export function setupExtractors(app,ctx,overrides={}){
       if(!permission?.stream)return null;
       if(track.source==='spotify'&&!audioMatch(track,info).accepted)fail(409,'AUDIO_MATCH_REJECTED','Не найдено точное совпадение этого трека.');
       if(!safeCdn(info.audio_url,'hls'))fail(502,'AUDIO_FORMAT_UNAVAILABLE','Этот формат пока недоступен в плеере.');
-      if(track.duration<=0&&info.duration>0)void store.update('tracks',track.id,t=>t?{...t,duration:info.duration}:undefined).catch(()=>{});
+      await enrichTrack(track,info);
       return {info,permission};
     }catch(error){
       if(track.source==='youtube'){

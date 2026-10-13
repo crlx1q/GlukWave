@@ -368,18 +368,28 @@ void main() {
           c.render();
           await tester.pumpAndSettle();
           expect(find.text('Вальс №2'), findsWidgets);
-          expect(find.text(copy('Главная', language)), findsWidgets);
-          expectWholeLabel(
-            tester,
-            find.text(WaveStrings(language).text('native.90e8504b03')),
-          );
+          if (width < 900) {
+            final homeLabel = find.descendant(
+              of: find.byKey(const Key('nav-home')),
+              matching: find.text(copy('Главная', language)),
+            );
+            expect(homeLabel, findsOneWidget);
+            expectWholeLabel(tester, homeLabel);
+          } else {
+            expect(
+              tester
+                  .widget<IconButton>(find.byKey(const Key('nav-home')))
+                  .tooltip,
+              copy('Главная', language),
+            );
+          }
           await screenshot(tester, 'language-home-$language-${width.toInt()}');
           if (width < 900) {
             await tester.tap(find.byKey(const Key('mobile-menu')));
             await tester.pumpAndSettle();
             await tester.tap(find.text(copy('Настройки', language)).last);
           } else {
-            await tester.tap(find.text(copy('Настройки', language)).first);
+            await tester.tap(find.byKey(const Key('nav-settings')));
           }
           await tester.pumpAndSettle();
           expect(

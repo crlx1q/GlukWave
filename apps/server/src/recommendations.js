@@ -38,7 +38,7 @@ const rowSignal=(row,track)=>{
 const hash=value=>{let number=2166136261;for(const char of value)number=Math.imul(number^char.charCodeAt(0),16777619);return (number>>>0)/4294967296;};
 
 /** Rank metadata and accepted listening, then diversify. Never inspect or extract audio. */
-export function rankRecommendations({tracks,taste={},library={},stats=[],popularity=new Map(),seed=null,exclude=[],mode='personal',mood='personal',limit=20,nonce='',at=Date.now()}){
+export function rankRecommendations({tracks,taste={},library={},stats=[],popularity=new Map(),seed=null,related=[],exclude=[],mode='personal',mood='personal',limit=20,nonce='',at=Date.now()}){
  const liked=new Set(library.likedIds||[]),heard=new Set((library.history||[]).map(value=>value.trackId)),excluded=new Set(exclude),recent=new Map();
  for(const entry of library.history||[])if(!recent.has(entry.trackId))recent.set(entry.trackId,Date.parse(entry.playedAt||''));
  const selectedArtists=new Set((taste.artists||[]).map(value=>searchText(value.name))),selectedGenres=new Set((taste.genres||[]).map(genreKey));
@@ -46,6 +46,13 @@ export function rankRecommendations({tracks,taste={},library={},stats=[],popular
  for(const row of stats)if(row.plays>0||row.seconds>0)heard.add(row.trackId);
  const heardSongs=new Set([...heard,...liked].map(id=>byId.get(id)).filter(Boolean).map(songKey));
  const artistWeights=new Map(),tagWeights=new Map();
+ if(taste.automatic!==false&&(!taste.learnedResetAt||taste.importedAt>taste.learnedResetAt)){
+  // Imported metadata is a weak prior, never fabricated listening history.
+  for(const id of taste.importedTrackIds||[]){const track=byId.get(id);if(!track)continue;
+   for(const name of artists(track))artistWeights.set(name,Math.min(8,(artistWeights.get(name)||0)+.7));
+   for(const tag of features(track))tagWeights.set(tag,Math.min(10,(tagWeights.get(tag)||0)+.7));
+  }
+ }
  for(const row of stats){if(row.plays>0||row.seconds>0)heard.add(row.trackId);
   if(taste.automatic===false||taste.learnedResetAt&&row.updatedAt<=taste.learnedResetAt)continue;
   const track=byId.get(row.trackId);if(!track)continue;const signal=rowSignal(row,track);
@@ -65,7 +72,8 @@ export function rankRecommendations({tracks,taste={},library={},stats=[],popular
    if(row&&(!taste.learnedResetAt||row.updatedAt>taste.learnedResetAt))score+=rowSignal(row,track);
   }
   if(liked.has(track.id))score+=14;
-  if(seed){score+=overlap(tags,seedTags)*24+(names.some(name=>seedArtists.has(name))?18:0);}
+  if(seed){score+=overlap(tags,seedTags)*24+(names.some(name=>seedArtists.has(name))?(seedTags.size?8:18):0);}
+  if(related.includes(track.id))score+=20;
   const moodMatch=mood!=='personal'&&moods[mood]?.test([...tags,...track.moods||[]].join(' '));
   if(moodMatch)score+=22;
   if(mode==='popular')score=score*.35+Math.log1p(popular)*14+(moodMatch?14:0);
@@ -96,9 +104,10 @@ export function rankRecommendations({tracks,taste={},library={},stats=[],popular
 export function setupRecommendations(app,ctx){
  const {store}=ctx;let popularity=null,popularityAt=0,popularityJob=null;
  const candidateCache=new Map();let candidateJobs=0;
- async function briefWait(job){let timer;try{await Promise.race([job,new Promise(resolve=>{timer=setTimeout(resolve,6000);timer.unref();})]);}finally{clearTimeout(timer);}}
- async function discover(query,user){
-  const provider=ctx.providerConfiguration?.().filter(value=>value.searchAvailable).sort((a,b)=>['soundcloud','spotify','youtube'].indexOf(a.id)-['soundcloud','spotify','youtube'].indexOf(b.id))[0];
+ async function briefWait(job){let timer;try{await Promise.race([job,new Promise(resolve=>{timer=setTimeout(resolve,1500);timer.unref();})]);}finally{clearTimeout(timer);}}
+ async function discover(query,user,nonce=''){
+  const providers=ctx.providerConfiguration?.().filter(value=>value.searchAvailable).sort((a,b)=>['soundcloud','spotify','youtube'].indexOf(a.id)-['soundcloud','spotify','youtube'].indexOf(b.id))||[];
+  const provider=providers[Math.floor(hash(nonce+query)*providers.length)];
   if(!provider||!ctx.searchProvider)return;
   const key=(user?.id||'guest')+':'+provider.id+':'+query;
   let entry=candidateCache.get(key);
@@ -108,6 +117,19 @@ export function setupRecommendations(app,ctx){
   while(candidateCache.size>64)candidateCache.delete(candidateCache.keys().next().value);
   candidateJobs++;entry.job=ctx.searchProvider(provider.id,query,user?.id).catch(()=>[]).finally(()=>{candidateJobs--;entry.job=null;});
   await briefWait(entry.job);
+ }
+ const relatedCache=new Map();
+ async function neighbors(seed,user){
+  if(!seed||!ctx.relatedProviderTracks||seed.source!=='soundcloud')return [];
+  const key=(user?.id||'guest')+':'+seed.id;let entry=relatedCache.get(key);
+  if(!entry||Date.now()-entry.at>900000){
+   if(candidateJobs>=2)return [];
+   candidateJobs++;entry={at:Date.now(),ids:[],job:null};relatedCache.set(key,entry);
+   const current=entry;
+   entry.job=ctx.relatedProviderTracks(seed,user).then(tracks=>{current.ids=tracks.map(track=>track.id);}).catch(()=>{}).finally(()=>{candidateJobs--;current.job=null;});
+   while(relatedCache.size>64)relatedCache.delete(relatedCache.keys().next().value);
+  }
+  if(entry.job)await briefWait(entry.job);return entry.ids;
  }
  ctx.invalidateRecommendations=()=>{popularityAt=0;};
  async function aggregate(){
@@ -124,17 +146,24 @@ export function setupRecommendations(app,ctx){
   await ctx.flushListening?.();
   const [taste,library,stats,popular]=await Promise.all([uid?store.get('taste',uid):null,uid?store.get('libraries',uid):null,uid?store.list('listeningStats',row=>row.userId===uid):[],aggregate()]);
   const seed=query.seedTrackId?await ctx.requireTrack(query.seedTrackId,user):null;
+  const related=await neighbors(seed,user);
   const accessible=track=>track.public&&track.source!=='local'||!!uid&&track.uploadedBy===uid;
   let tracks=await store.list('tracks',accessible);
-  const rank=()=>rankRecommendations({tracks,taste:taste||{},library:library||{},stats,popularity:popular,seed,exclude,mode:query.mode,mood,limit:query.limit,nonce:query.nonce||uid||'guest'});
+  const rank=()=>rankRecommendations({tracks,taste:taste||{},library:library||{},stats,popularity:popular,seed,related,exclude,mode:query.mode,mood,limit:query.limit,nonce:query.nonce||uid||'guest'});
   let ranked=rank();
-  if(ranked.length<Math.min(8,query.limit)&&query.mode!=='favorites'){
-   const genre=seed?.genre||taste?.genres?.[0]||[...seed?.tags||[]][0]||'';
-   const names=seed?.artist||taste?.artists?.[0]?.name||'';
-   const terms=[names,genre,mood!=='personal'?mood:''].filter(Boolean).join(' ').slice(0,160)||'indie pop';
-   await discover(terms,user);tracks=await store.list('tracks',accessible);ranked=rank();
+  const poolArtists=new Set(ranked.flatMap(artists));
+  if(query.mode!=='favorites'&&(ranked.length<Math.min(8,query.limit)||poolArtists.size<3||query.mode==='discovery')){
+   const imported=taste?.automatic!==false&&(!taste?.learnedResetAt||taste?.importedAt>taste.learnedResetAt)?tracks.filter(track=>taste?.importedTrackIds?.includes(track.id)):[];
+   const genres=[...new Set([...(seed?features(seed):[]),...taste?.genres||[],...imported.flatMap(track=>[...features(track)])])].filter(Boolean).slice(0,20);
+   const families={'hip hop':['rap','rnb','trap'],'rock':['indie rock','alternative','post rock'],'pop':['indie pop','synth pop','dance'],'electronic':['house','techno','chillwave'],'ambient':['chill','downtempo','lofi'],'jazz':['soul','blues','jazz fusion'],'lofi':['chillhop','jazzhop','instrumental']};
+   const index=Math.floor(hash(query.nonce+':genres')*Math.max(1,genres.length)),genre=genres[index]||({calm:'chill',energy:'dance',happy:'funk',sad:'piano',focus:'instrumental',dream:'ambient'}[mood]||'indie pop');
+   const adjacent=families[genreKey(genre)]||[genre];
+   // Broaden a bounded tag branch each batch instead of fetching the same artist.
+   const queries=[genre,adjacent[Math.floor(hash(query.nonce+':branch')*adjacent.length)]+(mood!=='personal'?' '+mood:'')];
+   for(const terms of [...new Set(queries)].slice(0,2))await discover(terms.slice(0,160),user,query.nonce);
+   tracks=await store.list('tracks',accessible);ranked=rank();
   }
   if(uid){const [fresh,session]=await Promise.all([store.get('users',uid),store.get('sessions',req.auth.session.id)]);if(!fresh||fresh.blocked||!session||session.expiresAt<Date.now())fail(401,'AUTH_REQUIRED','Сессия завершена.');}
-  res.set('Cache-Control','private, no-store').json({tracks:ranked.map(track=>ctx.publicTrack(track,user)),artists:taste?.artists||[],genres:[...new Set(tracks.flatMap(track=>[track.genre,...track.tags||[]]).filter(value=>typeof value==='string'&&value.length<60))].sort().slice(0,100),reason:!ranked.length?'empty':seed?'seed':taste?.artists?.length||taste?.genres?.length?'taste':stats.length||library?.history?.length?'history':'catalogue',mode:query.mode,mood,seedTrackId:seed?.id||null,algorithm:'content-v1',popularityScope:'glukwave'});
+  res.set('Cache-Control','private, no-store').json({tracks:ranked.map(track=>ctx.publicTrack(track,user)),artists:taste?.artists||[],genres:[...new Set(tracks.flatMap(track=>[track.genre,...track.tags||[]]).filter(value=>typeof value==='string'&&value.length<60))].sort().slice(0,100),reason:!ranked.length?'empty':seed?'seed':taste?.artists?.length||taste?.genres?.length?'taste':stats.length||library?.history?.length?'history':'catalogue',mode:query.mode,mood,seedTrackId:seed?.id||null,algorithm:'content-graph-v2',popularityScope:'glukwave'});
  }));
 }

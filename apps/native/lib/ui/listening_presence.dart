@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../core/controller.dart';
 import '../core/models.dart';
 import '../l10n/ecosystem_polish_strings.dart';
+import '../l10n/wave_localizations.dart';
 import 'device_labels.dart';
 import 'widgets.dart';
 
@@ -104,43 +105,67 @@ class ListeningPresence extends StatelessWidget {
 class PlayingOutput extends StatelessWidget {
   final WaveController controller;
   final VoidCallback? onTap;
-  const PlayingOutput({super.key, required this.controller, this.onTap});
+  final bool banner;
+  const PlayingOutput({
+    super.key,
+    required this.controller,
+    this.onTap,
+    this.banner = false,
+  });
   @override
   Widget build(BuildContext context) {
     final c = controller, v = waveVisuals(context);
+    final localOutput = c.outputHere && c.audio.viewCurrent != null;
     final device =
         c.devices
             .where((d) => (d['deviceId'] ?? d['id']) == c.activeDeviceId)
             .firstOrNull ??
         <String, dynamic>{
-          'name': c.activeDeviceName,
+          'name': localOutput ? c.deviceName : c.activeDeviceName,
           'kind': c.outputHere ? c.deviceKind : 'web',
         };
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(v.corners(12)),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 6),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            DevicePlatformIcon(device: device, size: 16, color: v.accent),
-            const SizedBox(width: 7),
-            Flexible(
-              child: Text(
-                c.outputLabel,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: TextStyle(
-                  color: v.accent,
-                  fontSize: 11,
-                  fontWeight: FontWeight.w600,
+    return Material(
+      color: banner ? v.accentSoft : Colors.transparent,
+      borderRadius: BorderRadius.circular(v.corners(banner ? 9 : 12)),
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(v.corners(12)),
+        child: Padding(
+          padding: EdgeInsets.symmetric(
+            vertical: banner ? 4 : 8,
+            horizontal: banner ? 7 : 6,
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              DevicePlatformIcon(
+                device: device,
+                size: banner ? 13 : 16,
+                color: v.accent,
+              ),
+              const SizedBox(width: 7),
+              Flexible(
+                child: Text(
+                  localOutput
+                      ? wt(
+                          'connect.playingOn',
+                          context: context,
+                          values: {'name': c.deviceName},
+                        )
+                      : c.outputLabel,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: v.accent,
+                    fontSize: banner ? 9 : 11,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(width: 8),
-            ListeningWave(playing: c.audio.playing, size: 15),
-          ],
+              const SizedBox(width: 8),
+              ListeningWave(playing: c.audio.playing, size: banner ? 13 : 15),
+            ],
+          ),
         ),
       ),
     );

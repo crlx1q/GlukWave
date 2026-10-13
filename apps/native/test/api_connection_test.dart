@@ -8,6 +8,62 @@ class RealHttp extends HttpOverrides {}
 
 void main() {
   test(
+    'native device commands poll one intent and stop if the account changes',
+    () async {
+      await HttpOverrides.runWithHttpOverrides(() async {
+        final server = await HttpServer.bind(InternetAddress.loopbackIPv4, 0);
+        var calls = 0;
+        final intents = <String?>[], sessions = <String?>[];
+        final api = WaveApi(
+          'http://127.0.0.1:${server.port}',
+          playbackDelay: (_) async {},
+        );
+        api.token = 'original-session';
+        server.listen((request) async {
+          calls++;
+          intents.add(request.headers.value('x-glukwave-intent'));
+          sessions.add(request.headers.value('authorization'));
+          expect(request.headers.value('x-glukwave-command-wait'), 'poll');
+          await request.drain<void>();
+          request.response.headers.contentType = ContentType.json;
+          request.response.statusCode = calls % 2 == 1 ? 202 : 200;
+          if (calls == 3) api.token = 'different-account';
+          request.response.write(jsonEncode({'ok': true}));
+          await request.response.close();
+        });
+        try {
+          expect(
+            (await api.call(
+              '/api/devices/command',
+              method: 'POST',
+              data: {'command': 'transfer'},
+            ))['ok'],
+            true,
+          );
+          expect(calls, 2);
+          expect(intents[0], intents[1]);
+          await expectLater(
+            api.call(
+              '/api/devices/command',
+              method: 'POST',
+              data: {'command': 'transfer'},
+            ),
+            throwsA(isA<WaveException>()),
+          );
+          expect(calls, 3);
+          expect(
+            sessions.every((value) => value == 'Bearer original-session'),
+            true,
+          );
+        } finally {
+          api.diagnostics.dispose();
+          api.dio.close(force: true);
+          await server.close(force: true);
+        }
+      }, RealHttp());
+    },
+  );
+  test(
     'real native HTTP accepts Unicode device names and polls audio through a transient edge failure',
     () async {
       await HttpOverrides.runWithHttpOverrides(() async {

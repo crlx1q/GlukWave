@@ -1,0 +1,291 @@
+{
+  "passed": true,
+  "distinctTestsVerified": 377,
+  "runs": [
+    {
+      "log": "native19-native-tests-final.jsonl",
+      "runnerSuccess": false,
+      "completed": 372,
+      "failed": 30,
+      "failures": [
+        {
+          "file": "apps/native/test/artwork_test.dart",
+          "name": "Failed high-resolution artwork retries the original then settles",
+          "result": "error",
+          "skipped": false,
+          "log": "native19-native-tests-final.jsonl",
+          "currentTestSourceSha256": "c131e536646a0f0dab772c10f55b1abe13ca2a00cb278f68f73feb7802b1aa3b"
+        },
+        {
+          "file": "apps/native/test/app_layout_test.dart",
+          "name": "Fullscreen, real bounded queue gestures and scrolling at 1280.0",
+          "result": "error",
+          "skipped": false,
+          "log": "native19-native-tests-final.jsonl",
+          "currentTestSourceSha256": "513e1e8fc0bc0fb2ed92a1bae44b5428cf96bbe24ff42684f651e29e1a160b70"
+        },
+        {
+          "file": "apps/native/test/app_layout_test.dart",
+          "name": "Search and lyric skeletons follow pending API work, without fake waits",
+          "result": "error",
+          "skipped": false,
+          "log": "native19-native-tests-final.jsonl",
+          "currentTestSourceSha256": "513e1e8fc0bc0fb2ed92a1bae44b5428cf96bbe24ff42684f651e29e1a160b70"
+        },
+        {
+          "file": "apps/native/test/connect_layout_test.dart",
+          "name": "Connected playback, device controls and pinned room fit light Size(390.0, 844.0)",
+          "result": "error",
+          "skipped": false,
+          "log": "native19-native-tests-final.jsonl",
+          "currentTestSourceSha256": "af00fee436cec73d76f2b17030632c841230927575b3e4d8f7b2afcf4b001f12"
+        },
+        {
+          "file": "apps/native/test/connect_layout_test.dart",
+          "name": "Connected playback, device controls and pinned room fit light Size(1280.0, 900.0)",
+          "result": "error",
+          "skipped": false,
+          "log": "native19-native-tests-final.jsonl",
+          "currentTestSourceSha256": "af00fee436cec73d76f2b17030632c841230927575b3e4d8f7b2afcf4b001f12"
+        },
+        {
+          "file": "apps/native/test/connect_layout_test.dart",
+          "name": "Connected playback, device controls and pinned room fit dark Size(390.0, 844.0)",
+          "result": "error",
+          "skipped": false,
+          "log": "native19-native-tests-final.jsonl",
+          "currentTestSourceSha256": "af00fee436cec73d76f2b17030632c841230927575b3e4d8f7b2afcf4b001f12"
+        },
+        {
+          "file": "apps/native/test/connect_layout_test.dart",
+          "name": "Connected playback, device controls and pinned room fit dark Size(1280.0, 900.0)",
+          "result": "error",
+          "skipped": false,
+          "log": "native19-native-tests-final.jsonl",
+          "currentTestSourceSha256": "af00fee436cec73d76f2b17030632c841230927575b3e4d8f7b2afcf4b001f12"
+        },
+        {
+          "file": "apps/native/test/connect_layout_test.dart",
+          "name": "Connected playback, device controls and pinned room fit amoled Size(390.0, 844.0)",
+          "result": "error",
+          "skipped": false,
+          "log": "native19-native-tests-final.jsonl",
+          "currentTestSourceSha256": "af00fee436cec73d76f2b17030632c841230927575b3e4d8f7b2afcf4b001f12"
+        },
+        {
+          "file": "apps/native/test/connect_layout_test.dart",
+          "name": "Connected playback, device controls and pinned room fit amoled Size(1280.0, 900.0)",
+          "result": "error",
+          "skipped": false,
+          "log": "native19-native-tests-final.jsonl",
+          "currentTestSourceSha256": "af00fee436cec73d76f2b17030632c841230927575b3e4d8f7b2afcf4b001f12"
+        },
+        {
+          "file": "apps/native/test/ecosystem_layout_test.dart",
+          "name": "Real device controls and session security compose at Size(390.0, 844.0) in light",
+          "result": "error",
+          "skipped": false,
+          "log": "native19-native-tests-final.jsonl",
+          "currentTestSourceSha256": "aabfb56da3b8abcf46750c5c2f3b04221e7d53e21f3a5f1090224b5a0603874f"
+        },
+        {
+          "file": "apps/native/test/ecosystem_layout_test.dart",
+          "name": "Real device controls and session security compose at Size(1280.0, 900.0) in light",
+          "result": "error",
+          "skipped": false,
+          "log": "native19-native-tests-final.jsonl",
+          "currentTestSourceSha256": "aabfb56da3b8abcf46750c5c2f3b04221e7d53e21f3a5f1090224b5a0603874f"
+        },
+        {
+          "file": "apps/native/test/ecosystem_layout_test.dart",
+          "name": "Real device controls and session security compose at Size(390.0, 844.0) in dark",
+          "result": "error",
+          "skipped": false,
+          "log": "native19-native-tests-final.jsonl",
+          "currentTestSourceSha256": "aabfb56da3b8abcf46750c5c2f3b04221e7d53e21f3a5f1090224b5a0603874f"
+        },
+        {
+          "file": "apps/native/test/ecosystem_layout_test.dart",
+          "name": "Real device controls and session security compose at Size(1280.0, 900.0) in dark",
+          "result": "error",
+          "skipped": false,
+          "log": "native19-native-tests-final.jsonl",
+          "currentTestSourceSha256": "aabfb56da3b8abcf46750c5c2f3b04221e7d53e21f3a5f1090224b5a0603874f"
+        },
+        {
+          "file": "apps/native/test/ecosystem_layout_test.dart",
+          "name": "Real device controls and session security compose at Size(390.0, 844.0) in amoled",
+          "result": "error",
+          "skipped": false,
+          "log": "native19-native-tests-final.jsonl",
+          "currentTestSourceSha256": "aabfb56da3b8abcf46750c5c2f3b04221e7d53e21f3a5f1090224b5a0603874f"
+        },
+        {
+          "file": "apps/native/test/ecosystem_layout_test.dart",
+          "name": "Real device controls and session security compose at Size(1280.0, 900.0) in amoled",
+          "result": "error",
+          "skipped": false,
+          "log": "native19-native-tests-final.jsonl",
+          "currentTestSourceSha256": "aabfb56da3b8abcf46750c5c2f3b04221e7d53e21f3a5f1090224b5a0603874f"
+        },
+        {
+          "file": "apps/native/test/localization_test.dart",
+          "name": "Actual en auth, home, settings and player at width 320.0 preserve music titles",
+          "result": "error",
+          "skipped": false,
+          "log": "native19-native-tests-final.jsonl",
+          "currentTestSourceSha256": "a6ee6933555372a0da44d94e338dd715104d8422ece6baa9eb770e51bacec048"
+        },
+        {
+          "file": "apps/native/test/localization_test.dart",
+          "name": "Actual en auth, home, settings and player at width 390.0 preserve music titles",
+          "result": "error",
+          "skipped": false,
+          "log": "native19-native-tests-final.jsonl",
+          "currentTestSourceSha256": "a6ee6933555372a0da44d94e338dd715104d8422ece6baa9eb770e51bacec048"
+        },
+        {
+          "file": "apps/native/test/localization_test.dart",
+          "name": "Actual en auth, home, settings and player at width 1280.0 preserve music titles",
+          "result": "error",
+          "skipped": false,
+          "log": "native19-native-tests-final.jsonl",
+          "currentTestSourceSha256": "a6ee6933555372a0da44d94e338dd715104d8422ece6baa9eb770e51bacec048"
+        },
+        {
+          "file": "apps/native/test/localization_test.dart",
+          "name": "Actual ru auth, home, settings and player at width 320.0 preserve music titles",
+          "result": "error",
+          "skipped": false,
+          "log": "native19-native-tests-final.jsonl",
+          "currentTestSourceSha256": "a6ee6933555372a0da44d94e338dd715104d8422ece6baa9eb770e51bacec048"
+        },
+        {
+          "file": "apps/native/test/localization_test.dart",
+          "name": "Actual ru auth, home, settings and player at width 390.0 preserve music titles",
+          "result": "error",
+          "skipped": false,
+          "log": "native19-native-tests-final.jsonl",
+          "currentTestSourceSha256": "a6ee6933555372a0da44d94e338dd715104d8422ece6baa9eb770e51bacec048"
+        },
+        {
+          "file": "apps/native/test/localization_test.dart",
+          "name": "Actual kk auth, home, settings and player at width 320.0 preserve music titles",
+          "result": "error",
+          "skipped": false,
+          "log": "native19-native-tests-final.jsonl",
+          "currentTestSourceSha256": "a6ee6933555372a0da44d94e338dd715104d8422ece6baa9eb770e51bacec048"
+        },
+        {
+          "file": "apps/native/test/localization_test.dart",
+          "name": "Actual kk auth, home, settings and player at width 390.0 preserve music titles",
+          "result": "error",
+          "skipped": false,
+          "log": "native19-native-tests-final.jsonl",
+          "currentTestSourceSha256": "a6ee6933555372a0da44d94e338dd715104d8422ece6baa9eb770e51bacec048"
+        },
+        {
+          "file": "apps/native/test/localization_test.dart",
+          "name": "Actual uk auth, home, settings and player at width 320.0 preserve music titles",
+          "result": "error",
+          "skipped": false,
+          "log": "native19-native-tests-final.jsonl",
+          "currentTestSourceSha256": "a6ee6933555372a0da44d94e338dd715104d8422ece6baa9eb770e51bacec048"
+        },
+        {
+          "file": "apps/native/test/localization_test.dart",
+          "name": "Actual uk auth, home, settings and player at width 390.0 preserve music titles",
+          "result": "error",
+          "skipped": false,
+          "log": "native19-native-tests-final.jsonl",
+          "currentTestSourceSha256": "a6ee6933555372a0da44d94e338dd715104d8422ece6baa9eb770e51bacec048"
+        },
+        {
+          "file": "apps/native/test/localization_test.dart",
+          "name": "Actual de auth, home, settings and player at width 320.0 preserve music titles",
+          "result": "error",
+          "skipped": false,
+          "log": "native19-native-tests-final.jsonl",
+          "currentTestSourceSha256": "a6ee6933555372a0da44d94e338dd715104d8422ece6baa9eb770e51bacec048"
+        },
+        {
+          "file": "apps/native/test/localization_test.dart",
+          "name": "Actual de auth, home, settings and player at width 390.0 preserve music titles",
+          "result": "error",
+          "skipped": false,
+          "log": "native19-native-tests-final.jsonl",
+          "currentTestSourceSha256": "a6ee6933555372a0da44d94e338dd715104d8422ece6baa9eb770e51bacec048"
+        },
+        {
+          "file": "apps/native/test/localization_test.dart",
+          "name": "Actual de auth, home, settings and player at width 1280.0 preserve music titles",
+          "result": "error",
+          "skipped": false,
+          "log": "native19-native-tests-final.jsonl",
+          "currentTestSourceSha256": "a6ee6933555372a0da44d94e338dd715104d8422ece6baa9eb770e51bacec048"
+        },
+        {
+          "file": "apps/native/test/localization_test.dart",
+          "name": "Actual es auth, home, settings and player at width 320.0 preserve music titles",
+          "result": "error",
+          "skipped": false,
+          "log": "native19-native-tests-final.jsonl",
+          "currentTestSourceSha256": "a6ee6933555372a0da44d94e338dd715104d8422ece6baa9eb770e51bacec048"
+        },
+        {
+          "file": "apps/native/test/localization_test.dart",
+          "name": "Actual es auth, home, settings and player at width 390.0 preserve music titles",
+          "result": "error",
+          "skipped": false,
+          "log": "native19-native-tests-final.jsonl",
+          "currentTestSourceSha256": "a6ee6933555372a0da44d94e338dd715104d8422ece6baa9eb770e51bacec048"
+        },
+        {
+          "file": "apps/native/test/listening_polish_test.dart",
+          "name": "Compact synchronized lyrics show two separate rows; cover menu closes on selection/Escape",
+          "result": "error",
+          "skipped": false,
+          "log": "native19-native-tests-final.jsonl",
+          "currentTestSourceSha256": "ddd9cb988cded09495ea51f4fa332d05f7b4ecdd86702cd80a6e3f939e2b8707"
+        }
+      ]
+    },
+    {
+      "log": "native19-ui-recovery-final.jsonl",
+      "runnerSuccess": true,
+      "completed": 73,
+      "failed": 0,
+      "failures": []
+    },
+    {
+      "log": "native19-ui-refreeze-render.jsonl",
+      "runnerSuccess": true,
+      "completed": 10,
+      "failed": 0,
+      "failures": []
+    },
+    {
+      "log": "native19-round2-ui.jsonl",
+      "runnerSuccess": true,
+      "completed": 22,
+      "failed": 0,
+      "failures": []
+    },
+    {
+      "log": "native19-round2-details.jsonl",
+      "runnerSuccess": true,
+      "completed": 1,
+      "failed": 0,
+      "failures": []
+    },
+    {
+      "log": "native19-round2-guard-final.jsonl",
+      "runnerSuccess": true,
+      "completed": 2,
+      "failed": 0,
+      "failures": []
+    }
+  ],
+  "unresolved": [],
+  "scope": "Actual Flutter CLI outcomes. Earlier failures retained; recovery replaces the same named scenario only."
+}

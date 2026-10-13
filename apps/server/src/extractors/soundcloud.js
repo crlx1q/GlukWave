@@ -77,21 +77,25 @@ export function soundcloudAdapter(runtime, fetcher = fetch) {
     }
 
     if (!sound?.id) throw new Error('SoundCloud track data not found');
-    const transcodings = sound.media?.transcodings || [];
+    if(sound.policy==='BLOCK')throw new Error('SoundCloud track unavailable');
     const aac=t=>t.preset?.startsWith('aac')||/audio\/(?:aac|mp4)/i.test(t.format?.mime_type||'');
     const mp3=t=>t.preset?.startsWith('mp3')||/audio\/mpeg/i.test(t.format?.mime_type||'');
-    const hls = transcodings.find(t => t.format?.protocol === 'hls' && aac(t)) ||
-                transcodings.find(t => t.format?.protocol === 'progressive' && mp3(t)) ||
-                transcodings.find(t => t.format?.protocol === 'hls' && mp3(t));
-    if (!hls?.url) throw new Error('SoundCloud stream not found');
-
-    const streamRes = await fetcher(hls.url + (hls.url.includes('?') ? '&' : '?') + 'client_id=' + clientId, {
-      headers: { Accept: 'application/json' },
-      signal: AbortSignal.timeout(10000)
-    });
-    if (!streamRes.ok){await streamRes.body?.cancel();throw new Error(`SoundCloud stream fetch failed: ${streamRes.status}`);}
-    const streamData = await json(streamRes);
-    if (!streamData.url) throw new Error('SoundCloud stream URL missing');
+    const candidates=(sound.media?.transcodings||[]).filter(t=>!t.snipped&&
+      (t.format?.protocol==='hls'&& (aac(t)||mp3(t)) || t.format?.protocol==='progressive'&&mp3(t)))
+      .sort((a,b)=>(aac(b)?2:b.format.protocol==='progressive'?1:0)-(aac(a)?2:a.format.protocol==='progressive'?1:0)).slice(0,3);
+    let hls,streamData;
+    for(const candidate of candidates){
+      let endpoint;try{endpoint=new URL(candidate.url);}catch{continue;}
+      if(endpoint.protocol!=='https:'||endpoint.hostname!=='api-v2.soundcloud.com'||endpoint.port||endpoint.username||endpoint.password)continue;
+      endpoint.searchParams.set('client_id',clientId);
+      try{
+        const response=await fetcher(endpoint,{headers:{Accept:'application/json'},signal:AbortSignal.timeout(8000),redirect:'error'});
+        if(!response.ok){await response.body?.cancel();continue;}
+        const data=await json(response);if(!data.url)continue;
+        streamData=data;hls=candidate;break;
+      }catch{/* Try another full audio encoding before the Python fallback. */}
+    }
+    if(!streamData?.url)throw new Error('SoundCloud stream not found');
 
     const artist = sound.user?.username || sound.user?.permalink || '';
     const duration = sound.duration ? Number(sound.duration) / 1000 : 0;
@@ -107,6 +111,7 @@ export function soundcloudAdapter(runtime, fetcher = fetch) {
       cover,
       source: 'soundcloud',
       source_url: sound.permalink_url || url,
+      genres:[String(sound.genre||'')].filter(Boolean),tags:(String(sound.tag_list||'').match(/"[^"]+"|\S+/g)||[]).map(value=>value.replace(/^"|"$/g,'')).slice(0,30),
       license: String(sound.license || 'all-rights-reserved').slice(0, 500),
       availability: sound.sharing,
       audio_url: streamData.url,

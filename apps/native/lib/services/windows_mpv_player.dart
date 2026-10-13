@@ -95,6 +95,13 @@ class WaveMpvPlayer extends AudioPlayerPlatform implements WindowsDspOutput {
   int? _errorCode;
   String? _errorMessage;
   Completer<Duration?>? _loadCompleter;
+  int _loadGeneration = 0;
+  void _cancelLoad() {
+    _loadGeneration++;
+    if (_loadCompleter?.isCompleted == false) {
+      _loadCompleter!.completeError(StateError('Audio load superseded'));
+    }
+  }
 
   /// The index that's currently playing
   int _currentIndex = 0;
@@ -212,7 +219,13 @@ class WaveMpvPlayer extends AudioPlayerPlatform implements WindowsDspOutput {
           _dspEnabled = false;
           _equalizerGain = 1;
           try {
-            await writeWindowsEqualizer(_checkedProperty, false, 0, const [], volume: _requestedVolume);
+            await writeWindowsEqualizer(
+              _checkedProperty,
+              false,
+              0,
+              const [],
+              volume: _requestedVolume,
+            );
           } catch (_) {}
         }
         if (_eventController.isClosed) return;
@@ -220,10 +233,17 @@ class WaveMpvPlayer extends AudioPlayerPlatform implements WindowsDspOutput {
         if (errorUri == null || errorUri == _currentMedia?.uri) {
           _processingState = ProcessingStateMessage.idle;
           _errorCode = kErrorCode;
-          _errorMessage = error;
+          _errorMessage = 'Native audio source failed';
           _updatePlaybackEvent();
+          // An open failure must settle load(), otherwise the caller (and a
+          // remote Connect command) waits forever even after mpv reports idle.
+          if (_loadCompleter?.isCompleted == false) {
+            _loadCompleter!.completeError(
+              StateError('Native audio source failed'),
+            );
+          }
         }
-        _logger.severe('ERROR OCCURRED: $error');
+        _logger.severe('Native audio source failed');
       }),
       _player.stream.playlist.listen((playlist) {
         if (_currentIndex != playlist.index) {
@@ -246,7 +266,9 @@ class WaveMpvPlayer extends AudioPlayerPlatform implements WindowsDspOutput {
       }),
       _player.stream.log.listen((event) {
         // ignore: avoid_print
-        print("MPV: [${event.level}] ${event.prefix}: ${event.text}");
+        print(
+          "MPV: [${event.level}] ${event.prefix}: ${event.text.replaceAllMapped(RegExp(r'([?&](?:grant|token)=)[^&\s]+'), (m) => '${m[1]}[redacted]')}",
+        );
       }),
     ];
   }
@@ -303,9 +325,13 @@ class WaveMpvPlayer extends AudioPlayerPlatform implements WindowsDspOutput {
 
   @override
   Future<LoadResponse> load(LoadRequest request) async {
-    _logger.finest('load(${request.toMap()})');
+    _logger.finest('Loading native audio source');
+    _cancelLoad();
+    final generation = _loadGeneration;
     _mediaOpened = false;
     _loadCompleter = Completer();
+    final loaded = _loadCompleter!.future.timeout(const Duration(seconds: 30));
+    loaded.ignore(); // observe an error that may arrive while open() is awaited
     _currentIndex = request.initialIndex ?? 0;
     _bufferedPosition = Duration.zero;
     _position = Duration.zero;
@@ -323,22 +349,33 @@ class WaveMpvPlayer extends AudioPlayerPlatform implements WindowsDspOutput {
         index: _currentIndex,
       );
 
-      await _player.open(playable, play: _playing);
+      await Future.any([_player.open(playable, play: _playing), loaded]);
     } else {
       final playable = _convertAudioSourceIntoMediaKit(
         request.audioSourceMessage,
       );
-      _logger.finest('playable is ${playable.toString()}');
-      await _player.open(playable, play: _playing);
+      await Future.any([_player.open(playable, play: _playing), loaded]);
+    }
+    if (generation != _loadGeneration) {
+      throw StateError('Audio load superseded');
     }
     _mediaOpened = true;
+    // Buffering can finish during open(), before _mediaOpened becomes true.
+    // The edge-triggered event alone cannot complete that load.
+    if (!_player.state.buffering &&
+        _player.state.duration > Duration.zero &&
+        _loadCompleter?.isCompleted == false) {
+      _processingState = ProcessingStateMessage.ready;
+      _updateDuration(_player.state.duration);
+      _loadCompleter!.complete(_duration);
+    }
 
     if (request.initialPosition != null) {
       _setPosition = _position = request.initialPosition!;
     }
 
     _updatePlaybackEvent();
-    final duration = await _loadCompleter?.future;
+    final duration = await loaded;
     return LoadResponse(duration: duration);
   }
 
@@ -480,6 +517,7 @@ class WaveMpvPlayer extends AudioPlayerPlatform implements WindowsDspOutput {
   @override
   Future<void> release() async {
     _logger.info('releasing player resources');
+    _cancelLoad();
     _mediaOpened = false;
     await _player.dispose();
     // cancel all stream subscriptions

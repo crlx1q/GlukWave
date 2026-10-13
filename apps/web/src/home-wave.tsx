@@ -1,12 +1,13 @@
 import {t,useLocale} from './locale';
 import {useEffect,useRef,useState} from 'react';
-import {Cloud,Compass,Heart,Music2,Plus,SlidersHorizontal,Smile,Sun,Waves} from 'lucide-react';
+import {Cloud,Compass,Heart,Music2,Plus,SlidersHorizontal,Smile,Sun,Waves,Flame,Sparkles,Infinity} from 'lucide-react';
 import {useStore} from './store';
 import {usePlayer} from './player';
 import {errorText} from './api';
 import {IconButton} from './ui';
 import {ListeningMotionIcon,PlaybackIcon} from './morph-icon';
 import {WaveVisual} from './wave';
+import {refinementText} from './refinement20-strings';
 const modes=['personal','favorites','discovery','popular'] as const;
 const getMoods=()=>[
  {id:'personal',Icon:Heart},{id:'energy',Icon:Sun},{id:'happy',Icon:Smile},
@@ -33,7 +34,8 @@ export function PersonalWave({upload}:{upload:()=>void}){
    </header>
    {matches&&player.track&&<div className="wave-current"><ListeningMotionIcon playing={player.state.playing} loading={player.trackLoading}/><span>{player.track.artist}<b>{player.track.title}</b></span></div>}
   </div>
-  <div className="wave-personalization"><div className="wave-mode-row" role="group" aria-label={t('wave18.modeLabel')}>{modes.map(mode=><button type="button" disabled={busy} className={`wave-mode ${mode===choice.mode?'selected':''}`} key={mode} aria-pressed={mode===choice.mode} onClick={()=>choose({mode})}>{t(`wave18.mode.${mode}`)}</button>)}</div>
+  <div className="wave-personalization"><div className="wave-mode-row" role="group" aria-label={t('wave18.modeLabel')}>{modes.map(mode=>{const Icon=mode==='favorites'?Heart:mode==='discovery'?Sparkles:mode==='popular'?Flame:Waves;return <button type="button" disabled={busy} className={`wave-mode ${mode===choice.mode?'selected':''} ${player.waveActive&&player.waveOptions.mode===mode?'is-active':''}`} key={mode} aria-pressed={mode===choice.mode} onClick={()=>choose({mode})}><Icon aria-hidden="true"/>{t(`wave18.mode.${mode}`)}</button>;})}</div>
+   <p className="wave-selection-note"><Infinity size={14}/>{refinementText(matches?'waveContinues':'waveStartChoice')}</p>
    <div className="mood-row"><span className="mood-label">{t('copy.409')}</span><div className="mood-scroll" role="group" aria-label={t('copy.409')}>{getMoods().map(({id,Icon})=><button type="button" disabled={busy} className={`mood-chip ${id===choice.mood?'selected':''}`} key={id} aria-pressed={id===choice.mood} onClick={()=>choose({mood:id})}><Icon size={15}/>{t(`wave18.mood.${id}`)}</button>)}</div></div>
   </div>
   {error&&<div className="wave-inline-error" role="alert"><span>{error}</span><button className="text-button" onClick={()=>void start()}>{t('wave18.retry')}</button></div>}

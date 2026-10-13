@@ -5,8 +5,8 @@ import '../core/controller.dart';
 import '../core/models.dart';
 import 'widgets.dart';
 
-/// The cover is real track artwork. The record is drawn once inside its own
-/// repaint boundary; only its transform rotates while this screen is visible.
+/// A rigid 18px sleeve based on the owner's Gluk-Wave-v2 cover scene. Front,
+/// back, spine and every edge are opaque; the record sits inside the case.
 class AlbumStage extends StatefulWidget {
   final WaveController controller;
   final WaveTrack track;
@@ -31,13 +31,17 @@ class _AlbumStageState extends State<AlbumStage>
     with TickerProviderStateMixin, WidgetsBindingObserver {
   late final spin = AnimationController(
     vsync: this,
-    duration: const Duration(seconds: 15),
+    duration: const Duration(seconds: 16),
   );
-  Offset tilt = Offset.zero;
   late final drift = AnimationController(
     vsync: this,
     duration: const Duration(seconds: 8),
   );
+  late final AnimationController inertia =
+      AnimationController.unbounded(vsync: this)..addListener(() {
+        if (mounted) setState(() => tilt = Offset(inertia.value, tilt.dy));
+      });
+  Offset tilt = Offset.zero;
   bool dragging = false, hovering = false, visible = true;
   @override
   void initState() {
@@ -47,11 +51,7 @@ class _AlbumStageState extends State<AlbumStage>
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    visible = ![
-      AppLifecycleState.hidden,
-      AppLifecycleState.paused,
-      AppLifecycleState.detached,
-    ].contains(state);
+    visible = state == AppLifecycleState.resumed;
     motion();
   }
 
@@ -62,30 +62,31 @@ class _AlbumStageState extends State<AlbumStage>
   }
 
   @override
-  void didUpdateWidget(AlbumStage oldWidget) {
-    super.didUpdateWidget(oldWidget);
+  void didUpdateWidget(AlbumStage old) {
+    super.didUpdateWidget(old);
+    if (old.track.id != widget.track.id) {
+      inertia.stop();
+      tilt = Offset.zero;
+    }
     motion();
   }
 
   void motion() {
     final settings = widget.controller.customization;
-    final animate =
+    final moving =
         visible &&
         TickerMode.of(context) &&
         settings.appearance.cover3d &&
+        !widget.controller.energySaving &&
         !settings.reducedMotion &&
         !MediaQuery.disableAnimationsOf(context);
-    if (animate) {
+    if (moving) {
       if (!drift.isAnimating) drift.repeat(reverse: true);
     } else {
       drift.stop();
+      inertia.stop();
     }
-    if (widget.playing &&
-        visible &&
-        TickerMode.of(context) &&
-        settings.appearance.cover3d &&
-        !settings.reducedMotion &&
-        !MediaQuery.disableAnimationsOf(context)) {
+    if (moving && widget.playing) {
       if (!spin.isAnimating) spin.repeat();
     } else {
       spin.stop();
@@ -95,267 +96,356 @@ class _AlbumStageState extends State<AlbumStage>
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
-    drift.dispose();
     spin.dispose();
+    drift.dispose();
+    inertia.dispose();
     super.dispose();
+  }
+
+  void finish(double velocity) {
+    setState(() => dragging = false);
+    final v = waveVisuals(context);
+    if (!v.reducedMotion &&
+        !widget.controller.energySaving &&
+        velocity.abs() > 40) {
+      inertia.value = tilt.dx;
+      inertia.animateTo(
+        tilt.dx + (velocity / 2000).clamp(-1.2, 1.2),
+        duration: v.duration(750),
+        curve: Curves.easeOutCubic,
+      );
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    final v = waveVisuals(context),
-        appearance = widget.controller.customization.appearance;
-    final size = widget.size;
-    final coverSize = appearance.cover3d ? size * .86 : size;
-    final cover = Container(
+    final c = widget.controller, v = waveVisuals(context), size = widget.size;
+    final dimensional = c.customization.appearance.cover3d && !c.energySaving;
+    final opaque = Color.alphaBlend(
+      v.accent.withValues(alpha: .12),
+      v.background,
+    ).withValues(alpha: 1);
+    final radius = v.corners(dimensional ? 3 : 14);
+    Widget front() => Container(
       key: const Key('album-front-sleeve'),
+      width: size,
+      height: size,
       decoration: BoxDecoration(
-        // Contained non-square artwork keeps its aspect ratio; the sleeve
-        // underneath remains opaque so the rear record never shows through.
-        color: Color.alphaBlend(
-          v.accent.withValues(alpha: .12),
-          v.background,
-        ).withValues(alpha: 1),
-        borderRadius: BorderRadius.circular(v.corners(14)),
+        color: opaque,
+        borderRadius: BorderRadius.circular(radius),
         boxShadow: v.blur
             ? [
                 BoxShadow(
-                  color: v.accent.withValues(alpha: .25),
-                  blurRadius: 28,
-                  spreadRadius: 2,
-                  offset: const Offset(0, 16),
+                  color: Colors.black.withValues(alpha: .2),
+                  blurRadius: 18,
+                  offset: const Offset(0, 12),
                 ),
               ]
             : [],
       ),
-      child: SizedBox(
-        width: coverSize,
-        height: coverSize,
-        child: Stack(
-          fit: StackFit.expand,
-          children: [
-            Artwork(
-              key: widget.artworkKey,
-              controller: widget.controller,
-              trackLoading: widget.controller.trackLoading,
-              url: widget.track.artwork,
-              size: coverSize,
-              radius: 14,
-              fit: BoxFit.contain,
-            ),
-            if (appearance.cover3d)
-              IgnorePointer(
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(v.corners(14)),
-                  child: DecoratedBox(
-                    key: const Key('album-sunlight-reflection'),
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment(
-                          -2 + math.sin(-.2 + tilt.dx) * 2,
-                          -1.2,
-                        ),
-                        end: Alignment(2 + math.sin(-.2 + tilt.dx) * 2, 1.2),
-                        colors: const [
-                          Color(0x00fff7dc),
-                          Color(0x04ffffff),
-                          Color(0x40fff7dc),
-                          Color(0x0fffffff),
-                          Color(0x00ffffff),
-                        ],
-                        stops: const [0, .28, .43, .52, 1],
-                      ),
-                    ),
+      clipBehavior: Clip.antiAlias,
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          Artwork(
+            key: widget.artworkKey,
+            controller: c,
+            trackLoading: c.trackLoading,
+            url: widget.track.artwork,
+            size: size,
+            radius: dimensional ? 3 : 14,
+            fit: BoxFit.contain,
+          ),
+          if (dimensional)
+            IgnorePointer(
+              child: DecoratedBox(
+                key: const Key('album-sunlight-reflection'),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment(-2 + math.sin(-.314 + tilt.dx) * 2, -1.2),
+                    end: Alignment(2 + math.sin(-.314 + tilt.dx) * 2, 1.2),
+                    colors: const [
+                      Color(0x00ffffff),
+                      Color(0x11ffffff),
+                      Color(0x66fff7dc),
+                      Color(0x11ffffff),
+                      Color(0x00ffffff),
+                    ],
+                    stops: const [0, .28, .43, .52, 1],
                   ),
                 ),
               ),
+            ),
+        ],
+      ),
+    );
+    if (!dimensional) {
+      return SizedBox(
+        key: const Key('album-stage-bounds'),
+        width: size + 32,
+        height: size + 32,
+        child: Center(
+          child: RepaintBoundary(key: const Key('album-flat'), child: front()),
+        ),
+      );
+    }
+    final depth = math.min(18.0, size * .055);
+    Widget edge(Key key, Matrix4 matrix, double width, double height) =>
+        Transform(
+          key: key,
+          alignment: Alignment.center,
+          transform: matrix,
+          child: SizedBox(
+            width: width,
+            height: height,
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [
+                    Color.lerp(opaque, v.ink, .24)!,
+                    opaque,
+                    Color.lerp(opaque, Colors.black, .35)!,
+                  ],
+                ),
+                border: Border.all(
+                  color: Colors.black.withValues(alpha: .25),
+                  width: .5,
+                ),
+              ),
+            ),
+          ),
+        );
+    final disc = SizedBox(
+      width: size * .94,
+      height: size * .94,
+      child: AnimatedBuilder(
+        animation: spin,
+        child: RepaintBoundary(
+          child: CustomPaint(
+            painter: RecordPainter(
+              c.customization.appearance.coverKind,
+              v.accent,
+              v.background,
+            ),
+            child: Center(
+              child: ClipOval(
+                child: Artwork(
+                  controller: c,
+                  url: widget.track.artwork,
+                  size: size * .28,
+                  radius: 0,
+                ),
+              ),
+            ),
+          ),
+        ),
+        builder: (_, child) => Stack(
+          children: [
+            Transform.rotate(angle: spin.value * math.pi * 2, child: child),
+            Positioned.fill(
+              child: IgnorePointer(child: CustomPaint(painter: _RecordLight())),
+            ),
           ],
         ),
       ),
     );
     return SizedBox(
       key: const Key('album-stage-bounds'),
-      width: size + 32,
-      height: appearance.cover3d ? size * 1.15 + 32 : size + 32,
+      width: size * 1.5 + 24,
+      height: size * 1.28 + 32,
       child: Center(
-        child: appearance.cover3d
-            ? Semantics(
-                label: wt(
-                  'native.a0cc85a258',
-                  values: {'p0': (widget.track.title)},
-                  context: context,
-                ),
-                child: MouseRegion(
-                  onEnter: (_) => setState(() => hovering = true),
-                  onHover: (event) {
-                    if (!dragging) {
-                      setState(
-                        () => tilt = Offset(
-                          (event.localPosition.dx / size - .5) * .7,
-                          (event.localPosition.dy / size - .5) * .45,
-                        ),
-                      );
-                    }
-                  },
-                  onExit: (_) => setState(() {
-                    hovering = false;
-                    tilt = Offset.zero;
-                  }),
-                  child: GestureDetector(
-                    key: const Key('album-3d'),
-                    behavior: HitTestBehavior.opaque,
-                    onLongPressStart: widget.touchTilt
-                        ? null
-                        : (_) => setState(() => dragging = true),
-                    onLongPressMoveUpdate: widget.touchTilt
-                        ? null
-                        : (details) => setState(
-                            () => tilt = Offset(
-                              (details.offsetFromOrigin.dx / 160).clamp(
-                                -.6,
-                                .6,
-                              ),
-                              (details.offsetFromOrigin.dy / 160).clamp(
-                                -.4,
-                                .4,
-                              ),
-                            ),
-                          ),
-                    onLongPressEnd: widget.touchTilt
-                        ? null
-                        : (_) => setState(() {
-                            dragging = false;
-                            tilt = Offset.zero;
-                          }),
-                    onPanStart: widget.touchTilt
-                        ? (_) => setState(() => dragging = true)
-                        : null,
-                    onPanUpdate: !widget.touchTilt
-                        ? null
-                        : (details) => setState(
-                            () => tilt = Offset(
-                              (tilt.dx + details.delta.dx / 160).clamp(-.6, .6),
-                              (tilt.dy + details.delta.dy / 160).clamp(-.4, .4),
-                            ),
-                          ),
-                    onPanEnd: !widget.touchTilt
-                        ? null
-                        : (_) => setState(() {
-                            dragging = false;
-                            tilt = Offset.zero;
-                          }),
-                    onPanCancel: !widget.touchTilt
-                        ? null
-                        : () => setState(() {
-                            dragging = false;
-                            tilt = Offset.zero;
-                          }),
-                    child: TweenAnimationBuilder<Offset>(
-                      tween: Tween(begin: Offset.zero, end: tilt),
-                      duration: dragging ? Duration.zero : v.duration(260),
-                      builder: (context, value, child) => AnimatedBuilder(
-                        animation: drift,
-                        builder: (_, child) {
-                          final matrix = Matrix4.identity()
-                            ..setEntry(3, 2, .0008)
-                            ..rotateX(
-                              -.06 -
-                                  value.dy +
-                                  (!dragging && !hovering && visible
-                                      ? math.sin(drift.value * math.pi * 2) *
-                                            .035
-                                      : 0),
-                            )
-                            ..rotateY(
-                              -.2 +
-                                  value.dx +
-                                  (!dragging && !hovering && visible
-                                      ? math.sin(drift.value * math.pi * 2) *
-                                            .06
-                                      : 0),
-                            )
-                            ..rotateZ(-.025);
-                          // The scene owns generous vertical headroom. Artwork never
-                          // breathes/shrinks as its perspective changes.
-                          return Transform(
-                            key: const Key('album-3d-transform'),
-                            alignment: Alignment.center,
-                            transform: matrix,
-                            child: child,
-                          );
-                        },
-                        child: child,
-                      ),
-                      child: SizedBox(
-                        width: size,
-                        height: size,
-                        child: Stack(
-                          alignment: Alignment.centerLeft,
-                          clipBehavior: Clip.none,
-                          children: [
-                            Positioned(
-                              right: 0,
-                              top: size * .12,
-                              child: AnimatedBuilder(
-                                animation: spin,
-                                child: RepaintBoundary(
-                                  child: SizedBox(
-                                    width: size * .75,
-                                    height: size * .75,
-                                    child: CustomPaint(
-                                      painter: RecordPainter(
-                                        appearance.coverKind,
-                                        v.accent,
-                                        v.background,
-                                      ),
-                                      child: Center(
-                                        child: ClipOval(
-                                          child: Artwork(
-                                            controller: widget.controller,
-                                            url: widget.track.artwork,
-                                            size: size * .18,
-                                            radius: 0,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                builder: (context, child) => Transform.rotate(
-                                  angle: spin.value * math.pi * 2,
-                                  child: child,
-                                ),
-                              ),
-                            ),
-                            Positioned(
-                              right: 0,
-                              top: size * .12,
-                              child: IgnorePointer(
-                                child: SizedBox(
-                                  width: size * .75,
-                                  height: size * .75,
-                                  child: CustomPaint(painter: _RecordLight()),
-                                ),
-                              ),
-                            ),
-                            cover,
-                          ],
-                        ),
+        child: Semantics(
+          label: wt(
+            'native.a0cc85a258',
+            values: {'p0': widget.track.title},
+            context: context,
+          ),
+          child: MouseRegion(
+            onEnter: (_) => setState(() => hovering = true),
+            onExit: (_) => setState(() => hovering = false),
+            child: GestureDetector(
+              key: const Key('album-3d'),
+              behavior: HitTestBehavior.opaque,
+              onLongPressStart: widget.touchTilt
+                  ? null
+                  : (_) {
+                      inertia.stop();
+                      setState(() => dragging = true);
+                    },
+              onLongPressMoveUpdate: widget.touchTilt
+                  ? null
+                  : (details) => setState(
+                      () => tilt = Offset(
+                        details.offsetFromOrigin.dx / 160,
+                        (details.offsetFromOrigin.dy / 160).clamp(-.2, .2),
                       ),
                     ),
-                  ),
-                ),
-              )
-            : Semantics(
-                label: wt(
-                  'native.02a22b9218',
-                  values: {'p0': (widget.track.title)},
-                  context: context,
-                ),
-                child: RepaintBoundary(
-                  key: const Key('album-flat'),
-                  child: cover,
-                ),
+              onLongPressEnd: widget.touchTilt ? null : (_) => finish(0),
+              onPanStart: widget.touchTilt
+                  ? (_) {
+                      inertia.stop();
+                      setState(() => dragging = true);
+                    }
+                  : null,
+              onPanUpdate: widget.touchTilt
+                  ? (details) => setState(
+                      () => tilt = Offset(
+                        tilt.dx + details.delta.dx / 160,
+                        (tilt.dy + details.delta.dy / 160).clamp(-.2, .2),
+                      ),
+                    )
+                  : null,
+              onPanEnd: widget.touchTilt
+                  ? (details) => finish(details.velocity.pixelsPerSecond.dx)
+                  : null,
+              onPanCancel: widget.touchTilt ? () => finish(0) : null,
+              child: AnimatedBuilder(
+                animation: drift,
+                builder: (_, _) {
+                  final y =
+                      -.314 +
+                      tilt.dx +
+                      (!dragging && !hovering
+                          ? math.sin(drift.value * math.pi * 2) * .04
+                          : 0);
+                  final x = -.157 - tilt.dy;
+                  final faceFront = math.cos(y) >= 0;
+                  final matrix = Matrix4.identity()
+                    ..setEntry(3, 2, 1 / 1100)
+                    ..rotateX(x)
+                    ..rotateY(y);
+                  return Transform(
+                    key: const Key('album-3d-transform'),
+                    alignment: Alignment.center,
+                    transform: matrix,
+                    child: SizedBox(
+                      width: size * 1.4,
+                      height: size,
+                      child: Stack(
+                        clipBehavior: Clip.none,
+                        children: [
+                          AnimatedPositioned(
+                            duration: v.duration(600),
+                            curve: Curves.easeOutCubic,
+                            left: size * (hovering ? .46 : .36),
+                            top: size * .03,
+                            child: disc,
+                          ),
+                          if (!faceFront)
+                            Positioned(
+                              left: 0,
+                              top: 0,
+                              child: Transform(
+                                alignment: Alignment.center,
+                                transform: Matrix4.identity()
+                                  ..translateByDouble(0, 0, -depth / 2, 1)
+                                  ..rotateY(math.pi),
+                                child: Container(
+                                  key: const Key('album-back-sleeve'),
+                                  width: size,
+                                  height: size,
+                                  padding: EdgeInsets.all(size * .08),
+                                  color: opaque,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Brand(
+                                        size: math.max(14, size * .07),
+                                        animated: false,
+                                      ),
+                                      const Spacer(),
+                                      Text(
+                                        widget.track.title,
+                                        maxLines: 3,
+                                        overflow: TextOverflow.ellipsis,
+                                        style: TextStyle(
+                                          fontSize: size * .085,
+                                          fontWeight: FontWeight.w800,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 8),
+                                      Text(
+                                        widget.track.artist,
+                                        maxLines: 2,
+                                        style: TextStyle(
+                                          fontSize: size * .045,
+                                          color: v.muted,
+                                        ),
+                                      ),
+                                      const Spacer(),
+                                      Text(
+                                        'GLUK WAVE / 33⅓ RPM',
+                                        style: TextStyle(
+                                          fontSize: size * .028,
+                                          letterSpacing: 1,
+                                          color: v.muted,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          Positioned(
+                            left: -depth / 2,
+                            top: 0,
+                            child: edge(
+                              const Key('album-spine-face'),
+                              Matrix4.identity()..rotateY(-math.pi / 2),
+                              depth,
+                              size,
+                            ),
+                          ),
+                          Positioned(
+                            left: 0,
+                            top: -depth / 2,
+                            child: edge(
+                              const Key('album-top-face'),
+                              Matrix4.identity()..rotateX(math.pi / 2),
+                              size,
+                              depth,
+                            ),
+                          ),
+                          Positioned(
+                            left: 0,
+                            top: size - depth / 2,
+                            child: edge(
+                              const Key('album-bottom-face'),
+                              Matrix4.identity()..rotateX(-math.pi / 2),
+                              size,
+                              depth,
+                            ),
+                          ),
+                          Positioned(
+                            left: size - depth / 2,
+                            top: 0,
+                            child: edge(
+                              const Key('album-inner-face'),
+                              Matrix4.identity()..rotateY(math.pi / 2),
+                              depth,
+                              size,
+                            ),
+                          ),
+                          if (faceFront)
+                            Positioned(
+                              left: 0,
+                              top: 0,
+                              child: Transform(
+                                transform: Matrix4.identity()
+                                  ..translateByDouble(0, 0, depth / 2, 1),
+                                child: front(),
+                              ),
+                            ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
               ),
+            ),
+          ),
+        ),
       ),
     );
   }

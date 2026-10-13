@@ -53,6 +53,7 @@ class ConnectAudio extends WaveAudioHandler {
     List<WaveTrack>? list,
     double position = 0,
     bool playing = true,
+    bool recover = true,
   }) async {
     starts.add(track);
   }

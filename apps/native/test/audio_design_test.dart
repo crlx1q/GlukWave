@@ -53,6 +53,7 @@ Future<fixture.LayoutController> makeController() async {
     'equalizer': {'enabled': true},
   });
   c.loading = false;
+  c.online = true;
   final tracks = List.generate(
     3,
     (i) => WaveTrack({
@@ -96,6 +97,14 @@ Widget shell(
     home: Scaffold(body: child),
   ),
 );
+
+Future<void> settlePlayerTest(WidgetTester tester) async {
+  await tester.pump();
+  await tester.runAsync(
+    () => Future<void>.delayed(const Duration(milliseconds: 30)),
+  );
+  await tester.pumpAndSettle();
+}
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -249,9 +258,9 @@ void main() {
               mode: mode,
             ),
           );
-          await tester.pumpAndSettle();
+          await settlePlayerTest(tester);
           await tester.tap(find.byKey(const Key('open-eq')));
-          await tester.pumpAndSettle();
+          await settlePlayerTest(tester);
           expect(tester.takeException(), isNull);
           final rect = tester.getRect(
                 find.byKey(const Key('player-eq-popover')),
@@ -342,7 +351,7 @@ void main() {
             'audio-design-$runId-$mode-$width-eq',
           );
           await tester.tap(find.byTooltip(wt('native.398c7d4f7b')));
-          await tester.pumpAndSettle();
+          await settlePlayerTest(tester);
           expect(find.byKey(const Key('player-eq-popover')), findsNothing);
           await fixture.clean(tester, c);
         },
@@ -365,18 +374,18 @@ void main() {
           ),
         ),
       );
-      await tester.pumpAndSettle();
+      await settlePlayerTest(tester);
       await tester.tap(find.byKey(const Key('compact-eq-presets')));
-      await tester.pumpAndSettle();
+      await settlePlayerTest(tester);
       await tester.tap(find.text(wt('eq.bass')).last);
-      await tester.pumpAndSettle();
+      await settlePlayerTest(tester);
       expect(c.customization.equalizer.bands.first, 5);
       expect(c.customization.equalizer.preamp, -5);
       final band = tester.widget<Slider>(
         find.byKey(const Key('compact-eq-band-0')),
       );
       band.onChanged!(12);
-      await tester.pumpAndSettle();
+      await settlePlayerTest(tester);
       expect(c.customization.equalizer.bands.first, 12);
       tester
           .widget<Slider>(find.byKey(const Key('compact-eq-preamp')))
@@ -384,16 +393,16 @@ void main() {
       tester
           .widget<Slider>(find.byKey(const Key('compact-eq-rate')))
           .onChanged!(1.25);
-      await tester.pumpAndSettle();
+      await settlePlayerTest(tester);
       expect(c.customization.equalizer.preamp, -12);
       expect(c.customization.playbackRate, 1.25);
       expect((c.audio as UiAudio).applied!.bands.first, 12);
       expect((c.audio as UiAudio).appliedRate, 1.25);
       await tester.tap(find.byTooltip(audioDesignText('savePreset')));
-      await tester.pumpAndSettle();
+      await settlePlayerTest(tester);
       expect(c.preferences.getString('eq-curve:null'), contains('12.0'));
       await tester.tap(find.byKey(const Key('compact-eq-enabled')));
-      await tester.pumpAndSettle();
+      await settlePlayerTest(tester);
       expect(c.customization.equalizer.enabled, isFalse);
       expect(
         tester
@@ -421,7 +430,7 @@ void main() {
           ),
         ),
       );
-      await tester.pumpAndSettle();
+      await settlePlayerTest(tester);
       expect(
         tester.widget<WaveStateIcon>(find.byType(WaveStateIcon)).icon,
         item.$2,
@@ -444,13 +453,13 @@ void main() {
           mode: 'dark',
         ),
       );
-      await tester.pumpAndSettle();
+      await settlePlayerTest(tester);
       expect(tester.takeException(), isNull);
       expect(find.byKey(const Key('player-centered-view')), findsOneWidget);
       expect(find.byKey(const Key('desktop-lyrics-scroll')), findsNothing);
       expect(find.byKey(const Key('player-queue-rail')), findsNothing);
       await tester.tap(find.byKey(const Key('player-lyrics-toggle')));
-      await tester.pumpAndSettle();
+      await settlePlayerTest(tester);
       expect(
         find.descendant(
           of: find.byKey(const Key('desktop-lyrics-scroll')),
@@ -462,11 +471,6 @@ void main() {
         tester.getSize(find.byKey(const Key('album-stage-bounds'))).width,
         greaterThan(350),
       );
-      await tester.drag(
-        find.byKey(const Key('player-listening-scroll')),
-        const Offset(0, -350),
-      );
-      await tester.pumpAndSettle();
       expect(
         tester.getRect(find.byKey(const Key('player-equalizer'))).top,
         greaterThanOrEqualTo(0),
@@ -478,11 +482,11 @@ void main() {
       expect(find.byKey(const Key('compact-eq-band-0')), findsNothing);
       await fixture.screenshot(tester, 'audio-design-$runId-dark-full-desktop');
       await tester.tap(find.byKey(const Key('player-queue-toggle')));
-      await tester.pumpAndSettle();
+      await settlePlayerTest(tester);
       expect(find.byKey(const Key('desktop-lyrics-scroll')), findsNothing);
       expect(find.text('An original quiet evening 1'), findsOneWidget);
       await tester.tap(find.byKey(const Key('player-queue-toggle')));
-      await tester.pumpAndSettle();
+      await settlePlayerTest(tester);
       expect(find.byKey(const Key('player-centered-view')), findsOneWidget);
       await fixture.clean(tester, c);
     },

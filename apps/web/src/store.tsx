@@ -3,7 +3,7 @@ import {readableCoverAccent} from './cover-accent';
 import {startupAccountId,preferenceStorage} from './locale-startup';
 import { createContext, useCallback, useContext, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from 'react';
 import type { Socket } from 'socket.io-client';
-import { ApiError, api, errorText, post } from './api';
+import { ApiError, api, errorText, post, setRequestAccount } from './api';
 import { advancedSettingsChange } from './parity-model';
 import { resetDiagnostics } from './diagnostics';
 import { applyAppearance, mergeSettings, mergeSettingsPatches, normalizeSettings, normalizeSettingsPatch, readLocalSettings, readPendingSettings, writeLocalSettings, writeConfirmedSettings, writePendingSettings } from './preferences';
@@ -38,7 +38,7 @@ export function StoreProvider({children}:{children:ReactNode}) {useLocale();
   const userRef=useRef(user);userRef.current=user;const toastTimer=useRef<ReturnType<typeof setTimeout>|undefined>(undefined);
   const notify=useCallback((text:string,error=false)=>{clearTimeout(toastTimer.current);setToast({id:Date.now(),text,error});toastTimer.current=setTimeout(()=>setToast(null),6500);},[]);
   useEffect(()=>()=>clearTimeout(toastTimer.current),[]);
-  const setUser=useCallback((next:User|null)=>{if(userRef.current?.id!==next?.id)resetDiagnostics();userRef.current=next;setUserState(next);if(next)localStorage.setItem('gw-user',JSON.stringify(next));else localStorage.removeItem('gw-user');},[]);
+  const setUser=useCallback((next:User|null)=>{if(userRef.current?.id!==next?.id)resetDiagnostics();userRef.current=next;setRequestAccount(next?.id||null);setUserState(next);if(next)localStorage.setItem('gw-user',JSON.stringify(next));else localStorage.removeItem('gw-user');},[]);
   const navigate=useCallback((next:Route)=>{location.hash=next;setRoute(next);window.scrollTo({top:0,behavior:'instant'});},[]);
   const refreshLibrary=useCallback(async()=>{
     if(!user){setLibrary(emptyLibrary);setLibraryPending(false);setLibraryOwner(null);return;}

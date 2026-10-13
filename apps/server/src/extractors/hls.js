@@ -35,7 +35,7 @@ export function setupExtractedHls(app,ctx,{cdn,resolve,fetcher=fetch}){
   }
   app.get('/api/stream-audio/:id',asyncRoute(async(req,res)=>{
     sweep();const token=String(req.query.grant||''),grant=grants.get(token),part=String(req.query.part||'root');
-    if(!grant||grant.trackId!==req.params.id||closed)fail(401,'AUTH_REQUIRED','Войди в GlukWave, чтобы продолжить.');
+    if(!grant||grant.trackId!==req.params.id||closed)fail(401,'AUDIO_EXPIRED','Ссылка на аудио обновилась. Запусти трек ещё раз.');
     const [session,user]=await Promise.all([ctx.store.get('sessions',grant.sessionId),ctx.store.get('users',grant.userId)]);
     if(!session||session.userId!==grant.userId||session.expiresAt<=Date.now()||!user||user.blocked)fail(401,'AUTH_REQUIRED','Сессия завершена.');
     if(req.auth?.user&&req.auth.user.id!==grant.userId)fail(403,'TRACK_NOT_FOUND','Трек не найден.');

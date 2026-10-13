@@ -95,6 +95,13 @@ void main() {
         expect(c.audio.current?.id, 'first');
         expect(c.waveMode, 'favorites');
         expect(c.waveMood, 'calm');
+        await Future<void>.delayed(const Duration(milliseconds: 100));
+        expect(
+          api.queries.length,
+          lessThanOrEqualTo(3),
+          reason:
+              'An exhausted early tail must not make a playback-state feedback loop.',
+        );
         await Future<void>.delayed(Duration.zero);
         await c.transport('next');
         expect(c.audio.current?.id, 'second');

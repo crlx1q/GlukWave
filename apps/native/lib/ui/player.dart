@@ -1,4 +1,7 @@
 import 'scrolling_label.dart';
+import 'native19_strings.dart';
+import 'native19_desktop_transport.dart';
+import 'dart:math' as math;
 import 'cover_ambient.dart';
 import 'seasonal.dart';
 import 'lyrics_editor.dart';
@@ -125,6 +128,17 @@ class MiniPlayer extends StatelessWidget {
     final c = controller, track = c.audio.viewCurrent;
     final v = waveVisuals(context);
     final compact = MediaQuery.sizeOf(context).width < 800;
+    if (!compact) {
+      return NativeDesktopTransport(
+        controller: c,
+        onOpen: onOpen,
+        artworkKey: artworkKey,
+        onDragStart: onDragStart,
+        onDragUpdate: onDragUpdate,
+        onDragEnd: onDragEnd,
+        onDragCancel: onDragCancel,
+      );
+    }
     return ClipRRect(
       borderRadius: BorderRadius.circular(
         waveRadius(context, compact ? 13 : 22),
@@ -166,7 +180,11 @@ class MiniPlayer extends StatelessWidget {
                     ),
                   ),
                 SizedBox(
-                  height: compact || v.compact ? 72 : 84,
+                  height: track != null
+                      ? 94
+                      : compact || v.compact
+                      ? 72
+                      : 84,
                   child: Column(
                     children: [
                       Expanded(
@@ -233,6 +251,28 @@ class MiniPlayer extends StatelessWidget {
                                                   fontSize: 10,
                                                 ),
                                               ),
+                                              if (track != null) ...[
+                                                const SizedBox(height: 4),
+                                                Builder(
+                                                  builder: (anchor) =>
+                                                      PlayingOutput(
+                                                        key: const Key(
+                                                          'mini-active-device',
+                                                        ),
+                                                        controller: c,
+                                                        banner: true,
+                                                        onTap: () =>
+                                                            showConnectPicker(
+                                                              anchor,
+                                                              c,
+                                                              anchor:
+                                                                  _anchorRect(
+                                                                    anchor,
+                                                                  ),
+                                                            ),
+                                                      ),
+                                                ),
+                                              ],
                                             ],
                                           ),
                                         ),
@@ -589,6 +629,9 @@ class _PlayerPageState extends State<PlayerPage> {
   bool synchronized = false, loading = false;
   String? error;
   int tab = 0, _load = 0;
+  String? _detailsScope;
+  String detailsScope(WaveTrack? track) =>
+      '${c.namespace}:${track?.id}:${c.online}:${c.localSavedPlayback}';
   final comment = TextEditingController();
   final _lyricsScroll = ScrollController();
   final _lyricKeys = <int, GlobalKey>{};
@@ -599,6 +642,7 @@ class _PlayerPageState extends State<PlayerPage> {
   void initState() {
     super.initState();
     current = widget.initialTrack ?? c.audio.viewCurrent;
+    _detailsScope = detailsScope(current);
     unawaited(loadDetails());
     if (widget.initialTrack == null) {
       _media = c.audio.mediaItem.listen((_) => _syncCurrent());
@@ -611,13 +655,21 @@ class _PlayerPageState extends State<PlayerPage> {
   void _syncCurrent() {
     if (!mounted) return;
     final track = c.audio.viewCurrent;
-    if (track?.id == current?.id) return;
+    final scope = detailsScope(track), changed = track?.id != current?.id;
+    if (!changed && scope == _detailsScope) return;
+    _detailsScope = scope;
     setState(() {
       current = track;
-      lyrics = [];
-      comments = [];
-      _lyricKeys.clear();
-      _lastLyric = -2;
+      if (changed) {
+        lyrics = [];
+        comments = [];
+        _lyricKeys.clear();
+        _lastLyric = -2;
+      }
+      if (track == null) {
+        _load++;
+        loading = false;
+      }
     });
     unawaited(loadDetails());
   }
@@ -632,22 +684,30 @@ class _PlayerPageState extends State<PlayerPage> {
       });
     }
     try {
-      final result = await Future.wait([
-        c.api.call('/api/tracks/$id/lyrics'),
-        c.settings['comments'] == false
-            ? Future<Json>.value({'comments': []})
-            : c.api.call('/api/tracks/$id/comments'),
-      ]);
+      final lyricResult = await c.lyricsFor(current!);
       if (!mounted || revision != _load) return;
       setState(() {
-        lyrics = objects(result[0]['lines']);
-        synchronized = result[0]['synchronized'] == true;
-        comments = objects(result[1]['comments']);
+        lyrics = objects(lyricResult['lines']);
+        synchronized = lyricResult['synchronized'] == true;
       });
+      if (c.online && c.settings['comments'] != false) {
+        unawaited(loadComments(id, revision));
+      }
     } catch (e) {
       if (mounted && revision == _load) setState(() => error = e.toString());
     } finally {
       if (mounted && revision == _load) setState(() => loading = false);
+    }
+  }
+
+  Future<void> loadComments(String id, int revision) async {
+    try {
+      final data = await c.api.call('/api/tracks/$id/comments');
+      if (mounted && revision == _load) {
+        setState(() => comments = objects(data['comments']));
+      }
+    } catch (_) {
+      /* Comments do not hold up saved or online lyrics. */
     }
   }
 
@@ -828,215 +888,7 @@ class _PlayerPageState extends State<PlayerPage> {
                 ),
               Expanded(
                 child: LayoutBuilder(
-                  builder: (context, bounds) {
-                    Widget details() => switch (tab) {
-                      1 => lyricPage(track),
-                      2 => queuePage(),
-                      _ => commentPage(track),
-                    };
-                    if (tab == 0) {
-                      return Center(
-                        key: const Key('player-centered-view'),
-                        child: SingleChildScrollView(
-                          key: const Key('player-content-scroll'),
-                          padding: const EdgeInsets.fromLTRB(24, 0, 24, 8),
-                          child: SizedBox(width: 400, child: listening(track)),
-                        ),
-                      );
-                    }
-                    if (wide) {
-                      return Padding(
-                        key: Key('player-detail-view-$tab'),
-                        padding: const EdgeInsets.fromLTRB(36, 10, 36, 24),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              flex: 4,
-                              child: Center(
-                                child: SingleChildScrollView(
-                                  key: const Key('player-listening-scroll'),
-                                  padding: const EdgeInsets.symmetric(
-                                    vertical: 16,
-                                    horizontal: 8,
-                                  ),
-                                  child: ConstrainedBox(
-                                    constraints: const BoxConstraints(
-                                      maxWidth: 390,
-                                    ),
-                                    child: listening(track),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 36),
-                            Expanded(
-                              flex: 7,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  border: Border(
-                                    left: BorderSide(
-                                      color: v.line.withValues(alpha: .5),
-                                    ),
-                                  ),
-                                ),
-                                padding: const EdgeInsets.only(left: 36),
-                                child: Listener(
-                                  onPointerSignal: (_) =>
-                                      _manualLyricsUntil = DateTime.now().add(
-                                        const Duration(seconds: 5),
-                                      ),
-                                  child: SingleChildScrollView(
-                                    key: Key(
-                                      tab == 1
-                                          ? 'desktop-lyrics-scroll'
-                                          : 'player-detail-scroll',
-                                    ),
-                                    controller: tab == 1 ? _lyricsScroll : null,
-                                    padding: const EdgeInsets.symmetric(
-                                      vertical: 20,
-                                    ),
-                                    child: details(),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      );
-                    }
-                    return Column(
-                      key: Key('player-detail-view-$tab'),
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(24, 8, 24, 6),
-                          child: Row(
-                            children: [
-                              PlayerGestureSurface(
-                                key: const Key('player-cover-gesture'),
-                                controller: c,
-                                child: Artwork(
-                                  controller: c,
-                                  url: track.artwork,
-                                  size: 64,
-                                  radius: 14,
-                                  trackLoading: c.trackLoading,
-                                ),
-                              ),
-                              const SizedBox(width: 14),
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    ScrollingLabel(
-                                      track.title,
-                                      style: const TextStyle(
-                                        fontSize: 17,
-                                        fontWeight: FontWeight.w800,
-                                      ),
-                                    ),
-                                    const SizedBox(height: 5),
-                                    ScrollingLabel(
-                                      track.artist,
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        color: v.muted,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              WavePress(
-                                child: IconButton(
-                                  key: const Key('player-equalizer'),
-                                  tooltip: wt('eq.title', context: context),
-                                  isSelected: c.customization.equalizer.enabled,
-                                  style: IconButton.styleFrom(
-                                    foregroundColor:
-                                        c.customization.equalizer.enabled
-                                        ? v.accent
-                                        : v.muted,
-                                    backgroundColor:
-                                        c.customization.equalizer.enabled
-                                        ? v.accentSoft
-                                        : Colors.transparent,
-                                  ),
-                                  onPressed: () =>
-                                      showPlayerEqualizer(context, c),
-                                  icon: const WaveControlIcon(
-                                    Icons.graphic_eq_rounded,
-                                    size: 20,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Expanded(
-                          child: Listener(
-                            onPointerSignal: (_) => _manualLyricsUntil =
-                                DateTime.now().add(const Duration(seconds: 5)),
-                            child: SingleChildScrollView(
-                              key: Key(
-                                tab == 1
-                                    ? 'mobile-lyrics-scroll'
-                                    : 'player-detail-scroll',
-                              ),
-                              controller: tab == 1 ? _lyricsScroll : null,
-                              padding: const EdgeInsets.fromLTRB(
-                                24,
-                                12,
-                                24,
-                                20,
-                              ),
-                              child: details(),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(24, 4, 24, 6),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              progress(track),
-                              transport(),
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: Builder(
-                                      builder: (anchorContext) => PlayingOutput(
-                                        controller: c,
-                                        onTap: () => showConnectPicker(
-                                          anchorContext,
-                                          c,
-                                          anchor: _anchorRect(anchorContext),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  ListeningPresence(
-                                    controller: c,
-                                    compact: true,
-                                  ),
-                                  IconButton(
-                                    tooltip: wt(
-                                      'native.621777004a',
-                                      context: context,
-                                    ),
-                                    onPressed: showVolume,
-                                    icon: WaveVolumeIcon(
-                                      volume: c.audio.volume,
-                                      size: 18,
-                                      color: v.muted,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    );
-                  },
+                  builder: (context, bounds) => playerBody(track, bounds, wide),
                 ),
               ),
             ],
@@ -1099,373 +951,498 @@ class _PlayerPageState extends State<PlayerPage> {
       ),
     ),
   );
-  Widget listening(WaveTrack track) => LayoutBuilder(
-    builder: (context, constraints) {
-      // Cover size follows usable width, never viewport height or tilt angle.
-      // The same fixed frame survives every tilt. Only unusually small windows scroll.
-      final size = (constraints.maxWidth - 32).clamp(100.0, 368.0);
-      final active = c.audio.viewCurrent?.id == track.id;
-      return ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 530),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+  Widget playerBody(WaveTrack track, BoxConstraints bounds, bool wide) {
+    if (tab == 0) {
+      return Center(
+        key: const Key('player-centered-view'),
+        child: Padding(
+          padding: EdgeInsets.fromLTRB(wide ? 32 : 20, 0, wide ? 32 : 20, 10),
+          child: ConstrainedBox(
+            constraints: BoxConstraints(maxWidth: wide ? 640 : 520),
+            child: listening(track),
+          ),
+        ),
+      );
+    }
+    Widget detail() => switch (tab) {
+      1 => lyricPage(track),
+      2 => queuePage(),
+      _ => commentPage(track),
+    };
+    Widget scroll() => Listener(
+      onPointerSignal: (_) =>
+          _manualLyricsUntil = DateTime.now().add(const Duration(seconds: 5)),
+      child: SingleChildScrollView(
+        key: Key(
+          tab == 1
+              ? wide
+                    ? 'desktop-lyrics-scroll'
+                    : 'mobile-lyrics-scroll'
+              : 'player-detail-scroll',
+        ),
+        controller: tab == 1 ? _lyricsScroll : null,
+        padding: EdgeInsets.symmetric(horizontal: wide ? 32 : 24, vertical: 12),
+        child: detail(),
+      ),
+    );
+    if (wide) {
+      return Padding(
+        key: Key('player-detail-view-$tab'),
+        padding: const EdgeInsets.fromLTRB(28, 10, 28, 16),
+        child: Row(
           children: [
-            PlayerGestureSurface(
-              key: const Key('player-cover-gesture'),
-              controller: c,
-              onVerticalStart: widget.onDragStart,
-              onVerticalUpdate: widget.onDragUpdate,
-              onVerticalEnd: widget.onDragEnd,
-              onVerticalCancel: widget.onDragCancel,
-              child: Opacity(
-                opacity: widget.hideAlbum ? 0 : 1,
-                child: SizedBox(
-                  width: double.infinity,
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      AlbumStage(
-                        controller: c,
-                        track: track,
-                        size: size,
-                        playing: active && c.audio.playing,
-                        artworkKey: widget.artworkKey,
-                        touchTilt: false,
+            Expanded(
+              flex: 4,
+              child: Padding(
+                padding: const EdgeInsets.only(right: 28),
+                child: listening(track),
+              ),
+            ),
+            Expanded(
+              flex: 6,
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  border: Border(
+                    left: BorderSide(color: waveVisuals(context).line),
+                  ),
+                ),
+                child: scroll(),
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+    return Column(
+      key: Key('player-detail-view-$tab'),
+      children: [
+        Padding(
+          padding: const EdgeInsets.fromLTRB(22, 12, 22, 12),
+          child: Row(
+            children: [
+              Artwork(
+                controller: c,
+                url: track.artwork,
+                size: 46,
+                radius: 12,
+                trackLoading: c.trackLoading,
+              ),
+              const SizedBox(width: 13),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ScrollingLabel(
+                      track.title,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w800,
                       ),
-                    ],
+                    ),
+                    const SizedBox(height: 4),
+                    ScrollingLabel(
+                      track.artist,
+                      style: TextStyle(
+                        fontSize: 11,
+                        color: waveVisuals(context).muted,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              IconButton(
+                key: const Key('player-equalizer'),
+                tooltip: wt('eq.title', context: context),
+                isSelected: c.customization.equalizer.enabled,
+                onPressed: () => showPlayerEqualizer(context, c),
+                icon: WaveControlIcon(
+                  Icons.graphic_eq_rounded,
+                  color: c.customization.equalizer.enabled
+                      ? waveVisuals(context).accent
+                      : waveVisuals(context).muted,
+                  size: 20,
+                ),
+              ),
+            ],
+          ),
+        ),
+        Expanded(child: scroll()),
+        Container(
+          key: const Key('lyrics-persistent-controls'),
+          padding: const EdgeInsets.fromLTRB(16, 4, 16, 10),
+          decoration: BoxDecoration(
+            color: waveVisuals(context).background.withValues(alpha: .9),
+            border: Border(top: BorderSide(color: waveVisuals(context).line)),
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [progress(track), compactTransport()],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget listening(WaveTrack track) => LayoutBuilder(
+    builder: (context, bounds) {
+      final v = waveVisuals(context),
+          active = c.audio.viewCurrent?.id == track.id;
+      final dense = bounds.maxHeight < 580, tiny = bounds.maxHeight < 470;
+      final scale = MediaQuery.textScalerOf(context).scale(1);
+      final short = bounds.maxHeight / scale < 450;
+      final preview =
+          tab == 0 &&
+          !short &&
+          c.settings['lyrics'] == true &&
+          c.settings['lyricsUnderCover'] != false &&
+          lyrics.isNotEmpty;
+      final previewHeight = preview ? (tiny ? 56.0 : 68.0) * scale : 0.0;
+      final controlsHeight = active
+          ? (short
+                    ? 211.0
+                    : tiny
+                    ? 237.0
+                    : 264.0) +
+                (scale - 1).clamp(0, 1) * 45 +
+                previewHeight
+          : 130.0 + previewHeight;
+      final stageRoom = math.max(80.0, bounds.maxHeight - controlsHeight);
+      final size = math
+          .min(
+            (bounds.maxWidth - 32) /
+                (c.customization.appearance.cover3d && !c.energySaving
+                    ? 1.5
+                    : 1),
+            (stageRoom - 32) /
+                (c.customization.appearance.cover3d && !c.energySaving
+                    ? 1.28
+                    : 1),
+          )
+          .clamp(60.0, 390.0);
+      return Column(
+        key: const Key('player-content-scroll'),
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            child: Center(
+              child: PlayerGestureSurface(
+                key: const Key('player-cover-gesture'),
+                controller: c,
+                onVerticalStart: widget.onDragStart,
+                onVerticalUpdate: widget.onDragUpdate,
+                onVerticalEnd: widget.onDragEnd,
+                onVerticalCancel: widget.onDragCancel,
+                child: Opacity(
+                  opacity: widget.hideAlbum ? 0 : 1,
+                  child: AlbumStage(
+                    controller: c,
+                    track: track,
+                    size: size,
+                    playing: active && c.audio.playing,
+                    artworkKey: widget.artworkKey,
+                    touchTilt: false,
                   ),
                 ),
               ),
+            ),
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ScrollingLabel(
+                      track.title,
+                      style: TextStyle(
+                        fontSize: tiny
+                            ? 19
+                            : dense
+                            ? 23
+                            : 27,
+                        height: 1.25,
+                        fontWeight: FontWeight.w800,
+                        letterSpacing: -.7,
+                      ),
+                    ),
+                    SizedBox(height: short ? 3 : 5),
+                    ScrollingLabel(
+                      track.artist,
+                      style: TextStyle(
+                        color: v.muted,
+                        fontSize: short ? 12 : 13,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              IconButton(
+                tooltip: wt('native.36f30bdb01', context: context),
+                onPressed: c.online ? () => _run(c, () => c.like(track)) : null,
+                icon: WaveToggleIcon(
+                  active: c.likedIds.contains(track.id),
+                  activeIcon: Icons.favorite_rounded,
+                  inactiveIcon: Icons.favorite_border_rounded,
+                  color: c.likedIds.contains(track.id) ? v.accent : v.muted,
+                  size: 25,
+                ),
+              ),
+            ],
+          ),
+          if (!short)
+            Padding(
+              padding: const EdgeInsets.only(top: 5, bottom: 2),
+              child: Text(
+                track.sourceName,
+                key: const Key('source-attribution'),
+                style: TextStyle(fontSize: 9, color: v.muted),
+              ),
+            ),
+          if (preview)
+            SizedBox(
+              height: previewHeight,
+              child: compactLyrics(track, tiny: tiny),
+            ),
+          if (active) ...[
+            progress(track),
+            SizedBox(height: short ? 3 : 7),
+            Container(
+              key: const Key('player-transport-capsule'),
+              padding: EdgeInsets.symmetric(
+                horizontal: 4,
+                vertical: tiny ? 1 : 5,
+              ),
+              decoration: BoxDecoration(
+                color: v.surface.withValues(alpha: .8),
+                borderRadius: BorderRadius.circular(v.corners(26)),
+              ),
+              child: transport(compact: short),
+            ),
+            SizedBox(
+              height: short
+                  ? 4
+                  : tiny
+                  ? 6
+                  : 12,
+            ),
+            Container(
+              key: const Key('player-secondary-capsule'),
+              decoration: BoxDecoration(
+                color: v.surface.withValues(alpha: .55),
+                borderRadius: BorderRadius.circular(v.corners(22)),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  if (c.settings['lyrics'] != false)
+                    IconButton(
+                      tooltip: nativeText(context, 'lyrics'),
+                      onPressed: () => setState(() => tab = 1),
+                      icon: const WaveViewIcon(
+                        Icons.lyrics_outlined,
+                        active: false,
+                        size: 21,
+                      ),
+                    ),
+                  IconButton(
+                    key: const Key('player-equalizer'),
+                    tooltip: wt('eq.title', context: context),
+                    isSelected: c.customization.equalizer.enabled,
+                    style: IconButton.styleFrom(
+                      foregroundColor: c.customization.equalizer.enabled
+                          ? v.accent
+                          : v.muted,
+                      backgroundColor: c.customization.equalizer.enabled
+                          ? v.accentSoft
+                          : Colors.transparent,
+                    ),
+                    onPressed: () => showPlayerEqualizer(context, c),
+                    icon: const WaveControlIcon(
+                      Icons.graphic_eq_rounded,
+                      size: 21,
+                    ),
+                  ),
+                  IconButton(
+                    tooltip: wt('native.621777004a', context: context),
+                    onPressed: showVolume,
+                    icon: WaveVolumeIcon(
+                      volume: c.audio.volume,
+                      size: 20,
+                      color: v.muted,
+                    ),
+                  ),
+                  IconButton(
+                    tooltip: nativeText(context, 'queue'),
+                    onPressed: () => setState(() => tab = 2),
+                    icon: const WaveViewIcon(
+                      Icons.queue_music_rounded,
+                      active: false,
+                      size: 21,
+                    ),
+                  ),
+                  PopupMenuButton<String>(
+                    tooltip: nativeText(context, 'more'),
+                    icon: const WaveControlIcon(
+                      Icons.more_horiz_rounded,
+                      size: 21,
+                    ),
+                    onSelected: (value) {
+                      if (value == 'save') {
+                        _run(c, () => c.downloadTrack(track));
+                      } else {
+                        widget.onMore(track);
+                      }
+                    },
+                    itemBuilder: (_) => [
+                      PopupMenuItem(
+                        value: 'save',
+                        enabled: c.online && !c.cache.contains(track.id),
+                        child: Text(nativeText(context, 'save')),
+                      ),
+                      PopupMenuItem(
+                        value: 'more',
+                        child: Text(nativeText(context, 'more')),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: short
+                  ? 2
+                  : tiny
+                  ? 3
+                  : 8,
             ),
             Row(
               children: [
                 Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ScrollingLabel(
-                        track.title,
-                        style: const TextStyle(
-                          fontSize: 28,
-                          fontWeight: FontWeight.w800,
-                          letterSpacing: -.8,
-                          height: 1.2,
-                        ),
+                  child: Builder(
+                    builder: (anchorContext) => PlayingOutput(
+                      controller: c,
+                      onTap: () => showConnectPicker(
+                        anchorContext,
+                        c,
+                        anchor: _anchorRect(anchorContext),
                       ),
-                      const SizedBox(height: 8),
-                      ScrollingLabel(
-                        track.artist,
-                        style: TextStyle(
-                          color: waveVisuals(context).muted,
-                          fontSize: 13,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 7),
-                        child: Text(
-                          track.sourceName,
-                          key: const Key('source-attribution'),
-                          style: TextStyle(
-                            color: waveVisuals(context).muted,
-                            fontSize: 10,
-                          ),
-                        ),
-                      ),
-                      if (track.album.isNotEmpty)
-                        Padding(
-                          padding: const EdgeInsets.only(top: 3),
-                          child: Text(
-                            track.album,
-                            style: TextStyle(
-                              color: waveVisuals(context).muted,
-                              fontSize: 11,
-                            ),
-                          ),
-                        ),
-                    ],
+                    ),
                   ),
                 ),
-                IconButton(
-                  tooltip: wt('native.36f30bdb01', context: context),
-                  onPressed: c.online
-                      ? () => _run(c, () => c.like(track))
-                      : null,
-                  icon: WaveToggleIcon(
-                    active: c.likedIds.contains(track.id),
-                    activeIcon: Icons.favorite_rounded,
-                    inactiveIcon: Icons.favorite_border_rounded,
-                    color: c.likedIds.contains(track.id)
-                        ? waveVisuals(context).accent
-                        : waveVisuals(context).muted,
-                    size: 25,
-                  ),
-                ),
+                ListeningPresence(controller: c, compact: true),
               ],
             ),
-            if (active) ...[
-              const SizedBox(height: 8),
-              progress(track),
-              const SizedBox(height: 9),
-              Container(
-                key: const Key('player-transport-capsule'),
-                padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 5),
-                decoration: BoxDecoration(
-                  color: waveVisuals(context).surface.withValues(alpha: .76),
-                  borderRadius: BorderRadius.circular(waveRadius(context, 27)),
-                  border: Border.all(
-                    color: waveVisuals(context).line.withValues(alpha: .5),
-                  ),
-                ),
-                child: transport(),
-              ),
-              const SizedBox(height: 12),
-              Row(
-                children: [
-                  Expanded(
-                    child: Builder(
-                      builder: (anchorContext) => PlayingOutput(
-                        controller: c,
-                        onTap: () => showConnectPicker(
-                          anchorContext,
-                          c,
-                          anchor: _anchorRect(anchorContext),
-                        ),
-                      ),
-                    ),
-                  ),
-                  ListeningPresence(controller: c),
-                ],
-              ),
-              const SizedBox(height: 6),
-              Container(
-                key: const Key('player-secondary-capsule'),
-                decoration: BoxDecoration(
-                  color: waveVisuals(context).surface.withValues(alpha: .55),
-                  borderRadius: BorderRadius.circular(waveRadius(context, 22)),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    WavePress(
-                      child: IconButton(
-                        key: const Key('player-equalizer'),
-                        tooltip: wt('eq.title', context: context),
-                        isSelected: c.customization.equalizer.enabled,
-                        style: IconButton.styleFrom(
-                          foregroundColor: c.customization.equalizer.enabled
-                              ? waveVisuals(context).accent
-                              : waveVisuals(context).muted,
-                          backgroundColor: c.customization.equalizer.enabled
-                              ? waveVisuals(context).accentSoft
-                              : Colors.transparent,
-                        ),
-                        onPressed: () => showPlayerEqualizer(context, c),
-                        icon: const WaveControlIcon(
-                          Icons.graphic_eq_rounded,
-                          size: 21,
-                        ),
-                      ),
-                    ),
-                    WavePress(
-                      child: IconButton(
-                        tooltip: wt('native.621777004a', context: context),
-                        onPressed: showVolume,
-                        icon: WaveVolumeIcon(
-                          volume: c.audio.volume,
-                          size: 20,
-                          color: waveVisuals(context).muted,
-                        ),
-                      ),
-                    ),
-                    WavePress(
-                      child: IconButton(
-                        tooltip: focusedPlayerText('more', context: context),
-                        onPressed: () => widget.onMore(track),
-                        icon: const WaveControlIcon(
-                          Icons.more_horiz_rounded,
-                          size: 22,
-                        ),
-                      ),
-                    ),
-                    if (track.offline)
-                      WavePress(
-                        child: IconButton(
-                          tooltip: wt('native.ca25d9c93e', context: context),
-                          onPressed: () =>
-                              _run(c, () => c.cache.save(track, manual: true)),
-                          icon: Icon(
-                            c.cache.contains(track.id)
-                                ? Icons.offline_pin_outlined
-                                : Icons.download_rounded,
-                            size: 20,
-                          ),
-                        ),
-                      ),
-                  ],
-                ),
-              ),
-            ] else ...[
-              const SizedBox(height: 24),
-              SizedBox(
-                width: double.infinity,
-                child: FilledButton.icon(
-                  onPressed: () => _run(
-                    c,
-                    () => track.playable
-                        ? c.play(track)
-                        : c.openUrl(track.sourceUrl),
-                  ),
-                  icon: Icon(
-                    track.playable
-                        ? Icons.play_arrow_rounded
-                        : Icons.open_in_new_rounded,
-                  ),
-                  label: Text(
-                    track.playable
-                        ? wt('native.b09bf87fd9', context: context)
-                        : wt(
-                            'native.58ef1d8c95',
-                            values: {'p0': (track.sourceName)},
-                            context: context,
-                          ),
-                  ),
-                ),
-              ),
-            ],
-            if (!track.playable)
-              Padding(
-                padding: const EdgeInsets.only(top: 20),
-                child: Text(
-                  wt(
-                    'native.ffe3af5890',
-                    values: {'p0': (track.sourceName)},
-                    context: context,
-                  ),
-                  style: TextStyle(
-                    fontSize: 11,
-                    color: waveVisuals(context).muted,
-                    height: 1.7,
-                  ),
-                ),
-              ),
-            if (tab == 0 &&
-                c.settings['lyrics'] == true &&
-                c.settings['lyricsUnderCover'] != false &&
-                lyrics.isNotEmpty)
-              Padding(
-                padding: const EdgeInsets.only(top: 26),
-                child: StreamBuilder<Duration>(
-                  stream: c.audio.positionStream,
-                  builder: (_, snapshot) {
-                    final index = synchronized && active
-                        ? activeLyric(
-                            lyrics,
-                            (snapshot.data?.inMilliseconds ?? 0) / 1000,
-                          )
-                        : 0;
-                    return InkWell(
-                      onTap: synchronized && active && c.canSeek
-                          ? () => _run(
-                              c,
-                              () => c.transport('seek', {
-                                'position': number(
-                                  lyrics[index.clamp(
-                                    0,
-                                    lyrics.length - 1,
-                                  )]['time'],
-                                ),
-                              }),
-                            )
-                          : () => setState(() => tab = 1),
-                      child: Surface(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              wt('native.5a13cba854', context: context),
-                              style: TextStyle(
-                                fontSize: 8,
-                                letterSpacing: 1.5,
-                                color: waveVisuals(context).muted,
-                              ),
-                            ),
-                            const SizedBox(height: 12),
-                            AnimatedSwitcher(
-                              duration: waveVisuals(context).duration(280),
-                              child: Column(
-                                key: ValueKey(index),
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  for (
-                                    var line = index.clamp(
-                                      0,
-                                      lyrics.length - 1,
-                                    );
-                                    line < lyrics.length &&
-                                        line <
-                                            index.clamp(0, lyrics.length - 1) +
-                                                2;
-                                    line++
-                                  )
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                        top:
-                                            line ==
-                                                index.clamp(
-                                                  0,
-                                                  lyrics.length - 1,
-                                                )
-                                            ? 0
-                                            : 9,
-                                      ),
-                                      child: Text(
-                                        lyrics[line]['text']?.toString() ?? '',
-                                        key: Key('mini-lyric-$line'),
-                                        maxLines: 2,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: TextStyle(
-                                          fontSize:
-                                              line ==
-                                                  index.clamp(
-                                                    0,
-                                                    lyrics.length - 1,
-                                                  )
-                                              ? 19
-                                              : 16,
-                                          color:
-                                              line ==
-                                                  index.clamp(
-                                                    0,
-                                                    lyrics.length - 1,
-                                                  )
-                                              ? waveVisuals(context).ink
-                                              : waveVisuals(context).muted,
-                                          fontWeight:
-                                              line ==
-                                                  index.clamp(
-                                                    0,
-                                                    lyrics.length - 1,
-                                                  )
-                                              ? FontWeight.w700
-                                              : FontWeight.w500,
-                                          height: 1.35,
-                                        ),
-                                      ),
-                                    ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ),
+          ] else ...[
+            const SizedBox(height: 18),
+            FilledButton.icon(
+              onPressed: track.playable
+                  ? () => _run(c, () => c.play(track))
+                  : null,
+              icon: const WavePlayPauseIcon(playing: false, size: 22),
+              label: Text(wt('native.b09bf87fd9', context: context)),
+            ),
           ],
-        ),
+        ],
       );
     },
+  );
+
+  Widget compactLyrics(WaveTrack track, {required bool tiny}) =>
+      StreamBuilder<Duration>(
+        stream: c.audio.positionStream,
+        builder: (_, snapshot) {
+          final active = synchronized && c.audio.viewCurrent?.id == track.id,
+              index = active
+                  ? activeLyric(
+                      lyrics,
+                      (snapshot.data?.inMilliseconds ?? 0) / 1000,
+                    )
+                  : 0,
+              current = index.clamp(0, lyrics.length - 1);
+          return Column(
+            key: const Key('player-compact-lyrics'),
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              for (final line in [
+                current,
+                if (current + 1 < lyrics.length) current + 1,
+              ])
+                Flexible(
+                  child: InkWell(
+                    onTap: active && c.canSeek
+                        ? () => _run(
+                            c,
+                            () => c.transport('seek', {
+                              'position': number(lyrics[line]['time']),
+                            }),
+                          )
+                        : null,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 3),
+                      child: Text(
+                        lyrics[line]['text']?.toString() ?? '',
+                        key: Key('mini-lyric-$line'),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontSize: line == current ? (tiny ? 15 : 17) : 13,
+                          height: 1.3,
+                          color: line == current
+                              ? waveVisuals(context).ink
+                              : waveVisuals(context).muted,
+                          fontWeight: line == current
+                              ? FontWeight.w800
+                              : FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+            ],
+          );
+        },
+      );
+
+  Widget compactTransport() => Row(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      IconButton(
+        tooltip: wt('native.3a2d254d6e', context: context),
+        onPressed: c.canControl && !c.trackLoading
+            ? () => _run(c, c.audio.skipToPrevious)
+            : null,
+        icon: const WaveControlIcon(Icons.skip_previous_rounded, size: 25),
+      ),
+      const SizedBox(width: 24),
+      IconButton.filled(
+        key: const Key('player-play'),
+        tooltip: c.audio.playing
+            ? wt('native.03498e395a', context: context)
+            : wt('native.c750dc7d94', context: context),
+        onPressed: c.canTogglePlayback && (!c.trackLoading || c.audio.playing)
+            ? () => _run(c, c.audio.playing ? c.audio.pause : c.audio.play)
+            : null,
+        style: IconButton.styleFrom(
+          minimumSize: const Size(52, 52),
+          backgroundColor: waveVisuals(context).ink,
+          foregroundColor: waveVisuals(context).background,
+        ),
+        icon: WavePlaybackIcon(
+          playing: c.audio.playing,
+          loading: c.trackLoading,
+          size: 25,
+        ),
+      ),
+      const SizedBox(width: 24),
+      IconButton(
+        tooltip: wt('native.e9c094d2a9', context: context),
+        onPressed: c.canControl && !c.trackLoading
+            ? () => _run(c, c.audio.skipToNext)
+            : null,
+        icon: const WaveControlIcon(Icons.skip_next_rounded, size: 25),
+      ),
+    ],
   );
   Widget progress(WaveTrack track) => StreamBuilder<Duration>(
     stream: c.audio.positionStream,
@@ -1517,7 +1494,7 @@ class _PlayerPageState extends State<PlayerPage> {
       );
     },
   );
-  Widget transport() => Row(
+  Widget transport({bool compact = false}) => Row(
     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
     children: [
       IconButton(
@@ -1546,7 +1523,10 @@ class _PlayerPageState extends State<PlayerPage> {
         onPressed: c.canControl && !c.trackLoading
             ? () => _run(c, () => c.audio.skipToPrevious())
             : null,
-        icon: const WaveControlIcon(Icons.skip_previous_rounded, size: 33),
+        icon: WaveControlIcon(
+          Icons.skip_previous_rounded,
+          size: compact ? 27 : 33,
+        ),
       ),
       IconButton.filled(
         key: const Key('player-play'),
@@ -1560,14 +1540,14 @@ class _PlayerPageState extends State<PlayerPage> {
               )
             : null,
         style: IconButton.styleFrom(
-          minimumSize: const Size(66, 66),
+          minimumSize: compact ? const Size(56, 56) : const Size(66, 66),
           backgroundColor: waveVisuals(context).ink,
           foregroundColor: waveVisuals(context).background,
         ),
         icon: WavePlaybackIcon(
           playing: c.audio.playing,
           loading: c.trackLoading,
-          size: 32,
+          size: compact ? 28 : 32,
         ),
       ),
       IconButton(
@@ -1575,7 +1555,7 @@ class _PlayerPageState extends State<PlayerPage> {
         onPressed: c.canControl && !c.trackLoading
             ? () => _run(c, () => c.audio.skipToNext())
             : null,
-        icon: const WaveControlIcon(Icons.skip_next_rounded, size: 33),
+        icon: WaveControlIcon(Icons.skip_next_rounded, size: compact ? 27 : 33),
       ),
       IconButton(
         tooltip: wt(
@@ -1695,9 +1675,7 @@ class _PlayerPageState extends State<PlayerPage> {
                     (snapshot.data?.inMilliseconds ?? 0) / 1000,
                   )
                 : -1;
-            if (active != _lastLyric &&
-                tab == 1 &&
-                MediaQuery.sizeOf(context).width >= 851) {
+            if (active != _lastLyric && tab == 1) {
               _lastLyric = active;
               WidgetsBinding.instance.addPostFrameCallback((_) {
                 final node = _lyricKeys[active]?.currentContext;

@@ -124,11 +124,15 @@ class _AuthPageState extends State<AuthPage> {
             : waveVisuals(context).muted,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+        minimumSize: Size(
+          0,
+          MediaQuery.textScalerOf(context).scale(1) > 1.1 ? 64 : 48,
+        ),
       ),
       child: Text(
         wt(key, context: context),
-        maxLines: 1,
-        overflow: TextOverflow.ellipsis,
+        maxLines: 2,
+        textAlign: TextAlign.center,
         style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w700),
       ),
     ),

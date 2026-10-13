@@ -1,0 +1,19 @@
+{
+  "checkedAt": "2026-10-13T17:56:50.823Z",
+  "passed": true,
+  "archiveBytes": 138875358,
+  "archiveSha256": "a796c63fccbf99f3bcb3651f6bbf4798eab552a73cdaf4c484612c0c83dd3b1a",
+  "entries": 1746,
+  "allCrcAndSourceHashesMatched": true,
+  "textFilesScanned": 771,
+  "localPrivateValuesAbsent": true,
+  "liveCredentialPatternsAbsent": true,
+  "staticFontFaces": 6,
+  "manropeStaticFontFaces": 5,
+  "frozenNativeSourcesMatched": 202,
+  "currentWebBuild": "/assets/main-Bl-1BtG1.js",
+  "runtimeDataExcluded": true,
+  "apkSha256": "895423016a1ae79984c0bb11879d5c53c8bbca5fe5e67560f9ee822b5adac67e",
+  "windowsSha256": "da95d7a2a5734f8351bf87039b9d430e7a44a38f9d074e583a5c400d4130d25d",
+  "installerSha256": "603c02ddb2f6ed989add4348e2354f7f3ca7eac135415f578857b664a08db365"
+}

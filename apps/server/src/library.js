@@ -1,4 +1,5 @@
 import fsp from 'node:fs/promises';
+import {seedImportedTaste} from './library-imports.js';
 import {systemText} from './system-text.js';
 import {z} from 'zod';
 import {id,now,digest,parse,text,fail,asyncRoute,publicUser,mergeSettings,keyboardSuggestion,parseLyrics} from './util.js';
@@ -139,7 +140,7 @@ export function setupLibrary(app,ctx){
     const key=t.source==='local'?t.id:`${req.auth.user.id}:${t.id}`;
     await store.put('lyrics',key,lyrics);res.json(lyrics);
   }));
-  app.post('/api/integrations/import-file',requireAuth,(req,res,next)=>{if(!planLimits(req.auth.user).libraryImport)return next(new ctx.HttpError(403,'PLAN_LIMIT','Импорт доступен в Unbound.'));next();},ctx.importUpload.single('file'),asyncRoute(async(req,res)=>{
+  app.post('/api/integrations/import-file',requireAuth,(req,res,next)=>{if(!planLimits(req.auth.user).libraryImport)return next(new ctx.HttpError(403,'PLAN_LIMIT','Импорт доступен в Beta и Unbound.'));next();},ctx.importUpload.single('file'),asyncRoute(async(req,res)=>{
     if(!req.file)fail(400,'FILE_REQUIRED','Выбери CSV или JSON.');
     try{
       const raw=await fsp.readFile(req.file.path,'utf8');let rows;
@@ -178,7 +179,7 @@ export function setupLibrary(app,ctx){
       if(!imported.length)fail(422,'EMPTY_IMPORT','В файле не найдено треков со ссылками площадок.',errors.slice(0,20));
       const name=req.body.name?parse(text(120),req.body.name):req.file.originalname.replace(/\.(csv|json)$/i,'');
       const playlist=await createPlaylist(req.auth.user.id,{name:name.trim().slice(0,120)||systemText('importedMusic',req.language),trackIds:[...new Set(imported)]});
-      res.status(201).json({playlist,imported:playlist.trackIds.length,errors});
+      await seedImportedTaste(ctx,req.auth.user.id,playlist.trackIds);res.status(201).json({playlist,imported:playlist.trackIds.length,errors,tasteSeeded:true});
     }finally{await fsp.unlink(req.file.path).catch(()=>{});}
   }));
 }

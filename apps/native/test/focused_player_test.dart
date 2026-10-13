@@ -7,6 +7,14 @@ import 'app_layout_test.dart' as f;
 import 'audio_design_test.dart' as audio;
 import 'helpers/fonts.dart';
 
+Future<void> settlePlayerTest(WidgetTester tester) async {
+  await tester.pump();
+  await tester.runAsync(
+    () => Future<void>.delayed(const Duration(milliseconds: 30)),
+  );
+  await tester.pumpAndSettle();
+}
+
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   final runId = DateTime.now().millisecondsSinceEpoch;
@@ -51,7 +59,7 @@ void main() {
               mode: theme,
             ),
           );
-          await tester.pumpAndSettle();
+          await settlePlayerTest(tester);
           expect(tester.takeException(), isNull);
           expect(find.byKey(const Key('player-centered-view')), findsOneWidget);
           expect(find.textContaining('original line 0'), findsNothing);
@@ -65,16 +73,20 @@ void main() {
             'focused-player-$runId-$theme-${width.toInt()}-centered',
           );
           await tester.tap(find.byKey(const Key('player-lyrics-toggle')));
-          await tester.pumpAndSettle();
+          await settlePlayerTest(tester);
           expect(find.textContaining('original line 0'), findsOneWidget);
-          expect(find.byKey(const Key('player-cover-gesture')), findsOneWidget);
+          expect(
+            find.byKey(const Key('player-cover-gesture')),
+            width >= 851 ? findsOneWidget : findsNothing,
+          );
+          if (width < 851) {
+            expect(
+              find.byKey(const Key('lyrics-persistent-controls')),
+              findsOneWidget,
+            );
+          }
           expect(find.byKey(const Key('player-equalizer')), findsOneWidget);
           if (width >= 851) {
-            await tester.drag(
-              find.byKey(const Key('player-listening-scroll')),
-              const Offset(0, -250),
-            );
-            await tester.pumpAndSettle();
             final controls = tester.getRect(
                   find.byKey(const Key('player-equalizer')),
                 ),
@@ -90,15 +102,15 @@ void main() {
             'focused-player-$runId-$theme-${width.toInt()}-lyrics',
           );
           await tester.tap(find.byKey(const Key('player-queue-toggle')));
-          await tester.pumpAndSettle();
+          await settlePlayerTest(tester);
           expect(find.textContaining('original line 0'), findsNothing);
           expect(find.text('An original quiet evening 1'), findsOneWidget);
           await tester.tap(find.byKey(const Key('player-queue-toggle')));
-          await tester.pumpAndSettle();
+          await settlePlayerTest(tester);
           expect(find.byKey(const Key('player-centered-view')), findsOneWidget);
           await tester.ensureVisible(find.byKey(const Key('player-equalizer')));
           await tester.tap(find.byKey(const Key('player-equalizer')));
-          await tester.pumpAndSettle();
+          await settlePlayerTest(tester);
           final popup = find.byKey(const Key('player-eq-popover'));
           expect(popup, findsOneWidget);
           final rect = tester.getRect(popup);
@@ -124,7 +136,7 @@ void main() {
           );
           expect(find.byType(DropdownButtonFormField<String>), findsNothing);
           await tester.tap(find.byKey(const Key('compact-eq-presets')));
-          await tester.pumpAndSettle();
+          await settlePlayerTest(tester);
           final option = find.byKey(const Key('compact-eq-preset-bass'));
           expect(option, findsOneWidget);
           expect(tester.getRect(option).right, lessThanOrEqualTo(width));
@@ -133,7 +145,7 @@ void main() {
             'focused-player-$runId-$theme-${width.toInt()}-presets',
           );
           await tester.tap(option);
-          await tester.pumpAndSettle();
+          await settlePlayerTest(tester);
           expect(c.customization.equalizer.bands.first, 5);
           expect(c.customization.equalizer.preamp, -5);
           expect(tester.takeException(), isNull);
@@ -158,12 +170,12 @@ void main() {
           ),
         ),
       );
-      await tester.pumpAndSettle();
+      await settlePlayerTest(tester);
       await tester.tap(find.byKey(const Key('compact-eq-presets')));
-      await tester.pumpAndSettle();
+      await settlePlayerTest(tester);
       await tester.sendKeyEvent(LogicalKeyboardKey.arrowDown);
       await tester.sendKeyEvent(LogicalKeyboardKey.enter);
-      await tester.pumpAndSettle();
+      await settlePlayerTest(tester);
       expect(c.audio.current?.id, 'own-0');
       expect(c.customization.equalizer.bands.first, isNot(0));
       final slider = find.byKey(const Key('compact-eq-band-0'));

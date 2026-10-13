@@ -111,13 +111,24 @@ void main() {
           expect(c.audio.playing, isTrue);
           expect(
             find.byKey(const Key('desktop-listening-rail')),
-            size.width >= 1240 ? findsOneWidget : findsNothing,
+            size.width >= 1560 ? findsOneWidget : findsNothing,
           );
           await fixtures.screenshot(
             tester,
             'connect-home-$theme-${size.width.toInt()}',
           );
-          await tester.tap(find.byTooltip('Устройства').first);
+          if (size.width >= 900) {
+            await tester.tap(find.byKey(const Key('nav-devices')));
+          } else {
+            await tester.tap(find.byKey(const Key('mobile-menu')));
+            await tester.pumpAndSettle();
+            final devices = find.byWidgetPredicate(
+              (widget) =>
+                  widget is PopupMenuItem<String> && widget.value == 'devices',
+            );
+            await tester.ensureVisible(devices);
+            await tester.tap(devices);
+          }
           await tester.pumpAndSettle();
           expect(find.byKey(const Key('connect-independent')), findsOneWidget);
           expect(find.byKey(const Key('connect-play-here')), findsOneWidget);
@@ -131,7 +142,7 @@ void main() {
             'connect-devices-$theme-${size.width.toInt()}',
           );
           if (size.width >= 900) {
-            await tester.tap(find.text('Слушать вместе').first);
+            await tester.tap(find.byKey(const Key('nav-rooms')));
           } else {
             await tester.tap(find.byTooltip('Слушать вместе').first);
           }

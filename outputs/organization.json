@@ -1,11 +1,8 @@
 {
   "applied": true,
-  "currentVersion": "1.0.0+18",
-  "rollback": "archive/releases/1.0.0+17",
+  "currentVersion": "1.0.0+20",
+  "rollback": "archive/releases/1.0.0+19",
   "archiveContainsExactPreviousDeliveries": true,
-  "deletedBytes": 0,
-  "emptyStagingRemoved": true,
-  "retainedUnpacked17Bytes": 60005908,
-  "retainedUnpacked17Reason": "Automatic review rejected recursive deletion; preserved safely in versioned archive. No unique sources or historical reports removed.",
-  "previousOrganization": "archive/releases/1.0.0+17/organization.json"
+  "hostingChanged": false,
+  "deletedBytes": 0
 }

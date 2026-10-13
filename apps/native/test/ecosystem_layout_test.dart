@@ -118,7 +118,18 @@ void main() {
             ),
           );
           await tester.pumpAndSettle();
-          await tester.tap(find.byTooltip('Устройства').first);
+          if (size.width >= 900) {
+            await tester.tap(find.byKey(const Key('nav-devices')));
+          } else {
+            await tester.tap(find.byKey(const Key('mobile-menu')));
+            await tester.pumpAndSettle();
+            final devices = find.byWidgetPredicate(
+              (widget) =>
+                  widget is PopupMenuItem<String> && widget.value == 'devices',
+            );
+            await tester.ensureVisible(devices);
+            await tester.tap(devices);
+          }
           await tester.pumpAndSettle();
           expect(find.textContaining('Веб · браузер'), findsOneWidget);
           expect(find.textContaining('Приложение Windows'), findsOneWidget);
@@ -236,7 +247,7 @@ void main() {
           c.render();
           await tester.pumpAndSettle();
           if (size.width >= 900) {
-            await tester.tap(find.text('Слушать вместе').first);
+            await tester.tap(find.byKey(const Key('nav-rooms')));
           } else {
             await tester.tap(find.byTooltip('Слушать вместе').first);
           }

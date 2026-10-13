@@ -4,6 +4,17 @@ class MainActivity : AudioServiceFragmentActivity() {
     override fun configureFlutterEngine(engine: io.flutter.embedding.engine.FlutterEngine) {
         super.configureFlutterEngine(engine)
         val app = applicationContext
+        io.flutter.plugin.common.MethodChannel(engine.dartExecutor.binaryMessenger,"tech.gluk.glukwave/energy").setMethodCallHandler { call,result ->
+            if (call.method != "snapshot") { result.notImplemented(); return@setMethodCallHandler }
+            val power = app.getSystemService(android.content.Context.POWER_SERVICE) as android.os.PowerManager
+            val state = app.registerReceiver(null, android.content.IntentFilter(android.content.Intent.ACTION_BATTERY_CHANGED))
+            val level = state?.getIntExtra(android.os.BatteryManager.EXTRA_LEVEL,-1) ?: -1
+            val scale = state?.getIntExtra(android.os.BatteryManager.EXTRA_SCALE,-1) ?: -1
+            val status = state?.getIntExtra(android.os.BatteryManager.EXTRA_STATUS,-1) ?: -1
+            result.success(mapOf("saving" to power.isPowerSaveMode,
+                "battery" to if(level>=0&&scale>0)level*100/scale else -1,
+                "charging" to (status==android.os.BatteryManager.BATTERY_STATUS_CHARGING||status==android.os.BatteryManager.BATTERY_STATUS_FULL)))
+        }
         captureWidgetAction(intent,false)
         // The media engine survives a closed Activity. Capture only application
         // context and the static bridge, never retain MainActivity in a handler.

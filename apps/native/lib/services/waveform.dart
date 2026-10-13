@@ -27,7 +27,7 @@ class WaveformStore extends ChangeNotifier {
 
   String _filename(String id) =>
       '${base64Url.encode(utf8.encode(id)).replaceAll('=', '')}.wave.json';
-  Future<void> load(String id) async {
+  Future<void> load(String id, {bool offline = false}) async {
     if (_disposed || _directory == null || _envelopes.containsKey(id)) return;
     if (_requests.containsKey(id)) {
       await _requests[id];
@@ -51,7 +51,7 @@ class WaveformStore extends ChangeNotifier {
             object(jsonDecode(await file.readAsString())),
           );
         }
-        if (!measured.available) {
+        if (!measured.available && !offline) {
           measured = AudioEnvelope.fromJson(
             await api.call('/api/tracks/${Uri.encodeComponent(id)}/waveform'),
           );
@@ -72,7 +72,9 @@ class WaveformStore extends ChangeNotifier {
         /* The decorative field simply stays at rest when unavailable. */
       }
       if (!same()) return;
-      _envelopes[id] = measured;
+      if (measured.available || !offline) {
+        _envelopes[id] = measured;
+      }
       notifyListeners();
     }();
     _requests[id] = operation;

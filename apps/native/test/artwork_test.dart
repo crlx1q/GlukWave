@@ -44,6 +44,7 @@ void main() {
             (_) async => null,
           );
       final c = (await tester.runAsync(controller))!;
+      c.online = true;
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(

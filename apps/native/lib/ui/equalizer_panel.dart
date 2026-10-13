@@ -234,6 +234,7 @@ class CompactEqualizerPanel extends StatefulWidget {
 
 class _CompactEqualizerPanelState extends State<CompactEqualizerPanel> {
   WaveEqualizer? saved;
+  bool draggingBand = false;
   @override
   void initState() {
     super.initState();
@@ -443,15 +444,22 @@ class _CompactEqualizerPanelState extends State<CompactEqualizerPanel> {
                             bottom: 22,
                             left: 22,
                             right: 0,
-                            child: TweenAnimationBuilder<List<double>>(
-                              tween: _BandsTween(end: eq.bands),
-                              duration: v.duration((220 / v.speed).round()),
-                              curve: Curves.easeOutCubic,
-                              builder: (_, bands, _) => CustomPaint(
-                                key: const Key('compact-eq-curve'),
-                                painter: _EqualizerCurve(bands, v),
-                              ),
-                            ),
+                            child: draggingBand
+                                ? CustomPaint(
+                                    key: const Key('compact-eq-curve'),
+                                    painter: _EqualizerCurve(eq.bands, v),
+                                  )
+                                : TweenAnimationBuilder<List<double>>(
+                                    tween: _BandsTween(end: eq.bands),
+                                    duration: v.duration(
+                                      (220 / v.speed).round(),
+                                    ),
+                                    curve: Curves.easeOutCubic,
+                                    builder: (_, bands, _) => CustomPaint(
+                                      key: const Key('compact-eq-curve'),
+                                      painter: _EqualizerCurve(bands, v),
+                                    ),
+                                  ),
                           ),
                           Padding(
                             padding: const EdgeInsets.only(left: 22),
@@ -494,18 +502,37 @@ class _CompactEqualizerPanelState extends State<CompactEqualizerPanel> {
                                                     ),
                                                 min: -12,
                                                 max: 12,
-                                                divisions: 48,
+                                                // Discrete Flutter sliders animate their
+                                                // thumb. The curve and thumb must move
+                                                // together on the current pointer frame.
                                                 value: eq.bands[i],
                                                 label:
                                                     '${eq.bands[i].toStringAsFixed(1)} dB',
                                                 semanticFormatterCallback:
                                                     (value) =>
                                                         '${equalizerFrequencies[i].round()} Hz, ${value.toStringAsFixed(1)} dB',
+                                                onChangeStart:
+                                                    available && eq.enabled
+                                                    ? (_) => setState(
+                                                        () =>
+                                                            draggingBand = true,
+                                                      )
+                                                    : null,
+                                                onChangeEnd:
+                                                    available && eq.enabled
+                                                    ? (_) => setState(
+                                                        () => draggingBand =
+                                                            false,
+                                                      )
+                                                    : null,
                                                 onChanged:
                                                     available && eq.enabled
                                                     ? (value) => change({
                                                         'bands': [...eq.bands]
-                                                          ..[i] = value,
+                                                          ..[i] =
+                                                              (value * 2)
+                                                                  .round() /
+                                                              2,
                                                       })
                                                     : null,
                                               ),
