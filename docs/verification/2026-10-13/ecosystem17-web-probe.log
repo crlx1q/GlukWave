@@ -1,0 +1,19 @@
+cover fixed geometry PASS
+volume actual audio PASS
+optimistic mode ACK PASS
+connect first paint PASS
+room directory PASS
+color local commit PASS
+AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+
+  assert(evaluate(`document.querySelector('.admin-service').textContent.includes('back online')`))
+
+    at file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/work/qa/ecosystem17-web-probe.mjs:40:791
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5) {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '==',
+  diff: 'simple'
+}

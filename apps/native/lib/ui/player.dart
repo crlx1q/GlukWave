@@ -360,17 +360,22 @@ class MiniPlayer extends StatelessWidget {
                                   ),
                                 ),
                               if (!compact)
-                                IconButton(
-                                  key: const Key('mini-connect'),
-                                  tooltip: 'GlukWave Connect',
-                                  onPressed: () =>
-                                      showConnectPicker(context, c),
-                                  icon: WaveControlIcon(
-                                    Icons.devices_rounded,
-                                    color: c.controllingRemote
-                                        ? v.accent
-                                        : v.onPlayer.withValues(alpha: .7),
-                                    size: 19,
+                                Builder(
+                                  builder: (anchorContext) => IconButton(
+                                    key: const Key('mini-connect'),
+                                    tooltip: 'GlukWave Connect',
+                                    onPressed: () => showConnectPicker(
+                                      anchorContext,
+                                      c,
+                                      anchor: _anchorRect(anchorContext),
+                                    ),
+                                    icon: WaveControlIcon(
+                                      Icons.devices_rounded,
+                                      color: c.controllingRemote
+                                          ? v.accent
+                                          : v.onPlayer.withValues(alpha: .7),
+                                      size: 19,
+                                    ),
                                   ),
                                 ),
                               if (!compact)
@@ -387,8 +392,9 @@ class MiniPlayer extends StatelessWidget {
                                       ),
                                       Expanded(
                                         child: VolumeSlider(
-                                          scope:
-                                              '${c.activeDeviceId}:${c.activeSurfaceId}',
+                                          scope: c.controlScope,
+                                          onPreview: c.previewVolume,
+                                          onCancel: c.cancelVolumeEdit,
                                           value: c.audio.volume.clamp(0, 1),
                                           onChanged: (value) => _run(
                                             c,
@@ -833,7 +839,7 @@ class _PlayerPageState extends State<PlayerPage> {
                         key: const Key('player-centered-view'),
                         child: SingleChildScrollView(
                           key: const Key('player-content-scroll'),
-                          padding: const EdgeInsets.fromLTRB(24, 12, 24, 24),
+                          padding: const EdgeInsets.fromLTRB(24, 0, 24, 8),
                           child: SizedBox(width: 400, child: listening(track)),
                         ),
                       );
@@ -898,18 +904,137 @@ class _PlayerPageState extends State<PlayerPage> {
                         ),
                       );
                     }
-                    return SingleChildScrollView(
+                    return Column(
                       key: Key('player-detail-view-$tab'),
-                      padding: const EdgeInsets.fromLTRB(24, 12, 24, 28),
-                      child: Column(
-                        children: [
-                          listening(track),
-                          const SizedBox(height: 22),
-                          Divider(color: v.line),
-                          const SizedBox(height: 22),
-                          details(),
-                        ],
-                      ),
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(24, 8, 24, 6),
+                          child: Row(
+                            children: [
+                              PlayerGestureSurface(
+                                key: const Key('player-cover-gesture'),
+                                controller: c,
+                                child: Artwork(
+                                  controller: c,
+                                  url: track.artwork,
+                                  size: 64,
+                                  radius: 14,
+                                  trackLoading: c.trackLoading,
+                                ),
+                              ),
+                              const SizedBox(width: 14),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    ScrollingLabel(
+                                      track.title,
+                                      style: const TextStyle(
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.w800,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 5),
+                                    ScrollingLabel(
+                                      track.artist,
+                                      style: TextStyle(
+                                        fontSize: 12,
+                                        color: v.muted,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              WavePress(
+                                child: IconButton(
+                                  key: const Key('player-equalizer'),
+                                  tooltip: wt('eq.title', context: context),
+                                  isSelected: c.customization.equalizer.enabled,
+                                  style: IconButton.styleFrom(
+                                    foregroundColor:
+                                        c.customization.equalizer.enabled
+                                        ? v.accent
+                                        : v.muted,
+                                    backgroundColor:
+                                        c.customization.equalizer.enabled
+                                        ? v.accentSoft
+                                        : Colors.transparent,
+                                  ),
+                                  onPressed: () =>
+                                      showPlayerEqualizer(context, c),
+                                  icon: const WaveControlIcon(
+                                    Icons.graphic_eq_rounded,
+                                    size: 20,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          child: Listener(
+                            onPointerSignal: (_) => _manualLyricsUntil =
+                                DateTime.now().add(const Duration(seconds: 5)),
+                            child: SingleChildScrollView(
+                              key: Key(
+                                tab == 1
+                                    ? 'mobile-lyrics-scroll'
+                                    : 'player-detail-scroll',
+                              ),
+                              controller: tab == 1 ? _lyricsScroll : null,
+                              padding: const EdgeInsets.fromLTRB(
+                                24,
+                                12,
+                                24,
+                                20,
+                              ),
+                              child: details(),
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(24, 4, 24, 6),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              progress(track),
+                              transport(),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: Builder(
+                                      builder: (anchorContext) => PlayingOutput(
+                                        controller: c,
+                                        onTap: () => showConnectPicker(
+                                          anchorContext,
+                                          c,
+                                          anchor: _anchorRect(anchorContext),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  ListeningPresence(
+                                    controller: c,
+                                    compact: true,
+                                  ),
+                                  IconButton(
+                                    tooltip: wt(
+                                      'native.621777004a',
+                                      context: context,
+                                    ),
+                                    onPressed: showVolume,
+                                    icon: WaveVolumeIcon(
+                                      volume: c.audio.volume,
+                                      size: 18,
+                                      color: v.muted,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                     );
                   },
                 ),
@@ -977,7 +1102,7 @@ class _PlayerPageState extends State<PlayerPage> {
   Widget listening(WaveTrack track) => LayoutBuilder(
     builder: (context, constraints) {
       // Cover size follows usable width, never viewport height or tilt angle.
-      // Short windows scroll the listening composition instead of shrinking it.
+      // The same fixed frame survives every tilt. Only unusually small windows scroll.
       final size = (constraints.maxWidth - 32).clamp(100.0, 368.0);
       final active = c.audio.viewCurrent?.id == track.id;
       return ConstrainedBox(
@@ -1006,66 +1131,6 @@ class _PlayerPageState extends State<PlayerPage> {
                         playing: active && c.audio.playing,
                         artworkKey: widget.artworkKey,
                         touchTilt: false,
-                      ),
-                      Positioned(
-                        right: (constraints.maxWidth - size) / 2 + 8,
-                        bottom: 17,
-                        child: WavePress(
-                          child: PopupMenuButton<String>(
-                            key: const Key('player-cover-options'),
-                            tooltip: polishText('cover', context),
-                            onSelected: (value) => _run(
-                              c,
-                              () => c.customize({
-                                'appearance': {
-                                  'cover3d': value != 'flat',
-                                  if (value != 'flat') 'coverKind': value,
-                                },
-                              }),
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(
-                                waveRadius(context, 15),
-                              ),
-                              side: BorderSide(
-                                color: waveVisuals(context).line,
-                              ),
-                            ),
-                            itemBuilder: (_) => [
-                              PopupMenuItem(
-                                value: 'flat',
-                                child: Text(polishText('flat', context)),
-                              ),
-                              const PopupMenuItem(
-                                value: 'vinyl',
-                                child: Text('VINYL'),
-                              ),
-                              const PopupMenuItem(
-                                value: 'cd',
-                                child: Text('CD'),
-                              ),
-                            ],
-                            child: Container(
-                              padding: const EdgeInsets.all(11),
-                              decoration: BoxDecoration(
-                                color: waveVisuals(
-                                  context,
-                                ).surface.withValues(alpha: .92),
-                                borderRadius: BorderRadius.circular(
-                                  waveRadius(context, 13),
-                                ),
-                                border: Border.all(
-                                  color: waveVisuals(context).line,
-                                ),
-                              ),
-                              child: WaveControlIcon(
-                                Icons.album_outlined,
-                                size: 18,
-                                color: waveVisuals(context).muted,
-                              ),
-                            ),
-                          ),
-                        ),
                       ),
                     ],
                   ),
@@ -1139,20 +1204,11 @@ class _PlayerPageState extends State<PlayerPage> {
             ),
             if (active) ...[
               const SizedBox(height: 8),
-              PlayingOutput(
-                controller: c,
-                onTap: () => showConnectPicker(context, c),
-              ),
-              ListeningPresence(controller: c),
-              const SizedBox(height: 10),
               progress(track),
               const SizedBox(height: 9),
               Container(
                 key: const Key('player-transport-capsule'),
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 2,
-                  vertical: 10,
-                ),
+                padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 5),
                 decoration: BoxDecoration(
                   color: waveVisuals(context).surface.withValues(alpha: .76),
                   borderRadius: BorderRadius.circular(waveRadius(context, 27)),
@@ -1163,47 +1219,24 @@ class _PlayerPageState extends State<PlayerPage> {
                 child: transport(),
               ),
               const SizedBox(height: 12),
-              Center(
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 270),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(color: waveVisuals(context).line),
-                      borderRadius: BorderRadius.circular(
-                        waveRadius(context, 18),
+              Row(
+                children: [
+                  Expanded(
+                    child: Builder(
+                      builder: (anchorContext) => PlayingOutput(
+                        controller: c,
+                        onTap: () => showConnectPicker(
+                          anchorContext,
+                          c,
+                          anchor: _anchorRect(anchorContext),
+                        ),
                       ),
                     ),
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: Row(
-                      children: [
-                        WaveVolumeIcon(
-                          volume: c.audio.volume,
-                          size: 18,
-                          color: waveVisuals(context).muted,
-                        ),
-                        Expanded(
-                          child: VolumeSlider(
-                            scope: '${c.activeDeviceId}:${c.activeSurfaceId}',
-                            value: c.audio.volume.clamp(0, 1),
-                            onChanged: (v) => _run(
-                              c,
-                              () => c.transport('volume', {'volume': v}),
-                            ),
-                          ),
-                        ),
-                        Text(
-                          '${(c.audio.volume * 100).round()}%',
-                          style: TextStyle(
-                            fontSize: 9,
-                            color: waveVisuals(context).muted,
-                          ),
-                        ),
-                      ],
-                    ),
                   ),
-                ),
+                  ListeningPresence(controller: c),
+                ],
               ),
-              const SizedBox(height: 12),
+              const SizedBox(height: 6),
               Container(
                 key: const Key('player-secondary-capsule'),
                 decoration: BoxDecoration(
@@ -1235,14 +1268,12 @@ class _PlayerPageState extends State<PlayerPage> {
                     ),
                     WavePress(
                       child: IconButton(
-                        tooltip: focusedPlayerText(
-                          'coverStyle',
-                          context: context,
-                        ),
-                        onPressed: showCoverStyle,
-                        icon: const WaveControlIcon(
-                          Icons.album_outlined,
-                          size: 21,
+                        tooltip: wt('native.621777004a', context: context),
+                        onPressed: showVolume,
+                        icon: WaveVolumeIcon(
+                          volume: c.audio.volume,
+                          size: 20,
+                          color: waveVisuals(context).muted,
                         ),
                       ),
                     ),
@@ -1590,7 +1621,9 @@ class _PlayerPageState extends State<PlayerPage> {
         content: SizedBox(
           width: 300,
           child: VolumeSlider(
-            scope: '${c.activeDeviceId}:${c.activeSurfaceId}',
+            scope: c.controlScope,
+            onPreview: c.previewVolume,
+            onCancel: c.cancelVolumeEdit,
             value: c.audio.volume.clamp(0, 1),
             onChanged: (v) =>
                 _run(c, () => c.transport('volume', {'volume': v})),
@@ -2035,4 +2068,10 @@ class _PlayerPageState extends State<PlayerPage> {
         ),
     ],
   );
+}
+
+Rect? _anchorRect(BuildContext context) {
+  final box = context.findRenderObject();
+  if (box is! RenderBox || !box.hasSize) return null;
+  return box.localToGlobal(Offset.zero) & box.size;
 }

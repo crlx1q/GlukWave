@@ -8,7 +8,7 @@ import {type Track,trackCount} from './types';
 import {Art,Empty,IconButton,Loading} from './ui';
 
 export function QueuePanel(){
- useLocale();const player=usePlayer(),store=useStore(),canControl=!player.room||player.room.ownerId===store.user?.id||!!player.room.members.find(member=>member.userId===store.user?.id)?.canControl;
+ useLocale();const player=usePlayer(),store=useStore(),canControl=!player.room||store.user?.role==='admin'||player.room.canControl===true||player.room.ownerId===store.user?.id||!!player.room.members.find(member=>member.userId===store.user?.id)?.canControl;
  const [rows,setRows]=useState(player.queue),[leaving,setLeaving]=useState<string[]>([]),[dragging,setDragging]=useState<string|null>(null),[picker,setPicker]=useState(false);
  const list=useRef<HTMLDivElement>(null),positions=useRef(new Map<string,number>()),draft=useRef(player.queue),authoritative=useRef(player.queue),suppressed=useRef(false),drag=useRef<{id:string;pointer:number;startY:number;active:boolean;timer:ReturnType<typeof setTimeout>|undefined;original:Track[];element:HTMLElement}|null>(null);
  authoritative.current=player.queue;

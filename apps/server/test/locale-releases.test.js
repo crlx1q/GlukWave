@@ -81,5 +81,5 @@ test('locale, durable language settings, localized HTTP errors and real download
     const range=await fetch(base+'/api/downloads/android',{headers:{Range:'bytes=0-3'}});assert.equal(range.status,206);assert.equal((await range.arrayBuffer()).byteLength,4);
     await fs.writeFile(path.join(directory,file),Buffer.alloc(bytes.length,65));await fs.utimes(path.join(directory,file),new Date(),new Date(Date.now()+1000));
     assert.deepEqual((await (await fetch(base+'/api/releases')).json()).releases,[]);assert.equal((await fetch(base+'/api/downloads/android')).status,404);
-  }finally{await service.close();await fs.rm(directory,{recursive:true,force:true});}
+  }finally{await service.close();assert(directory.startsWith(qa+path.sep));await fs.rm(directory,{recursive:true,force:true,maxRetries:8,retryDelay:150});}
 });

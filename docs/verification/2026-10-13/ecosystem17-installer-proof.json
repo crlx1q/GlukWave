@@ -1,0 +1,16 @@
+{
+  "checkedAt": "2026-10-12T21:15:06.2372914Z",
+  "passed": true,
+  "singleFile": true,
+  "version": "1.0.0.17",
+  "productVersion": "1.0.0+17",
+  "bytes": 24457103,
+  "sha256": "a31de2a8bd1bf2e00eeca501a3aa22ee58200385f3668e51a8ea492f50029d85",
+  "compilerSucceeded": true,
+  "desktopShortcutChoice": true,
+  "autostartChoice": true,
+  "autostartDefault": false,
+  "webviewBootstrapperEmbedded": true,
+  "installedDuringIteration": false,
+  "authenticodeSigned": false
+}

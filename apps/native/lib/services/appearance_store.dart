@@ -27,7 +27,7 @@ class AppearanceStore extends ChangeNotifier {
   Future<void>? _syncing;
   String? _scopeToken;
   String _scopeOrigin = '';
-  bool _disposed = false;
+  bool _disposed = false, _localDirty = false;
   final Set<Object> _edits = {};
   AppearanceStore(this.api, this.preferences);
 
@@ -43,6 +43,7 @@ class AppearanceStore extends ChangeNotifier {
   void endEdit(Object? token) {
     if (!_edits.remove(token) || _edits.isNotEmpty || _disposed) return;
     _timer?.cancel();
+    if (_localDirty) unawaited(_persist());
     if (pending && authenticated) {
       _timer = Timer(Duration.zero, () => unawaited(flush()));
     }
@@ -50,6 +51,8 @@ class AppearanceStore extends ChangeNotifier {
 
   Future<void> selectScope(String? scope, {Json fallback = const {}}) async {
     final generation = ++_generation;
+    await flushLocalWrites();
+    if (_disposed || generation != _generation) return;
     _revision++;
     _timer?.cancel();
     _edits.clear();
@@ -91,9 +94,14 @@ class AppearanceStore extends ChangeNotifier {
 
   /// Local writes are serialized. Scope restores and application lifecycle
   /// changes can wait for durability without requiring a network connection.
-  Future<void> flushLocalWrites() => _writes.catchError((_) {});
+  Future<void> flushLocalWrites() async {
+    if (_edits.isNotEmpty) return;
+    if (_localDirty) await _persist();
+    await _writes.catchError((_) {});
+  }
 
   Future<void> _persist() {
+    _localDirty = false;
     final key = _key;
     final value = jsonEncode({
       'settings': current.toSettings(),
@@ -120,7 +128,8 @@ class AppearanceStore extends ChangeNotifier {
     pending = authenticated && (_patch.isNotEmpty || _flight.isNotEmpty);
     lastError = null;
     if (!_disposed) notifyListeners();
-    await _persist();
+    _localDirty = true;
+    if (!held) await _persist();
     if (generation != _generation || _disposed) return;
     _timer?.cancel();
     if (authenticated && _edits.isEmpty) {

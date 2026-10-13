@@ -1,0 +1,1510 @@
+{
+  "checkedAt": "2026-10-13T07:49:26.396952+00:00",
+  "version": "1.0.0+17",
+  "date": "2026-10-13",
+  "scope": "Immediate controls, room directory/admin moderation, stable cover/Connect, isolated service monitoring/restart, initial locale and MediaSession continuity",
+  "server": {
+    "passed": true,
+    "distinctTestsVerified": 104,
+    "initialFullRun": {
+      "tests": 104,
+      "passed": 102,
+      "failed": 2,
+      "log": "ecosystem17-server-tests-first.log"
+    },
+    "recovery": {
+      "tests": 11,
+      "passed": true,
+      "recoveredCases": [
+        "resource CPU samples warm up for a real interval instead of reporting a startup spike",
+        "locale, durable language settings, localized HTTP errors and real download integrity are enforced"
+      ],
+      "log": "ecosystem17-server-recovery.log"
+    },
+    "changesAfterFullRun": "Only test adapter POST stub and Windows temporary-directory deletion retries; no production changes.",
+    "hostingChanged": false
+  },
+  "web": {
+    "javascript": "/assets/main-esI8eL6O.js",
+    "testsPassed": 63,
+    "buildPassed": true,
+    "functional": {
+      "passed": true,
+      "session": "ecosystem17-probe-1791840412098",
+      "scope": "Actual React UI and native browser Audio object, isolated5198 own local WAV/socket fixture. No hosting or owner data.",
+      "checks": [
+        {
+          "cover340NormalDesktop": true,
+          "coverMenuInEllipsis": true,
+          "noAngleResizeOrScroll": true
+        },
+        {
+          "actualNativeAudioVolumePreview": true,
+          "noNetworkDuringLongHold": true,
+          "finalVolumeSemanticDeviceState": 1,
+          "before": 0.8,
+          "draft": 0.64
+        },
+        {
+          "volumeCancelRestoresActualAudio": true
+        },
+        {
+          "shuffleImmediateAndEarlierFailureCannotUndoNewer": true,
+          "repeatImmediateAndRollback": true
+        },
+        {
+          "miniConnectMeasuredFirstPaint": true,
+          "miniHasRealTransportSeekVolume": true,
+          "fullSharesActivePlayer": true
+        },
+        {
+          "joinedNonOwnedRoomHighlightedInMyRooms": true,
+          "publicRoomsArtworkMembersOnlineListening": true,
+          "ordinaryListenerRestrictions": true
+        },
+        {
+          "colorPointerCaptureImmediateWholeApp": true,
+          "heldSettingsWrites": 0,
+          "heldColorRequests": 0,
+          "finalSettingsPatch": 1,
+          "localColor": "#331d73"
+        },
+        {
+          "adminRoomModerationAndControl": true,
+          "ownerRestartRequiresLiteralConfirmation": true,
+          "reconnectConfirmedByNewUptime": true,
+          "fixtureResetServiceUptime": 3600,
+          "status": "GlukWave restarted and is back online."
+        }
+      ],
+      "layouts": [
+        {
+          "width": 1440,
+          "height": 900,
+          "bottom": 564.296875,
+          "contentOverflow": 0,
+          "controlsBottom": 873.6875,
+          "facesFit": true,
+          "layoutOverflow": 0,
+          "size": 340,
+          "stage": 474,
+          "top": 90.296875,
+          "angles": 12
+        },
+        {
+          "width": 938,
+          "height": 860,
+          "bottom": 529.796875,
+          "contentOverflow": 0,
+          "controlsBottom": 839.1875,
+          "facesFit": true,
+          "layoutOverflow": 0,
+          "size": 322,
+          "stage": 445,
+          "top": 84.796875,
+          "angles": 12
+        },
+        {
+          "width": 1920,
+          "height": 1080,
+          "bottom": 654.296875,
+          "contentOverflow": 0,
+          "controlsBottom": 963.6875,
+          "facesFit": true,
+          "layoutOverflow": 0,
+          "size": 340,
+          "stage": 474,
+          "top": 180.296875,
+          "angles": 12
+        },
+        {
+          "width": 375,
+          "height": 812,
+          "bottom": 395,
+          "contentOverflow": 0,
+          "controlsBottom": 709.390625,
+          "facesFit": true,
+          "layoutOverflow": 0,
+          "size": 210,
+          "stage": 289,
+          "top": 106,
+          "angles": 12
+        }
+      ],
+      "screenshots": [
+        "work/qa/ecosystem17-1791840412098-player-1440.png",
+        "work/qa/ecosystem17-1791840412098-player-938.png",
+        "work/qa/ecosystem17-1791840412098-player-1920.png",
+        "work/qa/ecosystem17-1791840412098-player-375.png",
+        "work/qa/ecosystem17-1791840412098-cover-menu.png",
+        "work/qa/ecosystem17-1791840412098-connect-mini.png",
+        "work/qa/ecosystem17-1791840412098-connect-full.png",
+        "work/qa/ecosystem17-1791840412098-rooms-current-public.png",
+        "work/qa/ecosystem17-1791840412098-color-local.png",
+        "work/qa/ecosystem17-1791840412098-rooms-admin.png",
+        "work/qa/ecosystem17-1791840412098-service-monitor.png",
+        "work/qa/ecosystem17-1791840829284-service-restart-confirmed.png"
+      ],
+      "adminSession": "ecosystem17-admin-1791840829284",
+      "completedAt": "2026-10-12T21:34:29.530Z"
+    },
+    "responsive": {
+      "passed": true,
+      "session": "ecosystem17-responsive-1791839976355",
+      "checks": [
+        {
+          "width": 375,
+          "height": 812,
+          "scale": 1,
+          "tab": "lyrics",
+          "actionsBottom": 380,
+          "aside": {
+            "bottom": 795,
+            "height": 394,
+            "left": 18,
+            "right": 357,
+            "top": 401,
+            "width": 339,
+            "x": 18,
+            "y": 401
+          },
+          "buttons": [
+            {
+              "bottom": 326,
+              "disabled": false,
+              "hit": true,
+              "right": 94.5,
+              "title": "Shuffle queue",
+              "x": 60.5,
+              "y": 284
+            },
+            {
+              "bottom": 326,
+              "disabled": false,
+              "hit": true,
+              "right": 135.5,
+              "title": "Previous track",
+              "x": 101.5,
+              "y": 284
+            },
+            {
+              "bottom": 334,
+              "disabled": false,
+              "hit": true,
+              "right": 200.5,
+              "title": "",
+              "x": 142.5,
+              "y": 276
+            },
+            {
+              "bottom": 326,
+              "disabled": false,
+              "hit": true,
+              "right": 241.5,
+              "title": "Next track",
+              "x": 207.5,
+              "y": 284
+            },
+            {
+              "bottom": 326,
+              "disabled": false,
+              "hit": true,
+              "right": 282.5,
+              "title": "Enable repeat",
+              "x": 248.5,
+              "y": 284
+            },
+            {
+              "bottom": 326,
+              "disabled": false,
+              "hit": true,
+              "right": 314.5,
+              "title": "Equalizer",
+              "x": 283.5,
+              "y": 284
+            },
+            {
+              "bottom": 380,
+              "disabled": false,
+              "hit": true,
+              "right": 136.40625,
+              "title": "",
+              "x": 75.765625,
+              "y": 348
+            },
+            {
+              "bottom": 380,
+              "disabled": true,
+              "hit": true,
+              "right": 226.015625,
+              "title": "",
+              "x": 140.40625,
+              "y": 348
+            },
+            {
+              "bottom": 380,
+              "disabled": false,
+              "hit": true,
+              "right": 299.234375,
+              "title": "",
+              "x": 230.015625,
+              "y": 348
+            }
+          ],
+          "layoutOverflow": 0,
+          "listOverflow": 0,
+          "scroll": {
+            "bottom": 764.5,
+            "height": 317.5,
+            "left": 18,
+            "right": 357,
+            "top": 447,
+            "width": 339,
+            "x": 18,
+            "y": 447
+          },
+          "size": 66
+        },
+        {
+          "width": 375,
+          "height": 812,
+          "scale": 1,
+          "tab": "queue",
+          "actionsBottom": 380,
+          "aside": {
+            "bottom": 795,
+            "height": 394,
+            "left": 18,
+            "right": 357,
+            "top": 401,
+            "width": 339,
+            "x": 18,
+            "y": 401
+          },
+          "buttons": [
+            {
+              "bottom": 326,
+              "disabled": false,
+              "hit": true,
+              "right": 94.5,
+              "title": "Shuffle queue",
+              "x": 60.5,
+              "y": 284
+            },
+            {
+              "bottom": 326,
+              "disabled": false,
+              "hit": true,
+              "right": 135.5,
+              "title": "Previous track",
+              "x": 101.5,
+              "y": 284
+            },
+            {
+              "bottom": 334,
+              "disabled": false,
+              "hit": true,
+              "right": 200.5,
+              "title": "",
+              "x": 142.5,
+              "y": 276
+            },
+            {
+              "bottom": 326,
+              "disabled": false,
+              "hit": true,
+              "right": 241.5,
+              "title": "Next track",
+              "x": 207.5,
+              "y": 284
+            },
+            {
+              "bottom": 326,
+              "disabled": false,
+              "hit": true,
+              "right": 282.5,
+              "title": "Enable repeat",
+              "x": 248.5,
+              "y": 284
+            },
+            {
+              "bottom": 326,
+              "disabled": false,
+              "hit": true,
+              "right": 314.5,
+              "title": "Equalizer",
+              "x": 283.5,
+              "y": 284
+            },
+            {
+              "bottom": 380,
+              "disabled": false,
+              "hit": true,
+              "right": 136.40625,
+              "title": "",
+              "x": 75.765625,
+              "y": 348
+            },
+            {
+              "bottom": 380,
+              "disabled": true,
+              "hit": true,
+              "right": 226.015625,
+              "title": "",
+              "x": 140.40625,
+              "y": 348
+            },
+            {
+              "bottom": 380,
+              "disabled": false,
+              "hit": true,
+              "right": 299.234375,
+              "title": "",
+              "x": 230.015625,
+              "y": 348
+            }
+          ],
+          "layoutOverflow": 0,
+          "listOverflow": 0,
+          "scroll": {
+            "bottom": 795,
+            "height": 394,
+            "left": 18,
+            "right": 357,
+            "top": 401,
+            "width": 339,
+            "x": 18,
+            "y": 401
+          },
+          "size": 66
+        },
+        {
+          "width": 375,
+          "height": 812,
+          "scale": 1.25,
+          "tab": "lyrics",
+          "actionsBottom": 474.5,
+          "aside": {
+            "bottom": 790.75,
+            "height": 290.25,
+            "left": 22.5,
+            "right": 352.5,
+            "top": 500.5,
+            "width": 330,
+            "x": 22.5,
+            "y": 500.5
+          },
+          "buttons": [
+            {
+              "bottom": 407.25,
+              "disabled": false,
+              "hit": true,
+              "right": 71.25,
+              "title": "Shuffle queue",
+              "x": 28.75,
+              "y": 354.75
+            },
+            {
+              "bottom": 407.25,
+              "disabled": false,
+              "hit": true,
+              "right": 122.5,
+              "title": "Previous track",
+              "x": 80,
+              "y": 354.75
+            },
+            {
+              "bottom": 417.25,
+              "disabled": false,
+              "hit": true,
+              "right": 203.75,
+              "title": "",
+              "x": 131.25,
+              "y": 344.75
+            },
+            {
+              "bottom": 407.25,
+              "disabled": false,
+              "hit": true,
+              "right": 255,
+              "title": "Next track",
+              "x": 212.5,
+              "y": 354.75
+            },
+            {
+              "bottom": 407.25,
+              "disabled": false,
+              "hit": true,
+              "right": 306.25,
+              "title": "Enable repeat",
+              "x": 263.75,
+              "y": 354.75
+            },
+            {
+              "bottom": 407.25,
+              "disabled": false,
+              "hit": true,
+              "right": 346.25,
+              "title": "Equalizer",
+              "x": 307.5,
+              "y": 354.75
+            },
+            {
+              "bottom": 474.5,
+              "disabled": false,
+              "hit": true,
+              "right": 123.640625,
+              "title": "",
+              "x": 47.84375,
+              "y": 434.5
+            },
+            {
+              "bottom": 474.5,
+              "disabled": true,
+              "hit": true,
+              "right": 235.640625,
+              "title": "",
+              "x": 128.640625,
+              "y": 434.5
+            },
+            {
+              "bottom": 474.5,
+              "disabled": false,
+              "hit": true,
+              "right": 327.15625,
+              "title": "",
+              "x": 240.640625,
+              "y": 434.5
+            }
+          ],
+          "layoutOverflow": 0,
+          "listOverflow": 0,
+          "scroll": {
+            "bottom": 752.625,
+            "height": 194.625,
+            "left": 22.5,
+            "right": 352.5,
+            "top": 558,
+            "width": 330,
+            "x": 22.5,
+            "y": 558
+          },
+          "size": 66
+        },
+        {
+          "width": 375,
+          "height": 812,
+          "scale": 1.25,
+          "tab": "queue",
+          "actionsBottom": 474.5,
+          "aside": {
+            "bottom": 790.75,
+            "height": 290.25,
+            "left": 22.5,
+            "right": 352.5,
+            "top": 500.5,
+            "width": 330,
+            "x": 22.5,
+            "y": 500.5
+          },
+          "buttons": [
+            {
+              "bottom": 407.25,
+              "disabled": false,
+              "hit": true,
+              "right": 71.25,
+              "title": "Shuffle queue",
+              "x": 28.75,
+              "y": 354.75
+            },
+            {
+              "bottom": 407.25,
+              "disabled": false,
+              "hit": true,
+              "right": 122.5,
+              "title": "Previous track",
+              "x": 80,
+              "y": 354.75
+            },
+            {
+              "bottom": 417.25,
+              "disabled": false,
+              "hit": true,
+              "right": 203.75,
+              "title": "",
+              "x": 131.25,
+              "y": 344.75
+            },
+            {
+              "bottom": 407.25,
+              "disabled": false,
+              "hit": true,
+              "right": 255,
+              "title": "Next track",
+              "x": 212.5,
+              "y": 354.75
+            },
+            {
+              "bottom": 407.25,
+              "disabled": false,
+              "hit": true,
+              "right": 306.25,
+              "title": "Enable repeat",
+              "x": 263.75,
+              "y": 354.75
+            },
+            {
+              "bottom": 407.25,
+              "disabled": false,
+              "hit": true,
+              "right": 346.25,
+              "title": "Equalizer",
+              "x": 307.5,
+              "y": 354.75
+            },
+            {
+              "bottom": 474.5,
+              "disabled": false,
+              "hit": true,
+              "right": 123.640625,
+              "title": "",
+              "x": 47.84375,
+              "y": 434.5
+            },
+            {
+              "bottom": 474.5,
+              "disabled": true,
+              "hit": true,
+              "right": 235.640625,
+              "title": "",
+              "x": 128.640625,
+              "y": 434.5
+            },
+            {
+              "bottom": 474.5,
+              "disabled": false,
+              "hit": true,
+              "right": 327.15625,
+              "title": "",
+              "x": 240.640625,
+              "y": 434.5
+            }
+          ],
+          "layoutOverflow": 0,
+          "listOverflow": 0,
+          "scroll": {
+            "bottom": 790.75,
+            "height": 290.25,
+            "left": 22.5,
+            "right": 352.5,
+            "top": 500.5,
+            "width": 330,
+            "x": 22.5,
+            "y": 500.5
+          },
+          "size": 66
+        },
+        {
+          "popupResizeAnchored": true,
+          "width": 1440,
+          "height": 900,
+          "anchor": {
+            "bottom": 827.6875,
+            "height": 32,
+            "left": 586.96875,
+            "right": 655.234375,
+            "top": 795.6875,
+            "width": 68.265625,
+            "x": 586.96875,
+            "y": 795.6875
+          },
+          "gap": 12,
+          "panel": {
+            "bottom": 783.6875,
+            "height": 576.5,
+            "left": 305.234375,
+            "right": 655.234375,
+            "top": 207.1875,
+            "width": 350,
+            "x": 305.234375,
+            "y": 207.1875
+          }
+        },
+        {
+          "popupResizeAnchored": true,
+          "width": 375,
+          "height": 812,
+          "anchor": {
+            "bottom": 663.390625,
+            "height": 32,
+            "left": 75.765625,
+            "right": 136.40625,
+            "top": 631.390625,
+            "width": 60.640625,
+            "x": 75.765625,
+            "y": 631.390625
+          },
+          "gap": 12.234375,
+          "panel": {
+            "bottom": 619.15625,
+            "height": 558.5,
+            "left": 8,
+            "right": 338,
+            "top": 60.65625,
+            "width": 330,
+            "x": 8,
+            "y": 60.65625
+          }
+        },
+        {
+          "popupResizeAnchored": true,
+          "width": 768,
+          "height": 900,
+          "anchor": {
+            "bottom": 765.390625,
+            "height": 32,
+            "left": 272.265625,
+            "right": 332.90625,
+            "top": 733.390625,
+            "width": 60.640625,
+            "x": 272.265625,
+            "y": 733.390625
+          },
+          "gap": 12.015625,
+          "panel": {
+            "bottom": 721.375,
+            "height": 558.5,
+            "left": 8,
+            "right": 338,
+            "top": 162.875,
+            "width": 330,
+            "x": 8,
+            "y": 162.875
+          }
+        },
+        {
+          "popupResizeAnchored": true,
+          "width": 1440,
+          "height": 900,
+          "anchor": {
+            "bottom": 827.6875,
+            "height": 32,
+            "left": 586.96875,
+            "right": 655.234375,
+            "top": 795.6875,
+            "width": 68.265625,
+            "x": 586.96875,
+            "y": 795.6875
+          },
+          "gap": 12.046875,
+          "panel": {
+            "bottom": 783.640625,
+            "height": 576.5,
+            "left": 305.234375,
+            "right": 655.234375,
+            "top": 207.140625,
+            "width": 350,
+            "x": 305.234375,
+            "y": 207.140625
+          }
+        },
+        {
+          "theme": "light",
+          "reducedMotion": true,
+          "animated": false,
+          "flow": [],
+          "radius": "6.4px"
+        },
+        {
+          "theme": "dark",
+          "reducedMotion": true,
+          "animated": false,
+          "flow": [],
+          "radius": "6.4px"
+        },
+        {
+          "theme": "amoled",
+          "reducedMotion": true,
+          "animated": false,
+          "flow": [],
+          "radius": "6.4px"
+        },
+        {
+          "roomBadgeIntrinsic": true,
+          "width": 1440,
+          "cards": [
+            {
+              "art": {
+                "bottom": 862.578125,
+                "height": 160,
+                "left": 129,
+                "right": 467,
+                "top": 702.578125,
+                "width": 338,
+                "x": 129,
+                "y": 702.578125
+              },
+              "badge": {
+                "bottom": 851.578125,
+                "height": 26,
+                "left": 142,
+                "right": 248.640625,
+                "top": 825.578125,
+                "width": 106.640625,
+                "x": 142,
+                "y": 825.578125
+              },
+              "badgeIsSmall": true
+            },
+            {
+              "art": {
+                "bottom": 1271.734375,
+                "height": 160,
+                "left": 129,
+                "right": 467,
+                "top": 1111.734375,
+                "width": 338,
+                "x": 129,
+                "y": 1111.734375
+              },
+              "badge": {
+                "bottom": 1260.734375,
+                "height": 26,
+                "left": 142,
+                "right": 248.640625,
+                "top": 1234.734375,
+                "width": 106.640625,
+                "x": 142,
+                "y": 1234.734375
+              },
+              "badgeIsSmall": true
+            }
+          ]
+        },
+        {
+          "roomBadgeIntrinsic": true,
+          "width": 768,
+          "cards": [
+            {
+              "art": {
+                "bottom": 805.703125,
+                "height": 145,
+                "left": 23,
+                "right": 371.5,
+                "top": 660.703125,
+                "width": 348.5,
+                "x": 23,
+                "y": 660.703125
+              },
+              "badge": {
+                "bottom": 794.703125,
+                "height": 26,
+                "left": 32,
+                "right": 131.765625,
+                "top": 768.703125,
+                "width": 99.765625,
+                "x": 32,
+                "y": 768.703125
+              },
+              "badgeIsSmall": true
+            },
+            {
+              "art": {
+                "bottom": 1181.265625,
+                "height": 145,
+                "left": 23,
+                "right": 371.5,
+                "top": 1036.265625,
+                "width": 348.5,
+                "x": 23,
+                "y": 1036.265625
+              },
+              "badge": {
+                "bottom": 1170.265625,
+                "height": 26,
+                "left": 32,
+                "right": 131.765625,
+                "top": 1144.265625,
+                "width": 99.765625,
+                "x": 32,
+                "y": 1144.265625
+              },
+              "badgeIsSmall": true
+            }
+          ]
+        },
+        {
+          "roomBadgeIntrinsic": true,
+          "width": 375,
+          "cards": [
+            {
+              "art": {
+                "bottom": 988.234375,
+                "height": 180,
+                "left": 23,
+                "right": 342,
+                "top": 808.234375,
+                "width": 319,
+                "x": 23,
+                "y": 808.234375
+              },
+              "badge": {
+                "bottom": 977.234375,
+                "height": 26,
+                "left": 32,
+                "right": 131.765625,
+                "top": 951.234375,
+                "width": 99.765625,
+                "x": 32,
+                "y": 951.234375
+              },
+              "badgeIsSmall": true
+            },
+            {
+              "art": {
+                "bottom": 1399.21875,
+                "height": 180,
+                "left": 23,
+                "right": 342,
+                "top": 1219.21875,
+                "width": 319,
+                "x": 23,
+                "y": 1219.21875
+              },
+              "badge": {
+                "bottom": 1388.21875,
+                "height": 26,
+                "left": 32,
+                "right": 131.765625,
+                "top": 1362.21875,
+                "width": 99.765625,
+                "x": 32,
+                "y": 1362.21875
+              },
+              "badgeIsSmall": true
+            }
+          ]
+        }
+      ],
+      "screenshots": [
+        "work/qa/ecosystem17-1791839976355-lyrics-375-scale-1.png",
+        "work/qa/ecosystem17-1791839976355-queue-375-scale-1.png",
+        "work/qa/ecosystem17-1791839976355-lyrics-375-scale-1.25.png",
+        "work/qa/ecosystem17-1791839976355-queue-375-scale-1.25.png",
+        "work/qa/ecosystem17-1791839976355-connect-resize-1440.png",
+        "work/qa/ecosystem17-1791839976355-connect-resize-375.png",
+        "work/qa/ecosystem17-1791839976355-connect-resize-768.png",
+        "work/qa/ecosystem17-1791839976355-connect-resize-1440.png",
+        "work/qa/ecosystem17-1791839976355-connect-light-reduce-radius8.png",
+        "work/qa/ecosystem17-1791839976355-connect-dark-reduce-radius8.png",
+        "work/qa/ecosystem17-1791839976355-connect-amoled-reduce-radius8.png",
+        "work/qa/ecosystem17-1791839976355-rooms-badge-1440.png",
+        "work/qa/ecosystem17-1791839976355-rooms-badge-768.png",
+        "work/qa/ecosystem17-1791839976355-rooms-badge-375.png",
+        "work/qa/ecosystem17-1791840091852-rooms-visible-1440.png",
+        "work/qa/ecosystem17-1791840091852-rooms-visible-768.png",
+        "work/qa/ecosystem17-1791840091852-rooms-visible-375.png"
+      ]
+    },
+    "continuity": {
+      "passed": true,
+      "originalLocalWav": true,
+      "hostingChanged": false,
+      "localeDebug": [
+        {
+          "lang": "ru",
+          "text": "ГлавнаяИсследоватьМедиатекаСлушать вместеGluk Lo-Fi"
+        }
+      ],
+      "locale": {
+        "frames": 165,
+        "first": {
+          "lang": "ru",
+          "text": "ГлавнаяИсследоватьМедиатекаСлушать вместеGluk Lo-Fi"
+        },
+        "allRussian": true,
+        "geolocationRequests": 0
+      },
+      "media": {
+        "endedEvents": 1,
+        "samples": 106,
+        "loadingSamples": 82,
+        "titleNeverIdle": true,
+        "metadataNeverCleared": true,
+        "loadingActivityRetained": true,
+        "nextActuallyPlaying": true,
+        "last": {
+          "activity": "playing",
+          "loading": false,
+          "media": "A quiet place",
+          "paused": false,
+          "title": "A quiet place — Wave verification · GlukWave",
+          "track": "ambient-qa"
+        },
+        "boundary": "Real Audio ended/decoding and MediaSession API. Chrome toolbar visibility is browser-controlled and not physically inspected."
+      }
+    },
+    "independent": {
+      "passed": true,
+      "verdict": "PASS",
+      "attempt": 2,
+      "checkedAt": "2026-10-13T07:49:24.801766+00:00",
+      "reviewer": "ecosystem17_evaluate",
+      "provider": "Available provider; separate agent session and independent browser checks",
+      "scope": "Iteration +17 corrective UI scope",
+      "result": "Mobile controls and inner scrolling, room badges, Connect anchoring, themes and reduced motion passed independent checks.",
+      "firstRoundFindingsResolved": [
+        "Mobile Lyrics/Queue transport clipping and 125% overlap",
+        "Room listening badge stretched over artwork",
+        "Connect anchor drift during responsive resize"
+      ],
+      "boundaries": [
+        "Local browser and frozen native widget evidence only",
+        "No physical device or hosting verification",
+        "No full Flutter redesign approval"
+      ]
+    },
+    "capturesAfterFinalLayoutFixes": true
+  },
+  "native": {
+    "apk": "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\apps\\native\\build\\app\\outputs\\flutter-apk\\app-debug.apk",
+    "bytes": 185648499,
+    "builtAt": "2026-10-12T21:02:49.055354+00:00",
+    "sha256": "4444f58d8d65b925dc1a2eec1e04bed7f42e821eb45c5f59bee996c0edb7c9e6",
+    "sourceFrozenAt": "2026-10-12T20:49:37.861493+00:00",
+    "sourceSha256": "af8fe035c178df5912b4fc3ee8cfc85cf8c37894691d625da1512996fb9ae249",
+    "sourceFiles": 161,
+    "kernelSha256": "fb6544b41012ec9b225090afa04a738e102a9576958395c9d8c3f83b098262a3",
+    "kernelMatchesBuildOutput": true,
+    "compileDefine": "https://wave.gluk.tech",
+    "kernelFeatureMarkers": {
+      "tech.gluk.glukwave/home_widgets": true,
+      "glukwave.widget": true,
+      "Home screen widgets": true,
+      "https://wave.gluk.tech": true,
+      "full-player": true,
+      "player-cover-gesture": true,
+      "language-selector": true,
+      "language.auto": true,
+      "locale:change": true,
+      "lrcClock": true,
+      "artworkForDisplay": true,
+      "-t500x500.": true,
+      "/api/diagnostics/events": true,
+      "glukwave-lan-v1": true,
+      "LAN pairing": true,
+      "seasonalEffects": true,
+      "lan-enable": true,
+      "ROOM_STATE": true,
+      "/lrclib": true,
+      "Find on LRCLIB": true,
+      "/genius/preview": true,
+      "genius-preview": true,
+      "cover-ambient-transform": true,
+      "/discord": true,
+      "discord:changed": true,
+      "discordPresence": true,
+      "deviceVolume": true,
+      "/api/auth/native-captcha": true,
+      "Invalid authentication expiry": true,
+      "desktop-quick-volume": true,
+      "account:state": true,
+      "track-loading-cover": true,
+      "ScrollingLabel": true,
+      "/connect": true,
+      "outputActive": true,
+      "/account/sessions": true,
+      "downloadUrl": true,
+      "adoptOnly": true,
+      "/taste": true,
+      "/friends": true,
+      "/jams": true,
+      "/api/account/": true,
+      "currentPassword": true,
+      "Email sent": true,
+      "/playlists/discover": true,
+      "mini-card-progress": true,
+      "search-source-menu": true,
+      "search-type-": true,
+      "player-transport-capsule": true,
+      "player-secondary-capsule": true,
+      "X-GlukWave-Playback-Wait": true,
+      "player-centered-view": true,
+      "player-detail-view-": true,
+      "player-lyrics-toggle": true,
+      "compact-eq-presets": true,
+      "#EXTM3U": true,
+      "Colour from the cover": true,
+      "coverAccent": true,
+      "compact-eq-enabled": true,
+      "compact-eq-band-": true,
+      "compact-eq-preamp": true,
+      "compact-eq-rate": true,
+      "connect-quick-picker": true,
+      "native-queue-list": true,
+      "queue-add": true,
+      "queue-search": true,
+      "ListeningPresence": true,
+      "SettingsEdit": true,
+      "_PlaybackWavePainter": true
+    },
+    "localCatalogsInKernel": {
+      "en": true,
+      "ru": true,
+      "kk": true,
+      "uk": true,
+      "de": true,
+      "es": true
+    },
+    "qaTrackBundled": false,
+    "fontManifestVerified": true,
+    "staticFontFaces": [
+      {
+        "asset": "assets/fonts/Nunito-Regular.ttf",
+        "weight": 400,
+        "variable": false,
+        "sha256": "29f17d41574376520b263bde34a4fecb11814233ff280c66befce6020c5e3cc4",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-Medium.ttf",
+        "weight": 500,
+        "variable": false,
+        "sha256": "818d89d5417ed2c7686c07097469f417d41dfe70b8e9514466637612f7ab9d8d",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-SemiBold.ttf",
+        "weight": 600,
+        "variable": false,
+        "sha256": "e6ac9b7051c6b3c4a23817a9272e2a8f7124896b36e68b30a3d46b452a0418a5",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-Bold.ttf",
+        "weight": 700,
+        "variable": false,
+        "sha256": "19acc4b8e7dc15b49c3802b6f2b53a1c41d7ee548733204a367052fa53387933",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-ExtraBold.ttf",
+        "weight": 800,
+        "variable": false,
+        "sha256": "9bc8f0d0c03926636f41ec699c6563dd01835b510c194e2086811eaf65a8e527",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-Black.ttf",
+        "weight": 900,
+        "variable": false,
+        "sha256": "b3628977111142f66472632770b76ee2c0665a40ae536bd64971a3bc19087717",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Manrope-Regular.ttf",
+        "weight": 400,
+        "variable": false,
+        "sha256": "c443e2325b9ff17933ec2f5a99d835af430a545901d146f81f4fc9f4882b6623",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Manrope-Medium.ttf",
+        "weight": 500,
+        "variable": false,
+        "sha256": "78177fa989a3feb256c1750faca4a05ab0b70f093f5f45b12a537e7b939bae9c",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Manrope-SemiBold.ttf",
+        "weight": 600,
+        "variable": false,
+        "sha256": "1eea52be7b84d0841e39d6102cdf2f6777dbdbd6781d3a40a3323a8151163f07",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Manrope-Bold.ttf",
+        "weight": 700,
+        "variable": false,
+        "sha256": "06ef9bf16d6ce1b6b8d6b953ea8b9e6c30e4b3708cf039132224fb2a5aa77102",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Manrope-ExtraBold.ttf",
+        "weight": 800,
+        "variable": false,
+        "sha256": "63050130f7beccf497d740a2af39f8d5d49447e9ed777014e8d6d413442425ba",
+        "matchesSource": true
+      }
+    ],
+    "fontManifestSha256": "dc61e379e1f65f8de62057e95a64baaebcbbf8e5ee2450f736e2611705ca210f",
+    "nunitoLicenseIncluded": true,
+    "manifestVerified": true,
+    "androidWidgetReceiversPrivate": {
+      "WavePlayerWidget": true,
+      "WaveLargeWidget": true,
+      "WidgetCommandReceiver": true
+    },
+    "widgetTestRuntimeBundled": false,
+    "version": "1.0.0",
+    "versionCode": 17,
+    "minSdk": 24,
+    "targetSdk": 36,
+    "output": "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\outputs\\GlukWave-android-debug.apk",
+    "outputMatchesBuild": true,
+    "signatureVerified": true,
+    "signatureScheme": "v2",
+    "certificateSha256": "d631b0271019e5b3a9df153929ac0de07708b0766fc4c132fbce862b67a56748",
+    "updateCertificateMatchesPrevious": true,
+    "analyzerIssues": 0,
+    "standardTestsPassed": 329,
+    "standardVerification": {
+      "passed": true,
+      "distinctTestsVerified": 329,
+      "fullRun": {
+        "passed": 325,
+        "failed": 4,
+        "log": "ecosystem17-native-tests-final.log"
+      },
+      "recovery": {
+        "tests": 4,
+        "passed": true,
+        "log": "ecosystem17-native-recovery.log",
+        "cases": [
+          "Room queue and modes use authoritative commands and permissions",
+          "Connect picker shows Chrome mark, actual output and one pending handoff",
+          "Compact synchronized lyrics show two separate rows; cover menu closes on selection/Escape",
+          "Jam listener toggles its own pause using the REST endpoint without host transport permissions"
+        ]
+      },
+      "changesAfterFullRun": "Only obsolete test expectations: immediate modes, two output indicators, non-admin Jam fixture and cover tools moved into ellipsis. Production sources unchanged.",
+      "initialInterruptedRun": "ecosystem17-native-tests-first.log: old outer-scroll selectors and a real held local-write deadlock; fix precedes this full run."
+    },
+    "signature": "debug",
+    "deviceRuntimeVerified": false,
+    "manropeLicenseIncluded": true,
+    "iosBuilt": false,
+    "verification": {
+      "passed": true,
+      "distinctTestsVerified": 329,
+      "fullRun": {
+        "passed": 325,
+        "failed": 4,
+        "log": "ecosystem17-native-tests-final.log"
+      },
+      "recovery": {
+        "tests": 4,
+        "passed": true,
+        "log": "ecosystem17-native-recovery.log",
+        "cases": [
+          "Room queue and modes use authoritative commands and permissions",
+          "Connect picker shows Chrome mark, actual output and one pending handoff",
+          "Compact synchronized lyrics show two separate rows; cover menu closes on selection/Escape",
+          "Jam listener toggles its own pause using the REST endpoint without host transport permissions"
+        ]
+      },
+      "changesAfterFullRun": "Only obsolete test expectations: immediate modes, two output indicators, non-admin Jam fixture and cover tools moved into ellipsis. Production sources unchanged.",
+      "initialInterruptedRun": "ecosystem17-native-tests-first.log: old outer-scroll selectors and a real held local-write deadlock; fix precedes this full run."
+    },
+    "ui": {
+      "passed": true,
+      "runId": 1791838301064,
+      "cases": [
+        {
+          "name": "real local volume draft, no transport or persistence, final single write",
+          "passed": true
+        },
+        {
+          "name": "serialized optimistic modes with stale failure guard",
+          "passed": true
+        },
+        {
+          "name": "rollback and fresh role permissions with guest-only jam pause",
+          "passed": true
+        },
+        {
+          "name": "output scope changes discard unfinished preview",
+          "passed": true
+        },
+        {
+          "name": "actual immediate local pause, stale snapshot mask and rollback",
+          "passed": true
+        },
+        {
+          "name": "held color previews avoid disk serialization until release",
+          "passed": true
+        },
+        {
+          "name": "bounded public/admin pagination and refreshed loaded pages",
+          "passed": true
+        },
+        {
+          "name": "fixed cover viewport 375",
+          "passed": true
+        },
+        {
+          "name": "fixed cover viewport 1440",
+          "passed": true
+        },
+        {
+          "name": "anchored Connect active track and complete controls",
+          "passed": true
+        },
+        {
+          "name": "non-owned current room in My rooms and truthful public counts",
+          "passed": true
+        },
+        {
+          "name": "held native slider local draft and one release commit",
+          "passed": true
+        },
+        {
+          "name": "wheel preview parent rebuild does not cancel final commit",
+          "passed": true
+        }
+      ],
+      "screenshots": [
+        "native-ecosystem17-1791838301064-connect-390.png",
+        "native-ecosystem17-1791838301064-player-1440.png",
+        "native-ecosystem17-1791838301064-player-375.png",
+        "native-ecosystem17-1791838301064-rooms-390.png"
+      ],
+      "boundary": "Actual Flutter widgets/controller and native audio API, isolated delayed network fixtures. No hosted accounts or physical devices."
+    },
+    "sourceFreezeFile": "docs/verification/2026-10-13/ecosystem17-native-source-freeze.json",
+    "windowsExecutableBuilt": true,
+    "windows": {
+      "checkedAt": "2026-10-12T21:13:02.450432+00:00",
+      "passed": true,
+      "bundle": "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\outputs\\GlukWave-windows",
+      "featureMarkers": {
+        "track-loading-cover": true,
+        "glukwave-lan-v1": true,
+        "LAN pairing": true,
+        "seasonalEffects": true,
+        "lan-enable": true,
+        "/discord": true,
+        "discord:changed": true,
+        "discordPresence": true,
+        "/api/diagnostics/events": true,
+        "/lrclib": true,
+        "/genius/preview": true,
+        "genius-preview": true,
+        "cover-ambient-transform": true,
+        "ROOM_STATE": true,
+        "Find on LRCLIB": true,
+        "deviceVolume": true,
+        "/api/auth/native-captcha": true,
+        "desktop-quick-volume": true,
+        "/account/sessions": true,
+        "downloadUrl": true,
+        "adoptOnly": true,
+        "/taste": true,
+        "/friends": true,
+        "/jams": true,
+        "/api/account/": true,
+        "currentPassword": true,
+        "Email sent": true,
+        "/playlists/discover": true
+      },
+      "file": "outputs/GlukWave-windows.zip",
+      "bytes": 27924554,
+      "sha256": "ad445154f99367a086e9fc69460f915c96abe816cf2f5be5fd75885dbb1aa46d",
+      "frozenOriginalFilesMatched": 161,
+      "compiledSourceFilesMatched": 115,
+      "compiledSourcePaths": [
+        "assets/app_icon.ico",
+        "assets/coast.jpg",
+        "assets/fonts/Manrope-Bold.ttf",
+        "assets/fonts/Manrope-ExtraBold.ttf",
+        "assets/fonts/Manrope-Medium.ttf",
+        "assets/fonts/Manrope-Regular.ttf",
+        "assets/fonts/Manrope-SemiBold.ttf",
+        "assets/fonts/Nunito-Black.ttf",
+        "assets/fonts/Nunito-Bold.ttf",
+        "assets/fonts/Nunito-ExtraBold.ttf",
+        "assets/fonts/Nunito-Medium.ttf",
+        "assets/fonts/Nunito-Regular.ttf",
+        "assets/fonts/Nunito-SemiBold.ttf",
+        "assets/forest.jpg",
+        "assets/google-g.png",
+        "assets/licenses/just_audio_media_kit-UNLICENSE.txt",
+        "assets/licenses/Manrope-OFL.txt",
+        "assets/licenses/Nunito-OFL.txt",
+        "assets/logo.gif",
+        "assets/logo.png",
+        "assets/mark.svg",
+        "assets/Nunito.ttf",
+        "lib/core/api.dart",
+        "lib/core/appearance.dart",
+        "lib/core/artwork.dart",
+        "lib/core/controller.dart",
+        "lib/core/discord.dart",
+        "lib/core/equalizer.dart",
+        "lib/core/lyrics.dart",
+        "lib/core/models.dart",
+        "lib/core/parity.dart",
+        "lib/core/wave_math.dart",
+        "lib/l10n/audio_design_strings.dart",
+        "lib/l10n/catalogs.dart",
+        "lib/l10n/discord_strings.dart",
+        "lib/l10n/ecosystem_polish_strings.dart",
+        "lib/l10n/focused_player_strings.dart",
+        "lib/l10n/home_widget_strings.dart",
+        "lib/l10n/lan_strings.dart",
+        "lib/l10n/listening_polish_strings.dart",
+        "lib/l10n/lyrics_strings.dart",
+        "lib/l10n/parity_strings.dart",
+        "lib/l10n/season_strings.dart",
+        "lib/l10n/wave_localizations.dart",
+        "lib/main.dart",
+        "lib/services/ambience.dart",
+        "lib/services/appearance_store.dart",
+        "lib/services/audio.dart",
+        "lib/services/cache.dart",
+        "lib/services/desktop.dart",
+        "lib/services/diagnostics.dart",
+        "lib/services/home_widgets.dart",
+        "lib/services/lan_transport.dart",
+        "lib/services/presence_bridge.dart",
+        "lib/services/provider_player.dart",
+        "lib/services/push.dart",
+        "lib/services/volume_store.dart",
+        "lib/services/waveform.dart",
+        "lib/services/windows_dsp.dart",
+        "lib/services/windows_equalizer.dart",
+        "lib/services/windows_mpv_player.dart",
+        "lib/ui/album_stage.dart",
+        "lib/ui/app.dart",
+        "lib/ui/appearance_panel.dart",
+        "lib/ui/auth_page.dart",
+        "lib/ui/auth_visuals.dart",
+        "lib/ui/connect_panel.dart",
+        "lib/ui/connect_picker.dart",
+        "lib/ui/connect_playback.dart",
+        "lib/ui/cover_accent.dart",
+        "lib/ui/cover_ambient.dart",
+        "lib/ui/desktop_player.dart",
+        "lib/ui/device_labels.dart",
+        "lib/ui/discord_panel.dart",
+        "lib/ui/discovery.dart",
+        "lib/ui/equalizer_panel.dart",
+        "lib/ui/home_widget_previews.dart",
+        "lib/ui/lan_panel.dart",
+        "lib/ui/listening_presence.dart",
+        "lib/ui/listening_rail.dart",
+        "lib/ui/lofi.dart",
+        "lib/ui/lyrics_editor.dart",
+        "lib/ui/motion_icons.dart",
+        "lib/ui/parity_panels.dart",
+        "lib/ui/player.dart",
+        "lib/ui/player_gestures.dart",
+        "lib/ui/provider_host.dart",
+        "lib/ui/queue_panel.dart",
+        "lib/ui/room_directory.dart",
+        "lib/ui/scrolling_label.dart",
+        "lib/ui/seasonal.dart",
+        "lib/ui/sessions_panel.dart",
+        "lib/ui/settings_edit.dart",
+        "lib/ui/silk_wave.dart",
+        "lib/ui/theme.dart",
+        "lib/ui/theme_preview.dart",
+        "lib/ui/volume_slider.dart",
+        "lib/ui/wave_colors.dart",
+        "lib/ui/widgets.dart",
+        "pubspec.lock",
+        "pubspec.yaml",
+        "windows/CMakeLists.txt",
+        "windows/flutter/CMakeLists.txt",
+        "windows/runner/CMakeLists.txt",
+        "windows/runner/flutter_window.cpp",
+        "windows/runner/flutter_window.h",
+        "windows/runner/main.cpp",
+        "windows/runner/resource.h",
+        "windows/runner/resources/app_icon.ico",
+        "windows/runner/runner.exe.manifest",
+        "windows/runner/Runner.rc",
+        "windows/runner/utils.cpp",
+        "windows/runner/utils.h",
+        "windows/runner/win32_window.cpp",
+        "windows/runner/win32_window.h"
+      ],
+      "binarySha256": {
+        "glukwave.exe": "3ef17e680bc0f0800ef834d8903495759ba2e19d82cc6088e6989038acb298e5",
+        "flutter_windows.dll": "6840b8129fb105dd246f05f14eab97d7e8e9eade1428f9afde95de6b8e1a7808",
+        "libmpv-2.dll": "0a5a0b476866c91a639a4e511e8153968f8fa23564461b0aa09acdba816164a4",
+        "audio_service_win_plugin.dll": "ef9421be9fe1292eb8a3f2b75d1c0cfd61e404fe984c51e220e464d87892ea0d",
+        "flutter_inappwebview_windows_plugin.dll": "e41be84c4dec12a7c0fb8ba402053f75ac818856a6f47128d1afd1820e8ceacd",
+        "flutter_secure_storage_windows_plugin.dll": "098a8c4a8b53e72029b2a8403768e3cf7ace15cbf3e84820e575254c428f4cde",
+        "tray_manager_plugin.dll": "1291abc69be060b15cf917332b10eb46103b335b329d4dc4232bb39e778867e6",
+        "window_manager_plugin.dll": "ac27838523201046c479646c9ed161eb994a4608f4d7b4759126c27da861c25c",
+        "msvcp140.dll": "0f885b509a685d2bbfa652fed26b5fb31d88fbdab0a978c641d1c7b8aa460aa9",
+        "vcruntime140.dll": "d5e4d9a3e835fa679450145d6a7d94e36573a509317111904d9b3712c30d9066",
+        "vcruntime140_1.dll": "1f2d41c4aa5db0bc33ebf7b66d72943a817d7ce6cbe880502a9403823633093f"
+      },
+      "packageMatchesReleaseBuild": true,
+      "zipCrcAndAllFilesMatched": true,
+      "staticFontFaces": 11,
+      "compileDefine": "https://wave.gluk.tech",
+      "buildMode": "release",
+      "authenticodeSigned": false,
+      "uiInteractionVerified": false,
+      "physicalAudioVerified": false,
+      "installer": {
+        "checkedAt": "2026-10-12T21:15:06.2372914Z",
+        "passed": true,
+        "singleFile": true,
+        "version": "1.0.0.17",
+        "productVersion": "1.0.0+17",
+        "bytes": 24457103,
+        "sha256": "a31de2a8bd1bf2e00eeca501a3aa22ee58200385f3668e51a8ea492f50029d85",
+        "compilerSucceeded": true,
+        "desktopShortcutChoice": true,
+        "autostartChoice": true,
+        "autostartDefault": false,
+        "webviewBootstrapperEmbedded": true,
+        "installedDuringIteration": false,
+        "authenticodeSigned": false
+      }
+    }
+  },
+  "downloads": {
+    "checkedAt": "2026-10-12T21:15:18.076Z",
+    "isolatedLocalServer": true,
+    "checks": [
+      {
+        "platform": "android",
+        "version": "1.0.0+17",
+        "rangeStatus": 206,
+        "bytes": 185648499,
+        "sha256": "4444f58d8d65b925dc1a2eec1e04bed7f42e821eb45c5f59bee996c0edb7c9e6"
+      },
+      {
+        "platform": "windows",
+        "version": "1.0.0+17",
+        "rangeStatus": 206,
+        "bytes": 24457103,
+        "sha256": "a31de2a8bd1bf2e00eeca501a3aa22ee58200385f3668e51a8ea492f50029d85"
+      }
+    ],
+    "fullInstallerDownloadMatched": true,
+    "passed": true
+  },
+  "hostingDeployed": false,
+  "physicalChecksPerformed": false,
+  "serviceBudget": {
+    "cpuCores": 1,
+    "memoryGiB": 4,
+    "appliedOnHosting": false
+  },
+  "cleanup": {
+    "bytesFreedThisIteration": 297679141.0,
+    "rollback": "1.0.0+16"
+  },
+  "limits": [
+    "Full Flutter redesign deferred by owner",
+    "Chrome toolbar visibility is browser-controlled; real Audio/MediaSession API verified",
+    "No production memory-leak claim; no migration or host deployment",
+    "Android debug certificate retained; Windows Authenticode absent; iOS not built"
+  ]
+}

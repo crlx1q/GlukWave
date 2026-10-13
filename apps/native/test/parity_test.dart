@@ -239,6 +239,7 @@ void main() {
     (tester) async {
       final c = (await tester.runAsync(parityController))!,
           api = c.api as ParityApi;
+      c.user = WaveUser({...c.user!.json, 'role': 'user'});
       c.room = {
         'id': 'qa-jam',
         'ownerId': 'qa-friend',

@@ -52,7 +52,7 @@ test('SoundCloud AAC HLS is selected over unsupported codecs and labelled HLS',a
  const unsupported=fixture([{url:'https://api-v2.soundcloud.com/opus',preset:'opus',format:{protocol:'hls',mime_type:'audio/ogg'}}]);await assert.rejects(unsupported.adapter.metadata('https://soundcloud.com/wave/unsupported'),/stream not found/);
 });
 test('resource CPU samples warm up for a real interval instead of reporting a startup spike',async()=>{
- const ctx={};setupResources({get(){}},ctx);
+ const ctx={};setupResources({get(){},post(){}},ctx);
  try{const first=ctx.resourceSnapshot();assert.equal(first.cpuOneCorePercent,null);assert(first.rssMB>0);await new Promise(resolve=>setTimeout(resolve,1100));const next=ctx.resourceSnapshot();assert(Number.isFinite(next.cpuOneCorePercent));assert(next.intervalMs>=1000);assert.equal(next.scope,'server-process');}finally{ctx.closeResources();}
 });
 

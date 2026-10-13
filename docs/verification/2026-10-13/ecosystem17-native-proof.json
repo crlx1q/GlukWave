@@ -1,0 +1,65 @@
+{
+  "passed": true,
+  "runId": 1791838301064,
+  "cases": [
+    {
+      "name": "real local volume draft, no transport or persistence, final single write",
+      "passed": true
+    },
+    {
+      "name": "serialized optimistic modes with stale failure guard",
+      "passed": true
+    },
+    {
+      "name": "rollback and fresh role permissions with guest-only jam pause",
+      "passed": true
+    },
+    {
+      "name": "output scope changes discard unfinished preview",
+      "passed": true
+    },
+    {
+      "name": "actual immediate local pause, stale snapshot mask and rollback",
+      "passed": true
+    },
+    {
+      "name": "held color previews avoid disk serialization until release",
+      "passed": true
+    },
+    {
+      "name": "bounded public/admin pagination and refreshed loaded pages",
+      "passed": true
+    },
+    {
+      "name": "fixed cover viewport 375",
+      "passed": true
+    },
+    {
+      "name": "fixed cover viewport 1440",
+      "passed": true
+    },
+    {
+      "name": "anchored Connect active track and complete controls",
+      "passed": true
+    },
+    {
+      "name": "non-owned current room in My rooms and truthful public counts",
+      "passed": true
+    },
+    {
+      "name": "held native slider local draft and one release commit",
+      "passed": true
+    },
+    {
+      "name": "wheel preview parent rebuild does not cancel final commit",
+      "passed": true
+    }
+  ],
+  "screenshots": [
+    "native-ecosystem17-1791838301064-connect-390.png",
+    "native-ecosystem17-1791838301064-player-1440.png",
+    "native-ecosystem17-1791838301064-player-375.png",
+    "native-ecosystem17-1791838301064-rooms-390.png"
+  ],
+  "boundary": "Actual Flutter widgets/controller and native audio API, isolated delayed network fixtures. No hosted accounts or physical devices."
+}

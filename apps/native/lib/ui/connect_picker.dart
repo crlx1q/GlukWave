@@ -5,11 +5,13 @@ import '../l10n/ecosystem_polish_strings.dart';
 import 'connect_panel.dart';
 import 'device_labels.dart';
 import 'widgets.dart';
+import 'connect_playback.dart';
 
 Future<void> showConnectPicker(
   BuildContext context,
   WaveController c, {
   VoidCallback? onAllDevices,
+  Rect? anchor,
 }) => showGeneralDialog<void>(
   context: context,
   barrierDismissible: true,
@@ -22,7 +24,27 @@ Future<void> showConnectPicker(
       child: Align(
         alignment: Alignment.bottomRight,
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(14, 14, 14, 105),
+          padding: EdgeInsets.fromLTRB(
+            14,
+            14,
+            anchor == null
+                ? 14
+                : (MediaQuery.sizeOf(context).width - anchor.right).clamp(
+                    14.0,
+                    math.max(
+                      14.0,
+                      MediaQuery.sizeOf(context).width -
+                          math.min(350, MediaQuery.sizeOf(context).width - 28) -
+                          14,
+                    ),
+                  ),
+            anchor == null
+                ? 105
+                : math.max(
+                    16,
+                    MediaQuery.sizeOf(context).height - anchor.top + 10,
+                  ),
+          ),
           child: Material(
             key: const Key('connect-quick-picker'),
             color: waveVisuals(context).surface,
@@ -34,102 +56,118 @@ Future<void> showConnectPicker(
             clipBehavior: Clip.antiAlias,
             child: SizedBox(
               width: math.min(350, MediaQuery.sizeOf(context).width - 28),
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.all(17),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          const Expanded(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(
+                  maxHeight: math.max(
+                    150,
+                    math.min(
+                      600,
+                      (anchor?.top ?? MediaQuery.sizeOf(context).height - 105) -
+                          MediaQuery.paddingOf(context).top -
+                          28,
+                    ),
+                  ),
+                ),
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.all(17),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            const Expanded(
+                              child: Text(
+                                'GLUKWAVE CONNECT',
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w800,
+                                  letterSpacing: .6,
+                                ),
+                              ),
+                            ),
+                            IconButton(
+                              onPressed: () => Navigator.pop(context),
+                              icon: const Icon(Icons.close_rounded, size: 18),
+                            ),
+                          ],
+                        ),
+                        ConnectPlayback(controller: c, compact: true),
+                        const SizedBox(height: 12),
+                        if (c.transferPending != null)
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 10),
                             child: Text(
-                              'GLUKWAVE CONNECT',
+                              ecosystemText('waiting', context),
                               style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w800,
-                                letterSpacing: .6,
+                                color: waveVisuals(context).accent,
+                                fontSize: 11,
                               ),
                             ),
                           ),
-                          IconButton(
-                            onPressed: () => Navigator.pop(context),
-                            icon: const Icon(Icons.close_rounded, size: 18),
-                          ),
-                        ],
-                      ),
-                      if (c.transferPending != null)
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 10),
-                          child: Text(
-                            ecosystemText('waiting', context),
-                            style: TextStyle(
-                              color: waveVisuals(context).accent,
-                              fontSize: 11,
+                        for (final device
+                            in c.lanEnabled ? c.lanPeers : c.devices)
+                          ListTile(
+                            contentPadding: EdgeInsets.zero,
+                            leading: DevicePlatformIcon(
+                              device: device,
+                              color: installationId(device) == c.activeDeviceId
+                                  ? waveVisuals(context).accent
+                                  : waveVisuals(context).muted,
                             ),
-                          ),
-                        ),
-                      for (final device
-                          in c.lanEnabled ? c.lanPeers : c.devices)
-                        ListTile(
-                          contentPadding: EdgeInsets.zero,
-                          leading: DevicePlatformIcon(
-                            device: device,
-                            color: installationId(device) == c.activeDeviceId
-                                ? waveVisuals(context).accent
-                                : waveVisuals(context).muted,
-                          ),
-                          title: Text(
-                            device['name']?.toString() ?? '',
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: const TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w700,
+                            title: Text(
+                              device['name']?.toString() ?? '',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                fontSize: 13,
+                                fontWeight: FontWeight.w700,
+                              ),
                             ),
+                            subtitle: Text(
+                              deviceKindLabel(device, context: context),
+                              style: const TextStyle(fontSize: 10),
+                            ),
+                            trailing:
+                                c.transferPending == installationId(device)
+                                ? const SizedBox(
+                                    width: 18,
+                                    height: 18,
+                                    child: CircularProgressIndicator(
+                                      strokeWidth: 2,
+                                    ),
+                                  )
+                                : installationId(device) == c.activeDeviceId
+                                ? ListeningWave(playing: c.audio.playing)
+                                : null,
+                            enabled:
+                                device['online'] == true &&
+                                c.transferPending == null,
+                            onTap: () async {
+                              try {
+                                await c.transfer(
+                                  installationId(device),
+                                  targetSurfaceId:
+                                      installationId(device) == c.deviceId
+                                      ? c.surfaceId
+                                      : device['surfaceId']?.toString(),
+                                );
+                              } catch (e) {
+                                c.tell(e.toString());
+                              }
+                            },
                           ),
-                          subtitle: Text(
-                            deviceKindLabel(device, context: context),
-                            style: const TextStyle(fontSize: 10),
+                        if (onAllDevices != null)
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                              onAllDevices();
+                            },
+                            child: Text(ecosystemText('allDevices', context)),
                           ),
-                          trailing: c.transferPending == installationId(device)
-                              ? const SizedBox(
-                                  width: 18,
-                                  height: 18,
-                                  child: CircularProgressIndicator(
-                                    strokeWidth: 2,
-                                  ),
-                                )
-                              : installationId(device) == c.activeDeviceId
-                              ? ListeningWave(playing: c.audio.playing)
-                              : null,
-                          enabled:
-                              device['online'] == true &&
-                              c.transferPending == null,
-                          onTap: () async {
-                            try {
-                              await c.transfer(
-                                installationId(device),
-                                targetSurfaceId:
-                                    installationId(device) == c.deviceId
-                                    ? c.surfaceId
-                                    : device['surfaceId']?.toString(),
-                              );
-                            } catch (e) {
-                              c.tell(e.toString());
-                            }
-                          },
-                        ),
-                      if (onAllDevices != null)
-                        TextButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                            onAllDevices();
-                          },
-                          child: Text(ecosystemText('allDevices', context)),
-                        ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),

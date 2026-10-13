@@ -119,7 +119,7 @@ class _ListeningWaveState extends State<ListeningWave>
     with SingleTickerProviderStateMixin, WidgetsBindingObserver {
   late final clock = AnimationController(
     vsync: this,
-    duration: const Duration(milliseconds: 1600),
+    duration: const Duration(milliseconds: 1200),
   );
   bool visible = true;
   @override
@@ -129,6 +129,13 @@ class _ListeningWaveState extends State<ListeningWave>
   }
 
   void sync() {
+    final period = Duration(
+      milliseconds: (1200 / waveVisuals(context).speed.clamp(.3, 2.0)).round(),
+    );
+    if (clock.duration != period) {
+      clock.duration = period;
+      if (clock.isAnimating) clock.repeat();
+    }
     if (widget.playing &&
         visible &&
         TickerMode.of(context) &&
@@ -189,22 +196,39 @@ class _WavePainter extends CustomPainter {
   _WavePainter(this.clock, this.playing, this.color) : super(repaint: clock);
   @override
   void paint(Canvas canvas, Size size) {
+    canvas.save();
+    canvas.scale(size.width / 24, size.height / 24);
+    final path = Path()
+      ..moveTo(3, 12)
+      ..cubicTo(5, 12, 5, 6, 7.5, 6)
+      ..cubicTo(10, 6, 10, 18, 12.5, 18)
+      ..cubicTo(15, 18, 15, 6, 17.5, 6)
+      ..cubicTo(20, 6, 20, 12, 21, 12);
     final p = Paint()
-      ..color = color
-      ..strokeWidth = size.width / 10
+      ..color = color.withValues(alpha: playing ? .38 : .6)
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 2
       ..strokeCap = StrokeCap.round;
-    for (var i = 0; i < 5; i++) {
-      final h = playing
-          ? .22 +
-                .62 * (.5 + .5 * math.sin(clock.value * math.pi * 2 + i * 1.7))
-          : .22 + (i == 2 ? .2 : 0);
-      final x = size.width * (.1 + i * .2);
-      canvas.drawLine(
-        Offset(x, size.height * (1 - h) / 2),
-        Offset(x, size.height * (1 + h) / 2),
+    canvas.drawPath(path, p);
+    if (playing) {
+      final metric = path.computeMetrics().first;
+      final start = clock.value * metric.length;
+      p.color = color;
+      canvas.drawPath(
+        metric.extractPath(
+          start,
+          math.min(metric.length, start + metric.length * .28),
+        ),
         p,
       );
+      if (start + metric.length * .28 > metric.length) {
+        canvas.drawPath(
+          metric.extractPath(0, start + metric.length * .28 - metric.length),
+          p,
+        );
+      }
     }
+    canvas.restore();
   }
 
   @override

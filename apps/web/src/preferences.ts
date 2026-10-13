@@ -28,7 +28,7 @@ const pendingKey=(userId:string)=>`gw-settings-pending:${userId}`;
 export function readLocalSettings(userId:string|null):Settings {try{return normalizeSettings(JSON.parse(localStorage.getItem(settingsKey(userId))||'null'));}catch{return normalizeSettings(null);}}
 export function writeLocalSettings(userId:string|null,settings:Settings){try{const key=settingsKey(userId),value=JSON.stringify(settings);if(localStorage.getItem(key)!==value)localStorage.setItem(key,value);}catch{/* Preferences remain active when storage is unavailable. */}}
 export function writeConfirmedSettings(userId:string,settings:Settings,revision:number){try{const key=`gw-settings-confirmed:${userId}`,value=JSON.stringify({settings,revision});if(localStorage.getItem(key)!==value)localStorage.setItem(key,value);}catch{/* Socket synchronization remains available. */}}
-export function writePendingSettings(userId:string,partial:SettingsPatch){try{if(Object.keys(partial).length)localStorage.setItem(pendingKey(userId),JSON.stringify(partial));else localStorage.removeItem(pendingKey(userId));}catch{/* The current tab keeps the pending change in memory. */}}
+export function writePendingSettings(userId:string,partial:SettingsPatch){try{const key=pendingKey(userId);if(Object.keys(partial).length){const value=JSON.stringify(partial);if(localStorage.getItem(key)!==value)localStorage.setItem(key,value);}else if(localStorage.getItem(key)!==null)localStorage.removeItem(key);}catch{/* The current tab keeps the pending change in memory. */}}
 export function normalizeSettingsPatch(value:unknown):SettingsPatch {
   try {
     const source=object(value),result:SettingsPatch={};

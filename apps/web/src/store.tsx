@@ -1,5 +1,6 @@
 import { t, useLocale, setLanguageChoice } from './locale';
 import {readableCoverAccent} from './cover-accent';
+import {startupAccountId,preferenceStorage} from './locale-startup';
 import { createContext, useCallback, useContext, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from 'react';
 import type { Socket } from 'socket.io-client';
 import { ApiError, api, errorText, post } from './api';
@@ -25,12 +26,13 @@ const emptyLibrary: Library = {tracks:[],likedIds:[],playlists:[],history:[]};
 const routes: Route[] = ['home','search','library','sources','rooms','lofi','downloads','settings','profile','admin'];
 function initialRoute():Route { const route=location.hash.slice(1).split('?')[0]; return routes.includes(route as Route)?route as Route:'home'; }
 export function StoreProvider({children}:{children:ReactNode}) {useLocale();
+  const startupAccount=useRef(startupAccountId(preferenceStorage()));
   const [coverAccent,setCoverAccent]=useState<string|null>(null);
-  const [user,setUserState]=useState<User|null>(null), [config,setConfig]=useState<Config|null>(null), [library,setLibrary]=useState<Library>(emptyLibrary), [settings,setSettings]=useState<Settings>(()=>readLocalSettings(null));
+  const [user,setUserState]=useState<User|null>(null), [config,setConfig]=useState<Config|null>(null), [library,setLibrary]=useState<Library>(emptyLibrary), [settings,setSettings]=useState<Settings>(()=>readLocalSettings(startupAccount.current));
   const [libraryOwner,setLibraryOwner]=useState<string|null>(null),[libraryPending,setLibraryPending]=useState(false),libraryFlight=useRef(0);
   const [loading,setLoading]=useState(true),[offline,setOffline]=useState(!navigator.onLine),[route,setRoute]=useState<Route>(initialRoute),[query,setQuery]=useState(''),[source,setSource]=useState('all'),[authOpen,setAuthOpen]=useState(false),[toast,setToast]=useState<Toast|null>(null);
   const [settingsSync,setSettingsSync]=useState<'saved'|'saving'|'local'>('local'),[systemDark,setSystemDark]=useState(()=>matchMedia('(prefers-color-scheme: dark)').matches),[systemMotion,setSystemMotion]=useState(()=>matchMedia('(prefers-reduced-motion: reduce)').matches),[systemContrast,setSystemContrast]=useState(()=>matchMedia('(prefers-contrast: more)').matches);
-  const settingsRef=useRef(settings);settingsRef.current=settings;
+  const settingsRef=useRef(settings),settingsFrame=useRef<number|null>(null);
   const settingsHolds=useRef(0);
   const settingsServer=useRef(settings),pendingSettings=useRef<SettingsPatch>({}),serverRevision=useRef(-1),accountGeneration=useRef(0),settingsTimer=useRef<ReturnType<typeof setTimeout>|undefined>(undefined),settingsFlight=useRef<{userId:string;generation:number;controller:AbortController;partial:SettingsPatch}|null>(null),flushSettingsRef=useRef<(id:string)=>Promise<void>>(async()=>{});
   const userRef=useRef(user);userRef.current=user;const toastTimer=useRef<ReturnType<typeof setTimeout>|undefined>(undefined);
@@ -68,9 +70,11 @@ export function StoreProvider({children}:{children:ReactNode}) {useLocale();
   const publishSettings=useCallback((id:string|null)=>{
     const flight=settingsFlight.current;
     const edits=mergeSettingsPatches(flight?.userId===id?flight.partial:{},pendingSettings.current);
-    const next=mergeSettings(settingsServer.current,edits);setLanguageChoice(next.language);settingsRef.current=next;setSettings(next);writeLocalSettings(id,next);
-    if(id)writePendingSettings(id,edits);
-    setSettingsSync(id?(Object.keys(edits).length?(navigator.onLine?'saving':'local'):'saved'):'local');
+    const next=mergeSettings(settingsServer.current,edits);settingsRef.current=next;
+    const present=()=>{setLanguageChoice(settingsRef.current.language);setSettings(settingsRef.current);setSettingsSync(id?(Object.keys(edits).length?(navigator.onLine?'saving':'local'):'saved'):'local');};
+    if(settingsHolds.current){if(settingsFrame.current===null){const generation=accountGeneration.current;settingsFrame.current=requestAnimationFrame(()=>{settingsFrame.current=null;if(generation===accountGeneration.current)present();});}return;}
+    if(settingsFrame.current!==null){cancelAnimationFrame(settingsFrame.current);settingsFrame.current=null;}
+    present();writeLocalSettings(id,next);if(id)writePendingSettings(id,edits);
   },[]);
   const acceptSettings=useCallback((id:string,generation:number,payload:SettingsSnapshot)=>{
     if(userRef.current?.id!==id||accountGeneration.current!==generation)return;
@@ -108,11 +112,12 @@ export function StoreProvider({children}:{children:ReactNode}) {useLocale();
     }
   };
   const userId=user?.id||null;
+  const preferenceScope=userId||(loading?startupAccount.current:null);
   useLayoutEffect(()=>{
-    clearTimeout(settingsTimer.current);settingsFlight.current?.controller.abort();settingsFlight.current=null;accountGeneration.current++;settingsHolds.current=0;serverRevision.current=-1;
-    pendingSettings.current=userId?readPendingSettings(userId):{};settingsServer.current=readLocalSettings(userId);publishSettings(userId);
-    return()=>{clearTimeout(settingsTimer.current);settingsFlight.current?.controller.abort();};
-  },[userId,publishSettings]);
+    clearTimeout(settingsTimer.current);if(settingsFrame.current!==null){cancelAnimationFrame(settingsFrame.current);settingsFrame.current=null;}settingsFlight.current?.controller.abort();settingsFlight.current=null;accountGeneration.current++;settingsHolds.current=0;serverRevision.current=-1;
+    pendingSettings.current=preferenceScope?readPendingSettings(preferenceScope):{};settingsServer.current=readLocalSettings(preferenceScope);publishSettings(preferenceScope);
+    return()=>{clearTimeout(settingsTimer.current);if(settingsFrame.current!==null){cancelAnimationFrame(settingsFrame.current);settingsFrame.current=null;}settingsFlight.current?.controller.abort();};
+  },[preferenceScope,publishSettings]);
   useEffect(()=>{
     if(!userId)return;const generation=accountGeneration.current,controller=new AbortController();setSettingsSync('saving');
     void pullSettings(userId,generation,controller.signal).catch(()=>{if(!controller.signal.aborted&&userRef.current?.id===userId&&accountGeneration.current===generation){setSettingsSync('local');if(Object.keys(pendingSettings.current).length&&navigator.onLine)scheduleSettings(userId,15000);}});
@@ -134,8 +139,8 @@ export function StoreProvider({children}:{children:ReactNode}) {useLocale();
   const run=useCallback(async<T,>(operation:()=>Promise<T>,success?:string)=>{try{const result=await operation();if(success)notify(success);return result;}catch(error){notify(errorText(error),true);return undefined;}},[notify]);
   const beginSettingsEdit=useCallback(()=>{
     const generation=accountGeneration.current;settingsHolds.current++;clearTimeout(settingsTimer.current);let released=false;
-    return()=>{if(released||generation!==accountGeneration.current)return;released=true;settingsHolds.current=Math.max(0,settingsHolds.current-1);const id=userRef.current?.id;if(!settingsHolds.current&&id&&Object.keys(pendingSettings.current).length)scheduleSettings(id,0);};
-  },[scheduleSettings]);
+    return()=>{if(released||generation!==accountGeneration.current)return;released=true;settingsHolds.current=Math.max(0,settingsHolds.current-1);const id=userRef.current?.id||null;if(!settingsHolds.current){publishSettings(id);if(id&&Object.keys(pendingSettings.current).length)scheduleSettings(id,0);}};
+  },[scheduleSettings,publishSettings]);
   const saveSettings=useCallback(async(partial:SettingsPatch)=>{
     const change=normalizeSettingsPatch(partial);if(!Object.keys(change).length)return;if(userRef.current?.plan==='free'&&advancedSettingsChange(change,settingsRef.current)){notify(t('parity.planLimit'),true);return;}const id=userRef.current?.id||null;
     if(!id){settingsServer.current=mergeSettings(settingsServer.current,change);publishSettings(null);return;}

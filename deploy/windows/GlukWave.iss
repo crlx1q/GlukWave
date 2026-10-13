@@ -1,6 +1,9 @@
 #ifndef BundleDir
   #error BundleDir must point to the verified Windows release bundle
 #endif
+#ifndef FileVersion
+  #define FileVersion "1.0.0.0"
+#endif
 #ifndef OutputDir
   #error OutputDir must point to the project outputs directory
 #endif
@@ -34,7 +37,7 @@ WizardStyle=modern
 CloseApplications=yes
 RestartApplications=no
 SetupLogging=yes
-VersionInfoVersion=1.0.0.16
+VersionInfoVersion={#FileVersion}
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"

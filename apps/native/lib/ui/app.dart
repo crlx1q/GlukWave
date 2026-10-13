@@ -1,3 +1,4 @@
+import 'room_directory.dart';
 import 'listening_presence.dart';
 import '../l10n/ecosystem_polish_strings.dart';
 import 'motion_icons.dart';
@@ -2788,37 +2789,7 @@ class _WaveShellState extends State<WaveShell>
           ],
         ),
         const SizedBox(height: 24),
-        for (final room in c.rooms)
-          Padding(
-            padding: const EdgeInsets.only(bottom: 14),
-            child: Surface(
-              child: ListTile(
-                contentPadding: EdgeInsets.zero,
-                leading: Icon(
-                  Icons.spatial_audio_off_outlined,
-                  size: 32,
-                  color: waveVisuals(context).accent,
-                ),
-                title: Text(
-                  room['name'] as String,
-                  style: const TextStyle(
-                    fontSize: 21,
-                    fontWeight: FontWeight.w800,
-                  ),
-                ),
-                subtitle: Text(
-                  wt(
-                    'native.2414024420',
-                    values: {'p0': (objects(room['members']).length)},
-                    context: context,
-                  ),
-                ),
-                trailing: const Icon(Icons.arrow_forward_rounded),
-                onTap: () => run(c, () => c.enterRoom(room)),
-              ),
-            ),
-          ),
-        if (c.rooms.isEmpty)
+        if (c.rooms.isEmpty && c.publicRooms.isEmpty)
           EmptyState(
             wt('native.cd705fb252', context: context),
             wt('native.a82ae8303b', context: context),
@@ -2978,7 +2949,7 @@ class _WaveShellState extends State<WaveShell>
                       ),
                     ),
                     if (c.room!['type'] != 'jam' &&
-                        c.room!['ownerId'] == c.user!.id &&
+                        c.canManageRoom &&
                         member['userId'] != c.user!.id)
                       Switch(
                         value: member['canControl'] == true,
@@ -3088,6 +3059,7 @@ class _WaveShellState extends State<WaveShell>
           style: TextStyle(color: waveVisuals(context).muted, fontSize: 12),
         ),
       ],
+      RoomDirectory(controller: c),
     ],
   );
   Future<void> sendMessage() async {

@@ -62,7 +62,9 @@ class WaveAudioHandler extends BaseAudioHandler {
   Duration get outputPosition => current?.embedded == true
       ? Duration(milliseconds: (provider.position * 1000).round())
       : player.position;
-  bool get playing => _remote?.playing ?? outputPlaying;
+  bool? get previewPlaying => _controlPreview['playing'] as bool?;
+  bool get playing =>
+      _controlPreview['playing'] as bool? ?? _remote?.playing ?? outputPlaying;
   Duration get position => _remote == null
       ? outputPosition
       : Duration(
@@ -191,7 +193,10 @@ class WaveAudioHandler extends BaseAudioHandler {
       : 'unsupported';
   int hardwareBandCount = 0;
   String? _nativeSource;
-  double get volume => _remote?.volume ?? _volume;
+  double get volume =>
+      (_controlPreview['volume'] as num?)?.toDouble() ??
+      _remote?.volume ??
+      _volume;
   bool get equalizerSupported =>
       (_equalizer != null ||
           Platform.isWindows && WaveWindowsAudio.active != null) &&
@@ -199,8 +204,66 @@ class WaveAudioHandler extends BaseAudioHandler {
       !remote;
   List<WaveTrack> tracks = [];
   WaveTrack? current;
-  AudioServiceRepeatMode repeat = AudioServiceRepeatMode.none;
-  bool shuffle = false;
+  AudioServiceRepeatMode _repeat = AudioServiceRepeatMode.none;
+  AudioServiceRepeatMode get repeat =>
+      _controlPreview['repeat'] as AudioServiceRepeatMode? ?? _repeat;
+  set repeat(AudioServiceRepeatMode value) => _repeat = value;
+  bool _shuffle = false;
+  bool get shuffle => _controlPreview['shuffle'] as bool? ?? _shuffle;
+  set shuffle(bool value) => _shuffle = value;
+  final Json _controlPreview = {};
+
+  /// Presentation overlays survive authoritative snapshots until this gesture
+  /// is acknowledged. Volume also changes the local output without persistence.
+  Future<void> previewControl(
+    String field,
+    dynamic value, {
+    bool localVolume = false,
+  }) async {
+    _controlPreview[field] = value;
+    _broadcast();
+    if (field == 'volume' && localVolume) {
+      if (current?.embedded == true) {
+        await provider.command('volume', {'volume': value});
+      } else {
+        await _setOutputVolume();
+      }
+    }
+  }
+
+  Future<void> clearControlPreview(
+    String field, {
+    bool localVolume = false,
+  }) async {
+    _controlPreview.remove(field);
+    _broadcast();
+    if (field == 'volume' && localVolume) await _setOutputVolume();
+  }
+
+  void acceptControl(String field, dynamic value) {
+    if (field == 'shuffle') _shuffle = value == true;
+    if (field == 'repeat') _repeat = value as AudioServiceRepeatMode;
+    if (_remote != null && (field == 'playing' || field == 'volume')) {
+      final state = _remote!, position = this.position.inMilliseconds / 1000;
+      _remote = PlaybackSnapshot(
+        trackId: state.trackId,
+        position: position,
+        volume: field == 'volume' ? number(value) : state.volume,
+        playing: field == 'playing' ? value == true : state.playing,
+        queue: state.queue,
+        shuffle: state.shuffle,
+        repeat: state.repeat,
+        revision: state.revision,
+        updatedAt: DateTime.now().millisecondsSinceEpoch,
+      );
+    }
+  }
+
+  void clearControlPreviews() {
+    _controlPreview.clear();
+    _broadcast();
+  }
+
   bool autoCache = true;
   int _index = -1, _loadRevision = 0;
   Completer<void> _loadCancelled = Completer<void>();
@@ -381,7 +444,7 @@ class WaveAudioHandler extends BaseAudioHandler {
   }
 
   Future<void> _setOutputVolume() => player.setVolume(
-    _volume *
+    (number(_controlPreview['volume'], _volume)) *
         (_equalizer != null &&
                 _processing.enabled &&
                 equalizerStatus != 'failed'

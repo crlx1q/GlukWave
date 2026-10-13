@@ -6,7 +6,8 @@ import 'package:flutter/material.dart';
 /// commits; changing the output/track scope discards an unfinished draft.
 class DraftSlider extends StatefulWidget {
   final double value, min, max;
-  final ValueChanged<double>? onChanged;
+  final ValueChanged<double>? onChanged, onPreview;
+  final VoidCallback? onCancel;
   final Object? scope;
   final bool wheel;
   final Key? sliderKey;
@@ -16,6 +17,8 @@ class DraftSlider extends StatefulWidget {
     this.min = 0,
     this.max = 1,
     this.onChanged,
+    this.onPreview,
+    this.onCancel,
     this.scope,
     this.wheel = false,
     this.sliderKey,
@@ -31,7 +34,9 @@ class _DraftSliderState extends State<DraftSlider> {
   @override
   void didUpdateWidget(DraftSlider old) {
     super.didUpdateWidget(old);
-    if (!dragging && old.value != widget.value) draft = null;
+    if (!dragging && settle?.isActive != true && old.value != widget.value) {
+      draft = null;
+    }
     if (old.scope != widget.scope ||
         old.onChanged != null && widget.onChanged == null ||
         old.max != widget.max) {
@@ -54,12 +59,17 @@ class _DraftSliderState extends State<DraftSlider> {
 
   void change(double value) {
     setState(() => draft = value);
+    widget.onPreview?.call(value);
     settle?.cancel();
     if (!dragging) settle = Timer(const Duration(milliseconds: 260), commit);
   }
 
   @override
   void dispose() {
+    if (dragging || settle?.isActive == true) {
+      final cancel = widget.onCancel;
+      if (cancel != null) scheduleMicrotask(cancel);
+    }
     settle?.cancel();
     super.dispose();
   }
@@ -68,6 +78,7 @@ class _DraftSliderState extends State<DraftSlider> {
   Widget build(BuildContext context) => Listener(
     onPointerCancel: (_) {
       settle?.cancel();
+      widget.onCancel?.call();
       setState(() {
         draft = null;
         dragging = false;
@@ -105,18 +116,23 @@ class _DraftSliderState extends State<DraftSlider> {
 
 class VolumeSlider extends StatelessWidget {
   final double value;
-  final ValueChanged<double>? onChanged;
+  final ValueChanged<double>? onChanged, onPreview;
+  final VoidCallback? onCancel;
   final Object? scope;
   const VolumeSlider({
     super.key,
     required this.value,
     this.onChanged,
+    this.onPreview,
+    this.onCancel,
     this.scope,
   });
   @override
   Widget build(BuildContext context) => DraftSlider(
     value: value,
     onChanged: onChanged,
+    onPreview: onPreview,
+    onCancel: onCancel,
     scope: scope,
     wheel: true,
   );

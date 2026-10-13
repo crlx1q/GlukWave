@@ -1,13 +1,12 @@
-import 'motion_icons.dart';
 import 'lan_panel.dart';
 import 'package:flutter/material.dart';
 import '../core/controller.dart';
 import '../core/models.dart';
 import '../l10n/wave_localizations.dart';
 import 'widgets.dart';
-import 'volume_slider.dart';
 import 'device_labels.dart';
 import 'listening_presence.dart';
+import 'connect_playback.dart';
 
 String installationId(Json device) =>
     (device['deviceId'] ?? device['id'] ?? '').toString();
@@ -95,82 +94,7 @@ class ConnectPanel extends StatelessWidget {
               ),
               if (track != null) ...[
                 const Divider(height: 30),
-                Row(
-                  children: [
-                    Artwork(
-                      controller: c,
-                      url: track.artwork,
-                      size: 56,
-                      radius: 12,
-                    ),
-                    const SizedBox(width: 14),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            track.title,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: const TextStyle(fontWeight: FontWeight.w800),
-                          ),
-                          const SizedBox(height: 4),
-                          Text(
-                            c.outputLabel,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            style: TextStyle(color: v.accent, fontSize: 12),
-                          ),
-                        ],
-                      ),
-                    ),
-                    IconButton.filled(
-                      style: IconButton.styleFrom(
-                        backgroundColor: v.ink,
-                        foregroundColor: v.background,
-                      ),
-                      onPressed:
-                          (c.room != null && !c.canTogglePlayback) ||
-                              (c.trackLoading && !c.audio.playing)
-                          ? null
-                          : () => _run(
-                              c.audio.playing ? c.audio.pause : c.audio.play,
-                            ),
-                      tooltip: wt(
-                        c.audio.playing
-                            ? 'native.03498e395a'
-                            : 'native.c750dc7d94',
-                        context: context,
-                      ),
-                      icon: WavePlaybackIcon(
-                        playing: c.audio.playing,
-                        loading: c.trackLoading,
-                        color: v.background,
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    WaveVolumeIcon(
-                      volume: c.audio.volume,
-                      size: 18,
-                      color: v.muted,
-                    ),
-                    Expanded(
-                      child: VolumeSlider(
-                        scope: '${c.activeDeviceId}:${c.activeSurfaceId}',
-                        value: c.audio.volume,
-                        onChanged:
-                            c.activeDeviceId == null && !c.independentListening
-                            ? null
-                            : (value) => _run(
-                                () => c.transport('volume', {'volume': value}),
-                              ),
-                      ),
-                    ),
-                  ],
-                ),
+                ConnectPlayback(controller: c),
                 if (c.room != null) ListeningPresence(controller: c),
                 if (c.room != null)
                   Padding(

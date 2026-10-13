@@ -1,53 +1,53 @@
 {
-  "createdAt": "2026-10-12T18:59:17.5784085Z",
+  "createdAt": "2026-10-12T21:20:18.7344255Z",
   "applied": true,
-  "currentVersion": "1.0.0+16",
-  "rollbackBuild": 15,
-  "deletedBytes": 357492242.0,
+  "currentVersion": "1.0.0+17",
+  "rollbackBuild": 16,
+  "deletedBytes": 297679141.0,
   "entries": [
     {
-      "action": "delete",
-      "from": "GlukWave-1.0.0+15-audit.json",
-      "to": "archive/releases/1.0.0+15/GlukWave-1.0.0+15-audit.json",
-      "bytes": 81614,
-      "sha256": "afafd4bed38a911b2469e0b868433bee8b4cefc2fd90376a0ccada03b5f14eda",
-      "reason": "byte-identical copy already retained in archive"
+      "action": "move",
+      "from": "GlukWave-1.0.0+16-audit.json",
+      "to": "archive/releases/1.0.0+16/GlukWave-1.0.0+16-audit.json",
+      "bytes": 94597,
+      "sha256": "714af409d7f2eb44c67ec0d45addb2d9cf5bfdb6ed4230d590e081b9147bc53e",
+      "reason": "historical release verification"
     },
     {
-      "action": "delete",
-      "from": "GlukWave-1.0.0+15-source-audit.json",
-      "to": "archive/releases/1.0.0+15/GlukWave-1.0.0+15-source-audit.json",
+      "action": "move",
+      "from": "GlukWave-1.0.0+16-source-audit.json",
+      "to": "archive/releases/1.0.0+16/GlukWave-1.0.0+16-source-audit.json",
       "bytes": 773,
-      "sha256": "30b2d030d4f8377ee74487d0863b83428fedc70bdc1b24277eb3080701d243ef",
-      "reason": "byte-identical copy already retained in archive"
+      "sha256": "ecee1e35f121dc8f98f32d80e289b17a3a008181da5e9a142cf6f4fc44ad2dbc",
+      "reason": "historical release verification"
     },
     {
       "action": "delete",
-      "from": "archive/releases/1.0.0+14/GlukWave-android-debug-1.0.0+14.apk",
+      "from": "archive/releases/1.0.0+15/GlukWave-android-debug.apk",
       "to": null,
-      "bytes": 185551215,
-      "sha256": "21f4690cec451929cd454f77f5a0b196a6317703ff871daf142d43652fdd2d3b",
+      "bytes": 185556475,
+      "sha256": "b667a42ac1051df207c86351b6ee7ae0ae5c2b4d35e3e3c2009d285062dd3ad3",
       "reason": "superseded archived generated client; current and preceding version retained; historical reports kept"
     },
     {
       "action": "delete",
-      "from": "archive/releases/1.0.0+14/GlukWave-Setup-1.0.0+14.exe",
+      "from": "archive/releases/1.0.0+15/GlukWave-Setup.exe",
       "to": null,
-      "bytes": 24380648,
-      "sha256": "4c05d3c2fe90ab5593e8902592212b08264550731057b5b1d0a1f35aefb65990",
+      "bytes": 24382563,
+      "sha256": "2fef5f1aa30415f0168fb105bd4a19b5070da3ebd6cc35cb6bf226acab07ffcd",
       "reason": "superseded archived generated client; current and preceding version retained; historical reports kept"
     },
     {
       "action": "delete",
-      "from": "archive/releases/1.0.0+14/GlukWave-windows-1.0.0+14.zip",
+      "from": "archive/releases/1.0.0+15/GlukWave-windows.zip",
       "to": null,
-      "bytes": 27810240,
-      "sha256": "de41d341c76780636335dfa5c1397f269c677b668e7fddb27fb28b171f9d1992",
+      "bytes": 27816115,
+      "sha256": "85e65521536c02606697c765af2e881218513d323e6a56360e0d816ca434f143",
       "reason": "superseded archived generated client; current and preceding version retained; historical reports kept"
     },
     {
       "action": "delete-directory",
-      "from": "GlukWave-windows.2744f44012764011a6bac4ccccd74590.partial",
+      "from": "GlukWave-windows.cbb77c6513ad496e95e3c10776a43029.partial",
       "to": null,
       "bytes": null,
       "fileCount": 0,
@@ -56,29 +56,11 @@
     },
     {
       "action": "delete-directory",
-      "from": "GlukWave-windows.a1138ad15e0b434a9ccf2427d707400d.partial",
-      "to": null,
-      "bytes": null,
-      "fileCount": 0,
-      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-      "reason": "abandoned generated Windows staging or superseded extracted bundle"
-    },
-    {
-      "action": "delete-directory",
-      "from": "GlukWave-windows.previous.7b8322d60aeb40fd97274ae7e65e9a23",
-      "to": null,
-      "bytes": 59743764.0,
-      "fileCount": 75,
-      "sha256": "8f6f71970159b308ca28bcd8cbd1c91362e3f082cb3fc5903922dbfd6722633f",
-      "reason": "abandoned generated Windows staging or superseded extracted bundle"
-    },
-    {
-      "action": "delete-directory",
-      "from": "GlukWave-windows.previous.e0db326964124f3493742d9ecee59a8e",
+      "from": "GlukWave-windows.previous.539b0f06cbd4492ea6a09c5a02857b8a",
       "to": null,
       "bytes": 59923988.0,
       "fileCount": 75,
-      "sha256": "ae6b3f83155eb9885cb2f41666548f9c5a7713cfadf8c016f68334550a759d97",
+      "sha256": "18b1d213882d75546c71829618c9257f2deb9dc625cd9d8ac1e7cf0b3110131d",
       "reason": "abandoned generated Windows staging or superseded extracted bundle"
     }
   ],
@@ -1347,6 +1329,89 @@
           "bytes": 59563540,
           "fileCount": 75,
           "sha256": "8862d43c1f838c466a86596a12298dc147dadfd53e4ee2a0045564fce03b204e",
+          "reason": "abandoned generated Windows staging or superseded extracted bundle"
+        }
+      ]
+    },
+    {
+      "createdAt": "2026-10-12T18:59:17.5784085Z",
+      "currentVersion": "1.0.0+16",
+      "deletedBytes": 357492242.0,
+      "entries": [
+        {
+          "action": "delete",
+          "from": "GlukWave-1.0.0+15-audit.json",
+          "to": "archive/releases/1.0.0+15/GlukWave-1.0.0+15-audit.json",
+          "bytes": 81614,
+          "sha256": "afafd4bed38a911b2469e0b868433bee8b4cefc2fd90376a0ccada03b5f14eda",
+          "reason": "byte-identical copy already retained in archive"
+        },
+        {
+          "action": "delete",
+          "from": "GlukWave-1.0.0+15-source-audit.json",
+          "to": "archive/releases/1.0.0+15/GlukWave-1.0.0+15-source-audit.json",
+          "bytes": 773,
+          "sha256": "30b2d030d4f8377ee74487d0863b83428fedc70bdc1b24277eb3080701d243ef",
+          "reason": "byte-identical copy already retained in archive"
+        },
+        {
+          "action": "delete",
+          "from": "archive/releases/1.0.0+14/GlukWave-android-debug-1.0.0+14.apk",
+          "to": null,
+          "bytes": 185551215,
+          "sha256": "21f4690cec451929cd454f77f5a0b196a6317703ff871daf142d43652fdd2d3b",
+          "reason": "superseded archived generated client; current and preceding version retained; historical reports kept"
+        },
+        {
+          "action": "delete",
+          "from": "archive/releases/1.0.0+14/GlukWave-Setup-1.0.0+14.exe",
+          "to": null,
+          "bytes": 24380648,
+          "sha256": "4c05d3c2fe90ab5593e8902592212b08264550731057b5b1d0a1f35aefb65990",
+          "reason": "superseded archived generated client; current and preceding version retained; historical reports kept"
+        },
+        {
+          "action": "delete",
+          "from": "archive/releases/1.0.0+14/GlukWave-windows-1.0.0+14.zip",
+          "to": null,
+          "bytes": 27810240,
+          "sha256": "de41d341c76780636335dfa5c1397f269c677b668e7fddb27fb28b171f9d1992",
+          "reason": "superseded archived generated client; current and preceding version retained; historical reports kept"
+        },
+        {
+          "action": "delete-directory",
+          "from": "GlukWave-windows.2744f44012764011a6bac4ccccd74590.partial",
+          "to": null,
+          "bytes": null,
+          "fileCount": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "reason": "abandoned generated Windows staging or superseded extracted bundle"
+        },
+        {
+          "action": "delete-directory",
+          "from": "GlukWave-windows.a1138ad15e0b434a9ccf2427d707400d.partial",
+          "to": null,
+          "bytes": null,
+          "fileCount": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "reason": "abandoned generated Windows staging or superseded extracted bundle"
+        },
+        {
+          "action": "delete-directory",
+          "from": "GlukWave-windows.previous.7b8322d60aeb40fd97274ae7e65e9a23",
+          "to": null,
+          "bytes": 59743764.0,
+          "fileCount": 75,
+          "sha256": "8f6f71970159b308ca28bcd8cbd1c91362e3f082cb3fc5903922dbfd6722633f",
+          "reason": "abandoned generated Windows staging or superseded extracted bundle"
+        },
+        {
+          "action": "delete-directory",
+          "from": "GlukWave-windows.previous.e0db326964124f3493742d9ecee59a8e",
+          "to": null,
+          "bytes": 59923988.0,
+          "fileCount": 75,
+          "sha256": "ae6b3f83155eb9885cb2f41666548f9c5a7713cfadf8c016f68334550a759d97",
           "reason": "abandoned generated Windows staging or superseded extracted bundle"
         }
       ]

@@ -297,47 +297,41 @@ void main() {
       done('Failed handoff clears spinner and preserves confirmed output');
     },
   );
-  test(
-    'Room queue and modes use authoritative commands and permissions',
-    () async {
-      final base = await a.makeController();
-      final c = QueueController(base.api, base.cache, base.audio);
-      c.user = WaveUser({'id': 'owner'});
-      c.room = {'id': 'room', 'ownerId': 'owner', 'members': []};
-      c.connect = {'activeDeviceId': 'pc'};
-      c.tracks = base.tracks;
-      await c.audio.setShuffleMode(AudioServiceShuffleMode.all);
-      await c.audio.setRepeatMode(AudioServiceRepeatMode.one);
-      await c.setQueue(base.tracks.reversed.toList());
-      expect(c.commands.map((v) => v['command']), [
-        'shuffle',
-        'repeat',
-        'queue',
-      ]);
-      expect(c.commands[0]['enabled'], true);
-      expect(c.commands[1]['repeat'], 'one');
-      expect(c.commands[2]['queue'], ['own-2', 'own-1', 'own-0']);
-      expect(
-        c.audio.shuffle,
-        false,
-        reason: 'Mode changes wait for authoritative room state',
-      );
-      c.room!['ownerId'] = 'other';
-      await expectLater(
-        c.audio.setShuffleMode(AudioServiceShuffleMode.all),
-        throwsA(isA<WaveException>()),
-      );
-      await expectLater(c.removeQueue('own-0'), throwsA(isA<WaveException>()));
-      expect(c.commands.length, 3);
-      c.dispose();
-      base.dispose();
-      await base.audio.release();
-      base.api.dio.close(force: true);
-      done(
-        'Shared queue/shuffle/repeat server commands and listener permission guard',
-      );
-    },
-  );
+  test('Room queue and modes use authoritative commands and permissions', () async {
+    final base = await a.makeController();
+    final c = QueueController(base.api, base.cache, base.audio);
+    c.user = WaveUser({'id': 'owner'});
+    c.room = {'id': 'room', 'ownerId': 'owner', 'members': []};
+    c.connect = {'activeDeviceId': 'pc'};
+    c.tracks = base.tracks;
+    await c.audio.setShuffleMode(AudioServiceShuffleMode.all);
+    await c.audio.setRepeatMode(AudioServiceRepeatMode.one);
+    await c.setQueue(base.tracks.reversed.toList());
+    expect(c.commands.map((v) => v['command']), ['shuffle', 'repeat', 'queue']);
+    expect(c.commands[0]['enabled'], true);
+    expect(c.commands[1]['repeat'], 'one');
+    expect(c.commands[2]['queue'], ['own-2', 'own-1', 'own-0']);
+    expect(
+      c.audio.shuffle,
+      true,
+      reason:
+          'Mode presentation responds immediately; the server command still owns the shared timeline',
+    );
+    c.room!['ownerId'] = 'other';
+    await expectLater(
+      c.audio.setShuffleMode(AudioServiceShuffleMode.all),
+      throwsA(isA<WaveException>()),
+    );
+    await expectLater(c.removeQueue('own-0'), throwsA(isA<WaveException>()));
+    expect(c.commands.length, 3);
+    c.dispose();
+    base.dispose();
+    await base.audio.release();
+    base.api.dio.close(force: true);
+    done(
+      'Shared queue/shuffle/repeat server commands and listener permission guard',
+    );
+  });
   test(
     'Snapshots and remote state retain modes without clobbering legacy state',
     () async {
@@ -609,7 +603,12 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.byKey(const Key('connect-quick-picker')), findsOneWidget);
       expect(find.byIcon(Icons.language_rounded), findsNothing);
-      expect(find.byType(ListeningWave), findsOneWidget);
+      expect(
+        find.byType(ListeningWave),
+        findsNWidgets(2),
+        reason:
+            'Active track card and current output row each expose the actual playing indicator',
+      );
       await f.screenshot(tester, 'ecosystem-polish-$runId-connect-390');
       expect(tester.takeException(), isNull);
       await f.clean(tester, c);

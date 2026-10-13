@@ -137,9 +137,16 @@ class WaveController extends ChangeNotifier {
       history = [],
       integrations = [],
       rooms = [],
+      publicRooms = [],
+      moderationRooms = [],
       devices = [],
       sessions = [],
       messages = [];
+  int? nextPublicRoomOffset, nextModerationRoomOffset;
+  bool roomDirectoryLoading = false;
+  int _roomDirectoryViews = 0;
+  Timer? _roomDirectoryTimer;
+  Future<void>? _roomDirectoryFlight;
   String? currentSessionId, sessionsError;
   bool sessionsLoading = false, sessionsSupported = true;
   int _sessionsGeneration = 0;
@@ -243,13 +250,70 @@ class WaveController extends ChangeNotifier {
   bool get loggedIn => user != null;
   bool get canControl =>
       room == null ||
+      user?.admin == true ||
       (user != null &&
-          (room!['type'] == 'jam'
-              ? room!['ownerId'] == user!.id
-              : mayControlRoom(room!, user!.id)));
+          (room!['ownerId'] == user!.id ||
+              room!['type'] != 'jam' &&
+                  objects(room!['members']).any(
+                    (member) =>
+                        member['userId'] == user!.id &&
+                        member['canControl'] == true &&
+                        member['administrative'] != true,
+                  )));
   bool get jamListener =>
-      room?['type'] == 'jam' && room?['ownerId'] != user?.id;
+      room?['type'] == 'jam' &&
+      room?['ownerId'] != user?.id &&
+      user?.admin != true;
   bool get canTogglePlayback => canControl || jamListener;
+  bool get canManageRoom =>
+      room != null && (user?.admin == true || room!['ownerId'] == user?.id);
+  String get controlScope =>
+      '$namespace:${room?['id']}:$activeDeviceId:$activeSurfaceId:$independentListening:${lanEnabled ? _lanOutputId : ''}';
+  final Map<String, int> _controlRevisions = {};
+  final Json _confirmedControls = {};
+  Future<void> _controlWrites = Future.value();
+  String? _previewScope;
+  void _ensureControlScope() {
+    if (_previewScope == controlScope) return;
+    _previewScope = controlScope;
+    _controlRevisions.clear();
+    _confirmedControls.clear();
+    _controlWrites = Future.value();
+    audio.clearControlPreviews();
+  }
+
+  dynamic _controlValue(String field) => switch (field) {
+    'volume' => audio.volume,
+    'playing' => audio.playing,
+    'shuffle' => audio.shuffle,
+    _ => audio.repeat,
+  };
+  void previewVolume(double value) {
+    _ensureControlScope();
+    _confirmedControls.putIfAbsent('volume', () => audio.volume);
+    unawaited(
+      audio.previewControl(
+        'volume',
+        value.clamp(0, 1),
+        localVolume: outputHere,
+      ),
+    );
+    notifyListeners();
+  }
+
+  VoidCallback get cancelVolumeEdit {
+    final scope = controlScope;
+    return () => cancelVolumePreview(scope: scope);
+  }
+
+  void cancelVolumePreview({String? scope}) {
+    if (_disposed || scope != null && scope != controlScope) return;
+    _ensureControlScope();
+    unawaited(audio.clearControlPreview('volume', localVolume: outputHere));
+    _confirmedControls.remove('volume');
+    notifyListeners();
+  }
+
   String get namespace => const Uuid().v5(
     Namespace.url.value,
     '${api.server}:${user?.id ?? 'guest'}',
@@ -538,7 +602,8 @@ class WaveController extends ChangeNotifier {
         integrations = objects(
           (await api.call('/api/integrations'))['connections'],
         );
-        rooms = objects((await api.call('/api/rooms'))['rooms']);
+        final roomList = await api.call('/api/rooms');
+        _receiveRoomDirectory(roomList);
         devices = objects((await api.call('/api/devices'))['devices']);
         await refreshConnect();
         _applySettings();
@@ -813,6 +878,13 @@ class WaveController extends ChangeNotifier {
     _sessionsGeneration++;
     _pendingOAuth = null;
     rooms = [];
+    publicRooms = [];
+    moderationRooms = [];
+    nextPublicRoomOffset = nextModerationRoomOffset = null;
+    _roomDirectoryTimer?.cancel();
+    _roomDirectoryFlight = null;
+    _previewScope = null;
+    _ensureControlScope();
     history = [];
     integrations = [];
     config = {};
@@ -1317,6 +1389,103 @@ class WaveController extends ChangeNotifier {
       transportPending = false;
       audio.showPendingSelection(null);
     }
+    if (['volume', 'play', 'pause', 'shuffle', 'repeat'].contains(command)) {
+      if (command != 'volume' &&
+          !(command == 'play' || command == 'pause'
+              ? canTogglePlayback
+              : canControl)) {
+        throw WaveException(wt('native.131b87ec38'));
+      }
+      _ensureControlScope();
+      final scope = controlScope, token = api.token, origin = api.server;
+      final field = command == 'play' || command == 'pause'
+          ? 'playing'
+          : command;
+      final revision = (_controlRevisions[field] ?? 0) + 1;
+      _controlRevisions[field] = revision;
+      _confirmedControls.putIfAbsent(field, () => _controlValue(field));
+      final value = switch (field) {
+        'playing' => command == 'play',
+        'volume' => number(data['volume']).clamp(0, 1),
+        'shuffle' => data['enabled'] == true,
+        _ =>
+          data['repeat'] == 'one'
+              ? AudioServiceRepeatMode.one
+              : data['repeat'] == 'all'
+              ? AudioServiceRepeatMode.all
+              : AudioServiceRepeatMode.none,
+      };
+      await audio.previewControl(
+        field,
+        value,
+        localVolume: field == 'volume' && outputHere,
+      );
+      if (field == 'playing' &&
+          outputHere &&
+          audio.current != null &&
+          (command == 'pause' || audio.sourceReady)) {
+        unawaited(audio.localCommand(command).catchError((_) {}));
+      }
+      if (!_disposed) notifyListeners();
+      final operation = _controlWrites.catchError((_) {}).then((_) async {
+        if (token != api.token ||
+            origin != api.server ||
+            scope != controlScope) {
+          return;
+        }
+        try {
+          await _transport(command, data);
+          if (token != api.token ||
+              origin != api.server ||
+              scope != controlScope) {
+            return;
+          }
+          _confirmedControls[field] = value;
+          audio.acceptControl(field, value);
+        } catch (_) {
+          if (token == api.token &&
+              origin == api.server &&
+              scope == controlScope &&
+              _controlRevisions[field] == revision) {
+            final confirmed = _confirmedControls[field];
+            final rollback = switch (field) {
+              'playing' => {'command': confirmed == true ? 'play' : 'pause'},
+              'shuffle' => {'command': 'shuffle', 'enabled': confirmed},
+              'repeat' => {
+                'command': 'repeat',
+                'repeat': confirmed == AudioServiceRepeatMode.one
+                    ? 'one'
+                    : confirmed == AudioServiceRepeatMode.all
+                    ? 'all'
+                    : 'off',
+              },
+              _ => {'command': 'volume', 'volume': confirmed},
+            };
+            if (outputHere) {
+              await audio.localCommand(rollback['command'] as String, rollback);
+            } else {
+              await audio.previewControl(field, confirmed);
+            }
+          }
+          rethrow;
+        } finally {
+          if (token == api.token &&
+              origin == api.server &&
+              scope == controlScope &&
+              _controlRevisions[field] == revision) {
+            await audio.clearControlPreview(
+              field,
+              localVolume: field == 'volume' && outputHere,
+            );
+            _confirmedControls.remove(field);
+            if (!_disposed) notifyListeners();
+          }
+        }
+      });
+      _controlWrites = operation.catchError((_) {});
+      await operation;
+      return;
+    }
     await _transport(command, data);
   }
 
@@ -1727,10 +1896,37 @@ class WaveController extends ChangeNotifier {
         }),
       );
     });
+    socket!.on('room:directory', (_) {
+      if (session != api.token ||
+          origin != api.server ||
+          _roomDirectoryViews == 0) {
+        return;
+      }
+      _roomDirectoryTimer?.cancel();
+      _roomDirectoryTimer = Timer(
+        const Duration(milliseconds: 250),
+        () => unawaited(refreshRoomDirectory().catchError((_) {})),
+      );
+    });
     socket!.on('room:members', (data) {
       final update = object(data);
       if (room != null && update['roomId'] == room!['id']) {
         room!['members'] = update['members'];
+        final members = objects(room!['members']);
+        room!['memberCount'] = members.length;
+        room!['onlineCount'] = members.where((m) => m['online'] == true).length;
+        room!['listeningCount'] = members
+            .where(
+              (m) =>
+                  m['online'] == true &&
+                  objects(m['devices']).any(
+                    (d) =>
+                        d['outputActive'] == true &&
+                        d['playing'] == true &&
+                        d['online'] != false,
+                  ),
+            )
+            .length;
         if (!objects(room!['members']).any((m) => m['userId'] == user?.id)) {
           unawaited(clearRoomParticipation());
         }
@@ -2560,6 +2756,7 @@ class WaveController extends ChangeNotifier {
     _connectSupported = true;
     final generation = ++_accountGeneration;
     connect = Map.of(incoming);
+    _ensureControlScope();
     if (_provisionalOutput &&
         activeDeviceId == deviceId &&
         (activeSurfaceId == null || activeSurfaceId == surfaceId)) {
@@ -2728,6 +2925,7 @@ class WaveController extends ChangeNotifier {
     final generation = ++_roomGeneration;
     final session = api.token, origin = api.server;
     room = target;
+    _ensureControlScope();
     _roomOutputActive = _connectSupported != true;
     _roomRevision = -1;
     _roomSyncGeneration++;
@@ -2827,6 +3025,7 @@ class WaveController extends ChangeNotifier {
     _roomSyncGeneration++;
     audio.cancelPendingLoad();
     room = null;
+    _ensureControlScope();
     _roomOutputActive = false;
     _provisionalOutput = false;
     _localOutputActive = false;
@@ -2840,6 +3039,151 @@ class WaveController extends ChangeNotifier {
       customization.playbackRate,
     );
     if (!_disposed) notifyListeners();
+  }
+
+  void _receiveRoomDirectory(
+    Json data, {
+    bool appendPublic = false,
+    bool appendModeration = false,
+  }) {
+    rooms = objects(data['rooms']);
+    final incoming = objects(data['publicRooms']);
+    publicRooms = appendPublic
+        ? <String, Json>{
+            for (final item in publicRooms) item['id'].toString(): item,
+            for (final item in incoming) item['id'].toString(): item,
+          }.values.toList()
+        : incoming;
+    nextPublicRoomOffset = (data['nextPublicOffset'] as num?)?.toInt();
+    final moderation = user?.admin == true
+        ? objects(data['moderationRooms'])
+        : <Json>[];
+    moderationRooms = appendModeration
+        ? <String, Json>{
+            for (final item in moderationRooms) item['id'].toString(): item,
+            for (final item in moderation) item['id'].toString(): item,
+          }.values.toList()
+        : moderation;
+    nextModerationRoomOffset = user?.admin == true
+        ? (data['nextModerationOffset'] as num?)?.toInt()
+        : null;
+  }
+
+  void openRoomDirectory() {
+    _roomDirectoryViews++;
+    if (online && loggedIn) {
+      scheduleMicrotask(() {
+        if (_roomDirectoryViews > 0 && !_disposed) {
+          unawaited(refreshRoomDirectory().catchError((_) {}));
+        }
+      });
+    }
+  }
+
+  void closeRoomDirectory() {
+    _roomDirectoryViews = (_roomDirectoryViews - 1).clamp(0, 100);
+    if (_roomDirectoryViews == 0) _roomDirectoryTimer?.cancel();
+  }
+
+  Future<void> refreshRoomDirectory({
+    bool morePublic = false,
+    bool moreModeration = false,
+  }) async {
+    if (_roomDirectoryFlight != null) {
+      await _roomDirectoryFlight;
+      return;
+    }
+    if (!loggedIn || !online) return;
+    final token = api.token, origin = api.server;
+    final publicLoaded = publicRooms.length,
+        moderationLoaded = moderationRooms.length;
+    final offset = morePublic ? nextPublicRoomOffset : 0,
+        moderationOffset = moreModeration ? nextModerationRoomOffset : 0;
+    if (morePublic && offset == null ||
+        moreModeration && moderationOffset == null) {
+      return;
+    }
+    roomDirectoryLoading = true;
+    if (!_disposed) notifyListeners();
+    final operation = () async {
+      try {
+        final first = await api.call(
+          '/api/rooms',
+          query: {
+            'offset': offset ?? 0,
+            if (user?.admin == true) 'moderationOffset': moderationOffset ?? 0,
+          },
+        );
+        if (_disposed || token != api.token || origin != api.server) return;
+        // Loading one directory must not reset the other directory's paging.
+        final savedPublic = List<Json>.of(publicRooms),
+            savedModeration = List<Json>.of(moderationRooms),
+            savedPublicNext = nextPublicRoomOffset,
+            savedModerationNext = nextModerationRoomOffset;
+        _receiveRoomDirectory(
+          first,
+          appendPublic: morePublic,
+          appendModeration: moreModeration,
+        );
+        if (morePublic) {
+          moderationRooms = savedModeration;
+          nextModerationRoomOffset = savedModerationNext;
+        }
+        if (moreModeration) {
+          publicRooms = savedPublic;
+          nextPublicRoomOffset = savedPublicNext;
+        }
+        if (!morePublic && !moreModeration) {
+          final requestedPages = <String>{};
+          while ((publicRooms.length < publicLoaded &&
+                  nextPublicRoomOffset != null) ||
+              (moderationRooms.length < moderationLoaded &&
+                  nextModerationRoomOffset != null)) {
+            if (!requestedPages.add(
+              '$nextPublicRoomOffset:$nextModerationRoomOffset',
+            )) {
+              break;
+            }
+            final more = await api.call(
+              '/api/rooms',
+              query: {
+                'offset': nextPublicRoomOffset ?? 0,
+                if (user?.admin == true)
+                  'moderationOffset': nextModerationRoomOffset ?? 0,
+              },
+            );
+            if (_disposed || token != api.token || origin != api.server) return;
+            _receiveRoomDirectory(
+              more,
+              appendPublic: true,
+              appendModeration: true,
+            );
+          }
+        }
+      } finally {
+        roomDirectoryLoading = false;
+        if (!_disposed && token == api.token && origin == api.server) {
+          notifyListeners();
+        }
+      }
+    }();
+    _roomDirectoryFlight = operation;
+    try {
+      await operation;
+    } finally {
+      if (identical(_roomDirectoryFlight, operation)) {
+        _roomDirectoryFlight = null;
+      }
+    }
+  }
+
+  Future<void> deleteRoom(Json target) async {
+    if (user?.admin != true && target['ownerId'] != user?.id) {
+      throw WaveException(wt('native.131b87ec38'));
+    }
+    await api.call('/api/rooms/${target['id']}', method: 'DELETE');
+    if (room?['id'] == target['id']) await clearRoomParticipation();
+    await refresh();
   }
 
   Future<void> roomMessage(String text) async {
@@ -2905,6 +3249,7 @@ class WaveController extends ChangeNotifier {
     }
     final target = await requireTrack(state.trackId!);
     if (!currentState()) return;
+    room!['currentTrack'] = target.json;
     final queue = await Future.wait(state.queue.map(requireTrack));
     if (!currentState()) return;
     if (!outputHere || !_roomOutputActive) {
@@ -2958,7 +3303,7 @@ class WaveController extends ChangeNotifier {
           duration: target.duration,
         ),
         playing:
-            state.playing &&
+            (audio.previewPlaying ?? state.playing) &&
             _roomOutputActive &&
             !(jamListener && connect['jamPaused'] == true),
       );
@@ -2966,7 +3311,7 @@ class WaveController extends ChangeNotifier {
     if (!currentState()) return;
     await _correctDrift();
     final shouldPlay =
-        state.playing &&
+        (audio.previewPlaying ?? state.playing) &&
         _roomOutputActive &&
         !(jamListener && connect['jamPaused'] == true);
     if (shouldPlay != audio.outputPlaying && audio.current != null) {
@@ -2982,7 +3327,8 @@ class WaveController extends ChangeNotifier {
         audio.current == null ||
         !outputHere ||
         !_roomOutputActive ||
-        jamListener && connect['jamPaused'] == true) {
+        jamListener && connect['jamPaused'] == true ||
+        audio.previewPlaying == false) {
       return;
     }
     final state = PlaybackSnapshot.fromJson(object(room!['state']));
@@ -3012,6 +3358,7 @@ class WaveController extends ChangeNotifier {
   @override
   void dispose() {
     _disposed = true;
+    _roomDirectoryTimer?.cancel();
     removeListener(_updateHomeWidgets);
     homeWidgets?.dispose();
     audio.onWidgetCommand = null;

@@ -63,5 +63,5 @@ test('real sockets keep two playback surfaces online, reconnect at live position
     assert.equal(commandsB.at(-1).trackId,tracks[1]);assert.equal(commandsB.at(-1).localOnly,true);assert.equal(commandsB.at(-1).outputActive,true);
     assert.equal((await request('/rooms/'+room.id,auth.token)).data.room.state.revision,state.revision);
     const incomplete=await ack(a,'room:command',{roomId:room.id,command:'ended',trackId:tracks[1]});assert.equal(incomplete.error.code,'VALIDATION');
-  }finally{for(const socket of sockets)socket.disconnect();await service.close();assert(directory.startsWith(qa+path.sep));await fs.rm(directory,{recursive:true,force:true});}
+  }finally{for(const socket of sockets)socket.disconnect();await service.close();assert(directory.startsWith(qa+path.sep));await fs.rm(directory,{recursive:true,force:true,maxRetries:8,retryDelay:150});}
 });

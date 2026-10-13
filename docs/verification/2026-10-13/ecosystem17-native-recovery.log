@@ -1,0 +1,12 @@
+00:00 +0: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ecosystem_polish_test.dart
+00:00 +0: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ecosystem_polish_test.dart: (setUpAll)
+00:00 +0: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ecosystem_polish_test.dart: Room queue and modes use authoritative commands and permissions
+00:00 +1: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ecosystem_polish_test.dart: Connect picker shows Chrome mark, actual output and one pending handoff
+00:03 +2: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ecosystem_polish_test.dart: (tearDownAll)
+00:03 +2: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/listening_polish_test.dart
+00:06 +2: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/listening_polish_test.dart: (setUpAll)
+00:07 +2: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/listening_polish_test.dart: Compact synchronized lyrics show two separate rows; cover menu closes on selection/Escape
+00:11 +3: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/listening_polish_test.dart: (tearDownAll)
+00:11 +3: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity_test.dart
+00:13 +3: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity_test.dart: Jam listener toggles its own pause using the REST endpoint without host transport permissions
+00:13 +4: All tests passed!

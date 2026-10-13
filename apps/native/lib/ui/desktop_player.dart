@@ -269,7 +269,9 @@ class _DesktopCompactPlayerState extends State<DesktopCompactPlayer> {
                         ),
                         Expanded(
                           child: VolumeSlider(
-                            scope: '${c.activeDeviceId}:${c.activeSurfaceId}',
+                            scope: c.controlScope,
+                            onPreview: c.previewVolume,
+                            onCancel: c.cancelVolumeEdit,
                             key: const Key('desktop-quick-volume'),
                             value: c.audio.volume.clamp(0, 1),
                             onChanged: (value) => _run(

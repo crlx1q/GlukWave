@@ -12,7 +12,7 @@ export class AudioStreamLoader {
   if(audio){audio.removeAttribute('src');audio.load();}
  }
  async attach(audio:HTMLAudioElement,url:string,format:'hls'|undefined,signal:AbortSignal,onFatal:(error:Error)=>void){
-  this.destroy(audio);const generation=this.generation,scope=new AbortController();this.abort=scope;
+  this.destroy(format==='hls'?audio:undefined);const generation=this.generation,scope=new AbortController();this.abort=scope;
   const onAbort=()=>{if(generation===this.generation)this.destroy(audio);};signal.addEventListener('abort',onAbort,{once:true});this.unsubscribe=()=>signal.removeEventListener('abort',onAbort);
   const stale=()=>signal.aborted||scope.signal.aborted||generation!==this.generation;
   const active=()=>{if(stale())throw new DOMException('Playback changed','AbortError');};

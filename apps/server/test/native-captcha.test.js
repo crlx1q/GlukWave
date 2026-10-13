@@ -24,5 +24,5 @@ test('Native CAPTCHA bridge is secret protected, one-use and never transfers a s
    assert(completed.every(r=>!r.body.user&&!r.body.token));
    assert.equal((await request(url)).body.status,'expired');
    assert.equal((await service.ctx.store.get('challenges',challenge.id)).captchaToken,undefined);
- }finally{await service.close();await fs.rm(dir,{recursive:true,force:true});}
+ }finally{await service.close();await fs.rm(dir,{recursive:true,force:true,maxRetries:8,retryDelay:150});}
 });

@@ -1,0 +1,758 @@
+{
+  "passed": true,
+  "session": "ecosystem17-responsive-1791839976355",
+  "checks": [
+    {
+      "width": 375,
+      "height": 812,
+      "scale": 1,
+      "tab": "lyrics",
+      "actionsBottom": 380,
+      "aside": {
+        "bottom": 795,
+        "height": 394,
+        "left": 18,
+        "right": 357,
+        "top": 401,
+        "width": 339,
+        "x": 18,
+        "y": 401
+      },
+      "buttons": [
+        {
+          "bottom": 326,
+          "disabled": false,
+          "hit": true,
+          "right": 94.5,
+          "title": "Shuffle queue",
+          "x": 60.5,
+          "y": 284
+        },
+        {
+          "bottom": 326,
+          "disabled": false,
+          "hit": true,
+          "right": 135.5,
+          "title": "Previous track",
+          "x": 101.5,
+          "y": 284
+        },
+        {
+          "bottom": 334,
+          "disabled": false,
+          "hit": true,
+          "right": 200.5,
+          "title": "",
+          "x": 142.5,
+          "y": 276
+        },
+        {
+          "bottom": 326,
+          "disabled": false,
+          "hit": true,
+          "right": 241.5,
+          "title": "Next track",
+          "x": 207.5,
+          "y": 284
+        },
+        {
+          "bottom": 326,
+          "disabled": false,
+          "hit": true,
+          "right": 282.5,
+          "title": "Enable repeat",
+          "x": 248.5,
+          "y": 284
+        },
+        {
+          "bottom": 326,
+          "disabled": false,
+          "hit": true,
+          "right": 314.5,
+          "title": "Equalizer",
+          "x": 283.5,
+          "y": 284
+        },
+        {
+          "bottom": 380,
+          "disabled": false,
+          "hit": true,
+          "right": 136.40625,
+          "title": "",
+          "x": 75.765625,
+          "y": 348
+        },
+        {
+          "bottom": 380,
+          "disabled": true,
+          "hit": true,
+          "right": 226.015625,
+          "title": "",
+          "x": 140.40625,
+          "y": 348
+        },
+        {
+          "bottom": 380,
+          "disabled": false,
+          "hit": true,
+          "right": 299.234375,
+          "title": "",
+          "x": 230.015625,
+          "y": 348
+        }
+      ],
+      "layoutOverflow": 0,
+      "listOverflow": 0,
+      "scroll": {
+        "bottom": 764.5,
+        "height": 317.5,
+        "left": 18,
+        "right": 357,
+        "top": 447,
+        "width": 339,
+        "x": 18,
+        "y": 447
+      },
+      "size": 66
+    },
+    {
+      "width": 375,
+      "height": 812,
+      "scale": 1,
+      "tab": "queue",
+      "actionsBottom": 380,
+      "aside": {
+        "bottom": 795,
+        "height": 394,
+        "left": 18,
+        "right": 357,
+        "top": 401,
+        "width": 339,
+        "x": 18,
+        "y": 401
+      },
+      "buttons": [
+        {
+          "bottom": 326,
+          "disabled": false,
+          "hit": true,
+          "right": 94.5,
+          "title": "Shuffle queue",
+          "x": 60.5,
+          "y": 284
+        },
+        {
+          "bottom": 326,
+          "disabled": false,
+          "hit": true,
+          "right": 135.5,
+          "title": "Previous track",
+          "x": 101.5,
+          "y": 284
+        },
+        {
+          "bottom": 334,
+          "disabled": false,
+          "hit": true,
+          "right": 200.5,
+          "title": "",
+          "x": 142.5,
+          "y": 276
+        },
+        {
+          "bottom": 326,
+          "disabled": false,
+          "hit": true,
+          "right": 241.5,
+          "title": "Next track",
+          "x": 207.5,
+          "y": 284
+        },
+        {
+          "bottom": 326,
+          "disabled": false,
+          "hit": true,
+          "right": 282.5,
+          "title": "Enable repeat",
+          "x": 248.5,
+          "y": 284
+        },
+        {
+          "bottom": 326,
+          "disabled": false,
+          "hit": true,
+          "right": 314.5,
+          "title": "Equalizer",
+          "x": 283.5,
+          "y": 284
+        },
+        {
+          "bottom": 380,
+          "disabled": false,
+          "hit": true,
+          "right": 136.40625,
+          "title": "",
+          "x": 75.765625,
+          "y": 348
+        },
+        {
+          "bottom": 380,
+          "disabled": true,
+          "hit": true,
+          "right": 226.015625,
+          "title": "",
+          "x": 140.40625,
+          "y": 348
+        },
+        {
+          "bottom": 380,
+          "disabled": false,
+          "hit": true,
+          "right": 299.234375,
+          "title": "",
+          "x": 230.015625,
+          "y": 348
+        }
+      ],
+      "layoutOverflow": 0,
+      "listOverflow": 0,
+      "scroll": {
+        "bottom": 795,
+        "height": 394,
+        "left": 18,
+        "right": 357,
+        "top": 401,
+        "width": 339,
+        "x": 18,
+        "y": 401
+      },
+      "size": 66
+    },
+    {
+      "width": 375,
+      "height": 812,
+      "scale": 1.25,
+      "tab": "lyrics",
+      "actionsBottom": 474.5,
+      "aside": {
+        "bottom": 790.75,
+        "height": 290.25,
+        "left": 22.5,
+        "right": 352.5,
+        "top": 500.5,
+        "width": 330,
+        "x": 22.5,
+        "y": 500.5
+      },
+      "buttons": [
+        {
+          "bottom": 407.25,
+          "disabled": false,
+          "hit": true,
+          "right": 71.25,
+          "title": "Shuffle queue",
+          "x": 28.75,
+          "y": 354.75
+        },
+        {
+          "bottom": 407.25,
+          "disabled": false,
+          "hit": true,
+          "right": 122.5,
+          "title": "Previous track",
+          "x": 80,
+          "y": 354.75
+        },
+        {
+          "bottom": 417.25,
+          "disabled": false,
+          "hit": true,
+          "right": 203.75,
+          "title": "",
+          "x": 131.25,
+          "y": 344.75
+        },
+        {
+          "bottom": 407.25,
+          "disabled": false,
+          "hit": true,
+          "right": 255,
+          "title": "Next track",
+          "x": 212.5,
+          "y": 354.75
+        },
+        {
+          "bottom": 407.25,
+          "disabled": false,
+          "hit": true,
+          "right": 306.25,
+          "title": "Enable repeat",
+          "x": 263.75,
+          "y": 354.75
+        },
+        {
+          "bottom": 407.25,
+          "disabled": false,
+          "hit": true,
+          "right": 346.25,
+          "title": "Equalizer",
+          "x": 307.5,
+          "y": 354.75
+        },
+        {
+          "bottom": 474.5,
+          "disabled": false,
+          "hit": true,
+          "right": 123.640625,
+          "title": "",
+          "x": 47.84375,
+          "y": 434.5
+        },
+        {
+          "bottom": 474.5,
+          "disabled": true,
+          "hit": true,
+          "right": 235.640625,
+          "title": "",
+          "x": 128.640625,
+          "y": 434.5
+        },
+        {
+          "bottom": 474.5,
+          "disabled": false,
+          "hit": true,
+          "right": 327.15625,
+          "title": "",
+          "x": 240.640625,
+          "y": 434.5
+        }
+      ],
+      "layoutOverflow": 0,
+      "listOverflow": 0,
+      "scroll": {
+        "bottom": 752.625,
+        "height": 194.625,
+        "left": 22.5,
+        "right": 352.5,
+        "top": 558,
+        "width": 330,
+        "x": 22.5,
+        "y": 558
+      },
+      "size": 66
+    },
+    {
+      "width": 375,
+      "height": 812,
+      "scale": 1.25,
+      "tab": "queue",
+      "actionsBottom": 474.5,
+      "aside": {
+        "bottom": 790.75,
+        "height": 290.25,
+        "left": 22.5,
+        "right": 352.5,
+        "top": 500.5,
+        "width": 330,
+        "x": 22.5,
+        "y": 500.5
+      },
+      "buttons": [
+        {
+          "bottom": 407.25,
+          "disabled": false,
+          "hit": true,
+          "right": 71.25,
+          "title": "Shuffle queue",
+          "x": 28.75,
+          "y": 354.75
+        },
+        {
+          "bottom": 407.25,
+          "disabled": false,
+          "hit": true,
+          "right": 122.5,
+          "title": "Previous track",
+          "x": 80,
+          "y": 354.75
+        },
+        {
+          "bottom": 417.25,
+          "disabled": false,
+          "hit": true,
+          "right": 203.75,
+          "title": "",
+          "x": 131.25,
+          "y": 344.75
+        },
+        {
+          "bottom": 407.25,
+          "disabled": false,
+          "hit": true,
+          "right": 255,
+          "title": "Next track",
+          "x": 212.5,
+          "y": 354.75
+        },
+        {
+          "bottom": 407.25,
+          "disabled": false,
+          "hit": true,
+          "right": 306.25,
+          "title": "Enable repeat",
+          "x": 263.75,
+          "y": 354.75
+        },
+        {
+          "bottom": 407.25,
+          "disabled": false,
+          "hit": true,
+          "right": 346.25,
+          "title": "Equalizer",
+          "x": 307.5,
+          "y": 354.75
+        },
+        {
+          "bottom": 474.5,
+          "disabled": false,
+          "hit": true,
+          "right": 123.640625,
+          "title": "",
+          "x": 47.84375,
+          "y": 434.5
+        },
+        {
+          "bottom": 474.5,
+          "disabled": true,
+          "hit": true,
+          "right": 235.640625,
+          "title": "",
+          "x": 128.640625,
+          "y": 434.5
+        },
+        {
+          "bottom": 474.5,
+          "disabled": false,
+          "hit": true,
+          "right": 327.15625,
+          "title": "",
+          "x": 240.640625,
+          "y": 434.5
+        }
+      ],
+      "layoutOverflow": 0,
+      "listOverflow": 0,
+      "scroll": {
+        "bottom": 790.75,
+        "height": 290.25,
+        "left": 22.5,
+        "right": 352.5,
+        "top": 500.5,
+        "width": 330,
+        "x": 22.5,
+        "y": 500.5
+      },
+      "size": 66
+    },
+    {
+      "popupResizeAnchored": true,
+      "width": 1440,
+      "height": 900,
+      "anchor": {
+        "bottom": 827.6875,
+        "height": 32,
+        "left": 586.96875,
+        "right": 655.234375,
+        "top": 795.6875,
+        "width": 68.265625,
+        "x": 586.96875,
+        "y": 795.6875
+      },
+      "gap": 12,
+      "panel": {
+        "bottom": 783.6875,
+        "height": 576.5,
+        "left": 305.234375,
+        "right": 655.234375,
+        "top": 207.1875,
+        "width": 350,
+        "x": 305.234375,
+        "y": 207.1875
+      }
+    },
+    {
+      "popupResizeAnchored": true,
+      "width": 375,
+      "height": 812,
+      "anchor": {
+        "bottom": 663.390625,
+        "height": 32,
+        "left": 75.765625,
+        "right": 136.40625,
+        "top": 631.390625,
+        "width": 60.640625,
+        "x": 75.765625,
+        "y": 631.390625
+      },
+      "gap": 12.234375,
+      "panel": {
+        "bottom": 619.15625,
+        "height": 558.5,
+        "left": 8,
+        "right": 338,
+        "top": 60.65625,
+        "width": 330,
+        "x": 8,
+        "y": 60.65625
+      }
+    },
+    {
+      "popupResizeAnchored": true,
+      "width": 768,
+      "height": 900,
+      "anchor": {
+        "bottom": 765.390625,
+        "height": 32,
+        "left": 272.265625,
+        "right": 332.90625,
+        "top": 733.390625,
+        "width": 60.640625,
+        "x": 272.265625,
+        "y": 733.390625
+      },
+      "gap": 12.015625,
+      "panel": {
+        "bottom": 721.375,
+        "height": 558.5,
+        "left": 8,
+        "right": 338,
+        "top": 162.875,
+        "width": 330,
+        "x": 8,
+        "y": 162.875
+      }
+    },
+    {
+      "popupResizeAnchored": true,
+      "width": 1440,
+      "height": 900,
+      "anchor": {
+        "bottom": 827.6875,
+        "height": 32,
+        "left": 586.96875,
+        "right": 655.234375,
+        "top": 795.6875,
+        "width": 68.265625,
+        "x": 586.96875,
+        "y": 795.6875
+      },
+      "gap": 12.046875,
+      "panel": {
+        "bottom": 783.640625,
+        "height": 576.5,
+        "left": 305.234375,
+        "right": 655.234375,
+        "top": 207.140625,
+        "width": 350,
+        "x": 305.234375,
+        "y": 207.140625
+      }
+    },
+    {
+      "theme": "light",
+      "reducedMotion": true,
+      "animated": false,
+      "flow": [],
+      "radius": "6.4px"
+    },
+    {
+      "theme": "dark",
+      "reducedMotion": true,
+      "animated": false,
+      "flow": [],
+      "radius": "6.4px"
+    },
+    {
+      "theme": "amoled",
+      "reducedMotion": true,
+      "animated": false,
+      "flow": [],
+      "radius": "6.4px"
+    },
+    {
+      "roomBadgeIntrinsic": true,
+      "width": 1440,
+      "cards": [
+        {
+          "art": {
+            "bottom": 862.578125,
+            "height": 160,
+            "left": 129,
+            "right": 467,
+            "top": 702.578125,
+            "width": 338,
+            "x": 129,
+            "y": 702.578125
+          },
+          "badge": {
+            "bottom": 851.578125,
+            "height": 26,
+            "left": 142,
+            "right": 248.640625,
+            "top": 825.578125,
+            "width": 106.640625,
+            "x": 142,
+            "y": 825.578125
+          },
+          "badgeIsSmall": true
+        },
+        {
+          "art": {
+            "bottom": 1271.734375,
+            "height": 160,
+            "left": 129,
+            "right": 467,
+            "top": 1111.734375,
+            "width": 338,
+            "x": 129,
+            "y": 1111.734375
+          },
+          "badge": {
+            "bottom": 1260.734375,
+            "height": 26,
+            "left": 142,
+            "right": 248.640625,
+            "top": 1234.734375,
+            "width": 106.640625,
+            "x": 142,
+            "y": 1234.734375
+          },
+          "badgeIsSmall": true
+        }
+      ]
+    },
+    {
+      "roomBadgeIntrinsic": true,
+      "width": 768,
+      "cards": [
+        {
+          "art": {
+            "bottom": 805.703125,
+            "height": 145,
+            "left": 23,
+            "right": 371.5,
+            "top": 660.703125,
+            "width": 348.5,
+            "x": 23,
+            "y": 660.703125
+          },
+          "badge": {
+            "bottom": 794.703125,
+            "height": 26,
+            "left": 32,
+            "right": 131.765625,
+            "top": 768.703125,
+            "width": 99.765625,
+            "x": 32,
+            "y": 768.703125
+          },
+          "badgeIsSmall": true
+        },
+        {
+          "art": {
+            "bottom": 1181.265625,
+            "height": 145,
+            "left": 23,
+            "right": 371.5,
+            "top": 1036.265625,
+            "width": 348.5,
+            "x": 23,
+            "y": 1036.265625
+          },
+          "badge": {
+            "bottom": 1170.265625,
+            "height": 26,
+            "left": 32,
+            "right": 131.765625,
+            "top": 1144.265625,
+            "width": 99.765625,
+            "x": 32,
+            "y": 1144.265625
+          },
+          "badgeIsSmall": true
+        }
+      ]
+    },
+    {
+      "roomBadgeIntrinsic": true,
+      "width": 375,
+      "cards": [
+        {
+          "art": {
+            "bottom": 988.234375,
+            "height": 180,
+            "left": 23,
+            "right": 342,
+            "top": 808.234375,
+            "width": 319,
+            "x": 23,
+            "y": 808.234375
+          },
+          "badge": {
+            "bottom": 977.234375,
+            "height": 26,
+            "left": 32,
+            "right": 131.765625,
+            "top": 951.234375,
+            "width": 99.765625,
+            "x": 32,
+            "y": 951.234375
+          },
+          "badgeIsSmall": true
+        },
+        {
+          "art": {
+            "bottom": 1399.21875,
+            "height": 180,
+            "left": 23,
+            "right": 342,
+            "top": 1219.21875,
+            "width": 319,
+            "x": 23,
+            "y": 1219.21875
+          },
+          "badge": {
+            "bottom": 1388.21875,
+            "height": 26,
+            "left": 32,
+            "right": 131.765625,
+            "top": 1362.21875,
+            "width": 99.765625,
+            "x": 32,
+            "y": 1362.21875
+          },
+          "badgeIsSmall": true
+        }
+      ]
+    }
+  ],
+  "screenshots": [
+    "work/qa/ecosystem17-1791839976355-lyrics-375-scale-1.png",
+    "work/qa/ecosystem17-1791839976355-queue-375-scale-1.png",
+    "work/qa/ecosystem17-1791839976355-lyrics-375-scale-1.25.png",
+    "work/qa/ecosystem17-1791839976355-queue-375-scale-1.25.png",
+    "work/qa/ecosystem17-1791839976355-connect-resize-1440.png",
+    "work/qa/ecosystem17-1791839976355-connect-resize-375.png",
+    "work/qa/ecosystem17-1791839976355-connect-resize-768.png",
+    "work/qa/ecosystem17-1791839976355-connect-resize-1440.png",
+    "work/qa/ecosystem17-1791839976355-connect-light-reduce-radius8.png",
+    "work/qa/ecosystem17-1791839976355-connect-dark-reduce-radius8.png",
+    "work/qa/ecosystem17-1791839976355-connect-amoled-reduce-radius8.png",
+    "work/qa/ecosystem17-1791839976355-rooms-badge-1440.png",
+    "work/qa/ecosystem17-1791839976355-rooms-badge-768.png",
+    "work/qa/ecosystem17-1791839976355-rooms-badge-375.png",
+    "work/qa/ecosystem17-1791840091852-rooms-visible-1440.png",
+    "work/qa/ecosystem17-1791840091852-rooms-visible-768.png",
+    "work/qa/ecosystem17-1791840091852-rooms-visible-375.png"
+  ]
+}

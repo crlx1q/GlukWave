@@ -5,6 +5,8 @@ import { io, type Socket } from 'socket.io-client';
 import { ApiError, api, errorText, post, patch } from './api';
 import {deviceId,surfaceId,browserDeviceName} from './device-identity';
 import { ownsOutput, snapshotPosition } from './connect-controller';
+import {OptimisticControls,type ControlValues} from './optimistic-controls';
+import {mediaSessionState} from './media-session-state';
 import { reportError } from './diagnostics';
 import { waitForPlayback, isPlaybackBlocked } from './playback-lifecycle';
 import { restoredVolume, saveVolume } from './volume';
@@ -16,7 +18,7 @@ import type { ConnectState, Device, Playback, PlayerState, Room, Track } from '.
 type Command = { command:string; trackId?:string; queue?:string[]; position?:number; volume?:number; expectedRevision?:number; repeat?:'off'|'all'|'one'; enabled?:boolean; localOnly?:boolean; outputActive?:boolean; roomId?:string|null };
 export type EmbedController = { play:()=>Promise<void>|void; pause:()=>void; seek:(position:number)=>void; volume?:(volume:number)=>void; destroy?:()=>void };
 export type PlayerTab='player'|'lyrics'|'queue'|'comments';
-type Player = { track:Track|null; trackLoading:boolean; state:PlayerState; duration:number; queue:Track[]; full:boolean; revealProgress:number|null; setRevealProgress:(progress:number|null)=>void; fullTab:PlayerTab; setFull:(open:boolean,tab?:PlayerTab)=>void; addTrack:Track|null; setAddTrack:(track:Track|null)=>void; savedIds:Set<string>; manualIds:Set<string>; shuffle:boolean; repeat:'off'|'all'|'one'; setShuffle:(enabled:boolean)=>void; setRepeat:(repeat:'off'|'all'|'one')=>void; playTrack:(track:Track,queue?:Track[])=>Promise<void>; command:(command:Command)=>Promise<void>; devices:Device[]; devicesOpen:boolean; setDevicesOpen:(open:boolean)=>void; room:Room|null; joinRoom:(room:Room)=>Promise<void>; leaveRoom:()=>Promise<void>; socket:Socket|null; playback:Playback|null; embedReady:(controller:EmbedController)=>void; embedUpdate:(position:number,playing:boolean,duration?:number)=>void; setQueue:(tracks:Track[])=>Promise<void>; addQueue:(track:Track)=>Promise<void>; moveQueue:(from:number,to:number)=>Promise<void>; removeQueue:(id:string)=>Promise<void>; transportPending:boolean; transferPending:string|null; transfer:(deviceId:string,surfaceId?:string)=>Promise<void>; mini:()=>Promise<void>; autoplayBlocked:boolean; finish:()=>void; audioEnergy:()=>number|null; equalizerAvailable:boolean; updateRoomMembers:(roomId:string,members:Room['members'])=>void };
+type Player = { track:Track|null; trackLoading:boolean; state:PlayerState; duration:number; queue:Track[]; full:boolean; revealProgress:number|null; setRevealProgress:(progress:number|null)=>void; fullTab:PlayerTab; setFull:(open:boolean,tab?:PlayerTab)=>void; addTrack:Track|null; setAddTrack:(track:Track|null)=>void; savedIds:Set<string>; manualIds:Set<string>; shuffle:boolean; repeat:'off'|'all'|'one'; setShuffle:(enabled:boolean)=>void; setRepeat:(repeat:'off'|'all'|'one')=>void; playTrack:(track:Track,queue?:Track[])=>Promise<void>; command:(command:Command)=>Promise<void>; previewCommand:(command:Command)=>void; cancelPreview:(command?:'volume')=>void; devices:Device[]; devicesOpen:boolean; setDevicesOpen:(open:boolean)=>void; room:Room|null; joinRoom:(room:Room)=>Promise<void>; leaveRoom:()=>Promise<void>; socket:Socket|null; playback:Playback|null; embedReady:(controller:EmbedController)=>void; embedUpdate:(position:number,playing:boolean,duration?:number)=>void; setQueue:(tracks:Track[])=>Promise<void>; addQueue:(track:Track)=>Promise<void>; moveQueue:(from:number,to:number)=>Promise<void>; removeQueue:(id:string)=>Promise<void>; transportPending:boolean; transferPending:string|null; transfer:(deviceId:string,surfaceId?:string)=>Promise<void>; mini:()=>Promise<void>; autoplayBlocked:boolean; finish:()=>void; audioEnergy:()=>number|null; equalizerAvailable:boolean; updateRoomMembers:(roomId:string,members:Room['members'])=>void };
 type ConnectControls={connectState:ConnectState|null;outputHere:boolean;connectionStatus:'online'|'connecting'|'offline';devicesLoading:boolean;devicesError:string;refreshDevices:()=>Promise<void>;setIndependent:(value:boolean)=>Promise<void>;removeDevice:(id:string)=>Promise<void>};
 const Context=createContext<(Player&ConnectControls)|null>(null);
 export const localDeviceId=deviceId;
@@ -50,7 +52,17 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
   const setFull=useCallback((open:boolean,tab:PlayerTab='player')=>{setFullTab(tab);setRevealProgress(null);setFullState(open);},[]);
   const networkDelay=useRef(0);const stateRef=useRef(state),trackRef=useRef(track),playbackRef=useRef(playback),queueRef=useRef(queue),roomRef=useRef(room),controller=useRef<EmbedController|null>(null),objectUrl=useRef<string|null>(null),artworkObjectUrl=useRef<string|null>(null),loadRevision=useRef(0),roomRevision=useRef(-1),roomSyncVersion=useRef(0),roomJoinVersion=useRef(0),desiredPlay=useRef(false),desiredPosition=useRef(0),settingsRef=useRef(store.settings),userRef=useRef(store.user),repeatRef=useRef(repeat),shuffleRef=useRef(shuffle),durationRef=useRef(duration);
   stateRef.current=state;trackRef.current=track;queueRef.current=queue;roomRef.current=room;settingsRef.current=store.settings;userRef.current=store.user;repeatRef.current=repeat;shuffleRef.current=shuffle;durationRef.current=duration;
-  const update=useCallback((partial:Partial<PlayerState>)=>{const next={...stateRef.current,...partial,updatedAt:Date.now(),revision:stateRef.current.revision+1};if(partial.volume!==undefined)saveVolume(next.volume);stateRef.current=next;setState(next);},[]);
+  const controls=useRef(new OptimisticControls()),controlFlight=useRef<Promise<void>>(Promise.resolve());
+  const controlScope=useCallback(()=>JSON.stringify([userRef.current?.id,roomRef.current?.id,connectRef.current?.activeDeviceId,connectRef.current?.activeSurfaceId,connectRef.current?.independent,trackRef.current?.id]),[]);
+  const update=useCallback((partial:Partial<PlayerState>,persist=true)=>{
+    const ledger=controls.current,restored=ledger.ensure(controlScope(),stateRef.current);ledger.observeUnheld(partial);
+    const next=ledger.overlay({...stateRef.current,...restored,...partial,updatedAt:Date.now(),revision:stateRef.current.revision+1});
+    if(partial.volume!==undefined||restored.volume!==undefined){audio.volume=next.volume;controller.current?.volume?.(next.volume);if(persist&&!ledger.has('volume'))saveVolume(next.volume);}
+    repeatRef.current=next.repeat||'off';shuffleRef.current=!!next.shuffle;setRepeatState(repeatRef.current);setShuffleState(shuffleRef.current);stateRef.current=next;setState(next);
+  },[audio,controlScope]);
+  const previewCommand=useCallback((next:Command)=>{if(next.command!=='volume')return;const volume=Math.max(0,Math.min(1,next.volume??stateRef.current.volume));controls.current.begin(controlScope(),stateRef.current,{volume},true);if(outputHereRef.current){audio.volume=volume;controller.current?.volume?.(volume);}update({volume},false);},[audio,controlScope,update]);
+  const cancelPreview=useCallback((_command?:'volume')=>{controls.current.ensure(controlScope(),stateRef.current);const restored=controls.current.cancelDraft('volume');if(restored.volume!==undefined)update(restored,false);},[controlScope,update]);
+  const acceptedControls=useCallback((canonical:PlayerState)=>{const ledger=controls.current;ledger.ensure(controlScope(),canonical);ledger.observe(canonical);const visible=ledger.overlay(canonical);repeatRef.current=visible.repeat||'off';shuffleRef.current=!!visible.shuffle;setRepeatState(repeatRef.current);setShuffleState(shuffleRef.current);return visible;},[controlScope]);
   const roomOutputActive=useRef(true);
   useEffect(()=>{const graph=audioMeter.current?.graph;if(graph)configureEqualizer(graph,store.settings.equalizer);audio.playbackRate=room?1:store.settings.playbackRate;},[audio,room?.id,store.settings.equalizer,store.settings.playbackRate]);
   const clearPlayback=useCallback(()=>{resolvingTrack.current=false;setTrackLoading(false);loadRevision.current++;loadAbort.current?.abort();desiredPlay.current=false;desiredPosition.current=0;audio.pause();streamLoader.current.destroy();audio.removeAttribute('src');audio.load();controller.current?.pause();controller.current?.destroy?.();controller.current=null;if(objectUrl.current){URL.revokeObjectURL(objectUrl.current);objectUrl.current=null;}if(artworkObjectUrl.current){URL.revokeObjectURL(artworkObjectUrl.current);artworkObjectUrl.current=null;}trackRef.current=null;playbackRef.current=null;queueRef.current=[];setTrack(null);setPlayback(null);setQueueState([]);setDuration(0);update({trackId:null,position:0,playing:false,queue:[]});if('mediaSession'in navigator)navigator.mediaSession.metadata=null;},[audio,update]);
@@ -59,7 +71,7 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
     loadAbort.current?.abort();const request=new AbortController();loadAbort.current=request;
     const revision=++loadRevision.current,startedUserId=userRef.current?.id;
     resolvingTrack.current=true;setTrackLoading(true);
-    audio.pause();streamLoader.current.destroy(audio);controller.current?.pause();controller.current?.destroy?.();controller.current=null;
+    audio.pause();streamLoader.current.destroy();controller.current?.pause();controller.current?.destroy?.();controller.current=null;
     if(objectUrl.current){URL.revokeObjectURL(objectUrl.current);objectUrl.current=null;}if(artworkObjectUrl.current){URL.revokeObjectURL(artworkObjectUrl.current);artworkObjectUrl.current=null;}
     trackRef.current=next;playbackRef.current=null;setTrack(next);setPlayback(null);setDuration(next.duration||0);desiredPlay.current=playing;desiredPosition.current=position;setAutoplayBlocked(false);
     const order=nextQueue??(queueRef.current.some(item=>item.id===next.id)?queueRef.current:[next]);queueRef.current=order;setQueueState(order);store.remember([next]);update({trackId:next.id,position,playing:false,queue:order.map(item=>item.id)});
@@ -147,7 +159,7 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
       if(expectedRoomId&&expectedRoomId!==roomRef.current?.id)return;
       if(next.command==='seek'&&outputHereRef.current&&(resolvingTrack.current||trackLoadingRef.current))return;
       const currentRoom=roomRef.current;
-      if(currentRoom?.type==='jam'&&currentRoom.ownerId!==userRef.current?.id&&['play','pause'].includes(next.command)){const result=await post<{connect:ConnectState}>(`/jams/${currentRoom.id}/pause`,{paused:next.command==='pause'});syncConnectRef.current(result.connect);await syncRoomStateRef.current({roomId:currentRoom.id,state:currentRoom.state,serverTime:result.connect.serverTime},true);return;}
+      if(currentRoom?.type==='jam'&&currentRoom.ownerId!==userRef.current?.id&&userRef.current?.role!=='admin'&&['play','pause'].includes(next.command)){const result=await post<{connect:ConnectState}>(`/jams/${currentRoom.id}/pause`,{paused:next.command==='pause'});syncConnectRef.current(result.connect);await syncRoomStateRef.current({roomId:currentRoom.id,state:currentRoom.state,serverTime:result.connect.serverTime},true);return;}
       if(next.command==='play'&&roomRef.current&&!connectRef.current?.activeDeviceId)await enterRoomRef.current(roomRef.current);
       // Listening permissions govern the shared timeline, not the listener's own output level.
       if(next.command==='volume'&&roomRef.current){if(!outputHereRef.current&&connectRef.current?.activeDeviceId)await post('/devices/command',{...next,deviceId:connectRef.current.activeDeviceId,surfaceId:connectRef.current.activeSurfaceId});else await applyCommandRef.current(next);return;}
@@ -157,7 +169,7 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
         if(!roomRef.current&&socket?.connected&&!connectRef.current?.activeDeviceId){const result=await socket.timeout(8000).emitWithAck('device:claim',{});if(result.error)throw new Error(result.error.message);setOutput(true);}
         if(!playbackRef.current&&trackRef.current&&next.command==='play')await applyTrackRef.current(trackRef.current,queueRef.current,true,stateRef.current.position);
         else await applyCommandRef.current(next);
-        if(socket?.connected){const dur=durationRef.current>0?durationRef.current:(trackRef.current?.duration||0);socket.emit('device:state',{...stateRef.current,trackLoading:trackLoadingRef.current,duration:dur>0?dur:undefined,outputActive:outputHereRef.current,roomId:null});}
+        if(socket?.connected&&!['volume','playing','position','shuffle','repeat'].some(field=>controls.current.has(field as keyof ControlValues))){const dur=durationRef.current>0?durationRef.current:(trackRef.current?.duration||0);socket.emit('device:state',{...controls.current.broadcast(stateRef.current),trackLoading:trackLoadingRef.current,duration:dur>0?dur:undefined,outputActive:outputHereRef.current,roomId:null});}
       }
     }catch(error){store.notify(errorText(error),true);if(strict)throw error;}
   },[socket,store.notify,setOutput]);
@@ -166,13 +178,39 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
     if(next.command==='seek'&&outputHereRef.current&&(resolvingTrack.current||trackLoadingRef.current))return Promise.resolve();
     if(next.command==='play'&&outputHereRef.current)ensureAudioMeter();
     // Range controls commit once on release; no second server-side drag timer is needed.
-    if(!['next','previous','track'].includes(next.command))return sendCommand(next);
+    if(!['next','previous','track'].includes(next.command)){
+      const values:Partial<ControlValues>=next.command==='volume'?{volume:Math.max(0,Math.min(1,next.volume??stateRef.current.volume))}:next.command==='shuffle'?{shuffle:!!next.enabled}:next.command==='repeat'?{repeat:next.repeat||'off'}:next.command==='seek'?{position:Math.max(0,next.position||0)}:next.command==='play'?{playing:true}:next.command==='pause'?{playing:false}:{};
+      if(!Object.keys(values).length)return sendCommand(next);
+      const scope=controlScope(),token=controls.current.begin(scope,stateRef.current,values);update(values,false);
+      // These changes are audible in this gesture; only the final command is sent.
+      let localStart:Promise<void>=Promise.resolve();
+      if(outputHereRef.current){
+        if(values.volume!==undefined){audio.volume=values.volume;controller.current?.volume?.(values.volume);}
+        if(values.position!==undefined&&playbackRef.current?.kind==='audio')audio.currentTime=desiredPosition.current=values.position;
+        if(values.playing===false){desiredPlay.current=false;audio.pause();controller.current?.pause();}
+        if(values.playing===true&&playbackRef.current?.kind==='audio'){desiredPlay.current=true;localStart=audio.play();}
+      }
+      // Observe rejection now, even if an earlier network command still owns the queue.
+      const start=localStart.then(()=>null,error=>error);
+      const promise=controlFlight.current.catch(()=>{}).then(async()=>{
+        controls.current.ensure(controlScope(),stateRef.current);if(!controls.current.current(token)||controls.current.superseded(token))return;
+        try{const error=await start;if(error)throw error;await sendCommand(next,undefined,true);
+          controls.current.ensure(controlScope(),stateRef.current);const accepted=controls.current.settle(token,true,true);update(accepted);
+          if(socket?.connected&&outputHereRef.current){const canonical=controls.current.broadcast(stateRef.current);socket.emit('device:state',{...canonical,trackLoading:trackLoadingRef.current,duration:durationRef.current||trackRef.current?.duration||undefined,outputActive:true,roomId:roomRef.current?.id||null});}
+        }catch(error){controls.current.ensure(controlScope(),stateRef.current);const restored=controls.current.settle(token,false);update(restored,false);
+          if(restored.playing!==undefined&&outputHereRef.current){desiredPlay.current=restored.playing;if(!restored.playing)audio.pause();else void audio.play().catch(()=>{update({playing:false});setAutoplayBlocked(true);});}
+          if(restored.position!==undefined&&outputHereRef.current&&playbackRef.current?.kind==='audio')audio.currentTime=desiredPosition.current=restored.position;
+          // sendCommand reports network failures; a local autoplay failure has not reached it.
+          if(await start){setAutoplayBlocked(isPlaybackBlocked(error));store.notify(errorText(error),true);}
+        }
+      });controlFlight.current=promise;return promise;
+    }
     if(transportFlight.current)return transportFlight.current.promise;
     const order=queueRef.current,current=order.findIndex(item=>item.id===trackRef.current?.id);
     const selected=next.command==='track'?order.find(item=>item.id===next.trackId)||null:order.length?order[(current+(next.command==='next'?1:-1)+order.length)%order.length]:null;
     const end=showTransport(selected),promise=sendCommand(next).finally(()=>{end();if(transportFlight.current?.promise===promise)transportFlight.current=null;});
     transportFlight.current={key:next.command,promise};return promise;
-  },[sendCommand,ensureAudioMeter,showTransport]);
+  },[sendCommand,ensureAudioMeter,showTransport,controlScope,update,audio,store.notify,socket]);
   const playTrack=useCallback(async(next:Track,order?:Track[])=>{
     if(outputHereRef.current)ensureAudioMeter();
     if(transportFlight.current?.key===next.id)return transportFlight.current.promise;
@@ -187,56 +225,60 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
   const finish=useCallback(()=>{
     if(!outputHereRef.current)return;
     const currentRoom=roomRef.current;
-    if(currentRoom){desiredPlay.current=false;update({playing:false});if(currentRoom.members.find(member=>member.userId===userRef.current?.id)?.canControl&&currentRoom.state.trackId)void command({command:'ended',trackId:currentRoom.state.trackId,expectedRevision:currentRoom.state.revision,repeat:repeatRef.current});return;}
+    if(currentRoom){
+      const shared=currentRoom.state,index=shared.queue.indexOf(shared.trackId||''),continues=repeatRef.current==='one'||shared.queue.length>0&&(index<0||index<shared.queue.length-1||repeatRef.current==='all');
+      desiredPlay.current=!!continues;setTrackLoading(!!continues);update({playing:false});
+      if((userRef.current?.role==='admin'||currentRoom.members.find(member=>member.userId===userRef.current?.id)?.canControl)&&shared.trackId)void sendCommand({command:'ended',trackId:shared.trackId,expectedRevision:shared.revision,repeat:repeatRef.current},currentRoom.id,true).catch(()=>{if(roomRef.current?.id===currentRoom.id&&roomRef.current.state.revision===shared.revision){desiredPlay.current=false;setTrackLoading(false);update({playing:false});}});return;
+    }
     const index=queueRef.current.findIndex(item=>item.id===trackRef.current?.id);if(repeatRef.current==='one'&&index>=0){void applyCommandRef.current({command:'seek',position:0}).then(()=>applyCommandRef.current({command:'play'})).catch(error=>store.notify(errorText(error),true));}else if(queueRef.current.length&&(index<0||index<queueRef.current.length-1||repeatRef.current==='all'))void command({command:'next'});else{desiredPlay.current=false;update({playing:false});}
-  },[command,store.notify,update]);
+  },[command,sendCommand,store.notify,update,setTrackLoading]);
   const syncRoomState=useCallback(async(payload:{roomId:string;state:PlayerState;serverTime:number},force=false)=>{
     if(payload.roomId!==roomRef.current?.id||(!force&&payload.state.revision<=roomRevision.current))return;
     if(payload.state.revision<roomRevision.current)return;
     const version=++roomSyncVersion.current,account=userRef.current?.id;
     // Invalidate any in-flight playback resolution before fetching this newer revision.
     if(trackRef.current?.id!==payload.state.trackId)loadRevision.current++;roomRevision.current=payload.state.revision;roomRef.current={...roomRef.current,state:payload.state};setRoom(roomRef.current);
-    repeatRef.current=payload.state.repeat||'off';shuffleRef.current=!!payload.state.shuffle;setRepeatState(repeatRef.current);setShuffleState(shuffleRef.current);
+    const presentation=acceptedControls({...payload.state,volume:connectRef.current?.state.volume??controls.current.broadcast(stateRef.current).volume});
     const isCurrent=()=>version===roomSyncVersion.current&&payload.roomId===roomRef.current?.id&&account===userRef.current?.id;
     try{
       if(!payload.state.trackId){clearPlayback();return;}
       const [order,next]=await Promise.all([resolveQueueRef.current(payload.state.queue),trackRef.current?.id===payload.state.trackId?Promise.resolve(trackRef.current):api<{track:Track}>(`/tracks/${encodeURIComponent(payload.state.trackId)}`).then(result=>result.track)]);
       if(!isCurrent())return;
-      const target=snapshotPosition(payload.state,payload.serverTime,networkDelay.current);
+      const target=controls.current.has('position')?presentation.position:snapshotPosition(payload.state,payload.serverTime,networkDelay.current);
       if(!isCurrent())return;
       if(!outputHereRef.current){
         desiredPlay.current=false;audio.pause();streamLoader.current.destroy();controller.current?.pause();controller.current?.destroy?.();controller.current=null;playbackRef.current=null;setPlayback(null);
         trackRef.current=next;setTrack(next);queueRef.current=order;setQueueState(order);setDuration(next.duration);
-        stateRef.current={...payload.state,playing:payload.state.playing&&!connectRef.current?.jamPaused,position:target,volume:connectRef.current?.state.volume??stateRef.current.volume};setState({...stateRef.current});remoteAnchor.current={position:target,time:performance.now()};return;
+        stateRef.current=controls.current.overlay({...payload.state,playing:payload.state.playing&&!connectRef.current?.jamPaused,position:target,volume:connectRef.current?.state.volume??stateRef.current.volume});setState({...stateRef.current});remoteAnchor.current={position:target,time:performance.now()};return;
       }
       remoteAnchor.current=null;
-      const shouldPlay=payload.state.playing&&roomOutputActive.current&&!connectRef.current?.jamPaused;
+      const shouldPlay=roomOutputActive.current&&(controls.current.has('playing')?presentation.playing:payload.state.playing&&!connectRef.current?.jamPaused);
       if(trackRef.current?.id===next.id&&resolvingTrack.current){queueRef.current=order;setQueueState(order);update({queue:order.map(item=>item.id),repeat:repeatRef.current,shuffle:shuffleRef.current});desiredPlay.current=shouldPlay;return;}
       if(trackRef.current?.id!==next.id||!playbackRef.current){await applyTrackRef.current(next,order,shouldPlay,target);return;}
       queueRef.current=order;setQueueState(order);update({queue:order.map(item=>item.id)});
-      if(Math.abs(stateRef.current.position-target)>1.4||force)await applyCommandRef.current({command:'seek',position:target});
+      if(!controls.current.has('position')&&(Math.abs(stateRef.current.position-target)>1.4||force))await applyCommandRef.current({command:'seek',position:target});
       if(!isCurrent())return;
       if(stateRef.current.playing!==shouldPlay)await applyCommandRef.current({command:shouldPlay?'play':'pause'});
     }catch(error){if(isCurrent())store.notify(errorText(error),true);}
-  },[audio,clearPlayback,store.notify,update]);
+  },[audio,clearPlayback,store.notify,update,acceptedControls]);
   const syncRoomStateRef=useRef(syncRoomState);syncRoomStateRef.current=syncRoomState;
   const adoptRoomRef=useRef<(id:string,adoptOnly?:boolean)=>Promise<void>>(async()=>{}),adoptingRoom=useRef<string|null>(null);
   const clearRoom=useCallback(()=>{roomSyncVersion.current++;roomJoinVersion.current++;adoptingRoom.current=null;roomRef.current=null;setRoom(null);roomRevision.current=-1;roomOutputActive.current=false;remoteAnchor.current=null;if(userRef.current)localStorage.removeItem(`gw-room-${userRef.current.id}`);},[]);
   const syncConnect=useCallback((value:ConnectState,adopt=true)=>{
     if(connectRef.current&&value.state.revision<connectRef.current.state.revision)return;
     const pausedChanged=connectRef.current?.jamPaused!==value.jamPaused;const wasRemote=!outputHereRef.current;connectRef.current=value;setConnectState(value);
-    const here=ownsOutput(value,deviceId,surfaceId);repeatRef.current=value.state.repeat||'off';shuffleRef.current=!!value.state.shuffle;setRepeatState(repeatRef.current);setShuffleState(shuffleRef.current);setOutput(here);roomOutputActive.current=here;
+    const here=ownsOutput(value,deviceId,surfaceId);acceptedControls(value.state);setOutput(here);roomOutputActive.current=here;
     if(adopt&&value.roomId&&roomRef.current?.id!==value.roomId&&adoptingRoom.current!==value.roomId)void adoptRoomRef.current(value.roomId).catch(error=>store.notify(errorText(error),true));
     else if(value.roomId===null&&roomRef.current){clearRoom();clearPlayback();}
     if(value.independent&&!value.roomId&&!roomRef.current){if(wasRemote){remoteAnchor.current=null;desiredPlay.current=false;stateRef.current={...stateRef.current,playing:false,volume:restoredVolume()};setState({...stateRef.current});}return;}
     if(!here){
       loadRevision.current++;desiredPlay.current=false;audio.pause();streamLoader.current.destroy();controller.current?.pause();controller.current?.destroy?.();controller.current=null;
       playbackRef.current=null;setPlayback(null);trackRef.current=value.track;setTrack(value.track);queueRef.current=value.queueTracks;setQueueState(value.queueTracks);setDuration(value.track?.duration||0);
-      stateRef.current={...value.state,position:snapshotPosition(value.state,value.serverTime)};setState({...stateRef.current});remoteAnchor.current={position:stateRef.current.position,time:performance.now()};
-    }else if(!playbackRef.current&&value.track){trackRef.current=value.track;setTrack(value.track);queueRef.current=value.queueTracks;setQueueState(value.queueTracks);setDuration(value.track.duration);stateRef.current={...value.state,playing:false,volume:restoredVolume()};setState({...stateRef.current});}
-  if(here&&!roomRef.current){stateRef.current={...stateRef.current,shuffle:!!value.state.shuffle,repeat:value.state.repeat||'off'};setState({...stateRef.current});}
+      stateRef.current=acceptedControls({...value.state,position:snapshotPosition(value.state,value.serverTime)});setState({...stateRef.current});remoteAnchor.current={position:stateRef.current.position,time:performance.now()};
+    }else if(!playbackRef.current&&value.track){trackRef.current=value.track;setTrack(value.track);queueRef.current=value.queueTracks;setQueueState(value.queueTracks);setDuration(value.track.duration);stateRef.current=acceptedControls({...value.state,playing:false,volume:restoredVolume()});setState({...stateRef.current});}
+  if(here&&!roomRef.current){stateRef.current=controls.current.overlay({...stateRef.current,shuffle:!!value.state.shuffle,repeat:value.state.repeat||'off'});setState({...stateRef.current});}
    if(here&&pausedChanged&&roomRef.current?.type==='jam')void syncRoomStateRef.current({roomId:roomRef.current.id,state:roomRef.current.state,serverTime:value.serverTime},true);
-  },[audio,setOutput,clearPlayback,clearRoom,store.notify]);
+  },[audio,setOutput,clearPlayback,clearRoom,store.notify,acceptedControls]);
   const syncConnectRef=useRef(syncConnect);syncConnectRef.current=syncConnect;
   const socketRef=useRef<Socket|null>(null);socketRef.current=socket;
   const enterRoom=useCallback(async(next:Room,adoptOnly=false)=>{
@@ -270,13 +312,14 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
     return()=>{audio.removeEventListener('canplay',onReady);audio.removeEventListener('playing',onReady);audio.removeEventListener('waiting',onWaiting);audio.removeEventListener('stalled',onWaiting);audio.removeEventListener('timeupdate',onTime);audio.removeEventListener('play',onPlay);audio.removeEventListener('pause',onPause);audio.removeEventListener('durationchange',onDuration);audio.removeEventListener('ended',onEnded);audio.removeEventListener('error',onError);};
   },[audio,finish,store.notify,update]);
   useEffect(()=>{
-    document.title=state.playing&&track?`${track.title} — ${track.artist} · GlukWave`:t('copy.716');
+    const presentation=mediaSessionState(pendingTrack||track,state.playing,trackLoading,desiredPlay.current,transportPending);
+    document.title=presentation.title||t('copy.716');
     if(!('mediaSession'in navigator))return;
-    navigator.mediaSession.playbackState=state.playing?'playing':'paused';
-    if(track)navigator.mediaSession.metadata=new MediaMetadata({title:track.title,artist:track.artist,album:track.album,artwork:track.artwork?[{src:track.artwork}]:[]});
+    navigator.mediaSession.playbackState=presentation.playbackState;
+    const current=pendingTrack||track;if(current)navigator.mediaSession.metadata=new MediaMetadata({title:current.title,artist:current.artist,album:current.album,artwork:current.artwork?[{src:current.artwork}]:[]});else navigator.mediaSession.metadata=null;
     const handlers:Partial<Record<MediaSessionAction,MediaSessionActionHandler>>={play:()=>void command({command:'play'}),pause:()=>void command({command:'pause'}),nexttrack:()=>void command({command:'next'}),previoustrack:()=>void command({command:'previous'}),seekto:details=>void command({command:'seek',position:details.seekTime||0}),seekforward:details=>void command({command:'seek',position:stateRef.current.position+(details.seekOffset||10)}),seekbackward:details=>void command({command:'seek',position:Math.max(0,stateRef.current.position-(details.seekOffset||10))})};
     for(const[action,handler]of Object.entries(handlers))try{navigator.mediaSession.setActionHandler(action as MediaSessionAction,handler!);}catch{/* Browser may not expose every media action. */}
-  },[state.playing,track,command,locale.language]);
+  },[state.playing,track,pendingTrack,trackLoading,transportPending,command,locale.language]);
   useEffect(()=>{if(!store.user||store.offline)return;setConnectionStatus('connecting');const account=store.user.id,connection=io({withCredentials:true,auth:{language:getLanguage(),deviceId,surfaceId,name:browserDeviceName,kind:'web'}});socketRef.current=connection;setSocket(connection);const unbindSettings=store.bindSettingsSync(connection);
     const reloadDevices=()=>void refreshDevices();
     connection.on('connect',()=>{setConnectionStatus('online');reloadDevices();
@@ -289,7 +332,7 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
     connection.on('disconnect',()=>{setConnectionStatus(navigator.onLine?'connecting':'offline');if(roomRef.current){setOutput(false);roomOutputActive.current=false;desiredPlay.current=false;audio.pause();controller.current?.pause();}});
     connection.on('devices:changed',reloadDevices);
     connection.on('connect_error',()=>{setConnectionStatus(navigator.onLine?'connecting':'offline');if(navigator.onLine)reportError('Realtime connection failed','socket',{code:'CONNECT_ERROR'});});
-    const emitState=()=>{if(connection.connected&&(outputHereRef.current||roomRef.current)){const dur=durationRef.current>0?durationRef.current:(trackRef.current?.duration||0);connection.emit('device:state',{...stateRef.current,trackLoading:trackLoadingRef.current,duration:dur>0?dur:undefined,playing:outputHereRef.current&&stateRef.current.playing,outputActive:outputHereRef.current,roomId:roomRef.current?.id||null});}};
+    const emitState=()=>{if(connection.connected&&(outputHereRef.current||roomRef.current)){const canonical=controls.current.broadcast(stateRef.current);const dur=durationRef.current>0?durationRef.current:(trackRef.current?.duration||0);connection.emit('device:state',{...canonical,trackLoading:trackLoadingRef.current,duration:dur>0?dur:undefined,playing:outputHereRef.current&&canonical.playing,outputActive:outputHereRef.current,roomId:roomRef.current?.id||null});}};
     connection.on('device:command',async(payload:Command,ack?:(result:unknown)=>void)=>{try{
       if(payload.roomId&&roomRef.current?.id!==payload.roomId)await adoptRoomRef.current(payload.roomId,true);
       else if(payload.roomId===null&&roomRef.current)clearRoom();
@@ -334,8 +377,8 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
   const addQueue=useCallback((next:Track)=>editQueue(current=>current.some(item=>item.id===next.id)?current:[...current,next]),[editQueue]);
   const removeQueue=useCallback((id:string)=>editQueue(current=>current.filter(item=>item.id!==id)),[editQueue]);
   const moveQueue=useCallback((from:number,to:number)=>editQueue(current=>{const order=[...current];if(from===to||from<0||from>=order.length||to<0||to>=order.length)return order;const [item]=order.splice(from,1);order.splice(to,0,item);return order;}),[editQueue]);
-  const setShuffle=useCallback((enabled:boolean)=>{void sendCommand({command:'shuffle',enabled});},[sendCommand]);
-  const setRepeat=useCallback((repeat:'off'|'all'|'one')=>{void sendCommand({command:'repeat',repeat});},[sendCommand]);
+  const setShuffle=useCallback((enabled:boolean)=>{void command({command:'shuffle',enabled});},[command]);
+  const setRepeat=useCallback((repeat:'off'|'all'|'one')=>{void command({command:'repeat',repeat});},[command]);
   const transfer=useCallback((targetDeviceId:string,targetSurfaceId?:string):Promise<void>=>{
     if(transferFlight.current)return transferFlight.current;
     if(connectRef.current?.activeDeviceId===targetDeviceId&&(!targetSurfaceId||connectRef.current.activeSurfaceId===targetSurfaceId))return Promise.resolve();
@@ -353,6 +396,6 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
   useEffect(()=>()=>{audio.pause();if(objectUrl.current)URL.revokeObjectURL(objectUrl.current);if(artworkObjectUrl.current)URL.revokeObjectURL(artworkObjectUrl.current);channel.close();},[audio,channel]);
   const playbackAccount=useRef(store.user?.id);
   useEffect(()=>{if(playbackAccount.current!==store.user?.id||!store.user){playbackAccount.current=store.user?.id;roomSyncVersion.current++;roomJoinVersion.current++;clearPlayback();roomRef.current=null;roomRevision.current=-1;setRoom(null);setFullState(false);setRevealProgress(null);connectRef.current=null;setConnectState(null);remoteAnchor.current=null;setOutput(true);}},[store.user?.id,clearPlayback,setOutput]);
-  return <Context.Provider value={{track:pendingTrack||track,trackLoading:trackLoading||transportPending,transportPending,transferPending,transfer,state:pendingTrack&&pendingTrack.id!==track?.id?{...state,trackId:pendingTrack.id,position:0,playing:false}:state,duration:pendingTrack?.duration||duration,queue,full,revealProgress,setRevealProgress,fullTab,setFull,addTrack,setAddTrack,savedIds,manualIds,shuffle,repeat,setShuffle,setRepeat,playTrack,command,devices,devicesOpen,setDevicesOpen,room,joinRoom,leaveRoom,socket,playback,embedReady,embedUpdate,setQueue,addQueue,moveQueue,removeQueue,mini,autoplayBlocked,finish,audioEnergy,updateRoomMembers,equalizerAvailable:playback?.kind==='audio',connectState,outputHere,connectionStatus,devicesLoading,devicesError,refreshDevices,setIndependent,removeDevice}}>{children}</Context.Provider>;
+  return <Context.Provider value={{track:pendingTrack||track,trackLoading:trackLoading||transportPending,transportPending,transferPending,transfer,state:pendingTrack&&pendingTrack.id!==track?.id?{...state,trackId:pendingTrack.id,position:0,playing:false}:state,duration:pendingTrack?.duration||duration,queue,full,revealProgress,setRevealProgress,fullTab,setFull,addTrack,setAddTrack,savedIds,manualIds,shuffle,repeat,setShuffle,setRepeat,playTrack,command,previewCommand,cancelPreview,devices,devicesOpen,setDevicesOpen,room,joinRoom,leaveRoom,socket,playback,embedReady,embedUpdate,setQueue,addQueue,moveQueue,removeQueue,mini,autoplayBlocked,finish,audioEnergy,updateRoomMembers,equalizerAvailable:playback?.kind==='audio',connectState,outputHere,connectionStatus,devicesLoading,devicesError,refreshDevices,setIndependent,removeDevice}}>{children}</Context.Provider>;
 }
 export function usePlayer(){const context=useContext(Context);if(!context)throw new Error('Missing player');return context;}

@@ -329,13 +329,27 @@ void main() {
       expect(next.top, greaterThanOrEqualTo(current.bottom));
       final centered = 'listening-polish-$runId-dark-390-player';
       await f.screenshot(tester, centered);
-      await tester.tap(find.byKey(const Key('player-cover-options')));
+      await tester.tap(find.byKey(const Key('player-more')));
+      await settleArtwork(tester);
+      await tester.tap(
+        find.byWidgetPredicate(
+          (widget) =>
+              widget is PopupMenuItem<String> && widget.value == 'cover',
+        ),
+      );
       await settleArtwork(tester);
       expect(find.text('VINYL'), findsOneWidget);
       await tester.sendKeyEvent(LogicalKeyboardKey.escape);
       await settleArtwork(tester);
       expect(find.text('VINYL'), findsNothing);
-      await tester.tap(find.byKey(const Key('player-cover-options')));
+      await tester.tap(find.byKey(const Key('player-more')));
+      await settleArtwork(tester);
+      await tester.tap(
+        find.byWidgetPredicate(
+          (widget) =>
+              widget is PopupMenuItem<String> && widget.value == 'cover',
+        ),
+      );
       await settleArtwork(tester);
       await tester.tap(find.text('CD'));
       await settleArtwork(tester);

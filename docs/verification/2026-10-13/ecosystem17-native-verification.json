@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "distinctTestsVerified": 329,
+  "fullRun": {
+    "passed": 325,
+    "failed": 4,
+    "log": "ecosystem17-native-tests-final.log"
+  },
+  "recovery": {
+    "tests": 4,
+    "passed": true,
+    "log": "ecosystem17-native-recovery.log",
+    "cases": [
+      "Room queue and modes use authoritative commands and permissions",
+      "Connect picker shows Chrome mark, actual output and one pending handoff",
+      "Compact synchronized lyrics show two separate rows; cover menu closes on selection/Escape",
+      "Jam listener toggles its own pause using the REST endpoint without host transport permissions"
+    ]
+  },
+  "changesAfterFullRun": "Only obsolete test expectations: immediate modes, two output indicators, non-admin Jam fixture and cover tools moved into ellipsis. Production sources unchanged.",
+  "initialInterruptedRun": "ecosystem17-native-tests-first.log: old outer-scroll selectors and a real held local-write deadlock; fix precedes this full run."
+}

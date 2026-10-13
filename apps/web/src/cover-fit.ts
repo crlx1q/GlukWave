@@ -10,10 +10,24 @@ export function coverBounds(size:number,x:number,y:number) {
 }
 
 export function fitCover(width:number,height:number,threeD:boolean,x:number,y:number) {
- // Height and current angle deliberately do not affect artwork size. Short screens scroll.
- void height;void x;void y;
+ // Size follows the available viewport once. Angle never changes the stage or the artwork.
+ void x;void y;
  if(!width)return 0;
- return Math.floor(Math.min(340,Math.max(0,width-24)/(threeD?1.62:1))*100)/100;
+ const widthLimit=Math.min(340,Math.max(0,width-24)/(threeD?1.5:1));
+ if(height<=0)return Math.floor(widthLimit*100)/100;
+ if(!threeD)return Math.max(0,Math.min(widthLimit,height-36));
+ let low=0,high=widthLimit;
+ for(let i=0;i<11;i++){const middle=(low+high)/2;if(coverEnvelopeHeight(middle)<=height)low=middle;else high=middle;}
+ return Math.floor(low*100)/100;
+}
+
+const envelopes=new Map<number,number>();
+/** One constant envelope for a complete turn, including the extended disc and tilted cover. */
+export function coverEnvelopeHeight(size:number){
+ const key=Math.ceil(size),cached=envelopes.get(key);if(cached!==undefined)return cached;
+ let extent=size;
+ for(let x=-9;x<=9;x+=3)for(let y=-180;y<=180;y+=5){const bounds=coverBounds(key,x,y);extent=Math.max(extent,bounds.bottom-bounds.top);}
+ const height=Math.ceil(extent+24);envelopes.set(key,height);if(envelopes.size>64)envelopes.delete(envelopes.keys().next().value!);return height;
 }
 
 /** Reserve actual projected height without changing the artwork dimensions. */

@@ -1,0 +1,120 @@
+{
+  "passed": true,
+  "session": "ecosystem17-probe-1791840412098",
+  "scope": "Actual React UI and native browser Audio object, isolated5198 own local WAV/socket fixture. No hosting or owner data.",
+  "checks": [
+    {
+      "cover340NormalDesktop": true,
+      "coverMenuInEllipsis": true,
+      "noAngleResizeOrScroll": true
+    },
+    {
+      "actualNativeAudioVolumePreview": true,
+      "noNetworkDuringLongHold": true,
+      "finalVolumeSemanticDeviceState": 1,
+      "before": 0.8,
+      "draft": 0.64
+    },
+    {
+      "volumeCancelRestoresActualAudio": true
+    },
+    {
+      "shuffleImmediateAndEarlierFailureCannotUndoNewer": true,
+      "repeatImmediateAndRollback": true
+    },
+    {
+      "miniConnectMeasuredFirstPaint": true,
+      "miniHasRealTransportSeekVolume": true,
+      "fullSharesActivePlayer": true
+    },
+    {
+      "joinedNonOwnedRoomHighlightedInMyRooms": true,
+      "publicRoomsArtworkMembersOnlineListening": true,
+      "ordinaryListenerRestrictions": true
+    },
+    {
+      "colorPointerCaptureImmediateWholeApp": true,
+      "heldSettingsWrites": 0,
+      "heldColorRequests": 0,
+      "finalSettingsPatch": 1,
+      "localColor": "#331d73"
+    },
+    {
+      "adminRoomModerationAndControl": true,
+      "ownerRestartRequiresLiteralConfirmation": true,
+      "reconnectConfirmedByNewUptime": true,
+      "fixtureResetServiceUptime": 3600,
+      "status": "GlukWave restarted and is back online."
+    }
+  ],
+  "layouts": [
+    {
+      "width": 1440,
+      "height": 900,
+      "bottom": 564.296875,
+      "contentOverflow": 0,
+      "controlsBottom": 873.6875,
+      "facesFit": true,
+      "layoutOverflow": 0,
+      "size": 340,
+      "stage": 474,
+      "top": 90.296875,
+      "angles": 12
+    },
+    {
+      "width": 938,
+      "height": 860,
+      "bottom": 529.796875,
+      "contentOverflow": 0,
+      "controlsBottom": 839.1875,
+      "facesFit": true,
+      "layoutOverflow": 0,
+      "size": 322,
+      "stage": 445,
+      "top": 84.796875,
+      "angles": 12
+    },
+    {
+      "width": 1920,
+      "height": 1080,
+      "bottom": 654.296875,
+      "contentOverflow": 0,
+      "controlsBottom": 963.6875,
+      "facesFit": true,
+      "layoutOverflow": 0,
+      "size": 340,
+      "stage": 474,
+      "top": 180.296875,
+      "angles": 12
+    },
+    {
+      "width": 375,
+      "height": 812,
+      "bottom": 395,
+      "contentOverflow": 0,
+      "controlsBottom": 709.390625,
+      "facesFit": true,
+      "layoutOverflow": 0,
+      "size": 210,
+      "stage": 289,
+      "top": 106,
+      "angles": 12
+    }
+  ],
+  "screenshots": [
+    "work/qa/ecosystem17-1791840412098-player-1440.png",
+    "work/qa/ecosystem17-1791840412098-player-938.png",
+    "work/qa/ecosystem17-1791840412098-player-1920.png",
+    "work/qa/ecosystem17-1791840412098-player-375.png",
+    "work/qa/ecosystem17-1791840412098-cover-menu.png",
+    "work/qa/ecosystem17-1791840412098-connect-mini.png",
+    "work/qa/ecosystem17-1791840412098-connect-full.png",
+    "work/qa/ecosystem17-1791840412098-rooms-current-public.png",
+    "work/qa/ecosystem17-1791840412098-color-local.png",
+    "work/qa/ecosystem17-1791840412098-rooms-admin.png",
+    "work/qa/ecosystem17-1791840412098-service-monitor.png",
+    "work/qa/ecosystem17-1791840829284-service-restart-confirmed.png"
+  ],
+  "adminSession": "ecosystem17-admin-1791840829284",
+  "completedAt": "2026-10-12T21:34:29.530Z"
+}

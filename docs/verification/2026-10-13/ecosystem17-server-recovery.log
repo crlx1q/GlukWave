@@ -1,0 +1,19 @@
+✔ startup and repeated availability checks spawn no Python or dependency installer (42.7923ms)
+✔ simultaneous version diagnostics share one bounded job (49.1072ms)
+✔ missing module cooldown prevents repeated subprocess failures without disabling pure SoundCloud (86.6144ms)
+✔ SoundCloud progressive MP3 keeps its real format and concurrent tracks share client discovery (111.5027ms)
+✔ SoundCloud AAC HLS is selected over unsupported codecs and labelled HLS (62.7761ms)
+✔ resource CPU samples warm up for a real interval instead of reporting a startup spike (1132.6962ms)
+✔ configured YouTube metadata search avoids Python, preserves artists and falls back on quota failure (2303.0399ms)
+✔ automatic locale understands weighted browser tags and country choices, without private IP geolocation (18.7257ms)
+✔ bundled country-only database resolves real IPv4/IPv6 locally and includes checked provenance (1940.5696ms)
+✔ server error catalogs are complete and preserve stable codes and Russian-specific detail (17.772ms)
+✔ locale, durable language settings, localized HTTP errors and real download integrity are enforced (3437.8243ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 11613.2113

@@ -377,7 +377,7 @@ void main() {
         final scroll = tester.widget<SingleChildScrollView>(
           find.byKey(
             Key(
-              width >= 851 ? 'desktop-lyrics-scroll' : 'player-detail-view-1',
+              width >= 851 ? 'desktop-lyrics-scroll' : 'mobile-lyrics-scroll',
             ),
           ),
         );
@@ -385,7 +385,7 @@ void main() {
         await tester.drag(
           find.byKey(
             Key(
-              width >= 851 ? 'desktop-lyrics-scroll' : 'player-detail-view-1',
+              width >= 851 ? 'desktop-lyrics-scroll' : 'mobile-lyrics-scroll',
             ),
           ),
           const Offset(0, -250),

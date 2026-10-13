@@ -1,0 +1,19 @@
+{
+  "checkedAt": "2026-10-13T07:51:30.465Z",
+  "passed": true,
+  "archiveBytes": 133389603,
+  "archiveSha256": "4ba7c9641b17c4a2582c302c3e5d9f776256c68a9a2f0bbd23d38575d68e4884",
+  "entries": 1618,
+  "allCrcAndSourceHashesMatched": true,
+  "textFilesScanned": 696,
+  "localPrivateValuesAbsent": true,
+  "liveCredentialPatternsAbsent": true,
+  "staticFontFaces": 6,
+  "manropeStaticFontFaces": 5,
+  "frozenNativeSourcesMatched": 161,
+  "currentWebBuild": "/assets/main-esI8eL6O.js",
+  "runtimeDataExcluded": true,
+  "apkSha256": "4444f58d8d65b925dc1a2eec1e04bed7f42e821eb45c5f59bee996c0edb7c9e6",
+  "windowsSha256": "ad445154f99367a086e9fc69460f915c96abe816cf2f5be5fd75885dbb1aa46d",
+  "installerSha256": "a31de2a8bd1bf2e00eeca501a3aa22ee58200385f3668e51a8ea492f50029d85"
+}

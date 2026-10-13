@@ -47,3 +47,15 @@ Connect to same base URL; auth `{token?:nativeToken,deviceId,name,kind:'web'|'wi
 - server `notification` `{title,body,url}`.
 
 Use monotonic revision guards and seek correction for room drift; never let a device echo remote commands indefinitely. HTTP routes control durable state; realtime authorization isn't inferred from socket room names.
+
+## Ecosystem controls — 13 October 2026
+
+`GET /api/rooms` includes `rooms` (memberships), `publicRooms` (safe unjoined summaries), and admin-only `moderationRooms` (unjoined private summaries). Summaries include `memberCount`, `onlineCount`, `listeningCount`, `currentTrack` and up to three safe member identities with online/playing flags; they omit invitations, state, device identifiers and audio URLs. Private local-track metadata is hidden from non-members. Joined rooms include the same counts and `canManage`/`canControl` plus full member presence. Public pages are 40 items: `offset`, `publicRoomsTotal`, `nextPublicOffset`; admin private pages use `moderationOffset`, `moderationRoomsTotal`, `nextModerationOffset`. `room:directory {changed:true}` is a coalesced invalidation at most once per second, not a broadcast of private metadata.
+
+Admins can view, join, control and delete any existing room/Jam, bypassing membership capacity and ordinary participation limits. Automatic admin control is marked `administrative:true`; current stored role is checked for every command, so demotion removes it. Explicit owner grants are separate. Room operations are audited.
+
+`GET /api/admin/service` returns `{service:{name,scope,managed,owner,canRestart,pending,uptime}}`. `POST /api/admin/service/restart {confirmation:"RESTART_GLUKWAVE"}` returns 202 before invoking the graceful shutdown callback. It requires a stored admin role, an email in `ADMIN_EMAILS`, enabled managed restart, and no pending/recent restart. No arbitrary command or host restart is exposed.
+
+`GET /api/admin/resources` preserves process metrics and adds `history` (120 samples/5 seconds), `containerCpuOneCorePercent`, `containerCpuBudgetPercent`, `containerMemoryBudgetPercent` and cgroup limits. Unknown counters are null. CPU budget usage includes child extractor workers when cgroup counters are available.
+
+Client volume/color gestures apply local presentation immediately and commit once at release. Drafts do not persist or enter playback heartbeats. Optimistic shared controls are serialized and use per-field scope/version checks; older failures cannot undo a later edit. Account/output/room/track changes invalidate pending work.

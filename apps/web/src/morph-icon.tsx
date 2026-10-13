@@ -53,3 +53,9 @@ export function PlaybackMotionIcon({playing,loading,size=23,speed=1,motion=true}
  const element=useRef<HTMLSpanElement>(null),visible=useVisualVisibility(element),animated=motion&&visible;
  return <span ref={element} className="playback-glyph" data-loading={loading} data-visual-visible={visible} data-animated={animated} style={{width:size,height:size,'--playback-cycle':`${1.2/speed}s`,'--playback-enter':`${.22/speed}s`} as CSSProperties} aria-hidden="true"><MotionIcon name={loading?'loading':playing?'pause':'play'} size={size} speed={speed} motion={animated}/>{loading&&<svg className="playback-flow" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" aria-hidden="true"><path pathLength="48" d={paths.loading}/></svg>}</span>;
 }
+
+/** The same Wave stroke as transport loading; motion follows real output, visibility and preferences. */
+export function ListeningMotionIcon({playing,loading=false,size=18}:{playing:boolean;loading?:boolean;size?:number}){
+ const store=useStore(),element=useRef<HTMLSpanElement>(null),visible=useVisualVisibility(element),animated=store.motion&&visible&&(playing||loading);
+ return <span ref={element} className="listening-glyph wave-live" data-playing={playing} data-loading={loading} data-visual-visible={visible} data-animated={animated} style={{width:size,height:size,'--playback-cycle':`${(loading?1.2:2)/store.settings.appearance.speed}s`} as CSSProperties} aria-hidden="true"><MotionIcon name="loading" size={size} speed={store.settings.appearance.speed} motion={animated}/>{(playing||loading)&&<svg className="playback-flow" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round"><path pathLength="48" d={paths.loading}/></svg>}</span>;
+}

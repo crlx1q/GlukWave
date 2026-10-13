@@ -18,6 +18,9 @@ class FakeHls{
 const element=()=>({src:'old-source',error:null,loads:0,removeAttribute(name){if(name==='src')this.src='';},load(){this.loads++;},canPlayType(){return 'probably';}});
 const flush=()=>new Promise(resolve=>setImmediate(resolve));
 const fixture=()=>({loader:new AudioStreamLoader(async()=>({default:FakeHls})),audio:element(),signal:new AbortController()});
+test('progressive track replacement avoids an empty source and load reset between queue items',async()=>{
+ const {loader,audio,signal}=fixture();await loader.attach(audio,'/next.wav',undefined,signal.signal,()=>{});assert.equal(audio.src,'/next.wav');assert.equal(audio.loads,0);signal.abort();assert.equal(audio.src,'');
+});
 
 test('MSE HLS owns a clean audio element even when native HLS is advertised',async()=>{
  const {loader,audio,signal}=fixture();let failures=0;

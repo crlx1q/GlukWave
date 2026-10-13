@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "distinctTestsVerified": 104,
+  "initialFullRun": {
+    "tests": 104,
+    "passed": 102,
+    "failed": 2,
+    "log": "ecosystem17-server-tests-first.log"
+  },
+  "recovery": {
+    "tests": 11,
+    "passed": true,
+    "recoveredCases": [
+      "resource CPU samples warm up for a real interval instead of reporting a startup spike",
+      "locale, durable language settings, localized HTTP errors and real download integrity are enforced"
+    ],
+    "log": "ecosystem17-server-recovery.log"
+  },
+  "changesAfterFullRun": "Only test adapter POST stub and Windows temporary-directory deletion retries; no production changes.",
+  "hostingChanged": false
+}
