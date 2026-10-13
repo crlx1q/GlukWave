@@ -1,0 +1,40 @@
+{
+  "passed": true,
+  "distinctTestsVerified": 343,
+  "fullRun": {
+    "passed": 328,
+    "failed": 14,
+    "log": "wave18-native-tests-final.log"
+  },
+  "recovery": {
+    "uiPassed": 13,
+    "connectPassed": 1,
+    "logs": [
+      "wave18-native-ui-recovery.log",
+      "wave18-native-connect-recovery.log"
+    ]
+  },
+  "cause": "Stale expectations: heading plus new mode tab, corrected EQ thumb travel/curve geometry and wave context fields; production code unchanged during recovery",
+  "failedNames": [
+    "00:15 +24 -1: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart: Actual auth, offline Lo-Fi, profile and settings fit width 320.0 without setup copy [E]",
+    "00:19 +28 -2: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart: Actual auth, offline Lo-Fi, profile and settings fit width 390.0 without setup copy [E]",
+    "00:20 +28 -3: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_design_test.dart: Actual anchored compact EQ fits dark 320.0 at125 percent font [E]",
+    "00:21 +30 -4: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_design_test.dart: Actual anchored compact EQ fits dark 390.0 at125 percent font [E]",
+    "00:22 +39 -5: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_design_test.dart: Actual anchored compact EQ fits dark 1440.0 at125 percent font [E]",
+    "00:22 +39 -6: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart: Actual auth, offline Lo-Fi, profile and settings fit width 768.0 without setup copy [E]",
+    "00:23 +39 -7: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_design_test.dart: Actual anchored compact EQ fits amoled 320.0 at125 percent font [E]",
+    "00:24 +43 -8: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_design_test.dart: Actual anchored compact EQ fits amoled 390.0 at125 percent font [E]",
+    "00:25 +43 -9: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_design_test.dart: Actual anchored compact EQ fits amoled 1440.0 at125 percent font [E]",
+    "00:26 +44 -10: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart: Actual auth, offline Lo-Fi, profile and settings fit width 1280.0 without setup copy [E]",
+    "00:26 +44 -11: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_design_test.dart: Actual anchored compact EQ fits light 320.0 at125 percent font [E]",
+    "00:27 +50 -12: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_design_test.dart: Actual anchored compact EQ fits light 390.0 at125 percent font [E]",
+    "00:28 +50 -13: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_design_test.dart: Actual anchored compact EQ fits light 1440.0 at125 percent font [E]",
+    "00:35 +56 -14: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/connect_provider_test.dart: Account Connect mirrors remote playback and routes controls without local playback [E]"
+  ],
+  "additionalNewGlyphTestPassed": 1,
+  "postRefinement": {
+    "passed": 12,
+    "distinctAlreadyCountedGeometryAndLayouts": 11,
+    "proof": "wave18-eq-refinement-proof.json"
+  }
+}

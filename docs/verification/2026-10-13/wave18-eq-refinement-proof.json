@@ -1,0 +1,23 @@
+{
+  "passed": true,
+  "totalVerifiedCases": 12,
+  "focusedGlyph": {
+    "passed": 1,
+    "log": "work/qa/wave18-eq-glyph-recovery.log"
+  },
+  "geometry": {
+    "passed": 2,
+    "log": "work/qa/wave18-eq-labels-tests.log",
+    "note": "Both geometry cases passed on first run. Initial focused paint test had a test finder mismatch and then TextBox overhang measurement boundary mismatch; focused test separately recovered without production change."
+  },
+  "layouts": {
+    "passed": 9,
+    "log": "work/qa/wave18-eq-layout-refinement.log"
+  },
+  "onlyProductionFile": "apps/native/lib/ui/equalizer_panel.dart",
+  "newTestFile": "apps/native/test/wave18_eq_labels_test.dart",
+  "screenshots": [
+    "work/qa/native-wave18-eq-labels-1791887851097-375-125.png"
+  ],
+  "fullSuiteRerun": false
+}

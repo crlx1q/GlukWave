@@ -126,7 +126,13 @@ void main() {
         'surfaceId',
         'trackId',
         'queue',
+        'waveMode',
+        'waveMood',
+        'waveActive',
       });
+      expect(object(api.requests.last['data'])['waveMode'], 'personal');
+      expect(object(api.requests.last['data'])['waveMood'], 'personal');
+      expect(object(api.requests.last['data'])['waveActive'], false);
       await c.transfer(c.deviceId, targetSurfaceId: c.surfaceId);
       expect(object(api.requests.last['data']), {
         'deviceId': c.deviceId,

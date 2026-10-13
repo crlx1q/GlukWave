@@ -22,6 +22,7 @@ outputs/archive/**/*.zip
 outputs/archive/**/*.apk
 outputs/archive/**/*.exe
 outputs/archive/**/*.png
+outputs/archive/**/windows-unpacked/
 .playwright-cli/
 __pycache__/
 *.pyc

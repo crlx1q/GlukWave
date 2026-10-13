@@ -1,0 +1,138 @@
+{
+  "frozenAt": 1791889334.637728,
+  "files": [
+    {
+      "path": "apps/web/src/home-wave.tsx",
+      "sha256": "3824cb9d4d0c7533386a80773dfe4813eee4ba0a3100b075d603851980990b3b",
+      "modified": 1791884075.4524515
+    },
+    {
+      "path": "apps/web/src/parity-taste.tsx",
+      "sha256": "481685eb010084f9d53b3e9543337097162926c3f1357daf9092238423853e18",
+      "modified": 1791883892.7135825
+    },
+    {
+      "path": "apps/web/src/color-picker.tsx",
+      "sha256": "200f9b5ec99f4660c8613488246260c3da18aa954c1c7623e19b4f1104476393",
+      "modified": 1791884374.2010763
+    },
+    {
+      "path": "apps/web/src/equalizer-popover.tsx",
+      "sha256": "5615d23efea1f68b91c4e0d4c2dcb0884c79ce34328186f82fc56f412ffad366",
+      "modified": 1791881551.179052
+    },
+    {
+      "path": "apps/web/src/equalizer-geometry.ts",
+      "sha256": "e326a26d55cd5242156ebbf924eafb3ddf29c3327a66ba41d3b02edb7620730d",
+      "modified": 1791883199.729785
+    },
+    {
+      "path": "apps/web/src/morph-icon.tsx",
+      "sha256": "f2dc2dc4c3c1669e25e1f1d857f96955f4c2e1c2b423b0e7c3e5b9c976d64ad9",
+      "modified": 1791881551.1810992
+    },
+    {
+      "path": "apps/web/src/album.tsx",
+      "sha256": "6adb377b3ca8165177ea434867241854f7d7426c09b0d1e8d41f1534287b25b6",
+      "modified": 1791883483.87155
+    },
+    {
+      "path": "apps/web/src/wave.tsx",
+      "sha256": "2b6d2de856d0f44d6aeb4c9bb46f89a5de378c9aebb00b814e961745399d91f3",
+      "modified": 1791882808.5351524
+    },
+    {
+      "path": "apps/web/src/main.tsx",
+      "sha256": "e4a1edcce700831933e54756c2c78de3f9749d8d4ddf5103e48d21b07cad8fed",
+      "modified": 1791881881.5377917
+    },
+    {
+      "path": "apps/web/src/wave18-polish.css",
+      "sha256": "c491168d669fc00fbbd9c6a3acaf3c18d0303efb3d3a92f3788e8ff72c28dc6e",
+      "modified": 1791888232.2544284
+    },
+    {
+      "path": "apps/web/src/locales/en.json",
+      "sha256": "14d19d91476afddabbe1eda1c63a15c7dde8c4701049dee4bbc157009b90875f",
+      "modified": 1791883892.738262
+    },
+    {
+      "path": "apps/web/src/locales/ru.json",
+      "sha256": "5c24fb3d37aba3d377a855db840f614303d99ff9793a1ef9cb7dd9aa39cb9b81",
+      "modified": 1791883892.7337444
+    },
+    {
+      "path": "apps/web/src/locales/kk.json",
+      "sha256": "6fb89d6d908717e6aabbaa53ad6ec043d3bce926f93386c158c89b55a60584e6",
+      "modified": 1791883892.7455459
+    },
+    {
+      "path": "apps/web/src/locales/uk.json",
+      "sha256": "91ceda8cdd557513bcfcbe89e46f480dba6d99af5dc84c3805f83ace32babb08",
+      "modified": 1791883892.753242
+    },
+    {
+      "path": "apps/web/src/locales/de.json",
+      "sha256": "a577514382c184ed94756e2b327600bc2e74e1133ff6c9ef267708cc77d5dfa6",
+      "modified": 1791883892.7579253
+    },
+    {
+      "path": "apps/web/src/locales/es.json",
+      "sha256": "114a5cb1c9ff2d698033eae4ea51d4c70ded0ed734c092e4a43dbff6938c673c",
+      "modified": 1791883892.7630925
+    },
+    {
+      "path": "apps/native/lib/ui/app.dart",
+      "sha256": "5cae89e2ee5cc6166adee3d62b97e3cd2648ffc9574a65284037259f2ffb789b",
+      "modified": 1791886175.7708483
+    },
+    {
+      "path": "apps/native/lib/ui/album_stage.dart",
+      "sha256": "c43315e9c012126effd09f9bcfe04a57f55f9ef1419d972adb531c9829cc3565",
+      "modified": 1791882143.659031
+    },
+    {
+      "path": "apps/native/lib/ui/widgets.dart",
+      "sha256": "861ba4c0cf28fa58e5271d7ea6662f6b45c3332423c0781a7a0d004b292efc3d",
+      "modified": 1791883077.9173295
+    },
+    {
+      "path": "apps/native/lib/ui/discovery.dart",
+      "sha256": "9563825e102eee75988561799fe060878257738a44a0ed05a3e3d491d07fd5f6",
+      "modified": 1791882883.8097832
+    },
+    {
+      "path": "apps/native/lib/ui/parity_panels.dart",
+      "sha256": "05a8c4fcb2a9b275c1657fbe23d4c57bd1ae096f881454694992dd7e7b7d8c4e",
+      "modified": 1791883073.9290535
+    },
+    {
+      "path": "apps/native/lib/ui/equalizer_panel.dart",
+      "sha256": "8794da5e25f836403c4eaf89644e4d22c4f57c8fd02cc12a8c41d351e12e7729",
+      "modified": 1791887513.591148
+    },
+    {
+      "path": "apps/native/lib/ui/equalizer_curve.dart",
+      "sha256": "31a04b368d5b3d8cec5d1f48dc2643e2b86beadef1f1afea47c3489deab6f06e",
+      "modified": 1791883720.3736587
+    },
+    {
+      "path": "apps/native/lib/ui/wave18_strings.dart",
+      "sha256": "03d34a79c65b9180523e4b3a84c6022b1690e21ed864e3da82f97f173fdd82d9",
+      "modified": 1791883762.7788334
+    },
+    {
+      "path": "apps/native/lib/core/parity.dart",
+      "sha256": "77950e7900b39e15c29ed8e6f53a73fcb88d0573a7c4c4702de9c05e897e7361",
+      "modified": 1791885365.0505598
+    },
+    {
+      "path": "apps/web/src/player-ui.tsx",
+      "sha256": "8b6912ef2b4fb80fee708f56f2a2fce0ef3ff9a4e445650143033cdaa78e7980",
+      "modified": 1791889013.667082
+    }
+  ],
+  "scope": "UI production files and root-authorized WaveParity.load mode/mood API only. Root other core changes independent.",
+  "final": true,
+  "postProofChange": "Root-authorized autoplay body portal: fixed premeasured anchor, mobile progress clipping preserved, fullscreen focus loop includes notice, resumePlayback through store.run. Notice geometry/hit tests at1440,375,375@125 and trusted CDP Shift+Tab/Tab PASS. Native EQ refinement remains unchanged."
+}

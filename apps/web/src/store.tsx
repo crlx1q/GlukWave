@@ -32,7 +32,7 @@ export function StoreProvider({children}:{children:ReactNode}) {useLocale();
   const [libraryOwner,setLibraryOwner]=useState<string|null>(null),[libraryPending,setLibraryPending]=useState(false),libraryFlight=useRef(0);
   const [loading,setLoading]=useState(true),[offline,setOffline]=useState(!navigator.onLine),[route,setRoute]=useState<Route>(initialRoute),[query,setQuery]=useState(''),[source,setSource]=useState('all'),[authOpen,setAuthOpen]=useState(false),[toast,setToast]=useState<Toast|null>(null);
   const [settingsSync,setSettingsSync]=useState<'saved'|'saving'|'local'>('local'),[systemDark,setSystemDark]=useState(()=>matchMedia('(prefers-color-scheme: dark)').matches),[systemMotion,setSystemMotion]=useState(()=>matchMedia('(prefers-reduced-motion: reduce)').matches),[systemContrast,setSystemContrast]=useState(()=>matchMedia('(prefers-contrast: more)').matches);
-  const settingsRef=useRef(settings),settingsFrame=useRef<number|null>(null);
+  const settingsRef=useRef(settings),settingsFrame=useRef<number|null>(null),presentHeldPalette=useRef(()=>{});
   const settingsHolds=useRef(0);
   const settingsServer=useRef(settings),pendingSettings=useRef<SettingsPatch>({}),serverRevision=useRef(-1),accountGeneration=useRef(0),settingsTimer=useRef<ReturnType<typeof setTimeout>|undefined>(undefined),settingsFlight=useRef<{userId:string;generation:number;controller:AbortController;partial:SettingsPatch}|null>(null),flushSettingsRef=useRef<(id:string)=>Promise<void>>(async()=>{});
   const userRef=useRef(user);userRef.current=user;const toastTimer=useRef<ReturnType<typeof setTimeout>|undefined>(undefined);
@@ -72,7 +72,7 @@ export function StoreProvider({children}:{children:ReactNode}) {useLocale();
     const edits=mergeSettingsPatches(flight?.userId===id?flight.partial:{},pendingSettings.current);
     const next=mergeSettings(settingsServer.current,edits);settingsRef.current=next;
     const present=()=>{setLanguageChoice(settingsRef.current.language);setSettings(settingsRef.current);setSettingsSync(id?(Object.keys(edits).length?(navigator.onLine?'saving':'local'):'saved'):'local');};
-    if(settingsHolds.current){if(settingsFrame.current===null){const generation=accountGeneration.current;settingsFrame.current=requestAnimationFrame(()=>{settingsFrame.current=null;if(generation===accountGeneration.current)present();});}return;}
+    if(settingsHolds.current){if(settingsFrame.current===null){const generation=accountGeneration.current;settingsFrame.current=requestAnimationFrame(()=>{settingsFrame.current=null;if(generation!==accountGeneration.current)return;const paletteOnly=Object.keys(edits).every(key=>key==='appearance')&&Object.keys(edits.appearance||{}).every(key=>['light','dark','amoled','coverAccent'].includes(key));if(paletteOnly)presentHeldPalette.current();else present();});}return;}
     if(settingsFrame.current!==null){cancelAnimationFrame(settingsFrame.current);settingsFrame.current=null;}
     present();writeLocalSettings(id,next);if(id)writePendingSettings(id,edits);
   },[]);
@@ -134,6 +134,7 @@ export function StoreProvider({children}:{children:ReactNode}) {useLocale();
   },[scheduleSettings,pullSettings,acceptSettings]);
   const resolvedTheme=settings.theme==='system'?(systemDark?'dark':'light'):settings.theme,motion=!settings.reducedMotion&&!systemMotion;
   const renderAccent=readableCoverAccent(settings.appearance.coverAccent?coverAccent:null,settings.appearance[resolvedTheme].bg,settings.appearance[resolvedTheme].accent,systemContrast);
+  presentHeldPalette.current=()=>{const live=settingsRef.current;applyAppearance(live.appearance,resolvedTheme,motion,readableCoverAccent(live.appearance.coverAccent?coverAccent:null,live.appearance[resolvedTheme].bg,live.appearance[resolvedTheme].accent,systemContrast));window.dispatchEvent(new Event('wave:palette-preview'));};
   useLayoutEffect(()=>applyAppearance(settings.appearance,resolvedTheme,motion,renderAccent),[settings.appearance,resolvedTheme,motion,renderAccent]);
   const requireAuth=useCallback(()=>{if(!user){setAuthOpen(true);return false;}if(offline){notify(t('copy.729'),true);return false;}return true;},[user,offline,notify]);
   const run=useCallback(async<T,>(operation:()=>Promise<T>,success?:string)=>{try{const result=await operation();if(success)notify(success);return result;}catch(error){notify(errorText(error),true);return undefined;}},[notify]);

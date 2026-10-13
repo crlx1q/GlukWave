@@ -1,0 +1,15 @@
+✔ wave respects explicit genres and artists with a genuine empty cold start (13.617ms)
+✔ favorites and unfamiliar are distinct filters, not shuffled copies (2.7383ms)
+✔ accepted listening and quick skips change ranking, while learning can be disabled (1.2686ms)
+✔ seed similarity, mood and exclusion apply independently (2.3346ms)
+✔ popular ranks actual platform activity, and diversity avoids artist runs and duplicate songs (1.4526ms)
+✔ real recommendation API persists genres, protects private seeds and rejects stale output controls (2252.7897ms)
+✔ closing HLS and progressive clients before source resolution never pipes into a destroyed response (5300.9888ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9131.0583

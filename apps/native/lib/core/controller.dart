@@ -32,6 +32,12 @@ import '../l10n/wave_localizations.dart';
 import '../l10n/parity_strings.dart';
 
 class WaveController extends ChangeNotifier {
+  String waveMode = 'personal', waveMood = 'personal';
+  bool waveActive = false;
+  int _waveVersion = 0, _stateSequence = 0;
+  Future<bool>? _waveTail;
+  bool _confirmingControl = false;
+  String? _confirmingScope;
   final WaveApi api;
   final MusicCache cache;
   final WaveAudioHandler audio;
@@ -352,11 +358,18 @@ class WaveController extends ChangeNotifier {
         return true;
       }
       final active = room;
-      if (active == null) return false;
+      if (active == null) {
+        if (repeat == AudioServiceRepeatMode.none && await _refillWaveTail()) {
+          await audio.localCommand('next');
+          return true;
+        }
+        return false;
+      }
       if (canControl &&
           _roomOutputActive &&
           outputHere &&
           object(active['state'])['trackId'] == track.id) {
+        if (repeat == AudioServiceRepeatMode.none) await _refillWaveTail();
         await emitAck('room:command', {
           'roomId': active['id'],
           'command': 'ended',
@@ -377,6 +390,10 @@ class WaveController extends ChangeNotifier {
         return true;
       }
       if (lanEnabled) {
+        await transport(command, data);
+        return true;
+      }
+      if (command == 'next') {
         await transport(command, data);
         return true;
       }
@@ -825,6 +842,12 @@ class WaveController extends ChangeNotifier {
     _localOutputActive = false;
     _provisionalOutput = false;
     _accountGeneration++;
+    _confirmingControl = false;
+    _confirmingScope = null;
+    _waveVersion++;
+    _waveTail = null;
+    waveActive = false;
+    waveMode = waveMood = 'personal';
     _deviceCommandGeneration++;
     audio.clearRemote();
     room = null;
@@ -1018,17 +1041,29 @@ class WaveController extends ChangeNotifier {
     }
   }
 
-  Future<void> startWave({String mood = 'personal'}) async {
+  Future<void> startWave({
+    String mood = 'personal',
+    String mode = 'personal',
+  }) async {
     if (!loggedIn || !canControl || lanEnabled) return;
-    final scope = namespace, generation = _accountGeneration;
+    final scope = namespace,
+        session = api.token,
+        origin = api.server,
+        version = ++_waveVersion;
     final response = await api.call(
       '/api/recommendations',
-      query: {'mood': mood},
+      query: {
+        'mood': mood,
+        'mode': mode,
+        'nonce': '${DateTime.now().millisecondsSinceEpoch}',
+      },
     );
     if (_disposed ||
         !loggedIn ||
         namespace != scope ||
-        generation != _accountGeneration ||
+        session != api.token ||
+        origin != api.server ||
+        version != _waveVersion ||
         !canControl ||
         lanEnabled) {
       return;
@@ -1041,7 +1076,115 @@ class WaveController extends ChangeNotifier {
     }
     // Resolve the selected source through the same permitted-audio pipeline as
     // the full app. Do not filter every unresolved provider out of discovery.
-    await play(recommendations.first, list: recommendations);
+    waveMode = mode;
+    waveMood = mood;
+    waveActive = true;
+    await play(
+      recommendations.first,
+      list: recommendations,
+      preserveWave: true,
+    );
+  }
+
+  Future<bool> _refillWaveTail() {
+    if (_waveTail != null) return _waveTail!;
+    final current = audio.viewCurrent, items = audio.viewTracks;
+    if (!loggedIn ||
+        !online ||
+        !canControl ||
+        lanEnabled ||
+        current == null ||
+        !items.any((item) => item.id == current.id) ||
+        audio.repeat == AudioServiceRepeatMode.all ||
+        items.indexWhere((item) => item.id == current.id) < items.length - 1) {
+      return Future.value(false);
+    }
+    final scope = controlScope,
+        session = api.token,
+        origin = api.server,
+        version = _waveVersion;
+    final operation = () async {
+      final ids = items.map((item) => item.id).toList();
+      final query = <String, dynamic>{
+        'mode': waveMode,
+        'mood': waveMood,
+        'seedTrackId': current.id,
+        'exclude': ids
+            .skip((ids.length - 100).clamp(0, ids.length).toInt())
+            .join(','),
+        'limit': 20,
+        'nonce': '${DateTime.now().millisecondsSinceEpoch}',
+      };
+      var result = await api.call('/api/recommendations', query: query);
+      if (objects(result['tracks']).isEmpty && waveMode != 'discovery') {
+        result = await api.call(
+          '/api/recommendations',
+          query: {...query, 'exclude': current.id},
+        );
+      }
+      if (_disposed ||
+          session != api.token ||
+          origin != api.server ||
+          version != _waveVersion ||
+          scope != controlScope ||
+          audio.viewCurrent?.id != current.id) {
+        return false;
+      }
+      final incoming = objects(
+        result['tracks'],
+      ).map(WaveTrack.new).where((item) => item.id != current.id).toList();
+      if (incoming.isEmpty) return false;
+      final fresh = incoming.where((item) => !ids.contains(item.id)).toList(),
+          additions = <WaveTrack>[];
+      additions.addAll(fresh.isNotEmpty ? fresh : incoming);
+      final addedIds = additions.map((item) => item.id).toSet();
+      final start = (items.indexWhere((item) => item.id == current.id) - 60)
+          .clamp(0, items.length)
+          .toInt();
+      final order = [
+        ...items.skip(start).where((item) => !addedIds.contains(item.id)),
+        ...additions,
+      ];
+      for (final item in additions) {
+        if (!tracks.any((value) => value.id == item.id)) tracks.add(item);
+      }
+      waveActive = true;
+      if (room != null || controllingRemote) {
+        await _transport('queue', {
+          'queue': order.map((item) => item.id).toList(),
+          'trackId': current.id,
+          'waveMode': waveMode,
+          'waveMood': waveMood,
+          'waveActive': true,
+        });
+      } else {
+        audio.replaceQueue(order);
+        _report();
+      }
+      if (_disposed ||
+          session != api.token ||
+          origin != api.server ||
+          version != _waveVersion ||
+          scope != controlScope ||
+          audio.viewCurrent?.id != current.id) {
+        return false;
+      }
+      waveActive = true;
+      notifyListeners();
+      return true;
+    }();
+    _waveTail = operation;
+    unawaited(
+      operation.then<void>(
+        (_) {
+          if (identical(_waveTail, operation)) _waveTail = null;
+        },
+        onError: (Object _, StackTrace __) {
+          if (identical(_waveTail, operation)) _waveTail = null;
+        },
+      ),
+    );
+    return operation;
   }
 
   void _applySettings() {
@@ -1257,8 +1400,17 @@ class WaveController extends ChangeNotifier {
           (await api.call('/api/tracks/${Uri.encodeComponent(id)}'))['track'],
         ),
       );
-  Future<void> play(WaveTrack target, {List<WaveTrack>? list}) async {
+  Future<void> play(
+    WaveTrack target, {
+    List<WaveTrack>? list,
+    bool preserveWave = false,
+  }) async {
     if (!canControl) throw WaveException(wt('native.131b87ec38'));
+    if (!preserveWave) {
+      _waveVersion++;
+      waveActive = false;
+      waveMode = waveMood = 'personal';
+    }
     final revision = ++_selectionRevision;
     transportPending = true;
     audio.showPendingSelection(target);
@@ -1307,7 +1459,13 @@ class WaveController extends ChangeNotifier {
         .map((t) => t.id)
         .toList();
     if (room != null) {
-      await transport('track', {'trackId': target.id, 'queue': ids});
+      await transport('track', {
+        'trackId': target.id,
+        'queue': ids,
+        'waveMode': waveMode,
+        'waveMood': waveMood,
+        'waveActive': waveActive,
+      });
       return;
     }
     if (controllingRemote) {
@@ -1315,6 +1473,9 @@ class WaveController extends ChangeNotifier {
         'surfaceId': activeSurfaceId,
         'trackId': target.id,
         'queue': ids,
+        'waveMode': waveMode,
+        'waveMood': waveMood,
+        'waveActive': waveActive,
       });
       return;
     }
@@ -1375,6 +1536,29 @@ class WaveController extends ChangeNotifier {
       transportPending = true;
       notifyListeners();
       try {
+        if (command == 'next') {
+          final current = audio.viewCurrent, items = audio.viewTracks;
+          final tail =
+              loggedIn &&
+              online &&
+              !lanEnabled &&
+              current != null &&
+              items.isNotEmpty &&
+              items.last.id == current.id &&
+              audio.repeat != AudioServiceRepeatMode.all;
+          if (tail) {
+            final scope = controlScope, available = await _refillWaveTail();
+            if (revision != _selectionRevision ||
+                scope != controlScope ||
+                audio.viewCurrent?.id != current.id) {
+              return;
+            }
+            if (!available) {
+              await _transport('pause', const {});
+              return;
+            }
+          }
+        }
         await _transport(command, data);
       } finally {
         if (revision == _selectionRevision) {
@@ -1430,11 +1614,51 @@ class WaveController extends ChangeNotifier {
       final operation = _controlWrites.catchError((_) {}).then((_) async {
         if (token != api.token ||
             origin != api.server ||
-            scope != controlScope) {
+            scope != controlScope ||
+            _controlRevisions[field] != revision) {
           return;
         }
         try {
+          _confirmingControl = true;
+          _confirmingScope = scope;
           await _transport(command, data);
+          if (token != api.token ||
+              origin != api.server ||
+              scope != controlScope) {
+            return;
+          }
+          if (socket?.connected == true && outputHere && !lanEnabled) {
+            final sent = snapshot().toJson();
+            for (var attempt = 0; attempt < 2; attempt++) {
+              final ack = await emitAck('device:state', {
+                ...sent,
+                'sequence': ++_stateSequence,
+                'confirm': true,
+                'outputActive': true,
+                'roomId': room?['id'],
+                'trackLoading': trackLoading,
+              });
+              final confirmed = object(ack['connect']),
+                  state = object(confirmed['state']);
+              final expected = field == 'repeat'
+                  ? (value == AudioServiceRepeatMode.one
+                        ? 'one'
+                        : value == AudioServiceRepeatMode.all
+                        ? 'all'
+                        : 'off')
+                  : value;
+              if (state[field] == expected) {
+                await receiveAccountState(confirmed);
+                break;
+              }
+              if (attempt == 1) {
+                throw WaveException(
+                  wt('native.7e03f83d51'),
+                  'PLAYBACK_CHANGED',
+                );
+              }
+            }
+          }
           if (token != api.token ||
               origin != api.server ||
               scope != controlScope) {
@@ -1479,6 +1703,12 @@ class WaveController extends ChangeNotifier {
             );
             _confirmedControls.remove(field);
             if (!_disposed) notifyListeners();
+          }
+          if (_confirmingScope == scope &&
+              token == api.token &&
+              origin == api.server) {
+            _confirmingControl = false;
+            _confirmingScope = null;
           }
         }
       });
@@ -2365,6 +2595,7 @@ class WaveController extends ChangeNotifier {
     updatedAt: DateTime.now().millisecondsSinceEpoch,
   );
   void _report() {
+    if (_confirmingControl && _confirmingScope == controlScope) return;
     if (lanEnabled) {
       unawaited(_lanReport());
       return;
@@ -2372,6 +2603,10 @@ class WaveController extends ChangeNotifier {
     if (socket?.connected == true) {
       socket!.emit('device:state', {
         ...snapshot().toJson(),
+        'sequence': ++_stateSequence,
+        'waveMode': waveMode,
+        'waveMood': waveMood,
+        'waveActive': waveActive,
         'outputActive': room != null
             ? _roomOutputActive && outputHere
             : !controllingRemote && _localOutputActive,
@@ -2402,6 +2637,11 @@ class WaveController extends ChangeNotifier {
   Future<void> receiveDeviceCommand(Json data) async {
     if (lanEnabled) throw WaveException(lanText('busy'));
     final command = data['command'];
+    if (command == 'queue' &&
+        data['trackId'] != null &&
+        data['trackId'] != audio.viewCurrent?.id) {
+      throw WaveException(wt('native.7e03f83d51'), 'PLAYBACK_CHANGED');
+    }
     final generation = ['track', 'transfer', 'pause', 'stop'].contains(command)
         ? ++_deviceCommandGeneration
         : _deviceCommandGeneration;
@@ -2423,6 +2663,11 @@ class WaveController extends ChangeNotifier {
 
   Future<void> _applyDeviceCommand(Json data, int generation) async {
     final command = data['command'] as String? ?? '';
+    if (data['waveMode'] is String && data['waveMood'] is String) {
+      waveMode = data['waveMode'] as String;
+      waveMood = data['waveMood'] as String;
+      waveActive = data['waveActive'] == true;
+    }
     if (data['localOnly'] == true && data['outputActive'] is bool) {
       _provisionalOutput = data['outputActive'] == true;
     }
@@ -2756,6 +3001,14 @@ class WaveController extends ChangeNotifier {
     _connectSupported = true;
     final generation = ++_accountGeneration;
     connect = Map.of(incoming);
+    final waveState = object(incoming['state']);
+    if (!transportPending &&
+        waveState['waveMode'] is String &&
+        waveState['waveMood'] is String) {
+      waveMode = waveState['waveMode'] as String;
+      waveMood = waveState['waveMood'] as String;
+      waveActive = waveState['waveActive'] == true;
+    }
     _ensureControlScope();
     if (_provisionalOutput &&
         activeDeviceId == deviceId &&

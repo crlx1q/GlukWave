@@ -1,0 +1,1242 @@
+{
+  "checkedAt": "2026-10-13T11:07:29.676516+00:00",
+  "version": "1.0.0+18",
+  "scope": "Smart Wave recommendations, queue continuation, bounded preparation/repeat, sequenced output controls, stream cancellation, UI refinements and explicit autoplay recovery",
+  "server": {
+    "testsPassed": 111,
+    "failures": 0
+  },
+  "web": {
+    "javascript": "/assets/main-C9z0Sr7l.js",
+    "testsPassed": 71,
+    "buildPassed": true,
+    "ui": {
+      "passed": true,
+      "session": "wave18-ui-1791885987344",
+      "url": "http://127.0.0.1:5202",
+      "scope": "Actual React app, isolated own WAV/API fixture; no hosting data or physical device checks.",
+      "checks": [
+        {
+          "waveFourModesSevenIndependentMoods": true,
+          "request": {
+            "limit": "20",
+            "mode": "favorites",
+            "mood": "happy",
+            "nonce": "1791886028196"
+          },
+          "rankedFirstTrack": true
+        },
+        {
+          "allVisibleGlyphsCentered": true,
+          "glyphs": [
+            {
+              "canvas": 23,
+              "dx": 0,
+              "dy": 0,
+              "equal": true
+            },
+            {
+              "canvas": 23,
+              "dx": 0,
+              "dy": 0,
+              "equal": true
+            },
+            {
+              "canvas": 23,
+              "dx": 0,
+              "dy": 0,
+              "equal": true
+            }
+          ]
+        },
+        {
+          "emptyErrorAndRetry": true
+        },
+        {
+          "tasteCompactGenreChoices": 14,
+          "persistedGenres": [
+            "electronic",
+            "pop",
+            "classical"
+          ]
+        },
+        {
+          "colorFirstVisibleFrameAnchored": true,
+          "frames": 24,
+          "colorLongHoldImmediate": true,
+          "heldRequests": 0,
+          "heldStorageWrites": 0,
+          "oneFinalPatch": true,
+          "accent": "#4f32a5",
+          "color": "#4f32a5",
+          "editing": "true",
+          "latencies": [
+            0.699999988079071,
+            0.5,
+            0.3999999761581421,
+            0.5999999642372131,
+            0.7999999523162842,
+            0.30000001192092896
+          ],
+          "transition": "0s",
+          "writes": 0
+        },
+        {
+          "visibleListeningWaveChanges": true,
+          "animated": "true",
+          "base": {
+            "bottom": 76.5,
+            "height": 19,
+            "left": 753.5625,
+            "right": 772.5625,
+            "top": 57.5,
+            "width": 19,
+            "x": 753.5625,
+            "y": 57.5
+          },
+          "display": "grid",
+          "overlay": {
+            "bottom": 76.5,
+            "height": 19,
+            "left": 753.5625,
+            "right": 772.5625,
+            "top": 57.5,
+            "width": 19,
+            "x": 753.5625,
+            "y": 57.5
+          },
+          "path": "33.166px",
+          "next": "14.962px"
+        },
+        {
+          "equalizerRadiusChangesActualLine": true,
+          "roundedRadius": 38,
+          "smallRadius": 8,
+          "smooth": "M15,72C25,72 35,72 45,72C55,72 65,139.164 75,139.16417910447763C85,139.164 95,4.836 105,4.835820895522389C115,4.836 125,72 135,72C145,72 155,32.821 165,32.82089552238806C175,32.821 185,99.985 195,99.98507462686567C205,99.985 215,72 225,72C235,72 245,72 255,72C265,72 275,72 285,72",
+          "sharp": "M15,72C25,72 35,72 45,72C55,86.925 65,124.239 75,139.16417910447763C85,109.313 95,34.687 105,4.835820895522389C115,19.761 125,57.075 135,72C145,63.294 155,41.527 165,32.82089552238806C175,47.746 185,85.06 195,99.98507462686567C205,93.766 215,78.219 225,72C235,72 245,72 255,72C265,72 275,72 285,72"
+        },
+        {
+          "theme": "light",
+          "reducedMotionNoActiveSoundGlyph": true
+        },
+        {
+          "theme": "amoled",
+          "reducedMotionNoActiveSoundGlyph": true
+        }
+      ],
+      "layouts": [
+        {
+          "width": 375,
+          "height": 812,
+          "scale": 1,
+          "modes": [
+            {
+              "bottom": 561.59375,
+              "height": 35,
+              "left": 22,
+              "right": 102,
+              "top": 526.59375,
+              "width": 80,
+              "x": 22,
+              "y": 526.59375
+            },
+            {
+              "bottom": 561.59375,
+              "height": 35,
+              "left": 107,
+              "right": 181.359375,
+              "top": 526.59375,
+              "width": 74.359375,
+              "x": 107,
+              "y": 526.59375
+            },
+            {
+              "bottom": 561.59375,
+              "height": 35,
+              "left": 186.359375,
+              "right": 242.921875,
+              "top": 526.59375,
+              "width": 56.5625,
+              "x": 186.359375,
+              "y": 526.59375
+            },
+            {
+              "bottom": 601.59375,
+              "height": 35,
+              "left": 22,
+              "right": 124.03125,
+              "top": 566.59375,
+              "width": 102.03125,
+              "x": 22,
+              "y": 566.59375
+            }
+          ],
+          "moodsScrollable": true,
+          "overflow": -10,
+          "selectedModes": 1
+        },
+        {
+          "width": 320,
+          "height": 812,
+          "scale": 1.25,
+          "modes": [
+            {
+              "bottom": 695.75,
+              "height": 43.75,
+              "left": 22.5,
+              "right": 122,
+              "top": 652,
+              "width": 99.5,
+              "x": 22.5,
+              "y": 652
+            },
+            {
+              "bottom": 695.75,
+              "height": 43.75,
+              "left": 128.25,
+              "right": 220.703125,
+              "top": 652,
+              "width": 92.453125,
+              "x": 128.25,
+              "y": 652
+            },
+            {
+              "bottom": 745.75,
+              "height": 43.75,
+              "left": 22.5,
+              "right": 92.703125,
+              "top": 702,
+              "width": 70.203125,
+              "x": 22.5,
+              "y": 702
+            },
+            {
+              "bottom": 745.75,
+              "height": 43.75,
+              "left": 98.953125,
+              "right": 226,
+              "top": 702,
+              "width": 127.046875,
+              "x": 98.953125,
+              "y": 702
+            }
+          ],
+          "moodsScrollable": true,
+          "overflow": -10,
+          "selectedModes": 1
+        },
+        {
+          "coverRotation": true,
+          "width": 1440,
+          "height": 474,
+          "controlsBottom": 870.6875,
+          "facesFit": true,
+          "layoutOverflow": 0,
+          "lightX": "99.93643240324457%",
+          "size": 340
+        },
+        {
+          "coverRotation": true,
+          "width": 938,
+          "height": 451,
+          "controlsBottom": 839.1875,
+          "facesFit": true,
+          "layoutOverflow": 0,
+          "lightX": "30.752413571081803%",
+          "size": 326
+        },
+        {
+          "coverRotation": true,
+          "width": 375,
+          "height": 289,
+          "controlsBottom": 703.390625,
+          "facesFit": true,
+          "layoutOverflow": 0,
+          "lightX": "0.10969641067685165%",
+          "size": 210
+        }
+      ],
+      "screenshots": [
+        "work/qa/wave18-ui-1791885987344-wave-loading-desktop.png",
+        "work/qa/wave18-ui-1791885987344-wave-desktop.png",
+        "work/qa/wave18-ui-1791885987344-wave-empty.png",
+        "work/qa/wave18-ui-1791885987344-wave-375-1.png",
+        "work/qa/wave18-ui-1791885987344-wave-320-1.25.png",
+        "work/qa/wave18-ui-1791885987344-taste-desktop.png",
+        "work/qa/wave18-ui-1791885987344-color-held.png",
+        "work/qa/wave18-ui-1791885987344-cover-1440.png",
+        "work/qa/wave18-ui-1791885987344-cover-938.png",
+        "work/qa/wave18-ui-1791885987344-cover-375.png",
+        "work/qa/wave18-ui-1791885987344-equalizer-rounded.png",
+        "work/qa/wave18-ui-1791885987344-equalizer-radius8.png",
+        "work/qa/wave18-ui-1791885987344-player-light-reduced.png",
+        "work/qa/wave18-ui-1791885987344-player-amoled-reduced.png"
+      ],
+      "completedAt": 1791886254.9423258,
+      "sourceFreezeFile": "work/qa/wave18-ui-source-freeze.json",
+      "postCaptureSyntaxOnlyBraces": true,
+      "postFreezeNoticeProof": "work/qa/wave18-notice-ui-proof.json",
+      "realConnectProof": "work/qa/wave18-connect-proof.json",
+      "postProofBoundary": "Only autoplay notice moved from clipped footer to a premeasured body portal, with existing mobile progress clipping and fullscreen keyboard loop preserved. Narrow fresh notice proof supplements original UI proof; root real-browser proof covers actual audio permission and transfer."
+    },
+    "core": {
+      "passed": true,
+      "cases": [
+        {
+          "name": "Cold trusted Wave click resolves and decodes real audio",
+          "state": {
+            "active": true,
+            "blocked": false,
+            "duration": 8,
+            "here": true,
+            "id": "original-1",
+            "loading": false,
+            "mode": {
+              "mode": "personal",
+              "mood": "calm"
+            },
+            "paused": false,
+            "queue": [
+              "original-1",
+              "original-6",
+              "original-7",
+              "original-4",
+              "original-5",
+              "original-3",
+              "original-2",
+              "original-0",
+              "original-9",
+              "original-8",
+              "original-11",
+              "original-10"
+            ],
+            "repeat": "off",
+            "src": "http://127.0.0.1:5204/api/media/original-1"
+          }
+        },
+        {
+          "name": "Search selection Next creates a real server-ranked seed wave",
+          "state": {
+            "active": true,
+            "blocked": false,
+            "duration": 8,
+            "here": true,
+            "id": "original-1",
+            "loading": false,
+            "mode": {
+              "mode": "personal",
+              "mood": "personal"
+            },
+            "paused": false,
+            "queue": [
+              "original-0",
+              "original-1",
+              "original-3",
+              "original-6",
+              "original-7",
+              "original-4",
+              "original-5",
+              "original-2",
+              "original-9",
+              "original-8",
+              "original-11",
+              "original-10"
+            ],
+            "repeat": "off",
+            "src": "http://127.0.0.1:5204/api/media/original-1"
+          }
+        },
+        {
+          "name": "Finite playlist natural end continues with media metadata retained",
+          "frames": 22,
+          "state": {
+            "active": true,
+            "blocked": false,
+            "duration": 8,
+            "here": true,
+            "id": "original-11",
+            "loading": false,
+            "mode": {
+              "mode": "personal",
+              "mood": "personal"
+            },
+            "paused": false,
+            "queue": [
+              "original-8",
+              "original-9",
+              "original-11",
+              "original-10",
+              "original-1",
+              "original-4",
+              "original-5",
+              "original-6",
+              "original-7",
+              "original-3",
+              "original-2",
+              "original-0"
+            ],
+            "repeat": "off",
+            "src": "http://127.0.0.1:5204/api/media/original-11"
+          }
+        },
+        {
+          "name": "Repeat reuses the same decoder/source and makes no new playback GET",
+          "track": "original-11",
+          "resolutions": 2
+        },
+        {
+          "name": "Rapid repeat commands retain the final acknowledged selection",
+          "repeat": "one"
+        },
+        {
+          "name": "Favorites tail retains the selected mode and mood",
+          "state": {
+            "active": true,
+            "blocked": false,
+            "duration": 8,
+            "here": true,
+            "id": "original-1",
+            "loading": false,
+            "mode": {
+              "mode": "favorites",
+              "mood": "sad"
+            },
+            "paused": false,
+            "queue": [
+              "original-0",
+              "original-1"
+            ],
+            "repeat": "off",
+            "src": "http://127.0.0.1:5204/api/media/original-1"
+          }
+        },
+        {
+          "name": "Late seed recommendations cannot stop or replace a newer explicit choice",
+          "state": {
+            "active": false,
+            "blocked": false,
+            "duration": 8,
+            "here": true,
+            "id": "original-8",
+            "loading": false,
+            "mode": {
+              "mode": "personal",
+              "mood": "personal"
+            },
+            "paused": false,
+            "queue": [
+              "original-8"
+            ],
+            "repeat": "off",
+            "src": "http://127.0.0.1:5204/api/media/original-8"
+          }
+        }
+      ],
+      "boundary": "Real isolated SQLite backend, auth, Socket.IO and Audio decoding original generated WAV. Fixture button calls the real React player during trusted clicks; UI geometry independently checked. No hosted extractors or physical devices.",
+      "counts": {
+        "counts": {
+          "GET /auth/me": 4,
+          "GET /config": 4,
+          "GET /connect": 2,
+          "GET /devices": 35,
+          "GET /integrations": 6,
+          "GET /library": 23,
+          "GET /locale": 2,
+          "GET /media/original-0": 2,
+          "GET /media/original-1": 2,
+          "GET /media/original-10": 1,
+          "GET /media/original-11": 1,
+          "GET /media/original-2": 1,
+          "GET /media/original-8": 1,
+          "GET /media/original-9": 2,
+          "GET /recommendations?mode=favorites&mood=sad&limit=20&nonce=1791886429837": 1,
+          "GET /recommendations?mode=favorites&mood=sad&limit=20&nonce=1791886432762&seedTrackId=original-1&exclude=original-0%2Coriginal-1": 1,
+          "GET /recommendations?mode=favorites&mood=sad&limit=20&nonce=1791886432762&seedTrackId=original-1&exclude=original-1": 1,
+          "GET /recommendations?mode=favorites&mood=sad&limit=20&nonce=1791886570456": 1,
+          "GET /recommendations?mode=favorites&mood=sad&limit=20&nonce=1791886574248&seedTrackId=original-0&exclude=original-0": 1,
+          "GET /recommendations?mode=favorites&mood=sad&limit=20&nonce=1791886574248&seedTrackId=original-0&exclude=original-1%2Coriginal-0": 1,
+          "GET /recommendations?mode=personal&mood=calm&limit=20&nonce=1791886414572": 1,
+          "GET /recommendations?mode=personal&mood=calm&limit=20&nonce=1791886553508": 1,
+          "GET /recommendations?mode=personal&mood=personal&limit=20&nonce=1791886419039&seedTrackId=original-0&exclude=original-0": 1,
+          "GET /recommendations?mode=personal&mood=personal&limit=20&nonce=1791886423453&seedTrackId=original-9&exclude=original-8%2Coriginal-9": 1,
+          "GET /recommendations?mode=personal&mood=personal&limit=20&nonce=1791886558677&seedTrackId=original-0&exclude=original-0": 1,
+          "GET /recommendations?mode=personal&mood=personal&limit=20&nonce=1791886563310&seedTrackId=original-9&exclude=original-8%2Coriginal-9": 1,
+          "GET /recommendations?mode=personal&mood=personal&limit=20&nonce=1791886577245&seedTrackId=original-9&exclude=original-9": 1,
+          "GET /releases": 2,
+          "GET /settings": 4,
+          "GET /socket.io/?EIO=4&transport=polling&t=iwldsqth": 1,
+          "GET /socket.io/?EIO=4&transport=polling&t=iwlfrjtr&sid=x5nNRLFUb43TgLe6AAAA": 1,
+          "GET /socket.io/?EIO=4&transport=polling&t=iwlimfyn&sid=x5nNRLFUb43TgLe6AAAA": 1,
+          "GET /socket.io/?EIO=4&transport=polling&t=izk8y871": 1,
+          "GET /socket.io/?EIO=4&transport=polling&t=izkcdtiq&sid=sj-ARmz0EptXzsnCAAAB": 1,
+          "GET /taste": 4,
+          "GET /tracks/original-0/comments": 5,
+          "GET /tracks/original-0/lyrics": 5,
+          "GET /tracks/original-0/playback": 4,
+          "GET /tracks/original-1/comments": 6,
+          "GET /tracks/original-1/lyrics": 6,
+          "GET /tracks/original-1/playback": 4,
+          "GET /tracks/original-1/waveform": 2,
+          "GET /tracks/original-10/comments": 1,
+          "GET /tracks/original-10/lyrics": 1,
+          "GET /tracks/original-10/playback": 2,
+          "GET /tracks/original-11/comments": 1,
+          "GET /tracks/original-11/lyrics": 1,
+          "GET /tracks/original-11/playback": 2,
+          "GET /tracks/original-2/comments": 1,
+          "GET /tracks/original-2/lyrics": 1,
+          "GET /tracks/original-2/playback": 1,
+          "GET /tracks/original-3/playback": 2,
+          "GET /tracks/original-6/playback": 1,
+          "GET /tracks/original-8/comments": 1,
+          "GET /tracks/original-8/lyrics": 1,
+          "GET /tracks/original-8/playback": 1,
+          "GET /tracks/original-9/comments": 5,
+          "GET /tracks/original-9/lyrics": 5,
+          "GET /tracks/original-9/playback": 4,
+          "GET /tracks/original-9/waveform": 1,
+          "POST /api/auth/login": 2,
+          "POST /api/auth/register": 1,
+          "POST /api/history": 19,
+          "POST /socket.io/?EIO=4&transport=polling&t=iwlfnghe&sid=x5nNRLFUb43TgLe6AAAA": 1,
+          "POST /socket.io/?EIO=4&transport=polling&t=izkc63cm&sid=sj-ARmz0EptXzsnCAAAB": 1,
+          "PUT /api/library/likes/original-0": 2,
+          "PUT /api/library/likes/original-1": 2
+        },
+        "tracks": [
+          "original-0",
+          "original-1",
+          "original-2",
+          "original-3",
+          "original-4",
+          "original-5",
+          "original-6",
+          "original-7",
+          "original-8",
+          "original-9",
+          "original-10",
+          "original-11"
+        ]
+      }
+    },
+    "connect": {
+      "passed": true,
+      "cases": [
+        {
+          "name": "Unvisited remote browser gives an honest permission error and keeps original output",
+          "code": "AUTOPLAY_BLOCKED",
+          "ms": 654.6999999880791,
+          "ok": false
+        },
+        {
+          "name": "Real permission notice click starts the receiving browser, not the previous output"
+        },
+        {
+          "name": "Previously authorized remote confirms actual playback without a false permission refusal",
+          "ms": 469.699999988079
+        }
+      ],
+      "boundary": "Two isolated real Chrome contexts, real backend and own WAV; no autoplay policy bypass flags. Browser permission requirements are observed, not bypassed."
+    },
+    "notice": {
+      "passed": true,
+      "scope": "Actual React portal geometry and keyboard reachability. Audio denial injected only to show the UI; root separately checks a real cold browser.",
+      "checks": [
+        {
+          "width": 1440,
+          "height": 900,
+          "scale": 1,
+          "anchor": {
+            "bottom": 882,
+            "height": 96,
+            "left": 112,
+            "right": 1416,
+            "top": 786,
+            "width": 1304,
+            "x": 112,
+            "y": 786
+          },
+          "bodyParent": true,
+          "footerOverflow": "visible",
+          "hit": true,
+          "notice": {
+            "bottom": 774,
+            "height": 44,
+            "left": 665.65625,
+            "right": 862.34375,
+            "top": 730,
+            "width": 196.6875,
+            "x": 665.65625,
+            "y": 730
+          }
+        },
+        {
+          "width": 375,
+          "height": 812,
+          "scale": 1,
+          "anchor": {
+            "bottom": 733,
+            "height": 72,
+            "left": 10,
+            "right": 365,
+            "top": 661,
+            "width": 355,
+            "x": 10,
+            "y": 661
+          },
+          "bodyParent": true,
+          "footerOverflow": "hidden",
+          "hit": true,
+          "notice": {
+            "bottom": 649,
+            "height": 44,
+            "left": 89.15625,
+            "right": 285.84375,
+            "top": 605,
+            "width": 196.6875,
+            "x": 89.15625,
+            "y": 605
+          }
+        },
+        {
+          "width": 375,
+          "height": 812,
+          "scale": 1.25,
+          "anchor": {
+            "bottom": 713.25,
+            "height": 90,
+            "left": 12.5,
+            "right": 362.5,
+            "top": 623.25,
+            "width": 350,
+            "x": 12.5,
+            "y": 623.25
+          },
+          "bodyParent": true,
+          "footerOverflow": "hidden",
+          "hit": true,
+          "notice": {
+            "bottom": 611.25,
+            "height": 55,
+            "left": 64.8125,
+            "right": 310.171875,
+            "top": 556.25,
+            "width": 245.359375,
+            "x": 64.8125,
+            "y": 556.25
+          }
+        },
+        {
+          "fullPlayerKeyboardLoopIncludesNotice": true,
+          "back": {
+            "active": "autoplay-notice autoplay-permission-notice",
+            "notice": true
+          },
+          "forward": {
+            "active": "icon-btn",
+            "first": true
+          },
+          "events": [
+            {
+              "key": "Tab",
+              "shift": true,
+              "trusted": true
+            },
+            {
+              "key": "Tab",
+              "shift": false,
+              "trusted": true
+            }
+          ]
+        }
+      ],
+      "screenshots": [
+        "work/qa/wave18-notice-1791888561163-1440-1.png",
+        "work/qa/wave18-notice-1791888561163-375-1.png",
+        "work/qa/wave18-notice-1791888561163-375-1.25.png"
+      ],
+      "realAudioProof": "work/qa/wave18-connect-proof.json",
+      "automationBoundary": "Audio denial injected only to expose UI. Trusted CDP Tab events verify focus; actual cold browser audio/click is proven separately by root."
+    },
+    "independent": {
+      "verdict": "PASS",
+      "attempt": 3,
+      "checkedAt": "2026-10-13T11:07:29.136799+00:00",
+      "independentSession": true,
+      "differentProvider": false,
+      "provider": "OpenAI",
+      "scope": "Fresh desktop/tablet/mobile/enlarged text; native widget captures; final portal visibility and clickability",
+      "realAudioEvidenceSeparate": "wave18-connect-proof.json",
+      "physicalChecksPerformed": false,
+      "rounds": [
+        {
+          "attempt": 1,
+          "verdict": "PASS"
+        },
+        {
+          "attempt": 2,
+          "verdict": "PASS",
+          "refinement": "Full native EQ ±12 labels"
+        },
+        {
+          "attempt": 3,
+          "verdict": "PASS",
+          "refinement": "Accessible autoplay notice portal"
+        }
+      ]
+    }
+  },
+  "native": {
+    "apk": "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\apps\\native\\build\\app\\outputs\\flutter-apk\\app-debug.apk",
+    "bytes": 185676879,
+    "builtAt": "2026-10-13T10:46:05.511063+00:00",
+    "sha256": "dd0b681450aa47118366d39b3d2c4f7a42a86ab85491fad892d3250db9b3e5a5",
+    "sourceFrozenAt": "2026-10-13T10:40:33.432948+00:00",
+    "sourceSha256": "573e571fa643ec72966f9141f35cb0b5f819b06bec62adb92fa71c5735de1792",
+    "sourceFiles": 163,
+    "kernelSha256": "7b5099d2f700b4298170552f48cd7e01592f887d15a4cd43dfefd7bf63fe3004",
+    "kernelMatchesBuildOutput": true,
+    "compileDefine": "https://wave.gluk.tech",
+    "kernelFeatureMarkers": {
+      "tech.gluk.glukwave/home_widgets": true,
+      "glukwave.widget": true,
+      "Home screen widgets": true,
+      "https://wave.gluk.tech": true,
+      "full-player": true,
+      "player-cover-gesture": true,
+      "language-selector": true,
+      "language.auto": true,
+      "locale:change": true,
+      "lrcClock": true,
+      "artworkForDisplay": true,
+      "-t500x500.": true,
+      "/api/diagnostics/events": true,
+      "glukwave-lan-v1": true,
+      "LAN pairing": true,
+      "seasonalEffects": true,
+      "lan-enable": true,
+      "ROOM_STATE": true,
+      "/lrclib": true,
+      "Find on LRCLIB": true,
+      "/genius/preview": true,
+      "genius-preview": true,
+      "cover-ambient-transform": true,
+      "/discord": true,
+      "discord:changed": true,
+      "discordPresence": true,
+      "deviceVolume": true,
+      "/api/auth/native-captcha": true,
+      "Invalid authentication expiry": true,
+      "desktop-quick-volume": true,
+      "account:state": true,
+      "track-loading-cover": true,
+      "ScrollingLabel": true,
+      "/connect": true,
+      "outputActive": true,
+      "/account/sessions": true,
+      "downloadUrl": true,
+      "adoptOnly": true,
+      "/taste": true,
+      "/friends": true,
+      "/jams": true,
+      "/api/account/": true,
+      "currentPassword": true,
+      "Email sent": true,
+      "/playlists/discover": true,
+      "mini-card-progress": true,
+      "search-source-menu": true,
+      "search-type-": true,
+      "player-transport-capsule": true,
+      "player-secondary-capsule": true,
+      "X-GlukWave-Playback-Wait": true,
+      "player-centered-view": true,
+      "player-detail-view-": true,
+      "player-lyrics-toggle": true,
+      "compact-eq-presets": true,
+      "#EXTM3U": true,
+      "Colour from the cover": true,
+      "coverAccent": true,
+      "compact-eq-enabled": true,
+      "compact-eq-band-": true,
+      "compact-eq-preamp": true,
+      "compact-eq-rate": true,
+      "connect-quick-picker": true,
+      "native-queue-list": true,
+      "queue-add": true,
+      "waveMode": true,
+      "waveMood": true,
+      "waveActive": true,
+      "/api/recommendations": true,
+      "queue-search": true,
+      "ListeningPresence": true,
+      "SettingsEdit": true,
+      "_PlaybackWavePainter": true
+    },
+    "localCatalogsInKernel": {
+      "en": true,
+      "ru": true,
+      "kk": true,
+      "uk": true,
+      "de": true,
+      "es": true
+    },
+    "qaTrackBundled": false,
+    "fontManifestVerified": true,
+    "staticFontFaces": [
+      {
+        "asset": "assets/fonts/Nunito-Regular.ttf",
+        "weight": 400,
+        "variable": false,
+        "sha256": "29f17d41574376520b263bde34a4fecb11814233ff280c66befce6020c5e3cc4",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-Medium.ttf",
+        "weight": 500,
+        "variable": false,
+        "sha256": "818d89d5417ed2c7686c07097469f417d41dfe70b8e9514466637612f7ab9d8d",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-SemiBold.ttf",
+        "weight": 600,
+        "variable": false,
+        "sha256": "e6ac9b7051c6b3c4a23817a9272e2a8f7124896b36e68b30a3d46b452a0418a5",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-Bold.ttf",
+        "weight": 700,
+        "variable": false,
+        "sha256": "19acc4b8e7dc15b49c3802b6f2b53a1c41d7ee548733204a367052fa53387933",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-ExtraBold.ttf",
+        "weight": 800,
+        "variable": false,
+        "sha256": "9bc8f0d0c03926636f41ec699c6563dd01835b510c194e2086811eaf65a8e527",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-Black.ttf",
+        "weight": 900,
+        "variable": false,
+        "sha256": "b3628977111142f66472632770b76ee2c0665a40ae536bd64971a3bc19087717",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Manrope-Regular.ttf",
+        "weight": 400,
+        "variable": false,
+        "sha256": "c443e2325b9ff17933ec2f5a99d835af430a545901d146f81f4fc9f4882b6623",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Manrope-Medium.ttf",
+        "weight": 500,
+        "variable": false,
+        "sha256": "78177fa989a3feb256c1750faca4a05ab0b70f093f5f45b12a537e7b939bae9c",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Manrope-SemiBold.ttf",
+        "weight": 600,
+        "variable": false,
+        "sha256": "1eea52be7b84d0841e39d6102cdf2f6777dbdbd6781d3a40a3323a8151163f07",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Manrope-Bold.ttf",
+        "weight": 700,
+        "variable": false,
+        "sha256": "06ef9bf16d6ce1b6b8d6b953ea8b9e6c30e4b3708cf039132224fb2a5aa77102",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Manrope-ExtraBold.ttf",
+        "weight": 800,
+        "variable": false,
+        "sha256": "63050130f7beccf497d740a2af39f8d5d49447e9ed777014e8d6d413442425ba",
+        "matchesSource": true
+      }
+    ],
+    "fontManifestSha256": "dc61e379e1f65f8de62057e95a64baaebcbbf8e5ee2450f736e2611705ca210f",
+    "nunitoLicenseIncluded": true,
+    "manifestVerified": true,
+    "androidWidgetReceiversPrivate": {
+      "WavePlayerWidget": true,
+      "WaveLargeWidget": true,
+      "WidgetCommandReceiver": true
+    },
+    "widgetTestRuntimeBundled": false,
+    "version": "1.0.0",
+    "versionCode": 18,
+    "minSdk": 24,
+    "targetSdk": 36,
+    "output": "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\outputs\\GlukWave-android-debug.apk",
+    "outputMatchesBuild": true,
+    "signatureVerified": true,
+    "signatureScheme": "v2",
+    "certificateSha256": "d631b0271019e5b3a9df153929ac0de07708b0766fc4c132fbce862b67a56748",
+    "updateCertificateMatchesPrevious": true,
+    "analyzerIssues": 0,
+    "standardTestsPassed": 343,
+    "standardVerification": {
+      "passed": true,
+      "distinctTestsVerified": 343,
+      "fullRun": {
+        "passed": 328,
+        "failed": 14,
+        "log": "wave18-native-tests-final.log"
+      },
+      "recovery": {
+        "uiPassed": 13,
+        "connectPassed": 1,
+        "logs": [
+          "wave18-native-ui-recovery.log",
+          "wave18-native-connect-recovery.log"
+        ]
+      },
+      "cause": "Stale expectations: heading plus new mode tab, corrected EQ thumb travel/curve geometry and wave context fields; production code unchanged during recovery",
+      "failedNames": [
+        "00:15 +24 -1: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart: Actual auth, offline Lo-Fi, profile and settings fit width 320.0 without setup copy [E]",
+        "00:19 +28 -2: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart: Actual auth, offline Lo-Fi, profile and settings fit width 390.0 without setup copy [E]",
+        "00:20 +28 -3: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_design_test.dart: Actual anchored compact EQ fits dark 320.0 at125 percent font [E]",
+        "00:21 +30 -4: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_design_test.dart: Actual anchored compact EQ fits dark 390.0 at125 percent font [E]",
+        "00:22 +39 -5: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_design_test.dart: Actual anchored compact EQ fits dark 1440.0 at125 percent font [E]",
+        "00:22 +39 -6: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart: Actual auth, offline Lo-Fi, profile and settings fit width 768.0 without setup copy [E]",
+        "00:23 +39 -7: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_design_test.dart: Actual anchored compact EQ fits amoled 320.0 at125 percent font [E]",
+        "00:24 +43 -8: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_design_test.dart: Actual anchored compact EQ fits amoled 390.0 at125 percent font [E]",
+        "00:25 +43 -9: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_design_test.dart: Actual anchored compact EQ fits amoled 1440.0 at125 percent font [E]",
+        "00:26 +44 -10: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart: Actual auth, offline Lo-Fi, profile and settings fit width 1280.0 without setup copy [E]",
+        "00:26 +44 -11: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_design_test.dart: Actual anchored compact EQ fits light 320.0 at125 percent font [E]",
+        "00:27 +50 -12: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_design_test.dart: Actual anchored compact EQ fits light 390.0 at125 percent font [E]",
+        "00:28 +50 -13: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_design_test.dart: Actual anchored compact EQ fits light 1440.0 at125 percent font [E]",
+        "00:35 +56 -14: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/connect_provider_test.dart: Account Connect mirrors remote playback and routes controls without local playback [E]"
+      ],
+      "additionalNewGlyphTestPassed": 1,
+      "postRefinement": {
+        "passed": 12,
+        "distinctAlreadyCountedGeometryAndLayouts": 11,
+        "proof": "wave18-eq-refinement-proof.json"
+      }
+    },
+    "signature": "debug",
+    "deviceRuntimeVerified": false,
+    "manropeLicenseIncluded": true,
+    "iosBuilt": false,
+    "verification": {
+      "passed": true,
+      "distinctTestsVerified": 343,
+      "fullRun": {
+        "passed": 328,
+        "failed": 14,
+        "log": "wave18-native-tests-final.log"
+      },
+      "recovery": {
+        "uiPassed": 13,
+        "connectPassed": 1,
+        "logs": [
+          "wave18-native-ui-recovery.log",
+          "wave18-native-connect-recovery.log"
+        ]
+      },
+      "cause": "Stale expectations: heading plus new mode tab, corrected EQ thumb travel/curve geometry and wave context fields; production code unchanged during recovery",
+      "failedNames": [
+        "00:15 +24 -1: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart: Actual auth, offline Lo-Fi, profile and settings fit width 320.0 without setup copy [E]",
+        "00:19 +28 -2: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart: Actual auth, offline Lo-Fi, profile and settings fit width 390.0 without setup copy [E]",
+        "00:20 +28 -3: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_design_test.dart: Actual anchored compact EQ fits dark 320.0 at125 percent font [E]",
+        "00:21 +30 -4: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_design_test.dart: Actual anchored compact EQ fits dark 390.0 at125 percent font [E]",
+        "00:22 +39 -5: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_design_test.dart: Actual anchored compact EQ fits dark 1440.0 at125 percent font [E]",
+        "00:22 +39 -6: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart: Actual auth, offline Lo-Fi, profile and settings fit width 768.0 without setup copy [E]",
+        "00:23 +39 -7: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_design_test.dart: Actual anchored compact EQ fits amoled 320.0 at125 percent font [E]",
+        "00:24 +43 -8: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_design_test.dart: Actual anchored compact EQ fits amoled 390.0 at125 percent font [E]",
+        "00:25 +43 -9: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_design_test.dart: Actual anchored compact EQ fits amoled 1440.0 at125 percent font [E]",
+        "00:26 +44 -10: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart: Actual auth, offline Lo-Fi, profile and settings fit width 1280.0 without setup copy [E]",
+        "00:26 +44 -11: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_design_test.dart: Actual anchored compact EQ fits light 320.0 at125 percent font [E]",
+        "00:27 +50 -12: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_design_test.dart: Actual anchored compact EQ fits light 390.0 at125 percent font [E]",
+        "00:28 +50 -13: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_design_test.dart: Actual anchored compact EQ fits light 1440.0 at125 percent font [E]",
+        "00:35 +56 -14: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/connect_provider_test.dart: Account Connect mirrors remote playback and routes controls without local playback [E]"
+      ],
+      "additionalNewGlyphTestPassed": 1,
+      "postRefinement": {
+        "passed": 12,
+        "distinctAlreadyCountedGeometryAndLayouts": 11,
+        "proof": "wave18-eq-refinement-proof.json"
+      }
+    },
+    "sourceFreezeFile": "docs/verification/2026-10-13/wave18-native-source-freeze.json",
+    "ui": {
+      "passed": true,
+      "cases": 5,
+      "checks": [
+        "Native actual mode/mood + pending state 375.0",
+        "Native actual mode/mood + pending state 1440.0",
+        "Native genre save preserves automatic taste",
+        "Native actual rounded EQ editor",
+        "Native sunlight and fixed cover scene"
+      ],
+      "screenshots": [
+        "work/qa/native-wave18-ui-1791886352227-home-375.png",
+        "work/qa/native-wave18-ui-1791886352227-home-1440.png",
+        "work/qa/native-wave18-ui-1791886352227-taste-375.png",
+        "work/qa/native-wave18-ui-1791886352227-cover-reflection-938.png",
+        "work/qa/native-wave18-eq-labels-1791887851097-375-125.png"
+      ],
+      "scope": "Actual Flutter widget rendering/controllers; isolated API/audio output, no physical install.",
+      "eqRefinement": {
+        "passed": true,
+        "proofFile": "work/qa/wave18-eq-labels-proof.json",
+        "glyphLog": "work/qa/wave18-eq-glyph-recovery.log",
+        "geometryLog": "work/qa/wave18-eq-labels-tests.log",
+        "layoutLog": "work/qa/wave18-eq-layout-refinement.log",
+        "focusedGlyphCases": 1,
+        "geometryCases": 2,
+        "layoutCases": 9,
+        "totalVerifiedCases": 12,
+        "curveThumbContractUnchanged": true
+      }
+    },
+    "windowsExecutableBuilt": true,
+    "windows": {
+      "checkedAt": "2026-10-13T10:48:08.764047+00:00",
+      "passed": true,
+      "bundle": "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\outputs\\GlukWave-windows",
+      "featureMarkers": {
+        "track-loading-cover": true,
+        "glukwave-lan-v1": true,
+        "LAN pairing": true,
+        "seasonalEffects": true,
+        "lan-enable": true,
+        "/discord": true,
+        "discord:changed": true,
+        "discordPresence": true,
+        "/api/diagnostics/events": true,
+        "/lrclib": true,
+        "/genius/preview": true,
+        "genius-preview": true,
+        "cover-ambient-transform": true,
+        "ROOM_STATE": true,
+        "Find on LRCLIB": true,
+        "deviceVolume": true,
+        "/api/auth/native-captcha": true,
+        "desktop-quick-volume": true,
+        "/account/sessions": true,
+        "downloadUrl": true,
+        "adoptOnly": true,
+        "/taste": true,
+        "/friends": true,
+        "/jams": true,
+        "/api/account/": true,
+        "currentPassword": true,
+        "Email sent": true,
+        "/playlists/discover": true
+      },
+      "file": "outputs/GlukWave-windows.zip",
+      "bytes": 27946243,
+      "sha256": "bec6eb17de951d1947c8ecc88a9d8ae83743311c2a5769d513dc1da8faa6f4de",
+      "frozenOriginalFilesMatched": 163,
+      "compiledSourceFilesMatched": 117,
+      "compiledSourcePaths": [
+        "assets/app_icon.ico",
+        "assets/coast.jpg",
+        "assets/fonts/Manrope-Bold.ttf",
+        "assets/fonts/Manrope-ExtraBold.ttf",
+        "assets/fonts/Manrope-Medium.ttf",
+        "assets/fonts/Manrope-Regular.ttf",
+        "assets/fonts/Manrope-SemiBold.ttf",
+        "assets/fonts/Nunito-Black.ttf",
+        "assets/fonts/Nunito-Bold.ttf",
+        "assets/fonts/Nunito-ExtraBold.ttf",
+        "assets/fonts/Nunito-Medium.ttf",
+        "assets/fonts/Nunito-Regular.ttf",
+        "assets/fonts/Nunito-SemiBold.ttf",
+        "assets/forest.jpg",
+        "assets/google-g.png",
+        "assets/licenses/just_audio_media_kit-UNLICENSE.txt",
+        "assets/licenses/Manrope-OFL.txt",
+        "assets/licenses/Nunito-OFL.txt",
+        "assets/logo.gif",
+        "assets/logo.png",
+        "assets/mark.svg",
+        "assets/Nunito.ttf",
+        "lib/core/api.dart",
+        "lib/core/appearance.dart",
+        "lib/core/artwork.dart",
+        "lib/core/controller.dart",
+        "lib/core/discord.dart",
+        "lib/core/equalizer.dart",
+        "lib/core/lyrics.dart",
+        "lib/core/models.dart",
+        "lib/core/parity.dart",
+        "lib/core/wave_math.dart",
+        "lib/l10n/audio_design_strings.dart",
+        "lib/l10n/catalogs.dart",
+        "lib/l10n/discord_strings.dart",
+        "lib/l10n/ecosystem_polish_strings.dart",
+        "lib/l10n/focused_player_strings.dart",
+        "lib/l10n/home_widget_strings.dart",
+        "lib/l10n/lan_strings.dart",
+        "lib/l10n/listening_polish_strings.dart",
+        "lib/l10n/lyrics_strings.dart",
+        "lib/l10n/parity_strings.dart",
+        "lib/l10n/season_strings.dart",
+        "lib/l10n/wave_localizations.dart",
+        "lib/main.dart",
+        "lib/services/ambience.dart",
+        "lib/services/appearance_store.dart",
+        "lib/services/audio.dart",
+        "lib/services/cache.dart",
+        "lib/services/desktop.dart",
+        "lib/services/diagnostics.dart",
+        "lib/services/home_widgets.dart",
+        "lib/services/lan_transport.dart",
+        "lib/services/presence_bridge.dart",
+        "lib/services/provider_player.dart",
+        "lib/services/push.dart",
+        "lib/services/volume_store.dart",
+        "lib/services/waveform.dart",
+        "lib/services/windows_dsp.dart",
+        "lib/services/windows_equalizer.dart",
+        "lib/services/windows_mpv_player.dart",
+        "lib/ui/album_stage.dart",
+        "lib/ui/app.dart",
+        "lib/ui/appearance_panel.dart",
+        "lib/ui/auth_page.dart",
+        "lib/ui/auth_visuals.dart",
+        "lib/ui/connect_panel.dart",
+        "lib/ui/connect_picker.dart",
+        "lib/ui/connect_playback.dart",
+        "lib/ui/cover_accent.dart",
+        "lib/ui/cover_ambient.dart",
+        "lib/ui/desktop_player.dart",
+        "lib/ui/device_labels.dart",
+        "lib/ui/discord_panel.dart",
+        "lib/ui/discovery.dart",
+        "lib/ui/equalizer_curve.dart",
+        "lib/ui/equalizer_panel.dart",
+        "lib/ui/home_widget_previews.dart",
+        "lib/ui/lan_panel.dart",
+        "lib/ui/listening_presence.dart",
+        "lib/ui/listening_rail.dart",
+        "lib/ui/lofi.dart",
+        "lib/ui/lyrics_editor.dart",
+        "lib/ui/motion_icons.dart",
+        "lib/ui/parity_panels.dart",
+        "lib/ui/player.dart",
+        "lib/ui/player_gestures.dart",
+        "lib/ui/provider_host.dart",
+        "lib/ui/queue_panel.dart",
+        "lib/ui/room_directory.dart",
+        "lib/ui/scrolling_label.dart",
+        "lib/ui/seasonal.dart",
+        "lib/ui/sessions_panel.dart",
+        "lib/ui/settings_edit.dart",
+        "lib/ui/silk_wave.dart",
+        "lib/ui/theme.dart",
+        "lib/ui/theme_preview.dart",
+        "lib/ui/volume_slider.dart",
+        "lib/ui/wave18_strings.dart",
+        "lib/ui/wave_colors.dart",
+        "lib/ui/widgets.dart",
+        "pubspec.lock",
+        "pubspec.yaml",
+        "windows/CMakeLists.txt",
+        "windows/flutter/CMakeLists.txt",
+        "windows/runner/CMakeLists.txt",
+        "windows/runner/flutter_window.cpp",
+        "windows/runner/flutter_window.h",
+        "windows/runner/main.cpp",
+        "windows/runner/resource.h",
+        "windows/runner/resources/app_icon.ico",
+        "windows/runner/runner.exe.manifest",
+        "windows/runner/Runner.rc",
+        "windows/runner/utils.cpp",
+        "windows/runner/utils.h",
+        "windows/runner/win32_window.cpp",
+        "windows/runner/win32_window.h"
+      ],
+      "binarySha256": {
+        "glukwave.exe": "e926d9cac13602c97ca3da1781e6f4d80e1a7076b49609e012894976ac88398d",
+        "flutter_windows.dll": "6840b8129fb105dd246f05f14eab97d7e8e9eade1428f9afde95de6b8e1a7808",
+        "libmpv-2.dll": "0a5a0b476866c91a639a4e511e8153968f8fa23564461b0aa09acdba816164a4",
+        "audio_service_win_plugin.dll": "ef9421be9fe1292eb8a3f2b75d1c0cfd61e404fe984c51e220e464d87892ea0d",
+        "flutter_inappwebview_windows_plugin.dll": "e41be84c4dec12a7c0fb8ba402053f75ac818856a6f47128d1afd1820e8ceacd",
+        "flutter_secure_storage_windows_plugin.dll": "098a8c4a8b53e72029b2a8403768e3cf7ace15cbf3e84820e575254c428f4cde",
+        "tray_manager_plugin.dll": "1291abc69be060b15cf917332b10eb46103b335b329d4dc4232bb39e778867e6",
+        "window_manager_plugin.dll": "ac27838523201046c479646c9ed161eb994a4608f4d7b4759126c27da861c25c",
+        "msvcp140.dll": "0f885b509a685d2bbfa652fed26b5fb31d88fbdab0a978c641d1c7b8aa460aa9",
+        "vcruntime140.dll": "d5e4d9a3e835fa679450145d6a7d94e36573a509317111904d9b3712c30d9066",
+        "vcruntime140_1.dll": "1f2d41c4aa5db0bc33ebf7b66d72943a817d7ce6cbe880502a9403823633093f"
+      },
+      "packageMatchesReleaseBuild": true,
+      "zipCrcAndAllFilesMatched": true,
+      "staticFontFaces": 11,
+      "compileDefine": "https://wave.gluk.tech",
+      "buildMode": "release",
+      "authenticodeSigned": false,
+      "uiInteractionVerified": false,
+      "physicalAudioVerified": false,
+      "installer": {
+        "checkedAt": "2026-10-13T10:50:08.4559342Z",
+        "passed": true,
+        "singleFile": true,
+        "version": "1.0.0.18",
+        "productVersion": "1.0.0+18",
+        "bytes": 24472779,
+        "sha256": "cadea3ebf110dee9a0069e8d893a2433a956e81da829bef7992ae6da443475b6",
+        "compilerSucceeded": true,
+        "desktopShortcutChoice": true,
+        "autostartChoice": true,
+        "autostartDefault": false,
+        "webviewBootstrapperEmbedded": true,
+        "installedDuringIteration": false,
+        "authenticodeSigned": false
+      }
+    }
+  },
+  "downloads": {
+    "checkedAt": "2026-10-13T10:50:13.344Z",
+    "isolatedLocalServer": true,
+    "checks": [
+      {
+        "platform": "android",
+        "version": "1.0.0+18",
+        "rangeStatus": 206,
+        "bytes": 185676879,
+        "sha256": "dd0b681450aa47118366d39b3d2c4f7a42a86ab85491fad892d3250db9b3e5a5"
+      },
+      {
+        "platform": "windows",
+        "version": "1.0.0+18",
+        "rangeStatus": 206,
+        "bytes": 24472779,
+        "sha256": "cadea3ebf110dee9a0069e8d893a2433a956e81da829bef7992ae6da443475b6"
+      }
+    ],
+    "fullInstallerDownloadMatched": true,
+    "passed": true
+  },
+  "organization": {
+    "applied": true,
+    "currentVersion": "1.0.0+18",
+    "rollback": "archive/releases/1.0.0+17",
+    "archiveContainsExactPreviousDeliveries": true,
+    "deletedBytes": 0,
+    "emptyStagingRemoved": true,
+    "retainedUnpacked17Bytes": 60005908,
+    "retainedUnpacked17Reason": "Automatic review rejected recursive deletion; preserved safely in versioned archive. No unique sources or historical reports removed.",
+    "previousOrganization": "archive/releases/1.0.0+17/organization.json"
+  },
+  "hostingDeployed": false,
+  "physicalChecksPerformed": false,
+  "limits": [
+    "Metadata-based mood/genre heuristics; recommendation quality depends on catalogue and accepted listening",
+    "Popular means GlukWave aggregates; no global provider chart",
+    "An unvisited browser still requires its own audio permission",
+    "Full Flutter redesign remains deferred by owner",
+    "No production resource profiling, server migration or database move",
+    "Android debug signature retained; Windows Authenticode absent; iOS not built"
+  ]
+}

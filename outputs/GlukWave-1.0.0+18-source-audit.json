@@ -1,0 +1,19 @@
+{
+  "checkedAt": "2026-10-13T11:08:57.765Z",
+  "passed": true,
+  "archiveBytes": 137169518,
+  "archiveSha256": "c7a95499745a9c02772b223c06c65e1d54bc887f0d60a250b2642215cff97614",
+  "entries": 1692,
+  "allCrcAndSourceHashesMatched": true,
+  "textFilesScanned": 731,
+  "localPrivateValuesAbsent": true,
+  "liveCredentialPatternsAbsent": true,
+  "staticFontFaces": 6,
+  "manropeStaticFontFaces": 5,
+  "frozenNativeSourcesMatched": 163,
+  "currentWebBuild": "/assets/main-C9z0Sr7l.js",
+  "runtimeDataExcluded": true,
+  "apkSha256": "dd0b681450aa47118366d39b3d2c4f7a42a86ab85491fad892d3250db9b3e5a5",
+  "windowsSha256": "bec6eb17de951d1947c8ecc88a9d8ae83743311c2a5769d513dc1da8faa6f4de",
+  "installerSha256": "cadea3ebf110dee9a0069e8d893a2433a956e81da829bef7992ae6da443475b6"
+}

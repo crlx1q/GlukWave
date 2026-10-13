@@ -31,8 +31,8 @@ function drawCanvas(context:CanvasRenderingContext2D,frame:WaveFrame,style:Appea
 export function WaveVisual({className='wave-canvas',color,background:backgroundOverride,waveStyle,speed}:{className?:string;color?:string;background?:string;waveStyle?:Appearance['waveStyle'];speed?:number}) {
   const root=useRef<HTMLDivElement>(null),canvas=useRef<HTMLCanvasElement>(null),fallback=useRef<HTMLCanvasElement>(null),store=useStore(),player=usePlayer(),envelope=useRef<AudioEnvelope|null>(null);
   const style=waveStyle||store.settings.appearance.waveStyle,velocity=speed??store.settings.appearance.speed,tint=color||store.renderAccent,motion=store.motion,paused=player.full;
-  const targetColor=useRef(rgb(tint)),currentColor=useRef(rgb(tint)),repaintColor=useRef<(()=>void)|null>(null);targetColor.current=rgb(tint);
-  useEffect(()=>{repaintColor.current?.();},[tint]);
+  const targetColor=useRef(rgb(tint)),currentColor=useRef(rgb(tint)),repaintColor=useRef<(()=>void)|null>(null);
+  useEffect(()=>{targetColor.current=rgb(tint);repaintColor.current?.();},[tint]);
   const audio=useRef({playing:player.state.playing,position:player.state.position,local:player.playback?.kind==='audio',sample:player.audioEnergy});audio.current={playing:player.state.playing,position:player.state.position,local:player.playback?.kind==='audio',sample:player.audioEnergy};
   useEffect(()=>{
     envelope.current=null;if(!player.track)return;const controller=new AbortController();
@@ -43,7 +43,7 @@ export function WaveVisual({className='wave-canvas',color,background:backgroundO
     const host=root.current,element=canvas.current,backup=fallback.current,context=backup?.getContext('2d');if(!host||!element||!backup||!context)return;
     const renderer=style==='bloom'?createHalftoneBloom(element):style==='silk'?createSilkWave(element):null;
     const parent=host.parentElement||host,pointer:WavePointer={x:.5,y:.5,active:0},target:WavePointer={...pointer,vx:0,vy:0};let frame=0,inView=true,last=0,lastPointer=0,phase=BLOOM.phase as number,energy=0,width=0,height=0,ratio=1;
-    const background=backgroundOverride||store.settings.appearance[store.resolvedTheme].bg;
+    let background=backgroundOverride||store.settings.appearance[store.resolvedTheme].bg;
     const resize=()=>{const rect=host.getBoundingClientRect();width=rect.width;height=rect.height;ratio=Math.min(devicePixelRatio||1,1.5,1100/Math.max(1,width),520/Math.max(1,height));for(const item of [element,backup]){item.width=Math.max(1,Math.round(width*ratio));item.height=Math.max(1,Math.round(height*ratio));}};
     const draw=(now:number,force=false)=>{
       if(document.hidden||!inView||paused||!width||!height)return;
@@ -51,7 +51,7 @@ export function WaveVisual({className='wave-canvas',color,background:backgroundO
       const dt=last?Math.min(.07,(now-last)/1000):0;last=now;if(motion)phase+=dt*velocity;
       const state=audio.current,measured=state.playing?(state.local?state.sample():null):0,targetEnergy=measured??envelopeAt(envelope.current,state.position,state.playing);energy=motion?easeEnergy(energy,targetEnergy,dt):0;
       if(motion){const k=1-Math.exp(-dt*12);pointer.x+=(target.x-pointer.x)*k;pointer.y+=(target.y-pointer.y)*k;pointer.active+=(target.active-pointer.active)*(1-Math.exp(-dt*5));pointer.vx=(pointer.vx||0)+((target.vx||0)-(pointer.vx||0))*k;pointer.vy=(pointer.vy||0)+((target.vy||0)-(pointer.vy||0))*k;target.vx=(target.vx||0)*Math.exp(-dt*8);target.vy=(target.vy||0)*Math.exp(-dt*8);}
-      currentColor.current=motion?easeWaveColor(currentColor.current,targetColor.current,dt):[...targetColor.current];
+      currentColor.current=motion&&document.documentElement.dataset.colorEditing!=='true'?easeWaveColor(currentColor.current,targetColor.current,dt):[...targetColor.current];
       const value:WaveFrame={width,height,phase,energy,pointer,tint:waveColorHex(currentColor.current),background},gpu=renderer?.draw(value)===true;element.style.display=gpu?'block':'none';backup.style.display=gpu?'none':'block';
       if(!gpu){context.setTransform(ratio,0,0,ratio,0,0);drawCanvas(context,value,style);}
       if(motion)frame=requestAnimationFrame(draw);
@@ -62,8 +62,10 @@ export function WaveVisual({className='wave-canvas',color,background:backgroundO
     const leave=()=>{target.active=0;target.vx=0;target.vy=0;lastPointer=0;};
     const touchEnd=(event:PointerEvent)=>{if(event.pointerType==='touch')leave();};
     const contextLost=()=>repaint();
+    const palettePreview=()=>{const css=getComputedStyle(document.documentElement);if(!color)targetColor.current=rgb(css.getPropertyValue('--accent').trim()||tint);if(!backgroundOverride)background=css.getPropertyValue('--bg').trim()||background;if(document.documentElement.dataset.colorEditing==='true')currentColor.current=[...targetColor.current];if(!motion)repaint();};
+    window.addEventListener('wave:palette-preview',palettePreview);
     const observer=new IntersectionObserver(entries=>{inView=entries[0].isIntersecting;repaint();}),size=new ResizeObserver(repaint);observer.observe(host);size.observe(host);parent.addEventListener('pointermove',read,{passive:true});parent.addEventListener('pointerleave',leave);parent.addEventListener('pointerup',touchEnd,{passive:true});parent.addEventListener('pointercancel',leave);element.addEventListener('webglcontextlost',contextLost);document.addEventListener('visibilitychange',repaint);repaint();
-    return()=>{repaintColor.current=null;cancelAnimationFrame(frame);renderer?.dispose();observer.disconnect();size.disconnect();parent.removeEventListener('pointermove',read);parent.removeEventListener('pointerleave',leave);parent.removeEventListener('pointerup',touchEnd);parent.removeEventListener('pointercancel',leave);element.removeEventListener('webglcontextlost',contextLost);document.removeEventListener('visibilitychange',repaint);};
+    return()=>{window.removeEventListener('wave:palette-preview',palettePreview);repaintColor.current=null;cancelAnimationFrame(frame);renderer?.dispose();observer.disconnect();size.disconnect();parent.removeEventListener('pointermove',read);parent.removeEventListener('pointerleave',leave);parent.removeEventListener('pointerup',touchEnd);parent.removeEventListener('pointercancel',leave);element.removeEventListener('webglcontextlost',contextLost);document.removeEventListener('visibilitychange',repaint);};
   },[style,velocity,backgroundOverride,motion,paused,store.resolvedTheme,store.settings.appearance.light.bg,store.settings.appearance.dark.bg,store.settings.appearance.amoled.bg]);
   return <div ref={root} className={className} aria-hidden="true"><canvas key={style} ref={canvas} className="wave-layer"/><canvas ref={fallback} className="wave-layer"/></div>;
 }

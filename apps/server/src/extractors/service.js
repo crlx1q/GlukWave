@@ -166,6 +166,7 @@ export function setupExtractors(app,ctx,overrides={}){
   async function serveAudio(req,res,download=false){
     if(req.headers.range&&!/^bytes=(?:\d+-\d*|-\d+)$/.test(req.headers.range))fail(416,'INVALID_RANGE','Этот диапазон аудио недоступен.');
     const track=await ctx.requireTrack(req.params.id,req.auth.user);let result=await resolved(track);
+    if(req.aborted||res.destroyed||res.writableEnded)return;
     if(!result)fail(403,'DIRECT_AUDIO_UNAVAILABLE','Этот трек доступен только на площадке источника.');
     const isHls=/m3u8/i.test(result.info.protocol||'')||/\.m3u8(?:\?|$)/i.test(result.info.audio_url);
     if(!isHls&&!safeCdn(result.info.audio_url))fail(422,'AUDIO_FORMAT_UNAVAILABLE','Этот трек доступен для потокового прослушивания.');
@@ -175,10 +176,11 @@ export function setupExtractors(app,ctx,overrides={}){
     if(mp3&&(!result.permission.convert||!ffmpeg))fail(403,'CONVERSION_UNAVAILABLE','Конвертация этого трека недоступна.');
     if(streams>=16||mp3&&conversion)fail(503,'EXTRACTOR_BUSY','Повтори загрузку чуть позже.');
     streams++;if(mp3)conversion=true;
-    const controller=new AbortController(),abort=()=>controller.abort();transfers.add(controller);res.once('close',abort);const timeout=setTimeout(abort,Math.max(120000,(track.duration||600)*1000+120000));timeout.unref();let converter;
+    const controller=new AbortController(),abort=()=>controller.abort();transfers.add(controller);res.once('close',abort);req.once('aborted',abort);const timeout=setTimeout(abort,Math.max(120000,(track.duration||600)*1000+120000));timeout.unref();let converter;
     try{
       const max=(download?Math.min(config.uploadLimitMB||256,512):512)*1024*1024;
       if(download&&!await rightFor(track)&&!licensePermission(result.info.license))fail(403,'OFFLINE_UNAVAILABLE','Разрешение на скачивание изменилось.');
+      if(controller.signal.aborted||req.aborted||res.destroyed||res.writableEnded)return;
       let bytes=0;const bounded=new Transform({transform(chunk,_encoding,callback){bytes+=chunk.length;callback(bytes>max?new Error('Audio byte limit'):null,chunk);}});
       if(isHls){
         res.status(200).set({'Content-Type':'audio/mpeg','Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff',...(download?{'Content-Disposition':`attachment; filename="glukwave-${digest(track.id).slice(0,20)}.mp3"`}:{})});
@@ -192,6 +194,7 @@ export function setupExtractors(app,ctx,overrides={}){
         const headers={...(result.info.http_headers||{}),...(req.headers.range&&!mp3?{Range:req.headers.range}:{})};
         let upstream=await pull(result.info.audio_url,{signal:controller.signal,headers});
         if([401,403,410].includes(upstream.status)){await upstream.body?.cancel();result=await resolved(track,{force:true});if(!result)fail(403,'DIRECT_AUDIO_UNAVAILABLE','Этот трек сейчас недоступен.');upstream=await pull(result.info.audio_url,{signal:controller.signal,headers});}
+        if(controller.signal.aborted||req.aborted||res.destroyed||res.writableEnded){await upstream.body?.cancel();return;}
         if(upstream.status===416){await upstream.body?.cancel();if(upstream.headers.get('content-range'))res.set('Content-Range',upstream.headers.get('content-range'));return res.status(416).end();}
         if(!upstream.ok){await upstream.body?.cancel();fail(upstream.status===429?429:502,'EXTRACTOR_UPSTREAM','Источник временно не открыл трек.');}
         if(Number(upstream.headers.get('content-length'))>max){await upstream.body?.cancel();fail(413,'AUDIO_TOO_LARGE','Трек слишком большой для этой загрузки.');}
@@ -207,8 +210,8 @@ export function setupExtractors(app,ctx,overrides={}){
           await Promise.all([pipeline(input,bounded,converter.stdin,{signal:controller.signal}),pipeline(converter.stdout,res,{signal:controller.signal}),done]);
         }else await pipeline(input,bounded,res,{signal:controller.signal});
       }
-    }catch(error){if(!controller.signal.aborted&&!res.headersSent)throw error;if(!res.destroyed)res.destroy();}
-    finally{clearTimeout(timeout);res.removeListener('close',abort);controller.abort();transfers.delete(controller);converter?.kill();streams--;if(mp3)conversion=false;}
+    }catch(error){if(!controller.signal.aborted&&!req.aborted&&!res.destroyed&&!res.headersSent)throw error;if(!res.destroyed)res.destroy();}
+    finally{clearTimeout(timeout);res.removeListener('close',abort);req.removeListener('aborted',abort);controller.abort();transfers.delete(controller);converter?.kill();streams--;if(mp3)conversion=false;}
   }
   app.get('/api/external-audio/:id',requireAuth,asyncRoute((req,res)=>serveAudio(req,res)));
   app.get('/api/external-audio/:id/download',requireAuth,limiter,asyncRoute((req,res)=>serveAudio(req,res,true)));

@@ -127,14 +127,49 @@ class _AlbumStageState extends State<AlbumStage>
               ]
             : [],
       ),
-      child: Artwork(
-        key: widget.artworkKey,
-        controller: widget.controller,
-        trackLoading: widget.controller.trackLoading,
-        url: widget.track.artwork,
-        size: coverSize,
-        radius: 14,
-        fit: BoxFit.contain,
+      child: SizedBox(
+        width: coverSize,
+        height: coverSize,
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            Artwork(
+              key: widget.artworkKey,
+              controller: widget.controller,
+              trackLoading: widget.controller.trackLoading,
+              url: widget.track.artwork,
+              size: coverSize,
+              radius: 14,
+              fit: BoxFit.contain,
+            ),
+            if (appearance.cover3d)
+              IgnorePointer(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(v.corners(14)),
+                  child: DecoratedBox(
+                    key: const Key('album-sunlight-reflection'),
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment(
+                          -2 + math.sin(-.2 + tilt.dx) * 2,
+                          -1.2,
+                        ),
+                        end: Alignment(2 + math.sin(-.2 + tilt.dx) * 2, 1.2),
+                        colors: const [
+                          Color(0x00fff7dc),
+                          Color(0x04ffffff),
+                          Color(0x40fff7dc),
+                          Color(0x0fffffff),
+                          Color(0x00ffffff),
+                        ],
+                        stops: const [0, .28, .43, .52, 1],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+          ],
+        ),
       ),
     );
     return SizedBox(
@@ -291,6 +326,17 @@ class _AlbumStageState extends State<AlbumStage>
                                 ),
                               ),
                             ),
+                            Positioned(
+                              right: 0,
+                              top: size * .12,
+                              child: IgnorePointer(
+                                child: SizedBox(
+                                  width: size * .75,
+                                  height: size * .75,
+                                  child: CustomPaint(painter: _RecordLight()),
+                                ),
+                              ),
+                            ),
                             cover,
                           ],
                         ),
@@ -350,4 +396,32 @@ class RecordPainter extends CustomPainter {
   @override
   bool shouldRepaint(RecordPainter old) =>
       old.kind != kind || old.accent != accent || old.background != background;
+}
+
+class _RecordLight extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final bounds = Offset.zero & size;
+    canvas.drawCircle(
+      size.center(Offset.zero),
+      size.shortestSide / 2,
+      Paint()
+        ..shader = const SweepGradient(
+          startAngle: -.8,
+          endAngle: 5.48,
+          colors: [
+            Color(0x00ffffff),
+            Color(0x1cffffff),
+            Color(0x00ffffff),
+            Color(0x00ffffff),
+            Color(0x18ffffff),
+            Color(0x00ffffff),
+          ],
+          stops: [0, .07, .14, .48, .57, 1],
+        ).createShader(bounds),
+    );
+  }
+
+  @override
+  bool shouldRepaint(_RecordLight old) => false;
 }

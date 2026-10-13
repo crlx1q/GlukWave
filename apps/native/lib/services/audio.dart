@@ -557,6 +557,21 @@ class WaveAudioHandler extends BaseAudioHandler {
     double position = 0,
     bool playing = true,
   }) async {
+    if (current?.id == track.id &&
+        current?.playback['kind'] == 'audio' &&
+        !trackLoading &&
+        player.processingState != ProcessingState.idle &&
+        player.processingState != ProcessingState.loading) {
+      replaceQueue(list ?? tracks);
+      await player.seek(Duration(milliseconds: (position * 1000).round()));
+      if (playing) {
+        await _startVerified(revision: _loadRevision);
+      } else {
+        await player.pause();
+      }
+      _broadcast();
+      return;
+    }
     cancelPendingLoad();
     final revision = _loadRevision;
     _pendingTrack = track;
@@ -598,7 +613,7 @@ class WaveAudioHandler extends BaseAudioHandler {
         ...track.json,
         'playback': {...track.playback, 'kind': 'audio', 'offline': true},
       });
-    } else if (track.source != 'local') {
+    } else {
       final effective = await api.resolvePlayback(track);
       if (revision != _loadRevision) return;
       track = effective;
@@ -692,11 +707,29 @@ class WaveAudioHandler extends BaseAudioHandler {
       await _startVerified(revision: revision);
     }
     if (revision != _loadRevision) return;
-    if (local == null && autoCache && track.offline) {
+    if (local == null &&
+        autoCache &&
+        track.offline &&
+        track.playback['format'] != 'hls') {
       unawaited(
         cache.save(track).catchError((Object error) {
           onError?.call(wt('native.310a7a8960', values: {'p0': (error)}));
         }),
+      );
+    }
+    if (playing && !offlineOnly && _index >= 0 && _index + 1 < tracks.length) {
+      final next = tracks[_index + 1], account = api.token, origin = api.server;
+      unawaited(
+        () async {
+          if (await cache.fileFor(next.id) != null) return;
+          final prepared = await api.resolvePlayback(next);
+          if (_released || account != api.token || origin != api.server) return;
+          if (autoCache &&
+              prepared.offline &&
+              prepared.playback['format'] != 'hls') {
+            await cache.save(prepared);
+          }
+        }().catchError((_) {}),
       );
     }
   }
@@ -707,6 +740,7 @@ class WaveAudioHandler extends BaseAudioHandler {
       if (finished != null && await onEnded?.call(finished, repeat) == true) {
         return;
       }
+      if (current?.id != finished?.id || _released) return;
       if (repeat == AudioServiceRepeatMode.one &&
           current != null &&
           tracks.any((track) => track.id == current!.id)) {
@@ -768,6 +802,9 @@ class WaveAudioHandler extends BaseAudioHandler {
           _ => AudioServiceRepeatMode.none,
         };
       case 'queue':
+        if (data['trackId'] != null && data['trackId'] != current?.id) {
+          throw WaveException(wt('native.7e03f83d51'), 'PLAYBACK_CHANGED');
+        }
         final items = <WaveTrack>[];
         for (final id in List<String>.from(data['queue'] ?? [])) {
           final existing = tracks.where((track) => track.id == id).firstOrNull;

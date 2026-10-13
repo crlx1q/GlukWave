@@ -1,3 +1,5 @@
+import 'wave18_strings.dart';
+import 'equalizer_curve.dart';
 import 'dart:async';
 import 'dart:convert';
 import '../l10n/audio_design_strings.dart';
@@ -437,8 +439,8 @@ class _CompactEqualizerPanelState extends State<CompactEqualizerPanel> {
                         clipBehavior: Clip.none,
                         children: [
                           Positioned.fill(
-                            top: 7,
-                            bottom: 21,
+                            top: 0,
+                            bottom: 22,
                             left: 22,
                             right: 0,
                             child: TweenAnimationBuilder<List<double>>(
@@ -486,6 +488,10 @@ class _CompactEqualizerPanelState extends State<CompactEqualizerPanel> {
                                                   ),
                                               child: Slider(
                                                 key: Key('compact-eq-band-$i'),
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                      horizontal: 7,
+                                                    ),
                                                 min: -12,
                                                 max: 12,
                                                 divisions: 48,
@@ -529,14 +535,14 @@ class _CompactEqualizerPanelState extends State<CompactEqualizerPanel> {
                           // Keep the dB scale inside the rounded chart without
                           // overlapping the first frequency's thumb.
                           for (final axis in [
-                            ('max', '+12', 31.0),
-                            ('zero', '0', (constraints.maxHeight - 14) / 2),
-                            ('min', '−12', constraints.maxHeight - 45),
+                            ('max', '+12', 20.0),
+                            ('zero', '0', (constraints.maxHeight - 22) / 2),
+                            ('min', '−12', constraints.maxHeight - 38),
                           ])
                             Positioned(
-                              left: 0,
+                              left: 2,
                               top: axis.$3 - 10,
-                              width: 22,
+                              width: 28,
                               height: 20,
                               child: IgnorePointer(
                                 child: Center(
@@ -544,6 +550,8 @@ class _CompactEqualizerPanelState extends State<CompactEqualizerPanel> {
                                     axis.$2,
                                     key: Key('compact-eq-db-${axis.$1}'),
                                     semanticsLabel: '${axis.$2} dB',
+                                    maxLines: 1,
+                                    softWrap: false,
                                     style: TextStyle(
                                       fontSize: 9,
                                       color: v.muted,
@@ -627,16 +635,7 @@ class _EqualizerCurve extends CustomPainter {
       final x = size.width * (i + .5) / 10;
       canvas.drawLine(Offset(x, 0), Offset(x, size.height), pen);
     }
-    final curve = Path();
-    for (var i = 0; i < 10; i++) {
-      final x = size.width * (i + .5) / 10,
-          y = 24 + (size.height - 48) * (.5 - bands[i] / 24);
-      if (i == 0) {
-        curve.moveTo(x, y);
-      } else {
-        curve.lineTo(x, y);
-      }
-    }
+    final curve = equalizerEditorCurve(bands, size, v.radius);
     canvas.drawPath(
       curve,
       Paint()
@@ -648,7 +647,9 @@ class _EqualizerCurve extends CustomPainter {
 
   @override
   bool shouldRepaint(_EqualizerCurve old) =>
-      old.bands != bands || old.v.accent != v.accent;
+      old.bands != bands ||
+      old.v.accent != v.accent ||
+      old.v.radius != v.radius;
 }
 
 class _BandsTween extends Tween<List<double>> {
@@ -812,7 +813,7 @@ class _EqualizerPresetMenuState extends State<_EqualizerPresetMenu> {
                   Expanded(
                     child: Text(
                       labels[widget.selected] ??
-                          wt('eq.curve', context: context),
+                          wave18Text(context, 'wave18.eqCustom'),
                       style: TextStyle(color: v.ink, fontSize: 12),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,

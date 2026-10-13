@@ -261,7 +261,7 @@ class DiscoveryView extends StatelessWidget {
                 TrackRow(
                   controller: c,
                   track: track,
-                  queue: c.results,
+                  queue: [track],
                   onMore: () => onMore(track),
                 ),
               if (type == 'all' && c.results.length > 6)

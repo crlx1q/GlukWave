@@ -5,7 +5,7 @@ import { useDocumentVisible,useVisualVisibility } from './visual-lifecycle';
 
 const paths={
   loading:'M3 12C5 12 5 6 7.5 6S10 18 12.5 18S15 6 17.5 6S20 12 21 12',
-  play:'M8.5 5.2C8 4.9 7.5 5.2 7.5 5.8V18.2C7.5 18.8 8 19.1 8.5 18.8L18.8 12.6C19.3 12.3 19.3 11.7 18.8 11.4Z',pause:'M8 5.5V18.5M16 5.5V18.5',
+  play:'M7.3 5.2C6.8 4.9 6.3 5.2 6.3 5.8V18.2C6.3 18.8 6.8 19.1 7.3 18.8L17.6 12.6C18.1 12.3 18.1 11.7 17.6 11.4Z',pause:'M8 5.5V18.5M16 5.5V18.5',
   heart:'M19.5 5.5C17.5 3.5 14.4 4 12 6.5C9.6 4 6.5 3.5 4.5 5.5C2.5 7.5 3 10.7 5.1 12.8L12 19.5L18.9 12.8C21 10.7 21.5 7.5 19.5 5.5Z',
   heartFull:'M19.5 5.5C17.5 3.5 14.4 4 12 6.5C9.6 4 6.5 3.5 4.5 5.5C2.5 7.5 3 10.7 5.1 12.8L12 19.5L18.9 12.8C21 10.7 21.5 7.5 19.5 5.5Z',
   moon:'M20 13.1A8.1 8.1 0 0 1 10.9 4A8.1 8.1 0 1 0 20 13.1Z',
@@ -57,5 +57,5 @@ export function PlaybackMotionIcon({playing,loading,size=23,speed=1,motion=true}
 /** The same Wave stroke as transport loading; motion follows real output, visibility and preferences. */
 export function ListeningMotionIcon({playing,loading=false,size=18}:{playing:boolean;loading?:boolean;size?:number}){
  const store=useStore(),element=useRef<HTMLSpanElement>(null),visible=useVisualVisibility(element),animated=store.motion&&visible&&(playing||loading);
- return <span ref={element} className="listening-glyph wave-live" data-playing={playing} data-loading={loading} data-visual-visible={visible} data-animated={animated} style={{width:size,height:size,'--playback-cycle':`${(loading?1.2:2)/store.settings.appearance.speed}s`} as CSSProperties} aria-hidden="true"><MotionIcon name="loading" size={size} speed={store.settings.appearance.speed} motion={animated}/>{(playing||loading)&&<svg className="playback-flow" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round"><path pathLength="48" d={paths.loading}/></svg>}</span>;
+ return <span ref={element} className="listening-glyph" data-playing={playing} data-loading={loading} data-visual-visible={visible} data-animated={animated} style={{width:size,height:size,'--playback-cycle':`${(loading?1.2:2)/store.settings.appearance.speed}s`} as CSSProperties} aria-hidden="true"><MotionIcon name="loading" size={size} speed={store.settings.appearance.speed} motion={animated}/>{(playing||loading)&&<svg className="playback-flow" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round"><path pathLength="48" d={paths.loading}/></svg>}</span>;
 }

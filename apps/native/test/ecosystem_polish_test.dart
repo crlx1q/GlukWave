@@ -71,7 +71,11 @@ class QueueController extends f.LayoutController {
   final List<Json> commands = [];
   QueueController(super.api, super.cache, super.audio);
   @override
-  Future<void> play(WaveTrack target, {List<WaveTrack>? list}) async {
+  Future<void> play(
+    WaveTrack target, {
+    List<WaveTrack>? list,
+    bool preserveWave = false,
+  }) async {
     starts.add(target.id);
   }
 

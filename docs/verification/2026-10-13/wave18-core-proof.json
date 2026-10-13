@@ -1,0 +1,240 @@
+{
+  "passed": true,
+  "cases": [
+    {
+      "name": "Cold trusted Wave click resolves and decodes real audio",
+      "state": {
+        "active": true,
+        "blocked": false,
+        "duration": 8,
+        "here": true,
+        "id": "original-1",
+        "loading": false,
+        "mode": {
+          "mode": "personal",
+          "mood": "calm"
+        },
+        "paused": false,
+        "queue": [
+          "original-1",
+          "original-6",
+          "original-7",
+          "original-4",
+          "original-5",
+          "original-3",
+          "original-2",
+          "original-0",
+          "original-9",
+          "original-8",
+          "original-11",
+          "original-10"
+        ],
+        "repeat": "off",
+        "src": "http://127.0.0.1:5204/api/media/original-1"
+      }
+    },
+    {
+      "name": "Search selection Next creates a real server-ranked seed wave",
+      "state": {
+        "active": true,
+        "blocked": false,
+        "duration": 8,
+        "here": true,
+        "id": "original-1",
+        "loading": false,
+        "mode": {
+          "mode": "personal",
+          "mood": "personal"
+        },
+        "paused": false,
+        "queue": [
+          "original-0",
+          "original-1",
+          "original-3",
+          "original-6",
+          "original-7",
+          "original-4",
+          "original-5",
+          "original-2",
+          "original-9",
+          "original-8",
+          "original-11",
+          "original-10"
+        ],
+        "repeat": "off",
+        "src": "http://127.0.0.1:5204/api/media/original-1"
+      }
+    },
+    {
+      "name": "Finite playlist natural end continues with media metadata retained",
+      "frames": 22,
+      "state": {
+        "active": true,
+        "blocked": false,
+        "duration": 8,
+        "here": true,
+        "id": "original-11",
+        "loading": false,
+        "mode": {
+          "mode": "personal",
+          "mood": "personal"
+        },
+        "paused": false,
+        "queue": [
+          "original-8",
+          "original-9",
+          "original-11",
+          "original-10",
+          "original-1",
+          "original-4",
+          "original-5",
+          "original-6",
+          "original-7",
+          "original-3",
+          "original-2",
+          "original-0"
+        ],
+        "repeat": "off",
+        "src": "http://127.0.0.1:5204/api/media/original-11"
+      }
+    },
+    {
+      "name": "Repeat reuses the same decoder/source and makes no new playback GET",
+      "track": "original-11",
+      "resolutions": 2
+    },
+    {
+      "name": "Rapid repeat commands retain the final acknowledged selection",
+      "repeat": "one"
+    },
+    {
+      "name": "Favorites tail retains the selected mode and mood",
+      "state": {
+        "active": true,
+        "blocked": false,
+        "duration": 8,
+        "here": true,
+        "id": "original-1",
+        "loading": false,
+        "mode": {
+          "mode": "favorites",
+          "mood": "sad"
+        },
+        "paused": false,
+        "queue": [
+          "original-0",
+          "original-1"
+        ],
+        "repeat": "off",
+        "src": "http://127.0.0.1:5204/api/media/original-1"
+      }
+    },
+    {
+      "name": "Late seed recommendations cannot stop or replace a newer explicit choice",
+      "state": {
+        "active": false,
+        "blocked": false,
+        "duration": 8,
+        "here": true,
+        "id": "original-8",
+        "loading": false,
+        "mode": {
+          "mode": "personal",
+          "mood": "personal"
+        },
+        "paused": false,
+        "queue": [
+          "original-8"
+        ],
+        "repeat": "off",
+        "src": "http://127.0.0.1:5204/api/media/original-8"
+      }
+    }
+  ],
+  "boundary": "Real isolated SQLite backend, auth, Socket.IO and Audio decoding original generated WAV. Fixture button calls the real React player during trusted clicks; UI geometry independently checked. No hosted extractors or physical devices.",
+  "counts": {
+    "counts": {
+      "GET /auth/me": 4,
+      "GET /config": 4,
+      "GET /connect": 2,
+      "GET /devices": 35,
+      "GET /integrations": 6,
+      "GET /library": 23,
+      "GET /locale": 2,
+      "GET /media/original-0": 2,
+      "GET /media/original-1": 2,
+      "GET /media/original-10": 1,
+      "GET /media/original-11": 1,
+      "GET /media/original-2": 1,
+      "GET /media/original-8": 1,
+      "GET /media/original-9": 2,
+      "GET /recommendations?mode=favorites&mood=sad&limit=20&nonce=1791886429837": 1,
+      "GET /recommendations?mode=favorites&mood=sad&limit=20&nonce=1791886432762&seedTrackId=original-1&exclude=original-0%2Coriginal-1": 1,
+      "GET /recommendations?mode=favorites&mood=sad&limit=20&nonce=1791886432762&seedTrackId=original-1&exclude=original-1": 1,
+      "GET /recommendations?mode=favorites&mood=sad&limit=20&nonce=1791886570456": 1,
+      "GET /recommendations?mode=favorites&mood=sad&limit=20&nonce=1791886574248&seedTrackId=original-0&exclude=original-0": 1,
+      "GET /recommendations?mode=favorites&mood=sad&limit=20&nonce=1791886574248&seedTrackId=original-0&exclude=original-1%2Coriginal-0": 1,
+      "GET /recommendations?mode=personal&mood=calm&limit=20&nonce=1791886414572": 1,
+      "GET /recommendations?mode=personal&mood=calm&limit=20&nonce=1791886553508": 1,
+      "GET /recommendations?mode=personal&mood=personal&limit=20&nonce=1791886419039&seedTrackId=original-0&exclude=original-0": 1,
+      "GET /recommendations?mode=personal&mood=personal&limit=20&nonce=1791886423453&seedTrackId=original-9&exclude=original-8%2Coriginal-9": 1,
+      "GET /recommendations?mode=personal&mood=personal&limit=20&nonce=1791886558677&seedTrackId=original-0&exclude=original-0": 1,
+      "GET /recommendations?mode=personal&mood=personal&limit=20&nonce=1791886563310&seedTrackId=original-9&exclude=original-8%2Coriginal-9": 1,
+      "GET /recommendations?mode=personal&mood=personal&limit=20&nonce=1791886577245&seedTrackId=original-9&exclude=original-9": 1,
+      "GET /releases": 2,
+      "GET /settings": 4,
+      "GET /socket.io/?EIO=4&transport=polling&t=iwldsqth": 1,
+      "GET /socket.io/?EIO=4&transport=polling&t=iwlfrjtr&sid=x5nNRLFUb43TgLe6AAAA": 1,
+      "GET /socket.io/?EIO=4&transport=polling&t=iwlimfyn&sid=x5nNRLFUb43TgLe6AAAA": 1,
+      "GET /socket.io/?EIO=4&transport=polling&t=izk8y871": 1,
+      "GET /socket.io/?EIO=4&transport=polling&t=izkcdtiq&sid=sj-ARmz0EptXzsnCAAAB": 1,
+      "GET /taste": 4,
+      "GET /tracks/original-0/comments": 5,
+      "GET /tracks/original-0/lyrics": 5,
+      "GET /tracks/original-0/playback": 4,
+      "GET /tracks/original-1/comments": 6,
+      "GET /tracks/original-1/lyrics": 6,
+      "GET /tracks/original-1/playback": 4,
+      "GET /tracks/original-1/waveform": 2,
+      "GET /tracks/original-10/comments": 1,
+      "GET /tracks/original-10/lyrics": 1,
+      "GET /tracks/original-10/playback": 2,
+      "GET /tracks/original-11/comments": 1,
+      "GET /tracks/original-11/lyrics": 1,
+      "GET /tracks/original-11/playback": 2,
+      "GET /tracks/original-2/comments": 1,
+      "GET /tracks/original-2/lyrics": 1,
+      "GET /tracks/original-2/playback": 1,
+      "GET /tracks/original-3/playback": 2,
+      "GET /tracks/original-6/playback": 1,
+      "GET /tracks/original-8/comments": 1,
+      "GET /tracks/original-8/lyrics": 1,
+      "GET /tracks/original-8/playback": 1,
+      "GET /tracks/original-9/comments": 5,
+      "GET /tracks/original-9/lyrics": 5,
+      "GET /tracks/original-9/playback": 4,
+      "GET /tracks/original-9/waveform": 1,
+      "POST /api/auth/login": 2,
+      "POST /api/auth/register": 1,
+      "POST /api/history": 19,
+      "POST /socket.io/?EIO=4&transport=polling&t=iwlfnghe&sid=x5nNRLFUb43TgLe6AAAA": 1,
+      "POST /socket.io/?EIO=4&transport=polling&t=izkc63cm&sid=sj-ARmz0EptXzsnCAAAB": 1,
+      "PUT /api/library/likes/original-0": 2,
+      "PUT /api/library/likes/original-1": 2
+    },
+    "tracks": [
+      "original-0",
+      "original-1",
+      "original-2",
+      "original-3",
+      "original-4",
+      "original-5",
+      "original-6",
+      "original-7",
+      "original-8",
+      "original-9",
+      "original-10",
+      "original-11"
+    ]
+  }
+}

@@ -11,6 +11,7 @@ import 'package:glukwave/services/audio.dart';
 import 'package:glukwave/services/cache.dart';
 import 'package:glukwave/ui/cover_accent.dart';
 import 'package:glukwave/ui/equalizer_panel.dart';
+import 'package:glukwave/ui/equalizer_curve.dart';
 import 'package:glukwave/ui/motion_icons.dart';
 import 'package:glukwave/ui/player.dart';
 import 'package:glukwave/ui/theme.dart';
@@ -217,6 +218,13 @@ void main() {
         'Actual anchored compact EQ fits $mode $width at125 percent font',
         (tester) async {
           final c = (await tester.runAsync(makeController))!;
+          await tester.runAsync(
+            () => c.customize({
+              'equalizer': {
+                'bands': [0, 0, -12, 12, 0, 7, -5, 0, 0, 0],
+              },
+            }),
+          );
           await fixture.viewport(tester, Size(width, 900));
           await tester.pumpWidget(
             shell(
@@ -263,10 +271,46 @@ void main() {
           final chart = tester.getRect(
             find.byKey(const Key('compact-eq-curve')),
           );
+          final curve = equalizerEditorCurve(
+            c.customization.equalizer.bands,
+            chart.size,
+            c.customization.appearance.radius,
+          );
+          final metric = curve.computeMetrics().single;
+          for (var i = 0; i < 10; i++) {
+            final sliderFinder = find.byKey(Key('compact-eq-band-$i')),
+                slider = tester.widget<Slider>(sliderFinder),
+                sliderRect = tester.getRect(sliderFinder);
+            expect(slider.padding, const EdgeInsets.symmetric(horizontal: 7));
+            final thumb = Offset(
+              sliderRect.center.dx,
+              sliderRect.bottom -
+                  7 -
+                  (sliderRect.height - 14) * (slider.value + 12) / 24,
+            );
+            final localThumb = thumb - chart.topLeft;
+            var closest = double.infinity;
+            for (
+              var distance = 0.0;
+              distance <= metric.length;
+              distance += .2
+            ) {
+              final point = metric.getTangentForOffset(distance)!.position;
+              final separation = (point - localThumb).distance;
+              if (separation < closest) closest = separation;
+            }
+            expect(
+              closest,
+              lessThan(.3),
+              reason: 'Band $i actual thumb must intersect the rounded curve',
+            );
+            expect(thumb.dy, greaterThanOrEqualTo(chart.top));
+            expect(thumb.dy, lessThanOrEqualTo(chart.bottom));
+          }
           for (final axis in [
-            ('max', '+12', chart.top + 24),
+            ('max', '+12', chart.top + 20),
             ('zero', '0', chart.center.dy),
-            ('min', '−12', chart.bottom - 24),
+            ('min', '−12', chart.bottom - 16),
           ]) {
             final label = find.byKey(Key('compact-eq-db-${axis.$1}'));
             expect(label, findsOneWidget);

@@ -1,3 +1,4 @@
+import 'motion_icons.dart';
 import 'scrolling_label.dart';
 import '../l10n/wave_localizations.dart';
 import 'dart:math' as math;
@@ -482,10 +483,14 @@ class WaveHero extends StatefulWidget {
   final VoidCallback? onPlay;
   final bool reducedMotion;
   final bool empty;
-  final String? emptyActionLabel;
+  final String? emptyActionLabel, caption;
+  final bool loading, playing;
   const WaveHero({
     super.key,
     this.emptyActionLabel,
+    this.caption,
+    this.loading = false,
+    this.playing = false,
     this.controller,
     this.onPlay,
     this.reducedMotion = false,
@@ -691,9 +696,10 @@ class _WaveHeroState extends State<WaveHero>
                         ),
                         const SizedBox(height: 8),
                         Text(
-                          widget.empty
-                              ? wt('native.c1a1b57faa', context: context)
-                              : wt('native.642189648a', context: context),
+                          widget.caption ??
+                              (widget.empty
+                                  ? wt('native.c1a1b57faa', context: context)
+                                  : wt('native.642189648a', context: context)),
                           style: TextStyle(
                             color: v.onPlayer.withValues(alpha: .72),
                             fontSize: compact ? 11 : 13,
@@ -712,16 +718,19 @@ class _WaveHeroState extends State<WaveHero>
                             ),
                             shape: const StadiumBorder(),
                           ),
-                          icon: Icon(
-                            widget.empty
-                                ? Icons.add_rounded
-                                : Icons.play_arrow_rounded,
-                            size: 19,
-                          ),
+                          icon: widget.empty
+                              ? const Icon(Icons.add_rounded, size: 19)
+                              : WavePlaybackIcon(
+                                  playing: widget.playing,
+                                  loading: widget.loading,
+                                  size: 19,
+                                ),
                           label: Text(
                             widget.empty
                                 ? widget.emptyActionLabel ??
                                       wt('native.99855bf52d', context: context)
+                                : widget.playing
+                                ? wt('native.03498e395a', context: context)
                                 : wt('native.5f266e04fe', context: context),
                           ),
                         ),

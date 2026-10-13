@@ -48,7 +48,11 @@ class WidgetController extends WaveController {
   }
 
   @override
-  Future<void> play(WaveTrack track, {List<WaveTrack>? list}) async {
+  Future<void> play(
+    WaveTrack track, {
+    List<WaveTrack>? list,
+    bool preserveWave = false,
+  }) async {
     commands.add('track:${track.id}');
   }
 }

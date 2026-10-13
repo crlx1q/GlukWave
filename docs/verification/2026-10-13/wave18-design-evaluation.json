@@ -1,0 +1,27 @@
+{
+  "verdict": "PASS",
+  "attempt": 3,
+  "checkedAt": "2026-10-13T11:07:29.136799+00:00",
+  "independentSession": true,
+  "differentProvider": false,
+  "provider": "OpenAI",
+  "scope": "Fresh desktop/tablet/mobile/enlarged text; native widget captures; final portal visibility and clickability",
+  "realAudioEvidenceSeparate": "wave18-connect-proof.json",
+  "physicalChecksPerformed": false,
+  "rounds": [
+    {
+      "attempt": 1,
+      "verdict": "PASS"
+    },
+    {
+      "attempt": 2,
+      "verdict": "PASS",
+      "refinement": "Full native EQ ±12 labels"
+    },
+    {
+      "attempt": 3,
+      "verdict": "PASS",
+      "refinement": "Accessible autoplay notice portal"
+    }
+  ]
+}

@@ -3,11 +3,12 @@ import rateLimit from 'express-rate-limit';
 import {asyncRoute,parse,text,id,now,digest,fail} from './util.js';
 import {artistsFromTracks,searchText} from './search.js';
 import {initialState,liveState} from './rooms.js';
+import {setupRecommendations,genreKey} from './recommendations.js';
 
 export const safeProfile=user=>user?Object.fromEntries(['id','username','displayName','bio','tags','avatarUrl','bannerUrl','plan','role','createdAt'].map(key=>[key,user[key]])):null;
 export const friendKey=(left,right)=>digest([left,right].sort().join(':'));
 const defaultPrivacy={showActivity:true,profileStats:false,allowFriendRequests:true};
-const defaultTaste={artists:[],onboardingCompleted:false,onboardingStep:0,automatic:true,revision:0};
+const defaultTaste={artists:[],genres:[],onboardingCompleted:false,onboardingStep:0,automatic:true,revision:0};
 export function setupCommunity(app,ctx){
  const {store,requireAuth}=ctx,timers=new Map();let closed=false;
  const mutate=rateLimit({windowMs:60000,limit:30,standardHeaders:'draft-8',legacyHeaders:false});
@@ -33,17 +34,12 @@ export function setupCommunity(app,ctx){
  app.get('/api/taste',requireAuth,asyncRoute(async(req,res)=>res.set('Cache-Control','no-store').json(await tasteEnvelope(own(req)))));
  const artistSchema=z.object({id:text(200),name:text(300),source:text(30),artwork:z.string().max(2048).optional(),sourceUrl:z.string().max(2048).optional(),trackIds:z.array(text(200)).max(1000).optional()}).passthrough();
  app.put('/api/taste',requireAuth,mutate,asyncRoute(async(req,res)=>{
-  const body=parse(z.object({artists:z.array(artistSchema).max(100).optional(),onboardingCompleted:z.boolean().optional(),onboardingStep:z.number().int().min(0).max(3).optional(),automatic:z.boolean().optional()}).strict(),req.body);let artists;
+  const body=parse(z.object({artists:z.array(artistSchema).max(100).optional(),genres:z.array(text(40)).max(20).transform(values=>[...new Set(values.map(genreKey))]).optional(),onboardingCompleted:z.boolean().optional(),onboardingStep:z.number().int().min(0).max(3).optional(),automatic:z.boolean().optional()}).strict(),req.body);let artists;
   if(body.artists){artists=[];for(const item of body.artists){const known=await store.get('artists',item.id);if(!known||!known.public&&!known.ownerIds?.includes(own(req)))fail(400,'ARTIST_NOT_FOUND','Сначала найди артиста в поиске.');if(!artists.some(value=>value.id===known.id)){const {updatedAt,public:visible,ownerIds,...artist}=known;artists.push(artist);}}}
   await ctx.withLock('taste:'+own(req),()=>store.update('taste',own(req),previous=>({...defaultTaste,...previous,...body,...(artists?{artists}:{}),id:own(req),revision:(previous?.revision||0)+1,updatedAt:now()})));const response=await tasteEnvelope(own(req));ctx.io?.to(`user:${own(req)}`).emit('taste:changed',response);res.json(response);
  }));
  app.delete('/api/taste/learned',requireAuth,asyncRoute(async(req,res)=>{await store.update('taste',own(req),previous=>({...defaultTaste,...previous,id:own(req),learnedResetAt:now(),revision:(previous?.revision||0)+1}));const response=await tasteEnvelope(own(req));ctx.io?.to(`user:${own(req)}`).emit('taste:changed',response);res.json(response);}));
- app.get('/api/recommendations',asyncRoute(async(req,res)=>{
-  const mood=parse(z.enum(['personal','relax','focus','energy','dream']),req.query.mood||'personal'),uid=req.auth?.user.id,taste=uid?(await tasteEnvelope(uid)):{taste:defaultTaste,learnedArtists:[]},library=uid?await store.get('libraries',uid):null,tracks=await catalogue(req.auth?.user);
-  const selected=new Set(taste.taste.artists.map(artist=>searchText(artist.name))),inferred=new Set(taste.learnedArtists.map(artist=>searchText(artist.name))),liked=new Set(library?.likedIds||[]),history=new Set(library?.history?.map(entry=>entry.trackId)||[]),moods={relax:/ambient|chill|relax|lo.?fi|jazz|спокой|эмбиент/i,focus:/instrumental|piano|classic|focus|ambient|инструмент|классик/i,energy:/dance|electronic|rock|hip.?hop|pop|энерг|танц/i,dream:/dream|shoegaze|ambient|indie|электро/i};
-  const scored=tracks.map(track=>{const names=(track.artists||[{name:track.artist}]).map(artist=>searchText(artist.name)),score=names.some(name=>selected.has(name))?20:0;return {track,score:score+(names.some(name=>inferred.has(name))?8:0)+(liked.has(track.id)?6:0)+(history.has(track.id)?3:0)+(mood!=='personal'&&moods[mood].test([track.genre,...track.tags||[]].join(' '))?10:0)};}).sort((a,b)=>b.score-a.score||String(b.track.createdAt||'').localeCompare(a.track.createdAt||''));
-  res.set('Cache-Control','private, no-store').json({tracks:scored.slice(0,60).map(({track})=>ctx.publicTrack(track,req.auth?.user)),artists:taste.taste.artists,genres:genresFor(tracks),reason:!tracks.length?'empty':selected.size?'taste':history.size?'history':'catalogue'});
- }));
+ setupRecommendations(app,ctx);
  app.get('/api/account/privacy',requireAuth,asyncRoute(async(req,res)=>res.json({privacy:await privacy(own(req))})));
  app.patch('/api/account/privacy',requireAuth,asyncRoute(async(req,res)=>{const body=parse(z.object({showActivity:z.boolean().optional(),profileStats:z.boolean().optional(),allowFriendRequests:z.boolean().optional()}).strict(),req.body);await store.update('privacy',own(req),previous=>({...defaultPrivacy,...previous,...body,id:own(req)}));changed(own(req));res.json({privacy:await privacy(own(req))});}));
  async function activity(viewer,friend){

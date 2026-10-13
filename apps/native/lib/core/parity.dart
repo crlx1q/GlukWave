@@ -43,7 +43,10 @@ class WaveParity extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> load({String mood = 'personal'}) async {
+  Future<void> load({
+    String mood = 'personal',
+    String mode = 'personal',
+  }) async {
     final generation = ++_generation, token = api.token, origin = api.server;
     final friendsGeneration = ++_friendsGeneration,
         tasteGeneration = ++_tasteGeneration;
@@ -52,7 +55,7 @@ class WaveParity extends ChangeNotifier {
     notifyListeners();
     final responses = await Future.wait([
       _optional('/api/taste'),
-      _optional('/api/recommendations', query: {'mood': mood}),
+      _optional('/api/recommendations', query: {'mood': mood, 'mode': mode}),
       _optional('/api/friends'),
     ]);
     if (_disposed ||

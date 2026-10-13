@@ -20,6 +20,7 @@ export class OptimisticControls {
  current(token:ControlToken){return token.scope===this.scope&&token.version>this.invalidBefore;}
  superseded(token:ControlToken){return !fields.some(field=>token.values[field]!==undefined&&this.pending.get(field)?.version===token.version);}
  has(field:keyof ControlValues){return this.pending.has(field);}
+ committing(){return [...this.pending.values()].some(edit=>!edit.draft);}
  overlay<T extends Partial<ControlValues>>(state:T):T {
   const values:Partial<ControlValues>={};for(const [field,edit]of this.pending)(values as Record<string,unknown>)[field]=edit.value;
   return {...state,...values};

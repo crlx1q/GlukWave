@@ -51,7 +51,8 @@ export function setupExtractedHls(app,ctx,{cdn,resolve,fetcher=fetch}){
     const resource=grant.parts.get(part),requestedVersion=grant.partVersions.get(part)||0;if(!resource)fail(404,'TRACK_NOT_FOUND','Трек не найден.');
     const range=req.headers.range;if(range&&!/^bytes=(?:\d+-\d*|-\d+)$/.test(range))fail(416,'INVALID_RANGE','Этот диапазон аудио недоступен.');
     if(transfers.size>=24)fail(503,'EXTRACTOR_BUSY','Музыка загружается. Повтори чуть позже.');
-    const controller=new AbortController(),abort=()=>controller.abort();transfers.add(controller);res.once('close',abort);
+    if(req.aborted||res.destroyed||res.writableEnded)return;
+    const controller=new AbortController(),abort=()=>controller.abort();transfers.add(controller);res.once('close',abort);req.once('aborted',abort);
     const timeout=setTimeout(abort,30000);timeout.unref();
     try{
       let {response,url}=await pull(resource,controller.signal,{...grant.headers,...(range?{Range:range}:{})}),responseVersion=requestedVersion;
@@ -72,6 +73,7 @@ export function setupExtractedHls(app,ctx,{cdn,resolve,fetcher=fetch}){
       }
       if(response.status===416){await response.body?.cancel();if(response.headers.get('content-range'))res.set('Content-Range',response.headers.get('content-range'));return res.status(416).end();}
       if(!response.ok){await response.body?.cancel();fail(response.status===429?429:502,'EXTRACTOR_UPSTREAM','Источник временно не открыл трек.');}
+      if(controller.signal.aborted||req.aborted||res.destroyed||res.writableEnded){await response.body?.cancel();return;}
       const type=response.headers.get('content-type')||'',manifest=/mpegurl/i.test(type)||/\.m3u8(?:\?|$)/i.test(url.href);
       res.set({'Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer'});
       if(manifest){
@@ -84,8 +86,8 @@ export function setupExtractedHls(app,ctx,{cdn,resolve,fetcher=fetch}){
         res.status(response.status===206?206:200).type(type||'application/octet-stream');for(const name of ['content-length','content-range','accept-ranges'])if(response.headers.get(name))res.set(name,response.headers.get(name));
         if(req.method==='HEAD'){await response.body?.cancel();res.end();}else{let bytes=0;const limit=new Transform({transform(chunk,_,done){bytes+=chunk.length;done(bytes>max?new Error('Audio segment limit'):null,chunk);}});await pipeline(Readable.fromWeb(response.body),limit,res,{signal:controller.signal});}
       }
-    }catch(error){if(!controller.signal.aborted&&!res.headersSent)throw error;if(!res.destroyed)res.destroy();}
-    finally{clearTimeout(timeout);res.removeListener('close',abort);controller.abort();transfers.delete(controller);}
+    }catch(error){if(!controller.signal.aborted&&!req.aborted&&!res.destroyed&&!res.headersSent)throw error;if(!res.destroyed)res.destroy();}
+    finally{clearTimeout(timeout);res.removeListener('close',abort);req.removeListener('aborted',abort);controller.abort();transfers.delete(controller);}
   }));
   return {issue,stats:()=>({grants:grants.size,parts,transfers:transfers.size}),close(){closed=true;clearInterval(timer);for(const controller of transfers)controller.abort();grants.clear();parts=0;}};
 }

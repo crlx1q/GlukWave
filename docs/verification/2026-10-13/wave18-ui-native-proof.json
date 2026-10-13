@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "cases": 5,
+  "checks": [
+    "Native actual mode/mood + pending state 375.0",
+    "Native actual mode/mood + pending state 1440.0",
+    "Native genre save preserves automatic taste",
+    "Native actual rounded EQ editor",
+    "Native sunlight and fixed cover scene"
+  ],
+  "screenshots": [
+    "work/qa/native-wave18-ui-1791886352227-home-375.png",
+    "work/qa/native-wave18-ui-1791886352227-home-1440.png",
+    "work/qa/native-wave18-ui-1791886352227-taste-375.png",
+    "work/qa/native-wave18-ui-1791886352227-cover-reflection-938.png",
+    "work/qa/native-wave18-eq-labels-1791887851097-375-125.png"
+  ],
+  "scope": "Actual Flutter widget rendering/controllers; isolated API/audio output, no physical install.",
+  "eqRefinement": {
+    "passed": true,
+    "proofFile": "work/qa/wave18-eq-labels-proof.json",
+    "glyphLog": "work/qa/wave18-eq-glyph-recovery.log",
+    "geometryLog": "work/qa/wave18-eq-labels-tests.log",
+    "layoutLog": "work/qa/wave18-eq-layout-refinement.log",
+    "focusedGlyphCases": 1,
+    "geometryCases": 2,
+    "layoutCases": 9,
+    "totalVerifiedCases": 12,
+    "curveThumbContractUnchanged": true
+  }
+}

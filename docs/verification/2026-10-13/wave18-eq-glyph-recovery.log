@@ -1,0 +1,9 @@
+00:00 +0: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/wave18_eq_labels_test.dart
+00:00 +0: (setUpAll)
+00:00 +0: Native EQ paints complete plus/minus12 at125 percent without changing curve handles
+glyph: mounted
+glyph: complete paint bounds
+glyph: curve aligned
+glyph: captured
+00:01 +1: (tearDownAll)
+00:01 +1: All tests passed!

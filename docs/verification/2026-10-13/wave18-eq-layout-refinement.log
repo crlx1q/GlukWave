@@ -1,0 +1,13 @@
+00:00 +0: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/audio_design_test.dart
+00:00 +0: (setUpAll)
+00:00 +0: Actual anchored compact EQ fits dark 320.0 at125 percent font
+00:02 +1: Actual anchored compact EQ fits dark 390.0 at125 percent font
+00:02 +2: Actual anchored compact EQ fits dark 1440.0 at125 percent font
+00:02 +3: Actual anchored compact EQ fits amoled 320.0 at125 percent font
+00:03 +4: Actual anchored compact EQ fits amoled 390.0 at125 percent font
+00:03 +5: Actual anchored compact EQ fits amoled 1440.0 at125 percent font
+00:03 +6: Actual anchored compact EQ fits light 320.0 at125 percent font
+00:04 +7: Actual anchored compact EQ fits light 390.0 at125 percent font
+00:04 +8: Actual anchored compact EQ fits light 1440.0 at125 percent font
+00:04 +9: (tearDownAll)
+00:04 +9: All tests passed!

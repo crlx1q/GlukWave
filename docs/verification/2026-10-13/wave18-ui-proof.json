@@ -1,0 +1,269 @@
+{
+  "passed": true,
+  "session": "wave18-ui-1791885987344",
+  "url": "http://127.0.0.1:5202",
+  "scope": "Actual React app, isolated own WAV/API fixture; no hosting data or physical device checks.",
+  "checks": [
+    {
+      "waveFourModesSevenIndependentMoods": true,
+      "request": {
+        "limit": "20",
+        "mode": "favorites",
+        "mood": "happy",
+        "nonce": "1791886028196"
+      },
+      "rankedFirstTrack": true
+    },
+    {
+      "allVisibleGlyphsCentered": true,
+      "glyphs": [
+        {
+          "canvas": 23,
+          "dx": 0,
+          "dy": 0,
+          "equal": true
+        },
+        {
+          "canvas": 23,
+          "dx": 0,
+          "dy": 0,
+          "equal": true
+        },
+        {
+          "canvas": 23,
+          "dx": 0,
+          "dy": 0,
+          "equal": true
+        }
+      ]
+    },
+    {
+      "emptyErrorAndRetry": true
+    },
+    {
+      "tasteCompactGenreChoices": 14,
+      "persistedGenres": [
+        "electronic",
+        "pop",
+        "classical"
+      ]
+    },
+    {
+      "colorFirstVisibleFrameAnchored": true,
+      "frames": 24,
+      "colorLongHoldImmediate": true,
+      "heldRequests": 0,
+      "heldStorageWrites": 0,
+      "oneFinalPatch": true,
+      "accent": "#4f32a5",
+      "color": "#4f32a5",
+      "editing": "true",
+      "latencies": [
+        0.699999988079071,
+        0.5,
+        0.3999999761581421,
+        0.5999999642372131,
+        0.7999999523162842,
+        0.30000001192092896
+      ],
+      "transition": "0s",
+      "writes": 0
+    },
+    {
+      "visibleListeningWaveChanges": true,
+      "animated": "true",
+      "base": {
+        "bottom": 76.5,
+        "height": 19,
+        "left": 753.5625,
+        "right": 772.5625,
+        "top": 57.5,
+        "width": 19,
+        "x": 753.5625,
+        "y": 57.5
+      },
+      "display": "grid",
+      "overlay": {
+        "bottom": 76.5,
+        "height": 19,
+        "left": 753.5625,
+        "right": 772.5625,
+        "top": 57.5,
+        "width": 19,
+        "x": 753.5625,
+        "y": 57.5
+      },
+      "path": "33.166px",
+      "next": "14.962px"
+    },
+    {
+      "equalizerRadiusChangesActualLine": true,
+      "roundedRadius": 38,
+      "smallRadius": 8,
+      "smooth": "M15,72C25,72 35,72 45,72C55,72 65,139.164 75,139.16417910447763C85,139.164 95,4.836 105,4.835820895522389C115,4.836 125,72 135,72C145,72 155,32.821 165,32.82089552238806C175,32.821 185,99.985 195,99.98507462686567C205,99.985 215,72 225,72C235,72 245,72 255,72C265,72 275,72 285,72",
+      "sharp": "M15,72C25,72 35,72 45,72C55,86.925 65,124.239 75,139.16417910447763C85,109.313 95,34.687 105,4.835820895522389C115,19.761 125,57.075 135,72C145,63.294 155,41.527 165,32.82089552238806C175,47.746 185,85.06 195,99.98507462686567C205,93.766 215,78.219 225,72C235,72 245,72 255,72C265,72 275,72 285,72"
+    },
+    {
+      "theme": "light",
+      "reducedMotionNoActiveSoundGlyph": true
+    },
+    {
+      "theme": "amoled",
+      "reducedMotionNoActiveSoundGlyph": true
+    }
+  ],
+  "layouts": [
+    {
+      "width": 375,
+      "height": 812,
+      "scale": 1,
+      "modes": [
+        {
+          "bottom": 561.59375,
+          "height": 35,
+          "left": 22,
+          "right": 102,
+          "top": 526.59375,
+          "width": 80,
+          "x": 22,
+          "y": 526.59375
+        },
+        {
+          "bottom": 561.59375,
+          "height": 35,
+          "left": 107,
+          "right": 181.359375,
+          "top": 526.59375,
+          "width": 74.359375,
+          "x": 107,
+          "y": 526.59375
+        },
+        {
+          "bottom": 561.59375,
+          "height": 35,
+          "left": 186.359375,
+          "right": 242.921875,
+          "top": 526.59375,
+          "width": 56.5625,
+          "x": 186.359375,
+          "y": 526.59375
+        },
+        {
+          "bottom": 601.59375,
+          "height": 35,
+          "left": 22,
+          "right": 124.03125,
+          "top": 566.59375,
+          "width": 102.03125,
+          "x": 22,
+          "y": 566.59375
+        }
+      ],
+      "moodsScrollable": true,
+      "overflow": -10,
+      "selectedModes": 1
+    },
+    {
+      "width": 320,
+      "height": 812,
+      "scale": 1.25,
+      "modes": [
+        {
+          "bottom": 695.75,
+          "height": 43.75,
+          "left": 22.5,
+          "right": 122,
+          "top": 652,
+          "width": 99.5,
+          "x": 22.5,
+          "y": 652
+        },
+        {
+          "bottom": 695.75,
+          "height": 43.75,
+          "left": 128.25,
+          "right": 220.703125,
+          "top": 652,
+          "width": 92.453125,
+          "x": 128.25,
+          "y": 652
+        },
+        {
+          "bottom": 745.75,
+          "height": 43.75,
+          "left": 22.5,
+          "right": 92.703125,
+          "top": 702,
+          "width": 70.203125,
+          "x": 22.5,
+          "y": 702
+        },
+        {
+          "bottom": 745.75,
+          "height": 43.75,
+          "left": 98.953125,
+          "right": 226,
+          "top": 702,
+          "width": 127.046875,
+          "x": 98.953125,
+          "y": 702
+        }
+      ],
+      "moodsScrollable": true,
+      "overflow": -10,
+      "selectedModes": 1
+    },
+    {
+      "coverRotation": true,
+      "width": 1440,
+      "height": 474,
+      "controlsBottom": 870.6875,
+      "facesFit": true,
+      "layoutOverflow": 0,
+      "lightX": "99.93643240324457%",
+      "size": 340
+    },
+    {
+      "coverRotation": true,
+      "width": 938,
+      "height": 451,
+      "controlsBottom": 839.1875,
+      "facesFit": true,
+      "layoutOverflow": 0,
+      "lightX": "30.752413571081803%",
+      "size": 326
+    },
+    {
+      "coverRotation": true,
+      "width": 375,
+      "height": 289,
+      "controlsBottom": 703.390625,
+      "facesFit": true,
+      "layoutOverflow": 0,
+      "lightX": "0.10969641067685165%",
+      "size": 210
+    }
+  ],
+  "screenshots": [
+    "work/qa/wave18-ui-1791885987344-wave-loading-desktop.png",
+    "work/qa/wave18-ui-1791885987344-wave-desktop.png",
+    "work/qa/wave18-ui-1791885987344-wave-empty.png",
+    "work/qa/wave18-ui-1791885987344-wave-375-1.png",
+    "work/qa/wave18-ui-1791885987344-wave-320-1.25.png",
+    "work/qa/wave18-ui-1791885987344-taste-desktop.png",
+    "work/qa/wave18-ui-1791885987344-color-held.png",
+    "work/qa/wave18-ui-1791885987344-cover-1440.png",
+    "work/qa/wave18-ui-1791885987344-cover-938.png",
+    "work/qa/wave18-ui-1791885987344-cover-375.png",
+    "work/qa/wave18-ui-1791885987344-equalizer-rounded.png",
+    "work/qa/wave18-ui-1791885987344-equalizer-radius8.png",
+    "work/qa/wave18-ui-1791885987344-player-light-reduced.png",
+    "work/qa/wave18-ui-1791885987344-player-amoled-reduced.png"
+  ],
+  "completedAt": 1791886254.9423258,
+  "sourceFreezeFile": "work/qa/wave18-ui-source-freeze.json",
+  "postCaptureSyntaxOnlyBraces": true,
+  "postFreezeNoticeProof": "work/qa/wave18-notice-ui-proof.json",
+  "realConnectProof": "work/qa/wave18-connect-proof.json",
+  "postProofBoundary": "Only autoplay notice moved from clipped footer to a premeasured body portal, with existing mobile progress clipping and fullscreen keyboard loop preserved. Narrow fresh notice proof supplements original UI proof; root real-browser proof covers actual audio permission and transfer."
+}

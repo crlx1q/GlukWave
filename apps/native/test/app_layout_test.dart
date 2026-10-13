@@ -180,7 +180,20 @@ void main() {
         });
         c.render();
         await tester.pumpAndSettle();
-        expect(find.text('Моя волна'), findsOneWidget);
+        expect(
+          find.descendant(
+            of: find.byType(WaveHero),
+            matching: find.text('Моя волна'),
+          ),
+          findsOneWidget,
+        );
+        expect(find.byKey(const Key('wave-mode-personal')), findsOneWidget);
+        expect(
+          tester
+              .widget<ChoiceChip>(find.byKey(const Key('wave-mode-personal')))
+              .selected,
+          isTrue,
+        );
         expect(tester.takeException(), isNull);
         if (width == 390 || width == 1280) {
           await screenshot(tester, 'home-${width.toInt()}');

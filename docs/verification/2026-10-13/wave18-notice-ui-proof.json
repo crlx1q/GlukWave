@@ -1,0 +1,120 @@
+{
+  "passed": true,
+  "scope": "Actual React portal geometry and keyboard reachability. Audio denial injected only to show the UI; root separately checks a real cold browser.",
+  "checks": [
+    {
+      "width": 1440,
+      "height": 900,
+      "scale": 1,
+      "anchor": {
+        "bottom": 882,
+        "height": 96,
+        "left": 112,
+        "right": 1416,
+        "top": 786,
+        "width": 1304,
+        "x": 112,
+        "y": 786
+      },
+      "bodyParent": true,
+      "footerOverflow": "visible",
+      "hit": true,
+      "notice": {
+        "bottom": 774,
+        "height": 44,
+        "left": 665.65625,
+        "right": 862.34375,
+        "top": 730,
+        "width": 196.6875,
+        "x": 665.65625,
+        "y": 730
+      }
+    },
+    {
+      "width": 375,
+      "height": 812,
+      "scale": 1,
+      "anchor": {
+        "bottom": 733,
+        "height": 72,
+        "left": 10,
+        "right": 365,
+        "top": 661,
+        "width": 355,
+        "x": 10,
+        "y": 661
+      },
+      "bodyParent": true,
+      "footerOverflow": "hidden",
+      "hit": true,
+      "notice": {
+        "bottom": 649,
+        "height": 44,
+        "left": 89.15625,
+        "right": 285.84375,
+        "top": 605,
+        "width": 196.6875,
+        "x": 89.15625,
+        "y": 605
+      }
+    },
+    {
+      "width": 375,
+      "height": 812,
+      "scale": 1.25,
+      "anchor": {
+        "bottom": 713.25,
+        "height": 90,
+        "left": 12.5,
+        "right": 362.5,
+        "top": 623.25,
+        "width": 350,
+        "x": 12.5,
+        "y": 623.25
+      },
+      "bodyParent": true,
+      "footerOverflow": "hidden",
+      "hit": true,
+      "notice": {
+        "bottom": 611.25,
+        "height": 55,
+        "left": 64.8125,
+        "right": 310.171875,
+        "top": 556.25,
+        "width": 245.359375,
+        "x": 64.8125,
+        "y": 556.25
+      }
+    },
+    {
+      "fullPlayerKeyboardLoopIncludesNotice": true,
+      "back": {
+        "active": "autoplay-notice autoplay-permission-notice",
+        "notice": true
+      },
+      "forward": {
+        "active": "icon-btn",
+        "first": true
+      },
+      "events": [
+        {
+          "key": "Tab",
+          "shift": true,
+          "trusted": true
+        },
+        {
+          "key": "Tab",
+          "shift": false,
+          "trusted": true
+        }
+      ]
+    }
+  ],
+  "screenshots": [
+    "work/qa/wave18-notice-1791888561163-1440-1.png",
+    "work/qa/wave18-notice-1791888561163-375-1.png",
+    "work/qa/wave18-notice-1791888561163-375-1.25.png"
+  ],
+  "realAudioProof": "work/qa/wave18-connect-proof.json",
+  "automationBoundary": "Audio denial injected only to expose UI. Trusted CDP Tab events verify focus; actual cold browser audio/click is proven separately by root."
+}

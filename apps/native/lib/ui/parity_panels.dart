@@ -1,3 +1,4 @@
+import 'wave18_strings.dart';
 import 'dart:async';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -314,7 +315,23 @@ class _TastePageState extends State<TastePage> {
   final search = TextEditingController();
   final selected = <String, Json>{};
   List<Json> artists = [];
-  List<String> genres = [];
+  final selectedGenres = <String>{};
+  static const genres = [
+    'pop',
+    'hip hop',
+    'rock',
+    'electronic',
+    'dance',
+    'indie',
+    'rnb',
+    'jazz',
+    'classical',
+    'ambient',
+    'lofi',
+    'metal',
+    'folk',
+    'reggae',
+  ];
   bool loading = true, saving = false, failed = false, automatic = true;
   Timer? timer;
   int request = 0;
@@ -324,6 +341,9 @@ class _TastePageState extends State<TastePage> {
     for (final a in objects(widget.parity.preference['artists'])) {
       selected[a['id'].toString()] = a;
     }
+    selectedGenres.addAll(
+      (widget.parity.preference['genres'] as List? ?? []).whereType<String>(),
+    );
     automatic = widget.parity.preference['automatic'] != false;
     unawaited(load());
   }
@@ -342,7 +362,7 @@ class _TastePageState extends State<TastePage> {
       if (mounted && id == request) {
         setState(() {
           artists = objects(result['artists']);
-          genres = List<String>.from(result['genres'] ?? []);
+
           loading = false;
         });
       }
@@ -361,6 +381,7 @@ class _TastePageState extends State<TastePage> {
     try {
       await widget.parity.saveTaste({
         'artists': skip ? <Json>[] : selected.values.toList(),
+        'genres': skip ? <String>[] : selectedGenres.toList(),
         'automatic': automatic,
         'onboardingStep': 3,
         'onboardingCompleted': true,
@@ -469,17 +490,42 @@ class _TastePageState extends State<TastePage> {
                 selected: selected.keys.toSet(),
                 onTap: choose,
               ),
-            if (genres.isNotEmpty)
-              Padding(
-                padding: const EdgeInsets.only(top: 20),
-                child: Wrap(
-                  spacing: 8,
-                  runSpacing: 8,
-                  children: [
-                    for (final genre in genres) Chip(label: Text(genre)),
-                  ],
-                ),
-              ),
+            const SizedBox(height: 22),
+            Text(
+              wave18Text(context, 'wave18.favoriteGenres'),
+              style: const TextStyle(fontWeight: FontWeight.w800, fontSize: 15),
+            ),
+            const SizedBox(height: 7),
+            Text(
+              wave18Text(context, 'wave18.genreCaption'),
+              style: TextStyle(color: waveVisuals(context).muted, fontSize: 12),
+            ),
+            const SizedBox(height: 12),
+            Wrap(
+              spacing: 7,
+              runSpacing: 7,
+              children: [
+                for (final genre in {...genres, ...selectedGenres})
+                  FilterChip(
+                    key: Key('taste-genre-$genre'),
+                    label: Text(
+                      genres.contains(genre)
+                          ? wave18Text(context, 'wave18.genre.$genre')
+                          : genre,
+                    ),
+                    selected: selectedGenres.contains(genre),
+                    onSelected: (on) => setState(() {
+                      if (on) {
+                        if (selectedGenres.length < 20) {
+                          selectedGenres.add(genre);
+                        }
+                      } else {
+                        selectedGenres.remove(genre);
+                      }
+                    }),
+                  ),
+              ],
+            ),
             const SizedBox(height: 24),
             Surface(
               child: SwitchListTile(

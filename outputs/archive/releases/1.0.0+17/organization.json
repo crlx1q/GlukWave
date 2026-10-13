@@ -1,0 +1,1420 @@
+{
+  "createdAt": "2026-10-12T21:20:18.7344255Z",
+  "applied": true,
+  "currentVersion": "1.0.0+17",
+  "rollbackBuild": 16,
+  "deletedBytes": 297679141.0,
+  "entries": [
+    {
+      "action": "move",
+      "from": "GlukWave-1.0.0+16-audit.json",
+      "to": "archive/releases/1.0.0+16/GlukWave-1.0.0+16-audit.json",
+      "bytes": 94597,
+      "sha256": "714af409d7f2eb44c67ec0d45addb2d9cf5bfdb6ed4230d590e081b9147bc53e",
+      "reason": "historical release verification"
+    },
+    {
+      "action": "move",
+      "from": "GlukWave-1.0.0+16-source-audit.json",
+      "to": "archive/releases/1.0.0+16/GlukWave-1.0.0+16-source-audit.json",
+      "bytes": 773,
+      "sha256": "ecee1e35f121dc8f98f32d80e289b17a3a008181da5e9a142cf6f4fc44ad2dbc",
+      "reason": "historical release verification"
+    },
+    {
+      "action": "delete",
+      "from": "archive/releases/1.0.0+15/GlukWave-android-debug.apk",
+      "to": null,
+      "bytes": 185556475,
+      "sha256": "b667a42ac1051df207c86351b6ee7ae0ae5c2b4d35e3e3c2009d285062dd3ad3",
+      "reason": "superseded archived generated client; current and preceding version retained; historical reports kept"
+    },
+    {
+      "action": "delete",
+      "from": "archive/releases/1.0.0+15/GlukWave-Setup.exe",
+      "to": null,
+      "bytes": 24382563,
+      "sha256": "2fef5f1aa30415f0168fb105bd4a19b5070da3ebd6cc35cb6bf226acab07ffcd",
+      "reason": "superseded archived generated client; current and preceding version retained; historical reports kept"
+    },
+    {
+      "action": "delete",
+      "from": "archive/releases/1.0.0+15/GlukWave-windows.zip",
+      "to": null,
+      "bytes": 27816115,
+      "sha256": "85e65521536c02606697c765af2e881218513d323e6a56360e0d816ca434f143",
+      "reason": "superseded archived generated client; current and preceding version retained; historical reports kept"
+    },
+    {
+      "action": "delete-directory",
+      "from": "GlukWave-windows.cbb77c6513ad496e95e3c10776a43029.partial",
+      "to": null,
+      "bytes": null,
+      "fileCount": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "abandoned generated Windows staging or superseded extracted bundle"
+    },
+    {
+      "action": "delete-directory",
+      "from": "GlukWave-windows.previous.539b0f06cbd4492ea6a09c5a02857b8a",
+      "to": null,
+      "bytes": 59923988.0,
+      "fileCount": 75,
+      "sha256": "18b1d213882d75546c71829618c9257f2deb9dc625cd9d8ac1e7cf0b3110131d",
+      "reason": "abandoned generated Windows staging or superseded extracted bundle"
+    }
+  ],
+  "history": [
+    {
+      "createdAt": "2026-10-12T17:28:34.6834096Z",
+      "currentVersion": "1.0.0+15",
+      "deletedBytes": 2955599164,
+      "entries": [
+        {
+          "action": "move",
+          "from": "GlukWave-1.0.0+11-audit.json",
+          "to": "archive/releases/1.0.0+11/GlukWave-1.0.0+11-audit.json",
+          "bytes": 39568,
+          "sha256": "c0ef35931d3938d7a82465f28224806a53038ea1d76edc137488712712b4678f",
+          "reason": "historical release verification"
+        },
+        {
+          "action": "move",
+          "from": "GlukWave-1.0.0+12-audit.json",
+          "to": "archive/releases/1.0.0+12/GlukWave-1.0.0+12-audit.json",
+          "bytes": 79162,
+          "sha256": "c3df0a8f6970f717dc2c08ffbd5657ae9b0eedade84a65e9fa2f355adf89b3d3",
+          "reason": "historical release verification"
+        },
+        {
+          "action": "move",
+          "from": "GlukWave-1.0.0+13-audit.json",
+          "to": "archive/releases/1.0.0+13/GlukWave-1.0.0+13-audit.json",
+          "bytes": 630327,
+          "sha256": "6c834f2ba49f51844a6b1d3af4a6effc255e680f57df37df234157691f08c534",
+          "reason": "historical release verification"
+        },
+        {
+          "action": "move",
+          "from": "GlukWave-1.0.0+13-delivery-proof.json",
+          "to": "archive/releases/1.0.0+13/GlukWave-1.0.0+13-delivery-proof.json",
+          "bytes": 1338,
+          "sha256": "cbb34c7e9a9e3ff7cea732a742b889cce451f3f1394dd56381dd372e8d537f98",
+          "reason": "historical release verification"
+        },
+        {
+          "action": "move",
+          "from": "GlukWave-1.0.0+14-audit.json",
+          "to": "archive/releases/1.0.0+14/GlukWave-1.0.0+14-audit.json",
+          "bytes": 56835,
+          "sha256": "21bcaeca58341d3267abb55e6334310a8e4ab5c0edbb273a0f3a262511cd0d0f",
+          "reason": "historical release verification"
+        },
+        {
+          "action": "move",
+          "from": "GlukWave-1.0.0+14-source-audit.json",
+          "to": "archive/releases/1.0.0+14/GlukWave-1.0.0+14-source-audit.json",
+          "bytes": 773,
+          "sha256": "d433fb754cfd7758cd86c0bc5af13452e8497eba6042e44dac327d9af0776128",
+          "reason": "historical release verification"
+        },
+        {
+          "action": "delete",
+          "from": "GlukWave-android-1.0.0+3.apk",
+          "to": null,
+          "bytes": 182376749,
+          "sha256": "4e1e55fcdf1b811073d1edf5635298b53dbb9834d7e09442abd0f5cc40625c41",
+          "reason": "superseded generated client; current and preceding version retained"
+        },
+        {
+          "action": "delete",
+          "from": "GlukWave-android-debug-1.0.0+10.apk",
+          "to": null,
+          "bytes": 185372909,
+          "sha256": "de0f7ebe6335b935b42a24080d68d057595c98cf3e830a4b6c869a737206b0fe",
+          "reason": "superseded generated client; current and preceding version retained"
+        },
+        {
+          "action": "delete",
+          "from": "GlukWave-android-debug-1.0.0+11.apk",
+          "to": null,
+          "bytes": 185477775,
+          "sha256": "6382475a003ad499b36120d440f833fa623f307d07d1704744f8fc8a2bda97d0",
+          "reason": "superseded generated client; current and preceding version retained"
+        },
+        {
+          "action": "delete",
+          "from": "GlukWave-android-debug-1.0.0+12.apk",
+          "to": null,
+          "bytes": 185503759,
+          "sha256": "d0ab92099dd0b774df765571a26455a5b5a61a633d18dd376e5f6ed83c4acde2",
+          "reason": "superseded generated client; current and preceding version retained"
+        },
+        {
+          "action": "delete",
+          "from": "GlukWave-android-debug-1.0.0+13.apk",
+          "to": null,
+          "bytes": 185518451,
+          "sha256": "80757082e89a4cb43ae4ed24bc59319da3d2a628f24c7bd7defd1cfef1f92883",
+          "reason": "superseded generated client; current and preceding version retained"
+        },
+        {
+          "action": "move",
+          "from": "GlukWave-android-debug-1.0.0+14.apk",
+          "to": "archive/releases/1.0.0+14/GlukWave-android-debug-1.0.0+14.apk",
+          "bytes": 185551215,
+          "sha256": "21f4690cec451929cd454f77f5a0b196a6317703ff871daf142d43652fdd2d3b",
+          "reason": "preceding client retained for rollback"
+        },
+        {
+          "action": "delete",
+          "from": "GlukWave-android-debug-1.0.0+15.apk",
+          "to": "GlukWave-android-debug.apk",
+          "bytes": 185556475,
+          "sha256": "b667a42ac1051df207c86351b6ee7ae0ae5c2b4d35e3e3c2009d285062dd3ad3",
+          "reason": "byte-identical dated copy of current stable file"
+        },
+        {
+          "action": "delete",
+          "from": "GlukWave-android-debug-1.0.0+4.apk",
+          "to": null,
+          "bytes": 184774403,
+          "sha256": "16f9d0238f5953eb8122b9aeb9fdd27c6052a4d5bc1b331f2f1ed0e3261fd054",
+          "reason": "superseded generated client; current and preceding version retained"
+        },
+        {
+          "action": "delete",
+          "from": "GlukWave-android-debug-1.0.0+5.apk",
+          "to": null,
+          "bytes": 184828443,
+          "sha256": "910c0823f56cc621be974ee28bc145411b819b3dbc64196d6ee7a87f428b41d6",
+          "reason": "superseded generated client; current and preceding version retained"
+        },
+        {
+          "action": "delete",
+          "from": "GlukWave-android-debug-1.0.0+6.apk",
+          "to": null,
+          "bytes": 184955721,
+          "sha256": "5ac78cdb1a0c427182701143df11fa6af843cc7556d822df58abfed26b233278",
+          "reason": "superseded generated client; current and preceding version retained"
+        },
+        {
+          "action": "delete",
+          "from": "GlukWave-android-debug-1.0.0+7.apk",
+          "to": null,
+          "bytes": 184985213,
+          "sha256": "b5cd855c5e72ea84448111190031bf17d23c68d0a9c11f32cba429eb57072038",
+          "reason": "superseded generated client; current and preceding version retained"
+        },
+        {
+          "action": "delete",
+          "from": "GlukWave-android-debug-1.0.0+8.apk",
+          "to": null,
+          "bytes": 185005009,
+          "sha256": "8d4517b4060e4ba37521fcfd1a0bdb0f92fcdb0a4aa16322a682eec4d5b6eb5c",
+          "reason": "superseded generated client; current and preceding version retained"
+        },
+        {
+          "action": "delete",
+          "from": "GlukWave-android-debug-1.0.0+9.apk",
+          "to": null,
+          "bytes": 185483305,
+          "sha256": "64c776180db9f96a0da1cbe210a177db0b2467d5ef947c8fc0fb1f056c73e3f6",
+          "reason": "superseded generated client; current and preceding version retained"
+        },
+        {
+          "action": "move",
+          "from": "GlukWave-app-desktop-en.png",
+          "to": "archive/previews/GlukWave-app-desktop-en.png",
+          "bytes": 357402,
+          "sha256": "cedcc59a42c33d05a6ebce101046ba1308964ed9bbcba1e6c72244aa0c325810",
+          "reason": "historical preview"
+        },
+        {
+          "action": "move",
+          "from": "GlukWave-app-mobile-en.png",
+          "to": "archive/previews/GlukWave-app-mobile-en.png",
+          "bytes": 140522,
+          "sha256": "160e147955893c778c19565ab7b24e00b52be394c7b6649437ac1f6214621613",
+          "reason": "historical preview"
+        },
+        {
+          "action": "move",
+          "from": "GlukWave-flutter-player-desktop.png",
+          "to": "archive/previews/GlukWave-flutter-player-desktop.png",
+          "bytes": 192411,
+          "sha256": "5afcd3b5644d243bb9e2e3ab8a8d5f44be84f82d4ea5fb54f542020df2c7cb2c",
+          "reason": "historical preview"
+        },
+        {
+          "action": "move",
+          "from": "GlukWave-flutter-player-mobile.png",
+          "to": "archive/previews/GlukWave-flutter-player-mobile.png",
+          "bytes": 112587,
+          "sha256": "60380094411f8787c6e685c1de7da55701890685285c5df4747fa88d95611a35",
+          "reason": "historical preview"
+        },
+        {
+          "action": "move",
+          "from": "GlukWave-landing-desktop-downloads-en.png",
+          "to": "archive/previews/GlukWave-landing-desktop-downloads-en.png",
+          "bytes": 65872,
+          "sha256": "e41d05e0af88d34655a5683298ee828d9057bf296792caf8e76f36ab464924fa",
+          "reason": "historical preview"
+        },
+        {
+          "action": "move",
+          "from": "GlukWave-landing-desktop-en.png",
+          "to": "archive/previews/GlukWave-landing-desktop-en.png",
+          "bytes": 202199,
+          "sha256": "3f12c8ece4d76198c7fdeebc7fb569821ed2724f60fa909652fe0af471c02c33",
+          "reason": "historical preview"
+        },
+        {
+          "action": "move",
+          "from": "GlukWave-landing-desktop-full-en.png",
+          "to": "archive/previews/GlukWave-landing-desktop-full-en.png",
+          "bytes": 652272,
+          "sha256": "f3faaea06976a2116ed31e416c868744cb32d09cd1f3a7be3a6547d94328b7af",
+          "reason": "historical preview"
+        },
+        {
+          "action": "move",
+          "from": "GlukWave-landing-mobile-downloads-en.png",
+          "to": "archive/previews/GlukWave-landing-mobile-downloads-en.png",
+          "bytes": 41077,
+          "sha256": "6e65a82acb54106f9352ea466e7c2bcf3550b5dca49f8611bd24ebcc1e76cae1",
+          "reason": "historical preview"
+        },
+        {
+          "action": "move",
+          "from": "GlukWave-landing-mobile-en.png",
+          "to": "archive/previews/GlukWave-landing-mobile-en.png",
+          "bytes": 132913,
+          "sha256": "0a4e88d39cb1807aa8cbb56a2e8977384c88291b70bc86dbec5dd4166d8d4f24",
+          "reason": "historical preview"
+        },
+        {
+          "action": "move",
+          "from": "GlukWave-landing-mobile-full-en.png",
+          "to": "archive/previews/GlukWave-landing-mobile-full-en.png",
+          "bytes": 263670,
+          "sha256": "327bf63c1cf2a84650c3b592689693ffb72ea7e03222a53e85a913b84fce42f0",
+          "reason": "historical preview"
+        },
+        {
+          "action": "move",
+          "from": "GlukWave-player-desktop-en.png",
+          "to": "archive/previews/GlukWave-player-desktop-en.png",
+          "bytes": 350489,
+          "sha256": "7f0241261cc3481f9d8193b8e06e0dc21b7b607d0610e2b2b3e55626e252143b",
+          "reason": "historical preview"
+        },
+        {
+          "action": "move",
+          "from": "GlukWave-player-mobile-en.png",
+          "to": "archive/previews/GlukWave-player-mobile-en.png",
+          "bytes": 165228,
+          "sha256": "3e7ba3270a0d739a899bc1a2ef1d0eb1631128e7305525c06e86821a8630b9c2",
+          "reason": "historical preview"
+        },
+        {
+          "action": "move",
+          "from": "GlukWave-settings-desktop-en.png",
+          "to": "archive/previews/GlukWave-settings-desktop-en.png",
+          "bytes": 111277,
+          "sha256": "39cb3671c2b322a7801e0fb4517e47ba9d19fc1ed53318464bd99f3aa5b548f5",
+          "reason": "historical preview"
+        },
+        {
+          "action": "move",
+          "from": "GlukWave-settings-mobile-en.png",
+          "to": "archive/previews/GlukWave-settings-mobile-en.png",
+          "bytes": 45226,
+          "sha256": "4d4fd084f24f001040577f66ebc57612e441e907d06bc08afcf7cc0f45e9a2af",
+          "reason": "historical preview"
+        },
+        {
+          "action": "delete",
+          "from": "GlukWave-Setup-1.0.0+10.exe",
+          "to": null,
+          "bytes": 24324128,
+          "sha256": "fd220ec8df53136908799f2ec4053deb9e9adf9903c1017417272ba29d0273b6",
+          "reason": "superseded generated client; current and preceding version retained"
+        },
+        {
+          "action": "delete",
+          "from": "GlukWave-Setup-1.0.0+11.exe",
+          "to": null,
+          "bytes": 24332649,
+          "sha256": "7e357b0f66f365617a63d6dc8ac55253ebb74aea5eb3ec9e6c60fe76441eb8cb",
+          "reason": "superseded generated client; current and preceding version retained"
+        },
+        {
+          "action": "delete",
+          "from": "GlukWave-Setup-1.0.0+12.exe",
+          "to": null,
+          "bytes": 24346939,
+          "sha256": "7a4e7733114273188cc35811eede4f8f1ec246536bed05197ea2c1505cd21fef",
+          "reason": "superseded generated client; current and preceding version retained"
+        },
+        {
+          "action": "delete",
+          "from": "GlukWave-Setup-1.0.0+13.exe",
+          "to": null,
+          "bytes": 24360952,
+          "sha256": "8cd1ec45f7b71436d7cbf4c577e40943a26312af5e22b606847b2839af7265e4",
+          "reason": "superseded generated client; current and preceding version retained"
+        },
+        {
+          "action": "move",
+          "from": "GlukWave-Setup-1.0.0+14.exe",
+          "to": "archive/releases/1.0.0+14/GlukWave-Setup-1.0.0+14.exe",
+          "bytes": 24380648,
+          "sha256": "4c05d3c2fe90ab5593e8902592212b08264550731057b5b1d0a1f35aefb65990",
+          "reason": "preceding client retained for rollback"
+        },
+        {
+          "action": "delete",
+          "from": "GlukWave-Setup-1.0.0+15.exe",
+          "to": "GlukWave-Setup.exe",
+          "bytes": 24382563,
+          "sha256": "2fef5f1aa30415f0168fb105bd4a19b5070da3ebd6cc35cb6bf226acab07ffcd",
+          "reason": "byte-identical dated copy of current stable file"
+        },
+        {
+          "action": "delete",
+          "from": "GlukWave-Setup-1.0.0+3.exe",
+          "to": null,
+          "bytes": 22051019,
+          "sha256": "aedd013173ceff16ab002af3928ebd7e817327e49f02e872039ba77caea65089",
+          "reason": "superseded generated client; current and preceding version retained"
+        },
+        {
+          "action": "delete",
+          "from": "GlukWave-Setup-1.0.0+4.exe",
+          "to": null,
+          "bytes": 24171228,
+          "sha256": "3d3b780435c3c9057d97a8a85324ab26af24ce2a6ca4b6f55b9ce439091c9268",
+          "reason": "superseded generated client; current and preceding version retained"
+        },
+        {
+          "action": "delete",
+          "from": "GlukWave-Setup-1.0.0+5.exe",
+          "to": null,
+          "bytes": 24205261,
+          "sha256": "0c791a9a78882f10c00fbfdabedbb9705c695539428fb4b4c7d2364a487e988d",
+          "reason": "superseded generated client; current and preceding version retained"
+        },
+        {
+          "action": "delete",
+          "from": "GlukWave-Setup-1.0.0+6.exe",
+          "to": null,
+          "bytes": 24279886,
+          "sha256": "673951fd087b21a338f31d17e92877e26f9855e1e3c8d08826b9798a9bfe3305",
+          "reason": "superseded generated client; current and preceding version retained"
+        },
+        {
+          "action": "delete",
+          "from": "GlukWave-Setup-1.0.0+7.exe",
+          "to": null,
+          "bytes": 24287416,
+          "sha256": "2f5c7f824c53fbd124211fdcbf74d077b141452aaa51e1966369c2ec2f424da5",
+          "reason": "superseded generated client; current and preceding version retained"
+        },
+        {
+          "action": "delete",
+          "from": "GlukWave-Setup-1.0.0+8.exe",
+          "to": null,
+          "bytes": 24298394,
+          "sha256": "2cddf4235543fc445f647a3b28e68563acf102eea73a482c3a2949a6dde38975",
+          "reason": "superseded generated client; current and preceding version retained"
+        },
+        {
+          "action": "delete",
+          "from": "GlukWave-Setup-1.0.0+9.exe",
+          "to": null,
+          "bytes": 24368602,
+          "sha256": "7e51b380af8a6b756e65ddd4cf174d4157d308da2faed366b4f2968bd7fa26d4",
+          "reason": "superseded generated client; current and preceding version retained"
+        },
+        {
+          "action": "delete",
+          "from": "GlukWave-source.cc8796a485f846dd8f5daadd6da059e3.partial",
+          "to": null,
+          "bytes": 22,
+          "sha256": "8739c76e681f900923b900c9df0ef75cf421d39cabb54650c4b9ad19b6a76d85",
+          "reason": "abandoned packaging partial older than one day"
+        },
+        {
+          "action": "move",
+          "from": "GlukWave-source-1.0.0+14.zip",
+          "to": "archive/sources/GlukWave-source-1.0.0+14.zip",
+          "bytes": 105189098,
+          "sha256": "84335672449f7b00e493a68c1b9a0ab29d523380667f869d2db923b75811764b",
+          "reason": "unique historical source archive preserved"
+        },
+        {
+          "action": "delete",
+          "from": "GlukWave-source-1.0.0+15.zip",
+          "to": "GlukWave-source.zip",
+          "bytes": 114234572,
+          "sha256": "0c3092d6ed06d87d597c885f9c35ea3128b033b2435d04be3bfaee56aafe805e",
+          "reason": "byte-identical source archive"
+        },
+        {
+          "action": "move",
+          "from": "GlukWave-source-2026-10-08-diagnostics.zip",
+          "to": "archive/sources/GlukWave-source-2026-10-08-diagnostics.zip",
+          "bytes": 23598600,
+          "sha256": "9eb36ecd95e0cf65875af91ebd6949c97146713a262385dcbeba96367f326618",
+          "reason": "unique historical source archive preserved"
+        },
+        {
+          "action": "move",
+          "from": "GlukWave-source-2026-10-08-recovered.zip",
+          "to": "archive/sources/GlukWave-source-2026-10-08-recovered.zip",
+          "bytes": 23559252,
+          "sha256": "7c0d07428e3eb3a89568947a1bb749e756e123479996f86eca8bfb6f1b24aeb7",
+          "reason": "unique historical source archive preserved"
+        },
+        {
+          "action": "move",
+          "from": "GlukWave-source-2026-10-09-clients.zip",
+          "to": "archive/sources/GlukWave-source-2026-10-09-clients.zip",
+          "bytes": 23786802,
+          "sha256": "ee73e0edb84d230571a8d254c5420aceadf165313e3461bdfae3e89059f9bdb7",
+          "reason": "unique historical source archive preserved"
+        },
+        {
+          "action": "move",
+          "from": "GlukWave-source-2026-10-09-connect.zip",
+          "to": "archive/sources/GlukWave-source-2026-10-09-connect.zip",
+          "bytes": 23880131,
+          "sha256": "f727b81341a3bfb2cc8e9c66fe06466d47a52de9e37def6f61f10a93fba14511",
+          "reason": "unique historical source archive preserved"
+        },
+        {
+          "action": "move",
+          "from": "GlukWave-source-2026-10-09-ecosystem.zip",
+          "to": "archive/sources/GlukWave-source-2026-10-09-ecosystem.zip",
+          "bytes": 32733324,
+          "sha256": "086b650e05b58c6b68bd9f0ded18b98c0b015ab95fadf534134cbfa9932033fa",
+          "reason": "unique historical source archive preserved"
+        },
+        {
+          "action": "move",
+          "from": "GlukWave-source-2026-10-09-parity.zip",
+          "to": "archive/sources/GlukWave-source-2026-10-09-parity.zip",
+          "bytes": 33960057,
+          "sha256": "317394966352a6f516e7ca86c85053d1be2d4dbe6a70781315f9950d5757da03",
+          "reason": "unique historical source archive preserved"
+        },
+        {
+          "action": "move",
+          "from": "GlukWave-source-2026-10-10-discord.zip",
+          "to": "archive/sources/GlukWave-source-2026-10-10-discord.zip",
+          "bytes": 35866469,
+          "sha256": "72d7d56fb89d094fd4498864fd084f08bd1c44b8f538b59af96f40f00e513c85",
+          "reason": "unique historical source archive preserved"
+        },
+        {
+          "action": "move",
+          "from": "GlukWave-source-2026-10-10-player-lyrics.zip",
+          "to": "archive/sources/GlukWave-source-2026-10-10-player-lyrics.zip",
+          "bytes": 38146934,
+          "sha256": "c6ac284aa1978edbf6b5f16481937d4192e969a96325defedf494f2ba85bbc6b",
+          "reason": "unique historical source archive preserved"
+        },
+        {
+          "action": "move",
+          "from": "GlukWave-source-2026-10-10-player-polish.zip",
+          "to": "archive/sources/GlukWave-source-2026-10-10-player-polish.zip",
+          "bytes": 43708294,
+          "sha256": "4ad150ff63d57e6b4cea126cc480591d659bf288ee0ea4c3dfbd14f3accca433",
+          "reason": "unique historical source archive preserved"
+        },
+        {
+          "action": "move",
+          "from": "GlukWave-source-2026-10-10-player-polish-audit.json",
+          "to": "archive/sources/GlukWave-source-2026-10-10-player-polish-audit.json",
+          "bytes": 771,
+          "sha256": "eb6850d1a7aaf386831300d0feba4c7b03fa708269aad70ea751157b16be2914",
+          "reason": "historical source verification"
+        },
+        {
+          "action": "move",
+          "from": "GlukWave-source-2026-10-10-transport-lan-seasons.zip",
+          "to": "archive/sources/GlukWave-source-2026-10-10-transport-lan-seasons.zip",
+          "bytes": 39352214,
+          "sha256": "523534d9b192b286a50c8e6b181271fc47d249eb35fdeabff9917cb127ac9dc3",
+          "reason": "unique historical source archive preserved"
+        },
+        {
+          "action": "move",
+          "from": "GlukWave-source-2026-10-10-transport-lan-seasons-audit.json",
+          "to": "archive/sources/GlukWave-source-2026-10-10-transport-lan-seasons-audit.json",
+          "bytes": 771,
+          "sha256": "489c3946c8d35497e7c14edc74efa47be0fa9df8822f9f7651afbb1b13299b66",
+          "reason": "historical source verification"
+        },
+        {
+          "action": "move",
+          "from": "GlukWave-source-2026-10-11-audio-design.zip",
+          "to": "archive/sources/GlukWave-source-2026-10-11-audio-design.zip",
+          "bytes": 63371269,
+          "sha256": "f08238727ebd8511b118daf4dd06d5d86faded5fc744eb09e41d30512c1bd116",
+          "reason": "unique historical source archive preserved"
+        },
+        {
+          "action": "move",
+          "from": "GlukWave-source-2026-10-11-audio-design-audit.json",
+          "to": "archive/sources/GlukWave-source-2026-10-11-audio-design-audit.json",
+          "bytes": 771,
+          "sha256": "2477e2965981c642b0edd77783c95b06e32a05d57fd8500922299319707f4009",
+          "reason": "historical source verification"
+        },
+        {
+          "action": "move",
+          "from": "GlukWave-source-2026-10-11-focused-player.zip",
+          "to": "archive/sources/GlukWave-source-2026-10-11-focused-player.zip",
+          "bytes": 91649761,
+          "sha256": "0c6722a75485d8abb7fe32965b7625c0a488fe25b5d1a7d3f4711a9a39fb3862",
+          "reason": "unique historical source archive preserved"
+        },
+        {
+          "action": "move",
+          "from": "GlukWave-source-2026-10-11-focused-player-audit.json",
+          "to": "archive/sources/GlukWave-source-2026-10-11-focused-player-audit.json",
+          "bytes": 772,
+          "sha256": "945172f4512de8770b3dee70f6877bdec3413079faa666361e99c7851e9c510a",
+          "reason": "historical source verification"
+        },
+        {
+          "action": "move",
+          "from": "GlukWave-source-2026-10-11-wave-widgets.zip",
+          "to": "archive/sources/GlukWave-source-2026-10-11-wave-widgets.zip",
+          "bytes": 49306487,
+          "sha256": "8d39726779e273853f557d5fd1b018f7010e8f900763c731029959bbe94fd647",
+          "reason": "unique historical source archive preserved"
+        },
+        {
+          "action": "move",
+          "from": "GlukWave-source-2026-10-11-wave-widgets-audit.json",
+          "to": "archive/sources/GlukWave-source-2026-10-11-wave-widgets-audit.json",
+          "bytes": 771,
+          "sha256": "a21f7accf36fbd8970fb46181db70fd12107bcc48378dae9811249bc0782801d",
+          "reason": "historical source verification"
+        },
+        {
+          "action": "delete",
+          "from": "GlukWave-web-desktop.png",
+          "to": "archive/previews/GlukWave-app-desktop-en.png",
+          "bytes": 357402,
+          "sha256": "cedcc59a42c33d05a6ebce101046ba1308964ed9bbcba1e6c72244aa0c325810",
+          "reason": "byte-identical preview retained under canonical name"
+        },
+        {
+          "action": "delete",
+          "from": "GlukWave-web-mobile.png",
+          "to": "archive/previews/GlukWave-app-mobile-en.png",
+          "bytes": 140522,
+          "sha256": "160e147955893c778c19565ab7b24e00b52be394c7b6649437ac1f6214621613",
+          "reason": "byte-identical preview retained under canonical name"
+        },
+        {
+          "action": "delete",
+          "from": "GlukWave-windows-1.0.0+10.zip",
+          "to": null,
+          "bytes": 27727692,
+          "sha256": "c60c8c262f790d0183b379e6502c1d5ecbd7ba55dcccadb623a827fa7d79aef0",
+          "reason": "superseded generated client; current and preceding version retained"
+        },
+        {
+          "action": "delete",
+          "from": "GlukWave-windows-1.0.0+11.zip",
+          "to": null,
+          "bytes": 27741287,
+          "sha256": "c47bdbfae8199c208b70bb32ad816c4b7ebd6cddd8688c2ee0e18863307ddc6f",
+          "reason": "superseded generated client; current and preceding version retained"
+        },
+        {
+          "action": "delete",
+          "from": "GlukWave-windows-1.0.0+12.zip",
+          "to": null,
+          "bytes": 27759470,
+          "sha256": "ed5cd482faf3973419891c2c93f1943543fe93fb013f3aba2ddc37549cfd6605",
+          "reason": "superseded generated client; current and preceding version retained"
+        },
+        {
+          "action": "delete",
+          "from": "GlukWave-windows-1.0.0+13.zip",
+          "to": null,
+          "bytes": 27783466,
+          "sha256": "6d2c6ba9c0d0bde764938934ffb4b715896e57201ab2c906075022a39f1c64b7",
+          "reason": "superseded generated client; current and preceding version retained"
+        },
+        {
+          "action": "move",
+          "from": "GlukWave-windows-1.0.0+14.zip",
+          "to": "archive/releases/1.0.0+14/GlukWave-windows-1.0.0+14.zip",
+          "bytes": 27810240,
+          "sha256": "de41d341c76780636335dfa5c1397f269c677b668e7fddb27fb28b171f9d1992",
+          "reason": "preceding client retained for rollback"
+        },
+        {
+          "action": "delete",
+          "from": "GlukWave-windows-1.0.0+15.zip",
+          "to": "GlukWave-windows.zip",
+          "bytes": 27816115,
+          "sha256": "85e65521536c02606697c765af2e881218513d323e6a56360e0d816ca434f143",
+          "reason": "byte-identical dated copy of current stable file"
+        },
+        {
+          "action": "delete",
+          "from": "GlukWave-windows-1.0.0+3.zip",
+          "to": null,
+          "bytes": 26901853,
+          "sha256": "54f57b8064364b47bcd41b8b59d0169a38c81eaf60df4d8577e5e0b2ee4a12a8",
+          "reason": "superseded generated client; current and preceding version retained"
+        },
+        {
+          "action": "delete",
+          "from": "GlukWave-windows-1.0.0+4.zip",
+          "to": null,
+          "bytes": 27508825,
+          "sha256": "ed833a303bfee9fffd7a170b5e883602f8ecf8e0120f4d6eacb1e5b26c7ede63",
+          "reason": "superseded generated client; current and preceding version retained"
+        },
+        {
+          "action": "delete",
+          "from": "GlukWave-windows-1.0.0+5.zip",
+          "to": null,
+          "bytes": 27557736,
+          "sha256": "baeb87b5080893ac9578f606a01b5acc090bb6fed19973e8d4ba14f8d2614190",
+          "reason": "superseded generated client; current and preceding version retained"
+        },
+        {
+          "action": "delete",
+          "from": "GlukWave-windows-1.0.0+6.zip",
+          "to": null,
+          "bytes": 27666186,
+          "sha256": "c6fccfeafe8579df536fb2c780e742aeba5c23be5c1ece2623b4afbcab73d5e7",
+          "reason": "superseded generated client; current and preceding version retained"
+        },
+        {
+          "action": "delete",
+          "from": "GlukWave-windows-1.0.0+7.zip",
+          "to": null,
+          "bytes": 27676735,
+          "sha256": "a31e48f1e642febe81b73f6c27ee8828ebb0edff5a0daee714a5697ebf9b9871",
+          "reason": "superseded generated client; current and preceding version retained"
+        },
+        {
+          "action": "delete",
+          "from": "GlukWave-windows-1.0.0+8.zip",
+          "to": null,
+          "bytes": 27686856,
+          "sha256": "58aacb2bd4d8a3fe29723d4b2fe370eb7d8f3747de2e78b7d7182e6e58ecb409",
+          "reason": "superseded generated client; current and preceding version retained"
+        },
+        {
+          "action": "delete",
+          "from": "GlukWave-windows-1.0.0+9.zip",
+          "to": null,
+          "bytes": 27793176,
+          "sha256": "cf0ea4e8b5527cb1b43f1d693387b8d81d87123095b68052bf39b48c7b955f22",
+          "reason": "superseded generated client; current and preceding version retained"
+        },
+        {
+          "action": "move",
+          "from": "preview-admin-error-logs.png",
+          "to": "archive/previews/preview-admin-error-logs.png",
+          "bytes": 94521,
+          "sha256": "db2ea6a6a1227dfa25015a7f711b8bb2b522ebb84c1d5138043df706a1552353",
+          "reason": "historical preview"
+        },
+        {
+          "action": "move",
+          "from": "preview-connect-flutter-desktop.png",
+          "to": "archive/previews/preview-connect-flutter-desktop.png",
+          "bytes": 140625,
+          "sha256": "34212087d297e153e3f776f001cd09924e61719e913ebd3f0dc7104b71de435b",
+          "reason": "historical preview"
+        },
+        {
+          "action": "move",
+          "from": "preview-connect-flutter-mobile.png",
+          "to": "archive/previews/preview-connect-flutter-mobile.png",
+          "bytes": 61821,
+          "sha256": "67edb2a1403015f1b564959f4f49af03bc6f2393b7cc5d3946f7793cf6dbe9ab",
+          "reason": "historical preview"
+        },
+        {
+          "action": "move",
+          "from": "preview-connect-player-desktop.png",
+          "to": "archive/previews/preview-connect-player-desktop.png",
+          "bytes": 138202,
+          "sha256": "9b360a478aff98ee0c7540b12dceef512215017cb3e9d1f1d928e8fdd000c490",
+          "reason": "historical preview"
+        },
+        {
+          "action": "move",
+          "from": "preview-connect-player-mobile.png",
+          "to": "archive/previews/preview-connect-player-mobile.png",
+          "bytes": 53965,
+          "sha256": "30123c179464d8d3a42c6f6661f786e5706294844c742a3fd943e8742ed48d67",
+          "reason": "historical preview"
+        },
+        {
+          "action": "move",
+          "from": "preview-lyrics-lrclib-desktop.png",
+          "to": "archive/previews/preview-lyrics-lrclib-desktop.png",
+          "bytes": 88780,
+          "sha256": "997655ad61ca886c9023b2068dbc5a8759d7f550a11e343768927dbdaa0885e4",
+          "reason": "historical preview"
+        },
+        {
+          "action": "move",
+          "from": "preview-lyrics-lrclib-mobile.png",
+          "to": "archive/previews/preview-lyrics-lrclib-mobile.png",
+          "bytes": 53405,
+          "sha256": "4f0b8ce6fbcf33c080ed630a0c743ba9e155247860a22caddc98848d93940b1b",
+          "reason": "historical preview"
+        },
+        {
+          "action": "move",
+          "from": "preview-player-alignment-desktop.png",
+          "to": "archive/previews/preview-player-alignment-desktop.png",
+          "bytes": 224387,
+          "sha256": "6ecc5bd3d238fc4c8fe476b5465e005e80cc3d02f3cf1aec5f2e062a7ef7d241",
+          "reason": "historical preview"
+        },
+        {
+          "action": "move",
+          "from": "preview-player-alignment-mobile.png",
+          "to": "archive/previews/preview-player-alignment-mobile.png",
+          "bytes": 78191,
+          "sha256": "e73770efde882c610daf4a3d37f212cb4effcc41a88f8fcdc908fe398e2edb46",
+          "reason": "historical preview"
+        },
+        {
+          "action": "move",
+          "from": "preview-player-alignment-settings.png",
+          "to": "archive/previews/preview-player-alignment-settings.png",
+          "bytes": 145097,
+          "sha256": "6016a04e2e719afcc63a0776798551affcb2beaa1b1cca08eaef6b6ba8ac7120",
+          "reason": "historical preview"
+        },
+        {
+          "action": "move",
+          "from": "preview-v7-equalizer-desktop.png",
+          "to": "archive/previews/preview-v7-equalizer-desktop.png",
+          "bytes": 100823,
+          "sha256": "dfeabf8e5f6292a77b5ed8e8bfbc66db6990ec1c437adbfaacdba51e44c6ab9c",
+          "reason": "historical preview"
+        },
+        {
+          "action": "move",
+          "from": "preview-v7-equalizer-mobile.png",
+          "to": "archive/previews/preview-v7-equalizer-mobile.png",
+          "bytes": 45681,
+          "sha256": "0c2abf86889844bd538adc6bd36dd2efee3a87f76b01f705dd23a50e5f6bd718",
+          "reason": "historical preview"
+        },
+        {
+          "action": "move",
+          "from": "preview-v7-home-desktop.png",
+          "to": "archive/previews/preview-v7-home-desktop.png",
+          "bytes": 168224,
+          "sha256": "6efc419cb89c1b09707a8920d982b1bb5f6006a36a9b2e77d8b76ecafd597119",
+          "reason": "historical preview"
+        },
+        {
+          "action": "move",
+          "from": "preview-v7-home-mobile.png",
+          "to": "archive/previews/preview-v7-home-mobile.png",
+          "bytes": 78712,
+          "sha256": "b54ff94d0997c9eb52bc0fab6aa4b6fe66c995f84945f84a672a6369d459778e",
+          "reason": "historical preview"
+        },
+        {
+          "action": "move",
+          "from": "preview-v7-player-desktop.png",
+          "to": "archive/previews/preview-v7-player-desktop.png",
+          "bytes": 342425,
+          "sha256": "60c009bead973b60980161ac03f821c713d9535fad356403eecbea3ed12837b5",
+          "reason": "historical preview"
+        },
+        {
+          "action": "move",
+          "from": "preview-v7-player-mobile.png",
+          "to": "archive/previews/preview-v7-player-mobile.png",
+          "bytes": 152389,
+          "sha256": "f7268d1932bda87476cd35076b0b5066eab3a28802cc4d2501ebf5bd74b8ca56",
+          "reason": "historical preview"
+        },
+        {
+          "action": "move",
+          "from": "preview-v7-rooms-desktop.png",
+          "to": "archive/previews/preview-v7-rooms-desktop.png",
+          "bytes": 97490,
+          "sha256": "1b703e15202f9f57b0caf9aa5742525993d087efb098364b7ae7e165f3c224b6",
+          "reason": "historical preview"
+        },
+        {
+          "action": "move",
+          "from": "preview-v7-settings-desktop.png",
+          "to": "archive/previews/preview-v7-settings-desktop.png",
+          "bytes": 148251,
+          "sha256": "eb581b47950a836fdef6f72e3886b42e44e8a70dc6f24fa49d60a83b8621a138",
+          "reason": "historical preview"
+        },
+        {
+          "action": "move",
+          "from": "preview-v7-settings-mobile.png",
+          "to": "archive/previews/preview-v7-settings-mobile.png",
+          "bytes": 64729,
+          "sha256": "7ef101b8b69f87569a5ce495739e0d7d67ca9771f699e3da724d57903a3acdf5",
+          "reason": "historical preview"
+        },
+        {
+          "action": "move",
+          "from": "preview-v8-devices-desktop.png",
+          "to": "archive/previews/preview-v8-devices-desktop.png",
+          "bytes": 237386,
+          "sha256": "4c71fba60af4d0ff9622d65e984ac7a1f046e066b74b28f3e734027830a2452a",
+          "reason": "historical preview"
+        },
+        {
+          "action": "move",
+          "from": "preview-v8-devices-mobile.png",
+          "to": "archive/previews/preview-v8-devices-mobile.png",
+          "bytes": 48542,
+          "sha256": "877b42f6b67893d6be21d33aac48acc50341120c682a4b7b4c912cfecdec9250",
+          "reason": "historical preview"
+        },
+        {
+          "action": "move",
+          "from": "preview-v8-home-amoled.png",
+          "to": "archive/previews/preview-v8-home-amoled.png",
+          "bytes": 220803,
+          "sha256": "48fa810e573308c3c4302a4ed4e48307a3c76fcc8750a41728a846eaf7c36f50",
+          "reason": "historical preview"
+        },
+        {
+          "action": "move",
+          "from": "preview-v8-home-dark.png",
+          "to": "archive/previews/preview-v8-home-dark.png",
+          "bytes": 215269,
+          "sha256": "ca686f65cd3a376658e30f5b4cc662780aa390c095de2246b42def126d3f49b6",
+          "reason": "historical preview"
+        },
+        {
+          "action": "move",
+          "from": "preview-v8-home-light.png",
+          "to": "archive/previews/preview-v8-home-light.png",
+          "bytes": 244517,
+          "sha256": "b6ec2000eb3f8208802c71c3db12794246eced2e8cc3859433844fbfdd5301fc",
+          "reason": "historical preview"
+        },
+        {
+          "action": "move",
+          "from": "preview-v8-home-mobile.png",
+          "to": "archive/previews/preview-v8-home-mobile.png",
+          "bytes": 77187,
+          "sha256": "79e4e2468e6eaf45856a1a9bfa878138a91307b3d0f702ffd126a78efa8c19cc",
+          "reason": "historical preview"
+        },
+        {
+          "action": "move",
+          "from": "preview-v8-player-desktop.png",
+          "to": "archive/previews/preview-v8-player-desktop.png",
+          "bytes": 362633,
+          "sha256": "b8b662a4f1f29756540b103cb61b978810f9d22d87febfd09b69093d27f22db5",
+          "reason": "historical preview"
+        },
+        {
+          "action": "move",
+          "from": "preview-v8-player-devices.png",
+          "to": "archive/previews/preview-v8-player-devices.png",
+          "bytes": 320569,
+          "sha256": "e71895e84e58c3e3c8d592b7509dd60743a32cc246695cdc8e33f14800ec65bf",
+          "reason": "historical preview"
+        },
+        {
+          "action": "move",
+          "from": "preview-v8-player-mobile.png",
+          "to": "archive/previews/preview-v8-player-mobile.png",
+          "bytes": 146658,
+          "sha256": "b6e55b047ab1fecdf1f424e7333a62fa1d963a9144743fc1be42404d94bbd0e4",
+          "reason": "historical preview"
+        },
+        {
+          "action": "move",
+          "from": "preview-v8-player-mobile-expanded.png",
+          "to": "archive/previews/preview-v8-player-mobile-expanded.png",
+          "bytes": 154350,
+          "sha256": "8c43d0b885b8dc1702a50a9de8a5c90bed5b3bf270eae09ceb9864c26df1370e",
+          "reason": "historical preview"
+        },
+        {
+          "action": "move",
+          "from": "preview-v8-player-mobile-expanded-controls.png",
+          "to": "archive/previews/preview-v8-player-mobile-expanded-controls.png",
+          "bytes": 150805,
+          "sha256": "bf91581a579e489aaf16599ce580d230748753f5885652d7a04619a30554a024",
+          "reason": "historical preview"
+        },
+        {
+          "action": "move",
+          "from": "preview-v8-settings-amoled.png",
+          "to": "archive/previews/preview-v8-settings-amoled.png",
+          "bytes": 142013,
+          "sha256": "4dba50957a36da900ab2bd3855aa95e9370b94236996c8bad9f2a1d50301a68e",
+          "reason": "historical preview"
+        },
+        {
+          "action": "move",
+          "from": "preview-v8-settings-mobile.png",
+          "to": "archive/previews/preview-v8-settings-mobile.png",
+          "bytes": 62431,
+          "sha256": "5ca4732de139a9f5e7b81b7a0652af6f1be4816ebfe89ac9cec790f97ae7b639",
+          "reason": "historical preview"
+        }
+      ]
+    },
+    {
+      "createdAt": "2026-10-12T17:37:52.1730148Z",
+      "currentVersion": "1.0.0+15",
+      "deletedBytes": 1119934359,
+      "entries": [
+        {
+          "action": "delete-directory",
+          "from": "GlukWave-windows-1.0.0+3",
+          "to": null,
+          "bytes": 57467624,
+          "fileCount": 66,
+          "sha256": "d98e5b516fd55820fe497da9780889cde27a06fefd83ce927e6d87f9f283d571",
+          "reason": "abandoned generated Windows staging or superseded extracted bundle"
+        },
+        {
+          "action": "delete-directory",
+          "from": "GlukWave-windows.07ba5e9016ad4a028cb5f0c2b6005c85.partial",
+          "to": null,
+          "bytes": null,
+          "fileCount": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "reason": "abandoned generated Windows staging or superseded extracted bundle"
+        },
+        {
+          "action": "delete-directory",
+          "from": "GlukWave-windows.0cd8cad2dd074931afc9ca59f9eea156.partial",
+          "to": null,
+          "bytes": null,
+          "fileCount": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "reason": "abandoned generated Windows staging or superseded extracted bundle"
+        },
+        {
+          "action": "delete-directory",
+          "from": "GlukWave-windows.0e8caba4704b40daa932145e1484d49e.partial",
+          "to": null,
+          "bytes": null,
+          "fileCount": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "reason": "abandoned generated Windows staging or superseded extracted bundle"
+        },
+        {
+          "action": "delete-directory",
+          "from": "GlukWave-windows.153b2cc5950443b298bf2ac759e3e8c7.partial",
+          "to": null,
+          "bytes": null,
+          "fileCount": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "reason": "abandoned generated Windows staging or superseded extracted bundle"
+        },
+        {
+          "action": "delete-directory",
+          "from": "GlukWave-windows.17cb8003efc64db0862447017c5ecad4.partial",
+          "to": null,
+          "bytes": null,
+          "fileCount": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "reason": "abandoned generated Windows staging or superseded extracted bundle"
+        },
+        {
+          "action": "delete-directory",
+          "from": "GlukWave-windows.1c0af08c4add443cb9f472b3398d6001.partial",
+          "to": null,
+          "bytes": null,
+          "fileCount": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "reason": "abandoned generated Windows staging or superseded extracted bundle"
+        },
+        {
+          "action": "delete-directory",
+          "from": "GlukWave-windows.24f0f48b503440adb4007e7229ab9d76.partial",
+          "to": null,
+          "bytes": null,
+          "fileCount": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "reason": "abandoned generated Windows staging or superseded extracted bundle"
+        },
+        {
+          "action": "delete-directory",
+          "from": "GlukWave-windows.3a2db9c7ace84e809b6a393becedf76e.partial",
+          "to": null,
+          "bytes": 57467624,
+          "fileCount": 66,
+          "sha256": "0bc74673f4029593951e0595f48b0f8f56f2d7e9bd98138b690016950cdddb86",
+          "reason": "abandoned generated Windows staging or superseded extracted bundle"
+        },
+        {
+          "action": "delete-directory",
+          "from": "GlukWave-windows.437c403ad1644564956164289456d2f3.partial",
+          "to": null,
+          "bytes": null,
+          "fileCount": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "reason": "abandoned generated Windows staging or superseded extracted bundle"
+        },
+        {
+          "action": "delete-directory",
+          "from": "GlukWave-windows.53eab0e27c8148dfba1e6af4b816aaae.partial",
+          "to": null,
+          "bytes": null,
+          "fileCount": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "reason": "abandoned generated Windows staging or superseded extracted bundle"
+        },
+        {
+          "action": "delete-directory",
+          "from": "GlukWave-windows.73cd65a0736e40cfa74692ce27f1bb8a.partial",
+          "to": null,
+          "bytes": null,
+          "fileCount": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "reason": "abandoned generated Windows staging or superseded extracted bundle"
+        },
+        {
+          "action": "delete-directory",
+          "from": "GlukWave-windows.79e720669ecc47d8827a30774f3c23db.partial",
+          "to": null,
+          "bytes": null,
+          "fileCount": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "reason": "abandoned generated Windows staging or superseded extracted bundle"
+        },
+        {
+          "action": "delete-directory",
+          "from": "GlukWave-windows.8c6e02fbb22c4461984630f9ab0be305.partial",
+          "to": null,
+          "bytes": null,
+          "fileCount": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "reason": "abandoned generated Windows staging or superseded extracted bundle"
+        },
+        {
+          "action": "delete-directory",
+          "from": "GlukWave-windows.8fa176b0caaa49459995c10e2ec1359f.partial",
+          "to": null,
+          "bytes": null,
+          "fileCount": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "reason": "abandoned generated Windows staging or superseded extracted bundle"
+        },
+        {
+          "action": "delete-directory",
+          "from": "GlukWave-windows.931a5da16edb40e2a1f047648459facc.partial",
+          "to": null,
+          "bytes": null,
+          "fileCount": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "reason": "abandoned generated Windows staging or superseded extracted bundle"
+        },
+        {
+          "action": "delete-directory",
+          "from": "GlukWave-windows.967f38a6281a4c6c883f217414e7c3d2.partial",
+          "to": null,
+          "bytes": null,
+          "fileCount": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "reason": "abandoned generated Windows staging or superseded extracted bundle"
+        },
+        {
+          "action": "delete-directory",
+          "from": "GlukWave-windows.976c752a705c4d8d8243908cd1397b7f.partial",
+          "to": null,
+          "bytes": null,
+          "fileCount": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "reason": "abandoned generated Windows staging or superseded extracted bundle"
+        },
+        {
+          "action": "delete-directory",
+          "from": "GlukWave-windows.c7cc066f66e04eeda54056c52ecdbd03.partial",
+          "to": null,
+          "bytes": null,
+          "fileCount": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "reason": "abandoned generated Windows staging or superseded extracted bundle"
+        },
+        {
+          "action": "delete-directory",
+          "from": "GlukWave-windows.e926b43dc59b4db588644a035b4840fc.partial",
+          "to": null,
+          "bytes": null,
+          "fileCount": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "reason": "abandoned generated Windows staging or superseded extracted bundle"
+        },
+        {
+          "action": "delete-directory",
+          "from": "GlukWave-windows.fad941c053e04dffbd7bb245d22e44b7.partial",
+          "to": null,
+          "bytes": null,
+          "fileCount": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "reason": "abandoned generated Windows staging or superseded extracted bundle"
+        },
+        {
+          "action": "delete-directory",
+          "from": "GlukWave-windows.previous.00b6960141d943f38b70e94d213b70bd",
+          "to": null,
+          "bytes": 59419639,
+          "fileCount": 73,
+          "sha256": "c20edad16b8975883c158d4d6c51d96f44db775c18d9a0b2ac71bacb4f73d0e1",
+          "reason": "abandoned generated Windows staging or superseded extracted bundle"
+        },
+        {
+          "action": "delete-directory",
+          "from": "GlukWave-windows.previous.119f03f116984b2a8e015c9e04902eaa",
+          "to": null,
+          "bytes": 57365202,
+          "fileCount": 64,
+          "sha256": "0911e621510133a61c87c9a5ea224c2a6903a63f673df868732cd33036a01b7b",
+          "reason": "abandoned generated Windows staging or superseded extracted bundle"
+        },
+        {
+          "action": "delete-directory",
+          "from": "GlukWave-windows.previous.161f0796406a4e6ea1e3a000ba08f863",
+          "to": null,
+          "bytes": 59530772,
+          "fileCount": 75,
+          "sha256": "8493d7a3f3258b3404043ec0f18051b73ebf52233923182577ab66a12c8546a8",
+          "reason": "abandoned generated Windows staging or superseded extracted bundle"
+        },
+        {
+          "action": "delete-directory",
+          "from": "GlukWave-windows.previous.1a08e49827f2487288f4a6f1d6ba4187",
+          "to": null,
+          "bytes": 59121935,
+          "fileCount": 72,
+          "sha256": "5d238870e221d3126ae8c22d08381e27b271f39a3f205f544f16010eaef48606",
+          "reason": "abandoned generated Windows staging or superseded extracted bundle"
+        },
+        {
+          "action": "delete-directory",
+          "from": "GlukWave-windows.previous.33cf87968c694b7986b2777b905a4fa4",
+          "to": null,
+          "bytes": 59452407,
+          "fileCount": 73,
+          "sha256": "7ff3f62a9ac5909f9bc795292d05dd2625b405e0e4f9a3b7cc65389eba7eb1a7",
+          "reason": "abandoned generated Windows staging or superseded extracted bundle"
+        },
+        {
+          "action": "delete-directory",
+          "from": "GlukWave-windows.previous.42902fbdfaa9440986e0f5648c359f2a",
+          "to": null,
+          "bytes": 59661844,
+          "fileCount": 75,
+          "sha256": "089cfac9173d8576228effc6e3041faa90397788a4dfc95e3b0c3b6d8edf80aa",
+          "reason": "abandoned generated Windows staging or superseded extracted bundle"
+        },
+        {
+          "action": "delete-directory",
+          "from": "GlukWave-windows.previous.4a84e807ce524f8895616b96e41eb327",
+          "to": null,
+          "bytes": 57364545,
+          "fileCount": 64,
+          "sha256": "6167ef23d49d836adc2b451fa050c58bd59fa4a85e66103b7b9135f37f6deb24",
+          "reason": "abandoned generated Windows staging or superseded extracted bundle"
+        },
+        {
+          "action": "delete-directory",
+          "from": "GlukWave-windows.previous.707d727080d04cf69f00f336000072f5",
+          "to": null,
+          "bytes": 57331774,
+          "fileCount": 64,
+          "sha256": "24c08dadf931d9a3cb129b2c67b23a8d7940dd8b4e1743c45c50898eb4658108",
+          "reason": "abandoned generated Windows staging or superseded extracted bundle"
+        },
+        {
+          "action": "delete-directory",
+          "from": "GlukWave-windows.previous.782dbf2a75e2416aafe05941d57dda5d",
+          "to": null,
+          "bytes": 59402863,
+          "fileCount": 73,
+          "sha256": "789ed84d569c8ea207feefafa68562af9910e3829f13f2be5eeb75b2369c8430",
+          "reason": "abandoned generated Windows staging or superseded extracted bundle"
+        },
+        {
+          "action": "delete-directory",
+          "from": "GlukWave-windows.previous.7dc1513f5e804c6fa983ba7571e2aa0d",
+          "to": null,
+          "bytes": 59678228,
+          "fileCount": 75,
+          "sha256": "ea157a48a655a8c94c127c1e4eebeda96db5fd97950aaacaeb5499beefe1013e",
+          "reason": "abandoned generated Windows staging or superseded extracted bundle"
+        },
+        {
+          "action": "delete-directory",
+          "from": "GlukWave-windows.previous.8227493239cf4d3e9d9c8a6ea7a9f8f0",
+          "to": null,
+          "bytes": 59596308,
+          "fileCount": 75,
+          "sha256": "45eb07cb6a113be12868cdb2f6baa4572c1355493f9f0572237241ce54102c4e",
+          "reason": "abandoned generated Windows staging or superseded extracted bundle"
+        },
+        {
+          "action": "delete-directory",
+          "from": "GlukWave-windows.previous.83be1afe300143959f2f9424cde644e8",
+          "to": null,
+          "bytes": 59612692,
+          "fileCount": 75,
+          "sha256": "971d3ed37312f225d104e32283666789902eb2a1af61c123a880de257295cd61",
+          "reason": "abandoned generated Windows staging or superseded extracted bundle"
+        },
+        {
+          "action": "delete-directory",
+          "from": "GlukWave-windows.previous.96067813ef4d42d88694d4e3bb1e3ae1",
+          "to": null,
+          "bytes": 59743764,
+          "fileCount": 75,
+          "sha256": "265746275ca549513ddcd54d77234bb7c872b232d41c295253395b328c6cff0b",
+          "reason": "abandoned generated Windows staging or superseded extracted bundle"
+        },
+        {
+          "action": "delete-directory",
+          "from": "GlukWave-windows.previous.a870b6f1792844b1befdd7461ad3ed66",
+          "to": null,
+          "bytes": 59419639,
+          "fileCount": 73,
+          "sha256": "2561d8f1be33ef1ab5f0c9d606c990c8ce36d929ccac24cf1e3e114b3e95cbd4",
+          "reason": "abandoned generated Windows staging or superseded extracted bundle"
+        },
+        {
+          "action": "delete-directory",
+          "from": "GlukWave-windows.previous.c9be93329ced42bb96441a53ae6b3d9c",
+          "to": null,
+          "bytes": 59006579,
+          "fileCount": 72,
+          "sha256": "1f0451795cd5b2509df63e1a9836737cd81666d0dba5b61635dd9ed2d04e5dff",
+          "reason": "abandoned generated Windows staging or superseded extracted bundle"
+        },
+        {
+          "action": "delete-directory",
+          "from": "GlukWave-windows.previous.da7f86ff7bc742c39083fe005a3795bc",
+          "to": null,
+          "bytes": 59727380,
+          "fileCount": 75,
+          "sha256": "70c1b4d6bd11c82e37453b61456d33442d729a471f97c88df9efa045bcda4510",
+          "reason": "abandoned generated Windows staging or superseded extracted bundle"
+        },
+        {
+          "action": "delete-directory",
+          "from": "GlukWave-windows.previous.dc432b79b96f419191f978502b0d1d4c",
+          "to": null,
+          "bytes": 59563540,
+          "fileCount": 75,
+          "sha256": "8862d43c1f838c466a86596a12298dc147dadfd53e4ee2a0045564fce03b204e",
+          "reason": "abandoned generated Windows staging or superseded extracted bundle"
+        }
+      ]
+    },
+    {
+      "createdAt": "2026-10-12T18:59:17.5784085Z",
+      "currentVersion": "1.0.0+16",
+      "deletedBytes": 357492242.0,
+      "entries": [
+        {
+          "action": "delete",
+          "from": "GlukWave-1.0.0+15-audit.json",
+          "to": "archive/releases/1.0.0+15/GlukWave-1.0.0+15-audit.json",
+          "bytes": 81614,
+          "sha256": "afafd4bed38a911b2469e0b868433bee8b4cefc2fd90376a0ccada03b5f14eda",
+          "reason": "byte-identical copy already retained in archive"
+        },
+        {
+          "action": "delete",
+          "from": "GlukWave-1.0.0+15-source-audit.json",
+          "to": "archive/releases/1.0.0+15/GlukWave-1.0.0+15-source-audit.json",
+          "bytes": 773,
+          "sha256": "30b2d030d4f8377ee74487d0863b83428fedc70bdc1b24277eb3080701d243ef",
+          "reason": "byte-identical copy already retained in archive"
+        },
+        {
+          "action": "delete",
+          "from": "archive/releases/1.0.0+14/GlukWave-android-debug-1.0.0+14.apk",
+          "to": null,
+          "bytes": 185551215,
+          "sha256": "21f4690cec451929cd454f77f5a0b196a6317703ff871daf142d43652fdd2d3b",
+          "reason": "superseded archived generated client; current and preceding version retained; historical reports kept"
+        },
+        {
+          "action": "delete",
+          "from": "archive/releases/1.0.0+14/GlukWave-Setup-1.0.0+14.exe",
+          "to": null,
+          "bytes": 24380648,
+          "sha256": "4c05d3c2fe90ab5593e8902592212b08264550731057b5b1d0a1f35aefb65990",
+          "reason": "superseded archived generated client; current and preceding version retained; historical reports kept"
+        },
+        {
+          "action": "delete",
+          "from": "archive/releases/1.0.0+14/GlukWave-windows-1.0.0+14.zip",
+          "to": null,
+          "bytes": 27810240,
+          "sha256": "de41d341c76780636335dfa5c1397f269c677b668e7fddb27fb28b171f9d1992",
+          "reason": "superseded archived generated client; current and preceding version retained; historical reports kept"
+        },
+        {
+          "action": "delete-directory",
+          "from": "GlukWave-windows.2744f44012764011a6bac4ccccd74590.partial",
+          "to": null,
+          "bytes": null,
+          "fileCount": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "reason": "abandoned generated Windows staging or superseded extracted bundle"
+        },
+        {
+          "action": "delete-directory",
+          "from": "GlukWave-windows.a1138ad15e0b434a9ccf2427d707400d.partial",
+          "to": null,
+          "bytes": null,
+          "fileCount": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "reason": "abandoned generated Windows staging or superseded extracted bundle"
+        },
+        {
+          "action": "delete-directory",
+          "from": "GlukWave-windows.previous.7b8322d60aeb40fd97274ae7e65e9a23",
+          "to": null,
+          "bytes": 59743764.0,
+          "fileCount": 75,
+          "sha256": "8f6f71970159b308ca28bcd8cbd1c91362e3f082cb3fc5903922dbfd6722633f",
+          "reason": "abandoned generated Windows staging or superseded extracted bundle"
+        },
+        {
+          "action": "delete-directory",
+          "from": "GlukWave-windows.previous.e0db326964124f3493742d9ecee59a8e",
+          "to": null,
+          "bytes": 59923988.0,
+          "fileCount": 75,
+          "sha256": "ae6b3f83155eb9885cb2f41666548f9c5a7713cfadf8c016f68334550a759d97",
+          "reason": "abandoned generated Windows staging or superseded extracted bundle"
+        }
+      ]
+    }
+  ]
+}

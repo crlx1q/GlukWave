@@ -1,3 +1,4 @@
+import 'wave18_strings.dart';
 import 'room_directory.dart';
 import 'listening_presence.dart';
 import '../l10n/ecosystem_polish_strings.dart';
@@ -368,7 +369,27 @@ class _WaveShellState extends State<WaveShell>
   int searchRequest = 0;
   String settingsSection = 'account';
   late final WaveParity parity = WaveParity(c.api);
-  String mood = 'personal';
+  String mood = 'personal', waveMode = 'personal';
+  bool waveStarting = false;
+  String? waveStartError, _seenWaveSelection;
+  void waveSelectionChanged() {
+    if (!c.waveActive) {
+      _seenWaveSelection = null;
+      return;
+    }
+    final selected = '${c.waveMode}:${c.waveMood}';
+    if (selected == _seenWaveSelection) {
+      return;
+    }
+    _seenWaveSelection = selected;
+    if (mounted) {
+      setState(() {
+        waveMode = c.waveMode;
+        mood = c.waveMood;
+      });
+    }
+  }
+
   io.Socket? paritySocket;
   void friendsChanged(dynamic _) => unawaited(parity.refreshFriends());
   void tasteChanged(dynamic _) => unawaited(parity.refreshTaste());
@@ -392,8 +413,10 @@ class _WaveShellState extends State<WaveShell>
     // Create its ticker while this State is alive, before dispose can run.
     playerReveal;
     parity.addListener(parityChanged);
+    c.addListener(waveSelectionChanged);
+    waveSelectionChanged();
     attachParitySocket();
-    unawaited(parity.load());
+    unawaited(parity.load(mood: mood, mode: waveMode));
   }
 
   @override
@@ -402,6 +425,7 @@ class _WaveShellState extends State<WaveShell>
     chat.dispose();
     _searchTimer?.cancel();
     playerReveal.dispose();
+    c.removeListener(waveSelectionChanged);
     parity.removeListener(parityChanged);
     parity.dispose();
     paritySocket?.off('friends:changed', friendsChanged);
@@ -1451,38 +1475,111 @@ class _WaveShellState extends State<WaveShell>
         ),
         WaveHero(
           controller: c,
-          emptyActionLabel: pt(context, 'Artists'),
-          empty: local.isEmpty,
+          empty: false,
+          loading: waveStarting || c.trackLoading,
+          playing:
+              c.waveActive &&
+              c.waveMode == waveMode &&
+              c.waveMood == mood &&
+              c.audio.playing,
+          caption: wave18Text(context, 'wave18.caption.$waveMode'),
           reducedMotion: c.settings['reducedMotion'] == true,
-          onPlay: () => local.isEmpty
-              ? navigate(WavePage.artists)
-              : run(
-                  c,
-                  () => c.play((local.toList()..shuffle()).first, list: local),
-                ),
-        ),
-        const SizedBox(height: 16),
-        Wrap(
-          spacing: 8,
-          runSpacing: 8,
-          children: [
-            for (final entry in {
-              'personal': 'Personal',
-              'relax': 'Relax',
-              'focus': 'Focus',
-              'energy': 'Energy',
-              'dream': 'Dream',
-            }.entries)
-              ChoiceChip(
-                label: Text(pt(context, entry.value)),
-                selected: mood == entry.key,
-                onSelected: (_) {
-                  setState(() => mood = entry.key);
-                  unawaited(parity.load(mood: mood));
+          onPlay: waveStarting
+              ? null
+              : () async {
+                  setState(() {
+                    waveStarting = true;
+                    waveStartError = null;
+                  });
+                  try {
+                    if (c.waveActive &&
+                        c.waveMode == waveMode &&
+                        c.waveMood == mood &&
+                        c.audio.viewCurrent != null) {
+                      c.audio.playing
+                          ? await c.audio.pause()
+                          : await c.audio.play();
+                    } else {
+                      await c.startWave(mood: mood, mode: waveMode);
+                    }
+                  } catch (error) {
+                    if (mounted) {
+                      setState(() => waveStartError = error.toString());
+                    }
+                  } finally {
+                    if (mounted) setState(() => waveStarting = false);
+                  }
                 },
+        ),
+        const SizedBox(height: 14),
+        Wrap(
+          spacing: 7,
+          runSpacing: 7,
+          children: [
+            for (final mode in const [
+              'personal',
+              'favorites',
+              'discovery',
+              'popular',
+            ])
+              ChoiceChip(
+                key: Key('wave-mode-$mode'),
+                label: Text(wave18Text(context, 'wave18.mode.$mode')),
+                selected: waveMode == mode,
+                onSelected: waveStarting
+                    ? null
+                    : (_) {
+                        setState(() {
+                          waveMode = mode;
+                          waveStartError = null;
+                        });
+                        unawaited(parity.load(mood: mood, mode: waveMode));
+                      },
               ),
           ],
         ),
+        const SizedBox(height: 10),
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: [
+              for (final value in const [
+                'personal',
+                'energy',
+                'happy',
+                'calm',
+                'sad',
+                'focus',
+                'dream',
+              ])
+                Padding(
+                  padding: const EdgeInsets.only(right: 7),
+                  child: ChoiceChip(
+                    key: Key('wave-mood-$value'),
+                    label: Text(wave18Text(context, 'wave18.mood.$value')),
+                    selected: mood == value,
+                    onSelected: waveStarting
+                        ? null
+                        : (_) {
+                            setState(() {
+                              mood = value;
+                              waveStartError = null;
+                            });
+                            unawaited(parity.load(mood: mood, mode: waveMode));
+                          },
+                  ),
+                ),
+            ],
+          ),
+        ),
+        if (waveStartError != null)
+          Padding(
+            padding: const EdgeInsets.only(top: 12),
+            child: Text(
+              waveStartError!,
+              style: TextStyle(color: waveVisuals(context).muted, fontSize: 12),
+            ),
+          ),
         const SizedBox(height: 16),
         if (parity.loading)
           const Padding(
@@ -1504,7 +1601,7 @@ class _WaveShellState extends State<WaveShell>
                   ),
                 ),
                 TextButton(
-                  onPressed: () => parity.load(mood: mood),
+                  onPressed: () => parity.load(mood: mood, mode: waveMode),
                   child: Text(pt(context, 'Retry')),
                 ),
               ],

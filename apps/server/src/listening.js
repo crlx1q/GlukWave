@@ -4,7 +4,7 @@ export function setupListening(app,ctx){
  const {store}=ctx,baselines=new Map(),pending=new Map();let flushTask=Promise.resolve();
  ctx.observeListening=(uid,output,state,at=Date.now())=>{
   const previous=baselines.get(uid);baselines.delete(uid);baselines.set(uid,{output,trackId:state.trackId,position:state.position,playing:state.playing,at});while(baselines.size>2000)baselines.delete(baselines.keys().next().value);
-  if(previous?.output===output&&previous.trackId&&previous.trackId!==state.trackId&&previous.playing&&previous.position>1){const oldKey=uid+':'+previous.trackId,old=pending.get(oldKey)||{id:oldKey,userId:uid,trackId:previous.trackId,plays:0,seconds:0};if(pending.size<4000){old.skippedPositions=[...old.skippedPositions||[],previous.position].slice(-20);old.updatedAt=new Date(at).toISOString();pending.set(oldKey,old);}}
+  if(previous?.output===output&&previous.trackId&&previous.trackId!==state.trackId&&previous.playing){const position=previous.position+Math.min(10,Math.max(0,(at-previous.at)/1000));const oldKey=uid+':'+previous.trackId,old=pending.get(oldKey)||{id:oldKey,userId:uid,trackId:previous.trackId,plays:0,seconds:0};if(position>.5&&pending.size<4000){old.skippedPositions=[...old.skippedPositions||[],position].slice(-20);old.updatedAt=new Date(at).toISOString();pending.set(oldKey,old);}}
   if(!state.trackId)return;const key=uid+':'+state.trackId;let row=pending.get(key);
   const continuing=previous?.output===output&&previous.trackId===state.trackId,elapsed=continuing?(at-previous.at)/1000:0,advance=continuing?state.position-previous.position:0;
   const seconds=previous?.playing&&state.playing&&continuing&&elapsed>0&&elapsed<=20&&advance>=0&&advance<=elapsed*1.5+2?Math.min(elapsed,advance):0;

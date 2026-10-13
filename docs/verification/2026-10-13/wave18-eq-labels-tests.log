@@ -1,0 +1,29 @@
+00:00 +0: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/wave18_eq_labels_test.dart
+00:00 +0: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/wave18_eq_labels_test.dart: (setUpAll)
+00:00 +0: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/wave18_eq_labels_test.dart: Native EQ paints complete plus/minus12 at125 percent without changing curve handles
+00:00 +1: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/wave18_eq_labels_test.dart: Native EQ paints complete plus/minus12 at125 percent without changing curve handles
+00:00 +2: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/wave18_eq_labels_test.dart: Native EQ paints complete plus/minus12 at125 percent without changing curve handles
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following _TypeError was thrown running a test:
+type 'RenderSemanticsAnnotations' is not a subtype of type 'RenderParagraph' in type cast
+
+When the exception was thrown, this was the stack:
+#0      WidgetController.renderObject (package:flutter_test/src/controller.dart:966:51)
+#1      main.<anonymous closure> (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/wave18_eq_labels_test.dart:59:32)
+<asynchronous suspension>
+#2      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#3      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1059:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+The test description was:
+  Native EQ paints complete plus/minus12 at125 percent without changing curve handles
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:03 +2 -1: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/wave18_eq_labels_test.dart: Native EQ paints complete plus/minus12 at125 percent without changing curve handles [E]
+  Test failed. See exception logs above.
+  The test description was: Native EQ paints complete plus/minus12 at125 percent without changing curve handles
+  
+00:03 +2 -1: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/wave18_eq_labels_test.dart: (tearDownAll)
+00:03 +2 -1: Some tests failed.

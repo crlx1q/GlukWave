@@ -19,6 +19,8 @@ class WaveException implements Exception {
 }
 
 class WaveApi {
+  String _playbackScope = '';
+  final Map<String, ({DateTime at, Future<Json> job})> _playbackWarmup = {};
   final Dio dio = Dio(
     BaseOptions(
       connectTimeout: const Duration(seconds: 12),
@@ -270,14 +272,49 @@ class WaveApi {
     }
   }
 
-  Future<WaveTrack> resolvePlayback(WaveTrack track) async {
-    final data = await call(
-      '/api/tracks/${Uri.encodeComponent(track.id)}/playback',
-    );
+  Future<WaveTrack> resolvePlayback(
+    WaveTrack track, {
+    bool fresh = false,
+  }) async {
+    final scope = '$server:$token';
+    if (_playbackScope != scope) {
+      _playbackScope = scope;
+      _playbackWarmup.clear();
+    }
+    final existing = _playbackWarmup[track.id];
+    if (fresh ||
+        existing != null &&
+            DateTime.now().difference(existing.at) >
+                const Duration(seconds: 60)) {
+      _playbackWarmup.remove(track.id);
+    }
+    var entry = _playbackWarmup[track.id];
+    if (entry == null) {
+      entry = (
+        at: DateTime.now(),
+        job: call('/api/tracks/${Uri.encodeComponent(track.id)}/playback'),
+      );
+      _playbackWarmup[track.id] = entry;
+      while (_playbackWarmup.length > 3) {
+        _playbackWarmup.remove(_playbackWarmup.keys.first);
+      }
+    }
+    Json data;
+    try {
+      data = await entry.job;
+    } catch (_) {
+      if (identical(_playbackWarmup[track.id]?.job, entry.job)) {
+        _playbackWarmup.remove(track.id);
+      }
+      rethrow;
+    }
     final descriptor = object(data['playback']);
     if (descriptor['kind'] != 'audio' ||
         descriptor['url'] is! String ||
         (descriptor['url'] as String).isEmpty) {
+      if (identical(_playbackWarmup[track.id]?.job, entry.job)) {
+        _playbackWarmup.remove(track.id);
+      }
       throw WaveException(wt('native.266e43ddb8'), 'AUDIO_UNAVAILABLE');
     }
     return WaveTrack({...track.json, 'playback': descriptor});

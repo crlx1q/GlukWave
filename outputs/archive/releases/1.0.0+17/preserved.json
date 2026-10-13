@@ -1,0 +1,42 @@
+[
+  {
+    "file": "GlukWave-android-debug.apk",
+    "bytes": 185648499,
+    "sha256": "4444f58d8d65b925dc1a2eec1e04bed7f42e821eb45c5f59bee996c0edb7c9e6"
+  },
+  {
+    "file": "GlukWave-Setup.exe",
+    "bytes": 24457103,
+    "sha256": "a31de2a8bd1bf2e00eeca501a3aa22ee58200385f3668e51a8ea492f50029d85"
+  },
+  {
+    "file": "GlukWave-windows.zip",
+    "bytes": 27924554,
+    "sha256": "ad445154f99367a086e9fc69460f915c96abe816cf2f5be5fd75885dbb1aa46d"
+  },
+  {
+    "file": "GlukWave-source.zip",
+    "bytes": 133389603,
+    "sha256": "4ba7c9641b17c4a2582c302c3e5d9f776256c68a9a2f0bbd23d38575d68e4884"
+  },
+  {
+    "file": "releases.json",
+    "bytes": 662,
+    "sha256": "f2d06979d5e03c536ed383a4cacaa5cedf0b0edc6f49369a30b35b710fae158f"
+  },
+  {
+    "file": "SHA256SUMS.txt",
+    "bytes": 351,
+    "sha256": "753356fa495ca95f3c6019da142e74e48646b98a85ba970d9afb3c602b4dec1b"
+  },
+  {
+    "file": "GlukWave-1.0.0+17-audit.json",
+    "bytes": 49111,
+    "sha256": "d3ad725b94ad80b455445a2cef024e6d4bcef8e8ee61ee7404aa00514e97ce86"
+  },
+  {
+    "file": "GlukWave-1.0.0+17-source-audit.json",
+    "bytes": 773,
+    "sha256": "6212c40307fb05a2e5bd89336725c74b881aebe1c88fb90a92157335eeb3ffde"
+  }
+]
