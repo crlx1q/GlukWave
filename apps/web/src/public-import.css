@@ -1,0 +1,25 @@
+.modal:has(.public-import-preview){min-width:0;max-width:calc(100vw / var(--font-scale,1) - 24px);max-height:calc(100dvh / var(--font-scale,1) - 24px)}
+.modal:has(.public-import-preview) .modal-content{min-width:0}
+.modal:has(.public-import-preview) header h2{min-width:0;overflow-wrap:anywhere}
+.public-import-preview{min-width:0}
+.public-import-search{display:flex;gap:10px;align-items:end;flex-wrap:wrap}
+.public-import-search .field{flex:1;min-width:160px;margin:0;line-height:1.5}
+.public-import-search input{width:100%;min-width:0;margin-top:7px}
+.public-import-search>.primary-button{min-height:43px;margin:0;flex:none}
+.public-import-search>p{flex-basis:100%;font-size:11px;line-height:1.65;color:var(--muted);margin:2px 0 0}
+.public-import-preview .external-playlists{min-width:0;max-height:45dvh;overflow:auto}
+.public-import-preview .list-button b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.public-import-preview .public-collection-art{height:44px;width:44px;flex:none;background:var(--surface);background-size:cover;background-position:center;border-radius:calc(var(--radius)*.4)}
+.public-import-notice{padding:12px 14px;background:var(--surface);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:calc(var(--radius)*.4);font-size:11px;line-height:1.6;overflow-wrap:anywhere;color:var(--muted)}
+.public-import-notice b{color:var(--ink);font-size:12px}.public-import-notice p{margin:3px 0 0}.public-import-notice ul{padding-left:18px;margin:5px 0 0}
+.public-import-preview .import-result{display:flex;flex-direction:column;align-items:flex-start;gap:10px;min-width:0}
+.public-import-preview .import-result .public-import-notice{background:var(--bg)}
+.public-import-preview .import-track-list{margin:0;max-height:38dvh}
+.public-import-preview .import-count{flex-wrap:wrap}
+.public-import-preview .public-import-modes button{flex:1;justify-content:center;line-height:1.4;min-width:0}
+.public-import-preview .loading-state{min-height:100px}
+.public-import-preview .empty-state{margin:0;padding:18px 5px}
+.public-import-preview input:focus-visible,.public-import-preview button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.source-public-import{margin-top:12px!important}.source-card .source-public-hint{font-size:10px;line-height:1.6;color:var(--muted);margin:9px 0 14px}
+.source-card>.primary-button,.source-card>.subtle-button{max-width:100%;white-space:normal;text-align:left;line-height:1.5}.source-card>button>svg{flex:none}
+@media(max-width:600px){.public-import-search .field{flex-basis:100%;min-width:0}.public-import-search>.primary-button{width:100%;justify-content:center}.public-import-preview .import-destination button{font-size:11px;padding:8px 10px}.public-import-preview .import-track-list{max-height:32dvh}.public-import-preview .public-import-modes{gap:5px}}

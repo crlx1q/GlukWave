@@ -591,6 +591,8 @@ const waveCatalogs = <String, Map<String, String>>{
     'native.4c922f0c45': 'First sign in on this device.',
     'native.283b363614': 'This isn’t a GlukWave sign-in code.',
     'native.e5eacefb73': 'Sign in on the other device confirmed.',
+    'native.streamUnavailable':
+        'Could not open the audio stream. Try again; the queue has been kept.',
     'native.fb5429ae1b': 'This track has no source link.',
     'native.bb5aee59aa':
         '{p0} opened. The source controls playback; downloads are unavailable.',
@@ -1257,6 +1259,8 @@ const waveCatalogs = <String, Map<String, String>>{
     'native.4c922f0c45': 'Сначала войди в аккаунт на этом устройстве.',
     'native.283b363614': 'Это не код входа GlukWave.',
     'native.e5eacefb73': 'Вход на другом устройстве подтверждён.',
+    'native.streamUnavailable':
+        'Не удалось открыть аудиопоток. Повтори запуск — очередь сохранена.',
     'native.fb5429ae1b': 'У этого трека нет ссылки на источник.',
     'native.bb5aee59aa':
         '{p0} открыт. Источник управляет воспроизведением; скачивание недоступно.',
@@ -1916,6 +1920,8 @@ const waveCatalogs = <String, Map<String, String>>{
     'native.4c922f0c45': 'Алдымен бұл құрылғыда аккаунтқа кір.',
     'native.283b363614': 'Бұл GlukWave кіру коды емес.',
     'native.e5eacefb73': 'Басқа құрылғыдағы кіру расталды.',
+    'native.streamUnavailable':
+        'Аудио ағынын ашу мүмкін болмады. Қайта қосып көр: кезек сақталды.',
     'native.fb5429ae1b': 'Бұл тректің дереккөз сілтемесі жоқ.',
     'native.bb5aee59aa':
         '{p0} ашылды. Ойнатуды дереккөз басқарады; жүктеу қолжетімсіз.',
@@ -2576,6 +2582,8 @@ const waveCatalogs = <String, Map<String, String>>{
     'native.4c922f0c45': 'Спочатку увійди в обліковий запис на цьому пристрої.',
     'native.283b363614': 'Це не код входу GlukWave.',
     'native.e5eacefb73': 'Вхід на іншому пристрої підтверджено.',
+    'native.streamUnavailable':
+        'Не вдалося відкрити аудіопотік. Повтори запуск — чергу збережено.',
     'native.fb5429ae1b': 'Цей трек не має посилання на джерело.',
     'native.bb5aee59aa':
         '{p0} відкрито. Джерело керує відтворенням; завантаження недоступне.',
@@ -3256,6 +3264,8 @@ const waveCatalogs = <String, Map<String, String>>{
     'native.4c922f0c45': 'Melde dich zuerst auf diesem Gerät an.',
     'native.283b363614': 'Dies ist kein GlukWave-Anmeldecode.',
     'native.e5eacefb73': 'Anmeldung auf dem anderen Gerät bestätigt.',
+    'native.streamUnavailable':
+        'Der Audiostream konnte nicht geöffnet werden. Erneut versuchen; die Warteschlange bleibt erhalten.',
     'native.fb5429ae1b': 'Dieser Titel hat keinen Quelllink.',
     'native.bb5aee59aa':
         '{p0} geöffnet. Die Quelle steuert die Wiedergabe; Downloads sind nicht verfügbar.',
@@ -3942,6 +3952,8 @@ const waveCatalogs = <String, Map<String, String>>{
     'native.4c922f0c45': 'Primero inicia sesión en este dispositivo.',
     'native.283b363614': 'Este no es un código de acceso de GlukWave.',
     'native.e5eacefb73': 'Inicio de sesión en el otro dispositivo confirmado.',
+    'native.streamUnavailable':
+        'No se pudo abrir el audio. Inténtalo otra vez; la cola se ha conservado.',
     'native.fb5429ae1b': 'Esta pista no tiene enlace a la fuente.',
     'native.bb5aee59aa':
         '{p0} abierto. La fuente controla la reproducción; las descargas no están disponibles.',

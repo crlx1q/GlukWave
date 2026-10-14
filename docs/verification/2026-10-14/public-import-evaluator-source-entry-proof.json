@@ -1,0 +1,34 @@
+{
+  "passed": true,
+  "scope": "Current source entry with empty provider configuration and no provider connection",
+  "cards": [
+    {
+      "importEnabled": true,
+      "name": "SoundCloud",
+      "optionalAccountDisabled": true,
+      "reason": "Найди открытые плейлисты и треки. Вход в музыкальный сервис не нужен. Закрытая музыка остаётся закрытой.",
+      "state": "Ник или ссылка"
+    },
+    {
+      "importEnabled": true,
+      "name": "Spotify",
+      "optionalAccountDisabled": true,
+      "reason": "Найди открытые плейлисты и треки. Вход в музыкальный сервис не нужен. Закрытая музыка остаётся закрытой.",
+      "state": "Ник или ссылка"
+    },
+    {
+      "importEnabled": true,
+      "name": "Яндекс Музыка",
+      "optionalAccountDisabled": true,
+      "reason": "Найди открытые плейлисты и треки. Вход в музыкальный сервис не нужен. Закрытая музыка остаётся закрытой.",
+      "state": "Ник или ссылка"
+    },
+    {
+      "importEnabled": true,
+      "name": "YouTube Music",
+      "optionalAccountDisabled": true,
+      "reason": "Найди открытые плейлисты и треки. Вход в музыкальный сервис не нужен. Закрытая музыка остаётся закрытой.",
+      "state": "Ник или ссылка"
+    }
+  ]
+}

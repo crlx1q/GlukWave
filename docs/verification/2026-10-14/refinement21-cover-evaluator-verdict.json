@@ -1,0 +1,301 @@
+{
+  "verdict": "PASS",
+  "scope": "Independent exact-reference comparison and actual-app UI geometry/material/movement/layout evaluation. No owner/provider traffic, physical playback or release-binary verification.",
+  "browserSession": "refinement21-cover-evaluator",
+  "sources": [
+    {
+      "path": "docs/design-reference/Gluk-Wave-3D-Cover-Only.html",
+      "sha256": "0f279e49911b5dfee8bb24d157fd2263b32e385b0f886cb10c99343a8c705780"
+    },
+    {
+      "path": "apps/web/src/album.tsx",
+      "sha256": "81c0b35c54327984e8922ed7902395d55b0926eb25b084fd85c6828c9bd0fcd2"
+    },
+    {
+      "path": "apps/web/src/cover-fit.ts",
+      "sha256": "4bfd503e665bccf54e8b2b2292ec4a428bd258959924dda55cb7eb4c4d3e571e"
+    },
+    {
+      "path": "apps/web/src/reference-cover.css",
+      "sha256": "85f7c95444d27286eee6c8dcc0da035fd82f5e290eb99c73d2d10aba2603a4fa"
+    },
+    {
+      "path": "apps/web/src/main.tsx",
+      "sha256": "53645fd49adcb7d42cfe2313dc0e8e746a459d07420e2b5f67c046aaa92b30e0"
+    },
+    {
+      "path": "apps/web/src/player-ui.tsx",
+      "sha256": "c9838cff0dba1d31ae1f16c2b184b17dfe9525b2c338fa4172f9fc50fff42206"
+    },
+    {
+      "path": "apps/native/lib/ui/album_stage.dart",
+      "sha256": "3334d87a861150239a82d288c946e41d41bd74aba9ac93c6534e3e6a2b5f1b95"
+    },
+    {
+      "path": "apps/native/lib/ui/player.dart",
+      "sha256": "bbc19af782ba1c95826ca3a2feed58a3a4ac331f49004b3ce32ae698de87065c"
+    },
+    {
+      "path": "apps/native/test/refinement21_cover_test.dart",
+      "sha256": "ccf6e0923df7fe28e342739fa8b5621b1399bbf14577d34d7c8d08e52d79dce1"
+    }
+  ],
+  "proofpaths": [
+    "work/qa/refinement21-cover-eval-reference-proof.json",
+    "work/qa/refinement21-cover-eval-browser-proof.json",
+    "work/qa/refinement21-cover-eval-extents-proof.json",
+    "work/qa/refinement21-cover-eval-touch-proof.json",
+    "work/qa/refinement21-cover-eval-scroll-lock-proof.json",
+    "work/qa/refinement21-cover-eval-final-smoke-proof.json",
+    "work/qa/refinement21-cover-evaluator-native.log",
+    "work/qa/refinement21-cover-evaluator-native-final.log",
+    "work/qa/refinement21-cover-integrated-connect.log"
+  ],
+  "proofs": [
+    "work/qa/refinement21-cover-eval-reference-proof.json",
+    "work/qa/refinement21-cover-eval-browser-proof.json",
+    "work/qa/refinement21-cover-eval-extents-proof.json",
+    "work/qa/refinement21-cover-eval-touch-proof.json",
+    "work/qa/refinement21-cover-eval-scroll-lock-proof.json",
+    "work/qa/refinement21-cover-eval-final-smoke-proof.json",
+    "work/qa/refinement21-cover-evaluator-native.log",
+    "work/qa/refinement21-cover-evaluator-native-final.log",
+    "work/qa/refinement21-cover-integrated-connect.log"
+  ],
+  "nativeCases": "Fresh combined 5 cover + 4 Connect/glyph cases passed; final decorative shadow correction independently re-rendered and tested in one desktop cover case.",
+  "viewportWidths": [
+    "1440x900",
+    "1440x650",
+    "812x375",
+    "375x812",
+    "320x568"
+  ],
+  "fullAngleSweep": "Zero out-of-viewport sampled physical cover/record bounds in all five viewports.",
+  "priorEvaluation": {
+    "verdict": "PASS",
+    "scope": "Independent exact-reference comparison and actual-app UI geometry/material/movement/layout evaluation. No owner/provider traffic, physical playback or release-binary verification.",
+    "browserSession": "refinement21-cover-evaluator",
+    "sources": [
+      {
+        "path": "docs/design-reference/Gluk-Wave-3D-Cover-Only.html",
+        "sha256": "0f279e49911b5dfee8bb24d157fd2263b32e385b0f886cb10c99343a8c705780"
+      },
+      {
+        "path": "apps/web/src/album.tsx",
+        "sha256": "81c0b35c54327984e8922ed7902395d55b0926eb25b084fd85c6828c9bd0fcd2"
+      },
+      {
+        "path": "apps/web/src/cover-fit.ts",
+        "sha256": "4bfd503e665bccf54e8b2b2292ec4a428bd258959924dda55cb7eb4c4d3e571e"
+      },
+      {
+        "path": "apps/web/src/reference-cover.css",
+        "sha256": "85f7c95444d27286eee6c8dcc0da035fd82f5e290eb99c73d2d10aba2603a4fa"
+      },
+      {
+        "path": "apps/web/src/main.tsx",
+        "sha256": "7b6211724d8118403d99759daa7c46e4125a2c83acc05e3329b62f464344f2aa"
+      },
+      {
+        "path": "apps/web/src/player-ui.tsx",
+        "sha256": "af80318eabddacc32676a72f664be22090803545726613f3e0045eda2cbcd9dd"
+      },
+      {
+        "path": "apps/native/lib/ui/album_stage.dart",
+        "sha256": "3334d87a861150239a82d288c946e41d41bd74aba9ac93c6534e3e6a2b5f1b95"
+      },
+      {
+        "path": "apps/native/lib/ui/player.dart",
+        "sha256": "bbc19af782ba1c95826ca3a2feed58a3a4ac331f49004b3ce32ae698de87065c"
+      },
+      {
+        "path": "apps/native/test/refinement21_cover_test.dart",
+        "sha256": "ccf6e0923df7fe28e342739fa8b5621b1399bbf14577d34d7c8d08e52d79dce1"
+      }
+    ],
+    "proofpaths": [
+      "work/qa/refinement21-cover-eval-reference-proof.json",
+      "work/qa/refinement21-cover-eval-browser-proof.json",
+      "work/qa/refinement21-cover-eval-extents-proof.json",
+      "work/qa/refinement21-cover-eval-touch-proof.json",
+      "work/qa/refinement21-cover-eval-scroll-lock-proof.json",
+      "work/qa/refinement21-cover-eval-final-smoke-proof.json",
+      "work/qa/refinement21-cover-evaluator-native.log",
+      "work/qa/refinement21-cover-evaluator-native-final.log",
+      "work/qa/refinement21-cover-integrated-connect.log"
+    ],
+    "proofs": [
+      "work/qa/refinement21-cover-eval-reference-proof.json",
+      "work/qa/refinement21-cover-eval-browser-proof.json",
+      "work/qa/refinement21-cover-eval-extents-proof.json",
+      "work/qa/refinement21-cover-eval-touch-proof.json",
+      "work/qa/refinement21-cover-eval-scroll-lock-proof.json",
+      "work/qa/refinement21-cover-eval-final-smoke-proof.json",
+      "work/qa/refinement21-cover-evaluator-native.log",
+      "work/qa/refinement21-cover-evaluator-native-final.log",
+      "work/qa/refinement21-cover-integrated-connect.log"
+    ],
+    "nativeCases": "Fresh combined 5 cover + 4 Connect/glyph cases passed; final decorative shadow correction independently re-rendered and tested in one desktop cover case.",
+    "viewportWidths": [
+      "1440x900",
+      "1440x650",
+      "812x375",
+      "375x812",
+      "320x568"
+    ],
+    "fullAngleSweep": "Zero out-of-viewport sampled physical cover/record bounds in all five viewports."
+  },
+  "priorReportFileModifiedAt": "2026-10-13T21:04:55.513Z",
+  "revalidatedAt": "2026-10-14T08:56:20.496Z",
+  "revalidation": {
+    "kind": "cover",
+    "verdict": "PASS",
+    "reviewer": "Independent available inherited-model evaluator; no different-provider model capability exposed.",
+    "sourcesChangedSincePrior": [
+      {
+        "path": "apps/web/src/main.tsx",
+        "priorSha256": "7b6211724d8118403d99759daa7c46e4125a2c83acc05e3329b62f464344f2aa",
+        "currentSha256": "53645fd49adcb7d42cfe2313dc0e8e746a459d07420e2b5f67c046aaa92b30e0"
+      },
+      {
+        "path": "apps/web/src/player-ui.tsx",
+        "priorSha256": "af80318eabddacc32676a72f664be22090803545726613f3e0045eda2cbcd9dd",
+        "currentSha256": "c9838cff0dba1d31ae1f16c2b184b17dfe9525b2c338fa4172f9fc50fff42206"
+      }
+    ],
+    "proofObservedAt": "2026-10-14T08:40:31.490Z",
+    "proofs": [
+      "work/qa/playlist22-fresh-cover-extents-proof.json",
+      "work/qa/playlist22-fresh-cover.log",
+      "work/qa/playlist22-fresh-connect-1440-local-fullplayer.png"
+    ],
+    "observations": {
+      "viewportCount": 5,
+      "angleSweep": "Actual current app imports current coverBounds and samples pitch -38..38 step2 and yaw -180..180 step5. All five viewport cover/record extents remain within viewport.",
+      "viewports": {
+        "1440x900": {
+          "bad": [],
+          "badCount": 0,
+          "bodyOverflow": "hidden",
+          "extents": {
+            "bottom": 767.3260167816911,
+            "left": 177.36244529686115,
+            "right": 756.4500547031388,
+            "top": 196.67398321830876
+          },
+          "size": 302,
+          "stage": {
+            "bottom": 687,
+            "height": 410,
+            "left": 160,
+            "right": 773.8125,
+            "top": 277,
+            "width": 613.8125,
+            "x": 160,
+            "y": 277
+          }
+        },
+        "1440x650": {
+          "bad": [],
+          "badCount": 0,
+          "bodyOverflow": "hidden",
+          "extents": {
+            "bottom": 642.3260167816911,
+            "left": 177.36244529686115,
+            "right": 756.4500547031388,
+            "top": 71.67398321830876
+          },
+          "size": 302,
+          "stage": {
+            "bottom": 562,
+            "height": 410,
+            "left": 160,
+            "right": 773.8125,
+            "top": 152,
+            "width": 613.8125,
+            "x": 160,
+            "y": 152
+          }
+        },
+        "812x375": {
+          "bad": [],
+          "badCount": 0,
+          "bodyOverflow": "hidden",
+          "extents": {
+            "bottom": 374.091215970672,
+            "left": 38.35713725702016,
+            "right": 414.72098774297984,
+            "top": 12.908784029328018
+          },
+          "size": 202.203,
+          "stage": {
+            "bottom": 331,
+            "height": 275,
+            "left": 22,
+            "right": 431.078125,
+            "top": 56,
+            "width": 409.078125,
+            "x": 22,
+            "y": 56
+          }
+        },
+        "375x812": {
+          "bad": [],
+          "badCount": 0,
+          "bodyOverflow": "hidden",
+          "extents": {
+            "bottom": 459.549813126734,
+            "left": 9.218109580746583,
+            "right": 365.7818904192534,
+            "top": 118.450186873266
+          },
+          "size": 191.938,
+          "stage": {
+            "bottom": 472,
+            "height": 366,
+            "left": 18,
+            "right": 357,
+            "top": 106,
+            "width": 339,
+            "x": 18,
+            "y": 106
+          }
+        },
+        "320x568": {
+          "bad": [],
+          "badCount": 0,
+          "bodyOverflow": "hidden",
+          "extents": {
+            "bottom": 260.4394028865554,
+            "left": 60.270581515567955,
+            "right": 259.729418484432,
+            "top": 74.56059711344459
+          },
+          "size": 108.906,
+          "stage": {
+            "bottom": 273,
+            "height": 211,
+            "left": 18,
+            "right": 302,
+            "top": 62,
+            "width": 284,
+            "x": 18,
+            "y": 62
+          }
+        }
+      }
+    },
+    "scope": "Fresh actual-component web shared-player integration and complete sampled physical cover/record bounds at five viewports. Original exact reference/material/movement/native evidence is retained unchanged below; unchanged core cover sources preserve that approval.",
+    "limitations": [
+      "This fresh sweep validates current shared web integration and geometry. It does not claim a new exact-reference material/movement comparison or native release-binary review.",
+      "Original native cover evidence is preserved; current native cover component/source hashes are unchanged.",
+      "No owner/provider account access or physical playback."
+    ]
+  },
+  "revalidationProofs": [
+    "work/qa/playlist22-fresh-cover-extents-proof.json",
+    "work/qa/playlist22-fresh-cover.log",
+    "work/qa/playlist22-fresh-connect-1440-local-fullplayer.png"
+  ],
+  "revalidationScope": "Fresh actual-component web shared-player integration and complete sampled physical cover/record bounds at five viewports. Original exact reference/material/movement/native evidence is retained unchanged below; unchanged core cover sources preserve that approval."
+}

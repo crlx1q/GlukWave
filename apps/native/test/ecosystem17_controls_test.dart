@@ -444,9 +444,11 @@ void main() {
       await tester.pumpAndSettle();
       await tester.tap(find.text('Connect'));
       await tester.pumpAndSettle();
-      expect(find.byKey(const Key('connect-active-player')), findsOneWidget);
-      expect(find.byKey(const Key('connect-seek')), findsOneWidget);
-      expect(find.byKey(const Key('connect-next')), findsOneWidget);
+      expect(find.byKey(const Key('connect-device-native')), findsOneWidget);
+      expect(find.byKey(const Key('connect-active-player')), findsNothing);
+      expect(find.byKey(const Key('connect-seek')), findsNothing);
+      expect(find.byKey(const Key('connect-next')), findsNothing);
+      expect(find.text(track.title), findsOneWidget);
       final rect = tester.getRect(
         find.byKey(const Key('connect-quick-picker')),
       );
@@ -454,7 +456,7 @@ void main() {
       expect(rect.top, greaterThan(10));
       await f.screenshot(tester, 'ecosystem17-$runId-connect-390');
       await f.clean(tester, c);
-      done('anchored Connect active track and complete controls');
+      done('anchored Connect active track and device state without duplicate transport');
     },
   );
   testWidgets(

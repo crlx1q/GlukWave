@@ -51,7 +51,7 @@ export function createExtractorRuntime(config,{run}={}){
       const timer=setTimeout(()=>{
         const index=queue.indexOf(waiting);if(index<0)return;queue.splice(index,1);failed++;
         reject(new HttpError(503,'EXTRACTOR_BUSY','Музыка загружается. Повтори чуть позже.'));
-      },settings.queueTimeout||15000);timer.unref();queue.push(waiting);
+      },request.action==='public-playlist'?Math.min(2000,settings.queueTimeout||15000):settings.queueTimeout||15000);timer.unref();queue.push(waiting);
     });else active++;
     try{
       if(closed||!hasPython(adapter))fail(503,'EXTRACTOR_UNAVAILABLE','Этот источник временно недоступен.');
@@ -63,7 +63,7 @@ export function createExtractorRuntime(config,{run}={}){
     Object.assign(environment,{PYTHONIOENCODING:'utf-8',PYTHONUTF8:'1',PYTHONDONTWRITEBYTECODE:'1'});
     const processHandle=spawn(adapter==='spotify'?spotdlPython:python,['-B',script],{shell:false,windowsHide:true,detached:process.platform!=='win32',env:environment,stdio:['pipe','pipe','pipe']});
     children.add(processHandle);let size=0,buffers=[],failure=null;
-    const timer=setTimeout(()=>{failure=new Error('Extractor timeout');failure.code='EXTRACTOR_TIMEOUT';stop(processHandle);},settings.timeout||45000);timer.unref();
+    const timer=setTimeout(()=>{failure=new Error('Extractor timeout');failure.code='EXTRACTOR_TIMEOUT';stop(processHandle);},request.action==='public-playlist'?Math.min(15000,settings.timeout||45000):settings.timeout||45000);timer.unref();
     processHandle.stdout.on('data',chunk=>{size+=chunk.length;if(size>2*1024*1024){if(!failure){failure=new Error('Extractor output limit');failure.code='EXTRACTOR_FORMAT';stop(processHandle);}}else buffers.push(chunk);});
     processHandle.stderr.resume();processHandle.stdin.on('error',()=>{});
     processHandle.once('error',error=>{failure=error;});

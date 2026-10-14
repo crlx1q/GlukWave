@@ -531,12 +531,16 @@ class WaveHero extends StatefulWidget {
 }
 
 class _WaveHeroState extends State<WaveHero>
-    with SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin, WidgetsBindingObserver {
   late final AnimationController animation = AnimationController(
     vsync: this,
     duration: const Duration(seconds: 90),
   );
-  double _energy = 0, _pointerActive = 0, _targetActive = 0;
+  double _energy = 0,
+      _pointerActive = 0,
+      _targetActive = 0,
+      _phase = bloomPhase;
+  bool _foreground = true;
   Offset _pointer = const Offset(.5, .5),
       _pointerTarget = const Offset(.5, .5),
       _velocity = Offset.zero;
@@ -551,6 +555,7 @@ class _WaveHeroState extends State<WaveHero>
   void initState() {
     super.initState();
     animation.addListener(_tick);
+    WidgetsBinding.instance.addObserver(this);
   }
 
   void _tick() {
@@ -566,6 +571,7 @@ class _WaveHeroState extends State<WaveHero>
               .envelopeFor(c.audio.viewCurrent?.id)
               .at(c.audio.position.inMilliseconds / 1000, c.audio.playing);
     setState(() {
+      _phase += seconds * waveVisuals(context).speed;
       _energy = reduced ? 0 : easeEnergy(_energy, target, seconds);
       final movement = 1 - math.exp(-seconds * 16);
       final before = _pointer;
@@ -610,11 +616,17 @@ class _WaveHeroState extends State<WaveHero>
   }
 
   void _motion() {
-    if (reduced || !_visible || !TickerMode.of(context)) {
+    if (reduced || !_visible || !_foreground || !TickerMode.of(context)) {
       animation.stop();
     } else if (!animation.isAnimating) {
       animation.repeat();
     }
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    _foreground = state == AppLifecycleState.resumed;
+    _motion();
   }
 
   void _visibility() {
@@ -629,6 +641,7 @@ class _WaveHeroState extends State<WaveHero>
   @override
   void dispose() {
     _scroll?.removeListener(_visibility);
+    WidgetsBinding.instance.removeObserver(this);
     animation.dispose();
     super.dispose();
   }
@@ -660,9 +673,7 @@ class _WaveHeroState extends State<WaveHero>
                   child: RepaintBoundary(
                     child: CustomPaint(
                       painter: WavePainter(
-                        reduced
-                            ? bloomPhase
-                            : bloomPhase + animation.value * 90,
+                        reduced ? bloomPhase : _phase,
                         accentColor: v.accent,
                         backgroundColor: v.background,
                         style: v.waveStyle,

@@ -1,5 +1,8 @@
+import 'playlist_manager.dart';
+import 'playlist_strings.dart';
 import 'wave18_strings.dart';
 import 'provider_import.dart';
+import 'public_import_strings.dart';
 import 'refinement20_strings.dart';
 import 'refinement20_home.dart';
 import 'native19_strings.dart';
@@ -601,6 +604,7 @@ class _WaveShellState extends State<WaveShell>
                         child: MiniPlayer(
                           controller: c,
                           onOpen: showPlayer,
+                          onDevices: () => navigate(WavePage.devices),
                           artworkKey: miniArtwork,
                           onDragStart: beginPlayerDrag,
                           onDragUpdate: updatePlayerDrag,
@@ -664,6 +668,10 @@ class _WaveShellState extends State<WaveShell>
                               initialTrack: previewTrack,
                               onMore: more,
                               onClose: () => settlePlayer(false),
+                              onDevices: () {
+                                settlePlayer(false);
+                                navigate(WavePage.devices);
+                              },
                               artworkKey: fullArtwork,
                               hideAlbum: extent < 1 && coverOrigin != null,
                               onDragStart: beginPlayerClose,
@@ -1712,14 +1720,7 @@ class _WaveShellState extends State<WaveShell>
     );
   }
 
-  Future<void> newPlaylist() async {
-    final name = await askText(
-      context,
-      wt('native.7984f2471a', context: context),
-      wt('native.9200137ae9', context: context),
-    );
-    if (name != null) await run(c, () => c.playlist(name));
-  }
+  Future<void> newPlaylist() => showPlaylistEditor(context, c);
 
   Widget playlistGrid() => LayoutBuilder(
     builder: (context, constraints) {
@@ -1738,10 +1739,12 @@ class _WaveShellState extends State<WaveShell>
               width: width,
               child: InkWell(
                 borderRadius: BorderRadius.circular(waveRadius(context, 18)),
-                onTap: () => setState(() {
-                  selectedPlaylist = playlist;
-                  page = WavePage.library;
-                }),
+                onTap: playlist['id'].toString().startsWith('pending:')
+                    ? null
+                    : () => setState(() {
+                        selectedPlaylist = playlist;
+                        page = WavePage.library;
+                      }),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -1762,13 +1765,13 @@ class _WaveShellState extends State<WaveShell>
                     ),
                     const SizedBox(height: 3),
                     Text(
-                      wt(
-                        'native.dcb57004b9',
-                        values: {
-                          'p0': ((playlist['trackIds'] as List?)?.length ?? 0),
-                        },
-                        context: context,
-                      ),
+                      playlist['id'].toString().startsWith('pending:')
+                          ? playlistText(context, 'saving')
+                          : playlistText(context, 'tracks', {
+                              'count': List.from(
+                                playlist['trackIds'] ?? [],
+                              ).length,
+                            }),
                       style: TextStyle(
                         color: waveVisuals(context).muted,
                         fontSize: 10,
@@ -1783,6 +1786,13 @@ class _WaveShellState extends State<WaveShell>
     },
   );
   Widget library({bool liked = false}) {
+    if (selectedPlaylist != null) {
+      selectedPlaylist =
+          c.playlists
+              .where((p) => p['id'] == selectedPlaylist!['id'])
+              .firstOrNull ??
+          selectedPlaylist;
+    }
     var items = c.tracks;
     if (liked || filter == 'liked') {
       items = items.where((t) => c.likedIds.contains(t.id)).toList();
@@ -1815,15 +1825,37 @@ class _WaveShellState extends State<WaveShell>
             icon: const Icon(Icons.arrow_back, size: 17),
             label: Text(wt('native.082b4a891b', context: context)),
           ),
-        PageHeading(
-          selectedPlaylist?['name'] as String? ??
-              (liked
-                  ? wt('native.d3aa3fa13d', context: context)
-                  : wt('native.27925da08c', context: context)),
-          selectedPlaylist?['description'] as String? ??
-              wt('native.9221337472', context: context),
-          eyebrow: wt('native.708d386559', context: context),
-        ),
+        if (selectedPlaylist != null)
+          PlaylistDetailHeader(
+            controller: c,
+            playlist: selectedPlaylist!,
+            tracks: items,
+            onAdd: () => showPlaylistTracks(
+              context,
+              c,
+              selectedPlaylist!['id'].toString(),
+            ),
+            onEdit: () async {
+              await showPlaylistEditor(context, c, playlist: selectedPlaylist);
+              if (mounted) {
+                setState(() {
+                  if (!c.playlists.any(
+                    (p) => p['id'] == selectedPlaylist?['id'],
+                  )) {
+                    selectedPlaylist = null;
+                  }
+                });
+              }
+            },
+          )
+        else
+          PageHeading(
+            liked
+                ? wt('native.d3aa3fa13d', context: context)
+                : wt('native.27925da08c', context: context),
+            wt('native.9221337472', context: context),
+            eyebrow: wt('native.708d386559', context: context),
+          ),
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
@@ -1919,49 +1951,8 @@ class _WaveShellState extends State<WaveShell>
           ),
           const SizedBox(height: 16),
         ],
-        if (selectedPlaylist != null)
-          Wrap(
-            spacing: 12,
-            children: [
-              TextButton.icon(
-                onPressed: () => run(c, () async {
-                  final name = await askText(
-                    context,
-                    wt('native.fbb72c35d6', context: context),
-                    wt('native.3de49828e8', context: context),
-                    value: selectedPlaylist!['name'] as String,
-                  );
-                  if (name != null) {
-                    await c.api.call(
-                      '/api/playlists/${selectedPlaylist!['id']}',
-                      method: 'PATCH',
-                      data: {'name': name},
-                    );
-                    selectedPlaylist = null;
-                    await c.refresh();
-                  }
-                }),
-                icon: const Icon(Icons.edit_outlined, size: 17),
-                label: Text(wt('native.715e8f0c32', context: context)),
-              ),
-              TextButton.icon(
-                onPressed: () => confirm(
-                  wt('native.2eb4f15128', context: context),
-                  wt('native.75710f1731', context: context),
-                  () async {
-                    await c.api.call(
-                      '/api/playlists/${selectedPlaylist!['id']}',
-                      method: 'DELETE',
-                    );
-                    setState(() => selectedPlaylist = null);
-                    await c.refresh();
-                  },
-                ),
-                icon: const Icon(Icons.delete_outline, size: 17),
-                label: Text(wt('native.86ea33aef5', context: context)),
-              ),
-            ],
-          ),
+        if (selectedPlaylist != null && items.isNotEmpty)
+          PlaylistOrder(controller: c, id: selectedPlaylist!['id'].toString()),
       ],
     );
   }
@@ -2148,33 +2139,18 @@ class _WaveShellState extends State<WaveShell>
               },
             ),
             ListTile(
-              leading: const Icon(Icons.playlist_add_rounded),
-              title: Text(wt('native.df0c76065d', context: context)),
-              onTap: () async {
+              leading: Icon(
+                c.playlistsForTrack(track.id).isEmpty
+                    ? Icons.playlist_add_rounded
+                    : Icons.playlist_add_check_rounded,
+                color: c.playlistsForTrack(track.id).isEmpty
+                    ? null
+                    : waveVisuals(context).accent,
+              ),
+              title: Text(membershipLabel(context, c, track)),
+              onTap: () {
                 Navigator.pop(sheet);
-                final selected = await showWaveDialog<Json>(
-                  context: context,
-                  builder: (dialog) => SimpleDialog(
-                    title: Text(wt('native.81524f9e71', context: context)),
-                    children: [
-                      for (final playlist in c.playlists)
-                        SimpleDialogOption(
-                          onPressed: () => Navigator.pop(dialog, playlist),
-                          child: Text(playlist['name'] as String),
-                        ),
-                      if (c.playlists.isEmpty)
-                        Padding(
-                          padding: EdgeInsets.all(24),
-                          child: Text(
-                            wt('native.9feaa9c30e', context: context),
-                          ),
-                        ),
-                    ],
-                  ),
-                );
-                if (selected != null) {
-                  await run(c, () => c.addToPlaylist(selected, track));
-                }
+                showPlaylistMembership(context, c, track);
               },
             ),
             if (track.offline)
@@ -2299,77 +2275,79 @@ class _WaveShellState extends State<WaveShell>
         wt('native.28e8073601', context: context),
         eyebrow: wt('native.96aa77adea', context: context),
       ),
-      for (final entry in c.integrations.where(
-        (item) => item['provider'] != 'discord',
+      for (final entry in ['soundcloud', 'spotify', 'yandex', 'youtube'].map(
+        (provider) =>
+            c.integrations
+                .where((item) => item['provider'] == provider)
+                .firstOrNull ??
+            <String, dynamic>{'provider': provider},
       ))
         Padding(
           padding: const EdgeInsets.only(bottom: 14),
           child: Surface(
-            child: Row(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
-                  width: 48,
-                  height: 48,
-                  decoration: BoxDecoration(
-                    color: waveVisuals(context).accentSoft,
-                    borderRadius: BorderRadius.circular(
-                      waveRadius(context, 15),
+                Row(
+                  children: [
+                    Container(
+                      width: 48,
+                      height: 48,
+                      decoration: BoxDecoration(
+                        color: waveVisuals(context).accentSoft,
+                        borderRadius: BorderRadius.circular(
+                          waveRadius(context, 15),
+                        ),
+                      ),
+                      child: Icon(
+                        sourceIcon(entry['provider'] as String),
+                        color: providerColor(entry['provider'] as String),
+                      ),
                     ),
-                  ),
-                  child: Icon(
-                    sourceIcon(entry['provider'] as String),
-                    color: providerColor(entry['provider'] as String),
-                  ),
-                ),
-                const SizedBox(width: 18),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        providerName(entry['provider'] as String),
-                        style: const TextStyle(
-                          fontSize: 21,
-                          fontWeight: FontWeight.w800,
-                        ),
+                    const SizedBox(width: 18),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            providerName(entry['provider'] as String),
+                            style: const TextStyle(
+                              fontSize: 21,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                          const SizedBox(height: 5),
+                          Text(
+                            entry['connected'] == true
+                                ? wt(
+                                    'native.8343afbb45',
+                                    values: {
+                                      'p0': (entry['displayName'] ?? ''),
+                                    },
+                                    context: context,
+                                  )
+                                : publicImportText(context, 'hint'),
+                            style: TextStyle(
+                              fontSize: 11,
+                              color: waveVisuals(context).muted,
+                              height: 1.5,
+                            ),
+                          ),
+                        ],
                       ),
-                      const SizedBox(height: 5),
-                      Text(
-                        entry['connected'] == true
-                            ? wt(
-                                'native.8343afbb45',
-                                values: {'p0': (entry['displayName'] ?? '')},
-                                context: context,
-                              )
-                            : entry['provider'] == 'soundcloud' &&
-                                  (entry['searchAvailable'] == true ||
-                                      object(
-                                            object(
-                                              c.config['providers'],
-                                            )['soundcloud'],
-                                          )['searchAvailable'] ==
-                                          true)
-                            ? wt('native.a9f3831f36', context: context)
-                            : entry['reason'] as String? ??
-                                  wt('native.993a71a598', context: context),
-                        style: TextStyle(
-                          fontSize: 11,
-                          color: waveVisuals(context).muted,
-                          height: 1.5,
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-                const SizedBox(width: 12),
+                const SizedBox(height: 14),
+                FilledButton.icon(
+                  key: Key('public-import-open-${entry['provider']}'),
+                  onPressed: () => sourcePlaylists(entry['provider'] as String),
+                  icon: const Icon(Icons.playlist_add_rounded, size: 18),
+                  label: Text(publicImportText(context, 'open')),
+                ),
                 if (entry['connected'] == true)
                   Column(
                     children: [
-                      FilledButton(
-                        onPressed: () =>
-                            sourcePlaylists(entry['provider'] as String),
-                        child: Text(wt('native.081b1d81c6', context: context)),
-                      ),
                       TextButton(
                         onPressed: () => run(
                           c,
@@ -2392,18 +2370,12 @@ class _WaveShellState extends State<WaveShell>
                     child: Text(
                       entry['configured'] == true
                           ? wt('native.124298ec71', context: context)
-                          : wt('native.656d8c4f40', context: context),
+                          : publicImportText(context, 'connected'),
                     ),
                   ),
               ],
             ),
           ),
-        ),
-      if (c.integrations.isEmpty)
-        EmptyState(
-          wt('native.e8ee34a373', context: context),
-          wt('native.e8c84710a2', context: context),
-          icon: Icons.hub_outlined,
         ),
       const SizedBox(height: 10),
       Surface(
@@ -2472,8 +2444,21 @@ class _WaveShellState extends State<WaveShell>
       ),
     ],
   );
-  Future<void> sourcePlaylists(String provider) =>
-      showProviderImport(context, c, provider);
+  Future<void> sourcePlaylists(String provider) async {
+    if (c.user == null) return;
+    if (c.user?.plan == 'free') {
+      c.tell(publicImportText(context, 'plan'));
+      return;
+    }
+    await showProviderImport(
+      context,
+      c,
+      provider,
+      connected: c.integrations.any(
+        (item) => item['provider'] == provider && item['connected'] == true,
+      ),
+    );
+  }
 
   Widget downloads() => NativeSavedView(
     controller: c,

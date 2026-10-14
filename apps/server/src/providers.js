@@ -1,5 +1,6 @@
 import crypto from 'node:crypto';
 import {setupLibraryImports} from './library-imports.js';
+import {createPublicImports,setupPublicImports} from './public-imports.js';
 import {systemText} from './system-text.js';
 import {z} from 'zod';
 import {jwtVerify,createRemoteJWKSet} from 'jose';
@@ -32,7 +33,7 @@ export function normalizeSoundcloud(t){const sid=t.urn||String(t.id);return {id:
 export function setupProviders(app,ctx){
   const {store,config,requireAuth}=ctx;
   const remoteJson=ctx.providerRemoteJson||defaultRemoteJson;
-  const publicSoundcloud=createPublicSoundcloud();
+  const publicSoundcloud=createPublicSoundcloud({fetcher:ctx.publicImportFetch||fetch});
   ctx.publicSoundcloudTrack=publicSoundcloud.track;
   const locks=new Map();
   const credentials=p=>oauthCredentials(config,p);
@@ -141,5 +142,7 @@ export function setupProviders(app,ctx){
   async function playlistTracks(p,uid,pid,cursor=''){if(pid.length>200||cursor.length>2048)fail(400,'INVALID_CURSOR','Неверная страница.');if(p==='spotify'){const r=await call(p,pid==='liked'?`me/tracks?limit=50&offset=${Number(cursor)||0}`:`playlists/${encodeURIComponent(pid)}/items?limit=50&offset=${Number(cursor)||0}`,uid);return {tracks:await persist((r.items||[]).map(x=>x.item||x.track).filter(t=>t?.id&&t.type!=='episode').map(normalizeSpotify)),nextCursor:r.next?String((Number(cursor)||0)+r.items.length):null};}if(p==='soundcloud'){const route=pid==='liked'?'me/likes/tracks':`playlists/${encodeURIComponent(pid)}/tracks`;let page=cursor||`${route}?limit=50&linked_partitioning=true`;if(cursor){const u=new URL(cursor,'https://api.soundcloud.com/');if(u.origin!=='https://api.soundcloud.com'||u.pathname!=='/'+route)fail(400,'INVALID_CURSOR','Неверная страница.');}const r=await call(p,page,uid);return {tracks:await persist((r.collection||r||[]).map(x=>x.track||x).filter(t=>t?.title).map(normalizeSoundcloud),{ownerId:uid}),nextCursor:r.next_href||null};}if(p==='youtube'){if(pid==='liked'){const r=await call(p,`videos?${new URLSearchParams({part:'snippet,contentDetails,status',myRating:'like',maxResults:'50',pageToken:cursor})}`,uid);return {tracks:await persist((r.items||[]).filter(t=>t.id&&t.status?.privacyStatus!=='private').map(normalizeYoutube)),nextCursor:r.nextPageToken||null};}let playlistId=pid;const r=await call(p,`playlistItems?${new URLSearchParams({part:'snippet,contentDetails',playlistId,maxResults:'50',pageToken:cursor})}`,uid);const ids=(r.items||[]).filter(t=>t.snippet?.resourceId?.videoId&&!['Private video','Deleted video'].includes(t.snippet.title)).map(x=>x.snippet.resourceId.videoId);const details=ids.length?await call(p,`videos?${new URLSearchParams({part:'snippet,contentDetails,status',id:ids.join(',')})}`,uid):{items:[]};const byId=new Map((details.items||[]).filter(t=>t.status?.privacyStatus!=='private').map(t=>[t.id,t]));return {tracks:await persist(ids.map(id=>byId.get(id)).filter(Boolean).map(normalizeYoutube)),nextCursor:r.nextPageToken||null};}fail(503,'PROVIDER_UNAVAILABLE','Этот источник не предоставляет подключённую библиотеку.');}
   app.get('/api/integrations/:provider/playlists',requireAuth,asyncRoute(async(req,res)=>res.json(await playlists(req.params.provider,req.auth.user.id,req.language))));
   app.get('/api/integrations/:provider/playlists/:id/tracks',requireAuth,asyncRoute(async(req,res)=>res.json(await playlistTracks(req.params.provider,req.auth.user.id,req.params.id,String(req.query.cursor||'')))));
-  setupLibraryImports(app,ctx,playlistTracks);
+  const publicImports=createPublicImports(ctx,{fetcher:ctx.publicImportFetch||fetch,soundcloud:publicSoundcloud,normalizeSoundcloud});
+  ctx.publicImports=publicImports;setupPublicImports(app,ctx,publicImports);
+  setupLibraryImports(app,ctx,playlistTracks,publicImports);
 }

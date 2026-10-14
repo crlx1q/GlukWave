@@ -175,6 +175,38 @@ def spotify_candidates(request):
     return {'candidates': found[:10], 'failed_sources': errors}
 
 
+
+def public_playlist(request):
+    """Flat metadata only: never follows entries into audio extraction."""
+    from yt_dlp import YoutubeDL
+    value = str(request.get('url') or '')
+    url = urlparse(value)
+    if url.scheme != 'https' or url.hostname not in {'www.youtube.com', 'youtube.com', 'music.youtube.com'} or url.username or url.password or url.port:
+        raise ValueError('Invalid playlist host')
+    collection = parse_qs(url.query).get('list', [''])[0]
+    profile = re.fullmatch(r'/(?:@[\w.%~-]{1,150}|channel/UC[\w-]{22}|user/[\w.-]{1,100})/playlists', url.path)
+    if not (url.path == '/playlist' and re.fullmatch(r'[\w-]{10,150}', collection)) and not profile:
+        raise ValueError('Invalid playlist URL')
+    start = max(1, min(10001, int(request.get('start') or 1)))
+    limit = max(1, min(101, int(request.get('limit') or 101)))
+    options = {'quiet': True, 'no_warnings': True, 'logger': QuietLogger(),
+               'extract_flat': True, 'skip_download': True, 'noplaylist': False,
+               'playliststart': start, 'playlistend': start + limit - 1,
+               'socket_timeout': 8, 'retries': 1, 'extractor_retries': 1,
+               'ignoreerrors': True, 'cachedir': False}
+    with YoutubeDL(options) as ydl:
+        info = ydl.extract_info(value, download=False)
+        if not isinstance(info, dict):
+            raise ValueError('Public playlist unavailable')
+        entries = list(info.get('entries') or [])[:limit]
+        clean = []
+        for item in entries:
+            if not isinstance(item, dict): continue
+            clean.append({key: item.get(key) for key in ['id', 'url', 'webpage_url', 'title', 'uploader', 'channel', 'artist', 'album', 'duration', 'thumbnails', 'playlist_count', 'availability']})
+        return {'id': info.get('id'), 'title': info.get('title'), 'entries': clean,
+                'playlist_count': info.get('playlist_count'), 'skipped_entries': sum(not isinstance(item, dict) for item in entries), 'thumbnails': info.get('thumbnails') or []}
+
+
 def main():
     request = json.loads(sys.stdin.buffer.read(65537))
     action = request.get('action')
@@ -183,6 +215,7 @@ def main():
             result = {name: package_version(name) for name in ['yt-dlp', 'yt-dlp-ejs', 'ytmusicapi', 'spotdl']}
         elif action == 'extract': result = extract(request)
         elif action == 'music-search': result = music_search(request)
+        elif action == 'public-playlist': result = public_playlist(request)
         elif action == 'spotify-metadata': result = spotify_metadata(request)
         elif action == 'spotify-candidates': result = spotify_candidates(request)
         else: raise ValueError('Unsupported operation')

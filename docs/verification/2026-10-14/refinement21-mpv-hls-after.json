@@ -1,0 +1,309 @@
+{
+  "properties": {
+    "maxDecodedPosition": 1.545883,
+    "decodedSampleRate": "44100",
+    "decodedOutput": "null",
+    "mpv-version": "mpv v0.36.0-403-g652a1dd907",
+    "audio-params/samplerate": null,
+    "current-ao": null,
+    "demuxer-lavf-list": "aac,ac3,aiff,ape,asf,ass,au,av1,avi,concat,dash,data,dsf,dts,dtshd,flac,flv,live_flv,hevc,hls,loas,m4v,matroska,webm,mjpeg,mjpeg_2000,mov,mp4,m4a,3gp,3g2,mj2,mp3,mpc,mpc8,mpeg,mpegts,mpegvideo,ogg,alaw,mulaw,vidc,f64be,f64le,f32be,f32le,s32be,s32le,s24be,s24le,s16be,s16le,s8,u32be,u32le,u24be,u24le,u16be,u16le,u8,rm,rtsp,shn,srt,stl,subviewer1,subviewer,tak,truehd,tta,vplayer,wav,webm_dash_manifest,webvtt,wv,xwma,dshow,gdigrab,lavfi,vfwcap"
+  },
+  "requests": [
+    {
+      "part": "root",
+      "grantPresent": true,
+      "authorizationPresent": true
+    },
+    {
+      "part": "root",
+      "grantPresent": true,
+      "authorizationPresent": true
+    },
+    {
+      "part": "key",
+      "grantPresent": true,
+      "authorizationPresent": true
+    },
+    {
+      "part": "segment",
+      "grantPresent": true,
+      "authorizationPresent": true
+    }
+  ],
+  "logs": [
+    {
+      "level": "v",
+      "prefix": "ffmpeg",
+      "text": "Opening http://127.0.0.1:58589/api/stream-audio/fixture?grant=probe-capability"
+    },
+    {
+      "level": "v",
+      "prefix": "ffmpeg",
+      "text": "Could not set AVOption tls_verify='0'"
+    },
+    {
+      "level": "v",
+      "prefix": "ffmpeg",
+      "text": "Mime-type: 'application/vnd.apple.mpegurl'"
+    },
+    {
+      "level": "v",
+      "prefix": "demux",
+      "text": "Trying demuxers for level=normal."
+    },
+    {
+      "level": "v",
+      "prefix": "lavf",
+      "text": "Found 'hls' at score=100 size=293."
+    },
+    {
+      "level": "v",
+      "prefix": "ffmpeg/demuxer",
+      "text": "hls: Skip ('#EXT-X-VERSION:3')"
+    },
+    {
+      "level": "v",
+      "prefix": "ffmpeg/demuxer",
+      "text": "hls: Opening 'http://127.0.0.1:58589/api/stream-audio/fixture?grant=probe-capability&part=key' for reading"
+    },
+    {
+      "level": "v",
+      "prefix": "ffmpeg/demuxer",
+      "text": "hls: Opening 'crypto+http://127.0.0.1:58589/api/stream-audio/fixture?grant=probe-capability&part=segment' for reading"
+    },
+    {
+      "level": "v",
+      "prefix": "lavf",
+      "text": "Could not set AVOption tls_verify='0'"
+    },
+    {
+      "level": "v",
+      "prefix": "lavf",
+      "text": "avformat_find_stream_info() finished after 0 bytes."
+    },
+    {
+      "level": "v",
+      "prefix": "demux",
+      "text": "Detected file format: hls (libavformat)"
+    },
+    {
+      "level": "v",
+      "prefix": "cplayer",
+      "text": "Opening done: http://127.0.0.1:58589/api/stream-audio/fixture?grant=probe-capability"
+    },
+    {
+      "level": "v",
+      "prefix": "lavf",
+      "text": "select track 0"
+    },
+    {
+      "level": "info",
+      "prefix": "cplayer",
+      "text": "(+) Audio --aid=1 (aac 1ch 44100Hz)"
+    },
+    {
+      "level": "v",
+      "prefix": "ad",
+      "text": "Codec list:"
+    },
+    {
+      "level": "v",
+      "prefix": "ad",
+      "text": "aac - (null)"
+    },
+    {
+      "level": "v",
+      "prefix": "ad",
+      "text": "aac_fixed (aac) - (null)"
+    },
+    {
+      "level": "v",
+      "prefix": "ad",
+      "text": "Opening decoder aac"
+    },
+    {
+      "level": "v",
+      "prefix": "ad",
+      "text": "Requesting 1 threads for decoding."
+    },
+    {
+      "level": "v",
+      "prefix": "ad",
+      "text": "Selected codec: aac ((null))"
+    },
+    {
+      "level": "v",
+      "prefix": "af",
+      "text": "User filter list:"
+    },
+    {
+      "level": "v",
+      "prefix": "af",
+      "text": "(empty)"
+    },
+    {
+      "level": "v",
+      "prefix": "cplayer",
+      "text": "Starting playback..."
+    },
+    {
+      "level": "v",
+      "prefix": "af",
+      "text": "[in] 44100Hz mono 1ch floatp"
+    },
+    {
+      "level": "v",
+      "prefix": "lavf",
+      "text": "EOF reached."
+    },
+    {
+      "level": "v",
+      "prefix": "af",
+      "text": "[userspeed] 44100Hz mono 1ch floatp"
+    },
+    {
+      "level": "v",
+      "prefix": "af",
+      "text": "[userspeed] (disabled)"
+    },
+    {
+      "level": "v",
+      "prefix": "af",
+      "text": "[convert] 44100Hz mono 1ch floatp"
+    },
+    {
+      "level": "v",
+      "prefix": "ao",
+      "text": "Trying audio driver 'null'"
+    },
+    {
+      "level": "v",
+      "prefix": "ao/null",
+      "text": "requested format: 44100 Hz, mono channels, floatp"
+    },
+    {
+      "level": "v",
+      "prefix": "ao/null",
+      "text": "Channel layouts:"
+    },
+    {
+      "level": "v",
+      "prefix": "ao/null",
+      "text": "- anything"
+    },
+    {
+      "level": "v",
+      "prefix": "ao/null",
+      "text": "result: mono"
+    },
+    {
+      "level": "v",
+      "prefix": "ao/null",
+      "text": "device buffer: 8704 samples."
+    },
+    {
+      "level": "v",
+      "prefix": "ao/null",
+      "text": "using soft-buffer of 8820 samples."
+    },
+    {
+      "level": "info",
+      "prefix": "cplayer",
+      "text": "AO: [null] 44100Hz mono 1ch floatp"
+    },
+    {
+      "level": "v",
+      "prefix": "cplayer",
+      "text": "AO: Description: Null audio output"
+    },
+    {
+      "level": "v",
+      "prefix": "af",
+      "text": "[convert] (disabled)"
+    },
+    {
+      "level": "v",
+      "prefix": "af",
+      "text": "[out] 44100Hz mono 1ch floatp"
+    },
+    {
+      "level": "v",
+      "prefix": "cplayer",
+      "text": "audio ready"
+    },
+    {
+      "level": "v",
+      "prefix": "cplayer",
+      "text": "starting audio playback"
+    },
+    {
+      "level": "v",
+      "prefix": "cplayer",
+      "text": "playback restart complete @ -0.023220, audio=playing, video=eof"
+    },
+    {
+      "level": "v",
+      "prefix": "ao/null",
+      "text": "starting AO"
+    },
+    {
+      "level": "v",
+      "prefix": "af",
+      "text": "filter input EOF"
+    },
+    {
+      "level": "v",
+      "prefix": "af",
+      "text": "filter output EOF"
+    },
+    {
+      "level": "v",
+      "prefix": "cplayer",
+      "text": "audio filter EOF"
+    },
+    {
+      "level": "v",
+      "prefix": "cplayer",
+      "text": "audio draining"
+    },
+    {
+      "level": "v",
+      "prefix": "cplayer",
+      "text": "audio EOF reached"
+    },
+    {
+      "level": "v",
+      "prefix": "cplayer",
+      "text": "EOF code: 1"
+    },
+    {
+      "level": "v",
+      "prefix": "cplayer",
+      "text": "finished playback, success (reason 0)"
+    },
+    {
+      "level": "info",
+      "prefix": "cplayer",
+      "text": ""
+    },
+    {
+      "level": "v",
+      "prefix": "cplayer",
+      "text": "draining left over audio"
+    },
+    {
+      "level": "v",
+      "prefix": "ao/null",
+      "text": "audio end or underrun"
+    },
+    {
+      "level": "v",
+      "prefix": "ao/null",
+      "text": "audio end or underrun"
+    }
+  ],
+  "physicalAudioUsed": false,
+  "dll": "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\outputs\\GlukWave-windows\\libmpv-2.dll",
+  "dllSha256": "d5f0694b08c124e785d858d00082f3e3b158dd9138bfc48c0382bf1eb443a5fc",
+  "aes128Fixture": true
+}

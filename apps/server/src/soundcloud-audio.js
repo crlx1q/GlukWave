@@ -1,4 +1,4 @@
-import {randomBytes} from 'node:crypto';
+import {audioCapabilities} from './audio-capabilities.js';
 import {Readable,Transform} from 'node:stream';
 import {pipeline} from 'node:stream/promises';
 import {asyncRoute,fail} from './util.js';
@@ -21,7 +21,7 @@ export function rewriteSoundcloudManifest(raw,base,link){
 // API playback and independently licensed downloading are separate paths.
 // Session streams never enter the user's permanent MusicCache.
 export function setupSoundcloudAudio(app,ctx,fetcher=fetch){
-  const grants=new Map(),transfers=new Set(),resolving=new Map();let closed=false,partCount=0;
+  const grants=new Map(),transfers=new Set(),resolving=new Map(),restoring=new Map(),capabilities=audioCapabilities(ctx.config.encryptionKey,'official-soundcloud-hls');let closed=false,partCount=0;
   const drop=key=>{const value=grants.get(key);if(value)partCount-=value.parts.size;grants.delete(key);};
   const configured=()=>!!(ctx.config.soundcloud.id&&ctx.config.soundcloud.secret);
   async function metadata(track,user){
@@ -69,7 +69,7 @@ export function setupSoundcloudAudio(app,ctx,fetcher=fetch){
     if(resolving.size>=12)fail(503,'EXTRACTOR_BUSY','Музыка загружается. Повтори чуть позже.');
     const pending=(async()=>{
     const info=await metadata(track,user);if(!info||closed)return null;
-    const token=randomBytes(24).toString('base64url'),expiresAt=Date.now()+Math.min(86400000,Math.max(7200000,((Number(track.duration)||0)+300)*1000));
+    const expiresAt=Date.now()+Math.min(86400000,Math.max(7200000,((Number(track.duration)||0)+300)*1000));const token=capabilities.issueRoot({trackId:track.id,userId:user.id,sessionId,expiresAt,createdAt:Date.now()});
     while(grants.size>=128)drop(grants.keys().next().value);
     const descriptor={kind:'audio',format:'hls',provider:'soundcloud',url:`/api/soundcloud-audio/${encodeURIComponent(track.id)}?grant=${token}`,offline:false,attribution:info.attribution};
     grants.set(token,{trackId:track.id,userId:user.id,sessionId,expiresAt,createdAt:Date.now(),parts:new Map([['root',info.url]]),reverse:new Map([[info.url,'root']]),descriptor,refresh:null});partCount++;
@@ -85,16 +85,26 @@ export function setupSoundcloudAudio(app,ctx,fetcher=fetch){
     }fail(502,'EXTRACTOR_URL','Источник не открыл аудио.');
   }
   app.get('/api/soundcloud-audio/:id',asyncRoute(async(req,res)=>{
-    const grant=grants.get(String(req.query.grant||'')),part=String(req.query.part||'root');
-    if(!grant||grant.trackId!==req.params.id||grant.expiresAt<=Date.now()||closed)fail(401,'AUTH_REQUIRED','Войди в GlukWave, чтобы продолжить.');
+    const token=String(req.query.grant||''),part=String(req.query.part||'root');let grant=grants.get(token)||capabilities.root(token);
+    if(!grant||grant.trackId!==req.params.id||grant.expiresAt<=Date.now()||closed)fail(401,'AUDIO_EXPIRED','Ссылка на аудио обновилась. Запусти трек ещё раз.');
     const [session,user]=await Promise.all([ctx.store.get('sessions',grant.sessionId),ctx.store.get('users',grant.userId)]);
     if(!session||session.userId!==grant.userId||session.expiresAt<=Date.now()||!user||user.blocked)fail(401,'AUTH_REQUIRED','Сессия завершена.');
     if(req.auth?.user&&req.auth.user.id!==grant.userId)fail(403,'TRACK_NOT_FOUND','Трек не найден.');
     const track=await ctx.requireTrack(grant.trackId,user);
+    if(!grant.parts){
+      if(!restoring.has(token)){
+        if(restoring.size>=12)fail(503,'EXTRACTOR_BUSY','Музыка загружается.');const identity=grant;
+        const work=(async()=>{const info=await metadata(track,user);if(!info)fail(403,'DIRECT_AUDIO_UNAVAILABLE','Этот трек сейчас недоступен.');const value={...identity,parts:new Map([['root',info.url]]),reverse:new Map([[info.url,'root']]),refresh:null,descriptor:{kind:'audio',format:'hls',provider:'soundcloud',offline:false,url:`/api/soundcloud-audio/${encodeURIComponent(identity.trackId)}?grant=${token}`,attribution:info.attribution}};
+          while(grants.size>=128)drop(grants.keys().next().value);if(closed)fail(503,'EXTRACTOR_BUSY','Музыка загружается.');grants.set(token,value);partCount++;return value;})().finally(()=>restoring.delete(token));restoring.set(token,work);
+      }
+      grant=await restoring.get(token);
+    }
+    if(part!=='root'&&!grant.parts.has(part)){const resource=capabilities.part(token,part);if(!resource||!soundcloudCdn(resource))fail(404,'TRACK_NOT_FOUND','Трек не найден.');if(grant.parts.size>=8192||partCount>=32768)fail(503,'EXTRACTOR_BUSY','Музыка загружается.');grant.parts.set(part,resource);grant.reverse.set(resource,part);partCount++;}
     const resource=grant.parts.get(part);if(!resource)fail(404,'TRACK_NOT_FOUND','Трек не найден.');
     const range=req.headers.range;if(range&&!/^bytes=(?:\d+-\d*|-\d+)$/.test(range))fail(416,'INVALID_RANGE','Этот диапазон аудио недоступен.');
     if(transfers.size>=24)fail(503,'EXTRACTOR_BUSY','Музыка загружается. Повтори чуть позже.');
-    const controller=new AbortController(),abort=()=>controller.abort();transfers.add(controller);res.once('close',abort);
+    if(req.aborted||res.destroyed||res.writableEnded)return;
+    const controller=new AbortController(),abort=()=>controller.abort();transfers.add(controller);res.once('close',abort);req.once('aborted',abort);
     const timer=setTimeout(abort,30000);timer.unref();
     try{
       let {response,url}=await pull(resource,controller.signal,range);
@@ -105,6 +115,7 @@ export function setupSoundcloudAudio(app,ctx,fetcher=fetch){
         if(fresh){grant.reverse.delete(resource);grant.parts.set('root',fresh.url);grant.reverse.set(fresh.url,'root');({response,url}=await pull(fresh.url,controller.signal,range));}
       }
       if(!response.ok){await response.body?.cancel();fail(response.status===429?429:502,'EXTRACTOR_UPSTREAM','Источник временно не открыл трек.');}
+      if(controller.signal.aborted||req.aborted||res.destroyed||res.writableEnded){await response.body?.cancel();return;}
       const type=response.headers.get('content-type')||'',manifest=/mpegurl/i.test(type)||/\.m3u8(?:\?|$)/i.test(url.href);
       res.set({'Cache-Control':'private, no-store','X-Content-Type-Options':'nosniff','Referrer-Policy':'no-referrer'});
       if(manifest){
@@ -113,7 +124,7 @@ export function setupSoundcloudAudio(app,ctx,fetcher=fetch){
         const link=value=>{
           if(!soundcloudCdn(value))fail(502,'EXTRACTOR_URL','Источник не открыл аудио.');
           let key=grant.reverse.get(value);
-          if(!key){if(grant.parts.size>=8192||partCount>=32768)fail(503,'EXTRACTOR_BUSY','Музыка загружается. Повтори чуть позже.');key=randomBytes(12).toString('base64url');grant.parts.set(key,value);grant.reverse.set(value,key);partCount++;}
+          if(!key){if(grant.parts.size>=8192||partCount>=32768)fail(503,'EXTRACTOR_BUSY','Музыка загружается. Повтори чуть позже.');key=capabilities.issuePart(token,value,grant.expiresAt);grant.parts.set(key,value);grant.reverse.set(value,key);partCount++;}
           return `/api/soundcloud-audio/${encodeURIComponent(grant.trackId)}?grant=${req.query.grant}&part=${key}`;
         };
         res.type('application/vnd.apple.mpegurl').send(rewriteSoundcloudManifest(Buffer.concat(chunks).toString('utf8'),url,link));
@@ -124,8 +135,8 @@ export function setupSoundcloudAudio(app,ctx,fetcher=fetch){
         let bytes=0;const limit=new Transform({transform(chunk,_,done){bytes+=chunk.length;done(bytes>maximum?new Error('Audio segment limit'):null,chunk);}});
         if(req.method==='HEAD'){await response.body?.cancel();res.end();}else await pipeline(Readable.fromWeb(response.body),limit,res,{signal:controller.signal});
       }
-    }catch(error){if(!controller.signal.aborted&&!res.headersSent)throw error;if(!res.destroyed)res.destroy();}
-    finally{clearTimeout(timer);res.removeListener('close',abort);controller.abort();transfers.delete(controller);}
+    }catch(error){if(!controller.signal.aborted&&!req.aborted&&!res.destroyed&&!res.headersSent)throw error;if(!res.destroyed)res.destroy();}
+    finally{clearTimeout(timer);res.removeListener('close',abort);req.removeListener('aborted',abort);controller.abort();transfers.delete(controller);}
   }));
   ctx.closeSoundcloudAudio=()=>{closed=true;for(const controller of transfers)controller.abort();grants.clear();partCount=0;};
   ctx.soundcloudAudioStats=()=>({configured:configured(),activeTransfers:transfers.size,resolving:resolving.size,grants:grants.size,parts:partCount,limits:{transfers:24,resolving:12,grants:128,parts:32768}});

@@ -609,9 +609,9 @@ void main() {
       expect(find.byIcon(Icons.language_rounded), findsNothing);
       expect(
         find.byType(ListeningWave),
-        findsNWidgets(2),
+        findsOneWidget,
         reason:
-            'Active track card and current output row each expose the actual playing indicator',
+            'The selected output exposes its track once; the picker does not duplicate transport',
       );
       await f.screenshot(tester, 'ecosystem-polish-$runId-connect-390');
       expect(tester.takeException(), isNull);

@@ -1,0 +1,22 @@
+✔ atomic playlist membership retains concurrent additions, is idempotent, and enforces owner/public access (2818.79ms)
+✔ public collection targets canonicalize nicknames and exact provider links, rejecting SSRF and track URLs (11.9513ms)
+✔ Spotify public JSON is metadata-only, normalizes durations and reports incomplete embed data honestly (33.9636ms)
+✔ Yandex public playlists and likes hydrate in batches, retain one snapshot across pages, and omit private collections (46.8749ms)
+✔ SoundCloud public module discovers sets/likes, hydrates sparse metadata and keeps cursor credentials server-side (67.6441ms)
+✔ public readers reject external redirects, cap responses, classify timeouts and bound parallel work (10.0225ms)
+✔ YouTube flat pages keep normalized IDs, skip private videos, and discover public channel playlists (9.5757ms)
+✔ Yandex closed likes are omitted from discovery and cannot be imported (2.7036ms)
+✔ public HTTP import needs no provider keys, preserves auth/plans/idempotency, imports chosen IDs and seeds taste (2458.4577ms)
+✔ slow actions poll one intent, retain failures, isolate sessions and remain bounded (42.7842ms)
+✔ failed room tracks advance once, preserve Wave, bypass repeat-one, and stop an exhausted queue (9.6519ms)
+✔ imported taste is weak and resettable, related items rank across artists without becoming heard (6.3497ms)
+✔ SoundCloud falls back between full encodings and rejects preview/foreign endpoints (31.2427ms)
+✔ connected import follows opaque SoundCloud cursors, merges likes once, seeds taste and guards account changes (2101.3653ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7376.7582

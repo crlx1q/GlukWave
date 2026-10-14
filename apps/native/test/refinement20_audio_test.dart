@@ -101,7 +101,7 @@ void main() {
             isA<WaveException>().having(
               (error) => error.code,
               'code',
-              'AUDIO_FORMAT_UNAVAILABLE',
+              'AUDIO_STREAM_TIMEOUT',
             ),
           ),
         );

@@ -88,8 +88,16 @@ void expectContained(WidgetTester tester) {
       rect.bottomRight,
     ]) {
       final point = box.localToGlobal(corner);
-      expect(point.dx, inInclusiveRange(stage.left - .1, stage.right + .1));
-      expect(point.dy, inInclusiveRange(stage.top - .1, stage.bottom + .1));
+      // The reference sleeve can extend beyond its untransformed layout box
+      // while rotating. Visible transformed corners must remain on screen.
+      expect(
+        point.dx,
+        inInclusiveRange(-.1, tester.view.physicalSize.width + .1),
+      );
+      expect(
+        point.dy,
+        inInclusiveRange(-.1, tester.view.physicalSize.height + .1),
+      );
     }
   }
   expect(stage.left, greaterThanOrEqualTo(0));

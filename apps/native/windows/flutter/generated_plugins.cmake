@@ -7,7 +7,7 @@ list(APPEND FLUTTER_PLUGIN_LIST
   firebase_core
   flutter_inappwebview_windows
   flutter_secure_storage_windows
-  media_kit_libs_windows_audio
+  media_kit_libs_windows_video
   screen_retriever_windows
   tray_manager
   url_launcher_windows

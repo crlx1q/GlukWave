@@ -1,6 +1,8 @@
 import '../l10n/wave_localizations.dart';
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
+import 'package:flutter/gestures.dart';
+import 'package:flutter/scheduler.dart';
 import '../core/controller.dart';
 import '../core/models.dart';
 import 'widgets.dart';
@@ -33,14 +35,46 @@ class _AlbumStageState extends State<AlbumStage>
     vsync: this,
     duration: const Duration(seconds: 16),
   );
-  late final drift = AnimationController(
-    vsync: this,
-    duration: const Duration(seconds: 8),
-  );
-  late final AnimationController inertia =
-      AnimationController.unbounded(vsync: this)..addListener(() {
-        if (mounted) setState(() => tilt = Offset(inertia.value, tilt.dy));
-      });
+  late final Ticker inertia = createTicker(_tickInertia);
+  double _inertiaVelocity = 0, _dragLast = 0;
+  Duration _lastInertia = Duration.zero;
+  Offset _dragBase = Offset.zero;
+  Offset? _mouseOrigin;
+  int? _mousePointer;
+  void _tickInertia(Duration elapsed) {
+    final delta = ((elapsed - _lastInertia).inMicroseconds / 16667).clamp(
+      0.0,
+      2.0,
+    );
+    _lastInertia = elapsed;
+    setState(() => tilt = Offset(tilt.dx + _inertiaVelocity * delta, tilt.dy));
+    _inertiaVelocity *= math.pow(.94, delta);
+    if (_inertiaVelocity.abs() < .04 * math.pi / 180) inertia.stop();
+  }
+
+  void beginDrag() {
+    inertia.stop();
+    _dragBase = tilt;
+    _dragLast = 0;
+    _inertiaVelocity = 0;
+    setState(() => dragging = true);
+  }
+
+  void updateDrag(Offset distance) {
+    _inertiaVelocity = (distance.dx - _dragLast) * .32 * math.pi / 180;
+    _dragLast = distance.dx;
+    final x = (-9 - _dragBase.dy * 180 / math.pi - distance.dy * .22).clamp(
+      -38.0,
+      38.0,
+    );
+    setState(
+      () => tilt = Offset(
+        _dragBase.dx + distance.dx * .65 * math.pi / 180,
+        (-9 - x) * math.pi / 180,
+      ),
+    );
+  }
+
   Offset tilt = Offset.zero;
   bool dragging = false, hovering = false, visible = true;
   @override
@@ -81,9 +115,8 @@ class _AlbumStageState extends State<AlbumStage>
         !settings.reducedMotion &&
         !MediaQuery.disableAnimationsOf(context);
     if (moving) {
-      if (!drift.isAnimating) drift.repeat(reverse: true);
+      // Reference retains its angle when idle.
     } else {
-      drift.stop();
       inertia.stop();
     }
     if (moving && widget.playing) {
@@ -97,7 +130,6 @@ class _AlbumStageState extends State<AlbumStage>
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
     spin.dispose();
-    drift.dispose();
     inertia.dispose();
     super.dispose();
   }
@@ -107,13 +139,11 @@ class _AlbumStageState extends State<AlbumStage>
     final v = waveVisuals(context);
     if (!v.reducedMotion &&
         !widget.controller.energySaving &&
-        velocity.abs() > 40) {
-      inertia.value = tilt.dx;
-      inertia.animateTo(
-        tilt.dx + (velocity / 2000).clamp(-1.2, 1.2),
-        duration: v.duration(750),
-        curve: Curves.easeOutCubic,
-      );
+        visible &&
+        TickerMode.of(context) &&
+        _inertiaVelocity.abs() >= .04 * math.pi / 180) {
+      _lastInertia = Duration.zero;
+      inertia.start();
     }
   }
 
@@ -121,11 +151,8 @@ class _AlbumStageState extends State<AlbumStage>
   Widget build(BuildContext context) {
     final c = widget.controller, v = waveVisuals(context), size = widget.size;
     final dimensional = c.customization.appearance.cover3d && !c.energySaving;
-    final opaque = Color.alphaBlend(
-      v.accent.withValues(alpha: .12),
-      v.background,
-    ).withValues(alpha: 1);
-    final radius = v.corners(dimensional ? 3 : 14);
+    const opaque = Color(0xff32312d);
+    final radius = dimensional ? 2.0 : v.corners(14);
     Widget front() => Container(
       key: const Key('album-front-sleeve'),
       width: size,
@@ -133,15 +160,6 @@ class _AlbumStageState extends State<AlbumStage>
       decoration: BoxDecoration(
         color: opaque,
         borderRadius: BorderRadius.circular(radius),
-        boxShadow: v.blur
-            ? [
-                BoxShadow(
-                  color: Colors.black.withValues(alpha: .2),
-                  blurRadius: 18,
-                  offset: const Offset(0, 12),
-                ),
-              ]
-            : [],
       ),
       clipBehavior: Clip.antiAlias,
       child: Stack(
@@ -153,29 +171,62 @@ class _AlbumStageState extends State<AlbumStage>
             trackLoading: c.trackLoading,
             url: widget.track.artwork,
             size: size,
-            radius: dimensional ? 3 : 14,
-            fit: BoxFit.contain,
+            radius: dimensional ? 2 : 14,
+            fit: BoxFit.cover,
           ),
-          if (dimensional)
-            IgnorePointer(
+          if (dimensional) ...[
+            const IgnorePointer(
               child: DecoratedBox(
-                key: const Key('album-sunlight-reflection'),
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
-                    begin: Alignment(-2 + math.sin(-.314 + tilt.dx) * 2, -1.2),
-                    end: Alignment(2 + math.sin(-.314 + tilt.dx) * 2, 1.2),
-                    colors: const [
-                      Color(0x00ffffff),
-                      Color(0x11ffffff),
-                      Color(0x66fff7dc),
-                      Color(0x11ffffff),
-                      Color(0x00ffffff),
+                    begin: Alignment(-.174, -.985),
+                    end: Alignment(.174, .985),
+                    colors: [
+                      Color(0x11000000),
+                      Color(0x00000000),
+                      Color(0x55000000),
                     ],
-                    stops: const [0, .28, .43, .52, 1],
+                    stops: [0, .35, 1],
                   ),
                 ),
               ),
             ),
+            const IgnorePointer(
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      Color(0x23ffffff),
+                      Color(0x00ffffff),
+                      Color(0x00000000),
+                      Color(0x22000000),
+                    ],
+                    stops: [0, .03, .97, 1],
+                  ),
+                ),
+              ),
+            ),
+            IgnorePointer(
+              child: CustomPaint(
+                key: const Key('album-sunlight-reflection'),
+                painter: SleeveReflection(
+                  (math.sin(-18 * math.pi / 180 + tilt.dx) + 1) * .5,
+                ),
+              ),
+            ),
+          ],
+          Positioned(
+            right: size * .069,
+            bottom: size * .059,
+            width: size * .08,
+            height: size * .05,
+            child: const IgnorePointer(
+              child: CustomPaint(
+                key: Key('album-front-brand'),
+                painter: CoverBrandMark(),
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -189,7 +240,7 @@ class _AlbumStageState extends State<AlbumStage>
         ),
       );
     }
-    final depth = math.min(18.0, size * .055);
+    const depth = 18.0;
     Widget edge(Key key, Matrix4 matrix, double width, double height) =>
         Transform(
           key: key,
@@ -202,9 +253,9 @@ class _AlbumStageState extends State<AlbumStage>
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   colors: [
-                    Color.lerp(opaque, v.ink, .24)!,
-                    opaque,
-                    Color.lerp(opaque, Colors.black, .35)!,
+                    const Color(0xff595249),
+                    const Color(0xff948a7a),
+                    const Color(0xff554e43),
                   ],
                 ),
                 border: Border.all(
@@ -229,11 +280,43 @@ class _AlbumStageState extends State<AlbumStage>
             ),
             child: Center(
               child: ClipOval(
-                child: Artwork(
-                  controller: c,
-                  url: widget.track.artwork,
-                  size: size * .28,
-                  radius: 0,
+                child: Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Artwork(
+                      controller: c,
+                      url: widget.track.artwork,
+                      size:
+                          size *
+                          .94 *
+                          (c.customization.appearance.coverKind == 'cd'
+                              ? .74
+                              : .30),
+                      radius: 0,
+                    ),
+                    Container(
+                      width: c.customization.appearance.coverKind == 'cd'
+                          ? 26
+                          : 13,
+                      height: c.customization.appearance.coverKind == 'cd'
+                          ? 26
+                          : 13,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: c.customization.appearance.coverKind == 'cd'
+                            ? const Color(0xff626764)
+                            : const Color(0xff292a2b),
+                        border: Border.all(
+                          color: c.customization.appearance.coverKind == 'cd'
+                              ? const Color(0xcccfd3d4)
+                              : const Color(0xffd9d1c3),
+                          width: c.customization.appearance.coverKind == 'cd'
+                              ? 8
+                              : 3,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -251,204 +334,327 @@ class _AlbumStageState extends State<AlbumStage>
     );
     return SizedBox(
       key: const Key('album-stage-bounds'),
-      width: size * 1.5 + 24,
-      height: size * 1.28 + 32,
-      child: Center(
-        child: Semantics(
-          label: wt(
-            'native.a0cc85a258',
-            values: {'p0': widget.track.title},
-            context: context,
-          ),
-          child: MouseRegion(
-            onEnter: (_) => setState(() => hovering = true),
-            onExit: (_) => setState(() => hovering = false),
-            child: GestureDetector(
-              key: const Key('album-3d'),
-              behavior: HitTestBehavior.opaque,
-              onLongPressStart: widget.touchTilt
-                  ? null
-                  : (_) {
-                      inertia.stop();
-                      setState(() => dragging = true);
-                    },
-              onLongPressMoveUpdate: widget.touchTilt
-                  ? null
-                  : (details) => setState(
-                      () => tilt = Offset(
-                        details.offsetFromOrigin.dx / 160,
-                        (details.offsetFromOrigin.dy / 160).clamp(-.2, .2),
-                      ),
-                    ),
-              onLongPressEnd: widget.touchTilt ? null : (_) => finish(0),
-              onPanStart: widget.touchTilt
-                  ? (_) {
-                      inertia.stop();
-                      setState(() => dragging = true);
-                    }
-                  : null,
-              onPanUpdate: widget.touchTilt
-                  ? (details) => setState(
-                      () => tilt = Offset(
-                        tilt.dx + details.delta.dx / 160,
-                        (tilt.dy + details.delta.dy / 160).clamp(-.2, .2),
-                      ),
-                    )
-                  : null,
-              onPanEnd: widget.touchTilt
-                  ? (details) => finish(details.velocity.pixelsPerSecond.dx)
-                  : null,
-              onPanCancel: widget.touchTilt ? () => finish(0) : null,
-              child: AnimatedBuilder(
-                animation: drift,
-                builder: (_, _) {
-                  final y =
-                      -.314 +
-                      tilt.dx +
-                      (!dragging && !hovering
-                          ? math.sin(drift.value * math.pi * 2) * .04
-                          : 0);
-                  final x = -.157 - tilt.dy;
-                  final faceFront = math.cos(y) >= 0;
-                  final matrix = Matrix4.identity()
-                    ..setEntry(3, 2, 1 / 1100)
-                    ..rotateX(x)
-                    ..rotateY(y);
-                  return Transform(
-                    key: const Key('album-3d-transform'),
-                    alignment: Alignment.center,
-                    transform: matrix,
-                    child: SizedBox(
-                      width: size * 1.4,
-                      height: size,
-                      child: Stack(
-                        clipBehavior: Clip.none,
-                        children: [
-                          AnimatedPositioned(
-                            duration: v.duration(600),
-                            curve: Curves.easeOutCubic,
-                            left: size * (hovering ? .46 : .36),
-                            top: size * .03,
-                            child: disc,
-                          ),
-                          if (!faceFront)
-                            Positioned(
-                              left: 0,
-                              top: 0,
-                              child: Transform(
-                                alignment: Alignment.center,
-                                transform: Matrix4.identity()
-                                  ..translateByDouble(0, 0, -depth / 2, 1)
-                                  ..rotateY(math.pi),
-                                child: Container(
-                                  key: const Key('album-back-sleeve'),
-                                  width: size,
-                                  height: size,
-                                  padding: EdgeInsets.all(size * .08),
-                                  color: opaque,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Brand(
-                                        size: math.max(14, size * .07),
-                                        animated: false,
-                                      ),
-                                      const Spacer(),
-                                      Text(
-                                        widget.track.title,
-                                        maxLines: 3,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: TextStyle(
-                                          fontSize: size * .085,
-                                          fontWeight: FontWeight.w800,
-                                        ),
-                                      ),
-                                      const SizedBox(height: 8),
-                                      Text(
-                                        widget.track.artist,
-                                        maxLines: 2,
-                                        style: TextStyle(
-                                          fontSize: size * .045,
-                                          color: v.muted,
-                                        ),
-                                      ),
-                                      const Spacer(),
-                                      Text(
-                                        'GLUK WAVE / 33⅓ RPM',
-                                        style: TextStyle(
-                                          fontSize: size * .028,
-                                          letterSpacing: 1,
-                                          color: v.muted,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          Positioned(
-                            left: -depth / 2,
-                            top: 0,
-                            child: edge(
-                              const Key('album-spine-face'),
-                              Matrix4.identity()..rotateY(-math.pi / 2),
-                              depth,
-                              size,
-                            ),
-                          ),
-                          Positioned(
-                            left: 0,
-                            top: -depth / 2,
-                            child: edge(
-                              const Key('album-top-face'),
-                              Matrix4.identity()..rotateX(math.pi / 2),
-                              size,
-                              depth,
-                            ),
-                          ),
-                          Positioned(
-                            left: 0,
-                            top: size - depth / 2,
-                            child: edge(
-                              const Key('album-bottom-face'),
-                              Matrix4.identity()..rotateX(-math.pi / 2),
-                              size,
-                              depth,
-                            ),
-                          ),
-                          Positioned(
-                            left: size - depth / 2,
-                            top: 0,
-                            child: edge(
-                              const Key('album-inner-face'),
-                              Matrix4.identity()..rotateY(math.pi / 2),
-                              depth,
-                              size,
-                            ),
-                          ),
-                          if (faceFront)
-                            Positioned(
-                              left: 0,
-                              top: 0,
-                              child: Transform(
-                                transform: Matrix4.identity()
-                                  ..translateByDouble(0, 0, depth / 2, 1),
-                                child: front(),
-                              ),
-                            ),
-                        ],
-                      ),
-                    ),
-                  );
-                },
+      width: size * 1.6 + 24,
+      height: size * 1.52 + 32,
+      child: Stack(
+        alignment: Alignment.center,
+        clipBehavior: Clip.none,
+        children: [
+          Positioned(
+            left: (size * 1.6 + 24) * .10,
+            bottom: 18,
+            width: (size * 1.6 + 24) * .75,
+            height: 20,
+            child: IgnorePointer(
+              child: CustomPaint(
+                painter: CoverStageShadow(
+                  v.brightness == Brightness.dark,
+                  v.blur,
+                ),
               ),
             ),
           ),
-        ),
+          Center(
+            child: Semantics(
+              label: wt(
+                'native.a0cc85a258',
+                values: {'p0': widget.track.title},
+                context: context,
+              ),
+              child: MouseRegion(
+                onEnter: (_) => setState(() => hovering = true),
+                onExit: (_) => setState(() => hovering = false),
+                child: Listener(
+                  onPointerDown: (event) {
+                    if (event.kind == PointerDeviceKind.mouse &&
+                        event.buttons == kPrimaryMouseButton) {
+                      _mousePointer = event.pointer;
+                      _mouseOrigin = event.position;
+                      beginDrag();
+                    }
+                  },
+                  onPointerMove: (event) {
+                    if (event.pointer == _mousePointer &&
+                        _mouseOrigin != null) {
+                      updateDrag(event.position - _mouseOrigin!);
+                    }
+                  },
+                  onPointerUp: (event) {
+                    if (event.pointer == _mousePointer) {
+                      _mousePointer = null;
+                      _mouseOrigin = null;
+                      finish(0);
+                    }
+                  },
+                  onPointerCancel: (event) {
+                    if (event.pointer == _mousePointer) {
+                      _mousePointer = null;
+                      _mouseOrigin = null;
+                      inertia.stop();
+                      setState(() => dragging = false);
+                    }
+                  },
+                  child: GestureDetector(
+                    key: const Key('album-3d'),
+                    behavior: HitTestBehavior.opaque,
+                    supportedDevices: const {
+                      PointerDeviceKind.touch,
+                      PointerDeviceKind.stylus,
+                      PointerDeviceKind.invertedStylus,
+                    },
+                    onLongPressStart: widget.touchTilt
+                        ? null
+                        : (_) => beginDrag(),
+                    onLongPressMoveUpdate: widget.touchTilt
+                        ? null
+                        : (details) => updateDrag(details.offsetFromOrigin),
+                    onLongPressEnd: widget.touchTilt ? null : (_) => finish(0),
+                    onPanStart: widget.touchTilt ? (_) => beginDrag() : null,
+                    onPanUpdate: widget.touchTilt
+                        ? (details) => updateDrag(
+                            Offset(
+                              _dragLast + details.delta.dx,
+                              (tilt.dy - _dragBase.dy) * 180 / math.pi / .22 +
+                                  details.delta.dy,
+                            ),
+                          )
+                        : null,
+                    onPanEnd: widget.touchTilt
+                        ? (details) =>
+                              finish(details.velocity.pixelsPerSecond.dx)
+                        : null,
+                    onPanCancel: widget.touchTilt
+                        ? () {
+                            inertia.stop();
+                            setState(() => dragging = false);
+                          }
+                        : null,
+                    child: Builder(
+                      builder: (_) {
+                        final y = -18 * math.pi / 180 + tilt.dx;
+                        final x = -9 * math.pi / 180 - tilt.dy;
+                        final faceFront = math.cos(y) >= 0;
+                        final matrix = Matrix4.identity()
+                          ..setEntry(3, 2, -1 / 1100)
+                          ..translateByDouble(
+                            -.12 * size * math.cos(y),
+                            0,
+                            0,
+                            1,
+                          )
+                          ..rotateX(x)
+                          ..rotateY(y);
+                        return Transform(
+                          key: const Key('album-3d-transform'),
+                          alignment: Alignment.center,
+                          transform: matrix,
+                          child: SizedBox(
+                            width: size,
+                            height: size,
+                            child: Stack(
+                              clipBehavior: Clip.none,
+                              children: [
+                                AnimatedPositioned(
+                                  key: const Key('album-record-position'),
+                                  duration: v.duration(600),
+                                  curve: const Cubic(.2, .8, .2, 1),
+                                  left:
+                                      size *
+                                      (c.customization.appearance.coverKind ==
+                                              'cd'
+                                          ? (hovering ? .59 : .53)
+                                          : (hovering ? .54 : .46)),
+                                  top: size * .03,
+                                  child: disc,
+                                ),
+                                if (!faceFront)
+                                  Positioned(
+                                    left: 0,
+                                    top: 0,
+                                    child: Transform(
+                                      alignment: Alignment.center,
+                                      transform: Matrix4.identity()
+                                        ..translateByDouble(0, 0, -depth / 2, 1)
+                                        ..rotateY(math.pi),
+                                      child: Container(
+                                        key: const Key('album-back-sleeve'),
+                                        width: size,
+                                        height: size,
+                                        padding: EdgeInsets.fromLTRB(
+                                          size * .086,
+                                          size * .093,
+                                          size * .086,
+                                          size * .07,
+                                        ),
+                                        color: opaque,
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              'glukwave / studio sessions',
+                                              style: TextStyle(
+                                                fontSize: size * .023,
+                                                letterSpacing: 1,
+                                                color: const Color(0xffc5ba9f),
+                                              ),
+                                            ),
+                                            SizedBox(height: size * .113),
+                                            Text(
+                                              widget.track.title,
+                                              maxLines: 2,
+                                              overflow: TextOverflow.ellipsis,
+                                              style: TextStyle(
+                                                fontSize: size * .086,
+                                                color: const Color(0xffebe4d3),
+                                                letterSpacing: -1,
+                                                height: 1.15,
+                                                fontWeight: FontWeight.w800,
+                                              ),
+                                            ),
+                                            SizedBox(height: size * .07),
+                                            Text(
+                                              '01 — ${widget.track.title}\n${widget.track.artist}\n${widget.track.album}',
+                                              maxLines: 3,
+                                              overflow: TextOverflow.ellipsis,
+                                              style: TextStyle(
+                                                fontSize: size * .030,
+                                                height: 2.2,
+                                                color: const Color(0xffded5c4),
+                                              ),
+                                            ),
+                                            const Spacer(),
+                                            SizedBox(
+                                              width: size * .33,
+                                              height: size * .086,
+                                              child: const CustomPaint(
+                                                painter: CoverBarcode(),
+                                              ),
+                                            ),
+                                            const SizedBox(height: 8),
+                                            Text(
+                                              'GLUK WAVE · 33⅓ RPM',
+                                              style: TextStyle(
+                                                fontSize: size * .020,
+                                                letterSpacing: 1,
+                                                color: const Color(0xffaea18a),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                Positioned(
+                                  left: -depth / 2,
+                                  top: 0,
+                                  child: edge(
+                                    const Key('album-spine-face'),
+                                    Matrix4.identity()..rotateY(-math.pi / 2),
+                                    depth,
+                                    size,
+                                  ),
+                                ),
+                                Positioned(
+                                  left: 0,
+                                  top: -depth / 2,
+                                  child: edge(
+                                    const Key('album-top-face'),
+                                    Matrix4.identity()..rotateX(math.pi / 2),
+                                    size,
+                                    depth,
+                                  ),
+                                ),
+                                Positioned(
+                                  left: 0,
+                                  top: size - depth / 2,
+                                  child: edge(
+                                    const Key('album-bottom-face'),
+                                    Matrix4.identity()..rotateX(-math.pi / 2),
+                                    size,
+                                    depth,
+                                  ),
+                                ),
+                                Positioned(
+                                  left: size - depth / 2,
+                                  top: 0,
+                                  child: edge(
+                                    const Key('album-inner-face'),
+                                    Matrix4.identity()..rotateY(math.pi / 2),
+                                    depth,
+                                    size,
+                                  ),
+                                ),
+                                if (faceFront)
+                                  Positioned(
+                                    left: 0,
+                                    top: 0,
+                                    child: Transform(
+                                      alignment:
+                                          c
+                                                  .customization
+                                                  .appearance
+                                                  .coverKind ==
+                                              'cd'
+                                          ? Alignment.centerLeft
+                                          : Alignment.center,
+                                      transform: Matrix4.identity()
+                                        ..translateByDouble(0, 0, depth / 2, 1)
+                                        ..rotateY(
+                                          c
+                                                      .customization
+                                                      .appearance
+                                                      .coverKind ==
+                                                  'cd'
+                                              ? -14 * math.pi / 180
+                                              : 0,
+                                        ),
+                                      child: front(),
+                                    ),
+                                  ),
+                              ],
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
+}
+
+/// Reference's detached oval ground shadow, never attached to the sleeve face.
+class CoverStageShadow extends CustomPainter {
+  final bool dark, blur;
+  const CoverStageShadow(this.dark, this.blur);
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()
+      ..color = Colors.black.withValues(alpha: dark ? .42 : .14);
+    if (blur) paint.maskFilter = const MaskFilter.blur(BlurStyle.normal, 18);
+    canvas.save();
+    canvas.translate(size.width / 2, size.height / 2);
+    canvas.rotate(-6 * math.pi / 180);
+    canvas.drawOval(
+      Rect.fromCenter(
+        center: Offset.zero,
+        width: size.width,
+        height: size.height,
+      ),
+      paint,
+    );
+    canvas.restore();
+  }
+
+  @override
+  bool shouldRepaint(CoverStageShadow old) =>
+      old.dark != dark || old.blur != blur;
 }
 
 class RecordPainter extends CustomPainter {
@@ -458,29 +664,48 @@ class RecordPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final center = size.center(Offset.zero), radius = size.shortestSide / 2;
-    final disc = Paint()..color = const Color(0xff222323);
+    final disc = Paint()..color = const Color(0xff1b1c1d);
     if (kind == 'cd') {
       disc.shader = SweepGradient(
         colors: [
-          const Color(0xffced8d3),
-          accent,
-          const Color(0xffe4dfb9),
-          const Color(0xffb5ccd8),
-          const Color(0xffe3c5dd),
-          const Color(0xffced8d3),
+          const Color(0xffd3ced3),
+          const Color(0xffb5cabc),
+          const Color(0xffe5dbb7),
+          const Color(0xffaac2d0),
+          const Color(0xffd9b7ce),
+          const Color(0xffd3ced3),
         ],
       ).createShader(Rect.fromCircle(center: center, radius: radius));
     }
     canvas.drawCircle(center, radius, disc);
-    final rings = Paint()
-      ..color = Colors.white.withValues(alpha: kind == 'cd' ? .2 : .055)
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = .6;
-    for (var ring = kind == 'cd' ? 2 : 1; ring < 24; ring++) {
-      canvas.drawCircle(center, radius * (.26 + ring * .029), rings);
+    if (kind != 'cd') {
+      for (double r = 1; r < radius; r += 2.7) {
+        canvas.drawCircle(
+          center,
+          r,
+          Paint()
+            ..color = const Color(0xff161718)
+            ..style = PaintingStyle.stroke
+            ..strokeWidth = 1,
+        );
+        canvas.drawCircle(
+          center,
+          r + 1.5,
+          Paint()
+            ..color = const Color(0xff333638)
+            ..style = PaintingStyle.stroke
+            ..strokeWidth = .5,
+        );
+      }
+      canvas.drawCircle(
+        center,
+        radius - 1,
+        Paint()
+          ..color = const Color(0xff515355)
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 2,
+      );
     }
-    canvas.drawCircle(center, radius * .145, Paint()..color = accent);
-    canvas.drawCircle(center, radius * .055, Paint()..color = background);
   }
 
   @override
@@ -497,21 +722,112 @@ class _RecordLight extends CustomPainter {
       size.shortestSide / 2,
       Paint()
         ..shader = const SweepGradient(
-          startAngle: -.8,
-          endAngle: 5.48,
+          transform: GradientRotation(math.pi / 4),
           colors: [
-            Color(0x00ffffff),
-            Color(0x1cffffff),
-            Color(0x00ffffff),
-            Color(0x00ffffff),
-            Color(0x18ffffff),
-            Color(0x00ffffff),
+            Color(0x00d8ddde),
+            Color(0x27d8ddde),
+            Color(0x00d8ddde),
+            Color(0x00d8ddde),
+            Color(0x28d8ddde),
+            Color(0x00d8ddde),
+            Color(0x00d8ddde),
           ],
-          stops: [0, .07, .14, .48, .57, 1],
+          stops: [0, 22 / 360, 70 / 360, 150 / 360, 197 / 360, 230 / 360, 1],
         ).createShader(bounds),
     );
   }
 
   @override
   bool shouldRepaint(_RecordLight old) => false;
+}
+
+class SleeveReflection extends CustomPainter {
+  final double reflection;
+  const SleeveReflection(this.reflection);
+  @override
+  void paint(Canvas canvas, Size size) {
+    canvas.save();
+    canvas.clipRect(Offset.zero & size);
+    final rect = Rect.fromLTWH(
+      -size.width * 1.2 * reflection,
+      0,
+      size.width * 2.2,
+      size.height,
+    );
+    canvas.drawRect(
+      rect,
+      Paint()
+        ..blendMode = BlendMode.screen
+        ..shader = const LinearGradient(
+          begin: Alignment(-.906, -.423),
+          end: Alignment(.906, .423),
+          colors: [
+            Color(0x00ffffff),
+            Color(0x00ffffff),
+            Color(0x08ffffff),
+            Color(0x2dffffff),
+            Color(0x00ffffff),
+            Color(0x00ffffff),
+          ],
+          stops: [0, .15, .35, .47, .64, 1],
+        ).createShader(rect),
+    );
+    canvas.restore();
+  }
+
+  @override
+  bool shouldRepaint(SleeveReflection old) => old.reflection != reflection;
+}
+
+class CoverBarcode extends CustomPainter {
+  const CoverBarcode();
+  @override
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint()..color = const Color(0xffded6c4);
+    for (double x = 0; x < size.width; x += 7) {
+      canvas.drawRect(Rect.fromLTWH(x, 0, 1, size.height), paint);
+      canvas.drawRect(Rect.fromLTWH(x + 3, 0, 2, size.height), paint);
+    }
+  }
+
+  @override
+  bool shouldRepaint(CoverBarcode old) => false;
+}
+
+/// Exact existing silhouette copied from assets/mark.svg, with no new icon.
+class CoverBrandMark extends CustomPainter {
+  const CoverBrandMark();
+  @override
+  void paint(Canvas canvas, Size size) {
+    final p = Path()
+      ..moveTo(2, 8)
+      ..cubicTo(2, 6, 3.4, 5.3, 5, 7.5)
+      ..lineTo(14.7, 21.8)
+      ..cubicTo(17, 25.2, 19.6, 24.9, 20.9, 21.1)
+      ..lineTo(25.5, 7.2)
+      ..cubicTo(27.3, 1.8, 31.3, 1.1, 34.7, 6)
+      ..lineTo(44.8, 20.8)
+      ..cubicTo(47, 24.1, 49.8, 23.7, 51, 20)
+      ..lineTo(55.5, 6.4)
+      ..cubicTo(57.1, 1.5, 60.8, .7, 64, 5.2)
+      ..lineTo(64, 19.4)
+      ..lineTo(60.9, 15)
+      ..cubicTo(58.7, 11.9, 56.1, 12.3, 54.9, 16)
+      ..lineTo(50.3, 30)
+      ..cubicTo(48.4, 35.6, 44.3, 36.4, 40.7, 31.1)
+      ..lineTo(30.9, 17)
+      ..cubicTo(28.8, 13.9, 26.1, 14.2, 24.9, 17.8)
+      ..lineTo(20.4, 31.4)
+      ..cubicTo(18.5, 37, 14.3, 37.8, 10.7, 32.5)
+      ..lineTo(2, 19.7)
+      ..lineTo(2, 8)
+      ..close();
+    canvas.save();
+    canvas.scale(size.width / 64, size.height / 40);
+    canvas.drawPath(p, Paint()..color = const Color(0xccf8f4e9));
+    canvas.restore();
+  }
+
+  @override
+  bool shouldRepaint(CoverBrandMark old) => false;
 }

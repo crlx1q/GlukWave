@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gluk Wave — 3D обложка</title>
+  <style>
+    /* Только 3D-обложка из Gluk Wave v2. Без встроенных шрифтов, base64, библиотек и плеера. */
+    :root {
+      color-scheme: light;
+      --cover-size: 302px;
+      --ink: #302f2c;
+      --muted: #8c877e;
+      --line: #d8d3c9;
+    }
+    * { box-sizing: border-box; }
+    body {
+      min-height: 100dvh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: radial-gradient(ellipse at 50% 32%, #fbfaf5, #efede3 75%);
+    }
+    .demo {
+      width: min(100%, 580px);
+      padding: 28px 18px 36px;
+      text-align: center;
+    }
+    .demo h1 { margin: 0; font-size: 25px; letter-spacing: -.8px; font-weight: 750; }
+    .demo .subtitle { margin: 9px 0 12px; color: var(--muted); font-size: 12px; }
+    /* Оригинальные 3D-слои, трансформации, конверт, винил, CD и блик. */
+    .album-stage {
+      height:410px;
+      position:relative;
+      perspective:1100px;
+      display:grid;
+      place-items:center;
+      touch-action:none;
+      cursor:grab;
+      user-select:none;
+      -webkit-user-select:none;
+    }
+    .album-stage:active {
+      cursor:grabbing;
+    }
+    .album-shadow {
+      position:absolute;
+      width:75%;
+      height:20px;
+      bottom:18px;
+      left:10%;
+      background:#18151532;
+      border-radius:50%;
+      filter:blur(18px);
+      transform:rotate(-6deg);
+      pointer-events:none;
+      opacity:.7;
+    }
+    [data-appearance=dark] .album-shadow {
+      background:#000;
+      opacity:.65;
+    }
+    .album-object {
+      width:var(--cover-size);
+      height:var(--cover-size);
+      position:relative;
+      transform-style:preserve-3d;
+      transform:translateX(-12%) rotateX(-9deg) rotateY(-18deg);
+      transition:transform .75s cubic-bezier(.2,.8,.2,1);
+      will-change:transform;
+      flex-shrink:0;
+    }
+    .album-object.dragging {
+      transition:none;
+    }
+    .album-face {
+      position:absolute;
+      inset:0;
+      backface-visibility:hidden;
+      -webkit-backface-visibility:hidden;
+    }
+    .sleeve-front {
+      transform:translateZ(9px);
+      background-size:cover;
+      background-position:center;
+      border-radius:2px;
+      box-shadow:inset 1px 0 2px #fff7,inset -1px 0 2px #0004;
+      overflow:hidden;
+      color:#f8f4e9;
+    }
+    .sleeve-front:before {
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(170deg,#0001,transparent 35%,#0005);
+      pointer-events:none;
+    }
+    .sleeve-front:after {
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(90deg,#ffffff23,transparent 3%,transparent 97%,#0002);
+      pointer-events:none;
+    }
+    .cover-edition {
+      position:absolute;
+      top:17px;
+      left:21px;
+      right:15px;
+      font-size:7px;
+      line-height:1.6;
+      font-weight:700;
+      letter-spacing:1.5px;
+    }
+    .cover-title {
+      position:absolute;
+      left:20px;
+      right:16px;
+      top:43%;
+      font-size:42px;
+      font-weight:900;
+      line-height:.95;
+      letter-spacing:-2px;
+      overflow-wrap:anywhere;
+      max-height:46%;
+      overflow:hidden;
+    }
+    .cover-footer {
+      position:absolute;
+      bottom:18px;
+      left:21px;
+      right:21px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      font-size:5.5px;
+      letter-spacing:1px;
+      color:#fff9;
+    }
+    .cover-footer i {
+      font-size:18px;
+      font-style:normal;
+    }
+    .cover-reflection {
+      position:absolute;
+      inset:0;
+      background:linear-gradient(115deg,transparent 15%,#fff1 35%,#fff6 47%,transparent 64%);
+      background-size:220% 100%;
+      background-position:var(--reflection,50%) center;
+      mix-blend-mode:screen;
+      opacity:.44;
+      pointer-events:none;
+    }
+    .sleeve-back {
+      background:#32312d;
+      transform:rotateY(180deg) translateZ(9px);
+      color:#ebe4d3;
+      display:flex;
+      flex-direction:column;
+      padding:28px 26px;
+      box-shadow:inset 1px 0 2px #fff4,inset -1px 0 2px #0007;
+    }
+    .sleeve-back-logo {
+      font-size:7px;
+      color:#c5ba9f;
+      letter-spacing:1px;
+    }
+    .sleeve-back h3 {
+      font-size:26px;
+      margin:34px 0 21px;
+      letter-spacing:-1px;
+    }
+    .back-tracklist {
+      font-size:9px;
+      line-height:2.2;
+      color:#ded5c4;
+    }
+    .barcode {
+      height:26px;
+      width:100px;
+      background:repeating-linear-gradient(90deg,#ded6c4 0px,#ded6c4 1px,transparent 1px,transparent 3px,#ded6c4 3px,#ded6c4 5px,transparent 5px,transparent 7px);
+      margin-top:auto;
+      margin-bottom:8px;
+    }
+    .back-micro {
+      font-size:6px;
+      letter-spacing:1px;
+      color:#aea18a;
+    }
+    .sleeve-spine {
+      position:absolute;
+      left:0;
+      top:0;
+      bottom:0;
+      width:18px;
+      background:linear-gradient(90deg,#595249,#948a7a,#554e43);
+      transform:translateX(-50%) rotateY(-90deg);
+      color:#f1e7d7;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      backface-visibility:hidden;
+    }
+    .sleeve-spine span {
+      writing-mode:vertical-rl;
+      transform:rotate(180deg);
+      font-size:7px;
+      letter-spacing:2px;
+      white-space:nowrap;
+    }
+    .sleeve-edge {
+      position:absolute;
+      top:0;
+      left:0;
+      right:0;
+      height:18px;
+      transform:translateY(-50%) rotateX(90deg);
+      background:#8b8070;
+      box-shadow:inset 0 6px 4px #0004;
+    }
+    .record {
+      position:absolute;
+      width:94%;
+      height:94%;
+      top:3%;
+      left:46%;
+      border-radius:50%;
+      transform:translateZ(0);
+      background:#1b1c1d;
+      box-shadow:inset 0 0 0 2px #515355,0 3px 7px #0005;
+      backface-visibility:visible;
+    }
+    .record:after {
+      content:"";
+      position:absolute;
+      inset:0;
+      border-radius:50%;
+      background:conic-gradient(from 45deg,transparent 0deg,#d8ddde27 22deg,transparent 70deg,transparent 150deg,#d8ddde28 197deg,transparent 230deg);
+      pointer-events:none;
+    }
+    .record-spin {
+      position:absolute;
+      inset:0;
+      border-radius:50%;
+      background:repeating-radial-gradient(circle,#161718 0,#161718 1px,#333638 1.5px,#161718 2.7px);
+      animation:recordSpin 16s linear infinite;
+      animation-play-state:paused;
+    }
+    .is-playing .record-spin {
+      animation-play-state:running;
+    }
+    .record-label {
+      position:absolute;
+      inset:35%;
+      border-radius:50%;
+      background-size:cover;
+      background-position:center;
+      display:grid;
+      place-items:center;
+    }
+    .record-label span {
+      height:13px;
+      width:13px;
+      background:#292a2b;
+      border:3px solid #d9d1c3;
+      border-radius:50%;
+    }
+    .case-cd .record {
+      left:53%;
+      background:#b9baba;
+      box-shadow:0 0 0 1px #d4d5d599;
+      transition:left .6s;
+    }
+    .case-cd .record-spin {
+      background:conic-gradient(#d3ced3,#b5cabc,#e5dbb7,#aac2d0,#d9b7ce,#d3ced3);
+    }
+    .case-cd .record-label {
+      inset:13%;
+      box-shadow:0 0 0 1px #ffffffaa;
+    }
+    .case-cd .record-label span {
+      width:26px;
+      height:26px;
+      border:8px solid #cfd3d4cc;
+      background:#626764;
+    }
+    .case-cd .sleeve-front {
+      box-shadow:inset 0 0 0 7px #ebeeeb50,inset 8px 0 0 3px #fff3;
+      border-radius:4px;
+      transform:translateZ(9px) rotateY(-14deg);
+      transform-origin:left center;
+    }
+    .case-cd .sleeve-spine {
+      background:linear-gradient(90deg,#a6afb299,#fafbfba8,#a6afb288);
+      color:#302f2c;
+    }
+    .case-cd .sleeve-back {
+      background:#262b2c;
+    }
+    .album-tools {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      color:var(--muted);
+      margin:0 0 25px;
+      padding:0 2px;
+    }
+    .drag-hint {
+      display:flex;
+      align-items:center;
+      gap:6px;
+      font-size:10px;
+    }
+    .drag-hint .icon {
+      width:14px;
+      height:14px;
+    }
+    .album-buttons {
+      display:flex;
+      align-items:center;
+      gap:4px;
+    }
+    .album-buttons .icon-btn {
+      width:30px;
+      height:30px;
+    }
+    .album-buttons .icon {
+      width:15px;
+      height:15px;
+    }
+    .cover-kind {
+      font-size:8px;
+      letter-spacing:1px;
+      padding:5px 8px;
+      border:1px solid var(--line);
+      border-radius:5px;
+      margin-left:5px;
+    }
+    /* В оригинале картинка задавалась base64-классом .coast.
+       Здесь вместо неё лёгкий CSS-арт; пользователь может загрузить свой файл. */
+    .sleeve-front, .record-label {
+      background-image:
+        radial-gradient(ellipse at 71% 29%, #f4e1bbd9 0%, #e4d3b069 16%, transparent 39%),
+        radial-gradient(ellipse at 18% 90%, #777e8a 0%, transparent 60%),
+        linear-gradient(146deg, #b1a7a5 3%, #626a78 52%, #333b46 100%);
+    }
+    .sleeve-front .cover-title { text-shadow: 0 2px 18px #2428332e; }
+    .sleeve-front.custom-art .cover-edition,
+    .sleeve-front.custom-art .cover-title,
+    .sleeve-front.custom-art .cover-footer { display: none; }
+    .album-stage { width: 100%; max-width: 540px; margin: 0 auto; }
+    .album-tools { width: min(100%, 430px); margin: 0 auto; gap: 12px; }
+    .drag-hint { text-align: left; }
+    .album-buttons { gap: 7px; }
+    .album-buttons button, .upload-control {
+      font: inherit;
+      background: #ffffff91;
+      color: var(--ink);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      min-height: 34px;
+      padding: 6px 11px;
+      cursor: pointer;
+      transition: background .2s, border-color .2s;
+      white-space: nowrap;
+    }
+    .album-buttons button:hover, .upload-control:hover { background: #fff; border-color: #b3a89a; }
+    .album-buttons button:focus-visible, .upload-control:focus-within { outline: 2px solid #8d7962; outline-offset: 3px; }
+    .album-buttons .cover-kind { font-size: 10px; letter-spacing: .7px; margin: 0; padding: 6px 10px; }
+    .upload-control { display: inline-flex; align-items: center; justify-content: center; font-size: 11px; }
+    .upload-control input { display: none; }
+    .below { display: flex; gap: 10px; justify-content: center; margin-top: 14px; }
+    .is-playing .record-spin { animation-play-state: running; }
+    @keyframes recordSpin { to { transform: rotate(360deg); } }
+    @media (max-width: 600px) {
+      :root { --cover-size: 224px; }
+      .demo { padding: 20px 12px 32px; }
+      .album-stage { height: 300px; perspective: 950px; }
+      .album-shadow { bottom: 16px; left: 7%; width: 85%; filter: blur(13px); height: 16px; }
+      .album-object { transition-duration: .55s; }
+      .cover-edition { font-size: 5.5px; top: 14px; left: 16px; letter-spacing: 1.2px; }
+      .cover-title { font-size: 31px; left: 15px; right: 13px; letter-spacing: -1.5px; }
+      .cover-footer { font-size: 4.5px; left: 16px; right: 14px; bottom: 13px; letter-spacing: .7px; }
+      .cover-footer i { font-size: 13px; }
+      .sleeve-back { padding: 20px; }
+      .sleeve-back-logo { font-size: 5px; letter-spacing: .6px; }
+      .sleeve-back h3 { font-size: 22px; margin: 22px 0 15px; }
+      .back-tracklist { font-size: 7px; line-height: 2.1; }
+      .barcode { width: 80px; height: 18px; }
+      .back-micro { font-size: 5px; }
+      .sleeve-spine span { font-size: 6px; letter-spacing: 1.5px; }
+      .record-label span { width: 10px; height: 10px; border-width: 2px; }
+      .album-tools { justify-content: center; flex-wrap: wrap; margin-top: 2px; }
+      .drag-hint { width: 100%; justify-content: center; }
+    }
+    @media (max-width: 370px) {
+      :root { --cover-size: 194px; }
+      .album-stage { height: 260px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .album-object { transition-duration: .01ms; }
+      .record-spin { animation: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="demo" id="demo">
+    <h1>3D-обложка</h1>
+    <p class="subtitle">Перетаскивай мышью или пальцем, чтобы вращать</p>
+
+    <!-- Объёмный конверт, обратная сторона, корешок и пластинка (из исходного HTML) -->
+    <div class="album-stage" id="albumStage" aria-label="Интерактивная трёхмерная обложка">
+      <div class="album-shadow"></div>
+      <div class="album-object" id="albumObject">
+        <div class="record">
+          <div class="record-spin">
+            <div class="record-label" id="recordLabel"><span></span></div>
+          </div>
+        </div>
+        <div class="sleeve-back album-face">
+          <span class="sleeve-back-logo">glukwave / studio sessions</span>
+          <h3>Weightless</h3>
+          <span class="back-tracklist">
+            01 — A little closer<br>
+            02 — Stay for a while<br>
+            03 — Somewhere, somehow<br>
+            04 — On your wavelength
+          </span>
+          <div class="barcode"></div>
+          <span class="back-micro">SIDE B · GW001 · 33⅓ RPM</span>
+        </div>
+        <div class="sleeve-spine"><span>WEIGHTLESS · GLUK WAVE</span></div>
+        <div class="sleeve-edge"></div>
+        <div class="sleeve-front album-face" id="sleeveFront">
+          <span class="cover-edition">GLUK SESSIONS<br>VOL. 001</span>
+          <div class="cover-title">weightless.</div>
+          <span class="cover-footer">SOUNDS FOR YOUR INNER WORLD <i>✳</i></span>
+          <div class="cover-reflection"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="album-tools">
+      <span class="drag-hint">↔ Можно покрутить</span>
+      <div class="album-buttons">
+        <button id="rotateCover" type="button" title="Развернуть обложку на 180°">Оборот ↶</button>
+        <button id="resetCover" type="button" title="Исходный угол">Сброс</button>
+        <button id="coverKind" class="cover-kind" type="button" title="Переключить винил / CD">VINYL</button>
+      </div>
+    </div>
+    <div class="below">
+      <label class="upload-control">Своя картинка <input id="artInput" type="file" accept="image/*"></label>
+      <button class="upload-control" id="spinRecord" type="button" aria-pressed="false">▶ Вращать пластинку</button>
+    </div>
+  </main>
+
+  <script>
+    'use strict';
+    // Механика вращения из Gluk Wave v2, без состояния плеера и других модулей.
+    const stage = document.querySelector('#albumStage');
+    const album = document.querySelector('#albumObject');
+    const demo = document.querySelector('#demo');
+    let coverX = -9;
+    let coverY = -18;
+    let coverDragging = false;
+    let coverPointer = null;
+    let coverVelocity = 0;
+    let dragLast = 0;
+    let inertiaFrame = 0;
+    const motion = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function paintCover() {
+      album.style.transform = `translateX(${-12 * Math.cos(coverY * Math.PI / 180)}%) rotateX(${coverX}deg) rotateY(${coverY}deg)`;
+      album.style.setProperty('--reflection', ((Math.sin(coverY * Math.PI / 180) + 1) * 50) + '%');
+    }
+    function cancelInertia() {
+      cancelAnimationFrame(inertiaFrame);
+      coverVelocity = 0;
+    }
+    function spinCover() {
+      if (!motion || Math.abs(coverVelocity) < .04) return;
+      coverY += coverVelocity;
+      coverVelocity *= .94;
+      paintCover();
+      inertiaFrame = requestAnimationFrame(spinCover);
+    }
+    stage.addEventListener('pointerdown', e => {
+      if (e.button !== 0) return;
+      cancelInertia();
+      coverDragging = true;
+      coverPointer = { id: e.pointerId, x: e.clientX, y: e.clientY, ry: coverY, rx: coverX };
+      dragLast = e.clientX;
+      stage.setPointerCapture(e.pointerId);
+      album.classList.add('dragging');
+    });
+    stage.addEventListener('pointermove', e => {
+      if (!coverDragging || e.pointerId !== coverPointer.id) return;
+      const dx = e.clientX - coverPointer.x;
+      const dy = e.clientY - coverPointer.y;
+      coverY = coverPointer.ry + dx * .65;
+      coverX = Math.max(-38, Math.min(38, coverPointer.rx - dy * .22));
+      coverVelocity = (e.clientX - dragLast) * .32;
+      dragLast = e.clientX;
+      paintCover();
+    });
+    function endCoverDrag() {
+      if (!coverDragging) return;
+      coverDragging = false;
+      album.classList.remove('dragging');
+      spinCover();
+    }
+    stage.addEventListener('pointerup', endCoverDrag);
+    stage.addEventListener('pointercancel', () => {
+      cancelInertia();
+      coverDragging = false;
+      album.classList.remove('dragging');
+    });
+
+    document.querySelector('#rotateCover').addEventListener('click', () => {
+      cancelInertia();
+      coverY += 180;
+      paintCover();
+    });
+    document.querySelector('#resetCover').addEventListener('click', () => {
+      cancelInertia();
+      coverX = -9;
+      coverY = -18;
+      paintCover();
+    });
+    document.querySelector('#coverKind').addEventListener('click', e => {
+      const isCD = album.classList.toggle('case-cd');
+      e.currentTarget.textContent = isCD ? 'CD' : 'VINYL';
+    });
+    document.querySelector('#spinRecord').addEventListener('click', e => {
+      const spinning = demo.classList.toggle('is-playing');
+      e.currentTarget.setAttribute('aria-pressed', String(spinning));
+      e.currentTarget.textContent = spinning ? 'Ⅱ Остановить пластинку' : '▶ Вращать пластинку';
+    });
+
+    // Загружаемый рисунок доступен только в браузере и не кодируется в base64.
+    let artObjectURL = null;
+    document.querySelector('#artInput').addEventListener('change', e => {
+      const file = e.target.files?.[0];
+      if (!file || !file.type.startsWith('image/')) return;
+      if (artObjectURL) URL.revokeObjectURL(artObjectURL);
+      artObjectURL = URL.createObjectURL(file);
+      const art = `url("${artObjectURL}")`;
+      document.querySelector('#sleeveFront').style.backgroundImage = art;
+      document.querySelector('#recordLabel').style.backgroundImage = art;
+      document.querySelector('#sleeveFront').classList.add('custom-art');
+    });
+    window.addEventListener('pagehide', () => {
+      if (artObjectURL) URL.revokeObjectURL(artObjectURL);
+    });
+    paintCover();
+  </script>
+</body>
+</html>

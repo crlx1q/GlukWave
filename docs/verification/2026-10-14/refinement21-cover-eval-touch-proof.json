@@ -1,0 +1,109 @@
+{
+  "before": {
+    "bodyOverflow": "hidden",
+    "dragging": false,
+    "fullRect": {
+      "bottom": 812,
+      "height": 812,
+      "left": 0,
+      "right": 375,
+      "top": 0,
+      "width": 375,
+      "x": 0,
+      "y": 0
+    },
+    "rect": {
+      "bottom": 472,
+      "height": 366,
+      "left": 18,
+      "right": 357,
+      "top": 106,
+      "width": 339,
+      "x": 18,
+      "y": 106
+    },
+    "size": "191.938px",
+    "transform": "translateX(-11.4127%) rotateX(-9deg) rotateY(-18deg)"
+  },
+  "held": {
+    "bodyOverflow": "hidden",
+    "dragging": true,
+    "fullRect": {
+      "bottom": 812,
+      "height": 812,
+      "left": 0,
+      "right": 375,
+      "top": 0,
+      "width": 375,
+      "x": 0,
+      "y": 0
+    },
+    "rect": {
+      "bottom": 472,
+      "height": 366,
+      "left": 18,
+      "right": 357,
+      "top": 106,
+      "width": 339,
+      "x": 18,
+      "y": 106
+    },
+    "size": "191.938px",
+    "transform": "translateX(-11.4127%) rotateX(-9deg) rotateY(-18deg)"
+  },
+  "moved": {
+    "bodyOverflow": "hidden",
+    "dragging": true,
+    "fullRect": {
+      "bottom": 812,
+      "height": 812,
+      "left": 0,
+      "right": 375,
+      "top": 0,
+      "width": 375,
+      "x": 0,
+      "y": 0
+    },
+    "rect": {
+      "bottom": 472,
+      "height": 366,
+      "left": 18,
+      "right": 357,
+      "top": 106,
+      "width": 339,
+      "x": 18,
+      "y": 106
+    },
+    "size": "191.938px",
+    "transform": "translateX(-9.12487%) rotateX(-14.5deg) rotateY(40.5deg)"
+  },
+  "ended": {
+    "bodyOverflow": "hidden",
+    "dragging": false,
+    "fullRect": {
+      "bottom": 812,
+      "height": 812,
+      "left": 0,
+      "right": 375,
+      "top": 0,
+      "width": 375,
+      "x": 0,
+      "y": 0
+    },
+    "rect": {
+      "bottom": 472,
+      "height": 366,
+      "left": 18,
+      "right": 357,
+      "top": 106,
+      "width": 339,
+      "x": 18,
+      "y": 106
+    },
+    "size": "191.938px",
+    "transform": "translateX(-9.12487%) rotateX(-14.5deg) rotateY(40.5deg)"
+  },
+  "errors": {
+    "errors": []
+  }
+}

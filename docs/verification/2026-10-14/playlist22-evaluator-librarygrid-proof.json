@@ -1,0 +1,71 @@
+{
+  "overflow": [
+    {
+      "class": "library-toolbar",
+      "rect": {
+        "bottom": 537.5,
+        "height": 183.5,
+        "left": 22.5,
+        "right": 287.5,
+        "top": 354,
+        "width": 265,
+        "x": 22.5,
+        "y": 354
+      }
+    },
+    {
+      "class": "playlist-grid",
+      "rect": {
+        "bottom": 807.5,
+        "height": 240,
+        "left": -5,
+        "right": 315,
+        "top": 567.5,
+        "width": 320,
+        "x": -5,
+        "y": 567.5
+      }
+    },
+    {
+      "class": "library-playlist ",
+      "rect": {
+        "bottom": 801.25,
+        "height": 233.75,
+        "left": 22.5,
+        "right": 201.25,
+        "top": 567.5,
+        "width": 178.75,
+        "x": 22.5,
+        "y": 567.5
+      }
+    },
+    {
+      "class": "library-playlist ",
+      "rect": {
+        "bottom": 801.25,
+        "height": 233.75,
+        "left": 220,
+        "right": 398.75,
+        "top": 567.5,
+        "width": 178.75,
+        "x": 220,
+        "y": 567.5
+      }
+    },
+    {
+      "class": "track-list ",
+      "rect": {
+        "bottom": 1526.25,
+        "height": 683.75,
+        "left": 22.5,
+        "right": 287.5,
+        "top": 842.5,
+        "width": 265,
+        "x": 22.5,
+        "y": 842.5
+      }
+    }
+  ],
+  "scrollWidth": 315,
+  "width": 320
+}

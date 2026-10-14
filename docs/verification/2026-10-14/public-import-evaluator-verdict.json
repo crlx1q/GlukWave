@@ -1,0 +1,120 @@
+{
+  "observedAt": "2026-10-14T08:53:32.210Z",
+  "reviewer": "Independent evaluation retry on the available inherited model. No different-provider model capability was exposed; no cross-provider review claim.",
+  "fixtureScope": "Current real React/Flutter components, isolated fixture accounts and public metadata/artwork mocks. No owner/provider account access, physical playback or deployed hosting claim.",
+  "scores": {
+    "designQuality": 2,
+    "originality": 2,
+    "craft": 2,
+    "functionality": 2
+  },
+  "verdict": "PASS",
+  "passed": true,
+  "scope": "Default-public import UI for Spotify, SoundCloud, Yandex Music and YouTube Music, preserving GlukWave auth/plan gates and optional explicit connected account mode.",
+  "observations": {
+    "browser": "Independent baseline six checks covers all four providers, normalized-ID selected import, paging dedupe, same-intent explicit retry, partial warnings/results, empty/private explanation, stale query and explicit OAuth mode choice.",
+    "extras": [
+      "768 light at 125% keeps dialog and keyboard focus inside",
+      "Closed Spotify delayed search cannot populate newly opened Yandex import",
+      "Account change closes old import and delayed lookup cannot restore it",
+      "Six-language input en fits 320 at 125%",
+      "Six-language input ru fits 320 at 125%",
+      "Six-language input kk fits 320 at 125%",
+      "Six-language input uk fits 320 at 125%",
+      "Six-language input de fits 320 at 125%",
+      "Six-language input es fits 320 at 125%",
+      "Overlapping page preserves prior deselection and final320 result begins at success heading/count",
+      "Entire collection can target likes with exact public POST search/tracks contract and no selected-only IDs"
+    ],
+    "native": "Independent fresh9/9: six public import cases and three playlist22 independent picker cases. Final only-newIDs paging delta independently inspected in source and validated by UI agent single focused JSON regression; native source entry-copy delta is copy-only.",
+    "sourceEntry": [
+      {
+        "importEnabled": true,
+        "name": "SoundCloud",
+        "optionalAccountDisabled": true,
+        "reason": "Найди открытые плейлисты и треки. Вход в музыкальный сервис не нужен. Закрытая музыка остаётся закрытой.",
+        "state": "Ник или ссылка"
+      },
+      {
+        "importEnabled": true,
+        "name": "Spotify",
+        "optionalAccountDisabled": true,
+        "reason": "Найди открытые плейлисты и треки. Вход в музыкальный сервис не нужен. Закрытая музыка остаётся закрытой.",
+        "state": "Ник или ссылка"
+      },
+      {
+        "importEnabled": true,
+        "name": "Яндекс Музыка",
+        "optionalAccountDisabled": true,
+        "reason": "Найди открытые плейлисты и треки. Вход в музыкальный сервис не нужен. Закрытая музыка остаётся закрытой.",
+        "state": "Ник или ссылка"
+      },
+      {
+        "importEnabled": true,
+        "name": "YouTube Music",
+        "optionalAccountDisabled": true,
+        "reason": "Найди открытые плейлисты и треки. Вход в музыкальный сервис не нужен. Закрытая музыка остаётся закрытой.",
+        "state": "Ник или ссылка"
+      }
+    ]
+  },
+  "proofs": [
+    "work/qa/public-import-evaluator-web-proof.json",
+    "work/qa/public-import-evaluator-extra-proof.json",
+    "work/qa/public-import-evaluator-native.log",
+    "work/qa/public-import-native-overlap.jsonl",
+    "work/qa/public-import-evaluator-source-entry-proof.json",
+    "work/qa/public-import-native-overlap-analyze.log",
+    "work/qa/public-import-native-final-copy-analyze.log"
+  ],
+  "resolvedIssues": [
+    "320/125% source-card labels now wrap without overflow.",
+    "Result stage resets scroll so success heading/count are visible.",
+    "Overlapping pages preserve a user deselection; only newly seen normalized IDs are selected.",
+    "Unconfigured source state now explains the public route without claiming import is unavailable."
+  ],
+  "limitations": [
+    "Public-provider retrieval is mocked in this UI review. Root adapter tests and live metadata evidence are separate.",
+    "The broad all-four browser/native cases preceded the final tiny paging/scroll/copy delta; final browser extras directly observe that delta, and the focused native JSON observes paging.",
+    "No different-provider evaluator model was available.",
+    "Final native entry-copy cleanup removed the obsolete empty-integrations unavailable state after the independent9-case run. The final app.dart source was inspected and scoped analysis is clean; those copy-only deltas were not rerun through all9 cases."
+  ],
+  "sources": [
+    {
+      "path": "apps/web/src/provider-import.tsx",
+      "sha256": "063e5a0a1b37bb8fb7251ca11cdcdf49e51b43f2500aa29b94a5d48c1c78e47d"
+    },
+    {
+      "path": "apps/web/src/pages.tsx",
+      "sha256": "050f3d737a2b0b7f66e19236fe4bbb6f03f05c2007f8c9eb20c8e7a1609e296f"
+    },
+    {
+      "path": "apps/web/src/public-import-copy.ts",
+      "sha256": "917f01cde2a3c1531bd7db39154ed8ccd49af3f2ad59008ae984208b00271c04"
+    },
+    {
+      "path": "apps/web/src/public-import.css",
+      "sha256": "15dfa72d6fe8278190f618b2c277c5711ee829e22eb117ca648b8a129bdd8f71"
+    },
+    {
+      "path": "apps/native/lib/ui/provider_import.dart",
+      "sha256": "9dc978182b6525ac1f1ea79fc29e936ace0d32f848c69651c362e14dbff2be4a"
+    },
+    {
+      "path": "apps/native/lib/ui/app.dart",
+      "sha256": "c0c5efa51c3b11b8c3f1a15637cfbc2e4ac7d2d0869af9ca26bba879eab85a67"
+    },
+    {
+      "path": "apps/native/lib/ui/public_import_strings.dart",
+      "sha256": "08e767db16f46238daaac25c82262592686de56e3a632393ce72cee8df1ab430"
+    },
+    {
+      "path": "apps/native/test/public_import_test.dart",
+      "sha256": "4e38cc91e68f88a5e9237f647eb57c7970fdbc14b59aa999af0b08593f9d0a98"
+    },
+    {
+      "path": "apps/native/test/refinement20_ui_test.dart",
+      "sha256": "e6e3c8c5b9162f2a4258260d8d248e4e6fbcb629ea94fd0554bf2b5f2038b503"
+    }
+  ]
+}

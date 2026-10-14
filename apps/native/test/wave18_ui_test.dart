@@ -302,25 +302,26 @@ void main() {
       final before = tester.getSize(
             find.byKey(const Key('album-front-sleeve')),
           ),
-          light = tester
-              .widget<DecoratedBox>(
-                find.byKey(const Key('album-sunlight-reflection')),
-              )
-              .decoration;
+          light =
+              tester
+                      .widget<CustomPaint>(
+                        find.byKey(const Key('album-sunlight-reflection')),
+                      )
+                      .painter!
+                  as SleeveReflection;
       final gesture = await tester.startGesture(
         tester.getCenter(find.byKey(const Key('album-3d'))),
       );
       await gesture.moveBy(const Offset(60, 10));
       await tester.pump();
-      final moved = tester
-          .widget<DecoratedBox>(
-            find.byKey(const Key('album-sunlight-reflection')),
-          )
-          .decoration;
-      expect(
-        (moved as BoxDecoration).gradient,
-        isNot((light as BoxDecoration).gradient),
-      );
+      final moved =
+          tester
+                  .widget<CustomPaint>(
+                    find.byKey(const Key('album-sunlight-reflection')),
+                  )
+                  .painter!
+              as SleeveReflection;
+      expect(moved.reflection, isNot(light.reflection));
       expect(
         tester.getSize(find.byKey(const Key('album-front-sleeve'))),
         before,

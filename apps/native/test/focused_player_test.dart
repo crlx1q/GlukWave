@@ -67,7 +67,18 @@ void main() {
           final cover = tester.getRect(
             find.byKey(const Key('player-cover-gesture')),
           );
-          expect(cover.center.dx, closeTo(width / 2, 1));
+          if (width > 1050) {
+            // Wide reference layout gives the cover its own column instead of
+            // shrinking it above the controls. Both columns stay visible.
+            final transport = tester.getRect(
+              find.byKey(const Key('player-transport-capsule')),
+            );
+            expect(cover.right, lessThan(transport.left));
+            expect(cover.left, greaterThanOrEqualTo(0));
+            expect(transport.right, lessThanOrEqualTo(width));
+          } else {
+            expect(cover.center.dx, closeTo(width / 2, 1));
+          }
           await f.screenshot(
             tester,
             'focused-player-$runId-$theme-${width.toInt()}-centered',

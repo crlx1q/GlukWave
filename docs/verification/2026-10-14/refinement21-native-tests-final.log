@@ -1,0 +1,6 @@
+refinement21-native-playlists-final.jsonl: 403/416, runner success=False
+refinement21-native-layout-recovery.jsonl: 31/31, runner success=True
+refinement21-native-reflection-recovery.jsonl: 1/1, runner success=True
+public-import-evaluator-native.log: 9/9, runner success=True
+public-import-native-overlap.jsonl: 1/1, runner success=True
+Distinct scenarios verified: 426. Unresolved: 0

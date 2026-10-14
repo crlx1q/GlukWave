@@ -1,0 +1,112 @@
+{
+  "1440x900": {
+    "bad": [],
+    "badCount": 0,
+    "bodyOverflow": "hidden",
+    "extents": {
+      "bottom": 767.3260167816911,
+      "left": 177.36244529686115,
+      "right": 756.4500547031388,
+      "top": 196.67398321830876
+    },
+    "size": 302,
+    "stage": {
+      "bottom": 687,
+      "height": 410,
+      "left": 160,
+      "right": 773.8125,
+      "top": 277,
+      "width": 613.8125,
+      "x": 160,
+      "y": 277
+    }
+  },
+  "1440x650": {
+    "bad": [],
+    "badCount": 0,
+    "bodyOverflow": "hidden",
+    "extents": {
+      "bottom": 642.3260167816911,
+      "left": 177.36244529686115,
+      "right": 756.4500547031388,
+      "top": 71.67398321830876
+    },
+    "size": 302,
+    "stage": {
+      "bottom": 562,
+      "height": 410,
+      "left": 160,
+      "right": 773.8125,
+      "top": 152,
+      "width": 613.8125,
+      "x": 160,
+      "y": 152
+    }
+  },
+  "812x375": {
+    "bad": [],
+    "badCount": 0,
+    "bodyOverflow": "hidden",
+    "extents": {
+      "bottom": 374.091215970672,
+      "left": 38.35713725702016,
+      "right": 414.72098774297984,
+      "top": 12.908784029328018
+    },
+    "size": 202.203,
+    "stage": {
+      "bottom": 331,
+      "height": 275,
+      "left": 22,
+      "right": 431.078125,
+      "top": 56,
+      "width": 409.078125,
+      "x": 22,
+      "y": 56
+    }
+  },
+  "375x812": {
+    "bad": [],
+    "badCount": 0,
+    "bodyOverflow": "hidden",
+    "extents": {
+      "bottom": 459.549813126734,
+      "left": 9.218109580746583,
+      "right": 365.7818904192534,
+      "top": 118.450186873266
+    },
+    "size": 191.938,
+    "stage": {
+      "bottom": 472,
+      "height": 366,
+      "left": 18,
+      "right": 357,
+      "top": 106,
+      "width": 339,
+      "x": 18,
+      "y": 106
+    }
+  },
+  "320x568": {
+    "bad": [],
+    "badCount": 0,
+    "bodyOverflow": "hidden",
+    "extents": {
+      "bottom": 260.4394028865554,
+      "left": 60.270581515567955,
+      "right": 259.729418484432,
+      "top": 74.56059711344459
+    },
+    "size": 108.906,
+    "stage": {
+      "bottom": 273,
+      "height": 211,
+      "left": 18,
+      "right": 302,
+      "top": 62,
+      "width": 284,
+      "x": 18,
+      "y": 62
+    }
+  }
+}

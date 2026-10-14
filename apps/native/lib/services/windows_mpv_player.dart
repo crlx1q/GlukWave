@@ -11,9 +11,11 @@ import 'package:just_audio_platform_interface/just_audio_platform_interface.dart
 import 'package:logging/logging.dart';
 import 'package:media_kit/media_kit.dart';
 import 'windows_dsp.dart';
+import 'diagnostics.dart';
 
 /// An [AudioPlayerPlatform] which wraps `package:media_kit`'s [Player]
 class WaveMpvPlayer extends AudioPlayerPlatform implements WindowsDspOutput {
+  static void Function(String message)? diagnostic;
   static const kErrorCode = 1;
   @override
   String? get sourceUri => _currentMedia?.uri;
@@ -265,10 +267,14 @@ class WaveMpvPlayer extends AudioPlayerPlatform implements WindowsDspOutput {
         _dataController.add(PlayerDataMessage(speed: rate));
       }),
       _player.stream.log.listen((event) {
-        // ignore: avoid_print
-        print(
-          "MPV: [${event.level}] ${event.prefix}: ${event.text.replaceAllMapped(RegExp(r'([?&](?:grant|token)=)[^&\s]+'), (m) => '${m[1]}[redacted]')}",
+        final message = scrubDiagnostic(
+          'MPV [${event.level}] ${event.prefix}: ${event.text}',
         );
+        if (['error', 'fatal', 'warn'].contains(event.level)) {
+          diagnostic?.call(message);
+        }
+        // ignore: avoid_print
+        print(message);
       }),
     ];
   }

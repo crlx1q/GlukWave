@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { ArrowRight, Globe, ImagePlus, LockKeyhole, Music2, Search, Trash2 } from 'lucide-react';
 import { api, errorText } from './api';
 import { t, useLocale, countLabel } from './locale';
@@ -6,10 +6,10 @@ import { useStore } from './store';
 import { Empty, Loading, Modal, TrackList } from './ui';
 import { playlistCovers } from './parity-model';
 import type { Playlist, Track } from './types';
-export function PlaylistArt({playlist}:{playlist:Playlist}){const covers=playlistCovers(playlist);return <span className={`playlist-collage covers-${playlist.artwork?1:covers.length}`}>{playlist.artwork?<img src={playlist.artwork} alt=""/>:covers.length?covers.map((src,index)=><img key={`${src}:${index}`} src={src} alt="" loading="lazy"/>):<Music2 size={32}/>}</span>;}
+export function PlaylistArt({playlist}:{playlist:Playlist}){const store=useStore(),covers=playlistCovers(playlist).length?playlistCovers(playlist):[...new Set(playlist.trackIds.map(id=>store.library.tracks.find(t=>t.id===id)?.artwork).filter(Boolean) as string[])].slice(0,4);return <span className={`playlist-collage covers-${playlist.artwork?1:covers.length}`}>{playlist.artwork?<img src={playlist.artwork} alt=""/>:covers.length?covers.map((src,index)=><img key={`${src}:${index}`} src={src} alt="" loading="lazy"/>):<Music2 size={32}/>}</span>;}
 export function PlaylistCoverEditor({playlist}:{playlist:Playlist}){
- useLocale();const store=useStore(),[pending,setPending]=useState(false),[current,setCurrent]=useState(playlist),[error,setError]=useState('');useEffect(()=>setCurrent(playlist),[playlist]);
- const save=async(file?:File)=>{setPending(true);setError('');try{const form=new FormData();if(file)form.set('file',file);const result=await api<{playlist:Playlist}>(`/playlists/${playlist.id}/cover`,{method:file?'POST':'DELETE',...(file?{body:form}:{})});setCurrent(result.playlist);await store.refreshLibrary();}catch(reason){setError(errorText(reason));}finally{setPending(false);}};
+ useLocale();const store=useStore(),[pending,setPending]=useState(false),[current,setCurrent]=useState(playlist),[error,setError]=useState(''),account=useRef(store.user?.id);account.current=store.user?.id;useEffect(()=>setCurrent(playlist),[playlist]);
+ const save=async(file?:File)=>{const scope=account.current;setPending(true);setError('');try{const form=new FormData();if(file)form.set('file',file);const result=await api<{playlist:Playlist}>(`/playlists/${playlist.id}/cover`,{method:file?'POST':'DELETE',...(file?{body:form}:{})});if(account.current!==scope)return;setCurrent(result.playlist);store.acceptPlaylist(result.playlist);}catch(reason){setError(errorText(reason));}finally{setPending(false);}};
  return <div className="playlist-cover-editor"><PlaylistArt playlist={current}/><div><label className="subtle-button file-link"><ImagePlus size={16}/>{pending?t('copy.085'):t('parity.customCover')}<input type="file" accept="image/png,image/jpeg,image/webp" disabled={pending} onChange={event=>{const file=event.target.files?.[0];if(file)void save(file);event.target.value='';}}/></label>{current.artwork&&<button className="text-button" type="button" disabled={pending} onClick={()=>void save()}><Trash2 size={14}/>{t('parity.restoreCollage')}</button>}<small>{t('parity.coverCaption')}</small></div>{error&&<p className="error-banner" role="alert">{error}</p>}</div>;
 }
 export function PlaylistPublicField({playlist}:{playlist?:Playlist|null}){useLocale();return <label className="playlist-public-field"><input type="checkbox" name="public" defaultChecked={playlist?.public===true}/><Globe size={18}/><span><b>{t('parity.publicPlaylist')}</b><small>{t('parity.publicPlaylistCaption')}</small></span></label>;}

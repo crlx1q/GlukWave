@@ -32,6 +32,7 @@ export async function openStore(config) {
     return {
       kind:'mongo',
       async get(c,id){const d=await db.collection(c).findOne({_id:id});if(!d)return null;const {_id,_v,...value}=d;return value;},
+      async getMany(c,ids){const unique=[...new Set(ids)];if(!unique.length)return [];return (await db.collection(c).find({_id:{$in:unique}}).limit(10000).toArray()).map(({_id,_v,...value})=>value);},
       async list(c,filter=()=>true){return (await db.collection(c).find({}).limit(10000).toArray()).map(({_id,_v,...d})=>d).filter(filter);},
       async entries(c){return (await db.collection(c).find({}).toArray()).map(({_id,_v,...value})=>({id:_id,value}));},
       async create(c,id,value){await db.collection(c).insertOne({_id:id,_v:0,...value});return value;},
@@ -53,6 +54,7 @@ export async function openStore(config) {
   return {
     kind:'sqlite',
     async get(c,id){const r=get.get(c,id);return r?JSON.parse(r.body):null;},
+    async getMany(c,ids){return [...new Set(ids)].map(id=>get.get(c,id)).filter(Boolean).map(row=>JSON.parse(row.body));},
     async list(c,filter=()=>true){return list.all(c).map(r=>JSON.parse(r.body)).filter(filter);},
     async entries(c){return db.prepare('SELECT id,body FROM documents WHERE collection=?').all(c).map(r=>({id:r.id,value:JSON.parse(r.body)}));},
     async create(c,id,value){create.run(c,id,JSON.stringify(value));return value;},

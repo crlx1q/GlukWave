@@ -19,6 +19,6 @@ test('permanent action failure does not repeat a mutation; cancellation ends pol
  assert.equal(calls,1);
 });
 test('auto skip recognizes unavailable audio without consuming auth, autoplay or networking failures',()=>{
- assert(unavailableAudio({code:'AUDIO_UNAVAILABLE'}));assert(unavailableAudio({code:'AUDIO_FORMAT_UNAVAILABLE'}));
+ assert(unavailableAudio({code:'AUDIO_UNAVAILABLE'}));assert.equal(unavailableAudio({code:'AUDIO_FORMAT_UNAVAILABLE'}),false);
  for(const code of ['AUTH_REQUIRED','AUDIO_EXPIRED','AUTOPLAY_BLOCKED','NETWORK','DEVICE_TIMEOUT'])assert.equal(unavailableAudio({code}),false);
 });

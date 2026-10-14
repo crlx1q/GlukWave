@@ -268,6 +268,9 @@ class WaveAudioHandler extends BaseAudioHandler {
   }
 
   bool autoCache = true;
+  bool _intendedPlaying = false, _recoveringStream = false;
+  String? _recoveredTrack;
+  DateTime _recoveredAt = DateTime.fromMillisecondsSinceEpoch(0);
   int _index = -1, _loadRevision = 0;
   Completer<void> _loadCancelled = Completer<void>();
   bool _advancing = false;
@@ -316,13 +319,11 @@ class WaveAudioHandler extends BaseAudioHandler {
             equalizerStatus = 'failed';
             onProcessingChanged?.call();
           }
-          onError?.call(wt('native.fb89a335f1', values: {'p0': (error)}));
           final failed = current;
-          if (failed != null &&
-              !trackLoading &&
-              !_released &&
-              onSourceFailure != null) {
-            unawaited(onSourceFailure!(failed, error).catchError((_) => false));
+          if (failed != null && !trackLoading && !_released) {
+            unawaited(recoverSourceFailure(error));
+          } else {
+            onError?.call(wt('native.fb89a335f1', values: {'p0': (error)}));
           }
           _broadcast();
         },
@@ -574,6 +575,8 @@ class WaveAudioHandler extends BaseAudioHandler {
     bool playing = true,
     bool recover = true,
   }) async {
+    _intendedPlaying = playing;
+    api.diagnostics.record('Open track ${track.id}', code: 'SOURCE_OPEN');
     if (current?.id == track.id &&
         current?.playback['kind'] == 'audio' &&
         !trackLoading &&
@@ -747,6 +750,11 @@ class WaveAudioHandler extends BaseAudioHandler {
         ]);
       } catch (error) {
         if (revision != _loadRevision || _released) return;
+        api.diagnostics.report(
+          error,
+          kind: 'playback',
+          code: 'NATIVE_SOURCE_LOAD',
+        );
         await player.stop();
         // A grant may disappear on a server restart. Resolve a new capability
         // once using this device's session; never reuse another device's URL.
@@ -763,8 +771,10 @@ class WaveAudioHandler extends BaseAudioHandler {
           );
         }
         throw WaveException(
-          wt('native.fb5429ae1b'),
-          'AUDIO_FORMAT_UNAVAILABLE',
+          wt('native.streamUnavailable'),
+          error is TimeoutException
+              ? 'AUDIO_STREAM_TIMEOUT'
+              : 'AUDIO_STREAM_UNAVAILABLE',
         );
       }
     }
@@ -829,7 +839,85 @@ class WaveAudioHandler extends BaseAudioHandler {
     }
   }
 
+  Future<void> recoverSourceFailure(Object error) async {
+    final failed = current;
+    if (failed == null || trackLoading || _released) return;
+    await _recoverStream(failed, error);
+  }
+
+  Future<void> _recoverStream(WaveTrack failed, Object error) async {
+    if (_recoveringStream ||
+        _released ||
+        offlineOnly ||
+        failed.embedded ||
+        error is PlayerInterruptedException) {
+      return;
+    }
+    if (_recoveredTrack == failed.id &&
+        DateTime.now().difference(_recoveredAt).inSeconds < 60) {
+      onError?.call(wt('native.streamUnavailable'));
+      return;
+    }
+    _recoveringStream = true;
+    _recoveredTrack = failed.id;
+    _recoveredAt = DateTime.now();
+    final position = outputPosition.inMilliseconds / 1000,
+        playing = _intendedPlaying;
+    final account = api.token,
+        origin = api.server,
+        order = List<WaveTrack>.from(tracks);
+    cancelPendingLoad();
+    final revision = _loadRevision;
+    _pendingTrack = failed;
+    _setResolving(true);
+    api.diagnostics.record(
+      'Renew active stream at ${position.toStringAsFixed(1)}s',
+      code: 'SOURCE_RENEW',
+    );
+    try {
+      await player.stop();
+      if (revision != _loadRevision ||
+          account != api.token ||
+          origin != api.server ||
+          _released) {
+        return;
+      }
+      await _loadTrack(
+        failed,
+        list: order,
+        position: position,
+        playing: playing,
+        revision: revision,
+        fresh: true,
+        renewStream: false,
+      );
+    } catch (failure) {
+      if (revision != _loadRevision || _released) return;
+      api.diagnostics.report(
+        failure,
+        kind: 'playback',
+        code: 'SOURCE_RENEW_FAILED',
+      );
+      if (await onSourceFailure?.call(failed, failure) != true) {
+        onError?.call(
+          failure is WaveException
+              ? failure.message
+              : wt('native.streamUnavailable'),
+        );
+      }
+    } finally {
+      _recoveringStream = false;
+      if (revision == _loadRevision) {
+        _pendingTrack = null;
+        _setResolving(false);
+      }
+    }
+  }
+
   Future<void> localCommand(String command, [Json data = const {}]) async {
+    if (['play', 'pause', 'stop'].contains(command)) {
+      _intendedPlaying = command == 'play';
+    }
     if (command == 'pause' || command == 'stop') cancelPendingLoad();
     if (current?.embedded == true && !['next', 'previous'].contains(command)) {
       if (command == 'play' && !provider.ready && !provider.loading) {
@@ -852,6 +940,17 @@ class WaveAudioHandler extends BaseAudioHandler {
     switch (command) {
       case 'play':
         if (current == null) throw WaveException(wt('native.449b7110f6'));
+        if (current?.playback['kind'] == 'audio' &&
+            !sourceReady &&
+            !trackLoading) {
+          await playTrack(
+            current!,
+            list: tracks,
+            position: outputPosition.inMilliseconds / 1000,
+            recover: false,
+          );
+          break;
+        }
         await _startVerified(revision: _loadRevision);
       case 'pause':
         await player.pause();

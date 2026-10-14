@@ -110,6 +110,7 @@ class SourceAttribution extends StatelessWidget {
 class MiniPlayer extends StatelessWidget {
   final WaveController controller;
   final VoidCallback onOpen;
+  final VoidCallback? onDevices;
   final Key? artworkKey;
   final VoidCallback? onDragStart, onDragCancel;
   final ValueChanged<double>? onDragUpdate, onDragEnd;
@@ -117,6 +118,7 @@ class MiniPlayer extends StatelessWidget {
     super.key,
     required this.controller,
     required this.onOpen,
+    this.onDevices,
     this.artworkKey,
     this.onDragStart,
     this.onDragUpdate,
@@ -132,6 +134,7 @@ class MiniPlayer extends StatelessWidget {
       return NativeDesktopTransport(
         controller: c,
         onOpen: onOpen,
+        onDevices: onDevices,
         artworkKey: artworkKey,
         onDragStart: onDragStart,
         onDragUpdate: onDragUpdate,
@@ -251,7 +254,8 @@ class MiniPlayer extends StatelessWidget {
                                                   fontSize: 10,
                                                 ),
                                               ),
-                                              if (track != null) ...[
+                                              if (track != null &&
+                                                  c.controllingRemote) ...[
                                                 const SizedBox(height: 4),
                                                 Builder(
                                                   builder: (anchor) =>
@@ -265,6 +269,8 @@ class MiniPlayer extends StatelessWidget {
                                                             showConnectPicker(
                                                               anchor,
                                                               c,
+                                                              onAllDevices:
+                                                                  onDevices,
                                                               anchor:
                                                                   _anchorRect(
                                                                     anchor,
@@ -407,6 +413,7 @@ class MiniPlayer extends StatelessWidget {
                                     onPressed: () => showConnectPicker(
                                       anchorContext,
                                       c,
+                                      onAllDevices: onDevices,
                                       anchor: _anchorRect(anchorContext),
                                     ),
                                     icon: WaveControlIcon(
@@ -601,7 +608,7 @@ class PlayerPage extends StatefulWidget {
   final WaveController controller;
   final WaveTrack? initialTrack;
   final void Function(WaveTrack) onMore;
-  final VoidCallback? onClose, onDragStart, onDragCancel;
+  final VoidCallback? onClose, onDevices, onDragStart, onDragCancel;
   final ValueChanged<double>? onDragUpdate, onDragEnd;
   final Key? artworkKey;
   final bool hideAlbum;
@@ -611,6 +618,7 @@ class PlayerPage extends StatefulWidget {
     this.initialTrack,
     required this.onMore,
     this.onClose,
+    this.onDevices,
     this.onDragStart,
     this.onDragUpdate,
     this.onDragEnd,
@@ -958,7 +966,15 @@ class _PlayerPageState extends State<PlayerPage> {
         child: Padding(
           padding: EdgeInsets.fromLTRB(wide ? 32 : 20, 0, wide ? 32 : 20, 10),
           child: ConstrainedBox(
-            constraints: BoxConstraints(maxWidth: wide ? 640 : 520),
+            constraints: BoxConstraints(
+              maxWidth:
+                  (bounds.maxHeight < 520 && bounds.maxWidth > 650 ||
+                      bounds.maxWidth > 1050 && bounds.maxHeight < 1000)
+                  ? 1100
+                  : wide
+                  ? 640
+                  : 520,
+            ),
             child: listening(track),
           ),
         ),
@@ -1087,6 +1103,10 @@ class _PlayerPageState extends State<PlayerPage> {
     builder: (context, bounds) {
       final v = waveVisuals(context),
           active = c.audio.viewCurrent?.id == track.id;
+      final split =
+          bounds.maxWidth > 600 &&
+          (bounds.maxHeight < 520 ||
+              bounds.maxWidth > 1000 && bounds.maxHeight < 1000);
       final dense = bounds.maxHeight < 580, tiny = bounds.maxHeight < 470;
       final scale = MediaQuery.textScalerOf(context).scale(1);
       final short = bounds.maxHeight / scale < 450;
@@ -1106,243 +1126,262 @@ class _PlayerPageState extends State<PlayerPage> {
                 (scale - 1).clamp(0, 1) * 45 +
                 previewHeight
           : 130.0 + previewHeight;
-      final stageRoom = math.max(80.0, bounds.maxHeight - controlsHeight);
+      final stageRoom = math.max(
+        80.0,
+        bounds.maxHeight - (split ? 0 : controlsHeight),
+      );
       final size = math
           .min(
-            (bounds.maxWidth - 32) /
+            ((split ? bounds.maxWidth * .5 - 10 : bounds.maxWidth) - 32) /
                 (c.customization.appearance.cover3d && !c.energySaving
-                    ? 1.5
+                    ? 1.6
                     : 1),
             (stageRoom - 32) /
                 (c.customization.appearance.cover3d && !c.energySaving
-                    ? 1.28
+                    ? 1.52
                     : 1),
           )
-          .clamp(60.0, 390.0);
-      return Column(
-        key: const Key('player-content-scroll'),
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            child: Center(
-              child: PlayerGestureSurface(
-                key: const Key('player-cover-gesture'),
-                controller: c,
-                onVerticalStart: widget.onDragStart,
-                onVerticalUpdate: widget.onDragUpdate,
-                onVerticalEnd: widget.onDragEnd,
-                onVerticalCancel: widget.onDragCancel,
-                child: Opacity(
-                  opacity: widget.hideAlbum ? 0 : 1,
-                  child: AlbumStage(
-                    controller: c,
-                    track: track,
-                    size: size,
-                    playing: active && c.audio.playing,
-                    artworkKey: widget.artworkKey,
-                    touchTilt: false,
-                  ),
+          .clamp(60.0, split ? 302.0 : 390.0);
+      final contents = <Widget>[
+        Expanded(
+          child: Center(
+            child: PlayerGestureSurface(
+              key: const Key('player-cover-gesture'),
+              controller: c,
+              onVerticalStart: widget.onDragStart,
+              onVerticalUpdate: widget.onDragUpdate,
+              onVerticalEnd: widget.onDragEnd,
+              onVerticalCancel: widget.onDragCancel,
+              child: Opacity(
+                opacity: widget.hideAlbum ? 0 : 1,
+                child: AlbumStage(
+                  controller: c,
+                  track: track,
+                  size: size,
+                  playing: active && c.audio.playing,
+                  artworkKey: widget.artworkKey,
+                  touchTilt: false,
                 ),
               ),
             ),
           ),
-          Row(
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ScrollingLabel(
-                      track.title,
-                      style: TextStyle(
-                        fontSize: tiny
-                            ? 19
-                            : dense
-                            ? 23
-                            : 27,
-                        height: 1.25,
-                        fontWeight: FontWeight.w800,
-                        letterSpacing: -.7,
-                      ),
-                    ),
-                    SizedBox(height: short ? 3 : 5),
-                    ScrollingLabel(
-                      track.artist,
-                      style: TextStyle(
-                        color: v.muted,
-                        fontSize: short ? 12 : 13,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              IconButton(
-                tooltip: wt('native.36f30bdb01', context: context),
-                onPressed: c.online ? () => _run(c, () => c.like(track)) : null,
-                icon: WaveToggleIcon(
-                  active: c.likedIds.contains(track.id),
-                  activeIcon: Icons.favorite_rounded,
-                  inactiveIcon: Icons.favorite_border_rounded,
-                  color: c.likedIds.contains(track.id) ? v.accent : v.muted,
-                  size: 25,
-                ),
-              ),
-            ],
-          ),
-          if (!short)
-            Padding(
-              padding: const EdgeInsets.only(top: 5, bottom: 2),
-              child: Text(
-                track.sourceName,
-                key: const Key('source-attribution'),
-                style: TextStyle(fontSize: 9, color: v.muted),
-              ),
-            ),
-          if (preview)
-            SizedBox(
-              height: previewHeight,
-              child: compactLyrics(track, tiny: tiny),
-            ),
-          if (active) ...[
-            progress(track),
-            SizedBox(height: short ? 3 : 7),
-            Container(
-              key: const Key('player-transport-capsule'),
-              padding: EdgeInsets.symmetric(
-                horizontal: 4,
-                vertical: tiny ? 1 : 5,
-              ),
-              decoration: BoxDecoration(
-                color: v.surface.withValues(alpha: .8),
-                borderRadius: BorderRadius.circular(v.corners(26)),
-              ),
-              child: transport(compact: short),
-            ),
-            SizedBox(
-              height: short
-                  ? 4
-                  : tiny
-                  ? 6
-                  : 12,
-            ),
-            Container(
-              key: const Key('player-secondary-capsule'),
-              decoration: BoxDecoration(
-                color: v.surface.withValues(alpha: .55),
-                borderRadius: BorderRadius.circular(v.corners(22)),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        ),
+        Row(
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  if (c.settings['lyrics'] != false)
-                    IconButton(
-                      tooltip: nativeText(context, 'lyrics'),
-                      onPressed: () => setState(() => tab = 1),
-                      icon: const WaveViewIcon(
-                        Icons.lyrics_outlined,
-                        active: false,
-                        size: 21,
-                      ),
-                    ),
-                  IconButton(
-                    key: const Key('player-equalizer'),
-                    tooltip: wt('eq.title', context: context),
-                    isSelected: c.customization.equalizer.enabled,
-                    style: IconButton.styleFrom(
-                      foregroundColor: c.customization.equalizer.enabled
-                          ? v.accent
-                          : v.muted,
-                      backgroundColor: c.customization.equalizer.enabled
-                          ? v.accentSoft
-                          : Colors.transparent,
-                    ),
-                    onPressed: () => showPlayerEqualizer(context, c),
-                    icon: const WaveControlIcon(
-                      Icons.graphic_eq_rounded,
-                      size: 21,
+                  ScrollingLabel(
+                    track.title,
+                    style: TextStyle(
+                      fontSize: tiny
+                          ? 19
+                          : dense
+                          ? 23
+                          : 27,
+                      height: 1.25,
+                      fontWeight: FontWeight.w800,
+                      letterSpacing: -.7,
                     ),
                   ),
-                  IconButton(
-                    tooltip: wt('native.621777004a', context: context),
-                    onPressed: showVolume,
-                    icon: WaveVolumeIcon(
-                      volume: c.audio.volume,
-                      size: 20,
-                      color: v.muted,
-                    ),
-                  ),
-                  IconButton(
-                    tooltip: nativeText(context, 'queue'),
-                    onPressed: () => setState(() => tab = 2),
-                    icon: const WaveViewIcon(
-                      Icons.queue_music_rounded,
-                      active: false,
-                      size: 21,
-                    ),
-                  ),
-                  PopupMenuButton<String>(
-                    tooltip: nativeText(context, 'more'),
-                    icon: const WaveControlIcon(
-                      Icons.more_horiz_rounded,
-                      size: 21,
-                    ),
-                    onSelected: (value) {
-                      if (value == 'save') {
-                        _run(c, () => c.downloadTrack(track));
-                      } else {
-                        widget.onMore(track);
-                      }
-                    },
-                    itemBuilder: (_) => [
-                      PopupMenuItem(
-                        value: 'save',
-                        enabled: c.online && !c.cache.contains(track.id),
-                        child: Text(nativeText(context, 'save')),
-                      ),
-                      PopupMenuItem(
-                        value: 'more',
-                        child: Text(nativeText(context, 'more')),
-                      ),
-                    ],
+                  SizedBox(height: short ? 3 : 5),
+                  ScrollingLabel(
+                    track.artist,
+                    style: TextStyle(color: v.muted, fontSize: short ? 12 : 13),
                   ),
                 ],
               ),
             ),
-            SizedBox(
-              height: short
-                  ? 2
-                  : tiny
-                  ? 3
-                  : 8,
+            IconButton(
+              tooltip: wt('native.36f30bdb01', context: context),
+              onPressed: c.online ? () => _run(c, () => c.like(track)) : null,
+              icon: WaveToggleIcon(
+                active: c.likedIds.contains(track.id),
+                activeIcon: Icons.favorite_rounded,
+                inactiveIcon: Icons.favorite_border_rounded,
+                color: c.likedIds.contains(track.id) ? v.accent : v.muted,
+                size: 25,
+              ),
             ),
-            Row(
+          ],
+        ),
+        if (!short)
+          Padding(
+            padding: const EdgeInsets.only(top: 5, bottom: 2),
+            child: Text(
+              track.sourceName,
+              key: const Key('source-attribution'),
+              style: TextStyle(fontSize: 9, color: v.muted),
+            ),
+          ),
+        if (preview)
+          SizedBox(
+            height: previewHeight,
+            child: compactLyrics(track, tiny: tiny),
+          ),
+        if (active) ...[
+          progress(track),
+          SizedBox(height: short ? 3 : 7),
+          Container(
+            key: const Key('player-transport-capsule'),
+            padding: EdgeInsets.symmetric(
+              horizontal: 4,
+              vertical: tiny ? 1 : 5,
+            ),
+            decoration: BoxDecoration(
+              color: v.surface.withValues(alpha: .8),
+              borderRadius: BorderRadius.circular(v.corners(26)),
+            ),
+            child: transport(compact: short),
+          ),
+          SizedBox(
+            height: short
+                ? 4
+                : tiny
+                ? 6
+                : 12,
+          ),
+          Container(
+            key: const Key('player-secondary-capsule'),
+            decoration: BoxDecoration(
+              color: v.surface.withValues(alpha: .55),
+              borderRadius: BorderRadius.circular(v.corners(22)),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Expanded(
-                  child: Builder(
-                    builder: (anchorContext) => PlayingOutput(
-                      controller: c,
-                      onTap: () => showConnectPicker(
-                        anchorContext,
-                        c,
-                        anchor: _anchorRect(anchorContext),
-                      ),
+                if (c.settings['lyrics'] != false)
+                  IconButton(
+                    tooltip: nativeText(context, 'lyrics'),
+                    onPressed: () => setState(() => tab = 1),
+                    icon: const WaveViewIcon(
+                      Icons.lyrics_outlined,
+                      active: false,
+                      size: 21,
+                    ),
+                  ),
+                IconButton(
+                  key: const Key('player-equalizer'),
+                  tooltip: wt('eq.title', context: context),
+                  isSelected: c.customization.equalizer.enabled,
+                  style: IconButton.styleFrom(
+                    foregroundColor: c.customization.equalizer.enabled
+                        ? v.accent
+                        : v.muted,
+                    backgroundColor: c.customization.equalizer.enabled
+                        ? v.accentSoft
+                        : Colors.transparent,
+                  ),
+                  onPressed: () => showPlayerEqualizer(context, c),
+                  icon: const WaveControlIcon(
+                    Icons.graphic_eq_rounded,
+                    size: 21,
+                  ),
+                ),
+                IconButton(
+                  tooltip: wt('native.621777004a', context: context),
+                  onPressed: showVolume,
+                  icon: WaveVolumeIcon(
+                    volume: c.audio.volume,
+                    size: 20,
+                    color: v.muted,
+                  ),
+                ),
+                IconButton(
+                  tooltip: nativeText(context, 'queue'),
+                  onPressed: () => setState(() => tab = 2),
+                  icon: const WaveViewIcon(
+                    Icons.queue_music_rounded,
+                    active: false,
+                    size: 21,
+                  ),
+                ),
+                PopupMenuButton<String>(
+                  tooltip: nativeText(context, 'more'),
+                  icon: const WaveControlIcon(
+                    Icons.more_horiz_rounded,
+                    size: 21,
+                  ),
+                  onSelected: (value) {
+                    if (value == 'save') {
+                      _run(c, () => c.downloadTrack(track));
+                    } else {
+                      widget.onMore(track);
+                    }
+                  },
+                  itemBuilder: (_) => [
+                    PopupMenuItem(
+                      value: 'save',
+                      enabled: c.online && !c.cache.contains(track.id),
+                      child: Text(nativeText(context, 'save')),
+                    ),
+                    PopupMenuItem(
+                      value: 'more',
+                      child: Text(nativeText(context, 'more')),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: short
+                ? 2
+                : tiny
+                ? 3
+                : 8,
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: Builder(
+                  builder: (anchorContext) => PlayingOutput(
+                    controller: c,
+                    onTap: () => showConnectPicker(
+                      anchorContext,
+                      c,
+                      onAllDevices: widget.onDevices,
+                      anchor: _anchorRect(anchorContext),
                     ),
                   ),
                 ),
-                ListeningPresence(controller: c, compact: true),
-              ],
-            ),
-          ] else ...[
-            const SizedBox(height: 18),
-            FilledButton.icon(
-              onPressed: track.playable
-                  ? () => _run(c, () => c.play(track))
-                  : null,
-              icon: const WavePlayPauseIcon(playing: false, size: 22),
-              label: Text(wt('native.b09bf87fd9', context: context)),
+              ),
+              ListeningPresence(controller: c, compact: true),
+            ],
+          ),
+        ] else ...[
+          const SizedBox(height: 18),
+          FilledButton.icon(
+            onPressed: track.playable
+                ? () => _run(c, () => c.play(track))
+                : null,
+            icon: const WavePlayPauseIcon(playing: false, size: 22),
+            label: Text(wt('native.b09bf87fd9', context: context)),
+          ),
+        ],
+      ];
+      if (split) {
+        return Row(
+          key: const Key('player-content-scroll'),
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            contents.first,
+            const SizedBox(width: 20),
+            Expanded(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: contents.skip(1).toList(),
+              ),
             ),
           ],
-        ],
+        );
+      }
+      return Column(
+        key: const Key('player-content-scroll'),
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: contents,
       );
     },
   );

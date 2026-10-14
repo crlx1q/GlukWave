@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "keys": 17,
+  "languages": [
+    "en",
+    "ru",
+    "kk",
+    "uk",
+    "de",
+    "es"
+  ],
+  "web_native_copy_matches": true
+}

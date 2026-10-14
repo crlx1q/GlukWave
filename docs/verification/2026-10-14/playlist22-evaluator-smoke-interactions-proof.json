@@ -1,0 +1,51 @@
+{
+  "mobileFull": {
+    "glyphs": [
+      {
+        "h": 26.25,
+        "sh": 26.25,
+        "sw": 26.25,
+        "w": 26.25
+      },
+      {
+        "h": 26.25,
+        "sh": 26.25,
+        "sw": 26.25,
+        "w": 26.25
+      },
+      {
+        "h": 26.25,
+        "sh": 26.25,
+        "sw": 26.25,
+        "w": 26.25
+      }
+    ],
+    "overflow": true,
+    "rect": {
+      "bottom": 568,
+      "height": 553.796875,
+      "left": 0,
+      "right": 320,
+      "top": 14.203125,
+      "width": 320,
+      "x": 0,
+      "y": 14.203125
+    }
+  },
+  "localFullStatusHidden": true,
+  "transfer": {
+    "commands": [
+      {
+        "command": "transfer",
+        "deviceId": "07bfc7fd-c2e9-4677-877f-7a2850f1ba47",
+        "surfaceId": "b1286dc6-105f-447c-8342-43a511d49d8e",
+        "fromDeviceId": "qa-phone"
+      }
+    ],
+    "localStatusHidden": true
+  },
+  "localPlayerSignatureHidden": true,
+  "errors": {
+    "errors": []
+  }
+}

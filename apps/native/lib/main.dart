@@ -5,6 +5,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:just_audio_media_kit/just_audio_media_kit.dart';
+import 'package:path_provider/path_provider.dart';
+import 'services/windows_mpv_player.dart';
 import 'core/api.dart';
 import 'core/controller.dart';
 import 'services/audio.dart';
@@ -25,7 +27,9 @@ Future<void> main(List<String> arguments) async {
       'assets/licenses/Manrope-OFL.txt',
     );
     yield LicenseEntryWithLineBreaks(['Manrope'], manrope);
-    final adapter = await rootBundle.loadString('assets/licenses/just_audio_media_kit-UNLICENSE.txt');
+    final adapter = await rootBundle.loadString(
+      'assets/licenses/just_audio_media_kit-UNLICENSE.txt',
+    );
     yield LicenseEntryWithLineBreaks(['just_audio_media_kit adapter'], adapter);
   });
   try {
@@ -45,6 +49,17 @@ Future<void> main(List<String> arguments) async {
           : 'http://127.0.0.1:4000',
     );
     startupApi = api;
+    api.diagnostics.version = const String.fromEnvironment(
+      'GLUKWAVE_BUILD_VERSION',
+      defaultValue: '1.0.0+21',
+    );
+    try {
+      await api.diagnostics.enableLocalLog(
+        await getApplicationSupportDirectory(),
+      );
+    } catch (_) {}
+    WaveMpvPlayer.diagnostic = (message) =>
+        api.diagnostics.record(message, kind: 'decoder');
     FlutterError.onError = (details) {
       api.diagnostics.report(
         details.exception,

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../core/controller.dart';
 import '../core/models.dart';
 import '../l10n/ecosystem_polish_strings.dart';
-import '../l10n/wave_localizations.dart';
 import 'device_labels.dart';
 import 'widgets.dart';
 
@@ -115,25 +114,33 @@ class PlayingOutput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final c = controller, v = waveVisuals(context);
-    final localOutput = c.outputHere && c.audio.viewCurrent != null;
+    if (!c.controllingRemote || c.audio.viewCurrent == null) {
+      if (banner) return const SizedBox.shrink();
+      return TextButton.icon(
+        key: const Key('connect-local-entry'),
+        onPressed: onTap,
+        icon: Icon(Icons.devices_rounded, size: 16, color: v.muted),
+        label: Text(
+          'GlukWave Connect',
+          style: TextStyle(fontSize: 11, color: v.muted),
+        ),
+      );
+    }
     final device =
         c.devices
             .where((d) => (d['deviceId'] ?? d['id']) == c.activeDeviceId)
             .firstOrNull ??
-        <String, dynamic>{
-          'name': localOutput ? c.deviceName : c.activeDeviceName,
-          'kind': c.outputHere ? c.deviceKind : 'web',
-        };
+        <String, dynamic>{'name': c.activeDeviceName, 'kind': 'web'};
     return Material(
-      color: banner ? v.accentSoft : Colors.transparent,
+      color: Colors.transparent,
       borderRadius: BorderRadius.circular(v.corners(banner ? 9 : 12)),
       child: InkWell(
         onTap: onTap,
         borderRadius: BorderRadius.circular(v.corners(12)),
         child: Padding(
           padding: EdgeInsets.symmetric(
-            vertical: banner ? 4 : 8,
-            horizontal: banner ? 7 : 6,
+            vertical: banner ? 1 : 5,
+            horizontal: 0,
           ),
           child: Row(
             mainAxisSize: MainAxisSize.min,
@@ -146,13 +153,7 @@ class PlayingOutput extends StatelessWidget {
               const SizedBox(width: 7),
               Flexible(
                 child: Text(
-                  localOutput
-                      ? wt(
-                          'connect.playingOn',
-                          context: context,
-                          values: {'name': c.deviceName},
-                        )
-                      : c.outputLabel,
+                  device['name']?.toString() ?? c.activeDeviceName,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(

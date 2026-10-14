@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "distinctTestsVerified": 128,
+  "runs": [
+    {
+      "log": "public-import-server-all.log",
+      "passed": 128,
+      "failed": 0,
+      "exit": 0
+    },
+    {
+      "log": "public-import-server-targeted-final.log",
+      "passed": 14,
+      "failed": 0,
+      "exit": 0
+    }
+  ],
+  "unresolved": 0,
+  "scope": "Full existing suite plus public import; targeted recheck after bounded HTTP deadline and grouped import validation refinements",
+  "pythonBridgeTests": 2
+}

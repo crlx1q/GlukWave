@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:convert';
 import 'package:dio/dio.dart';
 
 String scrubDiagnostic(Object? input, [int limit = 2000]) {
@@ -12,7 +13,7 @@ String scrubDiagnostic(Object? input, [int limit = 2000]) {
       )
       .replaceAllMapped(
         RegExp(
-          r'''(["']?(?:password|passwd|token|secret|authorization|cookie|api[_-]?key|captchaToken)["']?\s*[:=]\s*)(?:"[^"\r\n]*"|'[^'\r\n]*'|[^\s,;}"']+)''',
+          r'''(["']?(?:password|passwd|token|grant|signature|secret|authorization|cookie|api[_-]?key|captchaToken)["']?\s*[:=]\s*)(?:"[^"\r\n]*"|'[^'\r\n]*'|[^\s,;}"']+)''',
           caseSensitive: false,
         ),
         (match) => '${match[1]}[redacted]',
@@ -55,6 +56,45 @@ String scrubDiagnostic(Object? input, [int limit = 2000]) {
 
 /// Bounded, memory-only queue. Reporting never uses the main API interceptor.
 class WaveDiagnostics {
+  String version = 'development';
+  File? _localFile;
+  Future<void> _localWrites = Future.value();
+  Future<void> enableLocalLog(Directory support) async {
+    try {
+      final directory = await Directory(
+        '${support.path}/logs',
+      ).create(recursive: true);
+      _localFile = File('${directory.path}/glukwave.jsonl');
+      record('Application diagnostics enabled', kind: 'startup');
+    } catch (_) {
+      /* Diagnostics must never prevent playback. */
+    }
+  }
+
+  void record(Object message, {String kind = 'playback', String? code}) {
+    final file = _localFile;
+    if (_disposed || file == null) return;
+    final encoded = jsonEncode({
+      'at': DateTime.now().toUtc().toIso8601String(),
+      'version': version,
+      'kind': kind,
+      if (code != null) 'code': scrubDiagnostic(code, 100),
+      'message': scrubDiagnostic(message),
+    });
+    final line = '$encoded\n';
+    _localWrites = _localWrites
+        .then((_) async {
+          if (await file.exists() && await file.length() > 512 * 1024) {
+            final previous = File('${file.path}.previous');
+            if (await previous.exists()) await previous.delete();
+            await file.rename(previous.path);
+          }
+          await file.writeAsString(line, mode: FileMode.append);
+        })
+        .catchError((_) {});
+  }
+
+  Future<void> flushLocal() => _localWrites;
   final String Function() origin;
   final Map<String, String> Function() headers;
   final Dio _transport = Dio(
@@ -86,6 +126,7 @@ class WaveDiagnostics {
   }) {
     if (_disposed) return;
     final message = scrubDiagnostic(error);
+    record(message, kind: kind, code: code);
     final key = '$kind:$message';
     if (_seen[key]?.isAfter(
           DateTime.now().subtract(const Duration(minutes: 1)),
@@ -107,7 +148,7 @@ class WaveDiagnostics {
       'kind': kind,
       'message': message,
       'stack': scrubDiagnostic(stack, 8000),
-      'version': '1.0.0+3',
+      'version': version,
       if (code != null) 'code': scrubDiagnostic(code, 100),
       if (status != null && status >= 0 && status <= 599) 'status': status,
     });

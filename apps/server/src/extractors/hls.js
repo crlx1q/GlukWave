@@ -1,4 +1,4 @@
-import {randomBytes} from 'node:crypto';
+import {audioCapabilities} from '../audio-capabilities.js';
 import {Readable,Transform} from 'node:stream';
 import {pipeline} from 'node:stream/promises';
 import {asyncRoute,fail} from '../util.js';
@@ -7,7 +7,7 @@ import {rewriteSoundcloudManifest} from '../soundcloud-audio.js';
 // Never expose signed CDN URLs. A grant is bound to one live account session;
 // every manifest, encryption key and segment is checked against that session.
 export function setupExtractedHls(app,ctx,{cdn,resolve,fetcher=fetch}){
-  const grants=new Map(),transfers=new Set();let closed=false,parts=0;
+  const grants=new Map(),transfers=new Set(),restoring=new Map(),capabilities=audioCapabilities(ctx.config.encryptionKey,'extracted-hls');let closed=false,parts=0;
   const drop=key=>{const grant=grants.get(key);if(grant)parts-=grant.parts.size;grants.delete(key);};
   const sweep=()=>{for(const [key,grant] of grants)if(grant.expiresAt<=Date.now())drop(key);};
   const timer=setInterval(sweep,60000);timer.unref();
@@ -17,11 +17,12 @@ export function setupExtractedHls(app,ctx,{cdn,resolve,fetcher=fetch}){
     const prior=[...grants.values()].find(grant=>grant.trackId===track.id&&grant.sessionId===sessionId&&Date.now()-grant.createdAt<240000);
     if(prior)return {...prior.descriptor};
     while(grants.size>=128)drop(grants.keys().next().value);
-    const token=randomBytes(24).toString('base64url'),createdAt=Date.now();
+    const createdAt=Date.now(),expiresAt=createdAt+Math.min(86400000,Math.max(7200000,((Number(track.duration)||0)+300)*1000));
+    const token=capabilities.issueRoot({trackId:track.id,userId:user.id,sessionId,createdAt,expiresAt});
     const attribution={source:result.info.source,artist:result.info.artist||track.artist,sourceUrl:result.info.source_url||track.sourceUrl};
     const offline=!!(result.permission?.download&&ctx.config.env!=='test');
     const descriptor={kind:'audio',format:'hls',audioSource:result.info.source,offline,...(result.permission?.download?{downloadUrl:`/api/external-audio/${encodeURIComponent(track.id)}/download`}:{}),url:`/api/stream-audio/${encodeURIComponent(track.id)}?grant=${token}`,attribution};
-    grants.set(token,{trackId:track.id,userId:user.id,sessionId,createdAt,expiresAt:createdAt+Math.min(86400000,Math.max(7200000,((Number(track.duration)||0)+300)*1000)),parts:new Map([['root',result.info.audio_url]]),partVersions:new Map([['root',0]]),sourceVersion:0,reverse:new Map([[result.info.audio_url,'root']]),headers:result.info.http_headers||{},descriptor,refresh:null});parts++;
+    grants.set(token,{trackId:track.id,userId:user.id,sessionId,createdAt,expiresAt,parts:new Map([['root',result.info.audio_url]]),partVersions:new Map([['root',0]]),sourceVersion:0,reverse:new Map([[result.info.audio_url,'root']]),headers:result.info.http_headers||{},descriptor,refresh:null});parts++;
     return descriptor;
   }
   async function pull(input,signal,headers){
@@ -34,14 +35,24 @@ export function setupExtractedHls(app,ctx,{cdn,resolve,fetcher=fetch}){
     fail(502,'EXTRACTOR_URL','Источник не открыл аудио.');
   }
   app.get('/api/stream-audio/:id',asyncRoute(async(req,res)=>{
-    sweep();const token=String(req.query.grant||''),grant=grants.get(token),part=String(req.query.part||'root');
+    sweep();const token=String(req.query.grant||''),part=String(req.query.part||'root');let grant=grants.get(token)||capabilities.root(token);
     if(!grant||grant.trackId!==req.params.id||closed)fail(401,'AUDIO_EXPIRED','Ссылка на аудио обновилась. Запусти трек ещё раз.');
     const [session,user]=await Promise.all([ctx.store.get('sessions',grant.sessionId),ctx.store.get('users',grant.userId)]);
     if(!session||session.userId!==grant.userId||session.expiresAt<=Date.now()||!user||user.blocked)fail(401,'AUTH_REQUIRED','Сессия завершена.');
     if(req.auth?.user&&req.auth.user.id!==grant.userId)fail(403,'TRACK_NOT_FOUND','Трек не найден.');
-    let track=null;
+    let track=await ctx.requireTrack(grant.trackId,user);
+    if(!grant.parts){
+      if(!restoring.has(token)){
+        if(restoring.size>=12)fail(503,'EXTRACTOR_BUSY','Музыка загружается. Повтори чуть позже.');
+        const identity=grant;
+        const work=(async()=>{const result=await resolve(track);if(!result?.permission.stream)fail(403,'DIRECT_AUDIO_UNAVAILABLE','Этот трек сейчас недоступен.');
+          const value={...identity,parts:new Map([['root',result.info.audio_url]]),partVersions:new Map([['root',0]]),sourceVersion:0,reverse:new Map([[result.info.audio_url,'root']]),headers:result.info.http_headers||{},descriptor:{kind:'audio',format:'hls',audioSource:result.info.source,offline:false,url:`/api/stream-audio/${encodeURIComponent(identity.trackId)}?grant=${token}`,attribution:{source:result.info.source,artist:result.info.artist||track.artist,sourceUrl:result.info.source_url||track.sourceUrl}},refresh:null};
+          while(grants.size>=128)drop(grants.keys().next().value);if(closed)fail(503,'EXTRACTOR_BUSY','Музыка загружается.');grants.set(token,value);parts++;return value;})().finally(()=>restoring.delete(token));restoring.set(token,work);
+      }
+      grant=await restoring.get(token);
+    }
+    if(part!=='root'&&!grant.parts.has(part)){const resource=capabilities.part(token,part);if(!resource||!cdn(resource))fail(404,'TRACK_NOT_FOUND','Трек не найден.');if(grant.parts.size>=8192||parts>=32768)fail(503,'EXTRACTOR_BUSY','Музыка загружается.');grant.parts.set(part,resource);grant.partVersions.set(part,0);grant.reverse.set(resource,part);parts++;}
     if(part==='root'){
-      track=await ctx.requireTrack(grant.trackId,user);
       const result=await resolve(track);
       if(!result?.permission.stream)fail(403,'DIRECT_AUDIO_UNAVAILABLE','Этот трек сейчас недоступен.');
     }else{
@@ -79,7 +90,7 @@ export function setupExtractedHls(app,ctx,{cdn,resolve,fetcher=fetch}){
       if(manifest){
         const chunks=[];let bytes=0;
         try{for await(const chunk of response.body){bytes+=chunk.length;if(bytes>512*1024)fail(413,'AUDIO_TOO_LARGE','Источник не открыл аудио.');chunks.push(Buffer.from(chunk));}}finally{await response.body?.cancel().catch(()=>{});}
-        const link=value=>{if(!cdn(value))fail(502,'EXTRACTOR_URL','Источник не открыл аудио.');let key=grant.reverse.get(value);if(!key){if(grant.parts.size>=8192||parts>=32768)fail(503,'EXTRACTOR_BUSY','Музыка загружается. Повтори чуть позже.');key=randomBytes(12).toString('base64url');grant.parts.set(key,value);grant.partVersions.set(key,responseVersion);grant.reverse.set(value,key);parts++;}return `/api/stream-audio/${encodeURIComponent(grant.trackId)}?grant=${token}&part=${key}`;};
+        const link=value=>{if(!cdn(value))fail(502,'EXTRACTOR_URL','Источник не открыл аудио.');let key=grant.reverse.get(value);if(!key){if(grant.parts.size>=8192||parts>=32768)fail(503,'EXTRACTOR_BUSY','Музыка загружается. Повтори чуть позже.');key=capabilities.issuePart(token,value,grant.expiresAt);grant.parts.set(key,value);grant.partVersions.set(key,responseVersion);grant.reverse.set(value,key);parts++;}return `/api/stream-audio/${encodeURIComponent(grant.trackId)}?grant=${token}&part=${key}`;};
         res.type('application/vnd.apple.mpegurl').send(rewriteSoundcloudManifest(Buffer.concat(chunks).toString('utf8'),url,link));
       }else{
         const max=32*1024*1024;if(Number(response.headers.get('content-length'))>max){await response.body?.cancel();fail(413,'AUDIO_TOO_LARGE','Фрагмент аудио слишком большой.');}

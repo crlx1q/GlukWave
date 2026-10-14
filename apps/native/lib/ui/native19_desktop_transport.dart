@@ -15,6 +15,7 @@ import 'listening_presence.dart';
 class NativeDesktopTransport extends StatelessWidget {
   final WaveController controller;
   final VoidCallback onOpen;
+  final VoidCallback? onDevices;
   final Key? artworkKey;
   final VoidCallback? onDragStart, onDragCancel;
   final ValueChanged<double>? onDragUpdate, onDragEnd;
@@ -22,6 +23,7 @@ class NativeDesktopTransport extends StatelessWidget {
     super.key,
     required this.controller,
     required this.onOpen,
+    this.onDevices,
     this.artworkKey,
     this.onDragStart,
     this.onDragUpdate,
@@ -98,7 +100,7 @@ class NativeDesktopTransport extends StatelessWidget {
                                       color: v.muted,
                                     ),
                                   ),
-                                  if (track != null) ...[
+                                  if (track != null && c.controllingRemote) ...[
                                     const SizedBox(height: 4),
                                     Builder(
                                       builder: (anchor) => PlayingOutput(
@@ -112,6 +114,7 @@ class NativeDesktopTransport extends StatelessWidget {
                                           showConnectPicker(
                                             anchor,
                                             c,
+                                            onAllDevices: onDevices,
                                             anchor: box == null
                                                 ? null
                                                 : box.localToGlobal(
@@ -364,6 +367,7 @@ class NativeDesktopTransport extends StatelessWidget {
                               showConnectPicker(
                                 anchor,
                                 c,
+                                onAllDevices: onDevices,
                                 anchor: box == null
                                     ? null
                                     : box.localToGlobal(Offset.zero) & box.size,

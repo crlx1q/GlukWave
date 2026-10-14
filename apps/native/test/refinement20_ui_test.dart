@@ -168,14 +168,8 @@ void main() {
           () => fixture.fixture(mode: config.$3, scale: config.$4),
         ))!;
         await mount(tester, c, Size(config.$1, config.$2));
-        expect(find.byKey(const Key('mini-active-device')), findsOneWidget);
+        expect(find.byKey(const Key('mini-active-device')), findsNothing);
         expect(tester.takeException(), isNull);
-        final deviceRect = tester.getRect(
-              find.byKey(const Key('mini-active-device')),
-            ),
-            miniRect = tester.getRect(find.byKey(const Key('mini-gesture')));
-        expect(deviceRect.left, greaterThanOrEqualTo(miniRect.left));
-        expect(deviceRect.right, lessThanOrEqualTo(miniRect.right + 1));
         await base.screenshot(tester, 'refinement20-${config.$1.toInt()}-home');
         await tester.tap(find.byKey(const Key('mini-gesture')));
         await settle(tester);
@@ -214,6 +208,8 @@ void main() {
           tester.element(find.byType(Scaffold).first),
           c,
           'spotify',
+          connected: true,
+          publicMode: false,
         ),
       );
       await settle(tester);
@@ -222,10 +218,7 @@ void main() {
       expect(find.text('В любимые'), findsOneWidget);
       await tester.tap(find.text('Показать ещё треки'));
       await settle(tester);
-      expect(
-        find.byKey(const Key('import-track-external-two')),
-        findsOneWidget,
-      );
+      expect(find.byKey(const Key('import-track-two')), findsOneWidget);
       expect(tester.takeException(), isNull);
       await base.screenshot(tester, 'refinement20-320-import');
       await tester.tap(find.text('Перенести в Wave'));
@@ -260,7 +253,9 @@ void main() {
       );
       gesture.onLongPressStart!(const LongPressStartDetails());
       gesture.onLongPressMoveUpdate!(
-        const LongPressMoveUpdateDetails(offsetFromOrigin: Offset(500, 0)),
+        const LongPressMoveUpdateDetails(
+          offsetFromOrigin: Offset(180 / .65, 0),
+        ),
       );
       await tester.pump();
       expect(find.byKey(const Key('album-back-sleeve')), findsOneWidget);

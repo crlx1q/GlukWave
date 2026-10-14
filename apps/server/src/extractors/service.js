@@ -136,6 +136,7 @@ export function setupExtractors(app,ctx,overrides={}){
       return null;
     }
   }
+  ctx.extractorPublicPlaylist=request=>runtime.execute('youtube',{...request,action:'public-playlist'});
   ctx.extractorAvailable=source=>!!adapters[source]&&runtime.available(source);
   ctx.extractorExpected=async track=>!!(await rightFor(track))?.stream;
   const hls=setupExtractedHls(app,ctx,{cdn:value=>safeCdn(value,'hls'),resolve:resolved,fetcher});

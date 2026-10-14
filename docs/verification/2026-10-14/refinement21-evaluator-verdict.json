@@ -1,0 +1,265 @@
+{
+  "verdict": "PASS",
+  "scope": "Independent real-app browser and Flutter UI evaluation only; no physical/provider playback claim.",
+  "browserSession": "refinement21-evaluator",
+  "nativeFocusedTestsPassed": 4,
+  "proofs": [
+    "work/qa/refinement21-evaluator-proof.json",
+    "work/qa/refinement21-evaluator-interactions-proof.json",
+    "work/qa/refinement21-evaluator-fullmobile-proof.json",
+    "work/qa/refinement21-evaluator-motionlyrics-proof.json",
+    "work/qa/refinement21-evaluator-native.log"
+  ],
+  "sources": [
+    {
+      "path": "apps/web/src/connect-playback-card.tsx",
+      "sha256": "d9ad85eab0838b0b731303f1c47268f654e10a8b470bc38eb5fd4fcc42847569"
+    },
+    {
+      "path": "apps/web/src/devices-popover.tsx",
+      "sha256": "d92a8a3374b84184bfc006e70de8e04ed6009052881914c8de7a71cbf2a2d7eb"
+    },
+    {
+      "path": "apps/web/src/main.tsx",
+      "sha256": "53645fd49adcb7d42cfe2313dc0e8e746a459d07420e2b5f67c046aaa92b30e0"
+    },
+    {
+      "path": "apps/web/src/morph-icon.tsx",
+      "sha256": "346ee70ae7fb469baef1be7ec447c132864556f28327078e03f3c6044fdf2fa2"
+    },
+    {
+      "path": "apps/web/src/player-ui.tsx",
+      "sha256": "c9838cff0dba1d31ae1f16c2b184b17dfe9525b2c338fa4172f9fc50fff42206"
+    },
+    {
+      "path": "apps/web/src/refinement21.css",
+      "sha256": "9f851f2b6b7947dbd2c038311067ce5a3a0c06a0cc44594b3f3abf67e07cf75f"
+    },
+    {
+      "path": "apps/web/src/wave.tsx",
+      "sha256": "4ba4bed7ab8bc91e3e4403ebc6b684b75ca342585417d6456a5f6976581e80e1"
+    },
+    {
+      "path": "apps/native/lib/ui/app.dart",
+      "sha256": "c0c5efa51c3b11b8c3f1a15637cfbc2e4ac7d2d0869af9ca26bba879eab85a67"
+    },
+    {
+      "path": "apps/native/lib/ui/connect_device_tile.dart",
+      "sha256": "0629bbed79924bf5b1aae8227211e40c8e0658e02d4fdf2b621ffaa8b3357211"
+    },
+    {
+      "path": "apps/native/lib/ui/connect_panel.dart",
+      "sha256": "faaaf15b11aa3f900a14674f794610099328e3afc66e39231c05245dc4e85069"
+    },
+    {
+      "path": "apps/native/lib/ui/connect_picker.dart",
+      "sha256": "0771d19299bd2cba14175c004037ba5b4bec553215b65d65dc00b4a26a085b97"
+    },
+    {
+      "path": "apps/native/lib/ui/connect_playback.dart",
+      "sha256": "23d8c5e64e82b0febb8c13f99dc40ce51687c0905cb7b49fc85a0a94fc598449"
+    },
+    {
+      "path": "apps/native/lib/ui/listening_presence.dart",
+      "sha256": "a2b4bccf408ae2a15092838412d242ae6e5303fc0a46c1448ab2d8ac0fa5976e"
+    },
+    {
+      "path": "apps/native/lib/ui/native19_desktop_transport.dart",
+      "sha256": "f310e5f352cc18da3fdaba98db6f2ae5cdde80d23f2415e87da6dc75bbe0b363"
+    },
+    {
+      "path": "apps/native/lib/ui/player.dart",
+      "sha256": "bbc19af782ba1c95826ca3a2feed58a3a4ac331f49004b3ce32ae698de87065c"
+    },
+    {
+      "path": "apps/native/lib/ui/widgets.dart",
+      "sha256": "fe1e504c40302f0d761f3369e40cfd45bf4141a0861e22ecabbbd830353de9df"
+    },
+    {
+      "path": "apps/native/test/refinement21_ui_test.dart",
+      "sha256": "6ff5420a7515c136cb47e164ccbab2296cb6a74c71b46a34310cdd4e572339f4"
+    }
+  ],
+  "revalidationProofs": [
+    "work/qa/refinement21-cover-integrated-connect.log",
+    "work/qa/refinement21-evaluator-proof.json",
+    "work/qa/refinement21-cover-evaluator-native.log",
+    "work/qa/playlist22-fresh-smoke-interactions-proof.json",
+    "work/qa/playlist22-fresh-connect.log",
+    "work/qa/playlist22-fresh-connect-320-full.png",
+    "work/qa/playlist22-fresh-connect-1440-local-fullplayer.png"
+  ],
+  "revalidationScope": "Fresh actual-component web Connect smoke after playlist/public import integration: mobile full panel, output visibility, one transfer command and expanded-player local status. Original independent native and lyrics/glyph evidence is retained unchanged below.",
+  "priorEvaluation": {
+    "verdict": "PASS",
+    "scope": "Independent real-app browser and Flutter UI evaluation only; no physical/provider playback claim.",
+    "browserSession": "refinement21-evaluator",
+    "nativeFocusedTestsPassed": 4,
+    "proofs": [
+      "work/qa/refinement21-evaluator-proof.json",
+      "work/qa/refinement21-evaluator-interactions-proof.json",
+      "work/qa/refinement21-evaluator-fullmobile-proof.json",
+      "work/qa/refinement21-evaluator-motionlyrics-proof.json",
+      "work/qa/refinement21-evaluator-native.log"
+    ],
+    "sources": [
+      {
+        "path": "apps/web/src/connect-playback-card.tsx",
+        "sha256": "d9ad85eab0838b0b731303f1c47268f654e10a8b470bc38eb5fd4fcc42847569"
+      },
+      {
+        "path": "apps/web/src/devices-popover.tsx",
+        "sha256": "d92a8a3374b84184bfc006e70de8e04ed6009052881914c8de7a71cbf2a2d7eb"
+      },
+      {
+        "path": "apps/web/src/main.tsx",
+        "sha256": "7b6211724d8118403d99759daa7c46e4125a2c83acc05e3329b62f464344f2aa"
+      },
+      {
+        "path": "apps/web/src/morph-icon.tsx",
+        "sha256": "346ee70ae7fb469baef1be7ec447c132864556f28327078e03f3c6044fdf2fa2"
+      },
+      {
+        "path": "apps/web/src/player-ui.tsx",
+        "sha256": "af80318eabddacc32676a72f664be22090803545726613f3e0045eda2cbcd9dd"
+      },
+      {
+        "path": "apps/web/src/refinement21.css",
+        "sha256": "9f851f2b6b7947dbd2c038311067ce5a3a0c06a0cc44594b3f3abf67e07cf75f"
+      },
+      {
+        "path": "apps/web/src/wave.tsx",
+        "sha256": "4ba4bed7ab8bc91e3e4403ebc6b684b75ca342585417d6456a5f6976581e80e1"
+      },
+      {
+        "path": "apps/native/lib/ui/app.dart",
+        "sha256": "d1204b458efb70d11dbdd1fdf1bf7f734413840a5c56fe55e3f28cd6ff394446"
+      },
+      {
+        "path": "apps/native/lib/ui/connect_device_tile.dart",
+        "sha256": "0629bbed79924bf5b1aae8227211e40c8e0658e02d4fdf2b621ffaa8b3357211"
+      },
+      {
+        "path": "apps/native/lib/ui/connect_panel.dart",
+        "sha256": "faaaf15b11aa3f900a14674f794610099328e3afc66e39231c05245dc4e85069"
+      },
+      {
+        "path": "apps/native/lib/ui/connect_picker.dart",
+        "sha256": "0771d19299bd2cba14175c004037ba5b4bec553215b65d65dc00b4a26a085b97"
+      },
+      {
+        "path": "apps/native/lib/ui/connect_playback.dart",
+        "sha256": "23d8c5e64e82b0febb8c13f99dc40ce51687c0905cb7b49fc85a0a94fc598449"
+      },
+      {
+        "path": "apps/native/lib/ui/listening_presence.dart",
+        "sha256": "a2b4bccf408ae2a15092838412d242ae6e5303fc0a46c1448ab2d8ac0fa5976e"
+      },
+      {
+        "path": "apps/native/lib/ui/native19_desktop_transport.dart",
+        "sha256": "f310e5f352cc18da3fdaba98db6f2ae5cdde80d23f2415e87da6dc75bbe0b363"
+      },
+      {
+        "path": "apps/native/lib/ui/player.dart",
+        "sha256": "bbc19af782ba1c95826ca3a2feed58a3a4ac331f49004b3ce32ae698de87065c"
+      },
+      {
+        "path": "apps/native/lib/ui/widgets.dart",
+        "sha256": "fe1e504c40302f0d761f3369e40cfd45bf4141a0861e22ecabbbd830353de9df"
+      },
+      {
+        "path": "apps/native/test/refinement21_ui_test.dart",
+        "sha256": "6ff5420a7515c136cb47e164ccbab2296cb6a74c71b46a34310cdd4e572339f4"
+      }
+    ],
+    "revalidationProofs": [
+      "work/qa/refinement21-cover-integrated-connect.log",
+      "work/qa/refinement21-evaluator-proof.json",
+      "work/qa/refinement21-cover-evaluator-native.log"
+    ],
+    "revalidationScope": "Prior Connect/lyrics/glyph product UI observed again after shared cover stylesheet/player changes. Four focused native UI cases passed in the fresh combined run. Unrelated old test-source entries excluded from current coverage."
+  },
+  "priorReportFileModifiedAt": "2026-10-13T21:04:55.055Z",
+  "revalidatedAt": "2026-10-14T08:56:20.482Z",
+  "revalidation": {
+    "kind": "connect",
+    "verdict": "PASS",
+    "reviewer": "Independent available inherited-model evaluator; no different-provider model capability exposed.",
+    "sourcesChangedSincePrior": [
+      {
+        "path": "apps/web/src/main.tsx",
+        "priorSha256": "7b6211724d8118403d99759daa7c46e4125a2c83acc05e3329b62f464344f2aa",
+        "currentSha256": "53645fd49adcb7d42cfe2313dc0e8e746a459d07420e2b5f67c046aaa92b30e0"
+      },
+      {
+        "path": "apps/web/src/player-ui.tsx",
+        "priorSha256": "af80318eabddacc32676a72f664be22090803545726613f3e0045eda2cbcd9dd",
+        "currentSha256": "c9838cff0dba1d31ae1f16c2b184b17dfe9525b2c338fa4172f9fc50fff42206"
+      },
+      {
+        "path": "apps/native/lib/ui/app.dart",
+        "priorSha256": "d1204b458efb70d11dbdd1fdf1bf7f734413840a5c56fe55e3f28cd6ff394446",
+        "currentSha256": "c0c5efa51c3b11b8c3f1a15637cfbc2e4ac7d2d0869af9ca26bba879eab85a67"
+      }
+    ],
+    "proofObservedAt": "2026-10-14T08:39:27.725Z",
+    "proofs": [
+      "work/qa/playlist22-fresh-smoke-interactions-proof.json",
+      "work/qa/playlist22-fresh-connect.log",
+      "work/qa/playlist22-fresh-connect-320-full.png",
+      "work/qa/playlist22-fresh-connect-1440-local-fullplayer.png"
+    ],
+    "observations": {
+      "mobilePanelBounds": {
+        "bottom": 568,
+        "height": 553.796875,
+        "left": 0,
+        "right": 320,
+        "top": 14.203125,
+        "width": 320,
+        "x": 0,
+        "y": 14.203125
+      },
+      "mobileGlyphs": [
+        {
+          "h": 26.25,
+          "sh": 26.25,
+          "sw": 26.25,
+          "w": 26.25
+        },
+        {
+          "h": 26.25,
+          "sh": 26.25,
+          "sw": 26.25,
+          "w": 26.25
+        },
+        {
+          "h": 26.25,
+          "sh": 26.25,
+          "sw": 26.25,
+          "w": 26.25
+        }
+      ],
+      "localFullStatusHidden": true,
+      "transfer": {
+        "commands": [
+          {
+            "command": "transfer",
+            "deviceId": "30a1bd98-288f-4ec8-a6dc-2a4debe17c60",
+            "surfaceId": "a55cf33c-8657-4e5f-a29d-da1e47831511",
+            "fromDeviceId": "qa-phone"
+          }
+        ],
+        "localStatusHidden": true
+      },
+      "localExpandedPlayerSignatureHidden": true,
+      "pageErrors": []
+    },
+    "scope": "Fresh actual-component web Connect smoke after playlist/public import integration: mobile full panel, output visibility, one transfer command and expanded-player local status. Original independent native and lyrics/glyph evidence is retained unchanged below.",
+    "limitations": [
+      "The global document scrollWidth flag is true at320/125% with expanded-player body overflow hidden; visible device panel is bounded. No universal document-overflow PASS is claimed.",
+      "This revalidation did not rerun the original native Connect/lyrics/glyph cases. Original native evidence remains, while root full native verification is separate. Final app.dart empty-state/copy delta is inspected/scoped-analyzed, not a new native Connect observation.",
+      "No owner/provider account access or physical playback."
+    ]
+  }
+}

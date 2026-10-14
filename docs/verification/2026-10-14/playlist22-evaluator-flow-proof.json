@@ -1,0 +1,39 @@
+{
+  "checks": [
+    {
+      "name": "Like paints within two frames before delayed ACK without broad reads",
+      "like": {
+        "busy": null,
+        "disabled": false,
+        "order": [],
+        "pressed": "true"
+      }
+    },
+    {
+      "name": "Multiple memberships, local removal, disabled repeat, one atomic request",
+      "removal": {
+        "busy": "true",
+        "disabled": true,
+        "order": [],
+        "pressed": "false",
+        "text": "Там, где тихо\nWave artist\nТихий вечер\nСохраняем…\nВ дорогу\n2 трека\nНовый плейлист\nНовый плейлист"
+      }
+    },
+    {
+      "name": "Membership error rolls back inline; retry keeps picker and succeeds"
+    },
+    {
+      "name": "Create shows honest saving draft, prevents double-submit and retains long name on error",
+      "draft": {
+        "busy": "true",
+        "disabled": true,
+        "order": [],
+        "pressed": null,
+        "text": "Там, где тихо\nWave artist\nПосле дождя и очень длинной прогулки вдоль ночного морского побережья\nСохраняем…\nТихий вечер\n2 трека\nВ дорогу\n2 трека\nНовый плейлист\nСохраняем…"
+      }
+    },
+    {
+      "name": "Create retry inserts one acknowledged playlist without reload"
+    }
+  ]
+}

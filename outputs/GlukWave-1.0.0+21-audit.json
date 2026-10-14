@@ -1,0 +1,2381 @@
+{
+  "checkedAt": "2026-10-14T08:58:25.142247+00:00",
+  "version": "1.0.0+21",
+  "passed": true,
+  "scope": "Public nickname/URL import across four providers with no provider OAuth/keys; optimistic likes and playlist editing, atomic membership and batched library reads; remote-only output, Connect switchboard, looping listening mark, compact lyrics, exact owner cover transplant; real Windows HLS decoding and bounded stream recovery",
+  "web": {
+    "javascript": "/assets/main-RAfEgBWv.js",
+    "buildPassed": true,
+    "testsPassed": 80
+  },
+  "server": {
+    "testsPassed": 128,
+    "verification": {
+      "passed": true,
+      "distinctTestsVerified": 128,
+      "runs": [
+        {
+          "log": "public-import-server-all.log",
+          "passed": 128,
+          "failed": 0,
+          "exit": 0
+        },
+        {
+          "log": "public-import-server-targeted-final.log",
+          "passed": 14,
+          "failed": 0,
+          "exit": 0
+        }
+      ],
+      "unresolved": 0,
+      "scope": "Full existing suite plus public import; targeted recheck after bounded HTTP deadline and grouped import validation refinements",
+      "pythonBridgeTests": 2
+    },
+    "deploymentPerformed": false,
+    "sessionBoundCapabilitiesSurviveAnotherWorker": true
+  },
+  "native": {
+    "apk": "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\apps\\native\\build\\app\\outputs\\flutter-apk\\app-debug.apk",
+    "bytes": 214474575,
+    "builtAt": "2026-10-14T08:56:38.792645+00:00",
+    "sha256": "42b8dd3d868e43dc7a083d084d269675ebdc60b7a7e296cdad55010dbf38f74c",
+    "sourceFrozenAt": "2026-10-14T08:51:27.626658+00:00",
+    "sourceSha256": "90d9a21b994e13d9a31d4a010048485f2ee5f1f9439c348e3980c8ca4dad0a6d",
+    "sourceFiles": 207,
+    "kernelSha256": "ea52c580242e4c2073d83abbcf81843f3579d3eb09a5e2b4ccd81e49c3cf6b2a",
+    "kernelMatchesBuildOutput": true,
+    "compileDefine": "https://wave.gluk.tech",
+    "kernelFeatureMarkers": {
+      "tech.gluk.glukwave/home_widgets": true,
+      "glukwave.widget": true,
+      "Home screen widgets": true,
+      "https://wave.gluk.tech": true,
+      "full-player": true,
+      "player-cover-gesture": true,
+      "language-selector": true,
+      "language.auto": true,
+      "locale:change": true,
+      "lrcClock": true,
+      "artworkForDisplay": true,
+      "-t500x500.": true,
+      "/api/diagnostics/events": true,
+      "glukwave-lan-v1": true,
+      "LAN pairing": true,
+      "seasonalEffects": true,
+      "lan-enable": true,
+      "ROOM_STATE": true,
+      "/lrclib": true,
+      "Find on LRCLIB": true,
+      "/genius/preview": true,
+      "genius-preview": true,
+      "cover-ambient-transform": true,
+      "/discord": true,
+      "discord:changed": true,
+      "discordPresence": true,
+      "deviceVolume": true,
+      "/api/auth/native-captcha": true,
+      "Invalid authentication expiry": true,
+      "desktop-quick-volume": true,
+      "account:state": true,
+      "track-loading-cover": true,
+      "ScrollingLabel": true,
+      "/connect": true,
+      "outputActive": true,
+      "/account/sessions": true,
+      "downloadUrl": true,
+      "adoptOnly": true,
+      "/taste": true,
+      "/friends": true,
+      "/jams": true,
+      "/api/account/": true,
+      "currentPassword": true,
+      "Email sent": true,
+      "/playlists/discover": true,
+      "mini-card-progress": true,
+      "search-source-menu": true,
+      "search-type-": true,
+      "player-transport-capsule": true,
+      "player-secondary-capsule": true,
+      "X-GlukWave-Playback-Wait": true,
+      "player-centered-view": true,
+      "player-detail-view-": true,
+      "player-lyrics-toggle": true,
+      "compact-eq-presets": true,
+      "#EXTM3U": true,
+      "Colour from the cover": true,
+      "coverAccent": true,
+      "compact-eq-enabled": true,
+      "compact-eq-band-": true,
+      "compact-eq-preamp": true,
+      "compact-eq-rate": true,
+      "connect-quick-picker": true,
+      "native-queue-list": true,
+      "queue-add": true,
+      "waveMode": true,
+      "waveMood": true,
+      "waveActive": true,
+      "/api/recommendations": true,
+      "queue-search": true,
+      "ListeningPresence": true,
+      "SettingsEdit": true,
+      "_PlaybackWavePainter": true,
+      "tech.gluk.glukwave/energy": true,
+      "saved-view": true,
+      "saved-play": true,
+      "guard-manual-code": true,
+      "guard-target-name": true,
+      "guard-approve": true,
+      "lyrics-persistent-controls": true,
+      "OFFLINE_MISSING": true,
+      "INVALID_LOGIN_CODE": true,
+      "playlist-membership-": true,
+      "playlist-new-name": true,
+      "playlist-edit-name": true,
+      "playlist-library-": true,
+      "Playlist response is missing": true,
+      "/api/public-import/search": true,
+      "/api/public-import/tracks": true,
+      "publicSourceUrl": true
+    },
+    "localCatalogsInKernel": {
+      "en": true,
+      "ru": true,
+      "kk": true,
+      "uk": true,
+      "de": true,
+      "es": true
+    },
+    "qaTrackBundled": false,
+    "fontManifestVerified": true,
+    "staticFontFaces": [
+      {
+        "asset": "assets/fonts/Nunito-Regular.ttf",
+        "weight": 400,
+        "variable": false,
+        "sha256": "29f17d41574376520b263bde34a4fecb11814233ff280c66befce6020c5e3cc4",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-Medium.ttf",
+        "weight": 500,
+        "variable": false,
+        "sha256": "818d89d5417ed2c7686c07097469f417d41dfe70b8e9514466637612f7ab9d8d",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-SemiBold.ttf",
+        "weight": 600,
+        "variable": false,
+        "sha256": "e6ac9b7051c6b3c4a23817a9272e2a8f7124896b36e68b30a3d46b452a0418a5",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-Bold.ttf",
+        "weight": 700,
+        "variable": false,
+        "sha256": "19acc4b8e7dc15b49c3802b6f2b53a1c41d7ee548733204a367052fa53387933",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-ExtraBold.ttf",
+        "weight": 800,
+        "variable": false,
+        "sha256": "9bc8f0d0c03926636f41ec699c6563dd01835b510c194e2086811eaf65a8e527",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-Black.ttf",
+        "weight": 900,
+        "variable": false,
+        "sha256": "b3628977111142f66472632770b76ee2c0665a40ae536bd64971a3bc19087717",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Manrope-Regular.ttf",
+        "weight": 400,
+        "variable": false,
+        "sha256": "c443e2325b9ff17933ec2f5a99d835af430a545901d146f81f4fc9f4882b6623",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Manrope-Medium.ttf",
+        "weight": 500,
+        "variable": false,
+        "sha256": "78177fa989a3feb256c1750faca4a05ab0b70f093f5f45b12a537e7b939bae9c",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Manrope-SemiBold.ttf",
+        "weight": 600,
+        "variable": false,
+        "sha256": "1eea52be7b84d0841e39d6102cdf2f6777dbdbd6781d3a40a3323a8151163f07",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Manrope-Bold.ttf",
+        "weight": 700,
+        "variable": false,
+        "sha256": "06ef9bf16d6ce1b6b8d6b953ea8b9e6c30e4b3708cf039132224fb2a5aa77102",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Manrope-ExtraBold.ttf",
+        "weight": 800,
+        "variable": false,
+        "sha256": "63050130f7beccf497d740a2af39f8d5d49447e9ed777014e8d6d413442425ba",
+        "matchesSource": true
+      }
+    ],
+    "fontManifestSha256": "dc61e379e1f65f8de62057e95a64baaebcbbf8e5ee2450f736e2611705ca210f",
+    "nunitoLicenseIncluded": true,
+    "manifestVerified": true,
+    "androidWidgetReceiversPrivate": {
+      "WavePlayerWidget": true,
+      "WaveLargeWidget": true,
+      "WidgetCommandReceiver": true
+    },
+    "widgetTestRuntimeBundled": false,
+    "version": "1.0.0",
+    "versionCode": 21,
+    "minSdk": 24,
+    "targetSdk": 36,
+    "output": "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\outputs\\GlukWave-android-debug.apk",
+    "outputMatchesBuild": true,
+    "signatureVerified": true,
+    "signatureScheme": "v2",
+    "certificateSha256": "d631b0271019e5b3a9df153929ac0de07708b0766fc4c132fbce862b67a56748",
+    "updateCertificateMatchesPrevious": true,
+    "analyzerIssues": 0,
+    "standardTestsPassed": 426,
+    "standardVerification": {
+      "passed": true,
+      "distinctTestsVerified": 426,
+      "runs": [
+        {
+          "log": "refinement21-native-playlists-final.jsonl",
+          "runnerSuccess": false,
+          "completed": 416,
+          "failed": 13,
+          "failures": [
+            {
+              "file": "apps/native/test/focused_player_test.dart",
+              "name": "Focused player dark 1440.0 at125 percent, centered/split, preset menu and themed corners",
+              "result": "error",
+              "skipped": false,
+              "log": "refinement21-native-playlists-final.jsonl",
+              "currentTestSourceSha256": "ef96a7413182760630d0db887d36d973ad6d5c4e6af6fde1d58d905530851e4c"
+            },
+            {
+              "file": "apps/native/test/focused_player_test.dart",
+              "name": "Focused player dark 1280.0 at125 percent, centered/split, preset menu and themed corners",
+              "result": "error",
+              "skipped": false,
+              "log": "refinement21-native-playlists-final.jsonl",
+              "currentTestSourceSha256": "ef96a7413182760630d0db887d36d973ad6d5c4e6af6fde1d58d905530851e4c"
+            },
+            {
+              "file": "apps/native/test/focused_player_test.dart",
+              "name": "Focused player amoled 1440.0 at125 percent, centered/split, preset menu and themed corners",
+              "result": "error",
+              "skipped": false,
+              "log": "refinement21-native-playlists-final.jsonl",
+              "currentTestSourceSha256": "ef96a7413182760630d0db887d36d973ad6d5c4e6af6fde1d58d905530851e4c"
+            },
+            {
+              "file": "apps/native/test/focused_player_test.dart",
+              "name": "Focused player amoled 1280.0 at125 percent, centered/split, preset menu and themed corners",
+              "result": "error",
+              "skipped": false,
+              "log": "refinement21-native-playlists-final.jsonl",
+              "currentTestSourceSha256": "ef96a7413182760630d0db887d36d973ad6d5c4e6af6fde1d58d905530851e4c"
+            },
+            {
+              "file": "apps/native/test/focused_player_test.dart",
+              "name": "Focused player light 1440.0 at125 percent, centered/split, preset menu and themed corners",
+              "result": "error",
+              "skipped": false,
+              "log": "refinement21-native-playlists-final.jsonl",
+              "currentTestSourceSha256": "ef96a7413182760630d0db887d36d973ad6d5c4e6af6fde1d58d905530851e4c"
+            },
+            {
+              "file": "apps/native/test/focused_player_test.dart",
+              "name": "Focused player light 1280.0 at125 percent, centered/split, preset menu and themed corners",
+              "result": "error",
+              "skipped": false,
+              "log": "refinement21-native-playlists-final.jsonl",
+              "currentTestSourceSha256": "ef96a7413182760630d0db887d36d973ad6d5c4e6af6fde1d58d905530851e4c"
+            },
+            {
+              "file": "apps/native/test/player_details_test.dart",
+              "name": "Entire native cover at125% dark Size(390.0, 700.0) flat/3D/extreme tilt",
+              "result": "error",
+              "skipped": false,
+              "log": "refinement21-native-playlists-final.jsonl",
+              "currentTestSourceSha256": "022d371c3cdade64475a1dcfccafaae353b8ee3f89f399c91261db51078e3cdd"
+            },
+            {
+              "file": "apps/native/test/player_details_test.dart",
+              "name": "Entire native cover at125% dark Size(320.0, 568.0) flat/3D/extreme tilt",
+              "result": "error",
+              "skipped": false,
+              "log": "refinement21-native-playlists-final.jsonl",
+              "currentTestSourceSha256": "022d371c3cdade64475a1dcfccafaae353b8ee3f89f399c91261db51078e3cdd"
+            },
+            {
+              "file": "apps/native/test/player_details_test.dart",
+              "name": "Entire native cover at125% amoled Size(390.0, 700.0) flat/3D/extreme tilt",
+              "result": "error",
+              "skipped": false,
+              "log": "refinement21-native-playlists-final.jsonl",
+              "currentTestSourceSha256": "022d371c3cdade64475a1dcfccafaae353b8ee3f89f399c91261db51078e3cdd"
+            },
+            {
+              "file": "apps/native/test/player_details_test.dart",
+              "name": "Entire native cover at125% amoled Size(320.0, 568.0) flat/3D/extreme tilt",
+              "result": "error",
+              "skipped": false,
+              "log": "refinement21-native-playlists-final.jsonl",
+              "currentTestSourceSha256": "022d371c3cdade64475a1dcfccafaae353b8ee3f89f399c91261db51078e3cdd"
+            },
+            {
+              "file": "apps/native/test/player_details_test.dart",
+              "name": "Entire native cover at125% light Size(390.0, 700.0) flat/3D/extreme tilt",
+              "result": "error",
+              "skipped": false,
+              "log": "refinement21-native-playlists-final.jsonl",
+              "currentTestSourceSha256": "022d371c3cdade64475a1dcfccafaae353b8ee3f89f399c91261db51078e3cdd"
+            },
+            {
+              "file": "apps/native/test/player_details_test.dart",
+              "name": "Entire native cover at125% light Size(320.0, 568.0) flat/3D/extreme tilt",
+              "result": "error",
+              "skipped": false,
+              "log": "refinement21-native-playlists-final.jsonl",
+              "currentTestSourceSha256": "022d371c3cdade64475a1dcfccafaae353b8ee3f89f399c91261db51078e3cdd"
+            },
+            {
+              "file": "apps/native/test/wave18_ui_test.dart",
+              "name": "Native cover reflection follows rotation with fixed artwork size",
+              "result": "error",
+              "skipped": false,
+              "log": "refinement21-native-playlists-final.jsonl",
+              "currentTestSourceSha256": "99f9e8cf3baf9249c2f1ce273a0346fc03b79f682e99f98af60aeb07aed79767"
+            }
+          ]
+        },
+        {
+          "log": "refinement21-native-layout-recovery.jsonl",
+          "runnerSuccess": true,
+          "completed": 31,
+          "failed": 0,
+          "failures": []
+        },
+        {
+          "log": "refinement21-native-reflection-recovery.jsonl",
+          "runnerSuccess": true,
+          "completed": 1,
+          "failed": 0,
+          "failures": []
+        },
+        {
+          "log": "public-import-evaluator-native.log",
+          "runnerSuccess": true,
+          "completed": 9,
+          "failed": 0,
+          "failures": []
+        },
+        {
+          "log": "public-import-native-overlap.jsonl",
+          "runnerSuccess": true,
+          "completed": 1,
+          "failed": 0,
+          "failures": []
+        }
+      ],
+      "unresolved": [],
+      "scope": "Actual Flutter CLI outcomes. Earlier failures retained; recovery replaces the same named scenario only."
+    },
+    "signature": "debug",
+    "deviceRuntimeVerified": false,
+    "manropeLicenseIncluded": true,
+    "iosBuilt": false,
+    "sourceFreezeFile": "docs/verification/2026-10-14/refinement21-native-source-freeze.json",
+    "windowsExecutableBuilt": true,
+    "windows": {
+      "checkedAt": "2026-10-14T08:55:45.295414+00:00",
+      "passed": true,
+      "bundle": "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\outputs\\GlukWave-windows",
+      "featureMarkers": {
+        "track-loading-cover": true,
+        "glukwave-lan-v1": true,
+        "LAN pairing": true,
+        "seasonalEffects": true,
+        "lan-enable": true,
+        "/discord": true,
+        "discord:changed": true,
+        "discordPresence": true,
+        "/api/diagnostics/events": true,
+        "/lrclib": true,
+        "/genius/preview": true,
+        "genius-preview": true,
+        "cover-ambient-transform": true,
+        "ROOM_STATE": true,
+        "Find on LRCLIB": true,
+        "deviceVolume": true,
+        "/api/auth/native-captcha": true,
+        "desktop-quick-volume": true,
+        "/account/sessions": true,
+        "downloadUrl": true,
+        "adoptOnly": true,
+        "/taste": true,
+        "/friends": true,
+        "/jams": true,
+        "/api/account/": true,
+        "currentPassword": true,
+        "Email sent": true,
+        "/playlists/discover": true,
+        "/api/public-import/search": true,
+        "/api/public-import/tracks": true,
+        "publicSourceUrl": true,
+        "playlist-membership-": true,
+        "playlist-edit-name": true
+      },
+      "file": "outputs/GlukWave-windows.zip",
+      "bytes": 41344696,
+      "sha256": "2014d899f4109686401157974c0e9c4acabf32e080f839e5bf32600b94cdc1b0",
+      "frozenOriginalFilesMatched": 207,
+      "compiledSourceFilesMatched": 133,
+      "compiledSourcePaths": [
+        "assets/app_icon.ico",
+        "assets/coast.jpg",
+        "assets/fonts/Manrope-Bold.ttf",
+        "assets/fonts/Manrope-ExtraBold.ttf",
+        "assets/fonts/Manrope-Medium.ttf",
+        "assets/fonts/Manrope-Regular.ttf",
+        "assets/fonts/Manrope-SemiBold.ttf",
+        "assets/fonts/Nunito-Black.ttf",
+        "assets/fonts/Nunito-Bold.ttf",
+        "assets/fonts/Nunito-ExtraBold.ttf",
+        "assets/fonts/Nunito-Medium.ttf",
+        "assets/fonts/Nunito-Regular.ttf",
+        "assets/fonts/Nunito-SemiBold.ttf",
+        "assets/forest.jpg",
+        "assets/google-g.png",
+        "assets/licenses/just_audio_media_kit-UNLICENSE.txt",
+        "assets/licenses/Manrope-OFL.txt",
+        "assets/licenses/Nunito-OFL.txt",
+        "assets/logo.gif",
+        "assets/logo.png",
+        "assets/mark.svg",
+        "assets/Nunito.ttf",
+        "lib/core/api.dart",
+        "lib/core/appearance.dart",
+        "lib/core/artwork.dart",
+        "lib/core/controller.dart",
+        "lib/core/discord.dart",
+        "lib/core/equalizer.dart",
+        "lib/core/library_mutations.dart",
+        "lib/core/lyrics.dart",
+        "lib/core/models.dart",
+        "lib/core/parity.dart",
+        "lib/core/playback_recovery.dart",
+        "lib/core/qr_login.dart",
+        "lib/core/wave_math.dart",
+        "lib/l10n/audio_design_strings.dart",
+        "lib/l10n/catalogs.dart",
+        "lib/l10n/discord_strings.dart",
+        "lib/l10n/ecosystem_polish_strings.dart",
+        "lib/l10n/focused_player_strings.dart",
+        "lib/l10n/home_widget_strings.dart",
+        "lib/l10n/lan_strings.dart",
+        "lib/l10n/listening_polish_strings.dart",
+        "lib/l10n/lyrics_strings.dart",
+        "lib/l10n/parity_strings.dart",
+        "lib/l10n/season_strings.dart",
+        "lib/l10n/wave_localizations.dart",
+        "lib/main.dart",
+        "lib/services/ambience.dart",
+        "lib/services/appearance_store.dart",
+        "lib/services/audio.dart",
+        "lib/services/cache.dart",
+        "lib/services/desktop.dart",
+        "lib/services/diagnostics.dart",
+        "lib/services/energy.dart",
+        "lib/services/home_widgets.dart",
+        "lib/services/lan_transport.dart",
+        "lib/services/presence_bridge.dart",
+        "lib/services/provider_player.dart",
+        "lib/services/push.dart",
+        "lib/services/volume_store.dart",
+        "lib/services/waveform.dart",
+        "lib/services/windows_dsp.dart",
+        "lib/services/windows_equalizer.dart",
+        "lib/services/windows_mpv_player.dart",
+        "lib/ui/album_stage.dart",
+        "lib/ui/app.dart",
+        "lib/ui/appearance_panel.dart",
+        "lib/ui/auth_page.dart",
+        "lib/ui/auth_visuals.dart",
+        "lib/ui/connect_device_tile.dart",
+        "lib/ui/connect_panel.dart",
+        "lib/ui/connect_picker.dart",
+        "lib/ui/connect_playback.dart",
+        "lib/ui/cover_accent.dart",
+        "lib/ui/cover_ambient.dart",
+        "lib/ui/desktop_player.dart",
+        "lib/ui/device_labels.dart",
+        "lib/ui/discord_panel.dart",
+        "lib/ui/discovery.dart",
+        "lib/ui/equalizer_curve.dart",
+        "lib/ui/equalizer_panel.dart",
+        "lib/ui/home_widget_previews.dart",
+        "lib/ui/lan_panel.dart",
+        "lib/ui/listening_presence.dart",
+        "lib/ui/listening_rail.dart",
+        "lib/ui/lofi.dart",
+        "lib/ui/lyrics_editor.dart",
+        "lib/ui/motion_icons.dart",
+        "lib/ui/native19_components.dart",
+        "lib/ui/native19_desktop_transport.dart",
+        "lib/ui/native19_guard.dart",
+        "lib/ui/native19_saved.dart",
+        "lib/ui/native19_strings.dart",
+        "lib/ui/parity_panels.dart",
+        "lib/ui/player.dart",
+        "lib/ui/player_gestures.dart",
+        "lib/ui/playlist_manager.dart",
+        "lib/ui/playlist_strings.dart",
+        "lib/ui/provider_host.dart",
+        "lib/ui/provider_import.dart",
+        "lib/ui/public_import_strings.dart",
+        "lib/ui/queue_panel.dart",
+        "lib/ui/refinement20_home.dart",
+        "lib/ui/refinement20_strings.dart",
+        "lib/ui/room_directory.dart",
+        "lib/ui/scrolling_label.dart",
+        "lib/ui/seasonal.dart",
+        "lib/ui/sessions_panel.dart",
+        "lib/ui/settings_edit.dart",
+        "lib/ui/silk_wave.dart",
+        "lib/ui/theme.dart",
+        "lib/ui/theme_preview.dart",
+        "lib/ui/volume_slider.dart",
+        "lib/ui/wave18_strings.dart",
+        "lib/ui/wave_colors.dart",
+        "lib/ui/widgets.dart",
+        "pubspec.lock",
+        "pubspec.yaml",
+        "windows/CMakeLists.txt",
+        "windows/flutter/CMakeLists.txt",
+        "windows/runner/CMakeLists.txt",
+        "windows/runner/flutter_window.cpp",
+        "windows/runner/flutter_window.h",
+        "windows/runner/main.cpp",
+        "windows/runner/resource.h",
+        "windows/runner/resources/app_icon.ico",
+        "windows/runner/runner.exe.manifest",
+        "windows/runner/Runner.rc",
+        "windows/runner/utils.cpp",
+        "windows/runner/utils.h",
+        "windows/runner/win32_window.cpp",
+        "windows/runner/win32_window.h"
+      ],
+      "binarySha256": {
+        "glukwave.exe": "5a1d37e258fdfdfe0664f82ab9e9baecab5e7ebea64c7d5316144f4ed6ccee73",
+        "flutter_windows.dll": "6840b8129fb105dd246f05f14eab97d7e8e9eade1428f9afde95de6b8e1a7808",
+        "libmpv-2.dll": "d5f0694b08c124e785d858d00082f3e3b158dd9138bfc48c0382bf1eb443a5fc",
+        "audio_service_win_plugin.dll": "0fd4db0e5fd5a5efd7dcddf039f6f75fc317d43348f3c166eca333cb4a477091",
+        "flutter_inappwebview_windows_plugin.dll": "00d5d681fb88f4d405cdc6ca823524fed4b533183cc49b6b052c1fdf332ca177",
+        "flutter_secure_storage_windows_plugin.dll": "83569c012fade6124d8464dc6cb49dfc81292fbd473e9b7db946de1bfdc1e948",
+        "tray_manager_plugin.dll": "5c82583980c65f98e2377526378003a36791551f6c3cf22a8100906b44166788",
+        "window_manager_plugin.dll": "a523697cd3d9d5318f468af17bf0d118e560396112fed2ab5c07d4e6fd4d96cc",
+        "msvcp140.dll": "0f885b509a685d2bbfa652fed26b5fb31d88fbdab0a978c641d1c7b8aa460aa9",
+        "vcruntime140.dll": "d5e4d9a3e835fa679450145d6a7d94e36573a509317111904d9b3712c30d9066",
+        "vcruntime140_1.dll": "1f2d41c4aa5db0bc33ebf7b66d72943a817d7ce6cbe880502a9403823633093f",
+        "media_kit_libs_windows_video_plugin.dll": "0fc5b33bd4a25d301acb91df2ad6ae91280e3488114cd4134e3977f54afedd60",
+        "libEGL.dll": "b2590bd0692f0381fc45c20bf1c7f7f713c9ea19c7ea6bab62efdd1fadc4eaac",
+        "libGLESv2.dll": "620bb6e38d7ed6c760a0cf4a8eb6a8f64b259b96ff286551cd32cefc6c35ca39"
+      },
+      "packageMatchesReleaseBuild": true,
+      "zipCrcAndAllFilesMatched": true,
+      "staticFontFaces": 11,
+      "compileDefine": "https://wave.gluk.tech",
+      "buildMode": "release",
+      "pinnedFullMediaRuntimeVerified": true,
+      "authenticodeSigned": false,
+      "uiInteractionVerified": false,
+      "physicalAudioVerified": false,
+      "installer": {
+        "checkedAt": "2026-10-14T08:57:23.6431503Z",
+        "passed": true,
+        "singleFile": true,
+        "version": "1.0.0.21",
+        "productVersion": "1.0.0+21",
+        "bytes": 33101248,
+        "sha256": "6d6aefcb948b48b455336106c70d3d2738d8dee6de6bb6f089d245b76340c6d5",
+        "compilerSucceeded": true,
+        "desktopShortcutChoice": true,
+        "autostartChoice": true,
+        "autostartDefault": false,
+        "webviewBootstrapperEmbedded": true,
+        "installedDuringIteration": false,
+        "authenticodeSigned": false
+      }
+    },
+    "verification": {
+      "passed": true,
+      "distinctTestsVerified": 426,
+      "runs": [
+        {
+          "log": "refinement21-native-playlists-final.jsonl",
+          "runnerSuccess": false,
+          "completed": 416,
+          "failed": 13,
+          "failures": [
+            {
+              "file": "apps/native/test/focused_player_test.dart",
+              "name": "Focused player dark 1440.0 at125 percent, centered/split, preset menu and themed corners",
+              "result": "error",
+              "skipped": false,
+              "log": "refinement21-native-playlists-final.jsonl",
+              "currentTestSourceSha256": "ef96a7413182760630d0db887d36d973ad6d5c4e6af6fde1d58d905530851e4c"
+            },
+            {
+              "file": "apps/native/test/focused_player_test.dart",
+              "name": "Focused player dark 1280.0 at125 percent, centered/split, preset menu and themed corners",
+              "result": "error",
+              "skipped": false,
+              "log": "refinement21-native-playlists-final.jsonl",
+              "currentTestSourceSha256": "ef96a7413182760630d0db887d36d973ad6d5c4e6af6fde1d58d905530851e4c"
+            },
+            {
+              "file": "apps/native/test/focused_player_test.dart",
+              "name": "Focused player amoled 1440.0 at125 percent, centered/split, preset menu and themed corners",
+              "result": "error",
+              "skipped": false,
+              "log": "refinement21-native-playlists-final.jsonl",
+              "currentTestSourceSha256": "ef96a7413182760630d0db887d36d973ad6d5c4e6af6fde1d58d905530851e4c"
+            },
+            {
+              "file": "apps/native/test/focused_player_test.dart",
+              "name": "Focused player amoled 1280.0 at125 percent, centered/split, preset menu and themed corners",
+              "result": "error",
+              "skipped": false,
+              "log": "refinement21-native-playlists-final.jsonl",
+              "currentTestSourceSha256": "ef96a7413182760630d0db887d36d973ad6d5c4e6af6fde1d58d905530851e4c"
+            },
+            {
+              "file": "apps/native/test/focused_player_test.dart",
+              "name": "Focused player light 1440.0 at125 percent, centered/split, preset menu and themed corners",
+              "result": "error",
+              "skipped": false,
+              "log": "refinement21-native-playlists-final.jsonl",
+              "currentTestSourceSha256": "ef96a7413182760630d0db887d36d973ad6d5c4e6af6fde1d58d905530851e4c"
+            },
+            {
+              "file": "apps/native/test/focused_player_test.dart",
+              "name": "Focused player light 1280.0 at125 percent, centered/split, preset menu and themed corners",
+              "result": "error",
+              "skipped": false,
+              "log": "refinement21-native-playlists-final.jsonl",
+              "currentTestSourceSha256": "ef96a7413182760630d0db887d36d973ad6d5c4e6af6fde1d58d905530851e4c"
+            },
+            {
+              "file": "apps/native/test/player_details_test.dart",
+              "name": "Entire native cover at125% dark Size(390.0, 700.0) flat/3D/extreme tilt",
+              "result": "error",
+              "skipped": false,
+              "log": "refinement21-native-playlists-final.jsonl",
+              "currentTestSourceSha256": "022d371c3cdade64475a1dcfccafaae353b8ee3f89f399c91261db51078e3cdd"
+            },
+            {
+              "file": "apps/native/test/player_details_test.dart",
+              "name": "Entire native cover at125% dark Size(320.0, 568.0) flat/3D/extreme tilt",
+              "result": "error",
+              "skipped": false,
+              "log": "refinement21-native-playlists-final.jsonl",
+              "currentTestSourceSha256": "022d371c3cdade64475a1dcfccafaae353b8ee3f89f399c91261db51078e3cdd"
+            },
+            {
+              "file": "apps/native/test/player_details_test.dart",
+              "name": "Entire native cover at125% amoled Size(390.0, 700.0) flat/3D/extreme tilt",
+              "result": "error",
+              "skipped": false,
+              "log": "refinement21-native-playlists-final.jsonl",
+              "currentTestSourceSha256": "022d371c3cdade64475a1dcfccafaae353b8ee3f89f399c91261db51078e3cdd"
+            },
+            {
+              "file": "apps/native/test/player_details_test.dart",
+              "name": "Entire native cover at125% amoled Size(320.0, 568.0) flat/3D/extreme tilt",
+              "result": "error",
+              "skipped": false,
+              "log": "refinement21-native-playlists-final.jsonl",
+              "currentTestSourceSha256": "022d371c3cdade64475a1dcfccafaae353b8ee3f89f399c91261db51078e3cdd"
+            },
+            {
+              "file": "apps/native/test/player_details_test.dart",
+              "name": "Entire native cover at125% light Size(390.0, 700.0) flat/3D/extreme tilt",
+              "result": "error",
+              "skipped": false,
+              "log": "refinement21-native-playlists-final.jsonl",
+              "currentTestSourceSha256": "022d371c3cdade64475a1dcfccafaae353b8ee3f89f399c91261db51078e3cdd"
+            },
+            {
+              "file": "apps/native/test/player_details_test.dart",
+              "name": "Entire native cover at125% light Size(320.0, 568.0) flat/3D/extreme tilt",
+              "result": "error",
+              "skipped": false,
+              "log": "refinement21-native-playlists-final.jsonl",
+              "currentTestSourceSha256": "022d371c3cdade64475a1dcfccafaae353b8ee3f89f399c91261db51078e3cdd"
+            },
+            {
+              "file": "apps/native/test/wave18_ui_test.dart",
+              "name": "Native cover reflection follows rotation with fixed artwork size",
+              "result": "error",
+              "skipped": false,
+              "log": "refinement21-native-playlists-final.jsonl",
+              "currentTestSourceSha256": "99f9e8cf3baf9249c2f1ce273a0346fc03b79f682e99f98af60aeb07aed79767"
+            }
+          ]
+        },
+        {
+          "log": "refinement21-native-layout-recovery.jsonl",
+          "runnerSuccess": true,
+          "completed": 31,
+          "failed": 0,
+          "failures": []
+        },
+        {
+          "log": "refinement21-native-reflection-recovery.jsonl",
+          "runnerSuccess": true,
+          "completed": 1,
+          "failed": 0,
+          "failures": []
+        },
+        {
+          "log": "public-import-evaluator-native.log",
+          "runnerSuccess": true,
+          "completed": 9,
+          "failed": 0,
+          "failures": []
+        },
+        {
+          "log": "public-import-native-overlap.jsonl",
+          "runnerSuccess": true,
+          "completed": 1,
+          "failed": 0,
+          "failures": []
+        }
+      ],
+      "unresolved": [],
+      "scope": "Actual Flutter CLI outcomes. Earlier failures retained; recovery replaces the same named scenario only."
+    },
+    "realMpvSilentRuntime": {
+      "passed": true,
+      "dllSha256": "d5f0694b08c124e785d858d00082f3e3b158dd9138bfc48c0382bf1eb443a5fc",
+      "oldAudioOnlyHlsDemuxer": false,
+      "newFullRuntimeHlsDemuxer": true,
+      "encryptedAacHlsActuallyDecoded": true,
+      "decodedSampleRate": 44100,
+      "decodedPositionSeconds": 1.545883,
+      "sessionHeadersAndCapabilityOnManifestKeyAndSegment": true,
+      "nativeEqualizerPreampAndDisableVerified": true,
+      "physicalAudioUsed": false,
+      "ownerProviderTrafficUsed": false,
+      "scope": "Actual delivered DLL decoding generated local AES128 HLS and own WAV through null output; not physical device playback/transfer.",
+      "rawProofs": [
+        "refinement21-mpv-hls-before.json",
+        "refinement21-mpv-hls-after.json",
+        "refinement21-mpv-dsp-proof.json"
+      ]
+    }
+  },
+  "design": {
+    "connect": {
+      "verdict": "PASS",
+      "scope": "Independent real-app browser and Flutter UI evaluation only; no physical/provider playback claim.",
+      "browserSession": "refinement21-evaluator",
+      "nativeFocusedTestsPassed": 4,
+      "proofs": [
+        "work/qa/refinement21-evaluator-proof.json",
+        "work/qa/refinement21-evaluator-interactions-proof.json",
+        "work/qa/refinement21-evaluator-fullmobile-proof.json",
+        "work/qa/refinement21-evaluator-motionlyrics-proof.json",
+        "work/qa/refinement21-evaluator-native.log"
+      ],
+      "sources": [
+        {
+          "path": "apps/web/src/connect-playback-card.tsx",
+          "sha256": "d9ad85eab0838b0b731303f1c47268f654e10a8b470bc38eb5fd4fcc42847569"
+        },
+        {
+          "path": "apps/web/src/devices-popover.tsx",
+          "sha256": "d92a8a3374b84184bfc006e70de8e04ed6009052881914c8de7a71cbf2a2d7eb"
+        },
+        {
+          "path": "apps/web/src/main.tsx",
+          "sha256": "53645fd49adcb7d42cfe2313dc0e8e746a459d07420e2b5f67c046aaa92b30e0"
+        },
+        {
+          "path": "apps/web/src/morph-icon.tsx",
+          "sha256": "346ee70ae7fb469baef1be7ec447c132864556f28327078e03f3c6044fdf2fa2"
+        },
+        {
+          "path": "apps/web/src/player-ui.tsx",
+          "sha256": "c9838cff0dba1d31ae1f16c2b184b17dfe9525b2c338fa4172f9fc50fff42206"
+        },
+        {
+          "path": "apps/web/src/refinement21.css",
+          "sha256": "9f851f2b6b7947dbd2c038311067ce5a3a0c06a0cc44594b3f3abf67e07cf75f"
+        },
+        {
+          "path": "apps/web/src/wave.tsx",
+          "sha256": "4ba4bed7ab8bc91e3e4403ebc6b684b75ca342585417d6456a5f6976581e80e1"
+        },
+        {
+          "path": "apps/native/lib/ui/app.dart",
+          "sha256": "c0c5efa51c3b11b8c3f1a15637cfbc2e4ac7d2d0869af9ca26bba879eab85a67"
+        },
+        {
+          "path": "apps/native/lib/ui/connect_device_tile.dart",
+          "sha256": "0629bbed79924bf5b1aae8227211e40c8e0658e02d4fdf2b621ffaa8b3357211"
+        },
+        {
+          "path": "apps/native/lib/ui/connect_panel.dart",
+          "sha256": "faaaf15b11aa3f900a14674f794610099328e3afc66e39231c05245dc4e85069"
+        },
+        {
+          "path": "apps/native/lib/ui/connect_picker.dart",
+          "sha256": "0771d19299bd2cba14175c004037ba5b4bec553215b65d65dc00b4a26a085b97"
+        },
+        {
+          "path": "apps/native/lib/ui/connect_playback.dart",
+          "sha256": "23d8c5e64e82b0febb8c13f99dc40ce51687c0905cb7b49fc85a0a94fc598449"
+        },
+        {
+          "path": "apps/native/lib/ui/listening_presence.dart",
+          "sha256": "a2b4bccf408ae2a15092838412d242ae6e5303fc0a46c1448ab2d8ac0fa5976e"
+        },
+        {
+          "path": "apps/native/lib/ui/native19_desktop_transport.dart",
+          "sha256": "f310e5f352cc18da3fdaba98db6f2ae5cdde80d23f2415e87da6dc75bbe0b363"
+        },
+        {
+          "path": "apps/native/lib/ui/player.dart",
+          "sha256": "bbc19af782ba1c95826ca3a2feed58a3a4ac331f49004b3ce32ae698de87065c"
+        },
+        {
+          "path": "apps/native/lib/ui/widgets.dart",
+          "sha256": "fe1e504c40302f0d761f3369e40cfd45bf4141a0861e22ecabbbd830353de9df"
+        },
+        {
+          "path": "apps/native/test/refinement21_ui_test.dart",
+          "sha256": "6ff5420a7515c136cb47e164ccbab2296cb6a74c71b46a34310cdd4e572339f4"
+        }
+      ],
+      "revalidationProofs": [
+        "work/qa/refinement21-cover-integrated-connect.log",
+        "work/qa/refinement21-evaluator-proof.json",
+        "work/qa/refinement21-cover-evaluator-native.log",
+        "work/qa/playlist22-fresh-smoke-interactions-proof.json",
+        "work/qa/playlist22-fresh-connect.log",
+        "work/qa/playlist22-fresh-connect-320-full.png",
+        "work/qa/playlist22-fresh-connect-1440-local-fullplayer.png"
+      ],
+      "revalidationScope": "Fresh actual-component web Connect smoke after playlist/public import integration: mobile full panel, output visibility, one transfer command and expanded-player local status. Original independent native and lyrics/glyph evidence is retained unchanged below.",
+      "priorEvaluation": {
+        "verdict": "PASS",
+        "scope": "Independent real-app browser and Flutter UI evaluation only; no physical/provider playback claim.",
+        "browserSession": "refinement21-evaluator",
+        "nativeFocusedTestsPassed": 4,
+        "proofs": [
+          "work/qa/refinement21-evaluator-proof.json",
+          "work/qa/refinement21-evaluator-interactions-proof.json",
+          "work/qa/refinement21-evaluator-fullmobile-proof.json",
+          "work/qa/refinement21-evaluator-motionlyrics-proof.json",
+          "work/qa/refinement21-evaluator-native.log"
+        ],
+        "sources": [
+          {
+            "path": "apps/web/src/connect-playback-card.tsx",
+            "sha256": "d9ad85eab0838b0b731303f1c47268f654e10a8b470bc38eb5fd4fcc42847569"
+          },
+          {
+            "path": "apps/web/src/devices-popover.tsx",
+            "sha256": "d92a8a3374b84184bfc006e70de8e04ed6009052881914c8de7a71cbf2a2d7eb"
+          },
+          {
+            "path": "apps/web/src/main.tsx",
+            "sha256": "7b6211724d8118403d99759daa7c46e4125a2c83acc05e3329b62f464344f2aa"
+          },
+          {
+            "path": "apps/web/src/morph-icon.tsx",
+            "sha256": "346ee70ae7fb469baef1be7ec447c132864556f28327078e03f3c6044fdf2fa2"
+          },
+          {
+            "path": "apps/web/src/player-ui.tsx",
+            "sha256": "af80318eabddacc32676a72f664be22090803545726613f3e0045eda2cbcd9dd"
+          },
+          {
+            "path": "apps/web/src/refinement21.css",
+            "sha256": "9f851f2b6b7947dbd2c038311067ce5a3a0c06a0cc44594b3f3abf67e07cf75f"
+          },
+          {
+            "path": "apps/web/src/wave.tsx",
+            "sha256": "4ba4bed7ab8bc91e3e4403ebc6b684b75ca342585417d6456a5f6976581e80e1"
+          },
+          {
+            "path": "apps/native/lib/ui/app.dart",
+            "sha256": "d1204b458efb70d11dbdd1fdf1bf7f734413840a5c56fe55e3f28cd6ff394446"
+          },
+          {
+            "path": "apps/native/lib/ui/connect_device_tile.dart",
+            "sha256": "0629bbed79924bf5b1aae8227211e40c8e0658e02d4fdf2b621ffaa8b3357211"
+          },
+          {
+            "path": "apps/native/lib/ui/connect_panel.dart",
+            "sha256": "faaaf15b11aa3f900a14674f794610099328e3afc66e39231c05245dc4e85069"
+          },
+          {
+            "path": "apps/native/lib/ui/connect_picker.dart",
+            "sha256": "0771d19299bd2cba14175c004037ba5b4bec553215b65d65dc00b4a26a085b97"
+          },
+          {
+            "path": "apps/native/lib/ui/connect_playback.dart",
+            "sha256": "23d8c5e64e82b0febb8c13f99dc40ce51687c0905cb7b49fc85a0a94fc598449"
+          },
+          {
+            "path": "apps/native/lib/ui/listening_presence.dart",
+            "sha256": "a2b4bccf408ae2a15092838412d242ae6e5303fc0a46c1448ab2d8ac0fa5976e"
+          },
+          {
+            "path": "apps/native/lib/ui/native19_desktop_transport.dart",
+            "sha256": "f310e5f352cc18da3fdaba98db6f2ae5cdde80d23f2415e87da6dc75bbe0b363"
+          },
+          {
+            "path": "apps/native/lib/ui/player.dart",
+            "sha256": "bbc19af782ba1c95826ca3a2feed58a3a4ac331f49004b3ce32ae698de87065c"
+          },
+          {
+            "path": "apps/native/lib/ui/widgets.dart",
+            "sha256": "fe1e504c40302f0d761f3369e40cfd45bf4141a0861e22ecabbbd830353de9df"
+          },
+          {
+            "path": "apps/native/test/refinement21_ui_test.dart",
+            "sha256": "6ff5420a7515c136cb47e164ccbab2296cb6a74c71b46a34310cdd4e572339f4"
+          }
+        ],
+        "revalidationProofs": [
+          "work/qa/refinement21-cover-integrated-connect.log",
+          "work/qa/refinement21-evaluator-proof.json",
+          "work/qa/refinement21-cover-evaluator-native.log"
+        ],
+        "revalidationScope": "Prior Connect/lyrics/glyph product UI observed again after shared cover stylesheet/player changes. Four focused native UI cases passed in the fresh combined run. Unrelated old test-source entries excluded from current coverage."
+      },
+      "priorReportFileModifiedAt": "2026-10-13T21:04:55.055Z",
+      "revalidatedAt": "2026-10-14T08:56:20.482Z",
+      "revalidation": {
+        "kind": "connect",
+        "verdict": "PASS",
+        "reviewer": "Independent available inherited-model evaluator; no different-provider model capability exposed.",
+        "sourcesChangedSincePrior": [
+          {
+            "path": "apps/web/src/main.tsx",
+            "priorSha256": "7b6211724d8118403d99759daa7c46e4125a2c83acc05e3329b62f464344f2aa",
+            "currentSha256": "53645fd49adcb7d42cfe2313dc0e8e746a459d07420e2b5f67c046aaa92b30e0"
+          },
+          {
+            "path": "apps/web/src/player-ui.tsx",
+            "priorSha256": "af80318eabddacc32676a72f664be22090803545726613f3e0045eda2cbcd9dd",
+            "currentSha256": "c9838cff0dba1d31ae1f16c2b184b17dfe9525b2c338fa4172f9fc50fff42206"
+          },
+          {
+            "path": "apps/native/lib/ui/app.dart",
+            "priorSha256": "d1204b458efb70d11dbdd1fdf1bf7f734413840a5c56fe55e3f28cd6ff394446",
+            "currentSha256": "c0c5efa51c3b11b8c3f1a15637cfbc2e4ac7d2d0869af9ca26bba879eab85a67"
+          }
+        ],
+        "proofObservedAt": "2026-10-14T08:39:27.725Z",
+        "proofs": [
+          "work/qa/playlist22-fresh-smoke-interactions-proof.json",
+          "work/qa/playlist22-fresh-connect.log",
+          "work/qa/playlist22-fresh-connect-320-full.png",
+          "work/qa/playlist22-fresh-connect-1440-local-fullplayer.png"
+        ],
+        "observations": {
+          "mobilePanelBounds": {
+            "bottom": 568,
+            "height": 553.796875,
+            "left": 0,
+            "right": 320,
+            "top": 14.203125,
+            "width": 320,
+            "x": 0,
+            "y": 14.203125
+          },
+          "mobileGlyphs": [
+            {
+              "h": 26.25,
+              "sh": 26.25,
+              "sw": 26.25,
+              "w": 26.25
+            },
+            {
+              "h": 26.25,
+              "sh": 26.25,
+              "sw": 26.25,
+              "w": 26.25
+            },
+            {
+              "h": 26.25,
+              "sh": 26.25,
+              "sw": 26.25,
+              "w": 26.25
+            }
+          ],
+          "localFullStatusHidden": true,
+          "transfer": {
+            "commands": [
+              {
+                "command": "transfer",
+                "deviceId": "30a1bd98-288f-4ec8-a6dc-2a4debe17c60",
+                "surfaceId": "a55cf33c-8657-4e5f-a29d-da1e47831511",
+                "fromDeviceId": "qa-phone"
+              }
+            ],
+            "localStatusHidden": true
+          },
+          "localExpandedPlayerSignatureHidden": true,
+          "pageErrors": []
+        },
+        "scope": "Fresh actual-component web Connect smoke after playlist/public import integration: mobile full panel, output visibility, one transfer command and expanded-player local status. Original independent native and lyrics/glyph evidence is retained unchanged below.",
+        "limitations": [
+          "The global document scrollWidth flag is true at320/125% with expanded-player body overflow hidden; visible device panel is bounded. No universal document-overflow PASS is claimed.",
+          "This revalidation did not rerun the original native Connect/lyrics/glyph cases. Original native evidence remains, while root full native verification is separate. Final app.dart empty-state/copy delta is inspected/scoped-analyzed, not a new native Connect observation.",
+          "No owner/provider account access or physical playback."
+        ]
+      }
+    },
+    "cover": {
+      "verdict": "PASS",
+      "scope": "Independent exact-reference comparison and actual-app UI geometry/material/movement/layout evaluation. No owner/provider traffic, physical playback or release-binary verification.",
+      "browserSession": "refinement21-cover-evaluator",
+      "sources": [
+        {
+          "path": "docs/design-reference/Gluk-Wave-3D-Cover-Only.html",
+          "sha256": "0f279e49911b5dfee8bb24d157fd2263b32e385b0f886cb10c99343a8c705780"
+        },
+        {
+          "path": "apps/web/src/album.tsx",
+          "sha256": "81c0b35c54327984e8922ed7902395d55b0926eb25b084fd85c6828c9bd0fcd2"
+        },
+        {
+          "path": "apps/web/src/cover-fit.ts",
+          "sha256": "4bfd503e665bccf54e8b2b2292ec4a428bd258959924dda55cb7eb4c4d3e571e"
+        },
+        {
+          "path": "apps/web/src/reference-cover.css",
+          "sha256": "85f7c95444d27286eee6c8dcc0da035fd82f5e290eb99c73d2d10aba2603a4fa"
+        },
+        {
+          "path": "apps/web/src/main.tsx",
+          "sha256": "53645fd49adcb7d42cfe2313dc0e8e746a459d07420e2b5f67c046aaa92b30e0"
+        },
+        {
+          "path": "apps/web/src/player-ui.tsx",
+          "sha256": "c9838cff0dba1d31ae1f16c2b184b17dfe9525b2c338fa4172f9fc50fff42206"
+        },
+        {
+          "path": "apps/native/lib/ui/album_stage.dart",
+          "sha256": "3334d87a861150239a82d288c946e41d41bd74aba9ac93c6534e3e6a2b5f1b95"
+        },
+        {
+          "path": "apps/native/lib/ui/player.dart",
+          "sha256": "bbc19af782ba1c95826ca3a2feed58a3a4ac331f49004b3ce32ae698de87065c"
+        },
+        {
+          "path": "apps/native/test/refinement21_cover_test.dart",
+          "sha256": "ccf6e0923df7fe28e342739fa8b5621b1399bbf14577d34d7c8d08e52d79dce1"
+        }
+      ],
+      "proofpaths": [
+        "work/qa/refinement21-cover-eval-reference-proof.json",
+        "work/qa/refinement21-cover-eval-browser-proof.json",
+        "work/qa/refinement21-cover-eval-extents-proof.json",
+        "work/qa/refinement21-cover-eval-touch-proof.json",
+        "work/qa/refinement21-cover-eval-scroll-lock-proof.json",
+        "work/qa/refinement21-cover-eval-final-smoke-proof.json",
+        "work/qa/refinement21-cover-evaluator-native.log",
+        "work/qa/refinement21-cover-evaluator-native-final.log",
+        "work/qa/refinement21-cover-integrated-connect.log"
+      ],
+      "proofs": [
+        "work/qa/refinement21-cover-eval-reference-proof.json",
+        "work/qa/refinement21-cover-eval-browser-proof.json",
+        "work/qa/refinement21-cover-eval-extents-proof.json",
+        "work/qa/refinement21-cover-eval-touch-proof.json",
+        "work/qa/refinement21-cover-eval-scroll-lock-proof.json",
+        "work/qa/refinement21-cover-eval-final-smoke-proof.json",
+        "work/qa/refinement21-cover-evaluator-native.log",
+        "work/qa/refinement21-cover-evaluator-native-final.log",
+        "work/qa/refinement21-cover-integrated-connect.log"
+      ],
+      "nativeCases": "Fresh combined 5 cover + 4 Connect/glyph cases passed; final decorative shadow correction independently re-rendered and tested in one desktop cover case.",
+      "viewportWidths": [
+        "1440x900",
+        "1440x650",
+        "812x375",
+        "375x812",
+        "320x568"
+      ],
+      "fullAngleSweep": "Zero out-of-viewport sampled physical cover/record bounds in all five viewports.",
+      "priorEvaluation": {
+        "verdict": "PASS",
+        "scope": "Independent exact-reference comparison and actual-app UI geometry/material/movement/layout evaluation. No owner/provider traffic, physical playback or release-binary verification.",
+        "browserSession": "refinement21-cover-evaluator",
+        "sources": [
+          {
+            "path": "docs/design-reference/Gluk-Wave-3D-Cover-Only.html",
+            "sha256": "0f279e49911b5dfee8bb24d157fd2263b32e385b0f886cb10c99343a8c705780"
+          },
+          {
+            "path": "apps/web/src/album.tsx",
+            "sha256": "81c0b35c54327984e8922ed7902395d55b0926eb25b084fd85c6828c9bd0fcd2"
+          },
+          {
+            "path": "apps/web/src/cover-fit.ts",
+            "sha256": "4bfd503e665bccf54e8b2b2292ec4a428bd258959924dda55cb7eb4c4d3e571e"
+          },
+          {
+            "path": "apps/web/src/reference-cover.css",
+            "sha256": "85f7c95444d27286eee6c8dcc0da035fd82f5e290eb99c73d2d10aba2603a4fa"
+          },
+          {
+            "path": "apps/web/src/main.tsx",
+            "sha256": "7b6211724d8118403d99759daa7c46e4125a2c83acc05e3329b62f464344f2aa"
+          },
+          {
+            "path": "apps/web/src/player-ui.tsx",
+            "sha256": "af80318eabddacc32676a72f664be22090803545726613f3e0045eda2cbcd9dd"
+          },
+          {
+            "path": "apps/native/lib/ui/album_stage.dart",
+            "sha256": "3334d87a861150239a82d288c946e41d41bd74aba9ac93c6534e3e6a2b5f1b95"
+          },
+          {
+            "path": "apps/native/lib/ui/player.dart",
+            "sha256": "bbc19af782ba1c95826ca3a2feed58a3a4ac331f49004b3ce32ae698de87065c"
+          },
+          {
+            "path": "apps/native/test/refinement21_cover_test.dart",
+            "sha256": "ccf6e0923df7fe28e342739fa8b5621b1399bbf14577d34d7c8d08e52d79dce1"
+          }
+        ],
+        "proofpaths": [
+          "work/qa/refinement21-cover-eval-reference-proof.json",
+          "work/qa/refinement21-cover-eval-browser-proof.json",
+          "work/qa/refinement21-cover-eval-extents-proof.json",
+          "work/qa/refinement21-cover-eval-touch-proof.json",
+          "work/qa/refinement21-cover-eval-scroll-lock-proof.json",
+          "work/qa/refinement21-cover-eval-final-smoke-proof.json",
+          "work/qa/refinement21-cover-evaluator-native.log",
+          "work/qa/refinement21-cover-evaluator-native-final.log",
+          "work/qa/refinement21-cover-integrated-connect.log"
+        ],
+        "proofs": [
+          "work/qa/refinement21-cover-eval-reference-proof.json",
+          "work/qa/refinement21-cover-eval-browser-proof.json",
+          "work/qa/refinement21-cover-eval-extents-proof.json",
+          "work/qa/refinement21-cover-eval-touch-proof.json",
+          "work/qa/refinement21-cover-eval-scroll-lock-proof.json",
+          "work/qa/refinement21-cover-eval-final-smoke-proof.json",
+          "work/qa/refinement21-cover-evaluator-native.log",
+          "work/qa/refinement21-cover-evaluator-native-final.log",
+          "work/qa/refinement21-cover-integrated-connect.log"
+        ],
+        "nativeCases": "Fresh combined 5 cover + 4 Connect/glyph cases passed; final decorative shadow correction independently re-rendered and tested in one desktop cover case.",
+        "viewportWidths": [
+          "1440x900",
+          "1440x650",
+          "812x375",
+          "375x812",
+          "320x568"
+        ],
+        "fullAngleSweep": "Zero out-of-viewport sampled physical cover/record bounds in all five viewports."
+      },
+      "priorReportFileModifiedAt": "2026-10-13T21:04:55.513Z",
+      "revalidatedAt": "2026-10-14T08:56:20.496Z",
+      "revalidation": {
+        "kind": "cover",
+        "verdict": "PASS",
+        "reviewer": "Independent available inherited-model evaluator; no different-provider model capability exposed.",
+        "sourcesChangedSincePrior": [
+          {
+            "path": "apps/web/src/main.tsx",
+            "priorSha256": "7b6211724d8118403d99759daa7c46e4125a2c83acc05e3329b62f464344f2aa",
+            "currentSha256": "53645fd49adcb7d42cfe2313dc0e8e746a459d07420e2b5f67c046aaa92b30e0"
+          },
+          {
+            "path": "apps/web/src/player-ui.tsx",
+            "priorSha256": "af80318eabddacc32676a72f664be22090803545726613f3e0045eda2cbcd9dd",
+            "currentSha256": "c9838cff0dba1d31ae1f16c2b184b17dfe9525b2c338fa4172f9fc50fff42206"
+          }
+        ],
+        "proofObservedAt": "2026-10-14T08:40:31.490Z",
+        "proofs": [
+          "work/qa/playlist22-fresh-cover-extents-proof.json",
+          "work/qa/playlist22-fresh-cover.log",
+          "work/qa/playlist22-fresh-connect-1440-local-fullplayer.png"
+        ],
+        "observations": {
+          "viewportCount": 5,
+          "angleSweep": "Actual current app imports current coverBounds and samples pitch -38..38 step2 and yaw -180..180 step5. All five viewport cover/record extents remain within viewport.",
+          "viewports": {
+            "1440x900": {
+              "bad": [],
+              "badCount": 0,
+              "bodyOverflow": "hidden",
+              "extents": {
+                "bottom": 767.3260167816911,
+                "left": 177.36244529686115,
+                "right": 756.4500547031388,
+                "top": 196.67398321830876
+              },
+              "size": 302,
+              "stage": {
+                "bottom": 687,
+                "height": 410,
+                "left": 160,
+                "right": 773.8125,
+                "top": 277,
+                "width": 613.8125,
+                "x": 160,
+                "y": 277
+              }
+            },
+            "1440x650": {
+              "bad": [],
+              "badCount": 0,
+              "bodyOverflow": "hidden",
+              "extents": {
+                "bottom": 642.3260167816911,
+                "left": 177.36244529686115,
+                "right": 756.4500547031388,
+                "top": 71.67398321830876
+              },
+              "size": 302,
+              "stage": {
+                "bottom": 562,
+                "height": 410,
+                "left": 160,
+                "right": 773.8125,
+                "top": 152,
+                "width": 613.8125,
+                "x": 160,
+                "y": 152
+              }
+            },
+            "812x375": {
+              "bad": [],
+              "badCount": 0,
+              "bodyOverflow": "hidden",
+              "extents": {
+                "bottom": 374.091215970672,
+                "left": 38.35713725702016,
+                "right": 414.72098774297984,
+                "top": 12.908784029328018
+              },
+              "size": 202.203,
+              "stage": {
+                "bottom": 331,
+                "height": 275,
+                "left": 22,
+                "right": 431.078125,
+                "top": 56,
+                "width": 409.078125,
+                "x": 22,
+                "y": 56
+              }
+            },
+            "375x812": {
+              "bad": [],
+              "badCount": 0,
+              "bodyOverflow": "hidden",
+              "extents": {
+                "bottom": 459.549813126734,
+                "left": 9.218109580746583,
+                "right": 365.7818904192534,
+                "top": 118.450186873266
+              },
+              "size": 191.938,
+              "stage": {
+                "bottom": 472,
+                "height": 366,
+                "left": 18,
+                "right": 357,
+                "top": 106,
+                "width": 339,
+                "x": 18,
+                "y": 106
+              }
+            },
+            "320x568": {
+              "bad": [],
+              "badCount": 0,
+              "bodyOverflow": "hidden",
+              "extents": {
+                "bottom": 260.4394028865554,
+                "left": 60.270581515567955,
+                "right": 259.729418484432,
+                "top": 74.56059711344459
+              },
+              "size": 108.906,
+              "stage": {
+                "bottom": 273,
+                "height": 211,
+                "left": 18,
+                "right": 302,
+                "top": 62,
+                "width": 284,
+                "x": 18,
+                "y": 62
+              }
+            }
+          }
+        },
+        "scope": "Fresh actual-component web shared-player integration and complete sampled physical cover/record bounds at five viewports. Original exact reference/material/movement/native evidence is retained unchanged below; unchanged core cover sources preserve that approval.",
+        "limitations": [
+          "This fresh sweep validates current shared web integration and geometry. It does not claim a new exact-reference material/movement comparison or native release-binary review.",
+          "Original native cover evidence is preserved; current native cover component/source hashes are unchanged.",
+          "No owner/provider account access or physical playback."
+        ]
+      },
+      "revalidationProofs": [
+        "work/qa/playlist22-fresh-cover-extents-proof.json",
+        "work/qa/playlist22-fresh-cover.log",
+        "work/qa/playlist22-fresh-connect-1440-local-fullplayer.png"
+      ],
+      "revalidationScope": "Fresh actual-component web shared-player integration and complete sampled physical cover/record bounds at five viewports. Original exact reference/material/movement/native evidence is retained unchanged below; unchanged core cover sources preserve that approval."
+    },
+    "playlists": {
+      "observedAt": "2026-10-14T08:53:32.210Z",
+      "reviewer": "Independent evaluation retry on the available inherited model. No different-provider model capability was exposed; no cross-provider review claim.",
+      "fixtureScope": "Current real React/Flutter components, isolated fixture accounts and public metadata/artwork mocks. No owner/provider account access, physical playback or deployed hosting claim.",
+      "scores": {
+        "designQuality": 2,
+        "originality": 2,
+        "craft": 2,
+        "functionality": 2
+      },
+      "verdict": "PASS",
+      "passed": true,
+      "scope": "Playlist interaction polish and current integrated cover/Connect smoke. This completes the interrupted prior review with new observations.",
+      "observations": {
+        "browserMutationAndResponsiveChecks": [
+          "Like paints within two frames before delayed ACK without broad reads",
+          "Multiple memberships, local removal, disabled repeat, one atomic request",
+          "Membership error rolls back inline; retry keeps picker and succeeds",
+          "Create shows honest saving draft, prevents double-submit and retains long name on error",
+          "Create retry inserts one acknowledged playlist without reload",
+          "Selected playlist hero updates immediately by ID and stays selected",
+          "Known-library add and reorder render immediately without refreshing unrelated surfaces",
+          "Delete keeps mounted confirmation on error and restores selected playlist",
+          "Long-name hero and keyboard picker bounded 375@1 light",
+          "Long-name hero and keyboard picker bounded 320@1.25 dark",
+          "Long-name hero and keyboard picker bounded 1440@1.25 dark"
+        ],
+        "account": "In-session authenticated account switch clears selected playlist and open editor",
+        "native": "Fresh independent three short picker cases at320/375/1280 with125% text, long memberships and retained-name error state passed in the9-case evaluator run.",
+        "cover": "Fresh real-component bounds computation has zero bad angles at1440x900,1440x650,812x375,375x812,320x568.",
+        "connect": "Fresh mobile device panel bounds, remote/local status visibility, one transfer command, expanded-player local status and zero page errors."
+      },
+      "proofs": [
+        "work/qa/playlist22-fresh-evaluator-flow-proof.json",
+        "work/qa/playlist22-fresh-evaluator-account-proof.json",
+        "work/qa/playlist22-fresh-cover-extents-proof.json",
+        "work/qa/playlist22-fresh-smoke-interactions-proof.json",
+        "work/qa/public-import-evaluator-native.log"
+      ],
+      "limitations": [
+        "The inherited full flow harness stopped at a reload-based account expectation because the fixture gives both accounts identical playlist IDs. Its11 prior observed checks passed; a separate in-session authenticated account-switch observation passes and is the account evidence.",
+        "Connect panel fits the320 viewport, but the global document scrollWidth flag is true with expanded-player body overflow hidden. This is not claimed as a universal document-overflow pass.",
+        "Real audio devices and native release binaries were not tested by this evaluator.",
+        "No different-provider evaluator model was exposed."
+      ],
+      "sources": [
+        {
+          "path": "apps/web/src/playlist-copy.ts",
+          "sha256": "2cd5688f1ea33e82cea94dd1ba0e0c22b781a5065c1236cd64918135238a5a4b"
+        },
+        {
+          "path": "apps/web/src/playlist-manager.tsx",
+          "sha256": "283c652a01551e8eb52f0e14fb1637c58322e9bbd34c19ad490b1cadf5eb22fa"
+        },
+        {
+          "path": "apps/web/src/playlist-library.tsx",
+          "sha256": "52724ac3dd78ec7dd230ca0912c916a305c84381ea7606603b302ae33418377f"
+        },
+        {
+          "path": "apps/web/src/playlist-polish.css",
+          "sha256": "edecc305468749eea21d646462cb6c8b958dfe33045496dc5e7f9ebc3476fcc1"
+        },
+        {
+          "path": "apps/web/src/ui.tsx",
+          "sha256": "46e82b5b7371a352f81f90a65e97fddfeb9a1e9fe7390f0e0b9147033d27804b"
+        },
+        {
+          "path": "apps/web/src/pages.tsx",
+          "sha256": "050f3d737a2b0b7f66e19236fe4bbb6f03f05c2007f8c9eb20c8e7a1609e296f"
+        },
+        {
+          "path": "apps/web/src/player-ui.tsx",
+          "sha256": "c9838cff0dba1d31ae1f16c2b184b17dfe9525b2c338fa4172f9fc50fff42206"
+        },
+        {
+          "path": "apps/web/src/parity-playlists.tsx",
+          "sha256": "90b796928227658996185084a9f372f8bbfe832e988eaceb274b75cf153422ad"
+        },
+        {
+          "path": "apps/web/src/main.tsx",
+          "sha256": "53645fd49adcb7d42cfe2313dc0e8e746a459d07420e2b5f67c046aaa92b30e0"
+        },
+        {
+          "path": "apps/native/lib/core/controller.dart",
+          "sha256": "cada4cd7ee744aa78ceb20c394f17405cd9c3db084437439be18a1f5e759c66c"
+        },
+        {
+          "path": "apps/native/lib/core/library_mutations.dart",
+          "sha256": "77d7a96829d24e106c1dc1e0564142c958db0d0d7660f6b358940daaa4d9b260"
+        },
+        {
+          "path": "apps/native/lib/ui/playlist_manager.dart",
+          "sha256": "3b3a32b39f6b94acc2d6c416cb79f706d177eee1cd9aa5fc5e53da266cc7e075"
+        },
+        {
+          "path": "apps/native/lib/ui/playlist_strings.dart",
+          "sha256": "8d306ddfa1fc3059570a6ae73927f512e2b4ff266cd9e5c3be8bf793e36a713f"
+        },
+        {
+          "path": "apps/native/lib/ui/app.dart",
+          "sha256": "c0c5efa51c3b11b8c3f1a15637cfbc2e4ac7d2d0869af9ca26bba879eab85a67"
+        },
+        {
+          "path": "apps/native/lib/ui/parity_panels.dart",
+          "sha256": "275442c4c3789f9b74b3238839d9b9a42c5e84eb8e7aa9fa480e4f95a1103c2a"
+        },
+        {
+          "path": "apps/native/test/playlist22_test.dart",
+          "sha256": "fcfbc17aaecb57301129b9753aae2b35c8d3b53dfaf08e54268247011466501e"
+        }
+      ]
+    },
+    "publicImports": {
+      "observedAt": "2026-10-14T08:53:32.210Z",
+      "reviewer": "Independent evaluation retry on the available inherited model. No different-provider model capability was exposed; no cross-provider review claim.",
+      "fixtureScope": "Current real React/Flutter components, isolated fixture accounts and public metadata/artwork mocks. No owner/provider account access, physical playback or deployed hosting claim.",
+      "scores": {
+        "designQuality": 2,
+        "originality": 2,
+        "craft": 2,
+        "functionality": 2
+      },
+      "verdict": "PASS",
+      "passed": true,
+      "scope": "Default-public import UI for Spotify, SoundCloud, Yandex Music and YouTube Music, preserving GlukWave auth/plan gates and optional explicit connected account mode.",
+      "observations": {
+        "browser": "Independent baseline six checks covers all four providers, normalized-ID selected import, paging dedupe, same-intent explicit retry, partial warnings/results, empty/private explanation, stale query and explicit OAuth mode choice.",
+        "extras": [
+          "768 light at 125% keeps dialog and keyboard focus inside",
+          "Closed Spotify delayed search cannot populate newly opened Yandex import",
+          "Account change closes old import and delayed lookup cannot restore it",
+          "Six-language input en fits 320 at 125%",
+          "Six-language input ru fits 320 at 125%",
+          "Six-language input kk fits 320 at 125%",
+          "Six-language input uk fits 320 at 125%",
+          "Six-language input de fits 320 at 125%",
+          "Six-language input es fits 320 at 125%",
+          "Overlapping page preserves prior deselection and final320 result begins at success heading/count",
+          "Entire collection can target likes with exact public POST search/tracks contract and no selected-only IDs"
+        ],
+        "native": "Independent fresh9/9: six public import cases and three playlist22 independent picker cases. Final only-newIDs paging delta independently inspected in source and validated by UI agent single focused JSON regression; native source entry-copy delta is copy-only.",
+        "sourceEntry": [
+          {
+            "importEnabled": true,
+            "name": "SoundCloud",
+            "optionalAccountDisabled": true,
+            "reason": "Найди открытые плейлисты и треки. Вход в музыкальный сервис не нужен. Закрытая музыка остаётся закрытой.",
+            "state": "Ник или ссылка"
+          },
+          {
+            "importEnabled": true,
+            "name": "Spotify",
+            "optionalAccountDisabled": true,
+            "reason": "Найди открытые плейлисты и треки. Вход в музыкальный сервис не нужен. Закрытая музыка остаётся закрытой.",
+            "state": "Ник или ссылка"
+          },
+          {
+            "importEnabled": true,
+            "name": "Яндекс Музыка",
+            "optionalAccountDisabled": true,
+            "reason": "Найди открытые плейлисты и треки. Вход в музыкальный сервис не нужен. Закрытая музыка остаётся закрытой.",
+            "state": "Ник или ссылка"
+          },
+          {
+            "importEnabled": true,
+            "name": "YouTube Music",
+            "optionalAccountDisabled": true,
+            "reason": "Найди открытые плейлисты и треки. Вход в музыкальный сервис не нужен. Закрытая музыка остаётся закрытой.",
+            "state": "Ник или ссылка"
+          }
+        ]
+      },
+      "proofs": [
+        "work/qa/public-import-evaluator-web-proof.json",
+        "work/qa/public-import-evaluator-extra-proof.json",
+        "work/qa/public-import-evaluator-native.log",
+        "work/qa/public-import-native-overlap.jsonl",
+        "work/qa/public-import-evaluator-source-entry-proof.json",
+        "work/qa/public-import-native-overlap-analyze.log",
+        "work/qa/public-import-native-final-copy-analyze.log"
+      ],
+      "resolvedIssues": [
+        "320/125% source-card labels now wrap without overflow.",
+        "Result stage resets scroll so success heading/count are visible.",
+        "Overlapping pages preserve a user deselection; only newly seen normalized IDs are selected.",
+        "Unconfigured source state now explains the public route without claiming import is unavailable."
+      ],
+      "limitations": [
+        "Public-provider retrieval is mocked in this UI review. Root adapter tests and live metadata evidence are separate.",
+        "The broad all-four browser/native cases preceded the final tiny paging/scroll/copy delta; final browser extras directly observe that delta, and the focused native JSON observes paging.",
+        "No different-provider evaluator model was available.",
+        "Final native entry-copy cleanup removed the obsolete empty-integrations unavailable state after the independent9-case run. The final app.dart source was inspected and scoped analysis is clean; those copy-only deltas were not rerun through all9 cases."
+      ],
+      "sources": [
+        {
+          "path": "apps/web/src/provider-import.tsx",
+          "sha256": "063e5a0a1b37bb8fb7251ca11cdcdf49e51b43f2500aa29b94a5d48c1c78e47d"
+        },
+        {
+          "path": "apps/web/src/pages.tsx",
+          "sha256": "050f3d737a2b0b7f66e19236fe4bbb6f03f05c2007f8c9eb20c8e7a1609e296f"
+        },
+        {
+          "path": "apps/web/src/public-import-copy.ts",
+          "sha256": "917f01cde2a3c1531bd7db39154ed8ccd49af3f2ad59008ae984208b00271c04"
+        },
+        {
+          "path": "apps/web/src/public-import.css",
+          "sha256": "15dfa72d6fe8278190f618b2c277c5711ee829e22eb117ca648b8a129bdd8f71"
+        },
+        {
+          "path": "apps/native/lib/ui/provider_import.dart",
+          "sha256": "9dc978182b6525ac1f1ea79fc29e936ace0d32f848c69651c362e14dbff2be4a"
+        },
+        {
+          "path": "apps/native/lib/ui/app.dart",
+          "sha256": "c0c5efa51c3b11b8c3f1a15637cfbc2e4ac7d2d0869af9ca26bba879eab85a67"
+        },
+        {
+          "path": "apps/native/lib/ui/public_import_strings.dart",
+          "sha256": "08e767db16f46238daaac25c82262592686de56e3a632393ce72cee8df1ab430"
+        },
+        {
+          "path": "apps/native/test/public_import_test.dart",
+          "sha256": "4e38cc91e68f88a5e9237f647eb57c7970fdbc14b59aa999af0b08593f9d0a98"
+        },
+        {
+          "path": "apps/native/test/refinement20_ui_test.dart",
+          "sha256": "e6e3c8c5b9162f2a4258260d8d248e4e6fbcb629ea94fd0554bf2b5f2038b503"
+        }
+      ]
+    },
+    "captures": {
+      "native-playlist22-delete-rollback.png": {
+        "path": "docs/verification/2026-10-14/native-playlist22-delete-rollback.png",
+        "sha256": "a78d7a8f4d39007091946a9841fbc1a6065df57dcd86edf92ae5eb7bda9aea74"
+      },
+      "native-playlist22-eval-1280-error-retained-name.png": {
+        "path": "docs/verification/2026-10-14/native-playlist22-eval-1280-error-retained-name.png",
+        "sha256": "988a542fad6bbc98c76c6c814f7e4f9f5f9210a844bdfe28f111efc23402a862"
+      },
+      "native-playlist22-eval-1280-multiple-memberships.png": {
+        "path": "docs/verification/2026-10-14/native-playlist22-eval-1280-multiple-memberships.png",
+        "sha256": "bf50d25b8ff8078f05d56094175cfbee62800b2710e6d4caf80aae4057b74371"
+      },
+      "native-playlist22-eval-320-error-retained-name.png": {
+        "path": "docs/verification/2026-10-14/native-playlist22-eval-320-error-retained-name.png",
+        "sha256": "b7f5ddebe512454eb0f5e48a4a5f7aecb2c0d2a4f59330df700c84575c1d58e0"
+      },
+      "native-playlist22-eval-320-multiple-memberships.png": {
+        "path": "docs/verification/2026-10-14/native-playlist22-eval-320-multiple-memberships.png",
+        "sha256": "a39d62a1166dded691e9e4cf884a012752262aa52af1579958cb808144aa397a"
+      },
+      "native-playlist22-eval-375-error-retained-name.png": {
+        "path": "docs/verification/2026-10-14/native-playlist22-eval-375-error-retained-name.png",
+        "sha256": "88c7a2d04f2c32c92f4a024fb569ef123ea51d05f5bfca04445a31c7e991c3bc"
+      },
+      "native-playlist22-eval-375-multiple-memberships.png": {
+        "path": "docs/verification/2026-10-14/native-playlist22-eval-375-multiple-memberships.png",
+        "sha256": "f477a5480f01afd11591695b644195e87acf2ab1f8af673758f4a997f6d4d90a"
+      },
+      "native-playlist22-picker-1280.png": {
+        "path": "docs/verification/2026-10-14/native-playlist22-picker-1280.png",
+        "sha256": "5e36c0cfc8e20949762aa4353e65494c4c1d1290d0593e2d16f5fff5d5fe7a3e"
+      },
+      "native-playlist22-picker-320.png": {
+        "path": "docs/verification/2026-10-14/native-playlist22-picker-320.png",
+        "sha256": "6d4b8d6ea6115a922cd1753457758602362252ae45fcd2eb66a1665e896d69b5"
+      },
+      "native-playlist22-picker-375.png": {
+        "path": "docs/verification/2026-10-14/native-playlist22-picker-375.png",
+        "sha256": "0b8fc607b991252f0dc4151ab8d2b462e2715d3942adec40f8ee0f993703da10"
+      },
+      "native-public-import-320-keyboard.png": {
+        "path": "docs/verification/2026-10-14/native-public-import-320-keyboard.png",
+        "sha256": "f4f2fa3070eb816032dc44bd479a90313fab63eb4225a747466c62cc79a31c4d"
+      },
+      "native-public-import-overlap-selection.png": {
+        "path": "docs/verification/2026-10-14/native-public-import-overlap-selection.png",
+        "sha256": "add353692080a68f279d78c2d6c1b3430001af4029f90119d3f8759d78c3f347"
+      },
+      "native-public-import-soundcloud-375-result.png": {
+        "path": "docs/verification/2026-10-14/native-public-import-soundcloud-375-result.png",
+        "sha256": "864a3d448d1c33122916b798aa84f198cae6e53ad667a6a60c06b62e41a69190"
+      },
+      "native-public-import-soundcloud-375-selection.png": {
+        "path": "docs/verification/2026-10-14/native-public-import-soundcloud-375-selection.png",
+        "sha256": "df2bd02e75779ecc4ecfec4f02ec1245764cd1b3aa1929a1186658bd6c2a97ba"
+      },
+      "native-public-import-spotify-320-result.png": {
+        "path": "docs/verification/2026-10-14/native-public-import-spotify-320-result.png",
+        "sha256": "53babf3020969c7026323178fdd5ffd4f7179ea2c19a289b5bc86b856d3e0200"
+      },
+      "native-public-import-spotify-320-selection.png": {
+        "path": "docs/verification/2026-10-14/native-public-import-spotify-320-selection.png",
+        "sha256": "d0c3450f36d438f65bfcf014d36fdf5cbc69cb1e163ac6113321ba2c6ba30138"
+      },
+      "native-public-import-yandex-375-result.png": {
+        "path": "docs/verification/2026-10-14/native-public-import-yandex-375-result.png",
+        "sha256": "864a3d448d1c33122916b798aa84f198cae6e53ad667a6a60c06b62e41a69190"
+      },
+      "native-public-import-yandex-375-selection.png": {
+        "path": "docs/verification/2026-10-14/native-public-import-yandex-375-selection.png",
+        "sha256": "df2bd02e75779ecc4ecfec4f02ec1245764cd1b3aa1929a1186658bd6c2a97ba"
+      },
+      "native-public-import-youtube-1280-result.png": {
+        "path": "docs/verification/2026-10-14/native-public-import-youtube-1280-result.png",
+        "sha256": "867e5c5b16fb7c41c0ea17ca54052fe8d1938772a0dd40164f5e08f0b1c64162"
+      },
+      "native-public-import-youtube-1280-selection.png": {
+        "path": "docs/verification/2026-10-14/native-public-import-youtube-1280-selection.png",
+        "sha256": "1acc918acd68210ffef3d7b7b64bc4f2ae0547b0b88e7e7af1b6f2f78d5c6dc7"
+      },
+      "native-refinement21-cover-1440-900-back.png": {
+        "path": "docs/verification/2026-10-14/native-refinement21-cover-1440-900-back.png",
+        "sha256": "9ee7d2c4dc697589288f3767553932ed2c5fa3e4077c3b9c41a68191eb878caa"
+      },
+      "native-refinement21-cover-1440-900-edge.png": {
+        "path": "docs/verification/2026-10-14/native-refinement21-cover-1440-900-edge.png",
+        "sha256": "b53e16b460552c66ca750b2794488b96e726b1a8d9d38a37a7e3c6d786e50a66"
+      },
+      "native-refinement21-cover-1440-900-front.png": {
+        "path": "docs/verification/2026-10-14/native-refinement21-cover-1440-900-front.png",
+        "sha256": "16221eccdd98f94501256432a76da1dd4cafc8834ca1c3760ae0f4aa7bd00493"
+      },
+      "native-refinement21-cover-320-568-back.png": {
+        "path": "docs/verification/2026-10-14/native-refinement21-cover-320-568-back.png",
+        "sha256": "c0db604d38db5c74b065de25e6bcd2681ae97a2db277f1b471ab661346cd25a1"
+      },
+      "native-refinement21-cover-320-568-edge.png": {
+        "path": "docs/verification/2026-10-14/native-refinement21-cover-320-568-edge.png",
+        "sha256": "6be4f46a60d78176199a9201a0e32f2d8b67c2cb675467fd96360ef5149fb0e6"
+      },
+      "native-refinement21-cover-320-568-front.png": {
+        "path": "docs/verification/2026-10-14/native-refinement21-cover-320-568-front.png",
+        "sha256": "992d2715c50fb840b7dcafb3d2d002c2b6dd360dde5f07540a662f72a95088ae"
+      },
+      "native-refinement21-cover-375-812-back.png": {
+        "path": "docs/verification/2026-10-14/native-refinement21-cover-375-812-back.png",
+        "sha256": "a2044f92dfa79053b567d334903ac2266d48eb4e8a2158d089b7629eababdd44"
+      },
+      "native-refinement21-cover-375-812-edge.png": {
+        "path": "docs/verification/2026-10-14/native-refinement21-cover-375-812-edge.png",
+        "sha256": "41cb0e40a23344b1b2ae112b69c45f5ce85db0e75720c30376018e21ba85cb9f"
+      },
+      "native-refinement21-cover-375-812-front.png": {
+        "path": "docs/verification/2026-10-14/native-refinement21-cover-375-812-front.png",
+        "sha256": "dbb13bfa2dd46b4fafb23f6cf9b8a0134bfc356340044602a18c74037e1b86fd"
+      },
+      "native-refinement21-cover-812-375-back.png": {
+        "path": "docs/verification/2026-10-14/native-refinement21-cover-812-375-back.png",
+        "sha256": "96cc5741bc9a90059f9dc4a4574a2bb07ab00b52b31e203245bb365fa5ad668e"
+      },
+      "native-refinement21-cover-812-375-edge.png": {
+        "path": "docs/verification/2026-10-14/native-refinement21-cover-812-375-edge.png",
+        "sha256": "b7521f62fbd703f9351ea5c7b963fdba64305a081139c0483167507cd0ffee8f"
+      },
+      "native-refinement21-cover-812-375-front.png": {
+        "path": "docs/verification/2026-10-14/native-refinement21-cover-812-375-front.png",
+        "sha256": "b0719ec0a4a3b7e7ef70cf0ce5351a3d6cfcb2b1eac7b12ac34df5d1cc91f5b7"
+      },
+      "native-refinement21-cover-drag.png": {
+        "path": "docs/verification/2026-10-14/native-refinement21-cover-drag.png",
+        "sha256": "7fa042d39404a46e80b734b024e5dc593da496ff977674e4e9104dc2a93d2cf2"
+      },
+      "native-refinement21-cover-hover.png": {
+        "path": "docs/verification/2026-10-14/native-refinement21-cover-hover.png",
+        "sha256": "6afd64c954b759195a9e61e535d929290f9bfd4a0c363d676d416f3ad6020a83"
+      },
+      "playlist22-eval-1440-library-picker-final.png": {
+        "path": "docs/verification/2026-10-14/playlist22-eval-1440-library-picker-final.png",
+        "sha256": "4582005ccc6283a08f864ba2da6c2ff72bdc2bb8a3b221e26ad2fd088c2f5b8a"
+      },
+      "playlist22-eval-1440-long-hero-final.png": {
+        "path": "docs/verification/2026-10-14/playlist22-eval-1440-long-hero-final.png",
+        "sha256": "3a7e086f78efd0aaa55f41c1ef42feedf833fc4197e0e73c8478b3b11046d8ae"
+      },
+      "playlist22-eval-320-all-library.png": {
+        "path": "docs/verification/2026-10-14/playlist22-eval-320-all-library.png",
+        "sha256": "cc0c3e5f63dfdae25586805e348c6c422f1c04ce79be3c091030be723cf903c4"
+      },
+      "playlist22-eval-320-library-picker-final.png": {
+        "path": "docs/verification/2026-10-14/playlist22-eval-320-library-picker-final.png",
+        "sha256": "797c374f59dc6f75f7b0ab9abd705994cdc505c86f0798cd3928126c78b79297"
+      },
+      "playlist22-eval-320-long-hero-final.png": {
+        "path": "docs/verification/2026-10-14/playlist22-eval-320-long-hero-final.png",
+        "sha256": "f1a9bb3ff662f3667cd39fff39c5d6c2faf10ed8133b0906fb42ff1d8ca7b129"
+      },
+      "playlist22-eval-320-long-hero.png": {
+        "path": "docs/verification/2026-10-14/playlist22-eval-320-long-hero.png",
+        "sha256": "43330d631ea19f8724d3cdf2a3dede03f8c56651a97b436315ea4ae4b108fae9"
+      },
+      "playlist22-eval-375-library-picker-final.png": {
+        "path": "docs/verification/2026-10-14/playlist22-eval-375-library-picker-final.png",
+        "sha256": "f5958a5965349d08eb20dd4f4968bc4a13a9f8e074b7c8aef01f8c0daec96a03"
+      },
+      "playlist22-eval-375-library-picker.png": {
+        "path": "docs/verification/2026-10-14/playlist22-eval-375-library-picker.png",
+        "sha256": "f8b618bc371e49c5f37ae1c2ce76e711fd2242c2728180822ae60c5b50cd66d3"
+      },
+      "playlist22-eval-375-long-hero-final.png": {
+        "path": "docs/verification/2026-10-14/playlist22-eval-375-long-hero-final.png",
+        "sha256": "58bdaf77344307185564576f6748fcbce8b65839d86e9095b86a5f09c61c55fb"
+      },
+      "playlist22-eval-375-long-hero.png": {
+        "path": "docs/verification/2026-10-14/playlist22-eval-375-long-hero.png",
+        "sha256": "08ee0e3832471d3290103e8f2f61b63f1356077d0b64adc7c9f468a1bea4690b"
+      },
+      "playlist22-eval-create-pending.png": {
+        "path": "docs/verification/2026-10-14/playlist22-eval-create-pending.png",
+        "sha256": "d4110995942a8d5ef2577379c5a3f883aec84706ae6d97ecfd07ca7d87360e11"
+      },
+      "playlist22-eval-delete-error.png": {
+        "path": "docs/verification/2026-10-14/playlist22-eval-delete-error.png",
+        "sha256": "b8e76b8dbf3dd60ac4e262ba48f837ccd86c840cfad090c8548cc89fb4bb5ea2"
+      },
+      "playlist22-eval-membership-error.png": {
+        "path": "docs/verification/2026-10-14/playlist22-eval-membership-error.png",
+        "sha256": "3cc78499cc489d88b29ef877e422ea10666e961d2f0d8ef43f86a4ce8e7e1ade"
+      },
+      "playlist22-eval-memberships.png": {
+        "path": "docs/verification/2026-10-14/playlist22-eval-memberships.png",
+        "sha256": "7defe3aabd18bf305803589b1dcb8d035db68872a1945cb1004ad61f7b3e5818"
+      },
+      "playlist22-eval-picker-bound-debug.png": {
+        "path": "docs/verification/2026-10-14/playlist22-eval-picker-bound-debug.png",
+        "sha256": "2a1e1d08851ecc24a28cd57974de08168b76b875b6f8ad6b6267eac15c630cee"
+      },
+      "playlist22-eval-web-1440-memberships.png": {
+        "path": "docs/verification/2026-10-14/playlist22-eval-web-1440-memberships.png",
+        "sha256": "141243ccc1a151f12609c64169fe648ea3115c914c87da83b8704790d32a857f"
+      },
+      "playlist22-fresh-connect-1440-local-fullplayer.png": {
+        "path": "docs/verification/2026-10-14/playlist22-fresh-connect-1440-local-fullplayer.png",
+        "sha256": "ac2808edba9248b026d0ad2a6d3f7a9f66efe9fcbc13f7dea744894bfd229b8d"
+      },
+      "playlist22-fresh-connect-320-full-bottom.png": {
+        "path": "docs/verification/2026-10-14/playlist22-fresh-connect-320-full-bottom.png",
+        "sha256": "a3109f3e7d64705e433d1cec9ee71c1ab819dcc152887ee3b2bdb6de9d408dbb"
+      },
+      "playlist22-fresh-connect-320-full.png": {
+        "path": "docs/verification/2026-10-14/playlist22-fresh-connect-320-full.png",
+        "sha256": "adf77ea0994edf019aeebcc456d8985d4ba14e18ce8f232419869335b0a12a76"
+      },
+      "playlist22-fresh-eval-1440-library-picker.png": {
+        "path": "docs/verification/2026-10-14/playlist22-fresh-eval-1440-library-picker.png",
+        "sha256": "f4eb7145ee40604132eff34b25f6f1fc389b46bb39ee81d94dc48840a8ff06c1"
+      },
+      "playlist22-fresh-eval-1440-long-hero.png": {
+        "path": "docs/verification/2026-10-14/playlist22-fresh-eval-1440-long-hero.png",
+        "sha256": "1f30e8502e4dd37e63c758d5446f205bdb7ddd4dde0dd0b2f808e9027f26b87e"
+      },
+      "playlist22-fresh-eval-320-library-picker.png": {
+        "path": "docs/verification/2026-10-14/playlist22-fresh-eval-320-library-picker.png",
+        "sha256": "5d140495f96dfd7d236efc942b691507ae0f0309647639417622a2773d99c988"
+      },
+      "playlist22-fresh-eval-320-long-hero.png": {
+        "path": "docs/verification/2026-10-14/playlist22-fresh-eval-320-long-hero.png",
+        "sha256": "16dd982f48cfb4a79fb6eef0553e217697a1d8aa895f5780c68e5d23c13478ce"
+      },
+      "playlist22-fresh-eval-375-library-picker.png": {
+        "path": "docs/verification/2026-10-14/playlist22-fresh-eval-375-library-picker.png",
+        "sha256": "cd5a0c9563e94d8d1335ae19fb949d37c9e2f7ef6a7ae11833919746e9c87c18"
+      },
+      "playlist22-fresh-eval-375-long-hero.png": {
+        "path": "docs/verification/2026-10-14/playlist22-fresh-eval-375-long-hero.png",
+        "sha256": "8274824a2742ff02240e6ff5e28fdccfd1bdf3937030bf28989a97a5759c8038"
+      },
+      "playlist22-fresh-eval-account.png": {
+        "path": "docs/verification/2026-10-14/playlist22-fresh-eval-account.png",
+        "sha256": "4308964811d8497cece287ca4bc8fa9fa1a382fab66426230864e3900215c4fa"
+      },
+      "playlist22-fresh-eval-create-pending.png": {
+        "path": "docs/verification/2026-10-14/playlist22-fresh-eval-create-pending.png",
+        "sha256": "6614df51155d26f4834eae603d17f3839e6964d6686b6c9bb809969cb15d222f"
+      },
+      "playlist22-fresh-eval-delete-error.png": {
+        "path": "docs/verification/2026-10-14/playlist22-fresh-eval-delete-error.png",
+        "sha256": "34fcda1ecbfd623d2f1997a12a6845a57574cf4c29b541f26a1cd114112d97bd"
+      },
+      "playlist22-fresh-eval-membership-error.png": {
+        "path": "docs/verification/2026-10-14/playlist22-fresh-eval-membership-error.png",
+        "sha256": "a7179fd58542197127ffd8bf549c9814c37a919b181153f9b69e39ab342b370e"
+      },
+      "playlist22-fresh-eval-memberships.png": {
+        "path": "docs/verification/2026-10-14/playlist22-fresh-eval-memberships.png",
+        "sha256": "af2fe55bed54885507946f71f1780beae6fcc57b325569fb7781f7a4dd1239d8"
+      },
+      "playlist22-integrated-connect-1440-local-fullplayer.png": {
+        "path": "docs/verification/2026-10-14/playlist22-integrated-connect-1440-local-fullplayer.png",
+        "sha256": "9467f39ddc16a45d6994f8e6525d1e888c59d84e8485ca56aef075dc299c3e9a"
+      },
+      "playlist22-integrated-connect-320-full-bottom.png": {
+        "path": "docs/verification/2026-10-14/playlist22-integrated-connect-320-full-bottom.png",
+        "sha256": "513d4c83052da512d5db76c416a59c7a1a89d03186701a14037489a9c4a681f8"
+      },
+      "playlist22-integrated-connect-320-full.png": {
+        "path": "docs/verification/2026-10-14/playlist22-integrated-connect-320-full.png",
+        "sha256": "94cabad42ea22680834c18449aa289c6894565c62ad5568e255bf2e29fc7ba34"
+      },
+      "playlist22-web-1440-create-error.png": {
+        "path": "docs/verification/2026-10-14/playlist22-web-1440-create-error.png",
+        "sha256": "be800c170e0b98750c32797dd2797faa7a2c496f00584c2354c085f5a71dd530"
+      },
+      "playlist22-web-1440-hero.png": {
+        "path": "docs/verification/2026-10-14/playlist22-web-1440-hero.png",
+        "sha256": "4e00835fda89d9b66992dfadef7dc034487f2574a882d0115f4342bf28e4aca3"
+      },
+      "playlist22-web-1440-membership-error.png": {
+        "path": "docs/verification/2026-10-14/playlist22-web-1440-membership-error.png",
+        "sha256": "8f62e863ff106bb6328d4239ac668ff7f6431783b35fec801bc559d674f916c1"
+      },
+      "playlist22-web-1440-memberships.png": {
+        "path": "docs/verification/2026-10-14/playlist22-web-1440-memberships.png",
+        "sha256": "b23cff770c0c346475046b882eb4719b056fd182f996b644f3c36a2c481fa37e"
+      },
+      "public-import-evaluator-320-final-result-top.png": {
+        "path": "docs/verification/2026-10-14/public-import-evaluator-320-final-result-top.png",
+        "sha256": "4ab72ac27831053e8b2d0993964da32f0f7e4c85a79e57e87d50cac6fb0d3ac8"
+      },
+      "public-import-evaluator-final-source-cards.png": {
+        "path": "docs/verification/2026-10-14/public-import-evaluator-final-source-cards.png",
+        "sha256": "66f0dc53c5cb7f628e123f2716616733c0b860d1dd6aa9f8f62b11228e1d6957"
+      },
+      "public-import-evaluator-likes-all-result.png": {
+        "path": "docs/verification/2026-10-14/public-import-evaluator-likes-all-result.png",
+        "sha256": "56f7e96efb474aa50b9b66c918b823d051c2db0176d402d9ee53bbceacc7ebfe"
+      },
+      "public-import-evaluator-locale-de-320.png": {
+        "path": "docs/verification/2026-10-14/public-import-evaluator-locale-de-320.png",
+        "sha256": "6ed86f1fa35aef1efc4bd8a4157f2add83d0a75a387777fc9de910faf533ca80"
+      },
+      "public-import-evaluator-locale-en-320.png": {
+        "path": "docs/verification/2026-10-14/public-import-evaluator-locale-en-320.png",
+        "sha256": "1257c79e5c7f299213dabd9930581088d8264f97ab914ec765f27de7d79f5c66"
+      },
+      "public-import-evaluator-locale-es-320.png": {
+        "path": "docs/verification/2026-10-14/public-import-evaluator-locale-es-320.png",
+        "sha256": "a35510f46c916de5cee2f2296e751755995b61e2924d6cfd9b04f12359a96474"
+      },
+      "public-import-evaluator-locale-kk-320.png": {
+        "path": "docs/verification/2026-10-14/public-import-evaluator-locale-kk-320.png",
+        "sha256": "1d2ee5d5ecaab99f91f80fbe45fe7d2edc4099674a5a207137c79b2e5fb357d5"
+      },
+      "public-import-evaluator-locale-ru-320.png": {
+        "path": "docs/verification/2026-10-14/public-import-evaluator-locale-ru-320.png",
+        "sha256": "3eaf4e8223ff2e405ccbf2b237d46c46c8f3ce136fc62e6026339845518bb9ca"
+      },
+      "public-import-evaluator-locale-uk-320.png": {
+        "path": "docs/verification/2026-10-14/public-import-evaluator-locale-uk-320.png",
+        "sha256": "0ae7b941fc0f6e69b75b712d31e000d8847bf9c37c6010f7712d705e9c874b6f"
+      },
+      "public-import-evaluator-tablet-light-keyboard.png": {
+        "path": "docs/verification/2026-10-14/public-import-evaluator-tablet-light-keyboard.png",
+        "sha256": "0a4432603e38549050bba42cc218e9d5aceeccf9069addb23752c01eb1c691f3"
+      },
+      "public-import-evaluator-web-320-overflow.png": {
+        "path": "docs/verification/2026-10-14/public-import-evaluator-web-320-overflow.png",
+        "sha256": "3ac2a3ec6ff877f668049311a7d65d5b976fdb528e8bc735cfe2ba17fb51b081"
+      },
+      "public-import-evaluator-web-empty.png": {
+        "path": "docs/verification/2026-10-14/public-import-evaluator-web-empty.png",
+        "sha256": "61d65d7ccce28c37c343d21c329201fda543f08cd342156124f3b1702a53ce30"
+      },
+      "public-import-evaluator-web-error.png": {
+        "path": "docs/verification/2026-10-14/public-import-evaluator-web-error.png",
+        "sha256": "306bf7415d40b7b92bb26c6fcfd671199c8870b2cf5996501963887dee31545c"
+      },
+      "public-import-evaluator-web-loading.png": {
+        "path": "docs/verification/2026-10-14/public-import-evaluator-web-loading.png",
+        "sha256": "7bc8b488271c16ce6fde0a827be3a2700184753d85fb8c1d18895b567b26dad7"
+      },
+      "public-import-evaluator-web-soundcloud-375-input.png": {
+        "path": "docs/verification/2026-10-14/public-import-evaluator-web-soundcloud-375-input.png",
+        "sha256": "768cb2201e11d92cbe074fd0611233f306cdbf515b7dbadbaf60cf5351fa462d"
+      },
+      "public-import-evaluator-web-soundcloud-375-partial.png": {
+        "path": "docs/verification/2026-10-14/public-import-evaluator-web-soundcloud-375-partial.png",
+        "sha256": "15328dbf36aa2577c9a311132654c23c9504417e6ed5a5a5a94bdb1fe4e0858f"
+      },
+      "public-import-evaluator-web-soundcloud-375-result.png": {
+        "path": "docs/verification/2026-10-14/public-import-evaluator-web-soundcloud-375-result.png",
+        "sha256": "078486ef72995cad92d7c7b9363f19e1555212d04a91082794fbbb843f7cbe44"
+      },
+      "public-import-evaluator-web-spotify-320-input.png": {
+        "path": "docs/verification/2026-10-14/public-import-evaluator-web-spotify-320-input.png",
+        "sha256": "67c7da0e21055ec91c3a1882aab8a17ad56c2900d47fe91a395be6de015b1b69"
+      },
+      "public-import-evaluator-web-spotify-320-partial.png": {
+        "path": "docs/verification/2026-10-14/public-import-evaluator-web-spotify-320-partial.png",
+        "sha256": "b9333d7bac2f3ffd435966ff7a70f1351a473f9a8b3b833c6091a0eeb0c3c244"
+      },
+      "public-import-evaluator-web-spotify-320-result.png": {
+        "path": "docs/verification/2026-10-14/public-import-evaluator-web-spotify-320-result.png",
+        "sha256": "63c947a5826b5fbe1be0cae7cd4643d6afc764078111c5478c4295735a4ba508"
+      },
+      "public-import-evaluator-web-yandex-375-input.png": {
+        "path": "docs/verification/2026-10-14/public-import-evaluator-web-yandex-375-input.png",
+        "sha256": "19354e1648a51615c09f9007f71c3a4f2f7e86d5ebab41fc63317f06fcfc4485"
+      },
+      "public-import-evaluator-web-yandex-375-partial.png": {
+        "path": "docs/verification/2026-10-14/public-import-evaluator-web-yandex-375-partial.png",
+        "sha256": "83b52ee00b220f5f20b3e5e6a91c4cc39283f6ce0722c5d1712252c41f75188f"
+      },
+      "public-import-evaluator-web-yandex-375-result.png": {
+        "path": "docs/verification/2026-10-14/public-import-evaluator-web-yandex-375-result.png",
+        "sha256": "46f70f4fdeec63ab7b20097b15906baacd7315d5846bffa89789c504c97ccb05"
+      },
+      "public-import-evaluator-web-youtube-1440-input.png": {
+        "path": "docs/verification/2026-10-14/public-import-evaluator-web-youtube-1440-input.png",
+        "sha256": "41734b2edc507968a2286e3304af2cb0d12a1b85842ebcdfc96f988fcc1d5887"
+      },
+      "public-import-evaluator-web-youtube-1440-partial.png": {
+        "path": "docs/verification/2026-10-14/public-import-evaluator-web-youtube-1440-partial.png",
+        "sha256": "dcb8d7fed9810441087f01d376847b79893800427a4a74ea82ae79b5519b62ef"
+      },
+      "public-import-evaluator-web-youtube-1440-result.png": {
+        "path": "docs/verification/2026-10-14/public-import-evaluator-web-youtube-1440-result.png",
+        "sha256": "8ea00245b4b18b9225d41ea20e92534abcbdbe811ef742d6a2dbf276b4a1fa19"
+      },
+      "public-import-overflow-debug.png": {
+        "path": "docs/verification/2026-10-14/public-import-overflow-debug.png",
+        "sha256": "91770ca699fbe176df831b76be8a4aafb0eacbfc87ae476d0ee7446eef23cc87"
+      },
+      "public-import-web-empty.png": {
+        "path": "docs/verification/2026-10-14/public-import-web-empty.png",
+        "sha256": "d204e963af1439a9f15ea9814b80229f01f8a077e128a37e9cfaf424b7bd310c"
+      },
+      "public-import-web-error.png": {
+        "path": "docs/verification/2026-10-14/public-import-web-error.png",
+        "sha256": "05686e13dc7a7b7fcc2c7526e51aeac9969089eb9cb28d5520ceb777693fc942"
+      },
+      "public-import-web-loading.png": {
+        "path": "docs/verification/2026-10-14/public-import-web-loading.png",
+        "sha256": "73ef999d155823d9368d970acebbdd30676dd4e6c4801b9b5547b73b0cd53fc9"
+      },
+      "public-import-web-soundcloud-375-input.png": {
+        "path": "docs/verification/2026-10-14/public-import-web-soundcloud-375-input.png",
+        "sha256": "89159b53e51452968b59ff6d3eee7fd4d4fa07350a562ebba81fa43009fb0ffe"
+      },
+      "public-import-web-soundcloud-375-partial.png": {
+        "path": "docs/verification/2026-10-14/public-import-web-soundcloud-375-partial.png",
+        "sha256": "bf5c9587dcf2e87c77af6643f93aba6172411dd7cb292699a20d633c7e7814cd"
+      },
+      "public-import-web-soundcloud-375-result.png": {
+        "path": "docs/verification/2026-10-14/public-import-web-soundcloud-375-result.png",
+        "sha256": "aee568ce082ab9d7c20b5e24f5a9ef6fc7218fae30d52249bdad4e04f0fb2626"
+      },
+      "public-import-web-spotify-320-final-result.png": {
+        "path": "docs/verification/2026-10-14/public-import-web-spotify-320-final-result.png",
+        "sha256": "4ab72ac27831053e8b2d0993964da32f0f7e4c85a79e57e87d50cac6fb0d3ac8"
+      },
+      "public-import-web-spotify-320-input.png": {
+        "path": "docs/verification/2026-10-14/public-import-web-spotify-320-input.png",
+        "sha256": "3eaf4e8223ff2e405ccbf2b237d46c46c8f3ce136fc62e6026339845518bb9ca"
+      },
+      "public-import-web-spotify-320-partial.png": {
+        "path": "docs/verification/2026-10-14/public-import-web-spotify-320-partial.png",
+        "sha256": "484368a47637fcf2e90b3891bffeb1fea63ea9b9b73fb4a1589c8978cd87701a"
+      },
+      "public-import-web-spotify-320-result.png": {
+        "path": "docs/verification/2026-10-14/public-import-web-spotify-320-result.png",
+        "sha256": "4ab72ac27831053e8b2d0993964da32f0f7e4c85a79e57e87d50cac6fb0d3ac8"
+      },
+      "public-import-web-yandex-375-input.png": {
+        "path": "docs/verification/2026-10-14/public-import-web-yandex-375-input.png",
+        "sha256": "3d677892119ce0824d586d4deb57b4d2f3946ae85a1ca8a9da7d6b13fe6c1f7d"
+      },
+      "public-import-web-yandex-375-partial.png": {
+        "path": "docs/verification/2026-10-14/public-import-web-yandex-375-partial.png",
+        "sha256": "3ac513423e5c513ecb781bfcd5e1291c2ccd286f2e9900d7b539141b79ee3988"
+      },
+      "public-import-web-yandex-375-result.png": {
+        "path": "docs/verification/2026-10-14/public-import-web-yandex-375-result.png",
+        "sha256": "9c0538fc119b856e2dbf6756e5fb8b6bde7f96c31a30db9952f715e26cca649e"
+      },
+      "public-import-web-youtube-1440-input.png": {
+        "path": "docs/verification/2026-10-14/public-import-web-youtube-1440-input.png",
+        "sha256": "45258ad912ed029b2ca3f529a2678475dd81e3bcea0eb04b9e7f1aeeb7ab2746"
+      },
+      "public-import-web-youtube-1440-partial.png": {
+        "path": "docs/verification/2026-10-14/public-import-web-youtube-1440-partial.png",
+        "sha256": "08b7fc4752fb9ae4ade8b53eecd75bea0d92ef899461ae15098f57ff6c01b82a"
+      },
+      "public-import-web-youtube-1440-result.png": {
+        "path": "docs/verification/2026-10-14/public-import-web-youtube-1440-result.png",
+        "sha256": "35725738b3d9ba72d436675f2b087ef5f537aee9d60ad8d367fcfae54a0a9d0d"
+      },
+      "refinement21-cover-eval-native-1440x900-back-final.png": {
+        "path": "docs/verification/2026-10-14/refinement21-cover-eval-native-1440x900-back-final.png",
+        "sha256": "9ee7d2c4dc697589288f3767553932ed2c5fa3e4077c3b9c41a68191eb878caa"
+      },
+      "refinement21-cover-eval-native-1440x900-edge-final.png": {
+        "path": "docs/verification/2026-10-14/refinement21-cover-eval-native-1440x900-edge-final.png",
+        "sha256": "b53e16b460552c66ca750b2794488b96e726b1a8d9d38a37a7e3c6d786e50a66"
+      },
+      "refinement21-cover-eval-native-1440x900-front-final.png": {
+        "path": "docs/verification/2026-10-14/refinement21-cover-eval-native-1440x900-front-final.png",
+        "sha256": "16221eccdd98f94501256432a76da1dd4cafc8834ca1c3760ae0f4aa7bd00493"
+      },
+      "refinement21-cover-eval-web-1440x650-back.png": {
+        "path": "docs/verification/2026-10-14/refinement21-cover-eval-web-1440x650-back.png",
+        "sha256": "e66441196dadfa33668940e889311c61d0a57cca538e08d2641f4806da6e3d34"
+      },
+      "refinement21-cover-eval-web-1440x650-edge.png": {
+        "path": "docs/verification/2026-10-14/refinement21-cover-eval-web-1440x650-edge.png",
+        "sha256": "160151295eb62797b91db0703a3057b6010c3c97272849f36c33919b1b9ef007"
+      },
+      "refinement21-cover-eval-web-1440x650-front.png": {
+        "path": "docs/verification/2026-10-14/refinement21-cover-eval-web-1440x650-front.png",
+        "sha256": "1f12ae443d535d0af12817b55e11dfbd4a225a4ed64566a954deb65c45b5e91d"
+      },
+      "refinement21-cover-eval-web-1440x650-hover.png": {
+        "path": "docs/verification/2026-10-14/refinement21-cover-eval-web-1440x650-hover.png",
+        "sha256": "2788326654b49829aa93490eba9de2eef2a3acb2bfcd0f36dc9b107b501ff064"
+      },
+      "refinement21-cover-eval-web-1440x900-back.png": {
+        "path": "docs/verification/2026-10-14/refinement21-cover-eval-web-1440x900-back.png",
+        "sha256": "2b6f057afff0a70329e3945248568635265f6abbcf75064feab21e7e6bad8213"
+      },
+      "refinement21-cover-eval-web-1440x900-edge.png": {
+        "path": "docs/verification/2026-10-14/refinement21-cover-eval-web-1440x900-edge.png",
+        "sha256": "1a47a094a8013982d59a304ff867834eb4e8a34daf67da3b60af28113004995a"
+      },
+      "refinement21-cover-eval-web-1440x900-front.png": {
+        "path": "docs/verification/2026-10-14/refinement21-cover-eval-web-1440x900-front.png",
+        "sha256": "cd9f311f295a8a0f8f596542ad1ea615c07414810b19315ec3efa62525358017"
+      },
+      "refinement21-cover-eval-web-1440x900-hover.png": {
+        "path": "docs/verification/2026-10-14/refinement21-cover-eval-web-1440x900-hover.png",
+        "sha256": "f23701c2ba772b5c90519e51044f16601872ac3fc0848de17b52b684a6e2065d"
+      },
+      "refinement21-cover-eval-web-320x568-back.png": {
+        "path": "docs/verification/2026-10-14/refinement21-cover-eval-web-320x568-back.png",
+        "sha256": "de36dacbdfda189ce057717fbf31a30d9c8304470a235819548d86d96f22c6e8"
+      },
+      "refinement21-cover-eval-web-320x568-edge.png": {
+        "path": "docs/verification/2026-10-14/refinement21-cover-eval-web-320x568-edge.png",
+        "sha256": "89c11d57d06685dfbf1b7c9ab19ff9413f100e1b35d2d6702579c27652e1c5f4"
+      },
+      "refinement21-cover-eval-web-320x568-front.png": {
+        "path": "docs/verification/2026-10-14/refinement21-cover-eval-web-320x568-front.png",
+        "sha256": "e849eb21520b22ccb23e55be91d4e3138e3840fa30e8cd6eb3ede18105438109"
+      },
+      "refinement21-cover-eval-web-320x568-hover.png": {
+        "path": "docs/verification/2026-10-14/refinement21-cover-eval-web-320x568-hover.png",
+        "sha256": "e63f3698fdb96e87ef7e6fe9f7f13b3c86ab0598033ba40ada138eadbc0ac4d7"
+      },
+      "refinement21-cover-eval-web-375x812-back.png": {
+        "path": "docs/verification/2026-10-14/refinement21-cover-eval-web-375x812-back.png",
+        "sha256": "a723147d3b62cada6834775c0cd327b20dfe68376e2ebc0c5f55f79cd2d171ad"
+      },
+      "refinement21-cover-eval-web-375x812-edge.png": {
+        "path": "docs/verification/2026-10-14/refinement21-cover-eval-web-375x812-edge.png",
+        "sha256": "7e3a9b666f3995511da12f6f14597143ec1c88e73aa31390065f23b0748f8f40"
+      },
+      "refinement21-cover-eval-web-375x812-front.png": {
+        "path": "docs/verification/2026-10-14/refinement21-cover-eval-web-375x812-front.png",
+        "sha256": "333d5cb7ef08e09d183b51295b6578281a29f7fd77d3e3478fda0bd561fbcfa4"
+      },
+      "refinement21-cover-eval-web-375x812-hover.png": {
+        "path": "docs/verification/2026-10-14/refinement21-cover-eval-web-375x812-hover.png",
+        "sha256": "80cdd5cabd75b56acf95f5acb58a5f296ed33f704b71253164eb8e26cebe877b"
+      },
+      "refinement21-cover-eval-web-812x375-back.png": {
+        "path": "docs/verification/2026-10-14/refinement21-cover-eval-web-812x375-back.png",
+        "sha256": "a0787bf99b177620710ef8bbcbdf7a8bd3eaf1c08651ce671e11acd5f4b92308"
+      },
+      "refinement21-cover-eval-web-812x375-edge.png": {
+        "path": "docs/verification/2026-10-14/refinement21-cover-eval-web-812x375-edge.png",
+        "sha256": "737164e7f4f587737dc58f64600c4280f1e78db999d3fd4184dbe2f41fb06986"
+      },
+      "refinement21-cover-eval-web-812x375-front.png": {
+        "path": "docs/verification/2026-10-14/refinement21-cover-eval-web-812x375-front.png",
+        "sha256": "f3218e7f0cac2f5d376434887fc458dc24d50981bcd50aac1b7aeaf2437ee689"
+      },
+      "refinement21-cover-eval-web-812x375-hover.png": {
+        "path": "docs/verification/2026-10-14/refinement21-cover-eval-web-812x375-hover.png",
+        "sha256": "7ec5cb49ce3d443ea58cdbe01ca330e11e3a3a7dc13fd64066880a6f4bbcece8"
+      },
+      "refinement21-cover-eval-web-812x375-negative-edge-final.png": {
+        "path": "docs/verification/2026-10-14/refinement21-cover-eval-web-812x375-negative-edge-final.png",
+        "sha256": "b322570cc238c1cb91f0b4f31538450ebf35a812710c3d743952863d9739e95f"
+      },
+      "refinement21-cover-eval-web-cd-final.png": {
+        "path": "docs/verification/2026-10-14/refinement21-cover-eval-web-cd-final.png",
+        "sha256": "394ab8748275096da9facbfa221df18bb3faec4c7165306e0aebc8544e7ef4fb"
+      },
+      "refinement21-cover-eval-web-flat-final.png": {
+        "path": "docs/verification/2026-10-14/refinement21-cover-eval-web-flat-final.png",
+        "sha256": "05a32fa960d7d3d3c1a236a3055886a2d07c08e117426e6b8c09e36715b5f204"
+      },
+      "refinement21-cover-eval-web-touch-drag.png": {
+        "path": "docs/verification/2026-10-14/refinement21-cover-eval-web-touch-drag.png",
+        "sha256": "d10424408592a4853e442f0770b7080213e2258b6995ae76e5ccaa442c769117"
+      },
+      "refinement21-cover-web-default.png": {
+        "path": "docs/verification/2026-10-14/refinement21-cover-web-default.png",
+        "sha256": "16b6c0c6c32e1568983b68d4449348fa1e1585af0f3397855d78dd7b81dcdbe2"
+      },
+      "refinement21-web-1440-quick.png": {
+        "path": "docs/verification/2026-10-14/refinement21-web-1440-quick.png",
+        "sha256": "18c2e7c0e220c4ceef19edb44847a9ae4915a0fc3d8f2c200367adc1fa1ae436"
+      },
+      "refinement21-web-375-quick.png": {
+        "path": "docs/verification/2026-10-14/refinement21-web-375-quick.png",
+        "sha256": "be1775320317f05ea4b5134b01afa8a145b3488d517c25c5836c25beebf3568c"
+      },
+      "native-refinement21-375-quick-connect.png": {
+        "path": "docs/verification/2026-10-14/native-refinement21-375-quick-connect.png",
+        "sha256": "63c61f9eb984d873005c0a9a88ca360660b0412b5ae8934896bee8b78aaf3c40"
+      },
+      "refinement21-eval-1440-lyrics.png": {
+        "path": "docs/verification/2026-10-14/refinement21-eval-1440-lyrics.png",
+        "sha256": "98eec02e5e250224419494b0a5620363ddbd0796026d1a697d401e59f2d42240"
+      }
+    }
+  },
+  "currentServerAndWebSourceHashes": {
+    "apps/web/src/account-sessions.tsx": "bf4469a5ffac5e8bbefce71d5aae8831601ea3c5ff092a87661c9dc874adcf91",
+    "apps/web/src/account.tsx": "27cbd8e1ab604308c44683dddacae9f6e27b89bf38037ee06e07e70bce475d4a",
+    "apps/web/src/action-request.ts": "69b9f5a72a565e198e8df882da307586448d804265ee136d2648c246c7d2ee3c",
+    "apps/web/src/admin-errors.tsx": "99396e6f2c1073a7d3ab9b15a170eae60418f70eb5fb9e9f7c946c78bf3d8986",
+    "apps/web/src/admin-service.tsx": "9065df7e5dffe2d99aae303b19737ef558537f51fa818327e5df86856ddd5980",
+    "apps/web/src/album.tsx": "81c0b35c54327984e8922ed7902395d55b0926eb25b084fd85c6828c9bd0fcd2",
+    "apps/web/src/api.ts": "5440981ee50e4740d76f74f8eca42449bc6ea137fcb2d2f1af5cdaec01956279",
+    "apps/web/src/App.tsx": "766e6fdb6b5885d2ed9be6c027b55ebcfee63c00a84608f29b7ce543459324f9",
+    "apps/web/src/artwork.ts": "f1d150e9ed1a0a771187880037027ff372b7e3f1ab0472776ef8a137b8bfa11a",
+    "apps/web/src/audio-cache-validation.ts": "32c2a355f8a3bb237aa4f5e50b28408f20cda3a355223d272e220b644f464d54",
+    "apps/web/src/audio-design.css": "4cc4afd26b4187594fa661145c43340f4a0737e77fc517e888effa79a0f746b0",
+    "apps/web/src/audio-gesture.ts": "1aaa65323ca996d62814523e890b11a85f8dd65dfcf15aa570dc8e7ce114b813",
+    "apps/web/src/audio-processing.ts": "8ef029b1a068d78fed8c3e4b16588305a3392db988e46dd21dfbb6cebf6bd94e",
+    "apps/web/src/audio-stream.ts": "4fbf2d76f13d687b0ac3413c41b44eb42d1a9fef87bf49f39a5f28592209306b",
+    "apps/web/src/auth.tsx": "412c0c9cbbff3b63741d2f9cdaab8701cb44a9b99fcf8d9ae85f5a82be157e1c",
+    "apps/web/src/cache.ts": "cbdf03312751c6af33dc838ab23ed54b4c2a68ba4c7bf48fa1839c2f7882e5c2",
+    "apps/web/src/color-picker.tsx": "200f9b5ec99f4660c8613488246260c3da18aa954c1c7623e19b4f1104476393",
+    "apps/web/src/community.tsx": "ad9aa9cf401f07bf80ffce178c4bcd7347c4d399b5673f82a2a202ae884d1ba1",
+    "apps/web/src/connect-controller.ts": "9c8260b27b90207650c2607310e9eb4bb998d929622ac2c23e042a2115013437",
+    "apps/web/src/connect-playback-card.tsx": "d9ad85eab0838b0b731303f1c47268f654e10a8b470bc38eb5fd4fcc42847569",
+    "apps/web/src/connect-refinement.css": "e366fb08896d52c21ce59d5931f2674f91a2376e3bc3d4641e938ba966176046",
+    "apps/web/src/continuous-range.tsx": "7e6724d778332f47bac6db314808d77e4bba486aa9ef86b85f62646b01ae789f",
+    "apps/web/src/cover-accent-bridge.tsx": "5132b9dccd4d307f9bac9dc1dc27fe00551ecb45885c80ac7fec68b2df5bb671",
+    "apps/web/src/cover-accent.ts": "1d33f7d0394436d1958e8456ca1eb3f69d0ae2f8af5d32dc15eba9f796c5953b",
+    "apps/web/src/cover-ambient.tsx": "131e189e9bbbc49bdcc1700b39acca0f52460b8f3e0d6e342baac3e6668b712f",
+    "apps/web/src/cover-fit.ts": "4bfd503e665bccf54e8b2b2292ec4a428bd258959924dda55cb7eb4c4d3e571e",
+    "apps/web/src/customization.tsx": "7ea3ad646c72d092306d7b7b846db7197e47da782150fdca41f2e1a71582c497",
+    "apps/web/src/device-identity.ts": "403a27d8393bd53b30cb79eef5cbf0cfca90117eccb9c5e4933b6a47b73da629",
+    "apps/web/src/device-platform.tsx": "9e57aa7934f78d5788a348ad5ef00f27920c3ca5b1b4fbc786cbca937b9e9309",
+    "apps/web/src/devices-popover.tsx": "d92a8a3374b84184bfc006e70de8e04ed6009052881914c8de7a71cbf2a2d7eb",
+    "apps/web/src/diagnostics.ts": "8c21c46e204ea3e5df9c164a93df46aed06174dd54d4e603d4f84eed4e4643cd",
+    "apps/web/src/discord-model.ts": "6ad5cfd0f5e6d4ad71e58bd02318baeba1bd78077d298ff0bcc6e289bc14345f",
+    "apps/web/src/discord.css": "5db13e61485e5d06eecc0213feb1f8f55bc6f1b2c9ae099fe604aa1a592100ce",
+    "apps/web/src/discord.tsx": "260da3f503d962d0b293461c0e85b0f43d95de1a38be8bddc85a096a8e1e3ba8",
+    "apps/web/src/discovery-polish.css": "79159bb1bda90e10101251b769b48f040c951fc3d9504f87571a23ddc6c52e99",
+    "apps/web/src/discovery-search.tsx": "18b7fb23c818132205e397f516daf2ff18963544ebbaf12011305512a8fbee32",
+    "apps/web/src/ecosystem-controls.css": "ea8b5bde9813f7a2c9443e432edbc194fe016122f54144207d3d6851ed447198",
+    "apps/web/src/ecosystem-polish.css": "7cf33df3d81d42fda4af4f87ad3f09e694a24d8d2ff31bef484b2108219560a3",
+    "apps/web/src/ecosystem.css": "712561d08ca690cf0b68c23d362af988aec7236be827c89d05b8db635a4790a8",
+    "apps/web/src/embeds.tsx": "80442a04aeb28ac35186bae6ae210039561f47ee6eb1bb568dcb03aa350e2614",
+    "apps/web/src/equalizer-geometry.ts": "e326a26d55cd5242156ebbf924eafb3ddf29c3327a66ba41d3b02edb7620730d",
+    "apps/web/src/equalizer-popover.tsx": "10ead50c10ab2acadd5f97fdfb97450b1bb7cf32635d99b1febfa1a6d9142e8d",
+    "apps/web/src/experience.css": "09a5492f53b01865b94dc71d5cc5e54a11c73155a41fe5973140833ec47ce177",
+    "apps/web/src/extractor-diagnostics.tsx": "3700d1aa8abda94bfb02a874974af381b8e2b5da1d0d7e4eff6ad38cd1bc8441",
+    "apps/web/src/focused-player.css": "19650c7b6ee268f59708353719acd00a7e6ed758d677cf0814c22215230e93ae",
+    "apps/web/src/home-wave.tsx": "4efdf32684d2a5d432b86f1ef02e280fdc0e890ad3547f58be1f59188324f56c",
+    "apps/web/src/integrations-diagnostics.tsx": "a1303367c943cd03a2dfa0d52f6cb237500a42759455a675acbac2261b32e6bf",
+    "apps/web/src/landing.css": "ef31e02d7a9762ab7122671cad48dd6490fc2c45eba2554497a766a48db0f73f",
+    "apps/web/src/landing.tsx": "a7dc708e34bc9d73a5ee73086f615a801da39dd1359e81f401103d038af463d5",
+    "apps/web/src/library-edits.ts": "386128eef24b99d5585f360ddaf5d3b7ddffe6cef56aa7462e622b1b2d1cf79b",
+    "apps/web/src/locale-startup.ts": "aced1065b59eeece9d68eefe2f661b5eaf18fa6b5925a4185dc46a0b05e64fc0",
+    "apps/web/src/locale.tsx": "6ec6e5e57a66071a4523953e18f9e65e50d9650fcb2e021f4e5b162081efc653",
+    "apps/web/src/lofi.tsx": "aa8c8caed874cc495ff32eef5885ce4511dfd55cd298f507724b4758e0d18a68",
+    "apps/web/src/lyrics-import.tsx": "dea168dc65ed4f4a8e5a4590487e94b733cd7d134a8da7523535e426696a72b7",
+    "apps/web/src/lyrics-model.ts": "134ed19f90d85795c0d9ee0ad09e7c13a70b3207a6bac5db70578634e9a7da82",
+    "apps/web/src/main.tsx": "53645fd49adcb7d42cfe2313dc0e8e746a459d07420e2b5f67c046aaa92b30e0",
+    "apps/web/src/media-download.ts": "dd918e7bc2a0251d939129a251ab574da2eb7d3e0482128b91e6a06adff8218b",
+    "apps/web/src/media-session-state.ts": "e3e31645d70d561c594c9fc9ee03affdb52a97266f4246094cee4d7b85fea7fa",
+    "apps/web/src/mini.tsx": "7a1f40a41b0cf86d9e0919a247da4795a7c62491b20ec9730414626a08c9cf01",
+    "apps/web/src/morph-icon.tsx": "346ee70ae7fb469baef1be7ec447c132864556f28327078e03f3c6044fdf2fa2",
+    "apps/web/src/motion-controls.css": "86c56cac09e01830b44b521151ec11d8a1a65c313007967730d13cc60c8e4ff5",
+    "apps/web/src/optimistic-controls.ts": "587320fb930c8271cc1273b98768b699cc9e2b5f73e1ac1cb2a79474b448ddd3",
+    "apps/web/src/pages.tsx": "050f3d737a2b0b7f66e19236fe4bbb6f03f05c2007f8c9eb20c8e7a1609e296f",
+    "apps/web/src/parity-account.tsx": "f1682ffc76223fbc04e572291e3e10520c1490f0bf12512f280d15afa5ef1ce9",
+    "apps/web/src/parity-admin.tsx": "a635d5a819837c66c3a5354a31d6bb702ea9782e99e4ae0b82185b497277fa50",
+    "apps/web/src/parity-model.ts": "93bbad3ad22a84e6d352c808574a9009a0092d28edfa9483db24b9a406eb1aa5",
+    "apps/web/src/parity-playlists.tsx": "90b796928227658996185084a9f372f8bbfe832e988eaceb274b75cf153422ad",
+    "apps/web/src/parity-social.tsx": "c65bae7e20a1e8ea25dc5e0dbfeb8e96cbbb1dc65a231b7a21b3f05087565c89",
+    "apps/web/src/parity-taste.tsx": "481685eb010084f9d53b3e9543337097162926c3f1357daf9092238423853e18",
+    "apps/web/src/parity.css": "44be32961ae9ad52c5343787ca2e1c0f9697ff3d76e23be569bf13ac7d60a106",
+    "apps/web/src/pixel-scene.ts": "6aebeff8524759519c0e78b1351e5fd5e306d9a8c191abc8d54a5acf97a8501c",
+    "apps/web/src/playback-feedback.css": "10fd7b45a9337606e5ef4cc401e310bbc62ce068e61643e864499b9aa91951fb",
+    "apps/web/src/playback-lifecycle.ts": "d20c0cd10eb869316f347a6183c7d2a8a996d740fe7b2c167aa995eba1f03564",
+    "apps/web/src/playback-recovery.ts": "5a19366df9fd35c1890b5bf197f4ba3730058f02f3626242db8ead13ced7645f",
+    "apps/web/src/playback-request.ts": "ab03ea51e983917b66c116eb28f78bf2fba00c9c9ad2590d2c418dda4688ffc7",
+    "apps/web/src/playback-settings.tsx": "e830b48067ddb7d8357d0a80de13cbe6df637ffc9109fb9e111b67579f1549c4",
+    "apps/web/src/playback-warmup.ts": "e840ff855daadb0235b45a374373025d5d1a1bd4ee1cf02a8e7f1cca8fdda22a",
+    "apps/web/src/player-details.css": "bb6ed6e63760b8d5ff3345fa3461827e20c2addd5d38d91f826014ddda1f64fd",
+    "apps/web/src/player-gestures.ts": "3a9c2f3c5b059405145ef59114880b97235f518ce7fabd00eb4f6aa4b26d2dac",
+    "apps/web/src/player-refinement.css": "d103f3a510359ca432ba4607e535cdc82d6c1886b125c1c272144a02c34df0aa",
+    "apps/web/src/player-ui.tsx": "c9838cff0dba1d31ae1f16c2b184b17dfe9525b2c338fa4172f9fc50fff42206",
+    "apps/web/src/player.tsx": "a56ae85a814b682553c7a0b63d6b0c4e22540070b6656951d798bbaba571810a",
+    "apps/web/src/playlist-copy.ts": "2cd5688f1ea33e82cea94dd1ba0e0c22b781a5065c1236cd64918135238a5a4b",
+    "apps/web/src/playlist-library.tsx": "52724ac3dd78ec7dd230ca0912c916a305c84381ea7606603b302ae33418377f",
+    "apps/web/src/playlist-manager.tsx": "283c652a01551e8eb52f0e14fb1637c58322e9bbd34c19ad490b1cadf5eb22fa",
+    "apps/web/src/playlist-polish.css": "edecc305468749eea21d646462cb6c8b958dfe33045496dc5e7f9ebc3476fcc1",
+    "apps/web/src/preferences.ts": "25f982ca39ea3591a497fc6d88cc75bab62354d48936abb6c7a0d85a8eb10aa7",
+    "apps/web/src/preset-listbox.tsx": "99421d371e6ed4890232da3b43afecbf1c3ef54804ce5df397afb392a191d3e1",
+    "apps/web/src/provider-import.tsx": "063e5a0a1b37bb8fb7251ca11cdcdf49e51b43f2500aa29b94a5d48c1c78e47d",
+    "apps/web/src/public-import-copy.ts": "917f01cde2a3c1531bd7db39154ed8ccd49af3f2ad59008ae984208b00271c04",
+    "apps/web/src/public-import.css": "15dfa72d6fe8278190f618b2c277c5711ee829e22eb117ca648b8a129bdd8f71",
+    "apps/web/src/queue-panel.tsx": "15dc09e966e28a43f40f705f2bba7216a13611ffbf7a079eab7ce028ff976636",
+    "apps/web/src/range-input.tsx": "26554a35a4bf8a9b07981fd67723b014c94616fffe4c7a939e1fcb40793216e4",
+    "apps/web/src/reference-cover.css": "85f7c95444d27286eee6c8dcc0da035fd82f5e290eb99c73d2d10aba2603a4fa",
+    "apps/web/src/refinement20-home.tsx": "5435a80092133ae72c559ef113fc573d5d4fe95beb1517f4a07141d9d2ffa648",
+    "apps/web/src/refinement20-strings.ts": "0569365d1defe75171ff4fd5b94049c3c0c96b836b00b02c598df5792a941131",
+    "apps/web/src/refinement20.css": "7c8dcdcddda90331c822a8cb7218de3676fe0aff2961f1fece36b2113da65fed",
+    "apps/web/src/refinement21.css": "9f851f2b6b7947dbd2c038311067ce5a3a0c06a0cc44594b3f3abf67e07cf75f",
+    "apps/web/src/room-listeners.tsx": "5b6494ea251e1afea0c804a64538370e93a061bb8f6dac57a73e7edf6e5a3632",
+    "apps/web/src/scrolling-label.css": "0844c87ded0da6f1b51d9f6356b715bf9d5f3ccd07544bf8befa3a09fb212169",
+    "apps/web/src/scrolling-label.tsx": "84fe606952bdf1531dd986794c2f1c3e80ad7df3ba356ca48ce2ca07c34f81f8",
+    "apps/web/src/search-artists.css": "4212a317f73d87411970fa018d61658d93b79f113f3ed27ccb57080da77a7713",
+    "apps/web/src/search-artists.tsx": "032407ed09406eea8a86e0bbb02adabba7413b2ce6276fcd590067c8a79c6f73",
+    "apps/web/src/seasonal.tsx": "e71a70262eded64230a4cff5c9117e975c9800e47a79371f61b59cc3a5ecbef4",
+    "apps/web/src/settings-range.tsx": "c93207c2c28a468490937fd54590f85f781e990d36ea1e99040454a44647eb22",
+    "apps/web/src/store.tsx": "0352a56cac3eeb2f4aa70196cdcb7b630959232867da667f90d267b1ae51b6bd",
+    "apps/web/src/styles.css": "f170ccd1c0589ff66c8f8fcdd50aa692cc18a3cc4722c0548eb07e384746a944",
+    "apps/web/src/transport-season.css": "0459aeef49444aa51ae58be2ee9bab051b2ecfc1110848030a7a1722759c7182",
+    "apps/web/src/types.ts": "d3e1de409f14cc2fb6e0da5a8052347662e3008052fd0ec3aede9e9a778cba00",
+    "apps/web/src/ui.tsx": "46e82b5b7371a352f81f90a65e97fddfeb9a1e9fe7390f0e0b9147033d27804b",
+    "apps/web/src/v6.css": "73cae087b037346c6efeb26dd8dc46269ca2d43392424dd3d9575ce73f32aab3",
+    "apps/web/src/v7.css": "5f305a19b7ccaeb9bd37a484012cd4557e0b4d27457f2e4abbc689f5531de34f",
+    "apps/web/src/visual-lifecycle.ts": "110a20be1bde0bfbae1108d644bd367e9709a1e31f27b743d6946899990cac0e",
+    "apps/web/src/volume.ts": "4ca822baa37b289958ea5f0d751fc59278edae62b13eb7e4b4cec56a41577fa9",
+    "apps/web/src/wave-colors.ts": "29343730048694c9b77436f079b50f6f8cb9b3898da0ffd6fa2f4f6e0364ba77",
+    "apps/web/src/wave-math.ts": "224f0f28f006fb2b8cd18eba64b2c5c07c52377c01f59f5d7916f97a594f2df9",
+    "apps/web/src/wave-session.ts": "d238c79a6975255676581fcb3bb405a80742841e71f3c1fae956bdb0944abe5d",
+    "apps/web/src/wave-shaders.ts": "c62cbcf66c2bf93da62c02052f69a5f7af0e5107e4b7b5f504a7d08d18c35bc6",
+    "apps/web/src/wave-silk-math.ts": "1d86a1e6df536527d339f0a8abd8961c8d208a5491aeab235d39934d8807c032",
+    "apps/web/src/wave-silk.ts": "b14cd77de0f1ed3539a95e8eaad84eedd5be1cea0152dfb2d3458ebab213c707",
+    "apps/web/src/wave.tsx": "4ba4bed7ab8bc91e3e4403ebc6b684b75ca342585417d6456a5f6976581e80e1",
+    "apps/web/src/wave18-polish.css": "c491168d669fc00fbbd9c6a3acaf3c18d0303efb3d3a92f3788e8ff72c28dc6e",
+    "apps/web/src/locales/copy.tsv": "f990474ce08b549c2d6c3cb942a1e21c8905281fed020c1f0fd4638a391a02b3",
+    "apps/web/src/locales/de.json": "a577514382c184ed94756e2b327600bc2e74e1133ff6c9ef267708cc77d5dfa6",
+    "apps/web/src/locales/en.json": "14d19d91476afddabbe1eda1c63a15c7dde8c4701049dee4bbc157009b90875f",
+    "apps/web/src/locales/es.json": "114a5cb1c9ff2d698033eae4ea51d4c70ded0ed734c092e4a43dbff6938c673c",
+    "apps/web/src/locales/extra.tsv": "81d6c54e69834bcab56b8b827089faeb759ba5b66745a9b4384570483ed59a0e",
+    "apps/web/src/locales/kk.json": "6fb89d6d908717e6aabbaa53ad6ec043d3bce926f93386c158c89b55a60584e6",
+    "apps/web/src/locales/ru.json": "5c24fb3d37aba3d377a855db840f614303d99ff9793a1ef9cb7dd9aa39cb9b81",
+    "apps/web/src/locales/templates.tsv": "ecefdaa21386a1eb127325774e2d5598ee406b96afa8a3b67dbec2dcd0351b34",
+    "apps/web/src/locales/uk.json": "91ceda8cdd557513bcfcbe89e46f480dba6d99af5dc84c3805f83ace32babb08",
+    "apps/web/src/vendor/halftone-bloom.ts": "c9a3b57f5dfd422cf313f91e3ecdbea768e8cb624f2ea2d0da70a7e34b49bc8f",
+    "apps/server/src/account.js": "10b53082822ab2202de89aee9fd8d0db11af9bd0d31306d691dd312353e05ca4",
+    "apps/server/src/action-jobs.js": "4844e62662c0705c6eb631e71c92ffa66efc1aed5a2b0bb91fc16313e5b80104",
+    "apps/server/src/admin.js": "82417a012738f9351e1bbecd7af7d3f90b29c09f35188bbf35793e7282541569",
+    "apps/server/src/app.js": "dce53294e7b5c7f8866694741ffb5a3225b665f21981f3387736abf425a86c99",
+    "apps/server/src/audio-capabilities.js": "3e4b5a2788070195292f5b517b252c1a6891655060de00c2ea316d2c8f6e8f22",
+    "apps/server/src/auth.js": "2695aed4392536184eacccc8cd8a6a9581beae7cf803c5a9e3feecc1794f3542",
+    "apps/server/src/billing.js": "a9163d0268b48e04598400df991530ceecdf2596fe1852c21c7a177fca52c335",
+    "apps/server/src/community.js": "5823a273b369a160dd857e3f61156e452b32df109f7fe3dc30cc72e22c36dc07",
+    "apps/server/src/config.js": "6845dc54120af4d0f1dbdcf791084983892871c06756db1250cba8079e0496bc",
+    "apps/server/src/console-brand.js": "3cf4ddeac97b786ae842d0084e6c95f63e79d7ffea051fd71d588fcd181d5be8",
+    "apps/server/src/console-transport.js": "8b2b8c4eccfda0382f05b590b60c43693616649ee273474f51d045e7d2e4ed82",
+    "apps/server/src/console-ui.js": "5992d13453c6ac7e7065c2b9ec3e52db902b1ee2fffca22632c4705e65422e41",
+    "apps/server/src/diagnostics.js": "66ab9bae1912bf53afaac648cf14172fa2f66d68b60af94917e55dfb9b47eb84",
+    "apps/server/src/discord-presence.js": "3c69b062f30f751ae2bdc6e8eb07eab5dcf76ce4293efcdd37d917c3d1befa9a",
+    "apps/server/src/genius.js": "b785795dc7debcff70e7a117bc8e42fd6e34fb071329e4523caa72c2919ea43b",
+    "apps/server/src/index.js": "2a292e1e22151b0b41c1735bd3c00bfcbb7384f0888999c05eb5b6464286cf3f",
+    "apps/server/src/library-imports.js": "92f72e4035c659648bbe8351877f8e3c6c43f897d9577322559108c805969781",
+    "apps/server/src/library.js": "bc75f2d273d9eac9a2c52f1b53dc375629a263e4428eb23b434f92c69c0ab3d0",
+    "apps/server/src/listening.js": "ce7fac0070fd52bbae62c2da3f1c47ed02bf5a173c9f8d501a547522e3711957",
+    "apps/server/src/locale.js": "76eb2654b0dcffd9ad98838186a32972853e90274809093e207ce4f6e1a16d8a",
+    "apps/server/src/lrclib.js": "4a40e8ba9d9341b27beb0637b728710e16d602e8b30a9afee1440c78d35fb2e1",
+    "apps/server/src/mail-text.js": "24fdc84a7907528d63e50145bf2f4b90390230df11b8d073b36198caef2ee2d9",
+    "apps/server/src/media.js": "797f087f23d4d29436a2a9b8ed5f9c181c31cedbffde3a806794e0fb3ac7c829",
+    "apps/server/src/messages.js": "6726f58392c0b38fd2b5bef912694422901041308df77e73f0e6a051a8429061",
+    "apps/server/src/oauth-config.js": "1bf7f01bd3b0560adc5b27699a768d895c159d98c7864d91d30117233dce8108",
+    "apps/server/src/plans.js": "1af41034b769c676bcadb3af097730fc9a3054662defe5c91844ee12fd30f9ff",
+    "apps/server/src/playback-jobs.js": "b111e33179be055775d8bcc5762b850d823a531a5c152e1c914cdd7176da895e",
+    "apps/server/src/playback.js": "438a08b44ac3106eaae4fecca82a99266ccb4524df3ed57d6680aea1ecf6c15b",
+    "apps/server/src/providers.js": "7921aa770e73700e9fcf3dd224db9fd06fdaa4d979d0eeda9de05d8a0077ab31",
+    "apps/server/src/public-imports.js": "63f6bcc9ee5a5b2b3bf14c9d08ec53d360c3fe66079b0fd7b63f3ce98249bede",
+    "apps/server/src/push.js": "d2152b3739d4a574c80b22b389f24fb1f319d6bc8e6e3fe154e3b913295333de",
+    "apps/server/src/realtime-ecosystem.js": "67b3a95d5afed6de9fed1864a906128aba1097e6c10a67ac70ae1da5051dcf05",
+    "apps/server/src/realtime.js": "f8bde106f06e4bdd92b4b1faac40c1a2be62f858b8873f33cd05b50bb16e10a8",
+    "apps/server/src/recommendations.js": "2e1f780fbee88e28880fe4f015cc67ddc0263a0553c43844e33b5ba49cb5748c",
+    "apps/server/src/releases.js": "cf0a682142202827892e18d89ecaaa832592a5a5b90e6dc9a07d9d3c0c1a6af3",
+    "apps/server/src/resources.js": "2283499be57429eff52e8f2184acf8d6814de18897dd640ada3ea9faee6b13ed",
+    "apps/server/src/room-view.js": "b1f01371d67b1c4eded48630162c3043bf3b127f1ee73af9dbd8a0f9e707c2ec",
+    "apps/server/src/rooms.js": "5250c138dc01374a08ad87a4fe16b680d1b51749bc5d854f835903ebf618001a",
+    "apps/server/src/search.js": "6c1bcf08dc7d955a1a578798be89ec0605437a20f8556e1b04faf1043cefd302",
+    "apps/server/src/soundcloud-audio.js": "5c756f9f5d832833eea6c5a0ff071218cb428851403cd9a514731c4a88810984",
+    "apps/server/src/soundcloud-public.js": "1539d977c7e90326f12332df59a22d0fa2283f7b32a8ad1d3df3b8a22a32d77d",
+    "apps/server/src/store.js": "f5c92991e188e5bf333883e17e7ac20d4a396c2feb64f8e33fe2e6c2f893305c",
+    "apps/server/src/system-text.js": "d297190cd4ea5ddd3efcf5bba5a76d1221f5351ecb8cd6bc404844290aa85696",
+    "apps/server/src/util.js": "10d7fe120d039de68facc39ed03f84977487d0b0557eff99449cede1022798ca",
+    "apps/server/src/waveforms.js": "9e9102d2d5c9732f3dac9de8cfbed6520d0dc512fa99e8f8e7827c0518a15b45",
+    "apps/server/src/extractors/hls.js": "d54cd6998dc8f0d2889a0d878e55c46d051cae68439bb219890b1208226d1a14",
+    "apps/server/src/extractors/matching.js": "5aec51b318f99f19fb25d51236524fd5a4060e4d3f20fe889c02e955a7040367",
+    "apps/server/src/extractors/runtime.js": "4e36be0303f2045ed769257a4529023d9958f144354f6f8ff920754b4f5b9802",
+    "apps/server/src/extractors/service.js": "eb1a79d49224e49f92675c2054f75940be24678c4eb30ab5d4f65afdc363e4eb",
+    "apps/server/src/extractors/soundcloud.js": "39abeab959ac418df564d5d51fa5509d66a5484b20877799361b6d869563cd3c",
+    "apps/server/src/extractors/spotify.js": "05d9bfce18c37632cdd35d16469b59e0a4e48c4aa258e260ee12e1a78ee3af4d",
+    "apps/server/src/extractors/youtube.js": "01a8e67c3a39948c7268fc225ba3ac1c29266fbafb3453546a977dda67067cd3",
+    "apps/server/extractors/bridge.py": "084fd7b43212264a179868082333eb6825d986944d3d3385b3544e9a74937472",
+    "apps/server/extractors/requirements-spotdl.txt": "9faaa2416aaa16ba144f41df3b6be25ff363a13fbd139c17a8fc6e7fe8875d2b",
+    "apps/server/extractors/requirements-ytdlp.txt": "eddaf6b4a42ef7bc703cb08d3c189565a1d85a62b7a8b429b9b8e71eb793dcd4",
+    "apps/server/extractors/vendor/manifest.json": "ce60ab2e9ebcdebb3a15b370fcac9aa12c3160fe10ef5b377d008609d7378c16",
+    "apps/server/extractors/vendor/yt-dlp-ejs-UNLICENSE.txt": "b5065838cbac452dfc855ba6e6e031481ad2c68406f70d21ead9321374653e6c",
+    "apps/server/extractors/vendor/yt-dlp-UNLICENSE.txt": "7e12e5df4bae12cb21581ba157ced20e1986a0508dd10d0e8a4ab9a4cf94e85c",
+    "apps/server/extractors/vendor/yt-dlp.zip": "1fa6733c37ea6fb51c99ad8fe785e7b7e5f3246c9b980230329d4fb72ed8d4d6"
+  },
+  "limits": [
+    "Hosting and provider dashboards untouched",
+    "Public import reads only exposed collections; Spotify embed can return a partial collection, displayed explicitly; private Spotify/YouTube likes are not public",
+    "Real generated HLS and DSP decoded only through null output; physical device audio/background/transfer not claimed",
+    "iOS not built",
+    "Android debug certificate retained; Windows unsigned",
+    "Existing encryption key must stay shared and stable for cross-worker/restart capability recovery",
+    "Provider availability and browser gesture requirements remain applicable"
+  ]
+}

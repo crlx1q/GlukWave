@@ -1,0 +1,185 @@
+{
+  "passed": true,
+  "scope": "Actual React application served by Vite with isolated API fixture. All external public providers mocked here; live retrieval is checked separately by backend.",
+  "checks": [
+    {
+      "name": "spotify public normalized ID selection, deduped paging, one intent retry, partial result, library refresh only",
+      "initial": {
+        "overflow": false,
+        "rect": {
+          "bottom": 511.6875,
+          "height": 455.375,
+          "left": 10,
+          "right": 300,
+          "top": 56.3125,
+          "width": 290,
+          "x": 10,
+          "y": 56.3125
+        }
+      },
+      "bounds": {
+        "overflow": false,
+        "rect": {
+          "bottom": 553,
+          "height": 538,
+          "left": 10,
+          "right": 300,
+          "top": 15,
+          "width": 290,
+          "x": 10,
+          "y": 15
+        }
+      },
+      "import": {
+        "playlistId": "public-quiet",
+        "destination": "playlist",
+        "name": "Тихий берег",
+        "publicSourceUrl": "https://open.spotify.com/playlist/public-quiet",
+        "trackIds": [
+          "spotify:two"
+        ],
+        "requestId": "b6335400-5137-4df7-9c80-0286548df91a"
+      }
+    },
+    {
+      "name": "soundcloud public normalized ID selection, deduped paging, one intent retry, partial result, library refresh only",
+      "initial": {
+        "overflow": false,
+        "rect": {
+          "bottom": 562.140625,
+          "height": 312.28125,
+          "left": 7,
+          "right": 358,
+          "top": 249.859375,
+          "width": 351,
+          "x": 7,
+          "y": 249.859375
+        }
+      },
+      "bounds": {
+        "overflow": false,
+        "rect": {
+          "bottom": 693.53125,
+          "height": 575.0625,
+          "left": 7,
+          "right": 358,
+          "top": 118.46875,
+          "width": 351,
+          "x": 7,
+          "y": 118.46875
+        }
+      },
+      "import": {
+        "playlistId": "public-quiet",
+        "destination": "playlist",
+        "name": "Тихий берег",
+        "publicSourceUrl": "https://soundcloud.com/wave/sets/quiet",
+        "trackIds": [
+          "soundcloud:two"
+        ],
+        "requestId": "84533fe2-a665-4f8f-b191-8cdf44ab5072"
+      }
+    },
+    {
+      "name": "yandex public normalized ID selection, deduped paging, one intent retry, partial result, library refresh only",
+      "initial": {
+        "overflow": false,
+        "rect": {
+          "bottom": 562.140625,
+          "height": 312.28125,
+          "left": 7,
+          "right": 358,
+          "top": 249.859375,
+          "width": 351,
+          "x": 7,
+          "y": 249.859375
+        }
+      },
+      "bounds": {
+        "overflow": false,
+        "rect": {
+          "bottom": 693.53125,
+          "height": 575.0625,
+          "left": 7,
+          "right": 358,
+          "top": 118.46875,
+          "width": 351,
+          "x": 7,
+          "y": 118.46875
+        }
+      },
+      "import": {
+        "playlistId": "public-quiet",
+        "destination": "playlist",
+        "name": "Тихий берег",
+        "publicSourceUrl": "https://music.yandex.ru/users/wave/playlists/1",
+        "trackIds": [
+          "yandex:two"
+        ],
+        "requestId": "d19dd9b6-42a9-4a10-8a9b-a13ac997f8a3"
+      }
+    },
+    {
+      "name": "youtube public normalized ID selection, deduped paging, one intent retry, partial result, library refresh only",
+      "initial": {
+        "overflow": false,
+        "rect": {
+          "bottom": 593.03125,
+          "height": 286.0625,
+          "left": 290,
+          "right": 1140,
+          "top": 306.96875,
+          "width": 850,
+          "x": 290,
+          "y": 306.96875
+        }
+      },
+      "bounds": {
+        "overflow": false,
+        "rect": {
+          "bottom": 778.9375,
+          "height": 657.890625,
+          "left": 290,
+          "right": 1140,
+          "top": 121.046875,
+          "width": 850,
+          "x": 290,
+          "y": 121.046875
+        }
+      },
+      "import": {
+        "playlistId": "public-quiet",
+        "destination": "playlist",
+        "name": "Тихий берег",
+        "publicSourceUrl": "https://www.youtube.com/playlist?list=public-quiet",
+        "trackIds": [
+          "youtube:two"
+        ],
+        "requestId": "682ed017-1328-49ba-9691-cbe359cd15b6"
+      }
+    },
+    {
+      "name": "empty/private explanation, retry, stale query response discarded"
+    },
+    {
+      "name": "connected route only loads after explicit mode choice"
+    }
+  ],
+  "screenshots": [
+    "work/qa/public-import-evaluator-web-spotify-320-input.png",
+    "work/qa/public-import-evaluator-web-spotify-320-partial.png",
+    "work/qa/public-import-evaluator-web-spotify-320-result.png",
+    "work/qa/public-import-evaluator-web-soundcloud-375-input.png",
+    "work/qa/public-import-evaluator-web-soundcloud-375-partial.png",
+    "work/qa/public-import-evaluator-web-soundcloud-375-result.png",
+    "work/qa/public-import-evaluator-web-yandex-375-input.png",
+    "work/qa/public-import-evaluator-web-yandex-375-partial.png",
+    "work/qa/public-import-evaluator-web-yandex-375-result.png",
+    "work/qa/public-import-evaluator-web-youtube-1440-input.png",
+    "work/qa/public-import-evaluator-web-youtube-1440-partial.png",
+    "work/qa/public-import-evaluator-web-youtube-1440-result.png",
+    "work/qa/public-import-evaluator-web-empty.png",
+    "work/qa/public-import-evaluator-web-error.png",
+    "work/qa/public-import-evaluator-web-loading.png"
+  ]
+}

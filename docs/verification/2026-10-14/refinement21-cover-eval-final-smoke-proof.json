@@ -1,0 +1,19 @@
+{
+  "cd": {
+    "bodyOverflow": "hidden",
+    "brandVisible": true,
+    "classes": "album-stage  three-dimensional   reference-sleeve case-cd ",
+    "frontTransform": "matrix3d(0.970296, 0, 0.241922, 0, 0, 1, 0, 0, -0.241922, 0, 0.970296, 0, 0, 0, 9, 1)",
+    "recordDisplay": "grid"
+  },
+  "flat": {
+    "bodyOverflow": "hidden",
+    "brandVisible": true,
+    "classes": "album-stage  flat   reference-sleeve  ",
+    "frontTransform": "none",
+    "recordDisplay": "none"
+  },
+  "errors": {
+    "errors": []
+  }
+}

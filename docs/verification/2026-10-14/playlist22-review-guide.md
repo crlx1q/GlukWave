@@ -1,0 +1,27 @@
+# Current release: playlist interaction polish
+
+This phase extends release +21. It does not change the approved 3D cover or Connect geometry, audio core, packages or release metadata.
+
+## Actual behavior
+
+Web track rows and expanded-player playlist action show no / one / multiple memberships. The management picker uses real artwork, checked rows, search, independent membership toggles, visible saving, inline error and retry. Repeated pending clicks are guarded. New playlists appear as disabled saving drafts until acknowledged; failed creation keeps the typed name. Existing modal state survives optimistic delete failure.
+
+Web library selection is an ID, not a copied playlist. The page has a real collage, metadata, privacy and known duration, Play all, known-library search/add, remove and ordered move controls. The editor handles name, description, privacy, cover and confirmed deletion. Account changes clear old editor/selection state. No full-library/config/devices refresh follows these mutations.
+
+Native library mutations notify immediately, serialize only the same entity (a slow playlist cannot block unrelated likes), use encoded atomic membership PUT, preserve later intents during rollback, ignore stale account callbacks, overlay pending state on refresh and reject older snapshots after acknowledgements. Only confirmed library data is persisted. Cover acknowledgement merges cover fields only and cannot revive a deleted playlist. Playlist card order survives acknowledgement. Native picker/editor/header/order controls use the existing branded theme and all six languages. Creating from a search result also seeds matching known track metadata before and after acknowledgement; it stays playable locally without an extra mutation or broad refresh. Creating from a search result also seeds matching known track metadata before and after acknowledgement; it stays playable locally without an extra mutation or broad refresh. Creating from a search result also seeds matching known track metadata before and after acknowledgement; it stays playable locally without an extra mutation or broad refresh. Creating from a search result also seeds matching known track metadata before and after acknowledgement; it stays playable locally without an extra mutation or broad refresh.
+
+## Isolated browser fixture
+
+Run `node work/qa/playlist22-preview-server.mjs` from the repository. Actual app: `http://127.0.0.1:5193/app/#library`.
+
+POST `/api/qa/playlist22` accepts `{reset:true}`, `{clear:true}`, `{delay:6500}`, `{failNext:'/tracks/'}`, `{failNext:'/api/playlists'}`, `{account:'different-owner'}`, and `{settings:{theme:'light',fontScale:1.25,reducedMotion:true}}`. It returns real fixture state, request calls and created count. `failNext` matches the next mutation route and clears itself. Reset restores two owned playlists, eight real-asset tracks and no likes. Account control changes `/auth/me`; reload to resolve the new session. Read and mutation requests are recorded; no owner/provider network is used.
+
+Evaluator may copy this module to a separate port to isolate settings and state. Browser checks script is `playlist22-browser-check.mjs`; independent review writes its own proof/verdict. The implementation script produced partial screenshots before a hidden cover-file-input selector correction; no complete pass is claimed for that earlier harness run. Review 320/375/1440, 125% text, light/dark/reduced motion and keyboard focus. The independent reviewer requested two web corrections: long mobile names now use a full-width three-line title with full accessible name, and playlist modal bounds compensate for font zoom so close/focus remain inside the actual viewport. Both corrections are applied; final recheck is in progress. Verify checkmark/saving before delayed ACK, rollback/retry, only one create POST on double-submit, selected hero update, add/remove/reorder, and no GET library/config/devices/integrations after a mutation. Shared main/player files also warrant one integrated cover/Connect smoke.
+
+## Native focused checks
+
+`apps/native/test/playlist22_test.dart` covers journal ordering, canonical other-device state plus old GET race, cover/delete race, delayed ordered likes with one failure, independent entities, atomic encoded membership, confirmed-only disk snapshot, failed draft/create retry, stale account response, both refresh paths, picker at 320/375/1280 with 125% text, and delete confirmation rollback. Actual disk persistence is tested in ordinary async controller tests; UI tests isolate the disk writer to avoid fake-clock file-handle cleanup races.
+
+Run exclusively with short PUB_CACHE `C:/Users/alish/Documents/Codex/gw-pub-55712f`. JSON result: `work/qa/playlist22-native.jsonl`. Screenshots: `native-playlist22-picker-320.png`, `native-playlist22-picker-375.png`, `native-playlist22-picker-1280.png`, `native-playlist22-delete-rollback.png`.
+
+Focused native checks passed: 12 cases in playlist22-native.jsonl plus the non-library search-track creation case in playlist22-native-search.jsonl (13 distinct cases). The public current-source manifest is playlist22-ui-proof.json. Only plural/confirmation copy changed after those focused checks; root owns the one full native suite, final analysis and release builds. Independent browser/native evaluation is in progress; its final verdict is separate from this implementation guide.

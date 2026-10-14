@@ -1,0 +1,42 @@
+{
+  "scope": "Public import UI final source; existing unrelated playlist/Connect/cover work preserved.",
+  "web_typecheck": "passed",
+  "native_baseline_focused_tests": 7,
+  "native_overlap_test": "passed",
+  "native_scoped_analysis": "No issues found",
+  "localization_keys": 17,
+  "languages": [
+    "en",
+    "ru",
+    "kk",
+    "uk",
+    "de",
+    "es"
+  ],
+  "native_source_frozen": true,
+  "release_builds_performed": false,
+  "source_sha256": {
+    "apps/web/src/provider-import.tsx": "063e5a0a1b37bb8fb7251ca11cdcdf49e51b43f2500aa29b94a5d48c1c78e47d",
+    "apps/web/src/pages.tsx": "050f3d737a2b0b7f66e19236fe4bbb6f03f05c2007f8c9eb20c8e7a1609e296f",
+    "apps/web/src/public-import-copy.ts": "917f01cde2a3c1531bd7db39154ed8ccd49af3f2ad59008ae984208b00271c04",
+    "apps/web/src/public-import.css": "15dfa72d6fe8278190f618b2c277c5711ee829e22eb117ca648b8a129bdd8f71",
+    "apps/native/lib/ui/provider_import.dart": "9dc978182b6525ac1f1ea79fc29e936ace0d32f848c69651c362e14dbff2be4a",
+    "apps/native/lib/ui/app.dart": "c0c5efa51c3b11b8c3f1a15637cfbc2e4ac7d2d0869af9ca26bba879eab85a67",
+    "apps/native/lib/ui/public_import_strings.dart": "08e767db16f46238daaac25c82262592686de56e3a632393ce72cee8df1ab430"
+  },
+  "evidence": [
+    "public-import-native-tests.log",
+    "public-import-native-overlap.jsonl",
+    "public-import-native-overlap-analyze.log",
+    "public-import-localization-proof.json",
+    "public-import-review-guide.md",
+    "public-import-final-delta-proof.json",
+    "public-import-native-final-copy-analyze.log"
+  ],
+  "final_web_delta": {
+    "passed": true,
+    "checks": 4,
+    "proof": "public-import-final-delta-proof.json"
+  },
+  "obsolete_native_sources_empty_state_removed": true
+}

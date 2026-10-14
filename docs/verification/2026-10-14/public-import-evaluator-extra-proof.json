@@ -1,0 +1,225 @@
+{
+  "checks": [
+    {
+      "name": "768 light at 125% keeps dialog and keyboard focus inside",
+      "geometry": {
+        "content": "Ник или ссылка на профиль/плейлист\nНайти\n\nНайди открытые плейлисты и треки. Вход в музыкальный сервис не нужен. Закрытая музыка остаётся закрытой.",
+        "focusInside": true,
+        "fontScale": "1.25",
+        "h": 1024,
+        "rect": {
+          "bottom": 660.125,
+          "height": 296.25,
+          "left": 10,
+          "right": 748,
+          "top": 363.875,
+          "width": 738,
+          "x": 10,
+          "y": 363.875
+        },
+        "scrollWidth": 758,
+        "theme": "light",
+        "w": 768
+      }
+    },
+    {
+      "name": "Closed Spotify delayed search cannot populate newly opened Yandex import"
+    },
+    {
+      "name": "Account change closes old import and delayed lookup cannot restore it"
+    },
+    {
+      "name": "Six-language input en fits 320 at 125%",
+      "geometry": {
+        "content": "Nickname or profile/playlist link\nFind\n\nFind publicly visible playlists and tracks. No music service sign-in is needed. Private music stays private.",
+        "focusInside": true,
+        "fontScale": "1.25",
+        "h": 568,
+        "rect": {
+          "bottom": 490.03125,
+          "height": 412.0625,
+          "left": 10,
+          "right": 300,
+          "top": 77.96875,
+          "width": 290,
+          "x": 10,
+          "y": 77.96875
+        },
+        "scrollWidth": 310,
+        "theme": "dark",
+        "w": 320
+      }
+    },
+    {
+      "name": "Six-language input ru fits 320 at 125%",
+      "geometry": {
+        "content": "Ник или ссылка на профиль/плейлист\nНайти\n\nНайди открытые плейлисты и треки. Вход в музыкальный сервис не нужен. Закрытая музыка остаётся закрытой.",
+        "focusInside": true,
+        "fontScale": "1.25",
+        "h": 568,
+        "rect": {
+          "bottom": 511.6875,
+          "height": 455.375,
+          "left": 10,
+          "right": 300,
+          "top": 56.3125,
+          "width": 290,
+          "x": 10,
+          "y": 56.3125
+        },
+        "scrollWidth": 310,
+        "theme": "dark",
+        "w": 320
+      }
+    },
+    {
+      "name": "Six-language input kk fits 320 at 125%",
+      "geometry": {
+        "content": "Ник не профиль/плейлист сілтемесі\nТабу\n\nАшық плейлисттер мен тректерді тап. Музыка сервисіне кіру қажет емес. Жеке музыка жабық қалады.",
+        "focusInside": true,
+        "fontScale": "1.25",
+        "h": 568,
+        "rect": {
+          "bottom": 536.28125,
+          "height": 504.5625,
+          "left": 10,
+          "right": 300,
+          "top": 31.71875,
+          "width": 290,
+          "x": 10,
+          "y": 31.71875
+        },
+        "scrollWidth": 310,
+        "theme": "dark",
+        "w": 320
+      }
+    },
+    {
+      "name": "Six-language input uk fits 320 at 125%",
+      "geometry": {
+        "content": "Нік або посилання на профіль/плейлист\nЗнайти\n\nЗнайди відкриті плейлисти й треки. Вхід у музичний сервіс не потрібен. Закрита музика залишається закритою.",
+        "focusInside": true,
+        "fontScale": "1.25",
+        "h": 568,
+        "rect": {
+          "bottom": 511.6875,
+          "height": 455.375,
+          "left": 10,
+          "right": 300,
+          "top": 56.3125,
+          "width": 290,
+          "x": 10,
+          "y": 56.3125
+        },
+        "scrollWidth": 310,
+        "theme": "dark",
+        "w": 320
+      }
+    },
+    {
+      "name": "Six-language input de fits 320 at 125%",
+      "geometry": {
+        "content": "Name oder Profil-/Playlist-Link\nFinden\n\nFinde öffentliche Playlists und Titel ohne Anmeldung beim Musikdienst. Private Musik bleibt privat.",
+        "focusInside": true,
+        "fontScale": "1.25",
+        "h": 568,
+        "rect": {
+          "bottom": 490.03125,
+          "height": 412.0625,
+          "left": 10,
+          "right": 300,
+          "top": 77.96875,
+          "width": 290,
+          "x": 10,
+          "y": 77.96875
+        },
+        "scrollWidth": 310,
+        "theme": "dark",
+        "w": 320
+      }
+    },
+    {
+      "name": "Six-language input es fits 320 at 125%",
+      "geometry": {
+        "content": "Nombre o enlace de perfil/playlist\nBuscar\n\nEncuentra playlists y canciones públicas sin iniciar sesión en el servicio musical. La música privada sigue siendo privada.",
+        "focusInside": true,
+        "fontScale": "1.25",
+        "h": 568,
+        "rect": {
+          "bottom": 501.375,
+          "height": 434.75,
+          "left": 10,
+          "right": 300,
+          "top": 66.625,
+          "width": 290,
+          "x": 10,
+          "y": 66.625
+        },
+        "scrollWidth": 310,
+        "theme": "dark",
+        "w": 320
+      }
+    },
+    {
+      "name": "Overlapping page preserves prior deselection and final320 result begins at success heading/count",
+      "import": {
+        "playlistId": "public-quiet",
+        "destination": "playlist",
+        "name": "Тихий берег",
+        "publicSourceUrl": "https://open.spotify.com/playlist/public-quiet",
+        "trackIds": [
+          "spotify:two"
+        ],
+        "requestId": "6c862bcf-fcf0-46f3-8141-78dcc30bc556"
+      },
+      "resultTop": {
+        "count": {
+          "bottom": 327.90625,
+          "height": 44,
+          "left": 62.25,
+          "right": 142.703125,
+          "top": 283.90625,
+          "width": 80.453125,
+          "x": 62.25,
+          "y": 283.90625
+        },
+        "dialog": 0,
+        "heading": {
+          "bottom": 271.40625,
+          "height": 56.03125,
+          "left": 62.25,
+          "right": 237.75,
+          "top": 215.375,
+          "width": 175.5,
+          "x": 62.25,
+          "y": 215.375
+        }
+      }
+    },
+    {
+      "name": "Entire collection can target likes with exact public POST search/tracks contract and no selected-only IDs",
+      "import": {
+        "playlistId": "public-quiet",
+        "destination": "likes",
+        "publicSourceUrl": "https://open.spotify.com/playlist/public-quiet",
+        "requestId": "eb043bda-9bdd-4cf1-8208-88e006808ee6"
+      }
+    }
+  ],
+  "screenshots": [
+    "work/qa/public-import-evaluator-tablet-light-keyboard.png",
+    "work/qa/public-import-evaluator-locale-en-320.png",
+    "work/qa/public-import-evaluator-locale-ru-320.png",
+    "work/qa/public-import-evaluator-locale-kk-320.png",
+    "work/qa/public-import-evaluator-locale-uk-320.png",
+    "work/qa/public-import-evaluator-locale-de-320.png",
+    "work/qa/public-import-evaluator-locale-es-320.png",
+    "work/qa/public-import-evaluator-320-final-result-top.png",
+    "work/qa/public-import-evaluator-likes-all-result.png"
+  ],
+  "passed": true,
+  "errors": {
+    "errors": []
+  },
+  "harnessNote": "The last2 checks were resumed with explicit scrolling and snapshot/polling after the CLI click of an offscreen collection did not activate it. Earlier9 observed checks on frozen product sources were retained."
+}

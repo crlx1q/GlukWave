@@ -1,0 +1,42 @@
+[
+  {
+    "provider": "spotify",
+    "query": "https://open.spotify.com/playlist/37i9dQZF1DXcBWIGoYBM5M",
+    "playlists": 1,
+    "liked": false,
+    "tracks": 50,
+    "normalized": true,
+    "partial": true,
+    "ms": 1525
+  },
+  {
+    "provider": "yandex",
+    "query": "music-blog",
+    "playlists": 1000,
+    "liked": true,
+    "tracks": 77,
+    "normalized": true,
+    "partial": true,
+    "ms": 4886
+  },
+  {
+    "provider": "soundcloud",
+    "query": "tycho",
+    "playlists": 54,
+    "liked": true,
+    "tracks": 3,
+    "normalized": true,
+    "partial": false,
+    "ms": 1550
+  },
+  {
+    "provider": "spotify",
+    "query": "spotify",
+    "playlists": 10,
+    "liked": false,
+    "tracks": 50,
+    "normalized": true,
+    "partial": true,
+    "ms": 704
+  }
+]

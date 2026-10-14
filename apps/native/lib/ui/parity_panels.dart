@@ -1,3 +1,4 @@
+import 'playlist_manager.dart';
 import 'wave18_strings.dart';
 import 'dart:async';
 import 'package:file_picker/file_picker.dart';
@@ -57,31 +58,18 @@ Future<void> parityTrackActions(
           },
         ),
         ListTile(
-          leading: const Icon(Icons.playlist_add),
-          title: Text(wt('native.df0c76065d', context: sheet)),
-          onTap: () async {
+          leading: Icon(
+            c.playlistsForTrack(track.id).isEmpty
+                ? Icons.playlist_add_rounded
+                : Icons.playlist_add_check_rounded,
+            color: c.playlistsForTrack(track.id).isEmpty
+                ? null
+                : waveVisuals(context).accent,
+          ),
+          title: Text(membershipLabel(context, c, track)),
+          onTap: () {
             Navigator.pop(sheet);
-            final playlist = await showWaveDialog<Json>(
-              context: context,
-              builder: (dialog) => SimpleDialog(
-                title: Text(wt('native.81524f9e71', context: dialog)),
-                children: [
-                  for (final p in c.playlists)
-                    SimpleDialogOption(
-                      onPressed: () => Navigator.pop(dialog, p),
-                      child: Text(p['name'].toString()),
-                    ),
-                  if (c.playlists.isEmpty)
-                    Padding(
-                      padding: const EdgeInsets.all(24),
-                      child: Text(wt('native.9feaa9c30e', context: dialog)),
-                    ),
-                ],
-              ),
-            );
-            if (playlist != null) {
-              await parityRun(c, () => c.addToPlaylist(playlist, track));
-            }
+            showPlaylistMembership(context, c, track);
           },
         ),
         if (track.offline)
@@ -1817,23 +1805,9 @@ class PlaylistPublishing extends StatelessWidget {
     required this.onChanged,
   });
   Future<void> update(Json changes) async {
-    final data = await controller.api.call(
-      '/api/playlists/${playlist['id']}',
-      method: 'PATCH',
-      data: changes,
+    onChanged(
+      await controller.updatePlaylist(playlist['id'].toString(), changes),
     );
-    final saved = object(data['playlist']).isEmpty
-        ? object(
-            (await controller.api.call(
-              '/api/playlists/${playlist['id']}',
-            ))['playlist'],
-          )
-        : object(data['playlist']);
-    if (saved.isEmpty) {
-      throw StateError('Playlist update could not be verified');
-    }
-    onChanged(saved);
-    await controller.refresh();
   }
 
   @override
@@ -1869,12 +1843,20 @@ class PlaylistPublishing extends StatelessWidget {
                 );
                 final path = file?.files.first.path;
                 if (path == null) return;
+                final account = controller.user?.id,
+                    token = controller.api.token,
+                    server = controller.api.server;
                 final data = await controller.api.upload(
                   '/api/playlists/${playlist['id']}/cover',
                   path,
                 );
+                if (account != controller.user?.id ||
+                    token != controller.api.token ||
+                    server != controller.api.server) {
+                  return;
+                }
+                controller.acceptPlaylist(object(data['playlist']));
                 onChanged(object(data['playlist']));
-                await controller.refresh();
               }),
               icon: const Icon(Icons.image_outlined),
               label: Text(pt(context, 'Change cover')),
@@ -1882,12 +1864,20 @@ class PlaylistPublishing extends StatelessWidget {
             if ((playlist['artwork']?.toString() ?? '').isNotEmpty)
               TextButton(
                 onPressed: () => parityRun(controller, () async {
+                  final account = controller.user?.id,
+                      token = controller.api.token,
+                      server = controller.api.server;
                   final data = await controller.api.call(
                     '/api/playlists/${playlist['id']}/cover',
                     method: 'DELETE',
                   );
+                  if (account != controller.user?.id ||
+                      token != controller.api.token ||
+                      server != controller.api.server) {
+                    return;
+                  }
+                  controller.acceptPlaylist(object(data['playlist']));
                   onChanged(object(data['playlist']));
-                  await controller.refresh();
                 }),
                 child: Text(pt(context, 'Restore collage')),
               ),

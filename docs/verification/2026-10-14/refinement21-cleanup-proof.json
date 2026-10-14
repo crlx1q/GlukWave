@@ -1,0 +1,43 @@
+{
+  "deleted": [
+    {
+      "path": "GlukWave-windows.1fa94d601d424bacb7501fcaf4e8e0c0.partial",
+      "reason": "Empty packaging shell"
+    },
+    {
+      "path": "GlukWave-windows.203b0c33662f4ac5af09f8b049ba8a37.partial",
+      "reason": "Empty packaging shell"
+    },
+    {
+      "path": "GlukWave-windows.dd55753b67f4480b85555e1fc9fefead.partial",
+      "reason": "Empty packaging shell"
+    },
+    {
+      "path": "GlukWave-windows.previous.1e3ba0b5217c40c9a961d09e6a5fbec6",
+      "reason": "All files matched exact rollback ZIP",
+      "preservedArchive": "work/qa/refinement21-base-windows.zip",
+      "bytes": 93220410
+    },
+    {
+      "path": "GlukWave-windows.previous.b42f0c495c174dbb8ca0f35ea0646fe0",
+      "reason": "All files matched exact rollback ZIP",
+      "preservedArchive": "outputs/archive/releases/1.0.0+20/GlukWave-windows.zip",
+      "bytes": 60301462
+    },
+    {
+      "path": "GlukWave-windows.previous.c6240bfe637f41b3a5b73d3f11c39361",
+      "reason": "All files matched exact rollback ZIP",
+      "preservedArchive": "outputs/archive/releases/1.0.0+19/GlukWave-windows.zip",
+      "bytes": 60218900
+    },
+    {
+      "path": "GlukWave-1.0.0+20-audit.json",
+      "reason": "Exact rollback copy preserved"
+    },
+    {
+      "path": "GlukWave-1.0.0+20-source-audit.json",
+      "reason": "Exact rollback copy preserved"
+    }
+  ],
+  "rollbackArchivesPreserved": true
+}

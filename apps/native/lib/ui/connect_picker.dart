@@ -2,10 +2,9 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import '../core/controller.dart';
 import '../l10n/ecosystem_polish_strings.dart';
-import 'connect_panel.dart';
-import 'device_labels.dart';
+import '../l10n/wave_localizations.dart';
 import 'widgets.dart';
-import 'connect_playback.dart';
+import 'connect_device_tile.dart';
 
 Future<void> showConnectPicker(
   BuildContext context,
@@ -93,8 +92,6 @@ Future<void> showConnectPicker(
                             ),
                           ],
                         ),
-                        ConnectPlayback(controller: c, compact: true),
-                        const SizedBox(height: 12),
                         if (c.transferPending != null)
                           Padding(
                             padding: const EdgeInsets.only(bottom: 10),
@@ -107,56 +104,36 @@ Future<void> showConnectPicker(
                             ),
                           ),
                         for (final device
-                            in c.lanEnabled ? c.lanPeers : c.devices)
-                          ListTile(
-                            contentPadding: EdgeInsets.zero,
-                            leading: DevicePlatformIcon(
-                              device: device,
-                              color: installationId(device) == c.activeDeviceId
-                                  ? waveVisuals(context).accent
-                                  : waveVisuals(context).muted,
-                            ),
-                            title: Text(
-                              device['name']?.toString() ?? '',
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: const TextStyle(
-                                fontSize: 13,
-                                fontWeight: FontWeight.w700,
+                            in ([
+                              ...(c.lanEnabled ? c.lanPeers : c.devices),
+                            ]..sort(
+                              (a, b) =>
+                                  ((connectDeviceId(b) == c.activeDeviceId
+                                              ? 2
+                                              : 0) +
+                                          (b['online'] == true ? 1 : 0))
+                                      .compareTo(
+                                        (connectDeviceId(a) == c.activeDeviceId
+                                                ? 2
+                                                : 0) +
+                                            (a['online'] == true ? 1 : 0),
+                                      ),
+                            )))
+                          ConnectDeviceTile(
+                            controller: c,
+                            device: device,
+                            compact: true,
+                          ),
+                        if ((c.lanEnabled ? c.lanPeers : c.devices).isEmpty)
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 20),
+                            child: Text(
+                              wt('native.76bdd0e417', context: context),
+                              style: TextStyle(
+                                color: waveVisuals(context).muted,
+                                fontSize: 12,
                               ),
                             ),
-                            subtitle: Text(
-                              deviceKindLabel(device, context: context),
-                              style: const TextStyle(fontSize: 10),
-                            ),
-                            trailing:
-                                c.transferPending == installationId(device)
-                                ? const SizedBox(
-                                    width: 18,
-                                    height: 18,
-                                    child: CircularProgressIndicator(
-                                      strokeWidth: 2,
-                                    ),
-                                  )
-                                : installationId(device) == c.activeDeviceId
-                                ? ListeningWave(playing: c.audio.playing)
-                                : null,
-                            enabled:
-                                device['online'] == true &&
-                                c.transferPending == null,
-                            onTap: () async {
-                              try {
-                                await c.transfer(
-                                  installationId(device),
-                                  targetSurfaceId:
-                                      installationId(device) == c.deviceId
-                                      ? c.surfaceId
-                                      : device['surfaceId']?.toString(),
-                                );
-                              } catch (e) {
-                                c.tell(e.toString());
-                              }
-                            },
                           ),
                         if (onAllDevices != null)
                           TextButton(

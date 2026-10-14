@@ -1,0 +1,57 @@
+.modal:has(.playlist-manager,.playlist-editor){width:440px;min-width:0;max-width:calc(100vw / var(--font-scale,1) - 24px);max-height:calc(100dvh / var(--font-scale,1) - 24px)}
+.modal:has(.playlist-manager,.playlist-editor) .modal-content{min-width:0}
+.modal:has(.playlist-manager,.playlist-editor) .modal-content>header h2{min-width:0;overflow-wrap:anywhere}
+.playlist-manager,.playlist-editor{display:flex;flex-direction:column;gap:18px;min-width:0}
+.playlist-track-summary{display:flex;align-items:center;gap:14px;padding-bottom:18px;border-bottom:1px solid var(--line)}
+.playlist-track-summary .art{width:56px;height:56px;flex:none;border-radius:var(--radius)}
+.playlist-track-summary>span,.playlist-membership-item button>span:not(.playlist-collage):not(.membership-check),.playlist-library-option>span:not(.art):not(.membership-check){flex:1;min-width:0;text-align:left;display:flex;flex-direction:column;gap:5px}
+.playlist-track-summary b,.playlist-membership-item b,.playlist-library-option b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.playlist-track-summary small,.playlist-membership-item small,.playlist-library-option small,.playlist-facts{color:var(--muted)}
+.playlist-search{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:0 13px}
+.playlist-search input{width:100%;min-width:0;border:0;background:none;padding:13px 0;box-shadow:none;outline:none}
+.playlist-memberships,.playlist-library-picker{max-height:310px;overflow:auto;overscroll-behavior:contain;display:flex;flex-direction:column;gap:5px;padding-right:3px}
+.playlist-membership-item>button,.playlist-library-option{width:100%;display:flex;align-items:center;gap:13px;border-radius:var(--radius);padding:10px;text-align:left;border:1px solid transparent;background:transparent;transition:background .18s,border-color .18s}
+.playlist-membership-item>button:hover,.playlist-library-option:hover{background:var(--surface)}
+.playlist-membership-item>button[aria-pressed=true],.playlist-library-option[aria-pressed=true]{background:color-mix(in srgb,var(--accent) 9%,transparent);border-color:color-mix(in srgb,var(--accent) 22%,transparent)}
+.playlist-membership-item .playlist-collage,.playlist-library-option>.art{width:48px;height:48px;flex:none;border-radius:calc(var(--radius)*.65)}
+.membership-check{display:grid;place-items:center;width:26px;height:26px;flex:none;border-radius:50%;border:1px solid var(--line);color:var(--muted)}
+.membership-check.checked{color:var(--accent);background:color-mix(in srgb,var(--accent) 13%,transparent);border-color:color-mix(in srgb,var(--accent) 40%,transparent)}
+.playlist-operation-error{display:flex;align-items:center;justify-content:space-between;gap:12px;color:var(--ink);background:color-mix(in srgb,#d56161 12%,transparent);padding:12px 14px;border-radius:var(--radius);font-size:12px}
+.playlist-operation-error button{color:var(--accent);font-weight:700;flex:none}
+.playlist-empty{padding:18px 6px;color:var(--muted)}
+.playlist-inline-create{border-top:1px solid var(--line);padding-top:18px;display:flex;flex-wrap:wrap;gap:10px;align-items:end}
+.playlist-inline-create .field{flex:1;min-width:150px;margin:0}
+.playlist-inline-create .subtle-button{min-height:43px}
+.playlist-editor-actions,.playlist-hero-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.playlist-delete-confirm{padding-top:12px;border-top:1px solid var(--line)}
+.playlist-delete-confirm p{line-height:1.6;margin-bottom:16px}
+.playlist-membership-button{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-width:0}
+.playlist-membership-button span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:190px}
+.icon-btn.in-playlist,.playlist-membership-button.in-playlist{color:var(--accent)}
+.playlist-library-page .library-playlist{position:relative}
+.playlist-library-page .library-playlist.is-saving{opacity:.65}
+.playlist-pending{position:absolute;inset:0;display:grid;place-items:center;background:#0003}
+.playlist-hero{display:flex;align-items:center;gap:32px;margin:24px 0 34px}
+.playlist-hero>.playlist-collage{width:180px;height:180px;flex:none;border-radius:var(--radius)}
+.playlist-hero>div{min-width:0}
+.playlist-hero h1{font-size:clamp(28px,4vw,48px);letter-spacing:-.04em;line-height:1.12;overflow-wrap:anywhere;margin:10px 0}
+.playlist-hero .intro{max-width:640px}
+.playlist-facts{display:flex;align-items:center;gap:7px;flex-wrap:wrap;font-size:12px;margin:15px 0 20px}
+.playlist-order .list-button{gap:12px}
+.playlist-order .art{width:38px;height:38px;flex:none}
+.playlist-order .list-button>span{min-width:0;flex:1;display:flex;flex-direction:column;gap:3px;overflow:hidden}
+.playlist-order b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.playlist-order small{font-size:11px;color:var(--muted)}
+.playlist-order .icon-btn{flex:none}
+@media(max-width:600px){.playlist-hero-actions{gap:8px}.playlist-hero-actions .primary-button,.playlist-hero-actions .subtle-button{padding:10px 13px;font-size:12px}.playlist-memberships,.playlist-library-picker{max-height:38dvh}.playlist-order .list-button{gap:5px}.playlist-order .art{display:none}.playlist-order .icon-btn{width:32px;height:36px}.playlist-membership-button span{max-width:120px}}
+@media(max-width:600px){
+ .playlist-hero{display:grid;grid-template-columns:88px minmax(0,1fr);column-gap:16px;row-gap:12px;align-items:start}
+ .playlist-hero>.playlist-collage{width:88px;height:88px;grid-column:1;grid-row:1 / span 2}
+ .playlist-hero>div{display:contents}
+ .playlist-hero .eyebrow{grid-column:2;grid-row:1;align-self:end}
+ .playlist-hero .playlist-facts{grid-column:2;grid-row:2;margin:0;align-self:start}
+ .playlist-hero h1{grid-column:1 / -1;grid-row:3;margin:0;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden}
+ .playlist-hero .intro{grid-column:1 / -1;grid-row:4;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden}
+ .playlist-hero-actions{grid-column:1 / -1;grid-row:5}
+}
+@media(prefers-reduced-motion:reduce){.playlist-membership-item>button,.playlist-library-option{transition:none}}

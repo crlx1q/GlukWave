@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "dllSha256": "d5f0694b08c124e785d858d00082f3e3b158dd9138bfc48c0382bf1eb443a5fc",
+  "oldAudioOnlyHlsDemuxer": false,
+  "newFullRuntimeHlsDemuxer": true,
+  "encryptedAacHlsActuallyDecoded": true,
+  "decodedSampleRate": 44100,
+  "decodedPositionSeconds": 1.545883,
+  "sessionHeadersAndCapabilityOnManifestKeyAndSegment": true,
+  "nativeEqualizerPreampAndDisableVerified": true,
+  "physicalAudioUsed": false,
+  "ownerProviderTrafficUsed": false,
+  "scope": "Actual delivered DLL decoding generated local AES128 HLS and own WAV through null output; not physical device playback/transfer.",
+  "rawProofs": [
+    "refinement21-mpv-hls-before.json",
+    "refinement21-mpv-hls-after.json",
+    "refinement21-mpv-dsp-proof.json"
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "active": {
+    "animation": "playback-wave-travel",
+    "dashArray": "14px, 34px",
+    "duration": "2s",
+    "iteration": "infinite",
+    "keyframes": [
+      [
+        {
+          "composite": "replace",
+          "computedOffset": 0,
+          "easing": "linear",
+          "offset": 0,
+          "strokeDashoffset": "48px"
+        },
+        {
+          "composite": "auto",
+          "computedOffset": 1,
+          "easing": "linear",
+          "offset": 1,
+          "strokeDashoffset": "0px"
+        }
+      ]
+    ],
+    "pathLength": "48",
+    "previewLines": 2
+  },
+  "underCoverOffHidden": true,
+  "lyricsOffHidden": true,
+  "reduced": [
+    {
+      "animation": "none",
+      "state": "running"
+    },
+    {
+      "animation": "none",
+      "state": "running"
+    }
+  ]
+}

@@ -38,15 +38,23 @@ for item in frozen['files']:
 require(len(matched) >= 50, 'Insufficient build input coverage')
 
 binary_hashes = {}
-for name in ['glukwave.exe', 'flutter_windows.dll', 'libmpv-2.dll', 'audio_service_win_plugin.dll', 'flutter_inappwebview_windows_plugin.dll',
+full_media = 'media_kit_libs_windows_video: 1.0.11' in (root / 'apps/native/pubspec.yaml').read_text('utf-8')
+required_binaries = ['glukwave.exe', 'flutter_windows.dll', 'libmpv-2.dll', 'audio_service_win_plugin.dll', 'flutter_inappwebview_windows_plugin.dll',
              'flutter_secure_storage_windows_plugin.dll', 'tray_manager_plugin.dll', 'window_manager_plugin.dll',
-             'msvcp140.dll', 'vcruntime140.dll', 'vcruntime140_1.dll']:
+             'msvcp140.dll', 'vcruntime140.dll', 'vcruntime140_1.dll']
+if full_media:
+    required_binaries += ['media_kit_libs_windows_video_plugin.dll', 'libEGL.dll', 'libGLESv2.dll']
+for name in required_binaries:
     value = (bundle / name).read_bytes()
     require(value[:2] == b'MZ', 'Missing PE header: ' + name)
     header = struct.unpack_from('<I', value, 60)[0]
     require(value[header:header + 4] == b'PE\0\0', 'Invalid PE signature: ' + name)
     require(struct.unpack_from('<H', value, header + 4)[0] == 0x8664, 'Non-x64 binary: ' + name)
     binary_hashes[name] = digest(value)
+if full_media:
+    require(binary_hashes['libmpv-2.dll'] == 'd5f0694b08c124e785d858d00082f3e3b158dd9138bfc48c0382bf1eb443a5fc',
+            'HLS-capable pinned mpv binary differs; stale audio-only extraction may have been reused')
+    require((bundle / 'licenses/ANGLE-BSD.txt').is_file(), 'Missing ANGLE notice')
 
 release = args.build_workspace / 'build/windows/x64/runner/Release'
 for name in ['glukwave.exe', 'data/app.so', 'flutter_windows.dll', 'libmpv-2.dll']:
@@ -55,6 +63,10 @@ require(b'https://wave.gluk.tech' in (bundle / 'data/app.so').read_bytes(), 'Off
 feature_markers = {marker: marker.encode('utf-8') in (bundle / 'data/app.so').read_bytes()
                    for marker in ['track-loading-cover', 'glukwave-lan-v1', 'LAN pairing', 'seasonalEffects', 'lan-enable', '/discord', 'discord:changed', 'discordPresence', '/api/diagnostics/events', '/lrclib', '/genius/preview', 'genius-preview', 'cover-ambient-transform', 'ROOM_STATE', 'Find on LRCLIB', 'deviceVolume', '/api/auth/native-captcha', 'desktop-quick-volume', '/account/sessions', 'downloadUrl', 'adoptOnly', '/taste', '/friends', '/jams', '/api/account/', 'currentPassword', 'Email sent', '/playlists/discover']}
 require(all(feature_markers.values()), 'Current diagnostics or LRCLIB import missing from AOT')
+library_markers = {marker: marker.encode('utf-8') in (bundle / 'data/app.so').read_bytes()
+                   for marker in ['/api/public-import/search', '/api/public-import/tracks', 'publicSourceUrl', 'playlist-membership-', 'playlist-edit-name']}
+require(all(library_markers.values()), 'Current public import or playlist UI missing from AOT')
+feature_markers.update(library_markers)
 
 manifest = json.loads((bundle / 'data/flutter_assets/FontManifest.json').read_text('utf-8'))
 font_count = 0
@@ -89,6 +101,7 @@ result = {'checkedAt': datetime.now(timezone.utc).isoformat(), 'passed': True, '
           'binarySha256': binary_hashes, 'packageMatchesReleaseBuild': True,
           'zipCrcAndAllFilesMatched': True, 'staticFontFaces': font_count,
           'compileDefine': 'https://wave.gluk.tech', 'buildMode': 'release',
+          'pinnedFullMediaRuntimeVerified': full_media,
           'authenticodeSigned': False, 'uiInteractionVerified': False, 'physicalAudioVerified': False}
 proof = root / 'work/qa/windows-package-proof.json'
 proof.write_text(json.dumps(result, indent=2) + '\n', encoding='utf-8')

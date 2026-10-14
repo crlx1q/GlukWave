@@ -1,0 +1,62 @@
+{
+  "checks": [
+    {
+      "name": "Selected playlist hero updates immediately by ID and stays selected",
+      "rename": {
+        "busy": "true",
+        "disabled": true,
+        "hero": "Вечер у моря — длинное название любимого плейлиста для спокойного настроения",
+        "order": [
+          "",
+          ""
+        ],
+        "pressed": null
+      }
+    },
+    {
+      "name": "Known-library add and reorder render immediately without refreshing unrelated surfaces",
+      "added": {
+        "busy": "true",
+        "disabled": true,
+        "hero": "Вечер у моря — длинное название любимого плейлиста для спокойного настроения",
+        "order": [
+          "",
+          "",
+          ""
+        ],
+        "pressed": "true",
+        "text": "Вечер у моря — длинное название любимого плейлиста для спокойного настроения\n\nТам, где тихо\nWave artist\nСквозь облака\nТёплые дни\nПосле дождя\nWave artist\nСолнечный берег\nТёплые дни\nСнова рядом\nWave artist\nМедленный свет\nТёплые дни\nТёплые дни\nWave artist\nНа своей волне\nТёплые дни"
+      },
+      "reorder": {
+        "busy": null,
+        "disabled": true,
+        "hero": "Вечер у моря — длинное название любимого плейлиста для спокойного настроения",
+        "order": [
+          "Там, где тихо",
+          "Солнечный берег",
+          "Сквозь облака"
+        ],
+        "pressed": null
+      }
+    },
+    {
+      "name": "Delete keeps mounted confirmation on error and restores selected playlist"
+    },
+    {
+      "name": "Long-name hero and keyboard picker bounded 375@1 light",
+      "geometry": {
+        "overflow": false,
+        "r": {
+          "bottom": 683.453125,
+          "height": 554.921875,
+          "left": 7,
+          "right": 358,
+          "top": 128.53125,
+          "width": 351,
+          "x": 7,
+          "y": 128.53125
+        }
+      }
+    }
+  ]
+}

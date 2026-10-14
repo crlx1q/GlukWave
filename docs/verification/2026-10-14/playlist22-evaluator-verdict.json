@@ -1,0 +1,112 @@
+{
+  "observedAt": "2026-10-14T08:53:32.210Z",
+  "reviewer": "Independent evaluation retry on the available inherited model. No different-provider model capability was exposed; no cross-provider review claim.",
+  "fixtureScope": "Current real React/Flutter components, isolated fixture accounts and public metadata/artwork mocks. No owner/provider account access, physical playback or deployed hosting claim.",
+  "scores": {
+    "designQuality": 2,
+    "originality": 2,
+    "craft": 2,
+    "functionality": 2
+  },
+  "verdict": "PASS",
+  "passed": true,
+  "scope": "Playlist interaction polish and current integrated cover/Connect smoke. This completes the interrupted prior review with new observations.",
+  "observations": {
+    "browserMutationAndResponsiveChecks": [
+      "Like paints within two frames before delayed ACK without broad reads",
+      "Multiple memberships, local removal, disabled repeat, one atomic request",
+      "Membership error rolls back inline; retry keeps picker and succeeds",
+      "Create shows honest saving draft, prevents double-submit and retains long name on error",
+      "Create retry inserts one acknowledged playlist without reload",
+      "Selected playlist hero updates immediately by ID and stays selected",
+      "Known-library add and reorder render immediately without refreshing unrelated surfaces",
+      "Delete keeps mounted confirmation on error and restores selected playlist",
+      "Long-name hero and keyboard picker bounded 375@1 light",
+      "Long-name hero and keyboard picker bounded 320@1.25 dark",
+      "Long-name hero and keyboard picker bounded 1440@1.25 dark"
+    ],
+    "account": "In-session authenticated account switch clears selected playlist and open editor",
+    "native": "Fresh independent three short picker cases at320/375/1280 with125% text, long memberships and retained-name error state passed in the9-case evaluator run.",
+    "cover": "Fresh real-component bounds computation has zero bad angles at1440x900,1440x650,812x375,375x812,320x568.",
+    "connect": "Fresh mobile device panel bounds, remote/local status visibility, one transfer command, expanded-player local status and zero page errors."
+  },
+  "proofs": [
+    "work/qa/playlist22-fresh-evaluator-flow-proof.json",
+    "work/qa/playlist22-fresh-evaluator-account-proof.json",
+    "work/qa/playlist22-fresh-cover-extents-proof.json",
+    "work/qa/playlist22-fresh-smoke-interactions-proof.json",
+    "work/qa/public-import-evaluator-native.log"
+  ],
+  "limitations": [
+    "The inherited full flow harness stopped at a reload-based account expectation because the fixture gives both accounts identical playlist IDs. Its11 prior observed checks passed; a separate in-session authenticated account-switch observation passes and is the account evidence.",
+    "Connect panel fits the320 viewport, but the global document scrollWidth flag is true with expanded-player body overflow hidden. This is not claimed as a universal document-overflow pass.",
+    "Real audio devices and native release binaries were not tested by this evaluator.",
+    "No different-provider evaluator model was exposed."
+  ],
+  "sources": [
+    {
+      "path": "apps/web/src/playlist-copy.ts",
+      "sha256": "2cd5688f1ea33e82cea94dd1ba0e0c22b781a5065c1236cd64918135238a5a4b"
+    },
+    {
+      "path": "apps/web/src/playlist-manager.tsx",
+      "sha256": "283c652a01551e8eb52f0e14fb1637c58322e9bbd34c19ad490b1cadf5eb22fa"
+    },
+    {
+      "path": "apps/web/src/playlist-library.tsx",
+      "sha256": "52724ac3dd78ec7dd230ca0912c916a305c84381ea7606603b302ae33418377f"
+    },
+    {
+      "path": "apps/web/src/playlist-polish.css",
+      "sha256": "edecc305468749eea21d646462cb6c8b958dfe33045496dc5e7f9ebc3476fcc1"
+    },
+    {
+      "path": "apps/web/src/ui.tsx",
+      "sha256": "46e82b5b7371a352f81f90a65e97fddfeb9a1e9fe7390f0e0b9147033d27804b"
+    },
+    {
+      "path": "apps/web/src/pages.tsx",
+      "sha256": "050f3d737a2b0b7f66e19236fe4bbb6f03f05c2007f8c9eb20c8e7a1609e296f"
+    },
+    {
+      "path": "apps/web/src/player-ui.tsx",
+      "sha256": "c9838cff0dba1d31ae1f16c2b184b17dfe9525b2c338fa4172f9fc50fff42206"
+    },
+    {
+      "path": "apps/web/src/parity-playlists.tsx",
+      "sha256": "90b796928227658996185084a9f372f8bbfe832e988eaceb274b75cf153422ad"
+    },
+    {
+      "path": "apps/web/src/main.tsx",
+      "sha256": "53645fd49adcb7d42cfe2313dc0e8e746a459d07420e2b5f67c046aaa92b30e0"
+    },
+    {
+      "path": "apps/native/lib/core/controller.dart",
+      "sha256": "cada4cd7ee744aa78ceb20c394f17405cd9c3db084437439be18a1f5e759c66c"
+    },
+    {
+      "path": "apps/native/lib/core/library_mutations.dart",
+      "sha256": "77d7a96829d24e106c1dc1e0564142c958db0d0d7660f6b358940daaa4d9b260"
+    },
+    {
+      "path": "apps/native/lib/ui/playlist_manager.dart",
+      "sha256": "3b3a32b39f6b94acc2d6c416cb79f706d177eee1cd9aa5fc5e53da266cc7e075"
+    },
+    {
+      "path": "apps/native/lib/ui/playlist_strings.dart",
+      "sha256": "8d306ddfa1fc3059570a6ae73927f512e2b4ff266cd9e5c3be8bf793e36a713f"
+    },
+    {
+      "path": "apps/native/lib/ui/app.dart",
+      "sha256": "c0c5efa51c3b11b8c3f1a15637cfbc2e4ac7d2d0869af9ca26bba879eab85a67"
+    },
+    {
+      "path": "apps/native/lib/ui/parity_panels.dart",
+      "sha256": "275442c4c3789f9b74b3238839d9b9a42c5e84eb8e7aa9fa480e4f95a1103c2a"
+    },
+    {
+      "path": "apps/native/test/playlist22_test.dart",
+      "sha256": "fcfbc17aaecb57301129b9753aae2b35c8d3b53dfaf08e54268247011466501e"
+    }
+  ]
+}

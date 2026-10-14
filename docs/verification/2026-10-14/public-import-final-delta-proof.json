@@ -1,0 +1,43 @@
+{
+  "passed": true,
+  "checks": [
+    "Deselection preserved across overlapping page; new normalized ID selected",
+    "Result starts at success/count at320/125%",
+    "No document horizontal overflow",
+    "One selected-ID import request"
+  ],
+  "visual": {
+    "dialog": {
+      "bottom": 553,
+      "height": 538,
+      "left": 10,
+      "right": 300,
+      "top": 15,
+      "width": 290,
+      "x": 10,
+      "y": 15
+    },
+    "heading": {
+      "bottom": 271.40625,
+      "height": 56.03125,
+      "left": 62.25,
+      "right": 237.75,
+      "top": 215.375,
+      "width": 175.5,
+      "x": 62.25,
+      "y": 215.375
+    },
+    "overflow": false,
+    "scrollTop": 0
+  },
+  "request": {
+    "playlistId": "public-quiet",
+    "destination": "playlist",
+    "name": "Тихий берег",
+    "publicSourceUrl": "https://open.spotify.com/playlist/public-quiet",
+    "trackIds": [
+      "spotify:two"
+    ],
+    "requestId": "83ca1c09-e8c0-42dd-8a0a-530e0adf35a5"
+  }
+}

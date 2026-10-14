@@ -16,6 +16,7 @@ import 'api.dart';
 import 'playback_recovery.dart';
 import 'qr_login.dart';
 import 'models.dart';
+import 'library_mutations.dart';
 import 'discord.dart';
 import 'appearance.dart';
 import '../services/appearance_store.dart';
@@ -608,10 +609,13 @@ class WaveController extends ChangeNotifier {
     if (user == null || _logoutPending != null) return;
     final scope = namespace;
     final session = api.token;
+    final confirmed = _libraryMutationScope == _editScope
+        ? _libraryMutations?.base
+        : null;
     final snapshot = jsonEncode({
-      'tracks': tracks.map((t) => t.json).toList(),
-      'likedIds': likedIds,
-      'playlists': playlists,
+      'tracks': confirmed?['tracks'] ?? tracks.map((t) => t.json).toList(),
+      'likedIds': confirmed?['likedIds'] ?? likedIds,
+      'playlists': confirmed?['playlists'] ?? playlists,
       'history': history,
       'settings': settings,
       'config': config,
@@ -641,20 +645,204 @@ class WaveController extends ChangeNotifier {
     await operation;
   }
 
+  LibraryMutations? _libraryMutations;
+  String? _libraryMutationScope;
+  final Map<String, Future<void>> _libraryWrites = {};
+  String get _editScope =>
+      '$namespace:${api.server}:${api.token}:$_accountGeneration';
+  LibraryMutations _edits() {
+    if (_libraryMutationScope != _editScope) {
+      _libraryMutationScope = _editScope;
+      _libraryWrites.clear();
+      _libraryMutations = LibraryMutations({
+        'tracks': tracks.map((t) => t.json).toList(),
+        'likedIds': likedIds,
+        'playlists': playlists,
+        'history': history,
+      });
+    }
+    return _libraryMutations!;
+  }
+
+  List<String> get librarySaving => _libraryMutationScope == _editScope
+      ? _libraryMutations?.saving ?? []
+      : [];
+  List<Json> playlistsForTrack(String id) => playlists
+      .where((p) => List<String>.from(p['trackIds'] ?? []).contains(id))
+      .toList();
+  void _showLibraryEdits() {
+    final value = _edits().visible;
+    tracks = objects(value['tracks']).map(WaveTrack.new).toList();
+    _mergeSavedTracks();
+    likedIds = List<String>.from(value['likedIds'] ?? []);
+    playlists = objects(value['playlists']);
+    history = objects(value['history']);
+    notifyListeners();
+  }
+
+  void _acceptLibrarySnapshot(Json value, int began) {
+    _edits().acceptSnapshot(value, began);
+    _showLibraryEdits();
+  }
+
+  Future<Json> _writeLibrary(
+    LibraryEdit edit,
+    Future<Json> Function() request,
+  ) {
+    final journal = _edits(), scope = _editScope;
+    _showLibraryEdits();
+    final result = Completer<Json>();
+    final key = edit.key;
+    late final Future<void> task;
+    task = (_libraryWrites[key] ?? Future<void>.value())
+        .catchError((_) {})
+        .then((_) async {
+          if (_disposed || scope != _editScope) {
+            result.completeError(StateError('Library session changed'));
+            return;
+          }
+          try {
+            final response = await request();
+            if (_disposed || scope != _editScope) {
+              result.completeError(StateError('Library session changed'));
+              return;
+            }
+            final saved = object(response['playlist']);
+            if (edit.kind == 'create' &&
+                (saved['id']?.toString() ?? '').isEmpty) {
+              throw StateError('Playlist response is missing');
+            }
+            journal.acknowledge(edit, playlist: saved.isEmpty ? null : saved);
+            _showLibraryEdits();
+            unawaited(_persist().catchError((_) {}));
+            result.complete(response);
+          } catch (error, trace) {
+            if (!_disposed && scope == _editScope) {
+              journal.reject(edit);
+              _showLibraryEdits();
+              unawaited(_persist().catchError((_) {}));
+            }
+            result.completeError(error, trace);
+          }
+        });
+    _libraryWrites[key] = task;
+    unawaited(
+      task.whenComplete(() {
+        if (identical(_libraryWrites[key], task)) _libraryWrites.remove(key);
+      }),
+    );
+    return result.future;
+  }
+
+  void acceptPlaylist(Json value) {
+    if (value.isEmpty) return;
+    _edits().acceptPlaylist(value);
+    _showLibraryEdits();
+    unawaited(_persist().catchError((_) {}));
+  }
+
+  Future<Json> createPlaylist(
+    String name, {
+    String description = '',
+    bool public = false,
+    List<String> ids = const [],
+    List<WaveTrack> knownTracks = const [],
+  }) async {
+    final id = 'pending:${const Uuid().v4()}',
+        draft = {
+          'id': id,
+          'name': name.trim(),
+          'description': description,
+          'public': public,
+          'trackIds': ids,
+        };
+    final edit = _edits().begin('create:$id', 'create', id, {
+      'playlist': draft,
+      'knownTracks': knownTracks
+          .where((track) => ids.contains(track.id))
+          .map((track) => track.json)
+          .toList(),
+    });
+    final data = await _writeLibrary(
+      edit,
+      () => api.call(
+        '/api/playlists',
+        method: 'POST',
+        data: {
+          'name': name.trim(),
+          'description': description,
+          'public': public,
+          'trackIds': ids,
+        },
+      ),
+    );
+    final saved = object(data['playlist']);
+    if (saved.isEmpty) throw StateError('Playlist response is missing');
+    return saved;
+  }
+
+  Future<Json> updatePlaylist(String id, Json patch) async {
+    if (id.startsWith('pending:')) throw StateError('Playlist is still saving');
+    final edit = _edits().begin('playlist:$id', 'update', id, patch);
+    final data = await _writeLibrary(
+      edit,
+      () => api.call(
+        '/api/playlists/${Uri.encodeComponent(id)}',
+        method: 'PATCH',
+        data: patch,
+      ),
+    );
+    return object(data['playlist']).isNotEmpty
+        ? object(data['playlist'])
+        : playlists.where((p) => p['id'] == id).firstOrNull ?? {};
+  }
+
+  Future<Json> setPlaylistTrack(
+    String id,
+    WaveTrack target,
+    bool present,
+  ) async {
+    if (id.startsWith('pending:')) throw StateError('Playlist is still saving');
+    final edit = _edits().begin('playlist:$id', 'membership', id, {
+      'trackId': target.id,
+      'present': present,
+      'track': target.json,
+    });
+    final data = await _writeLibrary(
+      edit,
+      () => api.call(
+        '/api/playlists/${Uri.encodeComponent(id)}/tracks/${Uri.encodeComponent(target.id)}',
+        method: 'PUT',
+        data: {'present': present},
+      ),
+    );
+    return object(data['playlist']).isNotEmpty
+        ? object(data['playlist'])
+        : playlists.where((p) => p['id'] == id).firstOrNull ?? {};
+  }
+
+  Future<void> deletePlaylist(String id) async {
+    if (id.startsWith('pending:')) return;
+    final edit = _edits().begin('playlist:$id', 'delete', id, {});
+    await _writeLibrary(
+      edit,
+      () => api.call(
+        '/api/playlists/${Uri.encodeComponent(id)}',
+        method: 'DELETE',
+      ),
+    );
+  }
+
   Future<void>? _libraryRefresh;
   Future<void> refreshLibrary() {
     if (_libraryRefresh != null) return _libraryRefresh!;
     final session = api.token, origin = api.server;
     final task = () async {
       if (!loggedIn || !online || _disposed) return;
+      final editRevision = _edits().revision;
       final data = await api.call('/api/library');
       if (_disposed || session != api.token || origin != api.server) return;
-      tracks = objects(data['tracks']).map(WaveTrack.new).toList();
-      _mergeSavedTracks();
-      likedIds = List<String>.from(data['likedIds'] ?? []);
-      playlists = objects(data['playlists']);
-      history = objects(data['history']);
-      notifyListeners();
+      _acceptLibrarySnapshot(data, editRevision);
       await _persist();
     }();
     _libraryRefresh = task;
@@ -702,13 +890,10 @@ class WaveController extends ChangeNotifier {
         }
         user = WaveUser(current);
         verifiedSession = true;
+        final editRevision = _edits().revision;
         final data = await api.call('/api/library');
         if (session != api.token || origin != api.server) return;
-        tracks = objects(data['tracks']).map(WaveTrack.new).toList();
-        _mergeSavedTracks();
-        likedIds = List<String>.from(data['likedIds'] ?? []);
-        playlists = objects(data['playlists']);
-        history = objects(data['history']);
+        _acceptLibrarySnapshot(data, editRevision);
         final serverSettings = await api.call('/api/settings');
         await _receiveSettings(
           object(serverSettings['settings']),
@@ -2191,19 +2376,18 @@ class WaveController extends ChangeNotifier {
 
   Future<void> like(WaveTrack t) async {
     final liked = !likedIds.contains(t.id);
-    await api.call(
-      '/api/library/likes/${t.id}',
-      method: 'PUT',
-      data: {'liked': liked},
+    final edit = _edits().begin('like:${t.id}', 'like', t.id, {
+      'liked': liked,
+      'track': t.json,
+    });
+    await _writeLibrary(
+      edit,
+      () => api.call(
+        '/api/library/likes/${Uri.encodeComponent(t.id)}',
+        method: 'PUT',
+        data: {'liked': liked},
+      ),
     );
-    if (liked) {
-      likedIds.add(t.id);
-    } else {
-      likedIds.remove(t.id);
-    }
-    if (!tracks.any((value) => value.id == t.id)) tracks.add(t);
-    await _persist();
-    notifyListeners();
   }
 
   Future<void> search(String query, {String source = 'all'}) async {
@@ -2293,23 +2477,11 @@ class WaveController extends ChangeNotifier {
   }
 
   Future<void> playlist(String name, {List<String> ids = const []}) async {
-    await api.call(
-      '/api/playlists',
-      method: 'POST',
-      data: {'name': name.trim(), 'trackIds': ids},
-    );
-    await refresh();
+    await createPlaylist(name, ids: ids);
   }
 
   Future<void> addToPlaylist(Json playlist, WaveTrack target) async {
-    final ids = List<String>.from(playlist['trackIds'] ?? []);
-    if (!ids.contains(target.id)) ids.add(target.id);
-    await api.call(
-      '/api/playlists/${playlist['id']}',
-      method: 'PATCH',
-      data: {'trackIds': ids},
-    );
-    await refresh();
+    await setPlaylistTrack(playlist['id'].toString(), target, true);
   }
 
   Future<void> connectProvider(String provider) async {
@@ -2522,7 +2694,11 @@ class WaveController extends ChangeNotifier {
       } catch (e) {
         api.diagnostics.report(e, kind: 'playback', code: 'DEVICE_COMMAND');
         ack?.call({
-          'error': {'code': 'playback_failed', 'message': e.toString()},
+          'error': {
+            'code': e is WaveException ? e.code : 'PLAYBACK_FAILED',
+            'message': e.toString(),
+            if (e is WaveException && e.status != null) 'status': e.status,
+          },
         });
         tell(e.toString());
       }
@@ -3158,6 +3334,7 @@ class WaveController extends ChangeNotifier {
               list: previousQueue,
               position: previousState.position,
               playing: previousState.playing,
+              recover: false,
             );
             await audio.localCommand('volume', {
               'volume': previousState.volume,

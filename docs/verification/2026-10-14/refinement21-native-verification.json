@@ -1,0 +1,148 @@
+{
+  "passed": true,
+  "distinctTestsVerified": 426,
+  "runs": [
+    {
+      "log": "refinement21-native-playlists-final.jsonl",
+      "runnerSuccess": false,
+      "completed": 416,
+      "failed": 13,
+      "failures": [
+        {
+          "file": "apps/native/test/focused_player_test.dart",
+          "name": "Focused player dark 1440.0 at125 percent, centered/split, preset menu and themed corners",
+          "result": "error",
+          "skipped": false,
+          "log": "refinement21-native-playlists-final.jsonl",
+          "currentTestSourceSha256": "ef96a7413182760630d0db887d36d973ad6d5c4e6af6fde1d58d905530851e4c"
+        },
+        {
+          "file": "apps/native/test/focused_player_test.dart",
+          "name": "Focused player dark 1280.0 at125 percent, centered/split, preset menu and themed corners",
+          "result": "error",
+          "skipped": false,
+          "log": "refinement21-native-playlists-final.jsonl",
+          "currentTestSourceSha256": "ef96a7413182760630d0db887d36d973ad6d5c4e6af6fde1d58d905530851e4c"
+        },
+        {
+          "file": "apps/native/test/focused_player_test.dart",
+          "name": "Focused player amoled 1440.0 at125 percent, centered/split, preset menu and themed corners",
+          "result": "error",
+          "skipped": false,
+          "log": "refinement21-native-playlists-final.jsonl",
+          "currentTestSourceSha256": "ef96a7413182760630d0db887d36d973ad6d5c4e6af6fde1d58d905530851e4c"
+        },
+        {
+          "file": "apps/native/test/focused_player_test.dart",
+          "name": "Focused player amoled 1280.0 at125 percent, centered/split, preset menu and themed corners",
+          "result": "error",
+          "skipped": false,
+          "log": "refinement21-native-playlists-final.jsonl",
+          "currentTestSourceSha256": "ef96a7413182760630d0db887d36d973ad6d5c4e6af6fde1d58d905530851e4c"
+        },
+        {
+          "file": "apps/native/test/focused_player_test.dart",
+          "name": "Focused player light 1440.0 at125 percent, centered/split, preset menu and themed corners",
+          "result": "error",
+          "skipped": false,
+          "log": "refinement21-native-playlists-final.jsonl",
+          "currentTestSourceSha256": "ef96a7413182760630d0db887d36d973ad6d5c4e6af6fde1d58d905530851e4c"
+        },
+        {
+          "file": "apps/native/test/focused_player_test.dart",
+          "name": "Focused player light 1280.0 at125 percent, centered/split, preset menu and themed corners",
+          "result": "error",
+          "skipped": false,
+          "log": "refinement21-native-playlists-final.jsonl",
+          "currentTestSourceSha256": "ef96a7413182760630d0db887d36d973ad6d5c4e6af6fde1d58d905530851e4c"
+        },
+        {
+          "file": "apps/native/test/player_details_test.dart",
+          "name": "Entire native cover at125% dark Size(390.0, 700.0) flat/3D/extreme tilt",
+          "result": "error",
+          "skipped": false,
+          "log": "refinement21-native-playlists-final.jsonl",
+          "currentTestSourceSha256": "022d371c3cdade64475a1dcfccafaae353b8ee3f89f399c91261db51078e3cdd"
+        },
+        {
+          "file": "apps/native/test/player_details_test.dart",
+          "name": "Entire native cover at125% dark Size(320.0, 568.0) flat/3D/extreme tilt",
+          "result": "error",
+          "skipped": false,
+          "log": "refinement21-native-playlists-final.jsonl",
+          "currentTestSourceSha256": "022d371c3cdade64475a1dcfccafaae353b8ee3f89f399c91261db51078e3cdd"
+        },
+        {
+          "file": "apps/native/test/player_details_test.dart",
+          "name": "Entire native cover at125% amoled Size(390.0, 700.0) flat/3D/extreme tilt",
+          "result": "error",
+          "skipped": false,
+          "log": "refinement21-native-playlists-final.jsonl",
+          "currentTestSourceSha256": "022d371c3cdade64475a1dcfccafaae353b8ee3f89f399c91261db51078e3cdd"
+        },
+        {
+          "file": "apps/native/test/player_details_test.dart",
+          "name": "Entire native cover at125% amoled Size(320.0, 568.0) flat/3D/extreme tilt",
+          "result": "error",
+          "skipped": false,
+          "log": "refinement21-native-playlists-final.jsonl",
+          "currentTestSourceSha256": "022d371c3cdade64475a1dcfccafaae353b8ee3f89f399c91261db51078e3cdd"
+        },
+        {
+          "file": "apps/native/test/player_details_test.dart",
+          "name": "Entire native cover at125% light Size(390.0, 700.0) flat/3D/extreme tilt",
+          "result": "error",
+          "skipped": false,
+          "log": "refinement21-native-playlists-final.jsonl",
+          "currentTestSourceSha256": "022d371c3cdade64475a1dcfccafaae353b8ee3f89f399c91261db51078e3cdd"
+        },
+        {
+          "file": "apps/native/test/player_details_test.dart",
+          "name": "Entire native cover at125% light Size(320.0, 568.0) flat/3D/extreme tilt",
+          "result": "error",
+          "skipped": false,
+          "log": "refinement21-native-playlists-final.jsonl",
+          "currentTestSourceSha256": "022d371c3cdade64475a1dcfccafaae353b8ee3f89f399c91261db51078e3cdd"
+        },
+        {
+          "file": "apps/native/test/wave18_ui_test.dart",
+          "name": "Native cover reflection follows rotation with fixed artwork size",
+          "result": "error",
+          "skipped": false,
+          "log": "refinement21-native-playlists-final.jsonl",
+          "currentTestSourceSha256": "99f9e8cf3baf9249c2f1ce273a0346fc03b79f682e99f98af60aeb07aed79767"
+        }
+      ]
+    },
+    {
+      "log": "refinement21-native-layout-recovery.jsonl",
+      "runnerSuccess": true,
+      "completed": 31,
+      "failed": 0,
+      "failures": []
+    },
+    {
+      "log": "refinement21-native-reflection-recovery.jsonl",
+      "runnerSuccess": true,
+      "completed": 1,
+      "failed": 0,
+      "failures": []
+    },
+    {
+      "log": "public-import-evaluator-native.log",
+      "runnerSuccess": true,
+      "completed": 9,
+      "failed": 0,
+      "failures": []
+    },
+    {
+      "log": "public-import-native-overlap.jsonl",
+      "runnerSuccess": true,
+      "completed": 1,
+      "failed": 0,
+      "failures": []
+    }
+  ],
+  "unresolved": [],
+  "scope": "Actual Flutter CLI outcomes. Earlier failures retained; recovery replaces the same named scenario only."
+}

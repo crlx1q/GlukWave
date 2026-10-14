@@ -31,7 +31,7 @@ function drawCanvas(context:CanvasRenderingContext2D,frame:WaveFrame,style:Appea
 export function WaveVisual({className='wave-canvas',color,background:backgroundOverride,waveStyle,speed}:{className?:string;color?:string;background?:string;waveStyle?:Appearance['waveStyle'];speed?:number}) {
   const root=useRef<HTMLDivElement>(null),canvas=useRef<HTMLCanvasElement>(null),fallback=useRef<HTMLCanvasElement>(null),store=useStore(),player=usePlayer(),envelope=useRef<AudioEnvelope|null>(null);
   const style=waveStyle||store.settings.appearance.waveStyle,velocity=speed??store.settings.appearance.speed,tint=color||store.renderAccent,motion=store.motion,paused=player.full;
-  const targetColor=useRef(rgb(tint)),currentColor=useRef(rgb(tint)),repaintColor=useRef<(()=>void)|null>(null);
+  const flow=useRef({phase:BLOOM.phase as number,energy:0}),targetColor=useRef(rgb(tint)),currentColor=useRef(rgb(tint)),repaintColor=useRef<(()=>void)|null>(null);
   useEffect(()=>{targetColor.current=rgb(tint);repaintColor.current?.();},[tint]);
   const audio=useRef({playing:player.state.playing,position:player.state.position,local:player.playback?.kind==='audio',sample:player.audioEnergy});audio.current={playing:player.state.playing,position:player.state.position,local:player.playback?.kind==='audio',sample:player.audioEnergy};
   useEffect(()=>{
@@ -42,7 +42,7 @@ export function WaveVisual({className='wave-canvas',color,background:backgroundO
   useEffect(()=>{
     const host=root.current,element=canvas.current,backup=fallback.current,context=backup?.getContext('2d');if(!host||!element||!backup||!context)return;
     const renderer=style==='bloom'?createHalftoneBloom(element):style==='silk'?createSilkWave(element):null;
-    const parent=host.parentElement||host,pointer:WavePointer={x:.5,y:.5,active:0},target:WavePointer={...pointer,vx:0,vy:0};let frame=0,inView=true,last=0,lastPointer=0,phase=BLOOM.phase as number,energy=0,width=0,height=0,ratio=1;
+    const parent=host.parentElement||host,pointer:WavePointer={x:.5,y:.5,active:0},target:WavePointer={...pointer,vx:0,vy:0};let frame=0,inView=true,last=0,lastPointer=0,phase=flow.current.phase,energy=flow.current.energy,width=0,height=0,ratio=1;
     let background=backgroundOverride||store.settings.appearance[store.resolvedTheme].bg;
     const resize=()=>{const rect=host.getBoundingClientRect();width=rect.width;height=rect.height;ratio=Math.min(devicePixelRatio||1,1.5,1100/Math.max(1,width),520/Math.max(1,height));for(const item of [element,backup]){item.width=Math.max(1,Math.round(width*ratio));item.height=Math.max(1,Math.round(height*ratio));}};
     const draw=(now:number,force=false)=>{
@@ -54,7 +54,7 @@ export function WaveVisual({className='wave-canvas',color,background:backgroundO
       currentColor.current=motion&&document.documentElement.dataset.colorEditing!=='true'?easeWaveColor(currentColor.current,targetColor.current,dt):[...targetColor.current];
       const value:WaveFrame={width,height,phase,energy,pointer,tint:waveColorHex(currentColor.current),background},gpu=renderer?.draw(value)===true;element.style.display=gpu?'block':'none';backup.style.display=gpu?'none':'block';
       if(!gpu){context.setTransform(ratio,0,0,ratio,0,0);drawCanvas(context,value,style);}
-      if(motion)frame=requestAnimationFrame(draw);
+      flow.current={phase,energy};if(motion)frame=requestAnimationFrame(draw);
     };
     const repaint=()=>{cancelAnimationFrame(frame);last=0;if(!document.hidden&&inView&&!paused){resize();draw(performance.now(),true);}};
     repaintColor.current=()=>{if(!motion)repaint();};

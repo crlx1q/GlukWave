@@ -1,0 +1,32 @@
+{
+  "320x568": {
+    "bodyOverflow": "hidden",
+    "fullRect": {
+      "bottom": 568,
+      "height": 568,
+      "left": 0,
+      "right": 320,
+      "top": 0,
+      "width": 320,
+      "x": 0,
+      "y": 0
+    },
+    "internal": [],
+    "windowScrollY": 0
+  },
+  "812x375": {
+    "bodyOverflow": "hidden",
+    "fullRect": {
+      "bottom": 375,
+      "height": 375,
+      "left": 0,
+      "right": 812,
+      "top": 0,
+      "width": 812,
+      "x": 0,
+      "y": 0
+    },
+    "internal": [],
+    "windowScrollY": 0
+  }
+}

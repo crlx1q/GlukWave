@@ -1,0 +1,84 @@
+/* Geometry and paper/record materials transplanted from the owner's
+   Gluk-Wave-3D-Cover-Only.html. Only the front brand and hover extension differ. */
+.album-stage.reference-sleeve{perspective:1100px;position:relative;display:grid;place-items:center;user-select:none;-webkit-user-select:none;overflow:visible}
+.album-stage.reference-sleeve .album-object{position:relative;transform-style:preserve-3d;translate:none!important;transform-origin:50% 50%;transition:transform calc(.75s / var(--motion-speed,1)) cubic-bezier(.2,.8,.2,1)!important;animation:none!important;will-change:transform;flex-shrink:0}
+.album-stage.reference-sleeve.dragging .album-object{transition:none!important}
+.album-stage.reference-sleeve.three-dimensional .album-object{transform:var(--cover-transform)!important}
+.album-stage.reference-sleeve .album-shadow{position:absolute;width:75%;height:20px;bottom:18px;left:10%;background:#18151532;border-radius:50%;filter:blur(18px);transform:rotate(-6deg);pointer-events:none;opacity:.7}
+html[data-theme=dark] .album-stage.reference-sleeve .album-shadow,html[data-theme=amoled] .album-stage.reference-sleeve .album-shadow{background:#000;opacity:.65}
+.album-stage.reference-sleeve.three-dimensional :is(.album-cover,.album-back){position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.album-stage.reference-sleeve.three-dimensional .album-cover{transform:translateZ(9px);background:#32312d;border-radius:2px;box-shadow:inset 1px 0 2px #fff7,inset -1px 0 2px #0004;overflow:hidden;color:#f8f4e9;padding:0}
+.album-stage.reference-sleeve .sleeve-art,.album-stage.reference-sleeve .sleeve-art>img{height:100%;width:100%;object-fit:cover;border-radius:0;background:transparent}
+.album-stage.reference-sleeve .sleeve-art{display:block}
+.album-stage.reference-sleeve .sleeve-front:before,.album-stage.reference-sleeve .sleeve-front:after{content:"";position:absolute;inset:0;pointer-events:none;z-index:2}
+.album-stage.reference-sleeve .sleeve-front:before{background:linear-gradient(170deg,#0001,transparent 35%,#0005)}
+.album-stage.reference-sleeve .sleeve-front:after{background:linear-gradient(90deg,#ffffff23,transparent 3%,transparent 97%,#0002)}
+.album-stage.reference-sleeve .cover-reflection{position:absolute;inset:0;transform:none;background:linear-gradient(115deg,transparent 15%,#fff1 35%,#fff6 47%,transparent 64%);background-size:220% 100%;background-position:var(--reflection,50%) center;mix-blend-mode:screen;opacity:.44;pointer-events:none;border-radius:2px;z-index:3}
+.album-stage.reference-sleeve .sleeve-brand-symbol{position:absolute;right:6.9%;bottom:5.9%;width:8%;height:5%;min-height:10px;color:#f8f4e9cc;pointer-events:none;z-index:4;filter:drop-shadow(0 1px 2px #0005)}
+.album-stage.reference-sleeve .sleeve-brand-symbol .logo-mark{height:100%;width:100%}
+.album-stage.reference-sleeve.three-dimensional .sleeve-back{background:#32312d;transform:rotateY(180deg) translateZ(9px);color:#ebe4d3;display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;padding:9.3% 8.6%;box-shadow:inset 1px 0 2px #fff4,inset -1px 0 2px #0007;border-radius:0;text-align:left;overflow:hidden}
+.album-stage.reference-sleeve .sleeve-back-logo{font-size:7px;color:#c5ba9f;letter-spacing:1px;margin:0;line-height:1.5}
+.album-stage.reference-sleeve .sleeve-back h3{font-size:clamp(16px,2vw,26px);margin:11.3% 0 7%;letter-spacing:-1px;line-height:1.15;max-height:32%;overflow:hidden;overflow-wrap:anywhere}
+.album-stage.reference-sleeve .back-tracklist{font-size:9px;line-height:2.2;color:#ded5c4;margin:0;max-width:100%;white-space:normal;overflow:hidden;max-height:28%}
+.album-stage.reference-sleeve .sleeve-barcode{height:26px;width:100px;background:repeating-linear-gradient(90deg,#ded6c4 0px,#ded6c4 1px,transparent 1px,transparent 3px,#ded6c4 3px,#ded6c4 5px,transparent 5px,transparent 7px);margin-top:auto;margin-bottom:8px;flex:none}
+.album-stage.reference-sleeve .back-micro{font-size:6px;letter-spacing:1px;color:#aea18a;margin:0;white-space:nowrap}
+.album-stage.reference-sleeve.three-dimensional .album-spine{position:absolute;left:0;top:0;bottom:0;right:auto;width:18px;height:auto;background:linear-gradient(90deg,#595249,#948a7a,#554e43);transform:translateX(-50%) rotateY(-90deg);transform-origin:center;color:#f1e7d7;display:flex;align-items:center;justify-content:center;backface-visibility:hidden;writing-mode:horizontal-tb;border-radius:0;padding:0}
+.album-stage.reference-sleeve .album-spine span{writing-mode:vertical-rl;transform:rotate(180deg);font-size:7px;letter-spacing:2px;white-space:nowrap;max-height:95%;overflow:hidden;text-overflow:ellipsis}
+.album-stage.reference-sleeve.three-dimensional .album-top-edge,.album-stage.reference-sleeve.three-dimensional .album-bottom-edge{position:absolute;left:0;right:0;height:18px;background:#8b8070;box-shadow:inset 0 6px 4px #0004;backface-visibility:visible}
+.album-stage.reference-sleeve.three-dimensional .album-top-edge{top:0;transform:translateY(-50%) rotateX(90deg)}
+.album-stage.reference-sleeve.three-dimensional .album-bottom-edge{bottom:0;transform:translateY(50%) rotateX(-90deg)}
+.album-stage.reference-sleeve.three-dimensional .album-inner-edge{position:absolute;top:0;bottom:0;right:0;width:18px;background:linear-gradient(90deg,#595249,#948a7a,#554e43);box-shadow:inset 0 0 0 1px #0003;transform:translateX(50%) rotateY(90deg);backface-visibility:visible}
+.album-stage.reference-sleeve.three-dimensional .vinyl{position:absolute;width:94%;height:94%;top:3%;left:46%;bottom:auto;aspect-ratio:1;border-radius:50%;transform:translateZ(0);background:#1b1c1d;border:0;box-shadow:inset 0 0 0 2px #515355,0 3px 7px #0005;backface-visibility:visible;transition:left calc(.6s / var(--motion-speed,1)) cubic-bezier(.2,.8,.2,1)}
+.album-stage.reference-sleeve.three-dimensional.record-hover .vinyl{left:54%}
+.album-stage.reference-sleeve .vinyl-grooves{position:absolute;inset:0;width:100%;height:100%;border-radius:50%;background:repeating-radial-gradient(circle,#161718 0,#161718 1px,#333638 1.5px,#161718 2.7px);animation:reference-record-spin calc(16s / var(--motion-speed,1)) linear infinite;animation-play-state:paused}
+.album-stage.reference-sleeve.spinning .vinyl-grooves{animation-play-state:running}
+.album-stage.reference-sleeve .vinyl-label{position:absolute;inset:35%;width:auto;height:auto;border-radius:50%;background-size:cover;background-position:center;display:grid;place-items:center;opacity:1;box-shadow:none}
+.album-stage.reference-sleeve .vinyl-label:after{display:none}
+.album-stage.reference-sleeve .vinyl-label>span{width:13px;height:13px;border:3px solid #d9d1c3;background:#292a2b;border-radius:50%}
+.album-stage.reference-sleeve .vinyl-glint{position:absolute;inset:0;background:conic-gradient(from 45deg,transparent 0deg,#d8ddde27 22deg,transparent 70deg,transparent 150deg,#d8ddde28 197deg,transparent 230deg);border-radius:50%;pointer-events:none;opacity:1;animation:none}
+.album-stage.reference-sleeve.case-cd .vinyl{left:53%;background:#b9baba!important;box-shadow:0 0 0 1px #d4d5d599;border:0}
+.album-stage.reference-sleeve.case-cd.record-hover .vinyl{left:59%}
+.album-stage.reference-sleeve.case-cd .vinyl-grooves{background:conic-gradient(#d3ced3,#b5cabc,#e5dbb7,#aac2d0,#d9b7ce,#d3ced3)}
+.album-stage.reference-sleeve.case-cd .vinyl-label{inset:13%;box-shadow:0 0 0 1px #ffffffaa}
+.album-stage.reference-sleeve.case-cd .vinyl-label>span{width:26px;height:26px;border:8px solid #cfd3d4cc;background:#626764}
+.album-stage.reference-sleeve.case-cd .sleeve-front{box-shadow:inset 0 0 0 7px #ebeeeb50,inset 8px 0 0 3px #fff3;border-radius:4px;transform:translateZ(9px) rotateY(-14deg);transform-origin:left center}
+.album-stage.reference-sleeve.case-cd .album-spine{background:linear-gradient(90deg,#a6afb299,#fafbfba8,#a6afb288);color:#302f2c}
+.album-stage.reference-sleeve.case-cd .sleeve-back{background:#262b2c}
+.album-stage.reference-sleeve.flat .album-object{transform:none!important;translate:none!important;animation:none!important}
+.album-stage.reference-sleeve.flat .album-cover{position:absolute;inset:0;transform:none;border-radius:calc(var(--radius)*.55);overflow:hidden;background:var(--surface)}
+.album-stage.reference-sleeve.flat .cover-reflection,.album-stage.reference-sleeve.flat .album-shadow,.album-stage.reference-sleeve.flat :is(.album-back,.album-spine,.vinyl,.album-top-edge,.album-bottom-edge,.album-inner-edge){display:none}
+@keyframes reference-record-spin{to{transform:rotate(360deg)}}
+@media(max-width:600px){.album-stage.reference-sleeve .album-object{transition-duration:calc(.55s / var(--motion-speed,1))!important}.album-stage.reference-sleeve .album-shadow{bottom:16px;left:7%;width:85%;filter:blur(13px);height:16px}.album-stage.reference-sleeve .sleeve-back-logo{font-size:5px;letter-spacing:.6px}.album-stage.reference-sleeve .back-tracklist{font-size:7px;line-height:2.1}.album-stage.reference-sleeve .sleeve-barcode{width:80px;height:18px}.album-stage.reference-sleeve .back-micro{font-size:5px}.album-stage.reference-sleeve .album-spine span{font-size:6px;letter-spacing:1.5px}.album-stage.reference-sleeve .vinyl-label>span{width:10px;height:10px;border-width:2px}}
+html[data-motion=reduce] .album-stage.reference-sleeve .album-object{transition:none!important}html[data-motion=reduce] .album-stage.reference-sleeve .vinyl-grooves{animation:none!important}
+@media(prefers-reduced-motion:reduce){.album-stage.reference-sleeve .album-object,.album-stage.reference-sleeve .vinyl{transition:none!important}.album-stage.reference-sleeve .vinyl-grooves{animation:none!important}}
+/* Reserve horizontal room when a full-size reference cannot share one column
+   with controls. The chosen art dimensions stay constant through a full turn. */
+@media(min-width:600px) and (max-height:700px),(min-width:1100px) and (max-height:1000px){
+ .full-player.focused-player.connected-player.details-player .np-layout{display:flex;flex-direction:column;justify-content:center;align-items:center;overflow:visible;max-width:1120px;width:100%;padding:0;min-height:0}
+ .full-player.focused-player.connected-player.details-player .np-listening{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(280px,1fr);align-items:center;gap:34px;width:100%;max-width:none;min-height:0;height:auto;padding:0;margin:auto;overflow:visible}
+ .full-player.focused-player.connected-player.details-player .np-cover-growth{width:100%;align-self:center;padding:0;margin:0;min-width:0;overflow:visible}
+ .full-player.focused-player.connected-player.details-player .np-cover-growth .album-stage{margin:0;width:100%;max-width:none;overflow:visible}
+ .full-player.focused-player.connected-player.details-player .np-controls{width:100%;max-width:400px;min-width:0;padding:0;justify-self:center}
+ .full-player.focused-player.connected-player.details-player .np-track-heading{text-align:left;display:flex;margin-bottom:11px}
+ .full-player.focused-player.connected-player.details-player .np-track-heading h1{font-size:25px;line-height:1.2}
+ .full-player.focused-player.connected-player.details-player .np-track-heading p{font-size:12px}
+ .full-player.focused-player.connected-player.details-player .np-bottom-actions{display:flex;justify-content:center;gap:9px;min-width:0;margin-top:7px}
+ .full-player.focused-player.connected-player.details-player .np-bottom-actions>button{flex-direction:row;font-size:10px;white-space:nowrap;min-height:36px;padding:3px 4px}
+ .full-player.focused-player.connected-player.details-player .np-volume{margin-top:12px!important;max-width:235px;min-height:33px}
+}
+@media(min-width:600px) and (max-height:500px){
+ .full-player.focused-player.connected-player .full-player-inner{padding:10px 22px 12px}
+ .full-player.focused-player.connected-player .np-header{height:38px;min-height:38px;margin-bottom:4px}
+ .full-player.focused-player.connected-player .np-drag-handle{display:none}
+ .full-player.focused-player.connected-player.details-player .np-listening{gap:18px;grid-template-columns:minmax(0,1.2fr) minmax(280px,1fr)}
+ .full-player.focused-player.connected-player.details-player .np-controls{max-width:345px}
+ .full-player.focused-player.connected-player.details-player .np-track-heading{margin:0 0 5px}
+ .full-player.focused-player.connected-player.details-player .np-track-heading h1{font-size:21px}
+ .full-player.focused-player.connected-player.details-player .np-track-heading p{font-size:11px;margin:4px 0 0}
+ .full-player.focused-player.connected-player.details-player .full-seek{height:25px;margin-bottom:4px}
+ .full-player.focused-player.connected-player.details-player .transport.large .main-play{height:48px;width:48px;min-width:48px;min-height:48px}
+ .full-player.focused-player.connected-player.details-player .np-volume{margin-top:6px!important;min-height:28px;padding:4px 8px}
+ .full-player.focused-player.connected-player.details-player .np-bottom-actions{margin-top:2px}
+ .full-player.focused-player.connected-player.details-player .np-cover-growth{transform:translateY(-14px)}
+}
+@media(max-height:650px){.full-player.focused-player.connected-player .np-controls .compact-lyric-preview{display:none!important}}

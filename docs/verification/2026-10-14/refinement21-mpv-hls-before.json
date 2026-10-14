@@ -1,0 +1,125 @@
+{
+  "properties": {
+    "mpv-version": "mpv v0.36.0-403-g652a1dd907",
+    "audio-params/samplerate": null,
+    "current-ao": null,
+    "demuxer-lavf-list": "aac,ac3,aiff,ape,asf,au,avi,dsf,dts,dtshd,flac,flv,m4v,matroska,webm,mov,mp4,m4a,3gp,3g2,mj2,mp3,mpc,mpc8,ogg,alaw,mulaw,vidc,f64be,f64le,f32be,f32le,s32be,s32le,s24be,s24le,s16be,s16le,s8,u32be,u32le,u24be,u24le,u16be,u16le,u8,rm,shn,tak,truehd,tta,wav,wv,xwma,dshow,gdigrab,lavfi,vfwcap"
+  },
+  "requests": [
+    {
+      "part": "root",
+      "grantPresent": true,
+      "authorizationPresent": true
+    }
+  ],
+  "logs": [
+    {
+      "level": "v",
+      "prefix": "ffmpeg",
+      "text": "Opening http://127.0.0.1:60101/api/stream-audio/fixture?grant=probe-capability"
+    },
+    {
+      "level": "v",
+      "prefix": "ffmpeg",
+      "text": "Could not set AVOption tls_verify='0'"
+    },
+    {
+      "level": "v",
+      "prefix": "ffmpeg",
+      "text": "Mime-type: 'application/vnd.apple.mpegurl'"
+    },
+    {
+      "level": "v",
+      "prefix": "demux",
+      "text": "Trying demuxers for level=normal."
+    },
+    {
+      "level": "v",
+      "prefix": "lavf",
+      "text": "No format found, try lowering probescore or forcing the format."
+    },
+    {
+      "level": "v",
+      "prefix": "playlist",
+      "text": "demuxer read all data; closing stream"
+    },
+    {
+      "level": "v",
+      "prefix": "demux",
+      "text": "Detected file format: hls (Playlist file)"
+    },
+    {
+      "level": "v",
+      "prefix": "demux",
+      "text": "Stream is not seekable."
+    },
+    {
+      "level": "v",
+      "prefix": "cplayer",
+      "text": "Opening done: http://127.0.0.1:60101/api/stream-audio/fixture?grant=probe-capability"
+    },
+    {
+      "level": "v",
+      "prefix": "cplayer",
+      "text": "finished playback, success (reason 5)"
+    },
+    {
+      "level": "info",
+      "prefix": "cplayer",
+      "text": ""
+    },
+    {
+      "level": "info",
+      "prefix": "cplayer",
+      "text": "Playing: /api/stream-audio/fixture?grant=probe-capability&part=segment"
+    },
+    {
+      "level": "v",
+      "prefix": "file",
+      "text": "Opening /api/stream-audio/fixture?grant=probe-capability&part=segment"
+    },
+    {
+      "level": "v",
+      "prefix": "stream_callback",
+      "text": "Opening /api/stream-audio/fixture?grant=probe-capability&part=segment"
+    },
+    {
+      "level": "error",
+      "prefix": "stream",
+      "text": ""
+    },
+    {
+      "level": "error",
+      "prefix": "stream",
+      "text": "Refusing to load potentially unsafe URL from a playlist."
+    },
+    {
+      "level": "error",
+      "prefix": "stream",
+      "text": "Use the --load-unsafe-playlists option to load it anyway."
+    },
+    {
+      "level": "error",
+      "prefix": "stream",
+      "text": ""
+    },
+    {
+      "level": "v",
+      "prefix": "cplayer",
+      "text": "Opening failed or was aborted: /api/stream-audio/fixture?grant=probe-capability&part=segment"
+    },
+    {
+      "level": "v",
+      "prefix": "cplayer",
+      "text": "finished playback, loading failed (reason 4)"
+    },
+    {
+      "level": "info",
+      "prefix": "cplayer",
+      "text": ""
+    }
+  ],
+  "physicalAudioUsed": false,
+  "dllSha256": "0a5a0b476866c91a639a4e511e8153968f8fa23564461b0aa09acdba816164a4",
+  "version": "1.0.0+20"
+}
