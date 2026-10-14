@@ -1,0 +1,7 @@
+{
+  "applied": true,
+  "currentVersion": "1.0.0+22",
+  "rollback": "archive/releases/1.0.0+21",
+  "archiveContainsExactPreviousDeliveries": true,
+  "hostingChanged": false
+}

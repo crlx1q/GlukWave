@@ -67,11 +67,16 @@ library_markers = {marker: marker.encode('utf-8') in (bundle / 'data/app.so').re
                    for marker in ['/api/public-import/search', '/api/public-import/tracks', 'publicSourceUrl', 'playlist-membership-', 'playlist-edit-name']}
 require(all(library_markers.values()), 'Current public import or playlist UI missing from AOT')
 feature_markers.update(library_markers)
-if 'version: 1.0.0+22' in (root / 'apps/native/pubspec.yaml').read_text('utf-8'):
+if any('version: 1.0.0+' + str(version) in (root / 'apps/native/pubspec.yaml').read_text('utf-8') for version in [22, 23]):
     sleeve_markers = {marker: marker.encode('utf-8') in (bundle / 'data/app.so').read_bytes()
                       for marker in ['album-back-title', 'album-back-source']}
     require(all(sleeve_markers.values()), 'Current sleeve reverse missing from AOT')
     feature_markers.update(sleeve_markers)
+if 'version: 1.0.0+23' in (root / 'apps/native/pubspec.yaml').read_text('utf-8'):
+    parity_markers = {marker: marker.encode('utf-8') in (bundle / 'data/app.so').read_bytes()
+                      for marker in ['mini-lyrics-frame', 'activeDeviceName', 'PhysicalWaveClock', 'player-track-motion', 'selectedOutput']}
+    require(all(parity_markers.values()), 'Current player/device changes missing from AOT')
+    feature_markers.update(parity_markers)
 
 manifest = json.loads((bundle / 'data/flutter_assets/FontManifest.json').read_text('utf-8'))
 font_count = 0
@@ -108,6 +113,7 @@ result = {'checkedAt': datetime.now(timezone.utc).isoformat(), 'passed': True, '
           'compileDefine': 'https://wave.gluk.tech', 'buildMode': 'release',
           'pinnedFullMediaRuntimeVerified': full_media,
           'authenticodeSigned': False, 'uiInteractionVerified': False, 'physicalAudioVerified': False}
+result['androidOnlyActionsTreeShaken'] = b'glukwave.like' not in (bundle / 'data/app.so').read_bytes()
 proof = root / 'work/qa/windows-package-proof.json'
 proof.write_text(json.dumps(result, indent=2) + '\n', encoding='utf-8')
 print(json.dumps({k: v for k, v in result.items() if k not in ('compiledSourcePaths', 'binarySha256')}))

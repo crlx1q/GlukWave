@@ -581,7 +581,14 @@ void main() {
     (tester) async {
       final c = (await tester.runAsync(a.makeController))!;
       c.devices = [
-        {'id': 'pc', 'name': 'Chrome · Windows', 'kind': 'web', 'online': true},
+        {
+          'id': 'pc',
+          'name': 'Chrome · Windows',
+          'kind': 'web',
+          'online': true,
+          'track': c.tracks.first.json,
+          'state': {'trackId': c.tracks.first.id, 'playing': true},
+        },
         {
           'id': 'phone',
           'name': 'GlukWave · Android',
@@ -607,6 +614,7 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.byKey(const Key('connect-quick-picker')), findsOneWidget);
       expect(find.byIcon(Icons.language_rounded), findsNothing);
+      expect(find.text(c.tracks.first.title), findsOneWidget);
       expect(
         find.byType(ListeningWave),
         findsOneWidget,

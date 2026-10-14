@@ -1,0 +1,9 @@
+{
+  "serverPort": 5233,
+  "serverProcessStopped": true,
+  "initialBrowserDaemonStopped": true,
+  "recoveredBrowserCloseConfirmed": true,
+  "nativeTemporaryFixtureRemoved": true,
+  "finalVerdict": "PASS",
+  "productionFilesEditedByEvaluator": false
+}

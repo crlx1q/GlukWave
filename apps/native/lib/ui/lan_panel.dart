@@ -7,6 +7,7 @@ import '../l10n/lan_strings.dart';
 import '../l10n/wave_localizations.dart';
 import 'widgets.dart';
 import 'device_labels.dart';
+import 'motion_icons.dart';
 
 class LanPanel extends StatefulWidget {
   final WaveController controller;
@@ -179,7 +180,10 @@ class _LanPanelState extends State<LanPanel> {
                   TextButton.icon(
                     key: const Key('lan-scan-invite'),
                     onPressed: busy ? null : () => run(widget.scanQr!),
-                    icon: const Icon(Icons.qr_code_scanner_rounded, size: 18),
+                    icon: const WaveControlIcon(
+                      Icons.qr_code_scanner_rounded,
+                      size: 18,
+                    ),
                     label: Text(text('scan')),
                   ),
               ],

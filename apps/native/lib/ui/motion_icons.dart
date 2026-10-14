@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 import 'theme.dart';
+import 'physical_wave_clock.dart';
 import '../l10n/audio_design_strings.dart';
 
 /// Loading represents the real source lifecycle, shared by every play button.
@@ -26,7 +27,7 @@ class _WavePlaybackIconState extends State<WavePlaybackIcon>
     vsync: this,
     value: widget.loading ? 1 : 0,
   );
-  late final loop = AnimationController(vsync: this);
+  late final loop = PhysicalWaveClock(this);
   late final blend = CurvedAnimation(
     parent: entry,
     curve: Curves.easeInOutCubic,
@@ -44,24 +45,20 @@ class _WavePlaybackIconState extends State<WavePlaybackIcon>
   }
 
   void sync() {
-    final v = waveVisuals(context), speed = v.speed.clamp(.3, 2.0);
+    final v = waveVisuals(context);
     animate =
         visible &&
         TickerMode.of(context) &&
         !v.reducedMotion &&
         !MediaQuery.disableAnimationsOf(context);
-    final period = Duration(milliseconds: (1200 / speed).round());
-    entry.duration = Duration(milliseconds: (220 / speed).round());
+    entry.duration = const Duration(milliseconds: 220);
     if (animate) {
       entry.animateTo(widget.loading ? 1 : 0);
     } else {
       entry.value = widget.loading ? 1 : 0;
     }
     if (widget.loading && animate) {
-      if (loop.duration != period || !loop.isAnimating) {
-        loop.duration = period;
-        loop.repeat();
-      }
+      loop.repeat();
     } else {
       loop.stop();
     }
@@ -237,9 +234,7 @@ class _WavePlayPauseIconState extends State<WavePlayPauseIcon>
     value: widget.playing ? 1 : 0,
   );
   void sync() {
-    motion.duration = Duration(
-      milliseconds: (230 / waveVisuals(context).speed.clamp(.3, 2)).round(),
-    );
+    motion.duration = const Duration(milliseconds: 230);
     final target = widget.playing ? 1.0 : 0.0;
     if (waveVisuals(context).reducedMotion ||
         MediaQuery.disableAnimationsOf(context) ||
@@ -451,6 +446,9 @@ class _WaveControlPainter extends CustomPainter {
       path.lineTo(endX, endY);
     }
 
+    void rect(double x, double y, double width, double height) =>
+        path.addRect(Rect.fromLTWH(x, y, width, height));
+
     if (icon == Icons.skip_previous_rounded ||
         icon == Icons.skip_next_rounded) {
       if (icon == Icons.skip_next_rounded) {
@@ -652,10 +650,12 @@ class _WaveControlPainter extends CustomPainter {
       path.moveTo(8, 21);
       path.lineTo(3, 21);
       path.lineTo(3, 16);
-      line(7, 9, 17, 9);
-      line(7, 15, 17, 15);
-      line(10, 7, 10, 17);
-      line(14, 7, 14, 17);
+      // Three QR finder squares and a scan line, rather than a hashtag.
+      rect(7, 7, 4, 4);
+      rect(13, 7, 4, 4);
+      rect(7, 13, 4, 4);
+      line(14, 14, 17, 14);
+      line(14, 17, 17, 17);
     } else if (icon == Icons.shield_outlined) {
       path.moveTo(12, 2.5);
       path.lineTo(21, 6);

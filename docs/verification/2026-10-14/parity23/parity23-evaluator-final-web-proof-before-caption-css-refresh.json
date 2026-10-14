@@ -1,0 +1,668 @@
+{
+  "cases": [
+    {
+      "width": 1440,
+      "height": 900,
+      "scale": 1,
+      "dimensional": true,
+      "result": {
+        "caption": "Слова",
+        "controls": {
+          "bottom": 632.265625,
+          "height": 300.53125,
+          "left": 804,
+          "right": 1204,
+          "top": 331.734375,
+          "width": 400,
+          "x": 804,
+          "y": 331.734375
+        },
+        "cover": {
+          "bottom": 778.5,
+          "height": 595,
+          "left": 236,
+          "right": 732,
+          "top": 183.5,
+          "width": 496,
+          "x": 236,
+          "y": 183.5
+        },
+        "display": "grid",
+        "floatingWords": 0,
+        "lineRects": [
+          {
+            "bottom": 429.265625,
+            "height": 22.9375,
+            "left": 815,
+            "right": 1193,
+            "top": 406.328125,
+            "width": 378,
+            "x": 815,
+            "y": 406.328125
+          },
+          {
+            "bottom": 449.265625,
+            "height": 16,
+            "left": 815,
+            "right": 1193,
+            "top": 433.265625,
+            "width": 378,
+            "x": 815,
+            "y": 433.265625
+          }
+        ],
+        "lineTexts": [
+          "Там, где тихо — мы услышим море",
+          "И увидим свет в твоём окне"
+        ],
+        "lyrics": {
+          "bottom": 458.265625,
+          "height": 74.53125,
+          "left": 804,
+          "right": 1204,
+          "top": 383.734375,
+          "width": 400,
+          "x": 804,
+          "y": 383.734375
+        },
+        "overflow": false,
+        "play": {
+          "bottom": 555.265625,
+          "height": 56,
+          "left": 955,
+          "right": 1011,
+          "top": 499.265625,
+          "width": 56,
+          "x": 955,
+          "y": 499.265625
+        },
+        "seek": {
+          "bottom": 499.265625,
+          "height": 36,
+          "left": 804,
+          "right": 1204,
+          "top": 463.265625,
+          "width": 400,
+          "x": 804,
+          "y": 463.265625
+        }
+      },
+      "captures": [
+        "work/qa/parity23-evaluator-final-web-1440-900-1-initial.png",
+        "work/qa/parity23-evaluator-final-web-1440-900-1-controls.png"
+      ]
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "scale": 1.25,
+      "dimensional": true,
+      "result": {
+        "caption": "Слова",
+        "controls": {
+          "bottom": 677.59375,
+          "height": 375.1875,
+          "left": 825,
+          "right": 1325,
+          "top": 302.40625,
+          "width": 500,
+          "x": 825,
+          "y": 302.40625
+        },
+        "cover": {
+          "bottom": 780,
+          "height": 582.5,
+          "left": 115,
+          "right": 735,
+          "top": 197.5,
+          "width": 620,
+          "x": 115,
+          "y": 197.5
+        },
+        "display": "grid",
+        "floatingWords": 0,
+        "lineRects": [
+          {
+            "bottom": 424.09375,
+            "height": 28.6875,
+            "left": 838.5,
+            "right": 1311.5,
+            "top": 395.40625,
+            "width": 473,
+            "x": 838.5,
+            "y": 395.40625
+          },
+          {
+            "bottom": 449.09375,
+            "height": 20,
+            "left": 838.5,
+            "right": 1311.5,
+            "top": 429.09375,
+            "width": 473,
+            "x": 838.5,
+            "y": 429.09375
+          }
+        ],
+        "lineTexts": [
+          "Там, где тихо — мы услышим море",
+          "И увидим свет в твоём окне"
+        ],
+        "lyrics": {
+          "bottom": 460.09375,
+          "height": 92.6875,
+          "left": 825,
+          "right": 1325,
+          "top": 367.40625,
+          "width": 500,
+          "x": 825,
+          "y": 367.40625
+        },
+        "overflow": false,
+        "play": {
+          "bottom": 581.34375,
+          "height": 70,
+          "left": 1013.75,
+          "right": 1083.75,
+          "top": 511.34375,
+          "width": 70,
+          "x": 1013.75,
+          "y": 511.34375
+        },
+        "seek": {
+          "bottom": 511.34375,
+          "height": 45,
+          "left": 825,
+          "right": 1325,
+          "top": 466.34375,
+          "width": 500,
+          "x": 825,
+          "y": 466.34375
+        }
+      },
+      "captures": [
+        "work/qa/parity23-evaluator-final-web-1440-900-1.25-initial.png",
+        "work/qa/parity23-evaluator-final-web-1440-900-1.25-controls.png"
+      ]
+    },
+    {
+      "width": 768,
+      "height": 900,
+      "scale": 1,
+      "dimensional": true,
+      "result": {
+        "caption": "Слова",
+        "controls": {
+          "bottom": 982.53125,
+          "height": 319.53125,
+          "left": 194,
+          "right": 574,
+          "top": 663,
+          "width": 380,
+          "x": 194,
+          "y": 663
+        },
+        "cover": {
+          "bottom": 661,
+          "height": 555,
+          "left": 159,
+          "right": 609,
+          "top": 106,
+          "width": 450,
+          "x": 159,
+          "y": 106
+        },
+        "display": "flex",
+        "floatingWords": 0,
+        "lineRects": [
+          {
+            "bottom": 760.53125,
+            "height": 22.9375,
+            "left": 205,
+            "right": 563,
+            "top": 737.59375,
+            "width": 358,
+            "x": 205,
+            "y": 737.59375
+          },
+          {
+            "bottom": 780.53125,
+            "height": 16,
+            "left": 205,
+            "right": 563,
+            "top": 764.53125,
+            "width": 358,
+            "x": 205,
+            "y": 764.53125
+          }
+        ],
+        "lineTexts": [
+          "Там, где тихо — мы услышим море",
+          "И увидим свет в твоём окне"
+        ],
+        "lyrics": {
+          "bottom": 789.53125,
+          "height": 74.53125,
+          "left": 194,
+          "right": 574,
+          "top": 715,
+          "width": 380,
+          "x": 194,
+          "y": 715
+        },
+        "overflow": false,
+        "play": {
+          "bottom": 891.53125,
+          "height": 56,
+          "left": 340,
+          "right": 396,
+          "top": 835.53125,
+          "width": 56,
+          "x": 340,
+          "y": 835.53125
+        },
+        "seek": {
+          "bottom": 827.53125,
+          "height": 36,
+          "left": 194,
+          "right": 574,
+          "top": 791.53125,
+          "width": 380,
+          "x": 194,
+          "y": 791.53125
+        }
+      },
+      "captures": [
+        "work/qa/parity23-evaluator-final-web-768-900-1-initial.png",
+        "work/qa/parity23-evaluator-final-web-768-900-1-controls.png"
+      ]
+    },
+    {
+      "width": 375,
+      "height": 812,
+      "scale": 1,
+      "dimensional": true,
+      "result": {
+        "caption": "Слова",
+        "controls": {
+          "bottom": 828.53125,
+          "height": 319.53125,
+          "left": 18,
+          "right": 357,
+          "top": 509,
+          "width": 339,
+          "x": 18,
+          "y": 509
+        },
+        "cover": {
+          "bottom": 507,
+          "height": 401,
+          "left": 18,
+          "right": 357,
+          "top": 106,
+          "width": 339,
+          "x": 18,
+          "y": 106
+        },
+        "display": "flex",
+        "floatingWords": 0,
+        "lineRects": [
+          {
+            "bottom": 606.53125,
+            "height": 22.9375,
+            "left": 29,
+            "right": 346,
+            "top": 583.59375,
+            "width": 317,
+            "x": 29,
+            "y": 583.59375
+          },
+          {
+            "bottom": 626.53125,
+            "height": 16,
+            "left": 29,
+            "right": 346,
+            "top": 610.53125,
+            "width": 317,
+            "x": 29,
+            "y": 610.53125
+          }
+        ],
+        "lineTexts": [
+          "Там, где тихо — мы услышим море",
+          "И увидим свет в твоём окне"
+        ],
+        "lyrics": {
+          "bottom": 635.53125,
+          "height": 74.53125,
+          "left": 18,
+          "right": 357,
+          "top": 561,
+          "width": 339,
+          "x": 18,
+          "y": 561
+        },
+        "overflow": false,
+        "play": {
+          "bottom": 737.53125,
+          "height": 56,
+          "left": 143.5,
+          "right": 199.5,
+          "top": 681.53125,
+          "width": 56,
+          "x": 143.5,
+          "y": 681.53125
+        },
+        "seek": {
+          "bottom": 673.53125,
+          "height": 36,
+          "left": 18,
+          "right": 357,
+          "top": 637.53125,
+          "width": 339,
+          "x": 18,
+          "y": 637.53125
+        }
+      },
+      "captures": [
+        "work/qa/parity23-evaluator-final-web-375-812-1-initial.png",
+        "work/qa/parity23-evaluator-final-web-375-812-1-controls.png"
+      ]
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "scale": 1.25,
+      "dimensional": false,
+      "result": {
+        "caption": "Слова",
+        "controls": {
+          "bottom": 758.4375,
+          "height": 398.4375,
+          "left": 22.5,
+          "right": 287.5,
+          "top": 360,
+          "width": 265,
+          "x": 22.5,
+          "y": 360
+        },
+        "cover": {
+          "bottom": 357.5,
+          "height": 280,
+          "left": 22.5,
+          "right": 287.5,
+          "top": 77.5,
+          "width": 265,
+          "x": 22.5,
+          "y": 77.5
+        },
+        "display": "flex",
+        "floatingWords": 0,
+        "lineRects": [
+          {
+            "bottom": 481.6875,
+            "height": 28.6875,
+            "left": 36,
+            "right": 274,
+            "top": 453,
+            "width": 238,
+            "x": 36,
+            "y": 453
+          },
+          {
+            "bottom": 506.6875,
+            "height": 20,
+            "left": 36,
+            "right": 274,
+            "top": 486.6875,
+            "width": 238,
+            "x": 36,
+            "y": 486.6875
+          }
+        ],
+        "lineTexts": [
+          "Там, где тихо — мы услышим море",
+          "И увидим свет в твоём окне"
+        ],
+        "lyrics": {
+          "bottom": 517.6875,
+          "height": 92.6875,
+          "left": 22.5,
+          "right": 287.5,
+          "top": 425,
+          "width": 265,
+          "x": 22.5,
+          "y": 425
+        },
+        "overflow": false,
+        "play": {
+          "bottom": 644.9375,
+          "height": 70,
+          "left": 100,
+          "right": 170,
+          "top": 574.9375,
+          "width": 70,
+          "x": 100,
+          "y": 574.9375
+        },
+        "seek": {
+          "bottom": 565.1875,
+          "height": 45,
+          "left": 22.5,
+          "right": 287.5,
+          "top": 520.1875,
+          "width": 265,
+          "x": 22.5,
+          "y": 520.1875
+        }
+      },
+      "captures": [
+        "work/qa/parity23-evaluator-final-web-320-568-1.25-initial.png",
+        "work/qa/parity23-evaluator-final-web-320-568-1.25-controls.png"
+      ]
+    },
+    {
+      "width": 900,
+      "height": 595,
+      "scale": 1.25,
+      "dimensional": true,
+      "result": {
+        "caption": "Слова",
+        "controls": {
+          "bottom": 1055.1875,
+          "height": 375.1875,
+          "left": 195,
+          "right": 695,
+          "top": 680,
+          "width": 500,
+          "x": 195,
+          "y": 680
+        },
+        "cover": {
+          "bottom": 677.5,
+          "height": 582.5,
+          "left": 115,
+          "right": 775,
+          "top": 95,
+          "width": 660,
+          "x": 115,
+          "y": 95
+        },
+        "display": "flex",
+        "floatingWords": 0,
+        "lineRects": [
+          {
+            "bottom": 801.6875,
+            "height": 28.6875,
+            "left": 208.5,
+            "right": 681.5,
+            "top": 773,
+            "width": 473,
+            "x": 208.5,
+            "y": 773
+          },
+          {
+            "bottom": 826.6875,
+            "height": 20,
+            "left": 208.5,
+            "right": 681.5,
+            "top": 806.6875,
+            "width": 473,
+            "x": 208.5,
+            "y": 806.6875
+          }
+        ],
+        "lineTexts": [
+          "Там, где тихо — мы услышим море",
+          "И увидим свет в твоём окне"
+        ],
+        "lyrics": {
+          "bottom": 837.6875,
+          "height": 92.6875,
+          "left": 195,
+          "right": 695,
+          "top": 745,
+          "width": 500,
+          "x": 195,
+          "y": 745
+        },
+        "overflow": false,
+        "play": {
+          "bottom": 958.9375,
+          "height": 70,
+          "left": 383.75,
+          "right": 453.75,
+          "top": 888.9375,
+          "width": 70,
+          "x": 383.75,
+          "y": 888.9375
+        },
+        "seek": {
+          "bottom": 888.9375,
+          "height": 45,
+          "left": 195,
+          "right": 695,
+          "top": 843.9375,
+          "width": 500,
+          "x": 195,
+          "y": 843.9375
+        }
+      },
+      "captures": [
+        "work/qa/parity23-evaluator-final-web-900-595-1.25-initial.png",
+        "work/qa/parity23-evaluator-final-web-900-595-1.25-controls.png"
+      ]
+    }
+  ],
+  "devices": {
+    "before": [
+      {
+        "icon": {
+          "bottom": 488.40625,
+          "height": 18,
+          "left": 1234,
+          "right": 1252,
+          "top": 470.40625,
+          "width": 18,
+          "x": 1234,
+          "y": 470.40625
+        },
+        "name": "Chrome · Windows",
+        "title": "Марсель — Был Өмірде"
+      },
+      {
+        "icon": {
+          "bottom": 594.640625,
+          "height": 18,
+          "left": 1234,
+          "right": 1252,
+          "top": 576.640625,
+          "width": 18,
+          "x": 1234,
+          "y": 576.640625
+        },
+        "name": "GlukWave · Android",
+        "title": "Ветер над морем"
+      },
+      {
+        "icon": {
+          "bottom": 700.875,
+          "height": 18,
+          "left": 1234,
+          "right": 1252,
+          "top": 682.875,
+          "width": 18,
+          "x": 1234,
+          "y": 682.875
+        },
+        "name": "Chrome · Android",
+        "title": "После дождя"
+      }
+    ],
+    "after": [
+      {
+        "icon": {
+          "bottom": 488.40625,
+          "height": 18,
+          "left": 1234,
+          "right": 1252,
+          "top": 470.40625,
+          "width": 18,
+          "x": 1234,
+          "y": 470.40625
+        },
+        "name": "Chrome · Windows",
+        "title": "Марсель — Был Өмірде"
+      },
+      {
+        "icon": {
+          "bottom": 594.640625,
+          "height": 18,
+          "left": 1234,
+          "right": 1252,
+          "top": 576.640625,
+          "width": 18,
+          "x": 1234,
+          "y": 576.640625
+        },
+        "name": "GlukWave · Android",
+        "title": "Ветер над морем"
+      },
+      {
+        "icon": {
+          "bottom": 700.875,
+          "height": 18,
+          "left": 1234,
+          "right": 1252,
+          "top": 682.875,
+          "width": 18,
+          "x": 1234,
+          "y": 682.875
+        },
+        "name": "Chrome · Android",
+        "title": "После дождя"
+      }
+    ],
+    "capture": "work/qa/parity23-evaluator-final-web-independent-devices.png"
+  },
+  "errors": {
+    "errors": []
+  },
+  "cd": {
+    "opaque": {
+      "background": "rgba(0, 0, 0, 0) linear-gradient(135deg, rgb(65, 72, 73), rgb(32, 37, 38) 55%, rgb(52, 59, 60)) repeat scroll 0% 0% / auto padding-box border-box",
+      "faces": [],
+      "opacity": "1",
+      "rect": {
+        "bottom": 640.4111938476562,
+        "height": 312.738037109375,
+        "left": 309.936767578125,
+        "right": 600.7512817382812,
+        "top": 327.67315673828125,
+        "width": 290.81451416015625,
+        "x": 309.936767578125,
+        "y": 327.67315673828125
+      }
+    },
+    "capture": "work/qa/parity23-evaluator-final-web-cd-open.png"
+  }
+}

@@ -59,9 +59,9 @@ void drawSilkWave(
                 .abs() +
             .10) *
         (.62 + (.5 + .5 * math.sin(u * 4.3 + 2.4)) * .56) *
-        (1.48 + energy * .44);
+        (1.48 + energy * .90);
     final angle =
-            u * 13.5 + math.sin(u * 7.2 + t) * 1.15 + energy * .24 + layer * .2,
+            u * 13.5 + math.sin(u * 7.2 + t) * 1.15 + energy * .50 + layer * .2,
         yy =
             v * span * math.cos(angle) +
             math.sin(seed * 31 + phase * 1.3) * .012,
@@ -74,7 +74,7 @@ void drawSilkWave(
             envelope *
                 (fa * .026 * math.sin((u - .31) * 18 + t * .42) +
                     fb * .020 * math.sin((u - .70) * 24 - t * .36)),
-        y = .57 + (cy + yy) * .23;
+        y = .57 + (cy * (1 + energy * .28) + yy) * .23;
     final dx = (x - pointer.dx) * size.width,
         dy = (y - pointer.dy) * size.height,
         influence =
@@ -102,8 +102,8 @@ void drawSilkWave(
   for (var band = 0; band < positions.length; band++) {
     paint.color = palette
         .atDepth((band + .5) / 8)
-        .withValues(alpha: .42 + (band + .5) / 8 * .50);
-    paint.strokeWidth = .94 + (band + .5) / 8 * .94;
+        .withValues(alpha: .42 + (band + .5) / 8 * .50 + energy * .08);
+    paint.strokeWidth = .94 + (band + .5) / 8 * .94 + energy * .22;
     canvas.drawRawPoints(
       ui.PointMode.points,
       Float32List.fromList(positions[band]),

@@ -1,5 +1,6 @@
 import '../l10n/wave_localizations.dart';
 import '../l10n/lan_strings.dart';
+import '../l10n/home_widget_strings.dart';
 import 'dart:async';
 import 'dart:math';
 import 'dart:io';
@@ -19,6 +20,8 @@ class WaveAudioHandler extends BaseAudioHandler {
   final WaveApi api;
   final MusicCache cache;
   final Duration sourceLoadTimeout;
+  final bool hardwareVolume;
+  final bool verifyNativeProgress;
   // Native players send authorization headers directly. Android does not need an
   // insecure loopback proxy in release builds.
   late final AudioPlayer player;
@@ -122,7 +125,7 @@ class WaveAudioHandler extends BaseAudioHandler {
     await provider.clear();
   }
 
-  double get outputVolume => _volume;
+  double get outputVolume => hardwareVolume ? 1 : _volume;
   void showRemote(
     PlaybackSnapshot state,
     WaveTrack? track,
@@ -195,11 +198,17 @@ class WaveAudioHandler extends BaseAudioHandler {
       ? 'waiting'
       : 'unsupported';
   int hardwareBandCount = 0;
+  void nativeProcessingFailed() {
+    equalizerStatus = 'failed';
+    onProcessingChanged?.call();
+  }
+
   String? _nativeSource;
-  double get volume =>
-      (_controlPreview['volume'] as num?)?.toDouble() ??
-      _remote?.volume ??
-      _volume;
+  double get volume => hardwareVolume && !remote
+      ? 1
+      : (_controlPreview['volume'] as num?)?.toDouble() ??
+            _remote?.volume ??
+            _volume;
   bool get equalizerSupported =>
       (_equalizer != null ||
           Platform.isWindows && WaveWindowsAudio.active != null) &&
@@ -227,7 +236,9 @@ class WaveAudioHandler extends BaseAudioHandler {
     _broadcast();
     if (field == 'volume' && localVolume) {
       if (current?.embedded == true) {
-        await provider.command('volume', {'volume': value});
+        await provider.command('volume', {
+          'volume': hardwareVolume ? 1 : value,
+        });
       } else {
         await _setOutputVolume();
       }
@@ -278,6 +289,7 @@ class WaveAudioHandler extends BaseAudioHandler {
   final List<int> _history = [];
   Future<bool> Function(String command, Json payload)? onTransport;
   Future<void> Function(String command, String scope)? onWidgetCommand;
+  Future<void> Function()? onNotificationLike;
   String? widgetGrant;
   Future<bool> Function(WaveTrack track, AudioServiceRepeatMode repeat)?
   onEnded;
@@ -290,8 +302,13 @@ class WaveAudioHandler extends BaseAudioHandler {
     this.api,
     this.cache, {
     AudioPlayer? output,
+    bool? hardwareVolume,
+    bool? verifyNativeProgress,
     this.sourceLoadTimeout = const Duration(seconds: 30),
-  }) {
+  }) : hardwareVolume =
+           hardwareVolume ?? (Platform.isAndroid || Platform.isIOS),
+       verifyNativeProgress =
+           verifyNativeProgress ?? (Platform.isWindows && output == null) {
     provider.addListener(_broadcast);
     provider.onError = (message) => onError?.call(wt(message));
     provider.onEnded = () {
@@ -454,14 +471,14 @@ class WaveAudioHandler extends BaseAudioHandler {
       try {
         await eq.setEnabled(false);
         await enhancer.setEnabled(false);
-        await player.setVolume(_volume);
+        await player.setVolume(outputVolume);
       } catch (_) {}
     }
     onProcessingChanged?.call();
   }
 
   Future<void> _setOutputVolume() => player.setVolume(
-    (number(_controlPreview['volume'], _volume)) *
+    (hardwareVolume ? 1 : number(_controlPreview['volume'], _volume)) *
         (_equalizer != null &&
                 _processing.enabled &&
                 equalizerStatus != 'failed'
@@ -524,7 +541,14 @@ class WaveAudioHandler extends BaseAudioHandler {
           MediaControl.skipToPrevious,
           playing ? MediaControl.pause : MediaControl.play,
           MediaControl.skipToNext,
-          MediaControl.stop,
+          if (!hardwareVolume) MediaControl.stop,
+          if (hardwareVolume && onNotificationLike != null)
+            MediaControl.custom(
+              androidIcon: 'drawable/widget_heart',
+              label: homeWidgetText('like'),
+              name: 'glukwave.like',
+              extras: {'trackId': viewCurrent?.id},
+            ),
         ],
         androidCompactActionIndices: const [0, 1, 2],
         systemActions: const {
@@ -924,16 +948,19 @@ class WaveAudioHandler extends BaseAudioHandler {
         await provider.load(
           current!,
           position: provider.position,
-          volume: _volume,
+          volume: outputVolume,
         );
         _broadcast();
         return;
       }
       if (command == 'volume') {
-        _volume = number(data['volume'], .8).clamp(0, 1);
+        _volume = hardwareVolume ? 1 : number(data['volume'], .8).clamp(0, 1);
         await onVolumeChanged?.call(_volume);
       }
-      await provider.command(command, data);
+      await provider.command(
+        command,
+        command == 'volume' ? {...data, 'volume': outputVolume} : data,
+      );
       _broadcast();
       return;
     }
@@ -959,7 +986,7 @@ class WaveAudioHandler extends BaseAudioHandler {
           Duration(milliseconds: (number(data['position']) * 1000).round()),
         );
       case 'volume':
-        _volume = number(data['volume'], .8).clamp(0, 1);
+        _volume = hardwareVolume ? 1 : number(data['volume'], .8).clamp(0, 1);
         await _setOutputVolume();
         await onVolumeChanged?.call(_volume);
       case 'next':
@@ -1000,6 +1027,16 @@ class WaveAudioHandler extends BaseAudioHandler {
   }
 
   Future<void> _startVerified({int? revision}) async {
+    final startPosition = player.position;
+    final advanced = Completer<void>();
+    final positions = verifyNativeProgress
+        ? player.positionStream.listen((position) {
+            if (position > startPosition + const Duration(milliseconds: 20) &&
+                !advanced.isCompleted) {
+              advanced.complete();
+            }
+          })
+        : null;
     final failure = Completer<void>();
     final ready = Completer<void>();
     final cancelled = _loadCancelled.future;
@@ -1039,11 +1076,25 @@ class WaveAudioHandler extends BaseAudioHandler {
       if (!player.playing || player.processingState != ProcessingState.ready) {
         throw WaveException(wt('native.2f44180776'));
       }
+      if (verifyNativeProgress &&
+          (player.duration == null ||
+              player.duration! - startPosition > const Duration(seconds: 1)) &&
+          player.position <= startPosition + const Duration(milliseconds: 20)) {
+        // just_audio's playing flag is an intent. On desktop require decoded
+        // clock progress before a handoff can silence the sending device.
+        await Future.any<void>([
+          advanced.future,
+          failure.future,
+          if (revision != null) cancelled,
+        ]).timeout(const Duration(seconds: 3));
+        if (revision != null && revision != _loadRevision) return;
+      }
     } catch (error) {
       if (revision != null && revision != _loadRevision) return;
       await player.pause();
       rethrow;
     } finally {
+      await positions?.cancel();
       if (!failure.isCompleted) {
         failure.complete();
       }
@@ -1087,6 +1138,13 @@ class WaveAudioHandler extends BaseAudioHandler {
     String name, [
     Map<String, dynamic>? extras,
   ]) async {
+    if (name == 'glukwave.like') {
+      // A stale notification must never like a song that replaced its item.
+      if (extras?['trackId'] != null && extras?['trackId'] == viewCurrent?.id) {
+        await onNotificationLike?.call();
+      }
+      return null;
+    }
     if (name == 'glukwave.widget') {
       final command = extras?['command'], scope = extras?['scope'];
       if (command is String &&

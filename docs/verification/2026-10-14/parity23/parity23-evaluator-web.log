@@ -1,0 +1,15 @@
+PASS 1440x900 1
+PASS 1440x900 1.25
+PASS 768x900 1
+PASS 375x812 1
+file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/web/qa/browser.mjs:9
+ const result=JSON.parse(raw);if(!result.success)throw new Error(result.error||raw);return result.data;
+                                                       ^
+
+Error: Failed to read: Попытка установить соединение была безуспешной, т.к. от другого компьютера за требуемое время не получен нужный отклик, или было разорвано уже установленное соединение из-за неверного отклика уже подключенного компьютера. (os error 10060)
+    at run (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/web/qa/browser.mjs:9:56)
+    at Module.wait (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/web/qa/browser.mjs:17:34)
+    at file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/work/qa/parity23-evaluator-web.mjs:16:98
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+
+Node.js v24.19.0

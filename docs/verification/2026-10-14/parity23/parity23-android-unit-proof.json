@@ -1,0 +1,11 @@
+{
+  "tests": 8,
+  "failures": 0,
+  "renderedDefaultHeights": [
+    72,
+    176
+  ],
+  "captures": 36,
+  "sourceRoot": "apps/native/android/app/src/test/kotlin/tech/gluk/glukwave",
+  "proofDirectory": "work/qa/parity23-widget-captures"
+}

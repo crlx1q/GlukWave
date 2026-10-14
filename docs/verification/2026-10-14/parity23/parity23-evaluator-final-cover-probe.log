@@ -1,0 +1,35 @@
+{
+  heading: {
+    bottom: 735,
+    height: 55,
+    left: 195,
+    right: 695,
+    top: 680,
+    width: 500,
+    x: 195,
+    y: 680
+  },
+  horizontalOverflow: false,
+  lyrics: 'Слова\nТам, где тихо — мы услышим море\nИ увидим свет в твоём окне',
+  paperPhysicalWidth: 302,
+  stage: {
+    bottom: 677.5,
+    height: 582.5,
+    left: 115,
+    right: 775,
+    top: 95,
+    width: 660,
+    x: 115,
+    y: 95
+  },
+  play: {
+    bottom: 473.9375,
+    height: 70,
+    left: 383.75,
+    right: 453.75,
+    top: 403.9375,
+    width: 70,
+    x: 383.75,
+    y: 403.9375
+  }
+}

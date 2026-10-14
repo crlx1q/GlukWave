@@ -356,21 +356,22 @@ void main() {
         await mount(t, c, size);
         await t.tap(find.byKey(const Key('mini-gesture')));
         await settle(t);
-        // Short screens reserve the physical cover and use the reachable full
-        // lyrics view rather than squeezing another duplicate preview below it.
-        expect(
-          find.byKey(const Key('mini-lyric-0')),
-          size.width == 320 ? findsNothing : findsOneWidget,
-        );
-        expect(
-          find.byKey(const Key('mini-lyric-1')),
-          size.width == 320 ? findsNothing : findsOneWidget,
-        );
+        // Both excerpts remain available on short screens; internal scrolling
+        // preserves the sleeve size and keeps transport controls reachable.
+        expect(find.byKey(const Key('mini-lyric-0')), findsOneWidget);
+        expect(find.byKey(const Key('mini-lyric-1')), findsOneWidget);
         expect(find.byKey(const Key('mini-lyric-2')), findsNothing);
-        final cover = t.getRect(find.byKey(const Key('album-stage-bounds'))),
-            play = t.getRect(find.byKey(const Key('player-play')));
+        final cover = t.getRect(find.byKey(const Key('album-stage-bounds')));
         expect(cover.top, greaterThanOrEqualTo(0));
+        await t.ensureVisible(find.byKey(const Key('player-play')));
+        await settle(t);
+        final play = t.getRect(find.byKey(const Key('player-play')));
+        expect(play.top, greaterThanOrEqualTo(0));
         expect(play.bottom, lessThanOrEqualTo(size.height));
+        expect(
+          t.getSize(find.byKey(const Key('album-stage-bounds'))),
+          cover.size,
+        );
         await shot(t, '${size.width.toInt()}-mini-lyrics-enabled');
         await t.tap(find.byKey(const Key('player-lyrics-toggle')));
         await settle(t);

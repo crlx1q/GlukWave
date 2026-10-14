@@ -1,8 +1,10 @@
 import 'lan_panel.dart';
+import 'motion_icons.dart';
 import 'package:flutter/material.dart';
 import '../core/controller.dart';
 import '../core/models.dart';
 import '../l10n/wave_localizations.dart';
+import '../l10n/ecosystem_polish_strings.dart';
 import 'widgets.dart';
 import 'listening_presence.dart';
 import 'connect_device_tile.dart';
@@ -91,6 +93,34 @@ class ConnectPanel extends StatelessWidget {
                     ? (value) => _run(() => c.setIndependentListening(value))
                     : null,
               ),
+              if (c.backgroundConnect.supported) ...[
+                Divider(height: 26, color: v.line),
+                SwitchListTile(
+                  key: const Key('connect-screen-off'),
+                  contentPadding: EdgeInsets.zero,
+                  title: Text(
+                    ecosystemText('connectScreenOff', context),
+                    style: const TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  subtitle: Padding(
+                    padding: const EdgeInsets.only(top: 6),
+                    child: Text(
+                      ecosystemText('connectScreenOffHint', context),
+                      style: TextStyle(
+                        fontSize: 11,
+                        height: 1.5,
+                        color: v.muted,
+                      ),
+                    ),
+                  ),
+                  value: c.backgroundConnectEnabled,
+                  onChanged: (enabled) =>
+                      _run(() => c.setBackgroundConnect(enabled)),
+                ),
+              ],
               if (track != null && (c.room != null || c.controllingRemote)) ...[
                 const Divider(height: 30),
                 if (c.room != null) ListeningPresence(controller: c),
@@ -127,8 +157,6 @@ class ConnectPanel extends StatelessWidget {
             ],
           ),
         ),
-        const SizedBox(height: 24),
-        LanPanel(controller: c, scanQr: scanQr),
         const SizedBox(height: 24),
         Row(
           children: [
@@ -177,7 +205,7 @@ class ConnectPanel extends StatelessWidget {
           children: [
             TextButton.icon(
               onPressed: scanQr,
-              icon: const Icon(Icons.qr_code_scanner_rounded),
+              icon: const WaveControlIcon(Icons.qr_code_scanner_rounded),
               label: Text(wt('native.280e0f673d', context: context)),
             ),
             TextButton.icon(
@@ -187,6 +215,8 @@ class ConnectPanel extends StatelessWidget {
             ),
           ],
         ),
+        const SizedBox(height: 24),
+        LanPanel(controller: c, scanQr: scanQr),
       ],
     );
   }

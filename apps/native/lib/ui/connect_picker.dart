@@ -104,9 +104,7 @@ Future<void> showConnectPicker(
                             ),
                           ),
                         for (final device
-                            in ([
-                              ...(c.lanEnabled ? c.lanPeers : c.devices),
-                            ]..sort(
+                            in ([...c.devices]..sort(
                               (a, b) =>
                                   ((connectDeviceId(b) == c.activeDeviceId
                                               ? 2
@@ -124,7 +122,7 @@ Future<void> showConnectPicker(
                             device: device,
                             compact: true,
                           ),
-                        if ((c.lanEnabled ? c.lanPeers : c.devices).isEmpty)
+                        if (c.devices.isEmpty)
                           Padding(
                             padding: const EdgeInsets.symmetric(vertical: 20),
                             child: Text(
@@ -135,6 +133,27 @@ Future<void> showConnectPicker(
                               ),
                             ),
                           ),
+                        if (c.lanEnabled && c.lanPeers.isNotEmpty) ...[
+                          Padding(
+                            padding: const EdgeInsets.only(top: 18, bottom: 4),
+                            child: Text(
+                              'LAN · Wi-Fi',
+                              key: const Key('connect-lan-section'),
+                              style: TextStyle(
+                                fontSize: 10,
+                                color: waveVisuals(context).muted,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ),
+                          for (final device in c.lanPeers)
+                            ConnectDeviceTile(
+                              controller: c,
+                              device: device,
+                              compact: true,
+                              lan: true,
+                            ),
+                        ],
                         if (onAllDevices != null)
                           TextButton(
                             onPressed: () {

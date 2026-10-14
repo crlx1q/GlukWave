@@ -21,6 +21,7 @@ import 'player_gestures.dart';
 import 'queue_panel.dart';
 import 'connect_picker.dart';
 import 'listening_presence.dart';
+import 'mini_lyrics.dart';
 
 class SourceAttribution extends StatelessWidget {
   final WaveController controller;
@@ -183,7 +184,7 @@ class MiniPlayer extends StatelessWidget {
                   ),
                 SizedBox(
                   height: track != null
-                      ? 94
+                      ? 68
                       : compact || v.compact
                       ? 72
                       : 84,
@@ -240,22 +241,22 @@ class MiniPlayer extends StatelessWidget {
                                                 ),
                                               ),
                                               const SizedBox(height: 3),
-                                              ScrollingLabel(
-                                                track?.artist ??
-                                                    wt(
-                                                      'native.b196b73079',
-                                                      context: context,
-                                                    ),
-                                                style: TextStyle(
-                                                  color: v.onPlayer.withValues(
-                                                    alpha: .7,
+                                              if (!(track != null &&
+                                                  c.controllingRemote))
+                                                ScrollingLabel(
+                                                  track?.artist ??
+                                                      wt(
+                                                        'native.b196b73079',
+                                                        context: context,
+                                                      ),
+                                                  style: TextStyle(
+                                                    color: v.onPlayer
+                                                        .withValues(alpha: .7),
+                                                    fontSize: 10,
                                                   ),
-                                                  fontSize: 10,
                                                 ),
-                                              ),
                                               if (track != null &&
                                                   c.controllingRemote) ...[
-                                                const SizedBox(height: 4),
                                                 Builder(
                                                   builder: (anchor) =>
                                                       PlayingOutput(
@@ -645,23 +646,29 @@ class _PlayerPageState extends State<PlayerPage> {
   int _lastLyric = -2;
   DateTime _manualLyricsUntil = DateTime(0);
   StreamSubscription<MediaItem?>? _media;
+  bool _followingPlayback = false;
   @override
   void initState() {
     super.initState();
     current = widget.initialTrack ?? c.audio.viewCurrent;
     _detailsScope = detailsScope(current);
     unawaited(loadDetails());
-    if (widget.initialTrack == null) {
-      _media = c.audio.mediaItem.listen((_) => _syncCurrent());
-      // viewCurrent also includes a track awaiting its audio descriptor;
-      // mediaItem is deliberately published only after that descriptor arrives.
-      c.addListener(_syncCurrent);
-    }
+    _followingPlayback =
+        widget.initialTrack == null ||
+        widget.initialTrack?.id == c.audio.viewCurrent?.id;
+    _media = c.audio.mediaItem.listen((_) => _syncCurrent());
+    // An idle preview stays on its chosen song until that song starts. Once
+    // adopted, every next/previous updates the artwork, title and lyrics.
+    c.addListener(_syncCurrent);
   }
 
   void _syncCurrent() {
     if (!mounted) return;
     final track = c.audio.viewCurrent;
+    if (!_followingPlayback) {
+      if (track?.id != widget.initialTrack?.id) return;
+      _followingPlayback = true;
+    }
     final scope = detailsScope(track), changed = track?.id != current?.id;
     if (!changed && scope == _detailsScope) return;
     _detailsScope = scope;
@@ -965,7 +972,9 @@ class _PlayerPageState extends State<PlayerPage> {
         child: Padding(
           padding: EdgeInsets.fromLTRB(wide ? 32 : 20, 0, wide ? 32 : 20, 10),
           child: ConstrainedBox(
-            constraints: BoxConstraints(maxWidth: 520),
+            constraints: BoxConstraints(
+              maxWidth: bounds.maxWidth >= 1100 ? 1120 : 520,
+            ),
             child: listening(track),
           ),
         ),
@@ -1096,6 +1105,7 @@ class _PlayerPageState extends State<PlayerPage> {
           active = c.audio.viewCurrent?.id == track.id;
       final scale = MediaQuery.textScalerOf(context).scale(1);
       final dimensional = c.customization.appearance.cover3d && !c.energySaving;
+      final split = bounds.maxWidth >= 960 && bounds.maxHeight >= 610;
       final landscape =
           MediaQuery.sizeOf(context).width > 600 && bounds.maxHeight < 470;
       // Give the rigid sleeve its complete turn envelope. The remaining space,
@@ -1107,17 +1117,19 @@ class _PlayerPageState extends State<PlayerPage> {
       final sceneHeight = dimensional
           ? referenceSleeveSceneHeight(size)
           : size + 36;
-      final controlRoom = (bounds.maxHeight - sceneHeight - 20) / scale;
+      final controlRoom =
+          (split
+              ? bounds.maxHeight - 20
+              : bounds.maxHeight - sceneHeight - 20) /
+          scale;
       final dense = controlRoom < 350,
           tiny = controlRoom < 290,
           short = controlRoom < 240;
       final preview =
           tab == 0 &&
-          controlRoom >= 350 &&
-          c.settings['lyrics'] == true &&
+          c.settings['lyrics'] != false &&
           c.settings['lyricsUnderCover'] != false &&
           lyrics.isNotEmpty;
-      final previewHeight = preview ? 68.0 * scale : 0.0;
       final contents = <Widget>[
         SizedBox(
           height: sceneHeight,
@@ -1193,9 +1205,13 @@ class _PlayerPageState extends State<PlayerPage> {
             ),
           ),
         if (preview)
-          SizedBox(
-            height: previewHeight,
-            child: compactLyrics(track, tiny: tiny),
+          MiniLyrics(
+            controller: c,
+            track: track,
+            lines: lyrics,
+            synchronized: synchronized,
+            dense: tiny,
+            key: const Key('player-compact-lyrics'),
           ),
         if (active) ...[
           progress(track),
@@ -1256,15 +1272,17 @@ class _PlayerPageState extends State<PlayerPage> {
                     size: 21,
                   ),
                 ),
-                IconButton(
-                  tooltip: wt('native.621777004a', context: context),
-                  onPressed: showVolume,
-                  icon: WaveVolumeIcon(
-                    volume: c.audio.volume,
-                    size: 20,
-                    color: v.muted,
+                if (!c.audio.hardwareVolume || c.controllingRemote)
+                  IconButton(
+                    key: const Key('player-volume'),
+                    tooltip: wt('native.621777004a', context: context),
+                    onPressed: showVolume,
+                    icon: WaveVolumeIcon(
+                      volume: c.audio.volume,
+                      size: 20,
+                      color: v.muted,
+                    ),
                   ),
-                ),
                 IconButton(
                   tooltip: nativeText(context, 'queue'),
                   onPressed: () => setState(() => tab = 2),
@@ -1338,6 +1356,26 @@ class _PlayerPageState extends State<PlayerPage> {
           ),
         ],
       ];
+      if (split) {
+        return Row(
+          key: const Key('player-wide-layout'),
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Expanded(child: contents.first),
+            const SizedBox(width: 54),
+            SizedBox(
+              width: 400,
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: contents.skip(1).toList(),
+                ),
+              ),
+            ),
+          ],
+        );
+      }
       return SingleChildScrollView(
         key: const Key('player-content-scroll'),
         child: ConstrainedBox(
@@ -1362,63 +1400,6 @@ class _PlayerPageState extends State<PlayerPage> {
       );
     },
   );
-
-  Widget compactLyrics(WaveTrack track, {required bool tiny}) =>
-      StreamBuilder<Duration>(
-        stream: c.audio.positionStream,
-        builder: (_, snapshot) {
-          final active = synchronized && c.audio.viewCurrent?.id == track.id,
-              index = active
-                  ? activeLyric(
-                      lyrics,
-                      (snapshot.data?.inMilliseconds ?? 0) / 1000,
-                    )
-                  : 0,
-              current = index.clamp(0, lyrics.length - 1);
-          return Column(
-            key: const Key('player-compact-lyrics'),
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              for (final line in [
-                current,
-                if (current + 1 < lyrics.length) current + 1,
-              ])
-                Flexible(
-                  child: InkWell(
-                    onTap: active && c.canSeek
-                        ? () => _run(
-                            c,
-                            () => c.transport('seek', {
-                              'position': number(lyrics[line]['time']),
-                            }),
-                          )
-                        : null,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 3),
-                      child: Text(
-                        lyrics[line]['text']?.toString() ?? '',
-                        key: Key('mini-lyric-$line'),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(
-                          fontSize: line == current ? (tiny ? 15 : 17) : 13,
-                          height: 1.3,
-                          color: line == current
-                              ? waveVisuals(context).ink
-                              : waveVisuals(context).muted,
-                          fontWeight: line == current
-                              ? FontWeight.w800
-                              : FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-            ],
-          );
-        },
-      );
 
   Widget compactTransport() => Row(
     mainAxisAlignment: MainAxisAlignment.center,

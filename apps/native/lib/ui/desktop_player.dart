@@ -8,6 +8,7 @@ import '../core/controller.dart';
 import '../l10n/wave_localizations.dart';
 import 'widgets.dart';
 import 'volume_slider.dart';
+import 'mini_lyrics.dart';
 
 /// Same session and audio handler as the full application. The desktop shell
 /// switches the native window's bounds and frame; no second player is created.
@@ -234,6 +235,12 @@ class _DesktopCompactPlayerState extends State<DesktopCompactPlayer> {
                               ),
                             const SizedBox(height: 16),
                             _metadata(centered: true),
+                            if (track != null)
+                              MiniLyrics(
+                                controller: c,
+                                track: track,
+                                dense: true,
+                              ),
                           ],
                         ),
                       ),
@@ -291,60 +298,71 @@ class _DesktopCompactPlayerState extends State<DesktopCompactPlayer> {
                     ),
                   ],
                 )
-              : Column(
-                  children: [
-                    SizedBox(height: 30, child: _header()),
-                    const SizedBox(height: 2),
-                    Row(
-                      children: [
-                        if (track != null)
-                          Artwork(
-                            controller: c,
-                            trackLoading: c.trackLoading,
-                            url: track.artwork,
-                            size: 44,
-                            radius: 9,
-                          )
-                        else
-                          Icon(
-                            Icons.music_note_rounded,
-                            size: 36,
-                            color: v.accent,
+              : SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      SizedBox(height: 30, child: _header()),
+                      const SizedBox(height: 2),
+                      Row(
+                        children: [
+                          if (track != null)
+                            Artwork(
+                              controller: c,
+                              trackLoading: c.trackLoading,
+                              url: track.artwork,
+                              size: 44,
+                              radius: 9,
+                            )
+                          else
+                            Icon(
+                              Icons.music_note_rounded,
+                              size: 36,
+                              color: v.accent,
+                            ),
+                          const SizedBox(width: 10),
+                          Expanded(child: _metadata()),
+                          _control(
+                            Icons.skip_previous_rounded,
+                            wt('native.8e1abb9475', context: context),
+                            c.audio.skipToPrevious,
                           ),
-                        const SizedBox(width: 10),
-                        Expanded(child: _metadata()),
-                        _control(
-                          Icons.skip_previous_rounded,
-                          wt('native.8e1abb9475', context: context),
-                          c.audio.skipToPrevious,
+                          _play(),
+                          _control(
+                            Icons.skip_next_rounded,
+                            wt('native.c97fa8b29b', context: context),
+                            c.audio.skipToNext,
+                          ),
+                        ],
+                      ),
+                      if (track != null)
+                        MiniLyrics(
+                          controller: c,
+                          track: track,
+                          dense: true,
+                          onAvailability: (available) => unawaited(
+                            _run(() => c.desktop.setCompactLyrics(available)),
+                          ),
                         ),
-                        _play(),
-                        _control(
-                          Icons.skip_next_rounded,
-                          wt('native.c97fa8b29b', context: context),
-                          c.audio.skipToNext,
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 9),
-                    StreamBuilder<Duration>(
-                      stream: c.audio.positionStream,
-                      builder: (context, position) => ClipRRect(
-                        borderRadius: BorderRadius.circular(3),
-                        child: LinearProgressIndicator(
-                          minHeight: 2,
-                          value: track != null && track.duration > 0
-                              ? ((position.data?.inMilliseconds ?? 0) /
-                                        1000 /
-                                        track.duration)
-                                    .clamp(0, 1)
-                              : 0,
-                          backgroundColor: v.line,
-                          color: c.trackLoading ? v.muted : v.accent,
+                      const SizedBox(height: 4),
+                      StreamBuilder<Duration>(
+                        stream: c.audio.positionStream,
+                        builder: (context, position) => ClipRRect(
+                          borderRadius: BorderRadius.circular(3),
+                          child: LinearProgressIndicator(
+                            minHeight: 2,
+                            value: track != null && track.duration > 0
+                                ? ((position.data?.inMilliseconds ?? 0) /
+                                          1000 /
+                                          track.duration)
+                                      .clamp(0, 1)
+                                : 0,
+                            backgroundColor: v.line,
+                            color: c.trackLoading ? v.muted : v.accent,
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
         ),
       ),

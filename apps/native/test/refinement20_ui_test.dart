@@ -185,8 +185,31 @@ void main() {
         if (config.$1 == 320) {
           expect(face.height, greaterThanOrEqualTo(130));
           expect(face.width, greaterThanOrEqualTo(130));
-          expect(find.byKey(const Key('player-compact-lyrics')), findsNothing);
+          expect(
+            find.byKey(const Key('player-compact-lyrics')),
+            findsOneWidget,
+          );
+          expect(find.byKey(const Key('mini-lyric-0')), findsOneWidget);
+          expect(find.byKey(const Key('mini-lyric-1')), findsOneWidget);
+          expect(find.byKey(const Key('mini-lyric-2')), findsNothing);
           expect(find.byKey(const Key('player-lyrics-toggle')), findsOneWidget);
+          final original = tester.getSize(
+            find.byKey(const Key('album-stage-bounds')),
+          );
+          await tester.ensureVisible(find.byKey(const Key('player-play')));
+          await settle(tester);
+          expect(
+            tester.getRect(find.byKey(const Key('player-play'))).bottom,
+            lessThanOrEqualTo(config.$2),
+          );
+          expect(
+            tester.getSize(find.byKey(const Key('album-stage-bounds'))),
+            original,
+          );
+          c.settings['lyricsUnderCover'] = false;
+          c.render();
+          await settle(tester);
+          expect(find.byKey(const Key('player-compact-lyrics')), findsNothing);
         }
         await base.screenshot(
           tester,

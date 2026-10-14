@@ -11,8 +11,9 @@ import 'scrolling_label.dart';
 import 'volume_slider.dart';
 import 'widgets.dart';
 import 'listening_presence.dart';
+import 'mini_lyrics.dart';
 
-class NativeDesktopTransport extends StatelessWidget {
+class NativeDesktopTransport extends StatefulWidget {
   final WaveController controller;
   final VoidCallback onOpen;
   final VoidCallback? onDevices;
@@ -30,6 +31,20 @@ class NativeDesktopTransport extends StatelessWidget {
     this.onDragEnd,
     this.onDragCancel,
   });
+  @override
+  State<NativeDesktopTransport> createState() => _NativeDesktopTransportState();
+}
+
+class _NativeDesktopTransportState extends State<NativeDesktopTransport> {
+  WaveController get controller => widget.controller;
+  VoidCallback get onOpen => widget.onOpen;
+  VoidCallback? get onDevices => widget.onDevices;
+  Key? get artworkKey => widget.artworkKey;
+  VoidCallback? get onDragStart => widget.onDragStart;
+  VoidCallback? get onDragCancel => widget.onDragCancel;
+  ValueChanged<double>? get onDragUpdate => widget.onDragUpdate;
+  ValueChanged<double>? get onDragEnd => widget.onDragEnd;
+  bool lyricsAvailable = false;
   Future<void> perform(Future<void> Function() action) async {
     try {
       await action();
@@ -48,7 +63,12 @@ class NativeDesktopTransport extends StatelessWidget {
         side: BorderSide(color: v.line),
       ),
       child: SizedBox(
-        height: 94,
+        height:
+            lyricsAvailable &&
+                c.settings['lyrics'] != false &&
+                c.settings['lyricsUnderCover'] != false
+            ? 160
+            : 94,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 9),
           child: LayoutBuilder(
@@ -160,6 +180,17 @@ class NativeDesktopTransport extends StatelessWidget {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        if (track != null)
+                          MiniLyrics(
+                            controller: c,
+                            track: track,
+                            dense: true,
+                            onAvailability: (available) {
+                              if (mounted && available != lyricsAvailable) {
+                                setState(() => lyricsAvailable = available);
+                              }
+                            },
+                          ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [

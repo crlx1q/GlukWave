@@ -51,7 +51,7 @@ Future<void> main(List<String> arguments) async {
     startupApi = api;
     api.diagnostics.version = const String.fromEnvironment(
       'GLUKWAVE_BUILD_VERSION',
-      defaultValue: '1.0.0+22',
+      defaultValue: '1.0.0+23',
     );
     try {
       await api.diagnostics.enableLocalLog(
@@ -79,7 +79,9 @@ Future<void> main(List<String> arguments) async {
         androidNotificationChannelId: 'tech.gluk.glukwave.audio',
         androidNotificationChannelName: wt('native.5de203e8f1'),
         androidNotificationOngoing: true,
-        androidStopForegroundOnPause: true,
+        // Keep the established media session/Connect socket reachable when
+        // the screen locks or playback pauses during a device handoff.
+        androidStopForegroundOnPause: false,
         androidNotificationIcon: 'drawable/ic_notification',
       ),
     );
@@ -89,6 +91,9 @@ Future<void> main(List<String> arguments) async {
       handler,
       startMinimized: arguments.contains('--start-minimized'),
     );
+    if (Platform.isWindows) {
+      WaveMpvPlayer.onEffectFailure = handler.nativeProcessingFailed;
+    }
     runApp(GlukWaveApp(controller: controller));
     await controller.initialize();
   } catch (error, trace) {

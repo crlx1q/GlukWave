@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'widgets.dart';
+import 'physical_wave_clock.dart';
 import '../core/models.dart';
 import '../l10n/wave_localizations.dart';
 
@@ -117,10 +118,7 @@ class ListeningWave extends StatefulWidget {
 
 class _ListeningWaveState extends State<ListeningWave>
     with SingleTickerProviderStateMixin, WidgetsBindingObserver {
-  late final clock = AnimationController(
-    vsync: this,
-    duration: const Duration(milliseconds: 1200),
-  );
+  late final clock = PhysicalWaveClock(this);
   bool visible = true;
   @override
   void initState() {
@@ -129,13 +127,6 @@ class _ListeningWaveState extends State<ListeningWave>
   }
 
   void sync() {
-    final period = Duration(
-      milliseconds: (1200 / waveVisuals(context).speed.clamp(.3, 2.0)).round(),
-    );
-    if (clock.duration != period) {
-      clock.duration = period;
-      if (clock.isAnimating) clock.repeat();
-    }
     if (widget.playing &&
         visible &&
         TickerMode.of(context) &&

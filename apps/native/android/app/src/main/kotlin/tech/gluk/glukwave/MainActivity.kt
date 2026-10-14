@@ -4,6 +4,15 @@ class MainActivity : AudioServiceFragmentActivity() {
     override fun configureFlutterEngine(engine: io.flutter.embedding.engine.FlutterEngine) {
         super.configureFlutterEngine(engine)
         val app = applicationContext
+        io.flutter.plugin.common.MethodChannel(engine.dartExecutor.binaryMessenger,"tech.gluk.glukwave/connect_background").setMethodCallHandler { call,result ->
+            if (call.method != "update") { result.notImplemented(); return@setMethodCallHandler }
+            try {
+                result.success(ConnectBackgroundService.update(app,call.argument<Boolean>("enabled") == true,
+                    call.argument<Boolean>("explicit") == true))
+            } catch (error: Exception) {
+                result.error("CONNECT_BACKGROUND",error.javaClass.simpleName,null)
+            }
+        }
         io.flutter.plugin.common.MethodChannel(engine.dartExecutor.binaryMessenger,"tech.gluk.glukwave/energy").setMethodCallHandler { call,result ->
             if (call.method != "snapshot") { result.notImplemented(); return@setMethodCallHandler }
             val power = app.getSystemService(android.content.Context.POWER_SERVICE) as android.os.PowerManager

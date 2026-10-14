@@ -13,6 +13,8 @@ import 'package:glukwave/core/models.dart';
 import 'package:glukwave/l10n/wave_localizations.dart';
 import 'package:glukwave/services/audio.dart';
 import 'package:glukwave/ui/motion_icons.dart';
+import 'package:glukwave/ui/physical_wave_clock.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:glukwave/ui/player.dart';
 import 'package:glukwave/ui/theme.dart';
 import 'app_layout_test.dart' as f;
@@ -265,22 +267,43 @@ void main() {
   );
 
   testWidgets(
-    'Appearance speed changes vector travel rate without changing geometry',
+    'Appearance speed leaves the physical vector cycle and geometry unchanged',
     (tester) async {
       await f.viewport(tester, const Size(320, 180));
-      Future<Uint8List> frame(double speed, int milliseconds) async {
+      Future<void> frame(double speed) async {
         await tester.pumpWidget(const SizedBox());
+        timeDilation = 1 / speed;
         await tester.pumpWidget(shell(icon(), speed: speed));
         await tester.pump();
-        await tester.pump(Duration(milliseconds: milliseconds));
-        return pixels(tester);
+        final dynamic state = tester.state(find.byType(WavePlaybackIcon));
+        final clock = state.loop as PhysicalWaveClock;
+        final before = clock.watch.elapsedMicroseconds;
+        await tester.runAsync(
+          () => Future<void>.delayed(const Duration(milliseconds: 150)),
+        );
+        await tester.pump();
+        expect(clock.duration, const Duration(milliseconds: 1200));
+        expect(
+          clock.watch.elapsedMicroseconds - before,
+          greaterThanOrEqualTo(140000),
+        );
+        expect(
+          clock.value,
+          closeTo((clock.watch.elapsedMicroseconds % 1200000) / 1200000, .03),
+        );
+        expect(
+          tester.getSize(find.byType(WavePlaybackIcon)),
+          const Size.square(32),
+        );
       }
 
-      final normalQuarter = await frame(1, 300);
-      final fastQuarter = await frame(2, 150);
-      expect(fastQuarter, orderedEquals(normalQuarter));
-      final fastHalf = await frame(2, 300);
-      expect(fastHalf, isNot(orderedEquals(normalQuarter)));
+      try {
+        for (final speed in [.5, 1.0, 2.0]) {
+          await frame(speed);
+        }
+      } finally {
+        timeDilation = 1;
+      }
       expect(
         tester.getSize(find.byType(WavePlaybackIcon)),
         const Size.square(32),
@@ -292,7 +315,8 @@ void main() {
       tester.view.resetDevicePixelRatio();
       expect(tester.takeException(), isNull);
       cases.add({
-        'name': 'Actual pixels prove 2× appearance speed without size changes',
+        'name':
+            'Actual elapsed time proves a fixed 1200ms cycle at .5/1/2 appearance speed without size changes',
         'passed': true,
       });
     },

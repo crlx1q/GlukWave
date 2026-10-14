@@ -51,6 +51,16 @@ html[data-theme=dark] .album-stage.reference-sleeve .album-shadow,html[data-them
 .album-stage.reference-sleeve.case-cd .sleeve-front{box-shadow:inset 0 0 0 7px #ebeeeb50,inset 8px 0 0 3px #fff3;border-radius:4px;transform:translateZ(9px) rotateY(-14deg);transform-origin:left center}
 .album-stage.reference-sleeve.case-cd .album-spine{background:linear-gradient(90deg,#a6afb299,#fafbfba8,#a6afb288);color:#302f2c}
 .album-stage.reference-sleeve.case-cd .sleeve-back{background:#262b2c}
+.album-stage.reference-sleeve .album-cd-tray{position:absolute;inset:0;transform:translateZ(-1px);background:linear-gradient(135deg,#414849,#202526 55%,#343b3c);border:2px solid #89918d;box-sizing:border-box;backface-visibility:visible;box-shadow:inset 0 0 0 3px #171c1d}
+.album-stage.reference-sleeve .album-cd-tray>i{position:absolute;inset:6.5%;border-radius:50%;background:repeating-radial-gradient(circle,#15191a 0 8px,#1b2021 9px 10px);border:2px solid #626b69;box-shadow:inset 0 0 0 2px #080c0d}
+.album-stage.reference-sleeve.case-cd :is(.album-top-edge,.album-bottom-edge,.album-inner-edge,.album-spine){background:linear-gradient(90deg,#596361,#aab1ac,#424b48)}
+.album-stage.reference-sleeve.flat .album-cd-tray{display:none}
+.full-player.focused-player.connected-player .np-controls .compact-lyric-preview>button{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;min-width:0;flex:none}
+@media(min-width:1100px) and (min-height:760px){
+ .full-player.focused-player.connected-player.details-player .np-listening{display:grid;grid-template-columns:minmax(0,496px) minmax(0,400px);column-gap:72px;align-items:center;justify-content:center;width:100%;max-width:1120px;overflow:visible;margin:auto;padding:12px 6px}
+ .full-player.focused-player.connected-player.details-player .np-cover-growth{grid-column:1;grid-row:1}
+ .full-player.focused-player.connected-player.details-player .np-controls{grid-column:2;grid-row:1;margin:0;width:100%;max-width:400px}
+}
 .album-stage.reference-sleeve.flat .album-object{transform:none!important;translate:none!important;animation:none!important}
 .album-stage.reference-sleeve.flat .album-cover{position:absolute;inset:0;transform:none;border-radius:calc(var(--radius)*.55);overflow:hidden;background:var(--surface)}
 .album-stage.reference-sleeve.flat .cover-reflection,.album-stage.reference-sleeve.flat .album-shadow,.album-stage.reference-sleeve.flat :is(.album-back,.album-spine,.vinyl,.album-top-edge,.album-bottom-edge,.album-inner-edge){display:none}
@@ -66,4 +76,4 @@ html[data-motion=reduce] .album-stage.reference-sleeve .album-object{transition:
  .full-player.focused-player.connected-player .np-drag-handle{display:none}
  .full-player.focused-player.connected-player .np-listening{margin:0 auto;overflow:visible;align-self:center}
 }
-@media(max-height:650px){.full-player.focused-player.connected-player .np-controls .compact-lyric-preview{display:none!important}}
+

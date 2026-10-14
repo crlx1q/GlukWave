@@ -1,0 +1,23 @@
+{
+  "deleted": [
+    {
+      "path": "GlukWave-windows.3c9dd589bca1495298ff9432609d1f50.partial",
+      "reason": "Empty packaging shell"
+    },
+    {
+      "path": "GlukWave-windows.previous.8bd3dc11c541403bb2647f286fb053bc",
+      "reason": "All files matched exact rollback ZIP",
+      "preservedArchive": "outputs/archive/releases/1.0.0+22/GlukWave-windows.zip",
+      "bytes": 93351482
+    },
+    {
+      "path": "GlukWave-1.0.0+22-audit.json",
+      "reason": "Exact rollback copy preserved"
+    },
+    {
+      "path": "GlukWave-1.0.0+22-source-audit.json",
+      "reason": "Exact rollback copy preserved"
+    }
+  ],
+  "rollbackArchivesPreserved": true
+}

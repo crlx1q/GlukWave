@@ -3,6 +3,75 @@ import 'dart:ui';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import '../core/controller.dart';
+import 'theme.dart';
+
+/// Move incoming cover/metadata in the queue direction without keeping a
+/// duplicate player alive, delaying a command, or changing playback state.
+class TrackMotion extends StatefulWidget {
+  final WaveController controller;
+  final Widget child;
+  const TrackMotion({super.key, required this.controller, required this.child});
+  @override
+  State<TrackMotion> createState() => _TrackMotionState();
+}
+
+class _TrackMotionState extends State<TrackMotion>
+    with SingleTickerProviderStateMixin {
+  late final motion = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 280),
+    value: 1,
+  );
+  String? trackId;
+  double direction = 1;
+  @override
+  void initState() {
+    super.initState();
+    trackId = widget.controller.audio.viewCurrent?.id;
+  }
+
+  @override
+  void didUpdateWidget(TrackMotion old) {
+    super.didUpdateWidget(old);
+    final c = widget.controller, nextId = c.audio.viewCurrent?.id;
+    if (trackId == nextId) return;
+    final before = c.audio.viewTracks.indexWhere((t) => t.id == trackId),
+        after = c.audio.viewTracks.indexWhere((t) => t.id == nextId);
+    direction = before >= 0 && after >= 0 && after < before ? -1 : 1;
+    trackId = nextId;
+    if (waveVisuals(context).reducedMotion ||
+        MediaQuery.disableAnimationsOf(context) ||
+        !TickerMode.of(context) ||
+        c.energySaving) {
+      motion.value = 1;
+    } else {
+      motion.forward(from: 0);
+    }
+  }
+
+  @override
+  void dispose() {
+    motion.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) => AnimatedBuilder(
+    animation: motion,
+    child: widget.child,
+    builder: (context, child) {
+      final progress = Curves.easeOutCubic.transform(motion.value);
+      return Opacity(
+        opacity: .45 + .55 * progress,
+        child: FractionalTranslation(
+          key: const Key('player-track-motion'),
+          translation: Offset((1 - progress) * .07 * direction, 0),
+          child: child,
+        ),
+      );
+    },
+  );
+}
 
 /// Rejects the opposite vertical direction before the scroll view's arena is
 /// decided. An upward movement on the cover therefore remains natural scroll.
@@ -146,6 +215,6 @@ class _PlayerGestureSurfaceState extends State<PlayerGestureSurface> {
             },
           ),
     },
-    child: widget.child,
+    child: TrackMotion(controller: widget.controller, child: widget.child),
   );
 }

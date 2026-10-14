@@ -148,8 +148,12 @@ void main() {
         final transport = t.getRect(
           find.byKey(const Key('player-transport-capsule')),
         );
-        expect(cover.bottom, lessThan(transport.top));
-        expect(cover.center.dx, closeTo(transport.center.dx, 1));
+        if (find.byKey(const Key('player-wide-layout')).evaluate().isNotEmpty) {
+          expect(cover.right, lessThan(transport.left));
+        } else {
+          expect(cover.bottom, lessThan(transport.top));
+          expect(cover.center.dx, closeTo(transport.center.dx, 1));
+        }
         final stage = t.widget<AlbumStage>(find.byType(AlbumStage));
         if (viewport.width >= 1100) expect(stage.size, 302);
         final original = t.getSize(find.byKey(const Key('album-stage-bounds')));
@@ -268,7 +272,12 @@ void main() {
               );
           expect(point.dy, greaterThanOrEqualTo(bounds.top + 4));
           expect(point.dy, lessThanOrEqualTo(bounds.bottom - 4));
-          expect(point.dy, lessThan(heading.top - 4));
+          expect(
+            heading.inflate(4).contains(point),
+            isFalse,
+            reason:
+                'The projected record stays clear of metadata in either adaptive layout.',
+          );
         }
         for (final z in [-9.0, 9.0]) {
           final face = Matrix4.copy(matrix)..translateByDouble(0, 0, z, 1);
@@ -279,7 +288,12 @@ void main() {
                   MatrixUtils.transformPoint(face, Offset(x * side, y * side));
               expect(point.dy, greaterThanOrEqualTo(bounds.top + 4));
               expect(point.dy, lessThanOrEqualTo(bounds.bottom - 4));
-              expect(point.dy, lessThan(heading.top - 4));
+              expect(
+                heading.inflate(4).contains(point),
+                isFalse,
+                reason:
+                    'Every sleeve corner stays clear of metadata in either adaptive layout.',
+              );
             }
           }
         }

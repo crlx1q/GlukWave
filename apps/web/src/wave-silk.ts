@@ -19,14 +19,14 @@ void main(){
  cy+=.16*sin(u*7.1+1.7)+.10*cos(u*13.7-2.2);
  cy+=fa*.48*cos((u-.31)*14.-t*.18)-fb*.55*cos((u-.70)*17.+t*.24);
  float width=abs(.56*(.48+.52*sin(u*8.+1.2)*sin(u*3.7-2.)))+.10;
- width*=mix(.62,1.18,.5+.5*sin(u*4.3+2.4))*(1.48+uEnergy*.44);
+ width*=mix(.62,1.18,.5+.5*sin(u*4.3+2.4))*(1.48+uEnergy*.90);
  float layer=floor(mod(seed,3.))-1.;
  cy+=layer*.13*sin(u*9.2+t*.44);
- float angle=u*13.5+sin(u*7.2+t)*1.15+uEnergy*.24+layer*.2;
+ float angle=u*13.5+sin(u*7.2+t)*1.15+uEnergy*.50+layer*.2;
  float yy=v*width*cos(angle)+sin(seed*31.+uTime*1.3)*.012;
  float zz=v*width*sin(angle)+cos(seed*19.+uTime*.9)*.012;
  float x=.018+u*.964+envelope*(fa*.026*sin((u-.31)*18.+t*.42)+fb*.020*sin((u-.70)*24.-t*.36));
- float y=.57+(cy+yy)*.19;
+ float y=.57+(cy*(1.+uEnergy*.28)+yy)*.23;
  vec2 delta=(vec2(x,y)-uPointer)*uSize;
  float radius=clamp(uSize.y*.42,65.,145.);
  float influence=exp(-dot(delta,delta)/(radius*radius))*uActive;
@@ -38,8 +38,8 @@ void main(){
  x+=detached*sin(seed*.37+uTime*.11)*(.004+drift*.012);
  y+=detached*(mod(seed,2.)<1.?-1.:1.)*(.024+drift*.072+uEnergy*.022+influence*.018);
  gl_Position=vec4(x*2.-1.,1.-y*2.,0.,1.);
- gl_PointSize=(1.05+depth*1.05)*(1.+uEnergy*.13)*uRatio;
- vAlpha=(.38+depth*.53)*(.70+.30*sin(seed*8.)*sin(seed*8.));vAccent=depth*depth*depth;
+ gl_PointSize=(1.05+depth*1.05)*(1.+uEnergy*.22)*uRatio;
+ vAlpha=(.38+depth*.53+uEnergy*.08)*(.70+.30*sin(seed*8.)*sin(seed*8.));vAccent=depth*depth*depth;
 }`;
 const fragment=`precision mediump float;
 uniform vec3 uColor,uAccent;
@@ -81,13 +81,13 @@ export function drawFlowRibbon(context:CanvasRenderingContext2D,frame:WaveFrame)
   let cy=.62*Math.sin(u*5.15+t)+.27*Math.sin(u*12.4-t*.72)+.14*Math.cos(u*23+t*.37)+.16*Math.sin(u*7.1+1.7)+.10*Math.cos(u*13.7-2.2);
   cy+=fa*.48*Math.cos((u-.31)*14-t*.18)-fb*.55*Math.cos((u-.70)*17+t*.24);
   const layer=Math.floor(seed%3)-1;cy+=layer*.13*Math.sin(u*9.2+t*.44);
-  const span=(Math.abs(.56*(.48+.52*Math.sin(u*8+1.2)*Math.sin(u*3.7-2)))+.10)*(.62+(.5+.5*Math.sin(u*4.3+2.4))*.56)*(1.48+energy*.44),angle=u*13.5+Math.sin(u*7.2+t)*1.15+energy*.24+layer*.2;
+  const span=(Math.abs(.56*(.48+.52*Math.sin(u*8+1.2)*Math.sin(u*3.7-2)))+.10)*(.62+(.5+.5*Math.sin(u*4.3+2.4))*.56)*(1.48+energy*.90),angle=u*13.5+Math.sin(u*7.2+t)*1.15+energy*.50+layer*.2;
   const yy=v*span*Math.cos(angle)+Math.sin(seed*31+phase*1.3)*.012,zz=v*span*Math.sin(angle)+Math.cos(seed*19+phase*.9)*.012;
-  let x=.018+u*.964+envelope*(fa*.026*Math.sin((u-.31)*18+t*.42)+fb*.020*Math.sin((u-.70)*24-t*.36)),y=.57+(cy+yy)*.19;
+  let x=.018+u*.964+envelope*(fa*.026*Math.sin((u-.31)*18+t*.42)+fb*.020*Math.sin((u-.70)*24-t*.36)),y=.57+(cy*(1+energy*.28)+yy)*.23;
   const dx=(x-pointer.x)*width,dy=(y-pointer.y)*height,radius=Math.max(65,Math.min(145,height*.42)),influence=Math.exp(-(dx*dx+dy*dy)/(radius*radius))*pointer.active,turn=influence*Math.min(1.8,Math.hypot(pointer.vx||0,pointer.vy||0))*1.05;
   y+=(yy*Math.cos(turn)-zz*Math.sin(turn)-yy)*.19+influence*(pointer.y-y)*.17+influence*(pointer.vy||0)*.025;x+=influence*(pointer.vx||0)*.012*envelope;
   const drift=ribbonDrift(seed,phase,energy,influence);x+=drift.x;y+=drift.y;
-  const radiusDot=.42+depth*.42,path=paths[Math.min(7,Math.floor(depth*8))];path.moveTo(x*width+radiusDot,y*height);path.arc(x*width,y*height,radiusDot,0,Math.PI*2);
+  const radiusDot=.42+depth*.42+energy*.11,path=paths[Math.min(7,Math.floor(depth*8))];path.moveTo(x*width+radiusDot,y*height);path.arc(x*width,y*height,radiusDot,0,Math.PI*2);
  }
- for(let index=0;index<8;index++){const tone=silkDepthColor(color,(index+.5)/8).map(v=>Math.round(v*255));context.fillStyle=`rgba(${tone.join(',')},${.32+(index+.5)/8*.50})`;context.fill(paths[index]);}
+ for(let index=0;index<8;index++){const tone=silkDepthColor(color,(index+.5)/8).map(v=>Math.round(v*255));context.fillStyle=`rgba(${tone.join(',')},${.32+(index+.5)/8*.50+energy*.08})`;context.fill(paths[index]);}
 }

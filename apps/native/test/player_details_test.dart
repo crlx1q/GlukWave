@@ -314,10 +314,15 @@ void main() {
             final originalSize = tester.getSize(
               find.byKey(const Key('album-stage-bounds')),
             );
-            await tester.drag(
-              find.byKey(const Key('player-content-scroll')),
-              const Offset(0, -650),
-            );
+            if (find
+                .byKey(const Key('player-content-scroll'))
+                .evaluate()
+                .isNotEmpty) {
+              await tester.drag(
+                find.byKey(const Key('player-content-scroll')),
+                const Offset(0, -650),
+              );
+            }
             await tester.pumpAndSettle();
             final controls = tester.getRect(
               find.byKey(const Key('player-equalizer')),

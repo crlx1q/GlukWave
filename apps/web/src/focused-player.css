@@ -17,7 +17,7 @@
 .focused-player.connected-player .np-listening[data-controls-density=compact] .np-track-heading p{margin-top:3px;font-size:12px}
 .focused-player.connected-player .np-listening[data-controls-density=compact] .np-cover-growth .album-stage{margin-bottom:2px}
 .full-player.focused-player.connected-player .np-listening[data-controls-density=compact] .full-seek{margin-bottom:0!important}
-.focused-player.connected-player .np-listening[data-controls-density=compact] .compact-lyric-preview{display:none}
+
 
 .focused-player.connected-player .np-listening[data-controls-density=compact] .transport.large .main-play{width:56px;height:56px;min-width:56px;min-height:56px}
 .focused-player.connected-player .np-listening[data-controls-density=compact] .np-track-heading h1{font-size:20px;line-height:1.15}

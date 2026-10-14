@@ -51,17 +51,7 @@ class Brand extends StatelessWidget {
   Widget build(BuildContext context) => Row(
     mainAxisSize: MainAxisSize.min,
     children: [
-      RepaintBoundary(
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(waveRadius(context, size * .3)),
-          child: Image.asset(
-            'assets/logo.${animated && TickerMode.of(context) && !waveVisuals(context).reducedMotion && !MediaQuery.disableAnimationsOf(context) ? 'gif' : 'png'}',
-            width: size,
-            height: size,
-            cacheWidth: 96,
-          ),
-        ),
-      ),
+      GlukWaveMark(size: size),
       if (!compact) const SizedBox(width: 10),
       if (!compact)
         Text.rich(
@@ -92,6 +82,76 @@ class Brand extends StatelessWidget {
         ),
     ],
   );
+}
+
+/// The exact web mark, drawn as a vector inside the app's square brand tile.
+class GlukWaveMark extends StatelessWidget {
+  final double size;
+  const GlukWaveMark({super.key, this.size = 34});
+  @override
+  Widget build(BuildContext context) {
+    final v = waveVisuals(context);
+    return Semantics(
+      label: 'GlukWave',
+      image: true,
+      child: RepaintBoundary(
+        child: Container(
+          key: const Key('glukwave-vector-mark'),
+          width: size,
+          height: size,
+          padding: EdgeInsets.all(size * .13),
+          decoration: BoxDecoration(
+            color: v.ink.withValues(alpha: .12),
+            borderRadius: BorderRadius.circular(v.corners(size * .3)),
+          ),
+          child: CustomPaint(painter: _BrandMarkPainter(v.ink)),
+        ),
+      ),
+    );
+  }
+}
+
+class _BrandMarkPainter extends CustomPainter {
+  final Color color;
+  const _BrandMarkPainter(this.color);
+  @override
+  void paint(Canvas canvas, Size size) {
+    final scale = math.min(size.width / 64, size.height / 40);
+    canvas.save();
+    canvas.translate(
+      (size.width - 64 * scale) / 2,
+      (size.height - 40 * scale) / 2,
+    );
+    canvas.scale(scale);
+    final path = Path()
+      ..moveTo(2, 8)
+      ..relativeCubicTo(0, -2, 1.4, -2.7, 3, -.5)
+      ..relativeLineTo(9.7, 14.3)
+      ..relativeCubicTo(2.3, 3.4, 4.9, 3.1, 6.2, -.7)
+      ..relativeLineTo(4.6, -13.9)
+      ..relativeCubicTo(1.8, -5.4, 5.8, -6.1, 9.2, -1.2)
+      ..relativeLineTo(10.1, 14.8)
+      ..relativeCubicTo(2.2, 3.3, 5, 2.9, 6.2, -.8)
+      ..relativeLineTo(4.5, -13.6)
+      ..relativeCubicTo(1.6, -4.9, 5.3, -5.7, 8.5, -1.2)
+      ..relativeLineTo(0, 14.2)
+      ..lineTo(60.9, 15)
+      ..relativeCubicTo(-2.2, -3.1, -4.8, -2.7, -6, 1)
+      ..relativeLineTo(-4.6, 14)
+      ..relativeCubicTo(-1.9, 5.6, -6, 6.4, -9.6, 1.1)
+      ..lineTo(30.9, 17)
+      ..relativeCubicTo(-2.1, -3.1, -4.8, -2.8, -6, .8)
+      ..relativeLineTo(-4.5, 13.6)
+      ..relativeCubicTo(-1.9, 5.6, -6.1, 6.4, -9.7, 1.1)
+      ..lineTo(2, 19.7)
+      ..lineTo(2, 8)
+      ..close();
+    canvas.drawPath(path, Paint()..color = color);
+    canvas.restore();
+  }
+
+  @override
+  bool shouldRepaint(_BrandMarkPainter old) => old.color != color;
 }
 
 class PageHeading extends StatelessWidget {
@@ -572,7 +632,7 @@ class _WaveHeroState extends State<WaveHero>
               .at(c.audio.position.inMilliseconds / 1000, c.audio.playing);
     setState(() {
       _phase += seconds * waveVisuals(context).speed;
-      _energy = reduced ? 0 : easeEnergy(_energy, target, seconds);
+      _energy = reduced ? 0 : easeEnergy(_energy, waveResponse(target), seconds);
       final movement = 1 - math.exp(-seconds * 16);
       final before = _pointer;
       _pointer += (_pointerTarget - _pointer) * movement;

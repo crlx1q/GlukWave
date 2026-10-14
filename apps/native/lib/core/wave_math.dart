@@ -112,3 +112,10 @@ double easeEnergy(double current, double target, double seconds) =>
     (target - current) *
         (1 -
             math.exp(-math.min(.07, seconds) / (target > current ? .08 : .24)));
+
+/// Shared display sensitivity: preserve real silence, lift ordinary measured
+/// levels without flattening them into a constant maximum.
+double waveResponse(double measured) {
+  final level = clamp01(measured);
+  return 1 - math.pow(1 - level, 2.4).toDouble();
+}

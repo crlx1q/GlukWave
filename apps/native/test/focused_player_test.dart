@@ -70,9 +70,13 @@ void main() {
           final transport = tester.getRect(
             find.byKey(const Key('player-transport-capsule')),
           );
-          expect(cover.bottom, lessThan(transport.top));
-          expect(cover.center.dx, closeTo(width / 2, 1));
-          expect(transport.center.dx, closeTo(width / 2, 1));
+          if (width >= 1100) {
+            expect(cover.right, lessThan(transport.left));
+          } else {
+            expect(cover.bottom, lessThan(transport.top));
+            expect(cover.center.dx, closeTo(width / 2, 1));
+            expect(transport.center.dx, closeTo(width / 2, 1));
+          }
           expect(cover.left, greaterThanOrEqualTo(0));
           expect(transport.right, lessThanOrEqualTo(width));
           await f.screenshot(

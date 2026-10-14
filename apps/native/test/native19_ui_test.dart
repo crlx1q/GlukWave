@@ -265,7 +265,21 @@ void main() {
           find.byKey(const Key('album-stage-bounds')),
         );
         expect(stage.top, greaterThanOrEqualTo(0));
-        expect(stage.bottom, lessThanOrEqualTo(config.$2));
+        final originalStage = stage.size;
+        if (config.$2 >= 800) {
+          expect(stage.bottom, lessThanOrEqualTo(config.$2));
+        }
+        await tester.ensureVisible(find.byKey(const Key('player-play')));
+        await settle(tester);
+        final play = tester.getRect(find.byKey(const Key('player-play')));
+        expect(play.top, greaterThanOrEqualTo(0));
+        expect(play.bottom, lessThanOrEqualTo(config.$2));
+        expect(
+          tester.getSize(find.byKey(const Key('album-stage-bounds'))),
+          originalStage,
+          reason:
+              'Scrolling to controls must retain the complete cover envelope.',
+        );
         await shot(tester, '${config.$1.toInt()}-${config.$3}-player');
         await tester.tap(find.byKey(const Key('player-lyrics-toggle')));
         await settle(tester);

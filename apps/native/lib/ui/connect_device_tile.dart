@@ -13,19 +13,21 @@ String connectDeviceId(Json device) =>
 class ConnectDeviceTile extends StatelessWidget {
   final WaveController controller;
   final Json device;
-  final bool compact;
+  final bool compact, lan;
   final VoidCallback? onRemove;
   const ConnectDeviceTile({
     super.key,
     required this.controller,
     required this.device,
     this.compact = false,
+    this.lan = false,
     this.onRemove,
   });
   Future<void> _transfer() async {
     final c = controller, id = connectDeviceId(device);
     try {
-      await c.transfer(
+      final transfer = lan ? c.transfer : c.transferCloud;
+      await transfer(
         id,
         targetSurfaceId: id == c.deviceId
             ? c.surfaceId
@@ -42,18 +44,20 @@ class ConnectDeviceTile extends StatelessWidget {
         v = waveVisuals(context),
         id = connectDeviceId(device),
         state = object(device['state']);
-    final active = id == c.activeDeviceId,
+    final active = id == (lan ? c.activeDeviceId : c.connect['activeDeviceId']),
         local = id == c.deviceId,
         online = device['online'] == true;
     final pending = c.transferPending == id, own = c.audio.viewCurrent;
     final snapshot = object(device['track']);
-    final WaveTrack? track = active
+    final useOwn =
+        local && c.outputHere && (lan ? c.lanEnabled : !c.lanEnabled);
+    final WaveTrack? track = useOwn
         ? own
         : snapshot['id'] != null
         ? WaveTrack(snapshot)
         : c.tracks.where((t) => t.id == state['trackId']).firstOrNull;
     final playing =
-        online && (active ? c.audio.playing : state['playing'] == true);
+        online && (useOwn ? c.audio.playing : state['playing'] == true);
     return Container(
       key: Key('connect-device-$id'),
       margin: EdgeInsets.only(bottom: compact ? 0 : 9),
@@ -118,11 +122,7 @@ class ConnectDeviceTile extends StatelessWidget {
                           child: Text(
                             pending
                                 ? ecosystemText('waiting', context)
-                                : '${wt(active
-                                      ? 'devices.selectedOutput'
-                                      : online
-                                      ? 'native.011e2099f2'
-                                      : 'native.67b99cc9bf', context: context)}${local ? ' · ${wt('native.4eca465a4a', context: context)}' : ''}',
+                                : '${active ? ecosystemText('selectedOutput', context) : wt(online ? 'native.011e2099f2' : 'native.67b99cc9bf', context: context)}${local ? ' · ${wt('native.4eca465a4a', context: context)}' : ''}',
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: TextStyle(
@@ -146,7 +146,7 @@ class ConnectDeviceTile extends StatelessWidget {
                       online &&
                           own != null &&
                           c.transferPending == null &&
-                          (c.lanEnabled || c.connected)
+                          (lan ? c.lanEnabled : c.connected)
                       ? _transfer
                       : null,
                   tooltip: wt('native.49daba7f72', context: context),

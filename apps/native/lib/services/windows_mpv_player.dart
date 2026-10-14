@@ -1,6 +1,7 @@
 // Adapted from just_audio_media_kit 2.1.0 (Pato05), public domain.
 // Original Unlicense: assets/licenses/just_audio_media_kit-UNLICENSE.txt.
-// The only behavioral extension is an explicit mpv audio-filter bridge.
+// Adds a native DSP bridge, bounded memory caching and ordered load/seek/end
+// state handling for prepared GlukWave Connect playback.
 library;
 
 import 'dart:async';
@@ -12,10 +13,12 @@ import 'package:logging/logging.dart';
 import 'package:media_kit/media_kit.dart';
 import 'windows_dsp.dart';
 import 'diagnostics.dart';
+import 'windows_playback_state.dart';
 
 /// An [AudioPlayerPlatform] which wraps `package:media_kit`'s [Player]
 class WaveMpvPlayer extends AudioPlayerPlatform implements WindowsDspOutput {
   static void Function(String message)? diagnostic;
+  static void Function()? onEffectFailure;
   static const kErrorCode = 1;
   @override
   String? get sourceUri => _currentMedia?.uri;
@@ -48,6 +51,7 @@ class WaveMpvPlayer extends AudioPlayerPlatform implements WindowsDspOutput {
 
   double _requestedVolume = 1, _equalizerGain = 1;
   bool _dspEnabled = false;
+  DateTime _effectRecoveryUntil = DateTime.fromMillisecondsSinceEpoch(0);
 
   Future<void> _checkedProperty(String key, String value) async {
     final native = _player.platform as NativePlayer;
@@ -94,6 +98,7 @@ class WaveMpvPlayer extends AudioPlayerPlatform implements WindowsDspOutput {
   Duration? _duration;
   bool _playing = false;
   bool _mediaOpened = false;
+  bool _seeking = false;
   int? _errorCode;
   String? _errorMessage;
   Completer<Duration?>? _loadCompleter;
@@ -108,26 +113,26 @@ class WaveMpvPlayer extends AudioPlayerPlatform implements WindowsDspOutput {
   /// The index that's currently playing
   int _currentIndex = 0;
 
-  /// [LoadRequest.initialPosition] or [seek] request before [Player.play] was called and/or finished loading.
-  Duration? _setPosition;
-
   Media? get _currentMedia {
     var medias = _player.state.playlist.medias;
     if (medias.isEmpty) return null;
     return medias[_player.state.playlist.index];
   }
 
-  WaveMpvPlayer(super.id) {
-    _player = Player(
-      configuration: PlayerConfiguration(
-        pitch: JustAudioMediaKit.pitch,
-        protocolWhitelist: JustAudioMediaKit.protocolWhitelist,
-        title: JustAudioMediaKit.title,
-        bufferSize: JustAudioMediaKit.bufferSize,
-        logLevel: JustAudioMediaKit.mpvLogLevel,
-        ready: () => _readyCompleter.complete(),
-      ),
-    );
+  WaveMpvPlayer(super.id, {Player? output}) {
+    _player =
+        output ??
+        Player(
+          configuration: PlayerConfiguration(
+            pitch: JustAudioMediaKit.pitch,
+            protocolWhitelist: JustAudioMediaKit.protocolWhitelist,
+            title: JustAudioMediaKit.title,
+            bufferSize: JustAudioMediaKit.bufferSize,
+            logLevel: JustAudioMediaKit.mpvLogLevel,
+            ready: () => _readyCompleter.complete(),
+          ),
+        );
+    if (output != null) _readyCompleter.complete();
 
     if (JustAudioMediaKit.prefetchPlaylist) {
       setProperty(_player, 'prefetch-playlist', 'yes');
@@ -137,10 +142,6 @@ class WaveMpvPlayer extends AudioPlayerPlatform implements WindowsDspOutput {
       _player.stream.duration.listen((duration) {
         if (_currentMedia?.extras?['overrideDuration'] != null) return;
 
-        if (_setPosition != null && duration.inSeconds > 0) {
-          unawaited(_player.seek(_setPosition!));
-          _setPosition = null;
-        }
         _updateDuration(duration);
         _updatePlaybackEvent();
       }),
@@ -200,8 +201,15 @@ class WaveMpvPlayer extends AudioPlayerPlatform implements WindowsDspOutput {
         );
       }),
       _player.stream.completed.listen((completed) {
-        _bufferedPosition = _position = Duration.zero;
-        if (completed &&
+        if (nativeCompletionIsCurrent(
+              completed: completed,
+              mediaOpened: _mediaOpened,
+              playing: _playing,
+              loading: _processingState == ProcessingStateMessage.loading,
+              seeking: _seeking,
+              position: _position,
+              duration: _duration,
+            ) &&
             // is at the end of the [Playlist]
             _currentIndex == _player.state.playlist.medias.length - 1 &&
             // is not looping (technically this shouldn't be fired if the player is looping)
@@ -214,12 +222,25 @@ class WaveMpvPlayer extends AudioPlayerPlatform implements WindowsDspOutput {
         _updatePlaybackEvent();
       }),
       _player.stream.error.listen((error) async {
+        if (nonFatalMpvMessage(error)) return;
+        final effectError =
+            error.contains('filter') ||
+            error.contains('lavfi') ||
+            error.contains('aresample');
+        if (effectError && DateTime.now().isBefore(_effectRecoveryUntil)) {
+          return;
+        }
         // libmpv can accept a filter property, then reject it asynchronously.
         // Clear the effect once before reporting the playback error. Clearing
         // the flag first prevents recovery errors from recursively retrying.
-        if (_dspEnabled) {
+        if (_dspEnabled && effectError) {
           _dspEnabled = false;
           _equalizerGain = 1;
+          _effectRecoveryUntil = DateTime.now().add(const Duration(seconds: 1));
+          diagnostic?.call(
+            'Native equalizer failed; restoring unfiltered audio',
+          );
+          onEffectFailure?.call();
           try {
             await writeWindowsEqualizer(
               _checkedProperty,
@@ -228,6 +249,9 @@ class WaveMpvPlayer extends AudioPlayerPlatform implements WindowsDspOutput {
               const [],
               volume: _requestedVolume,
             );
+            // The media remains usable after removing a failed effect. Do not
+            // turn a filter graph error into a track failure/automatic skip.
+            return;
           } catch (_) {}
         }
         if (_eventController.isClosed) return;
@@ -346,6 +370,14 @@ class WaveMpvPlayer extends AudioPlayerPlatform implements WindowsDspOutput {
     _errorCode = null;
     _errorMessage = null;
     _updatePlaybackEvent();
+    await ready();
+    if (_player.platform is NativePlayer) {
+      // media_kit defaults to disk demux caching. Audio uses a bounded memory
+      // cache so a missing/unwritable temporary directory cannot break handoff.
+      await _checkedProperty('cache-on-disk', 'no');
+      await _checkedProperty('demuxer-max-bytes', '16777216');
+      await _checkedProperty('demuxer-max-back-bytes', '8388608');
+    }
 
     if (request.audioSourceMessage is ConcatenatingAudioSourceMessage) {
       final audioSource =
@@ -376,12 +408,14 @@ class WaveMpvPlayer extends AudioPlayerPlatform implements WindowsDspOutput {
       _loadCompleter!.complete(_duration);
     }
 
-    if (request.initialPosition != null) {
-      _setPosition = _position = request.initialPosition!;
-    }
-
     _updatePlaybackEvent();
     final duration = await loaded;
+    if (generation != _loadGeneration) {
+      throw StateError('Audio load superseded');
+    }
+    if (request.initialPosition != null) {
+      await seek(SeekRequest(position: request.initialPosition));
+    }
     return LoadResponse(duration: duration);
   }
 
@@ -453,15 +487,16 @@ class WaveMpvPlayer extends AudioPlayerPlatform implements WindowsDspOutput {
 
     final position = request.position;
     if (position != null) {
+      _seeking = true;
       _position = position;
-
+      _processingState = ProcessingStateMessage.ready;
       final start = _currentMedia?.start;
       var nativePosition = position;
       if (start != null) nativePosition += start;
-      if (_player.state.duration.inSeconds > 0) {
+      try {
         await _player.seek(nativePosition);
-      } else {
-        _setPosition = nativePosition;
+      } finally {
+        _seeking = false;
       }
     } else {
       _position = Duration.zero;

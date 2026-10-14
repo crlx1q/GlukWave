@@ -503,6 +503,43 @@ class _AlbumStageState extends State<AlbumStage>
                             child: Stack(
                               clipBehavior: Clip.none,
                               children: [
+                                if (c.customization.appearance.coverKind ==
+                                    'cd')
+                                  Positioned.fill(
+                                    child: Container(
+                                      key: const Key('album-cd-tray'),
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xff252a2b),
+                                        gradient: const LinearGradient(
+                                          begin: Alignment.topLeft,
+                                          end: Alignment.bottomRight,
+                                          colors: [
+                                            Color(0xff414849),
+                                            Color(0xff202526),
+                                            Color(0xff343b3c),
+                                          ],
+                                        ),
+                                        border: Border.all(
+                                          color: const Color(0xff89918d),
+                                          width: 2,
+                                        ),
+                                      ),
+                                      child: Center(
+                                        child: Container(
+                                          width: size * .87,
+                                          height: size * .87,
+                                          decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            color: const Color(0xff15191a),
+                                            border: Border.all(
+                                              color: const Color(0xff626b69),
+                                              width: 2,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
                                 AnimatedPositioned(
                                   key: const Key('album-record-position'),
                                   duration: v.duration(600),

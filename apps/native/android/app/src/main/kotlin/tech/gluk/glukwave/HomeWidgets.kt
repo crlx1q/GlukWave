@@ -144,15 +144,15 @@ object HomeWidgets {
         val s = state(c); val labels = s.optJSONObject("labels") ?: JSONObject()
         val ink = color(s.optString("ink"),Color.rgb(244,240,233)); val accent = color(s.optString("accent"),Color.rgb(255,143,97))
         val bg = color(s.optString("background"),Color.rgb(24,24,23))
-        val width = options.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH,if (large) 300 else 320).coerceIn(120,480)
-        val height = options.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT,if (large) 168 else 84).coerceIn(68,280)
+        val width = options.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH,240).coerceIn(140,480)
+        val height = options.getInt(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT,if (large) 176 else 72).coerceIn(72,280)
         val v = RemoteViews(c.packageName,if (large) R.layout.glukwave_widget_wave else R.layout.glukwave_widget_player)
         v.setImageViewBitmap(R.id.widget_panel,panel(width,height,bg,accent))
         v.setTextViewText(R.id.widget_title,s.optString("title",c.getString(R.string.widget_empty))); v.setTextViewText(R.id.widget_artist,s.optString("artist","GlukWave"))
         v.setTextViewText(R.id.widget_status,s.optString("status",c.getString(R.string.widget_sign_in)))
         // The compact widget has only 56dp of usable content at its minimum
         // height. Preserve title/artist and transport when system text grows.
-        v.setViewVisibility(R.id.widget_status,if (!large && c.resources.configuration.fontScale > 1.1f) View.GONE else View.VISIBLE)
+        v.setViewVisibility(R.id.widget_status,if (c.resources.configuration.fontScale > 1.1f && (!large || height < 190)) View.GONE else View.VISIBLE)
         for (view in listOf(R.id.widget_title,R.id.widget_artist,R.id.widget_status)) v.setTextColor(view,if (view == R.id.widget_title) ink else mix(bg,ink,.72f))
         v.setOnClickPendingIntent(R.id.widget_root,activityIntent(c,id)); v.setContentDescription(R.id.widget_root,labels.optString("open",c.getString(R.string.widget_open)))
         v.setImageViewBitmap(R.id.widget_cover,artwork(c,s.optString("artwork")) ?: icon(c,R.drawable.widget_logo,accent))
@@ -167,10 +167,12 @@ object HomeWidgets {
             val key = if (cmd == "toggle") if (s.optBoolean("playing")) "pause" else "play" else cmd
             v.setContentDescription(view,labels.optString(key,key))
         }
-        for (view in listOf(R.id.widget_previous,R.id.widget_next)) v.setViewVisibility(view,if (width < 250) View.GONE else View.VISIBLE)
+        v.setViewVisibility(R.id.widget_previous,if (!large && width < 310 || large && width < 180) View.GONE else View.VISIBLE)
+        v.setViewVisibility(R.id.widget_next,if (width < (if (large) 180 else 220)) View.GONE else View.VISIBLE)
         if (!large) {
             v.setViewVisibility(R.id.widget_cover,if (width < 180) View.GONE else View.VISIBLE)
         } else {
+            v.setViewVisibility(R.id.widget_like,if (width < 220) View.GONE else View.VISIBLE)
             v.setViewVisibility(R.id.widget_header,if (height < 215) View.GONE else View.VISIBLE)
             v.setImageViewBitmap(R.id.widget_wave_panel,panel(width,44,mix(bg,accent,.13f),accent))
             v.setTextViewText(R.id.widget_wave_title,labels.optString("wave",c.getString(R.string.widget_wave_label))); v.setTextColor(R.id.widget_wave_title,accent); v.setTextColor(R.id.widget_header,mix(bg,ink,.72f))

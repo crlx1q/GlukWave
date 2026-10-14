@@ -3,7 +3,7 @@ import { useStore } from './store';
 import { usePlayer } from './player';
 import { api } from './api';
 import type { Appearance } from './types';
-import { BLOOM, bloomDot, easeEnergy, envelopeAt, type AudioEnvelope, type WavePointer } from './wave-math';
+import { BLOOM, bloomDot, easeEnergy, envelopeAt, waveResponse, type AudioEnvelope, type WavePointer } from './wave-math';
 import { createHalftoneBloom, rgb, type WaveFrame } from './vendor/halftone-bloom';
 import { createSilkWave, drawFlowRibbon } from './wave-silk';
 import { easeWaveColor, waveColorHex } from './wave-colors';
@@ -49,7 +49,7 @@ export function WaveVisual({className='wave-canvas',color,background:backgroundO
       if(document.hidden||!inView||paused||!width||!height)return;
       const interval=width<500?1000/24:1000/30;if(!force&&motion&&last&&now-last<interval){frame=requestAnimationFrame(draw);return;}
       const dt=last?Math.min(.07,(now-last)/1000):0;last=now;if(motion)phase+=dt*velocity;
-      const state=audio.current,measured=state.playing?(state.local?state.sample():null):0,targetEnergy=measured??envelopeAt(envelope.current,state.position,state.playing);energy=motion?easeEnergy(energy,targetEnergy,dt):0;
+      const state=audio.current,measured=state.playing?(state.local?state.sample():null):0,targetEnergy=measured??envelopeAt(envelope.current,state.position,state.playing);energy=motion?easeEnergy(energy,waveResponse(targetEnergy),dt):0;
       if(motion){const k=1-Math.exp(-dt*12);pointer.x+=(target.x-pointer.x)*k;pointer.y+=(target.y-pointer.y)*k;pointer.active+=(target.active-pointer.active)*(1-Math.exp(-dt*5));pointer.vx=(pointer.vx||0)+((target.vx||0)-(pointer.vx||0))*k;pointer.vy=(pointer.vy||0)+((target.vy||0)-(pointer.vy||0))*k;target.vx=(target.vx||0)*Math.exp(-dt*8);target.vy=(target.vy||0)*Math.exp(-dt*8);}
       currentColor.current=motion&&document.documentElement.dataset.colorEditing!=='true'?easeWaveColor(currentColor.current,targetColor.current,dt):[...targetColor.current];
       const value:WaveFrame={width,height,phase,energy,pointer,tint:waveColorHex(currentColor.current),background},gpu=renderer?.draw(value)===true;element.style.display=gpu?'block':'none';backup.style.display=gpu?'none':'block';

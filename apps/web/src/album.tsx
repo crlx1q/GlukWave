@@ -17,8 +17,11 @@ export function AlbumCover({track,playing,gestureOwned=false,active=true,showToo
   const fontScale=store.settings.fontScale||1,landscape=appearance.cover3d&&matchMedia('(min-width:600px) and (max-height:500px)').matches;
   const spacious = appearance.cover3d && stageSize.width >= 330 && (stageBudget??0)>=410;
   const coverSize=useMemo(()=>{
-    const widthLimit=Math.max(0,stageSize.width-24)/1.5;
+    const widthLimit=Math.max(0,stageSize.width-24)/(appearance.cover3d?1.5:1);
     if(landscape)return Math.min(202/fontScale,widthLimit);
+    // Full-player controls may need internal scroll. They must not steal the
+    // sleeve's size when lyrics load or a window becomes shorter.
+    if(stageBudget!==undefined)return Math.min(302/fontScale,widthLimit);
     const fitted=spacious?Math.min(302/fontScale,widthLimit,Math.max(0,(stageBudget??410)-24)/1.36):fitCover(stageSize.width,stageBudget??0,appearance.cover3d,0,0);
     const minimum=appearance.cover3d&&matchMedia('(max-width:600px)').matches?Math.min(155/fontScale,widthLimit):0;
     return Math.max(minimum,fitted);
@@ -53,7 +56,7 @@ export function AlbumCover({track,playing,gestureOwned=false,active=true,showToo
       onPointerUp={event=>end(event,true)} onPointerCancel={event=>end(event,false)} onLostPointerCapture={event=>end(event,false)}
       onKeyDown={event=>{if(!appearance.cover3d||!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(event.key))return;event.preventDefault();const base=animationGoal.current||angles.current;setManual(true);animate({x:Math.max(-38,Math.min(38,base.x+(event.key==='ArrowUp'?-5:event.key==='ArrowDown'?5:0))),y:base.y+(event.key==='ArrowLeft'?-10:event.key==='ArrowRight'?10:0)});}}>
       <div className="album-shadow" aria-hidden="true"/><div className="album-object" style={{transform,'--cover-transform':transform,'--reflection':`${(Math.sin(rotation.y*Math.PI/180)+1)*50}%`,'--cover-light-y':`${50+rotation.x*2}%`,...(coverSize?{'--cover-fit':`${coverSize}px`}: {})} as CSSProperties}>
-        <div className={`vinyl ${appearance.coverKind==='cd'?'compact-disc':''}`}><div className="vinyl-grooves"><div className="vinyl-label" style={track.artwork?{backgroundImage:`url(${JSON.stringify(largeArtwork(track.artwork))})`}:undefined}><span/></div></div><i className="vinyl-glint" aria-hidden="true"/></div>
+        {appearance.coverKind==='cd'&&<div className="album-cd-tray" aria-hidden="true"><i/></div>}<div className={`vinyl ${appearance.coverKind==='cd'?'compact-disc':''}`}><div className="vinyl-grooves"><div className="vinyl-label" style={track.artwork?{backgroundImage:`url(${JSON.stringify(largeArtwork(track.artwork))})`}:undefined}><span/></div></div><i className="vinyl-glint" aria-hidden="true"/></div>
         <div className="album-cover sleeve-front"><Art track={track} className="sleeve-art track-loading-cover" trackLoading={player.trackLoading} highResolution/><span className="cover-reflection" aria-hidden="true"/><span className="sleeve-brand-symbol" aria-hidden="true"><span className="logo-mark"/></span></div>
         <div className="album-back sleeve-back"><span className="sleeve-back-logo">GLUKWAVE / RECORD COLLECTION</span><h3 title={track.title} aria-label={track.title} style={{'--sleeve-title-font':track.title.length>140?'6cqw':track.title.length>70?'7cqw':'8.1cqw'} as CSSProperties}>{track.title}</h3><div className="sleeve-back-credits">{track.artist&&<p className="sleeve-back-artist" title={track.artist}>{track.artist}</p>}{showAlbum&&<p className="sleeve-back-album" title={album}>{album}</p>}</div><div className="sleeve-back-footer"><div className="sleeve-barcode" aria-hidden="true"/><div className="back-micro"><span>{sourceNames[track.source]}</span>{Number.isFinite(track.duration)&&track.duration>0&&<span>{time(track.duration)}</span>}</div></div></div>
         <div className="album-spine" aria-hidden="true"><span>{track.title} · {track.artist}</span></div>

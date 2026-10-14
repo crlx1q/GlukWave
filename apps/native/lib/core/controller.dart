@@ -24,6 +24,7 @@ import '../services/audio.dart';
 import '../services/volume_store.dart';
 import '../services/cache.dart';
 import '../services/energy.dart';
+import '../services/background_connect.dart';
 import '../services/desktop.dart';
 import '../services/push.dart';
 import '../services/waveform.dart';
@@ -36,6 +37,37 @@ import '../l10n/parity_strings.dart';
 
 class WaveController extends ChangeNotifier {
   final EnergyPolicy energy = EnergyPolicy();
+  final BackgroundConnectBridge backgroundConnect = BackgroundConnectBridge();
+  bool backgroundConnectEnabled = true;
+  Future<void> setBackgroundConnect(bool enabled) async {
+    backgroundConnectEnabled = enabled;
+    await preferences.setBool('backgroundConnect', enabled);
+    await _syncBackgroundConnect(explicit: true);
+    if (!_disposed) notifyListeners();
+  }
+
+  Future<void> _syncBackgroundConnect({bool explicit = false}) async {
+    if (!backgroundConnect.supported || _disposed) return;
+    final enabled = loggedIn && backgroundConnectEnabled;
+    try {
+      final available = await backgroundConnect.update(
+        enabled,
+        explicit: explicit,
+      );
+      if (enabled && !available && !_disposed) {
+        backgroundConnectEnabled = false;
+        await preferences.setBool('backgroundConnect', false);
+        notifyListeners();
+      }
+    } catch (error) {
+      api.diagnostics.report(
+        error,
+        kind: 'background',
+        code: 'CONNECT_BACKGROUND',
+      );
+    }
+  }
+
   String get energyMode => energy.mode;
   bool get energySaving => energy.saving;
   Future<void> setEnergyMode(String mode) => energy.setMode(mode);
@@ -174,6 +206,10 @@ class WaveController extends ChangeNotifier {
   String? currentSessionId, sessionsError;
   bool sessionsLoading = false, sessionsSupported = true;
   int _sessionsGeneration = 0;
+  int _devicesGeneration = 0;
+  Future<void>? _devicesFlight;
+  String? _devicesFlightScope;
+  bool _devicesDirty = false;
   final Set<String> pendingDeviceActions = {}, pendingSessionActions = {};
   bool connectChanging = false;
   Future<void>? _roomAdoption;
@@ -266,7 +302,10 @@ class WaveController extends ChangeNotifier {
                       d['id'] == activeDeviceId,
                 )
                 .map((d) => d['name']?.toString() ?? '')
+                .where((name) => name.isNotEmpty)
                 .firstOrNull ??
+            (connect['activeDeviceName'] as String?) ??
+            (activeDeviceId == deviceId ? deviceName : null) ??
             wt('connect.otherDevice');
   String get deviceKind => Platform.isWindows
       ? 'windows'
@@ -437,6 +476,13 @@ class WaveController extends ChangeNotifier {
       await transport(command, data);
       return true;
     };
+    audio.onNotificationLike = () async {
+      final scope = namespace;
+      final current = audio.viewCurrent;
+      if (!_disposed && loggedIn && current != null && scope == namespace) {
+        await like(current);
+      }
+    };
     audio.onLoadingChanged = () {
       notifyListeners();
       _report();
@@ -494,6 +540,7 @@ class WaveController extends ChangeNotifier {
 
   Future<void> initialize() async {
     preferences = await SharedPreferences.getInstance();
+    backgroundConnectEnabled = preferences.getBool('backgroundConnect') ?? true;
     await energy.initialize(preferences);
     var savedServer = preferences.getString('server');
     if (api.server == 'https://wave.gluk.tech' &&
@@ -1207,6 +1254,7 @@ class WaveController extends ChangeNotifier {
     await secure.delete(key: 'session:${api.server}');
     api.token = null;
     user = null;
+    await _syncBackgroundConnect();
     await appearanceStore?.selectScope(null);
     _localeRequest++;
     _applyLanguage();
@@ -1218,6 +1266,10 @@ class WaveController extends ChangeNotifier {
     currentSessionId = null;
     sessionsError = null;
     _sessionsGeneration++;
+    _devicesGeneration++;
+    _devicesFlight = null;
+    _devicesFlightScope = null;
+    _devicesDirty = false;
     _pendingOAuth = null;
     rooms = [];
     publicRooms = [];
@@ -2504,6 +2556,8 @@ class WaveController extends ChangeNotifier {
   /// for the real connection, rather than treating a browser launch as success.
   Future<void> applicationResumed() async {
     if (api.token == null || _offlinePlayback) return;
+    await _syncBackgroundConnect();
+    if (socket?.connected == false) socket!.connect();
     final token = api.token, origin = api.server, pending = _pendingOAuth;
     try {
       final data = await api.call('/api/integrations');
@@ -2589,6 +2643,7 @@ class WaveController extends ChangeNotifier {
 
   void _connectSocket() {
     if (_offlinePlayback || socket != null || api.token == null) return;
+    unawaited(_syncBackgroundConnect());
     final session = api.token, origin = api.server;
     socket = io.io(
       api.server,
@@ -2644,8 +2699,7 @@ class WaveController extends ChangeNotifier {
     });
     socket!.on('devices:changed', (data) {
       if (session != api.token || origin != api.server) return;
-      devices = data is List ? objects(data) : objects(object(data)['devices']);
-      notifyListeners();
+      unawaited(receiveDeviceChange(data).catchError((_) {}));
     });
     socket!.on('sessions:changed', (_) {
       if (session != api.token || origin != api.server) return;
@@ -3367,7 +3421,14 @@ class WaveController extends ChangeNotifier {
     );
   }
 
-  Future<void> transfer(String id, {String? targetSurfaceId}) {
+  Future<void> transferCloud(String id, {String? targetSurfaceId}) =>
+      transfer(id, targetSurfaceId: targetSurfaceId, cloud: true);
+
+  Future<void> transfer(
+    String id, {
+    String? targetSurfaceId,
+    bool cloud = false,
+  }) {
     // One in-flight handoff across cloud and LAN; repeated gestures share its ACK.
     if (_transferFlight != null) return _transferFlight!;
     if (_offlinePlayback) _resumeCloudPlayback();
@@ -3378,6 +3439,12 @@ class WaveController extends ChangeNotifier {
     late final Future<void> work;
     work = () async {
       try {
+        if (cloud && lanEnabled) {
+          await setLanEnabled(false);
+          if (token != api.token || origin != api.server || _disposed) return;
+          await refreshConnect();
+          if (token != api.token || origin != api.server || _disposed) return;
+        }
         if (lanEnabled) {
           await _lanControl('transfer', {'deviceId': id});
         } else {
@@ -3387,7 +3454,9 @@ class WaveController extends ChangeNotifier {
             data: {
               'deviceId': id,
               'command': 'transfer',
-              'fromDeviceId': activeDeviceId ?? deviceId,
+              'fromDeviceId': independentListening
+                  ? deviceId
+                  : activeDeviceId ?? deviceId,
               if (targetSurfaceId != null) 'surfaceId': targetSurfaceId,
             },
           );
@@ -3506,12 +3575,50 @@ class WaveController extends ChangeNotifier {
     });
   }
 
-  Future<void> refreshDevices() async {
+  Future<void> receiveDeviceChange(dynamic data) async {
+    final payload = data is List ? data : object(data)['devices'];
+    if (payload is List) {
+      _devicesGeneration++;
+      devices = objects(payload);
+      if (!_disposed) notifyListeners();
+      return;
+    }
+    // The server emits an invalidation, not an empty directory. Keep the last
+    // known names/tracks while a scoped, shared request refreshes the directory.
+    await refreshDevices(invalidated: true);
+  }
+
+  Future<void> refreshDevices({bool invalidated = false}) {
     final token = api.token, origin = api.server;
-    final response = await api.call('/api/devices');
-    if (_disposed || token != api.token || origin != api.server) return;
-    devices = objects(response['devices']);
-    notifyListeners();
+    final scope = '$origin:$token';
+    if (_devicesFlight != null && _devicesFlightScope == scope) {
+      _devicesDirty |= invalidated;
+      return _devicesFlight!;
+    }
+    _devicesFlightScope = scope;
+    _devicesDirty = false;
+    late final Future<void> work;
+    work = () async {
+      try {
+        do {
+          _devicesDirty = false;
+          final generation = ++_devicesGeneration;
+          final response = await api.call('/api/devices');
+          if (_disposed || token != api.token || origin != api.server) return;
+          if (generation == _devicesGeneration && response['devices'] is List) {
+            devices = objects(response['devices']);
+            notifyListeners();
+          }
+        } while (_devicesDirty && _devicesFlightScope == scope);
+      } finally {
+        if (identical(_devicesFlight, work)) {
+          _devicesFlight = null;
+          _devicesFlightScope = null;
+        }
+      }
+    }();
+    _devicesFlight = work;
+    return work;
   }
 
   Future<void> refreshSessions() async {
@@ -3596,7 +3703,8 @@ class WaveController extends ChangeNotifier {
     final generation = ++_accountGeneration;
     connect = Map.of(incoming);
     final waveState = object(incoming['state']);
-    if (!transportPending &&
+    if (!independentListening &&
+        !transportPending &&
         waveState['waveMode'] is String &&
         waveState['waveMood'] is String) {
       waveMode = waveState['waveMode'] as String;
@@ -3658,9 +3766,11 @@ class WaveController extends ChangeNotifier {
     }
     if (!controllingRemote &&
         (activeDeviceId != null || independentListening)) {
-      audio.applyPlaybackModes(
-        PlaybackSnapshot.fromJson(object(incoming['state'])),
-      );
+      if (!independentListening) {
+        audio.applyPlaybackModes(
+          PlaybackSnapshot.fromJson(object(incoming['state'])),
+        );
+      }
       audio.clearRemote();
       notifyListeners();
       return;
@@ -4213,7 +4323,9 @@ class WaveController extends ChangeNotifier {
     _roomDirectoryTimer?.cancel();
     removeListener(_updateHomeWidgets);
     homeWidgets?.dispose();
+    unawaited(backgroundConnect.update(false).catchError((_) => false));
     audio.onWidgetCommand = null;
+    audio.onNotificationLike = null;
     audio.widgetGrant = null;
     audio.onLoadingChanged = null;
     unawaited(_lan?.close() ?? Future.value());

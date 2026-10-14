@@ -100,7 +100,7 @@ class HomeWidgetsTest {
               val renderContext = context.createConfigurationContext(Configuration(context.resources.configuration).apply { this.fontScale = fontScale })
               for ((id,isLarge) in listOf(compact to false,large to true)) {
                 for (width in listOf(160,220,360)) {
-                    val height = if (isLarge) 190 else 80
+                    val height = if (isLarge) 176 else 72
                     val options = Bundle().apply {
                         putInt(AppWidgetManager.OPTION_APPWIDGET_MIN_WIDTH,width)
                         putInt(AppWidgetManager.OPTION_APPWIDGET_MIN_HEIGHT,height)
@@ -113,10 +113,10 @@ class HomeWidgetsTest {
                     assertEquals("A long favourite title that needs ellipsis",view.findViewById<TextView>(R.id.widget_title).text.toString())
                     val play = view.findViewById<View>(R.id.widget_play)
                     assertTrue("main play target too small",play.width/density >= 47 && play.height/density >= 47)
-                    assertEquals(if(width<250) View.GONE else View.VISIBLE,view.findViewById<View>(R.id.widget_next).visibility)
+                    assertEquals(if(width<(if(isLarge)180 else 220)) View.GONE else View.VISIBLE,view.findViewById<View>(R.id.widget_next).visibility)
                     assertEquals(View.GONE,view.findViewById<View>(R.id.widget_progress).visibility)
                     val status = view.findViewById<View>(R.id.widget_status)
-                    assertEquals(if (!isLarge && fontScale > 1.1f) View.GONE else View.VISIBLE,status.visibility)
+                    assertEquals(if (fontScale > 1.1f) View.GONE else View.VISIBLE,status.visibility)
                     if(status.visibility == View.VISIBLE) {
                         val statusRect = android.graphics.Rect()
                         status.getDrawingRect(statusRect)

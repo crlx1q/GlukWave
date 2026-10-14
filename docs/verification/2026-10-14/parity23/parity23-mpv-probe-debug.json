@@ -1,0 +1,446 @@
+{
+  "prepared": 0.999986,
+  "started": 2.100414,
+  "before": 2.430634,
+  "after": 2.93239,
+  "pause": "no",
+  "idle": "no",
+  "eof": "no",
+  "logs": [
+    {
+      "level": "v",
+      "prefix": "ffmpeg",
+      "text": "Opening http://127.0.0.1:54732/own.m3u8"
+    },
+    {
+      "level": "v",
+      "prefix": "ffmpeg",
+      "text": "Could not set AVOption tls_verify='0'"
+    },
+    {
+      "level": "v",
+      "prefix": "ffmpeg",
+      "text": "Mime-type: ''"
+    },
+    {
+      "level": "v",
+      "prefix": "demux",
+      "text": "Trying demuxers for level=normal."
+    },
+    {
+      "level": "v",
+      "prefix": "lavf",
+      "text": "Found 'hls' at score=100 size=238."
+    },
+    {
+      "level": "v",
+      "prefix": "ffmpeg/demuxer",
+      "text": "hls: Skip ('#EXT-X-VERSION:3')"
+    },
+    {
+      "level": "v",
+      "prefix": "ffmpeg/demuxer",
+      "text": "hls: Opening 'http://127.0.0.1:54732/part-000.ts' for reading"
+    },
+    {
+      "level": "v",
+      "prefix": "lavf",
+      "text": "Could not set AVOption tls_verify='0'"
+    },
+    {
+      "level": "v",
+      "prefix": "lavf",
+      "text": "avformat_find_stream_info() finished after 0 bytes."
+    },
+    {
+      "level": "v",
+      "prefix": "demux",
+      "text": "Detected file format: hls (libavformat)"
+    },
+    {
+      "level": "v",
+      "prefix": "cplayer",
+      "text": "Opening done: http://127.0.0.1:54732/own.m3u8"
+    },
+    {
+      "level": "v",
+      "prefix": "lavf",
+      "text": "select track 0"
+    },
+    {
+      "level": "info",
+      "prefix": "cplayer",
+      "text": "(+) Audio --aid=1 (aac 1ch 44100Hz)"
+    },
+    {
+      "level": "v",
+      "prefix": "ad",
+      "text": "Codec list:"
+    },
+    {
+      "level": "v",
+      "prefix": "ad",
+      "text": "aac - (null)"
+    },
+    {
+      "level": "v",
+      "prefix": "ad",
+      "text": "aac_fixed (aac) - (null)"
+    },
+    {
+      "level": "v",
+      "prefix": "ad",
+      "text": "Opening decoder aac"
+    },
+    {
+      "level": "v",
+      "prefix": "ad",
+      "text": "Requesting 1 threads for decoding."
+    },
+    {
+      "level": "v",
+      "prefix": "ad",
+      "text": "Selected codec: aac ((null))"
+    },
+    {
+      "level": "v",
+      "prefix": "af",
+      "text": "User filter list:"
+    },
+    {
+      "level": "v",
+      "prefix": "af",
+      "text": "(empty)"
+    },
+    {
+      "level": "v",
+      "prefix": "cplayer",
+      "text": "Starting playback..."
+    },
+    {
+      "level": "v",
+      "prefix": "af",
+      "text": "[in] 44100Hz mono 1ch floatp"
+    },
+    {
+      "level": "v",
+      "prefix": "af",
+      "text": "[userspeed] 44100Hz mono 1ch floatp"
+    },
+    {
+      "level": "v",
+      "prefix": "af",
+      "text": "[userspeed] (disabled)"
+    },
+    {
+      "level": "v",
+      "prefix": "af",
+      "text": "[convert] 44100Hz mono 1ch floatp"
+    },
+    {
+      "level": "v",
+      "prefix": "ao",
+      "text": "Trying audio driver 'null'"
+    },
+    {
+      "level": "v",
+      "prefix": "ao/null",
+      "text": "requested format: 44100 Hz, mono channels, floatp"
+    },
+    {
+      "level": "v",
+      "prefix": "ao/null",
+      "text": "Channel layouts:"
+    },
+    {
+      "level": "v",
+      "prefix": "ao/null",
+      "text": "- anything"
+    },
+    {
+      "level": "v",
+      "prefix": "ao/null",
+      "text": "result: mono"
+    },
+    {
+      "level": "v",
+      "prefix": "ao/null",
+      "text": "device buffer: 8704 samples."
+    },
+    {
+      "level": "v",
+      "prefix": "ao/null",
+      "text": "using soft-buffer of 8820 samples."
+    },
+    {
+      "level": "info",
+      "prefix": "cplayer",
+      "text": "AO: [null] 44100Hz mono 1ch floatp"
+    },
+    {
+      "level": "v",
+      "prefix": "cplayer",
+      "text": "AO: Description: Null audio output"
+    },
+    {
+      "level": "v",
+      "prefix": "af",
+      "text": "[convert] (disabled)"
+    },
+    {
+      "level": "v",
+      "prefix": "af",
+      "text": "[out] 44100Hz mono 1ch floatp"
+    },
+    {
+      "level": "v",
+      "prefix": "cplayer",
+      "text": "audio ready"
+    },
+    {
+      "level": "v",
+      "prefix": "cplayer",
+      "text": "starting audio playback"
+    },
+    {
+      "level": "v",
+      "prefix": "cplayer",
+      "text": "playback restart complete @ -0.023220, audio=playing, video=eof (paused)"
+    },
+    {
+      "level": "v",
+      "prefix": "ffmpeg/demuxer",
+      "text": "hls: Opening 'http://127.0.0.1:54732/part-001.ts' for reading"
+    },
+    {
+      "level": "v",
+      "prefix": "ffmpeg/demuxer",
+      "text": "hls: Opening 'http://127.0.0.1:54732/part-002.ts' for reading"
+    },
+    {
+      "level": "v",
+      "prefix": "ffmpeg/demuxer",
+      "text": "hls: Opening 'http://127.0.0.1:54732/part-003.ts' for reading"
+    },
+    {
+      "level": "v",
+      "prefix": "ffmpeg/demuxer",
+      "text": "hls: Opening 'http://127.0.0.1:54732/part-004.ts' for reading"
+    },
+    {
+      "level": "v",
+      "prefix": "lavf",
+      "text": "EOF reached."
+    },
+    {
+      "level": "v",
+      "prefix": "lavf",
+      "text": "queuing seek to 2.400000"
+    },
+    {
+      "level": "v",
+      "prefix": "lavf",
+      "text": "cached range 0: 1.400000 <-> 9.410889 (bof=1, eof=1)"
+    },
+    {
+      "level": "v",
+      "prefix": "lavf",
+      "text": "...using this range for in-cache seek."
+    },
+    {
+      "level": "v",
+      "prefix": "lavf",
+      "text": "seeking stream 0 (audio) to packet 2.398467/2.398467"
+    },
+    {
+      "level": "v",
+      "prefix": "cplayer",
+      "text": "hr-seek, skipping to 1.000000"
+    },
+    {
+      "level": "v",
+      "prefix": "lavf",
+      "text": "EOF reached."
+    },
+    {
+      "level": "v",
+      "prefix": "cplayer",
+      "text": "audio ready"
+    },
+    {
+      "level": "v",
+      "prefix": "cplayer",
+      "text": "starting audio playback"
+    },
+    {
+      "level": "v",
+      "prefix": "cplayer",
+      "text": "playback restart complete @ 0.999986, audio=playing, video=eof (paused)"
+    },
+    {
+      "level": "v",
+      "prefix": "lavf",
+      "text": "queuing seek to 2.800000"
+    },
+    {
+      "level": "v",
+      "prefix": "lavf",
+      "text": "cached range 0: 1.400000 <-> 9.410889 (bof=1, eof=1)"
+    },
+    {
+      "level": "v",
+      "prefix": "lavf",
+      "text": "...using this range for in-cache seek."
+    },
+    {
+      "level": "v",
+      "prefix": "lavf",
+      "text": "seeking stream 0 (audio) to packet 2.793200/2.793200"
+    },
+    {
+      "level": "v",
+      "prefix": "cplayer",
+      "text": "hr-seek, skipping to 1.400000"
+    },
+    {
+      "level": "v",
+      "prefix": "cplayer",
+      "text": "Set property: pause=\"no\" -> 1"
+    },
+    {
+      "level": "v",
+      "prefix": "lavf",
+      "text": "EOF reached."
+    },
+    {
+      "level": "v",
+      "prefix": "cplayer",
+      "text": "audio ready"
+    },
+    {
+      "level": "v",
+      "prefix": "cplayer",
+      "text": "starting audio playback"
+    },
+    {
+      "level": "v",
+      "prefix": "cplayer",
+      "text": "playback restart complete @ 1.399980, audio=playing, video=eof"
+    },
+    {
+      "level": "v",
+      "prefix": "ao/null",
+      "text": "starting AO"
+    },
+    {
+      "level": "v",
+      "prefix": "user_filter_wrapper",
+      "text": "Setting option 'format' = 'floatp' (flags = 0)"
+    },
+    {
+      "level": "v",
+      "prefix": "user_filter_wrapper",
+      "text": "Setting option 'graph' = 'equalizer=f=31:t=o:w=1:g=2.00,equalizer=f=62:t=o:w=1:g=2.00,equalizer=f=125:t=o:w=1:g=2.00,equalizer=f=250:t=o:w=1:g=2.00,equalizer=f=500:t=o:w=1:g=2.00,equalizer=f=1000:t=o:w=1:g=2.00,equalizer=f=2000:t=o:w=1:g=2.00,equalizer=f=4000:t=o:w=1:g=2.00,equalizer=f=8000:t=o:w=1:g=2.00,equalizer=f=16000:t=o:w=1:g=2.00' (flags = 0)"
+    },
+    {
+      "level": "v",
+      "prefix": "af",
+      "text": "User filter list:"
+    },
+    {
+      "level": "v",
+      "prefix": "af",
+      "text": "format (format.00)"
+    },
+    {
+      "level": "v",
+      "prefix": "af",
+      "text": "lavfi (lavfi.00)"
+    },
+    {
+      "level": "v",
+      "prefix": "cplayer",
+      "text": "Set property: af=\"format=format=floatp,lavfi=[equalizer=f=31:t=o:w=1:g=2.00,equalizer=f=62:t=o:w=1:g=2.00,equalizer=f=125:t=o:w=1:g=2.00,equalizer=f=250:t=o:w=1:g=2.00,equalizer=f=500:t=o:w=1:g=2.00,equalizer=f=1000:t=o:w=1:g=2.00,equalizer=f=2000:t=o:w=1:g=2.00,equalizer=f=4000:t=o:w=1:g=2.00,equalizer=f=8000:t=o:w=1:g=2.00,equalizer=f=16000:t=o:w=1:g=2.00]\" -> 1"
+    },
+    {
+      "level": "v",
+      "prefix": "af",
+      "text": "[format] 44100Hz mono 1ch floatp"
+    },
+    {
+      "level": "v",
+      "prefix": "af",
+      "text": "[lavfi] 44100Hz mono 1ch floatp"
+    },
+    {
+      "level": "v",
+      "prefix": "af",
+      "text": "User filter list:"
+    },
+    {
+      "level": "v",
+      "prefix": "af",
+      "text": "(empty)"
+    },
+    {
+      "level": "v",
+      "prefix": "cplayer",
+      "text": "Set property: af=\"\" -> 1"
+    },
+    {
+      "level": "v",
+      "prefix": "cplayer",
+      "text": "Set property: pause=\"no\" -> 1"
+    },
+    {
+      "level": "v",
+      "prefix": "lavf",
+      "text": "queuing seek to 3.830634"
+    },
+    {
+      "level": "v",
+      "prefix": "lavf",
+      "text": "cached range 0: 1.400000 <-> 9.410889 (bof=1, eof=1)"
+    },
+    {
+      "level": "v",
+      "prefix": "lavf",
+      "text": "...using this range for in-cache seek."
+    },
+    {
+      "level": "v",
+      "prefix": "lavf",
+      "text": "seeking stream 0 (audio) to packet 3.814878/3.814878"
+    },
+    {
+      "level": "v",
+      "prefix": "cplayer",
+      "text": "hr-seek, skipping to 2.430634"
+    },
+    {
+      "level": "v",
+      "prefix": "lavf",
+      "text": "EOF reached."
+    },
+    {
+      "level": "v",
+      "prefix": "cplayer",
+      "text": "audio ready"
+    },
+    {
+      "level": "v",
+      "prefix": "cplayer",
+      "text": "starting audio playback"
+    },
+    {
+      "level": "v",
+      "prefix": "cplayer",
+      "text": "playback restart complete @ 2.430615, audio=playing, video=eof"
+    },
+    {
+      "level": "v",
+      "prefix": "ao/null",
+      "text": "starting AO"
+    }
+  ]
+}

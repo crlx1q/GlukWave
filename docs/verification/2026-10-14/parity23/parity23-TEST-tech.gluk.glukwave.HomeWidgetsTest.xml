@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="tech.gluk.glukwave.HomeWidgetsTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2026-10-14T14:23:06" hostname="DESKTOP-1GFOIA1" time="24.407">
+  <properties/>
+  <testcase name="coldControlsOpenActualAppAndRenderingDoesNotStartAPlayerEngine" classname="tech.gluk.glukwave.HomeWidgetsTest" time="16.975"/>
+  <testcase name="staleOrForeignBroadcastCannotLaunchOrControl" classname="tech.gluk.glukwave.HomeWidgetsTest" time="0.435"/>
+  <testcase name="outsideArtworkAndMalformedImagesAreRejected" classname="tech.gluk.glukwave.HomeWidgetsTest" time="0.471"/>
+  <testcase name="themesAndResizeInflateActualRemoteViewsWithReadableControlsAndNoLayoutOverflow" classname="tech.gluk.glukwave.HomeWidgetsTest" time="4.644"/>
+  <testcase name="controlsAreImmutableDistinctAndBoundToInstalledWidgetAndAccountEpoch" classname="tech.gluk.glukwave.HomeWidgetsTest" time="0.76"/>
+  <testcase name="snapshotIsPrivateBoundedAndDoesNotContainCredentialsOrUrls" classname="tech.gluk.glukwave.HomeWidgetsTest" time="1.122"/>
+  <system-out><![CDATA[WIDGET_RENDER_PROOF=C:\Users\alish\AppData\Local\Temp\widgets-1791987804906
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

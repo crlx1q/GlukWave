@@ -31,6 +31,10 @@ export function envelopeAt(envelope:AudioEnvelope|null,position:number,playing:b
 export function easeEnergy(current:number,target:number,seconds:number):number {
   return current+(target-current)*(1-Math.exp(-Math.min(.07,seconds)/(target>current ? .08 : .24)));
 }
+/** Lift normal musical energy without inventing motion during digital silence. */
+export function waveResponse(measured:number):number {
+  return 1-Math.pow(1-clamp01(Number.isFinite(measured)?measured:0),2.4);
+}
 
 export const bloomFieldGLSL=`
 float waveField(vec2 p,float t,float energy) {

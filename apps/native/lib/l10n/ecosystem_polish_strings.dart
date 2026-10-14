@@ -14,6 +14,30 @@ String ecosystemText(String key, BuildContext context) {
 }
 
 const ecosystemPolishStrings = <String, List<String>>{
+  'selectedOutput': [
+    'Selected output',
+    'Выбранный источник',
+    'Таңдалған құрылғы',
+    'Вибраний пристрій',
+    'Gewählte Ausgabe',
+    'Salida seleccionada',
+  ],
+  'connectScreenOff': [
+    'Connect with the screen off',
+    'Connect при выключенном экране',
+    'Экран өшірулі кездегі Connect',
+    'Connect із вимкненим екраном',
+    'Connect bei ausgeschaltetem Bildschirm',
+    'Connect con la pantalla apagada',
+  ],
+  'connectScreenOffHint': [
+    'Keeps this phone available to your other devices. Uses battery; stop it from the notification anytime.',
+    'Сохраняет связь с другими устройствами. Расходует заряд; можно остановить в уведомлении.',
+    'Басқа құрылғылармен байланысты сақтайды. Батареяны пайдаланады; хабарландырудан кез келген уақытта тоқтата аласыз.',
+    'Зберігає зв’язок з іншими пристроями. Витрачає заряд; можна зупинити в сповіщенні.',
+    'Hält die Verbindung zu deinen anderen Geräten. Verbraucht Akku; jederzeit über die Benachrichtigung beenden.',
+    'Mantiene la conexión con tus otros dispositivos. Consume batería; puedes detenerlo desde la notificación.',
+  ],
   'together': [
     'Listening together',
     'Слушаете вместе',
