@@ -1,5 +1,5 @@
 import { t } from './locale';
-import { openDB, type DBSchema } from 'idb';
+import { openDB, type DBSchema, type IDBPDatabase } from 'idb';
 import type { Library, Track } from './types';
 import { mediaDownloadPath, mediaArtworkPath } from './media-download';
 import {isAudioFile} from './audio-cache-validation';
@@ -9,11 +9,17 @@ interface WaveDB extends DBSchema {
   library:{key:string;value:Library};
   generation:{key:string;value:number};
 }
-const database=openDB<WaveDB>('glukwave-private-v1',2,{upgrade(db){
+let database: Promise<IDBPDatabase<WaveDB>|null>|undefined;
+function getDatabase(){
+ // The idb adapter needs Proxy. Lack of offline storage must not prevent
+ // online playback on older TVs or browsers with disabled/private storage.
+ return database ??= typeof indexedDB==='undefined'||typeof Proxy==='undefined'
+ ? Promise.resolve(null) : openDB<WaveDB>('glukwave-private-v1',2,{upgrade(db){
   if(!db.objectStoreNames.contains('downloads'))db.createObjectStore('downloads',{keyPath:'key'}).createIndex('userId','userId');
   if(!db.objectStoreNames.contains('library'))db.createObjectStore('library');
   if(!db.objectStoreNames.contains('generation'))db.createObjectStore('generation');
-}});
+}}).catch(()=>null);
+}
 type DownloadOperation={controller:AbortController;promise:Promise<void>;manual:boolean;progress:((fraction:number)=>void)[]};
 const inFlight=new Map<string,DownloadOperation>();
 async function cachedArtwork(track:Track,signal:AbortSignal,budget:number):Promise<Blob|undefined>{
@@ -27,24 +33,24 @@ async function cachedArtwork(track:Track,signal:AbortSignal,budget:number):Promi
   return new Blob(parts,{type});
  }catch{/* A missing thumbnail must not discard a valid offline track. */}
 }
-const changes=new BroadcastChannel('glukwave-cache-events');
-function announce(userId:string,trackId?:string){window.dispatchEvent(new Event('wave:cache'));changes.postMessage({userId,trackId});}
+const changes=typeof BroadcastChannel==='function'?new BroadcastChannel('glukwave-cache-events'):null;
+function announce(userId:string,trackId?:string){window.dispatchEvent(new Event('wave:cache'));changes?.postMessage({userId,trackId});}
 function cancel(userId:string,trackId?:string){for(const[key,operation]of inFlight)if(key.startsWith(`${userId}:`)&&(!trackId||key===`${userId}:${trackId}`))operation.controller.abort();}
-changes.onmessage=event=>{cancel(event.data.userId,event.data.trackId);window.dispatchEvent(new Event('wave:cache'));};
-export async function getCacheGeneration(userId:string){return(await(await database).get('generation',userId))||0;}
+if(changes)changes.onmessage=event=>{cancel(event.data.userId,event.data.trackId);window.dispatchEvent(new Event('wave:cache'));};
+export async function getCacheGeneration(userId:string){return(await(await getDatabase())?.get('generation',userId))||0;}
 export async function cached(userId:string,trackId:string){
- const row=await(await database).get('downloads',`${userId}:${trackId}`);
+ const row=await(await getDatabase())?.get('downloads',`${userId}:${trackId}`);
  if(row&&!await isAudioFile(row.blob)){await deleteDownload(userId,trackId);return undefined;}
  return row;
 }
-export async function downloads(userId:string){return(await database).getAllFromIndex('downloads','userId',userId);}
+export async function downloads(userId:string){return(await getDatabase())?.getAllFromIndex('downloads','userId',userId)??[];}
 export async function deleteDownload(userId:string,trackId:string){
-  cancel(userId,trackId);const db=await database,key=`${userId}:${trackId}`,tx=db.transaction(['downloads','generation'],'readwrite');
+  cancel(userId,trackId);const db=await getDatabase();if(!db)return;const key=`${userId}:${trackId}`,tx=db.transaction(['downloads','generation'],'readwrite');
   await tx.objectStore('generation').put(((await tx.objectStore('generation').get(key))||0)+1,key);
   await tx.objectStore('downloads').delete(key);await tx.done;announce(userId,trackId);
 }
 async function clear(userId:string,privateMetadata:boolean){
-  cancel(userId);const db=await database,tx=db.transaction(['downloads','library','generation'],'readwrite');
+  cancel(userId);const db=await getDatabase();if(!db)return;const tx=db.transaction(['downloads','library','generation'],'readwrite');
   const generation=tx.objectStore('generation');await generation.put(((await generation.get(userId))||0)+1,userId);
   const rows=await tx.objectStore('downloads').index('userId').getAllKeys(userId);
   for(const key of rows)await tx.objectStore('downloads').delete(key);
@@ -54,12 +60,12 @@ async function clear(userId:string,privateMetadata:boolean){
 export const clearPrivate=(userId:string)=>clear(userId,true);
 export const clearDownloads=(userId:string)=>clear(userId,false);
 export async function saveLibrary(userId:string,library:Library,expectedGeneration?:number){
-  const db=await database,tx=db.transaction(['library','generation'],'readwrite');
+  const db=await getDatabase();if(!db)return;const tx=db.transaction(['library','generation'],'readwrite');
   const current=(await tx.objectStore('generation').get(userId))||0;
   if(expectedGeneration===undefined||current===expectedGeneration)await tx.objectStore('library').put(library,userId);
   await tx.done;
 }
-export async function readLibrary(userId:string){return(await database).get('library',userId);}
+export async function readLibrary(userId:string){return(await getDatabase())?.get('library',userId);}
 export async function saveTrack(userId:string,track:Track,limitMB:number,manual:boolean,progress?:(fraction:number)=>void){
   if(!track.playback.offline||track.playback.kind!=='audio')throw new Error(t('copy.275'));
   const downloadUrl=mediaDownloadPath(track.id,track.playback.downloadUrl,location.origin);if(!downloadUrl)throw new Error(t('copy.275'));
@@ -67,7 +73,7 @@ export async function saveTrack(userId:string,track:Track,limitMB:number,manual:
   if(active){active.manual||=manual;if(progress)active.progress.push(progress);return active.promise;}
   const operation:DownloadOperation={controller:new AbortController(),promise:Promise.resolve(),manual,progress:progress?[progress]:[]};
   operation.promise=(async()=>{
-    const db=await database,generation=await getCacheGeneration(userId),trackGeneration=(await db.get('generation',key))||0;
+    const db=await getDatabase();if(!db)throw new Error(t('copy.275'));const generation=await getCacheGeneration(userId),trackGeneration=(await db.get('generation',key))||0;
     const response=await fetch(downloadUrl,{credentials:'include',signal:operation.controller.signal});
     if(!response.ok){const body=await response.json().catch(()=>({}));throw new Error(body.error?.message||t('copy.276'));}
     const size=Number(response.headers.get('Content-Length')),limit=limitMB*1024*1024;
@@ -94,4 +100,4 @@ export async function saveTrack(userId:string,track:Track,limitMB:number,manual:
   inFlight.set(key,operation);return operation.promise;
 }
 
-export async function pinDownload(userId:string,trackId:string){const db=await database,key=`${userId}:${trackId}`,tx=db.transaction('downloads','readwrite'),row=await tx.store.get(key);if(row)await tx.store.put({...row,manual:true});await tx.done;window.dispatchEvent(new Event('wave:cache'));}
+export async function pinDownload(userId:string,trackId:string){const db=await getDatabase();if(!db)return;const key=`${userId}:${trackId}`,tx=db.transaction('downloads','readwrite'),row=await tx.store.get(key);if(row)await tx.store.put({...row,manual:true});await tx.done;window.dispatchEvent(new Event('wave:cache'));}

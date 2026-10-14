@@ -1,0 +1,26 @@
+00:00 +0: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity24_ui_test.dart
+00:00 +0: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity24_ui_test.dart: (setUpAll)
+00:00 +0: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity24_ui_test.dart: Lyric intro uses the media clock and seeks cancel or restore its cue
+00:00 +1: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity24_ui_test.dart: Mini lyric rail changes from 3 to 2 to 1 then current and next without its own timer
+00:03 +2: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity23_ui_test.dart: Current/next lyric rail remains present with 3D cover on phone
+00:07 +3: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity23_ui_test.dart: Current/next lyric rail remains present with 3D cover on phone
+00:08 +4: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity24_ui_test.dart: Full lyric depth and entry transition fit 1440.0 viewport
+00:08 +5: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity24_ui_test.dart: Full lyric depth and entry transition fit 1440.0 viewport
+00:08 +6: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity23_ui_test.dart: Idle preview adopts its own playback, then follows next track metadata
+00:09 +7: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity24_ui_test.dart: Desktop bottom lyrics belong to metadata and do not grow the transport
+00:09 +8: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity24_ui_test.dart: Desktop bottom lyrics belong to metadata and do not grow the transport
+00:09 +9: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity23_ui_test.dart: Phone mini player is 68px with 44px touch targets and vector brand
+00:10 +10: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity24_ui_test.dart: Compact native lyric rail fits the144px window at125percent text
+00:10 +11: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity23_ui_test.dart: Compact desktop lyrics fit above seek and window grows only when present
+00:10 +12: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity24_ui_test.dart: CD lid retains opaque reverse and all four thickness edges through full rotation
+00:10 +13: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity24_ui_test.dart: CD lid retains opaque reverse and all four thickness edges through full rotation
+00:10 +14: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity24_ui_test.dart: CD lid retains opaque reverse and all four thickness edges through full rotation
+00:11 +15: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity23_ui_test.dart: Real phone audio policy hides local volume and keeps desktop remote control
+00:12 +16: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity23_ui_test.dart: Desktop bottom transport stays compact with or without lyric rail
+00:13 +17: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity23_ui_test.dart: Next and previous animate metadata in opposite directions
+00:14 +18: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity23_ui_test.dart: Wide desktop restores cover beside controls and CD has an opaque tray
+00:15 +19: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity23_ui_test.dart: Physical loading/listening cycle ignores appearance speed 0.5
+00:15 +20: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity23_ui_test.dart: Physical loading/listening cycle ignores appearance speed 1.0
+00:15 +21: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity23_ui_test.dart: Physical loading/listening cycle ignores appearance speed 2.0
+00:16 +22: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity23_ui_test.dart: (tearDownAll)
+00:16 +22: All tests passed!

@@ -1,0 +1,3085 @@
+{
+  "checkedAt": "2026-10-14T21:02:02.352291+00:00",
+  "version": "1.0.0+24",
+  "passed": true,
+  "scope": "Android startup config; TV legacy JS/runtime fallbacks; full-only redesigned lyrics, media-time countdown, opaque CD, continuous artwork/light, calm wave choice and stronger measured Bloom/particles",
+  "web": {
+    "javascript": "/assets/main-0QMWhc4T.js",
+    "buildPassed": true,
+    "testsPassed": 87,
+    "legacySyntax": {
+      "checkedAt": "2026-10-14T20:53:28.484Z",
+      "passed": true,
+      "es5Parsed": true,
+      "physicalTvVerified": false,
+      "files": [
+        {
+          "name": "hls-legacy-B7zYHMqK.js",
+          "bytes": 665598,
+          "sha256": "49f0209bd024b5dedbefd741087def4a4c3c57e53ff43df3f8cfb3f0c368a304"
+        },
+        {
+          "name": "main-legacy-DV7ZQUnh.js",
+          "bytes": 1037845,
+          "sha256": "1a5015794d01fb5afa9785d3acacecd06c4a3068d348544a11f65faaff4da8c1"
+        },
+        {
+          "name": "mini-legacy-DPvk4UPm.js",
+          "bytes": 5410,
+          "sha256": "e36df33a797630f90d4faca725e5e0eef54a555cc295f1252beec853021d03ba"
+        },
+        {
+          "name": "playback-feedback-legacy-BupVXaj8.js",
+          "bytes": 865722,
+          "sha256": "74cf3763612f039cf7aae7d276318ada38cd09a84b86b537523c4821f8aed2fc"
+        },
+        {
+          "name": "polyfills-legacy-BiJ_zgFM.js",
+          "bytes": 176861,
+          "sha256": "b72fd64462c3f035dcd58450bc39cc33e2cc57804631979ad677943e0cbaf14a"
+        }
+      ]
+    },
+    "compatibilityRuntime": {
+      "checkedAt": "2026-10-14T21:01:40.113Z",
+      "passed": true,
+      "engine": "Modern Chromium forced to production SystemJS legacy branch with removed APIs",
+      "physicalTvVerified": false,
+      "originalFixtureAudio": true,
+      "dialogPolyfillOpenedAndClosed": true,
+      "initial": {
+        "animate": "undefined",
+        "broadcast": "undefined",
+        "fetch": "function",
+        "legacy": true,
+        "observer": "function",
+        "plural": "function",
+        "profile": "tv-legacy",
+        "proxy": "undefined",
+        "resize": "function",
+        "rootReady": true,
+        "uuid": "function"
+      },
+      "before": {
+        "paused": false,
+        "position": 0.440244,
+        "ready": 4
+      },
+      "final": {
+        "fatal": false,
+        "full": true,
+        "lyrics": 6,
+        "paused": false,
+        "position": 2.254185
+      },
+      "legacyFiles": [
+        {
+          "name": "hls-legacy-B7zYHMqK.js",
+          "bytes": 665598,
+          "sha256": "49f0209bd024b5dedbefd741087def4a4c3c57e53ff43df3f8cfb3f0c368a304"
+        },
+        {
+          "name": "main-legacy-DV7ZQUnh.js",
+          "bytes": 1037845,
+          "sha256": "1a5015794d01fb5afa9785d3acacecd06c4a3068d348544a11f65faaff4da8c1"
+        },
+        {
+          "name": "mini-legacy-DPvk4UPm.js",
+          "bytes": 5410,
+          "sha256": "e36df33a797630f90d4faca725e5e0eef54a555cc295f1252beec853021d03ba"
+        },
+        {
+          "name": "playback-feedback-legacy-BupVXaj8.js",
+          "bytes": 865722,
+          "sha256": "74cf3763612f039cf7aae7d276318ada38cd09a84b86b537523c4821f8aed2fc"
+        },
+        {
+          "name": "polyfills-legacy-BiJ_zgFM.js",
+          "bytes": 176861,
+          "sha256": "b72fd64462c3f035dcd58450bc39cc33e2cc57804631979ad677943e0cbaf14a"
+        }
+      ],
+      "capture": "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\work\\qa\\parity24-legacy-tv-lyrics.png"
+    }
+  },
+  "server": {
+    "testsLastVerified": 129,
+    "currentSourceHashesMatchBaseline": true,
+    "fullSuiteRerun": false,
+    "deploymentPerformed": false
+  },
+  "native": {
+    "apk": "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\apps\\native\\build\\app\\outputs\\flutter-apk\\app-debug.apk",
+    "bytes": 180831512,
+    "builtAt": "2026-10-14T20:50:01.626924+00:00",
+    "sha256": "e6c246adc7c153739c45219efcf1eff4cc01514e54a14e6f1f0edfc34b45cfb5",
+    "sourceFrozenAt": "2026-10-14T20:43:44.259810+00:00",
+    "sourceSha256": "dee0e46201edd73a19ef46f855f86bbd7c5a1c77e06fd4a5ca299bbaeb9cca80",
+    "sourceFiles": 221,
+    "kernelSha256": "56b72e13842d9db1f07b2e44ceb605d81800b805ee75b2004ba032acccb7efe9",
+    "kernelMatchesBuildOutput": true,
+    "compileDefine": "https://wave.gluk.tech",
+    "kernelFeatureMarkers": {
+      "waveAudioServiceConfig": true,
+      "lyric-countdown": true,
+      "lyricsIntro": true,
+      "mini-lyrics-frame": true,
+      "activeDeviceName": true,
+      "glukwave.like": true,
+      "tech.gluk.glukwave/home_widgets": true,
+      "glukwave.widget": true,
+      "Home screen widgets": true,
+      "https://wave.gluk.tech": true,
+      "full-player": true,
+      "player-cover-gesture": true,
+      "language-selector": true,
+      "language.auto": true,
+      "locale:change": true,
+      "lrcClock": true,
+      "artworkForDisplay": true,
+      "-t500x500.": true,
+      "/api/diagnostics/events": true,
+      "glukwave-lan-v1": true,
+      "LAN pairing": true,
+      "seasonalEffects": true,
+      "lan-enable": true,
+      "ROOM_STATE": true,
+      "/lrclib": true,
+      "Find on LRCLIB": true,
+      "/genius/preview": true,
+      "genius-preview": true,
+      "cover-ambient-transform": true,
+      "/discord": true,
+      "discord:changed": true,
+      "discordPresence": true,
+      "deviceVolume": true,
+      "/api/auth/native-captcha": true,
+      "Invalid authentication expiry": true,
+      "desktop-quick-volume": true,
+      "account:state": true,
+      "track-loading-cover": true,
+      "ScrollingLabel": true,
+      "/connect": true,
+      "outputActive": true,
+      "/account/sessions": true,
+      "downloadUrl": true,
+      "adoptOnly": true,
+      "/taste": true,
+      "/friends": true,
+      "/jams": true,
+      "/api/account/": true,
+      "currentPassword": true,
+      "Email sent": true,
+      "/playlists/discover": true,
+      "mini-card-progress": true,
+      "search-source-menu": true,
+      "search-type-": true,
+      "player-transport-capsule": true,
+      "player-secondary-capsule": true,
+      "X-GlukWave-Playback-Wait": true,
+      "player-centered-view": true,
+      "player-detail-view-": true,
+      "player-lyrics-toggle": true,
+      "compact-eq-presets": true,
+      "#EXTM3U": true,
+      "Colour from the cover": true,
+      "coverAccent": true,
+      "compact-eq-enabled": true,
+      "compact-eq-band-": true,
+      "compact-eq-preamp": true,
+      "compact-eq-rate": true,
+      "connect-quick-picker": true,
+      "native-queue-list": true,
+      "queue-add": true,
+      "waveMode": true,
+      "waveMood": true,
+      "waveActive": true,
+      "/api/recommendations": true,
+      "queue-search": true,
+      "ListeningPresence": true,
+      "SettingsEdit": true,
+      "_PlaybackWavePainter": true,
+      "tech.gluk.glukwave/energy": true,
+      "saved-view": true,
+      "saved-play": true,
+      "guard-manual-code": true,
+      "guard-target-name": true,
+      "guard-approve": true,
+      "lyrics-persistent-controls": true,
+      "OFFLINE_MISSING": true,
+      "INVALID_LOGIN_CODE": true,
+      "playlist-membership-": true,
+      "playlist-new-name": true,
+      "playlist-edit-name": true,
+      "playlist-library-": true,
+      "Playlist response is missing": true,
+      "/api/public-import/search": true,
+      "/api/public-import/tracks": true,
+      "publicSourceUrl": true,
+      "album-back-title": true,
+      "album-back-source": true
+    },
+    "localCatalogsInKernel": {
+      "en": true,
+      "ru": true,
+      "kk": true,
+      "uk": true,
+      "de": true,
+      "es": true
+    },
+    "qaTrackBundled": false,
+    "fontManifestVerified": true,
+    "staticFontFaces": [
+      {
+        "asset": "assets/fonts/Nunito-Regular.ttf",
+        "weight": 400,
+        "variable": false,
+        "sha256": "29f17d41574376520b263bde34a4fecb11814233ff280c66befce6020c5e3cc4",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-Medium.ttf",
+        "weight": 500,
+        "variable": false,
+        "sha256": "818d89d5417ed2c7686c07097469f417d41dfe70b8e9514466637612f7ab9d8d",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-SemiBold.ttf",
+        "weight": 600,
+        "variable": false,
+        "sha256": "e6ac9b7051c6b3c4a23817a9272e2a8f7124896b36e68b30a3d46b452a0418a5",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-Bold.ttf",
+        "weight": 700,
+        "variable": false,
+        "sha256": "19acc4b8e7dc15b49c3802b6f2b53a1c41d7ee548733204a367052fa53387933",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-ExtraBold.ttf",
+        "weight": 800,
+        "variable": false,
+        "sha256": "9bc8f0d0c03926636f41ec699c6563dd01835b510c194e2086811eaf65a8e527",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-Black.ttf",
+        "weight": 900,
+        "variable": false,
+        "sha256": "b3628977111142f66472632770b76ee2c0665a40ae536bd64971a3bc19087717",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Manrope-Regular.ttf",
+        "weight": 400,
+        "variable": false,
+        "sha256": "c443e2325b9ff17933ec2f5a99d835af430a545901d146f81f4fc9f4882b6623",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Manrope-Medium.ttf",
+        "weight": 500,
+        "variable": false,
+        "sha256": "78177fa989a3feb256c1750faca4a05ab0b70f093f5f45b12a537e7b939bae9c",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Manrope-SemiBold.ttf",
+        "weight": 600,
+        "variable": false,
+        "sha256": "1eea52be7b84d0841e39d6102cdf2f6777dbdbd6781d3a40a3323a8151163f07",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Manrope-Bold.ttf",
+        "weight": 700,
+        "variable": false,
+        "sha256": "06ef9bf16d6ce1b6b8d6b953ea8b9e6c30e4b3708cf039132224fb2a5aa77102",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Manrope-ExtraBold.ttf",
+        "weight": 800,
+        "variable": false,
+        "sha256": "63050130f7beccf497d740a2af39f8d5d49447e9ed777014e8d6d413442425ba",
+        "matchesSource": true
+      }
+    ],
+    "fontManifestSha256": "dc61e379e1f65f8de62057e95a64baaebcbbf8e5ee2450f736e2611705ca210f",
+    "nunitoLicenseIncluded": true,
+    "manifestVerified": true,
+    "androidWidgetReceiversPrivate": {
+      "WavePlayerWidget": true,
+      "WaveLargeWidget": true,
+      "WidgetCommandReceiver": true
+    },
+    "widgetTestRuntimeBundled": false,
+    "privateConnectBackgroundService": true,
+    "version": "1.0.0",
+    "versionCode": 24,
+    "minSdk": 24,
+    "targetSdk": 36,
+    "output": "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\outputs\\GlukWave-android-debug.apk",
+    "outputMatchesBuild": true,
+    "signatureVerified": true,
+    "signatureScheme": "v2",
+    "certificateSha256": "d631b0271019e5b3a9df153929ac0de07708b0766fc4c132fbce862b67a56748",
+    "updateCertificateMatchesPrevious": true,
+    "analyzerIssues": 0,
+    "standardTestsPassed": 465,
+    "standardVerification": {
+      "passed": true,
+      "fullSuiteRerun": true,
+      "distinctTestsVerified": 465,
+      "allNamedTestsPassed": true,
+      "failures": [],
+      "names": [
+        "Genius URL validation matches HTTPS page, blocks lookalikes and escapes",
+        "Genius labels are available in all six supported languages",
+        "native device commands poll one intent and stop if the account changes",
+        "real native HTTP accepts Unicode device names and polls audio through a transient edge failure",
+        "Hex accepts short input and invalid colors never replace a working palette",
+        "Palette edits and reset preserve the opposite theme",
+        "Guest changes survive restart and do not cross account scopes",
+        "Offline PATCH retries from disk and preserves a remote edit of the other palette",
+        "An old account response cannot change guest appearance after logout",
+        "Newer socket settings survive an older PATCH while sparse local edits stay visible",
+        "In-flight sparse edits overlay remote events and survive a failed transport restart",
+        "Old session and origin cannot reconcile or block a new account request",
+        "Preview leaves server unchanged, unchanged explicit save retains Genius source",
+        "Edited Genius lyrics save user text, failure and invalid links preserve draft",
+        "Changed account and dismissed editor ignore a late preview",
+        "Large public SoundCloud artwork preserves metadata URL and query",
+        "Unrelated or unsafe artwork URLs are never rewritten",
+        "Cover light freezes on pause, hidden lifecycle, TickerMode and reduced motion",
+        "Genius editor narrow phone at 125 percent text scale",
+        "Genius editor light at 390.0",
+        "Failed high-resolution artwork retries the original then settles",
+        "Genius editor dark at 390.0",
+        "Live custom palette and controls fit width 320.0",
+        "Genius editor amoled at 390.0",
+        "Genius editor light at 1280.0",
+        "Genius editor dark at 1280.0",
+        "Genius editor amoled at 1280.0",
+        "Live custom palette and controls fit width 390.0",
+        "Bounded chromatic sample, contrast, basic auto preference and six translated labels",
+        "Tiny image decode returns real colour; canceled cached callback cannot publish",
+        "Permitted external source resolves before provider choice and retains its descriptor in current/queue",
+        "Extensionless SoundCloud descriptor uses native HLS with own EQ path and no offline permission",
+        "Metadata alone does not grant native playback or forward credentials to a CDN",
+        "Old server widget descriptors are rejected and loading resets on failure",
+        "Autonomous playback never falls back to cloud when a cached file is missing",
+        "Actual auth, offline Lo-Fi, profile and settings fit width 320.0 without setup copy",
+        "Cached permitted audio plays without resolving an online embedded descriptor",
+        "Cached native decoder failure resolves once and preserves paused position and queue",
+        "Offline decoder failure preserves the download and never resolves online",
+        "A failed fresh source after cache recovery is not retried indefinitely",
+        "Pause cancels source resolution before late native loading or playback",
+        "Live custom palette and controls fit width 768.0",
+        "Background visual suspension preserves real native completion and starts the next direct source",
+        "Download descriptor is restricted to the authenticated own origin",
+        "Provider cancellation during an outgoing pause cannot install a late document",
+        "Clearing an outgoing provider never clears a newer ready document",
+        "Actual anchored compact EQ fits dark 320.0 at125 percent font",
+        "Actual anchored compact EQ fits dark 390.0 at125 percent font",
+        "Concurrent downloads commit quota and manifest atomically",
+        "Successful manifest or HTML response is not saved as offline audio",
+        "Historical cached playlist is removed so normal playback resolves a fresh stream",
+        "Pinned downloads are preserved when quota is exhausted",
+        "Concurrent LRU accesses and manual pinning cannot lose metadata",
+        "Clearing private files cancels downloads and leaves no audio",
+        "Actual anchored compact EQ fits dark 1440.0 at125 percent font",
+        "Live custom palette and controls fit width 1280.0",
+        "System mode follows OS brightness and custom corners/density apply to real components",
+        "Actual anchored compact EQ fits amoled 320.0 at125 percent font",
+        "Actual anchored compact EQ fits amoled 390.0 at125 percent font",
+        "Actual auth, offline Lo-Fi, profile and settings fit width 390.0 without setup copy",
+        "Actual anchored compact EQ fits amoled 1440.0 at125 percent font",
+        "Actual anchored compact EQ fits light 320.0 at125 percent font",
+        "Account Connect mirrors remote playback and routes controls without local playback",
+        "Same installation and another runtime remains a remote output",
+        "Late Connect responses cannot replace new revisions and legacy 404 is immediate",
+        "Own-output Connect keeps saved volume while remote volume is only mirrored",
+        "Official provider document validates identities and carries no account token",
+        "Provider transport derives playing/time/ended from official callbacks, rejecting old generations",
+        "Actual anchored compact EQ fits light 390.0 at125 percent font",
+        "Actual anchored compact EQ fits light 1440.0 at125 percent font",
+        "Actual auth, offline Lo-Fi, profile and settings fit width 768.0 without setup copy",
+        "EQ actions update real controller, processing boundary and persisted custom curve",
+        "Native volume retains zero / one arc / two arc topology",
+        "Expanded desktop starts centered and discloses only the requested lyrics or queue",
+        "Sleeve reverse fits real long metadata, omits duplicate album and unknown duration",
+        "Connected playback, device controls and pinned room fit light Size(390.0, 844.0)",
+        "Actual auth, offline Lo-Fi, profile and settings fit width 1280.0 without setup copy",
+        "Vertical sleeve above transport retains dimensions and reachable controls Size(1440.0, 900.0)",
+        "Tray click modes preserve full and mini bounds and restore frame",
+        "Vertical sleeve above transport retains dimensions and reachable controls Size(1280.0, 650.0)",
+        "Vertical sleeve above transport retains dimensions and reachable controls Size(375.0, 812.0)",
+        "Fullscreen, real bounded queue gestures and scrolling at 320.0",
+        "Vertical sleeve above transport retains dimensions and reachable controls Size(320.0, 568.0)",
+        "Connected playback, device controls and pinned room fit light Size(1280.0, 900.0)",
+        "diagnostics scrub credentials, URLs, emails and local paths",
+        "Vertical sleeve above transport retains dimensions and reachable controls Size(812.0, 375.0)",
+        "real HTTP delivery deduplicates reports and clears the queue after ACK",
+        "Fullscreen, real bounded queue gestures and scrolling at 390.0",
+        "Connected playback, device controls and pinned room fit dark Size(390.0, 844.0)",
+        "Fullscreen, real bounded queue gestures and scrolling at 768.0",
+        "Full turn painted circle and paper corners stay within scene and clear heading",
+        "Connected playback, device controls and pinned room fit dark Size(1280.0, 900.0)",
+        "Fullscreen, real bounded queue gestures and scrolling at 1280.0",
+        "Connected playback, device controls and pinned room fit amoled Size(390.0, 844.0)",
+        "Search and lyric skeletons follow pending API work, without fake waits",
+        "Discord actual panel composes at Size(390.0, 844.0) in light with artwork and live state",
+        "External track accepts personal lyrics through the actual mobile editor",
+        "Discord actual panel composes at Size(1280.0, 1000.0) in light with artwork and live state",
+        "LRCLIB selection saves provider ID through the real editor at 320.0",
+        "Discord actual panel composes at Size(390.0, 844.0) in dark with artwork and live state",
+        "Connected playback, device controls and pinned room fit amoled Size(1280.0, 900.0)",
+        "LRCLIB selection saves provider ID through the real editor at 1280.0",
+        "Discord actual panel composes at Size(1280.0, 1000.0) in dark with artwork and live state",
+        "A mouse wheel adjusts volume within bounds rather than scrolling the page",
+        "Discord actual panel composes at Size(390.0, 844.0) in amoled with artwork and live state",
+        "Discord actual panel composes at Size(1280.0, 1000.0) in amoled with artwork and live state",
+        "Server Free lock has upgrade and no enabled connect or sharing controls",
+        "Disconnected, reconnect, unavailable, error and empty states are real and scoped",
+        "Disable and join privacy persist through server; unlink requires confirmation",
+        "Narrow Discord panel remains readable in en with 125 percent text",
+        "Narrow Discord panel remains readable in ru with 125 percent text",
+        "Narrow Discord panel remains readable in kk with 125 percent text",
+        "Narrow Discord panel remains readable in uk with 125 percent text",
+        "Narrow Discord panel remains readable in de with 125 percent text",
+        "Narrow Discord panel remains readable in es with 125 percent text",
+        "Public activity progresses locally without sending playback to Discord",
+        "Native presence loads server canonical output rather than local player",
+        "Older pending request cannot replace a new authoritative socket snapshot",
+        "Changing accounts during a request does not expose previous identity",
+        "Errors stay scoped and omit provider secrets; save waits for server",
+        "OAuth browser handoff refreshes actual server link when app resumes",
+        "Free server status is authoritative even with stale paid client profile",
+        "Disposed request completion does not notify or recreate status",
+        "Duration uses hours at the exact boundary and guards invalid values",
+        "Room access comes from the owner or explicit control grant",
+        "Authoritative timeline projects only while playing and clamps to duration",
+        "External metadata does not become downloadable music",
+        "Synchronized lyrics choose the preceding timed line",
+        "Server addresses reject credentials, paths and invalid schemes",
+        "Native API sends bearer separately and preserves server errors",
+        "Local volume preview touches native gain immediately with no storage or transport",
+        "Latest optimistic room shuffle survives an earlier failed command",
+        "Repeat failure rolls back, admin controls any room and ordinary jam pause remains individual",
+        "Changing output clears unfinished volume preview without committing it",
+        "Room pause is immediate and stale playing snapshot cannot restart pending pause",
+        "Held color writes preview only and persists final presentation once",
+        "Directories page beyond forty and refreshing loaded cards preserves independent admin pagination",
+        "Joining on a second client mirrors a room and remote volume targets the selected output",
+        "Account room adoption before socket connection does not claim output or start duplicate sound",
+        "Only the selected room output loads audio; a stale revision cannot reclaim it",
+        "Room listeners without control rights still adjust output volume but cannot change the room track",
+        "A room without an output owner stays a silent mirror and Listen here claims through a real room join",
+        "Session actions use real server results; failures do not remove rows and other-session logout preserves current",
+        "Late session responses cannot cross an account boundary; legacy missing routes are honest unavailable",
+        "Duplicate transfer taps serialize until the real response and refreshed ownership arrive",
+        "A room transfer command adopts participation then awaits ready playback without sending room-wide commands",
+        "Failed room-source readiness does not retain provisional ownership",
+        "A transfer rollback pause cancels a delayed source instead of allowing late autoplay or an obsolete ACK",
+        "Native requests explicitly distinguish the app from a browser without carrying callback keys",
+        "Returning from OAuth refreshes actual connections instead of assuming the browser completed sign-in",
+        "Ordinary fullscreen fits fixed cover and transport Size(375.0, 812.0)",
+        "Actual editor curve preserves endpoints and stays within legal gains",
+        "User radius changes the interpolated shape without moving exact handles",
+        "Ordinary fullscreen fits fixed cover and transport Size(1440.0, 900.0)",
+        "Compact Connect contains real active controls and opens at its measured anchor",
+        "My rooms includes highlighted active non-owned room and informative discovery",
+        "Native volume drag previews actual gain but only commits once",
+        "Wheel gain keeps draft while parent receives immediate preview then commits once",
+        "Appearance holds real pointer and color focus until final commit",
+        "Hardware center frequencies interpolate the shared curve in logarithmic space",
+        "Sparse processing changes preserve synced bands and reject invalid values",
+        "Older two-theme settings migrate without losing palettes or resetting processing",
+        "Removing current queue item lets actual completed event advance to first remainder",
+        "Transfer single flight retains old output and clears on success",
+        "Failed transfer releases pending and preserves previous selection",
+        "Room queue and modes use authoritative commands and permissions",
+        "Snapshots and remote state retain modes without clobbering legacy state",
+        "Queue edits preserve active playback identity and support add/remove/reorder",
+        "Mini thumbnail URLs lower resolution while full cover remains large",
+        "Long slider drag sends zero intermediate requests and one final commit",
+        "Wheel settles once and changing scope cancels an unfinished command",
+        "Real device controls and session security compose at Size(390.0, 844.0) in light",
+        "App font manifest maps six genuine static faces with matching metadata",
+        "Actual registered rounded bold outlines render heavier than normal",
+        "Manrope default registers genuine regular and extra-bold outlines",
+        "Queue artwork is playable, removal collapses lower rows and add uses real catalog",
+        "Queue keyboard alternative moves and listeners cannot edit",
+        "Room avatars show three plus remainder from real playing devices",
+        "Connect picker shows Chrome mark, actual output and one pending handoff",
+        "Cover has scene headroom without dynamic scale or height-based shrink",
+        "cold action is consumed once; unknown commands and foreign arguments do not dispatch",
+        "progress/heartbeat notifications with identical state do not rewrite launcher",
+        "slow platform write coalesces to newest track and clear drops queued metadata",
+        "pin only supports the two real provider variants",
+        "all six locales ship every widget instruction and accessibility label",
+        "Pending selection is immediate and error resets transport before source ACK",
+        "Actual long-press queue drag moves the stored queue",
+        "Tiny waveform animates only while playing and visible",
+        "Real device controls and session security compose at Size(1280.0, 900.0) in light",
+        "media-session widget custom actions use existing account transport and like handlers",
+        "signed-out, stale account and unknown commands never reach playback",
+        "room listener cannot skip/start Wave; jam listener may toggle existing output",
+        "Wave uses backend recommendations; a response after account switch cannot start music",
+        "Focused player dark 1440.0 at125 percent, vertical listening column, preset menu and themed corners",
+        "Real device controls and session security compose at Size(390.0, 844.0) in dark",
+        "LAN controllers mirror, control and transfer one output without cloud requests; missing cache retains sender",
+        "Focused player dark 1280.0 at125 percent, vertical listening column, preset menu and themed corners",
+        "AEAD authenticates direction, sequence, session and refuses replay",
+        "Invitations reject public origins, invalid keys and expiry",
+        "Real sockets pair, forward to the requesting peer, broadcast and revoke trust",
+        "Account mismatch and device limits are rejected during pairing",
+        "Real device controls and session security compose at Size(1280.0, 900.0) in dark",
+        "Focused player dark 390.0 at125 percent, vertical listening column, preset menu and themed corners",
+        "LAN invitation, QR and trusted peers fit320 at125 percent en",
+        "LAN invitation, QR and trusted peers fit320 at125 percent ru",
+        "LAN invitation, QR and trusted peers fit320 at125 percent kk",
+        "Focused player dark 320.0 at125 percent, vertical listening column, preset menu and themed corners",
+        "LAN invitation, QR and trusted peers fit320 at125 percent uk",
+        "LAN invitation, QR and trusted peers fit320 at125 percent de",
+        "Real device controls and session security compose at Size(390.0, 844.0) in amoled",
+        "LAN invitation, QR and trusted peers fit320 at125 percent es",
+        "Warm reference layout fits width 320.0 with reduced motion",
+        "Warm reference layout fits width 390.0 with reduced motion",
+        "LAN trust removal confirms and disconnect affects local mode only",
+        "Warm reference layout fits width 768.0 with reduced motion",
+        "Warm reference layout fits width 1280.0 with reduced motion",
+        "Focused player amoled 1440.0 at125 percent, vertical listening column, preset menu and themed corners",
+        "Real device controls and session security compose at Size(1280.0, 900.0) in amoled",
+        "Focused player amoled 1280.0 at125 percent, vertical listening column, preset menu and themed corners",
+        "Focused player amoled 390.0 at125 percent, vertical listening column, preset menu and themed corners",
+        "All six offline catalogs have identical complete keys and interpolation parameters",
+        "English fallback, regional locales, plural forms and localized numbers/dates are real",
+        "Language persists for guests and account offline edits stay sparse across stale revisions",
+        "Late region results cannot replace manual choices or another account scope",
+        "Focused player amoled 320.0 at125 percent, vertical listening column, preset menu and themed corners",
+        "Play morph reverses without resizing its hitbox and settles immediately offscreen",
+        "Unified light slider is touch usable and disabled control does not seek",
+        "Unified dark slider is touch usable and disabled control does not seek",
+        "Unified amoled slider is touch usable and disabled control does not seek",
+        "Focused player light 1440.0 at125 percent, vertical listening column, preset menu and themed corners",
+        "Focused player light 1280.0 at125 percent, vertical listening column, preset menu and themed corners",
+        "Guard accepts only own-server app challenges or a manual code",
+        "Energy follows OS and low battery, remembers override and stops background polling",
+        "Offline manifest, pinned audio, artwork and lyrics survive a fresh cache instance",
+        "Pinning an older audio-only cache adds durable art without re-downloading audio",
+        "Forged manifest paths never read or delete files outside the cache",
+        "Saved playback, next and repeat stay local despite stale room and remote output",
+        "Guard confirmation cannot cross an account change and does not approve external QR",
+        "Queued resolver can be cancelled; duplicate saves share one request and permissions remain required",
+        "Focused player light 390.0 at125 percent, vertical listening column, preset menu and themed corners",
+        "Explicit uncached catalog play leaves local mode after an outage",
+        "Cold start restores scoped account library and saved music while server is unreachable",
+        "Listening polish shell and typed discovery dark 1440.0 at125%",
+        "Focused player light 320.0 at125 percent, vertical listening column, preset menu and themed corners",
+        "Native preset keyboard opens/selects without changing track, slider touch overlay is quiet",
+        "The actual guest language picker changes Flutter locale and persists offline",
+        "Listening polish shell and typed discovery dark 1100.0 at125%",
+        "Actual en auth, home, settings and player at width 320.0 preserve music titles",
+        "Listening polish shell and typed discovery dark 390.0 at125%",
+        "Online re-entry refreshes same-track lyrics once despite comments outage and ticks",
+        "Actual en auth, home, settings and player at width 390.0 preserve music titles",
+        "Listening polish shell and typed discovery dark 320.0 at125%",
+        "Actual en auth, home, settings and player at width 1280.0 preserve music titles",
+        "Listening polish shell and typed discovery amoled 1440.0 at125%",
+        "Secondary routes and keyboard fit 320.0 light",
+        "Actual ru auth, home, settings and player at width 320.0 preserve music titles",
+        "Listening polish shell and typed discovery amoled 1100.0 at125%",
+        "Actual ru auth, home, settings and player at width 390.0 preserve music titles",
+        "Listening polish shell and typed discovery amoled 390.0 at125%",
+        "Large-text small-phone auth segment shows whole label and activates registration",
+        "Actual kk auth, home, settings and player at width 320.0 preserve music titles",
+        "Secondary routes and keyboard fit 375.0 dark",
+        "Listening polish shell and typed discovery amoled 320.0 at125%",
+        "Actual kk auth, home, settings and player at width 390.0 preserve music titles",
+        "Large-text small-phone energy heading has no orphan fragment",
+        "Actual uk auth, home, settings and player at width 320.0 preserve music titles",
+        "Listening polish shell and typed discovery light 1440.0 at125%",
+        "Actual uk auth, home, settings and player at width 390.0 preserve music titles",
+        "Secondary routes and keyboard fit 768.0 amoled",
+        "Listening polish shell and typed discovery light 1100.0 at125%",
+        "Actual de auth, home, settings and player at width 320.0 preserve music titles",
+        "Actual de auth, home, settings and player at width 390.0 preserve music titles",
+        "Listening polish shell and typed discovery light 390.0 at125%",
+        "Actual de auth, home, settings and player at width 1280.0 preserve music titles",
+        "Listening polish shell and typed discovery light 320.0 at125%",
+        "Secondary routes and keyboard fit 938.0 amoled",
+        "Actual es auth, home, settings and player at width 320.0 preserve music titles",
+        "Compact synchronized lyrics show two separate rows; cover menu closes on selection/Escape",
+        "Actual es auth, home, settings and player at width 390.0 preserve music titles",
+        "Preset pointer focus has no ring; keyboard focus uses a quiet background",
+        "Six language new labels and custom primary outline icons are present",
+        "Native branded home/player/lyrics/queue fit 320.0 light",
+        "Compact window reserves visible official source controls",
+        "Secondary routes and keyboard fit 1440.0 light",
+        "background Connect bridge sends no credentials and respects a system notification stop",
+        "payload-free invalidations retain names and share a refresh with one trailing update",
+        "an old account response cannot replace a new account directory",
+        "independent snapshots preserve local media, repeat, shuffle and wave preferences",
+        "cloud transfer exits LAN before issuing one scoped account command",
+        "phone local output stays full volume, remote volume remains independent and notification likes are scoped to their track",
+        "Windows displays QR while mobile sign-in is conventional",
+        "Native branded home/player/lyrics/queue fit 375.0 dark",
+        "Guard camera denial exposes manual fallback and expires pending approval",
+        "Native email registration and login are real fields at Size(320.0, 740.0)",
+        "Native email registration and login are real fields at Size(390.0, 844.0)",
+        "Current/next lyric rail remains present with 3D cover on phone",
+        "Current/next lyric rail remains present with 2D cover on phone",
+        "Native email registration and login are real fields at Size(1280.0, 860.0)",
+        "Saved cover and accent use durable files; energy removes expensive visuals",
+        "Startup belongs to actual initialization state",
+        "Idle preview adopts its own playback, then follows next track metadata",
+        "Legacy CAPTCHA server is an honest browser fallback",
+        "Independent Connect active remote row retains its own song",
+        "Native branded home/player/lyrics/queue fit 768.0 amoled",
+        "Phone mini player is 68px with 44px touch targets and vector brand",
+        "Compact desktop lyrics fit above seek and window grows only when present",
+        "Tray quick player and frameless mini fit light, wheel changes queue",
+        "Native loading clock stays 1200ms at custom appearance speed",
+        "Track content animation uses the incoming queue direction",
+        "Loading and offline empty collection remain navigable",
+        "Tray quick player and frameless mini fit dark, wheel changes queue",
+        "Tray quick player and frameless mini fit amoled, wheel changes queue",
+        "Real phone audio policy hides local volume and keeps desktop remote control",
+        "Opt-in two-line synced preview fits Size(320.0, 568.0) with pinned controls",
+        "Desktop bottom transport stays compact with or without lyric rail",
+        "Next and previous animate metadata in opposite directions",
+        "mpv applies prepared initial position exactly once and ignores paused/reset completion",
+        "Windows start waits for decoded progress before confirming playback",
+        "real silence remains still while ordinary measured music receives a stronger dynamic response",
+        "Wide desktop restores cover beside controls and CD has an opaque tray",
+        "Physical loading/listening cycle ignores appearance speed 0.5",
+        "Physical loading/listening cycle ignores appearance speed 1.0",
+        "Physical loading/listening cycle ignores appearance speed 2.0",
+        "Opt-in two-line synced preview fits Size(375.0, 812.0) with pinned controls",
+        "Native branded home/player/lyrics/queue fit 938.0 dark",
+        "Lyric intro uses the media clock and seeks cancel or restore its cue",
+        "Windows native property bridge applies finite DSP only to the selected music output and clears it on disable",
+        "Rejected native DSP clears the filter and restores requested volume",
+        "Taste persists catalogue selections and explicit skip completes with zero artists",
+        "A late taste response cannot populate a different account scope",
+        "Typography remains bounded and free accessibility edits do not require detailed customization",
+        "Plan rejection restores authoritative appearance and does not queue an endless retry",
+        "Jam listener toggles its own pause using the REST endpoint without host transport permissions",
+        "Mini lyric rail changes from 3 to 2 to 1 then current and next without its own timer",
+        "Playlist visibility uses PATCH and verifies the returned public state",
+        "Shared vector gently enters/exits real Play/Pause with unchanged footprint, inherited ink and semantics",
+        "Reduced motion, OS motion, hidden route and paused lifecycle are static; resume restarts and disposal cleans tickers",
+        "Privacy switch sends only its accepted boolean and reloads authoritative server state",
+        "Full lyric depth and entry transition fit 390.0 viewport",
+        "Friend request accept/decline use real request identifiers and explicit boolean",
+        "Appearance speed leaves the physical vector cycle and geometry unchanged",
+        "Failed account deletion retains private account state and displays an error",
+        "Unavailable optional endpoint remains an honest error with retry and no counters",
+        "Native branded home/player/lyrics/queue fit 1440.0 dark",
+        "Full lyric depth and entry transition fit 1440.0 viewport",
+        "Admin release form is visible only for configured owner rights",
+        "Saved remains reachable offline, separates pin/cache and selects only saved session",
+        "Desktop bottom lyrics belong to metadata and do not grow the transport",
+        "Compact native lyric rail fits the144px window at125percent text",
+        "native preparation shares work and keeps current metadata",
+        "native preparation drops rejected descriptors and scopes cache to account and server",
+        "CD lid retains opaque reverse and all four thickness edges through full rotation",
+        "Real source resolution and active buffering drive shared vector; ready/paused/error/cancel clear it",
+        "Phone Guard accepts manual fallback and requires explicit target confirmation",
+        "Overflow scrolls after start pause; fitting/reduced/hidden text stays still with complete semantics",
+        "Loading cover breathes only while busy; reduced/TickerMode stable and disposal cancels ticker",
+        "Project control vectors retain bounded geometry at icon sizes",
+        "Journal preserves canonical other-device membership and cover against stale snapshot",
+        "Cover acknowledgement preserves newer edits and cannot resurrect a deleted playlist",
+        "Journal failed edit retains later intent and pending refresh overlay; cache is confirmed",
+        "Energy setting is device local and coherent with settings/search/Connect",
+        "Controller likes notify immediately, serialize final intent and rollback only failed request",
+        "Controller independent entity writes do not queue a like behind a slow playlist",
+        "Controller membership uses atomic encoded PUT, retains pending during refresh and persists confirmed only",
+        "Controller create draft settles once; rejected create rolls back and stale account reply is ignored",
+        "Create from a non-library search track seeds playable metadata before and after acknowledgement",
+        "Logged-out phone has no displayed QR and retains branded sign-in",
+        "Live EQ outer, chart, speed and preset radius; quiet keyboard focus dark",
+        "Controller ignores GET begun before canonical membership ack in both refresh paths",
+        "Independent short playlist picker with multiple long-name memberships 320.0",
+        "Independent short playlist picker with multiple long-name memberships 375.0",
+        "Independent short playlist picker with multiple long-name memberships 1280.0",
+        "Entire native cover at125% dark Size(1440.0, 950.0) flat/3D/extreme tilt",
+        "native source renews its descriptor once and preserves the requested position",
+        "a hanging native decoder has a finite deadline and only one source renewal",
+        "source failure recovery preserves user auth/network/autoplay decisions",
+        "a failed descriptor identifies the pending queue item before the decoder loads",
+        "Playlist picker, optimistic draft and failure keep inputs and fit 320.0",
+        "Playlist picker, optimistic draft and failure keep inputs and fit 375.0",
+        "Playlist picker, optimistic draft and failure keep inputs and fit 1280.0",
+        "Entire native cover at125% dark Size(1440.0, 600.0) flat/3D/extreme tilt",
+        "Playlist editor keeps delete confirmation mounted through optimistic rollback",
+        "Entire native cover at125% dark Size(390.0, 700.0) flat/3D/extreme tilt",
+        "Public spotify import selects normalized paged IDs and retries one intent at 320.0",
+        "Entire native cover at125% dark Size(320.0, 568.0) flat/3D/extreme tilt",
+        "Public soundcloud import selects normalized paged IDs and retries one intent at 375.0",
+        "Live EQ outer, chart, speed and preset radius; quiet keyboard focus amoled",
+        "Independent actual native EQ pointer drag",
+        "Public yandex import selects normalized paged IDs and retries one intent at 375.0",
+        "Entire native cover at125% amoled Size(1440.0, 950.0) flat/3D/extreme tilt",
+        "Independent short phone cover after actual image decoding",
+        "Refinement20 prominent device and opaque cover fit 320.0",
+        "Public youtube import selects normalized paged IDs and retries one intent at 1280.0",
+        "Refinement20 prominent device and opaque cover fit 375.0",
+        "Entire native cover at125% amoled Size(1440.0, 600.0) flat/3D/extreme tilt",
+        "a mid-song stream error reloads once at its position and never skips the queue",
+        "Play retries a failed source without changing the selected track or queue",
+        "network, decoder and expiring capabilities are not permanent song failures",
+        "local diagnostic journal survives reporter restart and excludes credentials",
+        "Public import paging preserves deselection while selecting only newly seen normalized IDs",
+        "Entire native cover at125% amoled Size(390.0, 700.0) flat/3D/extreme tilt",
+        "Public likes kind defaults to likes destination with exposed count",
+        "Refinement20 prominent device and opaque cover fit 938.0",
+        "Entire native cover at125% amoled Size(320.0, 568.0) flat/3D/extreme tilt",
+        "Public import empty, retry, stale query, account switch and keyboard remain safe",
+        "Live EQ outer, chart, speed and preset radius; quiet keyboard focus light",
+        "Refinement20 prominent device and opaque cover fit 1440.0",
+        "Entire native cover at125% light Size(1440.0, 950.0) flat/3D/extreme tilt",
+        "Refinement20 import pages, likes destination and idempotent retry remain usable on phone",
+        "Entire native cover at125% light Size(1440.0, 600.0) flat/3D/extreme tilt",
+        "Refinement20 physical sleeve hover extends record and full turn keeps opaque backside",
+        "Reference sleeve keeps logo and fixed dimensions through front back edge 1440.0x900.0",
+        "Entire native cover at125% light Size(390.0, 700.0) flat/3D/extreme tilt",
+        "Refinement20 equalizer curve and continuous thumb agree during real pointer drag",
+        "Quick Connect has one device action and no duplicate transport 320.0",
+        "Entire native cover at125% light Size(320.0, 568.0) flat/3D/extreme tilt",
+        "Persisted compact EQ highlight survives closing and toggles off with DSP",
+        "Reference sleeve keeps logo and fixed dimensions through front back edge 375.0x812.0",
+        "Lyrics and queue use same active icon treatment and respect motion off",
+        "Actual room completion sends validated repeat and current track/revision identity",
+        "Quick Connect has one device action and no duplicate transport 375.0",
+        "Reference sleeve keeps logo and fixed dimensions through front back edge 320.0x568.0",
+        "Real resolving success/error/cancel resets loading; user seeks blocked, internal sync preserved",
+        "Season choice is opt-in, month auto detection and sparse edits preserve choices",
+        "Guest seasonal settings survive restart and stay separate from another account",
+        "Summer light is diffused, restrained, gently moving and intensity aware",
+        "Quick Connect has one device action and no duplicate transport 1440.0",
+        "Reference sleeve keeps logo and fixed dimensions through front back edge 812.0x375.0",
+        "Seasonal ticker stops/disappears for reduced motion, TickerMode and background; disabled preview stays still",
+        "Listening wave remains bounded and phase does not rewind after ninety seconds",
+        "Season settings narrow125 percent render and labels en",
+        "production media service configuration constructs with assertions on",
+        "Season settings narrow125 percent render and labels ru",
+        "Reference mouse drag starts immediately and hover extends disc without resizing",
+        "Season settings narrow125 percent render and labels kk",
+        "Season settings narrow125 percent render and labels uk",
+        "Season settings narrow125 percent render and labels de",
+        "Season settings narrow125 percent render and labels es",
+        "Native and QR challenges accept the server epoch and legacy ISO",
+        "Volume survives recreation, preserves mute and serializes changes",
+        "Expanded source/season single layer320/125 en",
+        "Expanded source/season single layer320/125 ru",
+        "Expanded source/season single layer320/125 kk",
+        "Expanded source/season single layer320/125 uk",
+        "Expanded source/season single layer320/125 de",
+        "Expanded source/season single layer320/125 es",
+        "Mode and mood preview preserves compatibility and ignores an older result",
+        "Native eight colour batches match real web palette in six colour/theme combinations",
+        "Actual native folded renderer stays transparent outside field; colour does not move geometry; inputs move field",
+        "Actual native field screenshots cover light dark AMOLED, both accents and widths",
+        "Native EQ paints complete plus/minus12 at125 percent without changing curve handles",
+        "native ranked wave starts first, prepares next once and extends natural end with mode/mood",
+        "late native wave result cannot pause or replace a newer selection",
+        "empty unfamiliar tail stops honestly instead of recycling a known track",
+        "Flutter Bloom matches actual exported web equations at varied pointer and audio states",
+        "Only measured valid envelopes drive energy and pause always silences the response",
+        "Native wave separates four modes and mood, uses actual pending logo at 375.0",
+        "Real waveform HTTP response is cached per account and reloads offline",
+        "A delayed envelope cannot leak into another session, account cache or visible field",
+        "Local rain is decodable non-clipping mono PCM with a continuous loop boundary",
+        "Widget previews use actual metadata, responsive controls, all states and six locales125 without overflow",
+        "Native wave separates four modes and mood, uses actual pending logo at 1440.0",
+        "Native genre selector persists controlled favorites and preserves automatic taste",
+        "Native EQ curve responds to radius setting without sharp peak at38",
+        "Native cover reflection follows rotation with fixed artwork size"
+      ],
+      "beforeLatestSteering": {
+        "fullSuitePassed": 465,
+        "sourceChangedAfterFullRun": true,
+        "log": "parity24-native-tests-final.log",
+        "sourceSha256": "4dcd213b29f08ce374ce7386308cee949147dd784cdef71b44a4f4b7686e1f40"
+      },
+      "currentAffectedRegressions": [
+        {
+          "log": "parity24-ui-steering-tests.log",
+          "passed": 28
+        },
+        {
+          "log": "parity24-current-core-regression.log",
+          "passed": 10
+        }
+      ],
+      "verificationScope": "Full465 baseline before latest collapsed-lyrics and wave tuning; 33 distinct current affected tests passed across28 UI/wave plus10 core checks (5 repeated wave tests). No second broad run.",
+      "analyzeCurrentAffected": "parity24-ui-steering-analyze.log",
+      "distinctAffectedTests": 33,
+      "overlappingWaveTestsRepeated": 5,
+      "sourceFilesChangedAfterFullSuite": [
+        "lib/core/wave_math.dart",
+        "lib/services/desktop.dart",
+        "lib/ui/app.dart",
+        "lib/ui/desktop_player.dart",
+        "lib/ui/native19_desktop_transport.dart",
+        "lib/ui/widgets.dart"
+      ],
+      "currentSourceSha256": "dee0e46201edd73a19ef46f855f86bbd7c5a1c77e06fd4a5ca299bbaeb9cca80"
+    },
+    "signature": "debug",
+    "deviceRuntimeVerified": false,
+    "manropeLicenseIncluded": true,
+    "iosBuilt": false,
+    "compaction": {
+      "passed": true,
+      "bytesBefore": 214635849,
+      "bytesAfter": 180831512,
+      "savedBytes": 33804337,
+      "allEntryHashesUnchanged": true,
+      "entryCount": 666,
+      "pageAlignmentKB": 16,
+      "v2SignatureVerified": true,
+      "updateCertificateMatchesBaseline": true,
+      "certificateSha256": "d631b0271019e5b3a9df153929ac0de07708b0766fc4c132fbce862b67a56748",
+      "sha256": "e6c246adc7c153739c45219efcf1eff4cc01514e54a14e6f1f0edfc34b45cfb5"
+    },
+    "sourceFreezeFile": "docs/verification/2026-10-15/parity24/parity24-native-source-freeze.json",
+    "windowsExecutableBuilt": true,
+    "windows": {
+      "checkedAt": "2026-10-14T20:49:54.814959+00:00",
+      "passed": true,
+      "bundle": "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\outputs\\GlukWave-windows",
+      "featureMarkers": {
+        "track-loading-cover": true,
+        "glukwave-lan-v1": true,
+        "LAN pairing": true,
+        "seasonalEffects": true,
+        "lan-enable": true,
+        "/discord": true,
+        "discord:changed": true,
+        "discordPresence": true,
+        "/api/diagnostics/events": true,
+        "/lrclib": true,
+        "/genius/preview": true,
+        "genius-preview": true,
+        "cover-ambient-transform": true,
+        "ROOM_STATE": true,
+        "Find on LRCLIB": true,
+        "deviceVolume": true,
+        "/api/auth/native-captcha": true,
+        "desktop-quick-volume": true,
+        "/account/sessions": true,
+        "downloadUrl": true,
+        "adoptOnly": true,
+        "/taste": true,
+        "/friends": true,
+        "/jams": true,
+        "/api/account/": true,
+        "currentPassword": true,
+        "Email sent": true,
+        "/playlists/discover": true,
+        "/api/public-import/search": true,
+        "/api/public-import/tracks": true,
+        "publicSourceUrl": true,
+        "playlist-membership-": true,
+        "playlist-edit-name": true,
+        "album-back-title": true,
+        "album-back-source": true,
+        "mini-lyrics-frame": true,
+        "activeDeviceName": true,
+        "PhysicalWaveClock": true,
+        "player-track-motion": true,
+        "selectedOutput": true,
+        "lyric-countdown": true,
+        "lyricsIntro": true
+      },
+      "file": "outputs/GlukWave-windows.zip",
+      "bytes": 41381770,
+      "sha256": "e1f7cd67b70c12eae6e726ba146e403e7e4f17b47801f7622558f978ff1557b8",
+      "frozenOriginalFilesMatched": 221,
+      "compiledSourceFilesMatched": 139,
+      "compiledSourcePaths": [
+        "assets/app_icon.ico",
+        "assets/coast.jpg",
+        "assets/fonts/Manrope-Bold.ttf",
+        "assets/fonts/Manrope-ExtraBold.ttf",
+        "assets/fonts/Manrope-Medium.ttf",
+        "assets/fonts/Manrope-Regular.ttf",
+        "assets/fonts/Manrope-SemiBold.ttf",
+        "assets/fonts/Nunito-Black.ttf",
+        "assets/fonts/Nunito-Bold.ttf",
+        "assets/fonts/Nunito-ExtraBold.ttf",
+        "assets/fonts/Nunito-Medium.ttf",
+        "assets/fonts/Nunito-Regular.ttf",
+        "assets/fonts/Nunito-SemiBold.ttf",
+        "assets/forest.jpg",
+        "assets/google-g.png",
+        "assets/licenses/just_audio_media_kit-UNLICENSE.txt",
+        "assets/licenses/Manrope-OFL.txt",
+        "assets/licenses/Nunito-OFL.txt",
+        "assets/logo.gif",
+        "assets/logo.png",
+        "assets/mark.svg",
+        "assets/Nunito.ttf",
+        "lib/core/api.dart",
+        "lib/core/appearance.dart",
+        "lib/core/artwork.dart",
+        "lib/core/controller.dart",
+        "lib/core/discord.dart",
+        "lib/core/equalizer.dart",
+        "lib/core/library_mutations.dart",
+        "lib/core/lyrics.dart",
+        "lib/core/models.dart",
+        "lib/core/parity.dart",
+        "lib/core/playback_recovery.dart",
+        "lib/core/qr_login.dart",
+        "lib/core/wave_math.dart",
+        "lib/l10n/audio_design_strings.dart",
+        "lib/l10n/catalogs.dart",
+        "lib/l10n/discord_strings.dart",
+        "lib/l10n/ecosystem_polish_strings.dart",
+        "lib/l10n/focused_player_strings.dart",
+        "lib/l10n/home_widget_strings.dart",
+        "lib/l10n/lan_strings.dart",
+        "lib/l10n/listening_polish_strings.dart",
+        "lib/l10n/lyrics_strings.dart",
+        "lib/l10n/parity_strings.dart",
+        "lib/l10n/season_strings.dart",
+        "lib/l10n/wave_localizations.dart",
+        "lib/main.dart",
+        "lib/services/ambience.dart",
+        "lib/services/appearance_store.dart",
+        "lib/services/audio.dart",
+        "lib/services/audio_config.dart",
+        "lib/services/background_connect.dart",
+        "lib/services/cache.dart",
+        "lib/services/desktop.dart",
+        "lib/services/diagnostics.dart",
+        "lib/services/energy.dart",
+        "lib/services/home_widgets.dart",
+        "lib/services/lan_transport.dart",
+        "lib/services/presence_bridge.dart",
+        "lib/services/provider_player.dart",
+        "lib/services/push.dart",
+        "lib/services/volume_store.dart",
+        "lib/services/waveform.dart",
+        "lib/services/windows_dsp.dart",
+        "lib/services/windows_equalizer.dart",
+        "lib/services/windows_mpv_player.dart",
+        "lib/services/windows_playback_state.dart",
+        "lib/ui/album_stage.dart",
+        "lib/ui/app.dart",
+        "lib/ui/appearance_panel.dart",
+        "lib/ui/auth_page.dart",
+        "lib/ui/auth_visuals.dart",
+        "lib/ui/connect_device_tile.dart",
+        "lib/ui/connect_panel.dart",
+        "lib/ui/connect_picker.dart",
+        "lib/ui/connect_playback.dart",
+        "lib/ui/cover_accent.dart",
+        "lib/ui/cover_ambient.dart",
+        "lib/ui/desktop_player.dart",
+        "lib/ui/device_labels.dart",
+        "lib/ui/discord_panel.dart",
+        "lib/ui/discovery.dart",
+        "lib/ui/equalizer_curve.dart",
+        "lib/ui/equalizer_panel.dart",
+        "lib/ui/home_widget_previews.dart",
+        "lib/ui/lan_panel.dart",
+        "lib/ui/listening_presence.dart",
+        "lib/ui/listening_rail.dart",
+        "lib/ui/lofi.dart",
+        "lib/ui/lyric_timing.dart",
+        "lib/ui/lyrics_editor.dart",
+        "lib/ui/mini_lyrics.dart",
+        "lib/ui/motion_icons.dart",
+        "lib/ui/native19_components.dart",
+        "lib/ui/native19_desktop_transport.dart",
+        "lib/ui/native19_guard.dart",
+        "lib/ui/native19_saved.dart",
+        "lib/ui/native19_strings.dart",
+        "lib/ui/parity_panels.dart",
+        "lib/ui/physical_wave_clock.dart",
+        "lib/ui/player.dart",
+        "lib/ui/player_gestures.dart",
+        "lib/ui/playlist_manager.dart",
+        "lib/ui/playlist_strings.dart",
+        "lib/ui/provider_host.dart",
+        "lib/ui/provider_import.dart",
+        "lib/ui/public_import_strings.dart",
+        "lib/ui/queue_panel.dart",
+        "lib/ui/refinement20_home.dart",
+        "lib/ui/refinement20_strings.dart",
+        "lib/ui/room_directory.dart",
+        "lib/ui/scrolling_label.dart",
+        "lib/ui/seasonal.dart",
+        "lib/ui/sessions_panel.dart",
+        "lib/ui/settings_edit.dart",
+        "lib/ui/silk_wave.dart",
+        "lib/ui/theme.dart",
+        "lib/ui/theme_preview.dart",
+        "lib/ui/volume_slider.dart",
+        "lib/ui/wave18_strings.dart",
+        "lib/ui/wave_colors.dart",
+        "lib/ui/widgets.dart",
+        "pubspec.lock",
+        "pubspec.yaml",
+        "windows/CMakeLists.txt",
+        "windows/flutter/CMakeLists.txt",
+        "windows/runner/CMakeLists.txt",
+        "windows/runner/flutter_window.cpp",
+        "windows/runner/flutter_window.h",
+        "windows/runner/main.cpp",
+        "windows/runner/resource.h",
+        "windows/runner/resources/app_icon.ico",
+        "windows/runner/runner.exe.manifest",
+        "windows/runner/Runner.rc",
+        "windows/runner/utils.cpp",
+        "windows/runner/utils.h",
+        "windows/runner/win32_window.cpp",
+        "windows/runner/win32_window.h"
+      ],
+      "binarySha256": {
+        "glukwave.exe": "a4aad7f6c005d07a965fdb804d9d99e138fd61439709fe8ab71b139ef227a73d",
+        "flutter_windows.dll": "6840b8129fb105dd246f05f14eab97d7e8e9eade1428f9afde95de6b8e1a7808",
+        "libmpv-2.dll": "d5f0694b08c124e785d858d00082f3e3b158dd9138bfc48c0382bf1eb443a5fc",
+        "audio_service_win_plugin.dll": "a5f96408a3ba417ceb7db856654d8cf2ce0a1f3ff12cafd3da531c4df4f038a3",
+        "flutter_inappwebview_windows_plugin.dll": "b4d2407c57ecb6a23431d7871838b31119ca31dac19f5b0a46f8ed2ddbab3b86",
+        "flutter_secure_storage_windows_plugin.dll": "e91542df0301a6a47b24d0e740718763a61d1f915ddef6d0e506f38c9addf17b",
+        "tray_manager_plugin.dll": "6e0edbd9336389a1927013900517fa8b0e910367b36569adf24f0ff6009db7e2",
+        "window_manager_plugin.dll": "75547d85e71d762108b1bdceafc24eba8f6dd63bf91449e4fb6c3b4a80ed7947",
+        "msvcp140.dll": "0f885b509a685d2bbfa652fed26b5fb31d88fbdab0a978c641d1c7b8aa460aa9",
+        "vcruntime140.dll": "d5e4d9a3e835fa679450145d6a7d94e36573a509317111904d9b3712c30d9066",
+        "vcruntime140_1.dll": "1f2d41c4aa5db0bc33ebf7b66d72943a817d7ce6cbe880502a9403823633093f",
+        "media_kit_libs_windows_video_plugin.dll": "01cacd94bf0d397df4b817b4acf186279eb97833ed36c0dd644b6600caff54d7",
+        "libEGL.dll": "b2590bd0692f0381fc45c20bf1c7f7f713c9ea19c7ea6bab62efdd1fadc4eaac",
+        "libGLESv2.dll": "620bb6e38d7ed6c760a0cf4a8eb6a8f64b259b96ff286551cd32cefc6c35ca39"
+      },
+      "packageMatchesReleaseBuild": true,
+      "zipCrcAndAllFilesMatched": true,
+      "staticFontFaces": 11,
+      "compileDefine": "https://wave.gluk.tech",
+      "buildMode": "release",
+      "pinnedFullMediaRuntimeVerified": true,
+      "authenticodeSigned": false,
+      "uiInteractionVerified": false,
+      "physicalAudioVerified": false,
+      "androidOnlyActionsTreeShaken": true,
+      "installer": {
+        "checkedAt": "2026-10-14T20:50:40.1017334Z",
+        "passed": true,
+        "singleFile": true,
+        "version": "1.0.0.24",
+        "productVersion": "1.0.0+24",
+        "bytes": 33123067,
+        "sha256": "cb710ddf3f1342545d68c6d808affede52810332924d6211ebb754cf7700f7d8",
+        "compilerSucceeded": true,
+        "desktopShortcutChoice": true,
+        "autostartChoice": true,
+        "autostartDefault": false,
+        "webviewBootstrapperEmbedded": true,
+        "installedDuringIteration": false,
+        "authenticodeSigned": false
+      }
+    },
+    "verification": {
+      "passed": true,
+      "fullSuiteRerun": true,
+      "distinctTestsVerified": 465,
+      "allNamedTestsPassed": true,
+      "failures": [],
+      "names": [
+        "Genius URL validation matches HTTPS page, blocks lookalikes and escapes",
+        "Genius labels are available in all six supported languages",
+        "native device commands poll one intent and stop if the account changes",
+        "real native HTTP accepts Unicode device names and polls audio through a transient edge failure",
+        "Hex accepts short input and invalid colors never replace a working palette",
+        "Palette edits and reset preserve the opposite theme",
+        "Guest changes survive restart and do not cross account scopes",
+        "Offline PATCH retries from disk and preserves a remote edit of the other palette",
+        "An old account response cannot change guest appearance after logout",
+        "Newer socket settings survive an older PATCH while sparse local edits stay visible",
+        "In-flight sparse edits overlay remote events and survive a failed transport restart",
+        "Old session and origin cannot reconcile or block a new account request",
+        "Preview leaves server unchanged, unchanged explicit save retains Genius source",
+        "Edited Genius lyrics save user text, failure and invalid links preserve draft",
+        "Changed account and dismissed editor ignore a late preview",
+        "Large public SoundCloud artwork preserves metadata URL and query",
+        "Unrelated or unsafe artwork URLs are never rewritten",
+        "Cover light freezes on pause, hidden lifecycle, TickerMode and reduced motion",
+        "Genius editor narrow phone at 125 percent text scale",
+        "Genius editor light at 390.0",
+        "Failed high-resolution artwork retries the original then settles",
+        "Genius editor dark at 390.0",
+        "Live custom palette and controls fit width 320.0",
+        "Genius editor amoled at 390.0",
+        "Genius editor light at 1280.0",
+        "Genius editor dark at 1280.0",
+        "Genius editor amoled at 1280.0",
+        "Live custom palette and controls fit width 390.0",
+        "Bounded chromatic sample, contrast, basic auto preference and six translated labels",
+        "Tiny image decode returns real colour; canceled cached callback cannot publish",
+        "Permitted external source resolves before provider choice and retains its descriptor in current/queue",
+        "Extensionless SoundCloud descriptor uses native HLS with own EQ path and no offline permission",
+        "Metadata alone does not grant native playback or forward credentials to a CDN",
+        "Old server widget descriptors are rejected and loading resets on failure",
+        "Autonomous playback never falls back to cloud when a cached file is missing",
+        "Actual auth, offline Lo-Fi, profile and settings fit width 320.0 without setup copy",
+        "Cached permitted audio plays without resolving an online embedded descriptor",
+        "Cached native decoder failure resolves once and preserves paused position and queue",
+        "Offline decoder failure preserves the download and never resolves online",
+        "A failed fresh source after cache recovery is not retried indefinitely",
+        "Pause cancels source resolution before late native loading or playback",
+        "Live custom palette and controls fit width 768.0",
+        "Background visual suspension preserves real native completion and starts the next direct source",
+        "Download descriptor is restricted to the authenticated own origin",
+        "Provider cancellation during an outgoing pause cannot install a late document",
+        "Clearing an outgoing provider never clears a newer ready document",
+        "Actual anchored compact EQ fits dark 320.0 at125 percent font",
+        "Actual anchored compact EQ fits dark 390.0 at125 percent font",
+        "Concurrent downloads commit quota and manifest atomically",
+        "Successful manifest or HTML response is not saved as offline audio",
+        "Historical cached playlist is removed so normal playback resolves a fresh stream",
+        "Pinned downloads are preserved when quota is exhausted",
+        "Concurrent LRU accesses and manual pinning cannot lose metadata",
+        "Clearing private files cancels downloads and leaves no audio",
+        "Actual anchored compact EQ fits dark 1440.0 at125 percent font",
+        "Live custom palette and controls fit width 1280.0",
+        "System mode follows OS brightness and custom corners/density apply to real components",
+        "Actual anchored compact EQ fits amoled 320.0 at125 percent font",
+        "Actual anchored compact EQ fits amoled 390.0 at125 percent font",
+        "Actual auth, offline Lo-Fi, profile and settings fit width 390.0 without setup copy",
+        "Actual anchored compact EQ fits amoled 1440.0 at125 percent font",
+        "Actual anchored compact EQ fits light 320.0 at125 percent font",
+        "Account Connect mirrors remote playback and routes controls without local playback",
+        "Same installation and another runtime remains a remote output",
+        "Late Connect responses cannot replace new revisions and legacy 404 is immediate",
+        "Own-output Connect keeps saved volume while remote volume is only mirrored",
+        "Official provider document validates identities and carries no account token",
+        "Provider transport derives playing/time/ended from official callbacks, rejecting old generations",
+        "Actual anchored compact EQ fits light 390.0 at125 percent font",
+        "Actual anchored compact EQ fits light 1440.0 at125 percent font",
+        "Actual auth, offline Lo-Fi, profile and settings fit width 768.0 without setup copy",
+        "EQ actions update real controller, processing boundary and persisted custom curve",
+        "Native volume retains zero / one arc / two arc topology",
+        "Expanded desktop starts centered and discloses only the requested lyrics or queue",
+        "Sleeve reverse fits real long metadata, omits duplicate album and unknown duration",
+        "Connected playback, device controls and pinned room fit light Size(390.0, 844.0)",
+        "Actual auth, offline Lo-Fi, profile and settings fit width 1280.0 without setup copy",
+        "Vertical sleeve above transport retains dimensions and reachable controls Size(1440.0, 900.0)",
+        "Tray click modes preserve full and mini bounds and restore frame",
+        "Vertical sleeve above transport retains dimensions and reachable controls Size(1280.0, 650.0)",
+        "Vertical sleeve above transport retains dimensions and reachable controls Size(375.0, 812.0)",
+        "Fullscreen, real bounded queue gestures and scrolling at 320.0",
+        "Vertical sleeve above transport retains dimensions and reachable controls Size(320.0, 568.0)",
+        "Connected playback, device controls and pinned room fit light Size(1280.0, 900.0)",
+        "diagnostics scrub credentials, URLs, emails and local paths",
+        "Vertical sleeve above transport retains dimensions and reachable controls Size(812.0, 375.0)",
+        "real HTTP delivery deduplicates reports and clears the queue after ACK",
+        "Fullscreen, real bounded queue gestures and scrolling at 390.0",
+        "Connected playback, device controls and pinned room fit dark Size(390.0, 844.0)",
+        "Fullscreen, real bounded queue gestures and scrolling at 768.0",
+        "Full turn painted circle and paper corners stay within scene and clear heading",
+        "Connected playback, device controls and pinned room fit dark Size(1280.0, 900.0)",
+        "Fullscreen, real bounded queue gestures and scrolling at 1280.0",
+        "Connected playback, device controls and pinned room fit amoled Size(390.0, 844.0)",
+        "Search and lyric skeletons follow pending API work, without fake waits",
+        "Discord actual panel composes at Size(390.0, 844.0) in light with artwork and live state",
+        "External track accepts personal lyrics through the actual mobile editor",
+        "Discord actual panel composes at Size(1280.0, 1000.0) in light with artwork and live state",
+        "LRCLIB selection saves provider ID through the real editor at 320.0",
+        "Discord actual panel composes at Size(390.0, 844.0) in dark with artwork and live state",
+        "Connected playback, device controls and pinned room fit amoled Size(1280.0, 900.0)",
+        "LRCLIB selection saves provider ID through the real editor at 1280.0",
+        "Discord actual panel composes at Size(1280.0, 1000.0) in dark with artwork and live state",
+        "A mouse wheel adjusts volume within bounds rather than scrolling the page",
+        "Discord actual panel composes at Size(390.0, 844.0) in amoled with artwork and live state",
+        "Discord actual panel composes at Size(1280.0, 1000.0) in amoled with artwork and live state",
+        "Server Free lock has upgrade and no enabled connect or sharing controls",
+        "Disconnected, reconnect, unavailable, error and empty states are real and scoped",
+        "Disable and join privacy persist through server; unlink requires confirmation",
+        "Narrow Discord panel remains readable in en with 125 percent text",
+        "Narrow Discord panel remains readable in ru with 125 percent text",
+        "Narrow Discord panel remains readable in kk with 125 percent text",
+        "Narrow Discord panel remains readable in uk with 125 percent text",
+        "Narrow Discord panel remains readable in de with 125 percent text",
+        "Narrow Discord panel remains readable in es with 125 percent text",
+        "Public activity progresses locally without sending playback to Discord",
+        "Native presence loads server canonical output rather than local player",
+        "Older pending request cannot replace a new authoritative socket snapshot",
+        "Changing accounts during a request does not expose previous identity",
+        "Errors stay scoped and omit provider secrets; save waits for server",
+        "OAuth browser handoff refreshes actual server link when app resumes",
+        "Free server status is authoritative even with stale paid client profile",
+        "Disposed request completion does not notify or recreate status",
+        "Duration uses hours at the exact boundary and guards invalid values",
+        "Room access comes from the owner or explicit control grant",
+        "Authoritative timeline projects only while playing and clamps to duration",
+        "External metadata does not become downloadable music",
+        "Synchronized lyrics choose the preceding timed line",
+        "Server addresses reject credentials, paths and invalid schemes",
+        "Native API sends bearer separately and preserves server errors",
+        "Local volume preview touches native gain immediately with no storage or transport",
+        "Latest optimistic room shuffle survives an earlier failed command",
+        "Repeat failure rolls back, admin controls any room and ordinary jam pause remains individual",
+        "Changing output clears unfinished volume preview without committing it",
+        "Room pause is immediate and stale playing snapshot cannot restart pending pause",
+        "Held color writes preview only and persists final presentation once",
+        "Directories page beyond forty and refreshing loaded cards preserves independent admin pagination",
+        "Joining on a second client mirrors a room and remote volume targets the selected output",
+        "Account room adoption before socket connection does not claim output or start duplicate sound",
+        "Only the selected room output loads audio; a stale revision cannot reclaim it",
+        "Room listeners without control rights still adjust output volume but cannot change the room track",
+        "A room without an output owner stays a silent mirror and Listen here claims through a real room join",
+        "Session actions use real server results; failures do not remove rows and other-session logout preserves current",
+        "Late session responses cannot cross an account boundary; legacy missing routes are honest unavailable",
+        "Duplicate transfer taps serialize until the real response and refreshed ownership arrive",
+        "A room transfer command adopts participation then awaits ready playback without sending room-wide commands",
+        "Failed room-source readiness does not retain provisional ownership",
+        "A transfer rollback pause cancels a delayed source instead of allowing late autoplay or an obsolete ACK",
+        "Native requests explicitly distinguish the app from a browser without carrying callback keys",
+        "Returning from OAuth refreshes actual connections instead of assuming the browser completed sign-in",
+        "Ordinary fullscreen fits fixed cover and transport Size(375.0, 812.0)",
+        "Actual editor curve preserves endpoints and stays within legal gains",
+        "User radius changes the interpolated shape without moving exact handles",
+        "Ordinary fullscreen fits fixed cover and transport Size(1440.0, 900.0)",
+        "Compact Connect contains real active controls and opens at its measured anchor",
+        "My rooms includes highlighted active non-owned room and informative discovery",
+        "Native volume drag previews actual gain but only commits once",
+        "Wheel gain keeps draft while parent receives immediate preview then commits once",
+        "Appearance holds real pointer and color focus until final commit",
+        "Hardware center frequencies interpolate the shared curve in logarithmic space",
+        "Sparse processing changes preserve synced bands and reject invalid values",
+        "Older two-theme settings migrate without losing palettes or resetting processing",
+        "Removing current queue item lets actual completed event advance to first remainder",
+        "Transfer single flight retains old output and clears on success",
+        "Failed transfer releases pending and preserves previous selection",
+        "Room queue and modes use authoritative commands and permissions",
+        "Snapshots and remote state retain modes without clobbering legacy state",
+        "Queue edits preserve active playback identity and support add/remove/reorder",
+        "Mini thumbnail URLs lower resolution while full cover remains large",
+        "Long slider drag sends zero intermediate requests and one final commit",
+        "Wheel settles once and changing scope cancels an unfinished command",
+        "Real device controls and session security compose at Size(390.0, 844.0) in light",
+        "App font manifest maps six genuine static faces with matching metadata",
+        "Actual registered rounded bold outlines render heavier than normal",
+        "Manrope default registers genuine regular and extra-bold outlines",
+        "Queue artwork is playable, removal collapses lower rows and add uses real catalog",
+        "Queue keyboard alternative moves and listeners cannot edit",
+        "Room avatars show three plus remainder from real playing devices",
+        "Connect picker shows Chrome mark, actual output and one pending handoff",
+        "Cover has scene headroom without dynamic scale or height-based shrink",
+        "cold action is consumed once; unknown commands and foreign arguments do not dispatch",
+        "progress/heartbeat notifications with identical state do not rewrite launcher",
+        "slow platform write coalesces to newest track and clear drops queued metadata",
+        "pin only supports the two real provider variants",
+        "all six locales ship every widget instruction and accessibility label",
+        "Pending selection is immediate and error resets transport before source ACK",
+        "Actual long-press queue drag moves the stored queue",
+        "Tiny waveform animates only while playing and visible",
+        "Real device controls and session security compose at Size(1280.0, 900.0) in light",
+        "media-session widget custom actions use existing account transport and like handlers",
+        "signed-out, stale account and unknown commands never reach playback",
+        "room listener cannot skip/start Wave; jam listener may toggle existing output",
+        "Wave uses backend recommendations; a response after account switch cannot start music",
+        "Focused player dark 1440.0 at125 percent, vertical listening column, preset menu and themed corners",
+        "Real device controls and session security compose at Size(390.0, 844.0) in dark",
+        "LAN controllers mirror, control and transfer one output without cloud requests; missing cache retains sender",
+        "Focused player dark 1280.0 at125 percent, vertical listening column, preset menu and themed corners",
+        "AEAD authenticates direction, sequence, session and refuses replay",
+        "Invitations reject public origins, invalid keys and expiry",
+        "Real sockets pair, forward to the requesting peer, broadcast and revoke trust",
+        "Account mismatch and device limits are rejected during pairing",
+        "Real device controls and session security compose at Size(1280.0, 900.0) in dark",
+        "Focused player dark 390.0 at125 percent, vertical listening column, preset menu and themed corners",
+        "LAN invitation, QR and trusted peers fit320 at125 percent en",
+        "LAN invitation, QR and trusted peers fit320 at125 percent ru",
+        "LAN invitation, QR and trusted peers fit320 at125 percent kk",
+        "Focused player dark 320.0 at125 percent, vertical listening column, preset menu and themed corners",
+        "LAN invitation, QR and trusted peers fit320 at125 percent uk",
+        "LAN invitation, QR and trusted peers fit320 at125 percent de",
+        "Real device controls and session security compose at Size(390.0, 844.0) in amoled",
+        "LAN invitation, QR and trusted peers fit320 at125 percent es",
+        "Warm reference layout fits width 320.0 with reduced motion",
+        "Warm reference layout fits width 390.0 with reduced motion",
+        "LAN trust removal confirms and disconnect affects local mode only",
+        "Warm reference layout fits width 768.0 with reduced motion",
+        "Warm reference layout fits width 1280.0 with reduced motion",
+        "Focused player amoled 1440.0 at125 percent, vertical listening column, preset menu and themed corners",
+        "Real device controls and session security compose at Size(1280.0, 900.0) in amoled",
+        "Focused player amoled 1280.0 at125 percent, vertical listening column, preset menu and themed corners",
+        "Focused player amoled 390.0 at125 percent, vertical listening column, preset menu and themed corners",
+        "All six offline catalogs have identical complete keys and interpolation parameters",
+        "English fallback, regional locales, plural forms and localized numbers/dates are real",
+        "Language persists for guests and account offline edits stay sparse across stale revisions",
+        "Late region results cannot replace manual choices or another account scope",
+        "Focused player amoled 320.0 at125 percent, vertical listening column, preset menu and themed corners",
+        "Play morph reverses without resizing its hitbox and settles immediately offscreen",
+        "Unified light slider is touch usable and disabled control does not seek",
+        "Unified dark slider is touch usable and disabled control does not seek",
+        "Unified amoled slider is touch usable and disabled control does not seek",
+        "Focused player light 1440.0 at125 percent, vertical listening column, preset menu and themed corners",
+        "Focused player light 1280.0 at125 percent, vertical listening column, preset menu and themed corners",
+        "Guard accepts only own-server app challenges or a manual code",
+        "Energy follows OS and low battery, remembers override and stops background polling",
+        "Offline manifest, pinned audio, artwork and lyrics survive a fresh cache instance",
+        "Pinning an older audio-only cache adds durable art without re-downloading audio",
+        "Forged manifest paths never read or delete files outside the cache",
+        "Saved playback, next and repeat stay local despite stale room and remote output",
+        "Guard confirmation cannot cross an account change and does not approve external QR",
+        "Queued resolver can be cancelled; duplicate saves share one request and permissions remain required",
+        "Focused player light 390.0 at125 percent, vertical listening column, preset menu and themed corners",
+        "Explicit uncached catalog play leaves local mode after an outage",
+        "Cold start restores scoped account library and saved music while server is unreachable",
+        "Listening polish shell and typed discovery dark 1440.0 at125%",
+        "Focused player light 320.0 at125 percent, vertical listening column, preset menu and themed corners",
+        "Native preset keyboard opens/selects without changing track, slider touch overlay is quiet",
+        "The actual guest language picker changes Flutter locale and persists offline",
+        "Listening polish shell and typed discovery dark 1100.0 at125%",
+        "Actual en auth, home, settings and player at width 320.0 preserve music titles",
+        "Listening polish shell and typed discovery dark 390.0 at125%",
+        "Online re-entry refreshes same-track lyrics once despite comments outage and ticks",
+        "Actual en auth, home, settings and player at width 390.0 preserve music titles",
+        "Listening polish shell and typed discovery dark 320.0 at125%",
+        "Actual en auth, home, settings and player at width 1280.0 preserve music titles",
+        "Listening polish shell and typed discovery amoled 1440.0 at125%",
+        "Secondary routes and keyboard fit 320.0 light",
+        "Actual ru auth, home, settings and player at width 320.0 preserve music titles",
+        "Listening polish shell and typed discovery amoled 1100.0 at125%",
+        "Actual ru auth, home, settings and player at width 390.0 preserve music titles",
+        "Listening polish shell and typed discovery amoled 390.0 at125%",
+        "Large-text small-phone auth segment shows whole label and activates registration",
+        "Actual kk auth, home, settings and player at width 320.0 preserve music titles",
+        "Secondary routes and keyboard fit 375.0 dark",
+        "Listening polish shell and typed discovery amoled 320.0 at125%",
+        "Actual kk auth, home, settings and player at width 390.0 preserve music titles",
+        "Large-text small-phone energy heading has no orphan fragment",
+        "Actual uk auth, home, settings and player at width 320.0 preserve music titles",
+        "Listening polish shell and typed discovery light 1440.0 at125%",
+        "Actual uk auth, home, settings and player at width 390.0 preserve music titles",
+        "Secondary routes and keyboard fit 768.0 amoled",
+        "Listening polish shell and typed discovery light 1100.0 at125%",
+        "Actual de auth, home, settings and player at width 320.0 preserve music titles",
+        "Actual de auth, home, settings and player at width 390.0 preserve music titles",
+        "Listening polish shell and typed discovery light 390.0 at125%",
+        "Actual de auth, home, settings and player at width 1280.0 preserve music titles",
+        "Listening polish shell and typed discovery light 320.0 at125%",
+        "Secondary routes and keyboard fit 938.0 amoled",
+        "Actual es auth, home, settings and player at width 320.0 preserve music titles",
+        "Compact synchronized lyrics show two separate rows; cover menu closes on selection/Escape",
+        "Actual es auth, home, settings and player at width 390.0 preserve music titles",
+        "Preset pointer focus has no ring; keyboard focus uses a quiet background",
+        "Six language new labels and custom primary outline icons are present",
+        "Native branded home/player/lyrics/queue fit 320.0 light",
+        "Compact window reserves visible official source controls",
+        "Secondary routes and keyboard fit 1440.0 light",
+        "background Connect bridge sends no credentials and respects a system notification stop",
+        "payload-free invalidations retain names and share a refresh with one trailing update",
+        "an old account response cannot replace a new account directory",
+        "independent snapshots preserve local media, repeat, shuffle and wave preferences",
+        "cloud transfer exits LAN before issuing one scoped account command",
+        "phone local output stays full volume, remote volume remains independent and notification likes are scoped to their track",
+        "Windows displays QR while mobile sign-in is conventional",
+        "Native branded home/player/lyrics/queue fit 375.0 dark",
+        "Guard camera denial exposes manual fallback and expires pending approval",
+        "Native email registration and login are real fields at Size(320.0, 740.0)",
+        "Native email registration and login are real fields at Size(390.0, 844.0)",
+        "Current/next lyric rail remains present with 3D cover on phone",
+        "Current/next lyric rail remains present with 2D cover on phone",
+        "Native email registration and login are real fields at Size(1280.0, 860.0)",
+        "Saved cover and accent use durable files; energy removes expensive visuals",
+        "Startup belongs to actual initialization state",
+        "Idle preview adopts its own playback, then follows next track metadata",
+        "Legacy CAPTCHA server is an honest browser fallback",
+        "Independent Connect active remote row retains its own song",
+        "Native branded home/player/lyrics/queue fit 768.0 amoled",
+        "Phone mini player is 68px with 44px touch targets and vector brand",
+        "Compact desktop lyrics fit above seek and window grows only when present",
+        "Tray quick player and frameless mini fit light, wheel changes queue",
+        "Native loading clock stays 1200ms at custom appearance speed",
+        "Track content animation uses the incoming queue direction",
+        "Loading and offline empty collection remain navigable",
+        "Tray quick player and frameless mini fit dark, wheel changes queue",
+        "Tray quick player and frameless mini fit amoled, wheel changes queue",
+        "Real phone audio policy hides local volume and keeps desktop remote control",
+        "Opt-in two-line synced preview fits Size(320.0, 568.0) with pinned controls",
+        "Desktop bottom transport stays compact with or without lyric rail",
+        "Next and previous animate metadata in opposite directions",
+        "mpv applies prepared initial position exactly once and ignores paused/reset completion",
+        "Windows start waits for decoded progress before confirming playback",
+        "real silence remains still while ordinary measured music receives a stronger dynamic response",
+        "Wide desktop restores cover beside controls and CD has an opaque tray",
+        "Physical loading/listening cycle ignores appearance speed 0.5",
+        "Physical loading/listening cycle ignores appearance speed 1.0",
+        "Physical loading/listening cycle ignores appearance speed 2.0",
+        "Opt-in two-line synced preview fits Size(375.0, 812.0) with pinned controls",
+        "Native branded home/player/lyrics/queue fit 938.0 dark",
+        "Lyric intro uses the media clock and seeks cancel or restore its cue",
+        "Windows native property bridge applies finite DSP only to the selected music output and clears it on disable",
+        "Rejected native DSP clears the filter and restores requested volume",
+        "Taste persists catalogue selections and explicit skip completes with zero artists",
+        "A late taste response cannot populate a different account scope",
+        "Typography remains bounded and free accessibility edits do not require detailed customization",
+        "Plan rejection restores authoritative appearance and does not queue an endless retry",
+        "Jam listener toggles its own pause using the REST endpoint without host transport permissions",
+        "Mini lyric rail changes from 3 to 2 to 1 then current and next without its own timer",
+        "Playlist visibility uses PATCH and verifies the returned public state",
+        "Shared vector gently enters/exits real Play/Pause with unchanged footprint, inherited ink and semantics",
+        "Reduced motion, OS motion, hidden route and paused lifecycle are static; resume restarts and disposal cleans tickers",
+        "Privacy switch sends only its accepted boolean and reloads authoritative server state",
+        "Full lyric depth and entry transition fit 390.0 viewport",
+        "Friend request accept/decline use real request identifiers and explicit boolean",
+        "Appearance speed leaves the physical vector cycle and geometry unchanged",
+        "Failed account deletion retains private account state and displays an error",
+        "Unavailable optional endpoint remains an honest error with retry and no counters",
+        "Native branded home/player/lyrics/queue fit 1440.0 dark",
+        "Full lyric depth and entry transition fit 1440.0 viewport",
+        "Admin release form is visible only for configured owner rights",
+        "Saved remains reachable offline, separates pin/cache and selects only saved session",
+        "Desktop bottom lyrics belong to metadata and do not grow the transport",
+        "Compact native lyric rail fits the144px window at125percent text",
+        "native preparation shares work and keeps current metadata",
+        "native preparation drops rejected descriptors and scopes cache to account and server",
+        "CD lid retains opaque reverse and all four thickness edges through full rotation",
+        "Real source resolution and active buffering drive shared vector; ready/paused/error/cancel clear it",
+        "Phone Guard accepts manual fallback and requires explicit target confirmation",
+        "Overflow scrolls after start pause; fitting/reduced/hidden text stays still with complete semantics",
+        "Loading cover breathes only while busy; reduced/TickerMode stable and disposal cancels ticker",
+        "Project control vectors retain bounded geometry at icon sizes",
+        "Journal preserves canonical other-device membership and cover against stale snapshot",
+        "Cover acknowledgement preserves newer edits and cannot resurrect a deleted playlist",
+        "Journal failed edit retains later intent and pending refresh overlay; cache is confirmed",
+        "Energy setting is device local and coherent with settings/search/Connect",
+        "Controller likes notify immediately, serialize final intent and rollback only failed request",
+        "Controller independent entity writes do not queue a like behind a slow playlist",
+        "Controller membership uses atomic encoded PUT, retains pending during refresh and persists confirmed only",
+        "Controller create draft settles once; rejected create rolls back and stale account reply is ignored",
+        "Create from a non-library search track seeds playable metadata before and after acknowledgement",
+        "Logged-out phone has no displayed QR and retains branded sign-in",
+        "Live EQ outer, chart, speed and preset radius; quiet keyboard focus dark",
+        "Controller ignores GET begun before canonical membership ack in both refresh paths",
+        "Independent short playlist picker with multiple long-name memberships 320.0",
+        "Independent short playlist picker with multiple long-name memberships 375.0",
+        "Independent short playlist picker with multiple long-name memberships 1280.0",
+        "Entire native cover at125% dark Size(1440.0, 950.0) flat/3D/extreme tilt",
+        "native source renews its descriptor once and preserves the requested position",
+        "a hanging native decoder has a finite deadline and only one source renewal",
+        "source failure recovery preserves user auth/network/autoplay decisions",
+        "a failed descriptor identifies the pending queue item before the decoder loads",
+        "Playlist picker, optimistic draft and failure keep inputs and fit 320.0",
+        "Playlist picker, optimistic draft and failure keep inputs and fit 375.0",
+        "Playlist picker, optimistic draft and failure keep inputs and fit 1280.0",
+        "Entire native cover at125% dark Size(1440.0, 600.0) flat/3D/extreme tilt",
+        "Playlist editor keeps delete confirmation mounted through optimistic rollback",
+        "Entire native cover at125% dark Size(390.0, 700.0) flat/3D/extreme tilt",
+        "Public spotify import selects normalized paged IDs and retries one intent at 320.0",
+        "Entire native cover at125% dark Size(320.0, 568.0) flat/3D/extreme tilt",
+        "Public soundcloud import selects normalized paged IDs and retries one intent at 375.0",
+        "Live EQ outer, chart, speed and preset radius; quiet keyboard focus amoled",
+        "Independent actual native EQ pointer drag",
+        "Public yandex import selects normalized paged IDs and retries one intent at 375.0",
+        "Entire native cover at125% amoled Size(1440.0, 950.0) flat/3D/extreme tilt",
+        "Independent short phone cover after actual image decoding",
+        "Refinement20 prominent device and opaque cover fit 320.0",
+        "Public youtube import selects normalized paged IDs and retries one intent at 1280.0",
+        "Refinement20 prominent device and opaque cover fit 375.0",
+        "Entire native cover at125% amoled Size(1440.0, 600.0) flat/3D/extreme tilt",
+        "a mid-song stream error reloads once at its position and never skips the queue",
+        "Play retries a failed source without changing the selected track or queue",
+        "network, decoder and expiring capabilities are not permanent song failures",
+        "local diagnostic journal survives reporter restart and excludes credentials",
+        "Public import paging preserves deselection while selecting only newly seen normalized IDs",
+        "Entire native cover at125% amoled Size(390.0, 700.0) flat/3D/extreme tilt",
+        "Public likes kind defaults to likes destination with exposed count",
+        "Refinement20 prominent device and opaque cover fit 938.0",
+        "Entire native cover at125% amoled Size(320.0, 568.0) flat/3D/extreme tilt",
+        "Public import empty, retry, stale query, account switch and keyboard remain safe",
+        "Live EQ outer, chart, speed and preset radius; quiet keyboard focus light",
+        "Refinement20 prominent device and opaque cover fit 1440.0",
+        "Entire native cover at125% light Size(1440.0, 950.0) flat/3D/extreme tilt",
+        "Refinement20 import pages, likes destination and idempotent retry remain usable on phone",
+        "Entire native cover at125% light Size(1440.0, 600.0) flat/3D/extreme tilt",
+        "Refinement20 physical sleeve hover extends record and full turn keeps opaque backside",
+        "Reference sleeve keeps logo and fixed dimensions through front back edge 1440.0x900.0",
+        "Entire native cover at125% light Size(390.0, 700.0) flat/3D/extreme tilt",
+        "Refinement20 equalizer curve and continuous thumb agree during real pointer drag",
+        "Quick Connect has one device action and no duplicate transport 320.0",
+        "Entire native cover at125% light Size(320.0, 568.0) flat/3D/extreme tilt",
+        "Persisted compact EQ highlight survives closing and toggles off with DSP",
+        "Reference sleeve keeps logo and fixed dimensions through front back edge 375.0x812.0",
+        "Lyrics and queue use same active icon treatment and respect motion off",
+        "Actual room completion sends validated repeat and current track/revision identity",
+        "Quick Connect has one device action and no duplicate transport 375.0",
+        "Reference sleeve keeps logo and fixed dimensions through front back edge 320.0x568.0",
+        "Real resolving success/error/cancel resets loading; user seeks blocked, internal sync preserved",
+        "Season choice is opt-in, month auto detection and sparse edits preserve choices",
+        "Guest seasonal settings survive restart and stay separate from another account",
+        "Summer light is diffused, restrained, gently moving and intensity aware",
+        "Quick Connect has one device action and no duplicate transport 1440.0",
+        "Reference sleeve keeps logo and fixed dimensions through front back edge 812.0x375.0",
+        "Seasonal ticker stops/disappears for reduced motion, TickerMode and background; disabled preview stays still",
+        "Listening wave remains bounded and phase does not rewind after ninety seconds",
+        "Season settings narrow125 percent render and labels en",
+        "production media service configuration constructs with assertions on",
+        "Season settings narrow125 percent render and labels ru",
+        "Reference mouse drag starts immediately and hover extends disc without resizing",
+        "Season settings narrow125 percent render and labels kk",
+        "Season settings narrow125 percent render and labels uk",
+        "Season settings narrow125 percent render and labels de",
+        "Season settings narrow125 percent render and labels es",
+        "Native and QR challenges accept the server epoch and legacy ISO",
+        "Volume survives recreation, preserves mute and serializes changes",
+        "Expanded source/season single layer320/125 en",
+        "Expanded source/season single layer320/125 ru",
+        "Expanded source/season single layer320/125 kk",
+        "Expanded source/season single layer320/125 uk",
+        "Expanded source/season single layer320/125 de",
+        "Expanded source/season single layer320/125 es",
+        "Mode and mood preview preserves compatibility and ignores an older result",
+        "Native eight colour batches match real web palette in six colour/theme combinations",
+        "Actual native folded renderer stays transparent outside field; colour does not move geometry; inputs move field",
+        "Actual native field screenshots cover light dark AMOLED, both accents and widths",
+        "Native EQ paints complete plus/minus12 at125 percent without changing curve handles",
+        "native ranked wave starts first, prepares next once and extends natural end with mode/mood",
+        "late native wave result cannot pause or replace a newer selection",
+        "empty unfamiliar tail stops honestly instead of recycling a known track",
+        "Flutter Bloom matches actual exported web equations at varied pointer and audio states",
+        "Only measured valid envelopes drive energy and pause always silences the response",
+        "Native wave separates four modes and mood, uses actual pending logo at 375.0",
+        "Real waveform HTTP response is cached per account and reloads offline",
+        "A delayed envelope cannot leak into another session, account cache or visible field",
+        "Local rain is decodable non-clipping mono PCM with a continuous loop boundary",
+        "Widget previews use actual metadata, responsive controls, all states and six locales125 without overflow",
+        "Native wave separates four modes and mood, uses actual pending logo at 1440.0",
+        "Native genre selector persists controlled favorites and preserves automatic taste",
+        "Native EQ curve responds to radius setting without sharp peak at38",
+        "Native cover reflection follows rotation with fixed artwork size"
+      ],
+      "beforeLatestSteering": {
+        "fullSuitePassed": 465,
+        "sourceChangedAfterFullRun": true,
+        "log": "parity24-native-tests-final.log",
+        "sourceSha256": "4dcd213b29f08ce374ce7386308cee949147dd784cdef71b44a4f4b7686e1f40"
+      },
+      "currentAffectedRegressions": [
+        {
+          "log": "parity24-ui-steering-tests.log",
+          "passed": 28
+        },
+        {
+          "log": "parity24-current-core-regression.log",
+          "passed": 10
+        }
+      ],
+      "verificationScope": "Full465 baseline before latest collapsed-lyrics and wave tuning; 33 distinct current affected tests passed across28 UI/wave plus10 core checks (5 repeated wave tests). No second broad run.",
+      "analyzeCurrentAffected": "parity24-ui-steering-analyze.log",
+      "distinctAffectedTests": 33,
+      "overlappingWaveTestsRepeated": 5,
+      "sourceFilesChangedAfterFullSuite": [
+        "lib/core/wave_math.dart",
+        "lib/services/desktop.dart",
+        "lib/ui/app.dart",
+        "lib/ui/desktop_player.dart",
+        "lib/ui/native19_desktop_transport.dart",
+        "lib/ui/widgets.dart"
+      ],
+      "currentSourceSha256": "dee0e46201edd73a19ef46f855f86bbd7c5a1c77e06fd4a5ca299bbaeb9cca80"
+    },
+    "baselineSilentMpvProof": {
+      "passed": true,
+      "dllSha256": "d5f0694b08c124e785d858d00082f3e3b158dd9138bfc48c0382bf1eb443a5fc",
+      "ownHlsFixture": true,
+      "physicalAudioUsed": false,
+      "pausedInitialSeek": 0.999986,
+      "handoffSecondSeekAndDecodedProgress": 2.100414,
+      "afterEffectClearClockAdvanced": 2.93239,
+      "memoryCacheHasNoFileCacheError": true,
+      "effectErrors": [],
+      "logs": [
+        {
+          "level": "v",
+          "prefix": "ffmpeg",
+          "text": "Opening http://127.0.0.1:54732/own.m3u8"
+        },
+        {
+          "level": "v",
+          "prefix": "ffmpeg",
+          "text": "Could not set AVOption tls_verify='0'"
+        },
+        {
+          "level": "v",
+          "prefix": "ffmpeg",
+          "text": "Mime-type: ''"
+        },
+        {
+          "level": "v",
+          "prefix": "demux",
+          "text": "Trying demuxers for level=normal."
+        },
+        {
+          "level": "v",
+          "prefix": "lavf",
+          "text": "Found 'hls' at score=100 size=238."
+        },
+        {
+          "level": "v",
+          "prefix": "ffmpeg/demuxer",
+          "text": "hls: Skip ('#EXT-X-VERSION:3')"
+        },
+        {
+          "level": "v",
+          "prefix": "ffmpeg/demuxer",
+          "text": "hls: Opening 'http://127.0.0.1:54732/part-000.ts' for reading"
+        },
+        {
+          "level": "v",
+          "prefix": "lavf",
+          "text": "Could not set AVOption tls_verify='0'"
+        },
+        {
+          "level": "v",
+          "prefix": "lavf",
+          "text": "avformat_find_stream_info() finished after 0 bytes."
+        },
+        {
+          "level": "v",
+          "prefix": "demux",
+          "text": "Detected file format: hls (libavformat)"
+        },
+        {
+          "level": "v",
+          "prefix": "cplayer",
+          "text": "Opening done: http://127.0.0.1:54732/own.m3u8"
+        },
+        {
+          "level": "v",
+          "prefix": "lavf",
+          "text": "select track 0"
+        },
+        {
+          "level": "info",
+          "prefix": "cplayer",
+          "text": "(+) Audio --aid=1 (aac 1ch 44100Hz)"
+        },
+        {
+          "level": "v",
+          "prefix": "ad",
+          "text": "Codec list:"
+        },
+        {
+          "level": "v",
+          "prefix": "ad",
+          "text": "aac - (null)"
+        },
+        {
+          "level": "v",
+          "prefix": "ad",
+          "text": "aac_fixed (aac) - (null)"
+        },
+        {
+          "level": "v",
+          "prefix": "ad",
+          "text": "Opening decoder aac"
+        },
+        {
+          "level": "v",
+          "prefix": "ad",
+          "text": "Requesting 1 threads for decoding."
+        },
+        {
+          "level": "v",
+          "prefix": "ad",
+          "text": "Selected codec: aac ((null))"
+        },
+        {
+          "level": "v",
+          "prefix": "af",
+          "text": "User filter list:"
+        },
+        {
+          "level": "v",
+          "prefix": "af",
+          "text": "(empty)"
+        },
+        {
+          "level": "v",
+          "prefix": "cplayer",
+          "text": "Starting playback..."
+        },
+        {
+          "level": "v",
+          "prefix": "af",
+          "text": "[in] 44100Hz mono 1ch floatp"
+        },
+        {
+          "level": "v",
+          "prefix": "af",
+          "text": "[userspeed] 44100Hz mono 1ch floatp"
+        },
+        {
+          "level": "v",
+          "prefix": "af",
+          "text": "[userspeed] (disabled)"
+        },
+        {
+          "level": "v",
+          "prefix": "af",
+          "text": "[convert] 44100Hz mono 1ch floatp"
+        },
+        {
+          "level": "v",
+          "prefix": "ao",
+          "text": "Trying audio driver 'null'"
+        },
+        {
+          "level": "v",
+          "prefix": "ao/null",
+          "text": "requested format: 44100 Hz, mono channels, floatp"
+        },
+        {
+          "level": "v",
+          "prefix": "ao/null",
+          "text": "Channel layouts:"
+        },
+        {
+          "level": "v",
+          "prefix": "ao/null",
+          "text": "- anything"
+        },
+        {
+          "level": "v",
+          "prefix": "ao/null",
+          "text": "result: mono"
+        },
+        {
+          "level": "v",
+          "prefix": "ao/null",
+          "text": "device buffer: 8704 samples."
+        },
+        {
+          "level": "v",
+          "prefix": "ao/null",
+          "text": "using soft-buffer of 8820 samples."
+        },
+        {
+          "level": "info",
+          "prefix": "cplayer",
+          "text": "AO: [null] 44100Hz mono 1ch floatp"
+        },
+        {
+          "level": "v",
+          "prefix": "cplayer",
+          "text": "AO: Description: Null audio output"
+        },
+        {
+          "level": "v",
+          "prefix": "af",
+          "text": "[convert] (disabled)"
+        },
+        {
+          "level": "v",
+          "prefix": "af",
+          "text": "[out] 44100Hz mono 1ch floatp"
+        },
+        {
+          "level": "v",
+          "prefix": "cplayer",
+          "text": "audio ready"
+        },
+        {
+          "level": "v",
+          "prefix": "cplayer",
+          "text": "starting audio playback"
+        },
+        {
+          "level": "v",
+          "prefix": "cplayer",
+          "text": "playback restart complete @ -0.023220, audio=playing, video=eof (paused)"
+        },
+        {
+          "level": "v",
+          "prefix": "ffmpeg/demuxer",
+          "text": "hls: Opening 'http://127.0.0.1:54732/part-001.ts' for reading"
+        },
+        {
+          "level": "v",
+          "prefix": "ffmpeg/demuxer",
+          "text": "hls: Opening 'http://127.0.0.1:54732/part-002.ts' for reading"
+        },
+        {
+          "level": "v",
+          "prefix": "ffmpeg/demuxer",
+          "text": "hls: Opening 'http://127.0.0.1:54732/part-003.ts' for reading"
+        },
+        {
+          "level": "v",
+          "prefix": "ffmpeg/demuxer",
+          "text": "hls: Opening 'http://127.0.0.1:54732/part-004.ts' for reading"
+        },
+        {
+          "level": "v",
+          "prefix": "lavf",
+          "text": "EOF reached."
+        },
+        {
+          "level": "v",
+          "prefix": "lavf",
+          "text": "queuing seek to 2.400000"
+        },
+        {
+          "level": "v",
+          "prefix": "lavf",
+          "text": "cached range 0: 1.400000 <-> 9.410889 (bof=1, eof=1)"
+        },
+        {
+          "level": "v",
+          "prefix": "lavf",
+          "text": "...using this range for in-cache seek."
+        },
+        {
+          "level": "v",
+          "prefix": "lavf",
+          "text": "seeking stream 0 (audio) to packet 2.398467/2.398467"
+        },
+        {
+          "level": "v",
+          "prefix": "cplayer",
+          "text": "hr-seek, skipping to 1.000000"
+        },
+        {
+          "level": "v",
+          "prefix": "lavf",
+          "text": "EOF reached."
+        },
+        {
+          "level": "v",
+          "prefix": "cplayer",
+          "text": "audio ready"
+        },
+        {
+          "level": "v",
+          "prefix": "cplayer",
+          "text": "starting audio playback"
+        },
+        {
+          "level": "v",
+          "prefix": "cplayer",
+          "text": "playback restart complete @ 0.999986, audio=playing, video=eof (paused)"
+        },
+        {
+          "level": "v",
+          "prefix": "lavf",
+          "text": "queuing seek to 2.800000"
+        },
+        {
+          "level": "v",
+          "prefix": "lavf",
+          "text": "cached range 0: 1.400000 <-> 9.410889 (bof=1, eof=1)"
+        },
+        {
+          "level": "v",
+          "prefix": "lavf",
+          "text": "...using this range for in-cache seek."
+        },
+        {
+          "level": "v",
+          "prefix": "lavf",
+          "text": "seeking stream 0 (audio) to packet 2.793200/2.793200"
+        },
+        {
+          "level": "v",
+          "prefix": "cplayer",
+          "text": "hr-seek, skipping to 1.400000"
+        },
+        {
+          "level": "v",
+          "prefix": "cplayer",
+          "text": "Set property: pause=\"no\" -> 1"
+        },
+        {
+          "level": "v",
+          "prefix": "lavf",
+          "text": "EOF reached."
+        },
+        {
+          "level": "v",
+          "prefix": "cplayer",
+          "text": "audio ready"
+        },
+        {
+          "level": "v",
+          "prefix": "cplayer",
+          "text": "starting audio playback"
+        },
+        {
+          "level": "v",
+          "prefix": "cplayer",
+          "text": "playback restart complete @ 1.399980, audio=playing, video=eof"
+        },
+        {
+          "level": "v",
+          "prefix": "ao/null",
+          "text": "starting AO"
+        },
+        {
+          "level": "v",
+          "prefix": "user_filter_wrapper",
+          "text": "Setting option 'format' = 'floatp' (flags = 0)"
+        },
+        {
+          "level": "v",
+          "prefix": "user_filter_wrapper",
+          "text": "Setting option 'graph' = 'equalizer=f=31:t=o:w=1:g=2.00,equalizer=f=62:t=o:w=1:g=2.00,equalizer=f=125:t=o:w=1:g=2.00,equalizer=f=250:t=o:w=1:g=2.00,equalizer=f=500:t=o:w=1:g=2.00,equalizer=f=1000:t=o:w=1:g=2.00,equalizer=f=2000:t=o:w=1:g=2.00,equalizer=f=4000:t=o:w=1:g=2.00,equalizer=f=8000:t=o:w=1:g=2.00,equalizer=f=16000:t=o:w=1:g=2.00' (flags = 0)"
+        },
+        {
+          "level": "v",
+          "prefix": "af",
+          "text": "User filter list:"
+        },
+        {
+          "level": "v",
+          "prefix": "af",
+          "text": "format (format.00)"
+        },
+        {
+          "level": "v",
+          "prefix": "af",
+          "text": "lavfi (lavfi.00)"
+        },
+        {
+          "level": "v",
+          "prefix": "cplayer",
+          "text": "Set property: af=\"format=format=floatp,lavfi=[equalizer=f=31:t=o:w=1:g=2.00,equalizer=f=62:t=o:w=1:g=2.00,equalizer=f=125:t=o:w=1:g=2.00,equalizer=f=250:t=o:w=1:g=2.00,equalizer=f=500:t=o:w=1:g=2.00,equalizer=f=1000:t=o:w=1:g=2.00,equalizer=f=2000:t=o:w=1:g=2.00,equalizer=f=4000:t=o:w=1:g=2.00,equalizer=f=8000:t=o:w=1:g=2.00,equalizer=f=16000:t=o:w=1:g=2.00]\" -> 1"
+        },
+        {
+          "level": "v",
+          "prefix": "af",
+          "text": "[format] 44100Hz mono 1ch floatp"
+        },
+        {
+          "level": "v",
+          "prefix": "af",
+          "text": "[lavfi] 44100Hz mono 1ch floatp"
+        },
+        {
+          "level": "v",
+          "prefix": "af",
+          "text": "User filter list:"
+        },
+        {
+          "level": "v",
+          "prefix": "af",
+          "text": "(empty)"
+        },
+        {
+          "level": "v",
+          "prefix": "cplayer",
+          "text": "Set property: af=\"\" -> 1"
+        },
+        {
+          "level": "v",
+          "prefix": "cplayer",
+          "text": "Set property: pause=\"no\" -> 1"
+        },
+        {
+          "level": "v",
+          "prefix": "lavf",
+          "text": "queuing seek to 3.830634"
+        },
+        {
+          "level": "v",
+          "prefix": "lavf",
+          "text": "cached range 0: 1.400000 <-> 9.410889 (bof=1, eof=1)"
+        },
+        {
+          "level": "v",
+          "prefix": "lavf",
+          "text": "...using this range for in-cache seek."
+        },
+        {
+          "level": "v",
+          "prefix": "lavf",
+          "text": "seeking stream 0 (audio) to packet 3.814878/3.814878"
+        },
+        {
+          "level": "v",
+          "prefix": "cplayer",
+          "text": "hr-seek, skipping to 2.430634"
+        },
+        {
+          "level": "v",
+          "prefix": "lavf",
+          "text": "EOF reached."
+        },
+        {
+          "level": "v",
+          "prefix": "cplayer",
+          "text": "audio ready"
+        },
+        {
+          "level": "v",
+          "prefix": "cplayer",
+          "text": "starting audio playback"
+        },
+        {
+          "level": "v",
+          "prefix": "cplayer",
+          "text": "playback restart complete @ 2.430615, audio=playing, video=eof"
+        },
+        {
+          "level": "v",
+          "prefix": "ao/null",
+          "text": "starting AO"
+        }
+      ]
+    }
+  },
+  "design": {
+    "current": {
+      "checkedAt": "2026-10-14T20:49:34.231Z",
+      "verdict": "PASS",
+      "attempt": 2,
+      "supersedes": "work/qa/parity24-evaluator-verdict.json for collapsed lyric behavior only",
+      "reviewer": {
+        "independentAgent": true,
+        "provider": "same available model provider",
+        "externalProviderAvailable": false
+      },
+      "sources": [
+        {
+          "path": "apps/web/src/player-ui.tsx",
+          "sha256": "d8184a622460cd5697536281fbcd66021960b2d00166b86006d1bcc41824199b"
+        },
+        {
+          "path": "apps/web/src/lyric-timing.ts",
+          "sha256": "0ed4267eb7769eac605c7f5bb379f99a48346102af7e32b85030498125c360e0"
+        },
+        {
+          "path": "apps/web/src/album.tsx",
+          "sha256": "710d3cd7175b133b49a4156f82a87999527e335008c92400e7138d92c23f82a1"
+        },
+        {
+          "path": "apps/web/src/mini.tsx",
+          "sha256": "46ab6a86f22e5e3c5e6e0d697afa5bf022142cb048b89c3f1cde951156596098"
+        },
+        {
+          "path": "apps/web/src/focused-player.css",
+          "sha256": "ff7772af3f881414683c892de0c9e0342ab1ec3d4adfa251e1c40b1fd93d05e9"
+        },
+        {
+          "path": "apps/web/src/refinement21.css",
+          "sha256": "a8ef6552e9c13b1375d687680bc1064940427d5488b35835bee8d0972d31a160"
+        },
+        {
+          "path": "apps/web/src/reference-cover.css",
+          "sha256": "c92a38d741c57e87ad241cc2d2b406621f770d70362f5b645d0fd635502e27e7"
+        },
+        {
+          "path": "apps/web/src/cover-fit.ts",
+          "sha256": "4bfd503e665bccf54e8b2b2292ec4a428bd258959924dda55cb7eb4c4d3e571e"
+        },
+        {
+          "path": "apps/web/src/locales/de.json",
+          "sha256": "4c14099b461b1a27c764f47c22e5b5cff2887c28ce9a05a3e22b807a7aae7485"
+        },
+        {
+          "path": "apps/web/src/locales/en.json",
+          "sha256": "c460e35207ccb35ac1d404d0de9bb737744fcae9a3638e4622f8f5651f4a25a7"
+        },
+        {
+          "path": "apps/web/src/locales/es.json",
+          "sha256": "e6674ad7f0690b7e455d479e52b41d25b07c5726b08307149dc16cdef6aea97d"
+        },
+        {
+          "path": "apps/web/src/locales/kk.json",
+          "sha256": "6b65df4c1024e48f7589909fcf841b501a65d60005f3e15896c293d4606e6d28"
+        },
+        {
+          "path": "apps/web/src/locales/ru.json",
+          "sha256": "f7801439b69f461395606d7cf79e6ce1508c034bf75b19d6eee1d9fc5e9043ff"
+        },
+        {
+          "path": "apps/web/src/locales/uk.json",
+          "sha256": "912c2b46768b731ab03798dd4fb48406fff84338071715c9e7181d1793ea95d1"
+        },
+        {
+          "path": "apps/web/qa/lyric-timing.test.mjs",
+          "sha256": "5351071a07a1f74cbe25daf6c221dbc30bfe51336baceb2b8239d89da906b697"
+        },
+        {
+          "path": "apps/native/lib/ui/mini_lyrics.dart",
+          "sha256": "655b585fe0bf75e17236ee3d4d2a9e3c53d425c504ad0672ea4304ee05dd6377"
+        },
+        {
+          "path": "apps/native/lib/ui/lyric_timing.dart",
+          "sha256": "9113a520a94427b8c1b298411cff626569e3d393862ba87f8ece8e92de474479"
+        },
+        {
+          "path": "apps/native/lib/ui/player.dart",
+          "sha256": "88fc89e85a0e8b5c91b9386a9dd4ec8acc7a8cd85aed78745af78bec039c7f00"
+        },
+        {
+          "path": "apps/native/lib/ui/native19_desktop_transport.dart",
+          "sha256": "863ef8830d6bbd5404a6c7f89c5ee48da010a71721c951b901c2398ac316313b"
+        },
+        {
+          "path": "apps/native/lib/ui/album_stage.dart",
+          "sha256": "be10d566bf3c27fd1f909382807db53919b16177e515f91c474c80767f01e784"
+        },
+        {
+          "path": "apps/native/lib/l10n/ecosystem_polish_strings.dart",
+          "sha256": "01d6ac13fc68fe705a146691e3e921d8b978906c15cb25b982626b22aefd97c0"
+        },
+        {
+          "path": "apps/native/lib/services/desktop.dart",
+          "sha256": "6f9b921871fe92ec3e565788cd2a23f9a109e84850d27e73f6ea23dbb571f4b8"
+        },
+        {
+          "path": "apps/native/test/parity24_ui_test.dart",
+          "sha256": "eaffa520e86f9f52e0dd05442fcd267011747639c3bb5e24e5194856f3d971fc"
+        },
+        {
+          "path": "apps/native/test/parity23_ui_test.dart",
+          "sha256": "74ba760b3f1f244a56adee94f10178d6b0066b5f87411b7c5245205d25608105"
+        },
+        {
+          "path": "apps/web/src/wave-math.ts",
+          "sha256": "71c6743a3031eab95ee15f7797d68c7662b144bf0686d31f611df4b81b202d70"
+        },
+        {
+          "path": "apps/web/src/wave.tsx",
+          "sha256": "7173e79ed7fd47f172689df9a7278dd8291dea29118d01ddf5a948ce4ca7101f"
+        },
+        {
+          "path": "apps/native/lib/ui/desktop_player.dart",
+          "sha256": "148eb095125ead119bc4439c91638581a02ff33a6331f34177cea34ba42f0c3e"
+        },
+        {
+          "path": "apps/native/lib/ui/app.dart",
+          "sha256": "c7d33b30b661cd587a7736bbaf3d8f365ae78cf03bffa90a91880a4e793aa5ce"
+        },
+        {
+          "path": "apps/native/lib/ui/widgets.dart",
+          "sha256": "38ff1d8b6f4e1c841984a659b1d77d32f298ff146a27522099acd79d41ff71ce"
+        },
+        {
+          "path": "apps/native/lib/core/wave_math.dart",
+          "sha256": "1594245f7ff401e2399f63460061418d16e5248d285f25795db007ef53ca1d1e"
+        },
+        {
+          "path": "apps/native/test/wave_test.dart",
+          "sha256": "3aebe41e6ae784f2bd90368ec2e2f0b9b51bae9498f24aea19b31aa99b6b3450"
+        },
+        {
+          "path": "apps/native/test/fixtures/wave-math-parity.json",
+          "sha256": "7e60e3157cb1929abb0adc470d6449a44ff796927200f2d975d587409d93e16f"
+        },
+        {
+          "path": "apps/web/qa/wave24-response.test.mjs",
+          "sha256": "702495bae929d29c2cdf2ad145549ab91dfe5c80468016eedae6058607079164"
+        },
+        {
+          "path": "apps/web/src/vendor/halftone-bloom.ts",
+          "sha256": "c9a3b57f5dfd422cf313f91e3ecdbea768e8cb624f2ea2d0da70a7e34b49bc8f"
+        },
+        {
+          "path": "apps/web/src/ui.tsx",
+          "sha256": "5cf967c28e62f895d4c7ba63b83c53c04ac8578ce01375d1803beba130157f7b"
+        }
+      ],
+      "captures": [
+        {
+          "path": "work/qa/parity24-steering-eval-category-favorites.png",
+          "sha256": "9491ad25c8e8e02751c93250be886c25f2ce49367504582d807d8e482dd4df30"
+        },
+        {
+          "path": "work/qa/parity24-steering-eval-category-discovery.png",
+          "sha256": "fefb4435a490b2bf7e2487ac2f990f023cb0e238c6ccc9991244c3fb3db75f24"
+        },
+        {
+          "path": "work/qa/parity24-steering-eval-category-popular.png",
+          "sha256": "7bb0e6d7f1435bd18d5cd8232689b84341e808bc0d78ebbd08c623ea910835bd"
+        },
+        {
+          "path": "work/qa/parity24-steering-eval-category-keyboard.png",
+          "sha256": "b23b5f624c9a925049308d641928740bb1ef15d4c1e6779cd8e83d9ea097461a"
+        },
+        {
+          "path": "work/qa/parity24-steering-eval-footer-1440.png",
+          "sha256": "0ac847e5b97ce56ab9896bf7bfe7cef5d317071ca7aefd12c3958613bcebf48c"
+        },
+        {
+          "path": "work/qa/parity24-steering-eval-footer-768.png",
+          "sha256": "b7cfe2558e1dafd1c1acbb778eb0dd6206e9f80810c539d9f2ec092312692b58"
+        },
+        {
+          "path": "work/qa/parity24-steering-eval-footer-375.png",
+          "sha256": "b78bb56d035abe1ad7238e1e112dce9d5196ead0ab3f7a004ed1568ac8009e56"
+        },
+        {
+          "path": "work/qa/parity24-steering-eval-remote-1440.png",
+          "sha256": "e87f9630e0e022c94328602f85e03a355bfb637ce98e2d91770d28142321aca2"
+        },
+        {
+          "path": "work/qa/parity24-steering-eval-remote-375.png",
+          "sha256": "e328c12cd1fcc5c33469486b964d0a275f522a0b277bca2a144aee04d4a7b4e9"
+        },
+        {
+          "path": "work/qa/parity24-steering-eval-full-excerpt-1440.png",
+          "sha256": "4ea0c4bd529e8afb5ccbaf36c51b8c9d22448743210737e5daa444e6ddd7991c"
+        },
+        {
+          "path": "work/qa/parity24-steering-eval-full-lyrics-1440.png",
+          "sha256": "af28e946b65d27dd587e4f406ff86805ca22e69d755a660e7646a79c6c053258"
+        },
+        {
+          "path": "work/qa/parity24-steering-eval-intro-3.png",
+          "sha256": "daed7e18f8226e2d3549576cfb91c0a2b4843996bfd6e95bdb4206cd3ce171a5"
+        },
+        {
+          "path": "work/qa/parity24-steering-eval-web-bloom-0.png",
+          "sha256": "4f1d1ba8f6027ed62b7496070f405ca38d3fe66296c5c5b542f2c33b8e50cd32"
+        },
+        {
+          "path": "work/qa/parity24-steering-eval-web-bloom-10.png",
+          "sha256": "733b8985d0ff6a96ae66ce1b91e6c1f4deef0bbb7a22582006cdf4a2d8f9d75a"
+        },
+        {
+          "path": "work/qa/parity24-steering-eval-web-bloom-25.png",
+          "sha256": "0e921d32457cdeea417ebdda59e0888a2f1e6c9539f90f5ace4ee4ae9a3dd9a4"
+        },
+        {
+          "path": "work/qa/parity24-steering-eval-web-particles-0.png",
+          "sha256": "be9cd6e8dbd6f6ea5b90ddcf5f60eb0d7099a74dd1176a7311f7a5b4df87b10a"
+        },
+        {
+          "path": "work/qa/parity24-steering-eval-web-particles-10.png",
+          "sha256": "ccbfa6857877593f050d290b28267b6d6c9aef7118dd5d37db809eaa48e154db"
+        },
+        {
+          "path": "work/qa/parity24-steering-eval-web-particles-25.png",
+          "sha256": "ce2db73684cda8e551f465154c6d7e9c8161fd8890e12095056ea75ccf293b3b"
+        },
+        {
+          "path": "work/qa/parity24-steering-eval-native-bloom-0.png",
+          "sha256": "d0c82a22533248c21246bcc49bd712e0e90700b4f851a708d6e62730bcba6731"
+        },
+        {
+          "path": "work/qa/parity24-steering-eval-native-bloom-10.png",
+          "sha256": "e44f5b98b1d72940715e7aaf3047fe9492fe778a1373283ba727d1527efc7e2f"
+        },
+        {
+          "path": "work/qa/parity24-steering-eval-native-bloom-25.png",
+          "sha256": "9fe39bf3abe1aac5c9345f51a00259a679b7d4a9078bcee74d3c7a12e310b2c7"
+        },
+        {
+          "path": "work/qa/parity24-steering-eval-native-particles-0.png",
+          "sha256": "3c2d20d8c48d9e7bd298417fca8f248d61c02c0d27d1e2105436ea9c086e2efa"
+        },
+        {
+          "path": "work/qa/parity24-steering-eval-native-particles-10.png",
+          "sha256": "811d228b1e6b6ac1e3a2b6b58c2ff2b85a746c21e07c37319fe2a8e71a247199"
+        },
+        {
+          "path": "work/qa/parity24-steering-eval-native-particles-25.png",
+          "sha256": "e2980f29f10f136576c7dcdb063805992c7eb9fdd584d4c637e724ca99f4cb8f"
+        },
+        {
+          "path": "work/qa/parity24-steering-eval-native-full-lyrics-390.png",
+          "sha256": "bbe2a05a9ed7f8787a76d5c5f4e81e78d2a52814ed07dc67af82bb3918088323"
+        },
+        {
+          "path": "work/qa/parity24-steering-eval-native-full-lyrics-1440.png",
+          "sha256": "02762fafd844e4baa0ad9eb5e576699771f2d1c245ba1de86f3c468c60e45652"
+        },
+        {
+          "path": "work/qa/parity24-steering-eval-native-desktop-bottom-clean.png",
+          "sha256": "8ecb4c48170e782eea5aa7ddd622b611e8eb5c4d51141a0e7b353c73268313ca"
+        },
+        {
+          "path": "work/qa/parity24-steering-eval-native-desktop-bottom-remote-125.png",
+          "sha256": "83b8f8a7dfa5ac058f84e70449fdf6e3204ea52d0a50fe501b4ff5a5d2808de1"
+        },
+        {
+          "path": "work/qa/parity24-steering-eval-native-compact-window-125.png",
+          "sha256": "a404b1490321ebc1c45601cad6a89ab9b95354fb1e7dd228f29fa25761b57f61"
+        },
+        {
+          "path": "work/qa/parity24-steering-eval-native-phone-mini.png",
+          "sha256": "3eb4836a881b7aa0609df9705dc3434b67ef175d55a33a996b740bf0248690d3"
+        },
+        {
+          "path": "work/qa/parity24-steering-eval-native-cd-0.png",
+          "sha256": "dcd77d4228b701b7d2bd295d0075b5a9f14b964cec63ea08b18fd350e8c34deb"
+        },
+        {
+          "path": "work/qa/parity24-steering-eval-native-cd-45.png",
+          "sha256": "51dd88f46a9215a3d0b9ec28e6395fe3e59d27569a31a31772bd4981f284879e"
+        },
+        {
+          "path": "work/qa/parity24-steering-eval-native-cd-82.png",
+          "sha256": "cd895153a04b2c93d15b6d9386029c5e869bc2cd3c22f4b2fc3bd9443ca0a889"
+        },
+        {
+          "path": "work/qa/parity24-steering-eval-native-cd-100.png",
+          "sha256": "2386126f5b1b2024975e672a2afb65ab0b57a61036bc9b2609934d92726f90c5"
+        },
+        {
+          "path": "work/qa/parity24-steering-eval-native-cd-135.png",
+          "sha256": "1ad88ec838d1922951a40e6acdfc0eac2972cfeb1b4516fcd27f3417449f31d0"
+        },
+        {
+          "path": "work/qa/parity24-steering-eval-native-cd-180.png",
+          "sha256": "870af69f1e58faeeb62bf491bffca2dfee0141793ab32970eb0f6f8c0808aebc"
+        },
+        {
+          "path": "work/qa/parity24-steering-eval-native-cd-225.png",
+          "sha256": "13fd5bc606deae30ee9f43514541a27485fcad0c7990708f9bfd8c6d9f3cce4c"
+        },
+        {
+          "path": "work/qa/parity24-steering-eval-native-cd-260.png",
+          "sha256": "aa61acfa2e8fb256dc4a3fbb6e5d1da4628fe0c8b28aa99df025f33605d5595f"
+        },
+        {
+          "path": "work/qa/parity24-steering-eval-native-cd-315.png",
+          "sha256": "0adfd1937760d91f199e8d956ba2c850e5cb67568a3b299a5e59c622717d67db"
+        },
+        {
+          "path": "work/qa/parity24-steering-eval-native-cd-360.png",
+          "sha256": "dcd77d4228b701b7d2bd295d0075b5a9f14b964cec63ea08b18fd350e8c34deb"
+        }
+      ],
+      "proofFiles": [
+        "work/qa/parity24-steering-eval-native.log",
+        "work/qa/parity24-steering-eval-native-wave.log",
+        "work/qa/parity24-steering-eval-wave-render-proof.json",
+        "work/qa/parity24-steering-eval-web-proof.json",
+        "work/qa/parity24-steering-eval-remote-proof.json",
+        "work/qa/parity24-steering-eval-keyboard-proof.json",
+        "work/qa/parity24-steering-eval-motion-proof.json"
+      ],
+      "publicGuide": "work/qa/parity24-steering-evaluator-review-guide.md",
+      "verification": {
+        "independentNativeUiCasesPassed": 7,
+        "independentActualPainterCasesPassed": 1,
+        "actualWaveRenderImages": 12,
+        "fixedWavePhase": 0.8,
+        "measuredInputs": [
+          0,
+          0.1,
+          0.25
+        ],
+        "collapsedWebLyricNodes": 0,
+        "collapsedNativeLyricsAbsent": true,
+        "collapsedWebAttributionLinks": 0,
+        "webWidths": [
+          1440,
+          768,
+          375
+        ],
+        "remoteNamedOnWebWidths": [
+          1440,
+          375
+        ],
+        "remoteDeviceName": "GlukWave · Android",
+        "nativeCompactHeight": 116,
+        "nativePhoneMiniHeight": 68,
+        "webCategoryShadow": "none",
+        "webCategoryBorder": "transparent",
+        "actualKeyboardOutline": "1px solid accent",
+        "nativeCdRotations": [
+          0,
+          45,
+          82,
+          100,
+          135,
+          180,
+          225,
+          260,
+          315,
+          360
+        ],
+        "temporaryNativeFixtureRemoved": true,
+        "consoleErrors": []
+      },
+      "limitations": [
+        "Same-provider independent agent evaluation; no external provider was available.",
+        "No physical Samsung browser, Android OS startup, audible sound, owner-device transfer or launcher validation.",
+        "Wave renders call the actual app GPU/Canvas/native painters at fixed inputs; they are not microphone or physical track playback evidence.",
+        "Exact cue timing remains backed by prior round-one capture and unchanged timing helper; current combined browser smoke crossed second boundaries during screenshot latency. A held current 3 and passing native full-player/timing coverage were checked.",
+        "Round-one proof is retained for unchanged reflection/TV/full-lyrics contracts; latest steering removes all collapsed lyric rails."
+      ],
+      "compatibilityAmendment": {
+        "checkedAt": "2026-10-14T20:52:47.445Z",
+        "approved": true,
+        "path": "apps/web/src/ui.tsx",
+        "previousApprovedHash": "21a8cd27ae135f7a66a3728f61ed0f1ad876f0124698a9c0ed6871d722a1b2f2",
+        "currentApprovedHash": "5cf967c28e62f895d4c7ba63b83c53c04ac8578ce01375d1803beba130157f7b",
+        "reason": "Modal cleanup closes only an open dialog. A legacy dialog polyfill may already close on Escape before React unmount cleanup; attempting to close it again can throw. The guard also safely skips native already-closed dialogs.",
+        "validation": {
+          "exactOneLineDeltaConfirmedByReverseHash": true,
+          "sourceOnlyReview": true,
+          "visualUiChanges": false,
+          "designVerdictRetained": "PASS",
+          "attemptRetained": 2,
+          "runtimeProof": "Parent-owned production legacy modal flow; not asserted by this source amendment."
+        }
+      }
+    },
+    "captures": {
+      "native-parity24-bottom-clean.png": {
+        "path": "docs/verification/2026-10-15/parity24/native-parity24-bottom-clean.png",
+        "sha256": "c550ae3030524caf299f4dbb06d909f77b951cc1bc3caf53d313115c960d91e7"
+      },
+      "native-parity24-cd-0.png": {
+        "path": "docs/verification/2026-10-15/parity24/native-parity24-cd-0.png",
+        "sha256": "dcd77d4228b701b7d2bd295d0075b5a9f14b964cec63ea08b18fd350e8c34deb"
+      },
+      "native-parity24-cd-100.png": {
+        "path": "docs/verification/2026-10-15/parity24/native-parity24-cd-100.png",
+        "sha256": "2386126f5b1b2024975e672a2afb65ab0b57a61036bc9b2609934d92726f90c5"
+      },
+      "native-parity24-cd-135.png": {
+        "path": "docs/verification/2026-10-15/parity24/native-parity24-cd-135.png",
+        "sha256": "1ad88ec838d1922951a40e6acdfc0eac2972cfeb1b4516fcd27f3417449f31d0"
+      },
+      "native-parity24-cd-180.png": {
+        "path": "docs/verification/2026-10-15/parity24/native-parity24-cd-180.png",
+        "sha256": "870af69f1e58faeeb62bf491bffca2dfee0141793ab32970eb0f6f8c0808aebc"
+      },
+      "native-parity24-cd-225.png": {
+        "path": "docs/verification/2026-10-15/parity24/native-parity24-cd-225.png",
+        "sha256": "13fd5bc606deae30ee9f43514541a27485fcad0c7990708f9bfd8c6d9f3cce4c"
+      },
+      "native-parity24-cd-260.png": {
+        "path": "docs/verification/2026-10-15/parity24/native-parity24-cd-260.png",
+        "sha256": "aa61acfa2e8fb256dc4a3fbb6e5d1da4628fe0c8b28aa99df025f33605d5595f"
+      },
+      "native-parity24-cd-315.png": {
+        "path": "docs/verification/2026-10-15/parity24/native-parity24-cd-315.png",
+        "sha256": "0adfd1937760d91f199e8d956ba2c850e5cb67568a3b299a5e59c622717d67db"
+      },
+      "native-parity24-cd-360.png": {
+        "path": "docs/verification/2026-10-15/parity24/native-parity24-cd-360.png",
+        "sha256": "dcd77d4228b701b7d2bd295d0075b5a9f14b964cec63ea08b18fd350e8c34deb"
+      },
+      "native-parity24-cd-45.png": {
+        "path": "docs/verification/2026-10-15/parity24/native-parity24-cd-45.png",
+        "sha256": "51dd88f46a9215a3d0b9ec28e6395fe3e59d27569a31a31772bd4981f284879e"
+      },
+      "native-parity24-cd-82.png": {
+        "path": "docs/verification/2026-10-15/parity24/native-parity24-cd-82.png",
+        "sha256": "cd895153a04b2c93d15b6d9386029c5e869bc2cd3c22f4b2fc3bd9443ca0a889"
+      },
+      "native-parity24-compact-window-125.png": {
+        "path": "docs/verification/2026-10-15/parity24/native-parity24-compact-window-125.png",
+        "sha256": "a404b1490321ebc1c45601cad6a89ab9b95354fb1e7dd228f29fa25761b57f61"
+      },
+      "native-parity24-desktop-bottom-clean.png": {
+        "path": "docs/verification/2026-10-15/parity24/native-parity24-desktop-bottom-clean.png",
+        "sha256": "8ecb4c48170e782eea5aa7ddd622b611e8eb5c4d51141a0e7b353c73268313ca"
+      },
+      "native-parity24-desktop-bottom-rail.png": {
+        "path": "docs/verification/2026-10-15/parity24/native-parity24-desktop-bottom-rail.png",
+        "sha256": "411ed5bf796d9a6405612332e6b16ab66a72e59023b9dfeab0e218a284971fa0"
+      },
+      "native-parity24-desktop-bottom-remote-125.png": {
+        "path": "docs/verification/2026-10-15/parity24/native-parity24-desktop-bottom-remote-125.png",
+        "sha256": "83b8f8a7dfa5ac058f84e70449fdf6e3204ea52d0a50fe501b4ff5a5d2808de1"
+      },
+      "native-parity24-full-lyrics-1440.png": {
+        "path": "docs/verification/2026-10-15/parity24/native-parity24-full-lyrics-1440.png",
+        "sha256": "02762fafd844e4baa0ad9eb5e576699771f2d1c245ba1de86f3c468c60e45652"
+      },
+      "native-parity24-full-lyrics-390.png": {
+        "path": "docs/verification/2026-10-15/parity24/native-parity24-full-lyrics-390.png",
+        "sha256": "bbe2a05a9ed7f8787a76d5c5f4e81e78d2a52814ed07dc67af82bb3918088323"
+      },
+      "native-parity24-intro-3.png": {
+        "path": "docs/verification/2026-10-15/parity24/native-parity24-intro-3.png",
+        "sha256": "aefa7d93937a6effe30d45a03cc77ead25e51f2820eb6fd00223d399c09ce98f"
+      },
+      "native-parity24-lyric-rail.png": {
+        "path": "docs/verification/2026-10-15/parity24/native-parity24-lyric-rail.png",
+        "sha256": "44596c1ac7daa9747f1ccddc2599ce0d21783adb4a8047f8e9ed36bc2e480546"
+      },
+      "parity24-eval-cd-0.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-eval-cd-0.png",
+        "sha256": "d28d946ba0b6a13429eb775b4b2aee11024b0b2553808a467132f9870dc47539"
+      },
+      "parity24-eval-cd-100.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-eval-cd-100.png",
+        "sha256": "e3143c8008845477d31a37ef044f7a523e92e92e4534dc0bb143a3ebe39d6776"
+      },
+      "parity24-eval-cd-180.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-eval-cd-180.png",
+        "sha256": "c735c80ce4d7d7381ddc3ac6518f9698684ac90fb2ae4d6e4c3c35854572a8bd"
+      },
+      "parity24-eval-cd-260.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-eval-cd-260.png",
+        "sha256": "2e8b686331796ebb6b6fab5cb93790bdeb56ac2f201507e7a6d8e0cec964e363"
+      },
+      "parity24-eval-cd-360.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-eval-cd-360.png",
+        "sha256": "9532192bbad7ad45c3f20ec11479f9dd5d17ba5d22c5a5c9c6a7c17f2a3739e3"
+      },
+      "parity24-eval-cd-82.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-eval-cd-82.png",
+        "sha256": "3168e79c038f15d6663eb697217aecb89e7ec1162d8c958ee4def6199fb89da1"
+      },
+      "parity24-eval-final-lyrics-1440.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-eval-final-lyrics-1440.png",
+        "sha256": "4084801487116b6fe2014deedef061e4e76fa556b3f792dfa1f96da9d95d632e"
+      },
+      "parity24-eval-final-lyrics-375.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-eval-final-lyrics-375.png",
+        "sha256": "3dfbba8752237992fc570122ac584f9be9034e2c311ef786564933f4b35a162e"
+      },
+      "parity24-eval-final-lyrics-768.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-eval-final-lyrics-768.png",
+        "sha256": "2e1d8ea4900e9b06d03fb5d54a73d020a226880b6e6ee2821bb313c73236b56f"
+      },
+      "parity24-eval-final-wide-1440.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-eval-final-wide-1440.png",
+        "sha256": "0aae2ba88131389666822653005836d38f2f3847abb6a6fd817c2ea53f88dcfa"
+      },
+      "parity24-eval-footer-1440.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-eval-footer-1440.png",
+        "sha256": "4d00c828adc04243c568e2602975b160b3c2d16f08d186fecf4409d2fe52a922"
+      },
+      "parity24-eval-footer-final-1440.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-eval-footer-final-1440.png",
+        "sha256": "e09c26b2101b6aa5cda86fb3b72aed2f63e8ffdf68bbb224ea4165f4ee3dad34"
+      },
+      "parity24-eval-footer-final-375.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-eval-footer-final-375.png",
+        "sha256": "1166c74dbf8558b5a67bb44119f8aaa70b29df3564b682b7a6b2a6fe587fcf44"
+      },
+      "parity24-eval-footer-final-768.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-eval-footer-final-768.png",
+        "sha256": "a39fb44b0c5197fd8b5aa01223f58655a17f15d2084134205ac314711a3758ba"
+      },
+      "parity24-eval-intro-0-375.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-eval-intro-0-375.png",
+        "sha256": "9e0799654060d8d62a370bff1afaadb84aca47edba8090768820b72a389f3421"
+      },
+      "parity24-eval-intro-1-375.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-eval-intro-1-375.png",
+        "sha256": "4379e155fbcb912df9f6a40bd0c4d5d74fea9ebee07dd2230897f09ebe4ab235"
+      },
+      "parity24-eval-intro-2-375.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-eval-intro-2-375.png",
+        "sha256": "2acf7c74b51b4506ce09f30001ecf4d4b371906c8ad0fe737f0e6245c8d42bb3"
+      },
+      "parity24-eval-intro-3-375.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-eval-intro-3-375.png",
+        "sha256": "a7c6892243b444ccd80e694fee796c654134adb2d33bd0fa02ab4f47fd81c113"
+      },
+      "parity24-eval-intro-pointer-375.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-eval-intro-pointer-375.png",
+        "sha256": "ffee7e7802b8003c9a941538af8698eb2d193625283369c91cf6cc1d40c4e6e3"
+      },
+      "parity24-eval-lyric-first-375.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-eval-lyric-first-375.png",
+        "sha256": "c5d90cf4b120fb246b038d59bf9647c6ed37b8de9910b640da21b3b9b9afecdf"
+      },
+      "parity24-eval-lyrics-1440.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-eval-lyrics-1440.png",
+        "sha256": "fa00a9587eabc8a482e7fb1a36a2dd28c27e2031b325ee152ffb15e8b6052ea3"
+      },
+      "parity24-eval-lyrics-375.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-eval-lyrics-375.png",
+        "sha256": "8597824548f39df4c00578b2d7e69af9a70037f889595fd14d67fbb00c91317a"
+      },
+      "parity24-eval-lyrics-768.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-eval-lyrics-768.png",
+        "sha256": "111ae20889517a849c6b136e5e459a571a19ac0e4463e70275e2ec35628a16d4"
+      },
+      "parity24-eval-lyrics-fresh-375.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-eval-lyrics-fresh-375.png",
+        "sha256": "4ac9de8b6bc63a129840b1f3b08161f1bf9366cce12de73c3ad2f598230dc929"
+      },
+      "parity24-eval-native-cd-0.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-eval-native-cd-0.png",
+        "sha256": "dcd77d4228b701b7d2bd295d0075b5a9f14b964cec63ea08b18fd350e8c34deb"
+      },
+      "parity24-eval-native-cd-100.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-eval-native-cd-100.png",
+        "sha256": "2386126f5b1b2024975e672a2afb65ab0b57a61036bc9b2609934d92726f90c5"
+      },
+      "parity24-eval-native-cd-180.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-eval-native-cd-180.png",
+        "sha256": "870af69f1e58faeeb62bf491bffca2dfee0141793ab32970eb0f6f8c0808aebc"
+      },
+      "parity24-eval-native-cd-260.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-eval-native-cd-260.png",
+        "sha256": "aa61acfa2e8fb256dc4a3fbb6e5d1da4628fe0c8b28aa99df025f33605d5595f"
+      },
+      "parity24-eval-native-cd-360.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-eval-native-cd-360.png",
+        "sha256": "dcd77d4228b701b7d2bd295d0075b5a9f14b964cec63ea08b18fd350e8c34deb"
+      },
+      "parity24-eval-native-cd-82.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-eval-native-cd-82.png",
+        "sha256": "cd895153a04b2c93d15b6d9386029c5e869bc2cd3c22f4b2fc3bd9443ca0a889"
+      },
+      "parity24-eval-native-full-lyrics-1440.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-eval-native-full-lyrics-1440.png",
+        "sha256": "02762fafd844e4baa0ad9eb5e576699771f2d1c245ba1de86f3c468c60e45652"
+      },
+      "parity24-eval-native-full-lyrics-390.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-eval-native-full-lyrics-390.png",
+        "sha256": "bbe2a05a9ed7f8787a76d5c5f4e81e78d2a52814ed07dc67af82bb3918088323"
+      },
+      "parity24-eval-player-375.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-eval-player-375.png",
+        "sha256": "72edae68ebe69ca91a7e1ce59ee25a6771cbb31d04eda2094f6f84d53717199c"
+      },
+      "parity24-eval-queue-1440.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-eval-queue-1440.png",
+        "sha256": "9edd3a35bd40f995d46b230d15b2cb642489c33fed511c400217677786d2c3fb"
+      },
+      "parity24-eval-tv-final-1440.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-eval-tv-final-1440.png",
+        "sha256": "d8733fa40b6b69caa25111bc4f905707b9949b653a90711d1db8fdd2a7bb9fcb"
+      },
+      "parity24-eval-tv-focus-1440.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-eval-tv-focus-1440.png",
+        "sha256": "77d6eeb25780cb521edd3b8659350b14bc5613d5e04cb1645daabb0a1d9f9c5b"
+      },
+      "parity24-eval-tv-focus-final-1440.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-eval-tv-focus-final-1440.png",
+        "sha256": "2998371765c634243240e14b3c6ba14c1bdb7f611826e9d99f0f46bc0bacefd9"
+      },
+      "parity24-eval-tv-profile-1440.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-eval-tv-profile-1440.png",
+        "sha256": "9d0880d72c41e9d6b1bc45b0b19f8f90a85fa9bfeead754fc2f1eae8c87374f7"
+      },
+      "parity24-eval-wide-1440.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-eval-wide-1440.png",
+        "sha256": "4797c26ae040297da64d6abe70ff50d81f600e472e01667abf620459d1deb99a"
+      },
+      "parity24-footer-no-lyrics.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-footer-no-lyrics.png",
+        "sha256": "5d9e5a0c29ddf0eb067d542dd4d6525fd368fd78ee31f39ab1bb9109b5a02f74"
+      },
+      "parity24-legacy-tv-lyrics.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-legacy-tv-lyrics.png",
+        "sha256": "4ca370cd9e8c86fa8dd8f55a64c981385239968104cad0b86c6861f8736bf4ea"
+      },
+      "parity24-steering-eval-category-discovery.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-steering-eval-category-discovery.png",
+        "sha256": "fefb4435a490b2bf7e2487ac2f990f023cb0e238c6ccc9991244c3fb3db75f24"
+      },
+      "parity24-steering-eval-category-favorites.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-steering-eval-category-favorites.png",
+        "sha256": "9491ad25c8e8e02751c93250be886c25f2ce49367504582d807d8e482dd4df30"
+      },
+      "parity24-steering-eval-category-focus.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-steering-eval-category-focus.png",
+        "sha256": "9149c131958deccc8a2abdf6c9114a1fad7d7d7a902002bf8dad30d9be0b4dba"
+      },
+      "parity24-steering-eval-category-keyboard.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-steering-eval-category-keyboard.png",
+        "sha256": "b23b5f624c9a925049308d641928740bb1ef15d4c1e6779cd8e83d9ea097461a"
+      },
+      "parity24-steering-eval-category-popular.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-steering-eval-category-popular.png",
+        "sha256": "7bb0e6d7f1435bd18d5cd8232689b84341e808bc0d78ebbd08c623ea910835bd"
+      },
+      "parity24-steering-eval-footer-1440.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-steering-eval-footer-1440.png",
+        "sha256": "0ac847e5b97ce56ab9896bf7bfe7cef5d317071ca7aefd12c3958613bcebf48c"
+      },
+      "parity24-steering-eval-footer-375.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-steering-eval-footer-375.png",
+        "sha256": "b78bb56d035abe1ad7238e1e112dce9d5196ead0ab3f7a004ed1568ac8009e56"
+      },
+      "parity24-steering-eval-footer-768.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-steering-eval-footer-768.png",
+        "sha256": "b7cfe2558e1dafd1c1acbb778eb0dd6206e9f80810c539d9f2ec092312692b58"
+      },
+      "parity24-steering-eval-full-excerpt-1440.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-steering-eval-full-excerpt-1440.png",
+        "sha256": "4ea0c4bd529e8afb5ccbaf36c51b8c9d22448743210737e5daa444e6ddd7991c"
+      },
+      "parity24-steering-eval-full-lyrics-1440.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-steering-eval-full-lyrics-1440.png",
+        "sha256": "af28e946b65d27dd587e4f406ff86805ca22e69d755a660e7646a79c6c053258"
+      },
+      "parity24-steering-eval-intro-1.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-steering-eval-intro-1.png",
+        "sha256": "962920b97a9c1769d6a29d8cc647fcbe601cd97421e8130a3f2d19f6b682fa62"
+      },
+      "parity24-steering-eval-intro-2.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-steering-eval-intro-2.png",
+        "sha256": "0456107f6ea92088c941c562a8ec493c9dabfbd7fc4b68f6570c867e21c1d9e6"
+      },
+      "parity24-steering-eval-intro-3.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-steering-eval-intro-3.png",
+        "sha256": "daed7e18f8226e2d3549576cfb91c0a2b4843996bfd6e95bdb4206cd3ce171a5"
+      },
+      "parity24-steering-eval-native-bloom-0.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-steering-eval-native-bloom-0.png",
+        "sha256": "d0c82a22533248c21246bcc49bd712e0e90700b4f851a708d6e62730bcba6731"
+      },
+      "parity24-steering-eval-native-bloom-10.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-steering-eval-native-bloom-10.png",
+        "sha256": "e44f5b98b1d72940715e7aaf3047fe9492fe778a1373283ba727d1527efc7e2f"
+      },
+      "parity24-steering-eval-native-bloom-25.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-steering-eval-native-bloom-25.png",
+        "sha256": "9fe39bf3abe1aac5c9345f51a00259a679b7d4a9078bcee74d3c7a12e310b2c7"
+      },
+      "parity24-steering-eval-native-cd-0.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-steering-eval-native-cd-0.png",
+        "sha256": "dcd77d4228b701b7d2bd295d0075b5a9f14b964cec63ea08b18fd350e8c34deb"
+      },
+      "parity24-steering-eval-native-cd-100.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-steering-eval-native-cd-100.png",
+        "sha256": "2386126f5b1b2024975e672a2afb65ab0b57a61036bc9b2609934d92726f90c5"
+      },
+      "parity24-steering-eval-native-cd-135.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-steering-eval-native-cd-135.png",
+        "sha256": "1ad88ec838d1922951a40e6acdfc0eac2972cfeb1b4516fcd27f3417449f31d0"
+      },
+      "parity24-steering-eval-native-cd-180.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-steering-eval-native-cd-180.png",
+        "sha256": "870af69f1e58faeeb62bf491bffca2dfee0141793ab32970eb0f6f8c0808aebc"
+      },
+      "parity24-steering-eval-native-cd-225.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-steering-eval-native-cd-225.png",
+        "sha256": "13fd5bc606deae30ee9f43514541a27485fcad0c7990708f9bfd8c6d9f3cce4c"
+      },
+      "parity24-steering-eval-native-cd-260.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-steering-eval-native-cd-260.png",
+        "sha256": "aa61acfa2e8fb256dc4a3fbb6e5d1da4628fe0c8b28aa99df025f33605d5595f"
+      },
+      "parity24-steering-eval-native-cd-315.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-steering-eval-native-cd-315.png",
+        "sha256": "0adfd1937760d91f199e8d956ba2c850e5cb67568a3b299a5e59c622717d67db"
+      },
+      "parity24-steering-eval-native-cd-360.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-steering-eval-native-cd-360.png",
+        "sha256": "dcd77d4228b701b7d2bd295d0075b5a9f14b964cec63ea08b18fd350e8c34deb"
+      },
+      "parity24-steering-eval-native-cd-45.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-steering-eval-native-cd-45.png",
+        "sha256": "51dd88f46a9215a3d0b9ec28e6395fe3e59d27569a31a31772bd4981f284879e"
+      },
+      "parity24-steering-eval-native-cd-82.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-steering-eval-native-cd-82.png",
+        "sha256": "cd895153a04b2c93d15b6d9386029c5e869bc2cd3c22f4b2fc3bd9443ca0a889"
+      },
+      "parity24-steering-eval-native-compact-window-125.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-steering-eval-native-compact-window-125.png",
+        "sha256": "a404b1490321ebc1c45601cad6a89ab9b95354fb1e7dd228f29fa25761b57f61"
+      },
+      "parity24-steering-eval-native-desktop-bottom-clean.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-steering-eval-native-desktop-bottom-clean.png",
+        "sha256": "8ecb4c48170e782eea5aa7ddd622b611e8eb5c4d51141a0e7b353c73268313ca"
+      },
+      "parity24-steering-eval-native-desktop-bottom-remote-125.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-steering-eval-native-desktop-bottom-remote-125.png",
+        "sha256": "83b8f8a7dfa5ac058f84e70449fdf6e3204ea52d0a50fe501b4ff5a5d2808de1"
+      },
+      "parity24-steering-eval-native-full-lyrics-1440.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-steering-eval-native-full-lyrics-1440.png",
+        "sha256": "02762fafd844e4baa0ad9eb5e576699771f2d1c245ba1de86f3c468c60e45652"
+      },
+      "parity24-steering-eval-native-full-lyrics-390.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-steering-eval-native-full-lyrics-390.png",
+        "sha256": "bbe2a05a9ed7f8787a76d5c5f4e81e78d2a52814ed07dc67af82bb3918088323"
+      },
+      "parity24-steering-eval-native-particles-0.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-steering-eval-native-particles-0.png",
+        "sha256": "3c2d20d8c48d9e7bd298417fca8f248d61c02c0d27d1e2105436ea9c086e2efa"
+      },
+      "parity24-steering-eval-native-particles-10.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-steering-eval-native-particles-10.png",
+        "sha256": "811d228b1e6b6ac1e3a2b6b58c2ff2b85a746c21e07c37319fe2a8e71a247199"
+      },
+      "parity24-steering-eval-native-particles-25.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-steering-eval-native-particles-25.png",
+        "sha256": "e2980f29f10f136576c7dcdb063805992c7eb9fdd584d4c637e724ca99f4cb8f"
+      },
+      "parity24-steering-eval-native-phone-mini.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-steering-eval-native-phone-mini.png",
+        "sha256": "3eb4836a881b7aa0609df9705dc3434b67ef175d55a33a996b740bf0248690d3"
+      },
+      "parity24-steering-eval-remote-1440.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-steering-eval-remote-1440.png",
+        "sha256": "e87f9630e0e022c94328602f85e03a355bfb637ce98e2d91770d28142321aca2"
+      },
+      "parity24-steering-eval-remote-375.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-steering-eval-remote-375.png",
+        "sha256": "e328c12cd1fcc5c33469486b964d0a275f522a0b277bca2a144aee04d4a7b4e9"
+      },
+      "parity24-steering-eval-web-bloom-0.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-steering-eval-web-bloom-0.png",
+        "sha256": "4f1d1ba8f6027ed62b7496070f405ca38d3fe66296c5c5b542f2c33b8e50cd32"
+      },
+      "parity24-steering-eval-web-bloom-10.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-steering-eval-web-bloom-10.png",
+        "sha256": "733b8985d0ff6a96ae66ce1b91e6c1f4deef0bbb7a22582006cdf4a2d8f9d75a"
+      },
+      "parity24-steering-eval-web-bloom-25.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-steering-eval-web-bloom-25.png",
+        "sha256": "0e921d32457cdeea417ebdda59e0888a2f1e6c9539f90f5ace4ee4ae9a3dd9a4"
+      },
+      "parity24-steering-eval-web-particles-0.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-steering-eval-web-particles-0.png",
+        "sha256": "be9cd6e8dbd6f6ea5b90ddcf5f60eb0d7099a74dd1176a7311f7a5b4df87b10a"
+      },
+      "parity24-steering-eval-web-particles-10.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-steering-eval-web-particles-10.png",
+        "sha256": "ccbfa6857877593f050d290b28267b6d6c9aef7118dd5d37db809eaa48e154db"
+      },
+      "parity24-steering-eval-web-particles-25.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-steering-eval-web-particles-25.png",
+        "sha256": "ce2db73684cda8e551f465154c6d7e9c8161fd8890e12095056ea75ccf293b3b"
+      },
+      "parity24-wave-choice-discovery.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-wave-choice-discovery.png",
+        "sha256": "f5cfccb9e3e5b13ec7c273dfabddafb39e1797ba53b094ad97752e3c83ea3976"
+      },
+      "parity24-wave-choice-favorites.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-wave-choice-favorites.png",
+        "sha256": "f45d6042498034cd20832b9fcabfc9a45c8f3395a3868263bd872da4c8b50807"
+      },
+      "parity24-wave-choice-focus.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-wave-choice-focus.png",
+        "sha256": "a1005c1dd919c2159d92f3d8c2527cc639742343be916953d15584388dc44dd9"
+      },
+      "parity24-wave-choice-popular.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-wave-choice-popular.png",
+        "sha256": "4a32bab0ddd5338fd71a3fcae385dbf26327c8b9907a0b1962d10e91eb278b2b"
+      },
+      "parity24-web-footer.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-web-footer.png",
+        "sha256": "d788918ff6e900f20a6b5b553de9325786e4879511646424b72952ed0b0acf7e"
+      },
+      "parity24-web-lyrics.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-web-lyrics.png",
+        "sha256": "b18d3dc2ff8023af3ca0cf936ea1e868333f4e79409b805c94959a9a3b3c7e93"
+      },
+      "parity24-web-wide.png": {
+        "path": "docs/verification/2026-10-15/parity24/parity24-web-wide.png",
+        "sha256": "586ce370cbc558e9bb35a4128b9c49b4f78312e7d653bb2b6ce56cc4a286d527"
+      }
+    }
+  },
+  "baselineEvidence": "docs/verification/2026-10-14/parity23/parity23-evidence.json",
+  "currentServerAndWebSourceHashes": {
+    "apps/server/src/account.js": "10b53082822ab2202de89aee9fd8d0db11af9bd0d31306d691dd312353e05ca4",
+    "apps/server/src/action-jobs.js": "4844e62662c0705c6eb631e71c92ffa66efc1aed5a2b0bb91fc16313e5b80104",
+    "apps/server/src/admin.js": "82417a012738f9351e1bbecd7af7d3f90b29c09f35188bbf35793e7282541569",
+    "apps/server/src/app.js": "dce53294e7b5c7f8866694741ffb5a3225b665f21981f3387736abf425a86c99",
+    "apps/server/src/audio-capabilities.js": "3e4b5a2788070195292f5b517b252c1a6891655060de00c2ea316d2c8f6e8f22",
+    "apps/server/src/auth.js": "2695aed4392536184eacccc8cd8a6a9581beae7cf803c5a9e3feecc1794f3542",
+    "apps/server/src/billing.js": "a9163d0268b48e04598400df991530ceecdf2596fe1852c21c7a177fca52c335",
+    "apps/server/src/community.js": "5823a273b369a160dd857e3f61156e452b32df109f7fe3dc30cc72e22c36dc07",
+    "apps/server/src/config.js": "6845dc54120af4d0f1dbdcf791084983892871c06756db1250cba8079e0496bc",
+    "apps/server/src/console-brand.js": "3cf4ddeac97b786ae842d0084e6c95f63e79d7ffea051fd71d588fcd181d5be8",
+    "apps/server/src/console-transport.js": "8b2b8c4eccfda0382f05b590b60c43693616649ee273474f51d045e7d2e4ed82",
+    "apps/server/src/console-ui.js": "5992d13453c6ac7e7065c2b9ec3e52db902b1ee2fffca22632c4705e65422e41",
+    "apps/server/src/diagnostics.js": "66ab9bae1912bf53afaac648cf14172fa2f66d68b60af94917e55dfb9b47eb84",
+    "apps/server/src/discord-presence.js": "3c69b062f30f751ae2bdc6e8eb07eab5dcf76ce4293efcdd37d917c3d1befa9a",
+    "apps/server/src/genius.js": "b785795dc7debcff70e7a117bc8e42fd6e34fb071329e4523caa72c2919ea43b",
+    "apps/server/src/index.js": "2a292e1e22151b0b41c1735bd3c00bfcbb7384f0888999c05eb5b6464286cf3f",
+    "apps/server/src/library-imports.js": "92f72e4035c659648bbe8351877f8e3c6c43f897d9577322559108c805969781",
+    "apps/server/src/library.js": "bc75f2d273d9eac9a2c52f1b53dc375629a263e4428eb23b434f92c69c0ab3d0",
+    "apps/server/src/listening.js": "ce7fac0070fd52bbae62c2da3f1c47ed02bf5a173c9f8d501a547522e3711957",
+    "apps/server/src/locale.js": "76eb2654b0dcffd9ad98838186a32972853e90274809093e207ce4f6e1a16d8a",
+    "apps/server/src/lrclib.js": "4a40e8ba9d9341b27beb0637b728710e16d602e8b30a9afee1440c78d35fb2e1",
+    "apps/server/src/mail-text.js": "24fdc84a7907528d63e50145bf2f4b90390230df11b8d073b36198caef2ee2d9",
+    "apps/server/src/media.js": "797f087f23d4d29436a2a9b8ed5f9c181c31cedbffde3a806794e0fb3ac7c829",
+    "apps/server/src/messages.js": "6726f58392c0b38fd2b5bef912694422901041308df77e73f0e6a051a8429061",
+    "apps/server/src/oauth-config.js": "1bf7f01bd3b0560adc5b27699a768d895c159d98c7864d91d30117233dce8108",
+    "apps/server/src/plans.js": "1af41034b769c676bcadb3af097730fc9a3054662defe5c91844ee12fd30f9ff",
+    "apps/server/src/playback-jobs.js": "b111e33179be055775d8bcc5762b850d823a531a5c152e1c914cdd7176da895e",
+    "apps/server/src/playback.js": "438a08b44ac3106eaae4fecca82a99266ccb4524df3ed57d6680aea1ecf6c15b",
+    "apps/server/src/providers.js": "7921aa770e73700e9fcf3dd224db9fd06fdaa4d979d0eeda9de05d8a0077ab31",
+    "apps/server/src/public-imports.js": "63f6bcc9ee5a5b2b3bf14c9d08ec53d360c3fe66079b0fd7b63f3ce98249bede",
+    "apps/server/src/push.js": "d2152b3739d4a574c80b22b389f24fb1f319d6bc8e6e3fe154e3b913295333de",
+    "apps/server/src/realtime-ecosystem.js": "95f8e392708c262ff145f85bda029618e8a584e85ab89a7c338d026b56fefec2",
+    "apps/server/src/realtime.js": "f8bde106f06e4bdd92b4b1faac40c1a2be62f858b8873f33cd05b50bb16e10a8",
+    "apps/server/src/recommendations.js": "2e1f780fbee88e28880fe4f015cc67ddc0263a0553c43844e33b5ba49cb5748c",
+    "apps/server/src/releases.js": "cf0a682142202827892e18d89ecaaa832592a5a5b90e6dc9a07d9d3c0c1a6af3",
+    "apps/server/src/resources.js": "2283499be57429eff52e8f2184acf8d6814de18897dd640ada3ea9faee6b13ed",
+    "apps/server/src/room-view.js": "b1f01371d67b1c4eded48630162c3043bf3b127f1ee73af9dbd8a0f9e707c2ec",
+    "apps/server/src/rooms.js": "5250c138dc01374a08ad87a4fe16b680d1b51749bc5d854f835903ebf618001a",
+    "apps/server/src/search.js": "6c1bcf08dc7d955a1a578798be89ec0605437a20f8556e1b04faf1043cefd302",
+    "apps/server/src/soundcloud-audio.js": "5c756f9f5d832833eea6c5a0ff071218cb428851403cd9a514731c4a88810984",
+    "apps/server/src/soundcloud-public.js": "1539d977c7e90326f12332df59a22d0fa2283f7b32a8ad1d3df3b8a22a32d77d",
+    "apps/server/src/store.js": "f5c92991e188e5bf333883e17e7ac20d4a396c2feb64f8e33fe2e6c2f893305c",
+    "apps/server/src/system-text.js": "d297190cd4ea5ddd3efcf5bba5a76d1221f5351ecb8cd6bc404844290aa85696",
+    "apps/server/src/util.js": "10d7fe120d039de68facc39ed03f84977487d0b0557eff99449cede1022798ca",
+    "apps/server/src/waveforms.js": "9e9102d2d5c9732f3dac9de8cfbed6520d0dc512fa99e8f8e7827c0518a15b45",
+    "apps/server/src/extractors/hls.js": "d54cd6998dc8f0d2889a0d878e55c46d051cae68439bb219890b1208226d1a14",
+    "apps/server/src/extractors/matching.js": "5aec51b318f99f19fb25d51236524fd5a4060e4d3f20fe889c02e955a7040367",
+    "apps/server/src/extractors/runtime.js": "4e36be0303f2045ed769257a4529023d9958f144354f6f8ff920754b4f5b9802",
+    "apps/server/src/extractors/service.js": "eb1a79d49224e49f92675c2054f75940be24678c4eb30ab5d4f65afdc363e4eb",
+    "apps/server/src/extractors/soundcloud.js": "39abeab959ac418df564d5d51fa5509d66a5484b20877799361b6d869563cd3c",
+    "apps/server/src/extractors/spotify.js": "05d9bfce18c37632cdd35d16469b59e0a4e48c4aa258e260ee12e1a78ee3af4d",
+    "apps/server/src/extractors/youtube.js": "01a8e67c3a39948c7268fc225ba3ac1c29266fbafb3453546a977dda67067cd3",
+    "apps/server/extractors/bridge.py": "084fd7b43212264a179868082333eb6825d986944d3d3385b3544e9a74937472",
+    "apps/server/extractors/requirements-spotdl.txt": "9faaa2416aaa16ba144f41df3b6be25ff363a13fbd139c17a8fc6e7fe8875d2b",
+    "apps/server/extractors/requirements-ytdlp.txt": "eddaf6b4a42ef7bc703cb08d3c189565a1d85a62b7a8b429b9b8e71eb793dcd4",
+    "apps/server/extractors/vendor/manifest.json": "ce60ab2e9ebcdebb3a15b370fcac9aa12c3160fe10ef5b377d008609d7378c16",
+    "apps/server/extractors/vendor/yt-dlp-ejs-UNLICENSE.txt": "b5065838cbac452dfc855ba6e6e031481ad2c68406f70d21ead9321374653e6c",
+    "apps/server/extractors/vendor/yt-dlp-UNLICENSE.txt": "7e12e5df4bae12cb21581ba157ced20e1986a0508dd10d0e8a4ab9a4cf94e85c",
+    "apps/server/extractors/vendor/yt-dlp.zip": "1fa6733c37ea6fb51c99ad8fe785e7b7e5f3246c9b980230329d4fb72ed8d4d6",
+    "apps/web/src/account-sessions.tsx": "bf4469a5ffac5e8bbefce71d5aae8831601ea3c5ff092a87661c9dc874adcf91",
+    "apps/web/src/account.tsx": "27cbd8e1ab604308c44683dddacae9f6e27b89bf38037ee06e07e70bce475d4a",
+    "apps/web/src/action-request.ts": "69b9f5a72a565e198e8df882da307586448d804265ee136d2648c246c7d2ee3c",
+    "apps/web/src/admin-errors.tsx": "99396e6f2c1073a7d3ab9b15a170eae60418f70eb5fb9e9f7c946c78bf3d8986",
+    "apps/web/src/admin-service.tsx": "9065df7e5dffe2d99aae303b19737ef558537f51fa818327e5df86856ddd5980",
+    "apps/web/src/album.tsx": "710d3cd7175b133b49a4156f82a87999527e335008c92400e7138d92c23f82a1",
+    "apps/web/src/api.ts": "5440981ee50e4740d76f74f8eca42449bc6ea137fcb2d2f1af5cdaec01956279",
+    "apps/web/src/App.tsx": "766e6fdb6b5885d2ed9be6c027b55ebcfee63c00a84608f29b7ce543459324f9",
+    "apps/web/src/artwork.ts": "f1d150e9ed1a0a771187880037027ff372b7e3f1ab0472776ef8a137b8bfa11a",
+    "apps/web/src/audio-cache-validation.ts": "32c2a355f8a3bb237aa4f5e50b28408f20cda3a355223d272e220b644f464d54",
+    "apps/web/src/audio-design.css": "4cc4afd26b4187594fa661145c43340f4a0737e77fc517e888effa79a0f746b0",
+    "apps/web/src/audio-gesture.ts": "1aaa65323ca996d62814523e890b11a85f8dd65dfcf15aa570dc8e7ce114b813",
+    "apps/web/src/audio-processing.ts": "8ef029b1a068d78fed8c3e4b16588305a3392db988e46dd21dfbb6cebf6bd94e",
+    "apps/web/src/audio-stream.ts": "4fbf2d76f13d687b0ac3413c41b44eb42d1a9fef87bf49f39a5f28592209306b",
+    "apps/web/src/auth.tsx": "412c0c9cbbff3b63741d2f9cdaab8701cb44a9b99fcf8d9ae85f5a82be157e1c",
+    "apps/web/src/browser-compat-model.ts": "1b05a9a6e80927927127cf7288a50c6b547638e340c4a8604f9694a30abfe857",
+    "apps/web/src/browser-compat.ts": "6fddc2f54944fa1cbc3898bd8937a048f876cb953044019694e249e7194fa5a8",
+    "apps/web/src/cache.ts": "af71abb5bece4a66d9c17350ff4fad05d75713232c0f36c4dd6d48a6a6e7393b",
+    "apps/web/src/color-picker.tsx": "200f9b5ec99f4660c8613488246260c3da18aa954c1c7623e19b4f1104476393",
+    "apps/web/src/community.tsx": "ad9aa9cf401f07bf80ffce178c4bcd7347c4d399b5673f82a2a202ae884d1ba1",
+    "apps/web/src/compat-modules.d.ts": "28153b025b7fbf95df0298e35337e9e3b50f9d3b80444708079bd22dc58b0fb9",
+    "apps/web/src/connect-controller.ts": "9c8260b27b90207650c2607310e9eb4bb998d929622ac2c23e042a2115013437",
+    "apps/web/src/connect-playback-card.tsx": "d9ad85eab0838b0b731303f1c47268f654e10a8b470bc38eb5fd4fcc42847569",
+    "apps/web/src/connect-refinement.css": "e366fb08896d52c21ce59d5931f2674f91a2376e3bc3d4641e938ba966176046",
+    "apps/web/src/continuous-range.tsx": "7e6724d778332f47bac6db314808d77e4bba486aa9ef86b85f62646b01ae789f",
+    "apps/web/src/cover-accent-bridge.tsx": "5132b9dccd4d307f9bac9dc1dc27fe00551ecb45885c80ac7fec68b2df5bb671",
+    "apps/web/src/cover-accent.ts": "1d33f7d0394436d1958e8456ca1eb3f69d0ae2f8af5d32dc15eba9f796c5953b",
+    "apps/web/src/cover-ambient.tsx": "131e189e9bbbc49bdcc1700b39acca0f52460b8f3e0d6e342baac3e6668b712f",
+    "apps/web/src/cover-fit.ts": "4bfd503e665bccf54e8b2b2292ec4a428bd258959924dda55cb7eb4c4d3e571e",
+    "apps/web/src/customization.tsx": "7ea3ad646c72d092306d7b7b846db7197e47da782150fdca41f2e1a71582c497",
+    "apps/web/src/device-identity.ts": "8530973d25877745e722f18c7603910ba7c81a2925a189c2e53132e78adcd55c",
+    "apps/web/src/device-platform.tsx": "9e57aa7934f78d5788a348ad5ef00f27920c3ca5b1b4fbc786cbca937b9e9309",
+    "apps/web/src/devices-popover.tsx": "9d57a9e6dc3320f341503bd8eda9503f770749e2a5733923cdc1464f23935989",
+    "apps/web/src/diagnostics.ts": "8c21c46e204ea3e5df9c164a93df46aed06174dd54d4e603d4f84eed4e4643cd",
+    "apps/web/src/discord-model.ts": "6ad5cfd0f5e6d4ad71e58bd02318baeba1bd78077d298ff0bcc6e289bc14345f",
+    "apps/web/src/discord.css": "5db13e61485e5d06eecc0213feb1f8f55bc6f1b2c9ae099fe604aa1a592100ce",
+    "apps/web/src/discord.tsx": "260da3f503d962d0b293461c0e85b0f43d95de1a38be8bddc85a096a8e1e3ba8",
+    "apps/web/src/discovery-polish.css": "79159bb1bda90e10101251b769b48f040c951fc3d9504f87571a23ddc6c52e99",
+    "apps/web/src/discovery-search.tsx": "18b7fb23c818132205e397f516daf2ff18963544ebbaf12011305512a8fbee32",
+    "apps/web/src/ecosystem-controls.css": "ea8b5bde9813f7a2c9443e432edbc194fe016122f54144207d3d6851ed447198",
+    "apps/web/src/ecosystem-polish.css": "7cf33df3d81d42fda4af4f87ad3f09e694a24d8d2ff31bef484b2108219560a3",
+    "apps/web/src/ecosystem.css": "712561d08ca690cf0b68c23d362af988aec7236be827c89d05b8db635a4790a8",
+    "apps/web/src/embeds.tsx": "80442a04aeb28ac35186bae6ae210039561f47ee6eb1bb568dcb03aa350e2614",
+    "apps/web/src/equalizer-geometry.ts": "e326a26d55cd5242156ebbf924eafb3ddf29c3327a66ba41d3b02edb7620730d",
+    "apps/web/src/equalizer-popover.tsx": "10ead50c10ab2acadd5f97fdfb97450b1bb7cf32635d99b1febfa1a6d9142e8d",
+    "apps/web/src/experience.css": "09a5492f53b01865b94dc71d5cc5e54a11c73155a41fe5973140833ec47ce177",
+    "apps/web/src/extractor-diagnostics.tsx": "3700d1aa8abda94bfb02a874974af381b8e2b5da1d0d7e4eff6ad38cd1bc8441",
+    "apps/web/src/focused-player.css": "ff7772af3f881414683c892de0c9e0342ab1ec3d4adfa251e1c40b1fd93d05e9",
+    "apps/web/src/home-wave.tsx": "4efdf32684d2a5d432b86f1ef02e280fdc0e890ad3547f58be1f59188324f56c",
+    "apps/web/src/integrations-diagnostics.tsx": "a1303367c943cd03a2dfa0d52f6cb237500a42759455a675acbac2261b32e6bf",
+    "apps/web/src/landing.css": "ef31e02d7a9762ab7122671cad48dd6490fc2c45eba2554497a766a48db0f73f",
+    "apps/web/src/landing.tsx": "a7dc708e34bc9d73a5ee73086f615a801da39dd1359e81f401103d038af463d5",
+    "apps/web/src/library-edits.ts": "386128eef24b99d5585f360ddaf5d3b7ddffe6cef56aa7462e622b1b2d1cf79b",
+    "apps/web/src/locale-startup.ts": "aced1065b59eeece9d68eefe2f661b5eaf18fa6b5925a4185dc46a0b05e64fc0",
+    "apps/web/src/locale.tsx": "6ec6e5e57a66071a4523953e18f9e65e50d9650fcb2e021f4e5b162081efc653",
+    "apps/web/src/lofi.tsx": "aa8c8caed874cc495ff32eef5885ce4511dfd55cd298f507724b4758e0d18a68",
+    "apps/web/src/lyric-timing.ts": "0ed4267eb7769eac605c7f5bb379f99a48346102af7e32b85030498125c360e0",
+    "apps/web/src/lyrics-import.tsx": "dea168dc65ed4f4a8e5a4590487e94b733cd7d134a8da7523535e426696a72b7",
+    "apps/web/src/lyrics-model.ts": "134ed19f90d85795c0d9ee0ad09e7c13a70b3207a6bac5db70578634e9a7da82",
+    "apps/web/src/main.tsx": "48ba7dd9e99d405b56a3475d9499d7ae75956445521112de847c22b2d60ad607",
+    "apps/web/src/media-download.ts": "dd918e7bc2a0251d939129a251ab574da2eb7d3e0482128b91e6a06adff8218b",
+    "apps/web/src/media-session-state.ts": "e3e31645d70d561c594c9fc9ee03affdb52a97266f4246094cee4d7b85fea7fa",
+    "apps/web/src/mini.tsx": "46ab6a86f22e5e3c5e6e0d697afa5bf022142cb048b89c3f1cde951156596098",
+    "apps/web/src/morph-icon.tsx": "035a56b8a74087cbc05639c1903ba8c143bd457e4ccd1ad69aca48b9223dfbac",
+    "apps/web/src/motion-controls.css": "86c56cac09e01830b44b521151ec11d8a1a65c313007967730d13cc60c8e4ff5",
+    "apps/web/src/optimistic-controls.ts": "587320fb930c8271cc1273b98768b699cc9e2b5f73e1ac1cb2a79474b448ddd3",
+    "apps/web/src/pages.tsx": "050f3d737a2b0b7f66e19236fe4bbb6f03f05c2007f8c9eb20c8e7a1609e296f",
+    "apps/web/src/parity-account.tsx": "f1682ffc76223fbc04e572291e3e10520c1490f0bf12512f280d15afa5ef1ce9",
+    "apps/web/src/parity-admin.tsx": "a635d5a819837c66c3a5354a31d6bb702ea9782e99e4ae0b82185b497277fa50",
+    "apps/web/src/parity-model.ts": "93bbad3ad22a84e6d352c808574a9009a0092d28edfa9483db24b9a406eb1aa5",
+    "apps/web/src/parity-playlists.tsx": "90b796928227658996185084a9f372f8bbfe832e988eaceb274b75cf153422ad",
+    "apps/web/src/parity-social.tsx": "c65bae7e20a1e8ea25dc5e0dbfeb8e96cbbb1dc65a231b7a21b3f05087565c89",
+    "apps/web/src/parity-taste.tsx": "481685eb010084f9d53b3e9543337097162926c3f1357daf9092238423853e18",
+    "apps/web/src/parity.css": "44be32961ae9ad52c5343787ca2e1c0f9697ff3d76e23be569bf13ac7d60a106",
+    "apps/web/src/pixel-scene.ts": "6aebeff8524759519c0e78b1351e5fd5e306d9a8c191abc8d54a5acf97a8501c",
+    "apps/web/src/playback-feedback.css": "10fd7b45a9337606e5ef4cc401e310bbc62ce068e61643e864499b9aa91951fb",
+    "apps/web/src/playback-lifecycle.ts": "d20c0cd10eb869316f347a6183c7d2a8a996d740fe7b2c167aa995eba1f03564",
+    "apps/web/src/playback-recovery.ts": "5a19366df9fd35c1890b5bf197f4ba3730058f02f3626242db8ead13ced7645f",
+    "apps/web/src/playback-request.ts": "ab03ea51e983917b66c116eb28f78bf2fba00c9c9ad2590d2c418dda4688ffc7",
+    "apps/web/src/playback-settings.tsx": "e830b48067ddb7d8357d0a80de13cbe6df637ffc9109fb9e111b67579f1549c4",
+    "apps/web/src/playback-warmup.ts": "e840ff855daadb0235b45a374373025d5d1a1bd4ee1cf02a8e7f1cca8fdda22a",
+    "apps/web/src/player-details.css": "bb6ed6e63760b8d5ff3345fa3461827e20c2addd5d38d91f826014ddda1f64fd",
+    "apps/web/src/player-gestures.ts": "3a9c2f3c5b059405145ef59114880b97235f518ce7fabd00eb4f6aa4b26d2dac",
+    "apps/web/src/player-refinement.css": "d103f3a510359ca432ba4607e535cdc82d6c1886b125c1c272144a02c34df0aa",
+    "apps/web/src/player-ui.tsx": "d8184a622460cd5697536281fbcd66021960b2d00166b86006d1bcc41824199b",
+    "apps/web/src/player.tsx": "c8472109fdb26274099587ab69ac613307a5f38a7885ada8f99b5ef0aed0f6c4",
+    "apps/web/src/playlist-copy.ts": "2cd5688f1ea33e82cea94dd1ba0e0c22b781a5065c1236cd64918135238a5a4b",
+    "apps/web/src/playlist-library.tsx": "52724ac3dd78ec7dd230ca0912c916a305c84381ea7606603b302ae33418377f",
+    "apps/web/src/playlist-manager.tsx": "283c652a01551e8eb52f0e14fb1637c58322e9bbd34c19ad490b1cadf5eb22fa",
+    "apps/web/src/playlist-polish.css": "edecc305468749eea21d646462cb6c8b958dfe33045496dc5e7f9ebc3476fcc1",
+    "apps/web/src/preferences.ts": "25f982ca39ea3591a497fc6d88cc75bab62354d48936abb6c7a0d85a8eb10aa7",
+    "apps/web/src/preset-listbox.tsx": "99421d371e6ed4890232da3b43afecbf1c3ef54804ce5df397afb392a191d3e1",
+    "apps/web/src/provider-import.tsx": "063e5a0a1b37bb8fb7251ca11cdcdf49e51b43f2500aa29b94a5d48c1c78e47d",
+    "apps/web/src/public-import-copy.ts": "917f01cde2a3c1531bd7db39154ed8ccd49af3f2ad59008ae984208b00271c04",
+    "apps/web/src/public-import.css": "15dfa72d6fe8278190f618b2c277c5711ee829e22eb117ca648b8a129bdd8f71",
+    "apps/web/src/queue-panel.tsx": "de25170f3ce243eb6784f5a03ce1e8e5245f23a3b2578346e69b13142783cb38",
+    "apps/web/src/range-input.tsx": "26554a35a4bf8a9b07981fd67723b014c94616fffe4c7a939e1fcb40793216e4",
+    "apps/web/src/reference-cover.css": "c92a38d741c57e87ad241cc2d2b406621f770d70362f5b645d0fd635502e27e7",
+    "apps/web/src/refinement20-home.tsx": "5435a80092133ae72c559ef113fc573d5d4fe95beb1517f4a07141d9d2ffa648",
+    "apps/web/src/refinement20-strings.ts": "0569365d1defe75171ff4fd5b94049c3c0c96b836b00b02c598df5792a941131",
+    "apps/web/src/refinement20.css": "7c8dcdcddda90331c822a8cb7218de3676fe0aff2961f1fece36b2113da65fed",
+    "apps/web/src/refinement21.css": "a8ef6552e9c13b1375d687680bc1064940427d5488b35835bee8d0972d31a160",
+    "apps/web/src/room-listeners.tsx": "5b6494ea251e1afea0c804a64538370e93a061bb8f6dac57a73e7edf6e5a3632",
+    "apps/web/src/scrolling-label.css": "0844c87ded0da6f1b51d9f6356b715bf9d5f3ccd07544bf8befa3a09fb212169",
+    "apps/web/src/scrolling-label.tsx": "056376a52d44beaadd90fade198413fa821dc2afc30c2dc4aada2df346a25eca",
+    "apps/web/src/search-artists.css": "4212a317f73d87411970fa018d61658d93b79f113f3ed27ccb57080da77a7713",
+    "apps/web/src/search-artists.tsx": "032407ed09406eea8a86e0bbb02adabba7413b2ce6276fcd590067c8a79c6f73",
+    "apps/web/src/seasonal.tsx": "e71a70262eded64230a4cff5c9117e975c9800e47a79371f61b59cc3a5ecbef4",
+    "apps/web/src/settings-range.tsx": "c93207c2c28a468490937fd54590f85f781e990d36ea1e99040454a44647eb22",
+    "apps/web/src/store.tsx": "0352a56cac3eeb2f4aa70196cdcb7b630959232867da667f90d267b1ae51b6bd",
+    "apps/web/src/styles.css": "f170ccd1c0589ff66c8f8fcdd50aa692cc18a3cc4722c0548eb07e384746a944",
+    "apps/web/src/transport-season.css": "0459aeef49444aa51ae58be2ee9bab051b2ecfc1110848030a7a1722759c7182",
+    "apps/web/src/types.ts": "d3e1de409f14cc2fb6e0da5a8052347662e3008052fd0ec3aede9e9a778cba00",
+    "apps/web/src/ui.tsx": "5cf967c28e62f895d4c7ba63b83c53c04ac8578ce01375d1803beba130157f7b",
+    "apps/web/src/v6.css": "73cae087b037346c6efeb26dd8dc46269ca2d43392424dd3d9575ce73f32aab3",
+    "apps/web/src/v7.css": "5f305a19b7ccaeb9bd37a484012cd4557e0b4d27457f2e4abbc689f5531de34f",
+    "apps/web/src/visual-lifecycle.ts": "110a20be1bde0bfbae1108d644bd367e9709a1e31f27b743d6946899990cac0e",
+    "apps/web/src/volume.ts": "4ca822baa37b289958ea5f0d751fc59278edae62b13eb7e4b4cec56a41577fa9",
+    "apps/web/src/wave-colors.ts": "29343730048694c9b77436f079b50f6f8cb9b3898da0ffd6fa2f4f6e0364ba77",
+    "apps/web/src/wave-math.ts": "71c6743a3031eab95ee15f7797d68c7662b144bf0686d31f611df4b81b202d70",
+    "apps/web/src/wave-session.ts": "d238c79a6975255676581fcb3bb405a80742841e71f3c1fae956bdb0944abe5d",
+    "apps/web/src/wave-shaders.ts": "c62cbcf66c2bf93da62c02052f69a5f7af0e5107e4b7b5f504a7d08d18c35bc6",
+    "apps/web/src/wave-silk-math.ts": "1d86a1e6df536527d339f0a8abd8961c8d208a5491aeab235d39934d8807c032",
+    "apps/web/src/wave-silk.ts": "e2abff49cfbc68dd50f89a9a25b316e552f442539fe25e7f714b186353b8f67f",
+    "apps/web/src/wave.tsx": "7173e79ed7fd47f172689df9a7278dd8291dea29118d01ddf5a948ce4ca7101f",
+    "apps/web/src/wave18-polish.css": "c491168d669fc00fbbd9c6a3acaf3c18d0303efb3d3a92f3788e8ff72c28dc6e",
+    "apps/web/src/locales/copy.tsv": "f990474ce08b549c2d6c3cb942a1e21c8905281fed020c1f0fd4638a391a02b3",
+    "apps/web/src/locales/de.json": "4c14099b461b1a27c764f47c22e5b5cff2887c28ce9a05a3e22b807a7aae7485",
+    "apps/web/src/locales/en.json": "c460e35207ccb35ac1d404d0de9bb737744fcae9a3638e4622f8f5651f4a25a7",
+    "apps/web/src/locales/es.json": "e6674ad7f0690b7e455d479e52b41d25b07c5726b08307149dc16cdef6aea97d",
+    "apps/web/src/locales/extra.tsv": "81d6c54e69834bcab56b8b827089faeb759ba5b66745a9b4384570483ed59a0e",
+    "apps/web/src/locales/kk.json": "6b65df4c1024e48f7589909fcf841b501a65d60005f3e15896c293d4606e6d28",
+    "apps/web/src/locales/ru.json": "f7801439b69f461395606d7cf79e6ce1508c034bf75b19d6eee1d9fc5e9043ff",
+    "apps/web/src/locales/templates.tsv": "ecefdaa21386a1eb127325774e2d5598ee406b96afa8a3b67dbec2dcd0351b34",
+    "apps/web/src/locales/uk.json": "912c2b46768b731ab03798dd4fb48406fff84338071715c9e7181d1793ea95d1",
+    "apps/web/src/vendor/halftone-bloom.ts": "c9a3b57f5dfd422cf313f91e3ecdbea768e8cb624f2ea2d0da70a7e34b49bc8f"
+  },
+  "limits": [
+    "No hosting update or owner-client installation",
+    "Physical Samsung TV/browser/TLS/codec support and Android startup not verified on owner hardware",
+    "Compatibility test uses actual production legacy bundle in modern Chromium with missing APIs, not an old engine emulator",
+    "Flutter full465 before final steering, current33 affected regressions passed; unchanged server verified by source hashes",
+    "Android debug/update certificate retained; Windows unsigned; iOS not built",
+    "Independent design evaluator uses same available provider; no external provider review"
+  ]
+}

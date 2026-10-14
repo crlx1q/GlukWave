@@ -1,0 +1,55 @@
+{
+  "categories": [
+    {
+      "bg": "rgb(11, 11, 11) none repeat scroll 0% 0% / auto padding-box border-box",
+      "border": "1px solid rgba(0, 0, 0, 0)",
+      "outline": "rgb(244, 241, 247) none 3px",
+      "selected": "true",
+      "shadow": "none",
+      "text": "Любимое"
+    },
+    {
+      "bg": "rgb(11, 11, 11) none repeat scroll 0% 0% / auto padding-box border-box",
+      "border": "1px solid rgba(0, 0, 0, 0)",
+      "outline": "rgb(244, 241, 247) none 3px",
+      "selected": "true",
+      "shadow": "none",
+      "text": "Новое"
+    },
+    {
+      "bg": "rgb(11, 11, 11) none repeat scroll 0% 0% / auto padding-box border-box",
+      "border": "1px solid rgba(0, 0, 0, 0)",
+      "outline": "rgb(244, 241, 247) none 3px",
+      "selected": "true",
+      "shadow": "none",
+      "text": "Популярное"
+    }
+  ],
+  "footers": [
+    {
+      "height": 96,
+      "links": 0,
+      "lyrics": 0,
+      "overflow": false,
+      "text": " Марсель — Был ӨмірдеАлихан Ғарышқан0:014:00",
+      "w": 1440
+    },
+    {
+      "height": 72,
+      "links": 0,
+      "lyrics": 0,
+      "overflow": false,
+      "text": " Марсель — Был ӨмірдеАлихан Ғарышқан0:034:00",
+      "w": 768
+    },
+    {
+      "height": 72,
+      "links": 0,
+      "lyrics": 0,
+      "overflow": false,
+      "text": " Марсель — Был ӨмірдеАлихан Ғарышқан0:044:00",
+      "w": 375
+    }
+  ],
+  "keyboardFocus": "rgb(244, 241, 247) none 3px"
+}

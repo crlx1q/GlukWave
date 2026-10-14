@@ -42,7 +42,7 @@
         "aspect": 2
       },
       "expected": {
-        "level": 0.9620674294661458,
+        "level": 0.6817705028600414,
         "radius": 0.55,
         "presence": 0.9997852611200346
       }
@@ -61,8 +61,8 @@
         "aspect": 0.9
       },
       "expected": {
-        "level": 3.820198212142952e-9,
-        "radius": 0.0001562763168261213,
+        "level": 8.759642979828847e-7,
+        "radius": 0.0018033224777478654,
         "presence": 0.6366502264852463
       }
     },
@@ -80,8 +80,8 @@
         "aspect": 3
       },
       "expected": {
-        "level": 0.27370360837202584,
-        "radius": 0.3156381677279587,
+        "level": 0.4255229874827892,
+        "radius": 0.3849715540190669,
         "presence": 0.78045560782788
       }
     },
@@ -99,8 +99,8 @@
         "aspect": 1.25
       },
       "expected": {
-        "level": 9.355278460692407e-33,
-        "radius": 3.8542946416209014e-15,
+        "level": 6.644179441576911e-27,
+        "radius": 1.6560292244467205e-12,
         "presence": 0.6984115240346972
       }
     }
@@ -123,6 +123,56 @@
       "target": 0.3,
       "seconds": 0.07,
       "expected": 0.3
+    }
+  ],
+  "particles": [
+    {
+      "energy": 0,
+      "amplitude": 0.15,
+      "detail": 0.055,
+      "spread": 1,
+      "radius": 0,
+      "brightness": 0
+    },
+    {
+      "energy": 0.1,
+      "amplitude": 0.16,
+      "detail": 0.0585,
+      "spread": 1.085,
+      "radius": 0.07500000000000001,
+      "brightness": 0.015
+    },
+    {
+      "energy": 0.25,
+      "amplitude": 0.175,
+      "detail": 0.06375,
+      "spread": 1.2125,
+      "radius": 0.1875,
+      "brightness": 0.0375
+    },
+    {
+      "energy": 0.5,
+      "amplitude": 0.2,
+      "detail": 0.07250000000000001,
+      "spread": 1.425,
+      "radius": 0.375,
+      "brightness": 0.075
+    },
+    {
+      "energy": 0.8,
+      "amplitude": 0.23,
+      "detail": 0.083,
+      "spread": 1.6800000000000002,
+      "radius": 0.6000000000000001,
+      "brightness": 0.12
+    },
+    {
+      "energy": 1,
+      "amplitude": 0.25,
+      "detail": 0.09,
+      "spread": 1.85,
+      "radius": 0.75,
+      "brightness": 0.15
     }
   ]
 }

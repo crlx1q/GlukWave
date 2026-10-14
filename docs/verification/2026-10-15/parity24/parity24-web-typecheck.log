@@ -1,0 +1,4 @@
+
+> @glukwave/web@0.1.0 check
+> tsc -b --pretty false
+

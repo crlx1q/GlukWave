@@ -222,11 +222,7 @@ Size compactPlayerSize({
   bool lyrics = false,
 }) => Size(
   quick ? 360 : 410,
-  (quick
-          ? 420
-          : lyrics
-          ? 172
-          : 116) +
+  (quick ? 420 : 116) +
       (source == 'youtube'
           ? 234
           : source == 'soundcloud'

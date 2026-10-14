@@ -1,0 +1,15 @@
+{
+  "active": "Другие действия",
+  "blur": [
+    "none",
+    "none",
+    "none",
+    "none",
+    "none",
+    "none"
+  ],
+  "focusStyle": "rgb(196, 183, 152) solid 2px",
+  "overflow": false,
+  "profile": "tv-legacy",
+  "scroll": false
+}

@@ -1,0 +1,19 @@
+{
+  "checkedAt": "2026-10-14T21:02:51.617Z",
+  "passed": true,
+  "archiveBytes": 214454557,
+  "archiveSha256": "487c1c391406c5cb0101aa71d03d6ca7780d8e122b9bb5591ccc00b45d607a22",
+  "entries": 2559,
+  "allCrcAndSourceHashesMatched": true,
+  "textFilesScanned": 987,
+  "localPrivateValuesAbsent": true,
+  "liveCredentialPatternsAbsent": true,
+  "staticFontFaces": 6,
+  "manropeStaticFontFaces": 5,
+  "frozenNativeSourcesMatched": 221,
+  "currentWebBuild": "/assets/main-0QMWhc4T.js",
+  "runtimeDataExcluded": true,
+  "apkSha256": "e6c246adc7c153739c45219efcf1eff4cc01514e54a14e6f1f0edfc34b45cfb5",
+  "windowsSha256": "e1f7cd67b70c12eae6e726ba146e403e7e4f17b47801f7622558f978ff1557b8",
+  "installerSha256": "cb710ddf3f1342545d68c6d808affede52810332924d6211ebb754cf7700f7d8"
+}

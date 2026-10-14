@@ -1,0 +1,18 @@
+{
+  "version": "1.0.0+23",
+  "archivedExactFiles": {
+    "GlukWave-android-debug.apk": "0f6e1eb7e6da815c914570a94d22819b2fab15d0a11611060410f20c28a9271f",
+    "GlukWave-windows.zip": "cb0b5ebf08d284b788c7ecf54c71e5c2c70d09870bf9d14ada16f8fa9a420b89",
+    "GlukWave-Setup.exe": "548e897a83bd078d6e112fc4a5d14595b72cae961ac101505ba588f7facdae29",
+    "GlukWave-source.zip": "983e1a63d2bb3120e5aadeaac942c9ac9fabb3fe2ad945dfb8d7566409707dd2",
+    "GlukWave-1.0.0+23-audit.json": "52fbc6e96cc6677e263668b25ddc3b7425889c5c4345ad95aa6d7a1062996c59",
+    "GlukWave-1.0.0+23-source-audit.json": "50a4478130b02ed90ea831d0fba09130f340330fca09f8c1cf5ff70b7aa75d4b",
+    "README.md": "ee34ab37022f1aee425d60c5ab6cf01bb16f84b7372f26ac2d7f4fac85fd86dd",
+    "START.md": "028f26d120d021765cc948e425352f195fbb8fa6839386f515fad01aa671c49c",
+    "VERIFICATION.md": "35f98daa257943a4644198194e4a7e5fa42280e76b00f3379d1dc9992d356d06",
+    "releases.json": "3236d4297d70432104c0ea8e31b2ffa7ffbcdeeedb236db1c7affa0090af61f8",
+    "organization.json": "1f1351dd1575312deb423d781eca90cbd507bde55e9b078afae37add14dd243c",
+    "SHA256SUMS.txt": "9972d72fd8ef56b0c7d894101c440ffe007c87a8f7d199ab2cc628fc5ad2e9f5",
+    "Start-GlukWave.ps1": "83f9b894a0ba641c880ad34ea837031a5527d749f62868b726c31a7b8d094e7b"
+  }
+}

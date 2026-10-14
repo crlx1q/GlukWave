@@ -1,0 +1,1112 @@
+{
+  "frozenAt": "2026-10-14T20:20:25.837766+00:00",
+  "compileDefine": "https://wave.gluk.tech",
+  "sourceSha256": "4dcd213b29f08ce374ce7386308cee949147dd784cdef71b44a4f4b7686e1f40",
+  "files": [
+    {
+      "path": "android/app/build.gradle.kts",
+      "bytes": 2895,
+      "sha256": "ce1e57d382fac5bfeee93e60d3f1fe2389d913620c8eb428c478024d1f77d1ee"
+    },
+    {
+      "path": "android/app/src/debug/AndroidManifest.xml",
+      "bytes": 229,
+      "sha256": "10ed9279d4aecc0bebfc9d2d46daf354a44c0511d36b3b805792314bb23254c6"
+    },
+    {
+      "path": "android/app/src/main/AndroidManifest.xml",
+      "bytes": 3567,
+      "sha256": "e8a8b8dbfc34a12f7bd5f9292f3a62d29528362131bd7c36b5d1d3fc63030cd4"
+    },
+    {
+      "path": "android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java",
+      "bytes": 4288,
+      "sha256": "65568d3fa4be6bfdf885c2e7ad3c150ed022db42242106cdf22ca6e2232a2a12"
+    },
+    {
+      "path": "android/app/src/main/kotlin/tech/gluk/glukwave/ConnectBackgroundService.kt",
+      "bytes": 3697,
+      "sha256": "ea22ea8ff812131da2aab5fc43804fc7db39e90e32653ce82593fd464a5c489a"
+    },
+    {
+      "path": "android/app/src/main/kotlin/tech/gluk/glukwave/HomeWidgets.kt",
+      "bytes": 16373,
+      "sha256": "9ad7093a2c09725da220bba97a2785df7aa5b55dbde0192303ea281940a948e0"
+    },
+    {
+      "path": "android/app/src/main/kotlin/tech/gluk/glukwave/MainActivity.kt",
+      "bytes": 4349,
+      "sha256": "3c3ceb14ba6f86741ea118bba8b29913e4e929780c2e17771b8497d1c0e452a9"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/ic_notification.xml",
+      "bytes": 395,
+      "sha256": "65cf6cf3dae21ba4893fcf0cab2a9a1d880d9b0439bc33e4ba2b2a598e35b7c7"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/launch_background.xml",
+      "bytes": 446,
+      "sha256": "2df60e2cfbee873ce2858088cf003e6b93498f2f568476da437610467ea1a9d7"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/widget_heart.xml",
+      "bytes": 459,
+      "sha256": "6bdc7380a4b3f55f07f46172f2d0fd7eed3cda177ec50e12449607424ae24acb"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/widget_heart_filled.xml",
+      "bytes": 323,
+      "sha256": "2a0405884c441394fc249edf8ca16055b0d7dccf92673bb2bc28f82054dfbbd4"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/widget_logo.xml",
+      "bytes": 418,
+      "sha256": "c80cd039feba8aed5133e95d421f5ba68a0c64a97569049314f525c23110071a"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/widget_next.xml",
+      "bytes": 403,
+      "sha256": "82d577428bd0329628302225e3df00a6d09385d1d08a81fca4de7806263a2ef7"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/widget_panel_background.xml",
+      "bytes": 282,
+      "sha256": "bc4ed0060ddc606890b2a83909bd922f9ef07999a6df5f46ab4bef68cea5e3a1"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/widget_pause.xml",
+      "bytes": 385,
+      "sha256": "79411e1b7e2d718e51ae489a13e3e7e201cdd9c9536f786eccc5f942894f7269"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/widget_play.xml",
+      "bytes": 300,
+      "sha256": "f474d58a6f840f780eee2b8186502cdf125ff1f1ca7df758235f00db2f674689"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/widget_play_background.xml",
+      "bytes": 129,
+      "sha256": "51a24665aeae4e1e30be97166740a8e2b2d0691e1e674f56be689065233b360a"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/widget_previous.xml",
+      "bytes": 402,
+      "sha256": "631320c1919f6ab95843ade951406228d706c1b8349fc0dc1446d32493290609"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/widget_progress_background.xml",
+      "bytes": 351,
+      "sha256": "c3f4d523c012070d448c97141636db2b7988e46b0b4b037e126e9ae95e1d5a4a"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/widget_touch_background.xml",
+      "bytes": 215,
+      "sha256": "7f07aab320999c49dfdb2fa8a37c68c82a3f387438d246e59f2364e7022ea5ea"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/widget_wave.xml",
+      "bytes": 456,
+      "sha256": "dd0edcee06353ce33e60779d066cb436f9a0da16656ff7567e9bf0cfba084cee"
+    },
+    {
+      "path": "android/app/src/main/res/drawable/widget_wave_background.xml",
+      "bytes": 166,
+      "sha256": "3e4c63264978ebcd84be81dca6d43ca34ed162afd26fd5461fcedf4c67f9f636"
+    },
+    {
+      "path": "android/app/src/main/res/drawable-v21/launch_background.xml",
+      "bytes": 450,
+      "sha256": "dca312ec77de83e43ef70a825c299b51451247286c29167d62f19165750b8793"
+    },
+    {
+      "path": "android/app/src/main/res/font/widget_manrope.ttf",
+      "bytes": 97580,
+      "sha256": "78177fa989a3feb256c1750faca4a05ab0b70f093f5f45b12a537e7b939bae9c"
+    },
+    {
+      "path": "android/app/src/main/res/layout/glukwave_widget_player.xml",
+      "bytes": 3901,
+      "sha256": "a00fa341a23b3336b305fa0d97e3a46a409b7250cd4bd7acb1e811003e0658d5"
+    },
+    {
+      "path": "android/app/src/main/res/layout/glukwave_widget_wave.xml",
+      "bytes": 5912,
+      "sha256": "debb9ddb5e49bc1381aafcb6209f7b1b09ab9b352cf530737c0c4f3e90e007da"
+    },
+    {
+      "path": "android/app/src/main/res/mipmap-hdpi/ic_launcher.png",
+      "bytes": 1148,
+      "sha256": "a52d185c17e0bceed90636e40045e9f28828b87b11fe41a760ae9fd456391d4a"
+    },
+    {
+      "path": "android/app/src/main/res/mipmap-mdpi/ic_launcher.png",
+      "bytes": 656,
+      "sha256": "6118b4d7ae4ce51db8bf7ebeb23e8ab53c43fb83835a66c06a6f8604e85c0966"
+    },
+    {
+      "path": "android/app/src/main/res/mipmap-xhdpi/ic_launcher.png",
+      "bytes": 1481,
+      "sha256": "d85ff48c9b52e460e7b755b1058635af3c9691550bd5777246901667d8d89fd5"
+    },
+    {
+      "path": "android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png",
+      "bytes": 2805,
+      "sha256": "acba7f99bafeb06c040f1e55e36e701bcca09939820e42dd7335f31facb60f54"
+    },
+    {
+      "path": "android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png",
+      "bytes": 4230,
+      "sha256": "d1d4ae7f0bb21edf30523610469db5675571c8ffe1b2d1738352f169e0b3cbdb"
+    },
+    {
+      "path": "android/app/src/main/res/values/connect_background.xml",
+      "bytes": 178,
+      "sha256": "7e10ad804f2914447ee49b58c8304e787df3a61f220ada4db1d01441423bf51c"
+    },
+    {
+      "path": "android/app/src/main/res/values/styles.xml",
+      "bytes": 1014,
+      "sha256": "cca15a99b59380a548bf6a890f7ca5380ee509b1f9bbb2f5f9ec3589fa25c2f7"
+    },
+    {
+      "path": "android/app/src/main/res/values/widgets_strings.xml",
+      "bytes": 381,
+      "sha256": "7aa887f9dd6ffd8106b03f62722d1ed1c487a29500f72dd0c7177eb9f5df18c7"
+    },
+    {
+      "path": "android/app/src/main/res/values-de/connect_background.xml",
+      "bytes": 189,
+      "sha256": "743297e2ef9186720d0952f8bffa1a5b3a1cb8d82d3f8d690500090a0922c88c"
+    },
+    {
+      "path": "android/app/src/main/res/values-de/widgets_strings.xml",
+      "bytes": 398,
+      "sha256": "42f08bdd185a10a9fb2e9c6c93723eef0f6aaf5791de3177185e4be06532985c"
+    },
+    {
+      "path": "android/app/src/main/res/values-es/connect_background.xml",
+      "bytes": 189,
+      "sha256": "b6812831673ada3bf6100fbc563df3900673ddeabe1d058582b8e6a70ce2f59d"
+    },
+    {
+      "path": "android/app/src/main/res/values-es/widgets_strings.xml",
+      "bytes": 396,
+      "sha256": "8ed256c82af84d1a7d366e48d0f41c507d97cc4d4093c5e3f7c5a19ae6ebcf5d"
+    },
+    {
+      "path": "android/app/src/main/res/values-kk/connect_background.xml",
+      "bytes": 220,
+      "sha256": "03cb296fdd5fdf967767d26390e6107dabce07d2296f61d3ca1e85f0748a6277"
+    },
+    {
+      "path": "android/app/src/main/res/values-kk/widgets_strings.xml",
+      "bytes": 453,
+      "sha256": "719a93db337b5b65e0256d5b9363b43f9be248b75bebc7454bc49242e269962c"
+    },
+    {
+      "path": "android/app/src/main/res/values-night/styles.xml",
+      "bytes": 1013,
+      "sha256": "ea763597dc1a84c8034251caee98d7753e0fbf57340ffc94677427de4b537516"
+    },
+    {
+      "path": "android/app/src/main/res/values-ru/connect_background.xml",
+      "bytes": 236,
+      "sha256": "5a6413175ed9fca2fafd9d9d935d7f59fa4863d0c668ed733bb8cf58feeb74a5"
+    },
+    {
+      "path": "android/app/src/main/res/values-ru/widgets_strings.xml",
+      "bytes": 461,
+      "sha256": "7f7b264db905eb003162e90cbc48887420c3c60edd4c0bc1e9a713e9d741eca7"
+    },
+    {
+      "path": "android/app/src/main/res/values-uk/connect_background.xml",
+      "bytes": 234,
+      "sha256": "e7eaa074a93073599d8523851ef34871ae31472dbdc43d8dc8846b3264d0d5bb"
+    },
+    {
+      "path": "android/app/src/main/res/values-uk/widgets_strings.xml",
+      "bytes": 461,
+      "sha256": "a82fe179bb1fe0e832755630337bbea66229a32abc69f26563969336f4d86820"
+    },
+    {
+      "path": "android/app/src/main/res/xml/glukwave_player_widget_info.xml",
+      "bytes": 478,
+      "sha256": "c1ea73367d89a3be537bcccb9ffe5aab9c7de33c732a4311e1df38d35f3eaed2"
+    },
+    {
+      "path": "android/app/src/main/res/xml/glukwave_wave_widget_info.xml",
+      "bytes": 476,
+      "sha256": "2b5ca52c3edb5904c704dec1389b5a9b2a2fb5d1f6700e17397115638cfe5db5"
+    },
+    {
+      "path": "android/app/src/profile/AndroidManifest.xml",
+      "bytes": 385,
+      "sha256": "b01a4541a8144c15bc617bab7eb267c99fa1476368fbbda5a12cdbf4e316a34c"
+    },
+    {
+      "path": "android/app/src/test/kotlin/tech/gluk/glukwave/ConnectBackgroundTest.kt",
+      "bytes": 1915,
+      "sha256": "a3ac69ac520c5ef47efd7102143ba133974d3096c9d40d5ea0c1ad0968bcf962"
+    },
+    {
+      "path": "android/app/src/test/kotlin/tech/gluk/glukwave/HomeWidgetsTest.kt",
+      "bytes": 8721,
+      "sha256": "4c0116b4179a47eaaaaa91d276a5de52d3f3706a7c54c2f7464677e2c800399e"
+    },
+    {
+      "path": "android/build.gradle.kts",
+      "bytes": 561,
+      "sha256": "218f400e3fff31c9c986a2535dfb974560e1b4d33cc27b7c1fee96a2b7e44454"
+    },
+    {
+      "path": "android/gradle/wrapper/gradle-wrapper.properties",
+      "bytes": 206,
+      "sha256": "a23faf39f936281e98c22c568a812ded3684a61fcf683bbd1aac2e85691622ac"
+    },
+    {
+      "path": "android/gradle.properties",
+      "bytes": 379,
+      "sha256": "17f3808f71074d99dff1ca1be8be70c15d0137755855f95f6a66eb983eda2dac"
+    },
+    {
+      "path": "android/settings.gradle.kts",
+      "bytes": 796,
+      "sha256": "12ec5e66e6a1cc90fcd73cfae78c87e6ca9637dc3a860c90253af63aa1af58cf"
+    },
+    {
+      "path": "assets/app_icon.ico",
+      "bytes": 11501,
+      "sha256": "1959049e4ef99d14b0ef73b580d5dcbc9466b1f7a910452c99fb134dbcf25d25"
+    },
+    {
+      "path": "assets/coast.jpg",
+      "bytes": 62536,
+      "sha256": "4eb2141d6e6a3d5344e8dedb67f6766226039c5a627c9141b757f0d993df3a80"
+    },
+    {
+      "path": "assets/fonts/Manrope-Bold.ttf",
+      "bytes": 97520,
+      "sha256": "06ef9bf16d6ce1b6b8d6b953ea8b9e6c30e4b3708cf039132224fb2a5aa77102"
+    },
+    {
+      "path": "assets/fonts/Manrope-ExtraBold.ttf",
+      "bytes": 98080,
+      "sha256": "63050130f7beccf497d740a2af39f8d5d49447e9ed777014e8d6d413442425ba"
+    },
+    {
+      "path": "assets/fonts/Manrope-Medium.ttf",
+      "bytes": 97580,
+      "sha256": "78177fa989a3feb256c1750faca4a05ab0b70f093f5f45b12a537e7b939bae9c"
+    },
+    {
+      "path": "assets/fonts/Manrope-Regular.ttf",
+      "bytes": 97500,
+      "sha256": "c443e2325b9ff17933ec2f5a99d835af430a545901d146f81f4fc9f4882b6623"
+    },
+    {
+      "path": "assets/fonts/Manrope-SemiBold.ttf",
+      "bytes": 97616,
+      "sha256": "1eea52be7b84d0841e39d6102cdf2f6777dbdbd6781d3a40a3323a8151163f07"
+    },
+    {
+      "path": "assets/fonts/Nunito-Black.ttf",
+      "bytes": 132128,
+      "sha256": "b3628977111142f66472632770b76ee2c0665a40ae536bd64971a3bc19087717"
+    },
+    {
+      "path": "assets/fonts/Nunito-Bold.ttf",
+      "bytes": 132268,
+      "sha256": "19acc4b8e7dc15b49c3802b6f2b53a1c41d7ee548733204a367052fa53387933"
+    },
+    {
+      "path": "assets/fonts/Nunito-ExtraBold.ttf",
+      "bytes": 132180,
+      "sha256": "9bc8f0d0c03926636f41ec699c6563dd01835b510c194e2086811eaf65a8e527"
+    },
+    {
+      "path": "assets/fonts/Nunito-Medium.ttf",
+      "bytes": 132404,
+      "sha256": "818d89d5417ed2c7686c07097469f417d41dfe70b8e9514466637612f7ab9d8d"
+    },
+    {
+      "path": "assets/fonts/Nunito-Regular.ttf",
+      "bytes": 132324,
+      "sha256": "29f17d41574376520b263bde34a4fecb11814233ff280c66befce6020c5e3cc4"
+    },
+    {
+      "path": "assets/fonts/Nunito-SemiBold.ttf",
+      "bytes": 132256,
+      "sha256": "e6ac9b7051c6b3c4a23817a9272e2a8f7124896b36e68b30a3d46b452a0418a5"
+    },
+    {
+      "path": "assets/forest.jpg",
+      "bytes": 158271,
+      "sha256": "b944abd87e265d383d021181a00eb153babf605d2746d859be6be910a2deb1ed"
+    },
+    {
+      "path": "assets/google-g.png",
+      "bytes": 33661,
+      "sha256": "d1ce9c2af0b10a7333abc99bc706f9a6a199e5b65bf3e3009624f076b8638e6a"
+    },
+    {
+      "path": "assets/licenses/just_audio_media_kit-UNLICENSE.txt",
+      "bytes": 1235,
+      "sha256": "436a6d536138f203ac333858cff92a568be62797752b3adb94bcaa0f6ffe7ef6"
+    },
+    {
+      "path": "assets/licenses/Manrope-OFL.txt",
+      "bytes": 4387,
+      "sha256": "58172e0c0fac2cda8a37b348164bb55e44b0e69051e557e92b1d3f6910141f7b"
+    },
+    {
+      "path": "assets/licenses/Nunito-OFL.txt",
+      "bytes": 4385,
+      "sha256": "580df76c95a1ec5ab878ceb25bb3d85c6a076804e9c970c8c6972aea775fdf65"
+    },
+    {
+      "path": "assets/logo.gif",
+      "bytes": 3232167,
+      "sha256": "1e8d9b17f3f10032a288c6908fbf613906b691d6b558949f2c6efa4b3301f7d3"
+    },
+    {
+      "path": "assets/logo.png",
+      "bytes": 22044,
+      "sha256": "17c11e6d04d4180a2ace71828dd9d2b9c8ef52f5380082062fe12a3d00acfa58"
+    },
+    {
+      "path": "assets/mark.svg",
+      "bytes": 400,
+      "sha256": "421eb15a46e15da29d635f5ca334f1671dae29ead2d4cf59977ee99028605392"
+    },
+    {
+      "path": "assets/Nunito.ttf",
+      "bytes": 276932,
+      "sha256": "bb55a5ca5c2042335b3991af27c4d0705d0ef41cac6164ac737fd8f2a1e85207"
+    },
+    {
+      "path": "ios/Runner/AppDelegate.swift",
+      "bytes": 1256,
+      "sha256": "7625c32581367fcee46f432575c26628a70080c07b742c98a3bc6abe6f0d90b0"
+    },
+    {
+      "path": "ios/Runner/Assets.xcassets/AppIcon.appiconset/Contents.json",
+      "bytes": 2519,
+      "sha256": "3b1e214f466ffedff74baa5598ad5c4421130eea6bc8d57b8fe23435e8280ae4"
+    },
+    {
+      "path": "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-1024x1024@1x.png",
+      "bytes": 24986,
+      "sha256": "0434e9833df97b68570b18989ff2f6fd3e3bde5cd53c26eb4b9246bf9de04eee"
+    },
+    {
+      "path": "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@1x.png",
+      "bytes": 258,
+      "sha256": "a33488e7dd70d1200b2010423b6bf76f862bdf002c44a8679c467dac0778b3ea"
+    },
+    {
+      "path": "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@2x.png",
+      "bytes": 472,
+      "sha256": "a4ed1b72c0e49e18768ef1c03b5aa235448b21a34661a7e4b2eead2036331fee"
+    },
+    {
+      "path": "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-20x20@3x.png",
+      "bytes": 826,
+      "sha256": "093037bca87d0d473645adbb4c33566dbf0cb124fce940464f002c25e76e4983"
+    },
+    {
+      "path": "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@1x.png",
+      "bytes": 351,
+      "sha256": "3fe2fbd0ac0b2e5edbd86f9cfa9ddb734eeb91cee49c6c93aab8b09e946f09ed"
+    },
+    {
+      "path": "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@2x.png",
+      "bytes": 791,
+      "sha256": "357464dcc68951167814e36df145a71479c045da54f13a300887feb75b2e9711"
+    },
+    {
+      "path": "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-29x29@3x.png",
+      "bytes": 1303,
+      "sha256": "74af35d9151bf1f67705a4d0c1181a6835736f6760973db848641d855c6f8c1f"
+    },
+    {
+      "path": "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@1x.png",
+      "bytes": 472,
+      "sha256": "a4ed1b72c0e49e18768ef1c03b5aa235448b21a34661a7e4b2eead2036331fee"
+    },
+    {
+      "path": "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@2x.png",
+      "bytes": 1102,
+      "sha256": "658ffff0a3d448f489d307e21783c9807642845adf5bfb6ba6a63b2d9562f275"
+    },
+    {
+      "path": "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-40x40@3x.png",
+      "bytes": 2085,
+      "sha256": "3be18b97dbabafe2468cb5b4dfe6b4cb28480e849ccf1a79f0687a15a1feaa7c"
+    },
+    {
+      "path": "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@2x.png",
+      "bytes": 2085,
+      "sha256": "3be18b97dbabafe2468cb5b4dfe6b4cb28480e849ccf1a79f0687a15a1feaa7c"
+    },
+    {
+      "path": "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-60x60@3x.png",
+      "bytes": 3707,
+      "sha256": "ed88f5d45bbd00531fd4f8fb9d903173fb1bc41c1a2b76b52689e99eaa9039ec"
+    },
+    {
+      "path": "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@1x.png",
+      "bytes": 1143,
+      "sha256": "e9e8f23bfe82e92e7ba11ba4ba19d516487ba09c087e48fd15cbb41834bd5d84"
+    },
+    {
+      "path": "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-76x76@2x.png",
+      "bytes": 2894,
+      "sha256": "1cbdb3b8bbe4662fc8c2f06bd04ab8add6e7ff2abb08127be946d3b625747846"
+    },
+    {
+      "path": "ios/Runner/Assets.xcassets/AppIcon.appiconset/Icon-App-83.5x83.5@2x.png",
+      "bytes": 3434,
+      "sha256": "1401fc46d97443c314a5c0a3cfdd9b9c21c6c53bb4358bfddbca805a8260548d"
+    },
+    {
+      "path": "ios/Runner/Assets.xcassets/LaunchImage.imageset/Contents.json",
+      "bytes": 391,
+      "sha256": "ccc7950fd5f5b82067c85f667940a9d59189151460761ece8098ca78daa19469"
+    },
+    {
+      "path": "ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage.png",
+      "bytes": 68,
+      "sha256": "93ae7d494fad0fb30cbf3ae746a39c4bc7a0f8bbf87fbb587a3f3c01f3c5ce20"
+    },
+    {
+      "path": "ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage@2x.png",
+      "bytes": 68,
+      "sha256": "93ae7d494fad0fb30cbf3ae746a39c4bc7a0f8bbf87fbb587a3f3c01f3c5ce20"
+    },
+    {
+      "path": "ios/Runner/Assets.xcassets/LaunchImage.imageset/LaunchImage@3x.png",
+      "bytes": 68,
+      "sha256": "93ae7d494fad0fb30cbf3ae746a39c4bc7a0f8bbf87fbb587a3f3c01f3c5ce20"
+    },
+    {
+      "path": "ios/Runner/Assets.xcassets/LaunchImage.imageset/README.md",
+      "bytes": 336,
+      "sha256": "a985b626c4f7546a8ba392d135e9226c3547c8e2b46895f5f2bdf40d7b14ef9f"
+    },
+    {
+      "path": "ios/Runner/Base.lproj/LaunchScreen.storyboard",
+      "bytes": 2377,
+      "sha256": "857e61203b3deafb05766d8fcda898b86a7cb6f3d5e385ecc9926c4d698215e9"
+    },
+    {
+      "path": "ios/Runner/Base.lproj/Main.storyboard",
+      "bytes": 1605,
+      "sha256": "fd367b6c43006d61b730f674970dd48b9f662c8f2264e52ffc1558102a2c9f2d"
+    },
+    {
+      "path": "ios/Runner/GeneratedPluginRegistrant.h",
+      "bytes": 378,
+      "sha256": "a5f88cc6415d2e639d2cb549348b84e02a7fdd0261603b0063abef6fa11f075a"
+    },
+    {
+      "path": "ios/Runner/GeneratedPluginRegistrant.m",
+      "bytes": 3578,
+      "sha256": "0c2e1799a8fd87783ec55cc08542cdd21a0a51e312359dc76e951d003c7ceb13"
+    },
+    {
+      "path": "ios/Runner/Info.plist",
+      "bytes": 2045,
+      "sha256": "fe6a75ddd18fb8a0eaa62f5eb4e8bfdb4fe09eb4a5f390aa9be6a316cda474c1"
+    },
+    {
+      "path": "ios/Runner/Runner-Bridging-Header.h",
+      "bytes": 38,
+      "sha256": "1a8d11d01d1cc92c650c9c9ed35299240052d4683a15a719a2315ef44185e074"
+    },
+    {
+      "path": "lib/core/api.dart",
+      "bytes": 11999,
+      "sha256": "f79d6ad349569ce22a5e9cf4247d184f750a0433eff0474a65255b0f0c37f60a"
+    },
+    {
+      "path": "lib/core/appearance.dart",
+      "bytes": 10492,
+      "sha256": "a0e95ac67ee51986b7053c6a7799ec9973764e3e392510f8be24964ea4f34701"
+    },
+    {
+      "path": "lib/core/artwork.dart",
+      "bytes": 1684,
+      "sha256": "393cc74eef324fc59e38d62890fbd69dd1393867645731286829779ab0a00a93"
+    },
+    {
+      "path": "lib/core/controller.dart",
+      "bytes": 145886,
+      "sha256": "6e3509a6f40bb29ba1641a185960a8aa1a053d25519919dd19eef15b59951fd5"
+    },
+    {
+      "path": "lib/core/discord.dart",
+      "bytes": 2499,
+      "sha256": "d2404d26d50d4349524461e6963cb8f250dd127fc91eff9b5e0365bcefd8c9d6"
+    },
+    {
+      "path": "lib/core/equalizer.dart",
+      "bytes": 2302,
+      "sha256": "56763a4efa99fa9ba49dc6b2ad3d0274d6f98a98101140106a18b9de781edefb"
+    },
+    {
+      "path": "lib/core/library_mutations.dart",
+      "bytes": 5006,
+      "sha256": "77d7a96829d24e106c1dc1e0564142c958db0d0d7660f6b358940daaa4d9b260"
+    },
+    {
+      "path": "lib/core/lyrics.dart",
+      "bytes": 841,
+      "sha256": "99b81bff7389653912dda577261309740363baa4fabec2133582acf3a7be48b3"
+    },
+    {
+      "path": "lib/core/models.dart",
+      "bytes": 5649,
+      "sha256": "b7f44c38b13672fac8026ecaa2e0605825a7b368c40e93174f40ee67f826b336"
+    },
+    {
+      "path": "lib/core/parity.dart",
+      "bytes": 4588,
+      "sha256": "77950e7900b39e15c29ed8e6f53a73fcb88d0573a7c4c4702de9c05e897e7361"
+    },
+    {
+      "path": "lib/core/playback_recovery.dart",
+      "bytes": 220,
+      "sha256": "e7912d1b606aabacedf19a3438fcb79106d5ee5d2488d36c37fa062f2d419b8d"
+    },
+    {
+      "path": "lib/core/qr_login.dart",
+      "bytes": 822,
+      "sha256": "18d7ebdc35badb1b2442632cc2582e97a997641180f6fedb07149bd07c08f771"
+    },
+    {
+      "path": "lib/core/wave_math.dart",
+      "bytes": 3738,
+      "sha256": "fe713bac4370c76d328ddc17f772045109963737c176a913aa1cd3e68b5db33b"
+    },
+    {
+      "path": "lib/l10n/audio_design_strings.dart",
+      "bytes": 2096,
+      "sha256": "95912e81b3753dab36815fb48888c5d1017903366cc50c00a6a1083bb85e69de"
+    },
+    {
+      "path": "lib/l10n/catalogs.dart",
+      "bytes": 244749,
+      "sha256": "2a85998bd00edc19ac39eab3dc40b551b6ce494cd89f28f5ef9a8f3ab8755659"
+    },
+    {
+      "path": "lib/l10n/discord_strings.dart",
+      "bytes": 13716,
+      "sha256": "e9340660f7c413603c6a9f107f3dab6a52fa6dd953ea4e34bf2f3cc58613c944"
+    },
+    {
+      "path": "lib/l10n/ecosystem_polish_strings.dart",
+      "bytes": 3979,
+      "sha256": "01d6ac13fc68fe705a146691e3e921d8b978906c15cb25b982626b22aefd97c0"
+    },
+    {
+      "path": "lib/l10n/focused_player_strings.dart",
+      "bytes": 1036,
+      "sha256": "a5e7e2f9438417827c0a932656dbc5f8205f95ea7471723c5ba07d48af50b89a"
+    },
+    {
+      "path": "lib/l10n/home_widget_strings.dart",
+      "bytes": 5660,
+      "sha256": "cf6ef7b08921af98758b779153aea00ab9e1f187ab81d0c45f5fa2077c4fb8b0"
+    },
+    {
+      "path": "lib/l10n/lan_strings.dart",
+      "bytes": 11686,
+      "sha256": "6077adc164c26b919bac895131520469b87df425404a78b1b9e6fb09b5314c27"
+    },
+    {
+      "path": "lib/l10n/listening_polish_strings.dart",
+      "bytes": 2942,
+      "sha256": "9b96e54549199bb401ff2b892728f6117887dc6982ab67755bc6198e0daa1ee6"
+    },
+    {
+      "path": "lib/l10n/lyrics_strings.dart",
+      "bytes": 5520,
+      "sha256": "8e238bceb88afc7ff54337c323f272f7936b5656258a85e577895ccdb5502c14"
+    },
+    {
+      "path": "lib/l10n/parity_strings.dart",
+      "bytes": 21977,
+      "sha256": "fbff02261cb113cf4c830f0cd51f311b103af6de6c952799137c7f770e952ae8"
+    },
+    {
+      "path": "lib/l10n/season_strings.dart",
+      "bytes": 3578,
+      "sha256": "f645dd00349c1f360ce832c4361252b4b6ecb41b390dc1d2fbf9741da4bcee04"
+    },
+    {
+      "path": "lib/l10n/wave_localizations.dart",
+      "bytes": 3744,
+      "sha256": "affe04b50680c7b2a2efdcc03fd4804c0d0b6405321014deb66e39deca12dab1"
+    },
+    {
+      "path": "lib/main.dart",
+      "bytes": 4621,
+      "sha256": "e19725429ca26ccf73ad8798944de7a2076480b3c228f608442698b77f13edb0"
+    },
+    {
+      "path": "lib/services/ambience.dart",
+      "bytes": 2996,
+      "sha256": "7fe20417fef5f99bb4ae341460df16dc8cd0eb6ebee239fb8983b48cf9ac25ce"
+    },
+    {
+      "path": "lib/services/appearance_store.dart",
+      "bytes": 8855,
+      "sha256": "3f2c8ea0832d8373351d72bebfe51c1aa47df514e93d666d6da4323b4f74e76d"
+    },
+    {
+      "path": "lib/services/audio.dart",
+      "bytes": 42397,
+      "sha256": "6fdce8a118e0706d34383702cde402c747192c6c2fd7906ad0ae36ee753fddfd"
+    },
+    {
+      "path": "lib/services/audio_config.dart",
+      "bytes": 596,
+      "sha256": "39dc9b6d419b9e2e2ed7af7fd8d5d3a51a74a246adcd1322b0c5e7e4fc5157e8"
+    },
+    {
+      "path": "lib/services/background_connect.dart",
+      "bytes": 772,
+      "sha256": "02edd7546fcd1e221f47cf27ed7e182143e2a355d9935e7a4974691fd1a1660b"
+    },
+    {
+      "path": "lib/services/cache.dart",
+      "bytes": 15388,
+      "sha256": "d140899d2b5718905f8f1295ce97870177ce77c9276b216a0439ea7cd661c6e2"
+    },
+    {
+      "path": "lib/services/desktop.dart",
+      "bytes": 22725,
+      "sha256": "47bf7f0e5002f26c78dbb2ba69ae75e5cc5bb08fb137309dbd175d951f4f3d3b"
+    },
+    {
+      "path": "lib/services/diagnostics.dart",
+      "bytes": 6496,
+      "sha256": "90e90b2d97baffa7e58ed9b7186958bacf07fa17ad8fddeca40c0ceb7d8afc35"
+    },
+    {
+      "path": "lib/services/energy.dart",
+      "bytes": 3133,
+      "sha256": "1ccf94efec39c3f6a167cea4d7d9791f8d254edad3f37e3b76406a4df08a1890"
+    },
+    {
+      "path": "lib/services/home_widgets.dart",
+      "bytes": 4193,
+      "sha256": "0e23c5d3ab49b9e59cda7b94d8c977a8d657f95396362f90475512619a8826b6"
+    },
+    {
+      "path": "lib/services/lan_transport.dart",
+      "bytes": 19646,
+      "sha256": "409381075250c4f570c00335ba81829d5f8ac4372bf2e4bcd6921659f1b7a33a"
+    },
+    {
+      "path": "lib/services/presence_bridge.dart",
+      "bytes": 2858,
+      "sha256": "d99e5cd622b9b021bfc54f10a091bc934380b190b45950ee2e3f6ae54a2163d8"
+    },
+    {
+      "path": "lib/services/provider_player.dart",
+      "bytes": 8887,
+      "sha256": "9f40c91eb228c901b14247e75ac6792745bc63e2f2765d62f6c765f2af6ab78c"
+    },
+    {
+      "path": "lib/services/push.dart",
+      "bytes": 2190,
+      "sha256": "6432613cfc56f413c8ca804e27f559ba9a4376b1a399e4273b32fbc8f20e1848"
+    },
+    {
+      "path": "lib/services/volume_store.dart",
+      "bytes": 751,
+      "sha256": "5b2ffdd1f968097b08f5a0aa314865e2c048bbc503189ee0d9ade176147fe110"
+    },
+    {
+      "path": "lib/services/waveform.dart",
+      "bytes": 3316,
+      "sha256": "a6f688035944d44d5b17b9ac5d892f0b2704040e05b6855ea44236e3137bdf86"
+    },
+    {
+      "path": "lib/services/windows_dsp.dart",
+      "bytes": 1325,
+      "sha256": "07cb2ab8fbbbfd9e429cd894d37db3850c039f0671d16f991e7171ac07b6d9cc"
+    },
+    {
+      "path": "lib/services/windows_equalizer.dart",
+      "bytes": 1973,
+      "sha256": "fc7106620c0219fc68aca31811ea7cd1baf838493b049cf75f7b086d24294521"
+    },
+    {
+      "path": "lib/services/windows_mpv_player.dart",
+      "bytes": 20900,
+      "sha256": "1a4bb49f7a323698ad726b68952a59d0a74cf3cef463b0f26a0ea63d693fbc27"
+    },
+    {
+      "path": "lib/services/windows_playback_state.dart",
+      "bytes": 762,
+      "sha256": "54dd0ddd7715271cf9944433aea94a54b8b0d8cb5ae4de12a9735a5c29d6cbac"
+    },
+    {
+      "path": "lib/ui/album_stage.dart",
+      "bytes": 47065,
+      "sha256": "be10d566bf3c27fd1f909382807db53919b16177e515f91c474c80767f01e784"
+    },
+    {
+      "path": "lib/ui/app.dart",
+      "bytes": 154290,
+      "sha256": "c0c5efa51c3b11b8c3f1a15637cfbc2e4ac7d2d0869af9ca26bba879eab85a67"
+    },
+    {
+      "path": "lib/ui/appearance_panel.dart",
+      "bytes": 37016,
+      "sha256": "8c5cbc9fbf8ca7434ceebe582441939f2be9ed1b52893c9ee78b2e3bfe46b12b"
+    },
+    {
+      "path": "lib/ui/auth_page.dart",
+      "bytes": 22168,
+      "sha256": "6c3be60d4175dc234cc6a6c21bfaf3fd3c9de58ae171bf8bcf6abf599d3dbdbf"
+    },
+    {
+      "path": "lib/ui/auth_visuals.dart",
+      "bytes": 5598,
+      "sha256": "9b6434c021030cb6a7ace66370f10984a9bc55fdc96f2b1b86f6e3adfa0183f2"
+    },
+    {
+      "path": "lib/ui/connect_device_tile.dart",
+      "bytes": 9614,
+      "sha256": "dcc47ec61350600949d89fd3693e50b4c9d8ccb2f65c0ff17160e7ece0c60b05"
+    },
+    {
+      "path": "lib/ui/connect_panel.dart",
+      "bytes": 8175,
+      "sha256": "aa3cb465fc20227617801e87df43761308bf3989717025c4381cdc3c91d1693c"
+    },
+    {
+      "path": "lib/ui/connect_picker.dart",
+      "bytes": 7616,
+      "sha256": "cfff414c5e1a5b296460110a3a92e3e16100976f3a669377b7d4ffb18236ef7a"
+    },
+    {
+      "path": "lib/ui/connect_playback.dart",
+      "bytes": 3111,
+      "sha256": "23d8c5e64e82b0febb8c13f99dc40ce51687c0905cb7b49fc85a0a94fc598449"
+    },
+    {
+      "path": "lib/ui/cover_accent.dart",
+      "bytes": 3659,
+      "sha256": "9a62cb39bca9d3fe0f231ec0acbbbad677100687fd0cd510d4752434d5bda28b"
+    },
+    {
+      "path": "lib/ui/cover_ambient.dart",
+      "bytes": 4350,
+      "sha256": "dc28b04166d6cc72b783d7e2459f199a9a53f6d79a63b0ad6e2df80ecba4b830"
+    },
+    {
+      "path": "lib/ui/desktop_player.dart",
+      "bytes": 14160,
+      "sha256": "135e958cfd2b9a93f7427d1607158fc88db39fc8a448a8eacdfd444e15aa64e0"
+    },
+    {
+      "path": "lib/ui/device_labels.dart",
+      "bytes": 6528,
+      "sha256": "ee7a1f303e6b9c5b9a7bce7c3d127dd1aaebcda7e4502f972c8853b0ffae3b37"
+    },
+    {
+      "path": "lib/ui/discord_panel.dart",
+      "bytes": 28463,
+      "sha256": "582020b64743387332b6fb39f0fa79fecb02869a5270b50f076b1792a3e1ec48"
+    },
+    {
+      "path": "lib/ui/discovery.dart",
+      "bytes": 19056,
+      "sha256": "9563825e102eee75988561799fe060878257738a44a0ed05a3e3d491d07fd5f6"
+    },
+    {
+      "path": "lib/ui/equalizer_curve.dart",
+      "bytes": 1918,
+      "sha256": "31a04b368d5b3d8cec5d1f48dc2643e2b86beadef1f1afea47c3489deab6f06e"
+    },
+    {
+      "path": "lib/ui/equalizer_panel.dart",
+      "bytes": 36657,
+      "sha256": "d3cd25eb7e8222151fc8be38c47bac1492377bb56f676ea39c740574ce66d395"
+    },
+    {
+      "path": "lib/ui/home_widget_previews.dart",
+      "bytes": 9811,
+      "sha256": "6e14f785899268653907d8601ebdaae0b5a922f2fab2ba671845a5c5b13c87c3"
+    },
+    {
+      "path": "lib/ui/lan_panel.dart",
+      "bytes": 13106,
+      "sha256": "5a4eac3ce5b34023c7629c9d721e88b3cb48c085bbd030a66d74f6ff3a2a7b1a"
+    },
+    {
+      "path": "lib/ui/listening_presence.dart",
+      "bytes": 5827,
+      "sha256": "a2b4bccf408ae2a15092838412d242ae6e5303fc0a46c1448ab2d8ac0fa5976e"
+    },
+    {
+      "path": "lib/ui/listening_rail.dart",
+      "bytes": 13941,
+      "sha256": "b932eda28c797b7258fc2e7d1112028ac42438a3d24d885de65ebc4ac3aed444"
+    },
+    {
+      "path": "lib/ui/lofi.dart",
+      "bytes": 27053,
+      "sha256": "c0937958d4b32f3e8c3dbb48a95f784e97df11592790559edd6129c6c97bacb1"
+    },
+    {
+      "path": "lib/ui/lyric_timing.dart",
+      "bytes": 1133,
+      "sha256": "9113a520a94427b8c1b298411cff626569e3d393862ba87f8ece8e92de474479"
+    },
+    {
+      "path": "lib/ui/lyrics_editor.dart",
+      "bytes": 15207,
+      "sha256": "b03b8e13d6829b4f9fbd440772445e863ba41b62c28d7ea1f9f0bf87ce4f92ed"
+    },
+    {
+      "path": "lib/ui/mini_lyrics.dart",
+      "bytes": 8176,
+      "sha256": "655b585fe0bf75e17236ee3d4d2a9e3c53d425c504ad0672ea4304ee05dd6377"
+    },
+    {
+      "path": "lib/ui/motion_icons.dart",
+      "bytes": 23608,
+      "sha256": "84cd40bf03b481eefc735ffc11730fd0829dce0b29dad0b80649e80aafcc9c40"
+    },
+    {
+      "path": "lib/ui/native19_components.dart",
+      "bytes": 6816,
+      "sha256": "79459e65c7d6a734597f8f8fc92dd3bb35cae3a3603c9e7ecf7482541b67063c"
+    },
+    {
+      "path": "lib/ui/native19_desktop_transport.dart",
+      "bytes": 22259,
+      "sha256": "7194b44dce6df388ac266352cd6f4e9a52fc2764044da536332f808b9dd8d91b"
+    },
+    {
+      "path": "lib/ui/native19_guard.dart",
+      "bytes": 19048,
+      "sha256": "f0ce3b77171d139f14522cd535f7841ae0ad64c8544ba7efac105f1f9c227029"
+    },
+    {
+      "path": "lib/ui/native19_saved.dart",
+      "bytes": 9158,
+      "sha256": "92d9081edefd572a01be164ba5a298ea538669d839b0a665ec2f109b003b0df4"
+    },
+    {
+      "path": "lib/ui/native19_strings.dart",
+      "bytes": 18056,
+      "sha256": "b303277de5491a7fff97bab536b4b6adb7c4c69d5d17652a5716432ffda771fc"
+    },
+    {
+      "path": "lib/ui/parity_panels.dart",
+      "bytes": 82086,
+      "sha256": "275442c4c3789f9b74b3238839d9b9a42c5e84eb8e7aa9fa480e4f95a1103c2a"
+    },
+    {
+      "path": "lib/ui/physical_wave_clock.dart",
+      "bytes": 1546,
+      "sha256": "7ac7f1cfd6bb6828e139dcb00d2e3f9d4e344d649511d125eb0c349d5c429fd0"
+    },
+    {
+      "path": "lib/ui/player.dart",
+      "bytes": 83227,
+      "sha256": "88fc89e85a0e8b5c91b9386a9dd4ec8acc7a8cd85aed78745af78bec039c7f00"
+    },
+    {
+      "path": "lib/ui/player_gestures.dart",
+      "bytes": 6987,
+      "sha256": "564bd0bfecffee37a719c35a9609388d2fcaa8445c970bcaeca01674732d19f3"
+    },
+    {
+      "path": "lib/ui/playlist_manager.dart",
+      "bytes": 34270,
+      "sha256": "3b3a32b39f6b94acc2d6c416cb79f706d177eee1cd9aa5fc5e53da266cc7e075"
+    },
+    {
+      "path": "lib/ui/playlist_strings.dart",
+      "bytes": 5921,
+      "sha256": "8d306ddfa1fc3059570a6ae73927f512e2b4ff266cd9e5c3be8bf793e36a713f"
+    },
+    {
+      "path": "lib/ui/provider_host.dart",
+      "bytes": 9800,
+      "sha256": "f0d24d431f16d0defaaaac1c6c7e687784770dd98c25904aa49c6432c3586a86"
+    },
+    {
+      "path": "lib/ui/provider_import.dart",
+      "bytes": 25576,
+      "sha256": "9dc978182b6525ac1f1ea79fc29e936ace0d32f848c69651c362e14dbff2be4a"
+    },
+    {
+      "path": "lib/ui/public_import_strings.dart",
+      "bytes": 8003,
+      "sha256": "08e767db16f46238daaac25c82262592686de56e3a632393ce72cee8df1ab430"
+    },
+    {
+      "path": "lib/ui/queue_panel.dart",
+      "bytes": 16542,
+      "sha256": "88143b1dc246e12bab55f82f47908922edf6bc6eb6ce0a4caeb9bcb63a37062f"
+    },
+    {
+      "path": "lib/ui/refinement20_home.dart",
+      "bytes": 7763,
+      "sha256": "8dac7922fa40164229f8f1b3de7cbd2067d2a38a3b057ce77eadb03c5ad8e7f0"
+    },
+    {
+      "path": "lib/ui/refinement20_strings.dart",
+      "bytes": 6335,
+      "sha256": "d6b04f50862fe2ebe85e72111226da452e1ab987a5ae183e32e4ad0ea3b9f56d"
+    },
+    {
+      "path": "lib/ui/room_directory.dart",
+      "bytes": 15129,
+      "sha256": "dd1d54efc0454887539c923f8aad601d4b2e9293f8ee597392e42d26cd163e2f"
+    },
+    {
+      "path": "lib/ui/scrolling_label.dart",
+      "bytes": 6252,
+      "sha256": "ec4dd7573b92e62b7e2739e79dd55f2012e70309fe258ac3f5636461de1caa62"
+    },
+    {
+      "path": "lib/ui/seasonal.dart",
+      "bytes": 10750,
+      "sha256": "88af0456c2badcc81ce51534db41b833f84c3838bc84a2427c033e66d7c538a0"
+    },
+    {
+      "path": "lib/ui/sessions_panel.dart",
+      "bytes": 7770,
+      "sha256": "cdccd620ea55bd17ee00f74219181f7fd297afe6edb16d86a0c369b24ede4ca9"
+    },
+    {
+      "path": "lib/ui/settings_edit.dart",
+      "bytes": 1911,
+      "sha256": "888bd6f9b29d5d62a2b26f6bf622ffebde05ca47f003ddef90dd5543a5e4e4be"
+    },
+    {
+      "path": "lib/ui/silk_wave.dart",
+      "bytes": 4147,
+      "sha256": "9517be242613d24ea0aa80d0dd451129b8d6eb0ae35dc31e353bbeacae8d1326"
+    },
+    {
+      "path": "lib/ui/theme.dart",
+      "bytes": 11525,
+      "sha256": "9c139fb080aa1a897748a5c436dd9533fd317b6dc103993ba809e88f3ea18428"
+    },
+    {
+      "path": "lib/ui/theme_preview.dart",
+      "bytes": 5122,
+      "sha256": "a3c9fd3608f4197cd290e9e54a017481e62693c1202cded6ed8602ddeab87d73"
+    },
+    {
+      "path": "lib/ui/volume_slider.dart",
+      "bytes": 3734,
+      "sha256": "ea30b76281944e1e2da21ac474b38563b87ddc7dc520e2011fe6a11cb1b8955e"
+    },
+    {
+      "path": "lib/ui/wave18_strings.dart",
+      "bytes": 11756,
+      "sha256": "03d34a79c65b9180523e4b3a84c6022b1690e21ed864e3da82f97f173fdd82d9"
+    },
+    {
+      "path": "lib/ui/wave_colors.dart",
+      "bytes": 1100,
+      "sha256": "0205beb4b93a899b61de32eb25d48adcb5db4ae322f2833c48b9a8b392912710"
+    },
+    {
+      "path": "lib/ui/widgets.dart",
+      "bytes": 38112,
+      "sha256": "84a3865c0f79bfc35b4fceace5747a8466f8720a7f1a64facc9e3d7bd45ca7b8"
+    },
+    {
+      "path": "pubspec.lock",
+      "bytes": 33302,
+      "sha256": "d2397ce34777a03f12428081307cbb73f6cfc65feed44decc2ea80b4639ff949"
+    },
+    {
+      "path": "pubspec.yaml",
+      "bytes": 5806,
+      "sha256": "f7fd9ea0724281f5b04db03086c0bd6dbca948cd3a66d40d0580c849a28cc380"
+    },
+    {
+      "path": "windows/CMakeLists.txt",
+      "bytes": 4260,
+      "sha256": "e565af12d9721948849e902ee25099040bd6569151a1b786e5872c4b30b46699"
+    },
+    {
+      "path": "windows/flutter/CMakeLists.txt",
+      "bytes": 3851,
+      "sha256": "bd05e3268b2f246bcbafdb778165fe67a7bafdba04eb73599502563a67b8ae7e"
+    },
+    {
+      "path": "windows/runner/CMakeLists.txt",
+      "bytes": 1836,
+      "sha256": "d765fdd05f63ad099e585a2cced0cbff13ec3229b7de68c8681b2107db850089"
+    },
+    {
+      "path": "windows/runner/flutter_window.cpp",
+      "bytes": 2389,
+      "sha256": "1f1df2d792b3c1fa0b874ce208be3cad2f6a31710cb84d08d9fcf6cbce20b8db"
+    },
+    {
+      "path": "windows/runner/flutter_window.h",
+      "bytes": 961,
+      "sha256": "0252b804f5da380c7709cbe1daff2b8d18daf6c49d7e6dd43e5af3c99c19f56c"
+    },
+    {
+      "path": "windows/runner/main.cpp",
+      "bytes": 1304,
+      "sha256": "220011e409654b8962a36d9216e7f5471346eb39cb9fa84b27a893f218ad1935"
+    },
+    {
+      "path": "windows/runner/resource.h",
+      "bytes": 448,
+      "sha256": "d0e8bf7835468b4b6b1f8f0747f2e8f25c19841f2df2ac60aaa584ddae3aa7c6"
+    },
+    {
+      "path": "windows/runner/resources/app_icon.ico",
+      "bytes": 11501,
+      "sha256": "1959049e4ef99d14b0ef73b580d5dcbc9466b1f7a910452c99fb134dbcf25d25"
+    },
+    {
+      "path": "windows/runner/runner.exe.manifest",
+      "bytes": 616,
+      "sha256": "639a56233fcd8cbcb8bbefcd93e4680ec2664f32d9acfb3d2ec1d8726a96e090"
+    },
+    {
+      "path": "windows/runner/Runner.rc",
+      "bytes": 3146,
+      "sha256": "5dc1465f114593bb7a8ab21a6937e47c656a6914cbf53f5d46d63c6e9a7820ea"
+    },
+    {
+      "path": "windows/runner/utils.cpp",
+      "bytes": 1862,
+      "sha256": "fbb18524c22593d0ce7869b0733e237be38e668fe045e3023bcf2d0b31784fa3"
+    },
+    {
+      "path": "windows/runner/utils.h",
+      "bytes": 691,
+      "sha256": "832e246b6758253f89016fb0374b30791242e97ad950d27fc678b3d9feacfdc4"
+    },
+    {
+      "path": "windows/runner/win32_window.cpp",
+      "bytes": 8822,
+      "sha256": "4e4f4dcf8e86ea6e097562cb3476039e693449bd8045367538afee579c017511"
+    },
+    {
+      "path": "windows/runner/win32_window.h",
+      "bytes": 3624,
+      "sha256": "d154cf89ba85f820631a9b5bedacbe64fc5815e428fe6bc5da579ce649f69841"
+    }
+  ]
+}

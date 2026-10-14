@@ -7,5 +7,5 @@ function installation(){
 // Tabs share an installation but keep their own output ownership.
 export const deviceId=installation();
 export const surfaceId=crypto.randomUUID();
-export const browserName=navigator.userAgent.includes('Firefox')?'Firefox':navigator.userAgent.includes('Edg')?'Edge':navigator.userAgent.includes('Chrome')?'Chrome':navigator.userAgent.includes('Safari')?'Safari':'Browser';
-export const browserDeviceName=`${browserName} · ${navigator.userAgent.includes('Android')?'Android':/iPhone|iPad/.test(navigator.userAgent)?'iOS':navigator.userAgent.includes('Windows')?'Windows':navigator.userAgent.includes('Mac')?'macOS':'Web'}`;
+export const browserName=/Tizen/i.test(navigator.userAgent)?'Samsung TV':/SMART-TV|SmartTV/i.test(navigator.userAgent)?'TV Browser':navigator.userAgent.includes('Firefox')?'Firefox':navigator.userAgent.includes('Edg')?'Edge':navigator.userAgent.includes('Chrome')?'Chrome':navigator.userAgent.includes('Safari')?'Safari':'Browser';
+export const browserDeviceName=`${browserName} · ${/Tizen/i.test(navigator.userAgent)?'Tizen':navigator.userAgent.includes('Android')?'Android':/iPhone|iPad/.test(navigator.userAgent)?'iOS':navigator.userAgent.includes('Windows')?'Windows':navigator.userAgent.includes('Mac')?'macOS':'Web'}`;

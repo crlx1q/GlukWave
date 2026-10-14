@@ -1,0 +1,30 @@
+[
+  {
+    "active": {
+      "bottom": 884.890625,
+      "height": 36,
+      "left": 21,
+      "right": 737,
+      "top": 848.890625,
+      "width": 716,
+      "x": 21,
+      "y": 848.890625
+    },
+    "overflow": false,
+    "width": 768
+  },
+  {
+    "active": {
+      "bottom": 716.890625,
+      "height": 72,
+      "left": 21,
+      "right": 344,
+      "top": 644.890625,
+      "width": 323,
+      "x": 21,
+      "y": 644.890625
+    },
+    "overflow": false,
+    "width": 375
+  }
+]

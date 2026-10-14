@@ -10,6 +10,7 @@ import 'services/windows_mpv_player.dart';
 import 'core/api.dart';
 import 'core/controller.dart';
 import 'services/audio.dart';
+import 'services/audio_config.dart';
 import 'services/cache.dart';
 import 'services/windows_equalizer.dart';
 import 'ui/app.dart';
@@ -18,6 +19,9 @@ import 'ui/widgets.dart';
 
 Future<void> main(List<String> arguments) async {
   WidgetsFlutterBinding.ensureInitialized();
+  WaveStrings.current = WaveStrings(
+    supportedLanguage(PlatformDispatcher.instance.locale.languageCode),
+  );
   runApp(const WaveBootstrapApp());
   WaveApi? startupApi;
   LicenseRegistry.addLicense(() async* {
@@ -51,7 +55,7 @@ Future<void> main(List<String> arguments) async {
     startupApi = api;
     api.diagnostics.version = const String.fromEnvironment(
       'GLUKWAVE_BUILD_VERSION',
-      defaultValue: '1.0.0+23',
+      defaultValue: '1.0.0+24',
     );
     try {
       await api.diagnostics.enableLocalLog(
@@ -75,15 +79,7 @@ Future<void> main(List<String> arguments) async {
     final cache = MusicCache(api);
     final handler = await AudioService.init<WaveAudioHandler>(
       builder: () => WaveAudioHandler(api, cache),
-      config: AudioServiceConfig(
-        androidNotificationChannelId: 'tech.gluk.glukwave.audio',
-        androidNotificationChannelName: wt('native.5de203e8f1'),
-        androidNotificationOngoing: true,
-        // Keep the established media session/Connect socket reachable when
-        // the screen locks or playback pauses during a device handoff.
-        androidStopForegroundOnPause: false,
-        androidNotificationIcon: 'drawable/ic_notification',
-      ),
+      config: waveAudioServiceConfig(wt('native.5de203e8f1')),
     );
     final controller = WaveController(
       api,
@@ -106,6 +102,10 @@ Future<void> main(List<String> arguments) async {
     debugPrint('GlukWave startup: $error\n$trace');
     runApp(
       MaterialApp(
+        debugShowCheckedModeBanner: false,
+        locale: Locale(WaveStrings.current.language),
+        supportedLocales: WaveStrings.supportedLocales,
+        localizationsDelegates: WaveStrings.delegates,
         theme: waveTheme,
         home: Scaffold(
           body: Center(

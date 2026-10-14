@@ -2,6 +2,7 @@
 import argparse
 import hashlib
 import json
+import re
 from pathlib import Path
 import struct
 import zipfile
@@ -67,16 +68,23 @@ library_markers = {marker: marker.encode('utf-8') in (bundle / 'data/app.so').re
                    for marker in ['/api/public-import/search', '/api/public-import/tracks', 'publicSourceUrl', 'playlist-membership-', 'playlist-edit-name']}
 require(all(library_markers.values()), 'Current public import or playlist UI missing from AOT')
 feature_markers.update(library_markers)
-if any('version: 1.0.0+' + str(version) in (root / 'apps/native/pubspec.yaml').read_text('utf-8') for version in [22, 23]):
+native_build_number = int(re.search(r'^version:\s*\d+\.\d+\.\d+\+(\d+)', (root / 'apps/native/pubspec.yaml').read_text('utf-8'), re.M)[1])
+if native_build_number >= 22:
     sleeve_markers = {marker: marker.encode('utf-8') in (bundle / 'data/app.so').read_bytes()
                       for marker in ['album-back-title', 'album-back-source']}
     require(all(sleeve_markers.values()), 'Current sleeve reverse missing from AOT')
     feature_markers.update(sleeve_markers)
-if 'version: 1.0.0+23' in (root / 'apps/native/pubspec.yaml').read_text('utf-8'):
+if native_build_number >= 23:
     parity_markers = {marker: marker.encode('utf-8') in (bundle / 'data/app.so').read_bytes()
                       for marker in ['mini-lyrics-frame', 'activeDeviceName', 'PhysicalWaveClock', 'player-track-motion', 'selectedOutput']}
     require(all(parity_markers.values()), 'Current player/device changes missing from AOT')
     feature_markers.update(parity_markers)
+
+if native_build_number >= 24:
+    lyric_markers = {marker: marker.encode('utf-8') in (bundle / 'data/app.so').read_bytes()
+                     for marker in ['lyric-countdown', 'lyricsIntro']}
+    require(all(lyric_markers.values()), 'Current lyric countdown missing from AOT')
+    feature_markers.update(lyric_markers)
 
 manifest = json.loads((bundle / 'data/flutter_assets/FontManifest.json').read_text('utf-8'))
 font_count = 0

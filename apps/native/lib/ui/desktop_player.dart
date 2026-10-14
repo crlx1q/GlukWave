@@ -8,7 +8,6 @@ import '../core/controller.dart';
 import '../l10n/wave_localizations.dart';
 import 'widgets.dart';
 import 'volume_slider.dart';
-import 'mini_lyrics.dart';
 
 /// Same session and audio handler as the full application. The desktop shell
 /// switches the native window's bounds and frame; no second player is created.
@@ -235,12 +234,6 @@ class _DesktopCompactPlayerState extends State<DesktopCompactPlayer> {
                               ),
                             const SizedBox(height: 16),
                             _metadata(centered: true),
-                            if (track != null)
-                              MiniLyrics(
-                                controller: c,
-                                track: track,
-                                dense: true,
-                              ),
                           ],
                         ),
                       ),
@@ -334,15 +327,6 @@ class _DesktopCompactPlayerState extends State<DesktopCompactPlayer> {
                           ),
                         ],
                       ),
-                      if (track != null)
-                        MiniLyrics(
-                          controller: c,
-                          track: track,
-                          dense: true,
-                          onAvailability: (available) => unawaited(
-                            _run(() => c.desktop.setCompactLyrics(available)),
-                          ),
-                        ),
                       const SizedBox(height: 4),
                       StreamBuilder<Duration>(
                         stream: c.audio.positionStream,

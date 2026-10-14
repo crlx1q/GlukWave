@@ -1,0 +1,71 @@
+{
+  "scope": "Affected UI steering regression after baseline full suite, not a second full run",
+  "passed": true,
+  "total": 28,
+  "failed": 0,
+  "reporter": "expanded",
+  "log": "work/qa/parity24-ui-steering-tests.log",
+  "files": [
+    "apps/native/test/parity24_ui_test.dart",
+    "apps/native/test/parity23_ui_test.dart",
+    "apps/native/test/wave_test.dart",
+    "apps/native/test/wave18_parity_preview_test.dart"
+  ],
+  "testNamesBySource": {
+    "apps/native/test/parity24_ui_test.dart": [
+      "Lyric intro uses the media clock and seeks cancel or restore its cue",
+      "Mini lyric rail changes from 3 to 2 to 1 then current and next without its own timer",
+      "Desktop bottom excludes lyrics and preserves remote metadata",
+      "Compact native window excludes lyrics at125percent text",
+      "CD lid retains opaque reverse and all four thickness edges through full rotation",
+      "Full lyric depth and entry transition fit 390.0 viewport",
+      "Full lyric depth and entry transition fit 1440.0 viewport"
+    ],
+    "apps/native/test/parity23_ui_test.dart": [
+      "Idle preview adopts its own playback, then follows next track metadata",
+      "Independent Connect active remote row retains its own song",
+      "Phone mini player is 68px with 44px touch targets and vector brand",
+      "Collapsed desktop excludes lyrics and retains compact transport",
+      "Native loading clock stays 1200ms at custom appearance speed",
+      "Track content animation uses the incoming queue direction",
+      "Real phone audio policy hides local volume and keeps desktop remote control",
+      "Desktop bottom transport stays compact with or without lyric rail",
+      "Next and previous animate metadata in opposite directions",
+      "Wide desktop restores cover beside controls and CD has an opaque tray",
+      "Current/next lyric rail remains present with 3D cover on phone",
+      "Current/next lyric rail remains present with 2D cover on phone",
+      "Physical loading/listening cycle ignores appearance speed 0.5",
+      "Physical loading/listening cycle ignores appearance speed 1.0",
+      "Physical loading/listening cycle ignores appearance speed 2.0"
+    ],
+    "apps/native/test/wave_test.dart": [
+      "Flutter Bloom matches actual exported web equations at varied pointer and audio states",
+      "Only measured valid envelopes drive energy and pause always silences the response",
+      "Real waveform HTTP response is cached per account and reloads offline",
+      "A delayed envelope cannot leak into another session, account cache or visible field",
+      "Local rain is decodable non-clipping mono PCM with a continuous loop boundary"
+    ],
+    "apps/native/test/wave18_parity_preview_test.dart": [
+      "Mode and mood preview preserves compatibility and ignores an older result"
+    ]
+  },
+  "sourceHashes": {
+    "apps/web/src/player-ui.tsx": "d8184a622460cd5697536281fbcd66021960b2d00166b86006d1bcc41824199b",
+    "apps/web/src/refinement21.css": "a8ef6552e9c13b1375d687680bc1064940427d5488b35835bee8d0972d31a160",
+    "apps/web/src/wave-math.ts": "71c6743a3031eab95ee15f7797d68c7662b144bf0686d31f611df4b81b202d70",
+    "apps/web/src/wave.tsx": "7173e79ed7fd47f172689df9a7278dd8291dea29118d01ddf5a948ce4ca7101f",
+    "apps/native/lib/ui/native19_desktop_transport.dart": "863ef8830d6bbd5404a6c7f89c5ee48da010a71721c951b901c2398ac316313b",
+    "apps/native/lib/ui/desktop_player.dart": "148eb095125ead119bc4439c91638581a02ff33a6331f34177cea34ba42f0c3e",
+    "apps/native/lib/ui/app.dart": "c7d33b30b661cd587a7736bbaf3d8f365ae78cf03bffa90a91880a4e793aa5ce",
+    "apps/native/lib/ui/widgets.dart": "38ff1d8b6f4e1c841984a659b1d77d32f298ff146a27522099acd79d41ff71ce",
+    "apps/native/lib/core/wave_math.dart": "1594245f7ff401e2399f63460061418d16e5248d285f25795db007ef53ca1d1e",
+    "apps/native/lib/services/desktop.dart": "6f9b921871fe92ec3e565788cd2a23f9a109e84850d27e73f6ea23dbb571f4b8",
+    "apps/native/test/parity24_ui_test.dart": "eaffa520e86f9f52e0dd05442fcd267011747639c3bb5e24e5194856f3d971fc",
+    "apps/native/test/parity23_ui_test.dart": "74ba760b3f1f244a56adee94f10178d6b0066b5f87411b7c5245205d25608105",
+    "apps/native/test/wave_test.dart": "3aebe41e6ae784f2bd90368ec2e2f0b9b51bae9498f24aea19b31aa99b6b3450",
+    "apps/native/test/fixtures/wave-math-parity.json": "7e60e3157cb1929abb0adc470d6449a44ff796927200f2d975d587409d93e16f",
+    "apps/web/qa/wave24-response.test.mjs": "702495bae929d29c2cdf2ad145549ab91dfe5c80468016eedae6058607079164"
+  },
+  "namedCount": 28,
+  "nameProvenance": "Exact source titles; loop interpolation expanded from known tested matrices. Expanded reporter interleaves names, raw run retained."
+}

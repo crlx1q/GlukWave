@@ -77,3 +77,22 @@ html[data-motion=reduce] .album-stage.reference-sleeve .album-object{transition:
  .full-player.focused-player.connected-player .np-listening{margin:0 auto;overflow:visible;align-self:center}
 }
 
+
+/* A jewel case has two solid shells, including the reverse of its open lid. */
+.album-stage.reference-sleeve.case-cd .cd-lid{position:absolute;inset:0;transform-style:preserve-3d;transform:translateZ(9px) rotateY(-14deg);transform-origin:left center}
+.album-stage.reference-sleeve.case-cd .cd-lid .sleeve-front{transform:translateZ(.75px);transform-origin:center}
+.album-stage.reference-sleeve.case-cd .cd-lid-inner{position:absolute;inset:0;background:linear-gradient(135deg,#515958,#303637 65%,#404846);border:2px solid #aab2ae;box-shadow:inset 0 0 0 4px #2c3233;transform:rotateY(180deg) translateZ(.75px);backface-visibility:hidden;-webkit-backface-visibility:hidden;box-sizing:border-box}
+.album-stage.reference-sleeve .cd-lid-inner>i{position:absolute;inset:5%;border:1px solid #8e989533;box-shadow:inset 0 1px 1px #0005}
+.album-stage.reference-sleeve .cd-lid-edge{position:absolute;background:#89948e;backface-visibility:visible}
+.album-stage.reference-sleeve .cd-lid-top,.album-stage.reference-sleeve .cd-lid-bottom{left:0;right:0;height:1.5px;transform:translateY(-50%) rotateX(90deg)}
+.album-stage.reference-sleeve .cd-lid-top{top:0}.album-stage.reference-sleeve .cd-lid-bottom{top:100%}
+.album-stage.reference-sleeve .cd-lid-left,.album-stage.reference-sleeve .cd-lid-right{top:0;bottom:0;width:1.5px;transform:translateX(-50%) rotateY(90deg)}
+.album-stage.reference-sleeve .cd-lid-left{left:0}.album-stage.reference-sleeve .cd-lid-right{left:100%}
+.album-stage.reference-sleeve.flat .cd-lid{transform:none!important}.album-stage.reference-sleeve.flat :is(.cd-lid-inner,.cd-lid-edge){display:none}
+/* Pointer lighting is painted directly once per frame, never eased behind a drag. */
+.album-stage.reference-sleeve .cover-reflection{background-position:var(--pointer-light-x,var(--reflection,50%)) var(--pointer-light-y,50%);transition:none!important;will-change:background-position}
+/* Keep the complete turn envelope while reclaiming its invisible lower air. */
+.full-player.focused-player.connected-player .np-cover-growth .album-stage{margin-bottom:calc(16px - var(--cover-lower-air,0px))!important;transition:margin-bottom 180ms ease}
+@media(min-width:1100px) and (min-height:760px){.full-player.focused-player.connected-player.details-player .np-cover-growth .album-stage{margin-bottom:0!important}}
+@media(prefers-reduced-motion:reduce){.full-player.focused-player.connected-player .np-cover-growth .album-stage{transition:none}}
+html[data-motion=reduce] .full-player.focused-player.connected-player .np-cover-growth .album-stage{transition:none}

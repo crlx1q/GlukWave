@@ -1,0 +1,49 @@
+00:00 +0: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity24_ui_test.dart
+00:00 +0: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity24_ui_test.dart: (setUpAll)
+00:00 +0: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity24_ui_test.dart: Lyric intro uses the media clock and seeks cancel or restore its cue
+00:00 +1: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity24_ui_test.dart: Mini lyric rail changes from 3 to 2 to 1 then current and next without its own timer
+00:02 +2: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity23_ui_test.dart: Current/next lyric rail remains present with 3D cover on phone
+00:03 +3: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity23_ui_test.dart: Current/next lyric rail remains present with 3D cover on phone
+00:04 +4: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity24_ui_test.dart: Full lyric depth and entry transition fit 1440.0 viewport
+00:04 +5: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity24_ui_test.dart: Full lyric depth and entry transition fit 1440.0 viewport
+00:04 +6: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity23_ui_test.dart: Idle preview adopts its own playback, then follows next track metadata
+00:05 +7: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity23_ui_test.dart: Idle preview adopts its own playback, then follows next track metadata
+00:05 +8: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity24_ui_test.dart: CD lid retains opaque reverse and all four thickness edges through full rotation
+00:05 +9: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity24_ui_test.dart: CD lid retains opaque reverse and all four thickness edges through full rotation
+00:05 +10: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity24_ui_test.dart: CD lid retains opaque reverse and all four thickness edges through full rotation
+00:05 +11: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity24_ui_test.dart: CD lid retains opaque reverse and all four thickness edges through full rotation
+00:05 +12: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity24_ui_test.dart: CD lid retains opaque reverse and all four thickness edges through full rotation
+00:05 +13: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity23_ui_test.dart: Track content animation uses the incoming queue direction
+00:05 +14: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity23_ui_test.dart: Real phone audio policy hides local volume and keeps desktop remote control
+00:06 +15: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity23_ui_test.dart: Desktop bottom transport adapts only when lyrics are actually available
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: <94>
+  Actual: <96.0>
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity23_ui_test.dart:351:7)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1059:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity23_ui_test.dart line 351
+The test description was:
+  Desktop bottom transport adapts only when lyrics are actually available
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:07 +15 -1: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity23_ui_test.dart: Desktop bottom transport adapts only when lyrics are actually available [E]
+  Test failed. See exception logs above.
+  The test description was: Desktop bottom transport adapts only when lyrics are actually available
+  
+00:07 +15 -1: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity23_ui_test.dart: Next and previous animate metadata in opposite directions
+00:07 +16 -1: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity23_ui_test.dart: Wide desktop restores cover beside controls and CD has an opaque tray
+00:08 +17 -1: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity23_ui_test.dart: Physical loading/listening cycle ignores appearance speed 0.5
+00:08 +18 -1: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity23_ui_test.dart: Physical loading/listening cycle ignores appearance speed 1.0
+00:08 +19 -1: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity23_ui_test.dart: Physical loading/listening cycle ignores appearance speed 2.0
+00:08 +20 -1: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity23_ui_test.dart: (tearDownAll)
+00:09 +20 -1: Some tests failed.

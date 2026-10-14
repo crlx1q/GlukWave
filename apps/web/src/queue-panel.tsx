@@ -23,7 +23,7 @@ export function QueuePanel(){
    const transform=animation?getComputedStyle(node).transform:'none',offset=transform==='none'?0:new DOMMatrixReadOnly(transform).m42;
    animation?.cancel();animations.current.delete(id);next.set(id,top);
    const delta=(previous??top)+offset-top;
-   if(store.motion&&!collapsing&&previous!==undefined&&Math.abs(delta)>1&&id!==dragging){const active=node.animate([{transform:`translateY(${delta}px)`},{transform:'translateY(0)'}],{duration:200,easing:'cubic-bezier(.2,.8,.2,1)'});animations.current.set(id,active);active.onfinish=()=>{if(animations.current.get(id)===active)animations.current.delete(id);};}
+   if(store.motion&&typeof node.animate==='function'&&document.documentElement.dataset.browserProfile!=='tv-legacy'&&!collapsing&&previous!==undefined&&Math.abs(delta)>1&&id!==dragging){const active=node.animate([{transform:`translateY(${delta}px)`},{transform:'translateY(0)'}],{duration:200,easing:'cubic-bezier(.2,.8,.2,1)'});animations.current.set(id,active);active.onfinish=()=>{if(animations.current.get(id)===active)animations.current.delete(id);};}
   }
   for(const [id,animation] of animations.current)if(!next.has(id)){animation.cancel();animations.current.delete(id);}
   positions.current=next;wasLeaving.current=leaving.length>0;

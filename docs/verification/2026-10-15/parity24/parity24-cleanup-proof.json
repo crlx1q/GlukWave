@@ -1,0 +1,33 @@
+{
+  "deleted": [
+    {
+      "path": "GlukWave-windows.3123fc088a41436fbbfcfd9227d42c49.partial",
+      "reason": "Empty packaging shell"
+    },
+    {
+      "path": "GlukWave-windows.3b663309a8e34d348ed3077fec11dfa3.partial",
+      "reason": "Empty packaging shell"
+    },
+    {
+      "path": "GlukWave-windows.previous.637d3edf4be3422fa6775539c953cd28",
+      "reason": "All files matched exact rollback ZIP",
+      "preservedArchive": "work/qa/parity24-first-windows.zip",
+      "bytes": 93449304
+    },
+    {
+      "path": "GlukWave-windows.previous.ea74de6348cf4829bd690b4d2100842b",
+      "reason": "All files matched exact rollback ZIP",
+      "preservedArchive": "outputs/archive/releases/1.0.0+23/GlukWave-windows.zip",
+      "bytes": 93400634
+    },
+    {
+      "path": "GlukWave-1.0.0+23-audit.json",
+      "reason": "Exact rollback copy preserved"
+    },
+    {
+      "path": "GlukWave-1.0.0+23-source-audit.json",
+      "reason": "Exact rollback copy preserved"
+    }
+  ],
+  "rollbackArchivesPreserved": true
+}

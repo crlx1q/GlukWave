@@ -1,3 +1,4 @@
+import './browser-compat';
 import { createRoot } from 'react-dom/client';
 import { App } from './App';
 import { LocaleProvider } from './locale';

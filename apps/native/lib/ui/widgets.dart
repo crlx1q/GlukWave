@@ -632,7 +632,9 @@ class _WaveHeroState extends State<WaveHero>
               .at(c.audio.position.inMilliseconds / 1000, c.audio.playing);
     setState(() {
       _phase += seconds * waveVisuals(context).speed;
-      _energy = reduced ? 0 : easeEnergy(_energy, waveResponse(target), seconds);
+      _energy = reduced
+          ? 0
+          : easeEnergy(_energy, waveResponse(target), seconds);
       final movement = 1 - math.exp(-seconds * 16);
       final before = _pointer;
       _pointer += (_pointerTarget - _pointer) * movement;
@@ -891,7 +893,9 @@ class WavePainter extends CustomPainter {
       return;
     }
     if (style == 'particles') {
-      final columns = (size.width / 5).round().clamp(55, 125), paint = Paint();
+      final columns = (size.width / 5).round().clamp(55, 125),
+          paint = Paint(),
+          pulse = particleResponse(energy);
       for (var layer = 0; layer < 3; layer++) {
         for (var point = 0; point < columns; point++) {
           for (var band = 0; band < 5; band++) {
@@ -901,22 +905,29 @@ class WavePainter extends CustomPainter {
                     size.height * .53 +
                     math.sin(u * 9 + phase * .5 + layer * .7) *
                         size.height *
-                        (.15 + energy * .018) +
+                        pulse.amplitude +
                     math.cos(u * 14 - phase * .7 + band * .25) *
                         size.height *
-                        .055 +
-                    (band - 2) * 5 +
-                    math.sin(point * 127 + band * 73 + layer) * 7 +
+                        pulse.detail +
+                    (band - 2) * 5 * pulse.spread +
+                    math.sin(point * 127 + band * 73 + layer) *
+                        7 *
+                        pulse.spread +
                     (pointer.dy - .5) * pointerActive * 10;
             paint.color = Color.from(
-              alpha: .2 + (.5 + .5 * math.sin(point * 27 + band + layer)) * .53,
+              alpha:
+                  (.2 +
+                          (.5 + .5 * math.sin(point * 27 + band + layer)) *
+                              .53 +
+                          pulse.brightness)
+                      .clamp(0, .95),
               red: (accentColor.r + layer * 20 / 255).clamp(0, 1),
               green: (accentColor.g + layer * 20 / 255).clamp(0, 1),
               blue: (accentColor.b + layer * 20 / 255).clamp(0, 1),
             );
             canvas.drawCircle(
               Offset(x, y),
-              .45 + (math.sin(point * 13 + band) + 1) * .3 + energy * .3,
+              .45 + (math.sin(point * 13 + band) + 1) * .3 + pulse.radius,
               paint,
             );
           }

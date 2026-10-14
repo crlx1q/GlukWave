@@ -1,5 +1,7 @@
 # Компоненты, материалы и лицензии
 
+Совместимая веб-сборка 1.0.0+24 включает локальные SystemJS/core-js и полифиллы браузерных функций для старых телевизоров. Исходные уведомления пакетов и их зависимостей сохранены в [licenses/Web-Compatibility-Notices.txt](licenses/Web-Compatibility-Notices.txt). Внешние сервисы полифиллов не используются.
+
 Итерация 1.0.0+5 использует независимо установленные серверные yt-dlp/yt-dlp-ejs, ytmusicapi, spotDL и Deno; исходники и лицензии: https://github.com/yt-dlp/yt-dlp, https://github.com/yt-dlp/ejs, https://github.com/sigma67/ytmusicapi, https://github.com/spotDL/spotify-downloader, https://github.com/denoland/deno. Они не включены в клиентские APK/EXE. Условия зависимостей и лицензии медиа действуют отдельно; правила собственных разрешённых потоков описаны в PERMITTED-AUDIO.md.
 
 Основой оформления служит предоставленный пользователем `Gluk-Wave-v2.html`; `Gluk-Wave-v6-PC-fixed.html` уточняет мобильную компоновку и жесты. Неизменённые копии макетов входят в `docs/design-reference` для дальнейшей разработки. Файлы в `Downloads\d` не изменялись. Готовые пользовательские каталоги, чужие профили и демонстрационная музыка из макета в сервис не перенесены.

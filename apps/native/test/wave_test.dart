@@ -47,6 +47,14 @@ void main() {
         expect(dot.radius, closeTo(expected['radius'] as num, 1e-12));
         expect(dot.presence, closeTo(expected['presence'] as num, 1e-12));
       }
+      for (final entry in fixture['particles'] as List) {
+        final p = particleResponse((entry['energy'] as num).toDouble());
+        expect(p.amplitude, closeTo(entry['amplitude'] as num, 1e-12));
+        expect(p.detail, closeTo(entry['detail'] as num, 1e-12));
+        expect(p.spread, closeTo(entry['spread'] as num, 1e-12));
+        expect(p.radius, closeTo(entry['radius'] as num, 1e-12));
+        expect(p.brightness, closeTo(entry['brightness'] as num, 1e-12));
+      }
       for (final entry in fixture['ease'] as List) {
         expect(
           easeEnergy(

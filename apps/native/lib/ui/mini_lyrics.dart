@@ -4,6 +4,8 @@ import '../core/controller.dart';
 import '../core/models.dart';
 import 'native19_strings.dart';
 import 'widgets.dart';
+import 'lyric_timing.dart';
+import '../l10n/ecosystem_polish_strings.dart';
 
 /// One small, vertically stacked current/next excerpt shared by transports.
 /// Supplied lines reuse the full player's lookup; compact windows use the
@@ -12,7 +14,7 @@ class MiniLyrics extends StatefulWidget {
   final WaveController controller;
   final WaveTrack track;
   final List<Json>? lines;
-  final bool synchronized, dense;
+  final bool synchronized, dense, hideNext;
   final ValueChanged<bool>? onAvailability;
   const MiniLyrics({
     super.key,
@@ -21,6 +23,7 @@ class MiniLyrics extends StatefulWidget {
     this.lines,
     this.synchronized = false,
     this.dense = false,
+    this.hideNext = false,
     this.onAvailability,
   });
   @override
@@ -114,32 +117,33 @@ class _MiniLyricsState extends State<MiniLyrics> {
         final timed =
             (widget.lines == null ? synchronized : widget.synchronized) &&
             c.audio.viewCurrent?.id == widget.track.id;
-        final index =
-            (timed
-                    ? activeLyric(
-                        excerpt,
-                        (position.data?.inMilliseconds ?? 0) / 1000,
-                      )
-                    : 0)
-                .clamp(0, excerpt.length - 1);
+        final cue = lyricCue(
+          excerpt,
+          timed,
+          (position.data?.inMilliseconds ?? 0) / 1000,
+        );
+        final index = cue.active.clamp(0, excerpt.length - 1);
         return Container(
           key: const Key('mini-lyrics-frame'),
           width: double.infinity,
-          margin: EdgeInsets.symmetric(vertical: dense ? 3 : 8),
+          margin: EdgeInsets.symmetric(vertical: dense ? 2 : 10),
           padding: EdgeInsets.symmetric(
-            horizontal: dense ? 8 : 10,
-            vertical: dense ? 5 : 7,
+            horizontal: dense ? 7 : 12,
+            vertical: 1,
           ),
           decoration: BoxDecoration(
-            border: Border.all(color: v.line),
-            borderRadius: BorderRadius.circular(v.corners(12)),
+            border: Border(
+              left: BorderSide(color: v.line, width: dense ? 1 : 2),
+            ),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                nativeText(context, 'lyrics'),
+                cue.intro
+                    ? ecosystemText('lyricsIntro', context)
+                    : nativeText(context, 'lyrics'),
                 key: const Key('mini-lyrics-caption'),
                 style: TextStyle(
                   fontSize: dense ? 7 : 8,
@@ -148,31 +152,96 @@ class _MiniLyricsState extends State<MiniLyrics> {
                   letterSpacing: .5,
                 ),
               ),
-              const SizedBox(height: 3),
-              for (final line in [
-                index,
-                if (index + 1 < excerpt.length) index + 1,
-              ])
-                Text(
-                  excerpt[line]['text']?.toString() ?? '',
-                  key: Key('mini-lyric-$line'),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    fontSize: line == index
-                        ? (dense ? 12 : 16)
-                        : (dense ? 10 : 12),
-                    height: 1.3,
-                    fontWeight: line == index
-                        ? FontWeight.w800
-                        : FontWeight.w500,
-                    color: line == index ? v.ink : v.muted,
+              SizedBox(height: dense ? 1 : 3),
+              if (cue.intro)
+                LyricCountdown(count: cue.countdown, dense: dense)
+              else
+                for (final line in [
+                  index,
+                  if (!widget.hideNext && index + 1 < excerpt.length) index + 1,
+                ])
+                  Text(
+                    excerpt[line]['text']?.toString() ?? '',
+                    key: Key('mini-lyric-$line'),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontSize: line == index
+                          ? (dense ? 11 : 17)
+                          : (dense ? 10 : 12),
+                      height: dense ? 1.2 : 1.4,
+                      fontWeight: line == index
+                          ? FontWeight.w800
+                          : FontWeight.w500,
+                      color: line == index ? v.ink : v.muted,
+                    ),
                   ),
-                ),
             ],
           ),
         );
       },
+    );
+  }
+}
+
+/// Only the media cue changes this number; there is no independent countdown timer.
+class LyricCountdown extends StatelessWidget {
+  final int? count;
+  final bool dense;
+  const LyricCountdown({super.key, required this.count, this.dense = false});
+  @override
+  Widget build(BuildContext context) {
+    final v = waveVisuals(context);
+    return SizedBox(
+      key: const Key('lyric-countdown'),
+      height: dense ? 22 : 30,
+      child: Row(
+        children: [
+          SizedBox(
+            width: dense ? 14 : 23,
+            child: AnimatedSwitcher(
+              duration: v.duration(360),
+              transitionBuilder: (child, animation) => FadeTransition(
+                opacity: animation,
+                child: SlideTransition(
+                  position: Tween(begin: const Offset(0, .15), end: Offset.zero)
+                      .animate(
+                        CurvedAnimation(
+                          parent: animation,
+                          curve: Curves.easeOutCubic,
+                        ),
+                      ),
+                  child: child,
+                ),
+              ),
+              child: Text(
+                count?.toString() ?? '···',
+                key: ValueKey(count),
+                style: TextStyle(
+                  fontSize: dense ? 15 : 22,
+                  height: 1.1,
+                  fontWeight: FontWeight.w800,
+                  color: v.ink,
+                ),
+              ),
+            ),
+          ),
+          SizedBox(width: dense ? 8 : 12),
+          for (final step in [3, 2, 1])
+            Padding(
+              padding: const EdgeInsets.only(right: 4),
+              child: AnimatedContainer(
+                duration: v.duration(220),
+                width: 4,
+                height: 4,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: count != null && count! <= step ? v.accent : v.line,
+                ),
+              ),
+            ),
+        ],
+      ),
     );
   }
 }

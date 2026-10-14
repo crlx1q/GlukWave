@@ -19,9 +19,10 @@ double bloomField(double u, double v, double phase, double energy) {
   final e = clamp01(energy), envelope = math.sin(math.pi * u);
   final centre =
       .52 +
-      math.sin(u * 7.54 + phase * .65) * .145 +
-      math.sin(u * 13.19 - phase * .38) * .065;
-  final width = (.042 + .012 * math.sin(u * 9.42 + phase * .23)) * (1 + e * .3);
+      math.sin(u * 7.54 + phase * .65) * (.145 + e * .09) +
+      math.sin(u * 13.19 - phase * .38) * (.065 + e * .04);
+  final width =
+      (.042 + .012 * math.sin(u * 9.42 + phase * .23)) * (1 + e * 1.5);
   double band(double offset, double scale) =>
       math.exp(-math.pow((v - centre - offset) / (width * scale), 2) * .65);
   return clamp01(
@@ -29,7 +30,7 @@ double bloomField(double u, double v, double phase, double energy) {
             .27 * band(.11 * math.sin(u * 5.2 - phase * .24) + .075, .68) +
             .2 * band(-.1, .6)) *
         (.35 + .65 * envelope) *
-        (1 + e * .25),
+        (1 + e * .65),
   );
 }
 
@@ -118,4 +119,23 @@ double easeEnergy(double current, double target, double seconds) =>
 double waveResponse(double measured) {
   final level = clamp01(measured);
   return 1 - math.pow(1 - level, 2.4).toDouble();
+}
+
+/// Same real-energy point mass/spread as web Canvas. Silence preserves baseline.
+({
+  double amplitude,
+  double detail,
+  double spread,
+  double radius,
+  double brightness,
+})
+particleResponse(double energy) {
+  final e = clamp01(energy);
+  return (
+    amplitude: .15 + e * .10,
+    detail: .055 + e * .035,
+    spread: 1 + e * .85,
+    radius: e * .75,
+    brightness: e * .15,
+  );
 }

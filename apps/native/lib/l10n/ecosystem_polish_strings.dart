@@ -14,6 +14,14 @@ String ecosystemText(String key, BuildContext context) {
 }
 
 const ecosystemPolishStrings = <String, List<String>>{
+  'lyricsIntro': [
+    'Intro',
+    'Вступление',
+    'Кіріспе',
+    'Вступ',
+    'Intro',
+    'Introducción',
+  ],
   'selectedOutput': [
     'Selected output',
     'Выбранный источник',

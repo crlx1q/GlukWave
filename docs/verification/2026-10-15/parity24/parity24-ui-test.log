@@ -1,0 +1,10 @@
+00:00 +0: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity24_ui_test.dart
+00:00 +0: (setUpAll)
+00:00 +0: Lyric intro uses the media clock and seeks cancel or restore its cue
+00:00 +1: Mini lyric rail changes from 3 to 2 to 1 then current and next without its own timer
+00:04 +2: Full lyric depth and entry transition fit 390.0 viewport
+00:06 +3: Full lyric depth and entry transition fit 1440.0 viewport
+00:07 +4: Desktop bottom lyrics belong to metadata and do not grow the transport
+00:07 +5: CD lid retains opaque reverse and all four thickness edges through full rotation
+00:09 +6: (tearDownAll)
+00:09 +6: All tests passed!

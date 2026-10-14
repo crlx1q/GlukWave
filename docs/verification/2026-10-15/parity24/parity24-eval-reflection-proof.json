@@ -1,0 +1,45 @@
+{
+  "reflection": [
+    {
+      "backgroundPosition": "20% 40%",
+      "fraction": 0.2,
+      "transitionDuration": "0s",
+      "x": "20.000000000000004%"
+    },
+    {
+      "backgroundPosition": "80% 40%",
+      "fraction": 0.8,
+      "transitionDuration": "0s",
+      "x": "80.00000000000001%"
+    }
+  ],
+  "blur": [
+    {
+      "filter": "blur(1.4px)",
+      "text": "Там, где тихо — мы услышим море"
+    },
+    {
+      "filter": "blur(1.05px)",
+      "text": "И увидим свет в твоём окне"
+    },
+    {
+      "filter": "blur(0.7px)",
+      "text": "Этот миг останется с тобою"
+    },
+    {
+      "filter": "blur(0.35px)",
+      "text": "Музыка напомнит обо мне"
+    },
+    {
+      "filter": "none",
+      "text": "Пусть далёкий голос станет тише"
+    },
+    {
+      "filter": "none",
+      "text": "А наш свет останется с тобой"
+    }
+  ],
+  "console": {
+    "errors": []
+  }
+}

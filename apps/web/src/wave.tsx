@@ -3,7 +3,7 @@ import { useStore } from './store';
 import { usePlayer } from './player';
 import { api } from './api';
 import type { Appearance } from './types';
-import { BLOOM, bloomDot, easeEnergy, envelopeAt, waveResponse, type AudioEnvelope, type WavePointer } from './wave-math';
+import { BLOOM, bloomDot, easeEnergy, envelopeAt, waveResponse, particleResponse, type AudioEnvelope, type WavePointer } from './wave-math';
 import { createHalftoneBloom, rgb, type WaveFrame } from './vendor/halftone-bloom';
 import { createSilkWave, drawFlowRibbon } from './wave-silk';
 import { easeWaveColor, waveColorHex } from './wave-colors';
@@ -19,10 +19,10 @@ function drawCanvas(context:CanvasRenderingContext2D,frame:WaveFrame,style:Appea
       context.fillStyle=`rgba(${color.join(',')},${dot.presence*(.5+dot.level*.5)})`;context.beginPath();context.arc(x,y,cell*dot.radius,0,Math.PI*2);context.fill();
     }
   }else if(style==='particles'){
-    const columns=Math.min(125,Math.max(55,Math.round(width/5)));
+    const columns=Math.min(125,Math.max(55,Math.round(width/5))),pulse=particleResponse(energy);
     for(let layer=0;layer<3;layer++)for(let point=0;point<columns;point++)for(let band=0;band<5;band++){
-      const u=point/(columns-1),x=u*width,y=height*.53+Math.sin(u*9+phase*.5+layer*.7)*height*(.15+energy*.018)+Math.cos(u*14-phase*.7+band*.25)*height*.055+(band-2)*5+Math.sin(point*127+band*73+layer)*7+(pointer.y-.5)*pointer.active*10;
-      context.fillStyle=`rgba(${tone.map(value=>Math.min(255,value+layer*20)).join(',')},${.2+(.5+.5*Math.sin(point*27+band+layer))*.53})`;context.beginPath();context.arc(x,y,.45+(Math.sin(point*13+band)+1)*.3+energy*.3,0,Math.PI*2);context.fill();
+      const u=point/(columns-1),x=u*width,y=height*.53+Math.sin(u*9+phase*.5+layer*.7)*height*pulse.amplitude+Math.cos(u*14-phase*.7+band*.25)*height*pulse.detail+(band-2)*5*pulse.spread+Math.sin(point*127+band*73+layer)*7*pulse.spread+(pointer.y-.5)*pointer.active*10;
+      context.fillStyle=`rgba(${tone.map(value=>Math.min(255,value+layer*20)).join(',')},${Math.min(.95,.2+(.5+.5*Math.sin(point*27+band+layer))*.53+pulse.brightness)})`;context.beginPath();context.arc(x,y,.45+(Math.sin(point*13+band)+1)*.3+pulse.radius,0,Math.PI*2);context.fill();
     }
   }else{drawFlowRibbon(context,frame);
   }

@@ -1,4 +1,4 @@
-param([string]$Compiler, [ValidatePattern('^[0-9]+\.[0-9]+\.[0-9]+(?:\+[0-9]+)?$')][string]$Version='1.0.0+23', [string]$BundleRoot)
+param([string]$Compiler, [ValidatePattern('^[0-9]+\.[0-9]+\.[0-9]+(?:\+[0-9]+)?$')][string]$Version='1.0.0+24', [string]$BundleRoot)
 $ErrorActionPreference = 'Stop'
 $projectRoot = Split-Path -Parent $PSScriptRoot
 $bundleRoot = if ($BundleRoot) { [IO.Path]::GetFullPath($BundleRoot) } else { Join-Path $projectRoot 'outputs\GlukWave-windows' }

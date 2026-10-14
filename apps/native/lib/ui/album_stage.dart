@@ -56,6 +56,35 @@ double referenceSleeveSceneHeight(double size) {
   return height;
 }
 
+/// Empty lower space at this angle is layout air, not part of the physical case.
+/// The inner turn envelope stays constant; only the vertical flow wrapper packs.
+double referenceSleeveLowerAir(double size, double x, double y) {
+  var bottom = 0.0;
+  final cx = math.cos(x), sx = math.sin(x), cy = math.cos(y), sy = math.sin(y);
+  final points = <(double, double, double)>[];
+  for (final z in [-9.0, 9.0]) {
+    for (final px in [-.5, .5]) {
+      for (final py in [-.5, .5]) {
+        points.add((px * size, py * size, z));
+      }
+    }
+  }
+  for (var angle = 0.0; angle < math.pi * 2; angle += math.pi / 24) {
+    points.add((
+      (.56 + .47 * math.cos(angle)) * size,
+      .47 * math.sin(angle) * size,
+      0,
+    ));
+  }
+  for (final (px, py, pz) in points) {
+    final z = -sy * px + cy * pz,
+        projectedY = cx * py - sx * z,
+        depth = sx * py + cx * z;
+    bottom = math.max(bottom, projectedY * 1100 / (1100 - depth));
+  }
+  return math.max(0, referenceSleeveSceneHeight(size) / 2 - bottom - 20);
+}
+
 /// A rigid 18px sleeve based on the owner's Gluk-Wave-v2 cover scene. Front,
 /// back, spine and every edge are opaque; the record sits inside the case.
 class AlbumStage extends StatefulWidget {
@@ -64,7 +93,7 @@ class AlbumStage extends StatefulWidget {
   final double size;
   final bool playing;
   final Key? artworkKey;
-  final bool touchTilt;
+  final bool touchTilt, compactVertical;
   const AlbumStage({
     super.key,
     required this.controller,
@@ -73,6 +102,7 @@ class AlbumStage extends StatefulWidget {
     required this.playing,
     this.artworkKey,
     this.touchTilt = true,
+    this.compactVertical = false,
   });
   @override
   State<AlbumStage> createState() => _AlbumStageState();
@@ -381,7 +411,7 @@ class _AlbumStageState extends State<AlbumStage>
         ),
       ),
     );
-    return SizedBox(
+    final stage = SizedBox(
       key: const Key('album-stage-bounds'),
       width: size * 1.6 + 24,
       height: referenceSleeveSceneHeight(size),
@@ -483,6 +513,8 @@ class _AlbumStageState extends State<AlbumStage>
                         final y = -18 * math.pi / 180 + tilt.dx;
                         final x = -9 * math.pi / 180 - tilt.dy;
                         final faceFront = math.cos(y) >= 0;
+                        final cd = c.customization.appearance.coverKind == 'cd';
+                        final lidFront = math.cos(y - 14 * math.pi / 180) >= 0;
                         final matrix = Matrix4.identity()
                           ..setEntry(3, 2, -1 / 1100)
                           ..translateByDouble(
@@ -553,33 +585,6 @@ class _AlbumStageState extends State<AlbumStage>
                                   top: size * .03,
                                   child: disc,
                                 ),
-                                if (!faceFront)
-                                  Positioned(
-                                    left: 0,
-                                    top: 0,
-                                    child: Transform(
-                                      alignment: Alignment.center,
-                                      transform: Matrix4.identity()
-                                        ..translateByDouble(0, 0, -depth / 2, 1)
-                                        ..rotateY(math.pi),
-                                      child: Container(
-                                        key: const Key('album-back-sleeve'),
-                                        width: size,
-                                        height: size,
-                                        padding: EdgeInsets.fromLTRB(
-                                          size * .086,
-                                          size * .093,
-                                          size * .086,
-                                          size * .07,
-                                        ),
-                                        color: opaque,
-                                        child: SleeveBackMetadata(
-                                          track: widget.track,
-                                          size: size,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
                                 Positioned(
                                   left: -depth / 2,
                                   top: 0,
@@ -620,31 +625,179 @@ class _AlbumStageState extends State<AlbumStage>
                                     size,
                                   ),
                                 ),
-                                if (faceFront)
+                                if (cd || faceFront)
                                   Positioned(
                                     left: 0,
                                     top: 0,
                                     child: Transform(
-                                      alignment:
-                                          c
-                                                  .customization
-                                                  .appearance
-                                                  .coverKind ==
-                                              'cd'
+                                      alignment: cd
                                           ? Alignment.centerLeft
                                           : Alignment.center,
                                       transform: Matrix4.identity()
                                         ..translateByDouble(0, 0, depth / 2, 1)
-                                        ..rotateY(
-                                          c
-                                                      .customization
-                                                      .appearance
-                                                      .coverKind ==
-                                                  'cd'
-                                              ? -14 * math.pi / 180
-                                              : 0,
+                                        ..rotateY(cd ? -14 * math.pi / 180 : 0),
+                                      child: cd
+                                          ? SizedBox(
+                                              width: size,
+                                              height: size,
+                                              child: Stack(
+                                                clipBehavior: Clip.none,
+                                                children: [
+                                                  if (lidFront)
+                                                    Transform(
+                                                      transform:
+                                                          Matrix4.identity()
+                                                            ..translateByDouble(
+                                                              0,
+                                                              0,
+                                                              .75,
+                                                              1,
+                                                            ),
+                                                      child: front(),
+                                                    )
+                                                  else
+                                                    Transform(
+                                                      alignment:
+                                                          Alignment.center,
+                                                      transform:
+                                                          Matrix4.identity()
+                                                            ..rotateY(math.pi)
+                                                            ..translateByDouble(
+                                                              0,
+                                                              0,
+                                                              .75,
+                                                              1,
+                                                            ),
+                                                      child: Container(
+                                                        key: const Key(
+                                                          'album-cd-lid-inner',
+                                                        ),
+                                                        width: size,
+                                                        height: size,
+                                                        decoration: BoxDecoration(
+                                                          gradient:
+                                                              const LinearGradient(
+                                                                begin: Alignment
+                                                                    .topLeft,
+                                                                end: Alignment
+                                                                    .bottomRight,
+                                                                colors: [
+                                                                  Color(
+                                                                    0xff515958,
+                                                                  ),
+                                                                  Color(
+                                                                    0xff303637,
+                                                                  ),
+                                                                  Color(
+                                                                    0xff404846,
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                          border: Border.all(
+                                                            color: const Color(
+                                                              0xffaab2ae,
+                                                            ),
+                                                            width: 2,
+                                                          ),
+                                                        ),
+                                                        padding: EdgeInsets.all(
+                                                          size * .05,
+                                                        ),
+                                                        child: DecoratedBox(
+                                                          decoration: BoxDecoration(
+                                                            border: Border.all(
+                                                              color:
+                                                                  const Color(
+                                                                    0x338e9895,
+                                                                  ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  Positioned(
+                                                    left: 0,
+                                                    top: -.75,
+                                                    child: edge(
+                                                      const Key(
+                                                        'album-cd-lid-top',
+                                                      ),
+                                                      Matrix4.identity()
+                                                        ..rotateX(math.pi / 2),
+                                                      size,
+                                                      1.5,
+                                                    ),
+                                                  ),
+                                                  Positioned(
+                                                    left: 0,
+                                                    top: size - .75,
+                                                    child: edge(
+                                                      const Key(
+                                                        'album-cd-lid-bottom',
+                                                      ),
+                                                      Matrix4.identity()
+                                                        ..rotateX(-math.pi / 2),
+                                                      size,
+                                                      1.5,
+                                                    ),
+                                                  ),
+                                                  Positioned(
+                                                    left: -.75,
+                                                    top: 0,
+                                                    child: edge(
+                                                      const Key(
+                                                        'album-cd-lid-left',
+                                                      ),
+                                                      Matrix4.identity()
+                                                        ..rotateY(-math.pi / 2),
+                                                      1.5,
+                                                      size,
+                                                    ),
+                                                  ),
+                                                  Positioned(
+                                                    left: size - .75,
+                                                    top: 0,
+                                                    child: edge(
+                                                      const Key(
+                                                        'album-cd-lid-right',
+                                                      ),
+                                                      Matrix4.identity()
+                                                        ..rotateY(math.pi / 2),
+                                                      1.5,
+                                                      size,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            )
+                                          : front(),
+                                    ),
+                                  ),
+                                if (!faceFront)
+                                  Positioned(
+                                    left: 0,
+                                    top: 0,
+                                    child: Transform(
+                                      alignment: Alignment.center,
+                                      transform: Matrix4.identity()
+                                        ..translateByDouble(0, 0, -depth / 2, 1)
+                                        ..rotateY(math.pi),
+                                      child: Container(
+                                        key: const Key('album-back-sleeve'),
+                                        width: size,
+                                        height: size,
+                                        padding: EdgeInsets.fromLTRB(
+                                          size * .086,
+                                          size * .093,
+                                          size * .086,
+                                          size * .07,
                                         ),
-                                      child: front(),
+                                        color: opaque,
+                                        child: SleeveBackMetadata(
+                                          track: widget.track,
+                                          size: size,
+                                        ),
+                                      ),
                                     ),
                                   ),
                               ],
@@ -659,6 +812,21 @@ class _AlbumStageState extends State<AlbumStage>
             ),
           ),
         ],
+      ),
+    );
+    if (!widget.compactVertical) return stage;
+    final y = -18 * math.pi / 180 + tilt.dx, x = -9 * math.pi / 180 - tilt.dy;
+    final height = referenceSleeveSceneHeight(size),
+        air = referenceSleeveLowerAir(size, x, y);
+    return SizedBox(
+      key: const Key('album-packed-stage'),
+      width: size * 1.6 + 24,
+      height: height - air,
+      child: OverflowBox(
+        alignment: Alignment.topCenter,
+        minHeight: height,
+        maxHeight: height,
+        child: stage,
       ),
     );
   }

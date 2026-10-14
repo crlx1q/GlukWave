@@ -1,0 +1,303 @@
+{
+  "checkedAt": "2026-10-14T20:23:59.311Z",
+  "verdict": "PASS",
+  "attempt": 1,
+  "reviewer": {
+    "independentAgent": true,
+    "provider": "same available model provider",
+    "externalProviderAvailable": false
+  },
+  "sources": [
+    {
+      "path": "apps/web/src/player-ui.tsx",
+      "sha256": "e7a356be6d48e340523a03793e8c8a7715b015b9b50417c8655648263323c867"
+    },
+    {
+      "path": "apps/web/src/lyric-timing.ts",
+      "sha256": "0ed4267eb7769eac605c7f5bb379f99a48346102af7e32b85030498125c360e0"
+    },
+    {
+      "path": "apps/web/src/album.tsx",
+      "sha256": "710d3cd7175b133b49a4156f82a87999527e335008c92400e7138d92c23f82a1"
+    },
+    {
+      "path": "apps/web/src/mini.tsx",
+      "sha256": "46ab6a86f22e5e3c5e6e0d697afa5bf022142cb048b89c3f1cde951156596098"
+    },
+    {
+      "path": "apps/web/src/focused-player.css",
+      "sha256": "ff7772af3f881414683c892de0c9e0342ab1ec3d4adfa251e1c40b1fd93d05e9"
+    },
+    {
+      "path": "apps/web/src/refinement21.css",
+      "sha256": "fe4a49cb7345c38af9a44c5839371e5226eaa9c895da6fe0dbac8fef0f639225"
+    },
+    {
+      "path": "apps/web/src/reference-cover.css",
+      "sha256": "c92a38d741c57e87ad241cc2d2b406621f770d70362f5b645d0fd635502e27e7"
+    },
+    {
+      "path": "apps/web/src/cover-fit.ts",
+      "sha256": "4bfd503e665bccf54e8b2b2292ec4a428bd258959924dda55cb7eb4c4d3e571e"
+    },
+    {
+      "path": "apps/web/src/locales/de.json",
+      "sha256": "4c14099b461b1a27c764f47c22e5b5cff2887c28ce9a05a3e22b807a7aae7485"
+    },
+    {
+      "path": "apps/web/src/locales/en.json",
+      "sha256": "c460e35207ccb35ac1d404d0de9bb737744fcae9a3638e4622f8f5651f4a25a7"
+    },
+    {
+      "path": "apps/web/src/locales/es.json",
+      "sha256": "e6674ad7f0690b7e455d479e52b41d25b07c5726b08307149dc16cdef6aea97d"
+    },
+    {
+      "path": "apps/web/src/locales/kk.json",
+      "sha256": "6b65df4c1024e48f7589909fcf841b501a65d60005f3e15896c293d4606e6d28"
+    },
+    {
+      "path": "apps/web/src/locales/ru.json",
+      "sha256": "f7801439b69f461395606d7cf79e6ce1508c034bf75b19d6eee1d9fc5e9043ff"
+    },
+    {
+      "path": "apps/web/src/locales/uk.json",
+      "sha256": "912c2b46768b731ab03798dd4fb48406fff84338071715c9e7181d1793ea95d1"
+    },
+    {
+      "path": "apps/web/qa/lyric-timing.test.mjs",
+      "sha256": "5351071a07a1f74cbe25daf6c221dbc30bfe51336baceb2b8239d89da906b697"
+    },
+    {
+      "path": "apps/native/lib/ui/mini_lyrics.dart",
+      "sha256": "655b585fe0bf75e17236ee3d4d2a9e3c53d425c504ad0672ea4304ee05dd6377"
+    },
+    {
+      "path": "apps/native/lib/ui/lyric_timing.dart",
+      "sha256": "9113a520a94427b8c1b298411cff626569e3d393862ba87f8ece8e92de474479"
+    },
+    {
+      "path": "apps/native/lib/ui/player.dart",
+      "sha256": "88fc89e85a0e8b5c91b9386a9dd4ec8acc7a8cd85aed78745af78bec039c7f00"
+    },
+    {
+      "path": "apps/native/lib/ui/native19_desktop_transport.dart",
+      "sha256": "7194b44dce6df388ac266352cd6f4e9a52fc2764044da536332f808b9dd8d91b"
+    },
+    {
+      "path": "apps/native/lib/ui/album_stage.dart",
+      "sha256": "be10d566bf3c27fd1f909382807db53919b16177e515f91c474c80767f01e784"
+    },
+    {
+      "path": "apps/native/lib/l10n/ecosystem_polish_strings.dart",
+      "sha256": "01d6ac13fc68fe705a146691e3e921d8b978906c15cb25b982626b22aefd97c0"
+    },
+    {
+      "path": "apps/native/lib/services/desktop.dart",
+      "sha256": "47bf7f0e5002f26c78dbb2ba69ae75e5cc5bb08fb137309dbd175d951f4f3d3b"
+    },
+    {
+      "path": "apps/native/test/parity24_ui_test.dart",
+      "sha256": "b427675a859f1c11bcd155ea2e38ead438f96a189d8b3a42bff247ee06c3588e"
+    },
+    {
+      "path": "apps/native/test/parity23_ui_test.dart",
+      "sha256": "b111c571c0f5de35d687e76a88ddf53e43a5d758f5c22978e0d571de454ba4f5"
+    }
+  ],
+  "captures": [
+    {
+      "path": "work/qa/parity24-eval-footer-final-1440.png",
+      "sha256": "e09c26b2101b6aa5cda86fb3b72aed2f63e8ffdf68bbb224ea4165f4ee3dad34"
+    },
+    {
+      "path": "work/qa/parity24-eval-footer-final-768.png",
+      "sha256": "a39fb44b0c5197fd8b5aa01223f58655a17f15d2084134205ac314711a3758ba"
+    },
+    {
+      "path": "work/qa/parity24-eval-footer-final-375.png",
+      "sha256": "1166c74dbf8558b5a67bb44119f8aaa70b29df3564b682b7a6b2a6fe587fcf44"
+    },
+    {
+      "path": "work/qa/parity24-eval-final-wide-1440.png",
+      "sha256": "0aae2ba88131389666822653005836d38f2f3847abb6a6fd817c2ea53f88dcfa"
+    },
+    {
+      "path": "work/qa/parity24-eval-final-lyrics-1440.png",
+      "sha256": "4084801487116b6fe2014deedef061e4e76fa556b3f792dfa1f96da9d95d632e"
+    },
+    {
+      "path": "work/qa/parity24-eval-final-lyrics-768.png",
+      "sha256": "2e1d8ea4900e9b06d03fb5d54a73d020a226880b6e6ee2821bb313c73236b56f"
+    },
+    {
+      "path": "work/qa/parity24-eval-final-lyrics-375.png",
+      "sha256": "3dfbba8752237992fc570122ac584f9be9034e2c311ef786564933f4b35a162e"
+    },
+    {
+      "path": "work/qa/parity24-eval-intro-3-375.png",
+      "sha256": "a7c6892243b444ccd80e694fee796c654134adb2d33bd0fa02ab4f47fd81c113"
+    },
+    {
+      "path": "work/qa/parity24-eval-intro-2-375.png",
+      "sha256": "2acf7c74b51b4506ce09f30001ecf4d4b371906c8ad0fe737f0e6245c8d42bb3"
+    },
+    {
+      "path": "work/qa/parity24-eval-intro-1-375.png",
+      "sha256": "4379e155fbcb912df9f6a40bd0c4d5d74fea9ebee07dd2230897f09ebe4ab235"
+    },
+    {
+      "path": "work/qa/parity24-eval-lyric-first-375.png",
+      "sha256": "c5d90cf4b120fb246b038d59bf9647c6ed37b8de9910b640da21b3b9b9afecdf"
+    },
+    {
+      "path": "work/qa/parity24-eval-cd-0.png",
+      "sha256": "d28d946ba0b6a13429eb775b4b2aee11024b0b2553808a467132f9870dc47539"
+    },
+    {
+      "path": "work/qa/parity24-eval-cd-82.png",
+      "sha256": "3168e79c038f15d6663eb697217aecb89e7ec1162d8c958ee4def6199fb89da1"
+    },
+    {
+      "path": "work/qa/parity24-eval-cd-100.png",
+      "sha256": "e3143c8008845477d31a37ef044f7a523e92e92e4534dc0bb143a3ebe39d6776"
+    },
+    {
+      "path": "work/qa/parity24-eval-cd-180.png",
+      "sha256": "c735c80ce4d7d7381ddc3ac6518f9698684ac90fb2ae4d6e4c3c35854572a8bd"
+    },
+    {
+      "path": "work/qa/parity24-eval-cd-260.png",
+      "sha256": "2e8b686331796ebb6b6fab5cb93790bdeb56ac2f201507e7a6d8e0cec964e363"
+    },
+    {
+      "path": "work/qa/parity24-eval-cd-360.png",
+      "sha256": "9532192bbad7ad45c3f20ec11479f9dd5d17ba5d22c5a5c9c6a7c17f2a3739e3"
+    },
+    {
+      "path": "work/qa/parity24-eval-tv-final-1440.png",
+      "sha256": "d8733fa40b6b69caa25111bc4f905707b9949b653a90711d1db8fdd2a7bb9fcb"
+    },
+    {
+      "path": "work/qa/parity24-eval-tv-focus-final-1440.png",
+      "sha256": "2998371765c634243240e14b3c6ba14c1bdb7f611826e9d99f0f46bc0bacefd9"
+    },
+    {
+      "path": "work/qa/parity24-eval-native-full-lyrics-390.png",
+      "sha256": "bbe2a05a9ed7f8787a76d5c5f4e81e78d2a52814ed07dc67af82bb3918088323"
+    },
+    {
+      "path": "work/qa/parity24-eval-native-full-lyrics-1440.png",
+      "sha256": "02762fafd844e4baa0ad9eb5e576699771f2d1c245ba1de86f3c468c60e45652"
+    },
+    {
+      "path": "work/qa/parity24-eval-native-cd-0.png",
+      "sha256": "dcd77d4228b701b7d2bd295d0075b5a9f14b964cec63ea08b18fd350e8c34deb"
+    },
+    {
+      "path": "work/qa/parity24-eval-native-cd-82.png",
+      "sha256": "cd895153a04b2c93d15b6d9386029c5e869bc2cd3c22f4b2fc3bd9443ca0a889"
+    },
+    {
+      "path": "work/qa/parity24-eval-native-cd-100.png",
+      "sha256": "2386126f5b1b2024975e672a2afb65ab0b57a61036bc9b2609934d92726f90c5"
+    },
+    {
+      "path": "work/qa/parity24-eval-native-cd-180.png",
+      "sha256": "870af69f1e58faeeb62bf491bffca2dfee0141793ab32970eb0f6f8c0808aebc"
+    },
+    {
+      "path": "work/qa/parity24-eval-native-cd-260.png",
+      "sha256": "aa61acfa2e8fb256dc4a3fbb6e5d1da4628fe0c8b28aa99df025f33605d5595f"
+    },
+    {
+      "path": "work/qa/parity24-eval-native-cd-360.png",
+      "sha256": "dcd77d4228b701b7d2bd295d0075b5a9f14b964cec63ea08b18fd350e8c34deb"
+    },
+    {
+      "path": "work/qa/native-parity24-compact-window-125.png",
+      "sha256": "43094fa2fdb792b620d37d67d1d345fe063b515b4715a3c5340ecec4d28fa031"
+    },
+    {
+      "path": "work/qa/native-parity24-desktop-bottom-remote-125.png",
+      "sha256": "e18e1dd98181c8bbbba246b578157ed2c5b891e2283a3752aa49f787ba74d32c"
+    },
+    {
+      "path": "work/qa/native-parity24-intro-3.png",
+      "sha256": "aefa7d93937a6effe30d45a03cc77ead25e51f2820eb6fd00223d399c09ce98f"
+    },
+    {
+      "path": "work/qa/native-parity24-lyric-rail.png",
+      "sha256": "44596c1ac7daa9747f1ccddc2599ce0d21783adb4a8047f8e9ed36bc2e480546"
+    }
+  ],
+  "proofFiles": [
+    "work/qa/parity24-eval-native.log",
+    "work/qa/parity24-eval-motion-final.json",
+    "work/qa/parity24-eval-reflection-proof.json",
+    "work/qa/parity24-eval-footer-proof.json",
+    "work/qa/parity24-eval-tv-final-proof.json",
+    "work/qa/parity24-eval-final-responsive.json"
+  ],
+  "publicGuide": "work/qa/parity24-evaluator-review-guide.md",
+  "verification": {
+    "freshBrowserSession": "parity24-eval",
+    "browserWidths": [
+      1440,
+      768,
+      375
+    ],
+    "independentNativeCasesPassed": 3,
+    "independentNativeWidths": [
+      390,
+      1440
+    ],
+    "webCdRotations": [
+      0,
+      82,
+      100,
+      180,
+      260,
+      360
+    ],
+    "nativeCdRotations": [
+      0,
+      82,
+      100,
+      180,
+      260,
+      360
+    ],
+    "footerDesktopHeight": 96,
+    "responsiveFooterHeight": 72,
+    "footerAttributionAnchors": 0,
+    "observedIntro": [
+      {
+        "position": 7.7,
+        "count": 3
+      },
+      {
+        "position": 8.8,
+        "count": 2
+      },
+      {
+        "position": 9.6,
+        "count": 1
+      }
+    ],
+    "reflectionTransitionDuration": "0s",
+    "reflectionPositions": [
+      "20% 40%",
+      "80% 40%"
+    ],
+    "tvStyleOnly": true,
+    "tvArtworkToControlsClearance": 33,
+    "consoleErrors": []
+  },
+  "limitations": [
+    "Same-provider independent agent review; no external model provider was available.",
+    "TV screenshots test the forced style profile in current Chromium and do not prove physical Samsung compatibility.",
+    "Native screenshots are actual Flutter widget renders; no physical Android startup, notification shell, audible playback or owner-device transfer was tested.",
+    "Earlier diagnostic traces/captures are superseded by final named captures and parity24-eval-motion-final.json."
+  ]
+}

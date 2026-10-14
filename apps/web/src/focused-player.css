@@ -71,3 +71,74 @@ html[data-motion=reduce] .eq-popover,html[data-motion=reduce] .np-detail-pane{an
 .focused-player :is(.np-layout,.np-listening,.lyrics-lines,.np-queue,.np-comments,.comments-list)::-webkit-scrollbar{width:4px;height:4px}
 .focused-player :is(.np-layout,.np-listening,.lyrics-lines,.np-queue,.np-comments,.comments-list)::-webkit-scrollbar-track{background:transparent}
 .focused-player :is(.np-layout,.np-listening,.lyrics-lines,.np-queue,.np-comments,.comments-list)::-webkit-scrollbar-thumb{background:color-mix(in srgb,var(--ink) 22%,transparent);border-radius:4px}
+
+/* Lyrical depth is subtle, distance-based and temporarily clears under focus. */
+html .full-player.focused-player.connected-player .np-detail-pane .lyrics-lines button.is-distant{opacity:calc(.64 - var(--lyric-distance,2)*.055);filter:blur(var(--lyric-defocus,0px))}
+.full-player.focused-player.connected-player .np-detail-pane .lyrics-lines button.is-distant:is(:hover,:focus-visible){filter:none;opacity:1;color:var(--ink)}
+.lyric-intro{height:72px;margin-bottom:26px;display:flex;align-items:center;gap:18px;color:var(--muted)}.lyric-intro>span:first-child{font-size:11px;letter-spacing:1.5px;text-transform:uppercase}
+.lyric-countdown{display:inline-flex;align-items:center;gap:12px;min-height:24px;color:var(--ink);font-variant-numeric:tabular-nums}
+.lyric-countdown>b{font-size:22px;line-height:1.1;font-weight:750;display:block;min-width:1ch;animation:lyric-cue-enter 480ms cubic-bezier(.2,.8,.2,1) both}
+.lyric-countdown>i{letter-spacing:3px;opacity:.45;font-style:normal}.lyric-countdown-steps{display:inline-flex;align-items:center;gap:4px}.lyric-countdown-steps>i{width:4px;height:4px;border-radius:50%;background:var(--line);transition:background-color 220ms ease}.lyric-countdown-steps>i.filled{background:var(--accent)}
+.inline-mini-lyrics .lyric-countdown{min-height:24px}.inline-mini-lyrics .lyric-countdown>b{font-size:15px}
+@keyframes lyric-cue-enter{from{opacity:0;transform:translateY(5px) scale(.92)}to{opacity:1;transform:none}}
+@media(max-width:850px){.full-player.focused-player.connected-player.details-lyrics .np-detail-pane{min-height:420px}.focused-player .np-detail-pane .lyrics-lines{padding-top:48px}.lyric-intro{height:56px;margin-bottom:20px}}
+@media(prefers-reduced-motion:reduce){.lyric-countdown>b{animation:none}.lyric-countdown-steps>i{transition:none}}
+html[data-motion=reduce] .lyric-countdown>b{animation:none}html[data-high-contrast=true] .focused-player .np-detail-pane .lyrics-lines button{filter:none!important;opacity:1!important}
+
+/* Older TV engines keep one predictable listening column and visible focus. */
+html[data-browser-profile=tv-legacy] .full-player.focused-player{top:0;left:0;right:0;bottom:0;width:100vw!important;height:100vh!important;background:#111212;color:#eeece5}
+html[data-browser-profile=tv-legacy] .focused-player.connected-player .full-player-inner{padding:18px 28px}
+html[data-browser-profile=tv-legacy] .focused-player.connected-player .np-header{display:flex;height:48px;margin-bottom:12px}
+html[data-browser-profile=tv-legacy] .focused-player .np-now-playing{flex:1}
+html[data-browser-profile=tv-legacy] .focused-player .np-view-actions{display:flex}
+html[data-browser-profile=tv-legacy] .focused-player.connected-player .np-layout{display:flex;flex-direction:row;max-width:1200px;width:100%;height:80vh;overflow:hidden}
+html[data-browser-profile=tv-legacy] .focused-player.connected-player .np-listening{display:flex;flex-direction:column;width:470px;max-width:470px;flex:1;margin:auto;padding:0 16px;overflow:auto}
+html[data-browser-profile=tv-legacy] .focused-player.connected-player .np-cover-growth{width:100%;margin:0;transform:none}
+html[data-browser-profile=tv-legacy] .focused-player.connected-player .np-cover-growth .album-stage{display:flex;align-items:center;justify-content:center;height:300px;min-height:300px;margin:0 0 18px;overflow:visible;perspective:none}
+html[data-browser-profile=tv-legacy] .focused-player.connected-player .album-stage .album-object{width:270px!important;height:270px!important;transform:none!important}
+html[data-browser-profile=tv-legacy] .focused-player .album-stage .album-cover{display:block;position:absolute;inset:0;transform:none!important;background:#303432}
+html[data-browser-profile=tv-legacy] .focused-player .album-stage .cd-lid{transform:none!important}
+html[data-browser-profile=tv-legacy] .focused-player .album-stage .vinyl,
+html[data-browser-profile=tv-legacy] .focused-player .album-stage .album-back,
+html[data-browser-profile=tv-legacy] .focused-player .album-stage .album-shadow,
+html[data-browser-profile=tv-legacy] .focused-player .album-stage .album-spine,
+html[data-browser-profile=tv-legacy] .focused-player .album-stage .album-top-edge,
+html[data-browser-profile=tv-legacy] .focused-player .album-stage .album-bottom-edge,
+html[data-browser-profile=tv-legacy] .focused-player .album-stage .album-inner-edge,
+html[data-browser-profile=tv-legacy] .focused-player .album-stage .album-cd-tray,
+html[data-browser-profile=tv-legacy] .focused-player .album-stage .cd-lid-inner,
+html[data-browser-profile=tv-legacy] .focused-player .album-stage .cd-lid-edge,
+html[data-browser-profile=tv-legacy] .focused-player .cover-reflection{display:none}
+html[data-browser-profile=tv-legacy] .focused-player.connected-player .np-controls{width:100%;max-width:400px;margin:0 auto}
+html[data-browser-profile=tv-legacy] .focused-player.connected-player .np-track-heading h1{font-size:26px;color:#eeece5}
+html[data-browser-profile=tv-legacy] .focused-player.connected-player .np-track-heading p{color:#aaa99f}
+html[data-browser-profile=tv-legacy] .focused-player.connected-player .full-seek{display:flex;align-items:center;height:32px;margin:12px 0}
+html[data-browser-profile=tv-legacy] .focused-player .full-seek input{flex:1;margin:0 12px}
+html[data-browser-profile=tv-legacy] .focused-player .np-detail-pane{flex:1;width:50%;padding:18px 24px;border-left:1px solid #333633;animation:none}
+html[data-browser-profile=tv-legacy] .focused-player .np-detail-pane .lyrics-lines{padding:80px 0 100px;mask-image:none}
+html[data-browser-profile=tv-legacy] .focused-player .np-detail-pane .lyrics-lines button{font-size:30px;color:#9b9c94;filter:none!important;transition:none;opacity:1}
+html[data-browser-profile=tv-legacy] .focused-player .np-detail-pane .lyrics-lines button.active{color:#eeece5}
+html[data-browser-profile=tv-legacy] .player{display:flex;height:96px;background:#1c1e1c;border:1px solid #353834;border-radius:16px;left:110px;right:24px;width:auto;padding:12px 18px}
+html[data-browser-profile=tv-legacy] .player .player-track{flex:1}html[data-browser-profile=tv-legacy] .player .player-center{min-width:0}
+html[data-browser-profile=tv-legacy] .player .player-center{flex:1;padding:0 18px}
+html[data-browser-profile=tv-legacy] .player .player-tools{flex:1}
+html[data-browser-profile=tv-legacy] #player-inline-lyrics{display:none}
+html[data-browser-profile=tv-legacy] button:focus,
+html[data-browser-profile=tv-legacy] input:focus,
+html[data-browser-profile=tv-legacy] [tabindex]:focus{outline:2px solid #c4b798!important;outline-offset:3px}
+html[data-browser-profile=tv-legacy] .lyric-countdown>b{animation:none}
+
+/* One measured cover transform owns tab movement; global appearance duration
+   must not implicitly animate intermediate grid, width, height or padding. */
+.full-player.focused-player.connected-player .np-layout,
+.full-player.focused-player.connected-player .np-listening,
+.full-player.focused-player.connected-player .np-cover-growth,
+.full-player.focused-player.connected-player .np-controls,
+.full-player.focused-player.connected-player .np-cover-growth .album-stage{transition:none!important}
+html[data-browser-profile=tv-legacy] .focused-player.connected-player .np-cover-growth .album-stage{height:300px!important;min-height:300px!important;margin:0 0 18px!important}
+html[data-browser-profile=tv-legacy] .focused-player.connected-player .np-cover-growth{height:318px!important;min-height:318px!important;flex:none!important;translate:none!important;scale:none!important;transform:none!important}
+html[data-browser-profile=tv-legacy] .focused-player.connected-player .np-cover-growth .album-cover{top:0;left:0;right:0;bottom:0;width:100%;height:100%}
+html[data-browser-profile=tv-legacy] .focused-player .cover-ambient,
+html[data-browser-profile=tv-legacy] .focused-player .np-backdrop,
+html[data-browser-profile=tv-legacy] .focused-player .season-atmosphere{display:none!important}
+html[data-browser-profile=tv-legacy] .full-player.focused-player{background:#111212!important}

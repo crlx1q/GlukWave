@@ -5,24 +5,37 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 127.0.0.1 --port 5173",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && node qa/legacy-build.mjs",
     "check": "tsc -b --pretty false"
   },
   "dependencies": {
+    "abortcontroller-polyfill": "^1.7.8",
+    "css-vars-ponyfill": "^2.4.9",
+    "dialog-polyfill": "^0.5.6",
     "hls.js": "^1.7.3",
     "idb": "^8.0.3",
+    "intersection-observer": "^0.12.2",
+    "intl-pluralrules": "^2.0.1",
     "lucide-react": "^0.575.0",
     "morphicons": "^1.7.1",
     "qrcode": "^1.5.4",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "socket.io-client": "^4.8.1"
+    "resize-observer-polyfill": "^1.5.1",
+    "socket.io-client": "^4.8.1",
+    "whatwg-fetch": "^3.6.20"
   },
   "devDependencies": {
+    "@babel/core": "^7.29.7",
+    "@babel/preset-env": "^7.29.7",
+    "@types/babel__core": "^7.20.5",
     "@types/qrcode": "^1.5.5",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
+    "@vitejs/plugin-legacy": "^8.2.3",
     "@vitejs/plugin-react": "^5.1.4",
+    "acorn": "^8.19.0",
+    "terser": "^5.51.2",
     "typescript": "^5.9.3",
     "vite": "^8.0.0"
   }

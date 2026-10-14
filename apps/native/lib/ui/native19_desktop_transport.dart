@@ -11,7 +11,6 @@ import 'scrolling_label.dart';
 import 'volume_slider.dart';
 import 'widgets.dart';
 import 'listening_presence.dart';
-import 'mini_lyrics.dart';
 
 class NativeDesktopTransport extends StatefulWidget {
   final WaveController controller;
@@ -44,7 +43,6 @@ class _NativeDesktopTransportState extends State<NativeDesktopTransport> {
   VoidCallback? get onDragCancel => widget.onDragCancel;
   ValueChanged<double>? get onDragUpdate => widget.onDragUpdate;
   ValueChanged<double>? get onDragEnd => widget.onDragEnd;
-  bool lyricsAvailable = false;
   Future<void> perform(Future<void> Function() action) async {
     try {
       await action();
@@ -63,14 +61,9 @@ class _NativeDesktopTransportState extends State<NativeDesktopTransport> {
         side: BorderSide(color: v.line),
       ),
       child: SizedBox(
-        height:
-            lyricsAvailable &&
-                c.settings['lyrics'] != false &&
-                c.settings['lyricsUnderCover'] != false
-            ? 160
-            : 94,
+        height: 96,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 9),
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 6),
           child: LayoutBuilder(
             builder: (context, bounds) {
               final narrow = bounds.maxWidth < 1000;
@@ -113,13 +106,14 @@ class _NativeDesktopTransportState extends State<NativeDesktopTransport> {
                                     ),
                                   ),
                                   const SizedBox(height: 4),
-                                  ScrollingLabel(
-                                    track?.artist ?? '',
-                                    style: TextStyle(
-                                      fontSize: 10,
-                                      color: v.muted,
+                                  if (!c.controllingRemote)
+                                    ScrollingLabel(
+                                      track?.artist ?? '',
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                        color: v.muted,
+                                      ),
                                     ),
-                                  ),
                                   if (track != null && c.controllingRemote) ...[
                                     const SizedBox(height: 4),
                                     Builder(
@@ -180,17 +174,6 @@ class _NativeDesktopTransportState extends State<NativeDesktopTransport> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        if (track != null)
-                          MiniLyrics(
-                            controller: c,
-                            track: track,
-                            dense: true,
-                            onAvailability: (available) {
-                              if (mounted && available != lyricsAvailable) {
-                                setState(() => lyricsAvailable = available);
-                              }
-                            },
-                          ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [

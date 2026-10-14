@@ -1,0 +1,32 @@
+{
+  "fixedPhase": 0.8,
+  "viewport": {
+    "width": 800,
+    "height": 360
+  },
+  "pointerActive": 0,
+  "measuredInputs": [
+    {
+      "measured": 0,
+      "actualGpuDraw": true
+    },
+    {
+      "measured": 0.1,
+      "actualGpuDraw": true
+    },
+    {
+      "measured": 0.25,
+      "actualGpuDraw": true
+    }
+  ],
+  "note": "Direct actual application WebGL renderer, equal phase/palette and measured energy mapped with application response curve.",
+  "particles": {
+    "actualCanvasCode": "Exact drawCanvas body extracted from current apps/web/src/wave.tsx and TypeScript compiled; application helper modules imported directly.",
+    "measuredInputs": [
+      0,
+      0.1,
+      0.25
+    ],
+    "phase": 0.8
+  }
+}

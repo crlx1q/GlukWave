@@ -59,7 +59,7 @@ void main() {
   });
   for (final cover3d in [true, false]) {
     testWidgets(
-      'Framed current/next lyrics remain present with ${cover3d ? '3D' : '2D'} cover on phone',
+      'Current/next lyric rail remains present with ${cover3d ? '3D' : '2D'} cover on phone',
       (tester) async {
         final c = (await tester.runAsync(audio.makeController))!;
         await tester.runAsync(
@@ -201,7 +201,7 @@ void main() {
     },
   );
   testWidgets(
-    'Compact desktop lyrics fit above seek and window grows only when present',
+    'Collapsed desktop excludes lyrics and retains compact transport',
     (tester) async {
       final c = (await tester.runAsync(audio.makeController))!;
       c.settings['lyrics'] = true;
@@ -210,16 +210,16 @@ void main() {
         {'time': 0, 'text': 'Current lyric'},
         {'time': 12, 'text': 'Next lyric'},
       ];
-      await f.viewport(tester, const Size(410, 172));
+      await f.viewport(tester, const Size(410, 116));
       await tester.pumpWidget(
         audio.shell(c, DesktopCompactPlayer(controller: c)),
       );
       await settle(tester);
-      expect(find.byType(MiniLyrics), findsOneWidget);
-      expect(find.text('Current lyric'), findsOneWidget);
-      expect(find.text('Next lyric'), findsOneWidget);
-      expect(c.desktop.compactLyrics, isTrue);
-      expect(compactPlayerSize(quick: false, lyrics: true).height, 172);
+      expect(find.byType(MiniLyrics), findsNothing);
+      expect(find.text('Current lyric'), findsNothing);
+      expect(find.text('Next lyric'), findsNothing);
+      expect(c.desktop.compactLyrics, isFalse);
+      expect(compactPlayerSize(quick: false, lyrics: true).height, 116);
       expect(compactPlayerSize(quick: false).height, 116);
       expect(tester.takeException(), isNull);
       await f.screenshot(tester, 'parity23-desktop-mini-lyrics');
@@ -332,7 +332,7 @@ void main() {
     },
   );
   testWidgets(
-    'Desktop bottom transport adapts only when lyrics are actually available',
+    'Desktop bottom transport stays compact with or without lyric rail',
     (tester) async {
       final c = (await tester.runAsync(audio.makeController))!;
       c.settings['lyricsUnderCover'] = true;
@@ -348,7 +348,7 @@ void main() {
       );
       await tester.pumpWidget(scene());
       await settle(tester);
-      expect(tester.getSize(find.byType(NativeDesktopTransport)).height, 94);
+      expect(tester.getSize(find.byType(NativeDesktopTransport)).height, 96);
       (c.api as f.LayoutApi).lyricLines = [
         {'time': 0, 'text': 'Current lyric'},
         {'time': 20, 'text': 'Next lyric'},
@@ -357,13 +357,14 @@ void main() {
       c.render();
       await tester.pumpWidget(scene());
       await settle(tester);
-      expect(tester.getSize(find.byType(NativeDesktopTransport)).height, 160);
-      expect(find.text('Current lyric'), findsOneWidget);
-      await f.screenshot(tester, 'parity23-desktop-bottom-lyrics');
+      expect(tester.getSize(find.byType(NativeDesktopTransport)).height, 96);
+      expect(find.text('Current lyric'), findsNothing);
+      expect(find.byType(MiniLyrics), findsNothing);
+      await f.screenshot(tester, 'parity24-bottom-clean');
       c.settings['lyricsUnderCover'] = false;
       await tester.pumpWidget(scene());
       await settle(tester);
-      expect(tester.getSize(find.byType(NativeDesktopTransport)).height, 94);
+      expect(tester.getSize(find.byType(NativeDesktopTransport)).height, 96);
       expect(tester.takeException(), isNull);
       await f.clean(tester, c);
     },

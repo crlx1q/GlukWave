@@ -1,3 +1,4 @@
+import 'dart:math' as math;
 import 'scrolling_label.dart';
 import 'native19_strings.dart';
 import 'native19_desktop_transport.dart';
@@ -22,6 +23,9 @@ import 'queue_panel.dart';
 import 'connect_picker.dart';
 import 'listening_presence.dart';
 import 'mini_lyrics.dart';
+import 'lyric_timing.dart';
+import '../l10n/ecosystem_polish_strings.dart';
+import 'dart:ui' as ui;
 
 class SourceAttribution extends StatelessWidget {
   final WaveController controller;
@@ -902,7 +906,20 @@ class _PlayerPageState extends State<PlayerPage> {
                 ),
               Expanded(
                 child: LayoutBuilder(
-                  builder: (context, bounds) => playerBody(track, bounds, wide),
+                  builder: (context, bounds) => TweenAnimationBuilder<double>(
+                    key: ValueKey('player-view-entry-$tab'),
+                    tween: Tween(begin: 0, end: 1),
+                    duration: v.duration(340),
+                    curve: Curves.easeOutCubic,
+                    child: playerBody(track, bounds, wide),
+                    builder: (context, value, child) => Opacity(
+                      opacity: value,
+                      child: Transform.translate(
+                        offset: Offset(0, 10 * (1 - value)),
+                        child: child,
+                      ),
+                    ),
+                  ),
                 ),
               ),
             ],
@@ -1120,7 +1137,16 @@ class _PlayerPageState extends State<PlayerPage> {
       final controlRoom =
           (split
               ? bounds.maxHeight - 20
-              : bounds.maxHeight - sceneHeight - 20) /
+              : bounds.maxHeight -
+                    sceneHeight +
+                    (dimensional
+                        ? referenceSleeveLowerAir(
+                            size,
+                            -9 * math.pi / 180,
+                            -18 * math.pi / 180,
+                          )
+                        : 0) -
+                    20) /
           scale;
       final dense = controlRoom < 350,
           tiny = controlRoom < 290,
@@ -1131,26 +1157,24 @@ class _PlayerPageState extends State<PlayerPage> {
           c.settings['lyricsUnderCover'] != false &&
           lyrics.isNotEmpty;
       final contents = <Widget>[
-        SizedBox(
-          height: sceneHeight,
-          child: Center(
-            child: PlayerGestureSurface(
-              key: const Key('player-cover-gesture'),
-              controller: c,
-              onVerticalStart: widget.onDragStart,
-              onVerticalUpdate: widget.onDragUpdate,
-              onVerticalEnd: widget.onDragEnd,
-              onVerticalCancel: widget.onDragCancel,
-              child: Opacity(
-                opacity: widget.hideAlbum ? 0 : 1,
-                child: AlbumStage(
-                  controller: c,
-                  track: track,
-                  size: size,
-                  playing: active && c.audio.playing,
-                  artworkKey: widget.artworkKey,
-                  touchTilt: false,
-                ),
+        Center(
+          child: PlayerGestureSurface(
+            key: const Key('player-cover-gesture'),
+            controller: c,
+            onVerticalStart: widget.onDragStart,
+            onVerticalUpdate: widget.onDragUpdate,
+            onVerticalEnd: widget.onDragEnd,
+            onVerticalCancel: widget.onDragCancel,
+            child: Opacity(
+              opacity: widget.hideAlbum ? 0 : 1,
+              child: AlbumStage(
+                controller: c,
+                track: track,
+                size: size,
+                playing: active && c.audio.playing,
+                artworkKey: widget.artworkKey,
+                touchTilt: false,
+                compactVertical: !split,
               ),
             ),
           ),
@@ -1665,13 +1689,14 @@ class _PlayerPageState extends State<PlayerPage> {
       else
         StreamBuilder<Duration>(
           stream: c.audio.positionStream,
+          initialData: c.audio.position,
           builder: (_, snapshot) {
-            final active = synchronized && c.audio.viewCurrent?.id == track.id
-                ? activeLyric(
-                    lyrics,
-                    (snapshot.data?.inMilliseconds ?? 0) / 1000,
-                  )
-                : -1;
+            final cue = lyricCue(
+                  lyrics,
+                  synchronized && c.audio.viewCurrent?.id == track.id,
+                  (snapshot.data?.inMilliseconds ?? 0) / 1000,
+                ),
+                active = cue.active;
             if (active != _lastLyric && tab == 1) {
               _lastLyric = active;
               WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -1697,6 +1722,24 @@ class _PlayerPageState extends State<PlayerPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  if (cue.intro)
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 26),
+                      child: Row(
+                        children: [
+                          Text(
+                            ecosystemText('lyricsIntro', context),
+                            style: TextStyle(
+                              color: waveVisuals(context).muted,
+                              fontSize: 11,
+                              letterSpacing: 1.2,
+                            ),
+                          ),
+                          const SizedBox(width: 18),
+                          LyricCountdown(count: cue.countdown),
+                        ],
+                      ),
+                    ),
                   for (var i = 0; i < lyrics.length; i++)
                     InkWell(
                       key: _lyricKeys.putIfAbsent(i, () => GlobalKey()),
@@ -1717,24 +1760,40 @@ class _PlayerPageState extends State<PlayerPage> {
                           : null,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 14),
-                        child: AnimatedDefaultTextStyle(
-                          duration: waveVisuals(context).duration(220),
-                          curve: Curves.easeOut,
-                          style: TextStyle(
-                            fontFamily: Theme.of(
-                              context,
-                            ).textTheme.bodyMedium?.fontFamily,
-                            fontSize: MediaQuery.sizeOf(context).width >= 851
-                                ? 32
-                                : 26,
-                            fontWeight: FontWeight.w800,
-                            letterSpacing: -.7,
-                            height: 1.5,
-                            color: active < 0 || active == i
-                                ? waveVisuals(context).ink
-                                : waveVisuals(context).muted,
+                        child: TweenAnimationBuilder<double>(
+                          tween: Tween(
+                            end: MediaQuery.highContrastOf(context)
+                                ? 0
+                                : lyricDefocus((active - i).abs(), active),
                           ),
-                          child: Text(lyrics[i]['text'] as String? ?? ''),
+                          duration: waveVisuals(context).duration(240),
+                          child: AnimatedDefaultTextStyle(
+                            duration: waveVisuals(context).duration(220),
+                            curve: Curves.easeOut,
+                            style: TextStyle(
+                              fontFamily: Theme.of(
+                                context,
+                              ).textTheme.bodyMedium?.fontFamily,
+                              fontSize: MediaQuery.sizeOf(context).width >= 851
+                                  ? 32
+                                  : 26,
+                              fontWeight: FontWeight.w800,
+                              letterSpacing: -.7,
+                              height: 1.5,
+                              color: active < 0 || active == i
+                                  ? waveVisuals(context).ink
+                                  : waveVisuals(context).muted,
+                            ),
+                            child: Text(lyrics[i]['text'] as String? ?? ''),
+                          ),
+                          builder: (context, sigma, child) => ImageFiltered(
+                            imageFilter: ui.ImageFilter.blur(
+                              sigmaX: sigma,
+                              sigmaY: sigma,
+                            ),
+                            enabled: sigma > .01,
+                            child: child,
+                          ),
                         ),
                       ),
                     ),

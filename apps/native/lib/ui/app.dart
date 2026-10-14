@@ -1433,6 +1433,20 @@ class _WaveShellState extends State<WaveShell>
             ])
               ChoiceChip(
                 key: Key('wave-mode-$mode'),
+                showCheckmark: false,
+                backgroundColor: Colors.transparent,
+                selectedColor: waveVisuals(context).surface,
+                side: BorderSide.none,
+                elevation: 0,
+                pressElevation: 0,
+                shadowColor: Colors.transparent,
+                labelStyle: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w700,
+                  color: waveMode == mode
+                      ? waveVisuals(context).ink
+                      : waveVisuals(context).muted,
+                ),
                 label: Text(wave18Text(context, 'wave18.mode.$mode')),
                 selected: waveMode == mode,
                 onSelected: waveStarting
@@ -1465,6 +1479,20 @@ class _WaveShellState extends State<WaveShell>
                   padding: const EdgeInsets.only(right: 7),
                   child: ChoiceChip(
                     key: Key('wave-mood-$value'),
+                    showCheckmark: false,
+                    backgroundColor: Colors.transparent,
+                    selectedColor: waveVisuals(context).surface,
+                    side: BorderSide.none,
+                    elevation: 0,
+                    pressElevation: 0,
+                    shadowColor: Colors.transparent,
+                    labelStyle: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w700,
+                      color: mood == value
+                          ? waveVisuals(context).ink
+                          : waveVisuals(context).muted,
+                    ),
                     label: Text(wave18Text(context, 'wave18.mood.$value')),
                     selected: mood == value,
                     onSelected: waveStarting

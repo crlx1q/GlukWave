@@ -1,0 +1,391 @@
+{
+  "checkedAt": "2026-10-14T20:49:34.231Z",
+  "verdict": "PASS",
+  "attempt": 2,
+  "supersedes": "work/qa/parity24-evaluator-verdict.json for collapsed lyric behavior only",
+  "reviewer": {
+    "independentAgent": true,
+    "provider": "same available model provider",
+    "externalProviderAvailable": false
+  },
+  "sources": [
+    {
+      "path": "apps/web/src/player-ui.tsx",
+      "sha256": "d8184a622460cd5697536281fbcd66021960b2d00166b86006d1bcc41824199b"
+    },
+    {
+      "path": "apps/web/src/lyric-timing.ts",
+      "sha256": "0ed4267eb7769eac605c7f5bb379f99a48346102af7e32b85030498125c360e0"
+    },
+    {
+      "path": "apps/web/src/album.tsx",
+      "sha256": "710d3cd7175b133b49a4156f82a87999527e335008c92400e7138d92c23f82a1"
+    },
+    {
+      "path": "apps/web/src/mini.tsx",
+      "sha256": "46ab6a86f22e5e3c5e6e0d697afa5bf022142cb048b89c3f1cde951156596098"
+    },
+    {
+      "path": "apps/web/src/focused-player.css",
+      "sha256": "ff7772af3f881414683c892de0c9e0342ab1ec3d4adfa251e1c40b1fd93d05e9"
+    },
+    {
+      "path": "apps/web/src/refinement21.css",
+      "sha256": "a8ef6552e9c13b1375d687680bc1064940427d5488b35835bee8d0972d31a160"
+    },
+    {
+      "path": "apps/web/src/reference-cover.css",
+      "sha256": "c92a38d741c57e87ad241cc2d2b406621f770d70362f5b645d0fd635502e27e7"
+    },
+    {
+      "path": "apps/web/src/cover-fit.ts",
+      "sha256": "4bfd503e665bccf54e8b2b2292ec4a428bd258959924dda55cb7eb4c4d3e571e"
+    },
+    {
+      "path": "apps/web/src/locales/de.json",
+      "sha256": "4c14099b461b1a27c764f47c22e5b5cff2887c28ce9a05a3e22b807a7aae7485"
+    },
+    {
+      "path": "apps/web/src/locales/en.json",
+      "sha256": "c460e35207ccb35ac1d404d0de9bb737744fcae9a3638e4622f8f5651f4a25a7"
+    },
+    {
+      "path": "apps/web/src/locales/es.json",
+      "sha256": "e6674ad7f0690b7e455d479e52b41d25b07c5726b08307149dc16cdef6aea97d"
+    },
+    {
+      "path": "apps/web/src/locales/kk.json",
+      "sha256": "6b65df4c1024e48f7589909fcf841b501a65d60005f3e15896c293d4606e6d28"
+    },
+    {
+      "path": "apps/web/src/locales/ru.json",
+      "sha256": "f7801439b69f461395606d7cf79e6ce1508c034bf75b19d6eee1d9fc5e9043ff"
+    },
+    {
+      "path": "apps/web/src/locales/uk.json",
+      "sha256": "912c2b46768b731ab03798dd4fb48406fff84338071715c9e7181d1793ea95d1"
+    },
+    {
+      "path": "apps/web/qa/lyric-timing.test.mjs",
+      "sha256": "5351071a07a1f74cbe25daf6c221dbc30bfe51336baceb2b8239d89da906b697"
+    },
+    {
+      "path": "apps/native/lib/ui/mini_lyrics.dart",
+      "sha256": "655b585fe0bf75e17236ee3d4d2a9e3c53d425c504ad0672ea4304ee05dd6377"
+    },
+    {
+      "path": "apps/native/lib/ui/lyric_timing.dart",
+      "sha256": "9113a520a94427b8c1b298411cff626569e3d393862ba87f8ece8e92de474479"
+    },
+    {
+      "path": "apps/native/lib/ui/player.dart",
+      "sha256": "88fc89e85a0e8b5c91b9386a9dd4ec8acc7a8cd85aed78745af78bec039c7f00"
+    },
+    {
+      "path": "apps/native/lib/ui/native19_desktop_transport.dart",
+      "sha256": "863ef8830d6bbd5404a6c7f89c5ee48da010a71721c951b901c2398ac316313b"
+    },
+    {
+      "path": "apps/native/lib/ui/album_stage.dart",
+      "sha256": "be10d566bf3c27fd1f909382807db53919b16177e515f91c474c80767f01e784"
+    },
+    {
+      "path": "apps/native/lib/l10n/ecosystem_polish_strings.dart",
+      "sha256": "01d6ac13fc68fe705a146691e3e921d8b978906c15cb25b982626b22aefd97c0"
+    },
+    {
+      "path": "apps/native/lib/services/desktop.dart",
+      "sha256": "6f9b921871fe92ec3e565788cd2a23f9a109e84850d27e73f6ea23dbb571f4b8"
+    },
+    {
+      "path": "apps/native/test/parity24_ui_test.dart",
+      "sha256": "eaffa520e86f9f52e0dd05442fcd267011747639c3bb5e24e5194856f3d971fc"
+    },
+    {
+      "path": "apps/native/test/parity23_ui_test.dart",
+      "sha256": "74ba760b3f1f244a56adee94f10178d6b0066b5f87411b7c5245205d25608105"
+    },
+    {
+      "path": "apps/web/src/wave-math.ts",
+      "sha256": "71c6743a3031eab95ee15f7797d68c7662b144bf0686d31f611df4b81b202d70"
+    },
+    {
+      "path": "apps/web/src/wave.tsx",
+      "sha256": "7173e79ed7fd47f172689df9a7278dd8291dea29118d01ddf5a948ce4ca7101f"
+    },
+    {
+      "path": "apps/native/lib/ui/desktop_player.dart",
+      "sha256": "148eb095125ead119bc4439c91638581a02ff33a6331f34177cea34ba42f0c3e"
+    },
+    {
+      "path": "apps/native/lib/ui/app.dart",
+      "sha256": "c7d33b30b661cd587a7736bbaf3d8f365ae78cf03bffa90a91880a4e793aa5ce"
+    },
+    {
+      "path": "apps/native/lib/ui/widgets.dart",
+      "sha256": "38ff1d8b6f4e1c841984a659b1d77d32f298ff146a27522099acd79d41ff71ce"
+    },
+    {
+      "path": "apps/native/lib/core/wave_math.dart",
+      "sha256": "1594245f7ff401e2399f63460061418d16e5248d285f25795db007ef53ca1d1e"
+    },
+    {
+      "path": "apps/native/test/wave_test.dart",
+      "sha256": "3aebe41e6ae784f2bd90368ec2e2f0b9b51bae9498f24aea19b31aa99b6b3450"
+    },
+    {
+      "path": "apps/native/test/fixtures/wave-math-parity.json",
+      "sha256": "7e60e3157cb1929abb0adc470d6449a44ff796927200f2d975d587409d93e16f"
+    },
+    {
+      "path": "apps/web/qa/wave24-response.test.mjs",
+      "sha256": "702495bae929d29c2cdf2ad145549ab91dfe5c80468016eedae6058607079164"
+    },
+    {
+      "path": "apps/web/src/vendor/halftone-bloom.ts",
+      "sha256": "c9a3b57f5dfd422cf313f91e3ecdbea768e8cb624f2ea2d0da70a7e34b49bc8f"
+    },
+    {
+      "path": "apps/web/src/ui.tsx",
+      "sha256": "5cf967c28e62f895d4c7ba63b83c53c04ac8578ce01375d1803beba130157f7b"
+    }
+  ],
+  "captures": [
+    {
+      "path": "work/qa/parity24-steering-eval-category-favorites.png",
+      "sha256": "9491ad25c8e8e02751c93250be886c25f2ce49367504582d807d8e482dd4df30"
+    },
+    {
+      "path": "work/qa/parity24-steering-eval-category-discovery.png",
+      "sha256": "fefb4435a490b2bf7e2487ac2f990f023cb0e238c6ccc9991244c3fb3db75f24"
+    },
+    {
+      "path": "work/qa/parity24-steering-eval-category-popular.png",
+      "sha256": "7bb0e6d7f1435bd18d5cd8232689b84341e808bc0d78ebbd08c623ea910835bd"
+    },
+    {
+      "path": "work/qa/parity24-steering-eval-category-keyboard.png",
+      "sha256": "b23b5f624c9a925049308d641928740bb1ef15d4c1e6779cd8e83d9ea097461a"
+    },
+    {
+      "path": "work/qa/parity24-steering-eval-footer-1440.png",
+      "sha256": "0ac847e5b97ce56ab9896bf7bfe7cef5d317071ca7aefd12c3958613bcebf48c"
+    },
+    {
+      "path": "work/qa/parity24-steering-eval-footer-768.png",
+      "sha256": "b7cfe2558e1dafd1c1acbb778eb0dd6206e9f80810c539d9f2ec092312692b58"
+    },
+    {
+      "path": "work/qa/parity24-steering-eval-footer-375.png",
+      "sha256": "b78bb56d035abe1ad7238e1e112dce9d5196ead0ab3f7a004ed1568ac8009e56"
+    },
+    {
+      "path": "work/qa/parity24-steering-eval-remote-1440.png",
+      "sha256": "e87f9630e0e022c94328602f85e03a355bfb637ce98e2d91770d28142321aca2"
+    },
+    {
+      "path": "work/qa/parity24-steering-eval-remote-375.png",
+      "sha256": "e328c12cd1fcc5c33469486b964d0a275f522a0b277bca2a144aee04d4a7b4e9"
+    },
+    {
+      "path": "work/qa/parity24-steering-eval-full-excerpt-1440.png",
+      "sha256": "4ea0c4bd529e8afb5ccbaf36c51b8c9d22448743210737e5daa444e6ddd7991c"
+    },
+    {
+      "path": "work/qa/parity24-steering-eval-full-lyrics-1440.png",
+      "sha256": "af28e946b65d27dd587e4f406ff86805ca22e69d755a660e7646a79c6c053258"
+    },
+    {
+      "path": "work/qa/parity24-steering-eval-intro-3.png",
+      "sha256": "daed7e18f8226e2d3549576cfb91c0a2b4843996bfd6e95bdb4206cd3ce171a5"
+    },
+    {
+      "path": "work/qa/parity24-steering-eval-web-bloom-0.png",
+      "sha256": "4f1d1ba8f6027ed62b7496070f405ca38d3fe66296c5c5b542f2c33b8e50cd32"
+    },
+    {
+      "path": "work/qa/parity24-steering-eval-web-bloom-10.png",
+      "sha256": "733b8985d0ff6a96ae66ce1b91e6c1f4deef0bbb7a22582006cdf4a2d8f9d75a"
+    },
+    {
+      "path": "work/qa/parity24-steering-eval-web-bloom-25.png",
+      "sha256": "0e921d32457cdeea417ebdda59e0888a2f1e6c9539f90f5ace4ee4ae9a3dd9a4"
+    },
+    {
+      "path": "work/qa/parity24-steering-eval-web-particles-0.png",
+      "sha256": "be9cd6e8dbd6f6ea5b90ddcf5f60eb0d7099a74dd1176a7311f7a5b4df87b10a"
+    },
+    {
+      "path": "work/qa/parity24-steering-eval-web-particles-10.png",
+      "sha256": "ccbfa6857877593f050d290b28267b6d6c9aef7118dd5d37db809eaa48e154db"
+    },
+    {
+      "path": "work/qa/parity24-steering-eval-web-particles-25.png",
+      "sha256": "ce2db73684cda8e551f465154c6d7e9c8161fd8890e12095056ea75ccf293b3b"
+    },
+    {
+      "path": "work/qa/parity24-steering-eval-native-bloom-0.png",
+      "sha256": "d0c82a22533248c21246bcc49bd712e0e90700b4f851a708d6e62730bcba6731"
+    },
+    {
+      "path": "work/qa/parity24-steering-eval-native-bloom-10.png",
+      "sha256": "e44f5b98b1d72940715e7aaf3047fe9492fe778a1373283ba727d1527efc7e2f"
+    },
+    {
+      "path": "work/qa/parity24-steering-eval-native-bloom-25.png",
+      "sha256": "9fe39bf3abe1aac5c9345f51a00259a679b7d4a9078bcee74d3c7a12e310b2c7"
+    },
+    {
+      "path": "work/qa/parity24-steering-eval-native-particles-0.png",
+      "sha256": "3c2d20d8c48d9e7bd298417fca8f248d61c02c0d27d1e2105436ea9c086e2efa"
+    },
+    {
+      "path": "work/qa/parity24-steering-eval-native-particles-10.png",
+      "sha256": "811d228b1e6b6ac1e3a2b6b58c2ff2b85a746c21e07c37319fe2a8e71a247199"
+    },
+    {
+      "path": "work/qa/parity24-steering-eval-native-particles-25.png",
+      "sha256": "e2980f29f10f136576c7dcdb063805992c7eb9fdd584d4c637e724ca99f4cb8f"
+    },
+    {
+      "path": "work/qa/parity24-steering-eval-native-full-lyrics-390.png",
+      "sha256": "bbe2a05a9ed7f8787a76d5c5f4e81e78d2a52814ed07dc67af82bb3918088323"
+    },
+    {
+      "path": "work/qa/parity24-steering-eval-native-full-lyrics-1440.png",
+      "sha256": "02762fafd844e4baa0ad9eb5e576699771f2d1c245ba1de86f3c468c60e45652"
+    },
+    {
+      "path": "work/qa/parity24-steering-eval-native-desktop-bottom-clean.png",
+      "sha256": "8ecb4c48170e782eea5aa7ddd622b611e8eb5c4d51141a0e7b353c73268313ca"
+    },
+    {
+      "path": "work/qa/parity24-steering-eval-native-desktop-bottom-remote-125.png",
+      "sha256": "83b8f8a7dfa5ac058f84e70449fdf6e3204ea52d0a50fe501b4ff5a5d2808de1"
+    },
+    {
+      "path": "work/qa/parity24-steering-eval-native-compact-window-125.png",
+      "sha256": "a404b1490321ebc1c45601cad6a89ab9b95354fb1e7dd228f29fa25761b57f61"
+    },
+    {
+      "path": "work/qa/parity24-steering-eval-native-phone-mini.png",
+      "sha256": "3eb4836a881b7aa0609df9705dc3434b67ef175d55a33a996b740bf0248690d3"
+    },
+    {
+      "path": "work/qa/parity24-steering-eval-native-cd-0.png",
+      "sha256": "dcd77d4228b701b7d2bd295d0075b5a9f14b964cec63ea08b18fd350e8c34deb"
+    },
+    {
+      "path": "work/qa/parity24-steering-eval-native-cd-45.png",
+      "sha256": "51dd88f46a9215a3d0b9ec28e6395fe3e59d27569a31a31772bd4981f284879e"
+    },
+    {
+      "path": "work/qa/parity24-steering-eval-native-cd-82.png",
+      "sha256": "cd895153a04b2c93d15b6d9386029c5e869bc2cd3c22f4b2fc3bd9443ca0a889"
+    },
+    {
+      "path": "work/qa/parity24-steering-eval-native-cd-100.png",
+      "sha256": "2386126f5b1b2024975e672a2afb65ab0b57a61036bc9b2609934d92726f90c5"
+    },
+    {
+      "path": "work/qa/parity24-steering-eval-native-cd-135.png",
+      "sha256": "1ad88ec838d1922951a40e6acdfc0eac2972cfeb1b4516fcd27f3417449f31d0"
+    },
+    {
+      "path": "work/qa/parity24-steering-eval-native-cd-180.png",
+      "sha256": "870af69f1e58faeeb62bf491bffca2dfee0141793ab32970eb0f6f8c0808aebc"
+    },
+    {
+      "path": "work/qa/parity24-steering-eval-native-cd-225.png",
+      "sha256": "13fd5bc606deae30ee9f43514541a27485fcad0c7990708f9bfd8c6d9f3cce4c"
+    },
+    {
+      "path": "work/qa/parity24-steering-eval-native-cd-260.png",
+      "sha256": "aa61acfa2e8fb256dc4a3fbb6e5d1da4628fe0c8b28aa99df025f33605d5595f"
+    },
+    {
+      "path": "work/qa/parity24-steering-eval-native-cd-315.png",
+      "sha256": "0adfd1937760d91f199e8d956ba2c850e5cb67568a3b299a5e59c622717d67db"
+    },
+    {
+      "path": "work/qa/parity24-steering-eval-native-cd-360.png",
+      "sha256": "dcd77d4228b701b7d2bd295d0075b5a9f14b964cec63ea08b18fd350e8c34deb"
+    }
+  ],
+  "proofFiles": [
+    "work/qa/parity24-steering-eval-native.log",
+    "work/qa/parity24-steering-eval-native-wave.log",
+    "work/qa/parity24-steering-eval-wave-render-proof.json",
+    "work/qa/parity24-steering-eval-web-proof.json",
+    "work/qa/parity24-steering-eval-remote-proof.json",
+    "work/qa/parity24-steering-eval-keyboard-proof.json",
+    "work/qa/parity24-steering-eval-motion-proof.json"
+  ],
+  "publicGuide": "work/qa/parity24-steering-evaluator-review-guide.md",
+  "verification": {
+    "independentNativeUiCasesPassed": 7,
+    "independentActualPainterCasesPassed": 1,
+    "actualWaveRenderImages": 12,
+    "fixedWavePhase": 0.8,
+    "measuredInputs": [
+      0,
+      0.1,
+      0.25
+    ],
+    "collapsedWebLyricNodes": 0,
+    "collapsedNativeLyricsAbsent": true,
+    "collapsedWebAttributionLinks": 0,
+    "webWidths": [
+      1440,
+      768,
+      375
+    ],
+    "remoteNamedOnWebWidths": [
+      1440,
+      375
+    ],
+    "remoteDeviceName": "GlukWave · Android",
+    "nativeCompactHeight": 116,
+    "nativePhoneMiniHeight": 68,
+    "webCategoryShadow": "none",
+    "webCategoryBorder": "transparent",
+    "actualKeyboardOutline": "1px solid accent",
+    "nativeCdRotations": [
+      0,
+      45,
+      82,
+      100,
+      135,
+      180,
+      225,
+      260,
+      315,
+      360
+    ],
+    "temporaryNativeFixtureRemoved": true,
+    "consoleErrors": []
+  },
+  "limitations": [
+    "Same-provider independent agent evaluation; no external provider was available.",
+    "No physical Samsung browser, Android OS startup, audible sound, owner-device transfer or launcher validation.",
+    "Wave renders call the actual app GPU/Canvas/native painters at fixed inputs; they are not microphone or physical track playback evidence.",
+    "Exact cue timing remains backed by prior round-one capture and unchanged timing helper; current combined browser smoke crossed second boundaries during screenshot latency. A held current 3 and passing native full-player/timing coverage were checked.",
+    "Round-one proof is retained for unchanged reflection/TV/full-lyrics contracts; latest steering removes all collapsed lyric rails."
+  ],
+  "compatibilityAmendment": {
+    "checkedAt": "2026-10-14T20:52:47.445Z",
+    "approved": true,
+    "path": "apps/web/src/ui.tsx",
+    "previousApprovedHash": "21a8cd27ae135f7a66a3728f61ed0f1ad876f0124698a9c0ed6871d722a1b2f2",
+    "currentApprovedHash": "5cf967c28e62f895d4c7ba63b83c53c04ac8578ce01375d1803beba130157f7b",
+    "reason": "Modal cleanup closes only an open dialog. A legacy dialog polyfill may already close on Escape before React unmount cleanup; attempting to close it again can throw. The guard also safely skips native already-closed dialogs.",
+    "validation": {
+      "exactOneLineDeltaConfirmedByReverseHash": true,
+      "sourceOnlyReview": true,
+      "visualUiChanges": false,
+      "designVerdictRetained": "PASS",
+      "attemptRetained": 2,
+      "runtimeProof": "Parent-owned production legacy modal flow; not asserted by this source amendment."
+    }
+  }
+}

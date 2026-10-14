@@ -1,0 +1,8 @@
+Analyzing mini_lyrics.dart, lyric_timing.dart, native19_desktop_transport.dart, player.dart, album_stage.dart, parity24_ui_test.dart...
+
+   info - lib\ui\album_stage.dart:66:5 - Statements in a for should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+   info - lib\ui\album_stage.dart:67:7 - Statements in a for should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+   info - lib\ui\album_stage.dart:67:35 - Statements in a for should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+   info - lib\ui\album_stage.dart:69:5 - Statements in a for should be enclosed in a block. Try wrapping the statement in a block. - curly_braces_in_flow_control_structures
+
+4 issues found.

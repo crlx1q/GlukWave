@@ -1,0 +1,6 @@
+Analyzing 6 items...                                            
+
+   info - Statements in an if should be enclosed in a block - lib\ui\native19_desktop_transport.dart:127:43 - curly_braces_in_flow_control_structures
+   info - Statements in a for should be enclosed in a block - test\parity24_ui_test.dart:104:57 - curly_braces_in_flow_control_structures
+
+2 issues found. (ran in 43.8s)
