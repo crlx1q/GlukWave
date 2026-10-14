@@ -67,6 +67,11 @@ library_markers = {marker: marker.encode('utf-8') in (bundle / 'data/app.so').re
                    for marker in ['/api/public-import/search', '/api/public-import/tracks', 'publicSourceUrl', 'playlist-membership-', 'playlist-edit-name']}
 require(all(library_markers.values()), 'Current public import or playlist UI missing from AOT')
 feature_markers.update(library_markers)
+if 'version: 1.0.0+22' in (root / 'apps/native/pubspec.yaml').read_text('utf-8'):
+    sleeve_markers = {marker: marker.encode('utf-8') in (bundle / 'data/app.so').read_bytes()
+                      for marker in ['album-back-title', 'album-back-source']}
+    require(all(sleeve_markers.values()), 'Current sleeve reverse missing from AOT')
+    feature_markers.update(sleeve_markers)
 
 manifest = json.loads((bundle / 'data/flutter_assets/FontManifest.json').read_text('utf-8'))
 font_count = 0

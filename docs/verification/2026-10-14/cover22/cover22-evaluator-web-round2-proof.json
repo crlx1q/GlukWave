@@ -1,0 +1,1135 @@
+{
+  "cases": [
+    {
+      "width": 1440,
+      "height": 900,
+      "scale": 1,
+      "front": {
+        "bodyOverflow": false,
+        "controls": {
+          "bottom": 942.390625,
+          "height": 253.390625,
+          "left": 520,
+          "right": 920,
+          "top": 689,
+          "width": 400,
+          "x": 520,
+          "y": 689
+        },
+        "cssPaper": 302,
+        "footer": "SoundCloud\n1:01:13",
+        "layoutScroll": {
+          "client": 796,
+          "height": 858,
+          "top": 0
+        },
+        "listScroll": {
+          "client": 796,
+          "height": 858,
+          "top": 0
+        },
+        "paper": 302,
+        "stage": {
+          "bottom": 679,
+          "height": 595,
+          "left": 452,
+          "right": 988,
+          "top": 84,
+          "width": 536,
+          "x": 452,
+          "y": 84
+        },
+        "title": {
+          "aria": "1 A.M Study Session 📚 - [lofi hip hop/chill beats]",
+          "height": 50,
+          "scroll": 50,
+          "text": "1 A.M Study Session 📚 - [lofi hip hop/chill beats]"
+        },
+        "transform": "translateX(-11.412678195541842%) rotateX(-9deg) rotateY(-18deg)",
+        "zoom": 1
+      },
+      "reverse": {
+        "bodyOverflow": false,
+        "controls": {
+          "bottom": 942.390625,
+          "height": 253.390625,
+          "left": 520,
+          "right": 920,
+          "top": 689,
+          "width": 400,
+          "x": 520,
+          "y": 689
+        },
+        "cssPaper": 302,
+        "footer": "SoundCloud\n1:01:13",
+        "layoutScroll": {
+          "client": 796,
+          "height": 858,
+          "top": 0
+        },
+        "listScroll": {
+          "client": 796,
+          "height": 858,
+          "top": 0
+        },
+        "paper": 302,
+        "stage": {
+          "bottom": 679,
+          "height": 595,
+          "left": 452,
+          "right": 988,
+          "top": 84,
+          "width": 536,
+          "x": 452,
+          "y": 84
+        },
+        "title": {
+          "aria": "1 A.M Study Session 📚 - [lofi hip hop/chill beats]",
+          "height": 50,
+          "scroll": 50,
+          "text": "1 A.M Study Session 📚 - [lofi hip hop/chill beats]"
+        },
+        "transform": "translateX(11.412678195541842%) rotateX(-9deg) rotateY(162deg)",
+        "zoom": 1
+      },
+      "reachable": {
+        "actions": {
+          "bottom": 880.390625,
+          "height": 32,
+          "left": 520,
+          "right": 920,
+          "top": 848.390625,
+          "width": 400,
+          "x": 520,
+          "y": 848.390625
+        },
+        "eq": {
+          "bottom": 791.390625,
+          "height": 44,
+          "left": 829,
+          "right": 865,
+          "top": 747.390625,
+          "width": 36,
+          "x": 829,
+          "y": 747.390625
+        }
+      },
+      "captures": [
+        "work/qa/cover22-evaluator-final-web-1440x900-1-front.png",
+        "work/qa/cover22-evaluator-final-web-1440x900-1-back.png",
+        "work/qa/cover22-evaluator-final-web-1440x900-1-controls.png"
+      ],
+      "source": "387b6e265b4612ab18810787e48eddccd85809a240152c4ad936d107c8d1cff9"
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "scale": 1.25,
+      "front": {
+        "bodyOverflow": false,
+        "controls": {
+          "bottom": 1016.75,
+          "height": 316.75,
+          "left": 470,
+          "right": 970,
+          "top": 700,
+          "width": 500,
+          "x": 470,
+          "y": 700
+        },
+        "cssPaper": 241.6,
+        "footer": "SoundCloud\n1:01:13",
+        "layoutScroll": {
+          "client": 616,
+          "height": 729,
+          "top": 0
+        },
+        "listScroll": {
+          "client": 616,
+          "height": 729,
+          "top": 0
+        },
+        "paper": 302,
+        "stage": {
+          "bottom": 687.5,
+          "height": 582.5,
+          "left": 385,
+          "right": 1055,
+          "top": 105,
+          "width": 670,
+          "x": 385,
+          "y": 105
+        },
+        "title": {
+          "aria": "1 A.M Study Session 📚 - [lofi hip hop/chill beats]",
+          "height": 40,
+          "scroll": 40,
+          "text": "1 A.M Study Session 📚 - [lofi hip hop/chill beats]"
+        },
+        "transform": "translateX(-11.412678195541842%) rotateX(-9deg) rotateY(-18deg)",
+        "zoom": 1.25
+      },
+      "reverse": {
+        "bodyOverflow": false,
+        "controls": {
+          "bottom": 1016.75,
+          "height": 316.75,
+          "left": 470,
+          "right": 970,
+          "top": 700,
+          "width": 500,
+          "x": 470,
+          "y": 700
+        },
+        "cssPaper": 241.6,
+        "footer": "SoundCloud\n1:01:13",
+        "layoutScroll": {
+          "client": 616,
+          "height": 729,
+          "top": 0
+        },
+        "listScroll": {
+          "client": 616,
+          "height": 729,
+          "top": 0
+        },
+        "paper": 302,
+        "stage": {
+          "bottom": 687.5,
+          "height": 582.5,
+          "left": 385,
+          "right": 1055,
+          "top": 105,
+          "width": 670,
+          "x": 385,
+          "y": 105
+        },
+        "title": {
+          "aria": "1 A.M Study Session 📚 - [lofi hip hop/chill beats]",
+          "height": 40,
+          "scroll": 40,
+          "text": "1 A.M Study Session 📚 - [lofi hip hop/chill beats]"
+        },
+        "transform": "translateX(11.412678195541842%) rotateX(-9deg) rotateY(162deg)",
+        "zoom": 1.25
+      },
+      "reachable": {
+        "actions": {
+          "bottom": 874.75,
+          "height": 40,
+          "left": 470,
+          "right": 970,
+          "top": 834.75,
+          "width": 500,
+          "x": 470,
+          "y": 834.75
+        },
+        "eq": {
+          "bottom": 763.5,
+          "height": 55,
+          "left": 856.25,
+          "right": 901.25,
+          "top": 708.5,
+          "width": 45,
+          "x": 856.25,
+          "y": 708.5
+        }
+      },
+      "captures": [
+        "work/qa/cover22-evaluator-final-web-1440x900-1.25-front.png",
+        "work/qa/cover22-evaluator-final-web-1440x900-1.25-back.png",
+        "work/qa/cover22-evaluator-final-web-1440x900-1.25-controls.png"
+      ],
+      "source": "387b6e265b4612ab18810787e48eddccd85809a240152c4ad936d107c8d1cff9"
+    },
+    {
+      "width": 1280,
+      "height": 650,
+      "scale": 1,
+      "front": {
+        "bodyOverflow": false,
+        "controls": {
+          "bottom": 942.390625,
+          "height": 253.390625,
+          "left": 440,
+          "right": 840,
+          "top": 689,
+          "width": 400,
+          "x": 440,
+          "y": 689
+        },
+        "cssPaper": 302,
+        "footer": "SoundCloud\n1:01:13",
+        "layoutScroll": {
+          "client": 546,
+          "height": 858,
+          "top": 0
+        },
+        "listScroll": {
+          "client": 546,
+          "height": 858,
+          "top": 0
+        },
+        "paper": 302,
+        "stage": {
+          "bottom": 679,
+          "height": 595,
+          "left": 372,
+          "right": 908,
+          "top": 84,
+          "width": 536,
+          "x": 372,
+          "y": 84
+        },
+        "title": {
+          "aria": "1 A.M Study Session 📚 - [lofi hip hop/chill beats]",
+          "height": 50,
+          "scroll": 50,
+          "text": "1 A.M Study Session 📚 - [lofi hip hop/chill beats]"
+        },
+        "transform": "translateX(-11.412678195541842%) rotateX(-9deg) rotateY(-18deg)",
+        "zoom": 1
+      },
+      "reverse": {
+        "bodyOverflow": false,
+        "controls": {
+          "bottom": 942.390625,
+          "height": 253.390625,
+          "left": 440,
+          "right": 840,
+          "top": 689,
+          "width": 400,
+          "x": 440,
+          "y": 689
+        },
+        "cssPaper": 302,
+        "footer": "SoundCloud\n1:01:13",
+        "layoutScroll": {
+          "client": 546,
+          "height": 858,
+          "top": 0
+        },
+        "listScroll": {
+          "client": 546,
+          "height": 858,
+          "top": 0
+        },
+        "paper": 302,
+        "stage": {
+          "bottom": 679,
+          "height": 595,
+          "left": 372,
+          "right": 908,
+          "top": 84,
+          "width": 536,
+          "x": 372,
+          "y": 84
+        },
+        "title": {
+          "aria": "1 A.M Study Session 📚 - [lofi hip hop/chill beats]",
+          "height": 50,
+          "scroll": 50,
+          "text": "1 A.M Study Session 📚 - [lofi hip hop/chill beats]"
+        },
+        "transform": "translateX(11.412678195541842%) rotateX(-9deg) rotateY(162deg)",
+        "zoom": 1
+      },
+      "reachable": {
+        "actions": {
+          "bottom": 630.390625,
+          "height": 32,
+          "left": 440,
+          "right": 840,
+          "top": 598.390625,
+          "width": 400,
+          "x": 440,
+          "y": 598.390625
+        },
+        "eq": {
+          "bottom": 541.390625,
+          "height": 44,
+          "left": 749,
+          "right": 785,
+          "top": 497.390625,
+          "width": 36,
+          "x": 749,
+          "y": 497.390625
+        }
+      },
+      "captures": [
+        "work/qa/cover22-evaluator-final-web-1280x650-1-front.png",
+        "work/qa/cover22-evaluator-final-web-1280x650-1-back.png",
+        "work/qa/cover22-evaluator-final-web-1280x650-1-controls.png"
+      ],
+      "source": "387b6e265b4612ab18810787e48eddccd85809a240152c4ad936d107c8d1cff9"
+    },
+    {
+      "width": 1280,
+      "height": 650,
+      "scale": 1.25,
+      "front": {
+        "bodyOverflow": false,
+        "controls": {
+          "bottom": 1016.75,
+          "height": 316.75,
+          "left": 390,
+          "right": 890,
+          "top": 700,
+          "width": 500,
+          "x": 390,
+          "y": 700
+        },
+        "cssPaper": 241.6,
+        "footer": "SoundCloud\n1:01:13",
+        "layoutScroll": {
+          "client": 416,
+          "height": 729,
+          "top": 0
+        },
+        "listScroll": {
+          "client": 416,
+          "height": 729,
+          "top": 0
+        },
+        "paper": 302,
+        "stage": {
+          "bottom": 687.5,
+          "height": 582.5,
+          "left": 305,
+          "right": 975,
+          "top": 105,
+          "width": 670,
+          "x": 305,
+          "y": 105
+        },
+        "title": {
+          "aria": "1 A.M Study Session 📚 - [lofi hip hop/chill beats]",
+          "height": 40,
+          "scroll": 40,
+          "text": "1 A.M Study Session 📚 - [lofi hip hop/chill beats]"
+        },
+        "transform": "translateX(-11.412678195541842%) rotateX(-9deg) rotateY(-18deg)",
+        "zoom": 1.25
+      },
+      "reverse": {
+        "bodyOverflow": false,
+        "controls": {
+          "bottom": 1016.75,
+          "height": 316.75,
+          "left": 390,
+          "right": 890,
+          "top": 700,
+          "width": 500,
+          "x": 390,
+          "y": 700
+        },
+        "cssPaper": 241.6,
+        "footer": "SoundCloud\n1:01:13",
+        "layoutScroll": {
+          "client": 416,
+          "height": 729,
+          "top": 0
+        },
+        "listScroll": {
+          "client": 416,
+          "height": 729,
+          "top": 0
+        },
+        "paper": 302,
+        "stage": {
+          "bottom": 687.5,
+          "height": 582.5,
+          "left": 305,
+          "right": 975,
+          "top": 105,
+          "width": 670,
+          "x": 305,
+          "y": 105
+        },
+        "title": {
+          "aria": "1 A.M Study Session 📚 - [lofi hip hop/chill beats]",
+          "height": 40,
+          "scroll": 40,
+          "text": "1 A.M Study Session 📚 - [lofi hip hop/chill beats]"
+        },
+        "transform": "translateX(11.412678195541842%) rotateX(-9deg) rotateY(162deg)",
+        "zoom": 1.25
+      },
+      "reachable": {
+        "actions": {
+          "bottom": 624.75,
+          "height": 40,
+          "left": 390,
+          "right": 890,
+          "top": 584.75,
+          "width": 500,
+          "x": 390,
+          "y": 584.75
+        },
+        "eq": {
+          "bottom": 513.5,
+          "height": 55,
+          "left": 776.25,
+          "right": 821.25,
+          "top": 458.5,
+          "width": 45,
+          "x": 776.25,
+          "y": 458.5
+        }
+      },
+      "captures": [
+        "work/qa/cover22-evaluator-final-web-1280x650-1.25-front.png",
+        "work/qa/cover22-evaluator-final-web-1280x650-1.25-back.png",
+        "work/qa/cover22-evaluator-final-web-1280x650-1.25-controls.png"
+      ],
+      "source": "387b6e265b4612ab18810787e48eddccd85809a240152c4ad936d107c8d1cff9"
+    },
+    {
+      "width": 375,
+      "height": 812,
+      "scale": 1,
+      "front": {
+        "bodyOverflow": false,
+        "controls": {
+          "bottom": 781.390625,
+          "height": 266.390625,
+          "left": 18,
+          "right": 357,
+          "top": 515,
+          "width": 339,
+          "x": 18,
+          "y": 515
+        },
+        "cssPaper": 210,
+        "footer": "SoundCloud\n1:01:13",
+        "layoutScroll": {
+          "client": 689,
+          "height": 689,
+          "top": 0
+        },
+        "listScroll": {
+          "client": 675,
+          "height": 675,
+          "top": 0
+        },
+        "paper": 210,
+        "stage": {
+          "bottom": 507,
+          "height": 401,
+          "left": 18,
+          "right": 357,
+          "top": 106,
+          "width": 339,
+          "x": 18,
+          "y": 106
+        },
+        "title": {
+          "aria": "1 A.M Study Session 📚 - [lofi hip hop/chill beats]",
+          "height": 35,
+          "scroll": 35,
+          "text": "1 A.M Study Session 📚 - [lofi hip hop/chill beats]"
+        },
+        "transform": "translateX(-11.412678195541842%) rotateX(-9deg) rotateY(-18deg)",
+        "zoom": 1
+      },
+      "reverse": {
+        "bodyOverflow": false,
+        "controls": {
+          "bottom": 781.390625,
+          "height": 266.390625,
+          "left": 18,
+          "right": 357,
+          "top": 515,
+          "width": 339,
+          "x": 18,
+          "y": 515
+        },
+        "cssPaper": 210,
+        "footer": "SoundCloud\n1:01:13",
+        "layoutScroll": {
+          "client": 689,
+          "height": 689,
+          "top": 0
+        },
+        "listScroll": {
+          "client": 675,
+          "height": 675,
+          "top": 0
+        },
+        "paper": 210,
+        "stage": {
+          "bottom": 507,
+          "height": 401,
+          "left": 18,
+          "right": 357,
+          "top": 106,
+          "width": 339,
+          "x": 18,
+          "y": 106
+        },
+        "title": {
+          "aria": "1 A.M Study Session 📚 - [lofi hip hop/chill beats]",
+          "height": 35,
+          "scroll": 35,
+          "text": "1 A.M Study Session 📚 - [lofi hip hop/chill beats]"
+        },
+        "transform": "translateX(11.412678195541842%) rotateX(-9deg) rotateY(162deg)",
+        "zoom": 1
+      },
+      "reachable": {
+        "actions": {
+          "bottom": 781.390625,
+          "height": 38,
+          "left": 18,
+          "right": 357,
+          "top": 743.390625,
+          "width": 339,
+          "x": 18,
+          "y": 743.390625
+        },
+        "eq": {
+          "bottom": 682.390625,
+          "height": 42,
+          "left": 283.5,
+          "right": 314.5,
+          "top": 640.390625,
+          "width": 31,
+          "x": 283.5,
+          "y": 640.390625
+        }
+      },
+      "captures": [
+        "work/qa/cover22-evaluator-final-web-375x812-1-front.png",
+        "work/qa/cover22-evaluator-final-web-375x812-1-back.png",
+        "work/qa/cover22-evaluator-final-web-375x812-1-controls.png"
+      ],
+      "source": "387b6e265b4612ab18810787e48eddccd85809a240152c4ad936d107c8d1cff9"
+    },
+    {
+      "width": 375,
+      "height": 812,
+      "scale": 1.25,
+      "front": {
+        "bodyOverflow": false,
+        "controls": {
+          "bottom": 786.25,
+          "height": 332.5,
+          "left": 22.5,
+          "right": 352.5,
+          "top": 453.75,
+          "width": 330,
+          "x": 22.5,
+          "y": 453.75
+        },
+        "cssPaper": 130,
+        "footer": "SoundCloud\n1:01:13",
+        "layoutScroll": {
+          "client": 527,
+          "height": 527,
+          "top": 0
+        },
+        "listScroll": {
+          "client": 523,
+          "height": 523,
+          "top": 0
+        },
+        "paper": 162.5,
+        "stage": {
+          "bottom": 443.75,
+          "height": 311.25,
+          "left": 22.5,
+          "right": 352.5,
+          "top": 132.5,
+          "width": 330,
+          "x": 22.5,
+          "y": 132.5
+        },
+        "title": {
+          "aria": "1 A.M Study Session 📚 - [lofi hip hop/chill beats]",
+          "height": 22,
+          "scroll": 22,
+          "text": "1 A.M Study Session 📚 - [lofi hip hop/chill beats]"
+        },
+        "transform": "translateX(-11.412678195541842%) rotateX(-9deg) rotateY(-18deg)",
+        "zoom": 1.25
+      },
+      "reverse": {
+        "bodyOverflow": false,
+        "controls": {
+          "bottom": 786.25,
+          "height": 332.5,
+          "left": 22.5,
+          "right": 352.5,
+          "top": 453.75,
+          "width": 330,
+          "x": 22.5,
+          "y": 453.75
+        },
+        "cssPaper": 130,
+        "footer": "SoundCloud\n1:01:13",
+        "layoutScroll": {
+          "client": 527,
+          "height": 527,
+          "top": 0
+        },
+        "listScroll": {
+          "client": 523,
+          "height": 523,
+          "top": 0
+        },
+        "paper": 162.5,
+        "stage": {
+          "bottom": 443.75,
+          "height": 311.25,
+          "left": 22.5,
+          "right": 352.5,
+          "top": 132.5,
+          "width": 330,
+          "x": 22.5,
+          "y": 132.5
+        },
+        "title": {
+          "aria": "1 A.M Study Session 📚 - [lofi hip hop/chill beats]",
+          "height": 22,
+          "scroll": 22,
+          "text": "1 A.M Study Session 📚 - [lofi hip hop/chill beats]"
+        },
+        "transform": "translateX(11.412678195541842%) rotateX(-9deg) rotateY(162deg)",
+        "zoom": 1.25
+      },
+      "reachable": {
+        "actions": {
+          "bottom": 786.25,
+          "height": 47.5,
+          "left": 22.5,
+          "right": 352.5,
+          "top": 738.75,
+          "width": 330,
+          "x": 22.5,
+          "y": 738.75
+        },
+        "eq": {
+          "bottom": 662.75,
+          "height": 52.5,
+          "left": 307.5,
+          "right": 346.25,
+          "top": 610.25,
+          "width": 38.75,
+          "x": 307.5,
+          "y": 610.25
+        }
+      },
+      "captures": [
+        "work/qa/cover22-evaluator-final-web-375x812-1.25-front.png",
+        "work/qa/cover22-evaluator-final-web-375x812-1.25-back.png",
+        "work/qa/cover22-evaluator-final-web-375x812-1.25-controls.png"
+      ],
+      "source": "387b6e265b4612ab18810787e48eddccd85809a240152c4ad936d107c8d1cff9"
+    },
+    {
+      "width": 320,
+      "height": 568,
+      "scale": 1.25,
+      "front": {
+        "bodyOverflow": false,
+        "controls": {
+          "bottom": 717.5,
+          "height": 332.5,
+          "left": 22.5,
+          "right": 287.5,
+          "top": 385,
+          "width": 265,
+          "x": 22.5,
+          "y": 385
+        },
+        "cssPaper": 124,
+        "footer": "SoundCloud\n1:01:13",
+        "layoutScroll": {
+          "client": 375,
+          "height": 375,
+          "top": 0
+        },
+        "listScroll": {
+          "client": 375,
+          "height": 512,
+          "top": 0
+        },
+        "paper": 155,
+        "stage": {
+          "bottom": 375,
+          "height": 297.5,
+          "left": 22.5,
+          "right": 287.5,
+          "top": 77.5,
+          "width": 265,
+          "x": 22.5,
+          "y": 77.5
+        },
+        "title": {
+          "aria": "1 A.M Study Session 📚 - [lofi hip hop/chill beats]",
+          "height": 21,
+          "scroll": 21,
+          "text": "1 A.M Study Session 📚 - [lofi hip hop/chill beats]"
+        },
+        "transform": "translateX(-11.412678195541842%) rotateX(-9deg) rotateY(-18deg)",
+        "zoom": 1.25
+      },
+      "reverse": {
+        "bodyOverflow": false,
+        "controls": {
+          "bottom": 717.5,
+          "height": 332.5,
+          "left": 22.5,
+          "right": 287.5,
+          "top": 385,
+          "width": 265,
+          "x": 22.5,
+          "y": 385
+        },
+        "cssPaper": 124,
+        "footer": "SoundCloud\n1:01:13",
+        "layoutScroll": {
+          "client": 375,
+          "height": 375,
+          "top": 0
+        },
+        "listScroll": {
+          "client": 375,
+          "height": 512,
+          "top": 0
+        },
+        "paper": 155,
+        "stage": {
+          "bottom": 375,
+          "height": 297.5,
+          "left": 22.5,
+          "right": 287.5,
+          "top": 77.5,
+          "width": 265,
+          "x": 22.5,
+          "y": 77.5
+        },
+        "title": {
+          "aria": "1 A.M Study Session 📚 - [lofi hip hop/chill beats]",
+          "height": 21,
+          "scroll": 21,
+          "text": "1 A.M Study Session 📚 - [lofi hip hop/chill beats]"
+        },
+        "transform": "translateX(11.412678195541842%) rotateX(-9deg) rotateY(162deg)",
+        "zoom": 1.25
+      },
+      "reachable": {
+        "actions": {
+          "bottom": 546.5,
+          "height": 47.5,
+          "left": 22.5,
+          "right": 287.5,
+          "top": 499,
+          "width": 265,
+          "x": 22.5,
+          "y": 499
+        },
+        "eq": {
+          "bottom": 423,
+          "height": 52.5,
+          "left": 247.5,
+          "right": 286.25,
+          "top": 370.5,
+          "width": 38.75,
+          "x": 247.5,
+          "y": 370.5
+        }
+      },
+      "captures": [
+        "work/qa/cover22-evaluator-final-web-320x568-1.25-front.png",
+        "work/qa/cover22-evaluator-final-web-320x568-1.25-back.png",
+        "work/qa/cover22-evaluator-final-web-320x568-1.25-controls.png"
+      ],
+      "source": "387b6e265b4612ab18810787e48eddccd85809a240152c4ad936d107c8d1cff9"
+    },
+    {
+      "width": 812,
+      "height": 375,
+      "scale": 1.25,
+      "front": {
+        "bodyOverflow": false,
+        "controls": {
+          "bottom": 792.5,
+          "height": 332.5,
+          "left": 168.5,
+          "right": 643.5,
+          "top": 460,
+          "width": 475,
+          "x": 168.5,
+          "y": 460
+        },
+        "cssPaper": 161.6,
+        "footer": "SoundCloud\n1:01:13",
+        "layoutScroll": {
+          "client": 236,
+          "height": 582,
+          "top": 0
+        },
+        "listScroll": {
+          "client": 236,
+          "height": 582,
+          "top": 0
+        },
+        "paper": 202,
+        "stage": {
+          "bottom": 450,
+          "height": 385,
+          "left": 124.75,
+          "right": 687.25,
+          "top": 65,
+          "width": 562.5,
+          "x": 124.75,
+          "y": 65
+        },
+        "title": {
+          "aria": "1 A.M Study Session 📚 - [lofi hip hop/chill beats]",
+          "height": 27,
+          "scroll": 27,
+          "text": "1 A.M Study Session 📚 - [lofi hip hop/chill beats]"
+        },
+        "transform": "translateX(-11.412678195541842%) rotateX(-9deg) rotateY(-18deg)",
+        "zoom": 1.25
+      },
+      "reverse": {
+        "bodyOverflow": false,
+        "controls": {
+          "bottom": 792.5,
+          "height": 332.5,
+          "left": 168.5,
+          "right": 643.5,
+          "top": 460,
+          "width": 475,
+          "x": 168.5,
+          "y": 460
+        },
+        "cssPaper": 161.6,
+        "footer": "SoundCloud\n1:01:13",
+        "layoutScroll": {
+          "client": 236,
+          "height": 582,
+          "top": 0
+        },
+        "listScroll": {
+          "client": 236,
+          "height": 582,
+          "top": 0
+        },
+        "paper": 202,
+        "stage": {
+          "bottom": 450,
+          "height": 385,
+          "left": 124.75,
+          "right": 687.25,
+          "top": 65,
+          "width": 562.5,
+          "x": 124.75,
+          "y": 65
+        },
+        "title": {
+          "aria": "1 A.M Study Session 📚 - [lofi hip hop/chill beats]",
+          "height": 27,
+          "scroll": 27,
+          "text": "1 A.M Study Session 📚 - [lofi hip hop/chill beats]"
+        },
+        "transform": "translateX(11.412678195541842%) rotateX(-9deg) rotateY(162deg)",
+        "zoom": 1.25
+      },
+      "reachable": {
+        "actions": {
+          "bottom": 359.5,
+          "height": 47.5,
+          "left": 168.5,
+          "right": 643.5,
+          "top": 312,
+          "width": 475,
+          "x": 168.5,
+          "y": 312
+        },
+        "eq": {
+          "bottom": 236,
+          "height": 52.5,
+          "left": 526,
+          "right": 564.75,
+          "top": 183.5,
+          "width": 38.75,
+          "x": 526,
+          "y": 183.5
+        }
+      },
+      "captures": [
+        "work/qa/cover22-evaluator-final-web-812x375-1.25-front.png",
+        "work/qa/cover22-evaluator-final-web-812x375-1.25-back.png",
+        "work/qa/cover22-evaluator-final-web-812x375-1.25-controls.png"
+      ],
+      "source": "387b6e265b4612ab18810787e48eddccd85809a240152c4ad936d107c8d1cff9"
+    }
+  ],
+  "corners": [
+    {
+      "scale": 1,
+      "sign": "negative",
+      "actual": {
+        "circle": {
+          "bottom": 652.2394280157989,
+          "gap": 36.76057198420108,
+          "top": 328.32477609925377,
+          "withinStage": true
+        },
+        "heading": {
+          "bottom": 742.390625,
+          "height": 53.390625,
+          "left": 520,
+          "right": 920,
+          "top": 689,
+          "width": 400,
+          "x": 520,
+          "y": 689
+        },
+        "paper": 302,
+        "stage": {
+          "bottom": 679,
+          "height": 595,
+          "left": 452,
+          "right": 988,
+          "top": 84,
+          "width": 536,
+          "x": 452,
+          "y": 84
+        },
+        "transform": "translateX(-0.41879396043001293%) rotateX(-38deg) rotateY(-88deg)"
+      },
+      "capture": "work/qa/cover22-evaluator-final-web-1440-1-corner-negative.png"
+    },
+    {
+      "scale": 1,
+      "sign": "positive",
+      "actual": {
+        "circle": {
+          "bottom": 434.67522390074623,
+          "gap": 254.32477609925377,
+          "top": 110.76057198420114,
+          "withinStage": true
+        },
+        "heading": {
+          "bottom": 742.390625,
+          "height": 53.390625,
+          "left": 520,
+          "right": 920,
+          "top": 689,
+          "width": 400,
+          "x": 520,
+          "y": 689
+        },
+        "paper": 302,
+        "stage": {
+          "bottom": 679,
+          "height": 595,
+          "left": 452,
+          "right": 988,
+          "top": 84,
+          "width": 536,
+          "x": 452,
+          "y": 84
+        },
+        "transform": "translateX(-0.41879396043001293%) rotateX(38deg) rotateY(-88deg)"
+      },
+      "capture": "work/qa/cover22-evaluator-final-web-1440-1-corner-positive.png"
+    },
+    {
+      "scale": 1.25,
+      "sign": "negative",
+      "actual": {
+        "circle": {
+          "bottom": 658.609161251874,
+          "gap": 41.39083874812604,
+          "top": 344.432775941551,
+          "withinStage": true
+        },
+        "heading": {
+          "bottom": 766.75,
+          "height": 66.75,
+          "left": 470,
+          "right": 970,
+          "top": 700,
+          "width": 500,
+          "x": 470,
+          "y": 700
+        },
+        "paper": 302,
+        "stage": {
+          "bottom": 687.5,
+          "height": 582.5,
+          "left": 385,
+          "right": 1055,
+          "top": 105,
+          "width": 670,
+          "x": 385,
+          "y": 105
+        },
+        "transform": "translateX(-0.41879396043001293%) rotateX(-38deg) rotateY(-88deg)"
+      },
+      "capture": "work/qa/cover22-evaluator-final-web-1440-1.25-corner-negative.png"
+    },
+    {
+      "scale": 1.25,
+      "sign": "positive",
+      "actual": {
+        "circle": {
+          "bottom": 448.06722405844897,
+          "gap": 251.93277594155103,
+          "top": 133.89083874812604,
+          "withinStage": true
+        },
+        "heading": {
+          "bottom": 766.75,
+          "height": 66.75,
+          "left": 470,
+          "right": 970,
+          "top": 700,
+          "width": 500,
+          "x": 470,
+          "y": 700
+        },
+        "paper": 302,
+        "stage": {
+          "bottom": 687.5,
+          "height": 582.5,
+          "left": 385,
+          "right": 1055,
+          "top": 105,
+          "width": 670,
+          "x": 385,
+          "y": 105
+        },
+        "transform": "translateX(-0.41879396043001293%) rotateX(38deg) rotateY(-88deg)"
+      },
+      "capture": "work/qa/cover22-evaluator-final-web-1440-1.25-corner-positive.png"
+    }
+  ],
+  "errors": {
+    "errors": []
+  },
+  "sources": [
+    {
+      "path": "apps/web/src/album.tsx",
+      "sha256": "387b6e265b4612ab18810787e48eddccd85809a240152c4ad936d107c8d1cff9"
+    },
+    {
+      "path": "apps/web/src/reference-cover.css",
+      "sha256": "99f635ea4f62b2c72bd81e9e68ad695c9e6920fd066e9c4d1b99a5f9acf912a5"
+    },
+    {
+      "path": "apps/web/src/focused-player.css",
+      "sha256": "8eaea09f7c506094db7c4556b91fd30c3b1f97af3762898d295672020e8362e6"
+    },
+    {
+      "path": "apps/web/src/player-ui.tsx",
+      "sha256": "4f2e1092f90cf06188c663b7045ced1a76ed2d0a8cfcadde6dbe910ca7986962"
+    }
+  ]
+}

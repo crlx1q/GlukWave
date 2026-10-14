@@ -7,6 +7,55 @@ import '../core/controller.dart';
 import '../core/models.dart';
 import 'widgets.dart';
 
+final _sleeveSceneHeights = <int, double>{};
+
+/// One constant paper/round-disc envelope over the complete permitted turn.
+/// Cache it by physical artwork size: gestures never repeat this calculation
+/// or change the artwork dimensions. The circle includes the extended CD.
+double referenceSleeveSceneHeight(double size) {
+  final key = size.ceil(), cached = _sleeveSceneHeights[size.ceil()];
+  if (cached != null) {
+    return cached;
+  }
+  final side = key.toDouble(), geometry = <(double, double, double)>[];
+  for (final z in [9.0, -9.0]) {
+    for (final x in [-.5, .5]) {
+      for (final y in [-.5, .5]) {
+        geometry.add((x * side, y * side, z));
+      }
+    }
+  }
+  for (var angle = 0.0; angle < math.pi * 2; angle += math.pi / 24) {
+    geometry.add((
+      (.56 + .47 * math.cos(angle)) * side,
+      .47 * math.sin(angle) * side,
+      0,
+    ));
+  }
+  var extent = side;
+  for (var x = -38; x <= 38; x += 2) {
+    final cx = math.cos(x * math.pi / 180), sx = math.sin(x * math.pi / 180);
+    for (var y = -180; y <= 180; y += 5) {
+      final cy = math.cos(y * math.pi / 180), sy = math.sin(y * math.pi / 180);
+      for (final (px, py, pz) in geometry) {
+        final rotatedZ = -sy * px + cy * pz;
+        final projectedY = cx * py - sx * rotatedZ;
+        final depth = sx * py + cx * rotatedZ;
+        extent = math.max(
+          extent,
+          2 * (projectedY * 1100 / (1100 - depth)).abs(),
+        );
+      }
+    }
+  }
+  final height = (extent + 24).ceilToDouble();
+  _sleeveSceneHeights[key] = height;
+  if (_sleeveSceneHeights.length > 64) {
+    _sleeveSceneHeights.remove(_sleeveSceneHeights.keys.first);
+  }
+  return height;
+}
+
 /// A rigid 18px sleeve based on the owner's Gluk-Wave-v2 cover scene. Front,
 /// back, spine and every edge are opaque; the record sits inside the case.
 class AlbumStage extends StatefulWidget {
@@ -335,7 +384,7 @@ class _AlbumStageState extends State<AlbumStage>
     return SizedBox(
       key: const Key('album-stage-bounds'),
       width: size * 1.6 + 24,
-      height: size * 1.52 + 32,
+      height: referenceSleeveSceneHeight(size),
       child: Stack(
         alignment: Alignment.center,
         clipBehavior: Clip.none,
@@ -487,60 +536,9 @@ class _AlbumStageState extends State<AlbumStage>
                                           size * .07,
                                         ),
                                         color: opaque,
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              'glukwave / studio sessions',
-                                              style: TextStyle(
-                                                fontSize: size * .023,
-                                                letterSpacing: 1,
-                                                color: const Color(0xffc5ba9f),
-                                              ),
-                                            ),
-                                            SizedBox(height: size * .113),
-                                            Text(
-                                              widget.track.title,
-                                              maxLines: 2,
-                                              overflow: TextOverflow.ellipsis,
-                                              style: TextStyle(
-                                                fontSize: size * .086,
-                                                color: const Color(0xffebe4d3),
-                                                letterSpacing: -1,
-                                                height: 1.15,
-                                                fontWeight: FontWeight.w800,
-                                              ),
-                                            ),
-                                            SizedBox(height: size * .07),
-                                            Text(
-                                              '01 — ${widget.track.title}\n${widget.track.artist}\n${widget.track.album}',
-                                              maxLines: 3,
-                                              overflow: TextOverflow.ellipsis,
-                                              style: TextStyle(
-                                                fontSize: size * .030,
-                                                height: 2.2,
-                                                color: const Color(0xffded5c4),
-                                              ),
-                                            ),
-                                            const Spacer(),
-                                            SizedBox(
-                                              width: size * .33,
-                                              height: size * .086,
-                                              child: const CustomPaint(
-                                                painter: CoverBarcode(),
-                                              ),
-                                            ),
-                                            const SizedBox(height: 8),
-                                            Text(
-                                              'GLUK WAVE · 33⅓ RPM',
-                                              style: TextStyle(
-                                                fontSize: size * .020,
-                                                letterSpacing: 1,
-                                                color: const Color(0xffaea18a),
-                                              ),
-                                            ),
-                                          ],
+                                        child: SleeveBackMetadata(
+                                          track: widget.track,
+                                          size: size,
                                         ),
                                       ),
                                     ),
@@ -830,4 +828,155 @@ class CoverBrandMark extends CustomPainter {
 
   @override
   bool shouldRepaint(CoverBrandMark old) => false;
+}
+
+/// Printed sleeve information stays proportional to the physical paper. The
+/// full title remains available to assistive technology even when abbreviated.
+class SleeveBackMetadata extends StatelessWidget {
+  final WaveTrack track;
+  final double size;
+  const SleeveBackMetadata({
+    super.key,
+    required this.track,
+    required this.size,
+  });
+  String printKey(String value) => value.toLowerCase().replaceAll(
+    RegExp(r'[\s\-–—.,!?;:()\[\]{}"“”‘’]'),
+    '',
+  );
+  @override
+  Widget build(BuildContext context) {
+    final album = track.album.trim();
+    final showAlbum =
+        album.isNotEmpty &&
+        printKey(album) != printKey(track.title) &&
+        printKey(album) != printKey(track.artist);
+    final style = TextStyle(
+      fontSize: size * .069,
+      color: const Color(0xffebe4d3),
+      letterSpacing: -size * .0023,
+      height: 1.15,
+      fontWeight: FontWeight.w800,
+    );
+    return MediaQuery.withNoTextScaling(
+      child: Semantics(
+        label: [
+          track.title,
+          track.artist,
+          if (showAlbum) album,
+          track.sourceName,
+          if (track.duration.isFinite && track.duration > 0)
+            clock(track.duration),
+        ].where((part) => part.isNotEmpty).join(' · '),
+        excludeSemantics: true,
+        child: Column(
+          key: const Key('album-back-metadata'),
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'GLUKWAVE / RECORD COLLECTION',
+              style: TextStyle(
+                fontSize: size * .022,
+                letterSpacing: size * .002,
+                height: 1.4,
+                color: const Color(0xffc5ba9f),
+              ),
+            ),
+            SizedBox(height: size * .05),
+            LayoutBuilder(
+              builder: (context, bounds) {
+                var font = size * .069;
+                while (font > size * .050) {
+                  final painter = TextPainter(
+                    text: TextSpan(
+                      text: track.title,
+                      style: style.copyWith(fontSize: font),
+                    ),
+                    textDirection: Directionality.of(context),
+                    maxLines: 4,
+                  )..layout(maxWidth: bounds.maxWidth);
+                  final fits = !painter.didExceedMaxLines;
+                  painter.dispose();
+                  if (fits) break;
+                  font -= size * .002;
+                }
+                return Text(
+                  track.title,
+                  key: const Key('album-back-title'),
+                  maxLines: 4,
+                  overflow: TextOverflow.ellipsis,
+                  style: style.copyWith(fontSize: font),
+                );
+              },
+            ),
+            SizedBox(height: size * .045),
+            if (track.artist.isNotEmpty)
+              Text(
+                track.artist,
+                key: const Key('album-back-artist'),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: size * .038,
+                  height: 1.4,
+                  color: const Color(0xffded5c4),
+                ),
+              ),
+            if (showAlbum) ...[
+              SizedBox(height: size * .025),
+              Text(
+                album,
+                key: const Key('album-back-album'),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: size * .032,
+                  height: 1.4,
+                  color: const Color(0xffc5ba9f),
+                ),
+              ),
+            ],
+            const Spacer(),
+            SizedBox(height: size * .035),
+            SizedBox(
+              width: size * .265,
+              height: size * .056,
+              child: const CustomPaint(painter: CoverBarcode()),
+            ),
+            SizedBox(height: size * .035),
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    track.sourceName,
+                    key: const Key('album-back-source'),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontSize: size * .030,
+                      height: 1.4,
+                      letterSpacing: size * .001,
+                      color: const Color(0xffc5ba9f),
+                    ),
+                  ),
+                ),
+                if (track.duration.isFinite && track.duration > 0) ...[
+                  SizedBox(width: size * .05),
+                  Text(
+                    clock(track.duration),
+                    key: const Key('album-back-duration'),
+                    style: TextStyle(
+                      fontSize: size * .030,
+                      height: 1.4,
+                      color: const Color(0xffc5ba9f),
+                    ),
+                  ),
+                ],
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }

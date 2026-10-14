@@ -1,0 +1,15 @@
+{
+  "deleted": [
+    {
+      "path": "GlukWave-windows.53aab0ac9cd74317a8bd5058921db789.partial",
+      "reason": "Empty packaging shell"
+    },
+    {
+      "path": "GlukWave-windows.previous.bb881c89a286457fbba11f7abc9768d3",
+      "reason": "All files matched exact rollback ZIP",
+      "preservedArchive": "work/qa/cover22-base-windows.zip",
+      "bytes": 93351482
+    }
+  ],
+  "rollbackArchivesPreserved": true
+}

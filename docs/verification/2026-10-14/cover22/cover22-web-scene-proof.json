@@ -1,0 +1,583 @@
+{
+  "cases": [
+    {
+      "width": 1440,
+      "height": 900,
+      "fontScale": 1,
+      "before": {
+        "bodyOverflow": "hidden",
+        "clientHeight": 796,
+        "controls": {
+          "bottom": 942.390625,
+          "height": 253.390625,
+          "left": 520,
+          "right": 920,
+          "top": 689,
+          "width": 400,
+          "x": 520,
+          "y": 689
+        },
+        "cover": {
+          "bottom": 679,
+          "height": 595,
+          "left": 452,
+          "right": 988,
+          "top": 84,
+          "width": 536,
+          "x": 452,
+          "y": 84
+        },
+        "list": {
+          "bottom": 880,
+          "height": 796,
+          "left": 440,
+          "right": 1000,
+          "top": 84,
+          "width": 560,
+          "x": 440,
+          "y": 84
+        },
+        "overflow": "visible",
+        "physicalSize": 291.03955078125,
+        "scrollHeight": 858,
+        "size": 302,
+        "zoom": 1
+      },
+      "reverse": {
+        "accessibleTitle": "1 A.M Study Session 📚 - [lofi hip hop/chill beats]",
+        "albumCount": 0,
+        "credits": {
+          "bottom": 368.1385803222656,
+          "height": 26.174835205078125,
+          "left": 634.639892578125,
+          "right": 878.10986328125,
+          "top": 341.9637451171875,
+          "width": 243.469970703125,
+          "x": 634.639892578125,
+          "y": 341.9637451171875
+        },
+        "footer": {
+          "bottom": 513.5799560546875,
+          "height": 31.7637939453125,
+          "left": 636.3489990234375,
+          "right": 874.7183837890625,
+          "top": 481.816162109375,
+          "width": 238.369384765625,
+          "x": 636.3489990234375,
+          "y": 481.816162109375
+        },
+        "lineHeight": "23.2933px",
+        "paper": {
+          "bottom": 543.8426361083984,
+          "height": 315.4932861328125,
+          "left": 609.4832763671875,
+          "right": 908.703369140625,
+          "top": 228.3493499755859,
+          "width": 299.2200927734375,
+          "x": 609.4832763671875,
+          "y": 228.3493499755859
+        },
+        "size": 302,
+        "source": "SoundCloud\n1:01:13",
+        "text": "GLUKWAVE / RECORD COLLECTION\n1 A.M Study Session 📚 - [lofi hip hop/chill beats]\n\nLofi Girl\n\nSoundCloud\n1:01:13",
+        "title": "1 A.M Study Session 📚 - [lofi hip hop/chill beats]",
+        "titleHeight": 50,
+        "titleScroll": 50
+      },
+      "reachable": {
+        "bottom": 791.390625,
+        "height": 44,
+        "left": 829,
+        "right": 865,
+        "top": 747.390625,
+        "width": 36,
+        "x": 829,
+        "y": 747.390625
+      },
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "height": 900,
+      "fontScale": 1.25,
+      "before": {
+        "bodyOverflow": "hidden",
+        "clientHeight": 616,
+        "controls": {
+          "bottom": 1016.75,
+          "height": 316.75,
+          "left": 470,
+          "right": 970,
+          "top": 700,
+          "width": 500,
+          "x": 470,
+          "y": 700
+        },
+        "cover": {
+          "bottom": 687.5,
+          "height": 582.5,
+          "left": 385,
+          "right": 1055,
+          "top": 105,
+          "width": 670,
+          "x": 385,
+          "y": 105
+        },
+        "list": {
+          "bottom": 875,
+          "height": 770,
+          "left": 370,
+          "right": 1070,
+          "top": 105,
+          "width": 700,
+          "x": 370,
+          "y": 105
+        },
+        "overflow": "visible",
+        "physicalSize": 290.18511962890625,
+        "scrollHeight": 729,
+        "size": 242,
+        "zoom": 1.25
+      },
+      "reverse": {
+        "accessibleTitle": "1 A.M Study Session 📚 - [lofi hip hop/chill beats]",
+        "albumCount": 0,
+        "credits": {
+          "bottom": 383.3408508300781,
+          "height": 26.527618408203125,
+          "left": 633.4589233398438,
+          "right": 876.074462890625,
+          "top": 356.813232421875,
+          "width": 242.61553955078125,
+          "x": 633.4589233398438,
+          "y": 356.813232421875
+        },
+        "footer": {
+          "bottom": 528.2073974609375,
+          "height": 30.3372802734375,
+          "left": 634.8587036132812,
+          "right": 873.4066162109375,
+          "top": 497.8701171875,
+          "width": 238.54791259765625,
+          "x": 634.8587036132812,
+          "y": 497.8701171875
+        },
+        "lineHeight": "18.6344px",
+        "paper": {
+          "bottom": 558.2562255859375,
+          "height": 315.4451904296875,
+          "left": 608.346435546875,
+          "right": 905.4249877929688,
+          "top": 242.81103515625,
+          "width": 297.07855224609375,
+          "x": 608.346435546875,
+          "y": 242.81103515625
+        },
+        "size": 242,
+        "source": "SoundCloud\n1:01:13",
+        "text": "GLUKWAVE / RECORD COLLECTION\n1 A.M Study Session 📚 - [lofi hip hop/chill beats]\n\nLofi Girl\n\nSoundCloud\n1:01:13",
+        "title": "1 A.M Study Session 📚 - [lofi hip hop/chill beats]",
+        "titleHeight": 40,
+        "titleScroll": 40
+      },
+      "reachable": {
+        "bottom": 763.5,
+        "height": 55,
+        "left": 856.25,
+        "right": 901.25,
+        "top": 708.5,
+        "width": 45,
+        "x": 856.25,
+        "y": 708.5
+      },
+      "passed": true
+    },
+    {
+      "width": 1280,
+      "height": 650,
+      "fontScale": 1,
+      "before": {
+        "bodyOverflow": "hidden",
+        "clientHeight": 546,
+        "controls": {
+          "bottom": 942.390625,
+          "height": 253.390625,
+          "left": 440,
+          "right": 840,
+          "top": 689,
+          "width": 400,
+          "x": 440,
+          "y": 689
+        },
+        "cover": {
+          "bottom": 679,
+          "height": 595,
+          "left": 372,
+          "right": 908,
+          "top": 84,
+          "width": 536,
+          "x": 372,
+          "y": 84
+        },
+        "list": {
+          "bottom": 630,
+          "height": 546,
+          "left": 360,
+          "right": 920,
+          "top": 84,
+          "width": 560,
+          "x": 360,
+          "y": 84
+        },
+        "overflow": "visible",
+        "physicalSize": 291.03955078125,
+        "scrollHeight": 858,
+        "size": 302,
+        "zoom": 1
+      },
+      "reverse": {
+        "accessibleTitle": "1 A.M Study Session 📚 - [lofi hip hop/chill beats]",
+        "albumCount": 0,
+        "credits": {
+          "bottom": 368.1385803222656,
+          "height": 26.174835205078125,
+          "left": 554.639892578125,
+          "right": 798.10986328125,
+          "top": 341.9637451171875,
+          "width": 243.469970703125,
+          "x": 554.639892578125,
+          "y": 341.9637451171875
+        },
+        "footer": {
+          "bottom": 513.5799560546875,
+          "height": 31.7637939453125,
+          "left": 556.3489990234375,
+          "right": 794.7183837890625,
+          "top": 481.816162109375,
+          "width": 238.369384765625,
+          "x": 556.3489990234375,
+          "y": 481.816162109375
+        },
+        "lineHeight": "23.2933px",
+        "paper": {
+          "bottom": 543.8426361083984,
+          "height": 315.4932861328125,
+          "left": 529.4832763671875,
+          "right": 828.703369140625,
+          "top": 228.3493499755859,
+          "width": 299.2200927734375,
+          "x": 529.4832763671875,
+          "y": 228.3493499755859
+        },
+        "size": 302,
+        "source": "SoundCloud\n1:01:13",
+        "text": "GLUKWAVE / RECORD COLLECTION\n1 A.M Study Session 📚 - [lofi hip hop/chill beats]\n\nLofi Girl\n\nSoundCloud\n1:01:13",
+        "title": "1 A.M Study Session 📚 - [lofi hip hop/chill beats]",
+        "titleHeight": 50,
+        "titleScroll": 50
+      },
+      "reachable": {
+        "bottom": 541.390625,
+        "height": 44,
+        "left": 749,
+        "right": 785,
+        "top": 497.390625,
+        "width": 36,
+        "x": 749,
+        "y": 497.390625
+      },
+      "passed": true
+    },
+    {
+      "width": 1280,
+      "height": 650,
+      "fontScale": 1.25,
+      "before": {
+        "bodyOverflow": "hidden",
+        "clientHeight": 416,
+        "controls": {
+          "bottom": 1016.75,
+          "height": 316.75,
+          "left": 390,
+          "right": 890,
+          "top": 700,
+          "width": 500,
+          "x": 390,
+          "y": 700
+        },
+        "cover": {
+          "bottom": 687.5,
+          "height": 582.5,
+          "left": 305,
+          "right": 975,
+          "top": 105,
+          "width": 670,
+          "x": 305,
+          "y": 105
+        },
+        "list": {
+          "bottom": 625,
+          "height": 520,
+          "left": 290,
+          "right": 990,
+          "top": 105,
+          "width": 700,
+          "x": 290,
+          "y": 105
+        },
+        "overflow": "visible",
+        "physicalSize": 290.18511962890625,
+        "scrollHeight": 729,
+        "size": 242,
+        "zoom": 1.25
+      },
+      "reverse": {
+        "accessibleTitle": "1 A.M Study Session 📚 - [lofi hip hop/chill beats]",
+        "albumCount": 0,
+        "credits": {
+          "bottom": 383.3408508300781,
+          "height": 26.527618408203125,
+          "left": 553.4589233398438,
+          "right": 796.074462890625,
+          "top": 356.813232421875,
+          "width": 242.61553955078125,
+          "x": 553.4589233398438,
+          "y": 356.813232421875
+        },
+        "footer": {
+          "bottom": 528.2073974609375,
+          "height": 30.3372802734375,
+          "left": 554.8587036132812,
+          "right": 793.4066162109375,
+          "top": 497.8701171875,
+          "width": 238.54791259765625,
+          "x": 554.8587036132812,
+          "y": 497.8701171875
+        },
+        "lineHeight": "18.6344px",
+        "paper": {
+          "bottom": 558.2562255859375,
+          "height": 315.4451904296875,
+          "left": 528.346435546875,
+          "right": 825.4249877929688,
+          "top": 242.81103515625,
+          "width": 297.07855224609375,
+          "x": 528.346435546875,
+          "y": 242.81103515625
+        },
+        "size": 242,
+        "source": "SoundCloud\n1:01:13",
+        "text": "GLUKWAVE / RECORD COLLECTION\n1 A.M Study Session 📚 - [lofi hip hop/chill beats]\n\nLofi Girl\n\nSoundCloud\n1:01:13",
+        "title": "1 A.M Study Session 📚 - [lofi hip hop/chill beats]",
+        "titleHeight": 40,
+        "titleScroll": 40
+      },
+      "reachable": {
+        "bottom": 513.5,
+        "height": 55,
+        "left": 776.25,
+        "right": 821.25,
+        "top": 458.5,
+        "width": 45,
+        "x": 776.25,
+        "y": 458.5
+      },
+      "passed": true
+    },
+    {
+      "width": 375,
+      "height": 812,
+      "fontScale": 1,
+      "before": {
+        "bodyOverflow": "hidden",
+        "clientHeight": 675,
+        "controls": {
+          "bottom": 781.390625,
+          "height": 266.390625,
+          "left": 18,
+          "right": 357,
+          "top": 515,
+          "width": 339,
+          "x": 18,
+          "y": 515
+        },
+        "cover": {
+          "bottom": 507,
+          "height": 401,
+          "left": 18,
+          "right": 357,
+          "top": 106,
+          "width": 339,
+          "x": 18,
+          "y": 106
+        },
+        "list": {
+          "bottom": 781.390625,
+          "height": 675.390625,
+          "left": 18,
+          "right": 357,
+          "top": 106,
+          "width": 339,
+          "x": 18,
+          "y": 106
+        },
+        "overflow": "visible",
+        "physicalSize": 201.4865264892578,
+        "scrollHeight": 675,
+        "size": 210,
+        "zoom": 1
+      },
+      "reverse": {
+        "accessibleTitle": "1 A.M Study Session 📚 - [lofi hip hop/chill beats]",
+        "albumCount": 0,
+        "credits": {
+          "bottom": 297.74896240234375,
+          "height": 18.577362060546875,
+          "left": 126.76960754394533,
+          "right": 295.1935729980469,
+          "top": 279.1716003417969,
+          "width": 168.42396545410156,
+          "x": 126.76960754394533,
+          "y": 279.1716003417969
+        },
+        "footer": {
+          "bottom": 398.2782287597656,
+          "height": 20.58648681640625,
+          "left": 127.62772369384766,
+          "right": 293.5969009399414,
+          "top": 377.6917419433594,
+          "width": 165.96917724609375,
+          "x": 127.62772369384766,
+          "y": 377.6917419433594
+        },
+        "lineHeight": "16.1994px",
+        "paper": {
+          "bottom": 419.0862731933594,
+          "height": 219.33477783203125,
+          "left": 109.33386993408205,
+          "right": 315.1526870727539,
+          "top": 199.75149536132812,
+          "width": 205.81881713867188,
+          "x": 109.33386993408205,
+          "y": 199.75149536132812
+        },
+        "size": 210,
+        "source": "SoundCloud\n1:01:13",
+        "text": "GLUKWAVE / RECORD COLLECTION\n1 A.M Study Session 📚 - [lofi hip hop/chill beats]\n\nLofi Girl\n\nSoundCloud\n1:01:13",
+        "title": "1 A.M Study Session 📚 - [lofi hip hop/chill beats]",
+        "titleHeight": 35,
+        "titleScroll": 35
+      },
+      "reachable": {
+        "bottom": 682.390625,
+        "height": 42,
+        "left": 283.5,
+        "right": 314.5,
+        "top": 640.390625,
+        "width": 31,
+        "x": 283.5,
+        "y": 640.390625
+      },
+      "passed": true
+    },
+    {
+      "width": 375,
+      "height": 812,
+      "fontScale": 1.25,
+      "before": {
+        "bodyOverflow": "hidden",
+        "clientHeight": 523,
+        "controls": {
+          "bottom": 786.25,
+          "height": 332.5,
+          "left": 22.5,
+          "right": 352.5,
+          "top": 453.75,
+          "width": 330,
+          "x": 22.5,
+          "y": 453.75
+        },
+        "cover": {
+          "bottom": 443.75,
+          "height": 311.25,
+          "left": 22.5,
+          "right": 352.5,
+          "top": 132.5,
+          "width": 330,
+          "x": 22.5,
+          "y": 132.5
+        },
+        "list": {
+          "bottom": 786.25,
+          "height": 653.75,
+          "left": 22.5,
+          "right": 352.5,
+          "top": 132.5,
+          "width": 330,
+          "x": 22.5,
+          "y": 132.5
+        },
+        "overflow": "visible",
+        "physicalSize": 155.35861206054688,
+        "scrollHeight": 523,
+        "size": 130,
+        "zoom": 1.25
+      },
+      "reverse": {
+        "accessibleTitle": "1 A.M Study Session 📚 - [lofi hip hop/chill beats]",
+        "albumCount": 0,
+        "credits": {
+          "bottom": 282.0572204589844,
+          "height": 14.6357421875,
+          "left": 138.825927734375,
+          "right": 268.5708312988281,
+          "top": 267.4214782714844,
+          "width": 129.74490356445312,
+          "x": 138.825927734375,
+          "y": 267.4214782714844
+        },
+        "footer": {
+          "bottom": 359.4542541503906,
+          "height": 14.87060546875,
+          "left": 139.25750732421875,
+          "right": 267.83013916015625,
+          "top": 344.5836486816406,
+          "width": 128.5726318359375,
+          "x": 139.25750732421875,
+          "y": 344.5836486816406
+        },
+        "lineHeight": "10.0267px",
+        "paper": {
+          "bottom": 375.4143981933594,
+          "height": 169.70188903808594,
+          "left": 125.36453247070312,
+          "right": 283.1882019042969,
+          "top": 205.71250915527344,
+          "width": 157.82366943359375,
+          "x": 125.36453247070312,
+          "y": 205.71250915527344
+        },
+        "size": 130,
+        "source": "SoundCloud\n1:01:13",
+        "text": "GLUKWAVE / RECORD COLLECTION\n1 A.M Study Session 📚 - [lofi hip hop/chill beats]\n\nLofi Girl\n\nSoundCloud\n1:01:13",
+        "title": "1 A.M Study Session 📚 - [lofi hip hop/chill beats]",
+        "titleHeight": 22,
+        "titleScroll": 22
+      },
+      "reachable": {
+        "bottom": 662.75,
+        "height": 52.5,
+        "left": 307.5,
+        "right": 346.25,
+        "top": 610.25,
+        "width": 38.75,
+        "x": 307.5,
+        "y": 610.25
+      },
+      "passed": true
+    }
+  ],
+  "pageErrors": {
+    "errors": []
+  }
+}

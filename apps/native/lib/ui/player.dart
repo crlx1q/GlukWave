@@ -1,7 +1,6 @@
 import 'scrolling_label.dart';
 import 'native19_strings.dart';
 import 'native19_desktop_transport.dart';
-import 'dart:math' as math;
 import 'cover_ambient.dart';
 import 'seasonal.dart';
 import 'lyrics_editor.dart';
@@ -966,15 +965,7 @@ class _PlayerPageState extends State<PlayerPage> {
         child: Padding(
           padding: EdgeInsets.fromLTRB(wide ? 32 : 20, 0, wide ? 32 : 20, 10),
           child: ConstrainedBox(
-            constraints: BoxConstraints(
-              maxWidth:
-                  (bounds.maxHeight < 520 && bounds.maxWidth > 650 ||
-                      bounds.maxWidth > 1050 && bounds.maxHeight < 1000)
-                  ? 1100
-                  : wide
-                  ? 640
-                  : 520,
-            ),
+            constraints: BoxConstraints(maxWidth: 520),
             child: listening(track),
           ),
         ),
@@ -1103,47 +1094,33 @@ class _PlayerPageState extends State<PlayerPage> {
     builder: (context, bounds) {
       final v = waveVisuals(context),
           active = c.audio.viewCurrent?.id == track.id;
-      final split =
-          bounds.maxWidth > 600 &&
-          (bounds.maxHeight < 520 ||
-              bounds.maxWidth > 1000 && bounds.maxHeight < 1000);
-      final dense = bounds.maxHeight < 580, tiny = bounds.maxHeight < 470;
       final scale = MediaQuery.textScalerOf(context).scale(1);
-      final short = bounds.maxHeight / scale < 450;
+      final dimensional = c.customization.appearance.cover3d && !c.energySaving;
+      final landscape =
+          MediaQuery.sizeOf(context).width > 600 && bounds.maxHeight < 470;
+      // Give the rigid sleeve its complete turn envelope. The remaining space,
+      // rather than the whole viewport, chooses the density of its controls.
+      final size = ((bounds.maxWidth - 32) / (dimensional ? 1.6 : 1)).clamp(
+        60.0,
+        landscape ? 202.0 : 302.0,
+      );
+      final sceneHeight = dimensional
+          ? referenceSleeveSceneHeight(size)
+          : size + 36;
+      final controlRoom = (bounds.maxHeight - sceneHeight - 20) / scale;
+      final dense = controlRoom < 350,
+          tiny = controlRoom < 290,
+          short = controlRoom < 240;
       final preview =
           tab == 0 &&
-          !short &&
+          controlRoom >= 350 &&
           c.settings['lyrics'] == true &&
           c.settings['lyricsUnderCover'] != false &&
           lyrics.isNotEmpty;
-      final previewHeight = preview ? (tiny ? 56.0 : 68.0) * scale : 0.0;
-      final controlsHeight = active
-          ? (short
-                    ? 211.0
-                    : tiny
-                    ? 237.0
-                    : 264.0) +
-                (scale - 1).clamp(0, 1) * 45 +
-                previewHeight
-          : 130.0 + previewHeight;
-      final stageRoom = math.max(
-        80.0,
-        bounds.maxHeight - (split ? 0 : controlsHeight),
-      );
-      final size = math
-          .min(
-            ((split ? bounds.maxWidth * .5 - 10 : bounds.maxWidth) - 32) /
-                (c.customization.appearance.cover3d && !c.energySaving
-                    ? 1.6
-                    : 1),
-            (stageRoom - 32) /
-                (c.customization.appearance.cover3d && !c.energySaving
-                    ? 1.52
-                    : 1),
-          )
-          .clamp(60.0, split ? 302.0 : 390.0);
+      final previewHeight = preview ? 68.0 * scale : 0.0;
       final contents = <Widget>[
-        Expanded(
+        SizedBox(
+          height: sceneHeight,
           child: Center(
             child: PlayerGestureSurface(
               key: const Key('player-cover-gesture'),
@@ -1361,27 +1338,27 @@ class _PlayerPageState extends State<PlayerPage> {
           ),
         ],
       ];
-      if (split) {
-        return Row(
-          key: const Key('player-content-scroll'),
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            contents.first,
-            const SizedBox(width: 20),
-            Expanded(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: contents.skip(1).toList(),
-              ),
-            ),
-          ],
-        );
-      }
-      return Column(
+      return SingleChildScrollView(
         key: const Key('player-content-scroll'),
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: contents,
+        child: ConstrainedBox(
+          constraints: BoxConstraints(minHeight: bounds.maxHeight),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              contents.first,
+              const SizedBox(height: 12),
+              ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 400),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: contents.skip(1).toList(),
+                ),
+              ),
+              const SizedBox(height: 8),
+            ],
+          ),
+        ),
       );
     },
   );

@@ -1,0 +1,53 @@
+{
+  "corner": {
+    "scale": 1.25,
+    "corner": {
+      "bottom": 658.609161251874,
+      "heading": {
+        "bottom": 745,
+        "height": 55,
+        "left": 470,
+        "right": 970,
+        "top": 690,
+        "width": 500,
+        "x": 470,
+        "y": 690
+      },
+      "paper": 302,
+      "stage": {
+        "bottom": 687.5,
+        "height": 582.5,
+        "left": 385,
+        "right": 1055,
+        "top": 105,
+        "width": 670,
+        "x": 385,
+        "y": 105
+      },
+      "top": 344.432775941551,
+      "transform": "translateX(-0.41879396043001293%) rotateX(-38deg) rotateY(-88deg)"
+    },
+    "capture": "work/qa/cover22-evaluator-final-web-1440-final-negative-corner.png"
+  },
+  "errors": {
+    "errors": []
+  },
+  "sources": [
+    {
+      "path": "apps/web/src/album.tsx",
+      "sha256": "387b6e265b4612ab18810787e48eddccd85809a240152c4ad936d107c8d1cff9"
+    },
+    {
+      "path": "apps/web/src/reference-cover.css",
+      "sha256": "99f635ea4f62b2c72bd81e9e68ad695c9e6920fd066e9c4d1b99a5f9acf912a5"
+    },
+    {
+      "path": "apps/web/src/focused-player.css",
+      "sha256": "be776fac721c56a16cd79e410cbfd50dfa8f8c5fb1b0e4102b0818c6e675b364"
+    },
+    {
+      "path": "apps/web/src/player-ui.tsx",
+      "sha256": "9daf494022f4c023685cd6fb284b84e1ae1c91b841a006d4a2926c746ed37a2a"
+    }
+  ]
+}

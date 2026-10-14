@@ -1,0 +1,70 @@
+{
+  "mobile": {
+    "scale": 1.25,
+    "theme": "light",
+    "back": {
+      "controls": {
+        "bottom": 778.25,
+        "height": 298.25,
+        "left": 22.5,
+        "right": 352.5,
+        "top": 480,
+        "width": 330,
+        "x": 22.5,
+        "y": 480
+      },
+      "footer": "SoundCloud\n1:01:13",
+      "height": 24,
+      "paper": 181.25,
+      "scroll": 24,
+      "stage": {
+        "bottom": 477.5,
+        "height": 345,
+        "left": 22.5,
+        "right": 352.5,
+        "top": 132.5,
+        "width": 330,
+        "x": 22.5,
+        "y": 132.5
+      },
+      "title": "1 A.M Study Session 📚 - [lofi hip hop/chill beats]"
+    },
+    "control": {
+      "bottom": 778.25,
+      "height": 47.5,
+      "left": 22.5,
+      "right": 352.5,
+      "top": 730.75,
+      "width": 330,
+      "x": 22.5,
+      "y": 730.75
+    },
+    "captures": [
+      "work/qa/cover22-evaluator-final-web-375x812-final-front.png",
+      "work/qa/cover22-evaluator-final-web-375x812-final-back.png",
+      "work/qa/cover22-evaluator-final-web-375x812-final-controls.png"
+    ]
+  },
+  "corner": null,
+  "errors": {
+    "errors": []
+  },
+  "sources": [
+    {
+      "path": "apps/web/src/album.tsx",
+      "sha256": "387b6e265b4612ab18810787e48eddccd85809a240152c4ad936d107c8d1cff9"
+    },
+    {
+      "path": "apps/web/src/reference-cover.css",
+      "sha256": "99f635ea4f62b2c72bd81e9e68ad695c9e6920fd066e9c4d1b99a5f9acf912a5"
+    },
+    {
+      "path": "apps/web/src/focused-player.css",
+      "sha256": "be776fac721c56a16cd79e410cbfd50dfa8f8c5fb1b0e4102b0818c6e675b364"
+    },
+    {
+      "path": "apps/web/src/player-ui.tsx",
+      "sha256": "9daf494022f4c023685cd6fb284b84e1ae1c91b841a006d4a2926c746ed37a2a"
+    }
+  ]
+}

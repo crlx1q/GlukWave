@@ -1,0 +1,384 @@
+{
+  "apk": "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\apps\\native\\build\\app\\outputs\\flutter-apk\\app-debug.apk",
+  "bytes": 185870407,
+  "builtAt": "2026-10-14T09:44:22.646259+00:00",
+  "sha256": "543935464773565c61df8b0ec44e66974f8c89a63c195d5235e2d9f64d223aba",
+  "sourceFrozenAt": "2026-10-14T09:43:24.693439+00:00",
+  "sourceSha256": "11fd7e48163c2259f3e46025e4904d4867654f5321fdc0fce58e2e50bbe0110c",
+  "sourceFiles": 207,
+  "kernelSha256": "e7d08b55919254049fc07b087c763b69c7b8b83182671af8339a6be11f7aebed",
+  "kernelMatchesBuildOutput": true,
+  "compileDefine": "https://wave.gluk.tech",
+  "kernelFeatureMarkers": {
+    "tech.gluk.glukwave/home_widgets": true,
+    "glukwave.widget": true,
+    "Home screen widgets": true,
+    "https://wave.gluk.tech": true,
+    "full-player": true,
+    "player-cover-gesture": true,
+    "language-selector": true,
+    "language.auto": true,
+    "locale:change": true,
+    "lrcClock": true,
+    "artworkForDisplay": true,
+    "-t500x500.": true,
+    "/api/diagnostics/events": true,
+    "glukwave-lan-v1": true,
+    "LAN pairing": true,
+    "seasonalEffects": true,
+    "lan-enable": true,
+    "ROOM_STATE": true,
+    "/lrclib": true,
+    "Find on LRCLIB": true,
+    "/genius/preview": true,
+    "genius-preview": true,
+    "cover-ambient-transform": true,
+    "/discord": true,
+    "discord:changed": true,
+    "discordPresence": true,
+    "deviceVolume": true,
+    "/api/auth/native-captcha": true,
+    "Invalid authentication expiry": true,
+    "desktop-quick-volume": true,
+    "account:state": true,
+    "track-loading-cover": true,
+    "ScrollingLabel": true,
+    "/connect": true,
+    "outputActive": true,
+    "/account/sessions": true,
+    "downloadUrl": true,
+    "adoptOnly": true,
+    "/taste": true,
+    "/friends": true,
+    "/jams": true,
+    "/api/account/": true,
+    "currentPassword": true,
+    "Email sent": true,
+    "/playlists/discover": true,
+    "mini-card-progress": true,
+    "search-source-menu": true,
+    "search-type-": true,
+    "player-transport-capsule": true,
+    "player-secondary-capsule": true,
+    "X-GlukWave-Playback-Wait": true,
+    "player-centered-view": true,
+    "player-detail-view-": true,
+    "player-lyrics-toggle": true,
+    "compact-eq-presets": true,
+    "#EXTM3U": true,
+    "Colour from the cover": true,
+    "coverAccent": true,
+    "compact-eq-enabled": true,
+    "compact-eq-band-": true,
+    "compact-eq-preamp": true,
+    "compact-eq-rate": true,
+    "connect-quick-picker": true,
+    "native-queue-list": true,
+    "queue-add": true,
+    "waveMode": true,
+    "waveMood": true,
+    "waveActive": true,
+    "/api/recommendations": true,
+    "queue-search": true,
+    "ListeningPresence": true,
+    "SettingsEdit": true,
+    "_PlaybackWavePainter": true,
+    "tech.gluk.glukwave/energy": true,
+    "saved-view": true,
+    "saved-play": true,
+    "guard-manual-code": true,
+    "guard-target-name": true,
+    "guard-approve": true,
+    "lyrics-persistent-controls": true,
+    "OFFLINE_MISSING": true,
+    "INVALID_LOGIN_CODE": true,
+    "playlist-membership-": true,
+    "playlist-new-name": true,
+    "playlist-edit-name": true,
+    "playlist-library-": true,
+    "Playlist response is missing": true,
+    "/api/public-import/search": true,
+    "/api/public-import/tracks": true,
+    "publicSourceUrl": true,
+    "album-back-title": true,
+    "album-back-source": true
+  },
+  "localCatalogsInKernel": {
+    "en": true,
+    "ru": true,
+    "kk": true,
+    "uk": true,
+    "de": true,
+    "es": true
+  },
+  "qaTrackBundled": false,
+  "fontManifestVerified": true,
+  "staticFontFaces": [
+    {
+      "asset": "assets/fonts/Nunito-Regular.ttf",
+      "weight": 400,
+      "variable": false,
+      "sha256": "29f17d41574376520b263bde34a4fecb11814233ff280c66befce6020c5e3cc4",
+      "matchesSource": true
+    },
+    {
+      "asset": "assets/fonts/Nunito-Medium.ttf",
+      "weight": 500,
+      "variable": false,
+      "sha256": "818d89d5417ed2c7686c07097469f417d41dfe70b8e9514466637612f7ab9d8d",
+      "matchesSource": true
+    },
+    {
+      "asset": "assets/fonts/Nunito-SemiBold.ttf",
+      "weight": 600,
+      "variable": false,
+      "sha256": "e6ac9b7051c6b3c4a23817a9272e2a8f7124896b36e68b30a3d46b452a0418a5",
+      "matchesSource": true
+    },
+    {
+      "asset": "assets/fonts/Nunito-Bold.ttf",
+      "weight": 700,
+      "variable": false,
+      "sha256": "19acc4b8e7dc15b49c3802b6f2b53a1c41d7ee548733204a367052fa53387933",
+      "matchesSource": true
+    },
+    {
+      "asset": "assets/fonts/Nunito-ExtraBold.ttf",
+      "weight": 800,
+      "variable": false,
+      "sha256": "9bc8f0d0c03926636f41ec699c6563dd01835b510c194e2086811eaf65a8e527",
+      "matchesSource": true
+    },
+    {
+      "asset": "assets/fonts/Nunito-Black.ttf",
+      "weight": 900,
+      "variable": false,
+      "sha256": "b3628977111142f66472632770b76ee2c0665a40ae536bd64971a3bc19087717",
+      "matchesSource": true
+    },
+    {
+      "asset": "assets/fonts/Manrope-Regular.ttf",
+      "weight": 400,
+      "variable": false,
+      "sha256": "c443e2325b9ff17933ec2f5a99d835af430a545901d146f81f4fc9f4882b6623",
+      "matchesSource": true
+    },
+    {
+      "asset": "assets/fonts/Manrope-Medium.ttf",
+      "weight": 500,
+      "variable": false,
+      "sha256": "78177fa989a3feb256c1750faca4a05ab0b70f093f5f45b12a537e7b939bae9c",
+      "matchesSource": true
+    },
+    {
+      "asset": "assets/fonts/Manrope-SemiBold.ttf",
+      "weight": 600,
+      "variable": false,
+      "sha256": "1eea52be7b84d0841e39d6102cdf2f6777dbdbd6781d3a40a3323a8151163f07",
+      "matchesSource": true
+    },
+    {
+      "asset": "assets/fonts/Manrope-Bold.ttf",
+      "weight": 700,
+      "variable": false,
+      "sha256": "06ef9bf16d6ce1b6b8d6b953ea8b9e6c30e4b3708cf039132224fb2a5aa77102",
+      "matchesSource": true
+    },
+    {
+      "asset": "assets/fonts/Manrope-ExtraBold.ttf",
+      "weight": 800,
+      "variable": false,
+      "sha256": "63050130f7beccf497d740a2af39f8d5d49447e9ed777014e8d6d413442425ba",
+      "matchesSource": true
+    }
+  ],
+  "fontManifestSha256": "dc61e379e1f65f8de62057e95a64baaebcbbf8e5ee2450f736e2611705ca210f",
+  "nunitoLicenseIncluded": true,
+  "manifestVerified": true,
+  "androidWidgetReceiversPrivate": {
+    "WavePlayerWidget": true,
+    "WaveLargeWidget": true,
+    "WidgetCommandReceiver": true
+  },
+  "widgetTestRuntimeBundled": false,
+  "version": "1.0.0",
+  "versionCode": 22,
+  "minSdk": 24,
+  "targetSdk": 36,
+  "output": "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\outputs\\GlukWave-android-debug.apk",
+  "outputMatchesBuild": true,
+  "signatureVerified": true,
+  "signatureScheme": "v2",
+  "certificateSha256": "d631b0271019e5b3a9df153929ac0de07708b0766fc4c132fbce862b67a56748",
+  "updateCertificateMatchesPrevious": true,
+  "analyzerIssues": 0,
+  "standardTestsPassed": 432,
+  "standardVerification": {
+    "passed": true,
+    "distinctTestsVerified": 432,
+    "runs": [
+      {
+        "log": "refinement21-native-playlists-final.jsonl",
+        "runnerSuccess": false,
+        "completed": 416,
+        "failed": 13,
+        "failures": [
+          {
+            "file": "apps/native/test/focused_player_test.dart",
+            "name": "Focused player dark 1440.0 at125 percent, vertical listening column, preset menu and themed corners",
+            "result": "error",
+            "skipped": false,
+            "log": "refinement21-native-playlists-final.jsonl",
+            "currentTestSourceSha256": "6d5cecc99ee82fc7efe734227984be594b30e0f72eea52ddaab1e39d755cf92e"
+          },
+          {
+            "file": "apps/native/test/focused_player_test.dart",
+            "name": "Focused player dark 1280.0 at125 percent, vertical listening column, preset menu and themed corners",
+            "result": "error",
+            "skipped": false,
+            "log": "refinement21-native-playlists-final.jsonl",
+            "currentTestSourceSha256": "6d5cecc99ee82fc7efe734227984be594b30e0f72eea52ddaab1e39d755cf92e"
+          },
+          {
+            "file": "apps/native/test/focused_player_test.dart",
+            "name": "Focused player amoled 1440.0 at125 percent, vertical listening column, preset menu and themed corners",
+            "result": "error",
+            "skipped": false,
+            "log": "refinement21-native-playlists-final.jsonl",
+            "currentTestSourceSha256": "6d5cecc99ee82fc7efe734227984be594b30e0f72eea52ddaab1e39d755cf92e"
+          },
+          {
+            "file": "apps/native/test/focused_player_test.dart",
+            "name": "Focused player amoled 1280.0 at125 percent, vertical listening column, preset menu and themed corners",
+            "result": "error",
+            "skipped": false,
+            "log": "refinement21-native-playlists-final.jsonl",
+            "currentTestSourceSha256": "6d5cecc99ee82fc7efe734227984be594b30e0f72eea52ddaab1e39d755cf92e"
+          },
+          {
+            "file": "apps/native/test/focused_player_test.dart",
+            "name": "Focused player light 1440.0 at125 percent, vertical listening column, preset menu and themed corners",
+            "result": "error",
+            "skipped": false,
+            "log": "refinement21-native-playlists-final.jsonl",
+            "currentTestSourceSha256": "6d5cecc99ee82fc7efe734227984be594b30e0f72eea52ddaab1e39d755cf92e"
+          },
+          {
+            "file": "apps/native/test/focused_player_test.dart",
+            "name": "Focused player light 1280.0 at125 percent, vertical listening column, preset menu and themed corners",
+            "result": "error",
+            "skipped": false,
+            "log": "refinement21-native-playlists-final.jsonl",
+            "currentTestSourceSha256": "6d5cecc99ee82fc7efe734227984be594b30e0f72eea52ddaab1e39d755cf92e"
+          },
+          {
+            "file": "apps/native/test/player_details_test.dart",
+            "name": "Entire native cover at125% dark Size(390.0, 700.0) flat/3D/extreme tilt",
+            "result": "error",
+            "skipped": false,
+            "log": "refinement21-native-playlists-final.jsonl",
+            "currentTestSourceSha256": "022d371c3cdade64475a1dcfccafaae353b8ee3f89f399c91261db51078e3cdd"
+          },
+          {
+            "file": "apps/native/test/player_details_test.dart",
+            "name": "Entire native cover at125% dark Size(320.0, 568.0) flat/3D/extreme tilt",
+            "result": "error",
+            "skipped": false,
+            "log": "refinement21-native-playlists-final.jsonl",
+            "currentTestSourceSha256": "022d371c3cdade64475a1dcfccafaae353b8ee3f89f399c91261db51078e3cdd"
+          },
+          {
+            "file": "apps/native/test/player_details_test.dart",
+            "name": "Entire native cover at125% amoled Size(390.0, 700.0) flat/3D/extreme tilt",
+            "result": "error",
+            "skipped": false,
+            "log": "refinement21-native-playlists-final.jsonl",
+            "currentTestSourceSha256": "022d371c3cdade64475a1dcfccafaae353b8ee3f89f399c91261db51078e3cdd"
+          },
+          {
+            "file": "apps/native/test/player_details_test.dart",
+            "name": "Entire native cover at125% amoled Size(320.0, 568.0) flat/3D/extreme tilt",
+            "result": "error",
+            "skipped": false,
+            "log": "refinement21-native-playlists-final.jsonl",
+            "currentTestSourceSha256": "022d371c3cdade64475a1dcfccafaae353b8ee3f89f399c91261db51078e3cdd"
+          },
+          {
+            "file": "apps/native/test/player_details_test.dart",
+            "name": "Entire native cover at125% light Size(390.0, 700.0) flat/3D/extreme tilt",
+            "result": "error",
+            "skipped": false,
+            "log": "refinement21-native-playlists-final.jsonl",
+            "currentTestSourceSha256": "022d371c3cdade64475a1dcfccafaae353b8ee3f89f399c91261db51078e3cdd"
+          },
+          {
+            "file": "apps/native/test/player_details_test.dart",
+            "name": "Entire native cover at125% light Size(320.0, 568.0) flat/3D/extreme tilt",
+            "result": "error",
+            "skipped": false,
+            "log": "refinement21-native-playlists-final.jsonl",
+            "currentTestSourceSha256": "022d371c3cdade64475a1dcfccafaae353b8ee3f89f399c91261db51078e3cdd"
+          },
+          {
+            "file": "apps/native/test/wave18_ui_test.dart",
+            "name": "Native cover reflection follows rotation with fixed artwork size",
+            "result": "error",
+            "skipped": false,
+            "log": "refinement21-native-playlists-final.jsonl",
+            "currentTestSourceSha256": "99f9e8cf3baf9249c2f1ce273a0346fc03b79f682e99f98af60aeb07aed79767"
+          }
+        ]
+      },
+      {
+        "log": "refinement21-native-layout-recovery.jsonl",
+        "runnerSuccess": true,
+        "completed": 31,
+        "failed": 0,
+        "failures": []
+      },
+      {
+        "log": "refinement21-native-reflection-recovery.jsonl",
+        "runnerSuccess": true,
+        "completed": 1,
+        "failed": 0,
+        "failures": []
+      },
+      {
+        "log": "public-import-evaluator-native.log",
+        "runnerSuccess": true,
+        "completed": 9,
+        "failed": 0,
+        "failures": []
+      },
+      {
+        "log": "public-import-native-overlap.jsonl",
+        "runnerSuccess": true,
+        "completed": 1,
+        "failed": 0,
+        "failures": []
+      },
+      {
+        "log": "cover22-native-targeted.jsonl",
+        "runnerSuccess": true,
+        "completed": 42,
+        "failed": 0,
+        "failures": []
+      },
+      {
+        "log": "cover22-native-evaluator.jsonl",
+        "runnerSuccess": true,
+        "completed": 6,
+        "failed": 0,
+        "failures": []
+      }
+    ],
+    "unresolved": [],
+    "baselineVersion": "1.0.0+21",
+    "currentVersion": "1.0.0+22",
+    "scope": "Actual +21 baseline outcomes followed by affected +22 cases. Earlier failures retained; subsequent runs replace the same named scenario. This does not claim a repeated full +22 suite."
+  },
+  "signature": "debug",
+  "deviceRuntimeVerified": false,
+  "manropeLicenseIncluded": true,
+  "iosBuilt": false
+}

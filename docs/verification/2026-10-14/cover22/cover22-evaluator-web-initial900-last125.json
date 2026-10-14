@@ -1,0 +1,62 @@
+[
+  {
+    "scale": 1.25,
+    "result": {
+      "heading": {
+        "bottom": 745,
+        "height": 55,
+        "left": 470,
+        "right": 970,
+        "top": 690,
+        "width": 500,
+        "x": 470,
+        "y": 690
+      },
+      "layout": {
+        "bottom": 875,
+        "height": 770,
+        "left": 37.5,
+        "right": 1402.5,
+        "top": 105,
+        "width": 1365,
+        "x": 37.5,
+        "y": 105
+      },
+      "layoutScroll": 0,
+      "list": {
+        "bottom": 875,
+        "height": 770,
+        "left": 370,
+        "right": 1070,
+        "top": 105,
+        "width": 700,
+        "x": 370,
+        "y": 105
+      },
+      "listScroll": 0,
+      "paper": 302,
+      "play": {
+        "bottom": 865,
+        "height": 70,
+        "left": 658.75,
+        "right": 728.75,
+        "top": 795,
+        "width": 70,
+        "x": 658.75,
+        "y": 795
+      },
+      "stage": {
+        "bottom": 687.5,
+        "height": 582.5,
+        "left": 385,
+        "right": 1055,
+        "top": 105,
+        "width": 670,
+        "x": 385,
+        "y": 105
+      }
+    },
+    "capture": "work/qa/cover22-evaluator-final-web-1440-initial-1.25.png",
+    "fullyVisible": true
+  }
+]

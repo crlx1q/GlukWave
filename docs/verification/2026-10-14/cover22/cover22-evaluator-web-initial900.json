@@ -1,0 +1,122 @@
+[
+  {
+    "scale": 1,
+    "result": {
+      "heading": {
+        "bottom": 727,
+        "height": 44,
+        "left": 520,
+        "right": 920,
+        "top": 683,
+        "width": 400,
+        "x": 520,
+        "y": 683
+      },
+      "layout": {
+        "bottom": 880,
+        "height": 796,
+        "left": 30,
+        "right": 1410,
+        "top": 84,
+        "width": 1380,
+        "x": 30,
+        "y": 84
+      },
+      "layoutScroll": 0,
+      "list": {
+        "bottom": 880,
+        "height": 796,
+        "left": 440,
+        "right": 1000,
+        "top": 84,
+        "width": 560,
+        "x": 440,
+        "y": 84
+      },
+      "listScroll": 0,
+      "paper": 302,
+      "play": {
+        "bottom": 823,
+        "height": 56,
+        "left": 671,
+        "right": 727,
+        "top": 767,
+        "width": 56,
+        "x": 671,
+        "y": 767
+      },
+      "stage": {
+        "bottom": 679,
+        "height": 595,
+        "left": 452,
+        "right": 988,
+        "top": 84,
+        "width": 536,
+        "x": 452,
+        "y": 84
+      }
+    },
+    "capture": "work/qa/cover22-evaluator-final-web-1440-initial-1.png",
+    "fullyVisible": true
+  },
+  {
+    "scale": 1.25,
+    "result": {
+      "heading": {
+        "bottom": 747.5,
+        "height": 55,
+        "left": 470,
+        "right": 970,
+        "top": 692.5,
+        "width": 500,
+        "x": 470,
+        "y": 692.5
+      },
+      "layout": {
+        "bottom": 875,
+        "height": 770,
+        "left": 37.5,
+        "right": 1402.5,
+        "top": 105,
+        "width": 1365,
+        "x": 37.5,
+        "y": 105
+      },
+      "layoutScroll": 0,
+      "list": {
+        "bottom": 875,
+        "height": 770,
+        "left": 370,
+        "right": 1070,
+        "top": 105,
+        "width": 700,
+        "x": 370,
+        "y": 105
+      },
+      "listScroll": 0,
+      "paper": 302,
+      "play": {
+        "bottom": 867.5,
+        "height": 70,
+        "left": 658.75,
+        "right": 728.75,
+        "top": 797.5,
+        "width": 70,
+        "x": 658.75,
+        "y": 797.5
+      },
+      "stage": {
+        "bottom": 687.5,
+        "height": 582.5,
+        "left": 385,
+        "right": 1055,
+        "top": 105,
+        "width": 670,
+        "x": 385,
+        "y": 105
+      }
+    },
+    "capture": "work/qa/cover22-evaluator-final-web-1440-initial-1.25.png",
+    "fullyVisible": true
+  }
+]

@@ -1,0 +1,21 @@
+{
+  "capture": "work/qa/cover22-web-painted-circle-negative-edge.png",
+  "bottom": 587.3001842449562,
+  "headingTop": 542.875,
+  "overlap": 44.4251842449562,
+  "recordLeft": "130.462px",
+  "size": 242,
+  "stage": {
+    "bottom": 530.375,
+    "height": 410,
+    "left": 385,
+    "right": 1055,
+    "top": 120.375,
+    "width": 670,
+    "x": 385,
+    "y": 120.375
+  },
+  "style": "translateX(0.439725%) rotateX(-38deg) rotateY(-92.1deg)",
+  "top": 273.15835167585294,
+  "zoom": 1.25
+}

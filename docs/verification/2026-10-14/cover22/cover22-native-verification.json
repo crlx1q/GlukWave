@@ -1,0 +1,178 @@
+{
+  "passed": true,
+  "distinctTestsVerified": 433,
+  "runs": [
+    {
+      "log": "refinement21-native-playlists-final.jsonl",
+      "runnerSuccess": false,
+      "completed": 416,
+      "failed": 13,
+      "failures": [
+        {
+          "file": "apps/native/test/focused_player_test.dart",
+          "name": "Focused player dark 1440.0 at125 percent, vertical listening column, preset menu and themed corners",
+          "result": "error",
+          "skipped": false,
+          "log": "refinement21-native-playlists-final.jsonl",
+          "currentTestSourceSha256": "6d5cecc99ee82fc7efe734227984be594b30e0f72eea52ddaab1e39d755cf92e"
+        },
+        {
+          "file": "apps/native/test/focused_player_test.dart",
+          "name": "Focused player dark 1280.0 at125 percent, vertical listening column, preset menu and themed corners",
+          "result": "error",
+          "skipped": false,
+          "log": "refinement21-native-playlists-final.jsonl",
+          "currentTestSourceSha256": "6d5cecc99ee82fc7efe734227984be594b30e0f72eea52ddaab1e39d755cf92e"
+        },
+        {
+          "file": "apps/native/test/focused_player_test.dart",
+          "name": "Focused player amoled 1440.0 at125 percent, vertical listening column, preset menu and themed corners",
+          "result": "error",
+          "skipped": false,
+          "log": "refinement21-native-playlists-final.jsonl",
+          "currentTestSourceSha256": "6d5cecc99ee82fc7efe734227984be594b30e0f72eea52ddaab1e39d755cf92e"
+        },
+        {
+          "file": "apps/native/test/focused_player_test.dart",
+          "name": "Focused player amoled 1280.0 at125 percent, vertical listening column, preset menu and themed corners",
+          "result": "error",
+          "skipped": false,
+          "log": "refinement21-native-playlists-final.jsonl",
+          "currentTestSourceSha256": "6d5cecc99ee82fc7efe734227984be594b30e0f72eea52ddaab1e39d755cf92e"
+        },
+        {
+          "file": "apps/native/test/focused_player_test.dart",
+          "name": "Focused player light 1440.0 at125 percent, vertical listening column, preset menu and themed corners",
+          "result": "error",
+          "skipped": false,
+          "log": "refinement21-native-playlists-final.jsonl",
+          "currentTestSourceSha256": "6d5cecc99ee82fc7efe734227984be594b30e0f72eea52ddaab1e39d755cf92e"
+        },
+        {
+          "file": "apps/native/test/focused_player_test.dart",
+          "name": "Focused player light 1280.0 at125 percent, vertical listening column, preset menu and themed corners",
+          "result": "error",
+          "skipped": false,
+          "log": "refinement21-native-playlists-final.jsonl",
+          "currentTestSourceSha256": "6d5cecc99ee82fc7efe734227984be594b30e0f72eea52ddaab1e39d755cf92e"
+        },
+        {
+          "file": "apps/native/test/player_details_test.dart",
+          "name": "Entire native cover at125% dark Size(390.0, 700.0) flat/3D/extreme tilt",
+          "result": "error",
+          "skipped": false,
+          "log": "refinement21-native-playlists-final.jsonl",
+          "currentTestSourceSha256": "022d371c3cdade64475a1dcfccafaae353b8ee3f89f399c91261db51078e3cdd"
+        },
+        {
+          "file": "apps/native/test/player_details_test.dart",
+          "name": "Entire native cover at125% dark Size(320.0, 568.0) flat/3D/extreme tilt",
+          "result": "error",
+          "skipped": false,
+          "log": "refinement21-native-playlists-final.jsonl",
+          "currentTestSourceSha256": "022d371c3cdade64475a1dcfccafaae353b8ee3f89f399c91261db51078e3cdd"
+        },
+        {
+          "file": "apps/native/test/player_details_test.dart",
+          "name": "Entire native cover at125% amoled Size(390.0, 700.0) flat/3D/extreme tilt",
+          "result": "error",
+          "skipped": false,
+          "log": "refinement21-native-playlists-final.jsonl",
+          "currentTestSourceSha256": "022d371c3cdade64475a1dcfccafaae353b8ee3f89f399c91261db51078e3cdd"
+        },
+        {
+          "file": "apps/native/test/player_details_test.dart",
+          "name": "Entire native cover at125% amoled Size(320.0, 568.0) flat/3D/extreme tilt",
+          "result": "error",
+          "skipped": false,
+          "log": "refinement21-native-playlists-final.jsonl",
+          "currentTestSourceSha256": "022d371c3cdade64475a1dcfccafaae353b8ee3f89f399c91261db51078e3cdd"
+        },
+        {
+          "file": "apps/native/test/player_details_test.dart",
+          "name": "Entire native cover at125% light Size(390.0, 700.0) flat/3D/extreme tilt",
+          "result": "error",
+          "skipped": false,
+          "log": "refinement21-native-playlists-final.jsonl",
+          "currentTestSourceSha256": "022d371c3cdade64475a1dcfccafaae353b8ee3f89f399c91261db51078e3cdd"
+        },
+        {
+          "file": "apps/native/test/player_details_test.dart",
+          "name": "Entire native cover at125% light Size(320.0, 568.0) flat/3D/extreme tilt",
+          "result": "error",
+          "skipped": false,
+          "log": "refinement21-native-playlists-final.jsonl",
+          "currentTestSourceSha256": "022d371c3cdade64475a1dcfccafaae353b8ee3f89f399c91261db51078e3cdd"
+        },
+        {
+          "file": "apps/native/test/wave18_ui_test.dart",
+          "name": "Native cover reflection follows rotation with fixed artwork size",
+          "result": "error",
+          "skipped": false,
+          "log": "refinement21-native-playlists-final.jsonl",
+          "currentTestSourceSha256": "99f9e8cf3baf9249c2f1ce273a0346fc03b79f682e99f98af60aeb07aed79767"
+        }
+      ]
+    },
+    {
+      "log": "refinement21-native-layout-recovery.jsonl",
+      "runnerSuccess": true,
+      "completed": 31,
+      "failed": 0,
+      "failures": []
+    },
+    {
+      "log": "refinement21-native-reflection-recovery.jsonl",
+      "runnerSuccess": true,
+      "completed": 1,
+      "failed": 0,
+      "failures": []
+    },
+    {
+      "log": "public-import-evaluator-native.log",
+      "runnerSuccess": true,
+      "completed": 9,
+      "failed": 0,
+      "failures": []
+    },
+    {
+      "log": "public-import-native-overlap.jsonl",
+      "runnerSuccess": true,
+      "completed": 1,
+      "failed": 0,
+      "failures": []
+    },
+    {
+      "log": "cover22-native-targeted.jsonl",
+      "runnerSuccess": true,
+      "completed": 42,
+      "failed": 0,
+      "failures": []
+    },
+    {
+      "log": "cover22-native-evaluator.jsonl",
+      "runnerSuccess": true,
+      "completed": 6,
+      "failed": 0,
+      "failures": []
+    },
+    {
+      "log": "cover22-native-final.jsonl",
+      "runnerSuccess": true,
+      "completed": 25,
+      "failed": 0,
+      "failures": []
+    },
+    {
+      "log": "cover22-native-balanced-final.jsonl",
+      "runnerSuccess": true,
+      "completed": 20,
+      "failed": 0,
+      "failures": []
+    }
+  ],
+  "unresolved": [],
+  "baselineVersion": "1.0.0+21",
+  "currentVersion": "1.0.0+22",
+  "scope": "Actual +21 baseline outcomes followed by affected +22 cases. Earlier failures retained; subsequent runs replace the same named scenario. This does not claim a repeated full +22 suite."
+}

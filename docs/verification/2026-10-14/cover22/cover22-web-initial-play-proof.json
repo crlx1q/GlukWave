@@ -1,0 +1,72 @@
+[
+  {
+    "scale": 1,
+    "controls": {
+      "bottom": 942.390625,
+      "height": 253.390625,
+      "left": 520,
+      "right": 920,
+      "top": 689,
+      "width": 400,
+      "x": 520,
+      "y": 689
+    },
+    "play": {
+      "bottom": 863.390625,
+      "height": 64,
+      "left": 667,
+      "right": 731,
+      "top": 799.390625,
+      "width": 64,
+      "x": 667,
+      "y": 799.390625
+    },
+    "size": 302,
+    "stage": {
+      "bottom": 679,
+      "height": 595,
+      "left": 452,
+      "right": 988,
+      "top": 84,
+      "width": 536,
+      "x": 452,
+      "y": 84
+    },
+    "zoom": 1
+  },
+  {
+    "scale": 1.25,
+    "controls": {
+      "bottom": 995.625,
+      "height": 295.625,
+      "left": 470,
+      "right": 970,
+      "top": 700,
+      "width": 500,
+      "x": 470,
+      "y": 700
+    },
+    "play": {
+      "bottom": 899.375,
+      "height": 70,
+      "left": 658.75,
+      "right": 728.75,
+      "top": 829.375,
+      "width": 70,
+      "x": 658.75,
+      "y": 829.375
+    },
+    "size": 242,
+    "stage": {
+      "bottom": 687.5,
+      "height": 582.5,
+      "left": 385,
+      "right": 1055,
+      "top": 105,
+      "width": 670,
+      "x": 385,
+      "y": 105
+    },
+    "zoom": 1.25
+  }
+]

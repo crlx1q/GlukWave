@@ -1,0 +1,13 @@
+{"protocolVersion":"0.1.1","runnerVersion":null,"pid":14620,"type":"start","time":0}
+{"suite":{"id":0,"platform":"vm","path":"C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/cover22_evaluator_corner_test.dart"},"type":"suite","time":0}
+{"test":{"id":1,"name":"loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/cover22_evaluator_corner_test.dart","suiteID":0,"groupIDs":[],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":2}
+{"count":1,"time":10,"type":"allSuites"}
+{"testID":1,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":8327}
+{"group":{"id":2,"suiteID":0,"parentID":null,"name":"","metadata":{"skip":false,"skipReason":null},"testCount":1,"line":null,"column":null,"url":null},"type":"group","time":8341}
+{"test":{"id":3,"name":"(setUpAll)","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":20,"column":2,"url":"file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/cover22_evaluator_corner_test.dart"},"type":"testStart","time":8343}
+{"testID":3,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":8975}
+{"test":{"id":4,"name":"Evaluator actual painted circle extreme corner probe","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":174,"column":5,"url":"package:flutter_test/src/widget_tester.dart","root_line":25,"root_column":2,"root_url":"file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/cover22_evaluator_corner_test.dart"},"type":"testStart","time":8982}
+{"testID":4,"result":"success","skipped":false,"hidden":false,"type":"testDone","time":19871}
+{"test":{"id":5,"name":"(tearDownAll)","suiteID":0,"groupIDs":[2],"metadata":{"skip":false,"skipReason":null},"line":null,"column":null,"url":null},"type":"testStart","time":19871}
+{"testID":5,"result":"success","skipped":false,"hidden":true,"type":"testDone","time":19877}
+{"success":true,"type":"done","time":19979}

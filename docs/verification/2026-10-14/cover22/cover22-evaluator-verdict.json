@@ -1,0 +1,205 @@
+{
+  "schema": "glukwave-design-evaluation-v1",
+  "verdict": "PASS",
+  "reviewer": {
+    "independentFromImplementer": true,
+    "model": "inherited OpenAI evaluator",
+    "externalProviderReview": false
+  },
+  "native": {
+    "verdict": "PASS",
+    "runner": "work/qa/cover22-native-evaluator.jsonl",
+    "exit": 0,
+    "scenarios": 6,
+    "additionalUniqueScenarioCount": 0,
+    "note": "Evaluator replayed the same six scoped scenarios with decoded shipped forest artwork, light375x812 at125%, back and extreme full-turn captures. Controls reachability assertions passed; low height initial view does not show all controls.",
+    "capturedRunnerPath": "apps/native/test/cover22_evaluator_test.dart",
+    "preservedFixture": "work/qa/cover22-native-evaluator-fixture.dart",
+    "preservedArtworkFixture": "work/qa/cover22-evaluator-artwork-fixture.dart",
+    "harnessAttempts": [
+      "first-attempt compile default Pub cache missing dependencies before widgets",
+      "second-attempt assertions/captures completed then debug image provider cleanup invariant failed",
+      "final run restores painting debug provider inside each test; six passed"
+    ],
+    "limits": [
+      "Flutter widget renderer with actual product widgets and isolated metadata/audio/image transport; no physical device or release executable run",
+      "Bundled test fonts omit platform color emoji fallback; native screenshots show monochrome fallback marks, so production emoji glyph appearance remains outside this proof",
+      "No external provider review; independent OpenAI evaluator fallback"
+    ],
+    "finalCornerProof": "work/qa/cover22-native-evaluator-corners-final.json",
+    "finalCornerRunner": "work/qa/cover22-native-evaluator-corner-final.jsonl",
+    "finalCornerFixture": "work/qa/cover22-native-evaluator-corner-final-fixture.dart",
+    "currentProofNote": "Postfix independent one-case probe passed actualpaintedcircle within constant595scene sixworstposes; minimumcircle/titlegap40.606px, retained302pxpaper. Initial900Play fullyinsideviewport at100/125%, freshscreens. Producttargeted20balanced and clean4fileanalysis supplied byimplementer inspected; no broad tests repeated."
+  },
+  "sources": [
+    {
+      "path": "apps/web/src/album.tsx",
+      "sha256": "387b6e265b4612ab18810787e48eddccd85809a240152c4ad936d107c8d1cff9"
+    },
+    {
+      "path": "apps/web/src/reference-cover.css",
+      "sha256": "99f635ea4f62b2c72bd81e9e68ad695c9e6920fd066e9c4d1b99a5f9acf912a5"
+    },
+    {
+      "path": "apps/web/src/focused-player.css",
+      "sha256": "be776fac721c56a16cd79e410cbfd50dfa8f8c5fb1b0e4102b0818c6e675b364"
+    },
+    {
+      "path": "apps/web/src/player-ui.tsx",
+      "sha256": "9daf494022f4c023685cd6fb284b84e1ae1c91b841a006d4a2926c746ed37a2a"
+    },
+    {
+      "path": "apps/native/lib/ui/album_stage.dart",
+      "sha256": "db6804a137eaa187f0ee51d8449d8fc446aa1aa2995ccdfd4125fef61fb922ff"
+    },
+    {
+      "path": "apps/native/lib/ui/player.dart",
+      "sha256": "166179b8f133f2dd63bd57643d85584b71910fda0020876881deb0ca615b6fe6"
+    },
+    {
+      "path": "apps/native/test/focused_player_test.dart",
+      "sha256": "6d5cecc99ee82fc7efe734227984be594b30e0f72eea52ddaab1e39d755cf92e"
+    },
+    {
+      "path": "apps/native/test/cover22_test.dart",
+      "sha256": "88aa8af3d00ae0d1de28f49d9cc3377c5a07237fcd200420d38ba604b8fed09a"
+    },
+    {
+      "path": "apps/native/pubspec.lock",
+      "sha256": "d2397ce34777a03f12428081307cbb73f6cfc65feed44decc2ea80b4639ff949"
+    }
+  ],
+  "proofFiles": [
+    {
+      "path": "work/qa/cover22-native-evaluator-corner-final.jsonl",
+      "sha256": "f67735be8872a785ceede4420e117968b29a9f3b093b159fcd6da9a39e70471a"
+    },
+    {
+      "path": "work/qa/cover22-native-evaluator-corner-final-fixture.dart",
+      "sha256": "2b5ad84fef315c9898af34c91493fe97b32a91361a3247d7ecdf5b0bc47603fc"
+    },
+    {
+      "path": "work/qa/cover22-native-evaluator-corners-final.json",
+      "sha256": "406c71347fadbeb6986eda2b07958462069a8f61af15d84ff5f5d052c2dae4cf"
+    },
+    {
+      "path": "work/qa/cover22-evaluator-web-round2-proof.json",
+      "sha256": "c16fab3d3b16f07feec08c00378edecf0c231653929f91f19ac4e8923c226502"
+    },
+    {
+      "path": "work/qa/cover22-evaluator-web-initial900-last125.json",
+      "sha256": "72f6dae7a6026ff3babc30f9efdb3619df413ea965f20907d15ceba93df95ce4"
+    },
+    {
+      "path": "work/qa/cover22-evaluator-web-final-corner-last.json",
+      "sha256": "104434e1cdf4014c89ee9743875a24c88a6998488d5026d4baeab656bfb42e9e"
+    },
+    {
+      "path": "work/qa/cover22-evaluator-web-final-phone-last.json",
+      "sha256": "8bc9e2c94865b82d01c27e1cfeaa5e73e705de81681e1d86f2a3cb00f4eb905e"
+    }
+  ],
+  "issues": [
+    {
+      "id": "full-turn-scene",
+      "status": "RESOLVED",
+      "beforeProof": [
+        "work/qa/cover22-native-evaluator-corners.json",
+        "work/qa/cover22-painted-circle-proof.json"
+      ],
+      "afterProof": [
+        "work/qa/cover22-native-evaluator-corners-final.json",
+        "work/qa/cover22-evaluator-web-round2-proof.json",
+        "work/qa/cover22-evaluator-web-final-corner-last.json"
+      ],
+      "resolution": "Constant full-turn scene retains paper/disc dimensions and true circular edges without title intrusion or clipping"
+    },
+    {
+      "id": "initial900-text125-play",
+      "status": "RESOLVED",
+      "before": "Play crossed listening clip boundary",
+      "after": "Final125Play795..865 within clip875 with10pxclearance",
+      "proof": "work/qa/cover22-evaluator-web-initial900-last125.json"
+    }
+  ],
+  "web": {
+    "verdict": "PASS",
+    "sourceRevision": [
+      {
+        "path": "apps/web/src/album.tsx",
+        "sha256": "387b6e265b4612ab18810787e48eddccd85809a240152c4ad936d107c8d1cff9"
+      },
+      {
+        "path": "apps/web/src/reference-cover.css",
+        "sha256": "99f635ea4f62b2c72bd81e9e68ad695c9e6920fd066e9c4d1b99a5f9acf912a5"
+      },
+      {
+        "path": "apps/web/src/focused-player.css",
+        "sha256": "be776fac721c56a16cd79e410cbfd50dfa8f8c5fb1b0e4102b0818c6e675b364"
+      },
+      {
+        "path": "apps/web/src/player-ui.tsx",
+        "sha256": "9daf494022f4c023685cd6fb284b84e1ae1c91b841a006d4a2926c746ed37a2a"
+      }
+    ],
+    "actualProof": "work/qa/cover22-evaluator-web-round2-proof.json",
+    "finalLiveCases": 8,
+    "actualPaintedCircleExtremes": 4,
+    "priorRequiredMatrixCases": 11,
+    "priorMetadataCases": 4,
+    "pageErrors": {
+      "errors": []
+    },
+    "note": "Final scene and fixed physical art inspected in live actual React application. Negative yaw-88 at tilt±38 was checked with1024round-edgepoints at100/125% and fresh screenshots. 1440/1280bothscales,375bothscales,320/812125% capture cover first and controls after internal scroll; no all-controls-simultaneous claim.",
+    "initial900Proof": "work/qa/cover22-evaluator-web-initial900.json",
+    "initialFinal125Proof": "work/qa/cover22-evaluator-web-initial900-last125.json",
+    "finalCornerProof": "work/qa/cover22-evaluator-web-final-corner-last.json",
+    "finalPhoneProof": "work/qa/cover22-evaluator-web-final-phone-last.json",
+    "finalMeasuredResults": {
+      "desktopPhysicalPaper": 302,
+      "landscapePhysicalPaper": 202,
+      "compactPhoneMinimumPhysicalPaper": 155,
+      "initial125PlayTop": 795,
+      "initial125PlayBottom": 865,
+      "listeningClipBottom": 875,
+      "initial125PlayClearance": 10,
+      "negativeCircleToHeadingGap": 31.390838748126043,
+      "pageErrors": 0
+    }
+  },
+  "attempt": 2,
+  "reviewedAt": "2026-10-14T10:45:31.4831376Z",
+  "scores": {
+    "designQuality": 2,
+    "originality": 2,
+    "craft": 2,
+    "functionality": 2,
+    "scale": 3
+  },
+  "observations": [
+    "Sleeve is centered above metadata and controls at all tested sizes; right detail pane keeps vertical left listening column",
+    "Realistic supplied reverse title fits completely once within paper; actual provider/duration and distinct album; no invented track numbers/year/label/codec/RPM",
+    "Cyrillic/CJK/emoji/unbroken text and missing/equal album/duration inspected in earlier independent proofs; back source unchanged by final layout tweaks",
+    "Final web fullscene smoke8cases+4extremeCircleposes, narrow density2desktop and finalphone/corner captures; earlier11viewportscale matrix retained. No fullsuite repetition",
+    "Native independent6scopedscenario replay plus finalone-case6pose/initial900probe is not counted as6additionaldistincttests; actual finalbalanced20/currentanalyze fromimplementer inspected",
+    "Short1280x650/320x568/812x375 and secondaryactions at125% may require internal scroll; cover-first and controls captures are separate"
+  ],
+  "limits": [
+    "Independent inherited OpenAI evaluator fallback; no external-provider model review",
+    "Actual React local fixture and Flutter actual-widget renderer isolate metadata/audio/image transport; no owner/provider traffic, physical-device, deployment, or final-package validation claimed",
+    "Native widget-test font fallback produces monochrome emoji marks; production color emoji glyphs were not verified",
+    "Only product/layout/backprint scope evaluated; root owns package builds and deployment"
+  ],
+  "deliveryCaptures": [
+    "work/qa/cover22-evaluator-final-web-1440-initial-1.png",
+    "work/qa/cover22-evaluator-final-web-1440-initial-1.25.png",
+    "work/qa/cover22-evaluator-final-web-375x812-final-front.png",
+    "work/qa/cover22-evaluator-final-web-375x812-final-back.png",
+    "work/qa/cover22-evaluator-final-web-375x812-final-controls.png",
+    "work/qa/cover22-evaluator-final-web-1440-final-negative-corner.png",
+    "work/qa/native-cover22-evaluator-final-1440-initial-1.25.png",
+    "work/qa/native-cover22-evaluator-final-native-corner--38--85.png",
+    "work/qa/native-cover22-375-812-vertical.png"
+  ],
+  "cleanup": "work/qa/cover22-evaluator-cleanup.json"
+}

@@ -67,6 +67,15 @@ for(const filename of ['README.md','.env.example','outputs/START.md','outputs/VE
 const evidenceArgument=process.argv.indexOf('--evidence'),evidencePath=evidenceArgument>=0?process.argv[evidenceArgument+1]:'docs/verification/2026-10-08/evidence.json';
 requireCondition(typeof evidencePath==='string','Evidence path missing');
 const evidence=JSON.parse(await fs.readFile(path.resolve(root,evidencePath),'utf8'));
+requireCondition(names.has(evidencePath),'Current evidence manifest missing from archive');
+async function requireEvidenceFiles(directory){
+  for(const item of await fs.readdir(directory,{withFileTypes:true})){
+    const filename=path.join(directory,item.name);
+    if(item.isDirectory())await requireEvidenceFiles(filename);
+    else if(item.isFile())requireCondition(names.has(path.relative(root,filename).replaceAll('\\','/')),'Current evidence file missing: '+item.name);
+  }
+}
+await requireEvidenceFiles(path.dirname(path.resolve(root,evidencePath)));
 requireCondition(names.has('apps/web/dist'+evidence.web.javascript),'Current web build missing');
 const frozen=JSON.parse(await fs.readFile(path.join(root,evidence.native.sourceFreezeFile||'docs/verification/2026-10-08/native-source-freeze.json'),'utf8'));
 for(const record of frozen.files)requireCondition(hashes.get('apps/native/'+record.path)===record.sha256,'Frozen native source missing/changed: '+record.path);

@@ -32,7 +32,7 @@ void main() {
   for (final theme in ['dark', 'amoled', 'light']) {
     for (final width in [1440.0, 1280.0, 390.0, 320.0]) {
       testWidgets(
-        'Focused player $theme $width at125 percent, centered/split, preset menu and themed corners',
+        'Focused player $theme $width at125 percent, vertical listening column, preset menu and themed corners',
         (tester) async {
           final c = (await tester.runAsync(audio.makeController))!;
           final radius = width == 1280 || width == 320 ? 8.0 : 38.0;
@@ -67,18 +67,14 @@ void main() {
           final cover = tester.getRect(
             find.byKey(const Key('player-cover-gesture')),
           );
-          if (width > 1050) {
-            // Wide reference layout gives the cover its own column instead of
-            // shrinking it above the controls. Both columns stay visible.
-            final transport = tester.getRect(
-              find.byKey(const Key('player-transport-capsule')),
-            );
-            expect(cover.right, lessThan(transport.left));
-            expect(cover.left, greaterThanOrEqualTo(0));
-            expect(transport.right, lessThanOrEqualTo(width));
-          } else {
-            expect(cover.center.dx, closeTo(width / 2, 1));
-          }
+          final transport = tester.getRect(
+            find.byKey(const Key('player-transport-capsule')),
+          );
+          expect(cover.bottom, lessThan(transport.top));
+          expect(cover.center.dx, closeTo(width / 2, 1));
+          expect(transport.center.dx, closeTo(width / 2, 1));
+          expect(cover.left, greaterThanOrEqualTo(0));
+          expect(transport.right, lessThanOrEqualTo(width));
           await f.screenshot(
             tester,
             'focused-player-$runId-$theme-${width.toInt()}-centered',

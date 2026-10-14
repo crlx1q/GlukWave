@@ -1,0 +1,19 @@
+{
+  "checkedAt": "2026-10-14T10:52:05.865Z",
+  "passed": true,
+  "archiveBytes": 185080346,
+  "archiveSha256": "053ec709a2adeb5838009aa24467b02d375455ec1e2774984da74c51c5d96c75",
+  "entries": 2198,
+  "allCrcAndSourceHashesMatched": true,
+  "textFilesScanned": 883,
+  "localPrivateValuesAbsent": true,
+  "liveCredentialPatternsAbsent": true,
+  "staticFontFaces": 6,
+  "manropeStaticFontFaces": 5,
+  "frozenNativeSourcesMatched": 207,
+  "currentWebBuild": "/assets/main-6V12ZeGo.js",
+  "runtimeDataExcluded": true,
+  "apkSha256": "80712a18e62e727acf054ab8f2f69d9f864d4a01889ca6a827599d68d679770f",
+  "windowsSha256": "968b3c205428f821436400029bd13c62de936c68746c85a1f9f54c2c4596139d",
+  "installerSha256": "4a45bbc35e4b387d2a9e50231c0b35386b0d10344a2053b87733903a98b09fd9"
+}

@@ -1,0 +1,32 @@
+{
+  "scope": "vertical expandedplayer and sleeve reverse only",
+  "files": {
+    "apps/web/src/album.tsx": "387b6e265b4612ab18810787e48eddccd85809a240152c4ad936d107c8d1cff9",
+    "apps/web/src/reference-cover.css": "99f635ea4f62b2c72bd81e9e68ad695c9e6920fd066e9c4d1b99a5f9acf912a5",
+    "apps/web/src/focused-player.css": "be776fac721c56a16cd79e410cbfd50dfa8f8c5fb1b0e4102b0818c6e675b364",
+    "apps/web/src/player-ui.tsx": "9daf494022f4c023685cd6fb284b84e1ae1c91b841a006d4a2926c746ed37a2a",
+    "apps/native/lib/ui/album_stage.dart": "db6804a137eaa187f0ee51d8449d8fc446aa1aa2995ccdfd4125fef61fb922ff",
+    "apps/native/lib/ui/player.dart": "166179b8f133f2dd63bd57643d85584b71910fda0020876881deb0ca615b6fe6",
+    "apps/native/test/focused_player_test.dart": "6d5cecc99ee82fc7efe734227984be594b30e0f72eea52ddaab1e39d755cf92e",
+    "apps/native/test/cover22_test.dart": "88aa8af3d00ae0d1de28f49d9cc3377c5a07237fcd200420d38ba604b8fed09a"
+  },
+  "native": {
+    "actualTargetedCases": 25,
+    "passed": true,
+    "runs": [
+      {
+        "log": "work/qa/cover22-native-final.jsonl",
+        "cases": 25,
+        "coverage": "new7 focused13 reference5 full-envelope"
+      },
+      {
+        "log": "work/qa/cover22-native-balanced-final.jsonl",
+        "cases": 20,
+        "coverage": "new7 focused13 final-density"
+      }
+    ],
+    "analyzerLog": "work/qa/cover22-native-analyze-final.log"
+  },
+  "webFixture": "http://127.0.0.1:5211/app/#library",
+  "guide": "work/qa/cover22-review-guide.md"
+}

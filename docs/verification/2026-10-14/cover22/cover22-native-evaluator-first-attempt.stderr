@@ -1,0 +1,750 @@
+Package flutter_secure_storage:windows references flutter_secure_storage_windows:windows as the default plugin, but the package does not exist, or is not a plugin package.
+Ask the maintainers of flutter_secure_storage to either avoid referencing a default implementation via `platforms: windows: default_package: flutter_secure_storage_windows` or create a plugin named flutter_secure_storage_windows.
+
+Package path_provider:windows references path_provider_windows:windows as the default plugin, but the package does not exist, or is not a plugin package.
+Ask the maintainers of path_provider to either avoid referencing a default implementation via `platforms: windows: default_package: path_provider_windows` or create a plugin named path_provider_windows.
+
+Package screen_retriever:windows references screen_retriever_windows:windows as the default plugin, but the package does not exist, or is not a plugin package.
+Ask the maintainers of screen_retriever to either avoid referencing a default implementation via `platforms: windows: default_package: screen_retriever_windows` or create a plugin named screen_retriever_windows.
+
+Package shared_preferences:windows references shared_preferences_windows:windows as the default plugin, but the package does not exist, or is not a plugin package.
+Ask the maintainers of shared_preferences to either avoid referencing a default implementation via `platforms: windows: default_package: shared_preferences_windows` or create a plugin named shared_preferences_windows.
+
+Package url_launcher:windows references url_launcher_windows:windows as the default plugin, but the package does not exist, or is not a plugin package.
+Ask the maintainers of url_launcher to either avoid referencing a default implementation via `platforms: windows: default_package: url_launcher_windows` or create a plugin named url_launcher_windows.
+
+Package screen_retriever:windows references screen_retriever_windows:windows as the default plugin, but the package does not exist, or is not a plugin package.
+Ask the maintainers of screen_retriever to either avoid referencing a default implementation via `platforms: windows: default_package: screen_retriever_windows` or create a plugin named screen_retriever_windows.
+
+Package url_launcher:windows references url_launcher_windows:windows as the default plugin, but the package does not exist, or is not a plugin package.
+Ask the maintainers of url_launcher to either avoid referencing a default implementation via `platforms: windows: default_package: url_launcher_windows` or create a plugin named url_launcher_windows.
+
+Package shared_preferences:windows references shared_preferences_windows:windows as the default plugin, but the package does not exist, or is not a plugin package.
+Ask the maintainers of shared_preferences to either avoid referencing a default implementation via `platforms: windows: default_package: shared_preferences_windows` or create a plugin named shared_preferences_windows.
+
+Package path_provider:windows references path_provider_windows:windows as the default plugin, but the package does not exist, or is not a plugin package.
+Ask the maintainers of path_provider to either avoid referencing a default implementation via `platforms: windows: default_package: path_provider_windows` or create a plugin named path_provider_windows.
+
+Package flutter_secure_storage:windows references flutter_secure_storage_windows:windows as the default plugin, but the package does not exist, or is not a plugin package.
+Ask the maintainers of flutter_secure_storage to either avoid referencing a default implementation via `platforms: windows: default_package: flutter_secure_storage_windows` or create a plugin named flutter_secure_storage_windows.
+
+Package screen_retriever:windows references screen_retriever_windows:windows as the default plugin, but the package does not exist, or is not a plugin package.
+Ask the maintainers of screen_retriever to either avoid referencing a default implementation via `platforms: windows: default_package: screen_retriever_windows` or create a plugin named screen_retriever_windows.
+
+Package url_launcher:windows references url_launcher_windows:windows as the default plugin, but the package does not exist, or is not a plugin package.
+Ask the maintainers of url_launcher to either avoid referencing a default implementation via `platforms: windows: default_package: url_launcher_windows` or create a plugin named url_launcher_windows.
+
+Package shared_preferences:windows references shared_preferences_windows:windows as the default plugin, but the package does not exist, or is not a plugin package.
+Ask the maintainers of shared_preferences to either avoid referencing a default implementation via `platforms: windows: default_package: shared_preferences_windows` or create a plugin named shared_preferences_windows.
+
+Package path_provider:windows references path_provider_windows:windows as the default plugin, but the package does not exist, or is not a plugin package.
+Ask the maintainers of path_provider to either avoid referencing a default implementation via `platforms: windows: default_package: path_provider_windows` or create a plugin named path_provider_windows.
+
+Package flutter_secure_storage:windows references flutter_secure_storage_windows:windows as the default plugin, but the package does not exist, or is not a plugin package.
+Ask the maintainers of flutter_secure_storage to either avoid referencing a default implementation via `platforms: windows: default_package: flutter_secure_storage_windows` or create a plugin named flutter_secure_storage_windows.
+
+Package screen_retriever:windows references screen_retriever_windows:windows as the default plugin, but the package does not exist, or is not a plugin package.
+Ask the maintainers of screen_retriever to either avoid referencing a default implementation via `platforms: windows: default_package: screen_retriever_windows` or create a plugin named screen_retriever_windows.
+
+Package url_launcher:windows references url_launcher_windows:windows as the default plugin, but the package does not exist, or is not a plugin package.
+Ask the maintainers of url_launcher to either avoid referencing a default implementation via `platforms: windows: default_package: url_launcher_windows` or create a plugin named url_launcher_windows.
+
+Package shared_preferences:windows references shared_preferences_windows:windows as the default plugin, but the package does not exist, or is not a plugin package.
+Ask the maintainers of shared_preferences to either avoid referencing a default implementation via `platforms: windows: default_package: shared_preferences_windows` or create a plugin named shared_preferences_windows.
+
+Package path_provider:windows references path_provider_windows:windows as the default plugin, but the package does not exist, or is not a plugin package.
+Ask the maintainers of path_provider to either avoid referencing a default implementation via `platforms: windows: default_package: path_provider_windows` or create a plugin named path_provider_windows.
+
+Package flutter_secure_storage:windows references flutter_secure_storage_windows:windows as the default plugin, but the package does not exist, or is not a plugin package.
+Ask the maintainers of flutter_secure_storage to either avoid referencing a default implementation via `platforms: windows: default_package: flutter_secure_storage_windows` or create a plugin named flutter_secure_storage_windows.
+
+lib/core/controller.dart:5:8: Error: Error when reading '../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/file_picker-11.0.3/lib/file_picker.dart': Системе не удается найти указанный путь.
+
+import 'package:file_picker/file_picker.dart';
+       ^
+lib/ui/lyrics_editor.dart:3:8: Error: Error when reading '../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/file_picker-11.0.3/lib/file_picker.dart': Системе не удается найти указанный путь.
+
+import 'package:file_picker/file_picker.dart';
+       ^
+lib/ui/parity_panels.dart:4:8: Error: Error when reading '../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/file_picker-11.0.3/lib/file_picker.dart': Системе не удается найти указанный путь.
+
+import 'package:file_picker/file_picker.dart';
+       ^
+lib/services/desktop.dart:11:8: Error: Error when reading '../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/tray_manager-0.5.3/lib/tray_manager.dart': Системе не удается найти указанный путь.
+
+import 'package:tray_manager/tray_manager.dart';
+       ^
+lib/services/desktop.dart:14:8: Error: Error when reading '../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/window_manager-0.5.2/lib/window_manager.dart': Системе не удается найти указанный путь.
+
+import 'package:window_manager/window_manager.dart';
+       ^
+lib/services/push.dart:4:8: Error: Error when reading '../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/firebase_core-4.15.0/lib/firebase_core.dart': Системе не удается найти указанный путь.
+
+import 'package:firebase_core/firebase_core.dart';
+       ^
+../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/firebase_messaging-16.7.0/lib/firebase_messaging.dart:8:8: Error: Error when reading '../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/firebase_core-4.15.0/lib/firebase_core.dart': Системе не удается найти указанный путь.
+
+import 'package:firebase_core/firebase_core.dart';
+       ^
+../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/firebase_messaging_platform_interface-4.10.0/lib/src/platform_interface/platform_interface_messaging.dart:8:8: Error: Error when reading '../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/firebase_core-4.15.0/lib/firebase_core.dart': Системе не удается найти указанный путь.
+
+import 'package:firebase_core/firebase_core.dart';
+       ^
+../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/firebase_messaging_platform_interface-4.10.0/lib/src/method_channel/method_channel_messaging.dart:9:8: Error: Error when reading '../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/firebase_core-4.15.0/lib/firebase_core.dart': Системе не удается найти указанный путь.
+
+import 'package:firebase_core/firebase_core.dart';
+       ^
+../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/firebase_messaging_platform_interface-4.10.0/lib/src/method_channel/utils/exception.dart:6:8: Error: Error when reading '../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/firebase_core-4.15.0/lib/firebase_core.dart': Системе не удается найти указанный путь.
+
+import 'package:firebase_core/firebase_core.dart';
+       ^
+../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/_flutterfire_internals-1.3.77/lib/_flutterfire_internals.dart:14:8: Error: Error when reading '../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/firebase_core-4.15.0/lib/firebase_core.dart': Системе не удается найти указанный путь.
+
+import 'package:firebase_core/firebase_core.dart';
+       ^
+../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/_flutterfire_internals-1.3.77/lib/src/exception.dart:6:8: Error: Error when reading '../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/firebase_core-4.15.0/lib/firebase_core.dart': Системе не удается найти указанный путь.
+
+import 'package:firebase_core/firebase_core.dart';
+       ^
+lib/services/desktop.dart:229:48: Error: Type 'WindowListener' not found.
+class DesktopShell extends ChangeNotifier with WindowListener, TrayListener {
+                                               ^^^^^^^^^^^^^^
+lib/services/desktop.dart:229:64: Error: Type 'TrayListener' not found.
+class DesktopShell extends ChangeNotifier with WindowListener, TrayListener {
+                                                               ^^^^^^^^^^^^
+lib/services/desktop.dart:622:28: Error: Type 'MenuItem' not found.
+  void onTrayMenuItemClick(MenuItem menuItem) {
+                           ^^^^^^^^
+../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/firebase_messaging-16.7.0/lib/src/messaging.dart:25:3: Error: Type 'FirebaseApp' not found.
+  FirebaseApp app;
+  ^^^^^^^^^^^
+../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/firebase_messaging-16.7.0/lib/src/messaging.dart:38:52: Error: Type 'FirebaseApp' not found.
+  factory FirebaseMessaging._instanceFor({required FirebaseApp app}) {
+                                                   ^^^^^^^^^^^
+../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/firebase_messaging_platform_interface-4.10.0/lib/src/platform_interface/platform_interface_messaging.dart:35:9: Error: Type 'FirebaseApp' not found.
+  final FirebaseApp? appInstance;
+        ^^^^^^^^^^^
+../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/firebase_messaging_platform_interface-4.10.0/lib/src/platform_interface/platform_interface_messaging.dart:23:14: Error: Type 'FirebaseApp' not found.
+    required FirebaseApp app,
+             ^^^^^^^^^^^
+../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/firebase_messaging_platform_interface-4.10.0/lib/src/platform_interface/platform_interface_messaging.dart:38:3: Error: Type 'FirebaseApp' not found.
+  FirebaseApp get app {
+  ^^^^^^^^^^^
+../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/firebase_messaging_platform_interface-4.10.0/lib/src/platform_interface/platform_interface_messaging.dart:114:51: Error: Type 'FirebaseApp' not found.
+  FirebaseMessagingPlatform delegateFor({required FirebaseApp app}) {
+                                                  ^^^^^^^^^^^
+../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/firebase_messaging_platform_interface-4.10.0/lib/src/method_channel/method_channel_messaging.dart:70:44: Error: Type 'FirebaseApp' not found.
+  MethodChannelFirebaseMessaging({required FirebaseApp app})
+                                           ^^^^^^^^^^^
+../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/firebase_messaging_platform_interface-4.10.0/lib/src/method_channel/method_channel_messaging.dart:149:51: Error: Type 'FirebaseApp' not found.
+  FirebaseMessagingPlatform delegateFor({required FirebaseApp app}) {
+                                                  ^^^^^^^^^^^
+../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/_flutterfire_internals-1.3.77/lib/_flutterfire_internals.dart:64:1: Error: Type 'FirebaseException' not found.
+FirebaseException _firebaseExceptionFromCoreFirebaseError(
+^^^^^^^^^^^^^^^^^
+../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/_flutterfire_internals-1.3.77/lib/src/exception.dart:39:1: Error: Type 'FirebaseException' not found.
+FirebaseException platformExceptionToFirebaseException(
+^^^^^^^^^^^^^^^^^
+lib/services/desktop.dart:229:7: Error: The type 'WindowListener' can't be mixed in.
+class DesktopShell extends ChangeNotifier with WindowListener, TrayListener {
+      ^
+lib/services/desktop.dart:229:7: Error: The type 'TrayListener' can't be mixed in.
+class DesktopShell extends ChangeNotifier with WindowListener, TrayListener {
+      ^
+lib/core/controller.dart:2440:29: Error: The getter 'FilePicker' isn't defined for the type 'WaveController'.
+ - 'WaveController' is from 'package:glukwave/core/controller.dart' ('lib/core/controller.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'FilePicker'.
+    final selection = await FilePicker.pickFiles(
+                            ^^^^^^^^^^
+lib/core/controller.dart:2441:13: Error: The getter 'FileType' isn't defined for the type 'WaveController'.
+ - 'WaveController' is from 'package:glukwave/core/controller.dart' ('lib/core/controller.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'FileType'.
+      type: FileType.audio,
+            ^^^^^^^^
+lib/core/controller.dart:2468:29: Error: The getter 'FilePicker' isn't defined for the type 'WaveController'.
+ - 'WaveController' is from 'package:glukwave/core/controller.dart' ('lib/core/controller.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'FilePicker'.
+    final selection = await FilePicker.pickFiles(
+                            ^^^^^^^^^^
+lib/core/controller.dart:2469:13: Error: The getter 'FileType' isn't defined for the type 'WaveController'.
+ - 'WaveController' is from 'package:glukwave/core/controller.dart' ('lib/core/controller.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'FileType'.
+      type: FileType.custom,
+            ^^^^^^^^
+lib/core/controller.dart:2554:29: Error: The getter 'FilePicker' isn't defined for the type 'WaveController'.
+ - 'WaveController' is from 'package:glukwave/core/controller.dart' ('lib/core/controller.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'FilePicker'.
+    final selection = await FilePicker.pickFiles(
+                            ^^^^^^^^^^
+lib/core/controller.dart:2555:13: Error: The getter 'FileType' isn't defined for the type 'WaveController'.
+ - 'WaveController' is from 'package:glukwave/core/controller.dart' ('lib/core/controller.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'FileType'.
+      type: FileType.custom,
+            ^^^^^^^^
+lib/ui/lyrics_editor.dart:120:28: Error: The getter 'FilePicker' isn't defined for the type '_LyricsEditorState'.
+ - '_LyricsEditorState' is from 'package:glukwave/ui/lyrics_editor.dart' ('lib/ui/lyrics_editor.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'FilePicker'.
+      final result = await FilePicker.pickFiles(
+                           ^^^^^^^^^^
+lib/ui/lyrics_editor.dart:121:15: Error: The getter 'FileType' isn't defined for the type '_LyricsEditorState'.
+ - '_LyricsEditorState' is from 'package:glukwave/ui/lyrics_editor.dart' ('lib/ui/lyrics_editor.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'FileType'.
+        type: FileType.custom,
+              ^^^^^^^^
+lib/services/desktop.dart:250:13: Error: Not a constant expression.
+      const WindowOptions(
+            ^^^^^^^^^^^^^
+lib/services/desktop.dart:248:11: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+    await windowManager.ensureInitialized();
+          ^^^^^^^^^^^^^
+lib/services/desktop.dart:249:11: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+    await windowManager.waitUntilReadyToShow(
+          ^^^^^^^^^^^^^
+lib/services/desktop.dart:259:17: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+          await windowManager.show();
+                ^^^^^^^^^^^^^
+lib/services/desktop.dart:260:17: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+          await windowManager.focus();
+                ^^^^^^^^^^^^^
+lib/services/desktop.dart:264:33: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+    final initialBounds = await windowManager.getBounds();
+                                ^^^^^^^^^^^^^
+lib/services/desktop.dart:268:5: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+    windowManager.addListener(this);
+    ^^^^^^^^^^^^^
+lib/services/desktop.dart:269:5: Error: The getter 'trayManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'trayManager'.
+    trayManager.addListener(this);
+    ^^^^^^^^^^^
+lib/services/desktop.dart:270:11: Error: The getter 'trayManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'trayManager'.
+    await trayManager.setIcon(
+          ^^^^^^^^^^^
+lib/services/desktop.dart:279:11: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+    await windowManager.setPreventClose(true);
+          ^^^^^^^^^^^^^
+lib/services/desktop.dart:286:11: Error: The getter 'trayManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'trayManager'.
+    await trayManager.setToolTip(wt('native.adc9a38302'));
+          ^^^^^^^^^^^
+lib/services/desktop.dart:287:11: Error: The getter 'trayManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'trayManager'.
+    await trayManager.setContextMenu(
+          ^^^^^^^^^^^
+lib/services/desktop.dart:288:7: Error: The method 'Menu' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing method, or defining a method named 'Menu'.
+      Menu(
+      ^^^^
+lib/services/desktop.dart:290:11: Error: The method 'MenuItem' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing method, or defining a method named 'MenuItem'.
+          MenuItem(key: 'open', label: wt('native.c82b849d9a')),
+          ^^^^^^^^
+lib/services/desktop.dart:291:11: Error: The method 'MenuItem' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing method, or defining a method named 'MenuItem'.
+          MenuItem(key: 'play', label: wt('native.3f60cf701d')),
+          ^^^^^^^^
+lib/services/desktop.dart:292:11: Error: The method 'MenuItem' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing method, or defining a method named 'MenuItem'.
+          MenuItem(key: 'next', label: wt('native.c97fa8b29b')),
+          ^^^^^^^^
+lib/services/desktop.dart:293:11: Error: The method 'MenuItem' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing method, or defining a method named 'MenuItem'.
+          MenuItem(key: 'mini', label: wt('native.e5ee886686')),
+          ^^^^^^^^
+lib/services/desktop.dart:294:11: Error: The getter 'MenuItem' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'MenuItem'.
+          MenuItem.separator(),
+          ^^^^^^^^
+lib/services/desktop.dart:295:11: Error: The method 'MenuItem' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing method, or defining a method named 'MenuItem'.
+          MenuItem(key: 'quit', label: wt('native.026abb1e0a')),
+          ^^^^^^^^
+lib/services/desktop.dart:308:30: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+        final bounds = await windowManager.getBounds();
+                             ^^^^^^^^^^^^^
+lib/services/desktop.dart:310:15: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+        await windowManager.setMinimumSize(
+              ^^^^^^^^^^^^^
+lib/services/desktop.dart:313:15: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+        await windowManager.setBounds(
+              ^^^^^^^^^^^^^
+lib/services/desktop.dart:334:11: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+    await windowManager.setTitle(value);
+          ^^^^^^^^^^^^^
+lib/services/desktop.dart:335:11: Error: The getter 'trayManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'trayManager'.
+    await trayManager.setToolTip(
+          ^^^^^^^^^^^
+lib/services/desktop.dart:361:15: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+    if (await windowManager.isMinimized()) {
+              ^^^^^^^^^^^^^
+lib/services/desktop.dart:365:30: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+    _normalMaximized = await windowManager.isMaximized();
+                             ^^^^^^^^^^^^^
+lib/services/desktop.dart:366:33: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+    if (_normalMaximized) await windowManager.unmaximize();
+                                ^^^^^^^^^^^^^
+lib/services/desktop.dart:367:26: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+    final bounds = await windowManager.getBounds();
+                         ^^^^^^^^^^^^^
+lib/services/desktop.dart:394:15: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+    if (await windowManager.isMinimized()) return;
+              ^^^^^^^^^^^^^
+lib/services/desktop.dart:395:29: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+    final maximized = await windowManager.isMaximized();
+                            ^^^^^^^^^^^^^
+lib/services/desktop.dart:399:26: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+    final bounds = await windowManager.getBounds();
+                         ^^^^^^^^^^^^^
+lib/services/desktop.dart:413:11: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+    await windowManager.setOpacity(1);
+          ^^^^^^^^^^^^^
+lib/services/desktop.dart:414:11: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+    await windowManager.setTitleBarStyle(TitleBarStyle.normal);
+          ^^^^^^^^^^^^^
+lib/services/desktop.dart:414:42: Error: The getter 'TitleBarStyle' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'TitleBarStyle'.
+    await windowManager.setTitleBarStyle(TitleBarStyle.normal);
+                                         ^^^^^^^^^^^^^
+lib/services/desktop.dart:415:11: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+    await windowManager.setAlwaysOnTop(false);
+          ^^^^^^^^^^^^^
+lib/services/desktop.dart:416:11: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+    await windowManager.setSkipTaskbar(false);
+          ^^^^^^^^^^^^^
+lib/services/desktop.dart:417:11: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+    await windowManager.setResizable(true);
+          ^^^^^^^^^^^^^
+lib/services/desktop.dart:418:11: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+    await windowManager.setMaximizable(true);
+          ^^^^^^^^^^^^^
+lib/services/desktop.dart:419:11: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+    await windowManager.setMinimumSize(const Size(760, 540));
+          ^^^^^^^^^^^^^
+lib/services/desktop.dart:420:38: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+    if (_normalBounds != null) await windowManager.setBounds(_normalBounds!);
+                                     ^^^^^^^^^^^^^
+lib/services/desktop.dart:421:33: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+    if (_normalMaximized) await windowManager.maximize();
+                                ^^^^^^^^^^^^^
+lib/services/desktop.dart:428:11: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+    await windowManager.show();
+          ^^^^^^^^^^^^^
+lib/services/desktop.dart:429:15: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+    if (await windowManager.isMinimized()) await windowManager.restore();
+              ^^^^^^^^^^^^^
+lib/services/desktop.dart:429:50: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+    if (await windowManager.isMinimized()) await windowManager.restore();
+                                                 ^^^^^^^^^^^^^
+lib/services/desktop.dart:430:11: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+    await windowManager.focus();
+          ^^^^^^^^^^^^^
+lib/services/desktop.dart:437:13: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+      await windowManager.show();
+            ^^^^^^^^^^^^^
+lib/services/desktop.dart:438:13: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+      await windowManager.focus();
+            ^^^^^^^^^^^^^
+lib/services/desktop.dart:439:22: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+    } else if (await windowManager.isVisible() &&
+                     ^^^^^^^^^^^^^
+lib/services/desktop.dart:440:16: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+        !await windowManager.isMinimized()) {
+               ^^^^^^^^^^^^^
+lib/services/desktop.dart:441:13: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+      await windowManager.hide();
+            ^^^^^^^^^^^^^
+lib/services/desktop.dart:443:13: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+      await windowManager.show();
+            ^^^^^^^^^^^^^
+lib/services/desktop.dart:444:17: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+      if (await windowManager.isMinimized()) await windowManager.restore();
+                ^^^^^^^^^^^^^
+lib/services/desktop.dart:444:52: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+      if (await windowManager.isMinimized()) await windowManager.restore();
+                                                   ^^^^^^^^^^^^^
+lib/services/desktop.dart:445:13: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+      await windowManager.focus();
+            ^^^^^^^^^^^^^
+lib/services/desktop.dart:453:17: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+      if (await windowManager.isMinimized()) await windowManager.restore();
+                ^^^^^^^^^^^^^
+lib/services/desktop.dart:453:52: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+      if (await windowManager.isMinimized()) await windowManager.restore();
+                                                   ^^^^^^^^^^^^^
+lib/services/desktop.dart:458:13: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+      await windowManager.setMinimumSize(Size(330, size.height));
+            ^^^^^^^^^^^^^
+lib/services/desktop.dart:459:13: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+      await windowManager.setAsFrameless();
+            ^^^^^^^^^^^^^
+lib/services/desktop.dart:460:13: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+      await windowManager.setSize(size);
+            ^^^^^^^^^^^^^
+lib/services/desktop.dart:461:13: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+      await windowManager.setAlwaysOnTop(true);
+            ^^^^^^^^^^^^^
+lib/services/desktop.dart:462:13: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+      await windowManager.setSkipTaskbar(true);
+            ^^^^^^^^^^^^^
+lib/services/desktop.dart:463:13: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+      await windowManager.setOpacity(.94);
+            ^^^^^^^^^^^^^
+lib/services/desktop.dart:464:13: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+      await windowManager.setResizable(false);
+            ^^^^^^^^^^^^^
+lib/services/desktop.dart:465:13: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+      await windowManager.setMaximizable(false);
+            ^^^^^^^^^^^^^
+lib/services/desktop.dart:468:15: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+        await windowManager.setBounds(placement);
+              ^^^^^^^^^^^^^
+lib/services/desktop.dart:475:11: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+    await windowManager.show();
+          ^^^^^^^^^^^^^
+lib/services/desktop.dart:481:19: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+    final ratio = windowManager.getDevicePixelRatio();
+                  ^^^^^^^^^^^^^
+lib/services/desktop.dart:511:24: Error: The getter 'trayManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'trayManager'.
+    final tray = await trayManager.getBounds();
+                       ^^^^^^^^^^^
+lib/services/desktop.dart:530:43: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+    _miniBoundsBeforeQuick = mini ? await windowManager.getBounds() : null;
+                                          ^^^^^^^^^^^^^
+lib/services/desktop.dart:531:29: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+    final minimized = await windowManager.isMinimized();
+                            ^^^^^^^^^^^^^
+lib/services/desktop.dart:533:38: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+        !mini && !minimized && await windowManager.isVisible();
+                                     ^^^^^^^^^^^^^
+lib/services/desktop.dart:535:26: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+    if (minimized) await windowManager.restore();
+                         ^^^^^^^^^^^^^
+lib/services/desktop.dart:539:11: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+    await windowManager.setMinimumSize(Size(300, size.height));
+          ^^^^^^^^^^^^^
+lib/services/desktop.dart:540:11: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+    await windowManager.setAsFrameless();
+          ^^^^^^^^^^^^^
+lib/services/desktop.dart:541:11: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+    await windowManager.setAlwaysOnTop(true);
+          ^^^^^^^^^^^^^
+lib/services/desktop.dart:542:11: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+    await windowManager.setSkipTaskbar(true);
+          ^^^^^^^^^^^^^
+lib/services/desktop.dart:543:11: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+    await windowManager.setOpacity(1);
+          ^^^^^^^^^^^^^
+lib/services/desktop.dart:544:11: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+    await windowManager.setResizable(false);
+          ^^^^^^^^^^^^^
+lib/services/desktop.dart:545:11: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+    await windowManager.setMaximizable(false);
+          ^^^^^^^^^^^^^
+lib/services/desktop.dart:546:11: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+    await windowManager.setBounds(await _cornerBounds(size));
+          ^^^^^^^^^^^^^
+lib/services/desktop.dart:549:11: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+    await windowManager.show();
+          ^^^^^^^^^^^^^
+lib/services/desktop.dart:550:11: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+    await windowManager.focus();
+          ^^^^^^^^^^^^^
+lib/services/desktop.dart:556:11: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+    await windowManager.hide();
+          ^^^^^^^^^^^^^
+lib/services/desktop.dart:563:13: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+      await windowManager.setMinimumSize(Size(330, size.height));
+            ^^^^^^^^^^^^^
+lib/services/desktop.dart:564:13: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+      await windowManager.setOpacity(.94);
+            ^^^^^^^^^^^^^
+lib/services/desktop.dart:567:15: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+        await windowManager.setBounds(
+              ^^^^^^^^^^^^^
+lib/services/desktop.dart:572:13: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+      await windowManager.show();
+            ^^^^^^^^^^^^^
+lib/services/desktop.dart:576:40: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+    if (_mainVisibleBeforeQuick) await windowManager.show();
+                                       ^^^^^^^^^^^^^
+lib/services/desktop.dart:582:28: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+    if (initialized) await windowManager.startDragging();
+                           ^^^^^^^^^^^^^
+lib/services/desktop.dart:587:33: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+    if (!_quitting) _background(windowManager.hide());
+                                ^^^^^^^^^^^^^
+lib/services/desktop.dart:618:15: Error: The getter 'trayManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'trayManager'.
+    unawaited(trayManager.popUpContextMenu());
+              ^^^^^^^^^^^
+lib/services/desktop.dart:622:28: Error: 'MenuItem' isn't a type.
+  void onTrayMenuItemClick(MenuItem menuItem) {
+                           ^^^^^^^^
+lib/services/desktop.dart:651:11: Error: The getter 'trayManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'trayManager'.
+    await trayManager.destroy();
+          ^^^^^^^^^^^
+lib/services/desktop.dart:652:11: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+    await windowManager.destroy();
+          ^^^^^^^^^^^^^
+lib/services/desktop.dart:659:7: Error: The getter 'windowManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'windowManager'.
+      windowManager.removeListener(this);
+      ^^^^^^^^^^^^^
+lib/services/desktop.dart:660:7: Error: The getter 'trayManager' isn't defined for the type 'DesktopShell'.
+ - 'DesktopShell' is from 'package:glukwave/services/desktop.dart' ('lib/services/desktop.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'trayManager'.
+      trayManager.removeListener(this);
+      ^^^^^^^^^^^
+lib/services/push.dart:28:24: Error: Not a constant expression.
+        options: const FirebaseOptions(
+                       ^^^^^^^^^^^^^^^
+lib/services/push.dart:26:9: Error: The getter 'Firebase' isn't defined for the type 'WavePush'.
+ - 'WavePush' is from 'package:glukwave/services/push.dart' ('lib/services/push.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'Firebase'.
+    if (Firebase.apps.isEmpty) {
+        ^^^^^^^^
+lib/services/push.dart:27:13: Error: The getter 'Firebase' isn't defined for the type 'WavePush'.
+ - 'WavePush' is from 'package:glukwave/services/push.dart' ('lib/services/push.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'Firebase'.
+      await Firebase.initializeApp(
+            ^^^^^^^^
+lib/services/push.dart:65:9: Error: The getter 'Firebase' isn't defined for the type 'WavePush'.
+ - 'WavePush' is from 'package:glukwave/services/push.dart' ('lib/services/push.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'Firebase'.
+    if (Firebase.apps.isNotEmpty) {
+        ^^^^^^^^
+lib/ui/parity_panels.dart:1840:36: Error: The getter 'FilePicker' isn't defined for the type 'PlaylistPublishing'.
+ - 'PlaylistPublishing' is from 'package:glukwave/ui/parity_panels.dart' ('lib/ui/parity_panels.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'FilePicker'.
+                final file = await FilePicker.pickFiles(
+                                   ^^^^^^^^^^
+lib/ui/parity_panels.dart:1841:25: Error: The getter 'FileType' isn't defined for the type 'PlaylistPublishing'.
+ - 'PlaylistPublishing' is from 'package:glukwave/ui/parity_panels.dart' ('lib/ui/parity_panels.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'FileType'.
+                  type: FileType.custom,
+                        ^^^^^^^^
+lib/ui/parity_panels.dart:2348:44: Error: The getter 'FilePicker' isn't defined for the type '_ReleaseFormState'.
+ - '_ReleaseFormState' is from 'package:glukwave/ui/parity_panels.dart' ('lib/ui/parity_panels.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'FilePicker'.
+                      final result = await FilePicker.pickFiles(
+                                           ^^^^^^^^^^
+lib/ui/parity_panels.dart:2349:31: Error: The getter 'FileType' isn't defined for the type '_ReleaseFormState'.
+ - '_ReleaseFormState' is from 'package:glukwave/ui/parity_panels.dart' ('lib/ui/parity_panels.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'FileType'.
+                        type: FileType.custom,
+                              ^^^^^^^^
+../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/firebase_messaging-16.7.0/lib/src/messaging.dart:25:3: Error: 'FirebaseApp' isn't a type.
+  FirebaseApp app;
+  ^^^^^^^^^^^
+../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/firebase_messaging-16.7.0/lib/src/messaging.dart:32:5: Error: 'FirebaseApp' isn't a type.
+    FirebaseApp defaultAppInstance = Firebase.app();
+    ^^^^^^^^^^^
+../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/firebase_messaging-16.7.0/lib/src/messaging.dart:32:38: Error: Undefined name 'Firebase'.
+    FirebaseApp defaultAppInstance = Firebase.app();
+                                     ^^^^^^^^
+../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/firebase_messaging-16.7.0/lib/src/messaging.dart:38:52: Error: 'FirebaseApp' isn't a type.
+  factory FirebaseMessaging._instanceFor({required FirebaseApp app}) {
+                                                   ^^^^^^^^^^^
+../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/firebase_messaging_platform_interface-4.10.0/lib/src/platform_interface/platform_interface_messaging.dart:23:14: Error: 'FirebaseApp' isn't a type.
+    required FirebaseApp app,
+             ^^^^^^^^^^^
+../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/firebase_messaging_platform_interface-4.10.0/lib/src/platform_interface/platform_interface_messaging.dart:35:9: Error: 'FirebaseApp' isn't a type.
+  final FirebaseApp? appInstance;
+        ^^^^^^^^^^^
+../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/firebase_messaging_platform_interface-4.10.0/lib/src/platform_interface/platform_interface_messaging.dart:40:14: Error: The getter 'Firebase' isn't defined for the type 'FirebaseMessagingPlatform'.
+ - 'FirebaseMessagingPlatform' is from 'package:firebase_messaging_platform_interface/src/platform_interface/platform_interface_messaging.dart' ('../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/firebase_messaging_platform_interface-4.10.0/lib/src/platform_interface/platform_interface_messaging.dart').
+Try correcting the name to the name of an existing getter, or defining a getter or field named 'Firebase'.
+      return Firebase.app();
+             ^^^^^^^^
+../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/firebase_messaging_platform_interface-4.10.0/lib/src/platform_interface/platform_interface_messaging.dart:114:51: Error: 'FirebaseApp' isn't a type.
+  FirebaseMessagingPlatform delegateFor({required FirebaseApp app}) {
+                                                  ^^^^^^^^^^^
+../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/firebase_messaging_platform_interface-4.10.0/lib/src/method_channel/method_channel_messaging.dart:70:44: Error: 'FirebaseApp' isn't a type.
+  MethodChannelFirebaseMessaging({required FirebaseApp app})
+                                           ^^^^^^^^^^^
+../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/firebase_messaging_platform_interface-4.10.0/lib/src/method_channel/method_channel_messaging.dart:138:15: Error: The method 'FirebaseException' isn't defined for the type 'MethodChannelFirebaseMessaging'.
+ - 'MethodChannelFirebaseMessaging' is from 'package:firebase_messaging_platform_interface/src/method_channel/method_channel_messaging.dart' ('../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/firebase_messaging_platform_interface-4.10.0/lib/src/method_channel/method_channel_messaging.dart').
+Try correcting the name to the name of an existing method, or defining a method named 'FirebaseException'.
+        throw FirebaseException(
+              ^^^^^^^^^^^^^^^^^
+../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/firebase_messaging_platform_interface-4.10.0/lib/src/method_channel/method_channel_messaging.dart:149:51: Error: 'FirebaseApp' isn't a type.
+  FirebaseMessagingPlatform delegateFor({required FirebaseApp app}) {
+                                                  ^^^^^^^^^^^
+../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/_flutterfire_internals-1.3.77/lib/_flutterfire_internals.dart:79:10: Error: Method not found: 'FirebaseException'.
+  return FirebaseException(
+         ^^^^^^^^^^^^^^^^^
+../../../../../../AppData/Local/Pub/Cache/hosted/pub.dev/_flutterfire_internals-1.3.77/lib/src/exception.dart:80:10: Error: Method not found: 'FirebaseException'.
+  return FirebaseException(
+         ^^^^^^^^^^^^^^^^^
