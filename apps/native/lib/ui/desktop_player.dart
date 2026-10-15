@@ -1,3 +1,4 @@
+import 'playback_progress.dart';
 import 'scrolling_label.dart';
 import 'motion_icons.dart';
 import 'dart:async';
@@ -328,17 +329,14 @@ class _DesktopCompactPlayerState extends State<DesktopCompactPlayer> {
                         ],
                       ),
                       const SizedBox(height: 4),
-                      StreamBuilder<Duration>(
-                        stream: c.audio.positionStream,
-                        builder: (context, position) => ClipRRect(
+                      PlaybackProgress(
+                        controller: c,
+                        builder: (context, position, duration) => ClipRRect(
                           borderRadius: BorderRadius.circular(3),
                           child: LinearProgressIndicator(
                             minHeight: 2,
                             value: track != null && track.duration > 0
-                                ? ((position.data?.inMilliseconds ?? 0) /
-                                          1000 /
-                                          track.duration)
-                                      .clamp(0, 1)
+                                ? (position / 1000 / track.duration).clamp(0, 1)
                                 : 0,
                             backgroundColor: v.line,
                             color: c.trackLoading ? v.muted : v.accent,

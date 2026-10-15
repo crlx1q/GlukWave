@@ -1,0 +1,34 @@
+✔ real registration, unique identities, protected roles and sessions (2723.1279ms)
+✔ audio ingestion, protected streams and exact byte ranges (218.4152ms)
+✔ library mutations persist and public profiles hide private email (163.9149ms)
+✔ audio waveform respects private track access and serves measured PCM data (157.6516ms)
+✔ external lyrics are personal and consumer integration messages contain no developer setup (1430.0984ms)
+✔ private SoundCloud OAuth metadata remains account-scoped and cannot enter public search (55.9572ms)
+✔ rooms enforce controller permission, grant streams only while joined (469.4428ms)
+✔ device commands are scoped to owner and transfer rolls back on failure (304.7134ms)
+✔ QR/native challenges are pending, secret-bound and consumed exactly once (88.2444ms)
+✔ password reset invalidates existing sessions and reset link replay (282.5013ms)
+✔ provider unavailability, SSRF protections, parser and cryptographic invariants (27.6123ms)
+✔ playlist limits remain enforced under concurrent creation and import validates malformed rows (165.3287ms)
+✔ export imports cannot replace verified metadata in the shared catalog (17.2111ms)
+✔ durable store survives reopen and concurrent updates preserve every change (44.457ms)
+✔ likes use personal dates, stable reverse insertion ties and private metadata filtering (4.8825ms)
+✔ account addition dates never use another account catalog discovery or hidden memberships (0.9443ms)
+✔ real library API preserves repeated likes, orders dates independently of catalog, and resets only after re-like (2575.7408ms)
+✔ atomic playlist membership retains concurrent additions, is idempotent, and enforces owner/public access (3135.2519ms)
+✔ public collection targets canonicalize nicknames and exact provider links, rejecting SSRF and track URLs (18.7317ms)
+✔ Spotify public JSON is metadata-only, normalizes durations and reports incomplete embed data honestly (30.8762ms)
+✔ Yandex public playlists and likes hydrate in batches, retain one snapshot across pages, and omit private collections (34.1539ms)
+✔ SoundCloud public module discovers sets/likes, hydrates sparse metadata and keeps cursor credentials server-side (47.4618ms)
+✔ public readers reject external redirects, cap responses, classify timeouts and bound parallel work (14.3943ms)
+✔ YouTube flat pages keep normalized IDs, skip private videos, and discover public channel playlists (10.045ms)
+✔ Yandex closed likes are omitted from discovery and cannot be imported (3.6762ms)
+✔ public HTTP import needs no provider keys, preserves auth/plans/idempotency, imports chosen IDs and seeds taste (2864.2282ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9947.9536

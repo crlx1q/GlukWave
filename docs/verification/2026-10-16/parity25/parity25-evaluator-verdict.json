@@ -1,0 +1,369 @@
+{
+  "verdict": "PASS",
+  "checkedAt": "2026-10-15T21:33:41.561Z",
+  "attempt": 1,
+  "evaluator": "Independent evaluator agent, same provider",
+  "scores": {
+    "designQuality": 2,
+    "originality": 2,
+    "craft": 2,
+    "functionality": 2
+  },
+  "requiredFixes": [],
+  "summary": "Established visual direction preserved. Fresh desktop/mobile actual decoded playback and independent remote scrub show smooth position painting, stable draft ownership, one commit command and zero paused drift. Final native pending-selection guard reviewed against passing targeted regression.",
+  "limits": [
+    "A separate model provider is unavailable; this was a same-provider independent agent evaluation.",
+    "Fresh independent original app fixture inspection on5254 at1440/768/375/320/638; canonical5254ack hardcodes paused, so actual decoder/transport observations used its original-media/account copy5255with explicit QA state knobs.",
+    "Native24-pose CD/vinyl and expanded/lyric/library captures are real Flutter renderer output; native57/57affected suite and final4/4pending-selection progress subset passed with clean analysis. This does not claim physical Android/TV playback, notification shade or hardware audio.",
+    "Mini and room timeline call sites were inspected with shared-clock/pure-clock coverage; no independent end-to-end mini/room playback session was executed.",
+    "Canonical remote snapshots have no playback-rate field; remote/room interpolation retains existing1x semantics. Actual local1.5x/2x decoded playback was sampled.",
+    "Hidden/offscreen/reduced/power behavior has source/widget coverage; no physical OS background-power validation. Web wheel CLI emits coordinates0,0; manual-lyrics clearing used a controlled WheelEvent on the real surface.",
+    "Initial evaluator harness selector/coordinate errors are classified separately in proof notes. No production source edits, builds, owner media/account actions, installations or deployments were performed by this evaluator."
+  ],
+  "sources": [
+    {
+      "path": "apps/native/lib/core/controller.dart",
+      "sha256": "638d1ca93f81ee1dd16be9681a7a3c0eef8481fc2634b1c3ee03ff71075c5cd0"
+    },
+    {
+      "path": "apps/native/lib/core/library_mutations.dart",
+      "sha256": "c8b2139152d9e148696b6f095e8741d0f422dcb3cb827608074cb97ccbdf9d84"
+    },
+    {
+      "path": "apps/native/lib/core/library_order.dart",
+      "sha256": "fa7ef0f4fe4bbbcea97dc79fcf68a235b193ce9f39ff73bb81fa39aa7cf476ea"
+    },
+    {
+      "path": "apps/native/lib/l10n/focused_player_strings.dart",
+      "sha256": "e8dca1a2716f13bfa57f1fed7354125fb136be1292da41cc1b49086cb2039b3a"
+    },
+    {
+      "path": "apps/native/lib/services/audio.dart",
+      "sha256": "b5e9409ea207e2a0d0f5b7ea6f6dba06242214718cb88bc8a12dd6f85a6d9a73"
+    },
+    {
+      "path": "apps/native/lib/ui/album_stage.dart",
+      "sha256": "e245e5b1531db8d679858079aaa06cbf3993a601fde0c22f40aee8ef1a0477e0"
+    },
+    {
+      "path": "apps/native/lib/ui/app.dart",
+      "sha256": "3c22b4fc6979b843b858fea76e6e47cb2b25fd091b114b68208c30974e4a5ff8"
+    },
+    {
+      "path": "apps/native/lib/ui/cover_planes.dart",
+      "sha256": "91a8b6d9ade802fcf124ea0c57f6de939b5e109e58dacc634d8c841ebe34b215"
+    },
+    {
+      "path": "apps/native/lib/ui/desktop_player.dart",
+      "sha256": "34932214072a4b6fed1232c43f0d8f173e2c6a9aa5f1bda8beedc801e806021f"
+    },
+    {
+      "path": "apps/native/lib/ui/library_sort.dart",
+      "sha256": "6cc77d6588bd1d3456d1029c66f2d9191509c31dfe75c80bf58f314305f91330"
+    },
+    {
+      "path": "apps/native/lib/ui/listening_rail.dart",
+      "sha256": "c2d127163fd2b556c18a4514aa5a30d797507638b3bc7d3f59a4dadfe189cc93"
+    },
+    {
+      "path": "apps/native/lib/ui/lyric_timing.dart",
+      "sha256": "02cf614f54dbbb66ad23ca1c13eec55f913610d2831e40b1abac5a81d54b51cc"
+    },
+    {
+      "path": "apps/native/lib/ui/motion_icons.dart",
+      "sha256": "d2cbc9cf04da1ec47b4bd29e7bc4dd674db134929cd9ac1f60d8efaf1400cc47"
+    },
+    {
+      "path": "apps/native/lib/ui/native19_desktop_transport.dart",
+      "sha256": "ff4b4a86e7f2c9b9aadae2b0bba1dbef855278c796c49dd18420727363907c90"
+    },
+    {
+      "path": "apps/native/lib/ui/physical_wave_clock.dart",
+      "sha256": "bf5670a683461d13f8ea4f27ae7c611a0a92a5790782fa19bf47aeee19d1eb53"
+    },
+    {
+      "path": "apps/native/lib/ui/playback_progress.dart",
+      "sha256": "f16e22f37ccadd93a6f9056c8d49df05d4f564dbbbbba68183dda82259ae3bdd"
+    },
+    {
+      "path": "apps/native/lib/ui/player.dart",
+      "sha256": "a14811fa906d51a058f57dcfeeee86e01650fb66de468a424c0d6e5100acaf22"
+    },
+    {
+      "path": "apps/native/lib/ui/player_gestures.dart",
+      "sha256": "cfb18d8a2e01c3c27b7b8d5a53e69146159b30b8935ed8a6c6f01633b6e474f8"
+    },
+    {
+      "path": "apps/native/lib/ui/volume_slider.dart",
+      "sha256": "ea30b76281944e1e2da21ac474b38563b87ddc7dc520e2011fe6a11cb1b8955e"
+    },
+    {
+      "path": "apps/server/src/library-imports.js",
+      "sha256": "fe5b5adf60e6e8c4a9877f2f826df39ba10ab48766ddfab5adb28cc375273f66"
+    },
+    {
+      "path": "apps/server/src/library.js",
+      "sha256": "016e86b4078901e5911329f843baa168bab37d006efd7b2135c2e27834023b8d"
+    },
+    {
+      "path": "apps/web/public/startup.css",
+      "sha256": "e673ff95722c4c6b9b3066377a3a3c668214cfd8b7db2ed83cc51be3573f975e"
+    },
+    {
+      "path": "apps/web/public/startup.js",
+      "sha256": "e4181379349f672bfef0995a3b2b0eb81b583c92051513d822e57d695560cde8"
+    },
+    {
+      "path": "apps/web/src/album.tsx",
+      "sha256": "66efc18eecaa0d6ef75547a365386ebdfb97042c2574371d30b1a2ddd52f355d"
+    },
+    {
+      "path": "apps/web/src/community.tsx",
+      "sha256": "bbf2f311827637194bbed64d8c1374118b9c08c3201d5ea877fc91ffb0215411"
+    },
+    {
+      "path": "apps/web/src/continuous-range.tsx",
+      "sha256": "a386951502ede9d5528ad2bb7ff360be9a9d6590919f7804b7997af114eb9a3f"
+    },
+    {
+      "path": "apps/web/src/discovery-polish.css",
+      "sha256": "aac886b47c64fdd6197e7bd878e0d058177ac75dd19e636d13bb467656e23841"
+    },
+    {
+      "path": "apps/web/src/library-edits.ts",
+      "sha256": "68d729820cd7244215602623014b79c45c04f56d36ebbc83d77bfea13191930e"
+    },
+    {
+      "path": "apps/web/src/library-order.ts",
+      "sha256": "7fc9ea1817d5aa307aea0ac9edf0be141fd451a99634398c33a836d1eecd0d70"
+    },
+    {
+      "path": "apps/web/src/library-sort-copy.ts",
+      "sha256": "f67ce3fed41945af7a93cc5115ce8897a7343fdf44f8befcb9fc62f1c5500588"
+    },
+    {
+      "path": "apps/web/src/locales/de.json",
+      "sha256": "231fc4e8beef88aecb210aff671f6455aa6406bdc23ed661a2ddd7b8c6127a05"
+    },
+    {
+      "path": "apps/web/src/locales/en.json",
+      "sha256": "4b3d679f33fb189d114b8fb17ffcb691b0db1c69a135ee0681c569033707752e"
+    },
+    {
+      "path": "apps/web/src/locales/es.json",
+      "sha256": "e1121aff06bd72d3bd8dc66a22c88746a5dddc7ef8417a398007dd1f03d0dde9"
+    },
+    {
+      "path": "apps/web/src/locales/kk.json",
+      "sha256": "8b1e5e368f38c8bf52d3828639beec17bdbb10b7845bbec4c971550bfc2526b9"
+    },
+    {
+      "path": "apps/web/src/locales/ru.json",
+      "sha256": "383f78c5ac61b1a93c0ee3381cf2d17eba58fd509d099405b18c01ab7336520b"
+    },
+    {
+      "path": "apps/web/src/locales/uk.json",
+      "sha256": "8c0fc2586a818fd544a4bde05d8f559f995450200d515883ebecfd22e4a48168"
+    },
+    {
+      "path": "apps/web/src/lyric-timing.ts",
+      "sha256": "66a81d7695cddbe7439b9a146be9ae94a0f5548c4619cdcb5181718344a5bee7"
+    },
+    {
+      "path": "apps/web/src/main.tsx",
+      "sha256": "48ba7dd9e99d405b56a3475d9499d7ae75956445521112de847c22b2d60ad607"
+    },
+    {
+      "path": "apps/web/src/mini.tsx",
+      "sha256": "7fd09d038e14005c51402132dad3863cf7c2bd51e836d784123ed1d959cf508f"
+    },
+    {
+      "path": "apps/web/src/morph-icon.tsx",
+      "sha256": "1b317b3ca146d49e78feabc472bd6b21811196dae6895cbe24c81b9c7dcdb03c"
+    },
+    {
+      "path": "apps/web/src/pages.tsx",
+      "sha256": "f222dc4383f69d3d6e99a0287bfd8b855292b6417cb28dfdeade0073b629894c"
+    },
+    {
+      "path": "apps/web/src/player-ui.tsx",
+      "sha256": "fa54d6216b1722b37e5b97d4ac20645b07b0345a026ef12b703457a601747a0c"
+    },
+    {
+      "path": "apps/web/src/player.tsx",
+      "sha256": "70f9069e9fc56c263b918fdaa2c5e458929ee03f1f23e353c646b2a3eabf22c2"
+    },
+    {
+      "path": "apps/web/src/playlist-library.tsx",
+      "sha256": "447886e321db3ee850aade8be87c8dd7fed48a8b5e46b8deb744cc02ddc31792"
+    },
+    {
+      "path": "apps/web/src/progress-clock.ts",
+      "sha256": "6bcd62f63bd82177abacf8c957d0156ddf3f035b4fe13b566c9bd69ccd778041"
+    },
+    {
+      "path": "apps/web/src/progress-paint.tsx",
+      "sha256": "6790a416c113105c240b5872762a6136d93cd1a499a42eff05412f6df5753408"
+    },
+    {
+      "path": "apps/web/src/range-input.tsx",
+      "sha256": "76ac75f16ec8117f20a53ecdcfe1189b48aac074fd8b55cdde84b23a0548b28c"
+    },
+    {
+      "path": "apps/web/src/reference-cover.css",
+      "sha256": "1070513ebfd3dbf52c811d3277c30e98c66483ab36efc1b40069a2175ed1c177"
+    },
+    {
+      "path": "apps/web/src/refinement21.css",
+      "sha256": "3ad362a2412482121ea6248b1953ff7b5598ebc7bbae47edbd4307db6849ac63"
+    },
+    {
+      "path": "apps/web/src/store.tsx",
+      "sha256": "a91a4ee6b1d3e56c7c4db21c1c44c86b691b80ea173c20ef03ced61568ec0de5"
+    },
+    {
+      "path": "apps/web/src/types.ts",
+      "sha256": "763fc1b9d24732321fb669d2abc1fdec57660c510d63a723d380c8962a00ab45"
+    },
+    {
+      "path": "apps/web/src/visual-lifecycle.ts",
+      "sha256": "110a20be1bde0bfbae1108d644bd367e9709a1e31f27b743d6946899990cac0e"
+    }
+  ],
+  "screenshots": [
+    {
+      "path": "work/qa/parity25-evaluator-final-web-1440.png",
+      "sha256": "b2f97987a9a77191a1d390236d3d7daee65d3be0ce2458db16f9dcd37fdebd32"
+    },
+    {
+      "path": "work/qa/parity25-evaluator-final-web-768.png",
+      "sha256": "893ac1f36370783c44b8a797f59b9e096e008c36be2dd054e8ad24203cc24d4d"
+    },
+    {
+      "path": "work/qa/parity25-evaluator-final-web-768-controls.png",
+      "sha256": "ec1055c192e93e165dcca9df6abb7266b63132fc452e7ac35d75348e09d26a86"
+    },
+    {
+      "path": "work/qa/parity25-evaluator-final-web-375.png",
+      "sha256": "c654375ddbdab10e690eed212c2679a7d48e83c40ff38b51da5ebd9724c13db5"
+    },
+    {
+      "path": "work/qa/parity25-evaluator-final-web-375-controls.png",
+      "sha256": "e2d66816e4899eec16b4f375a1534aea7e4cdeee1e600298f8cb4247c598147c"
+    },
+    {
+      "path": "work/qa/parity25-evaluator-final-web-320.png",
+      "sha256": "09bca5ab922d92bff2133d67ab0fb35061b3a91be5b72fb08f0fd4c37bf50304"
+    },
+    {
+      "path": "work/qa/parity25-evaluator-final-web-320-controls.png",
+      "sha256": "f25a060913bde1534d74a7a0112d54be9c1f3297a7a5cfeb3946c4f0ede4dfab"
+    },
+    {
+      "path": "work/qa/parity25-evaluator-final-web-638.png",
+      "sha256": "b1d76928dbd306ab8cfab11fe1ff35cc3104745f840518d50bb4c8877d0251c4"
+    },
+    {
+      "path": "work/qa/parity25-evaluator-final-web-638-controls.png",
+      "sha256": "a618f10c2d1f9f7d09777dd64c2ee23ff2158a2cfe5fce570457c9136dbc06b1"
+    },
+    {
+      "path": "work/qa/parity25-evaluator-final-lyrics-1440.png",
+      "sha256": "d0a905ce10167724c86f1a19f491739e0eb0693149df51180b8f787280027046"
+    },
+    {
+      "path": "work/qa/parity25-evaluator-final-likes-1440.png",
+      "sha256": "cc0b4a1f855a5535b89cbf6cb1e5e23a30bf52c7c207ad1b2ecbbffebad24dc8"
+    },
+    {
+      "path": "work/qa/parity25-evaluator-final-playlist-1440.png",
+      "sha256": "ab2f9e0cfb1710c69e1617641f4b066d7d688c9cd4ed9a448cd943f5f49850d0"
+    },
+    {
+      "path": "work/qa/parity25-evaluator-final-footer-375.png",
+      "sha256": "325953e0d65b85ad3aa8e65ae9eaabc74d30c17c7dc74456a888faac70de4379"
+    },
+    {
+      "path": "work/qa/parity25-evaluator-final-375-controls.png",
+      "sha256": "142d0e2ac2b5e411de029b402bee3cc34309ba14b389fe81f940e42c32d75505"
+    },
+    {
+      "path": "work/qa/parity25-evaluator-final-remote-375.png",
+      "sha256": "9a78a656492b9f0118bbb208c163aee46af90046161fce2160ba184239e002ef"
+    },
+    {
+      "path": "work/qa/parity25-evaluator-native-turns.jpg",
+      "sha256": "dc7dcc4df4d61d03c7a4a4e13c69577fb0b42af68b4cc6b9fe0b76b399a499f5"
+    },
+    {
+      "path": "work/qa/native-parity25-expanded-1440.png",
+      "sha256": "ab484e0738b313e15150275bf01d190fd10498a7cb7e608ce9b90999db9ba92f"
+    },
+    {
+      "path": "work/qa/native-parity25-expanded-375.png",
+      "sha256": "d6e82d3fe285154955c0a758fbdaa2808c7bd3b57fcb188db6e0a19f10c51257"
+    },
+    {
+      "path": "work/qa/native-parity25-full-lyrics-1440.png",
+      "sha256": "a741d4d3d64feb9659b8ac460892761a44d4813e9fdb60e0c2262bace1822180"
+    },
+    {
+      "path": "work/qa/native-parity25-library-sort-320.png",
+      "sha256": "64fa0ee74abf4a82eb5d27eec5b12771aa2bbd8692a8f725f6bc9f87401501bb"
+    }
+  ],
+  "evidence": [
+    {
+      "path": "work/qa/parity25-evaluator-browser-proof.json",
+      "sha256": "8bfe41627123c505229108935d0112c99025705881a515dd1ea01c1f66b3cc4a"
+    },
+    {
+      "path": "work/qa/parity25-evaluator-remote-proof.json",
+      "sha256": "280846cc9efda4075bd394d4ef3c4001a0e8ff09ecd355f3acd4753d3014db6a"
+    },
+    {
+      "path": "work/qa/parity25-ui-guide.md",
+      "sha256": "9461178f72dfd68eacc08f4230cc279d8f60d41d724495a3eb092485d4770e15"
+    },
+    {
+      "path": "work/qa/parity25-progress-guide.md",
+      "sha256": "a5195324b21d451ffda55d0139c4f879af7a643866f670ae163c650580019393"
+    },
+    {
+      "path": "work/qa/parity25-progress-verification.json",
+      "sha256": "3b255ec6299d2a1cbe95961fdeac515f31c8bebb166797dd8b2a3a3a65b049ca"
+    },
+    {
+      "path": "work/qa/parity25-web-tests-final.log",
+      "sha256": "d69e3035db9a575a96573719aa9f2f2bc97b84aa2a72de3f6610a02c8f43e0b0"
+    },
+    {
+      "path": "work/qa/parity25-native-current-final.log",
+      "sha256": "8dce74f35838488cc29a76dfb500e43b046ab863ff942b94e62d87a3a7c31b93"
+    },
+    {
+      "path": "work/qa/parity25-native-analyze-final.log",
+      "sha256": "49a5b72fdc3f332bda7e392a7cb8975186559fcb4e3a7b54a1d97979c7689911"
+    },
+    {
+      "path": "work/qa/parity25-native-progress-pending-final.log",
+      "sha256": "b50bb2e74e616f945c0efbfa546813977ab8925522888d54dee75a217808f879"
+    },
+    {
+      "path": "work/qa/parity25-native-progress-pending-analyze.log",
+      "sha256": "f79dcfa63fcae8369862ea1d40c29d3fea71df90fa21199a57b9f35f24d7e940"
+    },
+    {
+      "path": "apps/web/qa/progress-clock.test.mjs",
+      "sha256": "54e19c5c1c77bf91e7cc94dd9600e6ce4a2ce2e77cf65ee355578a2679ccb10a"
+    },
+    {
+      "path": "apps/native/test/parity25_progress_test.dart",
+      "sha256": "01458fb5b926aabbd8112325cba55d7c581c45732457f2804d26e65b9982f0b1"
+    },
+    {
+      "path": "apps/native/test/parity25_hit_test.dart",
+      "sha256": "e03976fe113f0c1a195e91eea16313cc7fef004f49727cf2d938de054ebe1d83"
+    }
+  ]
+}

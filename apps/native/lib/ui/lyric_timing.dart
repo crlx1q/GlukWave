@@ -30,4 +30,4 @@ import '../core/models.dart';
 }
 
 double lyricDefocus(int distance, int active) =>
-    active < 0 || distance <= 1 ? 0 : ((distance - 1) * .35).clamp(0.0, 1.6);
+    active < 0 || distance <= 1 ? 0 : ((distance - 1) * 1.15).clamp(0.0, 5.0);

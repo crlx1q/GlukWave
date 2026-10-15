@@ -1,0 +1,35 @@
+00:00 +0: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/notification25_test.dart
+00:00 +0: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/notification25_test.dart: notification heart is selected initially, follows optimistic state and rollback without restarting playback
+00:00 +0 -1: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/notification25_test.dart: notification heart is selected initially, follows optimistic state and rollback without restarting playback [E]
+  Expected: Duration:<0:00:00.256176>
+    Actual: Duration:<0:00:00.288084>
+  
+  package:matcher                                     expect
+  package:flutter_test/src/widget_tester.dart 473:18  expect
+  test\notification25_test.dart 59:9                  main.<fn>
+  
+00:00 +0 -1: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/notification25_test.dart: notification action without extras is bound to its actual track and account
+00:01 +1 -1: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/notification25_test.dart: system heart rating sets intent idempotently and rejects another track or account
+00:14 +2 -1: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity23_state_test.dart: background Connect bridge sends no credentials and respects a system notification stop
+00:14 +3 -1: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity23_state_test.dart: payload-free invalidations retain names and share a refresh with one trailing update
+00:15 +4 -1: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity23_state_test.dart: an old account response cannot replace a new account directory
+00:15 +5 -1: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity23_state_test.dart: independent snapshots preserve local media, repeat, shuffle and wave preferences
+00:15 +6 -1: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity23_state_test.dart: cloud transfer exits LAN before issuing one scoped account command
+00:15 +7 -1: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity23_state_test.dart: phone local output stays full volume, remote volume remains independent and notification likes are scoped to their track
+00:19 +8 -1: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/playlist22_test.dart: (setUpAll)
+00:19 +8 -1: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/startup_config_test.dart: production media service configuration constructs with assertions on
+00:19 +9 -1: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/startup_config_test.dart: production media service configuration constructs with assertions on
+00:19 +10 -1: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/playlist22_test.dart: Cover acknowledgement preserves newer edits and cannot resurrect a deleted playlist
+00:19 +11 -1: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/playlist22_test.dart: Journal failed edit retains later intent and pending refresh overlay; cache is confirmed
+00:19 +12 -1: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/playlist22_test.dart: Controller likes notify immediately, serialize final intent and rollback only failed request
+00:20 +13 -1: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/playlist22_test.dart: Controller independent entity writes do not queue a like behind a slow playlist
+00:20 +14 -1: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/playlist22_test.dart: Controller membership uses atomic encoded PUT, retains pending during refresh and persists confirmed only
+00:23 +15 -1: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/playlist22_test.dart: Controller create draft settles once; rejected create rolls back and stale account reply is ignored
+00:25 +16 -1: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/playlist22_test.dart: Create from a non-library search track seeds playable metadata before and after acknowledgement
+00:25 +17 -1: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/playlist22_test.dart: Controller ignores GET begun before canonical membership ack in both refresh paths
+00:27 +18 -1: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/playlist22_test.dart: Playlist picker, optimistic draft and failure keep inputs and fit 320.0
+00:32 +19 -1: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/playlist22_test.dart: Playlist picker, optimistic draft and failure keep inputs and fit 375.0
+00:33 +20 -1: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/playlist22_test.dart: Playlist picker, optimistic draft and failure keep inputs and fit 1280.0
+00:34 +21 -1: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/playlist22_test.dart: Playlist editor keeps delete confirmation mounted through optimistic rollback
+00:35 +22 -1: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/playlist22_test.dart: (tearDownAll)
+00:35 +22 -1: Some tests failed.

@@ -46,10 +46,11 @@ export function setupLibraryImports(app,ctx,playlistTracks,publicImports){
         const user=await check(),ids=[...tracks.keys()];let playlist=null,imported=ids.length,deduplicated=0;
         if(b.destination==='likes'){
           if(ctx.validateTracks)await ctx.validateTracks(ids,user);else for(let at=0;at<ids.length;at+=12)await Promise.all(ids.slice(at,at+12).map(id=>ctx.requireTrack(id,user)));
+          const importedAt=now();
           await ctx.store.update('libraries',uid,previous=>{
             const existing=previous||{id:uid,likedIds:[],history:[]},before=new Set(existing.likedIds);
             deduplicated=ids.filter(id=>before.has(id)).length;
-            return {...existing,likedIds:[...new Set([...before,...ids])],likedAt:{...existing.likedAt,...Object.fromEntries(ids.filter(id=>!before.has(id)).map(id=>[id,now()]))}};
+            return {...existing,likedIds:[...new Set([...before,...ids])],likedAt:{...existing.likedAt,...Object.fromEntries(ids.filter(id=>!before.has(id)).map(id=>[id,importedAt]))},addedAt:{...existing.addedAt,...Object.fromEntries(ids.filter(id=>!before.has(id)&&!existing.addedAt?.[id]).map(id=>[id,importedAt]))}};
           });imported-=deduplicated;
         }else playlist=await ctx.createPlaylist(uid,{name:b.name||systemText('importedTracks',req.language),trackIds:ids});
         await seedImportedTaste(ctx,uid,ids);

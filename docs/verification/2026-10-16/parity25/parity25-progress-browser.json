@@ -1,0 +1,4354 @@
+{
+  "at": "2026-10-15T21:26:09.956Z",
+  "fixture": "work/qa/parity25-progress-server.mjs (original ui25 fixture copied to 5255 with explicit playing/seek test knobs)",
+  "cases": {
+    "desktop-local-1x": {
+      "frames": 95,
+      "distinct": 95,
+      "elapsedMs": 1004.2000000000118,
+      "first": 0.285238,
+      "last": 1.287276,
+      "maxStep": 0.058616,
+      "maxMediaError": 0.015876,
+      "rows": [
+        {
+          "actual": 0.288,
+          "ms": 1.399999994027894,
+          "paint": "0.285238",
+          "playing": true,
+          "rail": 0.11884916666666666,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.285238
+        },
+        {
+          "actual": 0.292726,
+          "ms": 8.299999994051177,
+          "paint": "0.288603",
+          "playing": true,
+          "rail": 0.12025125,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.288603
+        },
+        {
+          "actual": 0.301581,
+          "ms": 15.399999994027894,
+          "paint": "0.295117",
+          "playing": true,
+          "rail": 0.12296541666666667,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.295117
+        },
+        {
+          "actual": 0.305433,
+          "ms": 22.399999994027898,
+          "paint": "0.304",
+          "playing": true,
+          "rail": 0.12666666666666665,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.304
+        },
+        {
+          "actual": 0.363653,
+          "ms": 29.399999994027898,
+          "paint": "0.353911",
+          "playing": true,
+          "rail": 0.1475045833370586,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.353911
+        },
+        {
+          "actual": 0.371005,
+          "ms": 78.59999999403954,
+          "paint": "0.368",
+          "playing": true,
+          "rail": 0.15333333333333335,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.368
+        },
+        {
+          "actual": 0.384,
+          "ms": 92.69999999404536,
+          "paint": "0.376988",
+          "playing": true,
+          "rail": 0.15707833333333332,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.376988
+        },
+        {
+          "actual": 0.387367,
+          "ms": 106.69999999404536,
+          "paint": "0.384",
+          "playing": true,
+          "rail": 0.16,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.384
+        },
+        {
+          "actual": 0.40323,
+          "ms": 113.79999999405118,
+          "paint": "0.390645",
+          "playing": true,
+          "rail": 0.16276875,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.390645
+        },
+        {
+          "actual": 0.411356,
+          "ms": 120.79999999405118,
+          "paint": "0.405205",
+          "playing": true,
+          "rail": 0.16883541666666663,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.405205
+        },
+        {
+          "actual": 0.416804,
+          "ms": 127.79999999405118,
+          "paint": "0.413894",
+          "playing": true,
+          "rail": 0.17245583333333334,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.413894
+        },
+        {
+          "actual": 0.425166,
+          "ms": 134.79999999405118,
+          "paint": "0.418348",
+          "playing": true,
+          "rail": 0.17431166666666667,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.418348
+        },
+        {
+          "actual": 0.437601,
+          "ms": 148.8999999940279,
+          "paint": "0.433039",
+          "playing": true,
+          "rail": 0.1804329166666667,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.433039
+        },
+        {
+          "actual": 0.444863,
+          "ms": 155.79999999405118,
+          "paint": "0.4404",
+          "playing": true,
+          "rail": 0.1835,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.4404
+        },
+        {
+          "actual": 0.449299,
+          "ms": 162.8999999940279,
+          "paint": "0.447083",
+          "playing": true,
+          "rail": 0.18628458333333336,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.447083
+        },
+        {
+          "actual": 0.457585,
+          "ms": 169.8999999940279,
+          "paint": "0.451858",
+          "playing": true,
+          "rail": 0.18827416666666663,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.451858
+        },
+        {
+          "actual": 0.464,
+          "ms": 176.8999999940279,
+          "paint": "0.459632",
+          "playing": true,
+          "rail": 0.1915133333333333,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.459632
+        },
+        {
+          "actual": 0.470225,
+          "ms": 183.8999999940279,
+          "paint": "0.464",
+          "playing": true,
+          "rail": 0.19333333333333333,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.464
+        },
+        {
+          "actual": 0.483842,
+          "ms": 197.99999999403371,
+          "paint": "0.474329",
+          "playing": true,
+          "rail": 0.19763708333333332,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.474329
+        },
+        {
+          "actual": 0.492639,
+          "ms": 204.99999999403371,
+          "paint": "0.48817",
+          "playing": true,
+          "rail": 0.20340416666666664,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.48817
+        },
+        {
+          "actual": 0.496277,
+          "ms": 211.99999999403371,
+          "paint": "0.495162",
+          "playing": true,
+          "rail": 0.2063175,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.495162
+        },
+        {
+          "actual": 0.504417,
+          "ms": 219.0999999940395,
+          "paint": "0.498773",
+          "playing": true,
+          "rail": 0.20782208333333332,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.498773
+        },
+        {
+          "actual": 0.516204,
+          "ms": 226.0999999940395,
+          "paint": "0.512541",
+          "playing": true,
+          "rail": 0.21355875,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.512541
+        },
+        {
+          "actual": 0.524228,
+          "ms": 233.0999999940395,
+          "paint": "0.518814",
+          "playing": true,
+          "rail": 0.2161725,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.518814
+        },
+        {
+          "actual": 0.528,
+          "ms": 240.19999999404536,
+          "paint": "0.526189",
+          "playing": true,
+          "rail": 0.2192454166666667,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.526189
+        },
+        {
+          "actual": 0.534309,
+          "ms": 247.0999999940395,
+          "paint": "0.52849",
+          "playing": true,
+          "rail": 0.22020416666666667,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.52849
+        },
+        {
+          "actual": 0.540789,
+          "ms": 254.19999999404536,
+          "paint": "0.536328",
+          "playing": true,
+          "rail": 0.22347,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.536328
+        },
+        {
+          "actual": 0.549011,
+          "ms": 268.2999999940512,
+          "paint": "0.544",
+          "playing": true,
+          "rail": 0.22666666666666668,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.544
+        },
+        {
+          "actual": 0.560649,
+          "ms": 275.2999999940512,
+          "paint": "0.550842",
+          "playing": true,
+          "rail": 0.22951750000000004,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.550842
+        },
+        {
+          "actual": 0.608,
+          "ms": 282.2999999940512,
+          "paint": "0.606117",
+          "playing": true,
+          "rail": 0.25254875,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.606117
+        },
+        {
+          "actual": 0.618553,
+          "ms": 331.4999999940337,
+          "paint": "0.615341",
+          "playing": true,
+          "rail": 0.2563920833333333,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.615341
+        },
+        {
+          "actual": 0.624,
+          "ms": 338.4999999940337,
+          "paint": "0.621058",
+          "playing": true,
+          "rail": 0.25877416666666664,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.621058
+        },
+        {
+          "actual": 0.626342,
+          "ms": 345.4999999940337,
+          "paint": "0.624",
+          "playing": true,
+          "rail": 0.26,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.624
+        },
+        {
+          "actual": 0.640507,
+          "ms": 352.4999999940337,
+          "paint": "0.629159",
+          "playing": true,
+          "rail": 0.2621495833333333,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.629159
+        },
+        {
+          "actual": 0.653613,
+          "ms": 366.4999999940337,
+          "paint": "0.64897",
+          "playing": true,
+          "rail": 0.27040416666666667,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.64897
+        },
+        {
+          "actual": 0.656857,
+          "ms": 373.4999999940337,
+          "paint": "0.656",
+          "playing": true,
+          "rail": 0.2733333333333333,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.656
+        },
+        {
+          "actual": 0.662826,
+          "ms": 380.59999999403954,
+          "paint": "0.658676",
+          "playing": true,
+          "rail": 0.27444833333333335,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.658676
+        },
+        {
+          "actual": 0.677298,
+          "ms": 387.59999999403954,
+          "paint": "0.67221",
+          "playing": true,
+          "rail": 0.2800875,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.67221
+        },
+        {
+          "actual": 0.685014,
+          "ms": 394.69999999404536,
+          "paint": "0.679854",
+          "playing": true,
+          "rail": 0.2832725,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.679854
+        },
+        {
+          "actual": 0.688,
+          "ms": 401.69999999404536,
+          "paint": "0.686835",
+          "playing": true,
+          "rail": 0.28622291666418315,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.686835
+        },
+        {
+          "actual": 0.693793,
+          "ms": 408.69999999404536,
+          "paint": "0.689136",
+          "playing": true,
+          "rail": 0.28718166667039197,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.689136
+        },
+        {
+          "actual": 0.700179,
+          "ms": 415.69999999404536,
+          "paint": "0.696176",
+          "playing": true,
+          "rail": 0.29007333333333335,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.696176
+        },
+        {
+          "actual": 0.705046,
+          "ms": 422.69999999404536,
+          "paint": "0.703082",
+          "playing": true,
+          "rail": 0.2929508333333333,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.703082
+        },
+        {
+          "actual": 0.711084,
+          "ms": 429.69999999404536,
+          "paint": "0.707298",
+          "playing": true,
+          "rail": 0.2947075,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.707298
+        },
+        {
+          "actual": 0.723322,
+          "ms": 436.7999999940512,
+          "paint": "0.71305",
+          "playing": true,
+          "rail": 0.29710416666666667,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.71305
+        },
+        {
+          "actual": 0.736,
+          "ms": 443.8999999940279,
+          "paint": "0.729805",
+          "playing": true,
+          "rail": 0.3040854166666667,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.729805
+        },
+        {
+          "actual": 0.739831,
+          "ms": 457.7999999940512,
+          "paint": "0.736",
+          "playing": true,
+          "rail": 0.3066666666666667,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.736
+        },
+        {
+          "actual": 0.754233,
+          "ms": 464.7999999940512,
+          "paint": "0.742478",
+          "playing": true,
+          "rail": 0.30936583333333334,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.742478
+        },
+        {
+          "actual": 0.761369,
+          "ms": 471.8999999940279,
+          "paint": "0.756687",
+          "playing": true,
+          "rail": 0.31528625,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.756687
+        },
+        {
+          "actual": 0.767915,
+          "ms": 478.8999999940279,
+          "paint": "0.763808",
+          "playing": true,
+          "rail": 0.31825333333333333,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.763808
+        },
+        {
+          "actual": 0.773089,
+          "ms": 485.8999999940279,
+          "paint": "0.768",
+          "playing": true,
+          "rail": 0.32004166666418316,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.768
+        },
+        {
+          "actual": 0.782642,
+          "ms": 492.9999999940337,
+          "paint": "0.775485",
+          "playing": true,
+          "rail": 0.32311875,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.775485
+        },
+        {
+          "actual": 0.789182,
+          "ms": 506.9999999940337,
+          "paint": "0.784",
+          "playing": true,
+          "rail": 0.32666666666666666,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.784
+        },
+        {
+          "actual": 0.805159,
+          "ms": 513.9999999940337,
+          "paint": "0.791412",
+          "playing": true,
+          "rail": 0.329755,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.791412
+        },
+        {
+          "actual": 0.816,
+          "ms": 528.0999999940395,
+          "paint": "0.810017",
+          "playing": true,
+          "rail": 0.33750708333333335,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.810017
+        },
+        {
+          "actual": 0.820702,
+          "ms": 535.1999999940454,
+          "paint": "0.816",
+          "playing": true,
+          "rail": 0.33999999999999997,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.816
+        },
+        {
+          "actual": 0.835679,
+          "ms": 542.0999999940395,
+          "paint": "0.823458",
+          "playing": true,
+          "rail": 0.3431075,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.823458
+        },
+        {
+          "actual": 0.844631,
+          "ms": 549.1999999940454,
+          "paint": "0.837384",
+          "playing": true,
+          "rail": 0.34891,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.837384
+        },
+        {
+          "actual": 0.898015,
+          "ms": 563.1999999940454,
+          "paint": "0.896",
+          "playing": true,
+          "rail": 0.37333333333333335,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.896
+        },
+        {
+          "actual": 0.91421,
+          "ms": 619.3999999940279,
+          "paint": "0.902197",
+          "playing": true,
+          "rail": 0.3759154166666666,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.902197
+        },
+        {
+          "actual": 0.927441,
+          "ms": 626.3999999940279,
+          "paint": "0.921484",
+          "playing": true,
+          "rail": 0.38395166666666664,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.921484
+        },
+        {
+          "actual": 0.931939,
+          "ms": 640.4999999940337,
+          "paint": "0.928",
+          "playing": true,
+          "rail": 0.3867083333308498,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.928
+        },
+        {
+          "actual": 0.941227,
+          "ms": 654.5999999940395,
+          "paint": "0.934682",
+          "playing": true,
+          "rail": 0.3894508333333333,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.934682
+        },
+        {
+          "actual": 0.944143,
+          "ms": 661.5999999940395,
+          "paint": "0.943275",
+          "playing": true,
+          "rail": 0.39303125,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.943275
+        },
+        {
+          "actual": 0.953125,
+          "ms": 668.6999999940454,
+          "paint": "0.946454",
+          "playing": true,
+          "rail": 0.3943558333333334,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.946454
+        },
+        {
+          "actual": 0.96795,
+          "ms": 675.5999999940395,
+          "paint": "0.961696",
+          "playing": true,
+          "rail": 0.40070666666666666,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.961696
+        },
+        {
+          "actual": 0.976,
+          "ms": 689.6999999940454,
+          "paint": "0.97286",
+          "playing": true,
+          "rail": 0.4053583333333334,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.97286
+        },
+        {
+          "actual": 0.998159,
+          "ms": 703.6999999940454,
+          "paint": "0.982283",
+          "playing": true,
+          "rail": 0.40928458333333334,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 0.982283
+        },
+        {
+          "actual": 1.008,
+          "ms": 717.6999999940454,
+          "paint": "1.002267",
+          "playing": true,
+          "rail": 0.41761125,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 1.002267
+        },
+        {
+          "actual": 1.016438,
+          "ms": 724.7999999940512,
+          "paint": "1.00973",
+          "playing": true,
+          "rail": 0.4207208333333334,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 1.00973
+        },
+        {
+          "actual": 1.025366,
+          "ms": 738.8999999940279,
+          "paint": "1.02012",
+          "playing": true,
+          "rail": 0.42505,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 1.02012
+        },
+        {
+          "actual": 1.042802,
+          "ms": 752.7999999940512,
+          "paint": "1.028831",
+          "playing": true,
+          "rail": 0.42867958333333334,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 1.028831
+        },
+        {
+          "actual": 1.05186,
+          "ms": 759.8999999940279,
+          "paint": "1.044702",
+          "playing": true,
+          "rail": 0.4352925,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 1.044702
+        },
+        {
+          "actual": 1.059591,
+          "ms": 773.8999999940279,
+          "paint": "1.055823",
+          "playing": true,
+          "rail": 0.43992625,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 1.055823
+        },
+        {
+          "actual": 1.074128,
+          "ms": 780.8999999940279,
+          "paint": "1.061781",
+          "playing": true,
+          "rail": 0.4424087500000001,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 1.061781
+        },
+        {
+          "actual": 1.084242,
+          "ms": 795.0999999940395,
+          "paint": "1.078315",
+          "playing": true,
+          "rail": 0.4492979166666666,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 1.078315
+        },
+        {
+          "actual": 1.088,
+          "ms": 801.9999999940337,
+          "paint": "1.086152",
+          "playing": true,
+          "rail": 0.4525633333333333,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 1.086152
+        },
+        {
+          "actual": 1.095305,
+          "ms": 808.9999999940337,
+          "paint": "1.089975",
+          "playing": true,
+          "rail": 0.45415625,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 1.089975
+        },
+        {
+          "actual": 1.104,
+          "ms": 815.9999999940337,
+          "paint": "1.097745",
+          "playing": true,
+          "rail": 0.45739375,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 1.097745
+        },
+        {
+          "actual": 1.156761,
+          "ms": 830.0999999940395,
+          "paint": "1.152549",
+          "playing": true,
+          "rail": 0.48022875,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 1.152549
+        },
+        {
+          "actual": 1.168,
+          "ms": 872.2999999940512,
+          "paint": "1.161359",
+          "playing": true,
+          "rail": 0.4838995833333333,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 1.161359
+        },
+        {
+          "actual": 1.178519,
+          "ms": 886.2999999940512,
+          "paint": "1.171417",
+          "playing": true,
+          "rail": 0.4880904166666667,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 1.171417
+        },
+        {
+          "actual": 1.184,
+          "ms": 900.2999999940512,
+          "paint": "1.181124",
+          "playing": true,
+          "rail": 0.492135,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 1.181124
+        },
+        {
+          "actual": 1.188807,
+          "ms": 907.399999994028,
+          "paint": "1.184579",
+          "playing": true,
+          "rail": 0.49357458333333337,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 1.184579
+        },
+        {
+          "actual": 1.200382,
+          "ms": 914.2999999940512,
+          "paint": "1.19105",
+          "playing": true,
+          "rail": 0.49627083333333327,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 1.19105
+        },
+        {
+          "actual": 1.212212,
+          "ms": 921.4999999940336,
+          "paint": "1.203284",
+          "playing": true,
+          "rail": 0.5014100000037253,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 1.203284
+        },
+        {
+          "actual": 1.216325,
+          "ms": 928.399999994028,
+          "paint": "1.214039",
+          "playing": true,
+          "rail": 0.5058495833333333,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 1.214039
+        },
+        {
+          "actual": 1.224449,
+          "ms": 935.399999994028,
+          "paint": "1.217817",
+          "playing": true,
+          "rail": 0.50742375,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 1.217817
+        },
+        {
+          "actual": 1.242349,
+          "ms": 949.4999999940336,
+          "paint": "1.235556",
+          "playing": true,
+          "rail": 0.514815,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 1.235556
+        },
+        {
+          "actual": 1.248,
+          "ms": 956.4999999940336,
+          "paint": "1.24444",
+          "playing": true,
+          "rail": 0.5185166666666667,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 1.24444
+        },
+        {
+          "actual": 1.254856,
+          "ms": 970.5999999940396,
+          "paint": "1.249591",
+          "playing": true,
+          "rail": 0.5206629166666666,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 1.249591
+        },
+        {
+          "actual": 1.261907,
+          "ms": 977.4999999940336,
+          "paint": "1.258201",
+          "playing": true,
+          "rail": 0.5242504166666666,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 1.258201
+        },
+        {
+          "actual": 1.266891,
+          "ms": 984.5999999940396,
+          "paint": "1.264",
+          "playing": true,
+          "rail": 0.5266666666666667,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 1.264
+        },
+        {
+          "actual": 1.280677,
+          "ms": 991.5999999940396,
+          "paint": "1.269027",
+          "playing": true,
+          "rail": 0.52876125,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 1.269027
+        },
+        {
+          "actual": 1.292418,
+          "ms": 1005.5999999940396,
+          "paint": "1.287276",
+          "playing": true,
+          "rail": 0.536365,
+          "railWidth": 0,
+          "rate": 1,
+          "value": 1.287276
+        }
+      ]
+    },
+    "phone-local-1x": {
+      "frames": 77,
+      "distinct": 77,
+      "elapsedMs": 1004.3000000000175,
+      "first": 2.584616,
+      "last": 3.568716,
+      "maxStep": 0.10763100000000003,
+      "maxMediaError": 0.023719000000000268,
+      "rows": [
+        {
+          "actual": 2.600454,
+          "ms": 2.699999997013947,
+          "paint": "2.584616",
+          "playing": true,
+          "rail": 1.0769649999975166,
+          "railWidth": 3.796875,
+          "rate": 1,
+          "value": 2.584616
+        },
+        {
+          "actual": 2.712089,
+          "ms": 122.09999999700813,
+          "paint": "2.692247",
+          "playing": true,
+          "rail": 1.1217695833333334,
+          "railWidth": 3.953125,
+          "rate": 1,
+          "value": 2.692247
+        },
+        {
+          "actual": 2.756272,
+          "ms": 157.09999999700813,
+          "paint": "2.732553",
+          "playing": true,
+          "rail": 1.13856375,
+          "railWidth": 4.015625,
+          "rate": 1,
+          "value": 2.732553
+        },
+        {
+          "actual": 2.784788,
+          "ms": 192.19999999701395,
+          "paint": "2.770508",
+          "playing": true,
+          "rail": 1.1543783333333333,
+          "railWidth": 4.0625,
+          "rate": 1,
+          "value": 2.770508
+        },
+        {
+          "actual": 2.821162,
+          "ms": 227.3999999970256,
+          "paint": "2.810171",
+          "playing": true,
+          "rail": 1.1709045833333331,
+          "railWidth": 4.125,
+          "rate": 1,
+          "value": 2.810171
+        },
+        {
+          "actual": 2.848,
+          "ms": 262.4999999970314,
+          "paint": "2.843852",
+          "playing": true,
+          "rail": 1.1849383333333332,
+          "railWidth": 4.171875,
+          "rate": 1,
+          "value": 2.843852
+        },
+        {
+          "actual": 2.867229,
+          "ms": 283.4999999970314,
+          "paint": "2.863451",
+          "playing": true,
+          "rail": 1.1931045833333331,
+          "railWidth": 4.203125,
+          "rate": 1,
+          "value": 2.863451
+        },
+        {
+          "actual": 2.891491,
+          "ms": 311.5999999970081,
+          "paint": "2.881049",
+          "playing": true,
+          "rail": 1.200437083333333,
+          "railWidth": 4.234375,
+          "rate": 1,
+          "value": 2.881049
+        },
+        {
+          "actual": 2.943918,
+          "ms": 332.69999999701395,
+          "paint": "2.936233",
+          "playing": true,
+          "rail": 1.2234304166666663,
+          "railWidth": 4.3125,
+          "rate": 1,
+          "value": 2.936233
+        },
+        {
+          "actual": 2.964677,
+          "ms": 381.8999999970256,
+          "paint": "2.9554109999940397",
+          "playing": true,
+          "rail": 1.2313795833333334,
+          "railWidth": 4.34375,
+          "rate": 1,
+          "value": 2.95541099999404
+        },
+        {
+          "actual": 2.982649,
+          "ms": 402.9999999970314,
+          "paint": "2.97853",
+          "playing": true,
+          "rail": 1.2410541666666668,
+          "railWidth": 4.375,
+          "rate": 1,
+          "value": 2.97853
+        },
+        {
+          "actual": 2.997073,
+          "ms": 423.9999999970314,
+          "paint": "2.992529",
+          "playing": true,
+          "rail": 1.2468870833333334,
+          "railWidth": 4.390625,
+          "rate": 1,
+          "value": 2.992529
+        },
+        {
+          "actual": 3.002792,
+          "ms": 431.0999999970081,
+          "paint": "2.998993",
+          "playing": true,
+          "rail": 1.2495804166666669,
+          "railWidth": 4.40625,
+          "rate": 1,
+          "value": 2.998993
+        },
+        {
+          "actual": 3.008146,
+          "ms": 437.9999999970314,
+          "paint": "3.005503",
+          "playing": true,
+          "rail": 1.25233458333085,
+          "railWidth": 4.40625,
+          "rate": 1,
+          "value": 3.005503
+        },
+        {
+          "actual": 3.014656,
+          "ms": 445.0999999970081,
+          "paint": "3.009978",
+          "playing": true,
+          "rail": 1.2541574999999998,
+          "railWidth": 4.421875,
+          "rate": 1,
+          "value": 3.009978
+        },
+        {
+          "actual": 3.023422,
+          "ms": 452.0999999970081,
+          "paint": "3.016401",
+          "playing": true,
+          "rail": 1.256875416670392,
+          "railWidth": 4.421875,
+          "rate": 1,
+          "value": 3.016401
+        },
+        {
+          "actual": 3.026551,
+          "ms": 459.29999999701977,
+          "paint": "3.024",
+          "playing": true,
+          "rail": 1.26,
+          "railWidth": 4.4375,
+          "rate": 1,
+          "value": 3.024
+        },
+        {
+          "actual": 3.04178,
+          "ms": 473.19999999701395,
+          "paint": "3.032644",
+          "playing": true,
+          "rail": 1.2636016666666667,
+          "railWidth": 4.453125,
+          "rate": 1,
+          "value": 3.032644
+        },
+        {
+          "actual": 3.048009,
+          "ms": 480.19999999701395,
+          "paint": "3.044879",
+          "playing": true,
+          "rail": 1.2687412499975164,
+          "railWidth": 4.46875,
+          "rate": 1,
+          "value": 3.044879
+        },
+        {
+          "actual": 3.055205,
+          "ms": 487.29999999701977,
+          "paint": "3.051321",
+          "playing": true,
+          "rail": 1.27138375,
+          "railWidth": 4.484375,
+          "rate": 1,
+          "value": 3.051321
+        },
+        {
+          "actual": 3.056517,
+          "ms": 494.29999999701977,
+          "paint": "3.056",
+          "playing": true,
+          "rail": 1.2733333333333334,
+          "railWidth": 4.484375,
+          "rate": 1,
+          "value": 3.056
+        },
+        {
+          "actual": 3.064766,
+          "ms": 501.29999999701977,
+          "paint": "3.060328",
+          "playing": true,
+          "rail": 1.2751366666666668,
+          "railWidth": 4.5,
+          "rate": 1,
+          "value": 3.060328
+        },
+        {
+          "actual": 3.077611,
+          "ms": 508.29999999701977,
+          "paint": "3.074384",
+          "playing": true,
+          "rail": 1.2809933333333332,
+          "railWidth": 4.515625,
+          "rate": 1,
+          "value": 3.074384
+        },
+        {
+          "actual": 3.085239,
+          "ms": 515.2999999970198,
+          "paint": "3.080885",
+          "playing": true,
+          "rail": 1.2837020833333332,
+          "railWidth": 4.53125,
+          "rate": 1,
+          "value": 3.080885
+        },
+        {
+          "actual": 3.088,
+          "ms": 522.3999999970256,
+          "paint": "3.088",
+          "playing": true,
+          "rail": 1.2866666666666666,
+          "railWidth": 4.53125,
+          "rate": 1,
+          "value": 3.088
+        },
+        {
+          "actual": 3.095397,
+          "ms": 529.3999999970256,
+          "paint": "3.090961",
+          "playing": true,
+          "rail": 1.2879004166666668,
+          "railWidth": 4.53125,
+          "rate": 1,
+          "value": 3.090961
+        },
+        {
+          "actual": 3.102005,
+          "ms": 536.3999999970256,
+          "paint": "3.097872",
+          "playing": true,
+          "rail": 1.29078,
+          "railWidth": 4.546875,
+          "rate": 1,
+          "value": 3.097872
+        },
+        {
+          "actual": 3.105498,
+          "ms": 543.3999999970256,
+          "paint": "3.104",
+          "playing": true,
+          "rail": 1.2933333333333332,
+          "railWidth": 4.5625,
+          "rate": 1,
+          "value": 3.104
+        },
+        {
+          "actual": 3.112928,
+          "ms": 550.3999999970256,
+          "paint": "3.109116",
+          "playing": true,
+          "rail": 1.2955066666641832,
+          "railWidth": 4.5625,
+          "rate": 1,
+          "value": 3.109116
+        },
+        {
+          "actual": 3.124559,
+          "ms": 557.3999999970256,
+          "paint": "3.120793",
+          "playing": true,
+          "rail": 1.3003304166666667,
+          "railWidth": 4.578125,
+          "rate": 1,
+          "value": 3.120793
+        },
+        {
+          "actual": 3.130839,
+          "ms": 564.4999999970314,
+          "paint": "3.126819",
+          "playing": true,
+          "rail": 1.30284125,
+          "railWidth": 4.59375,
+          "rate": 1,
+          "value": 3.126819
+        },
+        {
+          "actual": 3.184,
+          "ms": 571.4999999970314,
+          "paint": "3.180636",
+          "playing": true,
+          "rail": 1.325265,
+          "railWidth": 4.671875,
+          "rate": 1,
+          "value": 3.180636
+        },
+        {
+          "actual": 3.19001,
+          "ms": 620.5999999970081,
+          "paint": "3.184982",
+          "playing": true,
+          "rail": 1.3270758333333337,
+          "railWidth": 4.671875,
+          "rate": 1,
+          "value": 3.184982
+        },
+        {
+          "actual": 3.20613,
+          "ms": 634.699999997014,
+          "paint": "3.20041",
+          "playing": true,
+          "rail": 1.3335041666666667,
+          "railWidth": 4.703125,
+          "rate": 1,
+          "value": 3.20041
+        },
+        {
+          "actual": 3.214784,
+          "ms": 641.699999997014,
+          "paint": "3.20866",
+          "playing": true,
+          "rail": 1.3369416666666667,
+          "railWidth": 4.71875,
+          "rate": 1,
+          "value": 3.20866
+        },
+        {
+          "actual": 3.216768,
+          "ms": 648.7999999970198,
+          "paint": "3.216",
+          "playing": true,
+          "rail": 1.34,
+          "railWidth": 4.71875,
+          "rate": 1,
+          "value": 3.216
+        },
+        {
+          "actual": 3.233444,
+          "ms": 662.7999999970198,
+          "paint": "3.223078",
+          "playing": true,
+          "rail": 1.34299083333085,
+          "railWidth": 4.734375,
+          "rate": 1,
+          "value": 3.223078
+        },
+        {
+          "actual": 3.240078,
+          "ms": 669.7999999970198,
+          "paint": "3.236089",
+          "playing": true,
+          "rail": 1.3483704166666668,
+          "railWidth": 4.75,
+          "rate": 1,
+          "value": 3.236089
+        },
+        {
+          "actual": 3.246963,
+          "ms": 676.8999999970256,
+          "paint": "3.243629",
+          "playing": true,
+          "rail": 1.3515120833333334,
+          "railWidth": 4.765625,
+          "rate": 1,
+          "value": 3.243629
+        },
+        {
+          "actual": 3.249866,
+          "ms": 683.8999999970256,
+          "paint": "3.248",
+          "playing": true,
+          "rail": 1.3533749999975166,
+          "railWidth": 4.765625,
+          "rate": 1,
+          "value": 3.248
+        },
+        {
+          "actual": 3.257262,
+          "ms": 690.9999999970314,
+          "paint": "3.253198",
+          "playing": true,
+          "rail": 1.3554991666666665,
+          "railWidth": 4.78125,
+          "rate": 1,
+          "value": 3.253198
+        },
+        {
+          "actual": 3.263366,
+          "ms": 697.8999999970256,
+          "paint": "3.259818",
+          "playing": true,
+          "rail": 1.3582575,
+          "railWidth": 4.78125,
+          "rate": 1,
+          "value": 3.259818
+        },
+        {
+          "actual": 3.265987,
+          "ms": 704.8999999970256,
+          "paint": "3.264",
+          "playing": true,
+          "rail": 1.36,
+          "railWidth": 4.796875,
+          "rate": 1,
+          "value": 3.264
+        },
+        {
+          "actual": 3.271871,
+          "ms": 711.9999999970314,
+          "paint": "3.268128",
+          "playing": true,
+          "rail": 1.36172,
+          "railWidth": 4.796875,
+          "rate": 1,
+          "value": 3.268128
+        },
+        {
+          "actual": 3.287908,
+          "ms": 718.9999999970314,
+          "paint": "3.283514",
+          "playing": true,
+          "rail": 1.3681308333333333,
+          "railWidth": 4.828125,
+          "rate": 1,
+          "value": 3.283514
+        },
+        {
+          "actual": 3.2944,
+          "ms": 725.9999999970314,
+          "paint": "3.290926",
+          "playing": true,
+          "rail": 1.3712608333370586,
+          "railWidth": 4.828125,
+          "rate": 1,
+          "value": 3.290926
+        },
+        {
+          "actual": 3.29636,
+          "ms": 732.9999999970314,
+          "paint": "3.296",
+          "playing": true,
+          "rail": 1.373333333333333,
+          "railWidth": 4.84375,
+          "rate": 1,
+          "value": 3.296
+        },
+        {
+          "actual": 3.303369,
+          "ms": 740.0999999970081,
+          "paint": "3.299197",
+          "playing": true,
+          "rail": 1.3746654166666668,
+          "railWidth": 4.84375,
+          "rate": 1,
+          "value": 3.299197
+        },
+        {
+          "actual": 3.315725,
+          "ms": 747.0999999970081,
+          "paint": "3.30597",
+          "playing": true,
+          "rail": 1.3775291666641831,
+          "railWidth": 4.859375,
+          "rate": 1,
+          "value": 3.30597
+        },
+        {
+          "actual": 3.324576,
+          "ms": 754.0999999970081,
+          "paint": "3.3206",
+          "playing": true,
+          "rail": 1.3835833333333334,
+          "railWidth": 4.875,
+          "rate": 1,
+          "value": 3.3206
+        },
+        {
+          "actual": 3.328,
+          "ms": 761.199999997014,
+          "paint": "3.327843",
+          "playing": true,
+          "rail": 1.386642916670392,
+          "railWidth": 4.890625,
+          "rate": 1,
+          "value": 3.327843
+        },
+        {
+          "actual": 3.334757,
+          "ms": 768.199999997014,
+          "paint": "3.331374",
+          "playing": true,
+          "rail": 1.3880725,
+          "railWidth": 4.890625,
+          "rate": 1,
+          "value": 3.331374
+        },
+        {
+          "actual": 3.341498,
+          "ms": 775.0999999970081,
+          "paint": "3.338331",
+          "playing": true,
+          "rail": 1.39097125,
+          "railWidth": 4.90625,
+          "rate": 1,
+          "value": 3.338331
+        },
+        {
+          "actual": 3.344266,
+          "ms": 782.199999997014,
+          "paint": "3.343712",
+          "playing": true,
+          "rail": 1.3932133333333334,
+          "railWidth": 4.90625,
+          "rate": 1,
+          "value": 3.343712
+        },
+        {
+          "actual": 3.352822,
+          "ms": 789.199999997014,
+          "paint": "3.348752",
+          "playing": true,
+          "rail": 1.3953133333333334,
+          "railWidth": 4.921875,
+          "rate": 1,
+          "value": 3.348752
+        },
+        {
+          "actual": 3.366009,
+          "ms": 796.2999999970198,
+          "paint": "3.361274",
+          "playing": true,
+          "rail": 1.4005308333333333,
+          "railWidth": 4.9375,
+          "rate": 1,
+          "value": 3.361274
+        },
+        {
+          "actual": 3.372309,
+          "ms": 803.199999997014,
+          "paint": "3.368233",
+          "playing": true,
+          "rail": 1.403430416666667,
+          "railWidth": 4.953125,
+          "rate": 1,
+          "value": 3.368233
+        },
+        {
+          "actual": 3.376,
+          "ms": 810.2999999970198,
+          "paint": "3.375202",
+          "playing": true,
+          "rail": 1.4063341666666669,
+          "railWidth": 4.953125,
+          "rate": 1,
+          "value": 3.375202
+        },
+        {
+          "actual": 3.380205,
+          "ms": 817.2999999970198,
+          "paint": "3.376819",
+          "playing": true,
+          "rail": 1.4070079166666667,
+          "railWidth": 4.953125,
+          "rate": 1,
+          "value": 3.376819
+        },
+        {
+          "actual": 3.393129,
+          "ms": 824.2999999970198,
+          "paint": "3.381956",
+          "playing": true,
+          "rail": 1.4091483333333332,
+          "railWidth": 4.96875,
+          "rate": 1,
+          "value": 3.381956
+        },
+        {
+          "actual": 3.441051,
+          "ms": 831.3999999970256,
+          "paint": "3.431034",
+          "playing": true,
+          "rail": 1.4295975,
+          "railWidth": 5.03125,
+          "rate": 1,
+          "value": 3.431034
+        },
+        {
+          "actual": 3.449717,
+          "ms": 880.5999999970081,
+          "paint": "3.446421",
+          "playing": true,
+          "rail": 1.43600875,
+          "railWidth": 5.0625,
+          "rate": 1,
+          "value": 3.446421
+        },
+        {
+          "actual": 3.457723,
+          "ms": 887.5999999970081,
+          "paint": "3.45564",
+          "playing": true,
+          "rail": 1.43985,
+          "railWidth": 5.078125,
+          "rate": 1,
+          "value": 3.45564
+        },
+        {
+          "actual": 3.464805,
+          "ms": 894.5999999970081,
+          "paint": "3.459508",
+          "playing": true,
+          "rail": 1.4414616666666666,
+          "railWidth": 5.078125,
+          "rate": 1,
+          "value": 3.459508
+        },
+        {
+          "actual": 3.483425,
+          "ms": 908.599999997008,
+          "paint": "3.478824",
+          "playing": true,
+          "rail": 1.449551666670392,
+          "railWidth": 5.109375,
+          "rate": 1,
+          "value": 3.478824
+        },
+        {
+          "actual": 3.488,
+          "ms": 915.599999997008,
+          "paint": "3.485016",
+          "playing": true,
+          "rail": 1.45209,
+          "railWidth": 5.125,
+          "rate": 1,
+          "value": 3.485016
+        },
+        {
+          "actual": 3.497126,
+          "ms": 929.699999997014,
+          "paint": "3.49161",
+          "playing": true,
+          "rail": 1.4548375,
+          "railWidth": 5.125,
+          "rate": 1,
+          "value": 3.49161
+        },
+        {
+          "actual": 3.503953,
+          "ms": 936.7999999970198,
+          "paint": "3.499643",
+          "playing": true,
+          "rail": 1.4581845833333331,
+          "railWidth": 5.140625,
+          "rate": 1,
+          "value": 3.499643
+        },
+        {
+          "actual": 3.504513,
+          "ms": 943.699999997014,
+          "paint": "3.504",
+          "playing": true,
+          "rail": 1.46,
+          "railWidth": 5.140625,
+          "rate": 1,
+          "value": 3.504
+        },
+        {
+          "actual": 3.521445,
+          "ms": 950.7999999970198,
+          "paint": "3.509655",
+          "playing": true,
+          "rail": 1.4623979166703918,
+          "railWidth": 5.15625,
+          "rate": 1,
+          "value": 3.509655
+        },
+        {
+          "actual": 3.530091,
+          "ms": 957.7999999970198,
+          "paint": "3.524038",
+          "playing": true,
+          "rail": 1.4683491666666666,
+          "railWidth": 5.171875,
+          "rate": 1,
+          "value": 3.524038
+        },
+        {
+          "actual": 3.536,
+          "ms": 964.7999999970198,
+          "paint": "3.532089",
+          "playing": true,
+          "rail": 1.47170375,
+          "railWidth": 5.1875,
+          "rate": 1,
+          "value": 3.532089
+        },
+        {
+          "actual": 3.542585,
+          "ms": 978.7999999970198,
+          "paint": "3.539106",
+          "playing": true,
+          "rail": 1.4746691666641831,
+          "railWidth": 5.203125,
+          "rate": 1,
+          "value": 3.539106
+        },
+        {
+          "actual": 3.554729,
+          "ms": 985.8999999970256,
+          "paint": "3.546576",
+          "playing": true,
+          "rail": 1.47774,
+          "railWidth": 5.203125,
+          "rate": 1,
+          "value": 3.546576
+        },
+        {
+          "actual": 3.560651,
+          "ms": 992.9999999970314,
+          "paint": "3.556755",
+          "playing": true,
+          "rail": 1.48198125,
+          "railWidth": 5.21875,
+          "rate": 1,
+          "value": 3.556755
+        },
+        {
+          "actual": 3.568,
+          "ms": 999.8999999970256,
+          "paint": "3.565263",
+          "playing": true,
+          "rail": 1.485567916670392,
+          "railWidth": 5.234375,
+          "rate": 1,
+          "value": 3.565263
+        },
+        {
+          "actual": 3.571644,
+          "ms": 1006.9999999970314,
+          "paint": "3.568716",
+          "playing": true,
+          "rail": 1.486965,
+          "railWidth": 5.234375,
+          "rate": 1,
+          "value": 3.568716
+        }
+      ]
+    },
+    "phone-local-1.5x": {
+      "frames": 103,
+      "distinct": 94,
+      "elapsedMs": 1004.1000000000058,
+      "first": 4.743273,
+      "last": 6.24729,
+      "maxStep": 0.11768400000000057,
+      "maxMediaError": 0.02566199999999963,
+      "rows": [
+        {
+          "actual": 4.762673,
+          "ms": -2.1000000000058208,
+          "paint": "4.743273",
+          "playing": true,
+          "rail": 1.97636375,
+          "railWidth": 6.96875,
+          "rate": 1.5,
+          "value": 4.743273
+        },
+        {
+          "actual": 4.772562,
+          "ms": 4.7000000000116415,
+          "paint": "4.765875",
+          "playing": true,
+          "rail": 1.9857812500000005,
+          "railWidth": 7,
+          "rate": 1.5,
+          "value": 4.765875
+        },
+        {
+          "actual": 4.773125,
+          "ms": 11.700000000011642,
+          "paint": "4.773125",
+          "playing": true,
+          "rail": 1.9888020833333335,
+          "railWidth": 7.015625,
+          "rate": 1.5,
+          "value": 4.773125
+        },
+        {
+          "actual": 4.773125,
+          "ms": 18.79999999998836,
+          "paint": "4.773125",
+          "playing": true,
+          "rail": 1.9888020833333335,
+          "railWidth": 7.015625,
+          "rate": 1.5,
+          "value": 4.773125
+        },
+        {
+          "actual": 4.788302,
+          "ms": 25.79999999998836,
+          "paint": "4.783518",
+          "playing": true,
+          "rail": 1.9931325,
+          "railWidth": 7.03125,
+          "rate": 1.5,
+          "value": 4.783518
+        },
+        {
+          "actual": 4.810149,
+          "ms": 32.89999999999418,
+          "paint": "4.805954",
+          "playing": true,
+          "rail": 2.0024808333333333,
+          "railWidth": 7.0625,
+          "rate": 1.5,
+          "value": 4.805954
+        },
+        {
+          "actual": 4.818125,
+          "ms": 39.89999999999418,
+          "paint": "4.817825",
+          "playing": true,
+          "rail": 2.0074895833296083,
+          "railWidth": 7.078125,
+          "rate": 1.5,
+          "value": 4.817825
+        },
+        {
+          "actual": 4.820232,
+          "ms": 46.79999999998836,
+          "paint": "4.818125",
+          "playing": true,
+          "rail": 2.0075520833333336,
+          "railWidth": 7.078125,
+          "rate": 1.5,
+          "value": 4.818125
+        },
+        {
+          "actual": 4.831749,
+          "ms": 53.79999999998836,
+          "paint": "4.825725",
+          "playing": true,
+          "rail": 2.010781250005588,
+          "railWidth": 7.09375,
+          "rate": 1.5,
+          "value": 4.825725
+        },
+        {
+          "actual": 4.841313,
+          "ms": 60.89999999999418,
+          "paint": "4.835834",
+          "playing": true,
+          "rail": 2.0149308333333336,
+          "railWidth": 7.109375,
+          "rate": 1.5,
+          "value": 4.835834
+        },
+        {
+          "actual": 4.853016,
+          "ms": 68,
+          "paint": "4.845821",
+          "playing": true,
+          "rail": 2.0190920833333332,
+          "railWidth": 7.125,
+          "rate": 1.5,
+          "value": 4.845821
+        },
+        {
+          "actual": 4.863177,
+          "ms": 74.89999999999418,
+          "paint": "4.856208",
+          "playing": true,
+          "rail": 2.0234824999962746,
+          "railWidth": 7.140625,
+          "rate": 1.5,
+          "value": 4.856208
+        },
+        {
+          "actual": 4.938125,
+          "ms": 82.10000000000582,
+          "paint": "4.938125",
+          "playing": true,
+          "rail": 2.057552083333334,
+          "railWidth": 7.25,
+          "rate": 1.5,
+          "value": 4.938125
+        },
+        {
+          "actual": 4.94712,
+          "ms": 131.10000000000582,
+          "paint": "4.940342",
+          "playing": true,
+          "rail": 2.0584758333333335,
+          "railWidth": 7.265625,
+          "rate": 1.5,
+          "value": 4.940342
+        },
+        {
+          "actual": 4.959203,
+          "ms": 138.20000000001164,
+          "paint": "4.954287",
+          "playing": true,
+          "rail": 2.0643487499962747,
+          "railWidth": 7.28125,
+          "rate": 1.5,
+          "value": 4.954287
+        },
+        {
+          "actual": 4.973745,
+          "ms": 145.10000000000582,
+          "paint": "4.966727",
+          "playing": true,
+          "rail": 2.0695945833351956,
+          "railWidth": 7.296875,
+          "rate": 1.5,
+          "value": 4.966727
+        },
+        {
+          "actual": 4.982576,
+          "ms": 152.20000000001164,
+          "paint": "4.976868",
+          "playing": true,
+          "rail": 2.073695,
+          "railWidth": 7.3125,
+          "rate": 1.5,
+          "value": 4.976868
+        },
+        {
+          "actual": 5.006238,
+          "ms": 159.20000000001164,
+          "paint": "4.999479",
+          "playing": true,
+          "rail": 2.08311625,
+          "railWidth": 7.34375,
+          "rate": 1.5,
+          "value": 4.999479
+        },
+        {
+          "actual": 5.013125,
+          "ms": 166.29999999998836,
+          "paint": "5.010374",
+          "playing": true,
+          "rail": 2.0876558333333333,
+          "railWidth": 7.359375,
+          "rate": 1.5,
+          "value": 5.010374
+        },
+        {
+          "actual": 5.015499,
+          "ms": 173.29999999998836,
+          "paint": "5.013125",
+          "playing": true,
+          "rail": 2.0888020833333334,
+          "railWidth": 7.359375,
+          "rate": 1.5,
+          "value": 5.013125
+        },
+        {
+          "actual": 5.025497,
+          "ms": 180.29999999998836,
+          "paint": "5.01822",
+          "playing": true,
+          "rail": 2.090925,
+          "railWidth": 7.375,
+          "rate": 1.5,
+          "value": 5.01822
+        },
+        {
+          "actual": 5.049294,
+          "ms": 187.29999999998836,
+          "paint": "5.028146",
+          "playing": true,
+          "rail": 2.095060833333333,
+          "railWidth": 7.390625,
+          "rate": 1.5,
+          "value": 5.028146
+        },
+        {
+          "actual": 5.058125,
+          "ms": 194.29999999998836,
+          "paint": "5.052399",
+          "playing": true,
+          "rail": 2.1052287499962747,
+          "railWidth": 7.421875,
+          "rate": 1.5,
+          "value": 5.052399
+        },
+        {
+          "actual": 5.058125,
+          "ms": 201.39999999999415,
+          "paint": "5.058125",
+          "playing": true,
+          "rail": 2.1075520833333337,
+          "railWidth": 7.4375,
+          "rate": 1.5,
+          "value": 5.058125
+        },
+        {
+          "actual": 5.058125,
+          "ms": 208.29999999998836,
+          "paint": "5.058125",
+          "playing": true,
+          "rail": 2.1075520833333337,
+          "railWidth": 7.4375,
+          "rate": 1.5,
+          "value": 5.058125
+        },
+        {
+          "actual": 5.070635,
+          "ms": 215.39999999999415,
+          "paint": "5.064725",
+          "playing": true,
+          "rail": 2.1103020833333335,
+          "railWidth": 7.4375,
+          "rate": 1.5,
+          "value": 5.064725
+        },
+        {
+          "actual": 5.083176,
+          "ms": 222.39999999999415,
+          "paint": "5.076959",
+          "playing": true,
+          "rail": 2.1153995833333337,
+          "railWidth": 7.453125,
+          "rate": 1.5,
+          "value": 5.076959
+        },
+        {
+          "actual": 5.093672,
+          "ms": 229.39999999999415,
+          "paint": "5.088125",
+          "playing": true,
+          "rail": 2.1200520833333334,
+          "railWidth": 7.46875,
+          "rate": 1.5,
+          "value": 5.088125
+        },
+        {
+          "actual": 5.120034,
+          "ms": 236.5,
+          "paint": "5.09632999999106",
+          "playing": true,
+          "rail": 2.1234083333333333,
+          "railWidth": 7.484375,
+          "rate": 1.5,
+          "value": 5.09632999999106
+        },
+        {
+          "actual": 5.133125,
+          "ms": 243.5,
+          "paint": "5.12544",
+          "playing": true,
+          "rail": 2.135662499996275,
+          "railWidth": 7.53125,
+          "rate": 1.5,
+          "value": 5.12544
+        },
+        {
+          "actual": 5.133417,
+          "ms": 250.5,
+          "paint": "5.133125",
+          "playing": true,
+          "rail": 2.138802083333333,
+          "railWidth": 7.546875,
+          "rate": 1.5,
+          "value": 5.133125
+        },
+        {
+          "actual": 5.147226,
+          "ms": 264.6000000000058,
+          "paint": "5.140973",
+          "playing": true,
+          "rail": 2.1420720833333333,
+          "railWidth": 7.546875,
+          "rate": 1.5,
+          "value": 5.140973
+        },
+        {
+          "actual": 5.178125,
+          "ms": 271.6000000000058,
+          "paint": "5.169029",
+          "playing": true,
+          "rail": 2.1537620833333335,
+          "railWidth": 7.59375,
+          "rate": 1.5,
+          "value": 5.169029
+        },
+        {
+          "actual": 5.178125,
+          "ms": 278.6000000000058,
+          "paint": "5.178125",
+          "playing": true,
+          "rail": 2.157552083333333,
+          "railWidth": 7.609375,
+          "rate": 1.5,
+          "value": 5.178125
+        },
+        {
+          "actual": 5.178125,
+          "ms": 292.70000000001164,
+          "paint": "5.178125",
+          "playing": true,
+          "rail": 2.157552083333333,
+          "railWidth": 7.609375,
+          "rate": 1.5,
+          "value": 5.178125
+        },
+        {
+          "actual": 5.190072,
+          "ms": 299.70000000001164,
+          "paint": "5.178267",
+          "playing": true,
+          "rail": 2.1576737500055883,
+          "railWidth": 7.609375,
+          "rate": 1.5,
+          "value": 5.178267
+        },
+        {
+          "actual": 5.200509,
+          "ms": 306.70000000001164,
+          "paint": "5.193285",
+          "playing": true,
+          "rail": 2.16386875,
+          "railWidth": 7.625,
+          "rate": 1.5,
+          "value": 5.193285
+        },
+        {
+          "actual": 5.213135,
+          "ms": 313.70000000001164,
+          "paint": "5.203566",
+          "playing": true,
+          "rail": 2.1681525,
+          "railWidth": 7.640625,
+          "rate": 1.5,
+          "value": 5.203566
+        },
+        {
+          "actual": 5.239898,
+          "ms": 320.70000000001164,
+          "paint": "5.215685",
+          "playing": true,
+          "rail": 2.173202083333333,
+          "railWidth": 7.65625,
+          "rate": 1.5,
+          "value": 5.215685
+        },
+        {
+          "actual": 5.252769,
+          "ms": 327.79999999998836,
+          "paint": "5.242703",
+          "playing": true,
+          "rail": 2.184459583333333,
+          "railWidth": 7.703125,
+          "rate": 1.5,
+          "value": 5.242703
+        },
+        {
+          "actual": 5.367563,
+          "ms": 341.79999999998836,
+          "paint": "5.360387",
+          "playing": true,
+          "rail": 2.2334945833333335,
+          "railWidth": 7.875,
+          "rate": 1.5,
+          "value": 5.360387
+        },
+        {
+          "actual": 5.373125,
+          "ms": 419.1000000000058,
+          "paint": "5.373125",
+          "playing": true,
+          "rail": 2.2388020833333333,
+          "railWidth": 7.890625,
+          "rate": 1.5,
+          "value": 5.373125
+        },
+        {
+          "actual": 5.378075,
+          "ms": 426.2000000000117,
+          "paint": "5.373125",
+          "playing": true,
+          "rail": 2.2388645833389216,
+          "railWidth": 7.890625,
+          "rate": 1.5,
+          "value": 5.373125
+        },
+        {
+          "actual": 5.403486,
+          "ms": 433.2000000000117,
+          "paint": "5.381372",
+          "playing": true,
+          "rail": 2.2422383333333333,
+          "railWidth": 7.90625,
+          "rate": 1.5,
+          "value": 5.381372
+        },
+        {
+          "actual": 5.412989,
+          "ms": 440.2000000000117,
+          "paint": "5.407206",
+          "playing": true,
+          "rail": 2.2530025,
+          "railWidth": 7.9375,
+          "rate": 1.5,
+          "value": 5.407206
+        },
+        {
+          "actual": 5.418125,
+          "ms": 454.2999999999883,
+          "paint": "5.418125",
+          "playing": true,
+          "rail": 2.257552083333333,
+          "railWidth": 7.96875,
+          "rate": 1.5,
+          "value": 5.418125
+        },
+        {
+          "actual": 5.42249,
+          "ms": 461.2000000000117,
+          "paint": "5.418125",
+          "playing": true,
+          "rail": 2.257614583329608,
+          "railWidth": 7.96875,
+          "rate": 1.5,
+          "value": 5.418125
+        },
+        {
+          "actual": 5.440121,
+          "ms": 468.2999999999883,
+          "paint": "5.432358",
+          "playing": true,
+          "rail": 2.2634825000000003,
+          "railWidth": 7.984375,
+          "rate": 1.5,
+          "value": 5.432358
+        },
+        {
+          "actual": 5.462198,
+          "ms": 482.2999999999883,
+          "paint": "5.456322",
+          "playing": true,
+          "rail": 2.2734675,
+          "railWidth": 8.015625,
+          "rate": 1.5,
+          "value": 5.456322
+        },
+        {
+          "actual": 5.486199,
+          "ms": 489.2999999999883,
+          "paint": "5.480553",
+          "playing": true,
+          "rail": 2.2836262499962743,
+          "railWidth": 8.046875,
+          "rate": 1.5,
+          "value": 5.480553
+        },
+        {
+          "actual": 5.493125,
+          "ms": 496.3999999999942,
+          "paint": "5.490011",
+          "playing": true,
+          "rail": 2.2875045833333334,
+          "railWidth": 8.0625,
+          "rate": 1.5,
+          "value": 5.490011
+        },
+        {
+          "actual": 5.497872,
+          "ms": 503.3999999999942,
+          "paint": "5.493125",
+          "playing": true,
+          "rail": 2.288864583329608,
+          "railWidth": 8.078125,
+          "rate": 1.5,
+          "value": 5.493125
+        },
+        {
+          "actual": 5.53245,
+          "ms": 517.5,
+          "paint": "5.525937",
+          "playing": true,
+          "rail": 2.30247375,
+          "railWidth": 8.125,
+          "rate": 1.5,
+          "value": 5.525937
+        },
+        {
+          "actual": 5.538125,
+          "ms": 524.3999999999942,
+          "paint": "5.535224",
+          "playing": true,
+          "rail": 2.3063433333333334,
+          "railWidth": 8.140625,
+          "rate": 1.5,
+          "value": 5.535224
+        },
+        {
+          "actual": 5.539428,
+          "ms": 531.5,
+          "paint": "5.538125",
+          "playing": true,
+          "rail": 2.307552083333333,
+          "railWidth": 8.140625,
+          "rate": 1.5,
+          "value": 5.538125
+        },
+        {
+          "actual": 5.556972,
+          "ms": 545.6000000000058,
+          "paint": "5.550585",
+          "playing": true,
+          "rail": 2.31274375,
+          "railWidth": 8.15625,
+          "rate": 1.5,
+          "value": 5.550585
+        },
+        {
+          "actual": 5.56973,
+          "ms": 552.6000000000058,
+          "paint": "5.560044",
+          "playing": true,
+          "rail": 2.316685,
+          "railWidth": 8.171875,
+          "rate": 1.5,
+          "value": 5.560044
+        },
+        {
+          "actual": 5.583302,
+          "ms": 559.5,
+          "paint": "5.573313",
+          "playing": true,
+          "rail": 2.32221375,
+          "railWidth": 8.1875,
+          "rate": 1.5,
+          "value": 5.573313
+        },
+        {
+          "actual": 5.613125,
+          "ms": 573.7000000000116,
+          "paint": "5.609106",
+          "playing": true,
+          "rail": 2.337190000005588,
+          "railWidth": 8.25,
+          "rate": 1.5,
+          "value": 5.609106
+        },
+        {
+          "actual": 5.613125,
+          "ms": 580.6000000000058,
+          "paint": "5.613125",
+          "playing": true,
+          "rail": 2.3388020833333334,
+          "railWidth": 8.25,
+          "rate": 1.5,
+          "value": 5.613125
+        },
+        {
+          "actual": 5.649576,
+          "ms": 594.7000000000116,
+          "paint": "5.623914",
+          "playing": true,
+          "rail": 2.3432975000000003,
+          "railWidth": 8.265625,
+          "rate": 1.5,
+          "value": 5.623914
+        },
+        {
+          "actual": 5.658125,
+          "ms": 601.7000000000116,
+          "paint": "5.652174",
+          "playing": true,
+          "rail": 2.3551350000055877,
+          "railWidth": 8.3125,
+          "rate": 1.5,
+          "value": 5.652174
+        },
+        {
+          "actual": 5.730843,
+          "ms": 615.7000000000116,
+          "paint": "5.724027",
+          "playing": true,
+          "rail": 2.38501125,
+          "railWidth": 8.40625,
+          "rate": 1.5,
+          "value": 5.724027
+        },
+        {
+          "actual": 5.733125,
+          "ms": 657.8999999999942,
+          "paint": "5.733125",
+          "playing": true,
+          "rail": 2.3888020833333337,
+          "railWidth": 8.421875,
+          "rate": 1.5,
+          "value": 5.733125
+        },
+        {
+          "actual": 5.744975,
+          "ms": 671.8999999999942,
+          "paint": "5.736911",
+          "playing": true,
+          "rail": 2.3903795833333334,
+          "railWidth": 8.4375,
+          "rate": 1.5,
+          "value": 5.736911
+        },
+        {
+          "actual": 5.769576,
+          "ms": 679,
+          "paint": "5.763452",
+          "playing": true,
+          "rail": 2.401438333333333,
+          "railWidth": 8.46875,
+          "rate": 1.5,
+          "value": 5.763452
+        },
+        {
+          "actual": 5.778125,
+          "ms": 685.8999999999942,
+          "paint": "5.77275",
+          "playing": true,
+          "rail": 2.4053125,
+          "railWidth": 8.484375,
+          "rate": 1.5,
+          "value": 5.77275
+        },
+        {
+          "actual": 5.778125,
+          "ms": 693,
+          "paint": "5.778125",
+          "playing": true,
+          "rail": 2.407552083333333,
+          "railWidth": 8.484375,
+          "rate": 1.5,
+          "value": 5.778125
+        },
+        {
+          "actual": 5.786508,
+          "ms": 700.1000000000058,
+          "paint": "5.780304",
+          "playing": true,
+          "rail": 2.4084600000000003,
+          "railWidth": 8.5,
+          "rate": 1.5,
+          "value": 5.780304
+        },
+        {
+          "actual": 5.795256,
+          "ms": 707,
+          "paint": "5.789255",
+          "playing": true,
+          "rail": 2.4121895833333333,
+          "railWidth": 8.5,
+          "rate": 1.5,
+          "value": 5.789255
+        },
+        {
+          "actual": 5.805495,
+          "ms": 714.1000000000058,
+          "paint": "5.798307",
+          "playing": true,
+          "rail": 2.41596125,
+          "railWidth": 8.515625,
+          "rate": 1.5,
+          "value": 5.798307
+        },
+        {
+          "actual": 5.817951,
+          "ms": 721.1000000000058,
+          "paint": "5.812325",
+          "playing": true,
+          "rail": 2.421864583329608,
+          "railWidth": 8.546875,
+          "rate": 1.5,
+          "value": 5.812325
+        },
+        {
+          "actual": 5.845655,
+          "ms": 728.1000000000058,
+          "paint": "5.84007",
+          "playing": true,
+          "rail": 2.4333625000000003,
+          "railWidth": 8.578125,
+          "rate": 1.5,
+          "value": 5.84007
+        },
+        {
+          "actual": 5.853125,
+          "ms": 735.1000000000058,
+          "paint": "5.848568",
+          "playing": true,
+          "rail": 2.4369033333333334,
+          "railWidth": 8.59375,
+          "rate": 1.5,
+          "value": 5.848568
+        },
+        {
+          "actual": 5.853576,
+          "ms": 742.2000000000116,
+          "paint": "5.853125",
+          "playing": true,
+          "rail": 2.4388645833296083,
+          "railWidth": 8.59375,
+          "rate": 1.5,
+          "value": 5.853125
+        },
+        {
+          "actual": 5.885888,
+          "ms": 756.2000000000116,
+          "paint": "5.864351",
+          "playing": true,
+          "rail": 2.4434795833333336,
+          "railWidth": 8.625,
+          "rate": 1.5,
+          "value": 5.864351
+        },
+        {
+          "actual": 5.895381,
+          "ms": 763.2000000000116,
+          "paint": "5.889326",
+          "playing": true,
+          "rail": 2.453948333338922,
+          "railWidth": 8.65625,
+          "rate": 1.5,
+          "value": 5.889326
+        },
+        {
+          "actual": 5.898125,
+          "ms": 770.2000000000116,
+          "paint": "5.898125",
+          "playing": true,
+          "rail": 2.457614583329608,
+          "railWidth": 8.671875,
+          "rate": 1.5,
+          "value": 5.898125
+        },
+        {
+          "actual": 5.900094,
+          "ms": 777.3999999999942,
+          "paint": "5.898125",
+          "playing": true,
+          "rail": 2.4575520833333333,
+          "railWidth": 8.671875,
+          "rate": 1.5,
+          "value": 5.898125
+        },
+        {
+          "actual": 5.9099,
+          "ms": 784.3999999999942,
+          "paint": "5.90418",
+          "playing": true,
+          "rail": 2.460137499996274,
+          "railWidth": 8.671875,
+          "rate": 1.5,
+          "value": 5.90418
+        },
+        {
+          "actual": 5.921673,
+          "ms": 791.2999999999884,
+          "paint": "5.916086",
+          "playing": true,
+          "rail": 2.4650358333333333,
+          "railWidth": 8.6875,
+          "rate": 1.5,
+          "value": 5.916086
+        },
+        {
+          "actual": 5.929911,
+          "ms": 798.3999999999942,
+          "paint": "5.924927",
+          "playing": true,
+          "rail": 2.4687820833389216,
+          "railWidth": 8.703125,
+          "rate": 1.5,
+          "value": 5.924927
+        },
+        {
+          "actual": 5.940309,
+          "ms": 805.2999999999884,
+          "paint": "5.934996",
+          "playing": true,
+          "rail": 2.472915,
+          "railWidth": 8.71875,
+          "rate": 1.5,
+          "value": 5.934996
+        },
+        {
+          "actual": 5.969184,
+          "ms": 812.3999999999942,
+          "paint": "5.962004",
+          "playing": true,
+          "rail": 2.4841683333333333,
+          "railWidth": 8.765625,
+          "rate": 1.5,
+          "value": 5.962004
+        },
+        {
+          "actual": 5.973125,
+          "ms": 819.3999999999942,
+          "paint": "5.973125",
+          "playing": true,
+          "rail": 2.4888020833333333,
+          "railWidth": 8.78125,
+          "rate": 1.5,
+          "value": 5.973125
+        },
+        {
+          "actual": 5.973125,
+          "ms": 826.3999999999942,
+          "paint": "5.973125",
+          "playing": true,
+          "rail": 2.4888020833333333,
+          "railWidth": 8.78125,
+          "rate": 1.5,
+          "value": 5.973125
+        },
+        {
+          "actual": 5.985992,
+          "ms": 833.5,
+          "paint": "5.979501",
+          "playing": true,
+          "rail": 2.4914587499999996,
+          "railWidth": 8.78125,
+          "rate": 1.5,
+          "value": 5.979501
+        },
+        {
+          "actual": 6.017066,
+          "ms": 840.5,
+          "paint": "6.008831",
+          "playing": true,
+          "rail": 2.503679583333333,
+          "railWidth": 8.828125,
+          "rate": 1.5,
+          "value": 6.008831
+        },
+        {
+          "actual": 6.018125,
+          "ms": 847.5,
+          "paint": "6.018125",
+          "playing": true,
+          "rail": 2.5076145833296084,
+          "railWidth": 8.84375,
+          "rate": 1.5,
+          "value": 6.018125
+        },
+        {
+          "actual": 6.018567,
+          "ms": 854.5,
+          "paint": "6.018125",
+          "playing": true,
+          "rail": 2.507552083333333,
+          "railWidth": 8.84375,
+          "rate": 1.5,
+          "value": 6.018125
+        },
+        {
+          "actual": 6.028719,
+          "ms": 861.5,
+          "paint": "6.020925",
+          "playing": true,
+          "rail": 2.50871875,
+          "railWidth": 8.84375,
+          "rate": 1.5,
+          "value": 6.020925
+        },
+        {
+          "actual": 6.03803,
+          "ms": 868.6000000000058,
+          "paint": "6.031802",
+          "playing": true,
+          "rail": 2.5132508333333337,
+          "railWidth": 8.859375,
+          "rate": 1.5,
+          "value": 6.031802
+        },
+        {
+          "actual": 6.138125,
+          "ms": 875.6000000000058,
+          "paint": "6.137208",
+          "playing": true,
+          "rail": 2.5572325000055884,
+          "railWidth": 9.015625,
+          "rate": 1.5,
+          "value": 6.137208
+        },
+        {
+          "actual": 6.141828,
+          "ms": 931.7000000000116,
+          "paint": "6.138125",
+          "playing": true,
+          "rail": 2.557552083333333,
+          "railWidth": 9.015625,
+          "rate": 1.5,
+          "value": 6.138125
+        },
+        {
+          "actual": 6.155658,
+          "ms": 938.7999999999884,
+          "paint": "6.151359",
+          "playing": true,
+          "rail": 2.5630662500000003,
+          "railWidth": 9.046875,
+          "rate": 1.5,
+          "value": 6.151359
+        },
+        {
+          "actual": 6.166926,
+          "ms": 952.8999999999942,
+          "paint": "6.161459",
+          "playing": true,
+          "rail": 2.5672745833333335,
+          "railWidth": 9.046875,
+          "rate": 1.5,
+          "value": 6.161459
+        },
+        {
+          "actual": 6.172739,
+          "ms": 959.8999999999942,
+          "paint": "6.168125",
+          "playing": true,
+          "rail": 2.570114583329608,
+          "railWidth": 9.0625,
+          "rate": 1.5,
+          "value": 6.168125
+        },
+        {
+          "actual": 6.199059,
+          "ms": 966.8999999999942,
+          "paint": "6.177137",
+          "playing": true,
+          "rail": 2.5738070833333335,
+          "railWidth": 9.078125,
+          "rate": 1.5,
+          "value": 6.177137
+        },
+        {
+          "actual": 6.210288,
+          "ms": 973.8999999999942,
+          "paint": "6.204768",
+          "playing": true,
+          "rail": 2.58532,
+          "railWidth": 9.125,
+          "rate": 1.5,
+          "value": 6.204768
+        },
+        {
+          "actual": 6.213125,
+          "ms": 981,
+          "paint": "6.213125",
+          "playing": true,
+          "rail": 2.5888020833333334,
+          "railWidth": 9.125,
+          "rate": 1.5,
+          "value": 6.213125
+        },
+        {
+          "actual": 6.213125,
+          "ms": 988,
+          "paint": "6.213125",
+          "playing": true,
+          "rail": 2.5888020833333334,
+          "railWidth": 9.125,
+          "rate": 1.5,
+          "value": 6.213125
+        },
+        {
+          "actual": 6.222195,
+          "ms": 994.8999999999942,
+          "paint": "6.216993",
+          "playing": true,
+          "rail": 2.59041375,
+          "railWidth": 9.140625,
+          "rate": 1.5,
+          "value": 6.216993
+        },
+        {
+          "actual": 6.254225,
+          "ms": 1002,
+          "paint": "6.24729",
+          "playing": true,
+          "rail": 2.6030374999999997,
+          "railWidth": 9.1875,
+          "rate": 1.5,
+          "value": 6.24729
+        }
+      ],
+      "actualRate": 1.5
+    },
+    "phone-local-2x": {
+      "frames": 96,
+      "distinct": 93,
+      "elapsedMs": 1004.3999999999942,
+      "first": 7.213125,
+      "last": 9.120413,
+      "maxStep": 0.13404999999999845,
+      "maxMediaError": 0.03808000000000078,
+      "rows": [
+        {
+          "actual": 7.213607,
+          "ms": -1.1000000000058208,
+          "paint": "7.213125",
+          "playing": true,
+          "rail": 3.00546875,
+          "railWidth": 10.59375,
+          "rate": 2,
+          "value": 7.213125
+        },
+        {
+          "actual": 7.231683,
+          "ms": 5.899999999994179,
+          "paint": "7.225047000017881",
+          "playing": true,
+          "rail": 3.0103529166666663,
+          "railWidth": 10.625,
+          "rate": 2,
+          "value": 7.22504700001788
+        },
+        {
+          "actual": 7.249921,
+          "ms": 12.89999999999418,
+          "paint": "7.240733",
+          "playing": true,
+          "rail": 3.0170554166617,
+          "railWidth": 10.640625,
+          "rate": 2,
+          "value": 7.240733
+        },
+        {
+          "actual": 7.260553,
+          "ms": 20,
+          "paint": "7.253125",
+          "playing": true,
+          "rail": 3.0221354166666665,
+          "railWidth": 10.65625,
+          "rate": 2,
+          "value": 7.253125
+        },
+        {
+          "actual": 7.271673,
+          "ms": 27,
+          "paint": "7.264375",
+          "playing": true,
+          "rail": 3.0268229166666667,
+          "railWidth": 10.671875,
+          "rate": 2,
+          "value": 7.264375
+        },
+        {
+          "actual": 7.307503,
+          "ms": 34,
+          "paint": "7.299569",
+          "playing": true,
+          "rail": 3.041487083333333,
+          "railWidth": 10.734375,
+          "rate": 2,
+          "value": 7.299569
+        },
+        {
+          "actual": 7.313125,
+          "ms": 41,
+          "paint": "7.313125",
+          "playing": true,
+          "rail": 3.047135416666667,
+          "railWidth": 10.75,
+          "rate": 2,
+          "value": 7.313125
+        },
+        {
+          "actual": 7.313125,
+          "ms": 48.10000000000582,
+          "paint": "7.313125",
+          "playing": true,
+          "rail": 3.047135416666667,
+          "railWidth": 10.75,
+          "rate": 2,
+          "value": 7.313125
+        },
+        {
+          "actual": 7.329989,
+          "ms": 55.10000000000582,
+          "paint": "7.323907",
+          "playing": true,
+          "rail": 3.051627916666667,
+          "railWidth": 10.765625,
+          "rate": 2,
+          "value": 7.323907
+        },
+        {
+          "actual": 7.365337,
+          "ms": 62.20000000001164,
+          "paint": "7.355857",
+          "playing": true,
+          "rail": 3.064940416666667,
+          "railWidth": 10.8125,
+          "rate": 2,
+          "value": 7.355857
+        },
+        {
+          "actual": 7.373125,
+          "ms": 69.10000000000582,
+          "paint": "7.371377",
+          "playing": true,
+          "rail": 3.0714070833333333,
+          "railWidth": 10.828125,
+          "rate": 2,
+          "value": 7.371377
+        },
+        {
+          "actual": 7.373125,
+          "ms": 76.20000000001164,
+          "paint": "7.373125",
+          "playing": true,
+          "rail": 3.072135416666667,
+          "railWidth": 10.84375,
+          "rate": 2,
+          "value": 7.373125
+        },
+        {
+          "actual": 7.384809,
+          "ms": 83.20000000001164,
+          "paint": "7.377431",
+          "playing": true,
+          "rail": 3.0739295833333333,
+          "railWidth": 10.84375,
+          "rate": 2,
+          "value": 7.377431
+        },
+        {
+          "actual": 7.491987,
+          "ms": 90.10000000000582,
+          "paint": "7.483867",
+          "playing": true,
+          "rail": 3.1182779166666665,
+          "railWidth": 11,
+          "rate": 2,
+          "value": 7.483867
+        },
+        {
+          "actual": 7.531517,
+          "ms": 139.39999999999418,
+          "paint": "7.518833",
+          "playing": true,
+          "rail": 3.132847083333333,
+          "railWidth": 11.046875,
+          "rate": 2,
+          "value": 7.518833
+        },
+        {
+          "actual": 7.533125,
+          "ms": 153.39999999999418,
+          "paint": "7.533125",
+          "playing": true,
+          "rail": 3.1388020833333337,
+          "railWidth": 11.078125,
+          "rate": 2,
+          "value": 7.533125
+        },
+        {
+          "actual": 7.541415,
+          "ms": 160.5,
+          "paint": "7.533625",
+          "playing": true,
+          "rail": 3.139010416666667,
+          "railWidth": 11.078125,
+          "rate": 2,
+          "value": 7.533625
+        },
+        {
+          "actual": 7.554567,
+          "ms": 167.5,
+          "paint": "7.546123",
+          "playing": true,
+          "rail": 3.144301249995033,
+          "railWidth": 11.09375,
+          "rate": 2,
+          "value": 7.546123
+        },
+        {
+          "actual": 7.568523,
+          "ms": 174.5,
+          "paint": "7.560109",
+          "playing": true,
+          "rail": 3.1500454166666665,
+          "railWidth": 11.109375,
+          "rate": 2,
+          "value": 7.560109
+        },
+        {
+          "actual": 7.580393,
+          "ms": 181.5,
+          "paint": "7.573125",
+          "playing": true,
+          "rail": 3.155552083328366,
+          "railWidth": 11.125,
+          "rate": 2,
+          "value": 7.573125
+        },
+        {
+          "actual": 7.629299,
+          "ms": 188.5,
+          "paint": "7.615509",
+          "playing": true,
+          "rail": 3.1732954166691503,
+          "railWidth": 11.1875,
+          "rate": 2,
+          "value": 7.615509
+        },
+        {
+          "actual": 7.633125,
+          "ms": 202.60000000000585,
+          "paint": "7.633125",
+          "playing": true,
+          "rail": 3.1804687499999997,
+          "railWidth": 11.21875,
+          "rate": 2,
+          "value": 7.633125
+        },
+        {
+          "actual": 7.642713,
+          "ms": 209.60000000000585,
+          "paint": "7.633679",
+          "playing": true,
+          "rail": 3.180699583333333,
+          "railWidth": 11.21875,
+          "rate": 2,
+          "value": 7.633679
+        },
+        {
+          "actual": 7.674881,
+          "ms": 216.70000000001164,
+          "paint": "7.648355",
+          "playing": true,
+          "rail": 3.1868145833333332,
+          "railWidth": 11.234375,
+          "rate": 2,
+          "value": 7.648355
+        },
+        {
+          "actual": 7.687399,
+          "ms": 223.60000000000585,
+          "paint": "7.679885",
+          "playing": true,
+          "rail": 3.199952083333333,
+          "railWidth": 11.28125,
+          "rate": 2,
+          "value": 7.679885
+        },
+        {
+          "actual": 7.693125,
+          "ms": 230.60000000000585,
+          "paint": "7.690523",
+          "playing": true,
+          "rail": 3.204467916674117,
+          "railWidth": 11.296875,
+          "rate": 2,
+          "value": 7.690523
+        },
+        {
+          "actual": 7.697653,
+          "ms": 237.79999999998836,
+          "paint": "7.693125",
+          "playing": true,
+          "rail": 3.2054687499999996,
+          "railWidth": 11.3125,
+          "rate": 2,
+          "value": 7.693125
+        },
+        {
+          "actual": 7.712287,
+          "ms": 244.70000000001164,
+          "paint": "7.704421",
+          "playing": true,
+          "rail": 3.210175416666667,
+          "railWidth": 11.328125,
+          "rate": 2,
+          "value": 7.704421
+        },
+        {
+          "actual": 7.726719,
+          "ms": 251.79999999998836,
+          "paint": "7.716049",
+          "playing": true,
+          "rail": 3.215020416666667,
+          "railWidth": 11.34375,
+          "rate": 2,
+          "value": 7.716049
+        },
+        {
+          "actual": 7.744231,
+          "ms": 258.70000000001164,
+          "paint": "7.732553",
+          "playing": true,
+          "rail": 3.221897083333334,
+          "railWidth": 11.359375,
+          "rate": 2,
+          "value": 7.732553
+        },
+        {
+          "actual": 7.778945,
+          "ms": 265.79999999998836,
+          "paint": "7.747953",
+          "playing": true,
+          "rail": 3.228313749999999,
+          "railWidth": 11.390625,
+          "rate": 2,
+          "value": 7.747953
+        },
+        {
+          "actual": 7.786413,
+          "ms": 272.8999999999942,
+          "paint": "7.781453",
+          "playing": true,
+          "rail": 3.2422720833333334,
+          "railWidth": 11.4375,
+          "rate": 2,
+          "value": 7.781453
+        },
+        {
+          "actual": 7.793125,
+          "ms": 279.8999999999942,
+          "paint": "7.790163",
+          "playing": true,
+          "rail": 3.24590125,
+          "railWidth": 11.453125,
+          "rate": 2,
+          "value": 7.790163
+        },
+        {
+          "actual": 7.793391,
+          "ms": 286.8999999999942,
+          "paint": "7.793125",
+          "playing": true,
+          "rail": 3.2471354166666666,
+          "railWidth": 11.453125,
+          "rate": 2,
+          "value": 7.793125
+        },
+        {
+          "actual": 7.806255,
+          "ms": 293.79999999998836,
+          "paint": "7.800591",
+          "playing": true,
+          "rail": 3.2503295833283667,
+          "railWidth": 11.46875,
+          "rate": 2,
+          "value": 7.800591
+        },
+        {
+          "actual": 7.839607,
+          "ms": 300.8999999999942,
+          "paint": "7.814741",
+          "playing": true,
+          "rail": 3.256142083333333,
+          "railWidth": 11.484375,
+          "rate": 2,
+          "value": 7.814741
+        },
+        {
+          "actual": 7.851267,
+          "ms": 307.8999999999942,
+          "paint": "7.844731",
+          "playing": true,
+          "rail": 3.268637916666667,
+          "railWidth": 11.53125,
+          "rate": 2,
+          "value": 7.844731
+        },
+        {
+          "actual": 7.853125,
+          "ms": 314.8999999999942,
+          "paint": "7.853125",
+          "playing": true,
+          "rail": 3.2722187499950333,
+          "railWidth": 11.546875,
+          "rate": 2,
+          "value": 7.853125
+        },
+        {
+          "actual": 7.862549,
+          "ms": 321.8999999999942,
+          "paint": "7.856565",
+          "playing": true,
+          "rail": 3.27356875,
+          "railWidth": 11.546875,
+          "rate": 2,
+          "value": 7.856565
+        },
+        {
+          "actual": 7.875669,
+          "ms": 329,
+          "paint": "7.869237",
+          "playing": true,
+          "rail": 3.278932083328366,
+          "railWidth": 11.5625,
+          "rate": 2,
+          "value": 7.869237
+        },
+        {
+          "actual": 7.894451,
+          "ms": 336,
+          "paint": "7.8878969999880795",
+          "playing": true,
+          "rail": 3.286540416666667,
+          "railWidth": 11.59375,
+          "rate": 2,
+          "value": 7.88789699998808
+        },
+        {
+          "actual": 7.907255,
+          "ms": 343,
+          "paint": "7.898409",
+          "playing": true,
+          "rail": 3.29100375,
+          "railWidth": 11.609375,
+          "rate": 2,
+          "value": 7.898409
+        },
+        {
+          "actual": 7.937347,
+          "ms": 350,
+          "paint": "7.912703",
+          "playing": true,
+          "rail": 3.296959583333333,
+          "railWidth": 11.625,
+          "rate": 2,
+          "value": 7.912703
+        },
+        {
+          "actual": 8.023669,
+          "ms": 357.1000000000058,
+          "paint": "8.015787",
+          "playing": true,
+          "rail": 3.33991125,
+          "railWidth": 11.78125,
+          "rate": 2,
+          "value": 8.015787
+        },
+        {
+          "actual": 8.048783,
+          "ms": 413.2999999999883,
+          "paint": "8.042533",
+          "playing": true,
+          "rail": 3.351055416666667,
+          "railWidth": 11.828125,
+          "rate": 2,
+          "value": 8.042533
+        },
+        {
+          "actual": 8.062633,
+          "ms": 420.3999999999942,
+          "paint": "8.053523",
+          "playing": true,
+          "rail": 3.3556345833333334,
+          "railWidth": 11.84375,
+          "rate": 2,
+          "value": 8.053523
+        },
+        {
+          "actual": 8.073835,
+          "ms": 427.2999999999883,
+          "paint": "8.066915",
+          "playing": true,
+          "rail": 3.3612145833333336,
+          "railWidth": 11.859375,
+          "rate": 2,
+          "value": 8.066915
+        },
+        {
+          "actual": 8.093125,
+          "ms": 434.2999999999883,
+          "paint": "8.081609",
+          "playing": true,
+          "rail": 3.3673370833333336,
+          "railWidth": 11.875,
+          "rate": 2,
+          "value": 8.081609
+        },
+        {
+          "actual": 8.093125,
+          "ms": 455.3999999999942,
+          "paint": "8.093125",
+          "playing": true,
+          "rail": 3.372135416666667,
+          "railWidth": 11.890625,
+          "rate": 2,
+          "value": 8.093125
+        },
+        {
+          "actual": 8.117963,
+          "ms": 476.5,
+          "paint": "8.113125",
+          "playing": true,
+          "rail": 3.380552083328366,
+          "railWidth": 11.921875,
+          "rate": 2,
+          "value": 8.113125
+        },
+        {
+          "actual": 8.160361,
+          "ms": 511.6000000000058,
+          "paint": "8.126151",
+          "playing": true,
+          "rail": 3.38589625,
+          "railWidth": 11.9375,
+          "rate": 2,
+          "value": 8.126151
+        },
+        {
+          "actual": 8.179985,
+          "ms": 525.6000000000058,
+          "paint": "8.173125",
+          "playing": true,
+          "rail": 3.40546875,
+          "railWidth": 12.015625,
+          "rate": 2,
+          "value": 8.173125
+        },
+        {
+          "actual": 8.201757,
+          "ms": 539.7000000000116,
+          "paint": "8.194171",
+          "playing": true,
+          "rail": 3.4142379166666665,
+          "railWidth": 12.046875,
+          "rate": 2,
+          "value": 8.194171
+        },
+        {
+          "actual": 8.213125,
+          "ms": 546.7999999999884,
+          "paint": "8.207835",
+          "playing": true,
+          "rail": 3.419931249999999,
+          "railWidth": 12.0625,
+          "rate": 2,
+          "value": 8.207835
+        },
+        {
+          "actual": 8.255509,
+          "ms": 553.7000000000116,
+          "paint": "8.217429",
+          "playing": true,
+          "rail": 3.42392875,
+          "railWidth": 12.078125,
+          "rate": 2,
+          "value": 8.217429
+        },
+        {
+          "actual": 8.273125,
+          "ms": 560.7999999999884,
+          "paint": "8.259263",
+          "playing": true,
+          "rail": 3.441359583333334,
+          "railWidth": 12.140625,
+          "rate": 2,
+          "value": 8.259263
+        },
+        {
+          "actual": 8.273125,
+          "ms": 574.7999999999884,
+          "paint": "8.273125",
+          "playing": true,
+          "rail": 3.447135416666667,
+          "railWidth": 12.15625,
+          "rate": 2,
+          "value": 8.273125
+        },
+        {
+          "actual": 8.287201,
+          "ms": 581.8999999999942,
+          "paint": "8.279333",
+          "playing": true,
+          "rail": 3.4497220833333326,
+          "railWidth": 12.171875,
+          "rate": 2,
+          "value": 8.279333
+        },
+        {
+          "actual": 8.316145,
+          "ms": 588.8999999999942,
+          "paint": "8.292339",
+          "playing": true,
+          "rail": 3.4551412500000005,
+          "railWidth": 12.1875,
+          "rate": 2,
+          "value": 8.292339
+        },
+        {
+          "actual": 8.329749,
+          "ms": 595.8999999999942,
+          "paint": "8.322593",
+          "playing": true,
+          "rail": 3.467747083333333,
+          "railWidth": 12.234375,
+          "rate": 2,
+          "value": 8.322593
+        },
+        {
+          "actual": 8.333125,
+          "ms": 603,
+          "paint": "8.333125",
+          "playing": true,
+          "rail": 3.472218750007451,
+          "railWidth": 12.25,
+          "rate": 2,
+          "value": 8.333125
+        },
+        {
+          "actual": 8.339635,
+          "ms": 610,
+          "paint": "8.333125",
+          "playing": true,
+          "rail": 3.472135416666667,
+          "railWidth": 12.25,
+          "rate": 2,
+          "value": 8.333125
+        },
+        {
+          "actual": 8.353659,
+          "ms": 617,
+          "paint": "8.347059",
+          "playing": true,
+          "rail": 3.47794125,
+          "railWidth": 12.265625,
+          "rate": 2,
+          "value": 8.347059
+        },
+        {
+          "actual": 8.367353,
+          "ms": 624,
+          "paint": "8.359075",
+          "playing": true,
+          "rail": 3.482947916666667,
+          "railWidth": 12.28125,
+          "rate": 2,
+          "value": 8.359075
+        },
+        {
+          "actual": 8.493125,
+          "ms": 631,
+          "paint": "8.493125",
+          "playing": true,
+          "rail": 3.538802083333333,
+          "railWidth": 12.484375,
+          "rate": 2,
+          "value": 8.493125
+        },
+        {
+          "actual": 8.511211,
+          "ms": 687.2999999999884,
+          "paint": "8.502713",
+          "playing": true,
+          "rail": 3.5427970833333338,
+          "railWidth": 12.5,
+          "rate": 2,
+          "value": 8.502713
+        },
+        {
+          "actual": 8.532767,
+          "ms": 701.2999999999884,
+          "paint": "8.522467",
+          "playing": true,
+          "rail": 3.5510279166666674,
+          "railWidth": 12.53125,
+          "rate": 2,
+          "value": 8.522467
+        },
+        {
+          "actual": 8.542679,
+          "ms": 708.2000000000116,
+          "paint": "8.534589",
+          "playing": true,
+          "rail": 3.5561620833407845,
+          "railWidth": 12.546875,
+          "rate": 2,
+          "value": 8.534589
+        },
+        {
+          "actual": 8.593125,
+          "ms": 722.2999999999884,
+          "paint": "8.579921",
+          "playing": true,
+          "rail": 3.5749670833333336,
+          "railWidth": 12.609375,
+          "rate": 2,
+          "value": 8.579921
+        },
+        {
+          "actual": 8.594881,
+          "ms": 729.3999999999942,
+          "paint": "8.593125",
+          "playing": true,
+          "rail": 3.58046875,
+          "railWidth": 12.625,
+          "rate": 2,
+          "value": 8.593125
+        },
+        {
+          "actual": 8.636619,
+          "ms": 743.3999999999942,
+          "paint": "8.605109",
+          "playing": true,
+          "rail": 3.5854620833333337,
+          "railWidth": 12.65625,
+          "rate": 2,
+          "value": 8.605109
+        },
+        {
+          "actual": 8.653125,
+          "ms": 757.5,
+          "paint": "8.648745",
+          "playing": true,
+          "rail": 3.60364375,
+          "railWidth": 12.71875,
+          "rate": 2,
+          "value": 8.648745
+        },
+        {
+          "actual": 8.659941,
+          "ms": 764.3999999999942,
+          "paint": "8.653125",
+          "playing": true,
+          "rail": 3.605552083340783,
+          "railWidth": 12.71875,
+          "rate": 2,
+          "value": 8.653125
+        },
+        {
+          "actual": 8.671785,
+          "ms": 778.5,
+          "paint": "8.663389",
+          "playing": true,
+          "rail": 3.6097454166666663,
+          "railWidth": 12.734375,
+          "rate": 2,
+          "value": 8.663389
+        },
+        {
+          "actual": 8.685589,
+          "ms": 785.5,
+          "paint": "8.676851",
+          "playing": true,
+          "rail": 3.6153545833333327,
+          "railWidth": 12.75,
+          "rate": 2,
+          "value": 8.676851
+        },
+        {
+          "actual": 8.704257,
+          "ms": 792.6000000000058,
+          "paint": "8.695759",
+          "playing": true,
+          "rail": 3.623232916666667,
+          "railWidth": 12.78125,
+          "rate": 2,
+          "value": 8.695759
+        },
+        {
+          "actual": 8.742559,
+          "ms": 799.6000000000058,
+          "paint": "8.709321",
+          "playing": true,
+          "rail": 3.628883749999999,
+          "railWidth": 12.796875,
+          "rate": 2,
+          "value": 8.709321
+        },
+        {
+          "actual": 8.753125,
+          "ms": 806.7000000000116,
+          "paint": "8.747813",
+          "playing": true,
+          "rail": 3.644922083333334,
+          "railWidth": 12.859375,
+          "rate": 2,
+          "value": 8.747813
+        },
+        {
+          "actual": 8.753125,
+          "ms": 813.6000000000058,
+          "paint": "8.753125",
+          "playing": true,
+          "rail": 3.647135416666667,
+          "railWidth": 12.859375,
+          "rate": 2,
+          "value": 8.753125
+        },
+        {
+          "actual": 8.762001,
+          "ms": 820.7000000000116,
+          "paint": "8.755201",
+          "playing": true,
+          "rail": 3.648000416666666,
+          "railWidth": 12.875,
+          "rate": 2,
+          "value": 8.755201
+        },
+        {
+          "actual": 8.798943,
+          "ms": 827.7000000000116,
+          "paint": "8.767915",
+          "playing": true,
+          "rail": 3.653297916666667,
+          "railWidth": 12.890625,
+          "rate": 2,
+          "value": 8.767915
+        },
+        {
+          "actual": 8.813125,
+          "ms": 834.7000000000116,
+          "paint": "8.807805",
+          "playing": true,
+          "rail": 3.66991875,
+          "railWidth": 12.953125,
+          "rate": 2,
+          "value": 8.807805
+        },
+        {
+          "actual": 8.813125,
+          "ms": 841.7000000000116,
+          "paint": "8.813125",
+          "playing": true,
+          "rail": 3.6721354166666664,
+          "railWidth": 12.953125,
+          "rate": 2,
+          "value": 8.813125
+        },
+        {
+          "actual": 8.813125,
+          "ms": 848.7000000000116,
+          "paint": "8.813125",
+          "playing": true,
+          "rail": 3.6722187499950327,
+          "railWidth": 12.953125,
+          "rate": 2,
+          "value": 8.813125
+        },
+        {
+          "actual": 8.827091,
+          "ms": 855.7999999999884,
+          "paint": "8.818195",
+          "playing": true,
+          "rail": 3.674247916666666,
+          "railWidth": 12.96875,
+          "rate": 2,
+          "value": 8.818195
+        },
+        {
+          "actual": 8.843831,
+          "ms": 862.7999999999884,
+          "paint": "8.834141",
+          "playing": true,
+          "rail": 3.6808920833333336,
+          "railWidth": 12.984375,
+          "rate": 2,
+          "value": 8.834141
+        },
+        {
+          "actual": 8.862969,
+          "ms": 869.7999999999884,
+          "paint": "8.854907",
+          "playing": true,
+          "rail": 3.689544583333334,
+          "railWidth": 13.015625,
+          "rate": 2,
+          "value": 8.854907
+        },
+        {
+          "actual": 8.893899,
+          "ms": 876.8999999999942,
+          "paint": "8.867069",
+          "playing": true,
+          "rail": 3.694612083333334,
+          "railWidth": 13.03125,
+          "rate": 2,
+          "value": 8.867069
+        },
+        {
+          "actual": 8.906615,
+          "ms": 883.8999999999942,
+          "paint": "8.898109",
+          "playing": true,
+          "rail": 3.707628749995032,
+          "railWidth": 13.078125,
+          "rate": 2,
+          "value": 8.898109
+        },
+        {
+          "actual": 9.001707,
+          "ms": 890.8999999999942,
+          "paint": "8.992329",
+          "playing": true,
+          "rail": 3.74680375,
+          "railWidth": 13.21875,
+          "rate": 2,
+          "value": 8.992329
+        },
+        {
+          "actual": 9.013125,
+          "ms": 947,
+          "paint": "9.011391",
+          "playing": true,
+          "rail": 3.75474625,
+          "railWidth": 13.25,
+          "rate": 2,
+          "value": 9.011391
+        },
+        {
+          "actual": 9.027359,
+          "ms": 961.1000000000058,
+          "paint": "9.013125",
+          "playing": true,
+          "rail": 3.75546875,
+          "railWidth": 13.25,
+          "rate": 2,
+          "value": 9.013125
+        },
+        {
+          "actual": 9.073125,
+          "ms": 968.1000000000058,
+          "paint": "9.062245",
+          "playing": true,
+          "rail": 3.775935416666667,
+          "railWidth": 13.328125,
+          "rate": 2,
+          "value": 9.062245
+        },
+        {
+          "actual": 9.075493,
+          "ms": 982.2000000000116,
+          "paint": "9.073125",
+          "playing": true,
+          "rail": 3.78046875,
+          "railWidth": 13.34375,
+          "rate": 2,
+          "value": 9.073125
+        },
+        {
+          "actual": 9.116563,
+          "ms": 996.1000000000058,
+          "paint": "9.090863",
+          "playing": true,
+          "rail": 3.787942916661699,
+          "railWidth": 13.359375,
+          "rate": 2,
+          "value": 9.090863
+        },
+        {
+          "actual": 9.129921,
+          "ms": 1003.2999999999884,
+          "paint": "9.120413",
+          "playing": true,
+          "rail": 3.800172083333333,
+          "railWidth": 13.40625,
+          "rate": 2,
+          "value": 9.120413
+        }
+      ],
+      "actualRate": 2
+    },
+    "paused": {
+      "drift": 0,
+      "rows": [
+        {
+          "actual": 9.865253,
+          "ms": 2.4999999940337148,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 9.599999994039536,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 16.599999994039536,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 23.699999994045356,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 30.699999994045356,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 37.69999999404536,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 44.69999999404536,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 51.69999999404536,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 58.69999999404536,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 65.79999999405118,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 72.79999999405118,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 79.79999999405118,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 86.8999999940279,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 93.8999999940279,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 100.8999999940279,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 107.8999999940279,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 114.99999999403371,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 121.99999999403371,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 128.99999999403371,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 136.09999999403954,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 142.99999999403371,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 149.99999999403371,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 157.09999999403954,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 163.99999999403371,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 171.09999999403954,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 178.19999999404536,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 185.19999999404536,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 192.19999999404536,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 199.19999999404536,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 206.2999999940512,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 213.19999999404536,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 220.2999999940512,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 227.2999999940512,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 234.3999999940279,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 241.2999999940512,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 248.3999999940279,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 255.3999999940279,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 262.3999999940279,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 269.4999999940337,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 276.4999999940337,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 283.4999999940337,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 290.4999999940337,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 297.59999999403954,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 304.59999999403954,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 311.59999999403954,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 318.69999999404536,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 325.59999999403954,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 332.69999999404536,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 339.69999999404536,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 346.69999999404536,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 353.69999999404536,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 360.69999999404536,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 367.69999999404536,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 374.7999999940512,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 381.7999999940512,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 388.7999999940512,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 395.9999999940337,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        },
+        {
+          "actual": 9.865253,
+          "ms": 402.8999999940279,
+          "paint": "9.865253",
+          "playing": false,
+          "rail": 4.110522083333333,
+          "railWidth": 14.5,
+          "rate": 2,
+          "value": 9.865253
+        }
+      ]
+    }
+  },
+  "captures": [
+    "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\docs\\verification\\2026-10-16\\parity25\\parity25-progress-desktop.png",
+    "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\docs\\verification\\2026-10-16\\parity25\\parity25-progress-phone.png",
+    "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\docs\\verification\\2026-10-16\\parity25\\parity25-progress-failure.png"
+  ],
+  "pass": false,
+  "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n3 !== 1\n\n    at file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/work/qa/parity25-progress-browser.mjs:29:55\n    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)\n    at async node:internal/modules/esm/loader:643:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)"
+}

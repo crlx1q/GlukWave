@@ -1,0 +1,8 @@
+Analyzing native...                                             
+
+   info - Statements in an if should be enclosed in a block - lib\services\audio.dart:308:7 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block - lib\services\audio.dart:1226:7 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block - lib\services\audio.dart:1230:7 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block - lib\services\audio.dart:1232:7 - curly_braces_in_flow_control_structures
+
+4 issues found. (ran in 59.3s)

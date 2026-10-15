@@ -1,0 +1,378 @@
+{
+  "passed": true,
+  "records": [
+    {
+      "scope": "likes",
+      "rows": [
+        "01 Ветер над моремТихий берегSoundCloud3:35 ",
+        "02 Марсель — Был ӨмірдеАлихан ҒарышқанSoundCloud1:01:13 ",
+        "03 После дождяЗвук водыSoundCloud3:00 "
+      ]
+    },
+    {
+      "scope": "title",
+      "rows": [
+        "01 Ветер над моремТихий берегSoundCloud3:35 ",
+        "02 Марсель — Был ӨмірдеАлихан ҒарышқанSoundCloud1:01:13 ",
+        "03 После дождяЗвук водыSoundCloud3:00 "
+      ]
+    },
+    {
+      "art": {
+        "bottom": 772.109375,
+        "height": 580.234375,
+        "left": 236,
+        "right": 732,
+        "top": 191.875,
+        "width": 496,
+        "x": 236,
+        "y": 191.875
+      },
+      "controls": {
+        "bottom": 593.140625,
+        "height": 222.296875,
+        "left": 804,
+        "right": 1204,
+        "top": 370.84375,
+        "width": 400,
+        "x": 804,
+        "y": 370.84375
+      },
+      "cover": {
+        "bottom": 687.71875,
+        "height": 495.84375,
+        "left": 236,
+        "right": 732,
+        "top": 191.875,
+        "width": 496,
+        "x": 236,
+        "y": 191.875
+      },
+      "footerLyrics": 0,
+      "heading": {
+        "bottom": 420.140625,
+        "height": 49.296875,
+        "left": 804,
+        "right": 1204,
+        "top": 370.84375,
+        "width": 400,
+        "x": 804,
+        "y": 370.84375
+      },
+      "light": "34.5491% 46.8713%",
+      "lyrics": {
+        "bottom": 756.109375,
+        "height": 54.390625,
+        "left": 284,
+        "right": 684,
+        "top": 701.71875,
+        "width": 400,
+        "x": 284,
+        "y": 701.71875
+      },
+      "overflow": false,
+      "viewport": [
+        1440,
+        900
+      ]
+    },
+    {
+      "orientationLight": true,
+      "pointerStable": true,
+      "after": "43.0414% 46.8713%"
+    },
+    {
+      "art": {
+        "bottom": 546.9808349609375,
+        "height": 281.2939453125,
+        "left": 91.25230407714844,
+        "right": 371.66319274902344,
+        "top": 265.6868896484375,
+        "width": 280.410888671875,
+        "x": 91.25230407714844,
+        "y": 265.6868896484375
+      },
+      "blur": [
+        {
+          "filter": "none",
+          "opacity": "0.76",
+          "text": "Там, где тихо — мы услышим море"
+        },
+        {
+          "filter": "none",
+          "opacity": "1",
+          "text": "И увидим свет в твоём окне"
+        },
+        {
+          "filter": "none",
+          "opacity": "0.76",
+          "text": "Этот миг останется с тобою"
+        },
+        {
+          "filter": "blur(1.15px)",
+          "opacity": "0.36",
+          "text": "Музыка напомнит обо мне"
+        },
+        {
+          "filter": "blur(2.3px)",
+          "opacity": "0.3",
+          "text": "Пусть далёкий голос станет тише"
+        },
+        {
+          "filter": "blur(3.45px)",
+          "opacity": "0.24",
+          "text": "А наш свет останется с тобой"
+        }
+      ]
+    },
+    {
+      "art": {
+        "bottom": 649.4375,
+        "height": 543.4375,
+        "left": 159,
+        "right": 609,
+        "top": 106,
+        "width": 450,
+        "x": 159,
+        "y": 106
+      },
+      "controls": {
+        "bottom": 915.734375,
+        "height": 244.296875,
+        "left": 194,
+        "right": 574,
+        "top": 671.4375,
+        "width": 380,
+        "x": 194,
+        "y": 671.4375
+      },
+      "cover": {
+        "bottom": 565.046875,
+        "height": 459.046875,
+        "left": 159,
+        "right": 609,
+        "top": 106,
+        "width": 450,
+        "x": 159,
+        "y": 106
+      },
+      "footerLyrics": 0,
+      "heading": {
+        "bottom": 720.734375,
+        "height": 49.296875,
+        "left": 194,
+        "right": 574,
+        "top": 671.4375,
+        "width": 380,
+        "x": 194,
+        "y": 671.4375
+      },
+      "light": "43.0414% 46.8713%",
+      "lyrics": {
+        "bottom": 633.4375,
+        "height": 54.390625,
+        "left": 184,
+        "right": 584,
+        "top": 579.046875,
+        "width": 400,
+        "x": 184,
+        "y": 579.046875
+      },
+      "overflow": false,
+      "viewport": [
+        768,
+        900
+      ]
+    },
+    {
+      "art": {
+        "bottom": 534.953125,
+        "height": 428.953125,
+        "left": 18,
+        "right": 357,
+        "top": 106,
+        "width": 339,
+        "x": 18,
+        "y": 106
+      },
+      "controls": {
+        "bottom": 824.34375,
+        "height": 271.390625,
+        "left": 18,
+        "right": 357,
+        "top": 552.953125,
+        "width": 339,
+        "x": 18,
+        "y": 552.953125
+      },
+      "cover": {
+        "bottom": 450.5625,
+        "height": 344.5625,
+        "left": 18,
+        "right": 357,
+        "top": 106,
+        "width": 339,
+        "x": 18,
+        "y": 106
+      },
+      "footerLyrics": 0,
+      "heading": {
+        "bottom": 611.34375,
+        "height": 58.390625,
+        "left": 18,
+        "right": 357,
+        "top": 552.953125,
+        "width": 339,
+        "x": 18,
+        "y": 552.953125
+      },
+      "light": "43.0414% 46.8713%",
+      "lyrics": {
+        "bottom": 518.953125,
+        "height": 54.390625,
+        "left": 18,
+        "right": 357,
+        "top": 464.5625,
+        "width": 339,
+        "x": 18,
+        "y": 464.5625
+      },
+      "overflow": false,
+      "viewport": [
+        375,
+        900
+      ]
+    },
+    {
+      "art": {
+        "bottom": 481.359375,
+        "height": 375.359375,
+        "left": 18,
+        "right": 302,
+        "top": 106,
+        "width": 284,
+        "x": 18,
+        "y": 106
+      },
+      "controls": {
+        "bottom": 770.75,
+        "height": 271.390625,
+        "left": 18,
+        "right": 302,
+        "top": 499.359375,
+        "width": 284,
+        "x": 18,
+        "y": 499.359375
+      },
+      "cover": {
+        "bottom": 396.96875,
+        "height": 290.96875,
+        "left": 18,
+        "right": 302,
+        "top": 106,
+        "width": 284,
+        "x": 18,
+        "y": 106
+      },
+      "footerLyrics": 0,
+      "heading": {
+        "bottom": 557.75,
+        "height": 58.390625,
+        "left": 18,
+        "right": 302,
+        "top": 499.359375,
+        "width": 284,
+        "x": 18,
+        "y": 499.359375
+      },
+      "light": "43.0414% 46.8713%",
+      "lyrics": {
+        "bottom": 465.359375,
+        "height": 54.390625,
+        "left": 18,
+        "right": 302,
+        "top": 410.96875,
+        "width": 284,
+        "x": 18,
+        "y": 410.96875
+      },
+      "overflow": true,
+      "viewport": [
+        320,
+        900
+      ]
+    },
+    {
+      "overflow": false,
+      "sort": {
+        "bottom": 890,
+        "height": 47.5,
+        "left": 22.5,
+        "right": 287.5,
+        "top": 842.5,
+        "width": 265,
+        "x": 22.5,
+        "y": 842.5
+      },
+      "viewport": 320
+    },
+    {
+      "overflow": false,
+      "sort": {
+        "bottom": 843.625,
+        "height": 47.5,
+        "left": 27.5,
+        "right": 337.5,
+        "top": 796.125,
+        "width": 310,
+        "x": 27.5,
+        "y": 796.125
+      },
+      "viewport": 375
+    },
+    {
+      "overflow": false,
+      "sort": {
+        "bottom": 723.796875,
+        "height": 47.5,
+        "left": 27.5,
+        "right": 730.5,
+        "top": 676.296875,
+        "width": 703,
+        "x": 27.5,
+        "y": 676.296875
+      },
+      "viewport": 768
+    },
+    {
+      "overflow": false,
+      "sort": {
+        "bottom": 752.578125,
+        "height": 47.5,
+        "left": 160,
+        "right": 1380,
+        "top": 705.078125,
+        "width": 1220,
+        "x": 160,
+        "y": 705.078125
+      },
+      "viewport": 1440
+    },
+    {
+      "scope": "playlistOriginal",
+      "rows": [
+        "01 После дождяЗвук водыSoundCloud3:00 ",
+        "02 Марсель — Был ӨмірдеАлихан ҒарышқанSoundCloud1:01:13 ",
+        "03 Ветер над моремТихий берегSoundCloud3:35 "
+      ]
+    },
+    {
+      "scope": "playlistRecent",
+      "rows": [
+        "01 Ветер над моремТихий берегSoundCloud3:35 ",
+        "02 Марсель — Был ӨмірдеАлихан ҒарышқанSoundCloud1:01:13 ",
+        "03 После дождяЗвук водыSoundCloud3:00 "
+      ]
+    }
+  ]
+}

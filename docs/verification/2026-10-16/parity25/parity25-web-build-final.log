@@ -1,0 +1,57 @@
+
+> glukwave@0.1.0 build
+> npm run build -w @glukwave/web
+
+
+> @glukwave/web@0.1.0 build
+> tsc -b && vite build && node qa/legacy-build.mjs
+
+vite v8.3.2 building client environment for production...
+transforming...
+✓ 1924 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/assets/mini-legacy-CFLSVTBu.js                   7.28 kB │ gzip:   2.77 kB
+dist/assets/polyfills-legacy-BiJ_zgFM.js            176.86 kB │ gzip:  63.01 kB
+dist/assets/hls-legacy-B7zYHMqK.js                  665.59 kB │ gzip: 196.73 kB
+dist/assets/playback-feedback-legacy-DwC6tSJu.js    871.02 kB │ gzip: 260.82 kB
+dist/assets/main-legacy-BVWmKVOr.js               1,045.19 kB │ gzip: 240.20 kB
+
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+transforming...
+✓ 1924 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                               2.64 kB │ gzip:   1.17 kB
+dist/mini.html                                3.14 kB │ gzip:   1.41 kB
+dist/assets/playback-feedback-Bgt9n7mN.css   11.94 kB │ gzip:   3.02 kB
+dist/assets/main-BFx85tSv.css               430.96 kB │ gzip:  73.43 kB
+dist/assets/mini-UOPMEZhv.js                  4.17 kB │ gzip:   1.64 kB
+dist/assets/polyfills-CJrymdT5.js            16.94 kB │ gzip:   6.49 kB
+dist/assets/main-DbyOcAPB.js                508.45 kB │ gzip: 145.24 kB
+dist/assets/hls-BsvdAr7l.js                 589.76 kB │ gzip: 182.98 kB
+dist/assets/playback-feedback-BlSqIsWA.js   819.29 kB │ gzip: 246.25 kB
+
+✓ built in 1m 28s
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+[PLUGIN_TIMINGS] JavaScript callbacks ran for 87.0s of this 88.3s build (99%).
+The slowest callbacks, timed inside each callback (the wait before a callback starts is excluded, the time it awaits is included):
+  - plugin vite:legacy-post-process renderChunk (45%, 39.3s, 8 calls)
+  - plugin glukwave-legacy-syntax generateBundle (14%, 12.2s, 2 calls)
+  - plugin vite:legacy-generate-polyfill-chunk generateBundle (9%, 7.9s, 2 calls)
+Additional callback time came from the callbacks below and from callbacks under 1s.
+3 callbacks are listed without a time. Their calls overlapped, so the time inside one call includes work from other calls. To find their cost, profile the build with `node --cpu-prof`:
+  - plugin vite:css transform (58 calls)
+  - plugin vite:terser renderChunk (8 calls)
+  - plugin vite:build-html transform (4 calls)
+See https://rolldown.rs/reference/InputOptions.checks#bundlertimings for more details.
+
+{"passed":true,"es5Chunks":5}

@@ -1,0 +1,33 @@
+{
+  "checkedAt": "2026-10-15T21:32:49.313041+00:00",
+  "passed": true,
+  "currentAffectedTestsPassed": 58,
+  "integratedTestsPassedBeforePendingSelectionAmendment": 57,
+  "currentLog": "parity25-native-current-final.log",
+  "currentLogSha256": "8dce74f35838488cc29a76dfb500e43b046ab863ff942b94e62d87a3a7c31b93",
+  "analyzerLog": "parity25-native-analyze-final.log",
+  "analyzerSha256": "49a5b72fdc3f332bda7e392a7cb8975186559fcb4e3a7b54a1d97979c7689911",
+  "finalPendingSelectionSubset": {
+    "passed": true,
+    "testsPassed": 4,
+    "overlapWithIntegratedRun": 3,
+    "log": "parity25-native-progress-pending-final.log",
+    "logSha256": "b50bb2e74e616f945c0efbfa546813977ab8925522888d54dee75a217808f879",
+    "analyzerLog": "parity25-native-progress-pending-analyze.log",
+    "analyzerSha256": "f79dcfa63fcae8369862ea1d40c29d3fea71df90fa21199a57b9f35f24d7e940",
+    "scope": "Final UI-only pending selection guard and all physical progress/drag/lifecycle cases; 3 repeated plus 1 new actual-controller regression"
+  },
+  "baseline": {
+    "version": "1.0.0+24",
+    "fullSuiteTestsPassed": 465,
+    "historical": true,
+    "evidence": "docs/verification/2026-10-15/parity24/parity24-evidence.json"
+  },
+  "scope": "Integrated affected run then final four-case progress subset after a UI-only pending selection guard. Counts represent distinct test identities, not the sum of repeated runs. Integrated scope: library UI/order, lyrics, cover hit regions and Wave header, physical glyph clocks, native progress, notification heart, playback state, playlist mutations and startup configuration",
+  "limits": [
+    "No physical Android notification shade or TV verification",
+    "Renderer/controller tests do not prove physical hardware sound",
+    "Integrated run and whole analyzer precede only the final pending-selection guard; final progress subset and targeted analyzer cover that guard",
+    "Earlier pre-clock-assertion and transient duplicate-key failed logs are historical; final named passing logs are authoritative and reruns are not added twice"
+  ]
+}

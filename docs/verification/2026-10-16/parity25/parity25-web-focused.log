@@ -1,0 +1,20 @@
+✔ Legacy append likes normalize exactly once and modern date map preserves server order (7.6559ms)
+✔ Optimistic like retains one captured date, null response clears it and failed account mutation rolls back (4.7651ms)
+✔ Actual addition dates and stable ties sort the display without changing membership order (32.6223ms)
+✔ Legacy browser without Intl.Collator can sort titles (0.8283ms)
+✔ Timed intro comes from playback time and follows seeks in either direction (5.6778ms)
+✔ Only distant lyrics are softly defocused and blur has a bounded maximum (0.6331ms)
+✔ likes are immediate, ordered, and an older failure does not undo a later click (6.4321ms)
+✔ fresh snapshots overlay pending edits, stale reads cannot erase acknowledged changes (1.5744ms)
+✔ account changes isolate late results and queued mutations (2.9464ms)
+✔ two different playlist edits keep each other when one fails (1.6493ms)
+✔ a new playlist is an immediate draft, confirmed data excludes it until acknowledgement (2.6143ms)
+✔ a delayed cover response cannot replace a newer name or membership (1.0555ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 648.0036

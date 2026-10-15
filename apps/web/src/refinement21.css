@@ -39,3 +39,28 @@
 .wave-personalization .wave-mode.is-active{box-shadow:none}.wave-personalization .wave-mode.is-active>svg{color:var(--accent)}
 .wave-personalization .wave-mode.selected:before,.wave-personalization .wave-mode.selected:after{display:none}
 .wave-personalization .wave-mode:focus-visible,.wave-personalization .mood-chip:focus-visible,.taste-genre-options>button:focus-visible{outline:1px solid var(--accent);outline-offset:3px}
+
+/* Quiet library ordering; each view keeps a local preference. */
+.library-sort-control{display:flex;align-items:center;justify-content:flex-end;gap:12px;margin:12px 0 14px;font-size:11px;color:var(--muted);min-width:0}
+.library-sort-control select{font:inherit;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:8px;min-height:38px;padding:7px 28px 7px 12px;max-width:210px;cursor:pointer}
+.library-sort-control select:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.full-player.focused-player.connected-player .np-art-column{min-width:0;width:100%;display:flex;flex-direction:column;align-items:center}
+.full-player.focused-player.connected-player .np-art-column .compact-lyric-preview{width:min(100%,400px);margin:14px auto 16px;padding:0 14px;border-left:1px solid var(--line);align-self:center}
+.full-player.focused-player.connected-player .np-art-column .compact-lyric-preview>button{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:100%;text-align:left;max-width:100%}
+.full-player.focused-player.connected-player .np-track-heading p{margin-top:9px!important;line-height:1.5}
+.full-player.focused-player.connected-player .np-controls{margin-top:22px}
+@media(min-width:1100px) and (min-height:760px){.full-player.focused-player.connected-player.details-player .np-art-column{grid-column:1;grid-row:1}.full-player.focused-player.connected-player.details-player .np-controls{margin:0}}
+html .full-player.focused-player.connected-player .np-detail-pane .lyrics-lines button.is-distant{opacity:calc(.48 - var(--lyric-distance,2)*.06)}
+.full-player.focused-player.connected-player .np-detail-pane .lyrics-lines[data-manual=true] button.is-distant{filter:none;opacity:.8}
+.full-player.focused-player.connected-player .np-detail-pane .lyrics-lines button.is-distant:is(:hover,:focus-visible){filter:none;opacity:1}
+@media(max-width:400px){.library-sort-control{gap:8px}.library-sort-control select{max-width:200px}.full-player.focused-player.connected-player .np-controls{margin-top:18px}}
+
+/* Only the visible physical faces own cover gestures. The full-turn envelope
+   is layout space and must pass through to seek, controls and natural scroll. */
+.full-player.focused-player.connected-player .np-cover-growth,
+.full-player.focused-player.connected-player .np-cover-growth .album-stage,
+.full-player.focused-player.connected-player .np-cover-growth .album-object{pointer-events:none!important}
+.full-player.focused-player.connected-player .np-cover-growth :is(.sleeve-front,.sleeve-back,.album-spine,.album-top-edge,.album-bottom-edge,.album-inner-edge,.vinyl,.album-cd-tray,.cd-lid-inner,.cd-lid-edge){pointer-events:auto}
+.full-player.focused-player.connected-player .np-controls{position:relative;z-index:4}
+
+@media(max-width:850px){.full-player.focused-player.connected-player.details-player .np-layout{overflow-x:hidden;overflow-y:auto;overscroll-behavior-y:contain;touch-action:pan-y;scrollbar-width:none}.full-player.focused-player.connected-player.details-player .np-layout::-webkit-scrollbar{display:none}}

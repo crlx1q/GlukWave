@@ -1,3 +1,4 @@
+import 'package:glukwave/ui/cover_planes.dart';
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/gestures.dart';
@@ -80,8 +81,10 @@ void main() {
             cover = t.widget<AlbumStage>(stage);
         expect(find.byKey(const Key('album-front-brand')), findsOneWidget);
         final transform = t
-            .widget<Transform>(find.byKey(const Key('album-3d-transform')))
-            .transform;
+            .widget<AlbumPlaneScene>(
+              find.byKey(const Key('album-3d-transform')),
+            )
+            .camera;
         final expected = Matrix4.identity()
           ..setEntry(3, 2, -1 / 1100)
           ..translateByDouble(
@@ -95,10 +98,13 @@ void main() {
         for (var i = 0; i < 16; i++) {
           expect(transform.storage[i], closeTo(expected.storage[i], .00001));
         }
-        final disc = t.widget<AnimatedPositioned>(
-          find.byKey(const Key('album-record-position')),
-        );
-        expect(disc.left, closeTo(cover.size * .46, .001));
+        final discLeft = t
+            .widget<AlbumPlaneScene>(find.byType(AlbumPlaneScene))
+            .planes
+            .first
+            .transform
+            .entry(0, 3);
+        expect(discLeft, closeTo(cover.size * .46, .001));
         await base.screenshot(
           t,
           'refinement21-cover-${size.width.toInt()}-${size.height.toInt()}-front',
@@ -168,10 +174,11 @@ void main() {
       await t.pump(const Duration(milliseconds: 700));
       expect(
         t
-            .widget<AnimatedPositioned>(
-              find.byKey(const Key('album-record-position')),
-            )
-            .left,
+            .widget<AlbumPlaneScene>(find.byType(AlbumPlaneScene))
+            .planes
+            .first
+            .transform
+            .entry(0, 3),
         closeTo(size * .54, .001),
       );
       await base.screenshot(t, 'refinement21-cover-hover');
@@ -179,8 +186,8 @@ void main() {
       await mouse.moveBy(const Offset(100, 50));
       await t.pump();
       final matrix = t
-          .widget<Transform>(find.byKey(const Key('album-3d-transform')))
-          .transform;
+          .widget<AlbumPlaneScene>(find.byKey(const Key('album-3d-transform')))
+          .camera;
       final expected = Matrix4.identity()
         ..setEntry(3, 2, -1 / 1100)
         ..translateByDouble(-.12 * size * math.cos(47 * math.pi / 180), 0, 0, 1)
@@ -196,10 +203,11 @@ void main() {
       await t.pump(const Duration(milliseconds: 700));
       expect(
         t
-            .widget<AnimatedPositioned>(
-              find.byKey(const Key('album-record-position')),
-            )
-            .left,
+            .widget<AlbumPlaneScene>(find.byType(AlbumPlaneScene))
+            .planes
+            .first
+            .transform
+            .entry(0, 3),
         closeTo(size * .46, .001),
       );
       expect(t.takeException(), isNull);

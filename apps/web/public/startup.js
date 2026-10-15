@@ -10,13 +10,14 @@
     var choice = (pending && pending.language) || (settings && settings.language) || localStorage.getItem('gw-language-choice');
     if (choice && choice !== 'auto') language = choice;
   } catch (ignored) {}
+  var tv = /Tizen|SMART-TV|SmartTV/i.test(navigator.userAgent || '');
   var messages = {
-    en: ['Opening your music', 'One moment…', 'GlukWave could not load', 'Check the connection and try again. An old TV browser may need an update.', 'Try again'],
-    ru: ['Открываем твою музыку', 'Ещё немного…', 'Не удалось открыть GlukWave', 'Проверь соединение и попробуй снова. Старому браузеру ТВ может понадобиться обновление.', 'Попробовать снова'],
-    kk: ['Музыкаңды ашып жатырмыз', 'Сәл күте тұр…', 'GlukWave ашылмады', 'Байланысты тексеріп, қайта көр. Ескі ТВ браузерін жаңарту қажет болуы мүмкін.', 'Қайта көру'],
-    uk: ['Відкриваємо твою музику', 'Ще трохи…', 'Не вдалося відкрити GlukWave', 'Перевір з’єднання та спробуй ще раз. Старий браузер ТВ може потребувати оновлення.', 'Спробувати ще'],
-    de: ['Deine Musik wird geöffnet', 'Einen Moment…', 'GlukWave konnte nicht laden', 'Prüfe die Verbindung und versuche es erneut. Ein älterer TV-Browser benötigt eventuell ein Update.', 'Erneut versuchen'],
-    es: ['Abriendo tu música', 'Un momento…', 'No se pudo abrir GlukWave', 'Comprueba la conexión e inténtalo de nuevo. El navegador antiguo del televisor puede necesitar una actualización.', 'Reintentar']
+    en: ['Opening your music', 'One moment…', 'GlukWave could not load', 'Check the connection and try again.', 'Try again', 'An old TV browser may need an update.'],
+    ru: ['Открываем твою музыку', 'Ещё немного…', 'Не удалось открыть GlukWave', 'Проверь соединение и попробуй снова.', 'Попробовать снова', 'Старому браузеру ТВ может понадобиться обновление.'],
+    kk: ['Музыкаңды ашып жатырмыз', 'Сәл күте тұр…', 'GlukWave ашылмады', 'Байланысты тексеріп, қайта көр.', 'Қайта көру', 'Ескі ТВ браузерін жаңарту қажет болуы мүмкін.'],
+    uk: ['Відкриваємо твою музику', 'Ще трохи…', 'Не вдалося відкрити GlukWave', 'Перевір з’єднання та спробуй ще раз.', 'Спробувати ще', 'Старий браузер ТВ може потребувати оновлення.'],
+    de: ['Deine Musik wird geöffnet', 'Einen Moment…', 'GlukWave konnte nicht laden', 'Prüfe die Verbindung und versuche es erneut.', 'Erneut versuchen', 'Ein älterer TV-Browser benötigt eventuell ein Update.'],
+    es: ['Abriendo tu música', 'Un momento…', 'No se pudo abrir GlukWave', 'Comprueba la conexión e inténtalo de nuevo.', 'Reintentar', 'El navegador antiguo del televisor puede necesitar una actualización.']
   };
   var text = messages[language] || messages.en;
   document.documentElement.lang = messages[language] ? language : 'en';
@@ -26,17 +27,27 @@
   function fail() {
     if (!document.getElementById('gw-boot')) return;
     shell.setAttribute('data-failed', 'true');
-    title.textContent = text[2]; detail.textContent = text[3];
+    title.textContent = text[2]; detail.textContent = text[3] + (tv ? ' ' + text[5] : '');
+  }
+  var pendingFailure = 0;
+  function scriptError(event) {
+    var target = event.target;
+    // Image/font/API failures do not imply that the application failed to boot.
+    // Allow a failed modern branch to recover through the legacy loader before
+    // replacing the initial screen. Runtime failures retain the watchdog below.
+    if (!target || target.tagName !== 'SCRIPT' || !target.src) return;
+    if (!/\/(?:assets\/(?:main|polyfills)-[^/]+\.js|src\/main\.tsx)(?:[?#]|$)/.test(target.src)) return;
+    if (pendingFailure) return;
+    pendingFailure = setTimeout(fail, 1500);
   }
   var timer = setTimeout(fail, 15000);
-  window.addEventListener('error', fail, true);
-  window.addEventListener('unhandledrejection', fail);
+  window.addEventListener('error', scriptError, true);
   if (window.MutationObserver) {
     var observer = new MutationObserver(function () {
       if (document.getElementById('gw-boot')) return;
       clearTimeout(timer);
-      window.removeEventListener('error', fail, true);
-      window.removeEventListener('unhandledrejection', fail);
+      clearTimeout(pendingFailure);
+      window.removeEventListener('error', scriptError, true);
       observer.disconnect();
     });
     observer.observe(document.getElementById('root'), { childList: true });

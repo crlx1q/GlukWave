@@ -1,0 +1,16 @@
+✔ public collection targets canonicalize nicknames and exact provider links, rejecting SSRF and track URLs (8.182ms)
+✔ Spotify public JSON is metadata-only, normalizes durations and reports incomplete embed data honestly (25.0957ms)
+✔ Yandex public playlists and likes hydrate in batches, retain one snapshot across pages, and omit private collections (22.8837ms)
+✔ SoundCloud public module discovers sets/likes, hydrates sparse metadata and keeps cursor credentials server-side (22.7635ms)
+✔ public readers reject external redirects, cap responses, classify timeouts and bound parallel work (10.6412ms)
+✔ YouTube flat pages keep normalized IDs, skip private videos, and discover public channel playlists (8.6497ms)
+✔ Yandex closed likes are omitted from discovery and cannot be imported (5.5235ms)
+✔ public HTTP import needs no provider keys, preserves auth/plans/idempotency, imports chosen IDs and seeds taste (1821.8473ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5482.3528

@@ -1,0 +1,19 @@
+{
+  "checkedAt": "2026-10-15T21:43:36.203Z",
+  "passed": true,
+  "archiveBytes": 225863477,
+  "archiveSha256": "8fbf98048084fc0674f62e5087da53b22e8de4167211eb69d232479ee9ebedbf",
+  "entries": 2708,
+  "allCrcAndSourceHashesMatched": true,
+  "textFilesScanned": 1027,
+  "localPrivateValuesAbsent": true,
+  "liveCredentialPatternsAbsent": true,
+  "staticFontFaces": 6,
+  "manropeStaticFontFaces": 5,
+  "frozenNativeSourcesMatched": 225,
+  "currentWebBuild": "/assets/main-DbyOcAPB.js",
+  "runtimeDataExcluded": true,
+  "apkSha256": "6a9a3fdd805296211199f1e3e9b69a208f24328e38554c07cc5c76e0805b1218",
+  "windowsSha256": "141095acbe4f81f643a5a4e23c44f5d6490ea0aa41659ca761be89b9f0659337",
+  "installerSha256": "be7a332d9e16a938ecab3ddce674d19e1d9da2998d1eeeb14a230d13bfd8dfed"
+}

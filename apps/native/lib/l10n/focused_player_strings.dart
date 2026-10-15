@@ -10,6 +10,7 @@ String focusedPlayerText(String key, {BuildContext? context}) {
 }
 
 const focusedPlayerStrings = <String, List<String>>{
+  'wave': ['Wave', 'Волна', 'Толқын', 'Хвиля', 'Welle', 'Onda'],
   'nowPlaying': [
     'Now playing',
     'Сейчас играет',

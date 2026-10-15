@@ -14,12 +14,13 @@ import { api, errorText, patch, post } from './api';
 import { clearDownloads, deleteDownload, downloads, type CachedTrack } from './cache';
 import { usePlayer } from './player';
 import { useStore } from './store';
+import {likedTracks} from './library-order';
 import { Art, Empty, Heading, IconButton, Loading, Modal, SourceMark, TrackList, TrackSkeleton } from './ui';
 import { bytes, time, sourceNames, type Connection, type Playlist, type Source, type Track } from './types';
 const getDiscoveries=()=>[{name:t('copy.458'),word:['slow','down.'],query:'lofi hip hop',image:1,detail:t('copy.459')},{name:t('copy.460'),word:['after','hours.'],query:'late night jazz',image:2,detail:t('copy.461')},{name:t('copy.462'),word:['inner','space.'],query:'ambient instrumental',image:3,detail:t('copy.463')},{name:t('copy.464'),word:['a little','lighter.'],query:'indie pop',image:4,detail:t('copy.465')},{name:t('copy.466'),word:['free','form.'],query:'chill electronic',image:5,detail:t('copy.467')}];
 export function HomePage({upload}:{upload:()=>void}){useLocale();
  const store=useStore(),player=usePlayer(),hour=new Date().getHours(),greeting=hour<6?t('copy.468'):hour<12?t('copy.469'):hour<18?t('copy.470'):t('copy.471');
- const liked=store.library.tracks.filter(track=>store.library.likedIds.includes(track.id));
+ const liked=likedTracks(store.library);
  const recent=[...new Set(store.library.history.map(item=>item.trackId))].map(id=>store.library.tracks.find(track=>track.id===id)).filter(Boolean) as Track[];
  const discover=(query:string)=>{store.setQuery(query);store.setSource('all');store.navigate('search');};
  return <section className="view home-view">

@@ -1,0 +1,2019 @@
+{
+  "checkedAt": "2026-10-15T21:41:28.300164+00:00",
+  "version": "1.0.0+25",
+  "passed": true,
+  "scope": "Personal liked/addition dates and view sorts; expanded desktop lyrics below art, spacing and stronger full lyric focus; correct native plane occlusion and seek/scroll hit regions; orientation lighting; faster fixed loading-only glyph; actionable scoped notification heart; named active Wave; no unrelated startup error flash; smooth local presentation of playback progress",
+  "web": {
+    "javascript": "/assets/main-DbyOcAPB.js",
+    "buildPassed": true,
+    "testsPassed": 98,
+    "legacySyntax": {
+      "checkedAt": "2026-10-15T21:35:24.316Z",
+      "passed": true,
+      "es5Parsed": true,
+      "physicalTvVerified": false,
+      "files": [
+        {
+          "name": "hls-legacy-B7zYHMqK.js",
+          "bytes": 665598,
+          "sha256": "49f0209bd024b5dedbefd741087def4a4c3c57e53ff43df3f8cfb3f0c368a304"
+        },
+        {
+          "name": "main-legacy-BVWmKVOr.js",
+          "bytes": 1045194,
+          "sha256": "ff25d8e6a3cb3c12bd875b389107e41185343cb6ba785a365e9a9ed4b7b64d4e"
+        },
+        {
+          "name": "mini-legacy-CFLSVTBu.js",
+          "bytes": 7286,
+          "sha256": "653a5439c133e7f2accfde403609cf142c627d0880f4e55441e4cb324e6287fa"
+        },
+        {
+          "name": "playback-feedback-legacy-DwC6tSJu.js",
+          "bytes": 871026,
+          "sha256": "d8acf42eea9cf6d75c8e02bdde5ff5faae6d67d867d86b0f5c0b421cac7e6ad5"
+        },
+        {
+          "name": "polyfills-legacy-BiJ_zgFM.js",
+          "bytes": 176861,
+          "sha256": "b72fd64462c3f035dcd58450bc39cc33e2cc57804631979ad677943e0cbaf14a"
+        }
+      ]
+    },
+    "compatibilityRuntime": {
+      "checkedAt": "2026-10-15T21:38:25.594Z",
+      "passed": true,
+      "engine": "Modern Chromium forced to production SystemJS legacy branch with removed APIs",
+      "physicalTvVerified": false,
+      "originalFixtureAudio": true,
+      "unrelatedBootNoiseDidNotFlash": true,
+      "dialogPolyfillOpenedAndClosed": true,
+      "initial": {
+        "animate": "undefined",
+        "bootFailures": 0,
+        "broadcast": "undefined",
+        "fetch": "function",
+        "legacy": true,
+        "observer": "function",
+        "plural": "function",
+        "profile": "tv-legacy",
+        "proxy": "undefined",
+        "resize": "function",
+        "rootReady": true,
+        "uuid": "function"
+      },
+      "before": {
+        "paused": false,
+        "position": 0.758982,
+        "ready": 4
+      },
+      "final": {
+        "fatal": false,
+        "full": true,
+        "lyrics": 6,
+        "paused": false,
+        "position": 2.569935
+      },
+      "legacyFiles": [
+        {
+          "name": "hls-legacy-B7zYHMqK.js",
+          "bytes": 665598,
+          "sha256": "49f0209bd024b5dedbefd741087def4a4c3c57e53ff43df3f8cfb3f0c368a304"
+        },
+        {
+          "name": "main-legacy-BVWmKVOr.js",
+          "bytes": 1045194,
+          "sha256": "ff25d8e6a3cb3c12bd875b389107e41185343cb6ba785a365e9a9ed4b7b64d4e"
+        },
+        {
+          "name": "mini-legacy-CFLSVTBu.js",
+          "bytes": 7286,
+          "sha256": "653a5439c133e7f2accfde403609cf142c627d0880f4e55441e4cb324e6287fa"
+        },
+        {
+          "name": "playback-feedback-legacy-DwC6tSJu.js",
+          "bytes": 871026,
+          "sha256": "d8acf42eea9cf6d75c8e02bdde5ff5faae6d67d867d86b0f5c0b421cac7e6ad5"
+        },
+        {
+          "name": "polyfills-legacy-BiJ_zgFM.js",
+          "bytes": 176861,
+          "sha256": "b72fd64462c3f035dcd58450bc39cc33e2cc57804631979ad677943e0cbaf14a"
+        }
+      ],
+      "capture": "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\work\\qa\\parity25-legacy-tv-lyrics.png"
+    }
+  },
+  "server": {
+    "fullSuiteBeforePersonalAddedDates": 131,
+    "currentAffectedTestsPassed": 26,
+    "updatedImportSubsetPassed": 8,
+    "boundedHistoryDateSubsetPassed": 3,
+    "testsPassed": 131,
+    "fullSuiteRerunAfterFinalDateAmendment": false,
+    "finalSourcesFrozen": {
+      "checkedAt": "2026-10-14T21:55:03.797982+00:00",
+      "scope": "Final server production sources after personal-date amendment; broad131 before amendment, current26affected plus refreshed8import subset passed",
+      "files": {
+        "apps/server/extractors/bridge.py": "084fd7b43212264a179868082333eb6825d986944d3d3385b3544e9a74937472",
+        "apps/server/extractors/requirements-spotdl.txt": "9faaa2416aaa16ba144f41df3b6be25ff363a13fbd139c17a8fc6e7fe8875d2b",
+        "apps/server/extractors/requirements-ytdlp.txt": "eddaf6b4a42ef7bc703cb08d3c189565a1d85a62b7a8b429b9b8e71eb793dcd4",
+        "apps/server/extractors/vendor/manifest.json": "ce60ab2e9ebcdebb3a15b370fcac9aa12c3160fe10ef5b377d008609d7378c16",
+        "apps/server/extractors/vendor/yt-dlp-ejs-UNLICENSE.txt": "b5065838cbac452dfc855ba6e6e031481ad2c68406f70d21ead9321374653e6c",
+        "apps/server/extractors/vendor/yt-dlp-UNLICENSE.txt": "7e12e5df4bae12cb21581ba157ced20e1986a0508dd10d0e8a4ab9a4cf94e85c",
+        "apps/server/extractors/vendor/yt-dlp.zip": "1fa6733c37ea6fb51c99ad8fe785e7b7e5f3246c9b980230329d4fb72ed8d4d6",
+        "apps/server/src/account.js": "10b53082822ab2202de89aee9fd8d0db11af9bd0d31306d691dd312353e05ca4",
+        "apps/server/src/action-jobs.js": "4844e62662c0705c6eb631e71c92ffa66efc1aed5a2b0bb91fc16313e5b80104",
+        "apps/server/src/admin.js": "82417a012738f9351e1bbecd7af7d3f90b29c09f35188bbf35793e7282541569",
+        "apps/server/src/app.js": "dce53294e7b5c7f8866694741ffb5a3225b665f21981f3387736abf425a86c99",
+        "apps/server/src/audio-capabilities.js": "3e4b5a2788070195292f5b517b252c1a6891655060de00c2ea316d2c8f6e8f22",
+        "apps/server/src/auth.js": "2695aed4392536184eacccc8cd8a6a9581beae7cf803c5a9e3feecc1794f3542",
+        "apps/server/src/billing.js": "a9163d0268b48e04598400df991530ceecdf2596fe1852c21c7a177fca52c335",
+        "apps/server/src/community.js": "5823a273b369a160dd857e3f61156e452b32df109f7fe3dc30cc72e22c36dc07",
+        "apps/server/src/config.js": "6845dc54120af4d0f1dbdcf791084983892871c06756db1250cba8079e0496bc",
+        "apps/server/src/console-brand.js": "3cf4ddeac97b786ae842d0084e6c95f63e79d7ffea051fd71d588fcd181d5be8",
+        "apps/server/src/console-transport.js": "8b2b8c4eccfda0382f05b590b60c43693616649ee273474f51d045e7d2e4ed82",
+        "apps/server/src/console-ui.js": "5992d13453c6ac7e7065c2b9ec3e52db902b1ee2fffca22632c4705e65422e41",
+        "apps/server/src/diagnostics.js": "66ab9bae1912bf53afaac648cf14172fa2f66d68b60af94917e55dfb9b47eb84",
+        "apps/server/src/discord-presence.js": "3c69b062f30f751ae2bdc6e8eb07eab5dcf76ce4293efcdd37d917c3d1befa9a",
+        "apps/server/src/extractors/hls.js": "d54cd6998dc8f0d2889a0d878e55c46d051cae68439bb219890b1208226d1a14",
+        "apps/server/src/extractors/matching.js": "5aec51b318f99f19fb25d51236524fd5a4060e4d3f20fe889c02e955a7040367",
+        "apps/server/src/extractors/runtime.js": "4e36be0303f2045ed769257a4529023d9958f144354f6f8ff920754b4f5b9802",
+        "apps/server/src/extractors/service.js": "eb1a79d49224e49f92675c2054f75940be24678c4eb30ab5d4f65afdc363e4eb",
+        "apps/server/src/extractors/soundcloud.js": "39abeab959ac418df564d5d51fa5509d66a5484b20877799361b6d869563cd3c",
+        "apps/server/src/extractors/spotify.js": "05d9bfce18c37632cdd35d16469b59e0a4e48c4aa258e260ee12e1a78ee3af4d",
+        "apps/server/src/extractors/youtube.js": "01a8e67c3a39948c7268fc225ba3ac1c29266fbafb3453546a977dda67067cd3",
+        "apps/server/src/genius.js": "b785795dc7debcff70e7a117bc8e42fd6e34fb071329e4523caa72c2919ea43b",
+        "apps/server/src/index.js": "2a292e1e22151b0b41c1735bd3c00bfcbb7384f0888999c05eb5b6464286cf3f",
+        "apps/server/src/library-imports.js": "fe5b5adf60e6e8c4a9877f2f826df39ba10ab48766ddfab5adb28cc375273f66",
+        "apps/server/src/library.js": "016e86b4078901e5911329f843baa168bab37d006efd7b2135c2e27834023b8d",
+        "apps/server/src/listening.js": "ce7fac0070fd52bbae62c2da3f1c47ed02bf5a173c9f8d501a547522e3711957",
+        "apps/server/src/locale.js": "76eb2654b0dcffd9ad98838186a32972853e90274809093e207ce4f6e1a16d8a",
+        "apps/server/src/lrclib.js": "4a40e8ba9d9341b27beb0637b728710e16d602e8b30a9afee1440c78d35fb2e1",
+        "apps/server/src/mail-text.js": "24fdc84a7907528d63e50145bf2f4b90390230df11b8d073b36198caef2ee2d9",
+        "apps/server/src/media.js": "797f087f23d4d29436a2a9b8ed5f9c181c31cedbffde3a806794e0fb3ac7c829",
+        "apps/server/src/messages.js": "6726f58392c0b38fd2b5bef912694422901041308df77e73f0e6a051a8429061",
+        "apps/server/src/oauth-config.js": "1bf7f01bd3b0560adc5b27699a768d895c159d98c7864d91d30117233dce8108",
+        "apps/server/src/plans.js": "1af41034b769c676bcadb3af097730fc9a3054662defe5c91844ee12fd30f9ff",
+        "apps/server/src/playback-jobs.js": "b111e33179be055775d8bcc5762b850d823a531a5c152e1c914cdd7176da895e",
+        "apps/server/src/playback.js": "438a08b44ac3106eaae4fecca82a99266ccb4524df3ed57d6680aea1ecf6c15b",
+        "apps/server/src/providers.js": "7921aa770e73700e9fcf3dd224db9fd06fdaa4d979d0eeda9de05d8a0077ab31",
+        "apps/server/src/public-imports.js": "63f6bcc9ee5a5b2b3bf14c9d08ec53d360c3fe66079b0fd7b63f3ce98249bede",
+        "apps/server/src/push.js": "d2152b3739d4a574c80b22b389f24fb1f319d6bc8e6e3fe154e3b913295333de",
+        "apps/server/src/realtime-ecosystem.js": "95f8e392708c262ff145f85bda029618e8a584e85ab89a7c338d026b56fefec2",
+        "apps/server/src/realtime.js": "f8bde106f06e4bdd92b4b1faac40c1a2be62f858b8873f33cd05b50bb16e10a8",
+        "apps/server/src/recommendations.js": "2e1f780fbee88e28880fe4f015cc67ddc0263a0553c43844e33b5ba49cb5748c",
+        "apps/server/src/releases.js": "cf0a682142202827892e18d89ecaaa832592a5a5b90e6dc9a07d9d3c0c1a6af3",
+        "apps/server/src/resources.js": "2283499be57429eff52e8f2184acf8d6814de18897dd640ada3ea9faee6b13ed",
+        "apps/server/src/room-view.js": "b1f01371d67b1c4eded48630162c3043bf3b127f1ee73af9dbd8a0f9e707c2ec",
+        "apps/server/src/rooms.js": "5250c138dc01374a08ad87a4fe16b680d1b51749bc5d854f835903ebf618001a",
+        "apps/server/src/search.js": "6c1bcf08dc7d955a1a578798be89ec0605437a20f8556e1b04faf1043cefd302",
+        "apps/server/src/soundcloud-audio.js": "5c756f9f5d832833eea6c5a0ff071218cb428851403cd9a514731c4a88810984",
+        "apps/server/src/soundcloud-public.js": "1539d977c7e90326f12332df59a22d0fa2283f7b32a8ad1d3df3b8a22a32d77d",
+        "apps/server/src/store.js": "f5c92991e188e5bf333883e17e7ac20d4a396c2feb64f8e33fe2e6c2f893305c",
+        "apps/server/src/system-text.js": "d297190cd4ea5ddd3efcf5bba5a76d1221f5351ecb8cd6bc404844290aa85696",
+        "apps/server/src/util.js": "10d7fe120d039de68facc39ed03f84977487d0b0557eff99449cede1022798ca",
+        "apps/server/src/waveforms.js": "9e9102d2d5c9732f3dac9de8cfbed6520d0dc512fa99e8f8e7827c0518a15b45"
+      }
+    },
+    "deploymentPerformed": false
+  },
+  "native": {
+    "apk": "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\apps\\native\\build\\app\\outputs\\flutter-apk\\app-debug.apk",
+    "bytes": 180864280,
+    "builtAt": "2026-10-15T21:39:21.301723+00:00",
+    "sha256": "6a9a3fdd805296211199f1e3e9b69a208f24328e38554c07cc5c76e0805b1218",
+    "sourceFrozenAt": "2026-10-15T21:32:33.518371+00:00",
+    "sourceSha256": "bee7bc6a842f58b5e8cecd9b8c3494c864b42e4f99cc5deceddd4896408b8da4",
+    "sourceFiles": 225,
+    "kernelSha256": "d1488e08be1f907344e770a7b3370ba315aa6ba42dc8bf4bc1aba1d8b220885e",
+    "kernelMatchesBuildOutput": true,
+    "compileDefine": "https://wave.gluk.tech",
+    "kernelFeatureMarkers": {
+      "waveAudioServiceConfig": true,
+      "lyric-countdown": true,
+      "lyricsIntro": true,
+      "mini-lyrics-frame": true,
+      "activeDeviceName": true,
+      "glukwave.like": true,
+      "tech.gluk.glukwave/home_widgets": true,
+      "glukwave.widget": true,
+      "Home screen widgets": true,
+      "https://wave.gluk.tech": true,
+      "full-player": true,
+      "player-cover-gesture": true,
+      "language-selector": true,
+      "language.auto": true,
+      "locale:change": true,
+      "lrcClock": true,
+      "artworkForDisplay": true,
+      "-t500x500.": true,
+      "/api/diagnostics/events": true,
+      "glukwave-lan-v1": true,
+      "LAN pairing": true,
+      "seasonalEffects": true,
+      "lan-enable": true,
+      "ROOM_STATE": true,
+      "/lrclib": true,
+      "Find on LRCLIB": true,
+      "/genius/preview": true,
+      "genius-preview": true,
+      "cover-ambient-transform": true,
+      "/discord": true,
+      "discord:changed": true,
+      "discordPresence": true,
+      "deviceVolume": true,
+      "/api/auth/native-captcha": true,
+      "Invalid authentication expiry": true,
+      "desktop-quick-volume": true,
+      "account:state": true,
+      "track-loading-cover": true,
+      "ScrollingLabel": true,
+      "/connect": true,
+      "outputActive": true,
+      "/account/sessions": true,
+      "downloadUrl": true,
+      "adoptOnly": true,
+      "/taste": true,
+      "/friends": true,
+      "/jams": true,
+      "/api/account/": true,
+      "currentPassword": true,
+      "Email sent": true,
+      "/playlists/discover": true,
+      "mini-card-progress": true,
+      "search-source-menu": true,
+      "search-type-": true,
+      "player-transport-capsule": true,
+      "player-secondary-capsule": true,
+      "X-GlukWave-Playback-Wait": true,
+      "player-centered-view": true,
+      "player-detail-view-": true,
+      "player-lyrics-toggle": true,
+      "compact-eq-presets": true,
+      "#EXTM3U": true,
+      "Colour from the cover": true,
+      "coverAccent": true,
+      "compact-eq-enabled": true,
+      "compact-eq-band-": true,
+      "compact-eq-preamp": true,
+      "compact-eq-rate": true,
+      "connect-quick-picker": true,
+      "native-queue-list": true,
+      "queue-add": true,
+      "waveMode": true,
+      "waveMood": true,
+      "waveActive": true,
+      "/api/recommendations": true,
+      "queue-search": true,
+      "ListeningPresence": true,
+      "SettingsEdit": true,
+      "_PlaybackWavePainter": true,
+      "tech.gluk.glukwave/energy": true,
+      "saved-view": true,
+      "saved-play": true,
+      "guard-manual-code": true,
+      "guard-target-name": true,
+      "guard-approve": true,
+      "lyrics-persistent-controls": true,
+      "OFFLINE_MISSING": true,
+      "INVALID_LOGIN_CODE": true,
+      "playlist-membership-": true,
+      "playlist-new-name": true,
+      "playlist-edit-name": true,
+      "playlist-library-": true,
+      "Playlist response is missing": true,
+      "/api/public-import/search": true,
+      "/api/public-import/tracks": true,
+      "publicSourceUrl": true,
+      "album-back-title": true,
+      "album-back-source": true,
+      "library-sort": true,
+      "AlbumPlaneScene": true,
+      "SmoothProgressBuilder": true,
+      "ProgressPresentationClock": true,
+      "refreshNotificationLike": true,
+      "glukwave.like/": true
+    },
+    "localCatalogsInKernel": {
+      "en": true,
+      "ru": true,
+      "kk": true,
+      "uk": true,
+      "de": true,
+      "es": true
+    },
+    "qaTrackBundled": false,
+    "fontManifestVerified": true,
+    "staticFontFaces": [
+      {
+        "asset": "assets/fonts/Nunito-Regular.ttf",
+        "weight": 400,
+        "variable": false,
+        "sha256": "29f17d41574376520b263bde34a4fecb11814233ff280c66befce6020c5e3cc4",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-Medium.ttf",
+        "weight": 500,
+        "variable": false,
+        "sha256": "818d89d5417ed2c7686c07097469f417d41dfe70b8e9514466637612f7ab9d8d",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-SemiBold.ttf",
+        "weight": 600,
+        "variable": false,
+        "sha256": "e6ac9b7051c6b3c4a23817a9272e2a8f7124896b36e68b30a3d46b452a0418a5",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-Bold.ttf",
+        "weight": 700,
+        "variable": false,
+        "sha256": "19acc4b8e7dc15b49c3802b6f2b53a1c41d7ee548733204a367052fa53387933",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-ExtraBold.ttf",
+        "weight": 800,
+        "variable": false,
+        "sha256": "9bc8f0d0c03926636f41ec699c6563dd01835b510c194e2086811eaf65a8e527",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-Black.ttf",
+        "weight": 900,
+        "variable": false,
+        "sha256": "b3628977111142f66472632770b76ee2c0665a40ae536bd64971a3bc19087717",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Manrope-Regular.ttf",
+        "weight": 400,
+        "variable": false,
+        "sha256": "c443e2325b9ff17933ec2f5a99d835af430a545901d146f81f4fc9f4882b6623",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Manrope-Medium.ttf",
+        "weight": 500,
+        "variable": false,
+        "sha256": "78177fa989a3feb256c1750faca4a05ab0b70f093f5f45b12a537e7b939bae9c",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Manrope-SemiBold.ttf",
+        "weight": 600,
+        "variable": false,
+        "sha256": "1eea52be7b84d0841e39d6102cdf2f6777dbdbd6781d3a40a3323a8151163f07",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Manrope-Bold.ttf",
+        "weight": 700,
+        "variable": false,
+        "sha256": "06ef9bf16d6ce1b6b8d6b953ea8b9e6c30e4b3708cf039132224fb2a5aa77102",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Manrope-ExtraBold.ttf",
+        "weight": 800,
+        "variable": false,
+        "sha256": "63050130f7beccf497d740a2af39f8d5d49447e9ed777014e8d6d413442425ba",
+        "matchesSource": true
+      }
+    ],
+    "fontManifestSha256": "dc61e379e1f65f8de62057e95a64baaebcbbf8e5ee2450f736e2611705ca210f",
+    "nunitoLicenseIncluded": true,
+    "manifestVerified": true,
+    "androidWidgetReceiversPrivate": {
+      "WavePlayerWidget": true,
+      "WaveLargeWidget": true,
+      "WidgetCommandReceiver": true
+    },
+    "widgetTestRuntimeBundled": false,
+    "privateConnectBackgroundService": true,
+    "version": "1.0.0",
+    "versionCode": 25,
+    "minSdk": 24,
+    "targetSdk": 36,
+    "output": "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\outputs\\GlukWave-android-debug.apk",
+    "outputMatchesBuild": true,
+    "signatureVerified": true,
+    "signatureScheme": "v2",
+    "certificateSha256": "d631b0271019e5b3a9df153929ac0de07708b0766fc4c132fbce862b67a56748",
+    "updateCertificateMatchesPrevious": true,
+    "analyzerIssues": 0,
+    "standardTestsPassed": 58,
+    "standardVerification": {
+      "checkedAt": "2026-10-15T21:32:49.313041+00:00",
+      "passed": true,
+      "currentAffectedTestsPassed": 58,
+      "integratedTestsPassedBeforePendingSelectionAmendment": 57,
+      "currentLog": "parity25-native-current-final.log",
+      "currentLogSha256": "8dce74f35838488cc29a76dfb500e43b046ab863ff942b94e62d87a3a7c31b93",
+      "analyzerLog": "parity25-native-analyze-final.log",
+      "analyzerSha256": "49a5b72fdc3f332bda7e392a7cb8975186559fcb4e3a7b54a1d97979c7689911",
+      "finalPendingSelectionSubset": {
+        "passed": true,
+        "testsPassed": 4,
+        "overlapWithIntegratedRun": 3,
+        "log": "parity25-native-progress-pending-final.log",
+        "logSha256": "b50bb2e74e616f945c0efbfa546813977ab8925522888d54dee75a217808f879",
+        "analyzerLog": "parity25-native-progress-pending-analyze.log",
+        "analyzerSha256": "f79dcfa63fcae8369862ea1d40c29d3fea71df90fa21199a57b9f35f24d7e940",
+        "scope": "Final UI-only pending selection guard and all physical progress/drag/lifecycle cases; 3 repeated plus 1 new actual-controller regression"
+      },
+      "baseline": {
+        "version": "1.0.0+24",
+        "fullSuiteTestsPassed": 465,
+        "historical": true,
+        "evidence": "docs/verification/2026-10-15/parity24/parity24-evidence.json"
+      },
+      "scope": "Integrated affected run then final four-case progress subset after a UI-only pending selection guard. Counts represent distinct test identities, not the sum of repeated runs. Integrated scope: library UI/order, lyrics, cover hit regions and Wave header, physical glyph clocks, native progress, notification heart, playback state, playlist mutations and startup configuration",
+      "limits": [
+        "No physical Android notification shade or TV verification",
+        "Renderer/controller tests do not prove physical hardware sound",
+        "Integrated run and whole analyzer precede only the final pending-selection guard; final progress subset and targeted analyzer cover that guard",
+        "Earlier pre-clock-assertion and transient duplicate-key failed logs are historical; final named passing logs are authoritative and reruns are not added twice"
+      ]
+    },
+    "signature": "debug",
+    "deviceRuntimeVerified": false,
+    "manropeLicenseIncluded": true,
+    "iosBuilt": false,
+    "compaction": {
+      "passed": true,
+      "bytesBefore": 185959063,
+      "bytesAfter": 180864280,
+      "savedBytes": 5094783,
+      "allEntryHashesUnchanged": true,
+      "entryCount": 666,
+      "pageAlignmentKB": 16,
+      "v2SignatureVerified": true,
+      "updateCertificateMatchesBaseline": true,
+      "certificateSha256": "d631b0271019e5b3a9df153929ac0de07708b0766fc4c132fbce862b67a56748",
+      "sha256": "6a9a3fdd805296211199f1e3e9b69a208f24328e38554c07cc5c76e0805b1218"
+    },
+    "sourceFreezeFile": "docs/verification/2026-10-16/parity25/parity25-native-source-freeze.json",
+    "windowsExecutableBuilt": true,
+    "windows": {
+      "checkedAt": "2026-10-15T21:38:54.896499+00:00",
+      "passed": true,
+      "bundle": "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\outputs\\GlukWave-windows",
+      "featureMarkers": {
+        "track-loading-cover": true,
+        "glukwave-lan-v1": true,
+        "LAN pairing": true,
+        "seasonalEffects": true,
+        "lan-enable": true,
+        "/discord": true,
+        "discord:changed": true,
+        "discordPresence": true,
+        "/api/diagnostics/events": true,
+        "/lrclib": true,
+        "/genius/preview": true,
+        "genius-preview": true,
+        "cover-ambient-transform": true,
+        "ROOM_STATE": true,
+        "Find on LRCLIB": true,
+        "deviceVolume": true,
+        "/api/auth/native-captcha": true,
+        "desktop-quick-volume": true,
+        "/account/sessions": true,
+        "downloadUrl": true,
+        "adoptOnly": true,
+        "/taste": true,
+        "/friends": true,
+        "/jams": true,
+        "/api/account/": true,
+        "currentPassword": true,
+        "Email sent": true,
+        "/playlists/discover": true,
+        "/api/public-import/search": true,
+        "/api/public-import/tracks": true,
+        "publicSourceUrl": true,
+        "playlist-membership-": true,
+        "playlist-edit-name": true,
+        "album-back-title": true,
+        "album-back-source": true,
+        "mini-lyrics-frame": true,
+        "activeDeviceName": true,
+        "PhysicalWaveClock": true,
+        "player-track-motion": true,
+        "selectedOutput": true,
+        "lyric-countdown": true,
+        "lyricsIntro": true
+      },
+      "file": "outputs/GlukWave-windows.zip",
+      "bytes": 40489229,
+      "sha256": "141095acbe4f81f643a5a4e23c44f5d6490ea0aa41659ca761be89b9f0659337",
+      "frozenOriginalFilesMatched": 225,
+      "compiledSourceFilesMatched": 143,
+      "compiledSourcePaths": [
+        "assets/app_icon.ico",
+        "assets/coast.jpg",
+        "assets/fonts/Manrope-Bold.ttf",
+        "assets/fonts/Manrope-ExtraBold.ttf",
+        "assets/fonts/Manrope-Medium.ttf",
+        "assets/fonts/Manrope-Regular.ttf",
+        "assets/fonts/Manrope-SemiBold.ttf",
+        "assets/fonts/Nunito-Black.ttf",
+        "assets/fonts/Nunito-Bold.ttf",
+        "assets/fonts/Nunito-ExtraBold.ttf",
+        "assets/fonts/Nunito-Medium.ttf",
+        "assets/fonts/Nunito-Regular.ttf",
+        "assets/fonts/Nunito-SemiBold.ttf",
+        "assets/forest.jpg",
+        "assets/google-g.png",
+        "assets/licenses/just_audio_media_kit-UNLICENSE.txt",
+        "assets/licenses/Manrope-OFL.txt",
+        "assets/licenses/Nunito-OFL.txt",
+        "assets/logo.gif",
+        "assets/logo.png",
+        "assets/mark.svg",
+        "assets/Nunito.ttf",
+        "lib/core/api.dart",
+        "lib/core/appearance.dart",
+        "lib/core/artwork.dart",
+        "lib/core/controller.dart",
+        "lib/core/discord.dart",
+        "lib/core/equalizer.dart",
+        "lib/core/library_mutations.dart",
+        "lib/core/library_order.dart",
+        "lib/core/lyrics.dart",
+        "lib/core/models.dart",
+        "lib/core/parity.dart",
+        "lib/core/playback_recovery.dart",
+        "lib/core/qr_login.dart",
+        "lib/core/wave_math.dart",
+        "lib/l10n/audio_design_strings.dart",
+        "lib/l10n/catalogs.dart",
+        "lib/l10n/discord_strings.dart",
+        "lib/l10n/ecosystem_polish_strings.dart",
+        "lib/l10n/focused_player_strings.dart",
+        "lib/l10n/home_widget_strings.dart",
+        "lib/l10n/lan_strings.dart",
+        "lib/l10n/listening_polish_strings.dart",
+        "lib/l10n/lyrics_strings.dart",
+        "lib/l10n/parity_strings.dart",
+        "lib/l10n/season_strings.dart",
+        "lib/l10n/wave_localizations.dart",
+        "lib/main.dart",
+        "lib/services/ambience.dart",
+        "lib/services/appearance_store.dart",
+        "lib/services/audio.dart",
+        "lib/services/audio_config.dart",
+        "lib/services/background_connect.dart",
+        "lib/services/cache.dart",
+        "lib/services/desktop.dart",
+        "lib/services/diagnostics.dart",
+        "lib/services/energy.dart",
+        "lib/services/home_widgets.dart",
+        "lib/services/lan_transport.dart",
+        "lib/services/presence_bridge.dart",
+        "lib/services/provider_player.dart",
+        "lib/services/push.dart",
+        "lib/services/volume_store.dart",
+        "lib/services/waveform.dart",
+        "lib/services/windows_dsp.dart",
+        "lib/services/windows_equalizer.dart",
+        "lib/services/windows_mpv_player.dart",
+        "lib/services/windows_playback_state.dart",
+        "lib/ui/album_stage.dart",
+        "lib/ui/app.dart",
+        "lib/ui/appearance_panel.dart",
+        "lib/ui/auth_page.dart",
+        "lib/ui/auth_visuals.dart",
+        "lib/ui/connect_device_tile.dart",
+        "lib/ui/connect_panel.dart",
+        "lib/ui/connect_picker.dart",
+        "lib/ui/connect_playback.dart",
+        "lib/ui/cover_accent.dart",
+        "lib/ui/cover_ambient.dart",
+        "lib/ui/cover_planes.dart",
+        "lib/ui/desktop_player.dart",
+        "lib/ui/device_labels.dart",
+        "lib/ui/discord_panel.dart",
+        "lib/ui/discovery.dart",
+        "lib/ui/equalizer_curve.dart",
+        "lib/ui/equalizer_panel.dart",
+        "lib/ui/home_widget_previews.dart",
+        "lib/ui/lan_panel.dart",
+        "lib/ui/library_sort.dart",
+        "lib/ui/listening_presence.dart",
+        "lib/ui/listening_rail.dart",
+        "lib/ui/lofi.dart",
+        "lib/ui/lyric_timing.dart",
+        "lib/ui/lyrics_editor.dart",
+        "lib/ui/mini_lyrics.dart",
+        "lib/ui/motion_icons.dart",
+        "lib/ui/native19_components.dart",
+        "lib/ui/native19_desktop_transport.dart",
+        "lib/ui/native19_guard.dart",
+        "lib/ui/native19_saved.dart",
+        "lib/ui/native19_strings.dart",
+        "lib/ui/parity_panels.dart",
+        "lib/ui/physical_wave_clock.dart",
+        "lib/ui/playback_progress.dart",
+        "lib/ui/player.dart",
+        "lib/ui/player_gestures.dart",
+        "lib/ui/playlist_manager.dart",
+        "lib/ui/playlist_strings.dart",
+        "lib/ui/provider_host.dart",
+        "lib/ui/provider_import.dart",
+        "lib/ui/public_import_strings.dart",
+        "lib/ui/queue_panel.dart",
+        "lib/ui/refinement20_home.dart",
+        "lib/ui/refinement20_strings.dart",
+        "lib/ui/room_directory.dart",
+        "lib/ui/scrolling_label.dart",
+        "lib/ui/seasonal.dart",
+        "lib/ui/sessions_panel.dart",
+        "lib/ui/settings_edit.dart",
+        "lib/ui/silk_wave.dart",
+        "lib/ui/theme.dart",
+        "lib/ui/theme_preview.dart",
+        "lib/ui/volume_slider.dart",
+        "lib/ui/wave18_strings.dart",
+        "lib/ui/wave_colors.dart",
+        "lib/ui/widgets.dart",
+        "pubspec.lock",
+        "pubspec.yaml",
+        "windows/CMakeLists.txt",
+        "windows/flutter/CMakeLists.txt",
+        "windows/runner/CMakeLists.txt",
+        "windows/runner/flutter_window.cpp",
+        "windows/runner/flutter_window.h",
+        "windows/runner/main.cpp",
+        "windows/runner/resource.h",
+        "windows/runner/resources/app_icon.ico",
+        "windows/runner/runner.exe.manifest",
+        "windows/runner/Runner.rc",
+        "windows/runner/utils.cpp",
+        "windows/runner/utils.h",
+        "windows/runner/win32_window.cpp",
+        "windows/runner/win32_window.h"
+      ],
+      "binarySha256": {
+        "glukwave.exe": "8186def69d2bd66ec0218996f4c8c37cf443e57ad8aa6671a7bd3e896d8e8aeb",
+        "flutter_windows.dll": "6840b8129fb105dd246f05f14eab97d7e8e9eade1428f9afde95de6b8e1a7808",
+        "libmpv-2.dll": "d5f0694b08c124e785d858d00082f3e3b158dd9138bfc48c0382bf1eb443a5fc",
+        "audio_service_win_plugin.dll": "a5f96408a3ba417ceb7db856654d8cf2ce0a1f3ff12cafd3da531c4df4f038a3",
+        "flutter_inappwebview_windows_plugin.dll": "b4d2407c57ecb6a23431d7871838b31119ca31dac19f5b0a46f8ed2ddbab3b86",
+        "flutter_secure_storage_windows_plugin.dll": "e91542df0301a6a47b24d0e740718763a61d1f915ddef6d0e506f38c9addf17b",
+        "tray_manager_plugin.dll": "6e0edbd9336389a1927013900517fa8b0e910367b36569adf24f0ff6009db7e2",
+        "window_manager_plugin.dll": "75547d85e71d762108b1bdceafc24eba8f6dd63bf91449e4fb6c3b4a80ed7947",
+        "msvcp140.dll": "0f885b509a685d2bbfa652fed26b5fb31d88fbdab0a978c641d1c7b8aa460aa9",
+        "vcruntime140.dll": "d5e4d9a3e835fa679450145d6a7d94e36573a509317111904d9b3712c30d9066",
+        "vcruntime140_1.dll": "1f2d41c4aa5db0bc33ebf7b66d72943a817d7ce6cbe880502a9403823633093f",
+        "media_kit_libs_windows_video_plugin.dll": "01cacd94bf0d397df4b817b4acf186279eb97833ed36c0dd644b6600caff54d7",
+        "libEGL.dll": "b2590bd0692f0381fc45c20bf1c7f7f713c9ea19c7ea6bab62efdd1fadc4eaac",
+        "libGLESv2.dll": "620bb6e38d7ed6c760a0cf4a8eb6a8f64b259b96ff286551cd32cefc6c35ca39"
+      },
+      "packageMatchesReleaseBuild": true,
+      "zipCrcAndAllFilesMatched": true,
+      "staticFontFaces": 11,
+      "compileDefine": "https://wave.gluk.tech",
+      "buildMode": "release",
+      "pinnedFullMediaRuntimeVerified": true,
+      "authenticodeSigned": false,
+      "uiInteractionVerified": false,
+      "physicalAudioVerified": false,
+      "androidOnlyActionsTreeShaken": true,
+      "installer": {
+        "checkedAt": "2026-10-15T21:40:40.8421547Z",
+        "passed": true,
+        "singleFile": true,
+        "version": "1.0.0.25",
+        "productVersion": "1.0.0+25",
+        "bytes": 33138483,
+        "sha256": "be7a332d9e16a938ecab3ddce674d19e1d9da2998d1eeeb14a230d13bfd8dfed",
+        "compilerSucceeded": true,
+        "desktopShortcutChoice": true,
+        "autostartChoice": true,
+        "autostartDefault": false,
+        "webviewBootstrapperEmbedded": true,
+        "installedDuringIteration": false,
+        "authenticodeSigned": false
+      }
+    },
+    "verification": {
+      "checkedAt": "2026-10-15T21:32:49.313041+00:00",
+      "passed": true,
+      "currentAffectedTestsPassed": 58,
+      "integratedTestsPassedBeforePendingSelectionAmendment": 57,
+      "currentLog": "parity25-native-current-final.log",
+      "currentLogSha256": "8dce74f35838488cc29a76dfb500e43b046ab863ff942b94e62d87a3a7c31b93",
+      "analyzerLog": "parity25-native-analyze-final.log",
+      "analyzerSha256": "49a5b72fdc3f332bda7e392a7cb8975186559fcb4e3a7b54a1d97979c7689911",
+      "finalPendingSelectionSubset": {
+        "passed": true,
+        "testsPassed": 4,
+        "overlapWithIntegratedRun": 3,
+        "log": "parity25-native-progress-pending-final.log",
+        "logSha256": "b50bb2e74e616f945c0efbfa546813977ab8925522888d54dee75a217808f879",
+        "analyzerLog": "parity25-native-progress-pending-analyze.log",
+        "analyzerSha256": "f79dcfa63fcae8369862ea1d40c29d3fea71df90fa21199a57b9f35f24d7e940",
+        "scope": "Final UI-only pending selection guard and all physical progress/drag/lifecycle cases; 3 repeated plus 1 new actual-controller regression"
+      },
+      "baseline": {
+        "version": "1.0.0+24",
+        "fullSuiteTestsPassed": 465,
+        "historical": true,
+        "evidence": "docs/verification/2026-10-15/parity24/parity24-evidence.json"
+      },
+      "scope": "Integrated affected run then final four-case progress subset after a UI-only pending selection guard. Counts represent distinct test identities, not the sum of repeated runs. Integrated scope: library UI/order, lyrics, cover hit regions and Wave header, physical glyph clocks, native progress, notification heart, playback state, playlist mutations and startup configuration",
+      "limits": [
+        "No physical Android notification shade or TV verification",
+        "Renderer/controller tests do not prove physical hardware sound",
+        "Integrated run and whole analyzer precede only the final pending-selection guard; final progress subset and targeted analyzer cover that guard",
+        "Earlier pre-clock-assertion and transient duplicate-key failed logs are historical; final named passing logs are authoritative and reruns are not added twice"
+      ]
+    },
+    "baselineSilentMpvProof": {
+      "passed": true,
+      "dllSha256": "d5f0694b08c124e785d858d00082f3e3b158dd9138bfc48c0382bf1eb443a5fc",
+      "ownHlsFixture": true,
+      "physicalAudioUsed": false,
+      "pausedInitialSeek": 0.999986,
+      "handoffSecondSeekAndDecodedProgress": 2.100414,
+      "afterEffectClearClockAdvanced": 2.93239,
+      "memoryCacheHasNoFileCacheError": true,
+      "effectErrors": [],
+      "logs": [
+        {
+          "level": "v",
+          "prefix": "ffmpeg",
+          "text": "Opening http://127.0.0.1:54732/own.m3u8"
+        },
+        {
+          "level": "v",
+          "prefix": "ffmpeg",
+          "text": "Could not set AVOption tls_verify='0'"
+        },
+        {
+          "level": "v",
+          "prefix": "ffmpeg",
+          "text": "Mime-type: ''"
+        },
+        {
+          "level": "v",
+          "prefix": "demux",
+          "text": "Trying demuxers for level=normal."
+        },
+        {
+          "level": "v",
+          "prefix": "lavf",
+          "text": "Found 'hls' at score=100 size=238."
+        },
+        {
+          "level": "v",
+          "prefix": "ffmpeg/demuxer",
+          "text": "hls: Skip ('#EXT-X-VERSION:3')"
+        },
+        {
+          "level": "v",
+          "prefix": "ffmpeg/demuxer",
+          "text": "hls: Opening 'http://127.0.0.1:54732/part-000.ts' for reading"
+        },
+        {
+          "level": "v",
+          "prefix": "lavf",
+          "text": "Could not set AVOption tls_verify='0'"
+        },
+        {
+          "level": "v",
+          "prefix": "lavf",
+          "text": "avformat_find_stream_info() finished after 0 bytes."
+        },
+        {
+          "level": "v",
+          "prefix": "demux",
+          "text": "Detected file format: hls (libavformat)"
+        },
+        {
+          "level": "v",
+          "prefix": "cplayer",
+          "text": "Opening done: http://127.0.0.1:54732/own.m3u8"
+        },
+        {
+          "level": "v",
+          "prefix": "lavf",
+          "text": "select track 0"
+        },
+        {
+          "level": "info",
+          "prefix": "cplayer",
+          "text": "(+) Audio --aid=1 (aac 1ch 44100Hz)"
+        },
+        {
+          "level": "v",
+          "prefix": "ad",
+          "text": "Codec list:"
+        },
+        {
+          "level": "v",
+          "prefix": "ad",
+          "text": "aac - (null)"
+        },
+        {
+          "level": "v",
+          "prefix": "ad",
+          "text": "aac_fixed (aac) - (null)"
+        },
+        {
+          "level": "v",
+          "prefix": "ad",
+          "text": "Opening decoder aac"
+        },
+        {
+          "level": "v",
+          "prefix": "ad",
+          "text": "Requesting 1 threads for decoding."
+        },
+        {
+          "level": "v",
+          "prefix": "ad",
+          "text": "Selected codec: aac ((null))"
+        },
+        {
+          "level": "v",
+          "prefix": "af",
+          "text": "User filter list:"
+        },
+        {
+          "level": "v",
+          "prefix": "af",
+          "text": "(empty)"
+        },
+        {
+          "level": "v",
+          "prefix": "cplayer",
+          "text": "Starting playback..."
+        },
+        {
+          "level": "v",
+          "prefix": "af",
+          "text": "[in] 44100Hz mono 1ch floatp"
+        },
+        {
+          "level": "v",
+          "prefix": "af",
+          "text": "[userspeed] 44100Hz mono 1ch floatp"
+        },
+        {
+          "level": "v",
+          "prefix": "af",
+          "text": "[userspeed] (disabled)"
+        },
+        {
+          "level": "v",
+          "prefix": "af",
+          "text": "[convert] 44100Hz mono 1ch floatp"
+        },
+        {
+          "level": "v",
+          "prefix": "ao",
+          "text": "Trying audio driver 'null'"
+        },
+        {
+          "level": "v",
+          "prefix": "ao/null",
+          "text": "requested format: 44100 Hz, mono channels, floatp"
+        },
+        {
+          "level": "v",
+          "prefix": "ao/null",
+          "text": "Channel layouts:"
+        },
+        {
+          "level": "v",
+          "prefix": "ao/null",
+          "text": "- anything"
+        },
+        {
+          "level": "v",
+          "prefix": "ao/null",
+          "text": "result: mono"
+        },
+        {
+          "level": "v",
+          "prefix": "ao/null",
+          "text": "device buffer: 8704 samples."
+        },
+        {
+          "level": "v",
+          "prefix": "ao/null",
+          "text": "using soft-buffer of 8820 samples."
+        },
+        {
+          "level": "info",
+          "prefix": "cplayer",
+          "text": "AO: [null] 44100Hz mono 1ch floatp"
+        },
+        {
+          "level": "v",
+          "prefix": "cplayer",
+          "text": "AO: Description: Null audio output"
+        },
+        {
+          "level": "v",
+          "prefix": "af",
+          "text": "[convert] (disabled)"
+        },
+        {
+          "level": "v",
+          "prefix": "af",
+          "text": "[out] 44100Hz mono 1ch floatp"
+        },
+        {
+          "level": "v",
+          "prefix": "cplayer",
+          "text": "audio ready"
+        },
+        {
+          "level": "v",
+          "prefix": "cplayer",
+          "text": "starting audio playback"
+        },
+        {
+          "level": "v",
+          "prefix": "cplayer",
+          "text": "playback restart complete @ -0.023220, audio=playing, video=eof (paused)"
+        },
+        {
+          "level": "v",
+          "prefix": "ffmpeg/demuxer",
+          "text": "hls: Opening 'http://127.0.0.1:54732/part-001.ts' for reading"
+        },
+        {
+          "level": "v",
+          "prefix": "ffmpeg/demuxer",
+          "text": "hls: Opening 'http://127.0.0.1:54732/part-002.ts' for reading"
+        },
+        {
+          "level": "v",
+          "prefix": "ffmpeg/demuxer",
+          "text": "hls: Opening 'http://127.0.0.1:54732/part-003.ts' for reading"
+        },
+        {
+          "level": "v",
+          "prefix": "ffmpeg/demuxer",
+          "text": "hls: Opening 'http://127.0.0.1:54732/part-004.ts' for reading"
+        },
+        {
+          "level": "v",
+          "prefix": "lavf",
+          "text": "EOF reached."
+        },
+        {
+          "level": "v",
+          "prefix": "lavf",
+          "text": "queuing seek to 2.400000"
+        },
+        {
+          "level": "v",
+          "prefix": "lavf",
+          "text": "cached range 0: 1.400000 <-> 9.410889 (bof=1, eof=1)"
+        },
+        {
+          "level": "v",
+          "prefix": "lavf",
+          "text": "...using this range for in-cache seek."
+        },
+        {
+          "level": "v",
+          "prefix": "lavf",
+          "text": "seeking stream 0 (audio) to packet 2.398467/2.398467"
+        },
+        {
+          "level": "v",
+          "prefix": "cplayer",
+          "text": "hr-seek, skipping to 1.000000"
+        },
+        {
+          "level": "v",
+          "prefix": "lavf",
+          "text": "EOF reached."
+        },
+        {
+          "level": "v",
+          "prefix": "cplayer",
+          "text": "audio ready"
+        },
+        {
+          "level": "v",
+          "prefix": "cplayer",
+          "text": "starting audio playback"
+        },
+        {
+          "level": "v",
+          "prefix": "cplayer",
+          "text": "playback restart complete @ 0.999986, audio=playing, video=eof (paused)"
+        },
+        {
+          "level": "v",
+          "prefix": "lavf",
+          "text": "queuing seek to 2.800000"
+        },
+        {
+          "level": "v",
+          "prefix": "lavf",
+          "text": "cached range 0: 1.400000 <-> 9.410889 (bof=1, eof=1)"
+        },
+        {
+          "level": "v",
+          "prefix": "lavf",
+          "text": "...using this range for in-cache seek."
+        },
+        {
+          "level": "v",
+          "prefix": "lavf",
+          "text": "seeking stream 0 (audio) to packet 2.793200/2.793200"
+        },
+        {
+          "level": "v",
+          "prefix": "cplayer",
+          "text": "hr-seek, skipping to 1.400000"
+        },
+        {
+          "level": "v",
+          "prefix": "cplayer",
+          "text": "Set property: pause=\"no\" -> 1"
+        },
+        {
+          "level": "v",
+          "prefix": "lavf",
+          "text": "EOF reached."
+        },
+        {
+          "level": "v",
+          "prefix": "cplayer",
+          "text": "audio ready"
+        },
+        {
+          "level": "v",
+          "prefix": "cplayer",
+          "text": "starting audio playback"
+        },
+        {
+          "level": "v",
+          "prefix": "cplayer",
+          "text": "playback restart complete @ 1.399980, audio=playing, video=eof"
+        },
+        {
+          "level": "v",
+          "prefix": "ao/null",
+          "text": "starting AO"
+        },
+        {
+          "level": "v",
+          "prefix": "user_filter_wrapper",
+          "text": "Setting option 'format' = 'floatp' (flags = 0)"
+        },
+        {
+          "level": "v",
+          "prefix": "user_filter_wrapper",
+          "text": "Setting option 'graph' = 'equalizer=f=31:t=o:w=1:g=2.00,equalizer=f=62:t=o:w=1:g=2.00,equalizer=f=125:t=o:w=1:g=2.00,equalizer=f=250:t=o:w=1:g=2.00,equalizer=f=500:t=o:w=1:g=2.00,equalizer=f=1000:t=o:w=1:g=2.00,equalizer=f=2000:t=o:w=1:g=2.00,equalizer=f=4000:t=o:w=1:g=2.00,equalizer=f=8000:t=o:w=1:g=2.00,equalizer=f=16000:t=o:w=1:g=2.00' (flags = 0)"
+        },
+        {
+          "level": "v",
+          "prefix": "af",
+          "text": "User filter list:"
+        },
+        {
+          "level": "v",
+          "prefix": "af",
+          "text": "format (format.00)"
+        },
+        {
+          "level": "v",
+          "prefix": "af",
+          "text": "lavfi (lavfi.00)"
+        },
+        {
+          "level": "v",
+          "prefix": "cplayer",
+          "text": "Set property: af=\"format=format=floatp,lavfi=[equalizer=f=31:t=o:w=1:g=2.00,equalizer=f=62:t=o:w=1:g=2.00,equalizer=f=125:t=o:w=1:g=2.00,equalizer=f=250:t=o:w=1:g=2.00,equalizer=f=500:t=o:w=1:g=2.00,equalizer=f=1000:t=o:w=1:g=2.00,equalizer=f=2000:t=o:w=1:g=2.00,equalizer=f=4000:t=o:w=1:g=2.00,equalizer=f=8000:t=o:w=1:g=2.00,equalizer=f=16000:t=o:w=1:g=2.00]\" -> 1"
+        },
+        {
+          "level": "v",
+          "prefix": "af",
+          "text": "[format] 44100Hz mono 1ch floatp"
+        },
+        {
+          "level": "v",
+          "prefix": "af",
+          "text": "[lavfi] 44100Hz mono 1ch floatp"
+        },
+        {
+          "level": "v",
+          "prefix": "af",
+          "text": "User filter list:"
+        },
+        {
+          "level": "v",
+          "prefix": "af",
+          "text": "(empty)"
+        },
+        {
+          "level": "v",
+          "prefix": "cplayer",
+          "text": "Set property: af=\"\" -> 1"
+        },
+        {
+          "level": "v",
+          "prefix": "cplayer",
+          "text": "Set property: pause=\"no\" -> 1"
+        },
+        {
+          "level": "v",
+          "prefix": "lavf",
+          "text": "queuing seek to 3.830634"
+        },
+        {
+          "level": "v",
+          "prefix": "lavf",
+          "text": "cached range 0: 1.400000 <-> 9.410889 (bof=1, eof=1)"
+        },
+        {
+          "level": "v",
+          "prefix": "lavf",
+          "text": "...using this range for in-cache seek."
+        },
+        {
+          "level": "v",
+          "prefix": "lavf",
+          "text": "seeking stream 0 (audio) to packet 3.814878/3.814878"
+        },
+        {
+          "level": "v",
+          "prefix": "cplayer",
+          "text": "hr-seek, skipping to 2.430634"
+        },
+        {
+          "level": "v",
+          "prefix": "lavf",
+          "text": "EOF reached."
+        },
+        {
+          "level": "v",
+          "prefix": "cplayer",
+          "text": "audio ready"
+        },
+        {
+          "level": "v",
+          "prefix": "cplayer",
+          "text": "starting audio playback"
+        },
+        {
+          "level": "v",
+          "prefix": "cplayer",
+          "text": "playback restart complete @ 2.430615, audio=playing, video=eof"
+        },
+        {
+          "level": "v",
+          "prefix": "ao/null",
+          "text": "starting AO"
+        }
+      ]
+    }
+  },
+  "design": {
+    "current": {
+      "verdict": "PASS",
+      "checkedAt": "2026-10-15T21:33:41.561Z",
+      "attempt": 1,
+      "evaluator": "Independent evaluator agent, same provider",
+      "scores": {
+        "designQuality": 2,
+        "originality": 2,
+        "craft": 2,
+        "functionality": 2
+      },
+      "requiredFixes": [],
+      "summary": "Established visual direction preserved. Fresh desktop/mobile actual decoded playback and independent remote scrub show smooth position painting, stable draft ownership, one commit command and zero paused drift. Final native pending-selection guard reviewed against passing targeted regression.",
+      "limits": [
+        "A separate model provider is unavailable; this was a same-provider independent agent evaluation.",
+        "Fresh independent original app fixture inspection on5254 at1440/768/375/320/638; canonical5254ack hardcodes paused, so actual decoder/transport observations used its original-media/account copy5255with explicit QA state knobs.",
+        "Native24-pose CD/vinyl and expanded/lyric/library captures are real Flutter renderer output; native57/57affected suite and final4/4pending-selection progress subset passed with clean analysis. This does not claim physical Android/TV playback, notification shade or hardware audio.",
+        "Mini and room timeline call sites were inspected with shared-clock/pure-clock coverage; no independent end-to-end mini/room playback session was executed.",
+        "Canonical remote snapshots have no playback-rate field; remote/room interpolation retains existing1x semantics. Actual local1.5x/2x decoded playback was sampled.",
+        "Hidden/offscreen/reduced/power behavior has source/widget coverage; no physical OS background-power validation. Web wheel CLI emits coordinates0,0; manual-lyrics clearing used a controlled WheelEvent on the real surface.",
+        "Initial evaluator harness selector/coordinate errors are classified separately in proof notes. No production source edits, builds, owner media/account actions, installations or deployments were performed by this evaluator."
+      ],
+      "sources": [
+        {
+          "path": "apps/native/lib/core/controller.dart",
+          "sha256": "638d1ca93f81ee1dd16be9681a7a3c0eef8481fc2634b1c3ee03ff71075c5cd0"
+        },
+        {
+          "path": "apps/native/lib/core/library_mutations.dart",
+          "sha256": "c8b2139152d9e148696b6f095e8741d0f422dcb3cb827608074cb97ccbdf9d84"
+        },
+        {
+          "path": "apps/native/lib/core/library_order.dart",
+          "sha256": "fa7ef0f4fe4bbbcea97dc79fcf68a235b193ce9f39ff73bb81fa39aa7cf476ea"
+        },
+        {
+          "path": "apps/native/lib/l10n/focused_player_strings.dart",
+          "sha256": "e8dca1a2716f13bfa57f1fed7354125fb136be1292da41cc1b49086cb2039b3a"
+        },
+        {
+          "path": "apps/native/lib/services/audio.dart",
+          "sha256": "b5e9409ea207e2a0d0f5b7ea6f6dba06242214718cb88bc8a12dd6f85a6d9a73"
+        },
+        {
+          "path": "apps/native/lib/ui/album_stage.dart",
+          "sha256": "e245e5b1531db8d679858079aaa06cbf3993a601fde0c22f40aee8ef1a0477e0"
+        },
+        {
+          "path": "apps/native/lib/ui/app.dart",
+          "sha256": "3c22b4fc6979b843b858fea76e6e47cb2b25fd091b114b68208c30974e4a5ff8"
+        },
+        {
+          "path": "apps/native/lib/ui/cover_planes.dart",
+          "sha256": "91a8b6d9ade802fcf124ea0c57f6de939b5e109e58dacc634d8c841ebe34b215"
+        },
+        {
+          "path": "apps/native/lib/ui/desktop_player.dart",
+          "sha256": "34932214072a4b6fed1232c43f0d8f173e2c6a9aa5f1bda8beedc801e806021f"
+        },
+        {
+          "path": "apps/native/lib/ui/library_sort.dart",
+          "sha256": "6cc77d6588bd1d3456d1029c66f2d9191509c31dfe75c80bf58f314305f91330"
+        },
+        {
+          "path": "apps/native/lib/ui/listening_rail.dart",
+          "sha256": "c2d127163fd2b556c18a4514aa5a30d797507638b3bc7d3f59a4dadfe189cc93"
+        },
+        {
+          "path": "apps/native/lib/ui/lyric_timing.dart",
+          "sha256": "02cf614f54dbbb66ad23ca1c13eec55f913610d2831e40b1abac5a81d54b51cc"
+        },
+        {
+          "path": "apps/native/lib/ui/motion_icons.dart",
+          "sha256": "d2cbc9cf04da1ec47b4bd29e7bc4dd674db134929cd9ac1f60d8efaf1400cc47"
+        },
+        {
+          "path": "apps/native/lib/ui/native19_desktop_transport.dart",
+          "sha256": "ff4b4a86e7f2c9b9aadae2b0bba1dbef855278c796c49dd18420727363907c90"
+        },
+        {
+          "path": "apps/native/lib/ui/physical_wave_clock.dart",
+          "sha256": "bf5670a683461d13f8ea4f27ae7c611a0a92a5790782fa19bf47aeee19d1eb53"
+        },
+        {
+          "path": "apps/native/lib/ui/playback_progress.dart",
+          "sha256": "f16e22f37ccadd93a6f9056c8d49df05d4f564dbbbbba68183dda82259ae3bdd"
+        },
+        {
+          "path": "apps/native/lib/ui/player.dart",
+          "sha256": "a14811fa906d51a058f57dcfeeee86e01650fb66de468a424c0d6e5100acaf22"
+        },
+        {
+          "path": "apps/native/lib/ui/player_gestures.dart",
+          "sha256": "cfb18d8a2e01c3c27b7b8d5a53e69146159b30b8935ed8a6c6f01633b6e474f8"
+        },
+        {
+          "path": "apps/native/lib/ui/volume_slider.dart",
+          "sha256": "ea30b76281944e1e2da21ac474b38563b87ddc7dc520e2011fe6a11cb1b8955e"
+        },
+        {
+          "path": "apps/server/src/library-imports.js",
+          "sha256": "fe5b5adf60e6e8c4a9877f2f826df39ba10ab48766ddfab5adb28cc375273f66"
+        },
+        {
+          "path": "apps/server/src/library.js",
+          "sha256": "016e86b4078901e5911329f843baa168bab37d006efd7b2135c2e27834023b8d"
+        },
+        {
+          "path": "apps/web/public/startup.css",
+          "sha256": "e673ff95722c4c6b9b3066377a3a3c668214cfd8b7db2ed83cc51be3573f975e"
+        },
+        {
+          "path": "apps/web/public/startup.js",
+          "sha256": "e4181379349f672bfef0995a3b2b0eb81b583c92051513d822e57d695560cde8"
+        },
+        {
+          "path": "apps/web/src/album.tsx",
+          "sha256": "66efc18eecaa0d6ef75547a365386ebdfb97042c2574371d30b1a2ddd52f355d"
+        },
+        {
+          "path": "apps/web/src/community.tsx",
+          "sha256": "bbf2f311827637194bbed64d8c1374118b9c08c3201d5ea877fc91ffb0215411"
+        },
+        {
+          "path": "apps/web/src/continuous-range.tsx",
+          "sha256": "a386951502ede9d5528ad2bb7ff360be9a9d6590919f7804b7997af114eb9a3f"
+        },
+        {
+          "path": "apps/web/src/discovery-polish.css",
+          "sha256": "aac886b47c64fdd6197e7bd878e0d058177ac75dd19e636d13bb467656e23841"
+        },
+        {
+          "path": "apps/web/src/library-edits.ts",
+          "sha256": "68d729820cd7244215602623014b79c45c04f56d36ebbc83d77bfea13191930e"
+        },
+        {
+          "path": "apps/web/src/library-order.ts",
+          "sha256": "7fc9ea1817d5aa307aea0ac9edf0be141fd451a99634398c33a836d1eecd0d70"
+        },
+        {
+          "path": "apps/web/src/library-sort-copy.ts",
+          "sha256": "f67ce3fed41945af7a93cc5115ce8897a7343fdf44f8befcb9fc62f1c5500588"
+        },
+        {
+          "path": "apps/web/src/locales/de.json",
+          "sha256": "231fc4e8beef88aecb210aff671f6455aa6406bdc23ed661a2ddd7b8c6127a05"
+        },
+        {
+          "path": "apps/web/src/locales/en.json",
+          "sha256": "4b3d679f33fb189d114b8fb17ffcb691b0db1c69a135ee0681c569033707752e"
+        },
+        {
+          "path": "apps/web/src/locales/es.json",
+          "sha256": "e1121aff06bd72d3bd8dc66a22c88746a5dddc7ef8417a398007dd1f03d0dde9"
+        },
+        {
+          "path": "apps/web/src/locales/kk.json",
+          "sha256": "8b1e5e368f38c8bf52d3828639beec17bdbb10b7845bbec4c971550bfc2526b9"
+        },
+        {
+          "path": "apps/web/src/locales/ru.json",
+          "sha256": "383f78c5ac61b1a93c0ee3381cf2d17eba58fd509d099405b18c01ab7336520b"
+        },
+        {
+          "path": "apps/web/src/locales/uk.json",
+          "sha256": "8c0fc2586a818fd544a4bde05d8f559f995450200d515883ebecfd22e4a48168"
+        },
+        {
+          "path": "apps/web/src/lyric-timing.ts",
+          "sha256": "66a81d7695cddbe7439b9a146be9ae94a0f5548c4619cdcb5181718344a5bee7"
+        },
+        {
+          "path": "apps/web/src/main.tsx",
+          "sha256": "48ba7dd9e99d405b56a3475d9499d7ae75956445521112de847c22b2d60ad607"
+        },
+        {
+          "path": "apps/web/src/mini.tsx",
+          "sha256": "7fd09d038e14005c51402132dad3863cf7c2bd51e836d784123ed1d959cf508f"
+        },
+        {
+          "path": "apps/web/src/morph-icon.tsx",
+          "sha256": "1b317b3ca146d49e78feabc472bd6b21811196dae6895cbe24c81b9c7dcdb03c"
+        },
+        {
+          "path": "apps/web/src/pages.tsx",
+          "sha256": "f222dc4383f69d3d6e99a0287bfd8b855292b6417cb28dfdeade0073b629894c"
+        },
+        {
+          "path": "apps/web/src/player-ui.tsx",
+          "sha256": "fa54d6216b1722b37e5b97d4ac20645b07b0345a026ef12b703457a601747a0c"
+        },
+        {
+          "path": "apps/web/src/player.tsx",
+          "sha256": "70f9069e9fc56c263b918fdaa2c5e458929ee03f1f23e353c646b2a3eabf22c2"
+        },
+        {
+          "path": "apps/web/src/playlist-library.tsx",
+          "sha256": "447886e321db3ee850aade8be87c8dd7fed48a8b5e46b8deb744cc02ddc31792"
+        },
+        {
+          "path": "apps/web/src/progress-clock.ts",
+          "sha256": "6bcd62f63bd82177abacf8c957d0156ddf3f035b4fe13b566c9bd69ccd778041"
+        },
+        {
+          "path": "apps/web/src/progress-paint.tsx",
+          "sha256": "6790a416c113105c240b5872762a6136d93cd1a499a42eff05412f6df5753408"
+        },
+        {
+          "path": "apps/web/src/range-input.tsx",
+          "sha256": "76ac75f16ec8117f20a53ecdcfe1189b48aac074fd8b55cdde84b23a0548b28c"
+        },
+        {
+          "path": "apps/web/src/reference-cover.css",
+          "sha256": "1070513ebfd3dbf52c811d3277c30e98c66483ab36efc1b40069a2175ed1c177"
+        },
+        {
+          "path": "apps/web/src/refinement21.css",
+          "sha256": "3ad362a2412482121ea6248b1953ff7b5598ebc7bbae47edbd4307db6849ac63"
+        },
+        {
+          "path": "apps/web/src/store.tsx",
+          "sha256": "a91a4ee6b1d3e56c7c4db21c1c44c86b691b80ea173c20ef03ced61568ec0de5"
+        },
+        {
+          "path": "apps/web/src/types.ts",
+          "sha256": "763fc1b9d24732321fb669d2abc1fdec57660c510d63a723d380c8962a00ab45"
+        },
+        {
+          "path": "apps/web/src/visual-lifecycle.ts",
+          "sha256": "110a20be1bde0bfbae1108d644bd367e9709a1e31f27b743d6946899990cac0e"
+        }
+      ],
+      "screenshots": [
+        {
+          "path": "work/qa/parity25-evaluator-final-web-1440.png",
+          "sha256": "b2f97987a9a77191a1d390236d3d7daee65d3be0ce2458db16f9dcd37fdebd32"
+        },
+        {
+          "path": "work/qa/parity25-evaluator-final-web-768.png",
+          "sha256": "893ac1f36370783c44b8a797f59b9e096e008c36be2dd054e8ad24203cc24d4d"
+        },
+        {
+          "path": "work/qa/parity25-evaluator-final-web-768-controls.png",
+          "sha256": "ec1055c192e93e165dcca9df6abb7266b63132fc452e7ac35d75348e09d26a86"
+        },
+        {
+          "path": "work/qa/parity25-evaluator-final-web-375.png",
+          "sha256": "c654375ddbdab10e690eed212c2679a7d48e83c40ff38b51da5ebd9724c13db5"
+        },
+        {
+          "path": "work/qa/parity25-evaluator-final-web-375-controls.png",
+          "sha256": "e2d66816e4899eec16b4f375a1534aea7e4cdeee1e600298f8cb4247c598147c"
+        },
+        {
+          "path": "work/qa/parity25-evaluator-final-web-320.png",
+          "sha256": "09bca5ab922d92bff2133d67ab0fb35061b3a91be5b72fb08f0fd4c37bf50304"
+        },
+        {
+          "path": "work/qa/parity25-evaluator-final-web-320-controls.png",
+          "sha256": "f25a060913bde1534d74a7a0112d54be9c1f3297a7a5cfeb3946c4f0ede4dfab"
+        },
+        {
+          "path": "work/qa/parity25-evaluator-final-web-638.png",
+          "sha256": "b1d76928dbd306ab8cfab11fe1ff35cc3104745f840518d50bb4c8877d0251c4"
+        },
+        {
+          "path": "work/qa/parity25-evaluator-final-web-638-controls.png",
+          "sha256": "a618f10c2d1f9f7d09777dd64c2ee23ff2158a2cfe5fce570457c9136dbc06b1"
+        },
+        {
+          "path": "work/qa/parity25-evaluator-final-lyrics-1440.png",
+          "sha256": "d0a905ce10167724c86f1a19f491739e0eb0693149df51180b8f787280027046"
+        },
+        {
+          "path": "work/qa/parity25-evaluator-final-likes-1440.png",
+          "sha256": "cc0b4a1f855a5535b89cbf6cb1e5e23a30bf52c7c207ad1b2ecbbffebad24dc8"
+        },
+        {
+          "path": "work/qa/parity25-evaluator-final-playlist-1440.png",
+          "sha256": "ab2f9e0cfb1710c69e1617641f4b066d7d688c9cd4ed9a448cd943f5f49850d0"
+        },
+        {
+          "path": "work/qa/parity25-evaluator-final-footer-375.png",
+          "sha256": "325953e0d65b85ad3aa8e65ae9eaabc74d30c17c7dc74456a888faac70de4379"
+        },
+        {
+          "path": "work/qa/parity25-evaluator-final-375-controls.png",
+          "sha256": "142d0e2ac2b5e411de029b402bee3cc34309ba14b389fe81f940e42c32d75505"
+        },
+        {
+          "path": "work/qa/parity25-evaluator-final-remote-375.png",
+          "sha256": "9a78a656492b9f0118bbb208c163aee46af90046161fce2160ba184239e002ef"
+        },
+        {
+          "path": "work/qa/parity25-evaluator-native-turns.jpg",
+          "sha256": "dc7dcc4df4d61d03c7a4a4e13c69577fb0b42af68b4cc6b9fe0b76b399a499f5"
+        },
+        {
+          "path": "work/qa/native-parity25-expanded-1440.png",
+          "sha256": "ab484e0738b313e15150275bf01d190fd10498a7cb7e608ce9b90999db9ba92f"
+        },
+        {
+          "path": "work/qa/native-parity25-expanded-375.png",
+          "sha256": "d6e82d3fe285154955c0a758fbdaa2808c7bd3b57fcb188db6e0a19f10c51257"
+        },
+        {
+          "path": "work/qa/native-parity25-full-lyrics-1440.png",
+          "sha256": "a741d4d3d64feb9659b8ac460892761a44d4813e9fdb60e0c2262bace1822180"
+        },
+        {
+          "path": "work/qa/native-parity25-library-sort-320.png",
+          "sha256": "64fa0ee74abf4a82eb5d27eec5b12771aa2bbd8692a8f725f6bc9f87401501bb"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "work/qa/parity25-evaluator-browser-proof.json",
+          "sha256": "8bfe41627123c505229108935d0112c99025705881a515dd1ea01c1f66b3cc4a"
+        },
+        {
+          "path": "work/qa/parity25-evaluator-remote-proof.json",
+          "sha256": "280846cc9efda4075bd394d4ef3c4001a0e8ff09ecd355f3acd4753d3014db6a"
+        },
+        {
+          "path": "work/qa/parity25-ui-guide.md",
+          "sha256": "9461178f72dfd68eacc08f4230cc279d8f60d41d724495a3eb092485d4770e15"
+        },
+        {
+          "path": "work/qa/parity25-progress-guide.md",
+          "sha256": "a5195324b21d451ffda55d0139c4f879af7a643866f670ae163c650580019393"
+        },
+        {
+          "path": "work/qa/parity25-progress-verification.json",
+          "sha256": "3b255ec6299d2a1cbe95961fdeac515f31c8bebb166797dd8b2a3a3a65b049ca"
+        },
+        {
+          "path": "work/qa/parity25-web-tests-final.log",
+          "sha256": "d69e3035db9a575a96573719aa9f2f2bc97b84aa2a72de3f6610a02c8f43e0b0"
+        },
+        {
+          "path": "work/qa/parity25-native-current-final.log",
+          "sha256": "8dce74f35838488cc29a76dfb500e43b046ab863ff942b94e62d87a3a7c31b93"
+        },
+        {
+          "path": "work/qa/parity25-native-analyze-final.log",
+          "sha256": "49a5b72fdc3f332bda7e392a7cb8975186559fcb4e3a7b54a1d97979c7689911"
+        },
+        {
+          "path": "work/qa/parity25-native-progress-pending-final.log",
+          "sha256": "b50bb2e74e616f945c0efbfa546813977ab8925522888d54dee75a217808f879"
+        },
+        {
+          "path": "work/qa/parity25-native-progress-pending-analyze.log",
+          "sha256": "f79dcfa63fcae8369862ea1d40c29d3fea71df90fa21199a57b9f35f24d7e940"
+        },
+        {
+          "path": "apps/web/qa/progress-clock.test.mjs",
+          "sha256": "54e19c5c1c77bf91e7cc94dd9600e6ce4a2ce2e77cf65ee355578a2679ccb10a"
+        },
+        {
+          "path": "apps/native/test/parity25_progress_test.dart",
+          "sha256": "01458fb5b926aabbd8112325cba55d7c581c45732457f2804d26e65b9982f0b1"
+        },
+        {
+          "path": "apps/native/test/parity25_hit_test.dart",
+          "sha256": "e03976fe113f0c1a195e91eea16313cc7fef004f49727cf2d938de054ebe1d83"
+        }
+      ]
+    }
+  },
+  "progress": {
+    "status": "source-frozen-focused-checks-passed",
+    "productionSourceFrozen": true,
+    "frozenAt": "2026-10-15T21:33:06.411Z",
+    "sourceHashes": [
+      {
+        "path": "apps/web/src/progress-clock.ts",
+        "sha256": "6bcd62f63bd82177abacf8c957d0156ddf3f035b4fe13b566c9bd69ccd778041",
+        "bytes": 870
+      },
+      {
+        "path": "apps/web/src/progress-paint.tsx",
+        "sha256": "6790a416c113105c240b5872762a6136d93cd1a499a42eff05412f6df5753408",
+        "bytes": 2619
+      },
+      {
+        "path": "apps/web/src/continuous-range.tsx",
+        "sha256": "a386951502ede9d5528ad2bb7ff360be9a9d6590919f7804b7997af114eb9a3f",
+        "bytes": 3879
+      },
+      {
+        "path": "apps/web/src/range-input.tsx",
+        "sha256": "76ac75f16ec8117f20a53ecdcfe1189b48aac074fd8b55cdde84b23a0548b28c",
+        "bytes": 887
+      },
+      {
+        "path": "apps/web/src/player.tsx",
+        "sha256": "70f9069e9fc56c263b918fdaa2c5e458929ee03f1f23e353c646b2a3eabf22c2",
+        "bytes": 76404
+      },
+      {
+        "path": "apps/web/src/player-ui.tsx",
+        "sha256": "fa54d6216b1722b37e5b97d4ac20645b07b0345a026ef12b703457a601747a0c",
+        "bytes": 48253
+      },
+      {
+        "path": "apps/web/src/community.tsx",
+        "sha256": "bbf2f311827637194bbed64d8c1374118b9c08c3201d5ea877fc91ffb0215411",
+        "bytes": 19511
+      },
+      {
+        "path": "apps/web/src/mini.tsx",
+        "sha256": "7fd09d038e14005c51402132dad3863cf7c2bd51e836d784123ed1d959cf508f",
+        "bytes": 5151
+      },
+      {
+        "path": "apps/web/src/discovery-polish.css",
+        "sha256": "aac886b47c64fdd6197e7bd878e0d058177ac75dd19e636d13bb467656e23841",
+        "bytes": 13634
+      },
+      {
+        "path": "apps/native/lib/ui/playback_progress.dart",
+        "sha256": "f16e22f37ccadd93a6f9056c8d49df05d4f564dbbbbba68183dda82259ae3bdd",
+        "bytes": 7512
+      },
+      {
+        "path": "apps/native/lib/ui/player.dart",
+        "sha256": "a14811fa906d51a058f57dcfeeee86e01650fb66de468a424c0d6e5100acaf22",
+        "bytes": 86372
+      },
+      {
+        "path": "apps/native/lib/ui/listening_rail.dart",
+        "sha256": "c2d127163fd2b556c18a4514aa5a30d797507638b3bc7d3f59a4dadfe189cc93",
+        "bytes": 13778
+      },
+      {
+        "path": "apps/native/lib/ui/native19_desktop_transport.dart",
+        "sha256": "ff4b4a86e7f2c9b9aadae2b0bba1dbef855278c796c49dd18420727363907c90",
+        "bytes": 21063
+      },
+      {
+        "path": "apps/native/lib/ui/desktop_player.dart",
+        "sha256": "34932214072a4b6fed1232c43f0d8f173e2c6a9aa5f1bda8beedc801e806021f",
+        "bytes": 13323
+      }
+    ],
+    "regressionFiles": [
+      {
+        "path": "apps/web/qa/progress-clock.test.mjs",
+        "sha256": "54e19c5c1c77bf91e7cc94dd9600e6ce4a2ce2e77cf65ee355578a2679ccb10a",
+        "bytes": 1283
+      },
+      {
+        "path": "apps/native/test/parity25_progress_test.dart",
+        "sha256": "01458fb5b926aabbd8112325cba55d7c581c45732457f2804d26e65b9982f0b1",
+        "bytes": 7556
+      }
+    ],
+    "checks": {
+      "webTypecheck": {
+        "passed": true,
+        "command": "npm run check --workspace @glukwave/web"
+      },
+      "webProgressClock": {
+        "passed": true,
+        "tests": 3,
+        "command": "node --test apps/web/qa/progress-clock.test.mjs"
+      },
+      "nativeCurrentAffected": {
+        "passed": true,
+        "tests": 57,
+        "exit": 0,
+        "log": "work/qa/parity25-native-current-final.log",
+        "files": [
+          "parity25_ui_test.dart",
+          "parity23_ui_test.dart",
+          "parity25_hit_test.dart",
+          "notification25_test.dart",
+          "parity23_state_test.dart",
+          "playlist22_test.dart",
+          "startup_config_test.dart",
+          "parity25_progress_test.dart"
+        ],
+        "sourcePhase": "before final tiny pending-selection UI correction"
+      },
+      "nativeFinalAnalyze": {
+        "passed": true,
+        "exit": 0,
+        "log": "work/qa/parity25-native-analyze-final.log",
+        "runner": "root",
+        "sourcePhase": "before final tiny pending-selection UI correction"
+      },
+      "nativePendingSelectionFinal": {
+        "passed": true,
+        "tests": 4,
+        "exit": 0,
+        "log": "work/qa/parity25-native-progress-pending-final.log",
+        "scope": "Final4case progress subset includes three repeated cases and one actual controller/provider/widget pending-selection regression; do not add reruns to57."
+      },
+      "nativePendingSelectionAnalyze": {
+        "passed": true,
+        "exit": 0,
+        "log": "work/qa/parity25-native-progress-pending-analyze.log"
+      }
+    },
+    "browser": {
+      "status": "completed subset; raw full harness failed test-fixture assertion",
+      "path": "docs/verification/2026-10-16/parity25/parity25-progress-browser.json",
+      "completed": {
+        "desktop-local-1x": {
+          "frames": 95,
+          "distinct": 95,
+          "elapsedMs": 1004.2000000000118,
+          "first": 0.285238,
+          "last": 1.287276,
+          "maxStep": 0.058616,
+          "maxMediaError": 0.015876
+        },
+        "phone-local-1x": {
+          "frames": 77,
+          "distinct": 77,
+          "elapsedMs": 1004.3000000000175,
+          "first": 2.584616,
+          "last": 3.568716,
+          "maxStep": 0.10763100000000003,
+          "maxMediaError": 0.023719000000000268
+        },
+        "phone-local-1.5x": {
+          "frames": 103,
+          "distinct": 94,
+          "elapsedMs": 1004.1000000000058,
+          "first": 4.743273,
+          "last": 6.24729,
+          "maxStep": 0.11768400000000057,
+          "maxMediaError": 0.02566199999999963,
+          "actualRate": 1.5
+        },
+        "phone-local-2x": {
+          "frames": 96,
+          "distinct": 93,
+          "elapsedMs": 1004.3999999999942,
+          "first": 7.213125,
+          "last": 9.120413,
+          "maxStep": 0.13404999999999845,
+          "maxMediaError": 0.03808000000000078,
+          "actualRate": 2
+        },
+        "paused": {
+          "drift": 0
+        }
+      },
+      "pointerHold": {
+        "passedBeforeAssertion": true,
+        "heldMilliseconds": 450,
+        "draftStable": true,
+        "decoderWritesDuringHold": 0
+      },
+      "harnessStop": "Raw decoder write count3!==1 at pointer release. Existing authority writes optimistic/apply and original fixture canonical ack forced rollback.5255fixture now confirms received device position/playing. No production change.",
+      "unreached": [
+        "pointer cancel",
+        "keyboard settlement",
+        "controlled document visibility",
+        "collapsed visible rail capture",
+        "popup mini runtime",
+        "remote stale/scrub runtime"
+      ],
+      "handoff": "Independent evaluator completed passing local and remote runtime checks; see independentRuntime. Original implementation harness remains partial/historical."
+    },
+    "limits": [
+      "Canonical remote snapshots have no playback rate: remote/rooms retain existing1x snapshot semantics; actual local1.5x/2x is verified.",
+      "Flutter widget evidence is not a physical Android/TV playback claim.",
+      "No production builds or account/authority/network-frequency changes performed by implementation agent.",
+      "Original prior UI proofs remain historical. Owner reference frames excluded from delivery."
+    ],
+    "evidenceHashes": [
+      {
+        "path": "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\docs\\verification\\2026-10-16\\parity25\\parity25-progress-desktop.png",
+        "sha256": "2bdd25dd11f8b695073f6cc248c3845f08782eb62b4f555f46fc746dd6772627",
+        "bytes": 361388
+      },
+      {
+        "path": "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\docs\\verification\\2026-10-16\\parity25\\parity25-progress-phone.png",
+        "sha256": "03c5a4bd346cd86cb1d45a85f9e998615490b251bce73f8122e31abbd4c2102c",
+        "bytes": 162128
+      },
+      {
+        "path": "work/qa/parity25-evaluator-browser-proof.json",
+        "sha256": "8bfe41627123c505229108935d0112c99025705881a515dd1ea01c1f66b3cc4a",
+        "bytes": 128510
+      },
+      {
+        "path": "work/qa/parity25-evaluator-remote-proof.json",
+        "sha256": "280846cc9efda4075bd394d4ef3c4001a0e8ff09ecd355f3acd4753d3014db6a",
+        "bytes": 17686
+      }
+    ],
+    "guide": "work/qa/parity25-progress-guide.md",
+    "pendingSelectionCorrection": {
+      "scope": "UI helper only; if !remote and displayed selection differs from decoder current, paint0/selected duration/paused until matching source.",
+      "actualRegression": "Prior controller/provider decoder remains73s/240s, pending new widget shows0/180s and stopped for500ms, source match resumes5s/180s.",
+      "productionHash": {
+        "path": "apps/native/lib/ui/playback_progress.dart",
+        "sha256": "f16e22f37ccadd93a6f9056c8d49df05d4f564dbbbbba68183dda82259ae3bdd",
+        "bytes": 7512
+      }
+    },
+    "independentRuntime": {
+      "passed": true,
+      "local": "work/qa/parity25-evaluator-browser-proof.json",
+      "remote": "work/qa/parity25-evaluator-remote-proof.json",
+      "localSummary": "Desktop101/101 and phone98/98distinct; actual1.5x/2x media errors<20ms; paused0 drift.",
+      "remoteSummary": {
+        "frames": 99,
+        "distinct": 99,
+        "heldFrames": 35,
+        "thumbDraftDistinct": 1,
+        "fillDraftDistinct": 1,
+        "commandsWhileHeld": 0,
+        "commandsAfterCommit": 1,
+        "pausedDrift": 0
+      }
+    }
+  },
+  "baselineEvidence": "docs/verification/2026-10-15/parity24/parity24-evidence.json",
+  "currentServerAndWebSourceHashes": {
+    "apps/server/src/account.js": "10b53082822ab2202de89aee9fd8d0db11af9bd0d31306d691dd312353e05ca4",
+    "apps/server/src/action-jobs.js": "4844e62662c0705c6eb631e71c92ffa66efc1aed5a2b0bb91fc16313e5b80104",
+    "apps/server/src/admin.js": "82417a012738f9351e1bbecd7af7d3f90b29c09f35188bbf35793e7282541569",
+    "apps/server/src/app.js": "dce53294e7b5c7f8866694741ffb5a3225b665f21981f3387736abf425a86c99",
+    "apps/server/src/audio-capabilities.js": "3e4b5a2788070195292f5b517b252c1a6891655060de00c2ea316d2c8f6e8f22",
+    "apps/server/src/auth.js": "2695aed4392536184eacccc8cd8a6a9581beae7cf803c5a9e3feecc1794f3542",
+    "apps/server/src/billing.js": "a9163d0268b48e04598400df991530ceecdf2596fe1852c21c7a177fca52c335",
+    "apps/server/src/community.js": "5823a273b369a160dd857e3f61156e452b32df109f7fe3dc30cc72e22c36dc07",
+    "apps/server/src/config.js": "6845dc54120af4d0f1dbdcf791084983892871c06756db1250cba8079e0496bc",
+    "apps/server/src/console-brand.js": "3cf4ddeac97b786ae842d0084e6c95f63e79d7ffea051fd71d588fcd181d5be8",
+    "apps/server/src/console-transport.js": "8b2b8c4eccfda0382f05b590b60c43693616649ee273474f51d045e7d2e4ed82",
+    "apps/server/src/console-ui.js": "5992d13453c6ac7e7065c2b9ec3e52db902b1ee2fffca22632c4705e65422e41",
+    "apps/server/src/diagnostics.js": "66ab9bae1912bf53afaac648cf14172fa2f66d68b60af94917e55dfb9b47eb84",
+    "apps/server/src/discord-presence.js": "3c69b062f30f751ae2bdc6e8eb07eab5dcf76ce4293efcdd37d917c3d1befa9a",
+    "apps/server/src/genius.js": "b785795dc7debcff70e7a117bc8e42fd6e34fb071329e4523caa72c2919ea43b",
+    "apps/server/src/index.js": "2a292e1e22151b0b41c1735bd3c00bfcbb7384f0888999c05eb5b6464286cf3f",
+    "apps/server/src/library-imports.js": "fe5b5adf60e6e8c4a9877f2f826df39ba10ab48766ddfab5adb28cc375273f66",
+    "apps/server/src/library.js": "016e86b4078901e5911329f843baa168bab37d006efd7b2135c2e27834023b8d",
+    "apps/server/src/listening.js": "ce7fac0070fd52bbae62c2da3f1c47ed02bf5a173c9f8d501a547522e3711957",
+    "apps/server/src/locale.js": "76eb2654b0dcffd9ad98838186a32972853e90274809093e207ce4f6e1a16d8a",
+    "apps/server/src/lrclib.js": "4a40e8ba9d9341b27beb0637b728710e16d602e8b30a9afee1440c78d35fb2e1",
+    "apps/server/src/mail-text.js": "24fdc84a7907528d63e50145bf2f4b90390230df11b8d073b36198caef2ee2d9",
+    "apps/server/src/media.js": "797f087f23d4d29436a2a9b8ed5f9c181c31cedbffde3a806794e0fb3ac7c829",
+    "apps/server/src/messages.js": "6726f58392c0b38fd2b5bef912694422901041308df77e73f0e6a051a8429061",
+    "apps/server/src/oauth-config.js": "1bf7f01bd3b0560adc5b27699a768d895c159d98c7864d91d30117233dce8108",
+    "apps/server/src/plans.js": "1af41034b769c676bcadb3af097730fc9a3054662defe5c91844ee12fd30f9ff",
+    "apps/server/src/playback-jobs.js": "b111e33179be055775d8bcc5762b850d823a531a5c152e1c914cdd7176da895e",
+    "apps/server/src/playback.js": "438a08b44ac3106eaae4fecca82a99266ccb4524df3ed57d6680aea1ecf6c15b",
+    "apps/server/src/providers.js": "7921aa770e73700e9fcf3dd224db9fd06fdaa4d979d0eeda9de05d8a0077ab31",
+    "apps/server/src/public-imports.js": "63f6bcc9ee5a5b2b3bf14c9d08ec53d360c3fe66079b0fd7b63f3ce98249bede",
+    "apps/server/src/push.js": "d2152b3739d4a574c80b22b389f24fb1f319d6bc8e6e3fe154e3b913295333de",
+    "apps/server/src/realtime-ecosystem.js": "95f8e392708c262ff145f85bda029618e8a584e85ab89a7c338d026b56fefec2",
+    "apps/server/src/realtime.js": "f8bde106f06e4bdd92b4b1faac40c1a2be62f858b8873f33cd05b50bb16e10a8",
+    "apps/server/src/recommendations.js": "2e1f780fbee88e28880fe4f015cc67ddc0263a0553c43844e33b5ba49cb5748c",
+    "apps/server/src/releases.js": "cf0a682142202827892e18d89ecaaa832592a5a5b90e6dc9a07d9d3c0c1a6af3",
+    "apps/server/src/resources.js": "2283499be57429eff52e8f2184acf8d6814de18897dd640ada3ea9faee6b13ed",
+    "apps/server/src/room-view.js": "b1f01371d67b1c4eded48630162c3043bf3b127f1ee73af9dbd8a0f9e707c2ec",
+    "apps/server/src/rooms.js": "5250c138dc01374a08ad87a4fe16b680d1b51749bc5d854f835903ebf618001a",
+    "apps/server/src/search.js": "6c1bcf08dc7d955a1a578798be89ec0605437a20f8556e1b04faf1043cefd302",
+    "apps/server/src/soundcloud-audio.js": "5c756f9f5d832833eea6c5a0ff071218cb428851403cd9a514731c4a88810984",
+    "apps/server/src/soundcloud-public.js": "1539d977c7e90326f12332df59a22d0fa2283f7b32a8ad1d3df3b8a22a32d77d",
+    "apps/server/src/store.js": "f5c92991e188e5bf333883e17e7ac20d4a396c2feb64f8e33fe2e6c2f893305c",
+    "apps/server/src/system-text.js": "d297190cd4ea5ddd3efcf5bba5a76d1221f5351ecb8cd6bc404844290aa85696",
+    "apps/server/src/util.js": "10d7fe120d039de68facc39ed03f84977487d0b0557eff99449cede1022798ca",
+    "apps/server/src/waveforms.js": "9e9102d2d5c9732f3dac9de8cfbed6520d0dc512fa99e8f8e7827c0518a15b45",
+    "apps/server/src/extractors/hls.js": "d54cd6998dc8f0d2889a0d878e55c46d051cae68439bb219890b1208226d1a14",
+    "apps/server/src/extractors/matching.js": "5aec51b318f99f19fb25d51236524fd5a4060e4d3f20fe889c02e955a7040367",
+    "apps/server/src/extractors/runtime.js": "4e36be0303f2045ed769257a4529023d9958f144354f6f8ff920754b4f5b9802",
+    "apps/server/src/extractors/service.js": "eb1a79d49224e49f92675c2054f75940be24678c4eb30ab5d4f65afdc363e4eb",
+    "apps/server/src/extractors/soundcloud.js": "39abeab959ac418df564d5d51fa5509d66a5484b20877799361b6d869563cd3c",
+    "apps/server/src/extractors/spotify.js": "05d9bfce18c37632cdd35d16469b59e0a4e48c4aa258e260ee12e1a78ee3af4d",
+    "apps/server/src/extractors/youtube.js": "01a8e67c3a39948c7268fc225ba3ac1c29266fbafb3453546a977dda67067cd3",
+    "apps/server/extractors/bridge.py": "084fd7b43212264a179868082333eb6825d986944d3d3385b3544e9a74937472",
+    "apps/server/extractors/requirements-spotdl.txt": "9faaa2416aaa16ba144f41df3b6be25ff363a13fbd139c17a8fc6e7fe8875d2b",
+    "apps/server/extractors/requirements-ytdlp.txt": "eddaf6b4a42ef7bc703cb08d3c189565a1d85a62b7a8b429b9b8e71eb793dcd4",
+    "apps/server/extractors/vendor/manifest.json": "ce60ab2e9ebcdebb3a15b370fcac9aa12c3160fe10ef5b377d008609d7378c16",
+    "apps/server/extractors/vendor/yt-dlp-ejs-UNLICENSE.txt": "b5065838cbac452dfc855ba6e6e031481ad2c68406f70d21ead9321374653e6c",
+    "apps/server/extractors/vendor/yt-dlp-UNLICENSE.txt": "7e12e5df4bae12cb21581ba157ced20e1986a0508dd10d0e8a4ab9a4cf94e85c",
+    "apps/server/extractors/vendor/yt-dlp.zip": "1fa6733c37ea6fb51c99ad8fe785e7b7e5f3246c9b980230329d4fb72ed8d4d6",
+    "apps/web/src/account-sessions.tsx": "bf4469a5ffac5e8bbefce71d5aae8831601ea3c5ff092a87661c9dc874adcf91",
+    "apps/web/src/account.tsx": "27cbd8e1ab604308c44683dddacae9f6e27b89bf38037ee06e07e70bce475d4a",
+    "apps/web/src/action-request.ts": "69b9f5a72a565e198e8df882da307586448d804265ee136d2648c246c7d2ee3c",
+    "apps/web/src/admin-errors.tsx": "99396e6f2c1073a7d3ab9b15a170eae60418f70eb5fb9e9f7c946c78bf3d8986",
+    "apps/web/src/admin-service.tsx": "9065df7e5dffe2d99aae303b19737ef558537f51fa818327e5df86856ddd5980",
+    "apps/web/src/album.tsx": "66efc18eecaa0d6ef75547a365386ebdfb97042c2574371d30b1a2ddd52f355d",
+    "apps/web/src/api.ts": "5440981ee50e4740d76f74f8eca42449bc6ea137fcb2d2f1af5cdaec01956279",
+    "apps/web/src/App.tsx": "766e6fdb6b5885d2ed9be6c027b55ebcfee63c00a84608f29b7ce543459324f9",
+    "apps/web/src/artwork.ts": "f1d150e9ed1a0a771187880037027ff372b7e3f1ab0472776ef8a137b8bfa11a",
+    "apps/web/src/audio-cache-validation.ts": "32c2a355f8a3bb237aa4f5e50b28408f20cda3a355223d272e220b644f464d54",
+    "apps/web/src/audio-design.css": "4cc4afd26b4187594fa661145c43340f4a0737e77fc517e888effa79a0f746b0",
+    "apps/web/src/audio-gesture.ts": "1aaa65323ca996d62814523e890b11a85f8dd65dfcf15aa570dc8e7ce114b813",
+    "apps/web/src/audio-processing.ts": "8ef029b1a068d78fed8c3e4b16588305a3392db988e46dd21dfbb6cebf6bd94e",
+    "apps/web/src/audio-stream.ts": "4fbf2d76f13d687b0ac3413c41b44eb42d1a9fef87bf49f39a5f28592209306b",
+    "apps/web/src/auth.tsx": "412c0c9cbbff3b63741d2f9cdaab8701cb44a9b99fcf8d9ae85f5a82be157e1c",
+    "apps/web/src/browser-compat-model.ts": "1b05a9a6e80927927127cf7288a50c6b547638e340c4a8604f9694a30abfe857",
+    "apps/web/src/browser-compat.ts": "6fddc2f54944fa1cbc3898bd8937a048f876cb953044019694e249e7194fa5a8",
+    "apps/web/src/cache.ts": "af71abb5bece4a66d9c17350ff4fad05d75713232c0f36c4dd6d48a6a6e7393b",
+    "apps/web/src/color-picker.tsx": "200f9b5ec99f4660c8613488246260c3da18aa954c1c7623e19b4f1104476393",
+    "apps/web/src/community.tsx": "bbf2f311827637194bbed64d8c1374118b9c08c3201d5ea877fc91ffb0215411",
+    "apps/web/src/compat-modules.d.ts": "28153b025b7fbf95df0298e35337e9e3b50f9d3b80444708079bd22dc58b0fb9",
+    "apps/web/src/connect-controller.ts": "9c8260b27b90207650c2607310e9eb4bb998d929622ac2c23e042a2115013437",
+    "apps/web/src/connect-playback-card.tsx": "d9ad85eab0838b0b731303f1c47268f654e10a8b470bc38eb5fd4fcc42847569",
+    "apps/web/src/connect-refinement.css": "e366fb08896d52c21ce59d5931f2674f91a2376e3bc3d4641e938ba966176046",
+    "apps/web/src/continuous-range.tsx": "a386951502ede9d5528ad2bb7ff360be9a9d6590919f7804b7997af114eb9a3f",
+    "apps/web/src/cover-accent-bridge.tsx": "5132b9dccd4d307f9bac9dc1dc27fe00551ecb45885c80ac7fec68b2df5bb671",
+    "apps/web/src/cover-accent.ts": "1d33f7d0394436d1958e8456ca1eb3f69d0ae2f8af5d32dc15eba9f796c5953b",
+    "apps/web/src/cover-ambient.tsx": "131e189e9bbbc49bdcc1700b39acca0f52460b8f3e0d6e342baac3e6668b712f",
+    "apps/web/src/cover-fit.ts": "4bfd503e665bccf54e8b2b2292ec4a428bd258959924dda55cb7eb4c4d3e571e",
+    "apps/web/src/customization.tsx": "7ea3ad646c72d092306d7b7b846db7197e47da782150fdca41f2e1a71582c497",
+    "apps/web/src/device-identity.ts": "8530973d25877745e722f18c7603910ba7c81a2925a189c2e53132e78adcd55c",
+    "apps/web/src/device-platform.tsx": "9e57aa7934f78d5788a348ad5ef00f27920c3ca5b1b4fbc786cbca937b9e9309",
+    "apps/web/src/devices-popover.tsx": "9d57a9e6dc3320f341503bd8eda9503f770749e2a5733923cdc1464f23935989",
+    "apps/web/src/diagnostics.ts": "8c21c46e204ea3e5df9c164a93df46aed06174dd54d4e603d4f84eed4e4643cd",
+    "apps/web/src/discord-model.ts": "6ad5cfd0f5e6d4ad71e58bd02318baeba1bd78077d298ff0bcc6e289bc14345f",
+    "apps/web/src/discord.css": "5db13e61485e5d06eecc0213feb1f8f55bc6f1b2c9ae099fe604aa1a592100ce",
+    "apps/web/src/discord.tsx": "260da3f503d962d0b293461c0e85b0f43d95de1a38be8bddc85a096a8e1e3ba8",
+    "apps/web/src/discovery-polish.css": "aac886b47c64fdd6197e7bd878e0d058177ac75dd19e636d13bb467656e23841",
+    "apps/web/src/discovery-search.tsx": "18b7fb23c818132205e397f516daf2ff18963544ebbaf12011305512a8fbee32",
+    "apps/web/src/ecosystem-controls.css": "ea8b5bde9813f7a2c9443e432edbc194fe016122f54144207d3d6851ed447198",
+    "apps/web/src/ecosystem-polish.css": "7cf33df3d81d42fda4af4f87ad3f09e694a24d8d2ff31bef484b2108219560a3",
+    "apps/web/src/ecosystem.css": "712561d08ca690cf0b68c23d362af988aec7236be827c89d05b8db635a4790a8",
+    "apps/web/src/embeds.tsx": "80442a04aeb28ac35186bae6ae210039561f47ee6eb1bb568dcb03aa350e2614",
+    "apps/web/src/equalizer-geometry.ts": "e326a26d55cd5242156ebbf924eafb3ddf29c3327a66ba41d3b02edb7620730d",
+    "apps/web/src/equalizer-popover.tsx": "10ead50c10ab2acadd5f97fdfb97450b1bb7cf32635d99b1febfa1a6d9142e8d",
+    "apps/web/src/experience.css": "09a5492f53b01865b94dc71d5cc5e54a11c73155a41fe5973140833ec47ce177",
+    "apps/web/src/extractor-diagnostics.tsx": "3700d1aa8abda94bfb02a874974af381b8e2b5da1d0d7e4eff6ad38cd1bc8441",
+    "apps/web/src/focused-player.css": "ff7772af3f881414683c892de0c9e0342ab1ec3d4adfa251e1c40b1fd93d05e9",
+    "apps/web/src/home-wave.tsx": "4efdf32684d2a5d432b86f1ef02e280fdc0e890ad3547f58be1f59188324f56c",
+    "apps/web/src/integrations-diagnostics.tsx": "a1303367c943cd03a2dfa0d52f6cb237500a42759455a675acbac2261b32e6bf",
+    "apps/web/src/landing.css": "ef31e02d7a9762ab7122671cad48dd6490fc2c45eba2554497a766a48db0f73f",
+    "apps/web/src/landing.tsx": "a7dc708e34bc9d73a5ee73086f615a801da39dd1359e81f401103d038af463d5",
+    "apps/web/src/library-edits.ts": "68d729820cd7244215602623014b79c45c04f56d36ebbc83d77bfea13191930e",
+    "apps/web/src/library-order.ts": "7fc9ea1817d5aa307aea0ac9edf0be141fd451a99634398c33a836d1eecd0d70",
+    "apps/web/src/library-sort-copy.ts": "f67ce3fed41945af7a93cc5115ce8897a7343fdf44f8befcb9fc62f1c5500588",
+    "apps/web/src/locale-startup.ts": "aced1065b59eeece9d68eefe2f661b5eaf18fa6b5925a4185dc46a0b05e64fc0",
+    "apps/web/src/locale.tsx": "6ec6e5e57a66071a4523953e18f9e65e50d9650fcb2e021f4e5b162081efc653",
+    "apps/web/src/lofi.tsx": "aa8c8caed874cc495ff32eef5885ce4511dfd55cd298f507724b4758e0d18a68",
+    "apps/web/src/lyric-timing.ts": "66a81d7695cddbe7439b9a146be9ae94a0f5548c4619cdcb5181718344a5bee7",
+    "apps/web/src/lyrics-import.tsx": "dea168dc65ed4f4a8e5a4590487e94b733cd7d134a8da7523535e426696a72b7",
+    "apps/web/src/lyrics-model.ts": "134ed19f90d85795c0d9ee0ad09e7c13a70b3207a6bac5db70578634e9a7da82",
+    "apps/web/src/main.tsx": "48ba7dd9e99d405b56a3475d9499d7ae75956445521112de847c22b2d60ad607",
+    "apps/web/src/media-download.ts": "dd918e7bc2a0251d939129a251ab574da2eb7d3e0482128b91e6a06adff8218b",
+    "apps/web/src/media-session-state.ts": "e3e31645d70d561c594c9fc9ee03affdb52a97266f4246094cee4d7b85fea7fa",
+    "apps/web/src/mini.tsx": "7fd09d038e14005c51402132dad3863cf7c2bd51e836d784123ed1d959cf508f",
+    "apps/web/src/morph-icon.tsx": "1b317b3ca146d49e78feabc472bd6b21811196dae6895cbe24c81b9c7dcdb03c",
+    "apps/web/src/motion-controls.css": "86c56cac09e01830b44b521151ec11d8a1a65c313007967730d13cc60c8e4ff5",
+    "apps/web/src/optimistic-controls.ts": "587320fb930c8271cc1273b98768b699cc9e2b5f73e1ac1cb2a79474b448ddd3",
+    "apps/web/src/pages.tsx": "f222dc4383f69d3d6e99a0287bfd8b855292b6417cb28dfdeade0073b629894c",
+    "apps/web/src/parity-account.tsx": "f1682ffc76223fbc04e572291e3e10520c1490f0bf12512f280d15afa5ef1ce9",
+    "apps/web/src/parity-admin.tsx": "a635d5a819837c66c3a5354a31d6bb702ea9782e99e4ae0b82185b497277fa50",
+    "apps/web/src/parity-model.ts": "93bbad3ad22a84e6d352c808574a9009a0092d28edfa9483db24b9a406eb1aa5",
+    "apps/web/src/parity-playlists.tsx": "90b796928227658996185084a9f372f8bbfe832e988eaceb274b75cf153422ad",
+    "apps/web/src/parity-social.tsx": "c65bae7e20a1e8ea25dc5e0dbfeb8e96cbbb1dc65a231b7a21b3f05087565c89",
+    "apps/web/src/parity-taste.tsx": "481685eb010084f9d53b3e9543337097162926c3f1357daf9092238423853e18",
+    "apps/web/src/parity.css": "44be32961ae9ad52c5343787ca2e1c0f9697ff3d76e23be569bf13ac7d60a106",
+    "apps/web/src/pixel-scene.ts": "6aebeff8524759519c0e78b1351e5fd5e306d9a8c191abc8d54a5acf97a8501c",
+    "apps/web/src/playback-feedback.css": "10fd7b45a9337606e5ef4cc401e310bbc62ce068e61643e864499b9aa91951fb",
+    "apps/web/src/playback-lifecycle.ts": "d20c0cd10eb869316f347a6183c7d2a8a996d740fe7b2c167aa995eba1f03564",
+    "apps/web/src/playback-recovery.ts": "5a19366df9fd35c1890b5bf197f4ba3730058f02f3626242db8ead13ced7645f",
+    "apps/web/src/playback-request.ts": "ab03ea51e983917b66c116eb28f78bf2fba00c9c9ad2590d2c418dda4688ffc7",
+    "apps/web/src/playback-settings.tsx": "e830b48067ddb7d8357d0a80de13cbe6df637ffc9109fb9e111b67579f1549c4",
+    "apps/web/src/playback-warmup.ts": "e840ff855daadb0235b45a374373025d5d1a1bd4ee1cf02a8e7f1cca8fdda22a",
+    "apps/web/src/player-details.css": "bb6ed6e63760b8d5ff3345fa3461827e20c2addd5d38d91f826014ddda1f64fd",
+    "apps/web/src/player-gestures.ts": "3a9c2f3c5b059405145ef59114880b97235f518ce7fabd00eb4f6aa4b26d2dac",
+    "apps/web/src/player-refinement.css": "d103f3a510359ca432ba4607e535cdc82d6c1886b125c1c272144a02c34df0aa",
+    "apps/web/src/player-ui.tsx": "fa54d6216b1722b37e5b97d4ac20645b07b0345a026ef12b703457a601747a0c",
+    "apps/web/src/player.tsx": "70f9069e9fc56c263b918fdaa2c5e458929ee03f1f23e353c646b2a3eabf22c2",
+    "apps/web/src/playlist-copy.ts": "2cd5688f1ea33e82cea94dd1ba0e0c22b781a5065c1236cd64918135238a5a4b",
+    "apps/web/src/playlist-library.tsx": "447886e321db3ee850aade8be87c8dd7fed48a8b5e46b8deb744cc02ddc31792",
+    "apps/web/src/playlist-manager.tsx": "283c652a01551e8eb52f0e14fb1637c58322e9bbd34c19ad490b1cadf5eb22fa",
+    "apps/web/src/playlist-polish.css": "edecc305468749eea21d646462cb6c8b958dfe33045496dc5e7f9ebc3476fcc1",
+    "apps/web/src/preferences.ts": "25f982ca39ea3591a497fc6d88cc75bab62354d48936abb6c7a0d85a8eb10aa7",
+    "apps/web/src/preset-listbox.tsx": "99421d371e6ed4890232da3b43afecbf1c3ef54804ce5df397afb392a191d3e1",
+    "apps/web/src/progress-clock.ts": "6bcd62f63bd82177abacf8c957d0156ddf3f035b4fe13b566c9bd69ccd778041",
+    "apps/web/src/progress-paint.tsx": "6790a416c113105c240b5872762a6136d93cd1a499a42eff05412f6df5753408",
+    "apps/web/src/provider-import.tsx": "063e5a0a1b37bb8fb7251ca11cdcdf49e51b43f2500aa29b94a5d48c1c78e47d",
+    "apps/web/src/public-import-copy.ts": "917f01cde2a3c1531bd7db39154ed8ccd49af3f2ad59008ae984208b00271c04",
+    "apps/web/src/public-import.css": "15dfa72d6fe8278190f618b2c277c5711ee829e22eb117ca648b8a129bdd8f71",
+    "apps/web/src/queue-panel.tsx": "de25170f3ce243eb6784f5a03ce1e8e5245f23a3b2578346e69b13142783cb38",
+    "apps/web/src/range-input.tsx": "76ac75f16ec8117f20a53ecdcfe1189b48aac074fd8b55cdde84b23a0548b28c",
+    "apps/web/src/reference-cover.css": "1070513ebfd3dbf52c811d3277c30e98c66483ab36efc1b40069a2175ed1c177",
+    "apps/web/src/refinement20-home.tsx": "5435a80092133ae72c559ef113fc573d5d4fe95beb1517f4a07141d9d2ffa648",
+    "apps/web/src/refinement20-strings.ts": "0569365d1defe75171ff4fd5b94049c3c0c96b836b00b02c598df5792a941131",
+    "apps/web/src/refinement20.css": "7c8dcdcddda90331c822a8cb7218de3676fe0aff2961f1fece36b2113da65fed",
+    "apps/web/src/refinement21.css": "3ad362a2412482121ea6248b1953ff7b5598ebc7bbae47edbd4307db6849ac63",
+    "apps/web/src/room-listeners.tsx": "5b6494ea251e1afea0c804a64538370e93a061bb8f6dac57a73e7edf6e5a3632",
+    "apps/web/src/scrolling-label.css": "0844c87ded0da6f1b51d9f6356b715bf9d5f3ccd07544bf8befa3a09fb212169",
+    "apps/web/src/scrolling-label.tsx": "056376a52d44beaadd90fade198413fa821dc2afc30c2dc4aada2df346a25eca",
+    "apps/web/src/search-artists.css": "4212a317f73d87411970fa018d61658d93b79f113f3ed27ccb57080da77a7713",
+    "apps/web/src/search-artists.tsx": "032407ed09406eea8a86e0bbb02adabba7413b2ce6276fcd590067c8a79c6f73",
+    "apps/web/src/seasonal.tsx": "e71a70262eded64230a4cff5c9117e975c9800e47a79371f61b59cc3a5ecbef4",
+    "apps/web/src/settings-range.tsx": "c93207c2c28a468490937fd54590f85f781e990d36ea1e99040454a44647eb22",
+    "apps/web/src/store.tsx": "a91a4ee6b1d3e56c7c4db21c1c44c86b691b80ea173c20ef03ced61568ec0de5",
+    "apps/web/src/styles.css": "f170ccd1c0589ff66c8f8fcdd50aa692cc18a3cc4722c0548eb07e384746a944",
+    "apps/web/src/transport-season.css": "0459aeef49444aa51ae58be2ee9bab051b2ecfc1110848030a7a1722759c7182",
+    "apps/web/src/types.ts": "763fc1b9d24732321fb669d2abc1fdec57660c510d63a723d380c8962a00ab45",
+    "apps/web/src/ui.tsx": "5cf967c28e62f895d4c7ba63b83c53c04ac8578ce01375d1803beba130157f7b",
+    "apps/web/src/v6.css": "73cae087b037346c6efeb26dd8dc46269ca2d43392424dd3d9575ce73f32aab3",
+    "apps/web/src/v7.css": "5f305a19b7ccaeb9bd37a484012cd4557e0b4d27457f2e4abbc689f5531de34f",
+    "apps/web/src/visual-lifecycle.ts": "110a20be1bde0bfbae1108d644bd367e9709a1e31f27b743d6946899990cac0e",
+    "apps/web/src/volume.ts": "4ca822baa37b289958ea5f0d751fc59278edae62b13eb7e4b4cec56a41577fa9",
+    "apps/web/src/wave-colors.ts": "29343730048694c9b77436f079b50f6f8cb9b3898da0ffd6fa2f4f6e0364ba77",
+    "apps/web/src/wave-math.ts": "71c6743a3031eab95ee15f7797d68c7662b144bf0686d31f611df4b81b202d70",
+    "apps/web/src/wave-session.ts": "d238c79a6975255676581fcb3bb405a80742841e71f3c1fae956bdb0944abe5d",
+    "apps/web/src/wave-shaders.ts": "c62cbcf66c2bf93da62c02052f69a5f7af0e5107e4b7b5f504a7d08d18c35bc6",
+    "apps/web/src/wave-silk-math.ts": "1d86a1e6df536527d339f0a8abd8961c8d208a5491aeab235d39934d8807c032",
+    "apps/web/src/wave-silk.ts": "e2abff49cfbc68dd50f89a9a25b316e552f442539fe25e7f714b186353b8f67f",
+    "apps/web/src/wave.tsx": "7173e79ed7fd47f172689df9a7278dd8291dea29118d01ddf5a948ce4ca7101f",
+    "apps/web/src/wave18-polish.css": "c491168d669fc00fbbd9c6a3acaf3c18d0303efb3d3a92f3788e8ff72c28dc6e",
+    "apps/web/src/locales/copy.tsv": "f990474ce08b549c2d6c3cb942a1e21c8905281fed020c1f0fd4638a391a02b3",
+    "apps/web/src/locales/de.json": "231fc4e8beef88aecb210aff671f6455aa6406bdc23ed661a2ddd7b8c6127a05",
+    "apps/web/src/locales/en.json": "4b3d679f33fb189d114b8fb17ffcb691b0db1c69a135ee0681c569033707752e",
+    "apps/web/src/locales/es.json": "e1121aff06bd72d3bd8dc66a22c88746a5dddc7ef8417a398007dd1f03d0dde9",
+    "apps/web/src/locales/extra.tsv": "81d6c54e69834bcab56b8b827089faeb759ba5b66745a9b4384570483ed59a0e",
+    "apps/web/src/locales/kk.json": "8b1e5e368f38c8bf52d3828639beec17bdbb10b7845bbec4c971550bfc2526b9",
+    "apps/web/src/locales/ru.json": "383f78c5ac61b1a93c0ee3381cf2d17eba58fd509d099405b18c01ab7336520b",
+    "apps/web/src/locales/templates.tsv": "ecefdaa21386a1eb127325774e2d5598ee406b96afa8a3b67dbec2dcd0351b34",
+    "apps/web/src/locales/uk.json": "8c0fc2586a818fd544a4bde05d8f559f995450200d515883ebecfd22e4a48168",
+    "apps/web/src/vendor/halftone-bloom.ts": "c9a3b57f5dfd422cf313f91e3ecdbea768e8cb624f2ea2d0da70a7e34b49bc8f"
+  },
+  "limits": [
+    "No hosting update or owner-client installation",
+    "No physical Samsung/Android/audio hardware verification",
+    "Legacy runtime Chromium missing-API fixture is not an old engine emulator",
+    "Current affected native regressions used; prior465 full baseline retained without unrelated second full run",
+    "Independent evaluator uses same available model provider",
+    "Android debug certificate retained; Windows unsigned; iOS not built",
+    "Dates never stored for old membership cannot be reconstructed; stable saved-order fallback"
+  ]
+}

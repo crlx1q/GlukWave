@@ -1315,5 +1315,6 @@
   "wave18.eqCustom": "Custom",
   "wave18.editTaste": "Edit your taste",
   "wave18.tasteCaption": "Your artists and genres. A wave that gets to know you.",
-  "lyrics.intro": "Intro"
+  "lyrics.intro": "Intro",
+  "focusedPlayer.wave": "Wave"
 }

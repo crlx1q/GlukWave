@@ -1,0 +1,190 @@
+{
+  "passed": true,
+  "wheelBoundary": "agent-browser mouse wheel emits at0,0 despite preceding move; scrollability verified with its supported scroll-container command plus correct visible target/auto overflow. Actual native touch blank-area scrolling covered separately.",
+  "cases": [
+    {
+      "width": 638,
+      "threeD": true,
+      "before": {
+        "correct": true,
+        "max": 240,
+        "rect": {
+          "bottom": 531.359375,
+          "height": 26,
+          "left": 129,
+          "right": 509,
+          "top": 505.359375,
+          "width": 380,
+          "x": 129,
+          "y": 505.359375
+        },
+        "style": "translateX(-11.4127%) rotateX(-9deg) rotateY(-18deg)",
+        "target": "INPUT",
+        "value": 4
+      },
+      "after": {
+        "correct": true,
+        "max": 240,
+        "rect": {
+          "bottom": 531.359375,
+          "height": 26,
+          "left": 129,
+          "right": 509,
+          "top": 505.359375,
+          "width": 380,
+          "x": 129,
+          "y": 505.359375
+        },
+        "style": "translateX(-11.4127%) rotateX(-9deg) rotateY(-18deg)",
+        "target": "INPUT",
+        "value": 0.6
+      },
+      "inputEvents": [
+        0.18833333333333335,
+        0.7595833333333334
+      ],
+      "turnSamples": 67,
+      "queueSamples": 66,
+      "scroll": 132,
+      "heading": "Волна · Любимое · Спокойное"
+    },
+    {
+      "width": 638,
+      "threeD": false,
+      "before": {
+        "correct": true,
+        "max": 240,
+        "rect": {
+          "bottom": 531.296875,
+          "height": 26,
+          "left": 129,
+          "right": 509,
+          "top": 505.296875,
+          "width": 380,
+          "x": 129,
+          "y": 505.296875
+        },
+        "style": "translateX(-11.4127%) rotateX(-9deg) rotateY(-18deg)",
+        "target": "INPUT",
+        "value": 3.5
+      },
+      "after": {
+        "correct": true,
+        "max": 240,
+        "rect": {
+          "bottom": 531.296875,
+          "height": 26,
+          "left": 129,
+          "right": 509,
+          "top": 505.296875,
+          "width": 380,
+          "x": 129,
+          "y": 505.296875
+        },
+        "style": "translateX(-11.4127%) rotateX(-9deg) rotateY(-18deg)",
+        "target": "INPUT",
+        "value": 0.6
+      },
+      "inputEvents": [
+        0.18833333333333335,
+        0.7595833333333334
+      ],
+      "turnSamples": 72,
+      "queueSamples": 68,
+      "scroll": 27,
+      "heading": "Волна · Любимое · Спокойное"
+    },
+    {
+      "width": 1440,
+      "threeD": true,
+      "before": {
+        "correct": true,
+        "max": 240,
+        "rect": {
+          "bottom": 447.140625,
+          "height": 26,
+          "left": 804,
+          "right": 1204,
+          "top": 421.140625,
+          "width": 400,
+          "x": 804,
+          "y": 421.140625
+        },
+        "style": "translateX(-11.4127%) rotateX(-9deg) rotateY(-18deg)",
+        "target": "INPUT",
+        "value": 3.5
+      },
+      "after": {
+        "correct": true,
+        "max": 240,
+        "rect": {
+          "bottom": 447.140625,
+          "height": 26,
+          "left": 804,
+          "right": 1204,
+          "top": 421.140625,
+          "width": 400,
+          "x": 804,
+          "y": 421.140625
+        },
+        "style": "translateX(-11.4127%) rotateX(-9deg) rotateY(-18deg)",
+        "target": "INPUT",
+        "value": 0.8
+      },
+      "inputEvents": [
+        0.18916666666666665,
+        0.7591666666666667
+      ],
+      "turnSamples": 63,
+      "queueSamples": 58,
+      "scroll": null,
+      "heading": "Волна · Любимое · Спокойное"
+    },
+    {
+      "width": 1440,
+      "threeD": false,
+      "before": {
+        "correct": true,
+        "max": 240,
+        "rect": {
+          "bottom": 443.1875,
+          "height": 26,
+          "left": 804,
+          "right": 1204,
+          "top": 417.1875,
+          "width": 400,
+          "x": 804,
+          "y": 417.1875
+        },
+        "style": "translateX(-11.4127%) rotateX(-9deg) rotateY(-18deg)",
+        "target": "INPUT",
+        "value": 3.5
+      },
+      "after": {
+        "correct": true,
+        "max": 240,
+        "rect": {
+          "bottom": 443.1875,
+          "height": 26,
+          "left": 804,
+          "right": 1204,
+          "top": 417.1875,
+          "width": 400,
+          "x": 804,
+          "y": 417.1875
+        },
+        "style": "translateX(-11.4127%) rotateX(-9deg) rotateY(-18deg)",
+        "target": "INPUT",
+        "value": 0.6
+      },
+      "inputEvents": [
+        0.18916666666666665,
+        0.7591666666666667
+      ],
+      "turnSamples": 72,
+      "queueSamples": 64,
+      "scroll": null,
+      "heading": "Волна · Любимое · Спокойное"
+    }
+  ]
+}

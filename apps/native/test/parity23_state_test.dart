@@ -272,7 +272,7 @@ void main() {
           controls.map((c) => c.action),
           isNot(contains(MediaAction.stop)),
         );
-        expect(controls.last.customAction?.name, 'glukwave.like');
+        expect(controls.last.customAction?.name, startsWith('glukwave.like/'));
         await audio.customAction('glukwave.like', {'trackId': 'first'});
         expect(liked, 1);
         await audio.playTrack(f.external('second'));

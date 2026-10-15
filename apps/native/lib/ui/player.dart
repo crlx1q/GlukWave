@@ -1,5 +1,7 @@
+import 'playback_progress.dart';
 import 'dart:math' as math;
 import 'scrolling_label.dart';
+import 'wave18_strings.dart';
 import 'native19_strings.dart';
 import 'native19_desktop_transport.dart';
 import 'cover_ambient.dart';
@@ -476,15 +478,12 @@ class MiniPlayer extends StatelessWidget {
                         ),
                       ),
                       if (!compact)
-                        StreamBuilder<Duration>(
-                          stream: c.audio.positionStream,
-                          builder: (context, snapshot) {
-                            final total = c.audio.duration?.inMilliseconds ?? 0;
+                        PlaybackProgress(
+                          controller: c,
+                          builder: (context, position, total) {
                             return LinearProgressIndicator(
                               value: total > 0
-                                  ? ((snapshot.data?.inMilliseconds ?? 0) /
-                                            total)
-                                        .clamp(0, 1)
+                                  ? (position / total).clamp(0, 1)
                                   : 0,
                               minHeight: 2,
                               color: c.trackLoading ? v.muted : v.accent,
@@ -649,6 +648,18 @@ class _PlayerPageState extends State<PlayerPage> {
   final _lyricKeys = <int, GlobalKey>{};
   int _lastLyric = -2;
   DateTime _manualLyricsUntil = DateTime(0);
+  Timer? _lyricDepthTimer;
+  final _clearLyricDepth = <int>{};
+  void manualLyrics() {
+    setState(
+      () => _manualLyricsUntil = DateTime.now().add(const Duration(seconds: 5)),
+    );
+    _lyricDepthTimer?.cancel();
+    _lyricDepthTimer = Timer(const Duration(seconds: 5), () {
+      if (mounted) setState(() => _manualLyricsUntil = DateTime(0));
+    });
+  }
+
   StreamSubscription<MediaItem?>? _media;
   bool _followingPlayback = false;
   @override
@@ -733,6 +744,7 @@ class _PlayerPageState extends State<PlayerPage> {
   void dispose() {
     c.removeListener(_syncCurrent);
     unawaited(_media?.cancel());
+    _lyricDepthTimer?.cancel();
     comment.dispose();
     _lyricsScroll.dispose();
     super.dispose();
@@ -795,7 +807,27 @@ class _PlayerPageState extends State<PlayerPage> {
                         child: Column(
                           children: [
                             Text(
-                              focusedPlayerText('nowPlaying', context: context),
+                              c.waveActive
+                                  ? [
+                                      focusedPlayerText(
+                                        'wave',
+                                        context: context,
+                                      ),
+                                      wave18Text(
+                                        context,
+                                        'wave18.mode.${c.waveMode}',
+                                      ),
+                                      if (c.waveMood != 'personal')
+                                        wave18Text(
+                                          context,
+                                          'wave18.mood.${c.waveMood}',
+                                        ),
+                                    ].join(' · ')
+                                  : focusedPlayerText(
+                                      'nowPlaying',
+                                      context: context,
+                                    ),
+                              key: const Key('player-context-label'),
                               style: TextStyle(
                                 color: waveVisuals(context).muted,
                                 letterSpacing: 1.5,
@@ -1003,8 +1035,7 @@ class _PlayerPageState extends State<PlayerPage> {
       _ => commentPage(track),
     };
     Widget scroll() => Listener(
-      onPointerSignal: (_) =>
-          _manualLyricsUntil = DateTime.now().add(const Duration(seconds: 5)),
+      onPointerSignal: (_) => manualLyrics(),
       child: SingleChildScrollView(
         key: Key(
           tab == 1
@@ -1157,27 +1188,53 @@ class _PlayerPageState extends State<PlayerPage> {
           c.settings['lyricsUnderCover'] != false &&
           lyrics.isNotEmpty;
       final contents = <Widget>[
-        Center(
-          child: PlayerGestureSurface(
-            key: const Key('player-cover-gesture'),
-            controller: c,
-            onVerticalStart: widget.onDragStart,
-            onVerticalUpdate: widget.onDragUpdate,
-            onVerticalEnd: widget.onDragEnd,
-            onVerticalCancel: widget.onDragCancel,
-            child: Opacity(
-              opacity: widget.hideAlbum ? 0 : 1,
-              child: AlbumStage(
+        Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Center(
+              child: PlayerGestureSurface(
+                key: const Key('player-cover-gesture'),
+                physicalOnly: true,
                 controller: c,
-                track: track,
-                size: size,
-                playing: active && c.audio.playing,
-                artworkKey: widget.artworkKey,
-                touchTilt: false,
-                compactVertical: !split,
+                onVerticalStart: widget.onDragStart,
+                onVerticalUpdate: widget.onDragUpdate,
+                onVerticalEnd: widget.onDragEnd,
+                onVerticalCancel: widget.onDragCancel,
+                child: Opacity(
+                  opacity: widget.hideAlbum ? 0 : 1,
+                  child: AlbumStage(
+                    controller: c,
+                    track: track,
+                    size: size,
+                    playing: active && c.audio.playing,
+                    artworkKey: widget.artworkKey,
+                    touchTilt: false,
+                    compactVertical: true,
+                  ),
+                ),
               ),
             ),
-          ),
+            if (preview)
+              Padding(
+                padding: EdgeInsets.fromLTRB(
+                  split ? 28 : 16,
+                  14,
+                  split ? 28 : 16,
+                  8,
+                ),
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 400),
+                  child: MiniLyrics(
+                    controller: c,
+                    track: track,
+                    lines: lyrics,
+                    synchronized: synchronized,
+                    dense: tiny,
+                    key: const Key('player-compact-lyrics'),
+                  ),
+                ),
+              ),
+          ],
         ),
         Row(
           children: [
@@ -1198,7 +1255,7 @@ class _PlayerPageState extends State<PlayerPage> {
                       letterSpacing: -.7,
                     ),
                   ),
-                  SizedBox(height: short ? 3 : 5),
+                  SizedBox(height: short ? 6 : 9),
                   ScrollingLabel(
                     track.artist,
                     style: TextStyle(color: v.muted, fontSize: short ? 12 : 13),
@@ -1227,15 +1284,6 @@ class _PlayerPageState extends State<PlayerPage> {
               key: const Key('source-attribution'),
               style: TextStyle(fontSize: 9, color: v.muted),
             ),
-          ),
-        if (preview)
-          MiniLyrics(
-            controller: c,
-            track: track,
-            lines: lyrics,
-            synchronized: synchronized,
-            dense: tiny,
-            key: const Key('player-compact-lyrics'),
           ),
         if (active) ...[
           progress(track),
@@ -1408,7 +1456,7 @@ class _PlayerPageState extends State<PlayerPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               contents.first,
-              const SizedBox(height: 12),
+              const SizedBox(height: 24),
               ConstrainedBox(
                 constraints: const BoxConstraints(maxWidth: 400),
                 child: Column(
@@ -1465,15 +1513,11 @@ class _PlayerPageState extends State<PlayerPage> {
       ),
     ],
   );
-  Widget progress(WaveTrack track) => StreamBuilder<Duration>(
-    stream: c.audio.positionStream,
-    builder: (context, snapshot) {
-      final total =
-          c.audio.duration?.inMilliseconds.toDouble() ?? track.duration * 1000;
-      final current = (snapshot.data?.inMilliseconds ?? 0)
-          .toDouble()
-          .clamp(0, total > 0 ? total : 1)
-          .toDouble();
+  Widget progress(WaveTrack track) => PlaybackProgress(
+    controller: c,
+    builder: (context, position, duration) {
+      final total = duration > 0 ? duration : track.duration * 1000;
+      final current = position.clamp(0, total > 0 ? total : 1).toDouble();
       return Column(
         children: [
           DraftSlider(
@@ -1743,6 +1787,16 @@ class _PlayerPageState extends State<PlayerPage> {
                   for (var i = 0; i < lyrics.length; i++)
                     InkWell(
                       key: _lyricKeys.putIfAbsent(i, () => GlobalKey()),
+                      onHover: (clear) => setState(
+                        () => clear
+                            ? _clearLyricDepth.add(i)
+                            : _clearLyricDepth.remove(i),
+                      ),
+                      onFocusChange: (clear) => setState(
+                        () => clear
+                            ? _clearLyricDepth.add(i)
+                            : _clearLyricDepth.remove(i),
+                      ),
                       onTap:
                           synchronized &&
                               c.canSeek &&
@@ -1762,7 +1816,10 @@ class _PlayerPageState extends State<PlayerPage> {
                         padding: const EdgeInsets.symmetric(vertical: 14),
                         child: TweenAnimationBuilder<double>(
                           tween: Tween(
-                            end: MediaQuery.highContrastOf(context)
+                            end:
+                                MediaQuery.highContrastOf(context) ||
+                                    _clearLyricDepth.contains(i) ||
+                                    DateTime.now().isBefore(_manualLyricsUntil)
                                 ? 0
                                 : lyricDefocus((active - i).abs(), active),
                           ),
@@ -1780,9 +1837,21 @@ class _PlayerPageState extends State<PlayerPage> {
                               fontWeight: FontWeight.w800,
                               letterSpacing: -.7,
                               height: 1.5,
-                              color: active < 0 || active == i
+                              color:
+                                  active < 0 ||
+                                      active == i ||
+                                      _clearLyricDepth.contains(i)
                                   ? waveVisuals(context).ink
-                                  : waveVisuals(context).muted,
+                                  : (active - i).abs() <= 1 ||
+                                        DateTime.now().isBefore(
+                                          _manualLyricsUntil,
+                                        ) ||
+                                        MediaQuery.highContrastOf(context)
+                                  ? waveVisuals(context).muted
+                                  : waveVisuals(context).muted.withValues(
+                                      alpha: (.55 - (active - i).abs() * .065)
+                                          .clamp(.2, .5),
+                                    ),
                             ),
                             child: Text(lyrics[i]['text'] as String? ?? ''),
                           ),

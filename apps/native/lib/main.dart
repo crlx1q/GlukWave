@@ -55,7 +55,7 @@ Future<void> main(List<String> arguments) async {
     startupApi = api;
     api.diagnostics.version = const String.fromEnvironment(
       'GLUKWAVE_BUILD_VERSION',
-      defaultValue: '1.0.0+24',
+      defaultValue: '1.0.0+25',
     );
     try {
       await api.diagnostics.enableLocalLog(

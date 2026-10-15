@@ -121,7 +121,7 @@ class _PlayerPanRecognizer extends PanGestureRecognizer {
 class PlayerGestureSurface extends StatefulWidget {
   final WaveController controller;
   final Widget child;
-  final bool opensPlayer;
+  final bool opensPlayer, physicalOnly;
   final VoidCallback? onVerticalStart, onVerticalCancel;
   final ValueChanged<double>? onVerticalUpdate, onVerticalEnd;
   const PlayerGestureSurface({
@@ -129,6 +129,7 @@ class PlayerGestureSurface extends StatefulWidget {
     required this.controller,
     required this.child,
     this.opensPlayer = false,
+    this.physicalOnly = false,
     this.onVerticalStart,
     this.onVerticalUpdate,
     this.onVerticalEnd,
@@ -195,7 +196,9 @@ class _PlayerGestureSurfaceState extends State<PlayerGestureSurface> {
 
   @override
   Widget build(BuildContext context) => RawGestureDetector(
-    behavior: HitTestBehavior.opaque,
+    behavior: widget.physicalOnly
+        ? HitTestBehavior.deferToChild
+        : HitTestBehavior.opaque,
     gestures: {
       _PlayerPanRecognizer:
           GestureRecognizerFactoryWithHandlers<_PlayerPanRecognizer>(

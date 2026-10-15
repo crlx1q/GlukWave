@@ -14,5 +14,5 @@ test('Timed intro comes from playback time and follows seeks in either direction
 });
 test('Only distant lyrics are softly defocused and blur has a bounded maximum',()=>{
   assert.equal(lyricDefocus(0,0),0);assert.equal(lyricDefocus(1,0),0);assert.equal(lyricDefocus(6,-1),0);
-  assert.equal(lyricDefocus(3,0),.7);assert.equal(lyricDefocus(99,0),1.6);
+  assert.equal(lyricDefocus(3,0),2.3);assert.equal(lyricDefocus(99,0),5);
 });

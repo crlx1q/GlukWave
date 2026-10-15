@@ -1,0 +1,8 @@
+file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/work/qa/parity25-compat-browser.mjs:29
+if(before.ready<2||before.paused||before.position<=.2)throw Error('WAV decoding did not advance: '+JSON.stringify(before));
+                                                            ^
+
+Error: WAV decoding did not advance: {"position":0,"ready":0}
+    at file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/work/qa/parity25-compat-browser.mjs:29:61
+
+Node.js v24.19.0

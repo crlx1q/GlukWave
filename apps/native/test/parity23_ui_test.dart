@@ -226,7 +226,7 @@ void main() {
       await f.clean(tester, c);
     },
   );
-  testWidgets('Native loading clock stays 1200ms at custom appearance speed', (
+  testWidgets('Native loading clock stays 900ms at custom appearance speed', (
     tester,
   ) async {
     final c = (await tester.runAsync(audio.makeController))!;
@@ -246,7 +246,7 @@ void main() {
     final dynamic state = tester.state(find.byType(WavePlaybackIcon));
     expect(
       (state.loop as PhysicalWaveClock).duration,
-      const Duration(milliseconds: 1200),
+      const Duration(milliseconds: 900),
     );
     expect(
       (state.entry as AnimationController).duration,
@@ -482,7 +482,9 @@ void main() {
           expect(
             loading.value,
             closeTo(
-              (loading.watch.elapsedMicroseconds % 1200000) / 1200000,
+              (loading.watch.elapsedMicroseconds %
+                      loading.duration.inMicroseconds) /
+                  loading.duration.inMicroseconds,
               .025,
             ),
           );
@@ -493,7 +495,7 @@ void main() {
               .025,
             ),
           );
-          expect(loading.duration, const Duration(milliseconds: 1200));
+          expect(loading.duration, const Duration(milliseconds: 900));
           expect(listening.duration, const Duration(milliseconds: 1200));
           expect(tester.takeException(), isNull);
         } finally {

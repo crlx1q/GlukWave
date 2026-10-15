@@ -104,9 +104,13 @@ test('public HTTP import needs no provider keys, preserves auth/plans/idempotenc
       const page=await request('/public-import/tracks',account.token,{provider,sourceUrl:found.data.playlists[0].sourceUrl});assert.equal(page.status,200,JSON.stringify(page.data));assert(page.data.tracks.length);assert(page.data.tracks.every(t=>t.id.startsWith(provider+'-')&&t.sourceUrl&&t.playback.kind===provider&&!t.playback.embedUrl));
     }
     const first=await request('/integrations/youtube/import',account.token,body),repeat=await request('/integrations/youtube/import',account.token,body);assert.equal(first.status,201);assert.equal(first.data.imported,1);assert.deepEqual(first.data,repeat.data);
+    const beforeDedupe=await service.ctx.store.get('libraries',account.user.id);
+    assert(Number.isFinite(Date.parse(beforeDedupe.likedAt['youtube-abcdefghijk'])));
+    assert.equal(beforeDedupe.addedAt['youtube-abcdefghijk'],beforeDedupe.likedAt['youtube-abcdefghijk']);
     const dedupe=await request('/integrations/youtube/import',account.token,{...body,requestId:'public-import-another'});assert.equal(dedupe.data.imported,0);assert.equal(dedupe.data.deduplicated,1);
     const library=await service.ctx.store.get('libraries',account.user.id);assert.deepEqual(library.likedIds,['youtube-abcdefghijk']);assert.deepEqual((await service.ctx.store.get('taste',account.user.id)).importedTrackIds,['youtube-abcdefghijk']);
+    assert.deepEqual(library.likedAt,beforeDedupe.likedAt);assert.deepEqual(library.addedAt,beforeDedupe.addedAt);
     const saved=await request('/integrations/spotify/import',account.token,{playlistId:'public-spotify',publicSourceUrl:'https://open.spotify.com/playlist/'+sid,destination:'playlist',name:'Original title',requestId:'public-spotify-create'});assert.equal(saved.status,201);assert.equal(saved.data.playlist.name,'Original title');
     assert.equal((await request('/integrations/youtube/import',account.token,body,{'X-GlukWave-Account':'different'})).status,409);assert(extracted.every(r=>r.limit===101&&r.start===1));
-  }finally{await service.close();await fs.rm(directory,{recursive:true,force:true,maxRetries:5,retryDelay:200});}
+  }finally{await service.close();assert(path.resolve(directory).startsWith(path.resolve(config.root,'work/qa')+path.sep));await fs.rm(directory,{recursive:true,force:true,maxRetries:5,retryDelay:200});}
 });

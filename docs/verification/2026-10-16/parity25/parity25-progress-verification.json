@@ -1,0 +1,253 @@
+{
+  "status": "source-frozen-focused-checks-passed",
+  "productionSourceFrozen": true,
+  "frozenAt": "2026-10-15T21:33:06.411Z",
+  "sourceHashes": [
+    {
+      "path": "apps/web/src/progress-clock.ts",
+      "sha256": "6bcd62f63bd82177abacf8c957d0156ddf3f035b4fe13b566c9bd69ccd778041",
+      "bytes": 870
+    },
+    {
+      "path": "apps/web/src/progress-paint.tsx",
+      "sha256": "6790a416c113105c240b5872762a6136d93cd1a499a42eff05412f6df5753408",
+      "bytes": 2619
+    },
+    {
+      "path": "apps/web/src/continuous-range.tsx",
+      "sha256": "a386951502ede9d5528ad2bb7ff360be9a9d6590919f7804b7997af114eb9a3f",
+      "bytes": 3879
+    },
+    {
+      "path": "apps/web/src/range-input.tsx",
+      "sha256": "76ac75f16ec8117f20a53ecdcfe1189b48aac074fd8b55cdde84b23a0548b28c",
+      "bytes": 887
+    },
+    {
+      "path": "apps/web/src/player.tsx",
+      "sha256": "70f9069e9fc56c263b918fdaa2c5e458929ee03f1f23e353c646b2a3eabf22c2",
+      "bytes": 76404
+    },
+    {
+      "path": "apps/web/src/player-ui.tsx",
+      "sha256": "fa54d6216b1722b37e5b97d4ac20645b07b0345a026ef12b703457a601747a0c",
+      "bytes": 48253
+    },
+    {
+      "path": "apps/web/src/community.tsx",
+      "sha256": "bbf2f311827637194bbed64d8c1374118b9c08c3201d5ea877fc91ffb0215411",
+      "bytes": 19511
+    },
+    {
+      "path": "apps/web/src/mini.tsx",
+      "sha256": "7fd09d038e14005c51402132dad3863cf7c2bd51e836d784123ed1d959cf508f",
+      "bytes": 5151
+    },
+    {
+      "path": "apps/web/src/discovery-polish.css",
+      "sha256": "aac886b47c64fdd6197e7bd878e0d058177ac75dd19e636d13bb467656e23841",
+      "bytes": 13634
+    },
+    {
+      "path": "apps/native/lib/ui/playback_progress.dart",
+      "sha256": "f16e22f37ccadd93a6f9056c8d49df05d4f564dbbbbba68183dda82259ae3bdd",
+      "bytes": 7512
+    },
+    {
+      "path": "apps/native/lib/ui/player.dart",
+      "sha256": "a14811fa906d51a058f57dcfeeee86e01650fb66de468a424c0d6e5100acaf22",
+      "bytes": 86372
+    },
+    {
+      "path": "apps/native/lib/ui/listening_rail.dart",
+      "sha256": "c2d127163fd2b556c18a4514aa5a30d797507638b3bc7d3f59a4dadfe189cc93",
+      "bytes": 13778
+    },
+    {
+      "path": "apps/native/lib/ui/native19_desktop_transport.dart",
+      "sha256": "ff4b4a86e7f2c9b9aadae2b0bba1dbef855278c796c49dd18420727363907c90",
+      "bytes": 21063
+    },
+    {
+      "path": "apps/native/lib/ui/desktop_player.dart",
+      "sha256": "34932214072a4b6fed1232c43f0d8f173e2c6a9aa5f1bda8beedc801e806021f",
+      "bytes": 13323
+    }
+  ],
+  "regressionFiles": [
+    {
+      "path": "apps/web/qa/progress-clock.test.mjs",
+      "sha256": "54e19c5c1c77bf91e7cc94dd9600e6ce4a2ce2e77cf65ee355578a2679ccb10a",
+      "bytes": 1283
+    },
+    {
+      "path": "apps/native/test/parity25_progress_test.dart",
+      "sha256": "01458fb5b926aabbd8112325cba55d7c581c45732457f2804d26e65b9982f0b1",
+      "bytes": 7556
+    }
+  ],
+  "checks": {
+    "webTypecheck": {
+      "passed": true,
+      "command": "npm run check --workspace @glukwave/web"
+    },
+    "webProgressClock": {
+      "passed": true,
+      "tests": 3,
+      "command": "node --test apps/web/qa/progress-clock.test.mjs"
+    },
+    "nativeCurrentAffected": {
+      "passed": true,
+      "tests": 57,
+      "exit": 0,
+      "log": "work/qa/parity25-native-current-final.log",
+      "files": [
+        "parity25_ui_test.dart",
+        "parity23_ui_test.dart",
+        "parity25_hit_test.dart",
+        "notification25_test.dart",
+        "parity23_state_test.dart",
+        "playlist22_test.dart",
+        "startup_config_test.dart",
+        "parity25_progress_test.dart"
+      ],
+      "sourcePhase": "before final tiny pending-selection UI correction"
+    },
+    "nativeFinalAnalyze": {
+      "passed": true,
+      "exit": 0,
+      "log": "work/qa/parity25-native-analyze-final.log",
+      "runner": "root",
+      "sourcePhase": "before final tiny pending-selection UI correction"
+    },
+    "nativePendingSelectionFinal": {
+      "passed": true,
+      "tests": 4,
+      "exit": 0,
+      "log": "work/qa/parity25-native-progress-pending-final.log",
+      "scope": "Final4case progress subset includes three repeated cases and one actual controller/provider/widget pending-selection regression; do not add reruns to57."
+    },
+    "nativePendingSelectionAnalyze": {
+      "passed": true,
+      "exit": 0,
+      "log": "work/qa/parity25-native-progress-pending-analyze.log"
+    }
+  },
+  "browser": {
+    "status": "completed subset; raw full harness failed test-fixture assertion",
+    "path": "docs/verification/2026-10-16/parity25/parity25-progress-browser.json",
+    "completed": {
+      "desktop-local-1x": {
+        "frames": 95,
+        "distinct": 95,
+        "elapsedMs": 1004.2000000000118,
+        "first": 0.285238,
+        "last": 1.287276,
+        "maxStep": 0.058616,
+        "maxMediaError": 0.015876
+      },
+      "phone-local-1x": {
+        "frames": 77,
+        "distinct": 77,
+        "elapsedMs": 1004.3000000000175,
+        "first": 2.584616,
+        "last": 3.568716,
+        "maxStep": 0.10763100000000003,
+        "maxMediaError": 0.023719000000000268
+      },
+      "phone-local-1.5x": {
+        "frames": 103,
+        "distinct": 94,
+        "elapsedMs": 1004.1000000000058,
+        "first": 4.743273,
+        "last": 6.24729,
+        "maxStep": 0.11768400000000057,
+        "maxMediaError": 0.02566199999999963,
+        "actualRate": 1.5
+      },
+      "phone-local-2x": {
+        "frames": 96,
+        "distinct": 93,
+        "elapsedMs": 1004.3999999999942,
+        "first": 7.213125,
+        "last": 9.120413,
+        "maxStep": 0.13404999999999845,
+        "maxMediaError": 0.03808000000000078,
+        "actualRate": 2
+      },
+      "paused": {
+        "drift": 0
+      }
+    },
+    "pointerHold": {
+      "passedBeforeAssertion": true,
+      "heldMilliseconds": 450,
+      "draftStable": true,
+      "decoderWritesDuringHold": 0
+    },
+    "harnessStop": "Raw decoder write count3!==1 at pointer release. Existing authority writes optimistic/apply and original fixture canonical ack forced rollback.5255fixture now confirms received device position/playing. No production change.",
+    "unreached": [
+      "pointer cancel",
+      "keyboard settlement",
+      "controlled document visibility",
+      "collapsed visible rail capture",
+      "popup mini runtime",
+      "remote stale/scrub runtime"
+    ],
+    "handoff": "Independent evaluator completed passing local and remote runtime checks; see independentRuntime. Original implementation harness remains partial/historical."
+  },
+  "limits": [
+    "Canonical remote snapshots have no playback rate: remote/rooms retain existing1x snapshot semantics; actual local1.5x/2x is verified.",
+    "Flutter widget evidence is not a physical Android/TV playback claim.",
+    "No production builds or account/authority/network-frequency changes performed by implementation agent.",
+    "Original prior UI proofs remain historical. Owner reference frames excluded from delivery."
+  ],
+  "evidenceHashes": [
+    {
+      "path": "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\docs\\verification\\2026-10-16\\parity25\\parity25-progress-desktop.png",
+      "sha256": "2bdd25dd11f8b695073f6cc248c3845f08782eb62b4f555f46fc746dd6772627",
+      "bytes": 361388
+    },
+    {
+      "path": "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\docs\\verification\\2026-10-16\\parity25\\parity25-progress-phone.png",
+      "sha256": "03c5a4bd346cd86cb1d45a85f9e998615490b251bce73f8122e31abbd4c2102c",
+      "bytes": 162128
+    },
+    {
+      "path": "work/qa/parity25-evaluator-browser-proof.json",
+      "sha256": "8bfe41627123c505229108935d0112c99025705881a515dd1ea01c1f66b3cc4a",
+      "bytes": 128510
+    },
+    {
+      "path": "work/qa/parity25-evaluator-remote-proof.json",
+      "sha256": "280846cc9efda4075bd394d4ef3c4001a0e8ff09ecd355f3acd4753d3014db6a",
+      "bytes": 17686
+    }
+  ],
+  "guide": "work/qa/parity25-progress-guide.md",
+  "pendingSelectionCorrection": {
+    "scope": "UI helper only; if !remote and displayed selection differs from decoder current, paint0/selected duration/paused until matching source.",
+    "actualRegression": "Prior controller/provider decoder remains73s/240s, pending new widget shows0/180s and stopped for500ms, source match resumes5s/180s.",
+    "productionHash": {
+      "path": "apps/native/lib/ui/playback_progress.dart",
+      "sha256": "f16e22f37ccadd93a6f9056c8d49df05d4f564dbbbbba68183dda82259ae3bdd",
+      "bytes": 7512
+    }
+  },
+  "independentRuntime": {
+    "passed": true,
+    "local": "work/qa/parity25-evaluator-browser-proof.json",
+    "remote": "work/qa/parity25-evaluator-remote-proof.json",
+    "localSummary": "Desktop101/101 and phone98/98distinct; actual1.5x/2x media errors<20ms; paused0 drift.",
+    "remoteSummary": {
+      "frames": 99,
+      "distinct": 99,
+      "heldFrames": 35,
+      "thumbDraftDistinct": 1,
+      "fillDraftDistinct": 1,
+      "commandsWhileHeld": 0,
+      "commandsAfterCommit": 1,
+      "pausedDrift": 0
+    }
+  }
+}

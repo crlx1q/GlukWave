@@ -1315,5 +1315,6 @@
   "wave18.eqCustom": "Свой",
   "wave18.editTaste": "Изменить вкус",
   "wave18.tasteCaption": "Твои артисты и жанры. Волна знакомится с тобой.",
-  "lyrics.intro": "Вступление"
+  "lyrics.intro": "Вступление",
+  "focusedPlayer.wave": "Волна"
 }

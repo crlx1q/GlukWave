@@ -1,0 +1,11 @@
+✔ likes use personal dates, stable reverse insertion ties and private metadata filtering (3.2844ms)
+✔ account addition dates never use another account catalog discovery or hidden memberships (0.6402ms)
+✔ real library API preserves repeated likes, orders dates independently of catalog, and resets only after re-like (1601.1588ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4922.7482

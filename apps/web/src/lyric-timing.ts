@@ -12,5 +12,5 @@ export function lyricCue(lines: readonly TimedLine[], synchronized: boolean, pos
 }
 
 export function lyricDefocus(distance: number, active: number) {
-  return active < 0 || distance <= 1 ? 0 : Math.min(1.6, (distance - 1) * .35);
+  return active < 0 || distance <= 1 ? 0 : Math.min(5, (distance - 1) * 1.15);
 }

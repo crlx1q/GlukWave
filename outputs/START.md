@@ -1,7 +1,5 @@
-# Запуск 1.0.0+24
+# Запуск 1.0.0+25
 
-Установи GlukWave-Setup.exe на ПК или GlukWave-android-debug.apk на Android. Переносная версия — GlukWave-windows.zip. iOS здесь не собран.
+Установи GlukWave-Setup.exe на ПК или GlukWave-android-debug.apk на Android. Переносная версия — GlukWave-windows.zip. iOS не собран.
 
-Веб необходимо обновить из GlukWave-source.zip отдельно, сохранив .env, базу, данные и TOKEN_ENCRYPTION_KEY. Инструкция — docs/SHARED-SERVER.md. Автоматического развёртывания нет.
-
-После обновления проверь запуск Android и открытие сайта в Samsung TV. В раскрытом плеере проверь текст/вступление и CD при вращении; в свёрнутом слов быть не должно. Физическую проверку выполняет владелец. Откат — archive/releases/1.0.0+23.
+Сервер и веб обновляются из GlukWave-source.zip отдельно. Сохрани .env, базу, данные и TOKEN_ENCRYPTION_KEY; инструкция docs/SHARED-SERVER.md. Новые поля дат добавляются при действиях автоматически; старые записи не требуют миграции. Точный откат — archive/releases/1.0.0+24.

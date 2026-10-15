@@ -1,0 +1,17 @@
+✔ likes use personal dates, stable reverse insertion ties and private metadata filtering (2.4645ms)
+✔ real library API preserves repeated likes, orders dates independently of catalog, and resets only after re-like (1521.2389ms)
+✔ older TV crypto creates UUIDv4 identifiers with secure random bytes (1.4708ms)
+✔ old media query change listeners subscribe and unsubscribe symmetrically (0.6759ms)
+✔ startup recovery parses as ES5 and respects cached account language (19.8431ms)
+✔ unrelated resource failures and request rejections never flash a boot error (2.1752ms)
+✔ a recovered main script failure is canceled when React commits (2.0253ms)
+✔ a genuine unavailable bundle offers retry, and TV advice appears only on a TV (3.1054ms)
+✔ the watchdog still recovers a stalled runtime without MutationObserver (4.2807ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 14929.168

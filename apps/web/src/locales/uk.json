@@ -1315,5 +1315,6 @@
   "wave18.eqCustom": "Власний",
   "wave18.editTaste": "Змінити смак",
   "wave18.tasteCaption": "Твої артисти й жанри. Хвиля знайомиться з тобою.",
-  "lyrics.intro": "Вступ"
+  "lyrics.intro": "Вступ",
+  "focusedPlayer.wave": "Хвиля"
 }

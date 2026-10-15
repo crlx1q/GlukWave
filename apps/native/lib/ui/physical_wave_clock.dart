@@ -7,20 +7,19 @@ import 'package:flutter/scheduler.dart';
 /// Stopwatch supplies elapsed real time independently of scaled frame stamps.
 class PhysicalWaveClock extends Animation<double> with ChangeNotifier {
   static const cycle = Duration(milliseconds: 1200);
+  final Duration period;
   final Stopwatch watch = Stopwatch();
   late final Ticker ticker;
-  double _value = 0;
   @override
-  double get value => _value;
-  PhysicalWaveClock(TickerProvider vsync) {
+  double get value =>
+      (watch.elapsedMicroseconds % period.inMicroseconds) /
+      period.inMicroseconds;
+  PhysicalWaveClock(TickerProvider vsync, {this.period = cycle}) {
     ticker = vsync.createTicker((_) {
-      _value =
-          (watch.elapsedMicroseconds % cycle.inMicroseconds) /
-          cycle.inMicroseconds;
       notifyListeners();
     });
   }
-  Duration get duration => cycle;
+  Duration get duration => period;
   @override
   bool get isAnimating => ticker.isActive;
   void repeat() {

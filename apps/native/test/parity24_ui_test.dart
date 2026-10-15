@@ -76,7 +76,7 @@ void main() {
         2,
       );
       expect(lyricDefocus(1, 0), 0);
-      expect(lyricDefocus(5, 0), closeTo(1.4, .001));
+      expect(lyricDefocus(5, 0), closeTo(4.6, .001));
     },
   );
   testWidgets(

@@ -1,3 +1,4 @@
+import 'package:glukwave/ui/cover_planes.dart';
 import 'dart:math' as math;
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -159,8 +160,10 @@ void main() {
         final original = t.getSize(find.byKey(const Key('album-stage-bounds')));
         if (viewport.height >= 568) {
           final transform = t
-              .widget<Transform>(find.byKey(const Key('album-3d-transform')))
-              .transform;
+              .widget<AlbumPlaneScene>(
+                find.byKey(const Key('album-3d-transform')),
+              )
+              .camera;
           final side = stage.size;
           for (final point in [
             Offset(-side / 2, -side / 2),
@@ -246,16 +249,19 @@ void main() {
         currentX = pose.dx;
         currentY = pose.dy;
         final matrix = t
-            .widget<Transform>(find.byKey(const Key('album-3d-transform')))
-            .transform;
+            .widget<AlbumPlaneScene>(
+              find.byKey(const Key('album-3d-transform')),
+            )
+            .camera;
         final bounds = t.getRect(find.byKey(const Key('album-stage-bounds'))),
             center = bounds.center;
         final side = t.widget<AlbumStage>(find.byType(AlbumStage)).size;
         final left = t
-            .widget<AnimatedPositioned>(
-              find.byKey(const Key('album-record-position')),
-            )
-            .left!;
+            .widget<AlbumPlaneScene>(find.byType(AlbumPlaneScene))
+            .planes
+            .first
+            .transform
+            .entry(0, 3);
         final heading = t.getRect(
           find.byWidgetPredicate((w) => w is ScrollingLabel && w.text == title),
         );

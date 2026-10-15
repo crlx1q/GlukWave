@@ -27,7 +27,10 @@ class _WavePlaybackIconState extends State<WavePlaybackIcon>
     vsync: this,
     value: widget.loading ? 1 : 0,
   );
-  late final loop = PhysicalWaveClock(this);
+  late final loop = PhysicalWaveClock(
+    this,
+    period: const Duration(milliseconds: 900),
+  );
   late final blend = CurvedAnimation(
     parent: entry,
     curve: Curves.easeInOutCubic,

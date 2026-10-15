@@ -1,0 +1,5 @@
+00:00 +0: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/notification25_test.dart
+00:00 +0: notification heart is selected initially, follows optimistic state and rollback without restarting playback
+00:00 +1: notification action without extras is bound to its actual track and account
+00:00 +2: system heart rating sets intent idempotently and rejects another track or account
+00:01 +3: All tests passed!

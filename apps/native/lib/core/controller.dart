@@ -17,6 +17,7 @@ import 'playback_recovery.dart';
 import 'qr_login.dart';
 import 'models.dart';
 import 'library_mutations.dart';
+import 'library_order.dart';
 import 'discord.dart';
 import 'appearance.dart';
 import '../services/appearance_store.dart';
@@ -189,6 +190,7 @@ class WaveController extends ChangeNotifier {
   List<WaveTrack> tracks = [], results = [];
   List<Json> artistResults = [], playlistResults = [];
   List<String> likedIds = [];
+  Json likedAt = {}, addedAt = {};
   List<Json> playlists = [],
       history = [],
       integrations = [],
@@ -476,6 +478,10 @@ class WaveController extends ChangeNotifier {
       await transport(command, data);
       return true;
     };
+    audio.isNotificationTrackLiked = (id) => loggedIn && likedIds.contains(id);
+    audio.notificationScope = () => namespace;
+    addListener(audio.refreshNotificationLike);
+    audio.refreshNotificationLike();
     audio.onNotificationLike = () async {
       final scope = namespace;
       final current = audio.viewCurrent;
@@ -633,7 +639,9 @@ class WaveController extends ChangeNotifier {
     try {
       final data = object(jsonDecode(await file.readAsString()));
       tracks = objects(data['tracks']).map(WaveTrack.new).toList();
-      likedIds = List<String>.from(data['likedIds'] ?? []);
+      likedIds = orderedLikeIds(data);
+      likedAt = object(data['likedAt']);
+      addedAt = object(data['addedAt']);
       playlists = objects(data['playlists']);
       history = objects(data['history']);
       settings = {...settings, ...object(data['settings'])};
@@ -662,6 +670,8 @@ class WaveController extends ChangeNotifier {
     final snapshot = jsonEncode({
       'tracks': confirmed?['tracks'] ?? tracks.map((t) => t.json).toList(),
       'likedIds': confirmed?['likedIds'] ?? likedIds,
+      'likedAt': confirmed?['likedAt'] ?? likedAt,
+      'addedAt': confirmed?['addedAt'] ?? addedAt,
       'playlists': confirmed?['playlists'] ?? playlists,
       'history': history,
       'settings': settings,
@@ -704,6 +714,8 @@ class WaveController extends ChangeNotifier {
       _libraryMutations = LibraryMutations({
         'tracks': tracks.map((t) => t.json).toList(),
         'likedIds': likedIds,
+        'likedAt': likedAt,
+        'addedAt': addedAt,
         'playlists': playlists,
         'history': history,
       });
@@ -722,6 +734,8 @@ class WaveController extends ChangeNotifier {
     tracks = objects(value['tracks']).map(WaveTrack.new).toList();
     _mergeSavedTracks();
     likedIds = List<String>.from(value['likedIds'] ?? []);
+    likedAt = object(value['likedAt']);
+    addedAt = object(value['addedAt']);
     playlists = objects(value['playlists']);
     history = objects(value['history']);
     notifyListeners();
@@ -759,6 +773,14 @@ class WaveController extends ChangeNotifier {
                 (saved['id']?.toString() ?? '').isEmpty) {
               throw StateError('Playlist response is missing');
             }
+            if (edit.kind == 'like') {
+              if (response['liked'] is bool) {
+                edit.data['liked'] = response['liked'];
+              }
+              if (response.containsKey('likedAt')) {
+                edit.data['likedAt'] = response['likedAt'];
+              }
+            }
             journal.acknowledge(edit, playlist: saved.isEmpty ? null : saved);
             _showLibraryEdits();
             unawaited(_persist().catchError((_) {}));
@@ -795,6 +817,7 @@ class WaveController extends ChangeNotifier {
     List<String> ids = const [],
     List<WaveTrack> knownTracks = const [],
   }) async {
+    final at = DateTime.now().toUtc().toIso8601String();
     final id = 'pending:${const Uuid().v4()}',
         draft = {
           'id': id,
@@ -802,6 +825,7 @@ class WaveController extends ChangeNotifier {
           'description': description,
           'public': public,
           'trackIds': ids,
+          'trackAddedAt': {for (final trackId in ids) trackId: at},
         };
     final edit = _edits().begin('create:$id', 'create', id, {
       'playlist': draft,
@@ -830,7 +854,21 @@ class WaveController extends ChangeNotifier {
 
   Future<Json> updatePlaylist(String id, Json patch) async {
     if (id.startsWith('pending:')) throw StateError('Playlist is still saving');
-    final edit = _edits().begin('playlist:$id', 'update', id, patch);
+    final now = DateTime.now().toUtc().toIso8601String();
+    final current = playlists.where((p) => p['id'] == id).firstOrNull,
+        dates = object(current?['trackAddedAt']),
+        previous = List<String>.from(current?['trackIds'] ?? []);
+    if (patch['trackIds'] is List) {
+      final ids = List<String>.from(patch['trackIds']);
+      dates.removeWhere((id, _) => !ids.contains(id));
+      for (final trackId in ids) {
+        if (!previous.contains(trackId)) dates[trackId] = now;
+      }
+    }
+    final edit = _edits().begin('playlist:$id', 'update', id, {
+      ...patch,
+      if (patch['trackIds'] is List) 'trackAddedAt': dates,
+    });
     final data = await _writeLibrary(
       edit,
       () => api.call(
@@ -852,6 +890,7 @@ class WaveController extends ChangeNotifier {
     if (id.startsWith('pending:')) throw StateError('Playlist is still saving');
     final edit = _edits().begin('playlist:$id', 'membership', id, {
       'trackId': target.id,
+      'addedAt': DateTime.now().toUtc().toIso8601String(),
       'present': present,
       'track': target.json,
     });
@@ -1261,6 +1300,8 @@ class WaveController extends ChangeNotifier {
     tracks = [];
     playlists = [];
     likedIds = [];
+    likedAt = {};
+    addedAt = {};
     devices = [];
     sessions = [];
     currentSessionId = null;
@@ -2430,6 +2471,7 @@ class WaveController extends ChangeNotifier {
     final liked = !likedIds.contains(t.id);
     final edit = _edits().begin('like:${t.id}', 'like', t.id, {
       'liked': liked,
+      'likedAt': liked ? DateTime.now().toUtc().toIso8601String() : null,
       'track': t.json,
     });
     await _writeLibrary(
@@ -4326,6 +4368,9 @@ class WaveController extends ChangeNotifier {
     unawaited(backgroundConnect.update(false).catchError((_) => false));
     audio.onWidgetCommand = null;
     audio.onNotificationLike = null;
+    audio.isNotificationTrackLiked = null;
+    audio.notificationScope = null;
+    removeListener(audio.refreshNotificationLike);
     audio.widgetGrant = null;
     audio.onLoadingChanged = null;
     unawaited(_lan?.close() ?? Future.value());

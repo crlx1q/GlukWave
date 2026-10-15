@@ -1,3 +1,4 @@
+import 'playback_progress.dart';
 import 'package:flutter/material.dart';
 import 'package:audio_service/audio_service.dart';
 import '../core/controller.dart';
@@ -289,15 +290,16 @@ class _NativeDesktopTransportState extends State<NativeDesktopTransport> {
                             ),
                           ],
                         ),
-                        StreamBuilder<Duration>(
-                          stream: c.audio.positionStream,
-                          builder: (_, snapshot) {
-                            final total =
-                                c.audio.duration?.inMilliseconds.toDouble() ??
-                                (track?.duration ?? 0) * 1000;
-                            final value = (snapshot.data?.inMilliseconds ?? 0)
-                                .toDouble()
-                                .clamp(0, total > 0 ? total : 1);
+                        PlaybackProgress(
+                          controller: c,
+                          builder: (_, position, duration) {
+                            final total = duration > 0
+                                ? duration
+                                : (track?.duration ?? 0) * 1000;
+                            final value = position.clamp(
+                              0,
+                              total > 0 ? total : 1,
+                            );
                             return SizedBox(
                               height: 27,
                               child: Row(

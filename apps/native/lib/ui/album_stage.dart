@@ -6,6 +6,7 @@ import 'package:flutter/scheduler.dart';
 import '../core/controller.dart';
 import '../core/models.dart';
 import 'widgets.dart';
+import 'cover_planes.dart';
 
 final _sleeveSceneHeights = <int, double>{};
 
@@ -290,6 +291,7 @@ class _AlbumStageState extends State<AlbumStage>
                 key: const Key('album-sunlight-reflection'),
                 painter: SleeveReflection(
                   (math.sin(-18 * math.pi / 180 + tilt.dx) + 1) * .5,
+                  (-9 * math.pi / 180 - tilt.dy),
                 ),
               ),
             ),
@@ -320,31 +322,72 @@ class _AlbumStageState extends State<AlbumStage>
       );
     }
     const depth = 18.0;
-    Widget edge(Key key, Matrix4 matrix, double width, double height) =>
-        Transform(
-          key: key,
-          alignment: Alignment.center,
-          transform: matrix,
-          child: SizedBox(
-            width: width,
-            height: height,
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  colors: [
-                    const Color(0xff595249),
-                    const Color(0xff948a7a),
-                    const Color(0xff554e43),
-                  ],
-                ),
-                border: Border.all(
-                  color: Colors.black.withValues(alpha: .25),
-                  width: .5,
-                ),
-              ),
-            ),
+    Widget materialFace(Key key, {bool plastic = false}) => DecoratedBox(
+      key: key,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: plastic
+              ? const [Color(0xff596361), Color(0xffaab1ac), Color(0xff424b48)]
+              : const [Color(0xff595249), Color(0xff948a7a), Color(0xff554e43)],
+        ),
+        border: Border.all(color: const Color(0xff4b4842), width: .5),
+      ),
+    );
+    Widget back() => Container(
+      key: const Key('album-back-sleeve'),
+      width: size,
+      height: size,
+      padding: EdgeInsets.fromLTRB(
+        size * .086,
+        size * .093,
+        size * .086,
+        size * .07,
+      ),
+      color: c.customization.appearance.coverKind == 'cd'
+          ? const Color(0xff262b2c)
+          : opaque,
+      child: SleeveBackMetadata(track: widget.track, size: size),
+    );
+    Widget tray() => Container(
+      key: const Key('album-cd-tray'),
+      decoration: BoxDecoration(
+        color: const Color(0xff252a2b),
+        gradient: const LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [Color(0xff414849), Color(0xff202526), Color(0xff343b3c)],
+        ),
+        border: Border.all(color: const Color(0xff89918d), width: 2),
+      ),
+      child: Center(
+        child: Container(
+          width: size * .87,
+          height: size * .87,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: const Color(0xff15191a),
+            border: Border.all(color: const Color(0xff626b69), width: 2),
           ),
-        );
+        ),
+      ),
+    );
+    Widget lidInner() => Container(
+      key: const Key('album-cd-lid-inner'),
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [Color(0xff515958), Color(0xff303637), Color(0xff404846)],
+        ),
+        border: Border.all(color: const Color(0xffaab2ae), width: 2),
+      ),
+      padding: EdgeInsets.all(size * .05),
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          border: Border.all(color: const Color(0xff727c77)),
+        ),
+      ),
+    );
     final disc = SizedBox(
       width: size * .94,
       height: size * .94,
@@ -441,6 +484,8 @@ class _AlbumStageState extends State<AlbumStage>
                 context: context,
               ),
               child: MouseRegion(
+                opaque: false,
+                hitTestBehavior: HitTestBehavior.deferToChild,
                 onEnter: (_) => setState(() => hovering = true),
                 onExit: (_) => setState(() => hovering = false),
                 child: Listener(
@@ -475,7 +520,7 @@ class _AlbumStageState extends State<AlbumStage>
                   },
                   child: GestureDetector(
                     key: const Key('album-3d'),
-                    behavior: HitTestBehavior.opaque,
+                    behavior: HitTestBehavior.deferToChild,
                     supportedDevices: const {
                       PointerDeviceKind.touch,
                       PointerDeviceKind.stylus,
@@ -512,9 +557,7 @@ class _AlbumStageState extends State<AlbumStage>
                       builder: (_) {
                         final y = -18 * math.pi / 180 + tilt.dx;
                         final x = -9 * math.pi / 180 - tilt.dy;
-                        final faceFront = math.cos(y) >= 0;
                         final cd = c.customization.appearance.coverKind == 'cd';
-                        final lidFront = math.cos(y - 14 * math.pi / 180) >= 0;
                         final matrix = Matrix4.identity()
                           ..setEntry(3, 2, -1 / 1100)
                           ..translateByDouble(
@@ -525,284 +568,175 @@ class _AlbumStageState extends State<AlbumStage>
                           )
                           ..rotateX(x)
                           ..rotateY(y);
-                        return Transform(
-                          key: const Key('album-3d-transform'),
-                          alignment: Alignment.center,
-                          transform: matrix,
-                          child: SizedBox(
-                            width: size,
-                            height: size,
-                            child: Stack(
-                              clipBehavior: Clip.none,
-                              children: [
-                                if (c.customization.appearance.coverKind ==
-                                    'cd')
-                                  Positioned.fill(
-                                    child: Container(
-                                      key: const Key('album-cd-tray'),
-                                      decoration: BoxDecoration(
-                                        color: const Color(0xff252a2b),
-                                        gradient: const LinearGradient(
-                                          begin: Alignment.topLeft,
-                                          end: Alignment.bottomRight,
-                                          colors: [
-                                            Color(0xff414849),
-                                            Color(0xff202526),
-                                            Color(0xff343b3c),
-                                          ],
-                                        ),
-                                        border: Border.all(
-                                          color: const Color(0xff89918d),
-                                          width: 2,
-                                        ),
-                                      ),
-                                      child: Center(
-                                        child: Container(
-                                          width: size * .87,
-                                          height: size * .87,
-                                          decoration: BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: const Color(0xff15191a),
-                                            border: Border.all(
-                                              color: const Color(0xff626b69),
-                                              width: 2,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                AnimatedPositioned(
-                                  key: const Key('album-record-position'),
-                                  duration: v.duration(600),
-                                  curve: const Cubic(.2, .8, .2, 1),
-                                  left:
-                                      size *
-                                      (c.customization.appearance.coverKind ==
-                                              'cd'
-                                          ? (hovering ? .59 : .53)
-                                          : (hovering ? .54 : .46)),
-                                  top: size * .03,
-                                  child: disc,
-                                ),
-                                Positioned(
-                                  left: -depth / 2,
-                                  top: 0,
-                                  child: edge(
-                                    const Key('album-spine-face'),
-                                    Matrix4.identity()..rotateY(-math.pi / 2),
-                                    depth,
-                                    size,
-                                  ),
-                                ),
-                                Positioned(
-                                  left: 0,
-                                  top: -depth / 2,
-                                  child: edge(
-                                    const Key('album-top-face'),
-                                    Matrix4.identity()..rotateX(math.pi / 2),
-                                    size,
-                                    depth,
-                                  ),
-                                ),
-                                Positioned(
-                                  left: 0,
-                                  top: size - depth / 2,
-                                  child: edge(
-                                    const Key('album-bottom-face'),
-                                    Matrix4.identity()..rotateX(-math.pi / 2),
-                                    size,
-                                    depth,
-                                  ),
-                                ),
-                                Positioned(
-                                  left: size - depth / 2,
-                                  top: 0,
-                                  child: edge(
-                                    const Key('album-inner-face'),
-                                    Matrix4.identity()..rotateY(math.pi / 2),
-                                    depth,
-                                    size,
-                                  ),
-                                ),
-                                if (cd || faceFront)
-                                  Positioned(
-                                    left: 0,
-                                    top: 0,
-                                    child: Transform(
-                                      alignment: cd
-                                          ? Alignment.centerLeft
-                                          : Alignment.center,
-                                      transform: Matrix4.identity()
-                                        ..translateByDouble(0, 0, depth / 2, 1)
-                                        ..rotateY(cd ? -14 * math.pi / 180 : 0),
-                                      child: cd
-                                          ? SizedBox(
-                                              width: size,
-                                              height: size,
-                                              child: Stack(
-                                                clipBehavior: Clip.none,
-                                                children: [
-                                                  if (lidFront)
-                                                    Transform(
-                                                      transform:
-                                                          Matrix4.identity()
-                                                            ..translateByDouble(
-                                                              0,
-                                                              0,
-                                                              .75,
-                                                              1,
-                                                            ),
-                                                      child: front(),
-                                                    )
-                                                  else
-                                                    Transform(
-                                                      alignment:
-                                                          Alignment.center,
-                                                      transform:
-                                                          Matrix4.identity()
-                                                            ..rotateY(math.pi)
-                                                            ..translateByDouble(
-                                                              0,
-                                                              0,
-                                                              .75,
-                                                              1,
-                                                            ),
-                                                      child: Container(
-                                                        key: const Key(
-                                                          'album-cd-lid-inner',
-                                                        ),
-                                                        width: size,
-                                                        height: size,
-                                                        decoration: BoxDecoration(
-                                                          gradient:
-                                                              const LinearGradient(
-                                                                begin: Alignment
-                                                                    .topLeft,
-                                                                end: Alignment
-                                                                    .bottomRight,
-                                                                colors: [
-                                                                  Color(
-                                                                    0xff515958,
-                                                                  ),
-                                                                  Color(
-                                                                    0xff303637,
-                                                                  ),
-                                                                  Color(
-                                                                    0xff404846,
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                          border: Border.all(
-                                                            color: const Color(
-                                                              0xffaab2ae,
-                                                            ),
-                                                            width: 2,
-                                                          ),
-                                                        ),
-                                                        padding: EdgeInsets.all(
-                                                          size * .05,
-                                                        ),
-                                                        child: DecoratedBox(
-                                                          decoration: BoxDecoration(
-                                                            border: Border.all(
-                                                              color:
-                                                                  const Color(
-                                                                    0x338e9895,
-                                                                  ),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  Positioned(
-                                                    left: 0,
-                                                    top: -.75,
-                                                    child: edge(
-                                                      const Key(
-                                                        'album-cd-lid-top',
-                                                      ),
-                                                      Matrix4.identity()
-                                                        ..rotateX(math.pi / 2),
-                                                      size,
-                                                      1.5,
-                                                    ),
-                                                  ),
-                                                  Positioned(
-                                                    left: 0,
-                                                    top: size - .75,
-                                                    child: edge(
-                                                      const Key(
-                                                        'album-cd-lid-bottom',
-                                                      ),
-                                                      Matrix4.identity()
-                                                        ..rotateX(-math.pi / 2),
-                                                      size,
-                                                      1.5,
-                                                    ),
-                                                  ),
-                                                  Positioned(
-                                                    left: -.75,
-                                                    top: 0,
-                                                    child: edge(
-                                                      const Key(
-                                                        'album-cd-lid-left',
-                                                      ),
-                                                      Matrix4.identity()
-                                                        ..rotateY(-math.pi / 2),
-                                                      1.5,
-                                                      size,
-                                                    ),
-                                                  ),
-                                                  Positioned(
-                                                    left: size - .75,
-                                                    top: 0,
-                                                    child: edge(
-                                                      const Key(
-                                                        'album-cd-lid-right',
-                                                      ),
-                                                      Matrix4.identity()
-                                                        ..rotateY(math.pi / 2),
-                                                      1.5,
-                                                      size,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            )
-                                          : front(),
-                                    ),
-                                  ),
-                                if (!faceFront)
-                                  Positioned(
-                                    left: 0,
-                                    top: 0,
-                                    child: Transform(
-                                      alignment: Alignment.center,
-                                      transform: Matrix4.identity()
-                                        ..translateByDouble(0, 0, -depth / 2, 1)
-                                        ..rotateY(math.pi),
-                                      child: Container(
-                                        key: const Key('album-back-sleeve'),
-                                        width: size,
-                                        height: size,
-                                        padding: EdgeInsets.fromLTRB(
-                                          size * .086,
-                                          size * .093,
-                                          size * .086,
-                                          size * .07,
-                                        ),
-                                        color: opaque,
-                                        child: SleeveBackMetadata(
-                                          track: widget.track,
-                                          size: size,
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                              ],
-                            ),
+                        final hinge = Matrix4.identity()
+                          ..translateByDouble(0, 0, depth / 2, 1)
+                          ..rotateY(-14 * math.pi / 180);
+                        return TweenAnimationBuilder<double>(
+                          tween: Tween(
+                            end:
+                                size *
+                                (cd
+                                    ? (hovering ? .59 : .53)
+                                    : (hovering ? .54 : .46)),
                           ),
+                          duration: v.duration(600),
+                          curve: const Cubic(.2, .8, .2, 1),
+                          child: disc,
+                          builder: (context, discLeft, discChild) =>
+                              AlbumPlaneScene(
+                                key: const Key('album-3d-transform'),
+                                camera: matrix,
+                                size: size,
+                                planes: [
+                                  CoverPlane(
+                                    discChild!,
+                                    Matrix4.identity()..translateByDouble(
+                                      discLeft,
+                                      size * .03,
+                                      0,
+                                      1,
+                                    ),
+                                    size * .94,
+                                    size * .94,
+                                    twoSided: true,
+                                    circle: true,
+                                  ),
+                                  if (cd)
+                                    CoverPlane(
+                                      tray(),
+                                      Matrix4.identity()
+                                        ..translateByDouble(0, 0, -1, 1),
+                                      size,
+                                      size,
+                                    ),
+                                  CoverPlane(
+                                    back(),
+                                    Matrix4.identity()
+                                      ..translateByDouble(
+                                        size,
+                                        0,
+                                        -depth / 2,
+                                        1,
+                                      )
+                                      ..rotateY(math.pi),
+                                    size,
+                                    size,
+                                  ),
+                                  CoverPlane(
+                                    materialFace(
+                                      const Key('album-spine-face'),
+                                      plastic: cd,
+                                    ),
+                                    Matrix4.identity()
+                                      ..translateByDouble(0, 0, -depth / 2, 1)
+                                      ..rotateY(-math.pi / 2),
+                                    depth,
+                                    size,
+                                  ),
+                                  CoverPlane(
+                                    materialFace(
+                                      const Key('album-inner-face'),
+                                      plastic: cd,
+                                    ),
+                                    Matrix4.identity()
+                                      ..translateByDouble(size, 0, depth / 2, 1)
+                                      ..rotateY(math.pi / 2),
+                                    depth,
+                                    size,
+                                  ),
+                                  CoverPlane(
+                                    materialFace(
+                                      const Key('album-top-face'),
+                                      plastic: cd,
+                                    ),
+                                    Matrix4.identity()
+                                      ..translateByDouble(0, 0, -depth / 2, 1)
+                                      ..rotateX(math.pi / 2),
+                                    size,
+                                    depth,
+                                  ),
+                                  CoverPlane(
+                                    materialFace(
+                                      const Key('album-bottom-face'),
+                                      plastic: cd,
+                                    ),
+                                    Matrix4.identity()
+                                      ..translateByDouble(0, size, depth / 2, 1)
+                                      ..rotateX(-math.pi / 2),
+                                    size,
+                                    depth,
+                                  ),
+                                  if (!cd)
+                                    CoverPlane(
+                                      front(),
+                                      Matrix4.identity()
+                                        ..translateByDouble(0, 0, depth / 2, 1),
+                                      size,
+                                      size,
+                                    ),
+                                  if (cd) ...[
+                                    CoverPlane(
+                                      front(),
+                                      hinge.clone()
+                                        ..translateByDouble(0, 0, .75, 1),
+                                      size,
+                                      size,
+                                    ),
+                                    CoverPlane(
+                                      lidInner(),
+                                      hinge.clone()
+                                        ..translateByDouble(size, 0, -.75, 1)
+                                        ..rotateY(math.pi),
+                                      size,
+                                      size,
+                                    ),
+                                    CoverPlane(
+                                      materialFace(
+                                        const Key('album-cd-lid-top'),
+                                        plastic: true,
+                                      ),
+                                      hinge.clone()
+                                        ..translateByDouble(0, 0, -.75, 1)
+                                        ..rotateX(math.pi / 2),
+                                      size,
+                                      1.5,
+                                    ),
+                                    CoverPlane(
+                                      materialFace(
+                                        const Key('album-cd-lid-bottom'),
+                                        plastic: true,
+                                      ),
+                                      hinge.clone()
+                                        ..translateByDouble(0, size, .75, 1)
+                                        ..rotateX(-math.pi / 2),
+                                      size,
+                                      1.5,
+                                    ),
+                                    CoverPlane(
+                                      materialFace(
+                                        const Key('album-cd-lid-left'),
+                                        plastic: true,
+                                      ),
+                                      hinge.clone()
+                                        ..translateByDouble(0, 0, -.75, 1)
+                                        ..rotateY(-math.pi / 2),
+                                      1.5,
+                                      size,
+                                    ),
+                                    CoverPlane(
+                                      materialFace(
+                                        const Key('album-cd-lid-right'),
+                                        plastic: true,
+                                      ),
+                                      hinge.clone()
+                                        ..translateByDouble(size, 0, .75, 1)
+                                        ..rotateY(math.pi / 2),
+                                      1.5,
+                                      size,
+                                    ),
+                                  ],
+                                ],
+                              ),
                         );
                       },
                     ),
@@ -945,15 +879,15 @@ class _RecordLight extends CustomPainter {
 }
 
 class SleeveReflection extends CustomPainter {
-  final double reflection;
-  const SleeveReflection(this.reflection);
+  final double reflection, pitch;
+  const SleeveReflection(this.reflection, [this.pitch = 0]);
   @override
   void paint(Canvas canvas, Size size) {
     canvas.save();
     canvas.clipRect(Offset.zero & size);
     final rect = Rect.fromLTWH(
       -size.width * 1.2 * reflection,
-      0,
+      -size.height * math.sin(pitch) * .12,
       size.width * 2.2,
       size.height,
     );
@@ -979,7 +913,8 @@ class SleeveReflection extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(SleeveReflection old) => old.reflection != reflection;
+  bool shouldRepaint(SleeveReflection old) =>
+      old.reflection != reflection || old.pitch != pitch;
 }
 
 class CoverBarcode extends CustomPainter {

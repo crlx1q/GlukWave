@@ -1,0 +1,63 @@
+{
+  "checkedAt": "2026-10-15T21:38:25.594Z",
+  "passed": true,
+  "engine": "Modern Chromium forced to production SystemJS legacy branch with removed APIs",
+  "physicalTvVerified": false,
+  "originalFixtureAudio": true,
+  "unrelatedBootNoiseDidNotFlash": true,
+  "dialogPolyfillOpenedAndClosed": true,
+  "initial": {
+    "animate": "undefined",
+    "bootFailures": 0,
+    "broadcast": "undefined",
+    "fetch": "function",
+    "legacy": true,
+    "observer": "function",
+    "plural": "function",
+    "profile": "tv-legacy",
+    "proxy": "undefined",
+    "resize": "function",
+    "rootReady": true,
+    "uuid": "function"
+  },
+  "before": {
+    "paused": false,
+    "position": 0.758982,
+    "ready": 4
+  },
+  "final": {
+    "fatal": false,
+    "full": true,
+    "lyrics": 6,
+    "paused": false,
+    "position": 2.569935
+  },
+  "legacyFiles": [
+    {
+      "name": "hls-legacy-B7zYHMqK.js",
+      "bytes": 665598,
+      "sha256": "49f0209bd024b5dedbefd741087def4a4c3c57e53ff43df3f8cfb3f0c368a304"
+    },
+    {
+      "name": "main-legacy-BVWmKVOr.js",
+      "bytes": 1045194,
+      "sha256": "ff25d8e6a3cb3c12bd875b389107e41185343cb6ba785a365e9a9ed4b7b64d4e"
+    },
+    {
+      "name": "mini-legacy-CFLSVTBu.js",
+      "bytes": 7286,
+      "sha256": "653a5439c133e7f2accfde403609cf142c627d0880f4e55441e4cb324e6287fa"
+    },
+    {
+      "name": "playback-feedback-legacy-DwC6tSJu.js",
+      "bytes": 871026,
+      "sha256": "d8acf42eea9cf6d75c8e02bdde5ff5faae6d67d867d86b0f5c0b421cac7e6ad5"
+    },
+    {
+      "name": "polyfills-legacy-BiJ_zgFM.js",
+      "bytes": 176861,
+      "sha256": "b72fd64462c3f035dcd58450bc39cc33e2cc57804631979ad677943e0cbaf14a"
+    }
+  ],
+  "capture": "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\work\\qa\\parity25-legacy-tv-lyrics.png"
+}

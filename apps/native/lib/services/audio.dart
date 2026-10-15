@@ -290,6 +290,42 @@ class WaveAudioHandler extends BaseAudioHandler {
   Future<bool> Function(String command, Json payload)? onTransport;
   Future<void> Function(String command, String scope)? onWidgetCommand;
   Future<void> Function()? onNotificationLike;
+  bool Function(String trackId)? isNotificationTrackLiked;
+  String Function()? notificationScope;
+  String? _publishedLikeTrack, _publishedLikeScope;
+  bool? _publishedLiked;
+
+  bool _isLiked(String id) => isNotificationTrackLiked?.call(id) ?? false;
+  String _likeAction(String id) =>
+      'glukwave.like/${Uri.encodeComponent(notificationScope?.call() ?? '')}/${Uri.encodeComponent(id)}';
+
+  bool _refreshLikeMetadata() {
+    final track = viewCurrent, scope = notificationScope?.call() ?? '';
+    final liked = track != null && _isLiked(track.id);
+    if (_publishedLikeTrack == track?.id &&
+        _publishedLikeScope == scope &&
+        _publishedLiked == liked) {
+      return false;
+    }
+    _publishedLikeTrack = track?.id;
+    _publishedLikeScope = scope;
+    _publishedLiked = liked;
+    final currentItem = mediaItem.value;
+    if (track != null && currentItem?.id == track.id) {
+      mediaItem.add(
+        currentItem!.copyWith(rating: Rating.newHeartRating(liked)),
+      );
+    }
+    return true;
+  }
+
+  /// Library optimistic changes, rollback and account restore publish the same
+  /// heart as the application without restarting audio or changing position.
+  void refreshNotificationLike() {
+    if (_released) return;
+    if (_refreshLikeMetadata()) _broadcast();
+  }
+
   String? widgetGrant;
   Future<bool> Function(WaveTrack track, AudioServiceRepeatMode repeat)?
   onEnded;
@@ -532,9 +568,11 @@ class WaveAudioHandler extends BaseAudioHandler {
     album: track.album,
     duration: Duration(milliseconds: (track.duration * 1000).round()),
     artUri: track.artwork.isNotEmpty ? Uri.parse(api.url(track.artwork)) : null,
+    rating: Rating.newHeartRating(_isLiked(track.id)),
   );
   void _broadcast() {
     _updatePositionTimer();
+    _refreshLikeMetadata();
     playbackState.add(
       PlaybackState(
         controls: [
@@ -542,19 +580,30 @@ class WaveAudioHandler extends BaseAudioHandler {
           playing ? MediaControl.pause : MediaControl.play,
           MediaControl.skipToNext,
           if (!hardwareVolume) MediaControl.stop,
-          if (hardwareVolume && onNotificationLike != null)
+          if (hardwareVolume &&
+              onNotificationLike != null &&
+              viewCurrent != null)
             MediaControl.custom(
-              androidIcon: 'drawable/widget_heart',
-              label: homeWidgetText('like'),
-              name: 'glukwave.like',
-              extras: {'trackId': viewCurrent?.id},
+              androidIcon: _isLiked(viewCurrent!.id)
+                  ? 'drawable/widget_heart_filled'
+                  : 'drawable/widget_heart',
+              label: homeWidgetText(
+                _isLiked(viewCurrent!.id) ? 'unlike' : 'like',
+              ),
+              name: _likeAction(viewCurrent!.id),
+              extras: {
+                'trackId': viewCurrent!.id,
+                'scope': notificationScope?.call() ?? '',
+              },
             ),
         ],
         androidCompactActionIndices: const [0, 1, 2],
-        systemActions: const {
+        systemActions: {
           MediaAction.seek,
           MediaAction.seekForward,
           MediaAction.seekBackward,
+          if (onNotificationLike != null && viewCurrent != null)
+            MediaAction.setRating,
         },
         processingState: remote
             ? AudioProcessingState.ready
@@ -1138,9 +1187,19 @@ class WaveAudioHandler extends BaseAudioHandler {
     String name, [
     Map<String, dynamic>? extras,
   ]) async {
+    if (name.startsWith('glukwave.like/')) {
+      // Android System UI may omit CustomAction.extras. The action identity
+      // itself binds the press to its song and account, including stale cards.
+      if (viewCurrent != null && name == _likeAction(viewCurrent!.id)) {
+        await onNotificationLike?.call();
+      }
+      return null;
+    }
     if (name == 'glukwave.like') {
-      // A stale notification must never like a song that replaced its item.
-      if (extras?['trackId'] != null && extras?['trackId'] == viewCurrent?.id) {
+      if (extras?['trackId'] != null &&
+          extras?['trackId'] == viewCurrent?.id &&
+          (notificationScope == null ||
+              extras?['scope'] == notificationScope?.call())) {
         await onNotificationLike?.call();
       }
       return null;
@@ -1156,6 +1215,25 @@ class WaveAudioHandler extends BaseAudioHandler {
       return null;
     }
     return super.customAction(name, extras);
+  }
+
+  @override
+  Future<void> setRating(Rating rating, [Map<String, dynamic>? extras]) async {
+    final track = viewCurrent;
+    if (track == null ||
+        onNotificationLike == null ||
+        !rating.isRated() ||
+        rating.getRatingStyle() != RatingStyle.heart) {
+      return;
+    }
+    if (extras?['trackId'] != null && extras?['trackId'] != track.id) return;
+    if (extras?['scope'] != null &&
+        extras?['scope'] != notificationScope?.call()) {
+      return;
+    }
+    if (_isLiked(track.id) != rating.hasHeart()) {
+      await onNotificationLike!.call();
+    }
   }
 
   @override

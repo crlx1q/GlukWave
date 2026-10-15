@@ -1,5 +1,7 @@
 import 'playlist_manager.dart';
 import 'playlist_strings.dart';
+import 'library_sort.dart';
+import '../core/library_order.dart';
 import 'wave18_strings.dart';
 import 'provider_import.dart';
 import 'public_import_strings.dart';
@@ -1821,9 +1823,9 @@ class _WaveShellState extends State<WaveShell>
               .firstOrNull ??
           selectedPlaylist;
     }
-    var items = c.tracks;
+    var items = [...c.tracks];
     if (liked || filter == 'liked') {
-      items = items.where((t) => c.likedIds.contains(t.id)).toList();
+      items = c.likedIds.map(c.track).whereType<WaveTrack>().toList();
     }
     if (filter == 'local' && !liked) {
       items = items.where((t) => t.source == 'local').toList();
@@ -1832,6 +1834,19 @@ class _WaveShellState extends State<WaveShell>
       final ids = List<String>.from(selectedPlaylist!['trackIds'] ?? []);
       items = ids.map(c.track).whereType<WaveTrack>().toList();
     }
+    final view = selectedPlaylist == null
+        ? (liked ? 'liked' : filter)
+        : 'playlist:${selectedPlaylist!['id']}';
+    final sortKey = 'librarySort:${c.namespace}:$view',
+        sort =
+            c.preferences.getString(sortKey) ??
+            (selectedPlaylist == null ? 'recent' : 'original');
+    final recent = selectedPlaylist != null
+        ? byRecentDates(items, object(selectedPlaylist!['trackAddedAt']))
+        : liked || filter == 'liked'
+        ? items
+        : byRecentDates(items, c.addedAt);
+    items = sortedTracks(items, sort, recent);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -1952,7 +1967,19 @@ class _WaveShellState extends State<WaveShell>
               color: waveVisuals(context).accent,
             ),
           ),
-        const SizedBox(height: 26),
+        if (filter != 'playlists' || selectedPlaylist != null || liked)
+          Align(
+            alignment: Alignment.centerRight,
+            child: LibrarySortControl(
+              value: sort,
+              playlist: selectedPlaylist != null,
+              onChanged: (value) {
+                unawaited(c.preferences.setString(sortKey, value));
+                setState(() {});
+              },
+            ),
+          ),
+        const SizedBox(height: 16),
         if (filter == 'playlists' && !liked && selectedPlaylist == null)
           playlistGrid()
         else if (items.isEmpty)

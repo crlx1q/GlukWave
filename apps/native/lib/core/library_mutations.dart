@@ -1,10 +1,13 @@
 import 'models.dart';
+import 'library_order.dart';
 
 Json copyLibrary(Json value) => {
   'tracks': objects(
     value['tracks'],
   ).map((t) => Map<String, dynamic>.from(t)).toList(),
-  'likedIds': List<String>.from(value['likedIds'] ?? []),
+  'likedIds': orderedLikeIds(value),
+  'likedAt': object(value['likedAt']),
+  'addedAt': object(value['addedAt']),
   'playlists': objects(value['playlists'])
       .map((p) => {...p, 'trackIds': List<String>.from(p['trackIds'] ?? [])})
       .toList(),
@@ -40,7 +43,9 @@ class LibraryMutations {
   void apply(Json library, LibraryEdit edit) {
     final playlists = objects(library['playlists']),
         tracks = objects(library['tracks']),
-        liked = List<String>.from(library['likedIds'] ?? []);
+        liked = List<String>.from(library['likedIds'] ?? []),
+        likedAt = object(library['likedAt']),
+        addedAt = object(library['addedAt']);
     for (final track in [
       object(edit.data['track']),
       ...objects(edit.data['knownTracks']),
@@ -52,8 +57,18 @@ class LibraryMutations {
     final at = playlists.indexWhere((p) => p['id'] == edit.id);
     switch (edit.kind) {
       case 'like':
-        liked.remove(edit.id);
-        if (edit.data['liked'] == true) liked.add(edit.id);
+        if (edit.data['liked'] == true) {
+          if (!liked.contains(edit.id)) liked.insert(0, edit.id);
+          if (edit.data['likedAt'] is String) {
+            likedAt[edit.id] = edit.data['likedAt'];
+            addedAt.putIfAbsent(edit.id, () => edit.data['likedAt']);
+          } else if (edit.data.containsKey('likedAt')) {
+            likedAt.remove(edit.id);
+          }
+        } else {
+          liked.remove(edit.id);
+          likedAt.remove(edit.id);
+        }
       case 'create':
         if (!playlists.any((p) => p['id'] == edit.data['playlist']['id'])) {
           playlists.add(object(edit.data['playlist']));
@@ -62,21 +77,37 @@ class LibraryMutations {
         if (at >= 0) playlists[at] = {...playlists[at], ...edit.data};
       case 'membership':
         if (at >= 0) {
-          final ids = List<String>.from(playlists[at]['trackIds'] ?? []);
+          final ids = List<String>.from(playlists[at]['trackIds'] ?? []),
+              dates = object(playlists[at]['trackAddedAt']);
           if (edit.data['present'] == true) {
             if (!ids.contains(edit.data['trackId'])) {
               ids.add(edit.data['trackId'] as String);
+              if (edit.data['addedAt'] is String) {
+                dates[edit.data['trackId']] = edit.data['addedAt'];
+              }
             }
           } else {
             ids.remove(edit.data['trackId']);
+            dates.remove(edit.data['trackId']);
           }
-          playlists[at] = {...playlists[at], 'trackIds': ids};
+          playlists[at] = {
+            ...playlists[at],
+            'trackIds': ids,
+            'trackAddedAt': dates,
+          };
         }
       case 'delete':
         playlists.removeWhere((p) => p['id'] == edit.id);
     }
     library['tracks'] = tracks;
     library['likedIds'] = liked;
+    library['likedAt'] = likedAt;
+    for (final playlist in playlists) {
+      for (final entry in object(playlist['trackAddedAt']).entries) {
+        addedAt.putIfAbsent(entry.key, () => entry.value);
+      }
+    }
+    library['addedAt'] = addedAt;
     library['playlists'] = playlists;
   }
 
@@ -100,6 +131,11 @@ class LibraryMutations {
         list[at] = playlist;
       }
       base['playlists'] = list;
+      final addedAt = object(base['addedAt']);
+      for (final entry in object(playlist['trackAddedAt']).entries) {
+        addedAt.putIfAbsent(entry.key, () => entry.value);
+      }
+      base['addedAt'] = addedAt;
       // Old snapshots must retain the server identity, never the temporary id.
       if (edit.kind == 'create') edit.data['playlist'] = playlist;
     } else {

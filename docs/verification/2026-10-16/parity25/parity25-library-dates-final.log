@@ -1,0 +1,12 @@
+✔ likes use personal dates, stable reverse insertion ties and private metadata filtering (3.9971ms)
+✔ account addition dates never use another account catalog discovery or hidden memberships (0.6091ms)
+✔ real library API preserves repeated likes, orders dates independently of catalog, and resets only after re-like (1931.252ms)
+✔ atomic playlist membership retains concurrent additions, is idempotent, and enforces owner/public access (2258.089ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5419.937

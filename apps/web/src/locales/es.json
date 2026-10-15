@@ -1315,5 +1315,6 @@
   "wave18.eqCustom": "Personalizado",
   "wave18.editTaste": "Editar tus gustos",
   "wave18.tasteCaption": "Tus artistas y géneros. Una Wave que te conoce.",
-  "lyrics.intro": "Introducción"
+  "lyrics.intro": "Introducción",
+  "focusedPlayer.wave": "Onda"
 }

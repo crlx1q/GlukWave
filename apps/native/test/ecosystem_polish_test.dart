@@ -1,3 +1,4 @@
+import 'package:glukwave/ui/cover_planes.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
@@ -672,7 +673,7 @@ void main() {
         coverBefore,
       );
       expect(
-        tester.widget<Transform>(transform).transform.entry(0, 0),
+        tester.widget<AlbumPlaneScene>(transform).camera.entry(0, 0),
         greaterThan(.7),
       );
       await gesture.up();

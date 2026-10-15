@@ -1,0 +1,1070 @@
+{
+  "passed": true,
+  "version": "1.0.0+25",
+  "sourceFrozenAt": "2026-10-14T22:19:13.420446+00:00",
+  "sourceHashes": [
+    {
+      "path": "apps/web/src/types.ts",
+      "sha256": "763fc1b9d24732321fb669d2abc1fdec57660c510d63a723d380c8962a00ab45",
+      "bytes": 8287
+    },
+    {
+      "path": "apps/web/src/library-order.ts",
+      "sha256": "7fc9ea1817d5aa307aea0ac9edf0be141fd451a99634398c33a836d1eecd0d70",
+      "bytes": 1856
+    },
+    {
+      "path": "apps/web/src/library-sort-copy.ts",
+      "sha256": "f67ce3fed41945af7a93cc5115ce8897a7343fdf44f8befcb9fc62f1c5500588",
+      "bytes": 1210
+    },
+    {
+      "path": "apps/web/src/library-edits.ts",
+      "sha256": "68d729820cd7244215602623014b79c45c04f56d36ebbc83d77bfea13191930e",
+      "bytes": 4115
+    },
+    {
+      "path": "apps/web/src/store.tsx",
+      "sha256": "a91a4ee6b1d3e56c7c4db21c1c44c86b691b80ea173c20ef03ced61568ec0de5",
+      "bytes": 24936
+    },
+    {
+      "path": "apps/web/src/playlist-library.tsx",
+      "sha256": "447886e321db3ee850aade8be87c8dd7fed48a8b5e46b8deb744cc02ddc31792",
+      "bytes": 14147
+    },
+    {
+      "path": "apps/web/src/pages.tsx",
+      "sha256": "f222dc4383f69d3d6e99a0287bfd8b855292b6417cb28dfdeade0073b629894c",
+      "bytes": 14589
+    },
+    {
+      "path": "apps/web/src/album.tsx",
+      "sha256": "66efc18eecaa0d6ef75547a365386ebdfb97042c2574371d30b1a2ddd52f355d",
+      "bytes": 13573
+    },
+    {
+      "path": "apps/web/src/player-ui.tsx",
+      "sha256": "0966ed3fc6fc49804dd5d404fd5886f2cf4abdc0d4c32e8118330087880d5d08",
+      "bytes": 47818
+    },
+    {
+      "path": "apps/web/src/morph-icon.tsx",
+      "sha256": "1b317b3ca146d49e78feabc472bd6b21811196dae6895cbe24c81b9c7dcdb03c",
+      "bytes": 7209
+    },
+    {
+      "path": "apps/web/src/reference-cover.css",
+      "sha256": "1070513ebfd3dbf52c811d3277c30e98c66483ab36efc1b40069a2175ed1c177",
+      "bytes": 14778
+    },
+    {
+      "path": "apps/web/src/refinement21.css",
+      "sha256": "3ad362a2412482121ea6248b1953ff7b5598ebc7bbae47edbd4307db6849ac63",
+      "bytes": 12782
+    },
+    {
+      "path": "apps/web/src/lyric-timing.ts",
+      "sha256": "66a81d7695cddbe7439b9a146be9ae94a0f5548c4619cdcb5181718344a5bee7",
+      "bytes": 1146
+    },
+    {
+      "path": "apps/web/src/locales/en.json",
+      "sha256": "4b3d679f33fb189d114b8fb17ffcb691b0db1c69a135ee0681c569033707752e",
+      "bytes": 64131
+    },
+    {
+      "path": "apps/web/src/locales/ru.json",
+      "sha256": "383f78c5ac61b1a93c0ee3381cf2d17eba58fd509d099405b18c01ab7336520b",
+      "bytes": 95773
+    },
+    {
+      "path": "apps/web/src/locales/kk.json",
+      "sha256": "8b1e5e368f38c8bf52d3828639beec17bdbb10b7845bbec4c971550bfc2526b9",
+      "bytes": 90918
+    },
+    {
+      "path": "apps/web/src/locales/uk.json",
+      "sha256": "8c0fc2586a818fd544a4bde05d8f559f995450200d515883ebecfd22e4a48168",
+      "bytes": 91315
+    },
+    {
+      "path": "apps/web/src/locales/de.json",
+      "sha256": "231fc4e8beef88aecb210aff671f6455aa6406bdc23ed661a2ddd7b8c6127a05",
+      "bytes": 68054
+    },
+    {
+      "path": "apps/web/src/locales/es.json",
+      "sha256": "e1121aff06bd72d3bd8dc66a22c88746a5dddc7ef8417a398007dd1f03d0dde9",
+      "bytes": 67770
+    },
+    {
+      "path": "apps/web/qa/library25.test.mjs",
+      "sha256": "e63a688769a1ac34d6f44b1f36113a25dae57f299d7b8f1274b37032a9f8fbcf",
+      "bytes": 2679
+    },
+    {
+      "path": "apps/web/qa/lyric-timing.test.mjs",
+      "sha256": "c92a285c9f46f1dda7c38be607b338beff293d064b2590c9e0f92e468d0c003c",
+      "bytes": 1248
+    },
+    {
+      "path": "apps/native/lib/core/library_order.dart",
+      "sha256": "fa7ef0f4fe4bbbcea97dc79fcf68a235b193ce9f39ff73bb81fa39aa7cf476ea",
+      "bytes": 1776
+    },
+    {
+      "path": "apps/native/lib/core/library_mutations.dart",
+      "sha256": "c8b2139152d9e148696b6f095e8741d0f422dcb3cb827608074cb97ccbdf9d84",
+      "bytes": 6394
+    },
+    {
+      "path": "apps/native/lib/core/controller.dart",
+      "sha256": "638d1ca93f81ee1dd16be9681a7a3c0eef8481fc2634b1c3ee03ff71075c5cd0",
+      "bytes": 147814
+    },
+    {
+      "path": "apps/native/lib/ui/library_sort.dart",
+      "sha256": "6cc77d6588bd1d3456d1029c66f2d9191509c31dfe75c80bf58f314305f91330",
+      "bytes": 3332
+    },
+    {
+      "path": "apps/native/lib/ui/cover_planes.dart",
+      "sha256": "91a8b6d9ade802fcf124ea0c57f6de939b5e109e58dacc634d8c841ebe34b215",
+      "bytes": 6073
+    },
+    {
+      "path": "apps/native/lib/ui/album_stage.dart",
+      "sha256": "e245e5b1531db8d679858079aaa06cbf3993a601fde0c22f40aee8ef1a0477e0",
+      "bytes": 40545
+    },
+    {
+      "path": "apps/native/lib/ui/app.dart",
+      "sha256": "3c22b4fc6979b843b858fea76e6e47cb2b25fd091b114b68208c30974e4a5ff8",
+      "bytes": 156643
+    },
+    {
+      "path": "apps/native/lib/ui/physical_wave_clock.dart",
+      "sha256": "bf5670a683461d13f8ea4f27ae7c611a0a92a5790782fa19bf47aeee19d1eb53",
+      "bytes": 1598
+    },
+    {
+      "path": "apps/native/lib/ui/motion_icons.dart",
+      "sha256": "d2cbc9cf04da1ec47b4bd29e7bc4dd674db134929cd9ac1f60d8efaf1400cc47",
+      "bytes": 23667
+    },
+    {
+      "path": "apps/native/lib/ui/player.dart",
+      "sha256": "1320e1cfc2efc16459af0a374cc808ed8439b5d3da5a57bec575782dcea70d13",
+      "bytes": 86673
+    },
+    {
+      "path": "apps/native/lib/ui/player_gestures.dart",
+      "sha256": "cfb18d8a2e01c3c27b7b8d5a53e69146159b30b8935ed8a6c6f01633b6e474f8",
+      "bytes": 7104
+    },
+    {
+      "path": "apps/native/lib/ui/lyric_timing.dart",
+      "sha256": "02cf614f54dbbb66ad23ca1c13eec55f913610d2831e40b1abac5a81d54b51cc",
+      "bytes": 1134
+    },
+    {
+      "path": "apps/native/lib/l10n/focused_player_strings.dart",
+      "sha256": "e8dca1a2716f13bfa57f1fed7354125fb136be1292da41cc1b49086cb2039b3a",
+      "bytes": 1118
+    },
+    {
+      "path": "apps/native/test/parity25_ui_test.dart",
+      "sha256": "1883b3f5e112366112b302cea1087f1d7289bf35eabc5589aafd99848fb76565",
+      "bytes": 10859
+    },
+    {
+      "path": "apps/native/test/parity25_hit_test.dart",
+      "sha256": "e03976fe113f0c1a195e91eea16313cc7fef004f49727cf2d938de054ebe1d83",
+      "bytes": 3739
+    },
+    {
+      "path": "apps/native/test/parity23_ui_test.dart",
+      "sha256": "a3c40cb34240f1bc0a9beb461474af430c7b0361b41a3f4657a2286e87cabdb2",
+      "bytes": 19047
+    },
+    {
+      "path": "apps/native/test/parity24_ui_test.dart",
+      "sha256": "eccba77cf753b57a629e392c60f60c561cee5dee2fa26b42ee4f4c8ab07cc689",
+      "bytes": 11070
+    },
+    {
+      "path": "apps/native/test/cover22_test.dart",
+      "sha256": "71feff8e6257ae89ca5168e38dc36b5575f76348198b01b5fc3e35164726f3f1",
+      "bytes": 12744
+    },
+    {
+      "path": "apps/native/test/refinement21_cover_test.dart",
+      "sha256": "255ede448061e15d677744ecae42f37b01e23975ff28e04c80759c46aac3a0f2",
+      "bytes": 7863
+    },
+    {
+      "path": "apps/native/test/ecosystem_polish_test.dart",
+      "sha256": "b5048a86cf5cab8cb8dd48acbf1b0bcf48fdbf8a241e9069b20fe3c376f9c81a",
+      "bytes": 30074
+    }
+  ],
+  "captures": [
+    {
+      "path": "work/qa/native-parity25-cd-0--9.png",
+      "sha256": "a6c18c73b135a36056d57fc59e8b432652321cb79db4ed86846fd09195c87f11",
+      "bytes": 172082
+    },
+    {
+      "path": "work/qa/native-parity25-cd-100--9.png",
+      "sha256": "6705d016b72e57ed78eb147d9a6a8a91d07fc8457b2c1e755efde3c4f489e480",
+      "bytes": 30842
+    },
+    {
+      "path": "work/qa/native-parity25-cd-135--9.png",
+      "sha256": "309206e90542aa0c1343978e93d69cc8e66c54c93c6066ebaf7e68bd731bf0aa",
+      "bytes": 50154
+    },
+    {
+      "path": "work/qa/native-parity25-cd-180--9.png",
+      "sha256": "ded6b55982a1e9f97537d0c0b911b4acdd883ec3b1d8f759b2a35be3cd6dc08d",
+      "bytes": 62255
+    },
+    {
+      "path": "work/qa/native-parity25-cd-225--9.png",
+      "sha256": "f8175875fa73cdead486042550c5b66db7aaefa0e9e8aec787f94d801aa58960",
+      "bytes": 68443
+    },
+    {
+      "path": "work/qa/native-parity25-cd-260--9.png",
+      "sha256": "d065e161b8ab9b5bc3f2fcbcbe75787a05b92d96d08553b660a8a6ef09514724",
+      "bytes": 48495
+    },
+    {
+      "path": "work/qa/native-parity25-cd-260-38.png",
+      "sha256": "08f0359d8981a959c17e458512ac10cec66b0e1d35b31c179e254469f9b77f57",
+      "bytes": 57310
+    },
+    {
+      "path": "work/qa/native-parity25-cd-315--9.png",
+      "sha256": "1c6b7645c855870be571f06c8c6906b14f8a5489d386afaf55b1c6edca59d693",
+      "bytes": 156580
+    },
+    {
+      "path": "work/qa/native-parity25-cd-360--9.png",
+      "sha256": "a6c18c73b135a36056d57fc59e8b432652321cb79db4ed86846fd09195c87f11",
+      "bytes": 172082
+    },
+    {
+      "path": "work/qa/native-parity25-cd-45--9.png",
+      "sha256": "a4dbdfec24d7a240e958eadbd77215ef250ee02e63a4483a2ba4600ba456b2be",
+      "bytes": 133881
+    },
+    {
+      "path": "work/qa/native-parity25-cd-82--38.png",
+      "sha256": "5c6f9ae9deaff4a151c532fec73ff0d70dd58b7084818f6d618f1abd10dc4f69",
+      "bytes": 78220
+    },
+    {
+      "path": "work/qa/native-parity25-cd-82--9.png",
+      "sha256": "5f117bda3d1043fd8a3f341ab48246ec035ddb6c6701ffd953c535efda46ea22",
+      "bytes": 74779
+    },
+    {
+      "path": "work/qa/native-parity25-expanded-1440.png",
+      "sha256": "ab484e0738b313e15150275bf01d190fd10498a7cb7e608ce9b90999db9ba92f",
+      "bytes": 327722
+    },
+    {
+      "path": "work/qa/native-parity25-expanded-375.png",
+      "sha256": "d6e82d3fe285154955c0a758fbdaa2808c7bd3b57fcb188db6e0a19f10c51257",
+      "bytes": 135149
+    },
+    {
+      "path": "work/qa/native-parity25-expanded-768.png",
+      "sha256": "83a956c337feea9fff4363a7daf86a83dfa1a1c37ed80512f263a99440c1c876",
+      "bytes": 272402
+    },
+    {
+      "path": "work/qa/native-parity25-full-lyrics-1440.png",
+      "sha256": "5ee530c54c2081f2f921b9961a348066c93dc5e0b4dd211f668c3396bbc09d3b",
+      "bytes": 380044
+    },
+    {
+      "path": "work/qa/native-parity25-full-lyrics-375.png",
+      "sha256": "0c35dc2b2500d28a4dadcb608ea5a9309c60a8939a137b2f43bcd7a15256fd35",
+      "bytes": 81071
+    },
+    {
+      "path": "work/qa/native-parity25-full-lyrics-768.png",
+      "sha256": "fc363ee543a83026adf0f0fcdba0b3f6d1c8d4e3812ed2829bc952843753b82f",
+      "bytes": 138332
+    },
+    {
+      "path": "work/qa/native-parity25-library-sort-1440.png",
+      "sha256": "e756f72c334acd1efbff83f067c58486bd6809eb768d509a7ec80eace3ae9e1c",
+      "bytes": 128729
+    },
+    {
+      "path": "work/qa/native-parity25-library-sort-320.png",
+      "sha256": "64fa0ee74abf4a82eb5d27eec5b12771aa2bbd8692a8f725f6bc9f87401501bb",
+      "bytes": 51422
+    },
+    {
+      "path": "work/qa/native-parity25-library-sort-375.png",
+      "sha256": "74e74f9699de39679c66e874e09c94c1a9939a6d84009e2f5d1d7fd08e2df280",
+      "bytes": 84786
+    },
+    {
+      "path": "work/qa/native-parity25-library-sort-768.png",
+      "sha256": "2c7ed34182e27f40c88c9cb2408705dc45a76108b411118703cc4f85335de03c",
+      "bytes": 107277
+    },
+    {
+      "path": "work/qa/native-parity25-vinyl-0--9.png",
+      "sha256": "e93c969b2b9a01c84c6c6a44c845cbe343c45b640217fd8aa02b84374d553599",
+      "bytes": 173838
+    },
+    {
+      "path": "work/qa/native-parity25-vinyl-100--9.png",
+      "sha256": "c2185c029df0ee643a8c70c0dcba526b30f477fb0c85642041959f93b2278198",
+      "bytes": 22896
+    },
+    {
+      "path": "work/qa/native-parity25-vinyl-135--9.png",
+      "sha256": "d14397896d0eb028ffce474b14a2158782f9c9e84b4cf206c7d255dfaa25f680",
+      "bytes": 50620
+    },
+    {
+      "path": "work/qa/native-parity25-vinyl-180--9.png",
+      "sha256": "f6af55f5fa69edcdfe21a57a4f0a9e25455a55f5eddb24c5d5f93ca613ce5c59",
+      "bytes": 66881
+    },
+    {
+      "path": "work/qa/native-parity25-vinyl-225--9.png",
+      "sha256": "0f07d53b993552f097893d7748df4049c3232515406cb7597af09b6221e259b7",
+      "bytes": 71665
+    },
+    {
+      "path": "work/qa/native-parity25-vinyl-260--9.png",
+      "sha256": "567f4b766946a814a60c13bfd0c481e061c74894833dba3bb18f4ea470f938b1",
+      "bytes": 31884
+    },
+    {
+      "path": "work/qa/native-parity25-vinyl-260-38.png",
+      "sha256": "ba753d19dcd04cc4c014c71be833b2e34f18a734d6fbe5e1f860cbe883991ae0",
+      "bytes": 33774
+    },
+    {
+      "path": "work/qa/native-parity25-vinyl-315--9.png",
+      "sha256": "af859fc2d78ef75400c17b71ddbd7f7ad279ca70de05555bf57469f7ce273f5c",
+      "bytes": 155801
+    },
+    {
+      "path": "work/qa/native-parity25-vinyl-360--9.png",
+      "sha256": "e93c969b2b9a01c84c6c6a44c845cbe343c45b640217fd8aa02b84374d553599",
+      "bytes": 173838
+    },
+    {
+      "path": "work/qa/native-parity25-vinyl-45--9.png",
+      "sha256": "538fb2448159fa089238762f6b8524eef23b99669f148969f44f16afb752a349",
+      "bytes": 136521
+    },
+    {
+      "path": "work/qa/native-parity25-vinyl-82--38.png",
+      "sha256": "6ce0f30315f518dc122edb40e3b9e1d95f1d34dc7dcbb5235eb83f5fd1e310fd",
+      "bytes": 41833
+    },
+    {
+      "path": "work/qa/native-parity25-vinyl-82--9.png",
+      "sha256": "637bc50fc8ff89b0dded21fd5735bc7e9370608c0a0ef6ee2ddb44cfb42bdc74",
+      "bytes": 42228
+    },
+    {
+      "path": "work/qa/parity25-hit-1440-cd.png",
+      "sha256": "7845e4b6c9e5deacc096c3758dd6541339486dbcea7b8f9e51f6ff0e8494e729",
+      "bytes": 369763
+    },
+    {
+      "path": "work/qa/parity25-hit-1440-flat.png",
+      "sha256": "b62437d91f46797816d59664e310c7bc32298251baba5da06e928189916592c5",
+      "bytes": 316921
+    },
+    {
+      "path": "work/qa/parity25-hit-638-cd.png",
+      "sha256": "bfc18cc452a327b1d8ee7d20111efa62509129fdab5d05853b222989bbba30d8",
+      "bytes": 231509
+    },
+    {
+      "path": "work/qa/parity25-hit-638-flat.png",
+      "sha256": "b3525b197c3cfd9a0510d9675331c70dd4982533af143acc6f81b21abdb18ace",
+      "bytes": 213436
+    },
+    {
+      "path": "work/qa/parity25-web-expanded-1440.png",
+      "sha256": "cb0b049845eca0fa55132a14253a90bfcf2f8e02a8ec3a3c3042e4d67f1f16e7",
+      "bytes": 373147
+    },
+    {
+      "path": "work/qa/parity25-web-expanded-320.png",
+      "sha256": "c3b7534bbedbd24c698a1a0f0185fd280c3d4b1830d6a15c55b173d56424cdd4",
+      "bytes": 144674
+    },
+    {
+      "path": "work/qa/parity25-web-expanded-375.png",
+      "sha256": "26551718c1f3874963e689b680e9b9c93c7c605cb62661e72249cce08e5c5486",
+      "bytes": 171302
+    },
+    {
+      "path": "work/qa/parity25-web-expanded-768.png",
+      "sha256": "f815f5bb68afd58b86c4f6f1b8fff5cf80416cbb4a20eddcb86fc2eb7890d7e8",
+      "bytes": 276739
+    },
+    {
+      "path": "work/qa/parity25-web-footer-375.png",
+      "sha256": "12594c6582e4cc038f76428499ee3c291ee69e57da0fb42d796693052f668369",
+      "bytes": 90069
+    },
+    {
+      "path": "work/qa/parity25-web-full-lyrics-1440.png",
+      "sha256": "82595f86d1cbfdf2bab9b96af2cbaae111288517d3e6d85a676d761745ff3d7c",
+      "bytes": 410640
+    },
+    {
+      "path": "work/qa/parity25-web-library-125-1440.png",
+      "sha256": "e0637c2190baf6e41962219971b9ac218b505a498721d934cd61ca44ffd48d1e",
+      "bytes": 160001
+    },
+    {
+      "path": "work/qa/parity25-web-library-125-320.png",
+      "sha256": "350b2fa542e1504983b9a2b91076026db07d3a6dc419d7519c0b9fb9187cb129",
+      "bytes": 73055
+    },
+    {
+      "path": "work/qa/parity25-web-library-125-375.png",
+      "sha256": "ef821d42c1edf7ea4e33d3f22c678d32b1b34718f0ac670c3679fd8cc6852917",
+      "bytes": 88889
+    },
+    {
+      "path": "work/qa/parity25-web-library-125-768.png",
+      "sha256": "c1cd8f30d8d87af3222906ff80170cfabb79597711eb77959127586a3af6ef72",
+      "bytes": 114351
+    },
+    {
+      "path": "work/qa/parity25-web-likes-1440.png",
+      "sha256": "5bbedbb2261c9bca5d8453efc6e1455b3ca9c6b2dc2a1a92f0666c190b238497",
+      "bytes": 170776
+    },
+    {
+      "path": "work/qa/parity25-web-likes-title-1440.png",
+      "sha256": "232a9d206c5cc580860b7aa5241c2fdd406d05f53f11ae2d4ac3a503bc003be8",
+      "bytes": 170669
+    },
+    {
+      "path": "work/qa/parity25-web-playlist-sort.png",
+      "sha256": "6655d1c97cc7ea2b07f83afa3cb81c1b0de7bfc53436c293a7b3a711b9454490",
+      "bytes": 191679
+    }
+  ],
+  "verification": {
+    "webFocused": {
+      "passed": 12,
+      "exit": 0
+    },
+    "webTypecheck": {
+      "exit": 0
+    },
+    "nativeBaseline": {
+      "passed": 46,
+      "exit": 0,
+      "log": "work/qa/parity25-native-ui-final.log",
+      "scope": "finite baseline before urgent aura/header changes"
+    },
+    "nativeCurrentAffected": {
+      "passed": 27,
+      "log": "work/qa/parity25-ui-final-steering.log",
+      "scope": "27 actual UI/clock tests passed; initial hit file failed to load during transient root duplicate localization key, not claimed green; recovered below"
+    },
+    "nativeCurrentHit": {
+      "passed": 4,
+      "exit": 0,
+      "log": "work/qa/parity25-native-hit-final.log"
+    },
+    "nativeCurrentDistinct": 31,
+    "nativeAnalyzerExit": 0,
+    "webRuntime": {
+      "passed": true,
+      "records": [
+        {
+          "scope": "likes",
+          "rows": [
+            "01 Ветер над моремТихий берегSoundCloud3:35 ",
+            "02 Марсель — Был ӨмірдеАлихан ҒарышқанSoundCloud1:01:13 ",
+            "03 После дождяЗвук водыSoundCloud3:00 "
+          ]
+        },
+        {
+          "scope": "title",
+          "rows": [
+            "01 Ветер над моремТихий берегSoundCloud3:35 ",
+            "02 Марсель — Был ӨмірдеАлихан ҒарышқанSoundCloud1:01:13 ",
+            "03 После дождяЗвук водыSoundCloud3:00 "
+          ]
+        },
+        {
+          "art": {
+            "bottom": 772.109375,
+            "height": 580.234375,
+            "left": 236,
+            "right": 732,
+            "top": 191.875,
+            "width": 496,
+            "x": 236,
+            "y": 191.875
+          },
+          "controls": {
+            "bottom": 593.140625,
+            "height": 222.296875,
+            "left": 804,
+            "right": 1204,
+            "top": 370.84375,
+            "width": 400,
+            "x": 804,
+            "y": 370.84375
+          },
+          "cover": {
+            "bottom": 687.71875,
+            "height": 495.84375,
+            "left": 236,
+            "right": 732,
+            "top": 191.875,
+            "width": 496,
+            "x": 236,
+            "y": 191.875
+          },
+          "footerLyrics": 0,
+          "heading": {
+            "bottom": 420.140625,
+            "height": 49.296875,
+            "left": 804,
+            "right": 1204,
+            "top": 370.84375,
+            "width": 400,
+            "x": 804,
+            "y": 370.84375
+          },
+          "light": "34.5491% 46.8713%",
+          "lyrics": {
+            "bottom": 756.109375,
+            "height": 54.390625,
+            "left": 284,
+            "right": 684,
+            "top": 701.71875,
+            "width": 400,
+            "x": 284,
+            "y": 701.71875
+          },
+          "overflow": false,
+          "viewport": [
+            1440,
+            900
+          ]
+        },
+        {
+          "orientationLight": true,
+          "pointerStable": true,
+          "after": "43.0414% 46.8713%"
+        },
+        {
+          "art": {
+            "bottom": 546.9808349609375,
+            "height": 281.2939453125,
+            "left": 91.25230407714844,
+            "right": 371.66319274902344,
+            "top": 265.6868896484375,
+            "width": 280.410888671875,
+            "x": 91.25230407714844,
+            "y": 265.6868896484375
+          },
+          "blur": [
+            {
+              "filter": "none",
+              "opacity": "0.76",
+              "text": "Там, где тихо — мы услышим море"
+            },
+            {
+              "filter": "none",
+              "opacity": "1",
+              "text": "И увидим свет в твоём окне"
+            },
+            {
+              "filter": "none",
+              "opacity": "0.76",
+              "text": "Этот миг останется с тобою"
+            },
+            {
+              "filter": "blur(1.15px)",
+              "opacity": "0.36",
+              "text": "Музыка напомнит обо мне"
+            },
+            {
+              "filter": "blur(2.3px)",
+              "opacity": "0.3",
+              "text": "Пусть далёкий голос станет тише"
+            },
+            {
+              "filter": "blur(3.45px)",
+              "opacity": "0.24",
+              "text": "А наш свет останется с тобой"
+            }
+          ]
+        },
+        {
+          "art": {
+            "bottom": 649.4375,
+            "height": 543.4375,
+            "left": 159,
+            "right": 609,
+            "top": 106,
+            "width": 450,
+            "x": 159,
+            "y": 106
+          },
+          "controls": {
+            "bottom": 915.734375,
+            "height": 244.296875,
+            "left": 194,
+            "right": 574,
+            "top": 671.4375,
+            "width": 380,
+            "x": 194,
+            "y": 671.4375
+          },
+          "cover": {
+            "bottom": 565.046875,
+            "height": 459.046875,
+            "left": 159,
+            "right": 609,
+            "top": 106,
+            "width": 450,
+            "x": 159,
+            "y": 106
+          },
+          "footerLyrics": 0,
+          "heading": {
+            "bottom": 720.734375,
+            "height": 49.296875,
+            "left": 194,
+            "right": 574,
+            "top": 671.4375,
+            "width": 380,
+            "x": 194,
+            "y": 671.4375
+          },
+          "light": "43.0414% 46.8713%",
+          "lyrics": {
+            "bottom": 633.4375,
+            "height": 54.390625,
+            "left": 184,
+            "right": 584,
+            "top": 579.046875,
+            "width": 400,
+            "x": 184,
+            "y": 579.046875
+          },
+          "overflow": false,
+          "viewport": [
+            768,
+            900
+          ]
+        },
+        {
+          "art": {
+            "bottom": 534.953125,
+            "height": 428.953125,
+            "left": 18,
+            "right": 357,
+            "top": 106,
+            "width": 339,
+            "x": 18,
+            "y": 106
+          },
+          "controls": {
+            "bottom": 824.34375,
+            "height": 271.390625,
+            "left": 18,
+            "right": 357,
+            "top": 552.953125,
+            "width": 339,
+            "x": 18,
+            "y": 552.953125
+          },
+          "cover": {
+            "bottom": 450.5625,
+            "height": 344.5625,
+            "left": 18,
+            "right": 357,
+            "top": 106,
+            "width": 339,
+            "x": 18,
+            "y": 106
+          },
+          "footerLyrics": 0,
+          "heading": {
+            "bottom": 611.34375,
+            "height": 58.390625,
+            "left": 18,
+            "right": 357,
+            "top": 552.953125,
+            "width": 339,
+            "x": 18,
+            "y": 552.953125
+          },
+          "light": "43.0414% 46.8713%",
+          "lyrics": {
+            "bottom": 518.953125,
+            "height": 54.390625,
+            "left": 18,
+            "right": 357,
+            "top": 464.5625,
+            "width": 339,
+            "x": 18,
+            "y": 464.5625
+          },
+          "overflow": false,
+          "viewport": [
+            375,
+            900
+          ]
+        },
+        {
+          "art": {
+            "bottom": 481.359375,
+            "height": 375.359375,
+            "left": 18,
+            "right": 302,
+            "top": 106,
+            "width": 284,
+            "x": 18,
+            "y": 106
+          },
+          "controls": {
+            "bottom": 770.75,
+            "height": 271.390625,
+            "left": 18,
+            "right": 302,
+            "top": 499.359375,
+            "width": 284,
+            "x": 18,
+            "y": 499.359375
+          },
+          "cover": {
+            "bottom": 396.96875,
+            "height": 290.96875,
+            "left": 18,
+            "right": 302,
+            "top": 106,
+            "width": 284,
+            "x": 18,
+            "y": 106
+          },
+          "footerLyrics": 0,
+          "heading": {
+            "bottom": 557.75,
+            "height": 58.390625,
+            "left": 18,
+            "right": 302,
+            "top": 499.359375,
+            "width": 284,
+            "x": 18,
+            "y": 499.359375
+          },
+          "light": "43.0414% 46.8713%",
+          "lyrics": {
+            "bottom": 465.359375,
+            "height": 54.390625,
+            "left": 18,
+            "right": 302,
+            "top": 410.96875,
+            "width": 284,
+            "x": 18,
+            "y": 410.96875
+          },
+          "overflow": true,
+          "viewport": [
+            320,
+            900
+          ]
+        },
+        {
+          "overflow": false,
+          "sort": {
+            "bottom": 890,
+            "height": 47.5,
+            "left": 22.5,
+            "right": 287.5,
+            "top": 842.5,
+            "width": 265,
+            "x": 22.5,
+            "y": 842.5
+          },
+          "viewport": 320
+        },
+        {
+          "overflow": false,
+          "sort": {
+            "bottom": 843.625,
+            "height": 47.5,
+            "left": 27.5,
+            "right": 337.5,
+            "top": 796.125,
+            "width": 310,
+            "x": 27.5,
+            "y": 796.125
+          },
+          "viewport": 375
+        },
+        {
+          "overflow": false,
+          "sort": {
+            "bottom": 723.796875,
+            "height": 47.5,
+            "left": 27.5,
+            "right": 730.5,
+            "top": 676.296875,
+            "width": 703,
+            "x": 27.5,
+            "y": 676.296875
+          },
+          "viewport": 768
+        },
+        {
+          "overflow": false,
+          "sort": {
+            "bottom": 752.578125,
+            "height": 47.5,
+            "left": 160,
+            "right": 1380,
+            "top": 705.078125,
+            "width": 1220,
+            "x": 160,
+            "y": 705.078125
+          },
+          "viewport": 1440
+        },
+        {
+          "scope": "playlistOriginal",
+          "rows": [
+            "01 После дождяЗвук водыSoundCloud3:00 ",
+            "02 Марсель — Был ӨмірдеАлихан ҒарышқанSoundCloud1:01:13 ",
+            "03 Ветер над моремТихий берегSoundCloud3:35 "
+          ]
+        },
+        {
+          "scope": "playlistRecent",
+          "rows": [
+            "01 Ветер над моремТихий берегSoundCloud3:35 ",
+            "02 Марсель — Был ӨмірдеАлихан ҒарышқанSoundCloud1:01:13 ",
+            "03 После дождяЗвук водыSoundCloud3:00 "
+          ]
+        }
+      ]
+    },
+    "webHit": {
+      "passed": true,
+      "wheelBoundary": "agent-browser mouse wheel emits at0,0 despite preceding move; scrollability verified with its supported scroll-container command plus correct visible target/auto overflow. Actual native touch blank-area scrolling covered separately.",
+      "cases": [
+        {
+          "width": 638,
+          "threeD": true,
+          "before": {
+            "correct": true,
+            "max": 240,
+            "rect": {
+              "bottom": 531.359375,
+              "height": 26,
+              "left": 129,
+              "right": 509,
+              "top": 505.359375,
+              "width": 380,
+              "x": 129,
+              "y": 505.359375
+            },
+            "style": "translateX(-11.4127%) rotateX(-9deg) rotateY(-18deg)",
+            "target": "INPUT",
+            "value": 4
+          },
+          "after": {
+            "correct": true,
+            "max": 240,
+            "rect": {
+              "bottom": 531.359375,
+              "height": 26,
+              "left": 129,
+              "right": 509,
+              "top": 505.359375,
+              "width": 380,
+              "x": 129,
+              "y": 505.359375
+            },
+            "style": "translateX(-11.4127%) rotateX(-9deg) rotateY(-18deg)",
+            "target": "INPUT",
+            "value": 0.6
+          },
+          "inputEvents": [
+            0.18833333333333335,
+            0.7595833333333334
+          ],
+          "turnSamples": 67,
+          "queueSamples": 66,
+          "scroll": 132,
+          "heading": "Волна · Любимое · Спокойное"
+        },
+        {
+          "width": 638,
+          "threeD": false,
+          "before": {
+            "correct": true,
+            "max": 240,
+            "rect": {
+              "bottom": 531.296875,
+              "height": 26,
+              "left": 129,
+              "right": 509,
+              "top": 505.296875,
+              "width": 380,
+              "x": 129,
+              "y": 505.296875
+            },
+            "style": "translateX(-11.4127%) rotateX(-9deg) rotateY(-18deg)",
+            "target": "INPUT",
+            "value": 3.5
+          },
+          "after": {
+            "correct": true,
+            "max": 240,
+            "rect": {
+              "bottom": 531.296875,
+              "height": 26,
+              "left": 129,
+              "right": 509,
+              "top": 505.296875,
+              "width": 380,
+              "x": 129,
+              "y": 505.296875
+            },
+            "style": "translateX(-11.4127%) rotateX(-9deg) rotateY(-18deg)",
+            "target": "INPUT",
+            "value": 0.6
+          },
+          "inputEvents": [
+            0.18833333333333335,
+            0.7595833333333334
+          ],
+          "turnSamples": 72,
+          "queueSamples": 68,
+          "scroll": 27,
+          "heading": "Волна · Любимое · Спокойное"
+        },
+        {
+          "width": 1440,
+          "threeD": true,
+          "before": {
+            "correct": true,
+            "max": 240,
+            "rect": {
+              "bottom": 447.140625,
+              "height": 26,
+              "left": 804,
+              "right": 1204,
+              "top": 421.140625,
+              "width": 400,
+              "x": 804,
+              "y": 421.140625
+            },
+            "style": "translateX(-11.4127%) rotateX(-9deg) rotateY(-18deg)",
+            "target": "INPUT",
+            "value": 3.5
+          },
+          "after": {
+            "correct": true,
+            "max": 240,
+            "rect": {
+              "bottom": 447.140625,
+              "height": 26,
+              "left": 804,
+              "right": 1204,
+              "top": 421.140625,
+              "width": 400,
+              "x": 804,
+              "y": 421.140625
+            },
+            "style": "translateX(-11.4127%) rotateX(-9deg) rotateY(-18deg)",
+            "target": "INPUT",
+            "value": 0.8
+          },
+          "inputEvents": [
+            0.18916666666666665,
+            0.7591666666666667
+          ],
+          "turnSamples": 63,
+          "queueSamples": 58,
+          "scroll": null,
+          "heading": "Волна · Любимое · Спокойное"
+        },
+        {
+          "width": 1440,
+          "threeD": false,
+          "before": {
+            "correct": true,
+            "max": 240,
+            "rect": {
+              "bottom": 443.1875,
+              "height": 26,
+              "left": 804,
+              "right": 1204,
+              "top": 417.1875,
+              "width": 400,
+              "x": 804,
+              "y": 417.1875
+            },
+            "style": "translateX(-11.4127%) rotateX(-9deg) rotateY(-18deg)",
+            "target": "INPUT",
+            "value": 3.5
+          },
+          "after": {
+            "correct": true,
+            "max": 240,
+            "rect": {
+              "bottom": 443.1875,
+              "height": 26,
+              "left": 804,
+              "right": 1204,
+              "top": 417.1875,
+              "width": 400,
+              "x": 804,
+              "y": 417.1875
+            },
+            "style": "translateX(-11.4127%) rotateX(-9deg) rotateY(-18deg)",
+            "target": "INPUT",
+            "value": 0.6
+          },
+          "inputEvents": [
+            0.18916666666666665,
+            0.7591666666666667
+          ],
+          "turnSamples": 72,
+          "queueSamples": 64,
+          "scroll": null,
+          "heading": "Волна · Любимое · Спокойное"
+        }
+      ]
+    }
+  },
+  "limits": [
+    "Actual browser seek/input and frame hit tests; web wheel CLI emits0,0 so scroll-container action plus correct target/overflow are used and documented.",
+    "Native captures are actual Flutter widget/painter output, not physical OS playback.",
+    "No installed app, owner account, deployment or native binary build touched.",
+    "Root owns startup/backend/media notification verification."
+  ]
+}

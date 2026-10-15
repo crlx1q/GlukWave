@@ -1315,5 +1315,6 @@
   "wave18.eqCustom": "Eigene",
   "wave18.editTaste": "Geschmack ändern",
   "wave18.tasteCaption": "Deine Künstler und Genres. Eine Wave, die dich kennenlernt.",
-  "lyrics.intro": "Intro"
+  "lyrics.intro": "Intro",
+  "focusedPlayer.wave": "Welle"
 }

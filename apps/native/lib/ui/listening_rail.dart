@@ -1,3 +1,4 @@
+import 'playback_progress.dart';
 import 'connect_picker.dart';
 import 'listening_presence.dart';
 import 'motion_icons.dart';
@@ -164,20 +165,17 @@ class _DesktopListeningRailState extends State<DesktopListeningRail> {
                 ),
               ),
               ListeningPresence(controller: c),
-              StreamBuilder<Duration>(
-                stream: c.audio.positionStream,
-                initialData: c.audio.position,
-                builder: (_, position) => Column(
+              PlaybackProgress(
+                controller: c,
+                builder: (_, position, duration) => Column(
                   children: [
                     DraftSlider(
                       scope:
                           '${c.audio.viewCurrent?.id}:${c.activeDeviceId}:${c.activeSurfaceId}',
-                      value: (position.data?.inMilliseconds ?? 0)
-                          .toDouble()
-                          .clamp(
-                            0,
-                            track.duration > 0 ? track.duration * 1000 : 1,
-                          ),
+                      value: position.clamp(
+                        0,
+                        track.duration > 0 ? track.duration * 1000 : 1,
+                      ),
                       max: track.duration > 0 ? track.duration * 1000 : 1,
                       onChanged: c.canSeek && track.duration > 0
                           ? (value) => _run(
@@ -191,7 +189,7 @@ class _DesktopListeningRailState extends State<DesktopListeningRail> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          clock((position.data?.inMilliseconds ?? 0) / 1000),
+                          clock(position / 1000),
                           style: TextStyle(fontSize: 9, color: v.muted),
                         ),
                         Text(
