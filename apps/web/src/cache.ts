@@ -4,23 +4,26 @@ import type { Library, Track } from './types';
 import { mediaDownloadPath, mediaArtworkPath } from './media-download';
 import {isAudioFile} from './audio-cache-validation';
 export type CachedTrack = { key:string; userId:string; track:Track; blob:Blob; artworkBlob?:Blob; bytes:number; savedAt:number; manual:boolean };
+export type MetadataEntry = {key:string;userId:string;at:number;value:unknown};
 interface WaveDB extends DBSchema {
   downloads:{key:string;value:CachedTrack;indexes:{userId:string}};
   library:{key:string;value:Library};
   generation:{key:string;value:number};
+  metadata:{key:string;value:MetadataEntry;indexes:{userId:string}};
 }
 let database: Promise<IDBPDatabase<WaveDB>|null>|undefined;
 function getDatabase(){
  // The idb adapter needs Proxy. Lack of offline storage must not prevent
  // online playback on older TVs or browsers with disabled/private storage.
  return database ??= typeof indexedDB==='undefined'||typeof Proxy==='undefined'
- ? Promise.resolve(null) : openDB<WaveDB>('glukwave-private-v1',2,{upgrade(db){
+ ? Promise.resolve(null) : openDB<WaveDB>('glukwave-private-v1',3,{upgrade(db){
   if(!db.objectStoreNames.contains('downloads'))db.createObjectStore('downloads',{keyPath:'key'}).createIndex('userId','userId');
   if(!db.objectStoreNames.contains('library'))db.createObjectStore('library');
   if(!db.objectStoreNames.contains('generation'))db.createObjectStore('generation');
+  if(!db.objectStoreNames.contains('metadata'))db.createObjectStore('metadata',{keyPath:'key'}).createIndex('userId','userId');
 }}).catch(()=>null);
 }
-type DownloadOperation={controller:AbortController;promise:Promise<void>;manual:boolean;progress:((fraction:number)=>void)[]};
+type DownloadOperation={controller:AbortController;promise:Promise<void>;manual:boolean;speculative:boolean;progress:((fraction:number)=>void)[]};
 const inFlight=new Map<string,DownloadOperation>();
 async function cachedArtwork(track:Track,signal:AbortSignal,budget:number):Promise<Blob|undefined>{
  if(!track.artwork||budget<=0)return;
@@ -50,11 +53,11 @@ export async function deleteDownload(userId:string,trackId:string){
   await tx.objectStore('downloads').delete(key);await tx.done;announce(userId,trackId);
 }
 async function clear(userId:string,privateMetadata:boolean){
-  cancel(userId);const db=await getDatabase();if(!db)return;const tx=db.transaction(['downloads','library','generation'],'readwrite');
+  cancel(userId);const db=await getDatabase();if(!db)return;const tx=db.transaction(['downloads','library','generation','metadata'],'readwrite');
   const generation=tx.objectStore('generation');await generation.put(((await generation.get(userId))||0)+1,userId);
   const rows=await tx.objectStore('downloads').index('userId').getAllKeys(userId);
   for(const key of rows)await tx.objectStore('downloads').delete(key);
-  if(privateMetadata)await tx.objectStore('library').delete(userId);
+  if(privateMetadata){await tx.objectStore('library').delete(userId);for(const key of await tx.objectStore('metadata').index('userId').getAllKeys(userId))await tx.objectStore('metadata').delete(key);}
   await tx.done;announce(userId);
 }
 export const clearPrivate=(userId:string)=>clear(userId,true);
@@ -66,12 +69,24 @@ export async function saveLibrary(userId:string,library:Library,expectedGenerati
   await tx.done;
 }
 export async function readLibrary(userId:string){return(await getDatabase())?.get('library',userId);}
-export async function saveTrack(userId:string,track:Track,limitMB:number,manual:boolean,progress?:(fraction:number)=>void){
+export async function readMetadata(userId:string,path:string){return(await getDatabase())?.get('metadata',`${userId}:${path}`);}
+export async function removeMetadata(userId:string,path:string){await(await getDatabase())?.delete('metadata',`${userId}:${path}`);}
+export async function saveMetadata(userId:string,path:string,value:unknown,generation:number){
+ const encoded=JSON.stringify(value);if(encoded.length>256*1024)return;
+ const db=await getDatabase();if(!db)return;const tx=db.transaction(['metadata','generation'],'readwrite');
+ if(((await tx.objectStore('generation').get(userId))||0)!==generation){await tx.done;return;}
+ const table=tx.objectStore('metadata');await table.put({key:`${userId}:${path}`,userId,at:Date.now(),value});
+ const rows=(await table.index('userId').getAll(userId)).sort((a,b)=>a.at-b.at);let bytes=rows.reduce((sum,row)=>sum+JSON.stringify(row.value).length,0);
+ while(rows.length>48||bytes>2*1024*1024){const row=rows.shift()!;bytes-=JSON.stringify(row.value).length;await table.delete(row.key);}
+ await tx.done;
+}
+export async function saveTrack(userId:string,track:Track,limitMB:number,manual:boolean,progress?:(fraction:number)=>void,externalSignal?:AbortSignal){
   if(!track.playback.offline||track.playback.kind!=='audio')throw new Error(t('copy.275'));
   const downloadUrl=mediaDownloadPath(track.id,track.playback.downloadUrl,location.origin);if(!downloadUrl)throw new Error(t('copy.275'));
   const key=`${userId}:${track.id}`,active=inFlight.get(key);
-  if(active){active.manual||=manual;if(progress)active.progress.push(progress);return active.promise;}
-  const operation:DownloadOperation={controller:new AbortController(),promise:Promise.resolve(),manual,progress:progress?[progress]:[]};
+  if(active){active.manual||=manual;if(!externalSignal)active.speculative=false;if(progress)active.progress.push(progress);return active.promise;}
+  const operation:DownloadOperation={controller:new AbortController(),promise:Promise.resolve(),manual,speculative:!!externalSignal,progress:progress?[progress]:[]};
+  const cancelSpeculative=()=>{if(!operation.manual&&operation.speculative)operation.controller.abort();};externalSignal?.addEventListener('abort',cancelSpeculative,{once:true});if(externalSignal?.aborted)cancelSpeculative();
   operation.promise=(async()=>{
     const db=await getDatabase();if(!db)throw new Error(t('copy.275'));const generation=await getCacheGeneration(userId),trackGeneration=(await db.get('generation',key))||0;
     const response=await fetch(downloadUrl,{credentials:'include',signal:operation.controller.signal});
@@ -96,7 +111,7 @@ export async function saveTrack(userId:string,track:Track,limitMB:number,manual:
     try{await records.put({key,userId,track,blob,artworkBlob,bytes,savedAt:Date.now(),manual:operation.manual||!!existing?.manual});await tx.done;}
     catch(error){if(error instanceof DOMException&&error.name==='QuotaExceededError')throw new Error(t('copy.281'));throw error;}
     for(const listener of operation.progress)listener(1);window.dispatchEvent(new Event('wave:cache'));
-  })().finally(()=>{if(inFlight.get(key)===operation)inFlight.delete(key);});
+  })().finally(()=>{externalSignal?.removeEventListener('abort',cancelSpeculative);if(inFlight.get(key)===operation)inFlight.delete(key);});
   inFlight.set(key,operation);return operation.promise;
 }
 

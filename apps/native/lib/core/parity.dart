@@ -50,12 +50,35 @@ class WaveParity extends ChangeNotifier {
     final generation = ++_generation, token = api.token, origin = api.server;
     final friendsGeneration = ++_friendsGeneration,
         tasteGeneration = ++_tasteGeneration;
-    loading = true;
+    final query = {'mood': mood, 'mode': mode};
+    final cached = api.peekMetadata('/api/recommendations', query: query);
+    if (cached != null) recommendations = cached;
+    loading = tracks.isEmpty;
     error = null;
     notifyListeners();
+    bool current() =>
+        !_disposed &&
+        generation == _generation &&
+        token == api.token &&
+        origin == api.server;
+    final recommendationTask = () async {
+      Json result;
+      try {
+        result = await api.cachedCall('/api/recommendations', query: query);
+      } catch (e) {
+        result = {'_error': e.toString()};
+      }
+      // Discovery can paint while the optional social panels are still pending.
+      if (current()) {
+        if (!result.containsKey('_error')) recommendations = result;
+        loading = false;
+        notifyListeners();
+      }
+      return result;
+    }();
     final responses = await Future.wait([
       _optional('/api/taste'),
-      _optional('/api/recommendations', query: {'mood': mood, 'mode': mode}),
+      recommendationTask,
       _optional('/api/friends'),
     ]);
     if (_disposed ||
@@ -65,7 +88,7 @@ class WaveParity extends ChangeNotifier {
       return;
     }
     if (tasteGeneration == _tasteGeneration) taste = responses[0];
-    recommendations = responses[1];
+    if (!responses[1].containsKey('_error')) recommendations = responses[1];
     if (friendsGeneration == _friendsGeneration) friends = responses[2];
     error = responses.map((r) => r['_error']).whereType<String>().firstOrNull;
     loading = false;

@@ -1316,5 +1316,17 @@
   "wave18.editTaste": "Изменить вкус",
   "wave18.tasteCaption": "Твои артисты и жанры. Волна знакомится с тобой.",
   "lyrics.intro": "Вступление",
-  "focusedPlayer.wave": "Волна"
+  "focusedPlayer.wave": "Волна",
+  "v26.settings.search": "Найти настройку",
+  "v26.settings.noResults": "Подходящих разделов нет",
+  "v26.artist.source": "Открыть исходный профиль",
+  "v26.artist.empty": "На этой площадке пока нет доступных треков.",
+  "v26.artist.playAll": "Слушать всё",
+  "v26.artist.shuffle": "Перемешать",
+  "v26.artist.albums": "Альбомы",
+  "v26.artist.playlists": "Открытые плейлисты",
+  "v26.artist.tracks": "Треки",
+  "auth.showPassword": "Показать пароль",
+  "auth.hidePassword": "Скрыть пароль",
+  "v26.settings.cacheNote": "Автокеш хранит ограниченный набор недавно прослушанных треков. Сохраните трек отдельно, чтобы оставить его для прослушивания без сети."
 }

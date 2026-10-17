@@ -1,0 +1,194 @@
+{
+  "passed": true,
+  "scope": "Geometry, physical mini/full/lyrics controls, unblocked seek hit and nonoverlap. Canonical seek retention is recorded separately and is not a passing assertion.",
+  "sourceCssInjected": false,
+  "actualDistFinalRequired": false,
+  "distIndexSha256": "e506b6b2634448df21a6b001721de5c339e367fd9df5c7cffaac95e2873ea55f",
+  "physicalTvVerified": false,
+  "records": [
+    {
+      "width": 1440,
+      "mini": {
+        "bottom": 882,
+        "height": 68,
+        "hit": true,
+        "right": 1406,
+        "track": {
+          "height": 36.578125,
+          "right": 1193,
+          "width": 1018,
+          "x": 175,
+          "y": 829.703125
+        },
+        "width": 1296,
+        "x": 110,
+        "y": 814
+      },
+      "full": {
+        "fatal": false,
+        "open": true,
+        "right": 1440,
+        "seek": {
+          "height": 26,
+          "hit": true,
+          "right": 1170.40625,
+          "width": 332.8125,
+          "x": 837.59375,
+          "y": 425.1875
+        },
+        "x": 0
+      },
+      "seekValue": 1.402123,
+      "seekRetained": false,
+      "lyric": {
+        "count": 6,
+        "cover": {
+          "bottom": 483.796875,
+          "right": 535,
+          "x": 265
+        },
+        "headingTop": 516.796875,
+        "overflow": false,
+        "overlap": false
+      }
+    },
+    {
+      "width": 768,
+      "mini": {
+        "bottom": 834,
+        "height": 60,
+        "hit": true,
+        "right": 748,
+        "track": {
+          "height": 32.796875,
+          "right": 633,
+          "width": 554,
+          "x": 79,
+          "y": 787.59375
+        },
+        "width": 738,
+        "x": 10,
+        "y": 774
+      },
+      "full": {
+        "fatal": false,
+        "open": true,
+        "right": 768,
+        "seek": {
+          "height": 26,
+          "hit": true,
+          "right": 550.40625,
+          "width": 332.8125,
+          "x": 217.59375,
+          "y": 566.78125
+        },
+        "x": 0
+      },
+      "seekValue": 0.678025,
+      "seekRetained": false,
+      "lyric": {
+        "count": 6,
+        "cover": {
+          "bottom": 397,
+          "right": 514,
+          "x": 244
+        },
+        "headingTop": 433,
+        "overflow": false,
+        "overlap": false
+      }
+    },
+    {
+      "width": 375,
+      "mini": {
+        "bottom": 834,
+        "height": 60,
+        "hit": true,
+        "right": 355,
+        "track": {
+          "height": 32.796875,
+          "right": 240,
+          "width": 161,
+          "x": 79,
+          "y": 787.59375
+        },
+        "width": 345,
+        "x": 10,
+        "y": 774
+      },
+      "full": {
+        "fatal": false,
+        "open": true,
+        "right": 375,
+        "seek": {
+          "height": 26,
+          "hit": true,
+          "right": 323.40625,
+          "width": 271.8125,
+          "x": 51.59375,
+          "y": 566.78125
+        },
+        "x": 0
+      },
+      "seekValue": 0.432,
+      "seekRetained": false,
+      "lyric": {
+        "count": 6,
+        "cover": {
+          "bottom": 397,
+          "right": 317.5,
+          "x": 47.5
+        },
+        "headingTop": 433,
+        "overflow": false,
+        "overlap": false
+      }
+    },
+    {
+      "width": 320,
+      "mini": {
+        "bottom": 834,
+        "height": 60,
+        "hit": true,
+        "right": 300,
+        "track": {
+          "height": 31.390625,
+          "right": 185,
+          "width": 106,
+          "x": 79,
+          "y": 788.296875
+        },
+        "width": 290,
+        "x": 10,
+        "y": 774
+      },
+      "full": {
+        "fatal": false,
+        "open": true,
+        "right": 320,
+        "seek": {
+          "height": 26,
+          "hit": true,
+          "right": 268.40625,
+          "width": 216.8125,
+          "x": 51.59375,
+          "y": 566.78125
+        },
+        "x": 0
+      },
+      "seekValue": 2.577266,
+      "seekRetained": false,
+      "lyric": {
+        "count": 6,
+        "cover": {
+          "bottom": 397,
+          "right": 290,
+          "x": 20
+        },
+        "headingTop": 433,
+        "overflow": false,
+        "overlap": false
+      }
+    }
+  ]
+}

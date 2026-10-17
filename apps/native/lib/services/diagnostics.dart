@@ -71,7 +71,12 @@ class WaveDiagnostics {
     }
   }
 
-  void record(Object message, {String kind = 'playback', String? code}) {
+  void record(
+    Object message, {
+    String kind = 'playback',
+    String? code,
+    StackTrace? stack,
+  }) {
     final file = _localFile;
     if (_disposed || file == null) return;
     final encoded = jsonEncode({
@@ -80,6 +85,7 @@ class WaveDiagnostics {
       'kind': kind,
       if (code != null) 'code': scrubDiagnostic(code, 100),
       'message': scrubDiagnostic(message),
+      if (stack != null) 'stack': scrubDiagnostic(stack, 8000),
     });
     final line = '$encoded\n';
     _localWrites = _localWrites
@@ -126,7 +132,7 @@ class WaveDiagnostics {
   }) {
     if (_disposed) return;
     final message = scrubDiagnostic(error);
-    record(message, kind: kind, code: code);
+    record(message, kind: kind, code: code, stack: stack);
     final key = '$kind:$message';
     if (_seen[key]?.isAfter(
           DateTime.now().subtract(const Duration(minutes: 1)),

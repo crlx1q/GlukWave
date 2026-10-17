@@ -1,6 +1,6 @@
 import {useEffect,useRef,useState} from 'react';
 import {ArrowRight,ArrowUpRight} from 'lucide-react';
-import {api} from './api';
+import {cachedMetadata,peekMetadata,readCachedMetadata} from './metadata-cache';
 import {useStore} from './store';
 import {usePlayer} from './player';
 import {t,useLocale} from './locale';
@@ -14,7 +14,11 @@ const choices=[{key:'calm',name:'copy.458',caption:'copy.459'},{key:'dream',name
 function RecommendationShelf({mode,initial=false,onData}:{mode:'personal'|'discovery'|'popular';initial?:boolean;onData?:(tracks:Track[])=>void}){
  const store=useStore(),player=usePlayer(),root=useRef<HTMLElement>(null),[visible,setVisible]=useState(initial),[tracks,setTracks]=useState<Track[]>([]),[pending,setPending]=useState(false),[failed,setFailed]=useState(false);
  useEffect(()=>{if(visible)return;const node=root.current;if(!node)return;const observer=new IntersectionObserver(entries=>{if(entries.some(item=>item.isIntersecting)){setVisible(true);observer.disconnect();}},{rootMargin:'100px'});observer.observe(node);return()=>observer.disconnect();},[visible]);
- useEffect(()=>{if(!visible||!store.user)return;const abort=new AbortController();setPending(true);setFailed(false);setTracks([]);void api<{tracks:Track[]}>(`/recommendations?mode=${mode}&mood=personal&limit=8`,{signal:abort.signal}).then(data=>{if(!abort.signal.aborted){const actual=[...new Map((data.tracks||[]).map(track=>[track.id,track])).values()];setTracks(actual);onData?.(actual);}}).catch(()=>{if(!abort.signal.aborted)setFailed(true);}).finally(()=>{if(!abort.signal.aborted)setPending(false);});return()=>abort.abort();},[store.user?.id,mode,visible]);
+ useEffect(()=>{if(!visible||!store.user)return;const abort=new AbortController(),account=store.user.id,path=`/recommendations?mode=${mode}&mood=personal&limit=8`;
+  const present=(data:{tracks:Track[]})=>{if(abort.signal.aborted)return;const actual=[...new Map((data.tracks||[]).map(track=>[track.id,track])).values()];setTracks(actual);onData?.(actual);};
+  const saved=peekMetadata<{tracks:Track[]}>(account,path);setFailed(false);setPending(!saved);if(saved)present(saved);else setTracks([]);
+  void(async()=>{const disk=await readCachedMetadata<{tracks:Track[]}>(account,path);if(disk){present(disk);if(!abort.signal.aborted)setPending(false);}const fresh=await cachedMetadata<{tracks:Track[]}>(path,{account,signal:abort.signal});present(fresh);})().catch(()=>{if(!abort.signal.aborted)setFailed(true);}).finally(()=>{if(!abort.signal.aborted)setPending(false);});return()=>abort.abort();
+ },[store.user?.id,mode,visible,store.offline]);
  return <section ref={root} className="home-discovery-rail" aria-label={text(mode==='personal'?'forYou':mode==='discovery'?'discover':'popular')}>
   <div className="section-heading"><div><h2>{text(mode==='personal'?'forYou':mode==='discovery'?'discover':'popular')}</h2><p className="section-caption">{t(`wave18.caption.${mode}`)}</p></div><button className="text-button" onClick={()=>void store.run(()=>player.startWave({mode}))}>{t('copy.406')}<ArrowRight size={15}/></button></div>
   {pending?<TrackSkeleton rows={2}/>:tracks.length?<div className="recent-strip">{tracks.map(track=><article key={track.id} className={player.track?.id===track.id?'current':''}><Art track={track} onClick={()=>void player.playTrack(track,tracks)}/><button className="recent-title" onClick={()=>void player.playTrack(track,tracks)}><b>{track.title}</b><small>{track.artist}</small></button></article>)}</div>:<p className="section-caption">{failed?text('recommendationsUnavailable'):t('v7.home.beginCaption')}</p>}

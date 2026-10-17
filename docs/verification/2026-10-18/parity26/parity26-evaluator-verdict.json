@@ -1,0 +1,433 @@
+{
+  "version": 26,
+  "attempt": 3,
+  "verdict": "PASS",
+  "evaluator": "Independent final evaluator agent, same available model provider",
+  "date": "2026-10-18",
+  "scores": {
+    "designQuality": 2,
+    "originality": 2,
+    "craft": 2,
+    "functionality": 2
+  },
+  "fixture": "http://127.0.0.1:5286/app/",
+  "session": "gw26-eval3",
+  "verifiedScopes": [
+    "Fresh web screenshots 1440/768/375/320; auth/register and expanded player",
+    "Desktop compact mini measured 740x68",
+    "Actual CDP horizontal touch neighbor preview, cancellation, next selection",
+    "Actual continuous upward reveal at 0.20689655 and cancellation",
+    "Artist detail with real returned tracks/album, responsive header, preserved search on back",
+    "Settings category search opens existing playback controls; narrow content scroll inspected",
+    "Top notice at320: within viewport, wrapping, dismissal",
+    "Web lyric focus, real independent per-row transforms, paused stillness",
+    "Native supplied widget-rendered screenshots and actual interaction test source inspected",
+    "Narrow auth password reveal and bounded container scroll to submit",
+    "Final rebuilt actual-dist tv-legacy fallback1440/768/375/320: bounded mini/metadata, physical mini/full/Lyrics controls, unblocked seek hit, cover/title nonoverlap, six lyric rows, no horizontal overflow",
+    "Final actual-dist modern1440 capsule exactly740x68 and375phone60px; physical expanded transport and lyrics preserved",
+    "Fresh final actual-dist settings search and artist panels reachable at375/1440; three returned tracks, one returned album, search query preserved on back",
+    "41/41 current UI source hashes match frozen source manifest"
+  ],
+  "limitations": [
+    "Same model provider; no alternate provider available",
+    "Real Flutter widget input/render evidence, not physical Android/Windows/TV audio-output evidence",
+    "Exact intermittent Flutter2115 cold-start assertion not reproduced",
+    "Silent WAV fixture seek samples reset to0; no claim of physical-source seek correctness",
+    "Final platform packaging and device cold launches remain root verification scope",
+    "Modern Chromium with deleted APIs and forced SystemJS is compatibility regression evidence, not a physical Samsung Tizen engine test",
+    "Narrow legacy wheel forwarding was inconclusive in the optional harness probe; last lyric reached via browser scroll-into-view. No physical remote/touch-scroll claim."
+  ],
+  "evidence": [
+    "work/qa/parity26-eval-interactions.json",
+    "work/qa/parity26-eval-lyrics-motion.json",
+    "work/qa/parity26-eval-lyrics-still.json",
+    "work/qa/parity26-native-affected-recovery.log",
+    "work/qa/parity26-native-affected-ui.log",
+    "work/qa/parity26-eval3-runtime-proof.json",
+    "work/qa/parity26-eval3-runtime-final.log",
+    "work/qa/parity26-eval3-panels.log"
+  ],
+  "sources": [
+    {
+      "path": "apps/native/lib/ui/app.dart",
+      "sha256": "b40814d3400222c17e3c54117d4e1082bc2d02edd3307cb49329dc594b8ce340"
+    },
+    {
+      "path": "apps/native/lib/ui/auth_page.dart",
+      "sha256": "2fd314cac7e317adad388e12e4ab684c1cc041a68e0d4462797381eb7a7af98d"
+    },
+    {
+      "path": "apps/native/lib/ui/halftone_room.dart",
+      "sha256": "76f0386e10d4d54c411f0bc6fde9c1f3bc3fc66782c3747ab56439f1a2266221"
+    },
+    {
+      "path": "apps/native/lib/ui/top_notice.dart",
+      "sha256": "cdb9455f9adf50d7dea9ebde5d3ce957ea60a9baa11b670720b1ba0374e5dd43"
+    },
+    {
+      "path": "apps/native/lib/ui/native19_desktop_transport.dart",
+      "sha256": "8bf5bfae08748340df21e64789cced594bda950d5e83920f2462089952c1e626"
+    },
+    {
+      "path": "apps/native/lib/ui/player_gestures.dart",
+      "sha256": "26eac928b61c58b122ff455bd02856d23938598f6d8c8f402000761071a23178"
+    },
+    {
+      "path": "apps/native/lib/ui/player.dart",
+      "sha256": "0e0fd0921320d8ba1cb82ef7d0555613d36f2e134ffa6a4771e1f504cfc44013"
+    },
+    {
+      "path": "apps/native/lib/ui/lyric_tile.dart",
+      "sha256": "60bbc7075628b2ff57f1703121c5bf9af03eb87ea7d1042b5e46b1ceb8d2b24d"
+    },
+    {
+      "path": "apps/native/lib/ui/parity_panels.dart",
+      "sha256": "2a79514ada62c9818e2ca6a59709a3e0b883d14ed05cda005595496bc6777327"
+    },
+    {
+      "path": "apps/native/lib/l10n/glukwave26_strings.dart",
+      "sha256": "41cd49d1f1c725c937dd054be9597c264803af87cf97dda4dded9d16145322be"
+    },
+    {
+      "path": "apps/native/test/parity26_ui_test.dart",
+      "sha256": "819d8d7522433b44218b8f970a3e20836e906e49bd970416d95140c97a181f55"
+    },
+    {
+      "path": "apps/web/src/App.tsx",
+      "sha256": "a98a8fa9c02f98cf0bab03c87a7dc4245ec7577c0f79a0ea6895a51db119db35"
+    },
+    {
+      "path": "apps/web/src/account.tsx",
+      "sha256": "8c7fb34bca875dd7dfcc750cdb1bf50ab2ef88413279658c565d25a0e3e05053"
+    },
+    {
+      "path": "apps/web/src/auth.tsx",
+      "sha256": "10f9c415aa8bc20bdcd918939f0e2a70b38576bab40f7008a2f6e0eff1c49445"
+    },
+    {
+      "path": "apps/web/src/artist-detail.tsx",
+      "sha256": "a05a7724239993cc656ff236148c66fee5829e4a68838bbea33da6c48f9c58ac"
+    },
+    {
+      "path": "apps/web/src/halftone-room.tsx",
+      "sha256": "ebf871684881eb75c1bd25cfd6258025f29bd62604aaa1d0d9d28c0d92e701b0"
+    },
+    {
+      "path": "apps/web/src/top-notice.tsx",
+      "sha256": "a62bfc85925a39a2e6f687a019e88c616a00abbcfb0b618d22b0b40e8be0162b"
+    },
+    {
+      "path": "apps/web/src/discovery-search.tsx",
+      "sha256": "4b9e21a7fc54602565e4f7730857388479e0aa5148a2d36101d02fd3e8f628c3"
+    },
+    {
+      "path": "apps/web/src/main.tsx",
+      "sha256": "8a943a6e8018e2d4bec42108b73adb4707529d3e75a4419c090fe937a79d86f4"
+    },
+    {
+      "path": "apps/web/src/parity-taste.tsx",
+      "sha256": "e6c71f0b8b14a410dbcda86cfeb1ac89f861649d7a3fd9437da51b5f76d372a6"
+    },
+    {
+      "path": "apps/web/src/player-gestures.ts",
+      "sha256": "7f19efae86ffc1a9bfa3c73de7e1b4e81f70bcf3dc54e5c000703093267b9659"
+    },
+    {
+      "path": "apps/web/src/player-ui.tsx",
+      "sha256": "9defac627f9f87565f0efd14f455ef8f24b12bcbcbb7a6d2a0986d7fbc669bd4"
+    },
+    {
+      "path": "apps/web/src/ui.tsx",
+      "sha256": "961289dc6ba961216f71e31b957aa2ae61b590b592faf336900b2c1882a6c1d9"
+    },
+    {
+      "path": "apps/web/src/glukwave26.css",
+      "sha256": "02e9d8b87130252d4d761e5cff41dd3b1073805ccea174c567849baafbcd7ea1"
+    },
+    {
+      "path": "apps/web/src/locales/en.json",
+      "sha256": "645bbaf1e81fe6b4781a7fe67353e6f64882c1cd090caf14a9bb8437fa536bad"
+    },
+    {
+      "path": "apps/web/src/locales/ru.json",
+      "sha256": "949e0ae603baa0505fdd872a9d4f87da8c37bddeef4d012c280b039ed39825b0"
+    },
+    {
+      "path": "apps/web/src/locales/kk.json",
+      "sha256": "89212ce4683f0a36e13935dc042bd06d6564cb992c90806a3c3861457144a5b0"
+    },
+    {
+      "path": "apps/web/src/locales/uk.json",
+      "sha256": "a1ec3e3b1421cbea902498a5d04e2f63457e750ae4bd5850258f7a1b9bbac77c"
+    },
+    {
+      "path": "apps/web/src/locales/de.json",
+      "sha256": "2f7b368a1ee14be756e976df4abdb7c2ccd3366ff34015c5da5117b17d4799cd"
+    },
+    {
+      "path": "apps/web/src/locales/es.json",
+      "sha256": "5319fd0d65d93a1a78031d2eb2a17ebb7e9a22ed355f8aecc61dcdf153a2219e"
+    },
+    {
+      "path": "apps/native/test/app_layout_test.dart",
+      "sha256": "4844461e0a815dc4b64c3b90a069bb74c396915394740975866612a19635a568"
+    },
+    {
+      "path": "apps/native/test/ecosystem_layout_test.dart",
+      "sha256": "c9bb00a31640fa39d376747192cfe8aeddce8a9fe7834b9b107450b2bbe5a692"
+    },
+    {
+      "path": "apps/native/test/localization_test.dart",
+      "sha256": "ee37f20127b216da9deb1cc7c90276d8f5f9f99ebbee8fd4c6d15b137ea068df"
+    },
+    {
+      "path": "apps/native/test/native19_round2_test.dart",
+      "sha256": "00a8c4aa3fafa9acd12909fddd8417aec766e18054834006c3b8a528067ee795"
+    },
+    {
+      "path": "apps/native/lib/ui/album_stage.dart",
+      "sha256": "c78b32eff376a84c8430cceb0251f34dce45823ec5c91a569ffa25c9a2b2acfc"
+    },
+    {
+      "path": "apps/native/test/parity23_ui_test.dart",
+      "sha256": "9a28959560720a2c1c0b0a06f574d8f2eb1ba0fd59e3f1d457312821a460f1a0"
+    },
+    {
+      "path": "apps/native/test/parity24_ui_test.dart",
+      "sha256": "6ddb57917fea8a2ca37d41de49d2291085475c82a3baccdad06e2a3f3584f868"
+    },
+    {
+      "path": "apps/native/test/playback_vector_test.dart",
+      "sha256": "ab78bda4318e98885155dcc343b83d9da29dce20b5d4e8aadc66fad83bce89e5"
+    },
+    {
+      "path": "apps/native/test/player_details_test.dart",
+      "sha256": "21db35c48dc05c9a0c8df0b6488e218800f2e9e8e1a1e6301ca2be546c9b986d"
+    },
+    {
+      "path": "apps/native/test/refinement20_evaluator_test.dart",
+      "sha256": "02b8f4e7e6ae4b4c6cdce49a252c11108a29c8339119383e1fdc7345e1eba993"
+    },
+    {
+      "path": "apps/native/test/refinement20_ui_test.dart",
+      "sha256": "742f37280c95ea6d1d425310dc4741c2b3dd53e54e5af8a144cb145a9f22bc5b"
+    }
+  ],
+  "reEvaluation": {
+    "scope": "Targeted native physical input, dropdown widths and finite desktop capsule bounds",
+    "verdict": "PASS",
+    "nativeRecovery": "58/58 passed; source assertions and log reviewed",
+    "physicalHit": "Sleeve centre enters queue recognizer; blank stage corner excluded; real touch chooses next at320/390/768/1280",
+    "web": "Production UI unchanged; attempt1 fresh browser evidence retained",
+    "freshCaptures": [
+      "work/qa/native-v6-player-390.png",
+      "work/qa/native-v6-player-1280.png",
+      "work/qa/native-parity26-auth-320.png",
+      "work/qa/native-parity26-auth-1440.png",
+      "work/qa/native-native19-round2-320-auth-label.png",
+      "work/qa/native-native19-round2-320-energy-heading.png"
+    ]
+  },
+  "priorEvaluation": {
+    "attempt": 2,
+    "date": "2026-10-16",
+    "verdict": "PASS",
+    "scope": "Retained unchanged original design/auth/native gestures/lyric-motion evaluation",
+    "sources": [
+      {
+        "path": "apps/native/lib/ui/app.dart",
+        "sha256": "b40814d3400222c17e3c54117d4e1082bc2d02edd3307cb49329dc594b8ce340"
+      },
+      {
+        "path": "apps/native/lib/ui/auth_page.dart",
+        "sha256": "2fd314cac7e317adad388e12e4ab684c1cc041a68e0d4462797381eb7a7af98d"
+      },
+      {
+        "path": "apps/native/lib/ui/halftone_room.dart",
+        "sha256": "76f0386e10d4d54c411f0bc6fde9c1f3bc3fc66782c3747ab56439f1a2266221"
+      },
+      {
+        "path": "apps/native/lib/ui/top_notice.dart",
+        "sha256": "cdb9455f9adf50d7dea9ebde5d3ce957ea60a9baa11b670720b1ba0374e5dd43"
+      },
+      {
+        "path": "apps/native/lib/ui/native19_desktop_transport.dart",
+        "sha256": "8bf5bfae08748340df21e64789cced594bda950d5e83920f2462089952c1e626"
+      },
+      {
+        "path": "apps/native/lib/ui/player_gestures.dart",
+        "sha256": "26eac928b61c58b122ff455bd02856d23938598f6d8c8f402000761071a23178"
+      },
+      {
+        "path": "apps/native/lib/ui/player.dart",
+        "sha256": "0e0fd0921320d8ba1cb82ef7d0555613d36f2e134ffa6a4771e1f504cfc44013"
+      },
+      {
+        "path": "apps/native/lib/ui/lyric_tile.dart",
+        "sha256": "60bbc7075628b2ff57f1703121c5bf9af03eb87ea7d1042b5e46b1ceb8d2b24d"
+      },
+      {
+        "path": "apps/native/lib/ui/parity_panels.dart",
+        "sha256": "2a79514ada62c9818e2ca6a59709a3e0b883d14ed05cda005595496bc6777327"
+      },
+      {
+        "path": "apps/native/lib/l10n/glukwave26_strings.dart",
+        "sha256": "41cd49d1f1c725c937dd054be9597c264803af87cf97dda4dded9d16145322be"
+      },
+      {
+        "path": "apps/native/test/parity26_ui_test.dart",
+        "sha256": "819d8d7522433b44218b8f970a3e20836e906e49bd970416d95140c97a181f55"
+      },
+      {
+        "path": "apps/web/src/App.tsx",
+        "sha256": "a98a8fa9c02f98cf0bab03c87a7dc4245ec7577c0f79a0ea6895a51db119db35"
+      },
+      {
+        "path": "apps/web/src/account.tsx",
+        "sha256": "8c7fb34bca875dd7dfcc750cdb1bf50ab2ef88413279658c565d25a0e3e05053"
+      },
+      {
+        "path": "apps/web/src/auth.tsx",
+        "sha256": "10f9c415aa8bc20bdcd918939f0e2a70b38576bab40f7008a2f6e0eff1c49445"
+      },
+      {
+        "path": "apps/web/src/artist-detail.tsx",
+        "sha256": "a05a7724239993cc656ff236148c66fee5829e4a68838bbea33da6c48f9c58ac"
+      },
+      {
+        "path": "apps/web/src/halftone-room.tsx",
+        "sha256": "ebf871684881eb75c1bd25cfd6258025f29bd62604aaa1d0d9d28c0d92e701b0"
+      },
+      {
+        "path": "apps/web/src/top-notice.tsx",
+        "sha256": "a62bfc85925a39a2e6f687a019e88c616a00abbcfb0b618d22b0b40e8be0162b"
+      },
+      {
+        "path": "apps/web/src/discovery-search.tsx",
+        "sha256": "4b9e21a7fc54602565e4f7730857388479e0aa5148a2d36101d02fd3e8f628c3"
+      },
+      {
+        "path": "apps/web/src/main.tsx",
+        "sha256": "8a943a6e8018e2d4bec42108b73adb4707529d3e75a4419c090fe937a79d86f4"
+      },
+      {
+        "path": "apps/web/src/parity-taste.tsx",
+        "sha256": "e6c71f0b8b14a410dbcda86cfeb1ac89f861649d7a3fd9437da51b5f76d372a6"
+      },
+      {
+        "path": "apps/web/src/player-gestures.ts",
+        "sha256": "7f19efae86ffc1a9bfa3c73de7e1b4e81f70bcf3dc54e5c000703093267b9659"
+      },
+      {
+        "path": "apps/web/src/player-ui.tsx",
+        "sha256": "9defac627f9f87565f0efd14f455ef8f24b12bcbcbb7a6d2a0986d7fbc669bd4"
+      },
+      {
+        "path": "apps/web/src/ui.tsx",
+        "sha256": "961289dc6ba961216f71e31b957aa2ae61b590b592faf336900b2c1882a6c1d9"
+      },
+      {
+        "path": "apps/web/src/glukwave26.css",
+        "sha256": "7e3eb68974044aa89a62eb32bd916d062e7413bec39ebfe86c27e465a206e2dc"
+      },
+      {
+        "path": "apps/web/src/locales/en.json",
+        "sha256": "645bbaf1e81fe6b4781a7fe67353e6f64882c1cd090caf14a9bb8437fa536bad"
+      },
+      {
+        "path": "apps/web/src/locales/ru.json",
+        "sha256": "949e0ae603baa0505fdd872a9d4f87da8c37bddeef4d012c280b039ed39825b0"
+      },
+      {
+        "path": "apps/web/src/locales/kk.json",
+        "sha256": "89212ce4683f0a36e13935dc042bd06d6564cb992c90806a3c3861457144a5b0"
+      },
+      {
+        "path": "apps/web/src/locales/uk.json",
+        "sha256": "a1ec3e3b1421cbea902498a5d04e2f63457e750ae4bd5850258f7a1b9bbac77c"
+      },
+      {
+        "path": "apps/web/src/locales/de.json",
+        "sha256": "2f7b368a1ee14be756e976df4abdb7c2ccd3366ff34015c5da5117b17d4799cd"
+      },
+      {
+        "path": "apps/web/src/locales/es.json",
+        "sha256": "5319fd0d65d93a1a78031d2eb2a17ebb7e9a22ed355f8aecc61dcdf153a2219e"
+      },
+      {
+        "path": "apps/native/test/app_layout_test.dart",
+        "sha256": "4844461e0a815dc4b64c3b90a069bb74c396915394740975866612a19635a568"
+      },
+      {
+        "path": "apps/native/test/ecosystem_layout_test.dart",
+        "sha256": "c9bb00a31640fa39d376747192cfe8aeddce8a9fe7834b9b107450b2bbe5a692"
+      },
+      {
+        "path": "apps/native/test/localization_test.dart",
+        "sha256": "ee37f20127b216da9deb1cc7c90276d8f5f9f99ebbee8fd4c6d15b137ea068df"
+      },
+      {
+        "path": "apps/native/test/native19_round2_test.dart",
+        "sha256": "00a8c4aa3fafa9acd12909fddd8417aec766e18054834006c3b8a528067ee795"
+      },
+      {
+        "path": "apps/native/lib/ui/album_stage.dart",
+        "sha256": "c78b32eff376a84c8430cceb0251f34dce45823ec5c91a569ffa25c9a2b2acfc"
+      },
+      {
+        "path": "apps/native/test/parity23_ui_test.dart",
+        "sha256": "9a28959560720a2c1c0b0a06f574d8f2eb1ba0fd59e3f1d457312821a460f1a0"
+      },
+      {
+        "path": "apps/native/test/parity24_ui_test.dart",
+        "sha256": "6ddb57917fea8a2ca37d41de49d2291085475c82a3baccdad06e2a3f3584f868"
+      }
+    ]
+  },
+  "finalActualDist": {
+    "passed": true,
+    "sourceCssInjected": false,
+    "sourceHash": "02e9d8b87130252d4d761e5cff41dd3b1073805ccea174c567849baafbcd7ea1",
+    "sourceFreezeMatches": true,
+    "legacyWidths": [
+      1440,
+      768,
+      375,
+      320
+    ],
+    "modernWidths": [
+      1440,
+      375
+    ],
+    "freshCaptures": [
+      "work/qa/parity26-eval3-legacy-full-1440.png",
+      "work/qa/parity26-eval3-legacy-full-320.png",
+      "work/qa/parity26-eval3-legacy-full-375.png",
+      "work/qa/parity26-eval3-legacy-full-768.png",
+      "work/qa/parity26-eval3-legacy-last-line-375.png",
+      "work/qa/parity26-eval3-legacy-lyrics-1440.png",
+      "work/qa/parity26-eval3-legacy-lyrics-320.png",
+      "work/qa/parity26-eval3-legacy-lyrics-375.png",
+      "work/qa/parity26-eval3-legacy-lyrics-768.png",
+      "work/qa/parity26-eval3-legacy-lyrics-scrolled-320.png",
+      "work/qa/parity26-eval3-legacy-lyrics-scrolled-375.png",
+      "work/qa/parity26-eval3-legacy-lyrics-scrolled-768.png",
+      "work/qa/parity26-eval3-legacy-mini-1440.png",
+      "work/qa/parity26-eval3-legacy-mini-320.png",
+      "work/qa/parity26-eval3-legacy-mini-375.png",
+      "work/qa/parity26-eval3-legacy-mini-768.png",
+      "work/qa/parity26-eval3-modern-artist-1440.png",
+      "work/qa/parity26-eval3-modern-artist-375.png",
+      "work/qa/parity26-eval3-modern-full-1440.png",
+      "work/qa/parity26-eval3-modern-full-375.png",
+      "work/qa/parity26-eval3-modern-lyrics-1440.png",
+      "work/qa/parity26-eval3-modern-lyrics-375.png",
+      "work/qa/parity26-eval3-modern-mini-1440.png",
+      "work/qa/parity26-eval3-modern-mini-375.png",
+      "work/qa/parity26-eval3-modern-settings-1440.png",
+      "work/qa/parity26-eval3-modern-settings-375.png"
+    ],
+    "seekRetentionClaim": false,
+    "physicalTvVerified": false
+  }
+}

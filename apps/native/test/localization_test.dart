@@ -292,7 +292,10 @@ void main() {
         expect(c.customization.language, language.key);
         expect(c.api.headers['Accept-Language'], language.key);
         expect(
-          find.text(WaveStrings(language.key).text('language.title')),
+          find.descendant(
+            of: picker,
+            matching: find.text(WaveStrings(language.key).text('language.title')),
+          ),
           findsOneWidget,
         );
         expect(tester.takeException(), isNull);

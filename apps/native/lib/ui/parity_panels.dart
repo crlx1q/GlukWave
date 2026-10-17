@@ -1,4 +1,7 @@
 import 'playlist_manager.dart';
+import 'discovery.dart' show openDiscoveryPlaylist;
+import '../l10n/glukwave26_strings.dart';
+import 'package:audio_service/audio_service.dart';
 import 'wave18_strings.dart';
 import 'dart:async';
 import 'package:file_picker/file_picker.dart';
@@ -777,119 +780,97 @@ class ArtistDetail extends StatefulWidget {
 
 class _ArtistDetailState extends State<ArtistDetail> {
   List<WaveTrack> tracks = [];
+  Json data = {};
   bool loading = true, failed = false;
+  int generation = 0;
+  String get path => '/api/artists/${Uri.encodeComponent(widget.artist['id'].toString())}';
+  Json get profile => {...widget.artist, ...object(data['artist'])};
+  void adopt(Json result) { data = result; tracks = objects(result['tracks']).map(WaveTrack.new).toList(); }
   @override
   void initState() {
     super.initState();
+    widget.controller.addListener(changed);
+    final saved = widget.controller.api.peekMetadata(path);
+    if (saved != null) { adopt(saved); loading = false; }
     unawaited(load());
   }
-
-  Future<void> load() async {
-    setState(() {
-      loading = true;
-      failed = false;
-    });
+  void changed() { if (mounted) setState(() {}); }
+  @override
+  void dispose() { widget.controller.removeListener(changed); generation++; super.dispose(); }
+  Future<void> load({bool force = false}) async {
+    final version = ++generation;
+    if (tracks.isEmpty) setState(() { loading = true; failed = false; });
     try {
-      Json result;
-      try {
-        result = await widget.controller.api.call(
-          '/api/artists/${Uri.encodeComponent(widget.artist['id'].toString())}',
-        );
-      } catch (_) {
-        result = {};
+      var result = await widget.controller.api.cachedCall(path, force: force, maxAge: const Duration(minutes: 10));
+      var found = objects(result['tracks']);
+      // Sparse external identities are resolved locally to this profile. Never
+      // overwrite the shell's query, source or search result list.
+      if (found.isEmpty && widget.controller.online) {
+        final search = await widget.controller.api.cachedCall('/api/search', query: {'q': widget.artist['name'], 'source': widget.artist['source']}, maxAge: const Duration(minutes: 5));
+        final name = widget.artist['name'].toString().toLowerCase();
+        found = objects(search['tracks']).where((track) => track['artist'].toString().toLowerCase().contains(name)).toList();
+        result = {...result, 'tracks': found};
       }
-      var found = objects(result['tracks']).map(WaveTrack.new).toList();
-      if (found.isEmpty) {
-        await widget.controller.searchArtist(widget.artist);
-        found = widget.controller.results.toList();
-      }
-      if (mounted) {
-        setState(() {
-          tracks = found;
-          loading = false;
-        });
-      }
+      if (!mounted || version != generation) return;
+      setState(() { adopt(result); loading = false; failed = false; });
     } catch (_) {
-      if (mounted) {
-        setState(() {
-          loading = false;
-          failed = true;
-        });
-      }
+      if (mounted && version == generation) setState(() { loading = false; failed = true; });
     }
   }
-
+  Future<void> playAll({bool shuffle = false}) => parityRun(widget.controller, () async {
+    if (tracks.isEmpty) return;
+    final order = tracks.toList();
+    if (shuffle) order.shuffle();
+    await widget.controller.play(order.first, list: order);
+    await widget.controller.audio.setShuffleMode(shuffle ? AudioServiceShuffleMode.all : AudioServiceShuffleMode.none);
+  });
+  void openAlbum(Json album) {
+    final ids = ((album['trackIds'] as List?) ?? const []).map((id) => id.toString()).toList(), list = tracks.where((track) => ids.contains(track.id)).toList();
+    Navigator.push(context, MaterialPageRoute<void>(builder: (_) => Scaffold(appBar: AppBar(title: Text(album['name']?.toString() ?? '')), body: ListView(padding: const EdgeInsets.all(24), children: [for (final track in list) TrackRow(controller: widget.controller, track: track, queue: list, onMore: () => parityTrackActions(context, widget.controller, track))]))));
+  }
   @override
-  Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(
-      backgroundColor: waveVisuals(context).background,
-      title: Text(pt(context, 'Artists')),
-    ),
-    body: ListView(
-      padding: const EdgeInsets.all(24),
-      children: [
-        Row(
-          children: [
-            ClipOval(
-              child: Artwork(
-                controller: widget.controller,
-                url: widget.artist['artwork']?.toString(),
-                size: 100,
-                radius: 0,
-                icon: Icons.person_outline,
-              ),
-            ),
-            const SizedBox(width: 20),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    widget.artist['name']?.toString() ?? '',
-                    style: const TextStyle(
-                      fontSize: 28,
-                      fontWeight: FontWeight.w800,
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    paritySourceName(context, widget.artist['source']),
-                    style: TextStyle(color: waveVisuals(context).muted),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 28),
-        if (loading)
-          const WaveLoadingList()
-        else if (failed)
-          EmptyState(
-            pt(context, 'Unavailable'),
-            pt(context, 'Unavailable detail'),
-            action: OutlinedButton(
-              onPressed: load,
-              child: Text(pt(context, 'Retry')),
-            ),
-          )
-        else if (tracks.isEmpty)
-          EmptyState(
-            pt(context, 'No artists'),
-            pt(context, 'No artists detail'),
-          )
-        else
-          for (final track in tracks)
-            TrackRow(
-              controller: widget.controller,
-              track: track,
-              queue: tracks,
-              onMore: () =>
-                  parityTrackActions(context, widget.controller, track),
-            ),
-      ],
-    ),
-  );
+  Widget build(BuildContext context) {
+    final c = widget.controller, v = waveVisuals(context), artist = profile;
+    final sourceUrl = artist['sourceUrl']?.toString() ?? '', uri = Uri.tryParse(artist['sourceUrl']?.toString() ?? '');
+    final albums = objects(data['albums']).where((album) => ((album['trackIds'] as List?) ?? const []).map((id) => id.toString()).toList().any((id) => tracks.any((track) => track.id == id))).toList();
+    return Scaffold(
+      appBar: AppBar(backgroundColor: v.background, title: Text(pt(context, 'Artists'))),
+      body: ListView(padding: EdgeInsets.all(MediaQuery.sizeOf(context).width < 600 ? 20 : 32), children: [
+        Container(padding: const EdgeInsets.all(22), decoration: BoxDecoration(color: v.surface, borderRadius: BorderRadius.circular(14), border: Border.all(color: v.line)), child: Row(children: [
+          ClipOval(child: Artwork(controller: c, url: artist['artwork']?.toString(), size: MediaQuery.sizeOf(context).width < 400 ? 76 : 112, radius: 0, icon: Icons.person_outline)),
+          const SizedBox(width: 20),
+          Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(paritySourceName(context, artist['source']), style: TextStyle(color: v.muted, fontSize: 11)),
+            const SizedBox(height: 8),
+            Text(artist['name']?.toString() ?? '', style: const TextStyle(fontSize: 28, fontWeight: FontWeight.w800, height: 1.1)),
+            if (uri?.scheme == 'https' && uri?.host.isNotEmpty == true) TextButton.icon(onPressed: () => c.openUrl(sourceUrl), icon: const Icon(Icons.open_in_new_rounded, size: 14), label: Text(wave26Text(context, 'artist.source'), style: const TextStyle(fontSize: 10))),
+          ])),
+        ])),
+        if (artist['bio']?.toString().trim().isNotEmpty == true) Padding(padding: const EdgeInsets.symmetric(vertical: 18), child: Text(artist['bio'].toString(), style: TextStyle(color: v.muted, height: 1.7))),
+        const SizedBox(height: 20),
+        if (tracks.isNotEmpty) Wrap(spacing: 10, runSpacing: 10, children: [
+          FilledButton.icon(onPressed: c.canControl ? playAll : null, icon: const Icon(Icons.play_arrow_rounded), label: Text(wave26Text(context, 'artist.playAll'))),
+          OutlinedButton.icon(onPressed: c.canControl ? () => playAll(shuffle: true) : null, icon: const Icon(Icons.shuffle_rounded, size: 18), label: Text(wave26Text(context, 'artist.shuffle'))),
+        ]),
+        if (loading) const WaveLoadingList() else if (failed && tracks.isEmpty) EmptyState(pt(context, 'Unavailable'), pt(context, 'Unavailable detail'), action: OutlinedButton(onPressed: () => load(force: true), child: Text(pt(context, 'Retry'))))
+        else if (tracks.isEmpty) EmptyState(wave26Text(context, 'artist.tracks'), wave26Text(context, 'artist.empty')),
+        if (tracks.isNotEmpty) ...[
+          const SizedBox(height: 26),
+          Text(wave26Text(context, 'artist.tracks'), style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w800)),
+          const SizedBox(height: 10),
+          for (final track in tracks) TrackRow(controller: c, track: track, queue: tracks, onMore: () => parityTrackActions(context, c, track)),
+        ],
+        if (albums.isNotEmpty) ...[
+          const SizedBox(height: 28), Text(wave26Text(context, 'artist.albums'), style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w800)),
+          for (final album in albums) ListTile(contentPadding: EdgeInsets.zero, leading: Artwork(controller: c, url: album['artwork']?.toString(), size: 48, radius: 8), title: Text(album['name']?.toString() ?? ''), trailing: const Icon(Icons.chevron_right_rounded), onTap: () => openAlbum(album)),
+        ],
+        if (objects(data['playlists']).isNotEmpty) ...[
+          const SizedBox(height: 28), Text(wave26Text(context, 'artist.playlists'), style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w800)),
+          for (final playlist in objects(data['playlists'])) ListTile(contentPadding: EdgeInsets.zero, leading: Artwork(controller: c, url: playlist['artwork']?.toString(), size: 48, radius: 8), title: Text(playlist['name']?.toString() ?? ''), trailing: const Icon(Icons.chevron_right_rounded), onTap: () => openDiscoveryPlaylist(context, c, playlist)),
+        ],
+      ]),
+    );
+  }
 }
 
 Future<void> openPublicProfile(

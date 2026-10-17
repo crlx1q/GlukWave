@@ -9,6 +9,7 @@ import { advancedSettingsChange } from './parity-model';
 import { resetDiagnostics } from './diagnostics';
 import { applyAppearance, mergeSettings, mergeSettingsPatches, normalizeSettings, normalizeSettingsPatch, readLocalSettings, readPendingSettings, writeLocalSettings, writeConfirmedSettings, writePendingSettings } from './preferences';
 import { clearPrivate, getCacheGeneration, readLibrary, saveLibrary } from './cache';
+import {setMetadataAccount} from './metadata-cache';
 import { type Config, type Library, type Playlist, type Settings, type SettingsPatch, type Track, type User } from './types';
 export type Route = 'home'|'search'|'library'|'sources'|'rooms'|'lofi'|'downloads'|'settings'|'profile'|'admin';
 type SettingsSnapshot = {settings:Settings & {revision?:number};revision?:number};
@@ -33,7 +34,7 @@ export function StoreProvider({children}:{children:ReactNode}) {useLocale();
   const startupAccount=useRef(startupAccountId(preferenceStorage()));
   const [coverAccent,setCoverAccent]=useState<string|null>(null);
   const [user,setUserState]=useState<User|null>(null), [config,setConfig]=useState<Config|null>(null), [library,setLibrary]=useState<Library>(emptyLibrary), [settings,setSettings]=useState<Settings>(()=>readLocalSettings(startupAccount.current));
-  const [libraryOwner,setLibraryOwner]=useState<string|null>(null),[libraryPending,setLibraryPending]=useState(false),libraryFlight=useRef(0);
+  const [libraryOwner,setLibraryOwner]=useState<string|null>(null),[libraryPending,setLibraryPending]=useState(false),libraryFlight=useRef(0),libraryJob=useRef<{id:string;job:Promise<void>}|null>(null),hydratedLibrary=useRef<string|null>(null);
   const [librarySaving,setLibrarySaving]=useState<string[]>([]);
   const edits=useRef<LibraryEdits|null>(null);
   if(!edits.current)edits.current=new LibraryEdits(emptyLibrary,(value,saving)=>{setLibrary(value);setLibrarySaving(saving);});
@@ -42,34 +43,46 @@ export function StoreProvider({children}:{children:ReactNode}) {useLocale();
   const settingsRef=useRef(settings),settingsFrame=useRef<number|null>(null),presentHeldPalette=useRef(()=>{});
   const settingsHolds=useRef(0);
   const settingsServer=useRef(settings),pendingSettings=useRef<SettingsPatch>({}),serverRevision=useRef(-1),accountGeneration=useRef(0),settingsTimer=useRef<ReturnType<typeof setTimeout>|undefined>(undefined),settingsFlight=useRef<{userId:string;generation:number;controller:AbortController;partial:SettingsPatch}|null>(null),flushSettingsRef=useRef<(id:string)=>Promise<void>>(async()=>{});
-  const userRef=useRef(user);userRef.current=user;const toastTimer=useRef<ReturnType<typeof setTimeout>|undefined>(undefined);
+  const userRef=useRef(user),authEpoch=useRef(0);userRef.current=user;const toastTimer=useRef<ReturnType<typeof setTimeout>|undefined>(undefined);
   const notify=useCallback((text:string,error=false)=>{clearTimeout(toastTimer.current);setToast({id:Date.now(),text,error});toastTimer.current=setTimeout(()=>setToast(null),6500);},[]);
   useEffect(()=>()=>clearTimeout(toastTimer.current),[]);
-  const setUser=useCallback((next:User|null)=>{if(userRef.current?.id!==next?.id){resetDiagnostics();edits.current!.reset(next?.id||null,emptyLibrary);}userRef.current=next;setRequestAccount(next?.id||null);setUserState(next);if(next)localStorage.setItem('gw-user',JSON.stringify(next));else localStorage.removeItem('gw-user');},[]);
+  const commitUser=useCallback((next:User|null)=>{if(userRef.current?.id!==next?.id){resetDiagnostics();hydratedLibrary.current=null;edits.current!.reset(next?.id||null,emptyLibrary);}userRef.current=next;setRequestAccount(next?.id||null);setMetadataAccount(next?.id||null);setUserState(next);if(next)localStorage.setItem('gw-user',JSON.stringify(next));else localStorage.removeItem('gw-user');},[]);
+  const setUser=useCallback((next:User|null)=>{authEpoch.current++;commitUser(next);},[commitUser]);
   const navigate=useCallback((next:Route)=>{location.hash=next;setRoute(next);window.scrollTo({top:0,behavior:'instant'});},[]);
-  const refreshLibrary=useCallback(async()=>{
-    if(!user){setLibraryPending(false);setLibraryOwner(null);return;}
-    const flight=++libraryFlight.current,revision=edits.current!.revision;setLibraryPending(true);
-    try {const generation=await getCacheGeneration(user.id);const fresh=await api<Library>('/library');if(userRef.current?.id!==user.id||flight!==libraryFlight.current)return;if(edits.current!.snapshot(fresh,revision))await saveLibrary(user.id,edits.current!.confirmed,generation);setLibraryOwner(user.id);setOffline(false);}
-    catch(error){if(userRef.current?.id!==user.id)return;const saved=await readLibrary(user.id);if(saved){edits.current!.snapshot(saved,revision);setOffline(true);}else throw error;}
-    finally{if(userRef.current?.id===user.id&&flight===libraryFlight.current){setLibraryPending(false);setLibraryOwner(user.id);}}
-  },[user]);
+  const refreshLibrary=useCallback(()=>{
+    const id=userRef.current?.id;if(!id){setLibraryPending(false);setLibraryOwner(null);return Promise.resolve();}
+    if(libraryJob.current?.id===id)return libraryJob.current.job;
+    const job=(async()=>{
+      const flight=++libraryFlight.current,revision=edits.current!.revision;setLibraryPending(true);
+      try {
+        if(hydratedLibrary.current!==id){const saved=await readLibrary(id).catch(()=>undefined);if(userRef.current?.id!==id||flight!==libraryFlight.current)return;if(saved)edits.current!.snapshot(saved,revision);hydratedLibrary.current=id;setLibraryOwner(id);}
+        const generation=await getCacheGeneration(id),fresh=await api<Library>('/library',{signal:AbortSignal.timeout(15000)});
+        if(userRef.current?.id!==id||flight!==libraryFlight.current)return;
+        if(edits.current!.snapshot(fresh,revision))await saveLibrary(id,edits.current!.confirmed,generation);setLibraryOwner(id);setOffline(false);
+      } catch(error){if(userRef.current?.id!==id)return;setOffline(!navigator.onLine||error instanceof ApiError&&(error.code==='NETWORK'||(error.status||0)>=500));if(!edits.current!.confirmed.tracks.length)throw error;}
+      finally {if(userRef.current?.id===id&&flight===libraryFlight.current){setLibraryPending(false);setLibraryOwner(id);}}
+    })();
+    libraryJob.current={id,job};void job.then(()=>{if(libraryJob.current?.job===job)libraryJob.current=null;},()=>{if(libraryJob.current?.job===job)libraryJob.current=null;});return job;
+  },[]);
   const refresh=useCallback(async()=>{
-    const result=await api<{user:User|null}>('/auth/me');setUser(result.user);
-  },[setUser]);
+    const epoch=authEpoch.current,result=await api<{user:User|null}>('/auth/me',{signal:AbortSignal.timeout(10000)});if(epoch!==authEpoch.current)throw new DOMException('Authentication changed','AbortError');commitUser(result.user);setOffline(false);
+  },[commitUser]);
   useEffect(()=>{
-    let cancelled=false;
-    Promise.allSettled([api<Config>('/config'),api<{user:User|null}>('/auth/me')]).then(async results=>{
-      if(cancelled)return;
-      if(results[0].status==='fulfilled')setConfig(results[0].value);
-      if(results[1].status==='fulfilled'){setUser(results[1].value.user);setOffline(false);}
-      else {setOffline(true);try {const previous=JSON.parse(localStorage.getItem('gw-user')||'null') as User|null;if(previous){userRef.current=previous;setUserState(previous);edits.current!.reset(previous.id,await readLibrary(previous.id)||emptyLibrary);}}catch{/* Invalid local metadata is discarded. */}}
-      setLoading(false);
-    });
-    const handleHash=()=>setRoute(initialRoute()); const online=()=>{setOffline(!navigator.onLine);if(navigator.onLine)void refresh().catch(()=>setOffline(true));};
+    let cancelled=false,verified=false;const epoch=authEpoch.current;
+    const hydration=(async()=>{try {const previous=JSON.parse(localStorage.getItem('gw-user')||'null') as User|null;if(!previous?.id)return;const saved=await readLibrary(previous.id);if(cancelled||verified||epoch!==authEpoch.current)return;commitUser(previous);if(saved){edits.current!.reset(previous.id,saved);hydratedLibrary.current=previous.id;setLibraryOwner(previous.id);}setLoading(false);}catch{/* Invalid optional local metadata is discarded. */}})();
+    void api<Config>('/config',{signal:AbortSignal.timeout(10000)}).then(value=>{if(!cancelled)setConfig(value);}).catch(()=>{});
+    void api<{user:User|null}>('/auth/me',{signal:AbortSignal.timeout(10000)}).then(result=>{if(cancelled||epoch!==authEpoch.current)return;verified=true;commitUser(result.user);setOffline(false);setLoading(false);}).catch(()=>{void hydration.then(()=>{if(!cancelled&&epoch===authEpoch.current){setOffline(true);setLoading(false);}});});
+    const handleHash=()=>setRoute(initialRoute()); const online=()=>{const epoch=authEpoch.current;if(navigator.onLine)void refresh().catch(()=>{if(epoch===authEpoch.current)setOffline(true);});else setOffline(true);};
     window.addEventListener('hashchange',handleHash);window.addEventListener('online',online);window.addEventListener('offline',online);
     return()=>{cancelled=true;window.removeEventListener('hashchange',handleHash);window.removeEventListener('online',online);window.removeEventListener('offline',online);};
-  },[refresh,setUser]);
+  },[refresh,commitUser]);
+  useEffect(()=>{
+    if(!offline)return;let cancelled=false,timer:ReturnType<typeof setTimeout>|undefined,attempt=0;const epoch=authEpoch.current;
+    const schedule=()=>{clearTimeout(timer);if(cancelled||document.hidden)return;const delays=[2000,5000,10000,20000,40000,60000];timer=setTimeout(()=>void check(),delays[Math.min(attempt,delays.length-1)]);};
+    const check=async()=>{if(cancelled||document.hidden||epoch!==authEpoch.current)return;try{await refresh();if(!cancelled&&epoch===authEpoch.current)void api<Config>('/config',{signal:AbortSignal.timeout(10000)}).then(setConfig).catch(()=>{});}catch{if(epoch!==authEpoch.current)return;attempt++;schedule();}};
+    const visible=()=>{if(document.hidden)clearTimeout(timer);else void check();};schedule();document.addEventListener('visibilitychange',visible);
+    return()=>{cancelled=true;clearTimeout(timer);document.removeEventListener('visibilitychange',visible);};
+  },[offline,refresh,user?.id]);
   useEffect(()=>{if(user)void refreshLibrary().catch(error=>notify(errorText(error),true));else setLibrary(emptyLibrary);},[user,refreshLibrary,notify]);
   const scheduleSettings=useCallback((id:string,delay=550)=>{clearTimeout(settingsTimer.current);if(settingsHolds.current)return;settingsTimer.current=setTimeout(()=>void flushSettingsRef.current(id),delay);},[]);
   // Keep the accepted server snapshot separate from edits that have not been acknowledged.
@@ -98,10 +111,10 @@ export function StoreProvider({children}:{children:ReactNode}) {useLocale();
   const bindSettingsSync=useCallback((socket:Socket)=>{
     const id=userRef.current?.id,generation=accountGeneration.current,controller=new AbortController();if(!id)return()=>{};
     const changed=(payload:SettingsSnapshot)=>acceptSettings(id,generation,payload);
-    const connected=()=>void pullSettings(id,generation,controller.signal).catch(()=>{});
+    const connected=()=>{void pullSettings(id,generation,controller.signal).catch(()=>{});void refreshLibrary().catch(()=>{});};
     socket.on('settings:changed',changed);socket.on('connect',connected);if(socket.connected)connected();
     return()=>{controller.abort();socket.off('settings:changed',changed);socket.off('connect',connected);};
-  },[acceptSettings,pullSettings]);
+  },[acceptSettings,pullSettings,refreshLibrary]);
   flushSettingsRef.current=async(id:string)=>{
     if(settingsHolds.current||userRef.current?.id!==id||!Object.keys(pendingSettings.current).length)return;
     if(!navigator.onLine){setSettingsSync('local');return;}

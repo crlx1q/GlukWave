@@ -86,9 +86,7 @@ void main() {
     await tester.ensureVisible(settings);
     await tester.tap(settings);
     await settle(tester);
-    await tester.ensureVisible(find.byKey(const Key('settings-playback')));
-    await tester.tap(find.byKey(const Key('settings-playback')));
-    await settle(tester);
+    await base.selectSettingsCategory(tester, 'playback', 'Воспроизведение');
     final heading = find.byKey(const Key('energy-heading'));
     expect(tester.widget<Text>(heading).data, 'Экономия заряда');
     final paragraph = tester.renderObject<RenderParagraph>(heading);

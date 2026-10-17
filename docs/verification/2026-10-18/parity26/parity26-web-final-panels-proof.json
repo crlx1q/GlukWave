@@ -1,0 +1,63 @@
+{
+  "passed": true,
+  "records": [
+    {
+      "scope": "artist",
+      "width": 375,
+      "bounds": {
+        "bottom": 900,
+        "height": 824,
+        "left": 0,
+        "right": 375,
+        "top": 76,
+        "width": 375,
+        "x": 0,
+        "y": 76
+      },
+      "preservedQuery": "Original"
+    },
+    {
+      "scope": "artist",
+      "width": 1440,
+      "bounds": {
+        "bottom": 900,
+        "height": 818,
+        "left": 88,
+        "right": 1440,
+        "top": 82,
+        "width": 1352,
+        "x": 88,
+        "y": 82
+      },
+      "preservedQuery": "Original"
+    },
+    {
+      "scope": "auth",
+      "width": 1440,
+      "fields": 2
+    },
+    {
+      "scope": "auth",
+      "width": 375,
+      "fields": 2
+    },
+    {
+      "scope": "auth",
+      "width": 320,
+      "fields": 2
+    },
+    {
+      "scope": "topNotice",
+      "rect": {
+        "bottom": 122,
+        "height": 112,
+        "left": 16,
+        "right": 304,
+        "top": 10,
+        "width": 288,
+        "x": 16,
+        "y": 10
+      }
+    }
+  ]
+}

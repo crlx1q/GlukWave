@@ -7,6 +7,7 @@ import {config as defaults} from '../src/config.js';
 import {createApp} from '../src/app.js';
 import {normalizeSoundcloud} from '../src/providers.js';
 import {createLyricsProvider,lyricsMetadata} from '../src/lrclib.js';
+import {providerSearchCache} from '../src/search-cache.js';
 
 test('Search finds artist, genre and personal lyric words without leaking them',async()=>{
  const dir=await fs.mkdtemp(path.join(defaults.root,'work/qa/search-'));
@@ -17,6 +18,7 @@ test('Search finds artist, genre and personal lyric words without leaking them',
  try{
    const owner=await request('/auth/register',{email:'search@example.test',username:'search_owner',password:'long-search-password'});
    const track=normalizeSoundcloud({id:443,title:'Moonlight',genre:'Ambient',tag_list:'"deep house" chill',user:{id:15,username:'Élan',avatar_url:'https://example.test/avatar.png'},permalink_url:'https://soundcloud.com/elan/moonlight'});
+   track.album='Actual session';
    await service.ctx.persistTracks([track]);
    const artist=await request('/search?q=elan');assert.equal(artist.artists[0].name,'Élan');assert.deepEqual(artist.artists[0].trackIds,[track.id]);
    assert.equal((await request('/search?q=ambient')).tracks[0].id,track.id);
@@ -28,10 +30,23 @@ test('Search finds artist, genre and personal lyric words without leaking them',
    const pub=await request('/playlists',{name:'Moonlight collection',trackIds:[track.id],public:true},owner.token);
    const own=await request('/playlists',{name:'Moonlight private',trackIds:[track.id],public:false},owner.token);
    const publicResults=await request('/search?q=moonlight');assert(publicResults.playlists.some(p=>p.id===pub.playlist.id));assert(!publicResults.playlists.some(p=>p.id===own.playlist.id));
+   const artistProfile=await request('/artists/'+artist.artists[0].id);
+   assert.equal(artistProfile.artist.name,'Élan');assert.equal(artistProfile.tracks[0].id,track.id);assert.equal(artistProfile.albums[0].name,'Actual session');
+   assert(artistProfile.playlists.some(p=>p.id===pub.playlist.id));assert(!artistProfile.playlists.some(p=>p.id===own.playlist.id));
+   assert((await request('/artists/'+artist.artists[0].id,null,owner.token)).playlists.some(p=>p.id===own.playlist.id));
    const personal=await request('/search?q=moonlight',null,owner.token);assert(personal.playlists.some(p=>p.id===own.playlist.id));
    await service.ctx.store.put('playlists','invalid-public',{...pub.playlist,id:'invalid-public',trackIds:['missing-private-track']});
    assert(!(await request('/search?q=moonlight',null,owner.token)).playlists.some(p=>p.id==='invalid-public'));
    const challenge=await request('/auth/native',{method:'email'});assert.equal(typeof challenge.expiresAt,'number');
+   // Exercise partial HTTP output and the subsequent full request against one
+   // coalesced provider lookup; local permission filtering still runs per request.
+   const lookup=providerSearchCache();let finishSlow,providerReads=0;
+   service.ctx.providerConfiguration=()=>[{id:'soundcloud',searchAvailable:true},{id:'youtube',searchAvailable:true}];
+   service.ctx.cachedSearchProvider=(provider,q,uid)=>lookup(JSON.stringify([provider,q,uid]),async()=>{providerReads++;if(provider==='youtube')await new Promise(resolve=>finishSlow=resolve);return [{...track,id:provider+'-fast26',source:provider,sourceUrl:provider==='youtube'?'https://www.youtube.com/watch?v=fast26':'https://soundcloud.com/elan/fast26',title:'Fast partial fixture'}];});
+   const partial=await request('/search?q=fast%20partial&fast=1');
+   assert.deepEqual(partial.pendingProviders,['youtube']);assert(partial.tracks.some(track=>track.id==='soundcloud-fast26'));assert.equal(partial.errors.length,0);
+   const complete=request('/search?q=fast%20partial');finishSlow();const full=await complete;
+   assert.deepEqual(full.pendingProviders,[]);assert(full.tracks.some(track=>track.id==='youtube-fast26'));assert.equal(providerReads,2);
  }finally{await service.close();await fs.rm(dir,{recursive:true,force:true,maxRetries:5,retryDelay:100});}
 });
 

@@ -1316,5 +1316,17 @@
   "wave18.editTaste": "Талғамды өзгерту",
   "wave18.tasteCaption": "Сүйікті орындаушылар мен жанрлар. Толқын сені тани түседі.",
   "lyrics.intro": "Кіріспе",
-  "focusedPlayer.wave": "Толқын"
+  "focusedPlayer.wave": "Толқын",
+  "v26.settings.search": "Параметрді табу",
+  "v26.settings.noResults": "Сәйкес бөлімдер жоқ",
+  "v26.artist.source": "Түпнұсқа профильді ашу",
+  "v26.artist.empty": "Бұл платформада әзірге қолжетімді тректер жоқ.",
+  "v26.artist.playAll": "Барлығын тыңдау",
+  "v26.artist.shuffle": "Араластыру",
+  "v26.artist.albums": "Альбомдар",
+  "v26.artist.playlists": "Ашық плейлистер",
+  "v26.artist.tracks": "Тректер",
+  "auth.showPassword": "Құпиясөзді көрсету",
+  "auth.hidePassword": "Құпиясөзді жасыру",
+  "v26.settings.cacheNote": "Автокеш жақында тыңдалған тректердің шектеулі санын сақтайды. Офлайн тыңдау үшін тректі бөлек сақтаңыз."
 }

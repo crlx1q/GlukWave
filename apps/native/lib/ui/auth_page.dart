@@ -5,6 +5,7 @@ import '../core/models.dart';
 import '../l10n/wave_localizations.dart';
 import 'appearance_panel.dart';
 import 'auth_visuals.dart';
+import 'halftone_room.dart';
 import 'lofi.dart';
 import 'widgets.dart';
 
@@ -513,71 +514,46 @@ class _AuthPageState extends State<AuthPage> {
             ),
         ],
       ),
-      body: SafeArea(
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            final desktop = constraints.maxWidth >= 900;
-            return Center(
-              child: SingleChildScrollView(
-                padding: EdgeInsets.fromLTRB(
-                  desktop ? 48 : 24,
-                  desktop ? 38 : 12,
-                  desktop ? 48 : 24,
-                  20,
-                ),
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 1040),
-                  child: Row(
-                    children: [
-                      if (desktop)
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.only(right: 80),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Brand(size: 43, animated: true),
-                                const SizedBox(height: 43),
-                                Text(
-                                  wt('native.fc7b54ff4d', context: context),
-                                  style: const TextStyle(
-                                    fontSize: 49,
-                                    letterSpacing: -2,
-                                    height: 1.1,
-                                    fontWeight: FontWeight.w800,
-                                  ),
-                                ),
-                                const SizedBox(height: 23),
-                                Text(
-                                  wt('native.a889d29336', context: context),
-                                  style: TextStyle(
-                                    color: v.muted,
-                                    fontSize: 15,
-                                    height: 1.85,
-                                  ),
-                                ),
-                                const SizedBox(height: 24),
-                                const AuthAmbientWave(),
-                              ],
-                            ),
-                          ),
-                        ),
-                      Expanded(
-                        child: Center(
-                          child: ConstrainedBox(
-                            constraints: const BoxConstraints(maxWidth: 390),
-                            child: formContent(desktop),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+      body: Stack(children: [
+        const Positioned.fill(child: HalftoneRoom()),
+        SafeArea(child: LayoutBuilder(builder: (context, constraints) {
+          final desktop = constraints.maxWidth >= 900;
+          return Center(child: SingleChildScrollView(
+            padding: EdgeInsets.fromLTRB(desktop ? 48 : 18, 24, desktop ? 48 : 18, 32),
+            child: ConstrainedBox(constraints: const BoxConstraints(maxWidth: 1080), child: Row(children: [
+              // Keep the form in the same Row slot across the 900px breakpoint.
+              // Only this decorative sibling changes its width/contents.
+              SizedBox(width: desktop ? (constraints.maxWidth - 96).clamp(0, 1080) * .52 : 0,
+                child: desktop ? Padding(padding: const EdgeInsets.only(right: 64), child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    const Brand(size: 43, animated: true),
+                    const SizedBox(height: 44),
+                    Text(wt('native.fc7b54ff4d', context: context), style: const TextStyle(fontSize: 48, letterSpacing: -2, height: 1.1, fontWeight: FontWeight.w800)),
+                    const SizedBox(height: 22),
+                    Text(wt('native.a889d29336', context: context), style: TextStyle(color: v.muted, fontSize: 15, height: 1.85)),
+                    const SizedBox(height: 70),
+                    Text('GLUKWAVE  /  ON YOUR WAVELENGTH', style: TextStyle(color: v.muted, fontSize: 9, letterSpacing: 2)),
+                  ])) : null,
               ),
-            );
-          },
-        ),
-      ),
+              Expanded(child: Center(child: ConstrainedBox(constraints: const BoxConstraints(maxWidth: 420), child: DecoratedBox(
+                decoration: BoxDecoration(color: v.surface.withValues(alpha: .96), border: Border.all(color: v.line), borderRadius: BorderRadius.circular(14)),
+                child: Padding(padding: EdgeInsets.all(desktop ? 28 : 22), child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                  DropdownButtonFormField<String>(
+                    key: const Key('auth-language'),
+                    isExpanded: true,
+                    initialValue: c.customization.language,
+                    decoration: InputDecoration(labelText: wt('language.title', context: context), prefixIcon: const Icon(Icons.language_rounded, size: 18)),
+                    items: [DropdownMenuItem(value: 'auto', child: Text(wt('language.auto', context: context))), for (final item in languageNames.entries) DropdownMenuItem(value: item.key, child: Text(item.value, maxLines: 1, overflow: TextOverflow.ellipsis))],
+                    onChanged: (value) { if (value != null) c.customize({'language': value}); },
+                  ),
+                  const SizedBox(height: 26),
+                  formContent(desktop),
+                ])),
+              )))),
+            ])),
+          ));
+        })),
+      ]),
     );
   }
 }

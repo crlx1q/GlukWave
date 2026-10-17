@@ -26,8 +26,26 @@ class _NativeDiscoveryShelfState extends State<NativeDiscoveryShelf> {
   bool requested = false, busy = false;
   String? error;
   List<WaveTrack> tracks = [];
+  late bool wasOnline;
   late final account = widget.controller.user?.id,
       origin = widget.controller.api.server;
+  Map<String,dynamic> get query => {'mode': widget.mode, 'mood': 'personal', 'limit': 8};
+  @override
+  void initState() {
+    super.initState();
+    wasOnline = widget.controller.online;
+    widget.controller.addListener(connectionChanged);
+    final data = widget.controller.api.peekMetadata('/api/recommendations', query: query);
+    if (data != null) tracks = objects(data['tracks']).map(WaveTrack.new).toList();
+  }
+  void connectionChanged() {
+    final online = widget.controller.online;
+    if (!wasOnline && online) {
+      requested = false;
+      WidgetsBinding.instance.addPostFrameCallback((_) { if (mounted) check(); });
+    }
+    wasOnline = online;
+  }
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -43,7 +61,7 @@ class _NativeDiscoveryShelfState extends State<NativeDiscoveryShelf> {
   }
 
   void check() {
-    if (requested || !mounted || !widget.controller.online) return;
+    if (requested || !mounted) return;
     final box = context.findRenderObject();
     if (box is! RenderBox || !box.hasSize) return;
     final y = box.localToGlobal(Offset.zero).dy;
@@ -56,13 +74,13 @@ class _NativeDiscoveryShelfState extends State<NativeDiscoveryShelf> {
 
   Future<void> load() async {
     setState(() {
-      busy = true;
+      busy = tracks.isEmpty;
       error = null;
     });
     try {
-      final data = await widget.controller.api.call(
+      final data = await widget.controller.api.cachedCall(
         '/api/recommendations',
-        query: {'mode': widget.mode, 'mood': 'personal', 'limit': 8},
+        query: query,
       );
       if (mounted &&
           account == widget.controller.user?.id &&
@@ -80,6 +98,7 @@ class _NativeDiscoveryShelfState extends State<NativeDiscoveryShelf> {
 
   @override
   void dispose() {
+    widget.controller.removeListener(connectionChanged);
     scroll?.removeListener(check);
     super.dispose();
   }

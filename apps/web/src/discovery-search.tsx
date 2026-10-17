@@ -9,7 +9,7 @@ import { useStore } from './store';
 import { Empty, Heading, IconButton, TrackList, TrackSkeleton } from './ui';
 import { sourceNames, trackCount, type Playlist, type Source, type Track } from './types';
 
-type SearchResult = { tracks:Track[];artists?:SearchArtist[];playlists?:Playlist[];suggestion?:string|null;errors?:{provider?:string;message?:string;reason?:string}[] };
+type SearchResult = { pendingProviders?:string[];tracks:Track[];artists?:SearchArtist[];playlists?:Playlist[];suggestion?:string|null;errors?:{provider?:string;message?:string;reason?:string}[] };
 type ResultKind='all'|'tracks'|'artists'|'playlists';
 const kinds=[['all',Layers3],['tracks',Music2],['artists',UserRound],['playlists',ListMusic]] as const;
 const sources=['all','local','soundcloud','spotify','yandex','youtube'] as const;
@@ -23,7 +23,19 @@ function SourceMenu(){
 
 export function DiscoverySearchPage(){
  useLocale();const store=useStore(),query=store.query.trim(),[result,setResult]=useState<SearchResult>({tracks:[]}),[loading,setLoading]=useState(false),[error,setError]=useState(''),[kind,setKind]=useState<ResultKind>('all'),[artist,setArtist]=useState<SearchArtist|null>(null),[playlist,setPlaylist]=useState<Playlist|null>(null);
- useEffect(()=>{setResult({tracks:[]});setError('');if(!query){setLoading(false);return;}const controller=new AbortController();setLoading(true);const timer=setTimeout(()=>{const request=/^https?:\/\//.test(query)?api<{track:Track}>('/tracks/resolve',{method:'POST',body:JSON.stringify({url:query}),signal:controller.signal}).then(value=>({tracks:[value.track]} as SearchResult)):api<SearchResult>(`/search?q=${encodeURIComponent(query)}&source=${encodeURIComponent(store.source)}`,{signal:controller.signal});void request.then(value=>{if(controller.signal.aborted)return;setResult(value);store.remember(value.tracks);}).catch(reason=>{if(!controller.signal.aborted)setError(errorText(reason));}).finally(()=>{if(!controller.signal.aborted)setLoading(false);});},300);return()=>{clearTimeout(timer);controller.abort();};},[query,store.source,store.remember]);
+ useEffect(()=>{
+  setResult({tracks:[]});setError('');if(!query){setLoading(false);return;}
+  const controller=new AbortController(),base=`/search?q=${encodeURIComponent(query)}&source=${encodeURIComponent(store.source)}`;
+  setLoading(true);
+  const timer=setTimeout(()=>{
+   const direct=/^https?:\/\//.test(query),request=direct?api<{track:Track}>('/tracks/resolve',{method:'POST',body:JSON.stringify({url:query}),signal:controller.signal}).then(value=>({tracks:[value.track]} as SearchResult)):api<SearchResult>(base+'&fast=1',{signal:controller.signal});
+   void request.then(value=>{
+    if(controller.signal.aborted)return;setResult(value);store.remember(value.tracks);setLoading(false);
+    if(!direct&&value.pendingProviders?.length)void api<SearchResult>(base,{signal:controller.signal}).then(complete=>{if(controller.signal.aborted)return;setResult(complete);store.remember(complete.tracks);}).catch(()=>{/* Keep useful first results through an optional provider outage. */});
+   }).catch(reason=>{if(!controller.signal.aborted)setError(errorText(reason));}).finally(()=>{if(!controller.signal.aborted)setLoading(false);});
+  },300);
+  return()=>{clearTimeout(timer);controller.abort();};
+ },[query,store.source,store.remember,store.user?.id]);
  const artists=result.artists||[],playlists=result.playlists||[],hasResults=!!(result.tracks.length||artists.length||playlists.length),visible=(which:ResultKind)=>kind==='all'||kind===which;
  return <section className={`view discovery-search-view ${query?'has-query':''}`}><Heading eyebrow={t('copy.496')} title={query?t('polish.search.results'):t('copy.497')} description={query?undefined:t('copy.498')}/>
   <form className="page-search discovery-query" onSubmit={event=>event.preventDefault()}><Search size={20}/><input type="search" value={store.query} onChange={event=>store.setQuery(event.target.value)} aria-label={t('copy.499')} placeholder={t('copy.500')}/>{query&&<IconButton title={t('copy.501')} onClick={()=>store.setQuery('')}><X size={18}/></IconButton>}</form>

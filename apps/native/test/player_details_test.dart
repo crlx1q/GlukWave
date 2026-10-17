@@ -356,18 +356,18 @@ void main() {
     }
   }
   testWidgets(
-    'Persisted compact EQ highlight survives closing and toggles off with DSP',
+    'Persisted expanded EQ highlight survives closing and toggles off with DSP',
     (tester) async {
       final c = (await tester.runAsync(a.makeController))!;
       await f.viewport(tester, const Size(1280, 850));
       await tester.pumpWidget(
-        liveShell(c, MiniPlayer(controller: c, onOpen: () {})),
+        liveShell(c, PlayerPage(controller: c, onMore: (_) {})),
       );
       await tester.pumpAndSettle();
       IconButton eq() =>
-          tester.widget<IconButton>(find.byKey(const Key('mini-equalizer')));
+          tester.widget<IconButton>(find.byKey(const Key('player-equalizer')));
       expect(eq().isSelected, true);
-      await tester.tap(find.byKey(const Key('mini-equalizer')));
+      await tester.tap(find.byKey(const Key('player-equalizer')));
       await tester.pumpAndSettle();
       await tester.tapAt(const Offset(10, 10));
       await tester.pumpAndSettle();

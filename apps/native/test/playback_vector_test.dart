@@ -282,14 +282,14 @@ void main() {
           () => Future<void>.delayed(const Duration(milliseconds: 150)),
         );
         await tester.pump();
-        expect(clock.duration, const Duration(milliseconds: 1200));
+        expect(clock.duration, const Duration(milliseconds: 900));
         expect(
           clock.watch.elapsedMicroseconds - before,
           greaterThanOrEqualTo(140000),
         );
         expect(
           clock.value,
-          closeTo((clock.watch.elapsedMicroseconds % 1200000) / 1200000, .03),
+          closeTo((clock.watch.elapsedMicroseconds % 900000) / 900000, .03),
         );
         expect(
           tester.getSize(find.byType(WavePlaybackIcon)),
@@ -316,7 +316,7 @@ void main() {
       expect(tester.takeException(), isNull);
       cases.add({
         'name':
-            'Actual elapsed time proves a fixed 1200ms cycle at .5/1/2 appearance speed without size changes',
+            'Actual elapsed time proves a fixed 900ms loading cycle at .5/1/2 appearance speed without size changes',
         'passed': true,
       });
     },

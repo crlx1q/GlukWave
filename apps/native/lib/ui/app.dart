@@ -41,6 +41,8 @@ import 'appearance_panel.dart';
 import 'seasonal.dart';
 import 'auth_visuals.dart';
 import 'auth_page.dart';
+import 'top_notice.dart';
+import '../l10n/glukwave26_strings.dart';
 export 'auth_page.dart' show AuthPage;
 import 'desktop_player.dart';
 import 'connect_panel.dart';
@@ -114,6 +116,9 @@ class GlukWaveApp extends StatefulWidget {
 class _GlukWaveAppState extends State<GlukWaveApp> with WidgetsBindingObserver {
   final messenger = GlobalKey<ScaffoldMessengerState>();
   int _notice = 0;
+  String? _noticeText, _lastNoticeText;
+  DateTime? _noticeAt;
+  Timer? _noticeTimer;
   bool _foreground = true;
   WaveCustomization? _customization;
   ThemeData? _light, _dark;
@@ -180,14 +185,18 @@ class _GlukWaveAppState extends State<GlukWaveApp> with WidgetsBindingObserver {
     final c = widget.controller;
     if (c.noticeRevision == _notice || c.notice == null) return;
     _notice = c.noticeRevision;
+    final text = c.notice!;
+    final now = DateTime.now();
+    if (_lastNoticeText == text && _noticeAt != null && now.difference(_noticeAt!).inSeconds < 3) return;
+    _lastNoticeText = text;
+    _noticeAt = now;
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      messenger.currentState?.hideCurrentSnackBar();
-      messenger.currentState?.showSnackBar(
-        SnackBar(
-          content: Text(c.notice!),
-          duration: const Duration(seconds: 5),
-        ),
-      );
+      if (!mounted) return;
+      _noticeTimer?.cancel();
+      setState(() { _noticeText = text; _noticeAt = now; });
+      _noticeTimer = Timer(Duration(seconds: text.length > 100 ? 7 : 4), () {
+        if (mounted) setState(() => _noticeText = null);
+      });
     });
   }
 
@@ -196,6 +205,7 @@ class _GlukWaveAppState extends State<GlukWaveApp> with WidgetsBindingObserver {
     WidgetsBinding.instance.removeObserver(this);
     widget.controller.removeListener(_changed);
     _coverSampler.dispose();
+    _noticeTimer?.cancel();
     timeDilation = 1;
     super.dispose();
   }
@@ -280,11 +290,17 @@ class _GlukWaveAppState extends State<GlukWaveApp> with WidgetsBindingObserver {
                 c.energySaving ||
                 customization.reducedMotion,
           ),
-          child: TickerMode(enabled: _foreground, child: child!),
+          child: TickerMode(enabled: _foreground, child: Stack(children: [
+            child!,
+            if (_noticeText != null) WaveTopNotice(text: _noticeText!, onClose: () {
+              _noticeTimer?.cancel();
+              setState(() => _noticeText = null);
+            }),
+          ])),
         ),
         home: Builder(
           builder: (context) {
-            if (c.loading && c.user == null) {
+            if (c.restoringLocal || c.loading && c.user == null) {
               return const WaveStartupPage();
             }
             return c.loggedIn
@@ -389,6 +405,8 @@ class _WaveShellState extends State<WaveShell>
   int playerTransition = 0;
   int searchRequest = 0;
   String settingsSection = 'account';
+  final settingsSearch = TextEditingController();
+  String settingsQuery = '';
   late final WaveParity parity = WaveParity(c.api);
   String mood = 'personal', waveMode = 'personal';
   bool waveStarting = false;
@@ -443,6 +461,7 @@ class _WaveShellState extends State<WaveShell>
   @override
   void dispose() {
     search.dispose();
+    settingsSearch.dispose();
     searchFocus.dispose();
     chat.dispose();
     _searchTimer?.cancel();
@@ -637,7 +656,7 @@ class _WaveShellState extends State<WaveShell>
           builder: (context, child) {
             final extent = playerReveal.value;
             final shift =
-                (1 - extent) * MediaQuery.sizeOf(context).height * .22;
+                (1 - extent) * MediaQuery.sizeOf(context).height;
             return Stack(
               children: [
                 ExcludeFocus(
@@ -653,12 +672,12 @@ class _WaveShellState extends State<WaveShell>
                 if (playerVisible) ...[
                   Positioned.fill(
                     child: ColoredBox(
-                      color: Colors.black.withValues(alpha: .22 * extent),
+                      color: Colors.black.withValues(alpha: .5 * extent),
                     ),
                   ),
                   Positioned.fill(
                     child: Opacity(
-                      opacity: extent.clamp(0, 1),
+                      opacity: (extent * 2.5).clamp(0, 1),
                       child: Transform.translate(
                         offset: Offset(0, shift),
                         child: Material(
@@ -735,7 +754,7 @@ class _WaveShellState extends State<WaveShell>
       final rect = artworkRect(fullArtwork);
       if (rect != null) {
         final shift =
-            (1 - playerReveal.value) * MediaQuery.sizeOf(context).height * .22;
+            (1 - playerReveal.value) * MediaQuery.sizeOf(context).height;
         setState(() => coverDestination = rect.translate(0, -shift));
       }
     });
@@ -3423,7 +3442,7 @@ class _WaveShellState extends State<WaveShell>
         child: InkWell(
           key: Key('settings-${item.key}'),
           borderRadius: BorderRadius.circular(v.corners(10)),
-          onTap: () => setState(() => settingsSection = item.key),
+          onTap: () => setState(() { settingsSection = item.key; settingsQuery = ''; settingsSearch.clear(); }),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
             child: Row(
@@ -3456,6 +3475,13 @@ class _WaveShellState extends State<WaveShell>
         ),
       ),
     );
+    final matches = settingsSections.entries.where((item) => '${item.key} ${item.value.$1} ${switch (item.key) {
+      'playback' => 'audio sound volume equalizer EQ lyrics звук громкость эквалайзер текст',
+      'storage' => 'cache offline memory downloads кеш память загрузки',
+      'appearance' => 'theme color animation background язык language тема цвет анимация',
+      'security' => 'sessions password privacy сессии пароль безопасность',
+      _ => '',
+    }}'.toLowerCase().contains(settingsQuery.trim().toLowerCase())).toList();
     final detail = SingleChildScrollView(
       key: ValueKey('settings-detail-$settingsSection'),
       padding: const EdgeInsets.only(bottom: 28),
@@ -3469,16 +3495,18 @@ class _WaveShellState extends State<WaveShell>
           wt('native.413b6b6e1c', context: context),
           eyebrow: wt('native.aff68c53a5', context: context),
         ),
+        TextField(controller: settingsSearch, key: const Key('settings-search'),
+          decoration: InputDecoration(labelText: wave26Text(context, 'settings.search'), prefixIcon: const Icon(Icons.search_rounded, size: 19), suffixIcon: settingsQuery.isEmpty ? null : IconButton(onPressed: () => setState(() { settingsSearch.clear(); settingsQuery = ''; }), icon: const Icon(Icons.close_rounded, size: 18))),
+          onChanged: (value) => setState(() => settingsQuery = value),
+        ),
+        const SizedBox(height: 18),
         if (!desktop) ...[
-          SingleChildScrollView(
-            key: const Key('settings-navigation'),
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                for (final item in settingsSections.entries) link(item),
-              ],
-            ),
-          ),
+          if (settingsQuery.isEmpty) DropdownButtonFormField<String>(
+            key: ValueKey('settings-mobile-$settingsSection'), isExpanded: true, initialValue: settingsSection,
+            decoration: InputDecoration(labelText: wave26Text(context, 'settings.category')),
+            items: [for (final item in settingsSections.entries) DropdownMenuItem(value: item.key, child: Text(item.value.$1, maxLines: 1, overflow: TextOverflow.ellipsis))],
+            onChanged: (value) { if (value != null) setState(() => settingsSection = value); },
+          ) else if (matches.isEmpty) Padding(padding: const EdgeInsets.all(12), child: Text(wave26Text(context, 'settings.noResults'))) else SingleChildScrollView(key: const Key('settings-navigation'), scrollDirection: Axis.horizontal, child: Row(children: [for (final item in matches) link(item)])),
           const SizedBox(height: 20),
         ],
         Expanded(
@@ -3490,8 +3518,8 @@ class _WaveShellState extends State<WaveShell>
                       width: 180,
                       child: ListView(
                         children: [
-                          for (final item in settingsSections.entries)
-                            link(item),
+                          if (matches.isEmpty) Text(wave26Text(context, 'settings.noResults')),
+                          for (final item in matches) link(item),
                         ],
                       ),
                     ),
@@ -3741,7 +3769,7 @@ class _WaveShellState extends State<WaveShell>
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  wt('native.92818e37d4', context: context),
+                  wave26Text(context, 'settings.cacheNote'),
                   style: TextStyle(color: v.muted, fontSize: 11, height: 1.6),
                 ),
               ],

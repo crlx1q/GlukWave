@@ -170,7 +170,7 @@ void main() {
     await f.clean(tester, c);
   });
   testWidgets(
-    'Phone mini player is 68px with 44px touch targets and vector brand',
+    'Phone mini player is 60px with 44px touch targets and vector brand',
     (tester) async {
       final c = (await tester.runAsync(audio.makeController))!;
       await f.viewport(tester, const Size(390, 844));
@@ -188,7 +188,7 @@ void main() {
         ),
       );
       await tester.pumpAndSettle();
-      expect(tester.getSize(find.byType(MiniPlayer)).height, 68);
+      expect(tester.getSize(find.byType(MiniPlayer)).height, 60);
       expect(
         tester.getSize(find.byKey(const Key('mini-like'))).height,
         greaterThanOrEqualTo(44),
@@ -348,7 +348,7 @@ void main() {
       );
       await tester.pumpWidget(scene());
       await settle(tester);
-      expect(tester.getSize(find.byType(NativeDesktopTransport)).height, 96);
+      expect(tester.getSize(find.byType(NativeDesktopTransport)).height, 68);
       (c.api as f.LayoutApi).lyricLines = [
         {'time': 0, 'text': 'Current lyric'},
         {'time': 20, 'text': 'Next lyric'},
@@ -357,14 +357,14 @@ void main() {
       c.render();
       await tester.pumpWidget(scene());
       await settle(tester);
-      expect(tester.getSize(find.byType(NativeDesktopTransport)).height, 96);
+      expect(tester.getSize(find.byType(NativeDesktopTransport)).height, 68);
       expect(find.text('Current lyric'), findsNothing);
       expect(find.byType(MiniLyrics), findsNothing);
       await f.screenshot(tester, 'parity24-bottom-clean');
       c.settings['lyricsUnderCover'] = false;
       await tester.pumpWidget(scene());
       await settle(tester);
-      expect(tester.getSize(find.byType(NativeDesktopTransport)).height, 96);
+      expect(tester.getSize(find.byType(NativeDesktopTransport)).height, 68);
       expect(tester.takeException(), isNull);
       await f.clean(tester, c);
     },

@@ -41,7 +41,9 @@ void main() {
       () => Future<void>.delayed(const Duration(milliseconds: 150)),
     );
     await tester.pump(const Duration(milliseconds: 500));
-    await tester.tap(find.byKey(const Key('mini-equalizer')));
+    await tester.tap(find.byKey(const Key('mini-gesture')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.byKey(const Key('player-equalizer')));
     await tester.pump(const Duration(milliseconds: 500));
     final band = find.byKey(const Key('compact-eq-band-4'));
     final gesture = await tester.startGesture(tester.getCenter(band));

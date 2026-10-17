@@ -26,6 +26,7 @@ import 'connect_picker.dart';
 import 'listening_presence.dart';
 import 'mini_lyrics.dart';
 import 'lyric_timing.dart';
+import 'lyric_tile.dart';
 import '../l10n/ecosystem_polish_strings.dart';
 import 'dart:ui' as ui;
 
@@ -190,7 +191,7 @@ class MiniPlayer extends StatelessWidget {
                   ),
                 SizedBox(
                   height: track != null
-                      ? 68
+                      ? 60
                       : compact || v.compact
                       ? 72
                       : 84,
@@ -646,6 +647,8 @@ class _PlayerPageState extends State<PlayerPage> {
   final comment = TextEditingController();
   final _lyricsScroll = ScrollController();
   final _lyricKeys = <int, GlobalKey>{};
+  int _lyricRevision = 0;
+  double _lyricShift = 0;
   int _lastLyric = -2;
   DateTime _manualLyricsUntil = DateTime(0);
   Timer? _lyricDepthTimer;
@@ -1748,14 +1751,13 @@ class _PlayerPageState extends State<PlayerPage> {
                 if (mounted &&
                     node != null &&
                     DateTime.now().isAfter(_manualLyricsUntil)) {
-                  Scrollable.ensureVisible(
-                    node,
-                    alignment: .5,
-                    duration: waveVisuals(
-                      context,
-                    ).duration((350 / waveVisuals(context).speed).round()),
-                    curve: Curves.easeOutCubic,
-                  );
+                  final before = _lyricsScroll.hasClients ? _lyricsScroll.offset : 0.0;
+                  Scrollable.ensureVisible(node, alignment: .5, duration: Duration.zero);
+                  final after = _lyricsScroll.hasClients ? _lyricsScroll.offset : before;
+                  if (mounted) { setState(() {
+                    _lyricShift = (after - before).clamp(-240.0, 240.0);
+                    _lyricRevision++;
+                  }); }
                 }
               });
             }
@@ -1785,8 +1787,8 @@ class _PlayerPageState extends State<PlayerPage> {
                       ),
                     ),
                   for (var i = 0; i < lyrics.length; i++)
-                    InkWell(
-                      key: _lyricKeys.putIfAbsent(i, () => GlobalKey()),
+                    SizedBox(key: _lyricKeys.putIfAbsent(i, () => GlobalKey()), child: LyricTile(key: ValueKey('lyric-tile-$i'), revision: _lyricRevision, offset: _lyricShift, distance: (active - i).abs(), active: active == i, child: InkWell(
+                      key: ValueKey('lyric-line-$i'),
                       onHover: (clear) => setState(
                         () => clear
                             ? _clearLyricDepth.add(i)
@@ -1865,7 +1867,7 @@ class _PlayerPageState extends State<PlayerPage> {
                           ),
                         ),
                       ),
-                    ),
+                    ))),
                 ],
               ),
             );

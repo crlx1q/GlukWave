@@ -1316,5 +1316,17 @@
   "wave18.editTaste": "Geschmack ändern",
   "wave18.tasteCaption": "Deine Künstler und Genres. Eine Wave, die dich kennenlernt.",
   "lyrics.intro": "Intro",
-  "focusedPlayer.wave": "Welle"
+  "focusedPlayer.wave": "Welle",
+  "v26.settings.search": "Einstellung suchen",
+  "v26.settings.noResults": "Keine passenden Bereiche",
+  "v26.artist.source": "Originalprofil öffnen",
+  "v26.artist.empty": "Auf dieser Plattform sind noch keine Titel verfügbar.",
+  "v26.artist.playAll": "Alle abspielen",
+  "v26.artist.shuffle": "Zufällig",
+  "v26.artist.albums": "Alben",
+  "v26.artist.playlists": "Öffentliche Playlists",
+  "v26.artist.tracks": "Titel",
+  "auth.showPassword": "Passwort anzeigen",
+  "auth.hidePassword": "Passwort verbergen",
+  "v26.settings.cacheNote": "Der automatische Cache enthält eine begrenzte Zahl zuletzt gehörter Titel. Speichere einen Titel ausdrücklich zum Offline-Hören."
 }

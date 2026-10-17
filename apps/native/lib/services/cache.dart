@@ -18,6 +18,7 @@ class MusicCache extends ChangeNotifier {
   final Map<String, Future<void>> _jobs = {};
   final Map<String, CancelToken> _tokens = {};
   final Set<String> _cancelled = {};
+  final Set<String> _prefetchOwned = {}, _manualRequested = {};
   final Map<String, String> failures = {};
   bool ready = false;
   Future<void> _serial = Future.value();
@@ -57,6 +58,22 @@ class MusicCache extends ChangeNotifier {
   void cancel(String id) {
     _cancelled.add(id);
     _tokens[id]?.cancel();
+  }
+
+  void cancelPrefetch(String id) {
+    if (_prefetchOwned.contains(id) && !_manualRequested.contains(id)) {
+      cancel(id);
+    }
+  }
+
+  Future<void> prefetch(WaveTrack track) async {
+    if (_jobs.containsKey(track.id) || contains(track.id)) return;
+    _prefetchOwned.add(track.id);
+    try {
+      await save(track);
+    } finally {
+      _prefetchOwned.remove(track.id);
+    }
   }
 
   String? _sidecar(String id, String key) {
@@ -198,6 +215,7 @@ class MusicCache extends ChangeNotifier {
       return;
     }
     if (_jobs.containsKey(track.id)) {
+      if (manual) _manualRequested.add(track.id);
       await _jobs[track.id];
       if (manual && contains(track.id)) {
         await save(track, manual: true);
@@ -225,6 +243,7 @@ class MusicCache extends ChangeNotifier {
       _jobs.remove(track.id);
       _tokens.remove(track.id);
       progress.remove(track.id);
+      _manualRequested.remove(track.id);
       notifyListeners();
     }
   }

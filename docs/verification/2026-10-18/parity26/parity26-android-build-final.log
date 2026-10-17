@@ -1,0 +1,8 @@
+
+┌─────────────────────────────────────────────────────────┐
+│ A new version of Flutter is available!                  │
+│                                                         │
+│ To update to the latest version, run "flutter upgrade". │
+└─────────────────────────────────────────────────────────┘
+Running Gradle task 'assembleDebug'...                            645,1s
+√ Built build\app\outputs\flutter-apk\app-debug.apk

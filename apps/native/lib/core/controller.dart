@@ -73,12 +73,24 @@ class WaveController extends ChangeNotifier {
   bool get energySaving => energy.saving;
   Future<void> setEnergyMode(String mode) => energy.setMode(mode);
   void setVisualForeground(bool foreground) {
+    _visualForeground = foreground;
+    if (!foreground) {
+      _recoveryTimer?.cancel();
+      _recoveryTimer = null;
+    } else if (_localReady && _needsRecovery) {
+      _scheduleRecovery(immediate: true);
+    }
     energy.foreground(foreground);
     audio.setVisualUpdatesEnabled(foreground);
   }
 
   List<WaveTrack> get savedTracks => cache.savedTracks;
-  bool refreshing = false, _offlinePlayback = false;
+  bool refreshing = false, restoringLocal = false, _offlinePlayback = false;
+  bool _localReady = false, _visualForeground = true;
+  Timer? _recoveryTimer;
+  int _recoveryAttempt = 0;
+  Future<void>? _connectionCheck, _refreshFlight;
+  String? _refreshIdentity, _connectionIdentity;
   bool get localSavedPlayback => _offlinePlayback;
   Future<void> _metadataWrites = Future.value();
   final Map<String, Future<void>> _downloads = {};
@@ -545,6 +557,8 @@ class WaveController extends ChangeNotifier {
   }
 
   Future<void> initialize() async {
+    restoringLocal = true;
+    notifyListeners();
     preferences = await SharedPreferences.getInstance();
     backgroundConnectEnabled = preferences.getBool('backgroundConnect') ?? true;
     await energy.initialize(preferences);
@@ -592,13 +606,20 @@ class WaveController extends ChangeNotifier {
       user = WaveUser(object(value['user']));
     }
     await cache.open(namespace);
+    await api.openMetadata(await cache.supportDirectory(), namespace);
     waveforms.open(cache.directory);
     await _restore();
     _mergeSavedTracks();
     await restoreCustomizationScope();
     _applyLanguage();
+    // Publish one coherent local account/library/theme before any network work.
+    // cache.open can notify while these values are still being restored.
+    restoringLocal = false;
+    loading = false;
+    _localReady = true;
+    notifyListeners();
     unawaited(resolveAutomaticLanguage());
-    await refresh();
+    unawaited(refresh());
     if (Platform.isAndroid) {
       homeWidgets = HomeWidgetBridge(
         onCommand: widgetCommand,
@@ -946,27 +967,56 @@ class WaveController extends ChangeNotifier {
   }
 
   Future<void> refresh() async {
+    final identity = '${api.server}:${api.token}';
+    if (_refreshFlight != null && _refreshIdentity == identity) {
+      return _refreshFlight!;
+    }
+    _refreshIdentity = identity;
+    final flight = _refreshFromServer();
+    _refreshFlight = flight;
+    try {
+      await flight;
+    } finally {
+      if (identical(_refreshFlight, flight)) _refreshFlight = null;
+    }
+  }
+
+  Future<void> _refreshFromServer() async {
     final session = api.token, origin = api.server;
     final localeRequest = _localeRequest;
     var reachedServer = false, verifiedSession = false;
     refreshing = true;
-    loading = !loggedIn && tracks.isEmpty && savedTracks.isEmpty;
+    loading =
+        !_localReady && !loggedIn && tracks.isEmpty && savedTracks.isEmpty;
     error = null;
     notifyListeners();
     try {
-      final serverConfig = await api.call('/api/config');
-      if (session != api.token || origin != api.server) return;
-      config = serverConfig;
-      reachedServer = true;
-      final locale = object(serverConfig['localization'])['language'];
-      if (localeRequest == _localeRequest &&
-          customization.language == 'auto' &&
-          locale is String &&
-          languageNames.containsKey(locale)) {
-        _automaticLanguage = locale;
-        _applyLanguage();
+      bool current() =>
+          !_disposed && session == api.token && origin == api.server;
+      Future<void> optional(Future<void> Function() work) async {
+        try {
+          await work();
+        } catch (_) {
+          /* Optional panels keep their last snapshot. */
+        }
       }
-      online = true;
+
+      final configuration = optional(() async {
+        final serverConfig = await api.call('/api/config');
+        if (!current()) return;
+        config = serverConfig;
+        reachedServer = true;
+        online = true;
+        final locale = object(serverConfig['localization'])['language'];
+        if (localeRequest == _localeRequest &&
+            customization.language == 'auto' &&
+            locale is String &&
+            languageNames.containsKey(locale)) {
+          _automaticLanguage = locale;
+          _applyLanguage();
+        }
+        notifyListeners();
+      });
       if (api.token != null) {
         final current = object((await api.call('/api/auth/me'))['user']);
         if (session != api.token || origin != api.server) return;
@@ -976,30 +1026,60 @@ class WaveController extends ChangeNotifier {
         }
         user = WaveUser(current);
         verifiedSession = true;
+        reachedServer = true;
+        online = true;
         final editRevision = _edits().revision;
-        final data = await api.call('/api/library');
-        if (session != api.token || origin != api.server) return;
-        _acceptLibrarySnapshot(data, editRevision);
-        final serverSettings = await api.call('/api/settings');
-        await _receiveSettings(
-          object(serverSettings['settings']),
-          revision: (serverSettings['revision'] as num?)?.toInt(),
-          expectedToken: session,
-          expectedOrigin: origin,
-        );
-        if (session != api.token || origin != api.server) return;
-        integrations = objects(
-          (await api.call('/api/integrations'))['connections'],
-        );
-        final roomList = await api.call('/api/rooms');
-        _receiveRoomDirectory(roomList);
-        devices = objects((await api.call('/api/devices'))['devices']);
-        await refreshConnect();
+        final library = () async {
+          final data = await api.call('/api/library');
+          if (_disposed || session != api.token || origin != api.server) return;
+          _acceptLibrarySnapshot(data, editRevision);
+          await _persist();
+          notifyListeners();
+        }();
+        final settingsTask = () async {
+          final data = await api.call('/api/settings');
+          await _receiveSettings(
+            object(data['settings']),
+            revision: (data['revision'] as num?)?.toInt(),
+            expectedToken: session,
+            expectedOrigin: origin,
+          );
+        }();
+        await Future.wait([library, settingsTask]);
+        if (_disposed || session != api.token || origin != api.server) return;
         _applySettings();
         await _persist();
         _connectSocket();
-        await refreshDiscord(silent: true);
+        unawaited(
+          Future.wait([
+            optional(() async {
+              final data = await api.call('/api/integrations');
+              if (!_disposed && session == api.token && origin == api.server) {
+                integrations = objects(data['connections']);
+                notifyListeners();
+              }
+            }),
+            optional(() async {
+              final data = await api.call('/api/rooms');
+              if (!_disposed && session == api.token && origin == api.server) {
+                _receiveRoomDirectory(data);
+                notifyListeners();
+              }
+            }),
+            optional(() async {
+              final data = await api.call('/api/devices');
+              if (!_disposed && session == api.token && origin == api.server) {
+                devices = objects(data['devices']);
+                notifyListeners();
+              }
+              if (!_offlinePlayback) await refreshConnect();
+              await refreshDiscord(silent: true);
+            }),
+          ]),
+        );
       }
+      await configuration;
+      if (current() && !reachedServer) online = false;
     } catch (e) {
       if (session != api.token || origin != api.server) return;
       if (e is WaveException && (e.code == 'unauthorized' || e.status == 401)) {
@@ -1012,9 +1092,67 @@ class WaveController extends ChangeNotifier {
         error = e.toString();
       }
     } finally {
-      refreshing = false;
-      loading = false;
-      notifyListeners();
+      if (!_disposed && session == api.token && origin == api.server) {
+        refreshing = false;
+        loading = false;
+        notifyListeners();
+        if (_needsRecovery) _scheduleRecovery();
+      }
+    }
+  }
+
+  void _scheduleRecovery({bool immediate = false}) {
+    if (_disposed ||
+        !_localReady ||
+        !_visualForeground ||
+        !_needsRecovery ||
+        _recoveryTimer != null) {
+      return;
+    }
+    const delays = [2, 5, 10, 20, 40, 60];
+    final seconds = immediate
+        ? 0
+        : delays[_recoveryAttempt.clamp(0, delays.length - 1)];
+    _recoveryTimer = Timer(Duration(seconds: seconds), () {
+      _recoveryTimer = null;
+      unawaited(revalidateConnection());
+    });
+  }
+
+  /// Reconnect metadata without replacing a decoder, queue or local edits.
+  bool get _needsRecovery =>
+      !online || loggedIn && !_offlinePlayback && !connected;
+  Future<void> revalidateConnection() async {
+    if (_disposed) return;
+    final pending = _connectionCheck;
+    final identity = '${api.server}:${api.token}';
+    if (pending != null && _connectionIdentity == identity) return pending;
+    _connectionIdentity = identity;
+    final session = api.token, origin = api.server;
+    final job = () async {
+      try {
+        final data = await api.probe();
+        if (_disposed || session != api.token || origin != api.server) return;
+        config = data;
+        online = true;
+        _recoveryAttempt = connected || !loggedIn || _offlinePlayback
+            ? 0
+            : _recoveryAttempt + 1;
+        if (!_offlinePlayback && socket?.connected == false) socket!.connect();
+        await refresh();
+      } catch (_) {
+        if (_disposed || session != api.token || origin != api.server) return;
+        online = false;
+        _recoveryAttempt++;
+        notifyListeners();
+      }
+    }();
+    _connectionCheck = job;
+    try {
+      await job;
+    } finally {
+      if (identical(_connectionCheck, job)) _connectionCheck = null;
+      if (!_disposed && _needsRecovery) _scheduleRecovery();
     }
   }
 
@@ -1031,6 +1169,7 @@ class WaveController extends ChangeNotifier {
     _applyLanguage();
     await preferences.setString('server', next);
     await cache.open(namespace);
+    await api.openMetadata(await cache.supportDirectory(), namespace);
     waveforms.open(cache.directory);
     unawaited(resolveAutomaticLanguage());
     await refresh();
@@ -1108,6 +1247,7 @@ class WaveController extends ChangeNotifier {
       value: jsonEncode({'token': api.token, 'user': user!.json}),
     );
     await cache.open(namespace);
+    await api.openMetadata(await cache.supportDirectory(), namespace);
     waveforms.open(cache.directory);
     await _restore();
     await appearanceStore?.selectScope(namespace, fallback: settings);
@@ -1266,6 +1406,7 @@ class WaveController extends ChangeNotifier {
     await audio.clear();
     await _metadataWrites.catchError((_) {});
     cache.activeId = null;
+    await api.metadata.clear();
     await cache.clear(includingDownloads: true);
     await waveforms.clear();
     final metadata = File(
@@ -2485,7 +2626,9 @@ class WaveController extends ChangeNotifier {
   }
 
   Future<void> search(String query, {String source = 'all'}) async {
-    final revision = ++_searchRevision;
+    final revision = ++_searchRevision,
+        session = api.token,
+        origin = api.server;
     if (query.trim().isEmpty) {
       results = [];
       artistResults = [];
@@ -2494,20 +2637,46 @@ class WaveController extends ChangeNotifier {
       notifyListeners();
       return;
     }
-    final data = await api.call(
-      '/api/search',
-      query: {'q': query.trim(), 'source': source},
-    );
-    if (revision != _searchRevision) return;
-    results = objects(data['tracks']).map(WaveTrack.new).toList();
-    artistResults = objects(data['artists']);
-    playlistResults = objects(data['playlists']);
-    suggestion = data['suggestion'] as String?;
-    final failures = objects(data['errors']);
-    if (failures.isNotEmpty) {
-      tell(failures.map((e) => e['message'] ?? e['provider']).join(' · '));
+    bool current() =>
+        !_disposed &&
+        revision == _searchRevision &&
+        session == api.token &&
+        origin == api.server;
+    void present(Json data) {
+      if (!current()) return;
+      results = objects(data['tracks']).map(WaveTrack.new).toList();
+      artistResults = objects(data['artists']);
+      playlistResults = objects(data['playlists']);
+      suggestion = data['suggestion'] as String?;
+      final failures = objects(data['errors']);
+      if (failures.isNotEmpty) {
+        tell(failures.map((e) => e['message'] ?? e['provider']).join(' · '));
+      }
+      notifyListeners();
     }
-    notifyListeners();
+
+    final fastQuery = {'q': query.trim(), 'source': source, 'fast': '1'};
+    final saved = api.peekMetadata('/api/search', query: fastQuery);
+    if (saved != null) present(saved);
+    final data = await api.cachedCall(
+      '/api/search',
+      query: fastQuery,
+      maxAge: const Duration(seconds: 30),
+    );
+    if (!current()) return;
+    present(data);
+    if ((data['pendingProviders'] as List?)?.isNotEmpty == true) {
+      unawaited(
+        api
+            .cachedCall(
+              '/api/search',
+              query: {'q': query.trim(), 'source': source},
+              maxAge: const Duration(seconds: 30),
+            )
+            .then(present)
+            .catchError((Object _) {}),
+      );
+    }
   }
 
   Future<void> searchArtist(Json artist) => search(
@@ -2597,6 +2766,7 @@ class WaveController extends ChangeNotifier {
   /// OAuth happens in the system browser. Returning to the app asks the server
   /// for the real connection, rather than treating a browser launch as success.
   Future<void> applicationResumed() async {
+    if (_needsRecovery) unawaited(revalidateConnection());
     if (api.token == null || _offlinePlayback) return;
     await _syncBackgroundConnect();
     if (socket?.connected == false) socket!.connect();
@@ -2703,9 +2873,18 @@ class WaveController extends ChangeNotifier {
           })
           .build(),
     );
+    var hadConnection = false;
     socket!.onConnect((_) async {
+      if (_disposed || session != api.token || origin != api.server) return;
+      final recovered = hadConnection || !online;
+      hadConnection = true;
+      online = true;
+      _recoveryAttempt = 0;
+      _recoveryTimer?.cancel();
+      _recoveryTimer = null;
       connected = true;
       notifyListeners();
+      if (recovered) unawaited(refresh());
       await refreshConnect();
       if (session != api.token || origin != api.server) return;
       unawaited(refreshDiscord(silent: true));
@@ -2715,13 +2894,17 @@ class WaveController extends ChangeNotifier {
       }
     });
     socket!.onDisconnect((_) {
+      if (_disposed || session != api.token || origin != api.server) return;
       connected = false;
       notifyListeners();
+      _scheduleRecovery();
     });
     socket!.onConnectError((error) {
+      if (_disposed || session != api.token || origin != api.server) return;
       api.diagnostics.report('Socket connection failed', kind: 'socket');
       connected = false;
       notifyListeners();
+      _scheduleRecovery();
     });
     socket!.on('settings:changed', (data) {
       if (session != api.token || origin != api.server) return;
@@ -4386,6 +4569,7 @@ class WaveController extends ChangeNotifier {
     appearanceStore?.removeListener(_appearanceChanged);
     appearanceStore?.dispose();
     _heartbeat?.cancel();
+    _recoveryTimer?.cancel();
     socket?.dispose();
     for (final sub in _subscriptions) {
       unawaited(sub.cancel());

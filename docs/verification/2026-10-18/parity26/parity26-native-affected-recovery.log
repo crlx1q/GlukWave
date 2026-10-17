@@ -1,0 +1,876 @@
+00:00 +0: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart
+00:00 +0: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart: (setUpAll)
+00:00 +0: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart: Actual auth, offline Lo-Fi, profile and settings fit width 320.0 without setup copy
+00:05 +0: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ecosystem_layout_test.dart: Real device controls and session security compose at Size(390.0, 844.0) in light
+
+Warning: A call to tap() with finder "Found 1 widget with widget matching predicate (ignoring all but first): [
+  DropdownMenuItem<String>(dependencies: [_ScrollableScope]),
+]" derived an Offset (Offset(195.0, 428.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#fc839 relayoutBoundary=up36
+The hit test result at that offset is: HitTestResult(RenderPointerListener#b3579@Offset(195.0, 24.0), RenderSemanticsAnnotations#efef6@Offset(195.0, 24.0), RenderMouseRegion#12b62@Offset(195.0, 24.0), RenderSemanticsAnnotations#fd39f@Offset(195.0, 24.0), RenderAnimatedOpacity#2e47a@Offset(195.0, 24.0), RenderSemanticsAnnotations#6be53@Offset(195.0, 24.0), RenderRepaintBoundary#d9cdd@Offset(195.0, 24.0), RenderIndexedSemantics#64314@Offset(195.0, 24.0), RenderSliverList@(mainAxis: 216.0, crossAxis: 195.0), RenderSliverPadding@(mainAxis: 224.0, crossAxis: 195.0), RenderShrinkWrappingViewport#7f6ae@Offset(195.0, 224.0), RenderIgnorePointer#cc2a2@Offset(195.0, 224.0), RenderSemanticsAnnotations#9969b@Offset(195.0, 224.0), RenderPointerListener#3b6de@Offset(195.0, 224.0), RenderSemanticsGestureHandler#cdc2d@Offset(195.0, 224.0), RenderPointerListener#46071@Offset(195.0, 224.0), _RenderScrollSemantics#f8cf8@Offset(195.0, 224.0), RenderRepaintBoundary#48dbe@Offset(195.0, 224.0), RenderCustomPaint#3c844@Offset(195.0, 224.0), RenderMouseRegion#94ddf@Offset(195.0, 224.0), RenderPointerListener#b1e32@Offset(195.0, 224.0), RenderSemanticsGestureHandler#42df6@Offset(195.0, 224.0), RenderPointerListener#ded73@Offset(195.0, 224.0), RenderRepaintBoundary#c0571@Offset(195.0, 224.0), _RenderInkFeatures#d19ec@Offset(195.0, 224.0), RenderCustomPaint#9c6b3@Offset(195.0, 224.0), RenderClipPath#2b591@Offset(195.0, 224.0), RenderClipRRect#ced9c@Offset(195.0, 224.0), RenderSemanticsAnnotations#380a7@Offset(195.0, 224.0), RenderCustomPaint#a8a84@Offset(195.0, 224.0), RenderAnimatedOpacity#b90c0@Offset(195.0, 224.0), RenderCustomSingleChildLayoutBox#7d925@Offset(195.0, 428.0), _RenderLayoutBuilder#13fd5@Offset(195.0, 428.0), RenderRepaintBoundary#758b5@Offset(195.0, 428.0), RenderIgnorePointer#ef4d8@Offset(195.0, 428.0), RenderRepaintBoundary#a0616@Offset(195.0, 428.0), RenderSemanticsAnnotations#3e835@Offset(195.0, 428.0), RenderOffstage#d08aa@Offset(195.0, 428.0), RenderSemanticsAnnotations#ae9b3@Offset(195.0, 428.0), _RenderTheater#b920e@Offset(195.0, 428.0), RenderAbsorbPointer#3f925@Offset(195.0, 428.0), RenderPointerListener#16533@Offset(195.0, 428.0), RenderSemanticsAnnotations#5b575@Offset(195.0, 428.0), RenderStack#bc640@Offset(195.0, 428.0), RenderSemanticsAnnotations#e3090@Offset(195.0, 428.0), RenderSemanticsAnnotations#6c9e5@Offset(195.0, 428.0), RenderTapRegionSurface#892e2@Offset(195.0, 428.0), RenderSemanticsAnnotations#8d55e@Offset(195.0, 428.0), RenderSemanticsAnnotations#556cc@Offset(195.0, 428.0), RenderSemanticsAnnotations#c5ec0@Offset(195.0, 428.0), RenderRepaintBoundary#4aab9@Offset(195.0, 428.0), HitTestEntry<HitTestTarget>#ef2f5(_ReusableRenderView#5671b), HitTestEntry<HitTestTarget>#48d3e(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2077:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1861:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1041:7)
+#3      selectSettingsCategory (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:128:18)
+<asynchronous suspension>
+#4      main.<anonymous closure> (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ecosystem_layout_test.dart:148:11)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1059:5)
+<asynchronous suspension>
+#7      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with widget matching predicate (ignoring all but first): [
+  DropdownMenuItem<String>(dependencies: [_ScrollableScope]),
+]" derived an Offset (Offset(195.0, 323.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#0c0d6 relayoutBoundary=up36
+The hit test result at that offset is: HitTestResult(RenderPointerListener#5f30e@Offset(195.0, 24.0), RenderSemanticsAnnotations#dc070@Offset(195.0, 24.0), RenderMouseRegion#b1cc8@Offset(195.0, 24.0), RenderSemanticsAnnotations#df078@Offset(195.0, 24.0), RenderAnimatedOpacity#e1cd3@Offset(195.0, 24.0), RenderSemanticsAnnotations#15065@Offset(195.0, 24.0), RenderRepaintBoundary#e4482@Offset(195.0, 24.0), RenderIndexedSemantics#df82f@Offset(195.0, 24.0), RenderSliverList@(mainAxis: 264.0, crossAxis: 195.0), RenderSliverPadding@(mainAxis: 272.0, crossAxis: 195.0), RenderShrinkWrappingViewport#23f48@Offset(195.0, 272.0), RenderIgnorePointer#32553@Offset(195.0, 272.0), RenderSemanticsAnnotations#90d0e@Offset(195.0, 272.0), RenderPointerListener#0ec2d@Offset(195.0, 272.0), RenderSemanticsGestureHandler#3c008@Offset(195.0, 272.0), RenderPointerListener#b6637@Offset(195.0, 272.0), _RenderScrollSemantics#cf10c@Offset(195.0, 272.0), RenderRepaintBoundary#9378a@Offset(195.0, 272.0), RenderCustomPaint#aeed7@Offset(195.0, 272.0), RenderMouseRegion#9c201@Offset(195.0, 272.0), RenderPointerListener#14022@Offset(195.0, 272.0), RenderSemanticsGestureHandler#ddd6d@Offset(195.0, 272.0), RenderPointerListener#3f180@Offset(195.0, 272.0), RenderRepaintBoundary#3499c@Offset(195.0, 272.0), _RenderInkFeatures#5aa4b@Offset(195.0, 272.0), RenderCustomPaint#1a7f6@Offset(195.0, 272.0), RenderClipPath#7aeda@Offset(195.0, 272.0), RenderClipRRect#66c32@Offset(195.0, 272.0), RenderSemanticsAnnotations#73108@Offset(195.0, 272.0), RenderCustomPaint#05fe7@Offset(195.0, 272.0), RenderAnimatedOpacity#70f8b@Offset(195.0, 272.0), RenderCustomSingleChildLayoutBox#8ba95@Offset(195.0, 323.0), _RenderLayoutBuilder#3a78d@Offset(195.0, 323.0), RenderRepaintBoundary#c337e@Offset(195.0, 323.0), RenderIgnorePointer#e5b01@Offset(195.0, 323.0), RenderRepaintBoundary#a7eca@Offset(195.0, 323.0), RenderSemanticsAnnotations#65560@Offset(195.0, 323.0), RenderOffstage#4979e@Offset(195.0, 323.0), RenderSemanticsAnnotations#24a3c@Offset(195.0, 323.0), _RenderTheater#b920e@Offset(195.0, 323.0), RenderAbsorbPointer#3f925@Offset(195.0, 323.0), RenderPointerListener#16533@Offset(195.0, 323.0), RenderSemanticsAnnotations#5b575@Offset(195.0, 323.0), RenderStack#bc640@Offset(195.0, 323.0), RenderSemanticsAnnotations#e3090@Offset(195.0, 323.0), RenderSemanticsAnnotations#6c9e5@Offset(195.0, 323.0), RenderTapRegionSurface#892e2@Offset(195.0, 323.0), RenderSemanticsAnnotations#8d55e@Offset(195.0, 323.0), RenderSemanticsAnnotations#556cc@Offset(195.0, 323.0), RenderSemanticsAnnotations#c5ec0@Offset(195.0, 323.0), RenderRepaintBoundary#4aab9@Offset(195.0, 323.0), HitTestEntry<HitTestTarget>#dbd9c(_ReusableRenderView#5671b), HitTestEntry<HitTestTarget>#1d86c(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2077:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1861:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1041:7)
+#3      selectSettingsCategory (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:128:18)
+<asynchronous suspension>
+#4      main.<anonymous closure> (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ecosystem_layout_test.dart:174:11)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1059:5)
+<asynchronous suspension>
+#7      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+00:07 +1: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart: Actual auth, offline Lo-Fi, profile and settings fit width 320.0 without setup copy
+
+Warning: A call to tap() with finder "Found 1 widget with widget matching predicate (ignoring all but first): [
+  DropdownMenuItem<String>(dependencies: [_ScrollableScope]),
+]" derived an Offset (Offset(160.0, 436.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#65c14 relayoutBoundary=up36
+The hit test result at that offset is: HitTestResult(RenderPointerListener#bc5cf@Offset(160.0, 24.0), RenderSemanticsAnnotations#f8787@Offset(160.0, 24.0), RenderMouseRegion#ff570@Offset(160.0, 24.0), RenderSemanticsAnnotations#cc24d@Offset(160.0, 24.0), RenderAnimatedOpacity#cfdfd@Offset(160.0, 24.0), RenderSemanticsAnnotations#e14e8@Offset(160.0, 24.0), RenderRepaintBoundary#8262c@Offset(160.0, 24.0), RenderIndexedSemantics#9ef01@Offset(160.0, 24.0), RenderSliverList@(mainAxis: 168.0, crossAxis: 160.0), RenderSliverPadding@(mainAxis: 176.0, crossAxis: 160.0), RenderShrinkWrappingViewport#16b26@Offset(160.0, 176.0), RenderIgnorePointer#be199@Offset(160.0, 176.0), RenderSemanticsAnnotations#522bc@Offset(160.0, 176.0), RenderPointerListener#5fd63@Offset(160.0, 176.0), RenderSemanticsGestureHandler#d5b52@Offset(160.0, 176.0), RenderPointerListener#76957@Offset(160.0, 176.0), _RenderScrollSemantics#22282@Offset(160.0, 176.0), RenderRepaintBoundary#93772@Offset(160.0, 176.0), RenderCustomPaint#a68f2@Offset(160.0, 176.0), RenderMouseRegion#6ea97@Offset(160.0, 176.0), RenderPointerListener#6d4fc@Offset(160.0, 176.0), RenderSemanticsGestureHandler#01d93@Offset(160.0, 176.0), RenderPointerListener#e29d9@Offset(160.0, 176.0), RenderRepaintBoundary#7ada9@Offset(160.0, 176.0), _RenderInkFeatures#fbc7e@Offset(160.0, 176.0), RenderCustomPaint#3433b@Offset(160.0, 176.0), RenderClipPath#150b1@Offset(160.0, 176.0), RenderClipRRect#88c86@Offset(160.0, 176.0), RenderSemanticsAnnotations#2a915@Offset(160.0, 176.0), RenderCustomPaint#c53f9@Offset(160.0, 176.0), RenderAnimatedOpacity#b1d5f@Offset(160.0, 176.0), RenderCustomSingleChildLayoutBox#15d08@Offset(160.0, 436.0), _RenderLayoutBuilder#7ab75@Offset(160.0, 436.0), RenderRepaintBoundary#5f210@Offset(160.0, 436.0), RenderIgnorePointer#9e777@Offset(160.0, 436.0), RenderRepaintBoundary#af9dd@Offset(160.0, 436.0), RenderSemanticsAnnotations#bb764@Offset(160.0, 436.0), RenderOffstage#29436@Offset(160.0, 436.0), RenderSemanticsAnnotations#5bd0e@Offset(160.0, 436.0), _RenderTheater#5e1e9@Offset(160.0, 436.0), RenderAbsorbPointer#d9364@Offset(160.0, 436.0), RenderPointerListener#9e196@Offset(160.0, 436.0), RenderSemanticsAnnotations#fb291@Offset(160.0, 436.0), RenderStack#aeab6@Offset(160.0, 436.0), RenderSemanticsAnnotations#b79f5@Offset(160.0, 436.0), RenderSemanticsAnnotations#9bfbd@Offset(160.0, 436.0), RenderTapRegionSurface#70b74@Offset(160.0, 436.0), RenderSemanticsAnnotations#1cd18@Offset(160.0, 436.0), RenderSemanticsAnnotations#40c9c@Offset(160.0, 436.0), RenderSemanticsAnnotations#b4ed0@Offset(160.0, 436.0), RenderRepaintBoundary#9f6ad@Offset(160.0, 436.0), HitTestEntry<HitTestTarget>#eff2e(_ReusableRenderView#b79c1), HitTestEntry<HitTestTarget>#376f5(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2077:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1861:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1041:7)
+#3      selectSettingsCategory (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:128:18)
+<asynchronous suspension>
+#4      main.<anonymous closure> (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:230:9)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1059:5)
+<asynchronous suspension>
+#7      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with widget matching predicate (ignoring all but first): [
+  DropdownMenuItem<String>(dependencies: [_ScrollableScope]),
+]" derived an Offset (Offset(160.0, 435.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#ac931 relayoutBoundary=up36
+The hit test result at that offset is: HitTestResult(RenderPointerListener#2608c@Offset(160.0, 24.0), RenderSemanticsAnnotations#c9350@Offset(160.0, 24.0), RenderMouseRegion#83992@Offset(160.0, 24.0), RenderSemanticsAnnotations#e97ee@Offset(160.0, 24.0), RenderAnimatedOpacity#f6d1a@Offset(160.0, 24.0), RenderSemanticsAnnotations#267c9@Offset(160.0, 24.0), RenderRepaintBoundary#0086f@Offset(160.0, 24.0), RenderIndexedSemantics#50d7e@Offset(160.0, 24.0), RenderSliverList@(mainAxis: 264.0, crossAxis: 160.0), RenderSliverPadding@(mainAxis: 272.0, crossAxis: 160.0), RenderShrinkWrappingViewport#96f57@Offset(160.0, 272.0), RenderIgnorePointer#14b34@Offset(160.0, 272.0), RenderSemanticsAnnotations#d171a@Offset(160.0, 272.0), RenderPointerListener#919c3@Offset(160.0, 272.0), RenderSemanticsGestureHandler#cc305@Offset(160.0, 272.0), RenderPointerListener#c1c66@Offset(160.0, 272.0), _RenderScrollSemantics#b90bd@Offset(160.0, 272.0), RenderRepaintBoundary#c3c5d@Offset(160.0, 272.0), RenderCustomPaint#91f2d@Offset(160.0, 272.0), RenderMouseRegion#05582@Offset(160.0, 272.0), RenderPointerListener#83375@Offset(160.0, 272.0), RenderSemanticsGestureHandler#8628d@Offset(160.0, 272.0), RenderPointerListener#49b19@Offset(160.0, 272.0), RenderRepaintBoundary#16a50@Offset(160.0, 272.0), _RenderInkFeatures#5f622@Offset(160.0, 272.0), RenderCustomPaint#a815a@Offset(160.0, 272.0), RenderClipPath#d9891@Offset(160.0, 272.0), RenderClipRRect#bb775@Offset(160.0, 272.0), RenderSemanticsAnnotations#2afb1@Offset(160.0, 272.0), RenderCustomPaint#0ac32@Offset(160.0, 272.0), RenderAnimatedOpacity#bb341@Offset(160.0, 272.0), RenderCustomSingleChildLayoutBox#bf5d0@Offset(160.0, 435.0), _RenderLayoutBuilder#de11d@Offset(160.0, 435.0), RenderRepaintBoundary#3dc16@Offset(160.0, 435.0), RenderIgnorePointer#8dca3@Offset(160.0, 435.0), RenderRepaintBoundary#f2392@Offset(160.0, 435.0), RenderSemanticsAnnotations#d89e8@Offset(160.0, 435.0), RenderOffstage#7e135@Offset(160.0, 435.0), RenderSemanticsAnnotations#bdda8@Offset(160.0, 435.0), _RenderTheater#5e1e9@Offset(160.0, 435.0), RenderAbsorbPointer#d9364@Offset(160.0, 435.0), RenderPointerListener#9e196@Offset(160.0, 435.0), RenderSemanticsAnnotations#fb291@Offset(160.0, 435.0), RenderStack#aeab6@Offset(160.0, 435.0), RenderSemanticsAnnotations#b79f5@Offset(160.0, 435.0), RenderSemanticsAnnotations#9bfbd@Offset(160.0, 435.0), RenderTapRegionSurface#70b74@Offset(160.0, 435.0), RenderSemanticsAnnotations#1cd18@Offset(160.0, 435.0), RenderSemanticsAnnotations#40c9c@Offset(160.0, 435.0), RenderSemanticsAnnotations#b4ed0@Offset(160.0, 435.0), RenderRepaintBoundary#9f6ad@Offset(160.0, 435.0), HitTestEntry<HitTestTarget>#fe09e(_ReusableRenderView#b79c1), HitTestEntry<HitTestTarget>#87ebf(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2077:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1861:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1041:7)
+#3      selectSettingsCategory (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:128:18)
+<asynchronous suspension>
+#4      main.<anonymous closure> (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:250:11)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1059:5)
+<asynchronous suspension>
+#7      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with widget matching predicate (ignoring all but first): [
+  DropdownMenuItem<String>(dependencies: [_ScrollableScope]),
+]" derived an Offset (Offset(160.0, 387.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#f166a relayoutBoundary=up36
+The hit test result at that offset is: HitTestResult(RenderPointerListener#94c0b@Offset(160.0, 24.0), RenderSemanticsAnnotations#b274d@Offset(160.0, 24.0), RenderMouseRegion#da410@Offset(160.0, 24.0), RenderSemanticsAnnotations#bf017@Offset(160.0, 24.0), RenderAnimatedOpacity#3771d@Offset(160.0, 24.0), RenderSemanticsAnnotations#0192b@Offset(160.0, 24.0), RenderRepaintBoundary#8f556@Offset(160.0, 24.0), RenderIndexedSemantics#a2760@Offset(160.0, 24.0), RenderSliverList@(mainAxis: 312.0, crossAxis: 160.0), RenderSliverPadding@(mainAxis: 320.0, crossAxis: 160.0), RenderShrinkWrappingViewport#989ae@Offset(160.0, 320.0), RenderIgnorePointer#75d9f@Offset(160.0, 320.0), RenderSemanticsAnnotations#e6410@Offset(160.0, 320.0), RenderPointerListener#0d05e@Offset(160.0, 320.0), RenderSemanticsGestureHandler#f5499@Offset(160.0, 320.0), RenderPointerListener#1030a@Offset(160.0, 320.0), _RenderScrollSemantics#3ac7f@Offset(160.0, 320.0), RenderRepaintBoundary#de9ab@Offset(160.0, 320.0), RenderCustomPaint#7227c@Offset(160.0, 320.0), RenderMouseRegion#38fa1@Offset(160.0, 320.0), RenderPointerListener#e84f0@Offset(160.0, 320.0), RenderSemanticsGestureHandler#83e67@Offset(160.0, 320.0), RenderPointerListener#adc27@Offset(160.0, 320.0), RenderRepaintBoundary#7bf31@Offset(160.0, 320.0), _RenderInkFeatures#8f12d@Offset(160.0, 320.0), RenderCustomPaint#e6ec4@Offset(160.0, 320.0), RenderClipPath#fc391@Offset(160.0, 320.0), RenderClipRRect#ff6e3@Offset(160.0, 320.0), RenderSemanticsAnnotations#68c8f@Offset(160.0, 320.0), RenderCustomPaint#544c3@Offset(160.0, 320.0), RenderAnimatedOpacity#e0141@Offset(160.0, 320.0), RenderCustomSingleChildLayoutBox#df1ae@Offset(160.0, 387.0), _RenderLayoutBuilder#f42a1@Offset(160.0, 387.0), RenderRepaintBoundary#22f7f@Offset(160.0, 387.0), RenderIgnorePointer#64fda@Offset(160.0, 387.0), RenderRepaintBoundary#bfaba@Offset(160.0, 387.0), RenderSemanticsAnnotations#89ac8@Offset(160.0, 387.0), RenderOffstage#4d407@Offset(160.0, 387.0), RenderSemanticsAnnotations#3c825@Offset(160.0, 387.0), _RenderTheater#5e1e9@Offset(160.0, 387.0), RenderAbsorbPointer#d9364@Offset(160.0, 387.0), RenderPointerListener#9e196@Offset(160.0, 387.0), RenderSemanticsAnnotations#fb291@Offset(160.0, 387.0), RenderStack#aeab6@Offset(160.0, 387.0), RenderSemanticsAnnotations#b79f5@Offset(160.0, 387.0), RenderSemanticsAnnotations#9bfbd@Offset(160.0, 387.0), RenderTapRegionSurface#70b74@Offset(160.0, 387.0), RenderSemanticsAnnotations#1cd18@Offset(160.0, 387.0), RenderSemanticsAnnotations#40c9c@Offset(160.0, 387.0), RenderSemanticsAnnotations#b4ed0@Offset(160.0, 387.0), RenderRepaintBoundary#9f6ad@Offset(160.0, 387.0), HitTestEntry<HitTestTarget>#e0a1c(_ReusableRenderView#b79c1), HitTestEntry<HitTestTarget>#574ba(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2077:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1861:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1041:7)
+#3      selectSettingsCategory (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:128:18)
+<asynchronous suspension>
+#4      main.<anonymous closure> (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:250:11)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1059:5)
+<asynchronous suspension>
+#7      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with widget matching predicate (ignoring all but first): [
+  DropdownMenuItem<String>(dependencies: [_ScrollableScope]),
+]" derived an Offset (Offset(160.0, 416.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#c7d58 relayoutBoundary=up36
+The hit test result at that offset is: HitTestResult(RenderPointerListener#0103d@Offset(160.0, 24.0), RenderSemanticsAnnotations#97ad3@Offset(160.0, 24.0), RenderMouseRegion#c415d@Offset(160.0, 24.0), RenderSemanticsAnnotations#a56e3@Offset(160.0, 24.0), RenderAnimatedOpacity#329be@Offset(160.0, 24.0), RenderSemanticsAnnotations#15a2f@Offset(160.0, 24.0), RenderRepaintBoundary#a72d2@Offset(160.0, 24.0), RenderIndexedSemantics#b8ee2@Offset(160.0, 24.0), RenderSliverList@(mainAxis: 360.0, crossAxis: 160.0), RenderSliverPadding@(mainAxis: 368.0, crossAxis: 160.0), RenderShrinkWrappingViewport#609ea@Offset(160.0, 368.0), RenderIgnorePointer#c705c@Offset(160.0, 368.0), RenderSemanticsAnnotations#ee2fd@Offset(160.0, 368.0), RenderPointerListener#ec189@Offset(160.0, 368.0), RenderSemanticsGestureHandler#bdf65@Offset(160.0, 368.0), RenderPointerListener#56231@Offset(160.0, 368.0), _RenderScrollSemantics#c06a9@Offset(160.0, 368.0), RenderRepaintBoundary#2c2aa@Offset(160.0, 368.0), RenderCustomPaint#bcfbf@Offset(160.0, 368.0), RenderMouseRegion#60060@Offset(160.0, 368.0), RenderPointerListener#3aa51@Offset(160.0, 368.0), RenderSemanticsGestureHandler#179b2@Offset(160.0, 368.0), RenderPointerListener#2597b@Offset(160.0, 368.0), RenderRepaintBoundary#cfe4c@Offset(160.0, 368.0), _RenderInkFeatures#f5854@Offset(160.0, 368.0), RenderCustomPaint#0ec80@Offset(160.0, 368.0), RenderClipPath#dd706@Offset(160.0, 368.0), RenderClipRRect#46d96@Offset(160.0, 368.0), RenderSemanticsAnnotations#7079a@Offset(160.0, 368.0), RenderCustomPaint#fd08c@Offset(160.0, 368.0), RenderAnimatedOpacity#4ea5c@Offset(160.0, 368.0), RenderCustomSingleChildLayoutBox#d5797@Offset(160.0, 416.0), _RenderLayoutBuilder#4aab5@Offset(160.0, 416.0), RenderRepaintBoundary#b043e@Offset(160.0, 416.0), RenderIgnorePointer#fedd8@Offset(160.0, 416.0), RenderRepaintBoundary#5f6d4@Offset(160.0, 416.0), RenderSemanticsAnnotations#ee222@Offset(160.0, 416.0), RenderOffstage#87c98@Offset(160.0, 416.0), RenderSemanticsAnnotations#78298@Offset(160.0, 416.0), _RenderTheater#5e1e9@Offset(160.0, 416.0), RenderAbsorbPointer#d9364@Offset(160.0, 416.0), RenderPointerListener#9e196@Offset(160.0, 416.0), RenderSemanticsAnnotations#fb291@Offset(160.0, 416.0), RenderStack#aeab6@Offset(160.0, 416.0), RenderSemanticsAnnotations#b79f5@Offset(160.0, 416.0), RenderSemanticsAnnotations#9bfbd@Offset(160.0, 416.0), RenderTapRegionSurface#70b74@Offset(160.0, 416.0), RenderSemanticsAnnotations#1cd18@Offset(160.0, 416.0), RenderSemanticsAnnotations#40c9c@Offset(160.0, 416.0), RenderSemanticsAnnotations#b4ed0@Offset(160.0, 416.0), RenderRepaintBoundary#9f6ad@Offset(160.0, 416.0), HitTestEntry<HitTestTarget>#e5373(_ReusableRenderView#b79c1), HitTestEntry<HitTestTarget>#1eae9(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2077:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1861:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1041:7)
+#3      selectSettingsCategory (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:128:18)
+<asynchronous suspension>
+#4      main.<anonymous closure> (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:250:11)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1059:5)
+<asynchronous suspension>
+#7      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with widget matching predicate (ignoring all but first): [
+  DropdownMenuItem<String>(dependencies: [_ScrollableScope]),
+]" derived an Offset (Offset(160.0, 464.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#c52ee relayoutBoundary=up36
+The hit test result at that offset is: HitTestResult(RenderPointerListener#5aa79@Offset(160.0, 24.0), RenderSemanticsAnnotations#3e344@Offset(160.0, 24.0), RenderMouseRegion#2aed9@Offset(160.0, 24.0), RenderSemanticsAnnotations#3cc79@Offset(160.0, 24.0), RenderAnimatedOpacity#d89ae@Offset(160.0, 24.0), RenderSemanticsAnnotations#91492@Offset(160.0, 24.0), RenderRepaintBoundary#6e5d0@Offset(160.0, 24.0), RenderIndexedSemantics#93448@Offset(160.0, 24.0), RenderSliverList@(mainAxis: 408.0, crossAxis: 160.0), RenderSliverPadding@(mainAxis: 416.0, crossAxis: 160.0), RenderShrinkWrappingViewport#0ffd4@Offset(160.0, 416.0), RenderIgnorePointer#0a383@Offset(160.0, 416.0), RenderSemanticsAnnotations#97816@Offset(160.0, 416.0), RenderPointerListener#3dce4@Offset(160.0, 416.0), RenderSemanticsGestureHandler#65050@Offset(160.0, 416.0), RenderPointerListener#c666a@Offset(160.0, 416.0), _RenderScrollSemantics#1d91b@Offset(160.0, 416.0), RenderRepaintBoundary#5516f@Offset(160.0, 416.0), RenderCustomPaint#9b484@Offset(160.0, 416.0), RenderMouseRegion#6ff0f@Offset(160.0, 416.0), RenderPointerListener#3fa91@Offset(160.0, 416.0), RenderSemanticsGestureHandler#75bd1@Offset(160.0, 416.0), RenderPointerListener#cab91@Offset(160.0, 416.0), RenderRepaintBoundary#cb657@Offset(160.0, 416.0), _RenderInkFeatures#ccc06@Offset(160.0, 416.0), RenderCustomPaint#cff6e@Offset(160.0, 416.0), RenderClipPath#f2dce@Offset(160.0, 416.0), RenderClipRRect#0b9b6@Offset(160.0, 416.0), RenderSemanticsAnnotations#47dfe@Offset(160.0, 416.0), RenderCustomPaint#3f4a5@Offset(160.0, 416.0), RenderAnimatedOpacity#3c1a3@Offset(160.0, 416.0), RenderCustomSingleChildLayoutBox#0aa38@Offset(160.0, 464.0), _RenderLayoutBuilder#0ab3a@Offset(160.0, 464.0), RenderRepaintBoundary#6eaf5@Offset(160.0, 464.0), RenderIgnorePointer#f2e89@Offset(160.0, 464.0), RenderRepaintBoundary#f15cf@Offset(160.0, 464.0), RenderSemanticsAnnotations#9a1ed@Offset(160.0, 464.0), RenderOffstage#c2333@Offset(160.0, 464.0), RenderSemanticsAnnotations#95e4b@Offset(160.0, 464.0), _RenderTheater#5e1e9@Offset(160.0, 464.0), RenderAbsorbPointer#d9364@Offset(160.0, 464.0), RenderPointerListener#9e196@Offset(160.0, 464.0), RenderSemanticsAnnotations#fb291@Offset(160.0, 464.0), RenderStack#aeab6@Offset(160.0, 464.0), RenderSemanticsAnnotations#b79f5@Offset(160.0, 464.0), RenderSemanticsAnnotations#9bfbd@Offset(160.0, 464.0), RenderTapRegionSurface#70b74@Offset(160.0, 464.0), RenderSemanticsAnnotations#1cd18@Offset(160.0, 464.0), RenderSemanticsAnnotations#40c9c@Offset(160.0, 464.0), RenderSemanticsAnnotations#b4ed0@Offset(160.0, 464.0), RenderRepaintBoundary#9f6ad@Offset(160.0, 464.0), HitTestEntry<HitTestTarget>#9b4ef(_ReusableRenderView#b79c1), HitTestEntry<HitTestTarget>#b721f(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2077:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1861:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1041:7)
+#3      selectSettingsCategory (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:128:18)
+<asynchronous suspension>
+#4      main.<anonymous closure> (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:250:11)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1059:5)
+<asynchronous suspension>
+#7      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with widget matching predicate (ignoring all but first): [
+  DropdownMenuItem<String>(dependencies: [_ScrollableScope]),
+]" derived an Offset (Offset(160.0, 512.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#7f525 relayoutBoundary=up36
+The hit test result at that offset is: HitTestResult(RenderPointerListener#89da3@Offset(160.0, 24.0), RenderSemanticsAnnotations#5625b@Offset(160.0, 24.0), RenderMouseRegion#948d9@Offset(160.0, 24.0), RenderSemanticsAnnotations#9b0e2@Offset(160.0, 24.0), RenderAnimatedOpacity#e30cf@Offset(160.0, 24.0), RenderSemanticsAnnotations#3c1fb@Offset(160.0, 24.0), RenderRepaintBoundary#ae5ea@Offset(160.0, 24.0), RenderIndexedSemantics#4041e@Offset(160.0, 24.0), RenderSliverList@(mainAxis: 456.0, crossAxis: 160.0), RenderSliverPadding@(mainAxis: 464.0, crossAxis: 160.0), RenderShrinkWrappingViewport#3dd01@Offset(160.0, 464.0), RenderIgnorePointer#c7a62@Offset(160.0, 464.0), RenderSemanticsAnnotations#38f5b@Offset(160.0, 464.0), RenderPointerListener#e38aa@Offset(160.0, 464.0), RenderSemanticsGestureHandler#dbddd@Offset(160.0, 464.0), RenderPointerListener#459f8@Offset(160.0, 464.0), _RenderScrollSemantics#04adf@Offset(160.0, 464.0), RenderRepaintBoundary#8e5c7@Offset(160.0, 464.0), RenderCustomPaint#7cb35@Offset(160.0, 464.0), RenderMouseRegion#2eab4@Offset(160.0, 464.0), RenderPointerListener#beff2@Offset(160.0, 464.0), RenderSemanticsGestureHandler#acd4d@Offset(160.0, 464.0), RenderPointerListener#a3eda@Offset(160.0, 464.0), RenderRepaintBoundary#827fc@Offset(160.0, 464.0), _RenderInkFeatures#1e325@Offset(160.0, 464.0), RenderCustomPaint#7a563@Offset(160.0, 464.0), RenderClipPath#abbd9@Offset(160.0, 464.0), RenderClipRRect#682f6@Offset(160.0, 464.0), RenderSemanticsAnnotations#1b76c@Offset(160.0, 464.0), RenderCustomPaint#34492@Offset(160.0, 464.0), RenderAnimatedOpacity#39c06@Offset(160.0, 464.0), RenderCustomSingleChildLayoutBox#2f4b8@Offset(160.0, 512.0), _RenderLayoutBuilder#d1b84@Offset(160.0, 512.0), RenderRepaintBoundary#4a7b1@Offset(160.0, 512.0), RenderIgnorePointer#c4426@Offset(160.0, 512.0), RenderRepaintBoundary#cb2a7@Offset(160.0, 512.0), RenderSemanticsAnnotations#712a4@Offset(160.0, 512.0), RenderOffstage#6602b@Offset(160.0, 512.0), RenderSemanticsAnnotations#b07c5@Offset(160.0, 512.0), _RenderTheater#5e1e9@Offset(160.0, 512.0), RenderAbsorbPointer#d9364@Offset(160.0, 512.0), RenderPointerListener#9e196@Offset(160.0, 512.0), RenderSemanticsAnnotations#fb291@Offset(160.0, 512.0), RenderStack#aeab6@Offset(160.0, 512.0), RenderSemanticsAnnotations#b79f5@Offset(160.0, 512.0), RenderSemanticsAnnotations#9bfbd@Offset(160.0, 512.0), RenderTapRegionSurface#70b74@Offset(160.0, 512.0), RenderSemanticsAnnotations#1cd18@Offset(160.0, 512.0), RenderSemanticsAnnotations#40c9c@Offset(160.0, 512.0), RenderSemanticsAnnotations#b4ed0@Offset(160.0, 512.0), RenderRepaintBoundary#9f6ad@Offset(160.0, 512.0), HitTestEntry<HitTestTarget>#ceede(_ReusableRenderView#b79c1), HitTestEntry<HitTestTarget>#c7a72(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2077:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1861:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1041:7)
+#3      selectSettingsCategory (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:128:18)
+<asynchronous suspension>
+#4      main.<anonymous closure> (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:250:11)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1059:5)
+<asynchronous suspension>
+#7      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with widget matching predicate (ignoring all but first): [
+  DropdownMenuItem<String>(dependencies: [_ScrollableScope]),
+]" derived an Offset (Offset(160.0, 560.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#b0adf relayoutBoundary=up36
+The hit test result at that offset is: HitTestResult(RenderPointerListener#28e32@Offset(160.0, 24.0), RenderSemanticsAnnotations#769f8@Offset(160.0, 24.0), RenderMouseRegion#6c842@Offset(160.0, 24.0), RenderSemanticsAnnotations#f682b@Offset(160.0, 24.0), RenderAnimatedOpacity#85abb@Offset(160.0, 24.0), RenderSemanticsAnnotations#6d12f@Offset(160.0, 24.0), RenderRepaintBoundary#7a05f@Offset(160.0, 24.0), RenderIndexedSemantics#c7171@Offset(160.0, 24.0), RenderSliverList@(mainAxis: 504.0, crossAxis: 160.0), RenderSliverPadding@(mainAxis: 512.0, crossAxis: 160.0), RenderShrinkWrappingViewport#7d49a@Offset(160.0, 512.0), RenderIgnorePointer#50907@Offset(160.0, 512.0), RenderSemanticsAnnotations#9174a@Offset(160.0, 512.0), RenderPointerListener#1d60b@Offset(160.0, 512.0), RenderSemanticsGestureHandler#5718e@Offset(160.0, 512.0), RenderPointerListener#6ba35@Offset(160.0, 512.0), _RenderScrollSemantics#2af47@Offset(160.0, 512.0), RenderRepaintBoundary#e0df1@Offset(160.0, 512.0), RenderCustomPaint#82ee1@Offset(160.0, 512.0), RenderMouseRegion#24c14@Offset(160.0, 512.0), RenderPointerListener#bfc17@Offset(160.0, 512.0), RenderSemanticsGestureHandler#160ad@Offset(160.0, 512.0), RenderPointerListener#7ed25@Offset(160.0, 512.0), RenderRepaintBoundary#eb664@Offset(160.0, 512.0), _RenderInkFeatures#81bc0@Offset(160.0, 512.0), RenderCustomPaint#2b937@Offset(160.0, 512.0), RenderClipPath#2155c@Offset(160.0, 512.0), RenderClipRRect#10a63@Offset(160.0, 512.0), RenderSemanticsAnnotations#c4e79@Offset(160.0, 512.0), RenderCustomPaint#ed8b5@Offset(160.0, 512.0), RenderAnimatedOpacity#5b52d@Offset(160.0, 512.0), RenderCustomSingleChildLayoutBox#4c7a7@Offset(160.0, 560.0), _RenderLayoutBuilder#90b6c@Offset(160.0, 560.0), RenderRepaintBoundary#003a1@Offset(160.0, 560.0), RenderIgnorePointer#07c56@Offset(160.0, 560.0), RenderRepaintBoundary#a441b@Offset(160.0, 560.0), RenderSemanticsAnnotations#8477c@Offset(160.0, 560.0), RenderOffstage#0edcd@Offset(160.0, 560.0), RenderSemanticsAnnotations#5d5d8@Offset(160.0, 560.0), _RenderTheater#5e1e9@Offset(160.0, 560.0), RenderAbsorbPointer#d9364@Offset(160.0, 560.0), RenderPointerListener#9e196@Offset(160.0, 560.0), RenderSemanticsAnnotations#fb291@Offset(160.0, 560.0), RenderStack#aeab6@Offset(160.0, 560.0), RenderSemanticsAnnotations#b79f5@Offset(160.0, 560.0), RenderSemanticsAnnotations#9bfbd@Offset(160.0, 560.0), RenderTapRegionSurface#70b74@Offset(160.0, 560.0), RenderSemanticsAnnotations#1cd18@Offset(160.0, 560.0), RenderSemanticsAnnotations#40c9c@Offset(160.0, 560.0), RenderSemanticsAnnotations#b4ed0@Offset(160.0, 560.0), RenderRepaintBoundary#9f6ad@Offset(160.0, 560.0), HitTestEntry<HitTestTarget>#8d015(_ReusableRenderView#b79c1), HitTestEntry<HitTestTarget>#98d43(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2077:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1861:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1041:7)
+#3      selectSettingsCategory (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:128:18)
+<asynchronous suspension>
+#4      main.<anonymous closure> (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:250:11)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1059:5)
+<asynchronous suspension>
+#7      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with widget matching predicate (ignoring all but first): [
+  DropdownMenuItem<String>(dependencies: [_ScrollableScope]),
+]" derived an Offset (Offset(160.0, 608.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#38586 relayoutBoundary=up36
+The hit test result at that offset is: HitTestResult(RenderPointerListener#02715@Offset(160.0, 24.0), RenderSemanticsAnnotations#51a1b@Offset(160.0, 24.0), RenderMouseRegion#ef09b@Offset(160.0, 24.0), RenderSemanticsAnnotations#7290d@Offset(160.0, 24.0), RenderAnimatedOpacity#90bfd@Offset(160.0, 24.0), RenderSemanticsAnnotations#d7414@Offset(160.0, 24.0), RenderRepaintBoundary#51b71@Offset(160.0, 24.0), RenderIndexedSemantics#a0552@Offset(160.0, 24.0), RenderSliverList@(mainAxis: 552.0, crossAxis: 160.0), RenderSliverPadding@(mainAxis: 560.0, crossAxis: 160.0), RenderShrinkWrappingViewport#6e8a5@Offset(160.0, 560.0), RenderIgnorePointer#facd0@Offset(160.0, 560.0), RenderSemanticsAnnotations#0649c@Offset(160.0, 560.0), RenderPointerListener#69934@Offset(160.0, 560.0), RenderSemanticsGestureHandler#2983d@Offset(160.0, 560.0), RenderPointerListener#93570@Offset(160.0, 560.0), _RenderScrollSemantics#307d5@Offset(160.0, 560.0), RenderRepaintBoundary#12a27@Offset(160.0, 560.0), RenderCustomPaint#84d59@Offset(160.0, 560.0), RenderMouseRegion#b2d41@Offset(160.0, 560.0), RenderPointerListener#cbcae@Offset(160.0, 560.0), RenderSemanticsGestureHandler#cd2d3@Offset(160.0, 560.0), RenderPointerListener#d42a1@Offset(160.0, 560.0), RenderRepaintBoundary#f2b76@Offset(160.0, 560.0), _RenderInkFeatures#91cc2@Offset(160.0, 560.0), RenderCustomPaint#e1fb3@Offset(160.0, 560.0), RenderClipPath#e87de@Offset(160.0, 560.0), RenderClipRRect#4a1de@Offset(160.0, 560.0), RenderSemanticsAnnotations#8e675@Offset(160.0, 560.0), RenderCustomPaint#99cce@Offset(160.0, 560.0), RenderAnimatedOpacity#5d907@Offset(160.0, 560.0), RenderCustomSingleChildLayoutBox#e7a8c@Offset(160.0, 608.0), _RenderLayoutBuilder#46af7@Offset(160.0, 608.0), RenderRepaintBoundary#a4675@Offset(160.0, 608.0), RenderIgnorePointer#39f2d@Offset(160.0, 608.0), RenderRepaintBoundary#8deb6@Offset(160.0, 608.0), RenderSemanticsAnnotations#0de98@Offset(160.0, 608.0), RenderOffstage#29afc@Offset(160.0, 608.0), RenderSemanticsAnnotations#c1557@Offset(160.0, 608.0), _RenderTheater#5e1e9@Offset(160.0, 608.0), RenderAbsorbPointer#d9364@Offset(160.0, 608.0), RenderPointerListener#9e196@Offset(160.0, 608.0), RenderSemanticsAnnotations#fb291@Offset(160.0, 608.0), RenderStack#aeab6@Offset(160.0, 608.0), RenderSemanticsAnnotations#b79f5@Offset(160.0, 608.0), RenderSemanticsAnnotations#9bfbd@Offset(160.0, 608.0), RenderTapRegionSurface#70b74@Offset(160.0, 608.0), RenderSemanticsAnnotations#1cd18@Offset(160.0, 608.0), RenderSemanticsAnnotations#40c9c@Offset(160.0, 608.0), RenderSemanticsAnnotations#b4ed0@Offset(160.0, 608.0), RenderRepaintBoundary#9f6ad@Offset(160.0, 608.0), HitTestEntry<HitTestTarget>#bb4b0(_ReusableRenderView#b79c1), HitTestEntry<HitTestTarget>#949e8(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2077:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1861:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1041:7)
+#3      selectSettingsCategory (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:128:18)
+<asynchronous suspension>
+#4      main.<anonymous closure> (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:250:11)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1059:5)
+<asynchronous suspension>
+#7      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with widget matching predicate (ignoring all but first): [
+  DropdownMenuItem<String>(dependencies: [_ScrollableScope]),
+]" derived an Offset (Offset(160.0, 80.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#c9acf relayoutBoundary=up36
+The hit test result at that offset is: HitTestResult(RenderPointerListener#b58a6@Offset(160.0, 24.0), RenderSemanticsAnnotations#07a2a@Offset(160.0, 24.0), RenderMouseRegion#74d40@Offset(160.0, 24.0), RenderSemanticsAnnotations#d1aec@Offset(160.0, 24.0), RenderAnimatedOpacity#ac380@Offset(160.0, 24.0), RenderSemanticsAnnotations#f5a05@Offset(160.0, 24.0), RenderRepaintBoundary#16438@Offset(160.0, 24.0), RenderIndexedSemantics#5fa78@Offset(160.0, 24.0), RenderSliverList@(mainAxis: 24.0, crossAxis: 160.0), RenderSliverPadding@(mainAxis: 32.0, crossAxis: 160.0), RenderShrinkWrappingViewport#776a7@Offset(160.0, 32.0), RenderIgnorePointer#d12b3@Offset(160.0, 32.0), RenderSemanticsAnnotations#4d5e6@Offset(160.0, 32.0), RenderPointerListener#1e98e@Offset(160.0, 32.0), RenderSemanticsGestureHandler#31ffa@Offset(160.0, 32.0), RenderPointerListener#1eb38@Offset(160.0, 32.0), _RenderScrollSemantics#cacb1@Offset(160.0, 32.0), RenderRepaintBoundary#2eb50@Offset(160.0, 32.0), RenderCustomPaint#f0f31@Offset(160.0, 32.0), RenderMouseRegion#64b18@Offset(160.0, 32.0), RenderPointerListener#bd43c@Offset(160.0, 32.0), RenderSemanticsGestureHandler#0cb38@Offset(160.0, 32.0), RenderPointerListener#e7fb5@Offset(160.0, 32.0), RenderRepaintBoundary#a4ee3@Offset(160.0, 32.0), _RenderInkFeatures#08e88@Offset(160.0, 32.0), RenderCustomPaint#81279@Offset(160.0, 32.0), RenderClipPath#193e5@Offset(160.0, 32.0), RenderClipRRect#cfe6e@Offset(160.0, 32.0), RenderSemanticsAnnotations#99ba2@Offset(160.0, 32.0), RenderCustomPaint#0dc74@Offset(160.0, 32.0), RenderAnimatedOpacity#8c52d@Offset(160.0, 32.0), RenderCustomSingleChildLayoutBox#6c8f5@Offset(160.0, 80.0), _RenderLayoutBuilder#74461@Offset(160.0, 80.0), RenderRepaintBoundary#12917@Offset(160.0, 80.0), RenderIgnorePointer#e5260@Offset(160.0, 80.0), RenderRepaintBoundary#41969@Offset(160.0, 80.0), RenderSemanticsAnnotations#637c0@Offset(160.0, 80.0), RenderOffstage#8a6cf@Offset(160.0, 80.0), RenderSemanticsAnnotations#aa0f5@Offset(160.0, 80.0), _RenderTheater#5e1e9@Offset(160.0, 80.0), RenderAbsorbPointer#d9364@Offset(160.0, 80.0), RenderPointerListener#9e196@Offset(160.0, 80.0), RenderSemanticsAnnotations#fb291@Offset(160.0, 80.0), RenderStack#aeab6@Offset(160.0, 80.0), RenderSemanticsAnnotations#b79f5@Offset(160.0, 80.0), RenderSemanticsAnnotations#9bfbd@Offset(160.0, 80.0), RenderTapRegionSurface#70b74@Offset(160.0, 80.0), RenderSemanticsAnnotations#1cd18@Offset(160.0, 80.0), RenderSemanticsAnnotations#40c9c@Offset(160.0, 80.0), RenderSemanticsAnnotations#b4ed0@Offset(160.0, 80.0), RenderRepaintBoundary#9f6ad@Offset(160.0, 80.0), HitTestEntry<HitTestTarget>#b2595(_ReusableRenderView#b79c1), HitTestEntry<HitTestTarget>#fbd34(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2077:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1861:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1041:7)
+#3      selectSettingsCategory (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:128:18)
+<asynchronous suspension>
+#4      main.<anonymous closure> (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:250:11)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1059:5)
+<asynchronous suspension>
+#7      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+00:08 +2: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ecosystem_layout_test.dart: Real device controls and session security compose at Size(1280.0, 900.0) in light
+00:10 +2: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart: Actual auth, offline Lo-Fi, profile and settings fit width 390.0 without setup copy
+
+Warning: A call to tap() with finder "Found 1 widget with widget matching predicate (ignoring all but first): [
+  DropdownMenuItem<String>(dependencies: [_ScrollableScope]),
+]" derived an Offset (Offset(195.0, 436.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#1b3a7 relayoutBoundary=up36
+The hit test result at that offset is: HitTestResult(RenderPointerListener#ad339@Offset(195.0, 24.0), RenderSemanticsAnnotations#13e67@Offset(195.0, 24.0), RenderMouseRegion#00cd2@Offset(195.0, 24.0), RenderSemanticsAnnotations#ee792@Offset(195.0, 24.0), RenderAnimatedOpacity#9739e@Offset(195.0, 24.0), RenderSemanticsAnnotations#5ffa7@Offset(195.0, 24.0), RenderRepaintBoundary#1dc1e@Offset(195.0, 24.0), RenderIndexedSemantics#debc3@Offset(195.0, 24.0), RenderSliverList@(mainAxis: 168.0, crossAxis: 195.0), RenderSliverPadding@(mainAxis: 176.0, crossAxis: 195.0), RenderShrinkWrappingViewport#92f2f@Offset(195.0, 176.0), RenderIgnorePointer#7aeda@Offset(195.0, 176.0), RenderSemanticsAnnotations#e02e6@Offset(195.0, 176.0), RenderPointerListener#88306@Offset(195.0, 176.0), RenderSemanticsGestureHandler#4c0e8@Offset(195.0, 176.0), RenderPointerListener#3272f@Offset(195.0, 176.0), _RenderScrollSemantics#4398e@Offset(195.0, 176.0), RenderRepaintBoundary#57fc2@Offset(195.0, 176.0), RenderCustomPaint#1bd82@Offset(195.0, 176.0), RenderMouseRegion#cde52@Offset(195.0, 176.0), RenderPointerListener#1c993@Offset(195.0, 176.0), RenderSemanticsGestureHandler#e6492@Offset(195.0, 176.0), RenderPointerListener#82a95@Offset(195.0, 176.0), RenderRepaintBoundary#45228@Offset(195.0, 176.0), _RenderInkFeatures#93c5e@Offset(195.0, 176.0), RenderCustomPaint#e251c@Offset(195.0, 176.0), RenderClipPath#301c7@Offset(195.0, 176.0), RenderClipRRect#e3ab8@Offset(195.0, 176.0), RenderSemanticsAnnotations#fd394@Offset(195.0, 176.0), RenderCustomPaint#0ee53@Offset(195.0, 176.0), RenderAnimatedOpacity#05a85@Offset(195.0, 176.0), RenderCustomSingleChildLayoutBox#5552f@Offset(195.0, 436.0), _RenderLayoutBuilder#00cbe@Offset(195.0, 436.0), RenderRepaintBoundary#5ed48@Offset(195.0, 436.0), RenderIgnorePointer#6210e@Offset(195.0, 436.0), RenderRepaintBoundary#04f0b@Offset(195.0, 436.0), RenderSemanticsAnnotations#864a7@Offset(195.0, 436.0), RenderOffstage#d902c@Offset(195.0, 436.0), RenderSemanticsAnnotations#56304@Offset(195.0, 436.0), _RenderTheater#a312f@Offset(195.0, 436.0), RenderAbsorbPointer#13e04@Offset(195.0, 436.0), RenderPointerListener#e0914@Offset(195.0, 436.0), RenderSemanticsAnnotations#9972a@Offset(195.0, 436.0), RenderStack#01332@Offset(195.0, 436.0), RenderSemanticsAnnotations#75c0f@Offset(195.0, 436.0), RenderSemanticsAnnotations#f9efc@Offset(195.0, 436.0), RenderTapRegionSurface#91b2d@Offset(195.0, 436.0), RenderSemanticsAnnotations#a3586@Offset(195.0, 436.0), RenderSemanticsAnnotations#574b8@Offset(195.0, 436.0), RenderSemanticsAnnotations#7ff7c@Offset(195.0, 436.0), RenderRepaintBoundary#0d0c6@Offset(195.0, 436.0), HitTestEntry<HitTestTarget>#573f0(_ReusableRenderView#b79c1), HitTestEntry<HitTestTarget>#0a782(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2077:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1861:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1041:7)
+#3      selectSettingsCategory (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:128:18)
+<asynchronous suspension>
+#4      main.<anonymous closure> (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:230:9)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1059:5)
+<asynchronous suspension>
+#7      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+00:11 +3: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart: Actual auth, offline Lo-Fi, profile and settings fit width 390.0 without setup copy
+00:12 +3: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ecosystem_layout_test.dart: Real device controls and session security compose at Size(390.0, 844.0) in dark
+
+Warning: A call to tap() with finder "Found 1 widget with widget matching predicate (ignoring all but first): [
+  DropdownMenuItem<String>(dependencies: [_ScrollableScope]),
+]" derived an Offset (Offset(195.0, 428.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#7069f relayoutBoundary=up36
+The hit test result at that offset is: HitTestResult(RenderPointerListener#1dca9@Offset(195.0, 24.0), RenderSemanticsAnnotations#a852b@Offset(195.0, 24.0), RenderMouseRegion#9ede7@Offset(195.0, 24.0), RenderSemanticsAnnotations#d49d2@Offset(195.0, 24.0), RenderAnimatedOpacity#c17b8@Offset(195.0, 24.0), RenderSemanticsAnnotations#db9be@Offset(195.0, 24.0), RenderRepaintBoundary#e68f6@Offset(195.0, 24.0), RenderIndexedSemantics#ee342@Offset(195.0, 24.0), RenderSliverList@(mainAxis: 216.0, crossAxis: 195.0), RenderSliverPadding@(mainAxis: 224.0, crossAxis: 195.0), RenderShrinkWrappingViewport#6ada5@Offset(195.0, 224.0), RenderIgnorePointer#016e5@Offset(195.0, 224.0), RenderSemanticsAnnotations#94b83@Offset(195.0, 224.0), RenderPointerListener#036f8@Offset(195.0, 224.0), RenderSemanticsGestureHandler#53fad@Offset(195.0, 224.0), RenderPointerListener#9912c@Offset(195.0, 224.0), _RenderScrollSemantics#e2776@Offset(195.0, 224.0), RenderRepaintBoundary#8b7b6@Offset(195.0, 224.0), RenderCustomPaint#21c4b@Offset(195.0, 224.0), RenderMouseRegion#22e4f@Offset(195.0, 224.0), RenderPointerListener#5eab8@Offset(195.0, 224.0), RenderSemanticsGestureHandler#8c188@Offset(195.0, 224.0), RenderPointerListener#cea63@Offset(195.0, 224.0), RenderRepaintBoundary#2c7a5@Offset(195.0, 224.0), _RenderInkFeatures#7f09b@Offset(195.0, 224.0), RenderCustomPaint#de90c@Offset(195.0, 224.0), RenderClipPath#57176@Offset(195.0, 224.0), RenderClipRRect#64291@Offset(195.0, 224.0), RenderSemanticsAnnotations#3221d@Offset(195.0, 224.0), RenderCustomPaint#98512@Offset(195.0, 224.0), RenderAnimatedOpacity#fc2ab@Offset(195.0, 224.0), RenderCustomSingleChildLayoutBox#5cbd4@Offset(195.0, 428.0), _RenderLayoutBuilder#3db2c@Offset(195.0, 428.0), RenderRepaintBoundary#34297@Offset(195.0, 428.0), RenderIgnorePointer#d8d94@Offset(195.0, 428.0), RenderRepaintBoundary#1de91@Offset(195.0, 428.0), RenderSemanticsAnnotations#9558f@Offset(195.0, 428.0), RenderOffstage#7fc60@Offset(195.0, 428.0), RenderSemanticsAnnotations#99112@Offset(195.0, 428.0), _RenderTheater#d8acb@Offset(195.0, 428.0), RenderAbsorbPointer#5c1b0@Offset(195.0, 428.0), RenderPointerListener#bcc9e@Offset(195.0, 428.0), RenderSemanticsAnnotations#ec0d2@Offset(195.0, 428.0), RenderStack#3a5bb@Offset(195.0, 428.0), RenderSemanticsAnnotations#6ca0b@Offset(195.0, 428.0), RenderSemanticsAnnotations#8899c@Offset(195.0, 428.0), RenderTapRegionSurface#5afe4@Offset(195.0, 428.0), RenderSemanticsAnnotations#43233@Offset(195.0, 428.0), RenderSemanticsAnnotations#8ff44@Offset(195.0, 428.0), RenderSemanticsAnnotations#8cfde@Offset(195.0, 428.0), RenderRepaintBoundary#4aad7@Offset(195.0, 428.0), HitTestEntry<HitTestTarget>#f3cd0(_ReusableRenderView#5671b), HitTestEntry<HitTestTarget>#8a836(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2077:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1861:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1041:7)
+#3      selectSettingsCategory (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:128:18)
+<asynchronous suspension>
+#4      main.<anonymous closure> (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ecosystem_layout_test.dart:148:11)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1059:5)
+<asynchronous suspension>
+#7      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+00:12 +3: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart: Actual auth, offline Lo-Fi, profile and settings fit width 390.0 without setup copy
+
+Warning: A call to tap() with finder "Found 1 widget with widget matching predicate (ignoring all but first): [
+  DropdownMenuItem<String>(dependencies: [_ScrollableScope]),
+]" derived an Offset (Offset(195.0, 435.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#c148c relayoutBoundary=up36
+The hit test result at that offset is: HitTestResult(RenderPointerListener#87265@Offset(195.0, 24.0), RenderSemanticsAnnotations#45b29@Offset(195.0, 24.0), RenderMouseRegion#6ca47@Offset(195.0, 24.0), RenderSemanticsAnnotations#06289@Offset(195.0, 24.0), RenderAnimatedOpacity#86ab0@Offset(195.0, 24.0), RenderSemanticsAnnotations#bc1f7@Offset(195.0, 24.0), RenderRepaintBoundary#a33b0@Offset(195.0, 24.0), RenderIndexedSemantics#d1ab9@Offset(195.0, 24.0), RenderSliverList@(mainAxis: 264.0, crossAxis: 195.0), RenderSliverPadding@(mainAxis: 272.0, crossAxis: 195.0), RenderShrinkWrappingViewport#9db75@Offset(195.0, 272.0), RenderIgnorePointer#5d586@Offset(195.0, 272.0), RenderSemanticsAnnotations#dc4d4@Offset(195.0, 272.0), RenderPointerListener#5e880@Offset(195.0, 272.0), RenderSemanticsGestureHandler#7d5b7@Offset(195.0, 272.0), RenderPointerListener#4ac4a@Offset(195.0, 272.0), _RenderScrollSemantics#5ed38@Offset(195.0, 272.0), RenderRepaintBoundary#a1174@Offset(195.0, 272.0), RenderCustomPaint#dedc0@Offset(195.0, 272.0), RenderMouseRegion#69db6@Offset(195.0, 272.0), RenderPointerListener#696f2@Offset(195.0, 272.0), RenderSemanticsGestureHandler#ddae8@Offset(195.0, 272.0), RenderPointerListener#801e5@Offset(195.0, 272.0), RenderRepaintBoundary#e88e7@Offset(195.0, 272.0), _RenderInkFeatures#78349@Offset(195.0, 272.0), RenderCustomPaint#a6fd2@Offset(195.0, 272.0), RenderClipPath#2b5d9@Offset(195.0, 272.0), RenderClipRRect#2fd97@Offset(195.0, 272.0), RenderSemanticsAnnotations#046a5@Offset(195.0, 272.0), RenderCustomPaint#aab1d@Offset(195.0, 272.0), RenderAnimatedOpacity#d6689@Offset(195.0, 272.0), RenderCustomSingleChildLayoutBox#123ce@Offset(195.0, 435.0), _RenderLayoutBuilder#e2944@Offset(195.0, 435.0), RenderRepaintBoundary#e9356@Offset(195.0, 435.0), RenderIgnorePointer#517e4@Offset(195.0, 435.0), RenderRepaintBoundary#0c47f@Offset(195.0, 435.0), RenderSemanticsAnnotations#4ad34@Offset(195.0, 435.0), RenderOffstage#095b4@Offset(195.0, 435.0), RenderSemanticsAnnotations#4a185@Offset(195.0, 435.0), _RenderTheater#a312f@Offset(195.0, 435.0), RenderAbsorbPointer#13e04@Offset(195.0, 435.0), RenderPointerListener#e0914@Offset(195.0, 435.0), RenderSemanticsAnnotations#9972a@Offset(195.0, 435.0), RenderStack#01332@Offset(195.0, 435.0), RenderSemanticsAnnotations#75c0f@Offset(195.0, 435.0), RenderSemanticsAnnotations#f9efc@Offset(195.0, 435.0), RenderTapRegionSurface#91b2d@Offset(195.0, 435.0), RenderSemanticsAnnotations#a3586@Offset(195.0, 435.0), RenderSemanticsAnnotations#574b8@Offset(195.0, 435.0), RenderSemanticsAnnotations#7ff7c@Offset(195.0, 435.0), RenderRepaintBoundary#0d0c6@Offset(195.0, 435.0), HitTestEntry<HitTestTarget>#809af(_ReusableRenderView#b79c1), HitTestEntry<HitTestTarget>#04d0c(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2077:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1861:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1041:7)
+#3      selectSettingsCategory (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:128:18)
+<asynchronous suspension>
+#4      main.<anonymous closure> (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:250:11)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1059:5)
+<asynchronous suspension>
+#7      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with widget matching predicate (ignoring all but first): [
+  DropdownMenuItem<String>(dependencies: [_ScrollableScope]),
+]" derived an Offset (Offset(195.0, 387.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#dd5d5 relayoutBoundary=up36
+The hit test result at that offset is: HitTestResult(RenderPointerListener#7efb8@Offset(195.0, 24.0), RenderSemanticsAnnotations#a4fda@Offset(195.0, 24.0), RenderMouseRegion#5d33b@Offset(195.0, 24.0), RenderSemanticsAnnotations#48955@Offset(195.0, 24.0), RenderAnimatedOpacity#0e50f@Offset(195.0, 24.0), RenderSemanticsAnnotations#b3c94@Offset(195.0, 24.0), RenderRepaintBoundary#870da@Offset(195.0, 24.0), RenderIndexedSemantics#d9e34@Offset(195.0, 24.0), RenderSliverList@(mainAxis: 312.0, crossAxis: 195.0), RenderSliverPadding@(mainAxis: 320.0, crossAxis: 195.0), RenderShrinkWrappingViewport#58b41@Offset(195.0, 320.0), RenderIgnorePointer#b9816@Offset(195.0, 320.0), RenderSemanticsAnnotations#6c794@Offset(195.0, 320.0), RenderPointerListener#d2169@Offset(195.0, 320.0), RenderSemanticsGestureHandler#ad1d4@Offset(195.0, 320.0), RenderPointerListener#11af1@Offset(195.0, 320.0), _RenderScrollSemantics#46283@Offset(195.0, 320.0), RenderRepaintBoundary#632cf@Offset(195.0, 320.0), RenderCustomPaint#f8449@Offset(195.0, 320.0), RenderMouseRegion#46626@Offset(195.0, 320.0), RenderPointerListener#08eb7@Offset(195.0, 320.0), RenderSemanticsGestureHandler#b43ec@Offset(195.0, 320.0), RenderPointerListener#03b85@Offset(195.0, 320.0), RenderRepaintBoundary#bee59@Offset(195.0, 320.0), _RenderInkFeatures#43593@Offset(195.0, 320.0), RenderCustomPaint#05260@Offset(195.0, 320.0), RenderClipPath#92aa5@Offset(195.0, 320.0), RenderClipRRect#4f93f@Offset(195.0, 320.0), RenderSemanticsAnnotations#c2e2d@Offset(195.0, 320.0), RenderCustomPaint#3445a@Offset(195.0, 320.0), RenderAnimatedOpacity#97c12@Offset(195.0, 320.0), RenderCustomSingleChildLayoutBox#7c1d8@Offset(195.0, 387.0), _RenderLayoutBuilder#67b91@Offset(195.0, 387.0), RenderRepaintBoundary#509c9@Offset(195.0, 387.0), RenderIgnorePointer#b43e6@Offset(195.0, 387.0), RenderRepaintBoundary#59b23@Offset(195.0, 387.0), RenderSemanticsAnnotations#3c82b@Offset(195.0, 387.0), RenderOffstage#dfb35@Offset(195.0, 387.0), RenderSemanticsAnnotations#5fa94@Offset(195.0, 387.0), _RenderTheater#a312f@Offset(195.0, 387.0), RenderAbsorbPointer#13e04@Offset(195.0, 387.0), RenderPointerListener#e0914@Offset(195.0, 387.0), RenderSemanticsAnnotations#9972a@Offset(195.0, 387.0), RenderStack#01332@Offset(195.0, 387.0), RenderSemanticsAnnotations#75c0f@Offset(195.0, 387.0), RenderSemanticsAnnotations#f9efc@Offset(195.0, 387.0), RenderTapRegionSurface#91b2d@Offset(195.0, 387.0), RenderSemanticsAnnotations#a3586@Offset(195.0, 387.0), RenderSemanticsAnnotations#574b8@Offset(195.0, 387.0), RenderSemanticsAnnotations#7ff7c@Offset(195.0, 387.0), RenderRepaintBoundary#0d0c6@Offset(195.0, 387.0), HitTestEntry<HitTestTarget>#fd04f(_ReusableRenderView#b79c1), HitTestEntry<HitTestTarget>#81405(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2077:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1861:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1041:7)
+#3      selectSettingsCategory (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:128:18)
+<asynchronous suspension>
+#4      main.<anonymous closure> (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:250:11)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1059:5)
+<asynchronous suspension>
+#7      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with widget matching predicate (ignoring all but first): [
+  DropdownMenuItem<String>(dependencies: [_ScrollableScope]),
+]" derived an Offset (Offset(195.0, 416.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#25a15 relayoutBoundary=up36
+The hit test result at that offset is: HitTestResult(RenderPointerListener#75b29@Offset(195.0, 24.0), RenderSemanticsAnnotations#3b674@Offset(195.0, 24.0), RenderMouseRegion#a3f68@Offset(195.0, 24.0), RenderSemanticsAnnotations#c3e16@Offset(195.0, 24.0), RenderAnimatedOpacity#db5be@Offset(195.0, 24.0), RenderSemanticsAnnotations#667ed@Offset(195.0, 24.0), RenderRepaintBoundary#c573a@Offset(195.0, 24.0), RenderIndexedSemantics#0c044@Offset(195.0, 24.0), RenderSliverList@(mainAxis: 360.0, crossAxis: 195.0), RenderSliverPadding@(mainAxis: 368.0, crossAxis: 195.0), RenderShrinkWrappingViewport#b0600@Offset(195.0, 368.0), RenderIgnorePointer#9ed33@Offset(195.0, 368.0), RenderSemanticsAnnotations#83bff@Offset(195.0, 368.0), RenderPointerListener#0b268@Offset(195.0, 368.0), RenderSemanticsGestureHandler#05054@Offset(195.0, 368.0), RenderPointerListener#292e1@Offset(195.0, 368.0), _RenderScrollSemantics#79381@Offset(195.0, 368.0), RenderRepaintBoundary#c8f82@Offset(195.0, 368.0), RenderCustomPaint#7a07c@Offset(195.0, 368.0), RenderMouseRegion#dea5c@Offset(195.0, 368.0), RenderPointerListener#3af1f@Offset(195.0, 368.0), RenderSemanticsGestureHandler#49d78@Offset(195.0, 368.0), RenderPointerListener#38278@Offset(195.0, 368.0), RenderRepaintBoundary#b2845@Offset(195.0, 368.0), _RenderInkFeatures#384ee@Offset(195.0, 368.0), RenderCustomPaint#51685@Offset(195.0, 368.0), RenderClipPath#94061@Offset(195.0, 368.0), RenderClipRRect#7fd90@Offset(195.0, 368.0), RenderSemanticsAnnotations#cd233@Offset(195.0, 368.0), RenderCustomPaint#d2dca@Offset(195.0, 368.0), RenderAnimatedOpacity#1e300@Offset(195.0, 368.0), RenderCustomSingleChildLayoutBox#fefd9@Offset(195.0, 416.0), _RenderLayoutBuilder#c7c47@Offset(195.0, 416.0), RenderRepaintBoundary#86c8c@Offset(195.0, 416.0), RenderIgnorePointer#0c981@Offset(195.0, 416.0), RenderRepaintBoundary#b8250@Offset(195.0, 416.0), RenderSemanticsAnnotations#538b7@Offset(195.0, 416.0), RenderOffstage#ac1b7@Offset(195.0, 416.0), RenderSemanticsAnnotations#765ea@Offset(195.0, 416.0), _RenderTheater#a312f@Offset(195.0, 416.0), RenderAbsorbPointer#13e04@Offset(195.0, 416.0), RenderPointerListener#e0914@Offset(195.0, 416.0), RenderSemanticsAnnotations#9972a@Offset(195.0, 416.0), RenderStack#01332@Offset(195.0, 416.0), RenderSemanticsAnnotations#75c0f@Offset(195.0, 416.0), RenderSemanticsAnnotations#f9efc@Offset(195.0, 416.0), RenderTapRegionSurface#91b2d@Offset(195.0, 416.0), RenderSemanticsAnnotations#a3586@Offset(195.0, 416.0), RenderSemanticsAnnotations#574b8@Offset(195.0, 416.0), RenderSemanticsAnnotations#7ff7c@Offset(195.0, 416.0), RenderRepaintBoundary#0d0c6@Offset(195.0, 416.0), HitTestEntry<HitTestTarget>#785a9(_ReusableRenderView#b79c1), HitTestEntry<HitTestTarget>#9e969(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2077:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1861:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1041:7)
+#3      selectSettingsCategory (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:128:18)
+<asynchronous suspension>
+#4      main.<anonymous closure> (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:250:11)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1059:5)
+<asynchronous suspension>
+#7      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with widget matching predicate (ignoring all but first): [
+  DropdownMenuItem<String>(dependencies: [_ScrollableScope]),
+]" derived an Offset (Offset(195.0, 464.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#53fc1 relayoutBoundary=up36
+The hit test result at that offset is: HitTestResult(RenderPointerListener#c03c3@Offset(195.0, 24.0), RenderSemanticsAnnotations#3a636@Offset(195.0, 24.0), RenderMouseRegion#1f27e@Offset(195.0, 24.0), RenderSemanticsAnnotations#1c7f7@Offset(195.0, 24.0), RenderAnimatedOpacity#36958@Offset(195.0, 24.0), RenderSemanticsAnnotations#0059b@Offset(195.0, 24.0), RenderRepaintBoundary#ee376@Offset(195.0, 24.0), RenderIndexedSemantics#09bff@Offset(195.0, 24.0), RenderSliverList@(mainAxis: 408.0, crossAxis: 195.0), RenderSliverPadding@(mainAxis: 416.0, crossAxis: 195.0), RenderShrinkWrappingViewport#20cc5@Offset(195.0, 416.0), RenderIgnorePointer#216e9@Offset(195.0, 416.0), RenderSemanticsAnnotations#6184c@Offset(195.0, 416.0), RenderPointerListener#5f09a@Offset(195.0, 416.0), RenderSemanticsGestureHandler#f5bbe@Offset(195.0, 416.0), RenderPointerListener#96920@Offset(195.0, 416.0), _RenderScrollSemantics#f1d4c@Offset(195.0, 416.0), RenderRepaintBoundary#56d65@Offset(195.0, 416.0), RenderCustomPaint#abcca@Offset(195.0, 416.0), RenderMouseRegion#0e3dc@Offset(195.0, 416.0), RenderPointerListener#e4a22@Offset(195.0, 416.0), RenderSemanticsGestureHandler#9e0cd@Offset(195.0, 416.0), RenderPointerListener#df90c@Offset(195.0, 416.0), RenderRepaintBoundary#d64d1@Offset(195.0, 416.0), _RenderInkFeatures#a0cb7@Offset(195.0, 416.0), RenderCustomPaint#8fb39@Offset(195.0, 416.0), RenderClipPath#6bea5@Offset(195.0, 416.0), RenderClipRRect#aa028@Offset(195.0, 416.0), RenderSemanticsAnnotations#76b69@Offset(195.0, 416.0), RenderCustomPaint#d5c77@Offset(195.0, 416.0), RenderAnimatedOpacity#5543b@Offset(195.0, 416.0), RenderCustomSingleChildLayoutBox#8afcb@Offset(195.0, 464.0), _RenderLayoutBuilder#9de26@Offset(195.0, 464.0), RenderRepaintBoundary#c171a@Offset(195.0, 464.0), RenderIgnorePointer#0b17d@Offset(195.0, 464.0), RenderRepaintBoundary#6aabe@Offset(195.0, 464.0), RenderSemanticsAnnotations#f0e5f@Offset(195.0, 464.0), RenderOffstage#8fac3@Offset(195.0, 464.0), RenderSemanticsAnnotations#cfc4a@Offset(195.0, 464.0), _RenderTheater#a312f@Offset(195.0, 464.0), RenderAbsorbPointer#13e04@Offset(195.0, 464.0), RenderPointerListener#e0914@Offset(195.0, 464.0), RenderSemanticsAnnotations#9972a@Offset(195.0, 464.0), RenderStack#01332@Offset(195.0, 464.0), RenderSemanticsAnnotations#75c0f@Offset(195.0, 464.0), RenderSemanticsAnnotations#f9efc@Offset(195.0, 464.0), RenderTapRegionSurface#91b2d@Offset(195.0, 464.0), RenderSemanticsAnnotations#a3586@Offset(195.0, 464.0), RenderSemanticsAnnotations#574b8@Offset(195.0, 464.0), RenderSemanticsAnnotations#7ff7c@Offset(195.0, 464.0), RenderRepaintBoundary#0d0c6@Offset(195.0, 464.0), HitTestEntry<HitTestTarget>#180ae(_ReusableRenderView#b79c1), HitTestEntry<HitTestTarget>#4d152(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2077:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1861:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1041:7)
+#3      selectSettingsCategory (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:128:18)
+<asynchronous suspension>
+#4      main.<anonymous closure> (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:250:11)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1059:5)
+<asynchronous suspension>
+#7      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with widget matching predicate (ignoring all but first): [
+  DropdownMenuItem<String>(dependencies: [_ScrollableScope]),
+]" derived an Offset (Offset(195.0, 512.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#0a4fb relayoutBoundary=up36
+The hit test result at that offset is: HitTestResult(RenderPointerListener#0f411@Offset(195.0, 24.0), RenderSemanticsAnnotations#27c5d@Offset(195.0, 24.0), RenderMouseRegion#c3c21@Offset(195.0, 24.0), RenderSemanticsAnnotations#845d6@Offset(195.0, 24.0), RenderAnimatedOpacity#84b38@Offset(195.0, 24.0), RenderSemanticsAnnotations#0da0c@Offset(195.0, 24.0), RenderRepaintBoundary#d012a@Offset(195.0, 24.0), RenderIndexedSemantics#20144@Offset(195.0, 24.0), RenderSliverList@(mainAxis: 456.0, crossAxis: 195.0), RenderSliverPadding@(mainAxis: 464.0, crossAxis: 195.0), RenderShrinkWrappingViewport#f467c@Offset(195.0, 464.0), RenderIgnorePointer#53c49@Offset(195.0, 464.0), RenderSemanticsAnnotations#83c82@Offset(195.0, 464.0), RenderPointerListener#8cc19@Offset(195.0, 464.0), RenderSemanticsGestureHandler#1cd72@Offset(195.0, 464.0), RenderPointerListener#8a6b3@Offset(195.0, 464.0), _RenderScrollSemantics#a258e@Offset(195.0, 464.0), RenderRepaintBoundary#a5946@Offset(195.0, 464.0), RenderCustomPaint#407e3@Offset(195.0, 464.0), RenderMouseRegion#57f02@Offset(195.0, 464.0), RenderPointerListener#ed3bc@Offset(195.0, 464.0), RenderSemanticsGestureHandler#5aee1@Offset(195.0, 464.0), RenderPointerListener#0ac74@Offset(195.0, 464.0), RenderRepaintBoundary#dbab9@Offset(195.0, 464.0), _RenderInkFeatures#ced2a@Offset(195.0, 464.0), RenderCustomPaint#f4d08@Offset(195.0, 464.0), RenderClipPath#9c810@Offset(195.0, 464.0), RenderClipRRect#1a9cd@Offset(195.0, 464.0), RenderSemanticsAnnotations#69bc6@Offset(195.0, 464.0), RenderCustomPaint#ee2c7@Offset(195.0, 464.0), RenderAnimatedOpacity#0cfbf@Offset(195.0, 464.0), RenderCustomSingleChildLayoutBox#34005@Offset(195.0, 512.0), _RenderLayoutBuilder#0fefc@Offset(195.0, 512.0), RenderRepaintBoundary#a6845@Offset(195.0, 512.0), RenderIgnorePointer#83dcf@Offset(195.0, 512.0), RenderRepaintBoundary#cfbe6@Offset(195.0, 512.0), RenderSemanticsAnnotations#f68c7@Offset(195.0, 512.0), RenderOffstage#6241c@Offset(195.0, 512.0), RenderSemanticsAnnotations#6d4c9@Offset(195.0, 512.0), _RenderTheater#a312f@Offset(195.0, 512.0), RenderAbsorbPointer#13e04@Offset(195.0, 512.0), RenderPointerListener#e0914@Offset(195.0, 512.0), RenderSemanticsAnnotations#9972a@Offset(195.0, 512.0), RenderStack#01332@Offset(195.0, 512.0), RenderSemanticsAnnotations#75c0f@Offset(195.0, 512.0), RenderSemanticsAnnotations#f9efc@Offset(195.0, 512.0), RenderTapRegionSurface#91b2d@Offset(195.0, 512.0), RenderSemanticsAnnotations#a3586@Offset(195.0, 512.0), RenderSemanticsAnnotations#574b8@Offset(195.0, 512.0), RenderSemanticsAnnotations#7ff7c@Offset(195.0, 512.0), RenderRepaintBoundary#0d0c6@Offset(195.0, 512.0), HitTestEntry<HitTestTarget>#6d3ea(_ReusableRenderView#b79c1), HitTestEntry<HitTestTarget>#843a3(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2077:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1861:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1041:7)
+#3      selectSettingsCategory (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:128:18)
+<asynchronous suspension>
+#4      main.<anonymous closure> (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:250:11)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1059:5)
+<asynchronous suspension>
+#7      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with widget matching predicate (ignoring all but first): [
+  DropdownMenuItem<String>(dependencies: [_ScrollableScope]),
+]" derived an Offset (Offset(195.0, 560.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#9a84a relayoutBoundary=up36
+The hit test result at that offset is: HitTestResult(RenderPointerListener#b2e21@Offset(195.0, 24.0), RenderSemanticsAnnotations#d240d@Offset(195.0, 24.0), RenderMouseRegion#bc7cd@Offset(195.0, 24.0), RenderSemanticsAnnotations#b619e@Offset(195.0, 24.0), RenderAnimatedOpacity#f9e00@Offset(195.0, 24.0), RenderSemanticsAnnotations#e32b5@Offset(195.0, 24.0), RenderRepaintBoundary#599c8@Offset(195.0, 24.0), RenderIndexedSemantics#9bb67@Offset(195.0, 24.0), RenderSliverList@(mainAxis: 504.0, crossAxis: 195.0), RenderSliverPadding@(mainAxis: 512.0, crossAxis: 195.0), RenderShrinkWrappingViewport#43407@Offset(195.0, 512.0), RenderIgnorePointer#85457@Offset(195.0, 512.0), RenderSemanticsAnnotations#72ebc@Offset(195.0, 512.0), RenderPointerListener#11ed5@Offset(195.0, 512.0), RenderSemanticsGestureHandler#02c0e@Offset(195.0, 512.0), RenderPointerListener#7a076@Offset(195.0, 512.0), _RenderScrollSemantics#18d26@Offset(195.0, 512.0), RenderRepaintBoundary#2559a@Offset(195.0, 512.0), RenderCustomPaint#519f7@Offset(195.0, 512.0), RenderMouseRegion#67e84@Offset(195.0, 512.0), RenderPointerListener#35341@Offset(195.0, 512.0), RenderSemanticsGestureHandler#d5d12@Offset(195.0, 512.0), RenderPointerListener#2de03@Offset(195.0, 512.0), RenderRepaintBoundary#f0584@Offset(195.0, 512.0), _RenderInkFeatures#25517@Offset(195.0, 512.0), RenderCustomPaint#fd30c@Offset(195.0, 512.0), RenderClipPath#d621e@Offset(195.0, 512.0), RenderClipRRect#17714@Offset(195.0, 512.0), RenderSemanticsAnnotations#e6971@Offset(195.0, 512.0), RenderCustomPaint#bb2de@Offset(195.0, 512.0), RenderAnimatedOpacity#ffe99@Offset(195.0, 512.0), RenderCustomSingleChildLayoutBox#09546@Offset(195.0, 560.0), _RenderLayoutBuilder#e941a@Offset(195.0, 560.0), RenderRepaintBoundary#abf9e@Offset(195.0, 560.0), RenderIgnorePointer#f989a@Offset(195.0, 560.0), RenderRepaintBoundary#cae6f@Offset(195.0, 560.0), RenderSemanticsAnnotations#92d25@Offset(195.0, 560.0), RenderOffstage#34065@Offset(195.0, 560.0), RenderSemanticsAnnotations#57913@Offset(195.0, 560.0), _RenderTheater#a312f@Offset(195.0, 560.0), RenderAbsorbPointer#13e04@Offset(195.0, 560.0), RenderPointerListener#e0914@Offset(195.0, 560.0), RenderSemanticsAnnotations#9972a@Offset(195.0, 560.0), RenderStack#01332@Offset(195.0, 560.0), RenderSemanticsAnnotations#75c0f@Offset(195.0, 560.0), RenderSemanticsAnnotations#f9efc@Offset(195.0, 560.0), RenderTapRegionSurface#91b2d@Offset(195.0, 560.0), RenderSemanticsAnnotations#a3586@Offset(195.0, 560.0), RenderSemanticsAnnotations#574b8@Offset(195.0, 560.0), RenderSemanticsAnnotations#7ff7c@Offset(195.0, 560.0), RenderRepaintBoundary#0d0c6@Offset(195.0, 560.0), HitTestEntry<HitTestTarget>#d49c5(_ReusableRenderView#b79c1), HitTestEntry<HitTestTarget>#b0f5e(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2077:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1861:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1041:7)
+#3      selectSettingsCategory (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:128:18)
+<asynchronous suspension>
+#4      main.<anonymous closure> (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:250:11)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1059:5)
+<asynchronous suspension>
+#7      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with widget matching predicate (ignoring all but first): [
+  DropdownMenuItem<String>(dependencies: [_ScrollableScope]),
+]" derived an Offset (Offset(195.0, 608.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#4739f relayoutBoundary=up36
+The hit test result at that offset is: HitTestResult(RenderPointerListener#2928c@Offset(195.0, 24.0), RenderSemanticsAnnotations#d0d35@Offset(195.0, 24.0), RenderMouseRegion#e926d@Offset(195.0, 24.0), RenderSemanticsAnnotations#659f8@Offset(195.0, 24.0), RenderAnimatedOpacity#c2528@Offset(195.0, 24.0), RenderSemanticsAnnotations#bc144@Offset(195.0, 24.0), RenderRepaintBoundary#a710a@Offset(195.0, 24.0), RenderIndexedSemantics#90802@Offset(195.0, 24.0), RenderSliverList@(mainAxis: 552.0, crossAxis: 195.0), RenderSliverPadding@(mainAxis: 560.0, crossAxis: 195.0), RenderShrinkWrappingViewport#61772@Offset(195.0, 560.0), RenderIgnorePointer#cf725@Offset(195.0, 560.0), RenderSemanticsAnnotations#02d5e@Offset(195.0, 560.0), RenderPointerListener#2215e@Offset(195.0, 560.0), RenderSemanticsGestureHandler#ad618@Offset(195.0, 560.0), RenderPointerListener#596dc@Offset(195.0, 560.0), _RenderScrollSemantics#dce26@Offset(195.0, 560.0), RenderRepaintBoundary#43a65@Offset(195.0, 560.0), RenderCustomPaint#4987a@Offset(195.0, 560.0), RenderMouseRegion#fe416@Offset(195.0, 560.0), RenderPointerListener#ea013@Offset(195.0, 560.0), RenderSemanticsGestureHandler#7b040@Offset(195.0, 560.0), RenderPointerListener#ee137@Offset(195.0, 560.0), RenderRepaintBoundary#cc875@Offset(195.0, 560.0), _RenderInkFeatures#56c92@Offset(195.0, 560.0), RenderCustomPaint#d1f62@Offset(195.0, 560.0), RenderClipPath#5abb3@Offset(195.0, 560.0), RenderClipRRect#67f0a@Offset(195.0, 560.0), RenderSemanticsAnnotations#04730@Offset(195.0, 560.0), RenderCustomPaint#66869@Offset(195.0, 560.0), RenderAnimatedOpacity#0c977@Offset(195.0, 560.0), RenderCustomSingleChildLayoutBox#0395c@Offset(195.0, 608.0), _RenderLayoutBuilder#23896@Offset(195.0, 608.0), RenderRepaintBoundary#14e61@Offset(195.0, 608.0), RenderIgnorePointer#e62ef@Offset(195.0, 608.0), RenderRepaintBoundary#546da@Offset(195.0, 608.0), RenderSemanticsAnnotations#9bada@Offset(195.0, 608.0), RenderOffstage#8aaad@Offset(195.0, 608.0), RenderSemanticsAnnotations#ca4ff@Offset(195.0, 608.0), _RenderTheater#a312f@Offset(195.0, 608.0), RenderAbsorbPointer#13e04@Offset(195.0, 608.0), RenderPointerListener#e0914@Offset(195.0, 608.0), RenderSemanticsAnnotations#9972a@Offset(195.0, 608.0), RenderStack#01332@Offset(195.0, 608.0), RenderSemanticsAnnotations#75c0f@Offset(195.0, 608.0), RenderSemanticsAnnotations#f9efc@Offset(195.0, 608.0), RenderTapRegionSurface#91b2d@Offset(195.0, 608.0), RenderSemanticsAnnotations#a3586@Offset(195.0, 608.0), RenderSemanticsAnnotations#574b8@Offset(195.0, 608.0), RenderSemanticsAnnotations#7ff7c@Offset(195.0, 608.0), RenderRepaintBoundary#0d0c6@Offset(195.0, 608.0), HitTestEntry<HitTestTarget>#5327b(_ReusableRenderView#b79c1), HitTestEntry<HitTestTarget>#6678e(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2077:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1861:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1041:7)
+#3      selectSettingsCategory (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:128:18)
+<asynchronous suspension>
+#4      main.<anonymous closure> (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:250:11)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1059:5)
+<asynchronous suspension>
+#7      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with widget matching predicate (ignoring all but first): [
+  DropdownMenuItem<String>(dependencies: [_ScrollableScope]),
+]" derived an Offset (Offset(195.0, 80.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#6e3c0 relayoutBoundary=up36
+The hit test result at that offset is: HitTestResult(RenderPointerListener#42fb5@Offset(195.0, 24.0), RenderSemanticsAnnotations#815bf@Offset(195.0, 24.0), RenderMouseRegion#9fbc6@Offset(195.0, 24.0), RenderSemanticsAnnotations#110cb@Offset(195.0, 24.0), RenderAnimatedOpacity#b4fa0@Offset(195.0, 24.0), RenderSemanticsAnnotations#31952@Offset(195.0, 24.0), RenderRepaintBoundary#b680b@Offset(195.0, 24.0), RenderIndexedSemantics#3dc84@Offset(195.0, 24.0), RenderSliverList@(mainAxis: 24.0, crossAxis: 195.0), RenderSliverPadding@(mainAxis: 32.0, crossAxis: 195.0), RenderShrinkWrappingViewport#64d39@Offset(195.0, 32.0), RenderIgnorePointer#0877c@Offset(195.0, 32.0), RenderSemanticsAnnotations#d20be@Offset(195.0, 32.0), RenderPointerListener#d9ca5@Offset(195.0, 32.0), RenderSemanticsGestureHandler#4f3dc@Offset(195.0, 32.0), RenderPointerListener#b4882@Offset(195.0, 32.0), _RenderScrollSemantics#f745c@Offset(195.0, 32.0), RenderRepaintBoundary#81f66@Offset(195.0, 32.0), RenderCustomPaint#6079f@Offset(195.0, 32.0), RenderMouseRegion#f4b7c@Offset(195.0, 32.0), RenderPointerListener#d1beb@Offset(195.0, 32.0), RenderSemanticsGestureHandler#1ed6e@Offset(195.0, 32.0), RenderPointerListener#9bd68@Offset(195.0, 32.0), RenderRepaintBoundary#53b02@Offset(195.0, 32.0), _RenderInkFeatures#2b21e@Offset(195.0, 32.0), RenderCustomPaint#a32bd@Offset(195.0, 32.0), RenderClipPath#7cdf8@Offset(195.0, 32.0), RenderClipRRect#c65cb@Offset(195.0, 32.0), RenderSemanticsAnnotations#e2d84@Offset(195.0, 32.0), RenderCustomPaint#8090e@Offset(195.0, 32.0), RenderAnimatedOpacity#3688f@Offset(195.0, 32.0), RenderCustomSingleChildLayoutBox#a0c47@Offset(195.0, 80.0), _RenderLayoutBuilder#a344a@Offset(195.0, 80.0), RenderRepaintBoundary#4bc5a@Offset(195.0, 80.0), RenderIgnorePointer#01c0e@Offset(195.0, 80.0), RenderRepaintBoundary#54121@Offset(195.0, 80.0), RenderSemanticsAnnotations#2bea9@Offset(195.0, 80.0), RenderOffstage#244e0@Offset(195.0, 80.0), RenderSemanticsAnnotations#591e8@Offset(195.0, 80.0), _RenderTheater#a312f@Offset(195.0, 80.0), RenderAbsorbPointer#13e04@Offset(195.0, 80.0), RenderPointerListener#e0914@Offset(195.0, 80.0), RenderSemanticsAnnotations#9972a@Offset(195.0, 80.0), RenderStack#01332@Offset(195.0, 80.0), RenderSemanticsAnnotations#75c0f@Offset(195.0, 80.0), RenderSemanticsAnnotations#f9efc@Offset(195.0, 80.0), RenderTapRegionSurface#91b2d@Offset(195.0, 80.0), RenderSemanticsAnnotations#a3586@Offset(195.0, 80.0), RenderSemanticsAnnotations#574b8@Offset(195.0, 80.0), RenderSemanticsAnnotations#7ff7c@Offset(195.0, 80.0), RenderRepaintBoundary#0d0c6@Offset(195.0, 80.0), HitTestEntry<HitTestTarget>#61623(_ReusableRenderView#b79c1), HitTestEntry<HitTestTarget>#aafa1(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2077:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1861:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1041:7)
+#3      selectSettingsCategory (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:128:18)
+<asynchronous suspension>
+#4      main.<anonymous closure> (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:250:11)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1059:5)
+<asynchronous suspension>
+#7      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+00:12 +4: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ecosystem_layout_test.dart: Real device controls and session security compose at Size(390.0, 844.0) in dark
+
+Warning: A call to tap() with finder "Found 1 widget with widget matching predicate (ignoring all but first): [
+  DropdownMenuItem<String>(dependencies: [_ScrollableScope]),
+]" derived an Offset (Offset(195.0, 323.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#4a388 relayoutBoundary=up36
+The hit test result at that offset is: HitTestResult(RenderPointerListener#fdfbe@Offset(195.0, 24.0), RenderSemanticsAnnotations#229e9@Offset(195.0, 24.0), RenderMouseRegion#91597@Offset(195.0, 24.0), RenderSemanticsAnnotations#edff4@Offset(195.0, 24.0), RenderAnimatedOpacity#fda6e@Offset(195.0, 24.0), RenderSemanticsAnnotations#db2bd@Offset(195.0, 24.0), RenderRepaintBoundary#78a29@Offset(195.0, 24.0), RenderIndexedSemantics#6e067@Offset(195.0, 24.0), RenderSliverList@(mainAxis: 264.0, crossAxis: 195.0), RenderSliverPadding@(mainAxis: 272.0, crossAxis: 195.0), RenderShrinkWrappingViewport#325d5@Offset(195.0, 272.0), RenderIgnorePointer#a78a6@Offset(195.0, 272.0), RenderSemanticsAnnotations#221c2@Offset(195.0, 272.0), RenderPointerListener#65bd3@Offset(195.0, 272.0), RenderSemanticsGestureHandler#978dc@Offset(195.0, 272.0), RenderPointerListener#c60e6@Offset(195.0, 272.0), _RenderScrollSemantics#f9deb@Offset(195.0, 272.0), RenderRepaintBoundary#7f2db@Offset(195.0, 272.0), RenderCustomPaint#2d0f1@Offset(195.0, 272.0), RenderMouseRegion#53abd@Offset(195.0, 272.0), RenderPointerListener#5e9cc@Offset(195.0, 272.0), RenderSemanticsGestureHandler#e643d@Offset(195.0, 272.0), RenderPointerListener#8c1cb@Offset(195.0, 272.0), RenderRepaintBoundary#ba00c@Offset(195.0, 272.0), _RenderInkFeatures#e8852@Offset(195.0, 272.0), RenderCustomPaint#119f2@Offset(195.0, 272.0), RenderClipPath#f6740@Offset(195.0, 272.0), RenderClipRRect#39b45@Offset(195.0, 272.0), RenderSemanticsAnnotations#0eb7e@Offset(195.0, 272.0), RenderCustomPaint#e3a21@Offset(195.0, 272.0), RenderAnimatedOpacity#d9ee8@Offset(195.0, 272.0), RenderCustomSingleChildLayoutBox#80149@Offset(195.0, 323.0), _RenderLayoutBuilder#889af@Offset(195.0, 323.0), RenderRepaintBoundary#413c6@Offset(195.0, 323.0), RenderIgnorePointer#49594@Offset(195.0, 323.0), RenderRepaintBoundary#cbff0@Offset(195.0, 323.0), RenderSemanticsAnnotations#b89fc@Offset(195.0, 323.0), RenderOffstage#09d8d@Offset(195.0, 323.0), RenderSemanticsAnnotations#43b1f@Offset(195.0, 323.0), _RenderTheater#d8acb@Offset(195.0, 323.0), RenderAbsorbPointer#5c1b0@Offset(195.0, 323.0), RenderPointerListener#bcc9e@Offset(195.0, 323.0), RenderSemanticsAnnotations#ec0d2@Offset(195.0, 323.0), RenderStack#3a5bb@Offset(195.0, 323.0), RenderSemanticsAnnotations#6ca0b@Offset(195.0, 323.0), RenderSemanticsAnnotations#8899c@Offset(195.0, 323.0), RenderTapRegionSurface#5afe4@Offset(195.0, 323.0), RenderSemanticsAnnotations#43233@Offset(195.0, 323.0), RenderSemanticsAnnotations#8ff44@Offset(195.0, 323.0), RenderSemanticsAnnotations#8cfde@Offset(195.0, 323.0), RenderRepaintBoundary#4aad7@Offset(195.0, 323.0), HitTestEntry<HitTestTarget>#4460e(_ReusableRenderView#5671b), HitTestEntry<HitTestTarget>#cadea(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2077:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1861:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1041:7)
+#3      selectSettingsCategory (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:128:18)
+<asynchronous suspension>
+#4      main.<anonymous closure> (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ecosystem_layout_test.dart:174:11)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1059:5)
+<asynchronous suspension>
+#7      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+00:14 +5: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart: Actual auth, offline Lo-Fi, profile and settings fit width 768.0 without setup copy
+
+Warning: A call to tap() with finder "Found 1 widget with widget matching predicate (ignoring all but first): [
+  DropdownMenuItem<String>(dependencies: [_ScrollableScope]),
+]" derived an Offset (Offset(384.0, 436.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#0d8c0 relayoutBoundary=up36
+The hit test result at that offset is: HitTestResult(RenderPointerListener#fc1d2@Offset(384.0, 24.0), RenderSemanticsAnnotations#3fbcc@Offset(384.0, 24.0), RenderMouseRegion#1da09@Offset(384.0, 24.0), RenderSemanticsAnnotations#a265d@Offset(384.0, 24.0), RenderAnimatedOpacity#a3399@Offset(384.0, 24.0), RenderSemanticsAnnotations#882d9@Offset(384.0, 24.0), RenderRepaintBoundary#76860@Offset(384.0, 24.0), RenderIndexedSemantics#8cb7b@Offset(384.0, 24.0), RenderSliverList@(mainAxis: 168.0, crossAxis: 384.0), RenderSliverPadding@(mainAxis: 176.0, crossAxis: 384.0), RenderShrinkWrappingViewport#82cb2@Offset(384.0, 176.0), RenderIgnorePointer#f3898@Offset(384.0, 176.0), RenderSemanticsAnnotations#60813@Offset(384.0, 176.0), RenderPointerListener#553e4@Offset(384.0, 176.0), RenderSemanticsGestureHandler#6e444@Offset(384.0, 176.0), RenderPointerListener#fb330@Offset(384.0, 176.0), _RenderScrollSemantics#9d17c@Offset(384.0, 176.0), RenderRepaintBoundary#0986e@Offset(384.0, 176.0), RenderCustomPaint#91a9d@Offset(384.0, 176.0), RenderMouseRegion#0568f@Offset(384.0, 176.0), RenderPointerListener#0a996@Offset(384.0, 176.0), RenderSemanticsGestureHandler#44914@Offset(384.0, 176.0), RenderPointerListener#75a35@Offset(384.0, 176.0), RenderRepaintBoundary#974fa@Offset(384.0, 176.0), _RenderInkFeatures#f7526@Offset(384.0, 176.0), RenderCustomPaint#12efd@Offset(384.0, 176.0), RenderClipPath#8a317@Offset(384.0, 176.0), RenderClipRRect#17293@Offset(384.0, 176.0), RenderSemanticsAnnotations#315fe@Offset(384.0, 176.0), RenderCustomPaint#18948@Offset(384.0, 176.0), RenderAnimatedOpacity#10794@Offset(384.0, 176.0), RenderCustomSingleChildLayoutBox#90e2b@Offset(384.0, 436.0), _RenderLayoutBuilder#6f7c6@Offset(384.0, 436.0), RenderRepaintBoundary#56e67@Offset(384.0, 436.0), RenderIgnorePointer#280fb@Offset(384.0, 436.0), RenderRepaintBoundary#303b9@Offset(384.0, 436.0), RenderSemanticsAnnotations#95a5c@Offset(384.0, 436.0), RenderOffstage#49309@Offset(384.0, 436.0), RenderSemanticsAnnotations#1b91a@Offset(384.0, 436.0), _RenderTheater#b68b4@Offset(384.0, 436.0), RenderAbsorbPointer#c5386@Offset(384.0, 436.0), RenderPointerListener#113c2@Offset(384.0, 436.0), RenderSemanticsAnnotations#5fdef@Offset(384.0, 436.0), RenderStack#4b0a5@Offset(384.0, 436.0), RenderSemanticsAnnotations#460bf@Offset(384.0, 436.0), RenderSemanticsAnnotations#0e022@Offset(384.0, 436.0), RenderTapRegionSurface#42d36@Offset(384.0, 436.0), RenderSemanticsAnnotations#ff631@Offset(384.0, 436.0), RenderSemanticsAnnotations#52650@Offset(384.0, 436.0), RenderSemanticsAnnotations#37f39@Offset(384.0, 436.0), RenderRepaintBoundary#5c53f@Offset(384.0, 436.0), HitTestEntry<HitTestTarget>#1d2f3(_ReusableRenderView#b79c1), HitTestEntry<HitTestTarget>#29068(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2077:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1861:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1041:7)
+#3      selectSettingsCategory (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:128:18)
+<asynchronous suspension>
+#4      main.<anonymous closure> (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:230:9)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1059:5)
+<asynchronous suspension>
+#7      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with widget matching predicate (ignoring all but first): [
+  DropdownMenuItem<String>(dependencies: [_ScrollableScope]),
+]" derived an Offset (Offset(384.0, 467.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#bcba7 relayoutBoundary=up36
+The hit test result at that offset is: HitTestResult(RenderPointerListener#5fe78@Offset(384.0, 24.0), RenderSemanticsAnnotations#b65a5@Offset(384.0, 24.0), RenderMouseRegion#0e213@Offset(384.0, 24.0), RenderSemanticsAnnotations#2396c@Offset(384.0, 24.0), RenderAnimatedOpacity#d38a8@Offset(384.0, 24.0), RenderSemanticsAnnotations#287d3@Offset(384.0, 24.0), RenderRepaintBoundary#e4cd6@Offset(384.0, 24.0), RenderIndexedSemantics#5cc80@Offset(384.0, 24.0), RenderSliverList@(mainAxis: 264.0, crossAxis: 384.0), RenderSliverPadding@(mainAxis: 272.0, crossAxis: 384.0), RenderShrinkWrappingViewport#5b7d9@Offset(384.0, 272.0), RenderIgnorePointer#61e89@Offset(384.0, 272.0), RenderSemanticsAnnotations#ee87f@Offset(384.0, 272.0), RenderPointerListener#95069@Offset(384.0, 272.0), RenderSemanticsGestureHandler#6c6ca@Offset(384.0, 272.0), RenderPointerListener#881e4@Offset(384.0, 272.0), _RenderScrollSemantics#9ecf4@Offset(384.0, 272.0), RenderRepaintBoundary#81328@Offset(384.0, 272.0), RenderCustomPaint#fc4ab@Offset(384.0, 272.0), RenderMouseRegion#0305c@Offset(384.0, 272.0), RenderPointerListener#4582e@Offset(384.0, 272.0), RenderSemanticsGestureHandler#ec0d9@Offset(384.0, 272.0), RenderPointerListener#b1e72@Offset(384.0, 272.0), RenderRepaintBoundary#03e5e@Offset(384.0, 272.0), _RenderInkFeatures#0c971@Offset(384.0, 272.0), RenderCustomPaint#5c916@Offset(384.0, 272.0), RenderClipPath#89eb6@Offset(384.0, 272.0), RenderClipRRect#ad4c4@Offset(384.0, 272.0), RenderSemanticsAnnotations#e16f9@Offset(384.0, 272.0), RenderCustomPaint#04f41@Offset(384.0, 272.0), RenderAnimatedOpacity#53bef@Offset(384.0, 272.0), RenderCustomSingleChildLayoutBox#873a4@Offset(384.0, 467.0), _RenderLayoutBuilder#789f4@Offset(384.0, 467.0), RenderRepaintBoundary#972b2@Offset(384.0, 467.0), RenderIgnorePointer#58421@Offset(384.0, 467.0), RenderRepaintBoundary#38ec4@Offset(384.0, 467.0), RenderSemanticsAnnotations#d80c6@Offset(384.0, 467.0), RenderOffstage#3f002@Offset(384.0, 467.0), RenderSemanticsAnnotations#b0f2d@Offset(384.0, 467.0), _RenderTheater#b68b4@Offset(384.0, 467.0), RenderAbsorbPointer#c5386@Offset(384.0, 467.0), RenderPointerListener#113c2@Offset(384.0, 467.0), RenderSemanticsAnnotations#5fdef@Offset(384.0, 467.0), RenderStack#4b0a5@Offset(384.0, 467.0), RenderSemanticsAnnotations#460bf@Offset(384.0, 467.0), RenderSemanticsAnnotations#0e022@Offset(384.0, 467.0), RenderTapRegionSurface#42d36@Offset(384.0, 467.0), RenderSemanticsAnnotations#ff631@Offset(384.0, 467.0), RenderSemanticsAnnotations#52650@Offset(384.0, 467.0), RenderSemanticsAnnotations#37f39@Offset(384.0, 467.0), RenderRepaintBoundary#5c53f@Offset(384.0, 467.0), HitTestEntry<HitTestTarget>#3f292(_ReusableRenderView#b79c1), HitTestEntry<HitTestTarget>#8326f(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2077:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1861:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1041:7)
+#3      selectSettingsCategory (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:128:18)
+<asynchronous suspension>
+#4      main.<anonymous closure> (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:250:11)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1059:5)
+<asynchronous suspension>
+#7      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with widget matching predicate (ignoring all but first): [
+  DropdownMenuItem<String>(dependencies: [_ScrollableScope]),
+]" derived an Offset (Offset(384.0, 419.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#4bebc relayoutBoundary=up36
+The hit test result at that offset is: HitTestResult(RenderPointerListener#f7c18@Offset(384.0, 24.0), RenderSemanticsAnnotations#72b88@Offset(384.0, 24.0), RenderMouseRegion#0c7a8@Offset(384.0, 24.0), RenderSemanticsAnnotations#fc352@Offset(384.0, 24.0), RenderAnimatedOpacity#e34e4@Offset(384.0, 24.0), RenderSemanticsAnnotations#b8753@Offset(384.0, 24.0), RenderRepaintBoundary#79828@Offset(384.0, 24.0), RenderIndexedSemantics#62fb7@Offset(384.0, 24.0), RenderSliverList@(mainAxis: 312.0, crossAxis: 384.0), RenderSliverPadding@(mainAxis: 320.0, crossAxis: 384.0), RenderShrinkWrappingViewport#a6cc5@Offset(384.0, 320.0), RenderIgnorePointer#418fd@Offset(384.0, 320.0), RenderSemanticsAnnotations#2344b@Offset(384.0, 320.0), RenderPointerListener#6af03@Offset(384.0, 320.0), RenderSemanticsGestureHandler#00a91@Offset(384.0, 320.0), RenderPointerListener#91387@Offset(384.0, 320.0), _RenderScrollSemantics#71671@Offset(384.0, 320.0), RenderRepaintBoundary#a4df0@Offset(384.0, 320.0), RenderCustomPaint#edfe3@Offset(384.0, 320.0), RenderMouseRegion#157da@Offset(384.0, 320.0), RenderPointerListener#6bdcd@Offset(384.0, 320.0), RenderSemanticsGestureHandler#2b727@Offset(384.0, 320.0), RenderPointerListener#e3f1d@Offset(384.0, 320.0), RenderRepaintBoundary#a3afe@Offset(384.0, 320.0), _RenderInkFeatures#ccb75@Offset(384.0, 320.0), RenderCustomPaint#fed7c@Offset(384.0, 320.0), RenderClipPath#54130@Offset(384.0, 320.0), RenderClipRRect#0713e@Offset(384.0, 320.0), RenderSemanticsAnnotations#0df1c@Offset(384.0, 320.0), RenderCustomPaint#395cc@Offset(384.0, 320.0), RenderAnimatedOpacity#d1fe5@Offset(384.0, 320.0), RenderCustomSingleChildLayoutBox#6c1f8@Offset(384.0, 419.0), _RenderLayoutBuilder#56f8a@Offset(384.0, 419.0), RenderRepaintBoundary#78238@Offset(384.0, 419.0), RenderIgnorePointer#95c17@Offset(384.0, 419.0), RenderRepaintBoundary#7e9b5@Offset(384.0, 419.0), RenderSemanticsAnnotations#80089@Offset(384.0, 419.0), RenderOffstage#bbae9@Offset(384.0, 419.0), RenderSemanticsAnnotations#b330b@Offset(384.0, 419.0), _RenderTheater#b68b4@Offset(384.0, 419.0), RenderAbsorbPointer#c5386@Offset(384.0, 419.0), RenderPointerListener#113c2@Offset(384.0, 419.0), RenderSemanticsAnnotations#5fdef@Offset(384.0, 419.0), RenderStack#4b0a5@Offset(384.0, 419.0), RenderSemanticsAnnotations#460bf@Offset(384.0, 419.0), RenderSemanticsAnnotations#0e022@Offset(384.0, 419.0), RenderTapRegionSurface#42d36@Offset(384.0, 419.0), RenderSemanticsAnnotations#ff631@Offset(384.0, 419.0), RenderSemanticsAnnotations#52650@Offset(384.0, 419.0), RenderSemanticsAnnotations#37f39@Offset(384.0, 419.0), RenderRepaintBoundary#5c53f@Offset(384.0, 419.0), HitTestEntry<HitTestTarget>#66292(_ReusableRenderView#b79c1), HitTestEntry<HitTestTarget>#4dcac(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2077:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1861:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1041:7)
+#3      selectSettingsCategory (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:128:18)
+<asynchronous suspension>
+#4      main.<anonymous closure> (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:250:11)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1059:5)
+<asynchronous suspension>
+#7      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with widget matching predicate (ignoring all but first): [
+  DropdownMenuItem<String>(dependencies: [_ScrollableScope]),
+]" derived an Offset (Offset(384.0, 419.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#9542f relayoutBoundary=up36
+The hit test result at that offset is: HitTestResult(RenderPointerListener#9af0c@Offset(384.0, 24.0), RenderSemanticsAnnotations#8c4c0@Offset(384.0, 24.0), RenderMouseRegion#7a93f@Offset(384.0, 24.0), RenderSemanticsAnnotations#066aa@Offset(384.0, 24.0), RenderAnimatedOpacity#8f62b@Offset(384.0, 24.0), RenderSemanticsAnnotations#133a8@Offset(384.0, 24.0), RenderRepaintBoundary#9e8d8@Offset(384.0, 24.0), RenderIndexedSemantics#2498f@Offset(384.0, 24.0), RenderSliverList@(mainAxis: 360.0, crossAxis: 384.0), RenderSliverPadding@(mainAxis: 368.0, crossAxis: 384.0), RenderShrinkWrappingViewport#c695d@Offset(384.0, 368.0), RenderIgnorePointer#2439a@Offset(384.0, 368.0), RenderSemanticsAnnotations#f273a@Offset(384.0, 368.0), RenderPointerListener#d5f63@Offset(384.0, 368.0), RenderSemanticsGestureHandler#78f82@Offset(384.0, 368.0), RenderPointerListener#d57a4@Offset(384.0, 368.0), _RenderScrollSemantics#3a229@Offset(384.0, 368.0), RenderRepaintBoundary#35a46@Offset(384.0, 368.0), RenderCustomPaint#c02ac@Offset(384.0, 368.0), RenderMouseRegion#ab773@Offset(384.0, 368.0), RenderPointerListener#06f8f@Offset(384.0, 368.0), RenderSemanticsGestureHandler#5bcd9@Offset(384.0, 368.0), RenderPointerListener#4b351@Offset(384.0, 368.0), RenderRepaintBoundary#f9b48@Offset(384.0, 368.0), _RenderInkFeatures#1bd71@Offset(384.0, 368.0), RenderCustomPaint#97c56@Offset(384.0, 368.0), RenderClipPath#4fd71@Offset(384.0, 368.0), RenderClipRRect#eb90a@Offset(384.0, 368.0), RenderSemanticsAnnotations#17b5f@Offset(384.0, 368.0), RenderCustomPaint#7b010@Offset(384.0, 368.0), RenderAnimatedOpacity#77d96@Offset(384.0, 368.0), RenderCustomSingleChildLayoutBox#e586b@Offset(384.0, 419.0), _RenderLayoutBuilder#115df@Offset(384.0, 419.0), RenderRepaintBoundary#87ab0@Offset(384.0, 419.0), RenderIgnorePointer#1618c@Offset(384.0, 419.0), RenderRepaintBoundary#39407@Offset(384.0, 419.0), RenderSemanticsAnnotations#3619e@Offset(384.0, 419.0), RenderOffstage#e1b57@Offset(384.0, 419.0), RenderSemanticsAnnotations#cc32f@Offset(384.0, 419.0), _RenderTheater#b68b4@Offset(384.0, 419.0), RenderAbsorbPointer#c5386@Offset(384.0, 419.0), RenderPointerListener#113c2@Offset(384.0, 419.0), RenderSemanticsAnnotations#5fdef@Offset(384.0, 419.0), RenderStack#4b0a5@Offset(384.0, 419.0), RenderSemanticsAnnotations#460bf@Offset(384.0, 419.0), RenderSemanticsAnnotations#0e022@Offset(384.0, 419.0), RenderTapRegionSurface#42d36@Offset(384.0, 419.0), RenderSemanticsAnnotations#ff631@Offset(384.0, 419.0), RenderSemanticsAnnotations#52650@Offset(384.0, 419.0), RenderSemanticsAnnotations#37f39@Offset(384.0, 419.0), RenderRepaintBoundary#5c53f@Offset(384.0, 419.0), HitTestEntry<HitTestTarget>#b058d(_ReusableRenderView#b79c1), HitTestEntry<HitTestTarget>#6ce6f(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2077:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1861:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1041:7)
+#3      selectSettingsCategory (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:128:18)
+<asynchronous suspension>
+#4      main.<anonymous closure> (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:250:11)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1059:5)
+<asynchronous suspension>
+#7      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with widget matching predicate (ignoring all but first): [
+  DropdownMenuItem<String>(dependencies: [_ScrollableScope]),
+]" derived an Offset (Offset(384.0, 464.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#c760c relayoutBoundary=up36
+The hit test result at that offset is: HitTestResult(RenderPointerListener#acf31@Offset(384.0, 24.0), RenderSemanticsAnnotations#3abf5@Offset(384.0, 24.0), RenderMouseRegion#883d4@Offset(384.0, 24.0), RenderSemanticsAnnotations#c24a3@Offset(384.0, 24.0), RenderAnimatedOpacity#b4d4a@Offset(384.0, 24.0), RenderSemanticsAnnotations#213d5@Offset(384.0, 24.0), RenderRepaintBoundary#3fea1@Offset(384.0, 24.0), RenderIndexedSemantics#9a3fe@Offset(384.0, 24.0), RenderSliverList@(mainAxis: 408.0, crossAxis: 384.0), RenderSliverPadding@(mainAxis: 416.0, crossAxis: 384.0), RenderShrinkWrappingViewport#34d77@Offset(384.0, 416.0), RenderIgnorePointer#a50ae@Offset(384.0, 416.0), RenderSemanticsAnnotations#1fa35@Offset(384.0, 416.0), RenderPointerListener#635e9@Offset(384.0, 416.0), RenderSemanticsGestureHandler#bd037@Offset(384.0, 416.0), RenderPointerListener#7ea8e@Offset(384.0, 416.0), _RenderScrollSemantics#3a7b0@Offset(384.0, 416.0), RenderRepaintBoundary#a8f80@Offset(384.0, 416.0), RenderCustomPaint#b26f4@Offset(384.0, 416.0), RenderMouseRegion#bfc8a@Offset(384.0, 416.0), RenderPointerListener#949f3@Offset(384.0, 416.0), RenderSemanticsGestureHandler#6cb6d@Offset(384.0, 416.0), RenderPointerListener#a1015@Offset(384.0, 416.0), RenderRepaintBoundary#3badb@Offset(384.0, 416.0), _RenderInkFeatures#751d1@Offset(384.0, 416.0), RenderCustomPaint#4a6f2@Offset(384.0, 416.0), RenderClipPath#29790@Offset(384.0, 416.0), RenderClipRRect#0a511@Offset(384.0, 416.0), RenderSemanticsAnnotations#09674@Offset(384.0, 416.0), RenderCustomPaint#45738@Offset(384.0, 416.0), RenderAnimatedOpacity#89ee3@Offset(384.0, 416.0), RenderCustomSingleChildLayoutBox#45ab8@Offset(384.0, 464.0), _RenderLayoutBuilder#f8d20@Offset(384.0, 464.0), RenderRepaintBoundary#6047e@Offset(384.0, 464.0), RenderIgnorePointer#c6844@Offset(384.0, 464.0), RenderRepaintBoundary#f5c91@Offset(384.0, 464.0), RenderSemanticsAnnotations#0e44d@Offset(384.0, 464.0), RenderOffstage#2676c@Offset(384.0, 464.0), RenderSemanticsAnnotations#002dd@Offset(384.0, 464.0), _RenderTheater#b68b4@Offset(384.0, 464.0), RenderAbsorbPointer#c5386@Offset(384.0, 464.0), RenderPointerListener#113c2@Offset(384.0, 464.0), RenderSemanticsAnnotations#5fdef@Offset(384.0, 464.0), RenderStack#4b0a5@Offset(384.0, 464.0), RenderSemanticsAnnotations#460bf@Offset(384.0, 464.0), RenderSemanticsAnnotations#0e022@Offset(384.0, 464.0), RenderTapRegionSurface#42d36@Offset(384.0, 464.0), RenderSemanticsAnnotations#ff631@Offset(384.0, 464.0), RenderSemanticsAnnotations#52650@Offset(384.0, 464.0), RenderSemanticsAnnotations#37f39@Offset(384.0, 464.0), RenderRepaintBoundary#5c53f@Offset(384.0, 464.0), HitTestEntry<HitTestTarget>#6ab85(_ReusableRenderView#b79c1), HitTestEntry<HitTestTarget>#12529(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2077:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1861:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1041:7)
+#3      selectSettingsCategory (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:128:18)
+<asynchronous suspension>
+#4      main.<anonymous closure> (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:250:11)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1059:5)
+<asynchronous suspension>
+#7      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with widget matching predicate (ignoring all but first): [
+  DropdownMenuItem<String>(dependencies: [_ScrollableScope]),
+]" derived an Offset (Offset(384.0, 512.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#fb983 relayoutBoundary=up36
+The hit test result at that offset is: HitTestResult(RenderPointerListener#881fb@Offset(384.0, 24.0), RenderSemanticsAnnotations#d9d86@Offset(384.0, 24.0), RenderMouseRegion#f42af@Offset(384.0, 24.0), RenderSemanticsAnnotations#fe3e4@Offset(384.0, 24.0), RenderAnimatedOpacity#be07a@Offset(384.0, 24.0), RenderSemanticsAnnotations#0a11e@Offset(384.0, 24.0), RenderRepaintBoundary#278a9@Offset(384.0, 24.0), RenderIndexedSemantics#73a8e@Offset(384.0, 24.0), RenderSliverList@(mainAxis: 456.0, crossAxis: 384.0), RenderSliverPadding@(mainAxis: 464.0, crossAxis: 384.0), RenderShrinkWrappingViewport#e8e19@Offset(384.0, 464.0), RenderIgnorePointer#34cea@Offset(384.0, 464.0), RenderSemanticsAnnotations#3efae@Offset(384.0, 464.0), RenderPointerListener#d2db7@Offset(384.0, 464.0), RenderSemanticsGestureHandler#8f3aa@Offset(384.0, 464.0), RenderPointerListener#62ca3@Offset(384.0, 464.0), _RenderScrollSemantics#74628@Offset(384.0, 464.0), RenderRepaintBoundary#f9bd1@Offset(384.0, 464.0), RenderCustomPaint#f2010@Offset(384.0, 464.0), RenderMouseRegion#854a7@Offset(384.0, 464.0), RenderPointerListener#65297@Offset(384.0, 464.0), RenderSemanticsGestureHandler#b2bea@Offset(384.0, 464.0), RenderPointerListener#d184b@Offset(384.0, 464.0), RenderRepaintBoundary#62b18@Offset(384.0, 464.0), _RenderInkFeatures#dc5ce@Offset(384.0, 464.0), RenderCustomPaint#18866@Offset(384.0, 464.0), RenderClipPath#32cf6@Offset(384.0, 464.0), RenderClipRRect#8ec84@Offset(384.0, 464.0), RenderSemanticsAnnotations#91071@Offset(384.0, 464.0), RenderCustomPaint#57c9f@Offset(384.0, 464.0), RenderAnimatedOpacity#5112d@Offset(384.0, 464.0), RenderCustomSingleChildLayoutBox#7502e@Offset(384.0, 512.0), _RenderLayoutBuilder#783b7@Offset(384.0, 512.0), RenderRepaintBoundary#2ebe4@Offset(384.0, 512.0), RenderIgnorePointer#f0774@Offset(384.0, 512.0), RenderRepaintBoundary#96a6c@Offset(384.0, 512.0), RenderSemanticsAnnotations#43677@Offset(384.0, 512.0), RenderOffstage#c5a6c@Offset(384.0, 512.0), RenderSemanticsAnnotations#64f5d@Offset(384.0, 512.0), _RenderTheater#b68b4@Offset(384.0, 512.0), RenderAbsorbPointer#c5386@Offset(384.0, 512.0), RenderPointerListener#113c2@Offset(384.0, 512.0), RenderSemanticsAnnotations#5fdef@Offset(384.0, 512.0), RenderStack#4b0a5@Offset(384.0, 512.0), RenderSemanticsAnnotations#460bf@Offset(384.0, 512.0), RenderSemanticsAnnotations#0e022@Offset(384.0, 512.0), RenderTapRegionSurface#42d36@Offset(384.0, 512.0), RenderSemanticsAnnotations#ff631@Offset(384.0, 512.0), RenderSemanticsAnnotations#52650@Offset(384.0, 512.0), RenderSemanticsAnnotations#37f39@Offset(384.0, 512.0), RenderRepaintBoundary#5c53f@Offset(384.0, 512.0), HitTestEntry<HitTestTarget>#891e6(_ReusableRenderView#b79c1), HitTestEntry<HitTestTarget>#d6f75(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2077:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1861:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1041:7)
+#3      selectSettingsCategory (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:128:18)
+<asynchronous suspension>
+#4      main.<anonymous closure> (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:250:11)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1059:5)
+<asynchronous suspension>
+#7      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with widget matching predicate (ignoring all but first): [
+  DropdownMenuItem<String>(dependencies: [_ScrollableScope]),
+]" derived an Offset (Offset(384.0, 560.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#dc07e relayoutBoundary=up36
+The hit test result at that offset is: HitTestResult(RenderPointerListener#05d87@Offset(384.0, 24.0), RenderSemanticsAnnotations#f212c@Offset(384.0, 24.0), RenderMouseRegion#f54b1@Offset(384.0, 24.0), RenderSemanticsAnnotations#beb44@Offset(384.0, 24.0), RenderAnimatedOpacity#9663e@Offset(384.0, 24.0), RenderSemanticsAnnotations#73cfe@Offset(384.0, 24.0), RenderRepaintBoundary#c3ed4@Offset(384.0, 24.0), RenderIndexedSemantics#78446@Offset(384.0, 24.0), RenderSliverList@(mainAxis: 504.0, crossAxis: 384.0), RenderSliverPadding@(mainAxis: 512.0, crossAxis: 384.0), RenderShrinkWrappingViewport#2f85a@Offset(384.0, 512.0), RenderIgnorePointer#a299e@Offset(384.0, 512.0), RenderSemanticsAnnotations#f44bf@Offset(384.0, 512.0), RenderPointerListener#ed71d@Offset(384.0, 512.0), RenderSemanticsGestureHandler#068ae@Offset(384.0, 512.0), RenderPointerListener#ca80e@Offset(384.0, 512.0), _RenderScrollSemantics#a005c@Offset(384.0, 512.0), RenderRepaintBoundary#9e2b5@Offset(384.0, 512.0), RenderCustomPaint#49148@Offset(384.0, 512.0), RenderMouseRegion#41c50@Offset(384.0, 512.0), RenderPointerListener#f65ce@Offset(384.0, 512.0), RenderSemanticsGestureHandler#cf8c1@Offset(384.0, 512.0), RenderPointerListener#ce382@Offset(384.0, 512.0), RenderRepaintBoundary#9d28c@Offset(384.0, 512.0), _RenderInkFeatures#4c0aa@Offset(384.0, 512.0), RenderCustomPaint#d8505@Offset(384.0, 512.0), RenderClipPath#55d0c@Offset(384.0, 512.0), RenderClipRRect#5f3ec@Offset(384.0, 512.0), RenderSemanticsAnnotations#1adf0@Offset(384.0, 512.0), RenderCustomPaint#a52f0@Offset(384.0, 512.0), RenderAnimatedOpacity#b8dcd@Offset(384.0, 512.0), RenderCustomSingleChildLayoutBox#72598@Offset(384.0, 560.0), _RenderLayoutBuilder#25ab4@Offset(384.0, 560.0), RenderRepaintBoundary#4bb84@Offset(384.0, 560.0), RenderIgnorePointer#7be55@Offset(384.0, 560.0), RenderRepaintBoundary#33a2d@Offset(384.0, 560.0), RenderSemanticsAnnotations#dff58@Offset(384.0, 560.0), RenderOffstage#9d0f5@Offset(384.0, 560.0), RenderSemanticsAnnotations#1b969@Offset(384.0, 560.0), _RenderTheater#b68b4@Offset(384.0, 560.0), RenderAbsorbPointer#c5386@Offset(384.0, 560.0), RenderPointerListener#113c2@Offset(384.0, 560.0), RenderSemanticsAnnotations#5fdef@Offset(384.0, 560.0), RenderStack#4b0a5@Offset(384.0, 560.0), RenderSemanticsAnnotations#460bf@Offset(384.0, 560.0), RenderSemanticsAnnotations#0e022@Offset(384.0, 560.0), RenderTapRegionSurface#42d36@Offset(384.0, 560.0), RenderSemanticsAnnotations#ff631@Offset(384.0, 560.0), RenderSemanticsAnnotations#52650@Offset(384.0, 560.0), RenderSemanticsAnnotations#37f39@Offset(384.0, 560.0), RenderRepaintBoundary#5c53f@Offset(384.0, 560.0), HitTestEntry<HitTestTarget>#b638e(_ReusableRenderView#b79c1), HitTestEntry<HitTestTarget>#b5ae6(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2077:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1861:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1041:7)
+#3      selectSettingsCategory (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:128:18)
+<asynchronous suspension>
+#4      main.<anonymous closure> (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:250:11)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1059:5)
+<asynchronous suspension>
+#7      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with widget matching predicate (ignoring all but first): [
+  DropdownMenuItem<String>(dependencies: [_ScrollableScope]),
+]" derived an Offset (Offset(384.0, 608.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#ea7f9 relayoutBoundary=up36
+The hit test result at that offset is: HitTestResult(RenderPointerListener#4c1ce@Offset(384.0, 24.0), RenderSemanticsAnnotations#765ea@Offset(384.0, 24.0), RenderMouseRegion#195aa@Offset(384.0, 24.0), RenderSemanticsAnnotations#9ddb3@Offset(384.0, 24.0), RenderAnimatedOpacity#96114@Offset(384.0, 24.0), RenderSemanticsAnnotations#600dc@Offset(384.0, 24.0), RenderRepaintBoundary#f8790@Offset(384.0, 24.0), RenderIndexedSemantics#8e2d8@Offset(384.0, 24.0), RenderSliverList@(mainAxis: 552.0, crossAxis: 384.0), RenderSliverPadding@(mainAxis: 560.0, crossAxis: 384.0), RenderShrinkWrappingViewport#1589b@Offset(384.0, 560.0), RenderIgnorePointer#45afe@Offset(384.0, 560.0), RenderSemanticsAnnotations#61c5e@Offset(384.0, 560.0), RenderPointerListener#f100c@Offset(384.0, 560.0), RenderSemanticsGestureHandler#952cb@Offset(384.0, 560.0), RenderPointerListener#d319d@Offset(384.0, 560.0), _RenderScrollSemantics#9ea80@Offset(384.0, 560.0), RenderRepaintBoundary#bbe7c@Offset(384.0, 560.0), RenderCustomPaint#9e18c@Offset(384.0, 560.0), RenderMouseRegion#f528f@Offset(384.0, 560.0), RenderPointerListener#6d707@Offset(384.0, 560.0), RenderSemanticsGestureHandler#badc7@Offset(384.0, 560.0), RenderPointerListener#822b0@Offset(384.0, 560.0), RenderRepaintBoundary#a92ab@Offset(384.0, 560.0), _RenderInkFeatures#442ca@Offset(384.0, 560.0), RenderCustomPaint#dd9c4@Offset(384.0, 560.0), RenderClipPath#09b4c@Offset(384.0, 560.0), RenderClipRRect#b5ecf@Offset(384.0, 560.0), RenderSemanticsAnnotations#cbde7@Offset(384.0, 560.0), RenderCustomPaint#449ce@Offset(384.0, 560.0), RenderAnimatedOpacity#c81a7@Offset(384.0, 560.0), RenderCustomSingleChildLayoutBox#ee869@Offset(384.0, 608.0), _RenderLayoutBuilder#32030@Offset(384.0, 608.0), RenderRepaintBoundary#6ee2c@Offset(384.0, 608.0), RenderIgnorePointer#8c5e0@Offset(384.0, 608.0), RenderRepaintBoundary#a9d63@Offset(384.0, 608.0), RenderSemanticsAnnotations#19463@Offset(384.0, 608.0), RenderOffstage#d0821@Offset(384.0, 608.0), RenderSemanticsAnnotations#cc257@Offset(384.0, 608.0), _RenderTheater#b68b4@Offset(384.0, 608.0), RenderAbsorbPointer#c5386@Offset(384.0, 608.0), RenderPointerListener#113c2@Offset(384.0, 608.0), RenderSemanticsAnnotations#5fdef@Offset(384.0, 608.0), RenderStack#4b0a5@Offset(384.0, 608.0), RenderSemanticsAnnotations#460bf@Offset(384.0, 608.0), RenderSemanticsAnnotations#0e022@Offset(384.0, 608.0), RenderTapRegionSurface#42d36@Offset(384.0, 608.0), RenderSemanticsAnnotations#ff631@Offset(384.0, 608.0), RenderSemanticsAnnotations#52650@Offset(384.0, 608.0), RenderSemanticsAnnotations#37f39@Offset(384.0, 608.0), RenderRepaintBoundary#5c53f@Offset(384.0, 608.0), HitTestEntry<HitTestTarget>#9b007(_ReusableRenderView#b79c1), HitTestEntry<HitTestTarget>#7509b(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2077:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1861:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1041:7)
+#3      selectSettingsCategory (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:128:18)
+<asynchronous suspension>
+#4      main.<anonymous closure> (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:250:11)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1059:5)
+<asynchronous suspension>
+#7      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with widget matching predicate (ignoring all but first): [
+  DropdownMenuItem<String>(dependencies: [_ScrollableScope]),
+]" derived an Offset (Offset(384.0, 80.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#23444 relayoutBoundary=up36
+The hit test result at that offset is: HitTestResult(RenderPointerListener#1e39a@Offset(384.0, 24.0), RenderSemanticsAnnotations#08d73@Offset(384.0, 24.0), RenderMouseRegion#8457d@Offset(384.0, 24.0), RenderSemanticsAnnotations#236b3@Offset(384.0, 24.0), RenderAnimatedOpacity#eea73@Offset(384.0, 24.0), RenderSemanticsAnnotations#0653c@Offset(384.0, 24.0), RenderRepaintBoundary#18e3c@Offset(384.0, 24.0), RenderIndexedSemantics#a551a@Offset(384.0, 24.0), RenderSliverList@(mainAxis: 24.0, crossAxis: 384.0), RenderSliverPadding@(mainAxis: 32.0, crossAxis: 384.0), RenderShrinkWrappingViewport#9de7c@Offset(384.0, 32.0), RenderIgnorePointer#11ffc@Offset(384.0, 32.0), RenderSemanticsAnnotations#773d8@Offset(384.0, 32.0), RenderPointerListener#1e62e@Offset(384.0, 32.0), RenderSemanticsGestureHandler#4c9a3@Offset(384.0, 32.0), RenderPointerListener#3f7a9@Offset(384.0, 32.0), _RenderScrollSemantics#340bb@Offset(384.0, 32.0), RenderRepaintBoundary#2717c@Offset(384.0, 32.0), RenderCustomPaint#86d10@Offset(384.0, 32.0), RenderMouseRegion#35686@Offset(384.0, 32.0), RenderPointerListener#44e2f@Offset(384.0, 32.0), RenderSemanticsGestureHandler#9e375@Offset(384.0, 32.0), RenderPointerListener#0169f@Offset(384.0, 32.0), RenderRepaintBoundary#6b7e0@Offset(384.0, 32.0), _RenderInkFeatures#06a5c@Offset(384.0, 32.0), RenderCustomPaint#5435a@Offset(384.0, 32.0), RenderClipPath#f6f48@Offset(384.0, 32.0), RenderClipRRect#9a0a5@Offset(384.0, 32.0), RenderSemanticsAnnotations#cbfb8@Offset(384.0, 32.0), RenderCustomPaint#06546@Offset(384.0, 32.0), RenderAnimatedOpacity#31271@Offset(384.0, 32.0), RenderCustomSingleChildLayoutBox#8db35@Offset(384.0, 80.0), _RenderLayoutBuilder#dd25b@Offset(384.0, 80.0), RenderRepaintBoundary#bf8e6@Offset(384.0, 80.0), RenderIgnorePointer#4eba9@Offset(384.0, 80.0), RenderRepaintBoundary#e241c@Offset(384.0, 80.0), RenderSemanticsAnnotations#46c6a@Offset(384.0, 80.0), RenderOffstage#3601f@Offset(384.0, 80.0), RenderSemanticsAnnotations#72629@Offset(384.0, 80.0), _RenderTheater#b68b4@Offset(384.0, 80.0), RenderAbsorbPointer#c5386@Offset(384.0, 80.0), RenderPointerListener#113c2@Offset(384.0, 80.0), RenderSemanticsAnnotations#5fdef@Offset(384.0, 80.0), RenderStack#4b0a5@Offset(384.0, 80.0), RenderSemanticsAnnotations#460bf@Offset(384.0, 80.0), RenderSemanticsAnnotations#0e022@Offset(384.0, 80.0), RenderTapRegionSurface#42d36@Offset(384.0, 80.0), RenderSemanticsAnnotations#ff631@Offset(384.0, 80.0), RenderSemanticsAnnotations#52650@Offset(384.0, 80.0), RenderSemanticsAnnotations#37f39@Offset(384.0, 80.0), RenderRepaintBoundary#5c53f@Offset(384.0, 80.0), HitTestEntry<HitTestTarget>#ebbc5(_ReusableRenderView#b79c1), HitTestEntry<HitTestTarget>#cf9b4(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2077:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1861:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1041:7)
+#3      selectSettingsCategory (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:128:18)
+<asynchronous suspension>
+#4      main.<anonymous closure> (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:250:11)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1059:5)
+<asynchronous suspension>
+#7      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+00:16 +6: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ecosystem_layout_test.dart: Real device controls and session security compose at Size(1280.0, 900.0) in dark
+00:16 +7: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart: Actual auth, offline Lo-Fi, profile and settings fit width 1280.0 without setup copy
+00:18 +7: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ecosystem_layout_test.dart: Real device controls and session security compose at Size(390.0, 844.0) in amoled
+
+Warning: A call to tap() with finder "Found 1 widget with widget matching predicate (ignoring all but first): [
+  DropdownMenuItem<String>(dependencies: [_ScrollableScope]),
+]" derived an Offset (Offset(195.0, 428.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#13189 relayoutBoundary=up36
+The hit test result at that offset is: HitTestResult(RenderPointerListener#70386@Offset(195.0, 24.0), RenderSemanticsAnnotations#384f9@Offset(195.0, 24.0), RenderMouseRegion#f67a6@Offset(195.0, 24.0), RenderSemanticsAnnotations#719dd@Offset(195.0, 24.0), RenderAnimatedOpacity#93594@Offset(195.0, 24.0), RenderSemanticsAnnotations#95d8f@Offset(195.0, 24.0), RenderRepaintBoundary#03456@Offset(195.0, 24.0), RenderIndexedSemantics#8528a@Offset(195.0, 24.0), RenderSliverList@(mainAxis: 216.0, crossAxis: 195.0), RenderSliverPadding@(mainAxis: 224.0, crossAxis: 195.0), RenderShrinkWrappingViewport#6e33a@Offset(195.0, 224.0), RenderIgnorePointer#9b464@Offset(195.0, 224.0), RenderSemanticsAnnotations#d62c8@Offset(195.0, 224.0), RenderPointerListener#26056@Offset(195.0, 224.0), RenderSemanticsGestureHandler#70404@Offset(195.0, 224.0), RenderPointerListener#23612@Offset(195.0, 224.0), _RenderScrollSemantics#24db6@Offset(195.0, 224.0), RenderRepaintBoundary#6b631@Offset(195.0, 224.0), RenderCustomPaint#1e1f3@Offset(195.0, 224.0), RenderMouseRegion#325ae@Offset(195.0, 224.0), RenderPointerListener#b3e05@Offset(195.0, 224.0), RenderSemanticsGestureHandler#0e6a0@Offset(195.0, 224.0), RenderPointerListener#6bc8d@Offset(195.0, 224.0), RenderRepaintBoundary#1686d@Offset(195.0, 224.0), _RenderInkFeatures#f07a2@Offset(195.0, 224.0), RenderCustomPaint#11c04@Offset(195.0, 224.0), RenderClipPath#20b11@Offset(195.0, 224.0), RenderClipRRect#2b97c@Offset(195.0, 224.0), RenderSemanticsAnnotations#1d6d8@Offset(195.0, 224.0), RenderCustomPaint#a9182@Offset(195.0, 224.0), RenderAnimatedOpacity#ceedd@Offset(195.0, 224.0), RenderCustomSingleChildLayoutBox#10ae8@Offset(195.0, 428.0), _RenderLayoutBuilder#8737c@Offset(195.0, 428.0), RenderRepaintBoundary#04e61@Offset(195.0, 428.0), RenderIgnorePointer#3b3cc@Offset(195.0, 428.0), RenderRepaintBoundary#70d6b@Offset(195.0, 428.0), RenderSemanticsAnnotations#1e150@Offset(195.0, 428.0), RenderOffstage#b73ce@Offset(195.0, 428.0), RenderSemanticsAnnotations#808db@Offset(195.0, 428.0), _RenderTheater#1ae6f@Offset(195.0, 428.0), RenderAbsorbPointer#567cc@Offset(195.0, 428.0), RenderPointerListener#5a69f@Offset(195.0, 428.0), RenderSemanticsAnnotations#dd0d9@Offset(195.0, 428.0), RenderStack#179e8@Offset(195.0, 428.0), RenderSemanticsAnnotations#48b62@Offset(195.0, 428.0), RenderSemanticsAnnotations#9b7ae@Offset(195.0, 428.0), RenderTapRegionSurface#f30b4@Offset(195.0, 428.0), RenderSemanticsAnnotations#05cc3@Offset(195.0, 428.0), RenderSemanticsAnnotations#d5f2e@Offset(195.0, 428.0), RenderSemanticsAnnotations#07ad3@Offset(195.0, 428.0), RenderRepaintBoundary#07f5a@Offset(195.0, 428.0), HitTestEntry<HitTestTarget>#63624(_ReusableRenderView#5671b), HitTestEntry<HitTestTarget>#928ac(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2077:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1861:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1041:7)
+#3      selectSettingsCategory (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:128:18)
+<asynchronous suspension>
+#4      main.<anonymous closure> (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ecosystem_layout_test.dart:148:11)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1059:5)
+<asynchronous suspension>
+#7      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+
+Warning: A call to tap() with finder "Found 1 widget with widget matching predicate (ignoring all but first): [
+  DropdownMenuItem<String>(dependencies: [_ScrollableScope]),
+]" derived an Offset (Offset(195.0, 323.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#02f33 relayoutBoundary=up36
+The hit test result at that offset is: HitTestResult(RenderPointerListener#8e4fb@Offset(195.0, 24.0), RenderSemanticsAnnotations#19757@Offset(195.0, 24.0), RenderMouseRegion#c2f2f@Offset(195.0, 24.0), RenderSemanticsAnnotations#e64ca@Offset(195.0, 24.0), RenderAnimatedOpacity#828d5@Offset(195.0, 24.0), RenderSemanticsAnnotations#a4862@Offset(195.0, 24.0), RenderRepaintBoundary#53860@Offset(195.0, 24.0), RenderIndexedSemantics#647db@Offset(195.0, 24.0), RenderSliverList@(mainAxis: 264.0, crossAxis: 195.0), RenderSliverPadding@(mainAxis: 272.0, crossAxis: 195.0), RenderShrinkWrappingViewport#bd9bb@Offset(195.0, 272.0), RenderIgnorePointer#1eb3a@Offset(195.0, 272.0), RenderSemanticsAnnotations#b3f93@Offset(195.0, 272.0), RenderPointerListener#522f7@Offset(195.0, 272.0), RenderSemanticsGestureHandler#cb5bc@Offset(195.0, 272.0), RenderPointerListener#bf7ec@Offset(195.0, 272.0), _RenderScrollSemantics#29e6a@Offset(195.0, 272.0), RenderRepaintBoundary#87e80@Offset(195.0, 272.0), RenderCustomPaint#cda5e@Offset(195.0, 272.0), RenderMouseRegion#d425d@Offset(195.0, 272.0), RenderPointerListener#92c14@Offset(195.0, 272.0), RenderSemanticsGestureHandler#bf95c@Offset(195.0, 272.0), RenderPointerListener#ef6d6@Offset(195.0, 272.0), RenderRepaintBoundary#39800@Offset(195.0, 272.0), _RenderInkFeatures#b70a8@Offset(195.0, 272.0), RenderCustomPaint#03dbf@Offset(195.0, 272.0), RenderClipPath#87451@Offset(195.0, 272.0), RenderClipRRect#040fa@Offset(195.0, 272.0), RenderSemanticsAnnotations#beb51@Offset(195.0, 272.0), RenderCustomPaint#a7b3e@Offset(195.0, 272.0), RenderAnimatedOpacity#1dd86@Offset(195.0, 272.0), RenderCustomSingleChildLayoutBox#64953@Offset(195.0, 323.0), _RenderLayoutBuilder#b52bc@Offset(195.0, 323.0), RenderRepaintBoundary#8b258@Offset(195.0, 323.0), RenderIgnorePointer#dc723@Offset(195.0, 323.0), RenderRepaintBoundary#1e8eb@Offset(195.0, 323.0), RenderSemanticsAnnotations#41d12@Offset(195.0, 323.0), RenderOffstage#03bde@Offset(195.0, 323.0), RenderSemanticsAnnotations#7bb7e@Offset(195.0, 323.0), _RenderTheater#1ae6f@Offset(195.0, 323.0), RenderAbsorbPointer#567cc@Offset(195.0, 323.0), RenderPointerListener#5a69f@Offset(195.0, 323.0), RenderSemanticsAnnotations#dd0d9@Offset(195.0, 323.0), RenderStack#179e8@Offset(195.0, 323.0), RenderSemanticsAnnotations#48b62@Offset(195.0, 323.0), RenderSemanticsAnnotations#9b7ae@Offset(195.0, 323.0), RenderTapRegionSurface#f30b4@Offset(195.0, 323.0), RenderSemanticsAnnotations#05cc3@Offset(195.0, 323.0), RenderSemanticsAnnotations#d5f2e@Offset(195.0, 323.0), RenderSemanticsAnnotations#07ad3@Offset(195.0, 323.0), RenderRepaintBoundary#07f5a@Offset(195.0, 323.0), HitTestEntry<HitTestTarget>#9925f(_ReusableRenderView#5671b), HitTestEntry<HitTestTarget>#e0123(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2077:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1861:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1041:7)
+#3      selectSettingsCategory (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:128:18)
+<asynchronous suspension>
+#4      main.<anonymous closure> (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ecosystem_layout_test.dart:174:11)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1059:5)
+<asynchronous suspension>
+#7      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+00:19 +8: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart: Actual auth, offline Lo-Fi, profile and settings fit width 1280.0 without setup copy
+
+Warning: A call to tap() with finder "Found 1 widget with key [<'settings-account'>]: [
+  InkWell-[<'settings-account'>](dependencies: [_ScrollableScope]),
+]" derived an Offset (Offset(206.0, 343.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#e4f03 relayoutBoundary=up9
+The hit test result at that offset is: HitTestResult(_RenderInkFeatures#471de@Offset(206.0, 343.0), RenderPhysicalModel#66b15@Offset(206.0, 343.0), RenderIgnorePointer#dd563@Offset(206.0, 343.0), RenderExcludeSemantics#77d12@Offset(206.0, 343.0), RenderStack#389e9@Offset(206.0, 343.0), RenderSemanticsAnnotations#e359f@Offset(206.0, 343.0), RenderSemanticsAnnotations#9edfc@Offset(206.0, 343.0), RenderRepaintBoundary#18508@Offset(206.0, 343.0), RenderIgnorePointer#e17ba@Offset(206.0, 343.0), _RenderSnapshotWidget#2d195@Offset(206.0, 343.0), _RenderSnapshotWidget#34315@Offset(206.0, 343.0), _RenderSnapshotWidget#9f9b8@Offset(206.0, 343.0), _RenderSnapshotWidget#991aa@Offset(206.0, 343.0), RenderRepaintBoundary#ae67e@Offset(206.0, 343.0), RenderSemanticsAnnotations#4282d@Offset(206.0, 343.0), RenderOffstage#75e44@Offset(206.0, 343.0), RenderSemanticsAnnotations#0b037@Offset(206.0, 343.0), _RenderTheater#1e852@Offset(206.0, 343.0), RenderAbsorbPointer#d715b@Offset(206.0, 343.0), RenderPointerListener#6443c@Offset(206.0, 343.0), RenderSemanticsAnnotations#c50c7@Offset(206.0, 343.0), RenderStack#350e0@Offset(206.0, 343.0), RenderSemanticsAnnotations#c9eb8@Offset(206.0, 343.0), RenderSemanticsAnnotations#c1491@Offset(206.0, 343.0), RenderTapRegionSurface#2e0f6@Offset(206.0, 343.0), RenderSemanticsAnnotations#eb5e1@Offset(206.0, 343.0), RenderSemanticsAnnotations#651c0@Offset(206.0, 343.0), RenderSemanticsAnnotations#112b7@Offset(206.0, 343.0), RenderRepaintBoundary#722a0@Offset(206.0, 343.0), HitTestEntry<HitTestTarget>#bfc38(_ReusableRenderView#b79c1), HitTestEntry<HitTestTarget>#882cb(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2077:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1861:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1041:7)
+#3      selectSettingsCategory (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:132:18)
+<asynchronous suspension>
+#4      main.<anonymous closure> (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:250:11)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1059:5)
+<asynchronous suspension>
+#7      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+00:20 +9: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/ecosystem_layout_test.dart: Real device controls and session security compose at Size(1280.0, 900.0) in amoled
+00:22 +10: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart: Fullscreen, real bounded queue gestures and scrolling at 320.0
+00:23 +11: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart: Fullscreen, real bounded queue gestures and scrolling at 390.0
+00:25 +12: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/native19_round2_test.dart: Large-text small-phone auth segment shows whole label and activates registration
+00:26 +13: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/native19_round2_test.dart: Large-text small-phone auth segment shows whole label and activates registration
+00:28 +14: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart: Fullscreen, real bounded queue gestures and scrolling at 1280.0
+00:28 +15: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/native19_round2_test.dart: Large-text small-phone energy heading has no orphan fragment
+00:29 +16: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/native19_round2_test.dart: Large-text small-phone energy heading has no orphan fragment
+00:29 +17: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/native19_round2_test.dart: Large-text small-phone energy heading has no orphan fragment
+00:30 +18: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/native19_round2_test.dart: Large-text small-phone energy heading has no orphan fragment
+00:30 +19: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/native19_round2_test.dart: Large-text small-phone energy heading has no orphan fragment
+
+Warning: A call to tap() with finder "Found 1 widget with widget matching predicate (ignoring all but first): [
+  DropdownMenuItem<String>(dependencies: [_ScrollableScope]),
+]" derived an Offset (Offset(160.0, 320.0)) that would not hit test on the specified widget.
+Maybe the widget is actually off-screen, or another widget is obscuring it, or the widget cannot receive pointer events.
+The finder corresponds to this RenderBox: RenderSemanticsAnnotations#28efb relayoutBoundary=up36
+The hit test result at that offset is: HitTestResult(RenderPointerListener#e914f@Offset(160.0, 24.0), RenderSemanticsAnnotations#5bf67@Offset(160.0, 24.0), RenderMouseRegion#2b613@Offset(160.0, 24.0), RenderSemanticsAnnotations#5dfa2@Offset(160.0, 24.0), RenderAnimatedOpacity#f40f2@Offset(160.0, 24.0), RenderSemanticsAnnotations#a5b2f@Offset(160.0, 24.0), RenderRepaintBoundary#95362@Offset(160.0, 24.0), RenderIndexedSemantics#24fa7@Offset(160.0, 24.0), RenderSliverList@(mainAxis: 264.0, crossAxis: 160.0), RenderSliverPadding@(mainAxis: 272.0, crossAxis: 160.0), RenderShrinkWrappingViewport#6ac17@Offset(160.0, 272.0), RenderIgnorePointer#df6ac@Offset(160.0, 272.0), RenderSemanticsAnnotations#37f3f@Offset(160.0, 272.0), RenderPointerListener#dc2b8@Offset(160.0, 272.0), RenderSemanticsGestureHandler#2e6d6@Offset(160.0, 272.0), RenderPointerListener#3751e@Offset(160.0, 272.0), _RenderScrollSemantics#660c6@Offset(160.0, 272.0), RenderRepaintBoundary#fc3d1@Offset(160.0, 272.0), RenderCustomPaint#b9c48@Offset(160.0, 272.0), RenderMouseRegion#32fa5@Offset(160.0, 272.0), RenderPointerListener#e28e2@Offset(160.0, 272.0), RenderSemanticsGestureHandler#f089d@Offset(160.0, 272.0), RenderPointerListener#9125a@Offset(160.0, 272.0), RenderRepaintBoundary#59ed3@Offset(160.0, 272.0), _RenderInkFeatures#6eaea@Offset(160.0, 272.0), RenderCustomPaint#5d53c@Offset(160.0, 272.0), RenderClipPath#5b13c@Offset(160.0, 272.0), RenderClipRRect#f0263@Offset(160.0, 272.0), RenderSemanticsAnnotations#adef0@Offset(160.0, 272.0), RenderCustomPaint#ab56a@Offset(160.0, 272.0), RenderAnimatedOpacity#a02c2@Offset(160.0, 272.0), RenderCustomSingleChildLayoutBox#5d9f0@Offset(160.0, 320.0), _RenderLayoutBuilder#8c76f@Offset(160.0, 320.0), RenderRepaintBoundary#eef31@Offset(160.0, 320.0), RenderIgnorePointer#00cf5@Offset(160.0, 320.0), RenderRepaintBoundary#75678@Offset(160.0, 320.0), RenderSemanticsAnnotations#1e2be@Offset(160.0, 320.0), RenderOffstage#5fa87@Offset(160.0, 320.0), RenderSemanticsAnnotations#5a2a2@Offset(160.0, 320.0), _RenderTheater#65add@Offset(160.0, 320.0), RenderAbsorbPointer#2c581@Offset(160.0, 320.0), RenderPointerListener#1e93e@Offset(160.0, 320.0), RenderSemanticsAnnotations#ce032@Offset(160.0, 320.0), RenderStack#b588e@Offset(160.0, 320.0), RenderSemanticsAnnotations#45096@Offset(160.0, 320.0), RenderSemanticsAnnotations#7784b@Offset(160.0, 320.0), RenderTapRegionSurface#d9eeb@Offset(160.0, 320.0), RenderSemanticsAnnotations#9cc82@Offset(160.0, 320.0), RenderSemanticsAnnotations#8c709@Offset(160.0, 320.0), RenderSemanticsAnnotations#1c272@Offset(160.0, 320.0), RenderRepaintBoundary#6762e@Offset(160.0, 320.0), HitTestEntry<HitTestTarget>#47b8a(_ReusableRenderView#59e86), HitTestEntry<HitTestTarget>#1e60c(<AutomatedTestWidgetsFlutterBinding>))
+#0      WidgetController._getElementPoint (package:flutter_test/src/controller.dart:2077:25)
+#1      WidgetController.getCenter (package:flutter_test/src/controller.dart:1861:12)
+#2      WidgetController.tap (package:flutter_test/src/controller.dart:1041:7)
+#3      selectSettingsCategory (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/app_layout_test.dart:128:18)
+<asynchronous suspension>
+#4      main.<anonymous closure> (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/native19_round2_test.dart:89:5)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1059:5)
+<asynchronous suspension>
+#7      StackZoneSpecification._registerCallback.<anonymous closure> (package:stack_trace/src/stack_zone_specification.dart:114:42)
+<asynchronous suspension>
+To silence this warning, pass "warnIfMissed: false" to "tap()".
+To make this warning fatal, set WidgetController.hitTestWarningShouldBeFatal to true.
+
+00:31 +20: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/native19_round2_test.dart: (tearDownAll)
+00:37 +20: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity26_ui_test.dart: (setUpAll)
+00:37 +20: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity26_ui_test.dart: One auth form survives repeated resize and local notifications
+00:41 +21: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity26_ui_test.dart: Saved user stays on bootstrap until coherent local restore
+00:44 +22: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity26_ui_test.dart: Mini previews real neighbor, cancels and commits once
+00:44 +23: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity26_ui_test.dart: Player reveal follows gesture progress and cancel restores mini
+00:46 +24: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity26_ui_test.dart: Top notice wraps, dismisses and does not create SnackBar
+00:47 +25: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity26_ui_test.dart: Settings search opens real existing category on phone
+00:48 +26: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity26_ui_test.dart: Artist route uses local results and never overwrites global search
+00:48 +27: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity26_ui_test.dart: Actual lyric rows settle independently once per cue and remain still between cues
+00:49 +28: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity26_ui_test.dart: (tearDownAll)
+00:51 +28: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity25_ui_test.dart: (setUpAll)
+00:51 +28: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity25_ui_test.dart: Legacy likes normalize once and rollback retains confirmed dates
+00:51 +29: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity25_ui_test.dart: Membership dates are instant; viewing a sort does not reorder the playlist
+00:51 +30: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity25_ui_test.dart: Depth clipping removes only disc pixels covered by the physical sleeve
+00:51 +31: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity25_ui_test.dart: Actual vinyl opaque scene through twelve poses
+00:54 +32: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/player_details_test.dart: Live EQ outer, chart, speed and preset radius; quiet keyboard focus dark
+00:55 +33: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/player_details_test.dart: Live EQ outer, chart, speed and preset radius; quiet keyboard focus dark
+00:55 +34: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity25_ui_test.dart: Expanded lyrics below artwork at Size(1440.0, 900.0)
+00:59 +35: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/player_details_test.dart: Entire native cover at125% dark Size(1440.0, 950.0) flat/3D/extreme tilt
+01:00 +36: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity25_ui_test.dart: Expanded lyrics below artwork at Size(768.0, 900.0)
+01:00 +37: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/player_details_test.dart: Entire native cover at125% dark Size(1440.0, 600.0) flat/3D/extreme tilt
+01:02 +38: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/player_details_test.dart: Entire native cover at125% dark Size(1440.0, 600.0) flat/3D/extreme tilt
+01:03 +39: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity25_ui_test.dart: Library sort fits Size(320.0, 568.0) at125percent
+01:06 +40: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/player_details_test.dart: Entire native cover at125% dark Size(390.0, 700.0) flat/3D/extreme tilt
+01:06 +41: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity25_ui_test.dart: Library sort fits Size(375.0, 812.0) at125percent
+01:09 +42: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/player_details_test.dart: Entire native cover at125% dark Size(320.0, 568.0) flat/3D/extreme tilt
+01:09 +43: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity25_ui_test.dart: Library sort fits Size(768.0, 900.0) at125percent
+01:11 +44: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity25_ui_test.dart: Library sort fits Size(768.0, 900.0) at125percent
+01:11 +45: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/player_details_test.dart: Entire native cover at125% amoled Size(1440.0, 950.0) flat/3D/extreme tilt
+01:13 +46: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/player_details_test.dart: Entire native cover at125% amoled Size(1440.0, 950.0) flat/3D/extreme tilt
+01:13 +47: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/player_details_test.dart: Entire native cover at125% amoled Size(1440.0, 600.0) flat/3D/extreme tilt
+01:15 +48: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/player_details_test.dart: Entire native cover at125% amoled Size(390.0, 700.0) flat/3D/extreme tilt
+01:17 +49: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/player_details_test.dart: Entire native cover at125% amoled Size(320.0, 568.0) flat/3D/extreme tilt
+01:18 +50: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/player_details_test.dart: Live EQ outer, chart, speed and preset radius; quiet keyboard focus light
+01:19 +51: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/player_details_test.dart: Entire native cover at125% light Size(1440.0, 950.0) flat/3D/extreme tilt
+01:21 +52: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/player_details_test.dart: Entire native cover at125% light Size(1440.0, 600.0) flat/3D/extreme tilt
+01:23 +53: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/player_details_test.dart: Entire native cover at125% light Size(390.0, 700.0) flat/3D/extreme tilt
+01:24 +54: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/player_details_test.dart: Entire native cover at125% light Size(320.0, 568.0) flat/3D/extreme tilt
+01:25 +55: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/player_details_test.dart: Persisted expanded EQ highlight survives closing and toggles off with DSP
+01:25 +56: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/player_details_test.dart: Lyrics and queue use same active icon treatment and respect motion off
+01:26 +57: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/player_details_test.dart: Real resolving success/error/cancel resets loading; user seeks blocked, internal sync preserved
+01:29 +58: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/player_details_test.dart: (tearDownAll)
+01:29 +58: All tests passed!

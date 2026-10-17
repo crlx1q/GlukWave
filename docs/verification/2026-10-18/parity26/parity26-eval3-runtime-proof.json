@@ -1,0 +1,676 @@
+{
+  "passed": true,
+  "attempt": 3,
+  "date": "2026-10-17T21:46:40.804Z",
+  "fixture": "http://127.0.0.1:5286",
+  "session": "gw26-eval3",
+  "actualProductionDist": true,
+  "sourceCssInjected": false,
+  "physicalTvVerified": false,
+  "legacyCompletedAssertions": {
+    "passed": true,
+    "widths": [
+      1440,
+      768,
+      375,
+      320
+    ],
+    "assertions": [
+      "Bounded mini and metadata, physical hit",
+      "Physical mini opens full",
+      "Unblocked visible seek target",
+      "Physical Lyrics opens six rows",
+      "Cover/title do not overlap",
+      "No horizontal document overflow"
+    ],
+    "scope": "Independent executed assertion loop completed all four legacy widths before modern URL harness assertion. Fresh captures retained.",
+    "harnessLog": "work/qa/parity26-eval3-legacy-and-forced-modern.log"
+  },
+  "records": [
+    {
+      "profile": "modern",
+      "width": 1440,
+      "mini": {
+        "hit": true,
+        "injected": false,
+        "legacyApis": false,
+        "overflow": false,
+        "profile": null,
+        "proxy": "function",
+        "rect": {
+          "bottom": 882,
+          "height": 68,
+          "left": 394,
+          "right": 1134,
+          "top": 814,
+          "width": 740,
+          "x": 394,
+          "y": 814
+        },
+        "track": {
+          "bottom": 866.28125,
+          "height": 36.578125,
+          "left": 459,
+          "right": 921,
+          "top": 829.703125,
+          "width": 462,
+          "x": 459,
+          "y": 829.703125
+        }
+      },
+      "full": {
+        "cover": {
+          "bottom": 656.0770263671875,
+          "height": 313.0113830566406,
+          "left": 309.48828125,
+          "right": 600.52783203125,
+          "top": 343.0656433105469,
+          "width": 291.03955078125,
+          "x": 309.48828125,
+          "y": 343.0656433105469
+        },
+        "fatal": false,
+        "heading": {
+          "bottom": 420.140625,
+          "height": 49.296875,
+          "left": 804,
+          "right": 1204,
+          "top": 370.84375,
+          "width": 400,
+          "x": 804,
+          "y": 370.84375
+        },
+        "open": true,
+        "overflow": false,
+        "overlap": false,
+        "rect": {
+          "bottom": 900,
+          "height": 900,
+          "left": 0,
+          "right": 1440,
+          "top": 0,
+          "width": 1440,
+          "x": 0,
+          "y": 0
+        },
+        "seek": {
+          "bottom": 447.140625,
+          "height": 26,
+          "left": 804,
+          "right": 1204,
+          "top": 421.140625,
+          "width": 400,
+          "x": 804,
+          "y": 421.140625
+        },
+        "seekHit": true
+      },
+      "seekSample": 0,
+      "canonicalSeekRetentionNotAsserted": true,
+      "lyrics": {
+        "count": 6,
+        "cover": {
+          "bottom": 550.3860473632812,
+          "height": 288.798583984375,
+          "left": 101.47802734375,
+          "right": 369.7111206054687,
+          "top": 261.58746337890625,
+          "width": 268.23309326171875,
+          "x": 101.47802734375,
+          "y": 261.58746337890625
+        },
+        "fatal": false,
+        "heading": {
+          "bottom": 660.234375,
+          "height": 49.296875,
+          "left": 62.75,
+          "right": 462.75,
+          "top": 610.9375,
+          "width": 400,
+          "x": 62.75,
+          "y": 610.9375
+        },
+        "overflow": false,
+        "overlap": false,
+        "pane": {
+          "bottom": 832.5,
+          "height": 684.5,
+          "left": 591.5,
+          "right": 1385.984375,
+          "top": 148,
+          "width": 794.484375,
+          "x": 591.5,
+          "y": 148
+        }
+      }
+    },
+    {
+      "profile": "modern",
+      "width": 375,
+      "mini": {
+        "hit": true,
+        "injected": false,
+        "legacyApis": false,
+        "overflow": false,
+        "profile": null,
+        "proxy": "function",
+        "rect": {
+          "bottom": 834,
+          "height": 60,
+          "left": 10,
+          "right": 365,
+          "top": 774,
+          "width": 355,
+          "x": 10,
+          "y": 774
+        },
+        "track": {
+          "bottom": 820.390625,
+          "height": 32.796875,
+          "left": 79,
+          "right": 250,
+          "top": 787.59375,
+          "width": 171,
+          "x": 79,
+          "y": 787.59375
+        }
+      },
+      "full": {
+        "cover": {
+          "bottom": 416.8502197265625,
+          "height": 217.61004638671875,
+          "left": 65.40635681152344,
+          "right": 266.89288330078125,
+          "top": 199.24017333984375,
+          "width": 201.4865264892578,
+          "x": 65.40635681152344,
+          "y": 199.24017333984375
+        },
+        "fatal": false,
+        "heading": {
+          "bottom": 601.875,
+          "height": 58.390625,
+          "left": 18,
+          "right": 357,
+          "top": 543.484375,
+          "width": 339,
+          "x": 18,
+          "y": 543.484375
+        },
+        "open": true,
+        "overflow": false,
+        "overlap": false,
+        "rect": {
+          "bottom": 900,
+          "height": 900,
+          "left": 0,
+          "right": 375,
+          "top": 0,
+          "width": 375,
+          "x": 0,
+          "y": 0
+        },
+        "seek": {
+          "bottom": 632.875,
+          "height": 26,
+          "left": 18,
+          "right": 357,
+          "top": 606.875,
+          "width": 339,
+          "x": 18,
+          "y": 606.875
+        },
+        "seekHit": true
+      },
+      "seekSample": 0,
+      "canonicalSeekRetentionNotAsserted": true,
+      "lyrics": {
+        "count": 6,
+        "cover": {
+          "bottom": 194.34225463867188,
+          "height": 68.37930297851562,
+          "left": 24.255695343017575,
+          "right": 87.1874771118164,
+          "top": 125.96295166015624,
+          "width": 62.93178176879883,
+          "x": 24.255695343017575,
+          "y": 125.96295166015624
+        },
+        "fatal": false,
+        "heading": {
+          "bottom": 191.890625,
+          "height": 51.890625,
+          "left": 120,
+          "right": 357,
+          "top": 140,
+          "width": 237,
+          "x": 120,
+          "y": 140
+        },
+        "overflow": false,
+        "overlap": false,
+        "pane": {
+          "bottom": 852.5,
+          "height": 387.609375,
+          "left": 18,
+          "right": 357,
+          "top": 464.890625,
+          "width": 339,
+          "x": 18,
+          "y": 464.890625
+        }
+      }
+    }
+  ],
+  "captures": [
+    {
+      "path": "work/qa/parity26-eval3-legacy-full-1440.png",
+      "sha256": "77fca382dcd40f636999ac0237aa17e4e96a03f265e4bc5e2b4102a5c7baab54"
+    },
+    {
+      "path": "work/qa/parity26-eval3-legacy-full-320.png",
+      "sha256": "3fbd764e17842e4096f6749d6dd3f1df30ebe7d61f7cc40340d8e6d1c89433bf"
+    },
+    {
+      "path": "work/qa/parity26-eval3-legacy-full-375.png",
+      "sha256": "3b9e147193a3b2cd1d0df12d02c56e9b34bb9634f12bc31f85a58fd8e21301c6"
+    },
+    {
+      "path": "work/qa/parity26-eval3-legacy-full-768.png",
+      "sha256": "e80ddb3dc7d3d270005f1182b0021db1f465f4a94aa5e2c246e720df7a00a92c"
+    },
+    {
+      "path": "work/qa/parity26-eval3-legacy-last-line-375.png",
+      "sha256": "20bf02af29b882c3f43b9a07187394906c34ce885ec03f4185c76fce1b958b4e"
+    },
+    {
+      "path": "work/qa/parity26-eval3-legacy-lyrics-1440.png",
+      "sha256": "094df9e9825d85497b70197c0afd6717defbef0f001123ba8f89e53c25f6d19c"
+    },
+    {
+      "path": "work/qa/parity26-eval3-legacy-lyrics-320.png",
+      "sha256": "8ac0a0f0b16efcff1bf5fa9eacb38b82ea7cf0ba9b7d4adaba25790ac1253743"
+    },
+    {
+      "path": "work/qa/parity26-eval3-legacy-lyrics-375.png",
+      "sha256": "2eedc6a566cdbc9512a1c828d053770df26096e91e13e050a78ca5e8b1141dec"
+    },
+    {
+      "path": "work/qa/parity26-eval3-legacy-lyrics-768.png",
+      "sha256": "546c6713ad682b1635a6154b5adeb1f72c7582f86b555d9c80b2679726a46eb3"
+    },
+    {
+      "path": "work/qa/parity26-eval3-legacy-lyrics-scrolled-320.png",
+      "sha256": "ab08024e317b07fb086cd55947347114e086bec234712bbaf748f0b40c723d0f"
+    },
+    {
+      "path": "work/qa/parity26-eval3-legacy-lyrics-scrolled-375.png",
+      "sha256": "2eedc6a566cdbc9512a1c828d053770df26096e91e13e050a78ca5e8b1141dec"
+    },
+    {
+      "path": "work/qa/parity26-eval3-legacy-lyrics-scrolled-768.png",
+      "sha256": "546c6713ad682b1635a6154b5adeb1f72c7582f86b555d9c80b2679726a46eb3"
+    },
+    {
+      "path": "work/qa/parity26-eval3-legacy-mini-1440.png",
+      "sha256": "8f309f78e3838e7efc4d4bb105b5f0f37a3134dff214dc02740365426b10e042"
+    },
+    {
+      "path": "work/qa/parity26-eval3-legacy-mini-320.png",
+      "sha256": "b41f13d108521ded15e4a0dba3926cbf9ed5076061d260556e41b939801978ff"
+    },
+    {
+      "path": "work/qa/parity26-eval3-legacy-mini-375.png",
+      "sha256": "d1a1ddb1d73f99490497f2c5fcb217cee63ba1632dd3c7f3455ede515d1217c9"
+    },
+    {
+      "path": "work/qa/parity26-eval3-legacy-mini-768.png",
+      "sha256": "25ee68a320f0e2b3c645f40055f75e5644d211060638c35b6d03f377630dd3ba"
+    },
+    {
+      "path": "work/qa/parity26-eval3-modern-artist-1440.png",
+      "sha256": "b01fbf26f4bcea2a1fb85e59f98d54290a3a6b757aed4d54fe424f3caf979399"
+    },
+    {
+      "path": "work/qa/parity26-eval3-modern-artist-375.png",
+      "sha256": "634a7feb1e779be13253ade8c1d672d22460687f9edef0562320dd7b5640ec5f"
+    },
+    {
+      "path": "work/qa/parity26-eval3-modern-full-1440.png",
+      "sha256": "b2e8d62038f0e6505339c9367a595b1d1ad9d6932aa38f348b7cc63bd4444734"
+    },
+    {
+      "path": "work/qa/parity26-eval3-modern-full-375.png",
+      "sha256": "291aac7fc7e283317f40e7196bec1d074b5be67d631eb237f4f36b825775b2e3"
+    },
+    {
+      "path": "work/qa/parity26-eval3-modern-lyrics-1440.png",
+      "sha256": "eaaccf2cf5fd00abca41b2412427f4e2df99856f9c09bda078beebda5512894b"
+    },
+    {
+      "path": "work/qa/parity26-eval3-modern-lyrics-375.png",
+      "sha256": "ab043cc3bce89c436be01adc44ac46b33238e18320f324d87dc9326e63ac9aac"
+    },
+    {
+      "path": "work/qa/parity26-eval3-modern-mini-1440.png",
+      "sha256": "ac6e8b8572c158f8d2b3207f6ee6be4f48d962f2306e2196cfa978fb5c87614c"
+    },
+    {
+      "path": "work/qa/parity26-eval3-modern-mini-375.png",
+      "sha256": "9933b013f204f6a76b9a76d624f132bd936d7b326b43c6236ddf6446ce0a8e34"
+    },
+    {
+      "path": "work/qa/parity26-eval3-modern-settings-1440.png",
+      "sha256": "975d44f45884c6b18f8abead574a19823c3471e0c6150626d980f2f9a93ce42f"
+    },
+    {
+      "path": "work/qa/parity26-eval3-modern-settings-375.png",
+      "sha256": "99422607a834bf2f0abe7a75b8c362c3659cbf61f0616775bbc17bdbc41ca9f1"
+    }
+  ],
+  "sourceChecks": [
+    {
+      "path": "apps/native/lib/ui/app.dart",
+      "sha256": "b40814d3400222c17e3c54117d4e1082bc2d02edd3307cb49329dc594b8ce340",
+      "actual": "b40814d3400222c17e3c54117d4e1082bc2d02edd3307cb49329dc594b8ce340",
+      "matches": true
+    },
+    {
+      "path": "apps/native/lib/ui/auth_page.dart",
+      "sha256": "2fd314cac7e317adad388e12e4ab684c1cc041a68e0d4462797381eb7a7af98d",
+      "actual": "2fd314cac7e317adad388e12e4ab684c1cc041a68e0d4462797381eb7a7af98d",
+      "matches": true
+    },
+    {
+      "path": "apps/native/lib/ui/halftone_room.dart",
+      "sha256": "76f0386e10d4d54c411f0bc6fde9c1f3bc3fc66782c3747ab56439f1a2266221",
+      "actual": "76f0386e10d4d54c411f0bc6fde9c1f3bc3fc66782c3747ab56439f1a2266221",
+      "matches": true
+    },
+    {
+      "path": "apps/native/lib/ui/top_notice.dart",
+      "sha256": "cdb9455f9adf50d7dea9ebde5d3ce957ea60a9baa11b670720b1ba0374e5dd43",
+      "actual": "cdb9455f9adf50d7dea9ebde5d3ce957ea60a9baa11b670720b1ba0374e5dd43",
+      "matches": true
+    },
+    {
+      "path": "apps/native/lib/ui/native19_desktop_transport.dart",
+      "sha256": "8bf5bfae08748340df21e64789cced594bda950d5e83920f2462089952c1e626",
+      "actual": "8bf5bfae08748340df21e64789cced594bda950d5e83920f2462089952c1e626",
+      "matches": true
+    },
+    {
+      "path": "apps/native/lib/ui/player_gestures.dart",
+      "sha256": "26eac928b61c58b122ff455bd02856d23938598f6d8c8f402000761071a23178",
+      "actual": "26eac928b61c58b122ff455bd02856d23938598f6d8c8f402000761071a23178",
+      "matches": true
+    },
+    {
+      "path": "apps/native/lib/ui/player.dart",
+      "sha256": "0e0fd0921320d8ba1cb82ef7d0555613d36f2e134ffa6a4771e1f504cfc44013",
+      "actual": "0e0fd0921320d8ba1cb82ef7d0555613d36f2e134ffa6a4771e1f504cfc44013",
+      "matches": true
+    },
+    {
+      "path": "apps/native/lib/ui/lyric_tile.dart",
+      "sha256": "60bbc7075628b2ff57f1703121c5bf9af03eb87ea7d1042b5e46b1ceb8d2b24d",
+      "actual": "60bbc7075628b2ff57f1703121c5bf9af03eb87ea7d1042b5e46b1ceb8d2b24d",
+      "matches": true
+    },
+    {
+      "path": "apps/native/lib/ui/parity_panels.dart",
+      "sha256": "2a79514ada62c9818e2ca6a59709a3e0b883d14ed05cda005595496bc6777327",
+      "actual": "2a79514ada62c9818e2ca6a59709a3e0b883d14ed05cda005595496bc6777327",
+      "matches": true
+    },
+    {
+      "path": "apps/native/lib/l10n/glukwave26_strings.dart",
+      "sha256": "41cd49d1f1c725c937dd054be9597c264803af87cf97dda4dded9d16145322be",
+      "actual": "41cd49d1f1c725c937dd054be9597c264803af87cf97dda4dded9d16145322be",
+      "matches": true
+    },
+    {
+      "path": "apps/native/test/parity26_ui_test.dart",
+      "sha256": "819d8d7522433b44218b8f970a3e20836e906e49bd970416d95140c97a181f55",
+      "actual": "819d8d7522433b44218b8f970a3e20836e906e49bd970416d95140c97a181f55",
+      "matches": true
+    },
+    {
+      "path": "apps/web/src/App.tsx",
+      "sha256": "a98a8fa9c02f98cf0bab03c87a7dc4245ec7577c0f79a0ea6895a51db119db35",
+      "actual": "a98a8fa9c02f98cf0bab03c87a7dc4245ec7577c0f79a0ea6895a51db119db35",
+      "matches": true
+    },
+    {
+      "path": "apps/web/src/account.tsx",
+      "sha256": "8c7fb34bca875dd7dfcc750cdb1bf50ab2ef88413279658c565d25a0e3e05053",
+      "actual": "8c7fb34bca875dd7dfcc750cdb1bf50ab2ef88413279658c565d25a0e3e05053",
+      "matches": true
+    },
+    {
+      "path": "apps/web/src/auth.tsx",
+      "sha256": "10f9c415aa8bc20bdcd918939f0e2a70b38576bab40f7008a2f6e0eff1c49445",
+      "actual": "10f9c415aa8bc20bdcd918939f0e2a70b38576bab40f7008a2f6e0eff1c49445",
+      "matches": true
+    },
+    {
+      "path": "apps/web/src/artist-detail.tsx",
+      "sha256": "a05a7724239993cc656ff236148c66fee5829e4a68838bbea33da6c48f9c58ac",
+      "actual": "a05a7724239993cc656ff236148c66fee5829e4a68838bbea33da6c48f9c58ac",
+      "matches": true
+    },
+    {
+      "path": "apps/web/src/halftone-room.tsx",
+      "sha256": "ebf871684881eb75c1bd25cfd6258025f29bd62604aaa1d0d9d28c0d92e701b0",
+      "actual": "ebf871684881eb75c1bd25cfd6258025f29bd62604aaa1d0d9d28c0d92e701b0",
+      "matches": true
+    },
+    {
+      "path": "apps/web/src/top-notice.tsx",
+      "sha256": "a62bfc85925a39a2e6f687a019e88c616a00abbcfb0b618d22b0b40e8be0162b",
+      "actual": "a62bfc85925a39a2e6f687a019e88c616a00abbcfb0b618d22b0b40e8be0162b",
+      "matches": true
+    },
+    {
+      "path": "apps/web/src/discovery-search.tsx",
+      "sha256": "4b9e21a7fc54602565e4f7730857388479e0aa5148a2d36101d02fd3e8f628c3",
+      "actual": "4b9e21a7fc54602565e4f7730857388479e0aa5148a2d36101d02fd3e8f628c3",
+      "matches": true
+    },
+    {
+      "path": "apps/web/src/main.tsx",
+      "sha256": "8a943a6e8018e2d4bec42108b73adb4707529d3e75a4419c090fe937a79d86f4",
+      "actual": "8a943a6e8018e2d4bec42108b73adb4707529d3e75a4419c090fe937a79d86f4",
+      "matches": true
+    },
+    {
+      "path": "apps/web/src/parity-taste.tsx",
+      "sha256": "e6c71f0b8b14a410dbcda86cfeb1ac89f861649d7a3fd9437da51b5f76d372a6",
+      "actual": "e6c71f0b8b14a410dbcda86cfeb1ac89f861649d7a3fd9437da51b5f76d372a6",
+      "matches": true
+    },
+    {
+      "path": "apps/web/src/player-gestures.ts",
+      "sha256": "7f19efae86ffc1a9bfa3c73de7e1b4e81f70bcf3dc54e5c000703093267b9659",
+      "actual": "7f19efae86ffc1a9bfa3c73de7e1b4e81f70bcf3dc54e5c000703093267b9659",
+      "matches": true
+    },
+    {
+      "path": "apps/web/src/player-ui.tsx",
+      "sha256": "9defac627f9f87565f0efd14f455ef8f24b12bcbcbb7a6d2a0986d7fbc669bd4",
+      "actual": "9defac627f9f87565f0efd14f455ef8f24b12bcbcbb7a6d2a0986d7fbc669bd4",
+      "matches": true
+    },
+    {
+      "path": "apps/web/src/ui.tsx",
+      "sha256": "961289dc6ba961216f71e31b957aa2ae61b590b592faf336900b2c1882a6c1d9",
+      "actual": "961289dc6ba961216f71e31b957aa2ae61b590b592faf336900b2c1882a6c1d9",
+      "matches": true
+    },
+    {
+      "path": "apps/web/src/glukwave26.css",
+      "sha256": "02e9d8b87130252d4d761e5cff41dd3b1073805ccea174c567849baafbcd7ea1",
+      "actual": "02e9d8b87130252d4d761e5cff41dd3b1073805ccea174c567849baafbcd7ea1",
+      "matches": true
+    },
+    {
+      "path": "apps/web/src/locales/en.json",
+      "sha256": "645bbaf1e81fe6b4781a7fe67353e6f64882c1cd090caf14a9bb8437fa536bad",
+      "actual": "645bbaf1e81fe6b4781a7fe67353e6f64882c1cd090caf14a9bb8437fa536bad",
+      "matches": true
+    },
+    {
+      "path": "apps/web/src/locales/ru.json",
+      "sha256": "949e0ae603baa0505fdd872a9d4f87da8c37bddeef4d012c280b039ed39825b0",
+      "actual": "949e0ae603baa0505fdd872a9d4f87da8c37bddeef4d012c280b039ed39825b0",
+      "matches": true
+    },
+    {
+      "path": "apps/web/src/locales/kk.json",
+      "sha256": "89212ce4683f0a36e13935dc042bd06d6564cb992c90806a3c3861457144a5b0",
+      "actual": "89212ce4683f0a36e13935dc042bd06d6564cb992c90806a3c3861457144a5b0",
+      "matches": true
+    },
+    {
+      "path": "apps/web/src/locales/uk.json",
+      "sha256": "a1ec3e3b1421cbea902498a5d04e2f63457e750ae4bd5850258f7a1b9bbac77c",
+      "actual": "a1ec3e3b1421cbea902498a5d04e2f63457e750ae4bd5850258f7a1b9bbac77c",
+      "matches": true
+    },
+    {
+      "path": "apps/web/src/locales/de.json",
+      "sha256": "2f7b368a1ee14be756e976df4abdb7c2ccd3366ff34015c5da5117b17d4799cd",
+      "actual": "2f7b368a1ee14be756e976df4abdb7c2ccd3366ff34015c5da5117b17d4799cd",
+      "matches": true
+    },
+    {
+      "path": "apps/web/src/locales/es.json",
+      "sha256": "5319fd0d65d93a1a78031d2eb2a17ebb7e9a22ed355f8aecc61dcdf153a2219e",
+      "actual": "5319fd0d65d93a1a78031d2eb2a17ebb7e9a22ed355f8aecc61dcdf153a2219e",
+      "matches": true
+    },
+    {
+      "path": "apps/native/test/app_layout_test.dart",
+      "sha256": "4844461e0a815dc4b64c3b90a069bb74c396915394740975866612a19635a568",
+      "actual": "4844461e0a815dc4b64c3b90a069bb74c396915394740975866612a19635a568",
+      "matches": true
+    },
+    {
+      "path": "apps/native/test/ecosystem_layout_test.dart",
+      "sha256": "c9bb00a31640fa39d376747192cfe8aeddce8a9fe7834b9b107450b2bbe5a692",
+      "actual": "c9bb00a31640fa39d376747192cfe8aeddce8a9fe7834b9b107450b2bbe5a692",
+      "matches": true
+    },
+    {
+      "path": "apps/native/test/localization_test.dart",
+      "sha256": "ee37f20127b216da9deb1cc7c90276d8f5f9f99ebbee8fd4c6d15b137ea068df",
+      "actual": "ee37f20127b216da9deb1cc7c90276d8f5f9f99ebbee8fd4c6d15b137ea068df",
+      "matches": true
+    },
+    {
+      "path": "apps/native/test/native19_round2_test.dart",
+      "sha256": "00a8c4aa3fafa9acd12909fddd8417aec766e18054834006c3b8a528067ee795",
+      "actual": "00a8c4aa3fafa9acd12909fddd8417aec766e18054834006c3b8a528067ee795",
+      "matches": true
+    },
+    {
+      "path": "apps/native/lib/ui/album_stage.dart",
+      "sha256": "c78b32eff376a84c8430cceb0251f34dce45823ec5c91a569ffa25c9a2b2acfc",
+      "actual": "c78b32eff376a84c8430cceb0251f34dce45823ec5c91a569ffa25c9a2b2acfc",
+      "matches": true
+    },
+    {
+      "path": "apps/native/test/parity23_ui_test.dart",
+      "sha256": "9a28959560720a2c1c0b0a06f574d8f2eb1ba0fd59e3f1d457312821a460f1a0",
+      "actual": "9a28959560720a2c1c0b0a06f574d8f2eb1ba0fd59e3f1d457312821a460f1a0",
+      "matches": true
+    },
+    {
+      "path": "apps/native/test/parity24_ui_test.dart",
+      "sha256": "6ddb57917fea8a2ca37d41de49d2291085475c82a3baccdad06e2a3f3584f868",
+      "actual": "6ddb57917fea8a2ca37d41de49d2291085475c82a3baccdad06e2a3f3584f868",
+      "matches": true
+    },
+    {
+      "path": "apps/native/test/playback_vector_test.dart",
+      "sha256": "ab78bda4318e98885155dcc343b83d9da29dce20b5d4e8aadc66fad83bce89e5",
+      "actual": "ab78bda4318e98885155dcc343b83d9da29dce20b5d4e8aadc66fad83bce89e5",
+      "matches": true
+    },
+    {
+      "path": "apps/native/test/player_details_test.dart",
+      "sha256": "21db35c48dc05c9a0c8df0b6488e218800f2e9e8e1a1e6301ca2be546c9b986d",
+      "actual": "21db35c48dc05c9a0c8df0b6488e218800f2e9e8e1a1e6301ca2be546c9b986d",
+      "matches": true
+    },
+    {
+      "path": "apps/native/test/refinement20_evaluator_test.dart",
+      "sha256": "02b8f4e7e6ae4b4c6cdce49a252c11108a29c8339119383e1fdc7345e1eba993",
+      "actual": "02b8f4e7e6ae4b4c6cdce49a252c11108a29c8339119383e1fdc7345e1eba993",
+      "matches": true
+    },
+    {
+      "path": "apps/native/test/refinement20_ui_test.dart",
+      "sha256": "742f37280c95ea6d1d425310dc4741c2b3dd53e54e5af8a144cb145a9f22bc5b",
+      "actual": "742f37280c95ea6d1d425310dc4741c2b3dd53e54e5af8a144cb145a9f22bc5b",
+      "matches": true
+    }
+  ],
+  "limitations": [
+    "Modern Chromium with legacy APIs removed and SystemJS forced, not real old Samsung engine",
+    "Silent WAV fixture resets seeks; physical-source seek retention not asserted",
+    "No physical Android, Windows or TV audio evidence",
+    "Same available model provider",
+    "Narrow legacy wheel forwarding was not established by extra harness probe; sixth line reached via browser scroll-into-view. No physical remote/touch scroll claim."
+  ],
+  "panelReachability": [
+    {
+      "width": 375,
+      "settings": {
+        "overflow": false,
+        "rect": {
+          "bottom": 280.484375,
+          "height": 67.5,
+          "left": 22,
+          "right": 343,
+          "top": 212.984375,
+          "width": 321,
+          "x": 22,
+          "y": 212.984375
+        },
+        "result": "Музыка без сети"
+      }
+    },
+    {
+      "width": 375,
+      "artist": {
+        "albums": 1,
+        "name": "Original Wave Ensemble",
+        "overflow": false,
+        "rect": {
+          "bottom": 900,
+          "height": 824,
+          "left": 0,
+          "right": 375,
+          "top": 76,
+          "width": 375,
+          "x": 0,
+          "y": 76
+        },
+        "tracks": 3
+      }
+    },
+    {
+      "width": 1440,
+      "settingsReachable": true,
+      "artistReachable": true
+    }
+  ],
+  "legacyLastLine": {
+    "scrollIntoViewPassed": true,
+    "physicalWheelForwardingVerified": false,
+    "lastLineWithinViewport": true,
+    "scope": "Browser scroll-into-view reached the sixth line at375. Additional wheel forwarding probe was inconclusive and is not a passing physical-scroll assertion."
+  },
+  "finishedAt": "2026-10-17T21:50:15.552Z"
+}

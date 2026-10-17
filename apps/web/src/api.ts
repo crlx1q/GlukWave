@@ -5,7 +5,7 @@ import {playbackRequest} from './playback-request';
 import {actionRequest} from './action-request';
 let requestAccount:string|null=null;
 export function setRequestAccount(id:string|null){requestAccount=id;}
-export class ApiError extends Error { constructor(public code: string, message: string, public details?: unknown) { super(message); } }
+export class ApiError extends Error { constructor(public code: string, message: string, public details?: unknown,public status?:number) { super(message); } }
 export async function api<T>(path: string, init: RequestInit = {}): Promise<T> {
   const headers = new Headers(init.headers);
   headers.set('Accept-Language',getLanguage());
@@ -22,7 +22,7 @@ export async function api<T>(path: string, init: RequestInit = {}): Promise<T> {
   try { response = await (playback?playbackRequest:action?actionRequest:fetch)(`/api${path}`, { ...init, headers, credentials: 'include' }); }
   catch (error) { if ((error as Error).name === 'AbortError') throw error;reportError(error,'network',{code:'FETCH_FAILED'}); throw new ApiError('NETWORK',t('copy.166')); }
   const body = await response.json().catch(() => ({}));
-  if (!response.ok){const error=new ApiError(body.error?.code || `HTTP_${response.status}`, body.error?.message || t('copy.167'), body.error?.details);if(response.status>=500)reportError(error,'network',{code:error.code,status:response.status});throw error;}
+  if (!response.ok){const error=new ApiError(body.error?.code || `HTTP_${response.status}`, body.error?.message || t('copy.167'), body.error?.details,response.status);if(response.status>=500)reportError(error,'network',{code:error.code,status:response.status});throw error;}
   return body as T;
 }
 export const post = <T>(path: string, data: unknown = {}) => api<T>(path,{method:'POST',body:JSON.stringify(data)});

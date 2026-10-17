@@ -116,6 +116,39 @@ Future<void> clean(WidgetTester tester, LayoutController c) async {
   tester.view.resetDevicePixelRatio();
 }
 
+/// Navigate the actual adaptive settings control while preserving a real tap.
+Future<void> selectSettingsCategory(
+  WidgetTester tester,
+  String id, [
+  String? label,
+]) async {
+  final compact = find.byWidgetPredicate((widget) {
+    final key = widget.key;
+    return widget is DropdownButtonFormField<String> &&
+        key is ValueKey<String> &&
+        key.value.startsWith('settings-mobile-');
+  });
+  if (compact.evaluate().isNotEmpty) {
+    await tester.ensureVisible(compact);
+    await tester.tap(compact);
+    await tester.pumpAndSettle();
+    final option = find
+        .byWidgetPredicate(
+          (widget) => widget is DropdownMenuItem<String> && widget.value == id,
+        )
+        .last;
+    await tester.ensureVisible(option);
+    await tester.tap(
+      find.descendant(of: option, matching: find.byType(Text)).first,
+    );
+  } else {
+    final link = find.byKey(Key('settings-$id'));
+    await tester.ensureVisible(link);
+    await tester.tap(link);
+  }
+  await tester.pumpAndSettle();
+}
+
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   setUpAll(() async {
@@ -209,11 +242,7 @@ void main() {
         expect(find.text('Сервер'), findsNothing);
         expect(find.textContaining('Firebase'), findsNothing);
         expect(tester.takeException(), isNull);
-        await tester.ensureVisible(
-          find.byKey(const Key('settings-appearance')),
-        );
-        await tester.tap(find.byKey(const Key('settings-appearance')));
-        await tester.pumpAndSettle();
+        await selectSettingsCategory(tester, 'appearance', 'Оформление');
         await tester.ensureVisible(find.byKey(const Key('open-appearance')));
         await tester.tap(find.byKey(const Key('open-appearance')));
         await tester.pumpAndSettle();
@@ -233,9 +262,7 @@ void main() {
           'about',
           'account',
         ]) {
-          await tester.ensureVisible(find.byKey(Key('settings-$value')));
-          await tester.tap(find.byKey(Key('settings-$value')));
-          await tester.pumpAndSettle();
+          await selectSettingsCategory(tester, value);
           expect(
             tester.takeException(),
             isNull,
@@ -379,10 +406,37 @@ void main() {
         if (width == 390 || width == 1280) {
           await screenshot(tester, 'v6-player-${width.toInt()}');
         }
-        await tester.drag(
-          find.byKey(const Key('player-cover-gesture')),
-          const Offset(-120, 0),
+        // The stage's layout envelope intentionally lets blank margins scroll.
+        // Begin the queue swipe on an actual physical sleeve hit target.
+        final surface = find.byKey(const Key('player-cover-gesture'));
+        final surfaceBox = tester.renderObject(surface);
+        final face = tester.getRect(
+          find.byKey(const Key('album-front-sleeve')).first,
         );
+        expect(
+          tester
+              .hitTestOnBinding(face.center)
+              .path
+              .any((entry) => entry.target == surfaceBox),
+          isTrue,
+          reason: 'The visible physical sleeve must own queue touch gestures.',
+        );
+        final blank = tester.getRect(surface).topLeft + const Offset(2, 2);
+        expect(
+          tester
+              .hitTestOnBinding(blank)
+              .path
+              .any((entry) => entry.target == surfaceBox),
+          isFalse,
+          reason:
+              'Empty cover-stage space must remain available for scrolling.',
+        );
+        final swipe = await tester.startGesture(face.center);
+        await swipe.moveBy(const Offset(-60, 0));
+        await tester.pump();
+        await swipe.moveBy(const Offset(-60, 0));
+        await tester.pump();
+        await swipe.up();
         await tester.pumpAndSettle();
         expect(c.audio.current!.id, tracks[2].id);
         await tester.tap(find.byKey(const Key('player-lyrics-toggle')));

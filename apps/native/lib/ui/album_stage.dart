@@ -484,7 +484,9 @@ class _AlbumStageState extends State<AlbumStage>
                 context: context,
               ),
               child: MouseRegion(
-                opaque: false,
+                // Preserve a successful physical-face hit for the ancestor
+                // queue recognizer. Empty stage space still defers to its child.
+                opaque: true,
                 hitTestBehavior: HitTestBehavior.deferToChild,
                 onEnter: (_) => setState(() => hovering = true),
                 onExit: (_) => setState(() => hovering = false),

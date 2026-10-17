@@ -433,14 +433,20 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
   },[audio,finish,store.notify,update]);
   useEffect(()=>{
     if(!state.playing||!outputHere||trackLoading||repeat==='one'||(navigator as Navigator&{connection?:{saveData?:boolean}}).connection?.saveData)return;
-    const index=queue.findIndex(item=>item.id===track?.id),next=queue[index+1],account=store.user?.id;
-    if(!next||index<0)return;
+    const index=queue.findIndex(item=>item.id===track?.id),following=queue.slice(index+1,index+3),account=store.user?.id,abort=new AbortController();
+    if(!following.length||index<0)return;
     const timer=setTimeout(()=>void (async()=>{
-      if(account&&await cached(account,next.id))return;
-      const fresh=await warmup.current.get(next.id,()=>api<{playback:Playback}>(`/tracks/${encodeURIComponent(next.id)}/playback`,{signal:AbortSignal.timeout(20000)}).then(value=>value.playback));
-      if(account===userRef.current?.id&&account&&settingsRef.current.autoCache&&fresh.offline&&fresh.format!=='hls')await saveTrack(account,{...next,playback:fresh},settingsRef.current.cacheLimitMB,false);
+      for(const next of following){
+        if(abort.signal.aborted||account!==userRef.current?.id)return;
+        try{
+          if(account&&await cached(account,next.id))continue;
+          const fresh=await warmup.current.prepare(next.id,signal=>api<{playback:Playback}>(`/tracks/${encodeURIComponent(next.id)}/playback`,{signal:AbortSignal.any([signal,AbortSignal.timeout(20000)])}).then(value=>value.playback),abort.signal);
+          if(abort.signal.aborted||account!==userRef.current?.id)return;
+          if(account&&settingsRef.current.autoCache&&fresh.offline&&fresh.format!=='hls')await saveTrack(account,{...next,playback:fresh},settingsRef.current.cacheLimitMB,false,undefined,abort.signal);
+        }catch{if(abort.signal.aborted)return;}
+      }
     })().catch(()=>{}),600);
-    return()=>clearTimeout(timer);
+    return()=>{clearTimeout(timer);abort.abort();};
   },[state.playing,track?.id,queue,repeat,outputHere,trackLoading,store.user?.id]);
   useEffect(()=>{
     const presentation=mediaSessionState(pendingTrack||track,state.playing,trackLoading,desiredPlay.current,transportPending);

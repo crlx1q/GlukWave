@@ -1,0 +1,56 @@
+{
+  "passed": true,
+  "records": [
+    {
+      "scope": "desktopMini",
+      "height": 68,
+      "overflow": false,
+      "width": 740
+    },
+    {
+      "scope": "horizontalTouch",
+      "cancelledTitle": "A long title across the quiet shoreline",
+      "committedTitle": "Light through the window"
+    },
+    {
+      "scope": "continuousTouchReveal",
+      "reveal": 0.22068965517241385,
+      "top": 632.7999877929688
+    },
+    {
+      "scope": "lyricsFocus",
+      "rows": [
+        {
+          "active": null,
+          "filter": "blur(1.15px)",
+          "text": "Там, где тихо — мы услышим море"
+        },
+        {
+          "active": null,
+          "filter": "none",
+          "text": "И увидим свет в твоём окне"
+        },
+        {
+          "active": "true",
+          "filter": "none",
+          "text": "Этот миг останется с тобою"
+        },
+        {
+          "active": null,
+          "filter": "none",
+          "text": "Музыка напомнит обо мне"
+        },
+        {
+          "active": null,
+          "filter": "blur(1.15px)",
+          "text": "Пусть далёкий голос станет тише"
+        },
+        {
+          "active": null,
+          "filter": "blur(2.3px)",
+          "text": "А наш свет останется с тобой"
+        }
+      ]
+    }
+  ]
+}

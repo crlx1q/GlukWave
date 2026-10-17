@@ -3,6 +3,8 @@ import 'dart:ui';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import '../core/controller.dart';
+import '../core/models.dart';
+import 'widgets.dart' show Artwork;
 import 'theme.dart';
 
 /// Move incoming cover/metadata in the queue direction without keeping a
@@ -143,6 +145,17 @@ class _PlayerGestureSurfaceState extends State<PlayerGestureSurface> {
   Offset distance = Offset.zero;
   Axis? axis;
   bool acceptsVertical = false;
+  WaveTrack? preview;
+  double swipe = 0, previewSide = 1;
+  Timer? snap;
+  @override
+  void dispose() { snap?.cancel(); super.dispose(); }
+  void snapBack() {
+    if (!mounted) return;
+    setState(() => swipe = 0);
+    snap?.cancel();
+    snap = Timer(const Duration(milliseconds: 280), () { if (mounted) setState(() => preview = null); });
+  }
   void reset() {
     distance = Offset.zero;
     axis = null;
@@ -152,6 +165,7 @@ class _PlayerGestureSurfaceState extends State<PlayerGestureSurface> {
   void cancel() {
     if (acceptsVertical) widget.onVerticalCancel?.call();
     reset();
+    snapBack();
   }
 
   void update(DragUpdateDetails details) {
@@ -164,6 +178,16 @@ class _PlayerGestureSurfaceState extends State<PlayerGestureSurface> {
           axis == Axis.vertical &&
           (widget.opensPlayer ? distance.dy < 0 : distance.dy > 0);
       if (acceptsVertical) widget.onVerticalStart?.call();
+    }
+    if (axis == Axis.horizontal && widget.opensPlayer) {
+      final c = widget.controller, list = widget.controller.audio.viewTracks;
+      final index = list.indexWhere((track) => track.id == c.audio.viewCurrent?.id);
+      final side = distance.dx < 0 ? 1 : -1, next = index + side;
+      setState(() {
+        previewSide = side.toDouble();
+        preview = c.canControl && index >= 0 && next >= 0 && next < list.length ? list[next] : null;
+        swipe = preview == null ? distance.dx * .12 : distance.dx;
+      });
     }
     if (acceptsVertical) widget.onVerticalUpdate?.call(distance.dy);
   }
@@ -192,6 +216,7 @@ class _PlayerGestureSurfaceState extends State<PlayerGestureSurface> {
       widget.onVerticalEnd?.call(details.velocity.pixelsPerSecond.dy);
     }
     reset();
+    snapBack();
   }
 
   @override
@@ -205,7 +230,7 @@ class _PlayerGestureSurfaceState extends State<PlayerGestureSurface> {
             () => _PlayerPanRecognizer(opensPlayer: widget.opensPlayer),
             (recognizer) {
               recognizer.opensPlayer = widget.opensPlayer;
-              recognizer.onDown = (_) => reset();
+              recognizer.onDown = (_) { snap?.cancel(); reset(); };
               recognizer.onUpdate = update;
               recognizer.onEnd = (details) {
                 if (recognizer.pointerCancelled) {
@@ -218,6 +243,24 @@ class _PlayerGestureSurfaceState extends State<PlayerGestureSurface> {
             },
           ),
     },
-    child: TrackMotion(controller: widget.controller, child: widget.child),
+    child: !widget.opensPlayer ? TrackMotion(controller: widget.controller, child: widget.child) : ClipRect(child: LayoutBuilder(builder: (context, bounds) {
+      final v = waveVisuals(context), width = bounds.maxWidth;
+      return Stack(clipBehavior: Clip.none, children: [
+        AnimatedContainer(duration: axis == Axis.horizontal ? Duration.zero : const Duration(milliseconds: 260), curve: Curves.easeOutCubic, transform: Matrix4.translationValues(swipe, 0, 0), child: TrackMotion(controller: widget.controller, child: widget.child)),
+        if (preview != null) Positioned.fill(child: IgnorePointer(child: ExcludeSemantics(child: AnimatedContainer(
+          key: const Key('mini-swipe-preview'), duration: axis == Axis.horizontal ? Duration.zero : const Duration(milliseconds: 260), curve: Curves.easeOutCubic,
+          transform: Matrix4.translationValues(swipe + previewSide * width, 0, 0),
+          child: Row(children: [
+            Artwork(controller: widget.controller, url: preview!.artwork, size: 44, radius: 8),
+            const SizedBox(width: 10),
+            Expanded(child: Column(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text(preview!.title, maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(color: v.onPlayer, fontSize: 13, fontWeight: FontWeight.w800)),
+              const SizedBox(height: 3),
+              Text(preview!.artist, maxLines: 1, overflow: TextOverflow.ellipsis, style: TextStyle(color: v.onPlayer.withValues(alpha: .7), fontSize: 10)),
+            ])),
+          ]),
+        )))),
+      ]);
+    })),
   );
 }

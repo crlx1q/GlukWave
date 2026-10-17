@@ -6,6 +6,7 @@ import {id,now,digest,parse,text,fail,asyncRoute,publicUser,mergeSettings,keyboa
 import {sourceUrl,normalizeSpotify,normalizeYoutube,normalizeSoundcloud} from './providers.js';
 import rateLimit from 'express-rate-limit';
 import {matchedFields,artistsFromTracks,lyricsSignature} from './search.js';
+import {searchSnapshot} from './search-cache.js';
 import {planLimits} from './plans.js';
 
 export function parseCSV(raw){const rows=[],row=[];let field='',quoted=false;for(let i=0;i<raw.length;i++){const c=raw[i];if(c==='"'){if(quoted&&raw[i+1]==='"'){field+='"';i++;}else quoted=!quoted;}else if(c===','&&!quoted){row.push(field);field='';}else if((c==='\n'||c==='\r')&&!quoted){if(c==='\r'&&raw[i+1]==='\n')i++;row.push(field);if(row.some(x=>x))rows.push([...row]);row.length=0;field='';}else field+=c;}if(quoted)fail(400,'INVALID_CSV','В CSV не закрыты кавычки.');row.push(field);if(row.some(x=>x))rows.push(row);const [headers,...records]=rows;return records.map(values=>Object.fromEntries((headers||[]).map((h,i)=>[h.trim().toLowerCase().replace(/^\uFEFF/,''),values[i]||''])));}
@@ -50,17 +51,18 @@ export function setupLibrary(app,ctx){
   app.get('/api/tracks',asyncRoute(async(req,res)=>res.json({tracks:await visibleTracks(req.auth?.user)})));
   app.get('/api/search',asyncRoute(async(req,res)=>{
     const q=parse(text(200),req.query.q),source=parse(z.enum(['all','local','youtube','spotify','soundcloud','yandex']),req.query.source||'all'),lower=q.toLowerCase();
-    const all=await visibleTracks(req.auth?.user);
-    const savedLyrics=new Map((await store.entries('lyrics')).map(({id,value})=>[id,value]));
-    const cachedLyrics=new Map((await store.list('lyricsCache')).filter(value=>value.expiresAt>Date.now()).map(value=>[value.id,value.lyrics]));
+    const [all,lyricsEntries,lyricsCache,playlistEntries]=await Promise.all([visibleTracks(req.auth?.user),store.entries('lyrics'),store.list('lyricsCache'),store.list('playlists',p=>p.public||p.ownerId===req.auth?.user.id)]);
+    const savedLyrics=new Map(lyricsEntries.map(({id,value})=>[id,value]));
+    const cachedLyrics=new Map(lyricsCache.filter(value=>value.expiresAt>Date.now()).map(value=>[value.id,value.lyrics]));
     const local=all.filter(t=>source==='all'||source===t.source).flatMap(track=>{
       const lyrics=(req.auth?.user&&savedLyrics.get(`${req.auth.user.id}:${track.id}`))||savedLyrics.get(track.id)||cachedLyrics.get(lyricsSignature(track));
       const fields=matchedFields(track,q,lyrics?.lines?.map(line=>line.text).join('\n'));
       return fields.length?[{...track,matchedFields:fields}]:[];
     });
     const providers=ctx.providerConfiguration(),requested=providers.filter(p=>(p.searchAvailable??p.configured)&&(source==='all'||p.id===source));
-    const results=await Promise.allSettled(requested.map(p=>ctx.searchProvider(p.id,q,req.auth?.user.id))),tracks=[...local],errors=[];
-    results.forEach((result,index)=>{if(result.status==='fulfilled')tracks.push(...result.value);else errors.push({provider:requested[index].id,message:result.reason.message});});
+    const fast=parse(z.enum(['0','1']),req.query.fast||'0');
+    const results=await searchSnapshot(requested.map(p=>(ctx.cachedSearchProvider||ctx.searchProvider)(p.id,q,req.auth?.user.id)),fast==='1'?1200:undefined),tracks=[...local],errors=[];
+    results.forEach((result,index)=>{if(result.status==='fulfilled')tracks.push(...result.value);else if(result.status==='rejected')errors.push({provider:requested[index].id,message:result.reason.message});});
     const provider=providers.find(p=>p.id===source);
     if(source!=='all'&&source!=='local'&&!(provider?.searchAvailable??provider?.configured))errors.push({provider:source,message:`Поиск ${provider?.name||'этого источника'} сейчас недоступен. Можно добавить трек по ссылке.`});
     const exact=tracks.some(track=>`${track.title} ${track.artist} ${track.album}`.toLowerCase().includes(lower));
@@ -73,7 +75,7 @@ export function setupLibrary(app,ctx){
     const matches=[...unique.values()].sort((a,b)=>(b.matchedFields?.includes('title')?1:0)-(a.matchedFields?.includes('title')?1:0)).slice(0,100);
     const providerArtists=results.flatMap(result=>result.status==='fulfilled'?result.value.artists||[]:[]);
     const searchable=new Map(all.map(track=>[track.id,track])),playlists=[];
-    for(const playlist of await store.list('playlists',p=>p.public||p.ownerId===req.auth?.user.id)){
+    for(const playlist of playlistEntries){
       // An invalid public playlist must never disclose its private contents.
       const entries=playlist.trackIds.map(id=>searchable.get(id)).filter(Boolean);
       if(entries.length!==playlist.trackIds.length)continue;
@@ -82,7 +84,9 @@ export function setupLibrary(app,ctx){
       if(!matchedFields({title:playlist.name,artist:'',album:playlist.description},q).length&&!entries.some(track=>matchedFields(track,q).length))continue;
       playlists.push(await decoratePlaylist(playlist));if(playlists.length>=24)break;
     }
-    res.set('Cache-Control','private, no-store').json({tracks:matches.map(track=>ctx.publicTrack(track,req.auth?.user)),artists:artistsFromTracks([...matches,...all],q,providerArtists).filter(artist=>source==='all'||source===artist.source),playlists,suggestion:exact||local.length?null:keyboardSuggestion(q),providers,errors});
+    const artists=artistsFromTracks([...matches,...all],q,providerArtists).filter(artist=>source==='all'||source===artist.source);
+    if(ctx.rememberArtists)await ctx.rememberArtists(artists,req.auth?.user);
+    res.set('Cache-Control','private, no-store').json({tracks:matches.map(track=>ctx.publicTrack(track,req.auth?.user)),artists,playlists,suggestion:exact||local.length?null:keyboardSuggestion(q),providers,errors,pendingProviders:results.flatMap((result,index)=>result.status==='pending'?[requested[index].id]:[])});
   }));
   app.post('/api/tracks/resolve',requireAuth,asyncRoute(async(req,res)=>{const b=parse(z.object({url:z.url().max(2048)}).strict(),req.body);res.json({track:ctx.publicTrack(await ctx.resolveSource(b.url))});}));
   app.get('/api/tracks/:id',asyncRoute(async(req,res)=>res.json({track:ctx.publicTrack(await requireTrack(req.params.id,req.auth?.user),req.auth?.user)})));

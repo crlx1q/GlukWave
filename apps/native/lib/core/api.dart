@@ -5,6 +5,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'models.dart';
 import '../services/diagnostics.dart';
+import '../services/metadata_cache.dart';
 
 class WaveException implements Exception {
   final String message, code;
@@ -19,6 +20,83 @@ class WaveException implements Exception {
 }
 
 class WaveApi {
+  final MetadataCache metadata = MetadataCache();
+  final Map<String, Future<Json>> _metadataFlights = {};
+  String? _metadataIdentity;
+  String get _identity => '$server:${token ?? ""}';
+  void _checkMetadataScope() {
+    if (_metadataIdentity == _identity) return;
+    _metadataIdentity = _identity;
+    metadata.reset();
+    _metadataFlights.clear();
+  }
+
+  Future<void> openMetadata(Directory directory, String owner) async {
+    _metadataIdentity = _identity;
+    _metadataFlights.clear();
+    await metadata.open(directory, owner);
+  }
+
+  Json? peekMetadata(String path, {Json? query}) {
+    _checkMetadataScope();
+    return metadata.peek(MetadataCache.key(path, query));
+  }
+
+  Future<Json> cachedCall(
+    String path, {
+    Json? query,
+    Duration maxAge = const Duration(minutes: 2),
+    bool force = false,
+  }) {
+    _checkMetadataScope();
+    final key = MetadataCache.key(path, query), identity = _identity;
+    final saved = metadata.peek(key);
+    if (!force && saved != null && metadata.fresh(key, maxAge)) {
+      return Future.value(saved);
+    }
+    final active = _metadataFlights[key];
+    if (active != null) return active;
+    final job = () async {
+      try {
+        final value = await call(path, query: query);
+        if (identity != _identity || _metadataIdentity != identity) {
+          throw const WaveException('Session changed', 'STALE_REQUEST');
+        }
+        metadata.put(key, value);
+        return value;
+      } catch (error) {
+        if (identity == _identity &&
+            error is WaveException &&
+            [401, 403, 404].contains(error.status)) {
+          metadata.remove(key);
+        }
+        if (identity == _identity &&
+            saved != null &&
+            !(error is WaveException &&
+                [401, 403, 404].contains(error.status))) {
+          return saved;
+        }
+        rethrow;
+      }
+    }();
+    _metadataFlights[key] = job;
+    unawaited(
+      job.then<void>(
+        (_) {
+          if (identical(_metadataFlights[key], job)) {
+            _metadataFlights.remove(key);
+          }
+        },
+        onError: (Object _, StackTrace __) {
+          if (identical(_metadataFlights[key], job)) {
+            _metadataFlights.remove(key);
+          }
+        },
+      ),
+    );
+    return job;
+  }
+
   String _playbackScope = '';
   final Map<String, ({DateTime at, Future<Json> job})> _playbackWarmup = {};
   final Dio dio = Dio(
@@ -87,6 +165,34 @@ class WaveApi {
       ),
     );
     return object(response.data);
+  }
+
+  /// A bounded reachability probe; cancellation also stops the underlying I/O.
+  Future<Json> probe() async {
+    final cancellation = CancelToken();
+    final budget = Timer(
+      const Duration(seconds: 6),
+      () => cancellation.cancel('Connectivity deadline'),
+    );
+    try {
+      final response = await dio.get<dynamic>(
+        url('/api/config'),
+        cancelToken: cancellation,
+        options: Options(
+          headers: headers,
+          receiveTimeout: const Duration(seconds: 6),
+        ),
+      );
+      return object(response.data);
+    } on DioException catch (error) {
+      throw WaveException(
+        wt('native.5918da6940'),
+        'network',
+        error.response?.statusCode,
+      );
+    } finally {
+      budget.cancel();
+    }
   }
 
   static String validateServer(String value) {

@@ -16,7 +16,15 @@ import 'windows_equalizer.dart';
 
 class WaveAudioHandler extends BaseAudioHandler {
   bool offlineOnly = false;
-  bool prepareNext = true;
+  bool _prepareNext = true;
+  bool get prepareNext => _prepareNext;
+  set prepareNext(bool value) {
+    _prepareNext = value;
+    if (!value) _cancelPrefetch();
+  }
+
+  int _prefetchGeneration = 0;
+  final Set<String> _prefetchIds = {};
   final WaveApi api;
   final MusicCache cache;
   final Duration sourceLoadTimeout;
@@ -162,6 +170,7 @@ class WaveAudioHandler extends BaseAudioHandler {
   }
 
   void replaceQueue(List<WaveTrack> items) {
+    _cancelPrefetch();
     if (remote) {
       _remoteQueue = List.of(items);
     } else {
@@ -171,6 +180,7 @@ class WaveAudioHandler extends BaseAudioHandler {
     }
     queue.add(items.map(item).toList());
     _broadcast();
+    if (!remote && outputPlaying && !trackLoading) _prepareFollowing();
   }
 
   void clearRemote() {
@@ -523,7 +533,8 @@ class WaveAudioHandler extends BaseAudioHandler {
   );
 
   /// A room revision supersedes an in-flight source lookup before it can start.
-  void cancelPendingLoad() {
+  void cancelPendingLoad({String? keepPrefetchFor}) {
+    _cancelPrefetch(keep: keepPrefetchFor);
     _loadRevision++;
     _pendingTrack = null;
     _setResolving(false);
@@ -655,7 +666,7 @@ class WaveAudioHandler extends BaseAudioHandler {
         !trackLoading &&
         player.processingState != ProcessingState.idle &&
         player.processingState != ProcessingState.loading) {
-      cancelPendingLoad();
+      cancelPendingLoad(keepPrefetchFor: track.id);
       final revision = _loadRevision;
       replaceQueue(list ?? tracks);
       await player.seek(Duration(milliseconds: (position * 1000).round()));
@@ -668,7 +679,7 @@ class WaveAudioHandler extends BaseAudioHandler {
       _broadcast();
       return;
     }
-    cancelPendingLoad();
+    cancelPendingLoad(keepPrefetchFor: track.id);
     final revision = _loadRevision;
     final previousTrack = current,
         previousTracks = tracks,
@@ -870,25 +881,59 @@ class WaveAudioHandler extends BaseAudioHandler {
         }),
       );
     }
-    if (playing &&
+    if (playing) _prepareFollowing();
+  }
+
+  void _cancelPrefetch({String? keep}) {
+    _prefetchGeneration++;
+    for (final id in _prefetchIds) {
+      if (id != keep) cache.cancelPrefetch(id);
+    }
+    _prefetchIds.clear();
+  }
+
+  void _prepareFollowing() {
+    _cancelPrefetch();
+    if (!prepareNext ||
+        offlineOnly ||
+        remote ||
+        _index < 0 ||
+        repeat == AudioServiceRepeatMode.one) {
+      return;
+    }
+    final candidates = tracks.skip(_index + 1).take(2).toList(),
+        generation = _prefetchGeneration,
+        revision = _loadRevision,
+        account = api.token,
+        origin = api.server;
+    bool active() =>
+        !_released &&
+        generation == _prefetchGeneration &&
+        revision == _loadRevision &&
+        account == api.token &&
+        origin == api.server &&
         prepareNext &&
-        !offlineOnly &&
-        _index >= 0 &&
-        _index + 1 < tracks.length) {
-      final next = tracks[_index + 1], account = api.token, origin = api.server;
-      unawaited(
-        () async {
-          if (await cache.fileFor(next.id) != null) return;
+        !offlineOnly;
+    unawaited(() async {
+      for (final next in candidates) {
+        if (!active()) return;
+        try {
+          if (await cache.fileFor(next.id) != null) continue;
+          if (!active()) return;
           final prepared = await api.resolvePlayback(next);
-          if (_released || account != api.token || origin != api.server) return;
+          if (!active()) return;
           if (autoCache &&
               prepared.offline &&
               prepared.playback['format'] != 'hls') {
-            await cache.save(prepared);
+            _prefetchIds.add(next.id);
+            await cache.prefetch(prepared);
+            _prefetchIds.remove(next.id);
           }
-        }().catchError((_) {}),
-      );
-    }
+        } catch (_) {
+          /* A failed speculative item must not interrupt playback. */
+        }
+      }
+    }());
   }
 
   Future<void> _completed() async {
@@ -1028,6 +1073,7 @@ class WaveAudioHandler extends BaseAudioHandler {
           break;
         }
         await _startVerified(revision: _loadRevision);
+        _prepareFollowing();
       case 'pause':
         await player.pause();
       case 'seek':

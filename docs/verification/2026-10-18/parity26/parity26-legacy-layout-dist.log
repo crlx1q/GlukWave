@@ -1,0 +1,5 @@
+Checking width 1440
+Checking width 768
+Checking width 375
+Checking width 320
+{"passed":true,"widths":[1440,768,375,320],"actualDistFinalRequired":false}

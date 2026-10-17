@@ -1316,5 +1316,17 @@
   "wave18.editTaste": "Edit your taste",
   "wave18.tasteCaption": "Your artists and genres. A wave that gets to know you.",
   "lyrics.intro": "Intro",
-  "focusedPlayer.wave": "Wave"
+  "focusedPlayer.wave": "Wave",
+  "v26.settings.search": "Find a setting",
+  "v26.settings.noResults": "No matching categories",
+  "v26.artist.source": "Open original profile",
+  "v26.artist.empty": "This source has no tracks available yet.",
+  "v26.artist.playAll": "Play all",
+  "v26.artist.shuffle": "Shuffle",
+  "v26.artist.albums": "Albums",
+  "v26.artist.playlists": "Public playlists",
+  "v26.artist.tracks": "Tracks",
+  "auth.showPassword": "Show password",
+  "auth.hidePassword": "Hide password",
+  "v26.settings.cacheNote": "Automatic cache keeps a limited set of recently played tracks. Save a track explicitly to keep it for offline listening."
 }

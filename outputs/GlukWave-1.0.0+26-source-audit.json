@@ -1,0 +1,19 @@
+{
+  "checkedAt": "2026-10-17T21:51:09.367Z",
+  "passed": true,
+  "archiveBytes": 240108014,
+  "archiveSha256": "59efa8767152585eba6bd5961ea8ca13e1b2f0714f86ed10c66b8b0fbfbd5590",
+  "entries": 2865,
+  "allCrcAndSourceHashesMatched": true,
+  "textFilesScanned": 1066,
+  "localPrivateValuesAbsent": true,
+  "liveCredentialPatternsAbsent": true,
+  "staticFontFaces": 6,
+  "manropeStaticFontFaces": 5,
+  "frozenNativeSourcesMatched": 230,
+  "currentWebBuild": "/assets/main-0LQRY_ts.js",
+  "runtimeDataExcluded": true,
+  "apkSha256": "51604a52cac8f133c241873857bd6df727772b57c7b801553961a4094265dbc1",
+  "windowsSha256": "553eaf69af4fd8cc0ac3b2a8fab1e20bd0c9d72e4efab7edc48a06eb2ba8f750",
+  "installerSha256": "5eec7e39a04fd3fdaec6f9b2feb29cfd269d9b2edda27cb2e74db8b46b10eaa7"
+}

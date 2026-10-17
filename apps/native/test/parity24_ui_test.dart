@@ -208,7 +208,7 @@ void main() {
       ),
     );
     await settle(tester);
-    expect(tester.getSize(find.byType(NativeDesktopTransport)).height, 96);
+    expect(tester.getSize(find.byType(NativeDesktopTransport)).height, 68);
     expect(find.byType(MiniLyrics), findsNothing);
     expect(find.text('The sea comes into view'), findsNothing);
     await f.screenshot(tester, 'parity24-desktop-bottom-clean');
@@ -237,6 +237,8 @@ void main() {
       ),
     );
     await settle(tester);
+    expect(find.byKey(const Key('mini-active-device')), findsOneWidget);
+    expect(find.text(c.tracks[0].title), findsWidgets);
     await f.screenshot(tester, 'parity24-desktop-bottom-remote-125');
 
     expect(tester.takeException(), isNull);

@@ -1,0 +1,17 @@
+{
+  "checkedAt": "2026-10-17T21:15:39.203920+00:00",
+  "passed": true,
+  "fullSuitePassed": true,
+  "currentAffectedTestsPassed": 507,
+  "fullSuiteTestsPassed": 507,
+  "log": "parity26-native-final-full.log",
+  "logSha256": "59f3dda5402b06771fc4e584c6bd062d314c31053393e6e797d26a9d8ab67da6",
+  "analyzerLog": "parity26-native-final-analyze.log",
+  "sourceFreezeSha256": "f12d107b362817132d8ca21cbea13985b6e95a3551a5f0f96005a1b4e7f607dd",
+  "sourceFreezeStillMatches": true,
+  "scope": "Entire native test suite after final physical-hit, adaptive picker and cache/reconnect changes; reruns not added",
+  "limits": [
+    "No physical Android/TV/audio-hardware proof",
+    "Original intermittent startup assertion was not reproduced"
+  ]
+}

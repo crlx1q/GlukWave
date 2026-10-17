@@ -299,7 +299,9 @@ void main() {
         }),
       );
       await mount(tester, c, const Size(1440, 900));
-      await tester.tap(find.byKey(const Key('mini-equalizer')));
+      await tester.tap(find.byKey(const Key('mini-gesture')));
+      await settle(tester);
+      await tester.tap(find.byKey(const Key('player-equalizer')));
       await settle(tester);
       final band = find.byKey(const Key('compact-eq-band-4'));
       final pointer = await tester.startGesture(tester.getCenter(band));

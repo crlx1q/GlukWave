@@ -1,0 +1,53 @@
+{
+  "passed": true,
+  "records": [
+    {
+      "cachedFirst": {
+        "likes": [
+          "cached26"
+        ],
+        "lists": [
+          "Saved list"
+        ],
+        "loading": false,
+        "offline": false,
+        "tracks": [
+          "cached26"
+        ],
+        "user": "core26-owner"
+      }
+    },
+    {
+      "recovered": {
+        "likes": [
+          "fresh26"
+        ],
+        "lists": [
+          "Saved list updated"
+        ],
+        "loading": false,
+        "offline": false,
+        "tracks": [
+          "fresh26"
+        ],
+        "user": "core26-owner"
+      }
+    },
+    {
+      "metadata": [
+        "coalesced",
+        "disk restore",
+        "outage fallback",
+        "401 durable eviction",
+        "late account guard"
+      ],
+      "errors": []
+    },
+    {
+      "authEpoch": [
+        "late startup logout",
+        "late reconnect account switch"
+      ]
+    }
+  ]
+}

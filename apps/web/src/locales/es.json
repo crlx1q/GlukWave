@@ -1316,5 +1316,17 @@
   "wave18.editTaste": "Editar tus gustos",
   "wave18.tasteCaption": "Tus artistas y géneros. Una Wave que te conoce.",
   "lyrics.intro": "Introducción",
-  "focusedPlayer.wave": "Onda"
+  "focusedPlayer.wave": "Onda",
+  "v26.settings.search": "Buscar un ajuste",
+  "v26.settings.noResults": "No hay categorías coincidentes",
+  "v26.artist.source": "Abrir perfil original",
+  "v26.artist.empty": "Aún no hay canciones disponibles en esta fuente.",
+  "v26.artist.playAll": "Reproducir todo",
+  "v26.artist.shuffle": "Aleatorio",
+  "v26.artist.albums": "Álbumes",
+  "v26.artist.playlists": "Listas públicas",
+  "v26.artist.tracks": "Canciones",
+  "auth.showPassword": "Mostrar contraseña",
+  "auth.hidePassword": "Ocultar contraseña",
+  "v26.settings.cacheNote": "La caché automática guarda una cantidad limitada de canciones recientes. Guarda una canción expresamente para escucharla sin conexión."
 }

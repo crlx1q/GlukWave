@@ -145,11 +145,7 @@ void main() {
           await tester.ensureVisible(find.text('Настройки').last);
           await tester.tap(find.text('Настройки').last);
           await tester.pumpAndSettle();
-          await tester.ensureVisible(
-            find.byKey(const Key('settings-security')),
-          );
-          await tester.tap(find.byKey(const Key('settings-security')));
-          await tester.pumpAndSettle();
+          await fixtures.selectSettingsCategory(tester, 'security', 'Безопасность');
           expect(
             find.byKey(const Key('session-revoke-current')),
             findsOneWidget,
@@ -175,11 +171,7 @@ void main() {
             3,
             reason: 'Cancelling a confirmation leaves the session untouched.',
           );
-          await tester.ensureVisible(
-            find.byKey(const Key('settings-playback')),
-          );
-          await tester.tap(find.byKey(const Key('settings-playback')));
-          await tester.pumpAndSettle();
+          await fixtures.selectSettingsCategory(tester, 'playback', 'Воспроизведение');
           await Scrollable.ensureVisible(
             tester.element(find.byKey(const Key('equalizer-band-0'))),
             alignment: .65,

@@ -1,0 +1,22 @@
+{
+  "releases": [
+    {
+      "platform": "android",
+      "file": "GlukWave-android-debug.apk",
+      "version": "1.0.0+25",
+      "signature": "debug",
+      "channel": "beta",
+      "bytes": 180864280,
+      "sha256": "6a9a3fdd805296211199f1e3e9b69a208f24328e38554c07cc5c76e0805b1218"
+    },
+    {
+      "platform": "windows",
+      "file": "GlukWave-Setup.exe",
+      "version": "1.0.0+25",
+      "signature": "release",
+      "channel": "stable",
+      "bytes": 33138483,
+      "sha256": "be7a332d9e16a938ecab3ddce674d19e1d9da2998d1eeeb14a230d13bfd8dfed"
+    }
+  ]
+}
