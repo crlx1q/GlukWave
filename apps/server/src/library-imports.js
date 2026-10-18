@@ -20,7 +20,7 @@ export function setupLibraryImports(app,ctx,playlistTracks,publicImports){
     if(!planLimits(req.auth.user).libraryImport)fail(403,'PLAN_LIMIT','Импорт доступен в Beta и Unbound.');
     const b=parse(z.object({publicSourceUrl:z.url().max(2048).optional(),playlistId:text(200),name:text(120).optional(),trackIds:z.array(text(200)).max(10000).optional(),
       destination:z.enum(['playlist','likes']).default('playlist'),requestId:z.string().regex(/^[\w-]{8,100}$/).optional()}).strict(),req.body);
-    if(provider==='yandex'&&!b.publicSourceUrl)fail(400,'PUBLIC_IMPORT_QUERY','Для Яндекс Музыки укажи публичную коллекцию.');
+    if(provider==='yandex'&&!b.publicSourceUrl&&!await ctx.store.get('connections',`${req.auth.user.id}:yandex`))fail(400,'PUBLIC_IMPORT_QUERY','Для Яндекс Музыки укажи публичную коллекцию.');
     const uid=req.auth.user.id,sessionId=req.auth.session.id;
     const check=async()=>{const [user,session]=await Promise.all([ctx.store.get('users',uid),ctx.store.get('sessions',sessionId)]);
       if(closed||!session||session.expiresAt<=Date.now()||!user||user.blocked)fail(401,'AUTH_REQUIRED','Сессия завершена.');

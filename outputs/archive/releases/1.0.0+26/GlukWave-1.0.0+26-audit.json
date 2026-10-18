@@ -1,0 +1,1363 @@
+{
+  "checkedAt": "2026-10-17T21:50:39.156769+00:00",
+  "version": "1.0.0+26",
+  "passed": true,
+  "scope": "Coherent cached-first cold start and reconnect; scoped home/search metadata; bounded two-track preparation with cancellation and manual-download adoption; partial provider search and artist profiles; original halftone auth, compact transport, touch preview/reveal, top notices, tile lyrics and searchable settings",
+  "web": {
+    "javascript": "/assets/main-0LQRY_ts.js",
+    "buildPassed": true,
+    "testsPassed": 100,
+    "legacySyntax": {
+      "checkedAt": "2026-10-17T21:31:34.684Z",
+      "passed": true,
+      "es5Parsed": true,
+      "physicalTvVerified": false,
+      "files": [
+        {
+          "name": "hls-legacy-B7zYHMqK.js",
+          "bytes": 665598,
+          "sha256": "49f0209bd024b5dedbefd741087def4a4c3c57e53ff43df3f8cfb3f0c368a304"
+        },
+        {
+          "name": "main-legacy-Bwd8YhK0.js",
+          "bytes": 1071538,
+          "sha256": "95ee6edf60af4ad933f35a1ef051d2b3734a81c781bea486a40be19bcd6499d5"
+        },
+        {
+          "name": "mini-legacy-BMmqAm0Q.js",
+          "bytes": 7286,
+          "sha256": "c1c32e4ff862a378da535803ae1e3f49532e1d7a6813a6ab0c4306ccd557e421"
+        },
+        {
+          "name": "playback-feedback-legacy-DMCH3VY-.js",
+          "bytes": 882615,
+          "sha256": "5a925485eadccfa26c9e3b60b40f1c087db206633f4667e38967ff24636e490a"
+        },
+        {
+          "name": "polyfills-legacy-D4Cja7dM.js",
+          "bytes": 176910,
+          "sha256": "056c8c4e6b5fc36803a4e49276563680a7b7d17e6bbf3557d00962e4e7c776a8"
+        }
+      ]
+    },
+    "compatibilityRuntime": {
+      "checkedAt": "2026-10-17T21:34:24.121Z",
+      "passed": true,
+      "engine": "Modern Chromium forced to production SystemJS legacy branch with removed APIs",
+      "physicalTvVerified": false,
+      "originalFixtureAudio": true,
+      "unrelatedBootNoiseDidNotFlash": true,
+      "dialogPolyfillOpenedAndClosed": true,
+      "initial": {
+        "animate": "undefined",
+        "bootFailures": 0,
+        "broadcast": "undefined",
+        "fetch": "function",
+        "legacy": true,
+        "observer": "function",
+        "plural": "function",
+        "profile": "tv-legacy",
+        "proxy": "undefined",
+        "resize": "function",
+        "rootReady": true,
+        "uuid": "function"
+      },
+      "before": {
+        "paused": false,
+        "position": 1.347813,
+        "ready": 4
+      },
+      "final": {
+        "fatal": false,
+        "full": true,
+        "lyrics": 6,
+        "paused": false,
+        "position": 3.422535
+      },
+      "legacyFiles": [
+        {
+          "name": "hls-legacy-B7zYHMqK.js",
+          "bytes": 665598,
+          "sha256": "49f0209bd024b5dedbefd741087def4a4c3c57e53ff43df3f8cfb3f0c368a304"
+        },
+        {
+          "name": "main-legacy-Bwd8YhK0.js",
+          "bytes": 1071538,
+          "sha256": "95ee6edf60af4ad933f35a1ef051d2b3734a81c781bea486a40be19bcd6499d5"
+        },
+        {
+          "name": "mini-legacy-BMmqAm0Q.js",
+          "bytes": 7286,
+          "sha256": "c1c32e4ff862a378da535803ae1e3f49532e1d7a6813a6ab0c4306ccd557e421"
+        },
+        {
+          "name": "playback-feedback-legacy-DMCH3VY-.js",
+          "bytes": 882615,
+          "sha256": "5a925485eadccfa26c9e3b60b40f1c087db206633f4667e38967ff24636e490a"
+        },
+        {
+          "name": "polyfills-legacy-D4Cja7dM.js",
+          "bytes": 176910,
+          "sha256": "056c8c4e6b5fc36803a4e49276563680a7b7d17e6bbf3557d00962e4e7c776a8"
+        }
+      ],
+      "capture": "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\work\\qa\\parity26-legacy-tv-lyrics.png"
+    },
+    "cachedFirstAndSessionRaces": {
+      "passed": true,
+      "records": [
+        {
+          "cachedFirst": {
+            "likes": [
+              "cached26"
+            ],
+            "lists": [
+              "Saved list"
+            ],
+            "loading": false,
+            "offline": false,
+            "tracks": [
+              "cached26"
+            ],
+            "user": "core26-owner"
+          }
+        },
+        {
+          "recovered": {
+            "likes": [
+              "fresh26"
+            ],
+            "lists": [
+              "Saved list updated"
+            ],
+            "loading": false,
+            "offline": false,
+            "tracks": [
+              "fresh26"
+            ],
+            "user": "core26-owner"
+          }
+        },
+        {
+          "metadata": [
+            "coalesced",
+            "disk restore",
+            "outage fallback",
+            "401 durable eviction",
+            "late account guard"
+          ],
+          "errors": []
+        },
+        {
+          "authEpoch": [
+            "late startup logout",
+            "late reconnect account switch"
+          ]
+        }
+      ]
+    },
+    "legacyLayout": {
+      "passed": true,
+      "scope": "Geometry, physical mini/full/lyrics controls, unblocked seek hit and nonoverlap. Canonical seek retention is recorded separately and is not a passing assertion.",
+      "sourceCssInjected": false,
+      "actualDistFinalRequired": false,
+      "distIndexSha256": "e506b6b2634448df21a6b001721de5c339e367fd9df5c7cffaac95e2873ea55f",
+      "physicalTvVerified": false,
+      "records": [
+        {
+          "width": 1440,
+          "mini": {
+            "bottom": 882,
+            "height": 68,
+            "hit": true,
+            "right": 1406,
+            "track": {
+              "height": 36.578125,
+              "right": 1193,
+              "width": 1018,
+              "x": 175,
+              "y": 829.703125
+            },
+            "width": 1296,
+            "x": 110,
+            "y": 814
+          },
+          "full": {
+            "fatal": false,
+            "open": true,
+            "right": 1440,
+            "seek": {
+              "height": 26,
+              "hit": true,
+              "right": 1170.40625,
+              "width": 332.8125,
+              "x": 837.59375,
+              "y": 425.1875
+            },
+            "x": 0
+          },
+          "seekValue": 1.402123,
+          "seekRetained": false,
+          "lyric": {
+            "count": 6,
+            "cover": {
+              "bottom": 483.796875,
+              "right": 535,
+              "x": 265
+            },
+            "headingTop": 516.796875,
+            "overflow": false,
+            "overlap": false
+          }
+        },
+        {
+          "width": 768,
+          "mini": {
+            "bottom": 834,
+            "height": 60,
+            "hit": true,
+            "right": 748,
+            "track": {
+              "height": 32.796875,
+              "right": 633,
+              "width": 554,
+              "x": 79,
+              "y": 787.59375
+            },
+            "width": 738,
+            "x": 10,
+            "y": 774
+          },
+          "full": {
+            "fatal": false,
+            "open": true,
+            "right": 768,
+            "seek": {
+              "height": 26,
+              "hit": true,
+              "right": 550.40625,
+              "width": 332.8125,
+              "x": 217.59375,
+              "y": 566.78125
+            },
+            "x": 0
+          },
+          "seekValue": 0.678025,
+          "seekRetained": false,
+          "lyric": {
+            "count": 6,
+            "cover": {
+              "bottom": 397,
+              "right": 514,
+              "x": 244
+            },
+            "headingTop": 433,
+            "overflow": false,
+            "overlap": false
+          }
+        },
+        {
+          "width": 375,
+          "mini": {
+            "bottom": 834,
+            "height": 60,
+            "hit": true,
+            "right": 355,
+            "track": {
+              "height": 32.796875,
+              "right": 240,
+              "width": 161,
+              "x": 79,
+              "y": 787.59375
+            },
+            "width": 345,
+            "x": 10,
+            "y": 774
+          },
+          "full": {
+            "fatal": false,
+            "open": true,
+            "right": 375,
+            "seek": {
+              "height": 26,
+              "hit": true,
+              "right": 323.40625,
+              "width": 271.8125,
+              "x": 51.59375,
+              "y": 566.78125
+            },
+            "x": 0
+          },
+          "seekValue": 0.432,
+          "seekRetained": false,
+          "lyric": {
+            "count": 6,
+            "cover": {
+              "bottom": 397,
+              "right": 317.5,
+              "x": 47.5
+            },
+            "headingTop": 433,
+            "overflow": false,
+            "overlap": false
+          }
+        },
+        {
+          "width": 320,
+          "mini": {
+            "bottom": 834,
+            "height": 60,
+            "hit": true,
+            "right": 300,
+            "track": {
+              "height": 31.390625,
+              "right": 185,
+              "width": 106,
+              "x": 79,
+              "y": 788.296875
+            },
+            "width": 290,
+            "x": 10,
+            "y": 774
+          },
+          "full": {
+            "fatal": false,
+            "open": true,
+            "right": 320,
+            "seek": {
+              "height": 26,
+              "hit": true,
+              "right": 268.40625,
+              "width": 216.8125,
+              "x": 51.59375,
+              "y": 566.78125
+            },
+            "x": 0
+          },
+          "seekValue": 2.577266,
+          "seekRetained": false,
+          "lyric": {
+            "count": 6,
+            "cover": {
+              "bottom": 397,
+              "right": 290,
+              "x": 20
+            },
+            "headingTop": 433,
+            "overflow": false,
+            "overlap": false
+          }
+        }
+      ]
+    }
+  },
+  "server": {
+    "testsPassed": 135,
+    "fullSuitePassed": true,
+    "deploymentPerformed": false
+  },
+  "native": {
+    "apk": "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\apps\\native\\build\\app\\outputs\\flutter-apk\\app-debug.apk",
+    "bytes": 180901144,
+    "builtAt": "2026-10-17T21:28:46.838768+00:00",
+    "sha256": "51604a52cac8f133c241873857bd6df727772b57c7b801553961a4094265dbc1",
+    "sourceFrozenAt": "2026-10-16T12:49:30.638272+00:00",
+    "sourceSha256": "f12d107b362817132d8ca21cbea13985b6e95a3551a5f0f96005a1b4e7f607dd",
+    "sourceFiles": 230,
+    "kernelSha256": "6f4c8b3d32f7726245f49b3e665db18f6cca34eab26e35732e37baf97d95a242",
+    "kernelMatchesBuildOutput": true,
+    "compileDefine": "https://wave.gluk.tech",
+    "kernelFeatureMarkers": {
+      "waveAudioServiceConfig": true,
+      "lyric-countdown": true,
+      "lyricsIntro": true,
+      "mini-lyrics-frame": true,
+      "activeDeviceName": true,
+      "glukwave.like": true,
+      "tech.gluk.glukwave/home_widgets": true,
+      "glukwave.widget": true,
+      "Home screen widgets": true,
+      "https://wave.gluk.tech": true,
+      "full-player": true,
+      "player-cover-gesture": true,
+      "language-selector": true,
+      "language.auto": true,
+      "locale:change": true,
+      "lrcClock": true,
+      "artworkForDisplay": true,
+      "-t500x500.": true,
+      "/api/diagnostics/events": true,
+      "glukwave-lan-v1": true,
+      "LAN pairing": true,
+      "seasonalEffects": true,
+      "lan-enable": true,
+      "ROOM_STATE": true,
+      "/lrclib": true,
+      "Find on LRCLIB": true,
+      "/genius/preview": true,
+      "genius-preview": true,
+      "cover-ambient-transform": true,
+      "/discord": true,
+      "discord:changed": true,
+      "discordPresence": true,
+      "deviceVolume": true,
+      "/api/auth/native-captcha": true,
+      "Invalid authentication expiry": true,
+      "desktop-quick-volume": true,
+      "account:state": true,
+      "track-loading-cover": true,
+      "ScrollingLabel": true,
+      "/connect": true,
+      "outputActive": true,
+      "/account/sessions": true,
+      "downloadUrl": true,
+      "adoptOnly": true,
+      "/taste": true,
+      "/friends": true,
+      "/jams": true,
+      "/api/account/": true,
+      "currentPassword": true,
+      "Email sent": true,
+      "/playlists/discover": true,
+      "mini-card-progress": true,
+      "search-source-menu": true,
+      "search-type-": true,
+      "player-transport-capsule": true,
+      "player-secondary-capsule": true,
+      "X-GlukWave-Playback-Wait": true,
+      "player-centered-view": true,
+      "player-detail-view-": true,
+      "player-lyrics-toggle": true,
+      "compact-eq-presets": true,
+      "#EXTM3U": true,
+      "Colour from the cover": true,
+      "coverAccent": true,
+      "compact-eq-enabled": true,
+      "compact-eq-band-": true,
+      "compact-eq-preamp": true,
+      "compact-eq-rate": true,
+      "connect-quick-picker": true,
+      "native-queue-list": true,
+      "queue-add": true,
+      "waveMode": true,
+      "waveMood": true,
+      "waveActive": true,
+      "/api/recommendations": true,
+      "queue-search": true,
+      "ListeningPresence": true,
+      "SettingsEdit": true,
+      "_PlaybackWavePainter": true,
+      "tech.gluk.glukwave/energy": true,
+      "saved-view": true,
+      "saved-play": true,
+      "guard-manual-code": true,
+      "guard-target-name": true,
+      "guard-approve": true,
+      "lyrics-persistent-controls": true,
+      "OFFLINE_MISSING": true,
+      "INVALID_LOGIN_CODE": true,
+      "playlist-membership-": true,
+      "playlist-new-name": true,
+      "playlist-edit-name": true,
+      "playlist-library-": true,
+      "Playlist response is missing": true,
+      "/api/public-import/search": true,
+      "/api/public-import/tracks": true,
+      "publicSourceUrl": true,
+      "album-back-title": true,
+      "album-back-source": true,
+      "HalftoneRoom": true,
+      "MetadataCache": true,
+      "restoringLocal": true,
+      "/api/artists/": true,
+      "wave-top-notice": true,
+      "settings-search": true,
+      "library-sort": true,
+      "AlbumPlaneScene": true,
+      "SmoothProgressBuilder": true,
+      "ProgressPresentationClock": true,
+      "refreshNotificationLike": true,
+      "glukwave.like/": true
+    },
+    "localCatalogsInKernel": {
+      "en": true,
+      "ru": true,
+      "kk": true,
+      "uk": true,
+      "de": true,
+      "es": true
+    },
+    "qaTrackBundled": false,
+    "fontManifestVerified": true,
+    "staticFontFaces": [
+      {
+        "asset": "assets/fonts/Nunito-Regular.ttf",
+        "weight": 400,
+        "variable": false,
+        "sha256": "29f17d41574376520b263bde34a4fecb11814233ff280c66befce6020c5e3cc4",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-Medium.ttf",
+        "weight": 500,
+        "variable": false,
+        "sha256": "818d89d5417ed2c7686c07097469f417d41dfe70b8e9514466637612f7ab9d8d",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-SemiBold.ttf",
+        "weight": 600,
+        "variable": false,
+        "sha256": "e6ac9b7051c6b3c4a23817a9272e2a8f7124896b36e68b30a3d46b452a0418a5",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-Bold.ttf",
+        "weight": 700,
+        "variable": false,
+        "sha256": "19acc4b8e7dc15b49c3802b6f2b53a1c41d7ee548733204a367052fa53387933",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-ExtraBold.ttf",
+        "weight": 800,
+        "variable": false,
+        "sha256": "9bc8f0d0c03926636f41ec699c6563dd01835b510c194e2086811eaf65a8e527",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-Black.ttf",
+        "weight": 900,
+        "variable": false,
+        "sha256": "b3628977111142f66472632770b76ee2c0665a40ae536bd64971a3bc19087717",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Manrope-Regular.ttf",
+        "weight": 400,
+        "variable": false,
+        "sha256": "c443e2325b9ff17933ec2f5a99d835af430a545901d146f81f4fc9f4882b6623",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Manrope-Medium.ttf",
+        "weight": 500,
+        "variable": false,
+        "sha256": "78177fa989a3feb256c1750faca4a05ab0b70f093f5f45b12a537e7b939bae9c",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Manrope-SemiBold.ttf",
+        "weight": 600,
+        "variable": false,
+        "sha256": "1eea52be7b84d0841e39d6102cdf2f6777dbdbd6781d3a40a3323a8151163f07",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Manrope-Bold.ttf",
+        "weight": 700,
+        "variable": false,
+        "sha256": "06ef9bf16d6ce1b6b8d6b953ea8b9e6c30e4b3708cf039132224fb2a5aa77102",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Manrope-ExtraBold.ttf",
+        "weight": 800,
+        "variable": false,
+        "sha256": "63050130f7beccf497d740a2af39f8d5d49447e9ed777014e8d6d413442425ba",
+        "matchesSource": true
+      }
+    ],
+    "fontManifestSha256": "dc61e379e1f65f8de62057e95a64baaebcbbf8e5ee2450f736e2611705ca210f",
+    "nunitoLicenseIncluded": true,
+    "manifestVerified": true,
+    "androidWidgetReceiversPrivate": {
+      "WavePlayerWidget": true,
+      "WaveLargeWidget": true,
+      "WidgetCommandReceiver": true
+    },
+    "widgetTestRuntimeBundled": false,
+    "privateConnectBackgroundService": true,
+    "version": "1.0.0",
+    "versionCode": 26,
+    "minSdk": 24,
+    "targetSdk": 36,
+    "output": "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\outputs\\GlukWave-android-debug.apk",
+    "outputMatchesBuild": true,
+    "signatureVerified": true,
+    "signatureScheme": "v2",
+    "certificateSha256": "d631b0271019e5b3a9df153929ac0de07708b0766fc4c132fbce862b67a56748",
+    "updateCertificateMatchesPrevious": true,
+    "analyzerIssues": 0,
+    "standardTestsPassed": 507,
+    "standardVerification": {
+      "checkedAt": "2026-10-17T21:15:39.203920+00:00",
+      "passed": true,
+      "fullSuitePassed": true,
+      "currentAffectedTestsPassed": 507,
+      "fullSuiteTestsPassed": 507,
+      "log": "parity26-native-final-full.log",
+      "logSha256": "59f3dda5402b06771fc4e584c6bd062d314c31053393e6e797d26a9d8ab67da6",
+      "analyzerLog": "parity26-native-final-analyze.log",
+      "sourceFreezeSha256": "f12d107b362817132d8ca21cbea13985b6e95a3551a5f0f96005a1b4e7f607dd",
+      "sourceFreezeStillMatches": true,
+      "scope": "Entire native test suite after final physical-hit, adaptive picker and cache/reconnect changes; reruns not added",
+      "limits": [
+        "No physical Android/TV/audio-hardware proof",
+        "Original intermittent startup assertion was not reproduced"
+      ]
+    },
+    "signature": "debug",
+    "deviceRuntimeVerified": false,
+    "manropeLicenseIncluded": true,
+    "iosBuilt": false,
+    "compaction": {
+      "passed": true,
+      "bytesBefore": 186000211,
+      "bytesAfter": 180901144,
+      "savedBytes": 5099067,
+      "allEntryHashesUnchanged": true,
+      "entryCount": 666,
+      "pageAlignmentKB": 16,
+      "v2SignatureVerified": true,
+      "updateCertificateMatchesBaseline": true,
+      "certificateSha256": "d631b0271019e5b3a9df153929ac0de07708b0766fc4c132fbce862b67a56748",
+      "sha256": "51604a52cac8f133c241873857bd6df727772b57c7b801553961a4094265dbc1"
+    },
+    "sourceFreezeFile": "docs/verification/2026-10-18/parity26/parity26-native-source-freeze.json",
+    "windowsExecutableBuilt": true,
+    "windows": {
+      "checkedAt": "2026-10-17T21:36:30.129671+00:00",
+      "passed": true,
+      "bundle": "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\outputs\\GlukWave-windows",
+      "file": "outputs/GlukWave-windows.zip",
+      "bytes": 41433481,
+      "sha256": "553eaf69af4fd8cc0ac3b2a8fab1e20bd0c9d72e4efab7edc48a06eb2ba8f750",
+      "frozenOriginalFilesMatched": 230,
+      "compiledSourceFilesMatched": 148,
+      "packageMatchesReleaseBuild": true,
+      "zipCrcAndAllFilesMatched": true,
+      "staticFontFaces": 11,
+      "compileDefine": "https://wave.gluk.tech",
+      "buildMode": "release",
+      "pinnedFullMediaRuntimeVerified": true,
+      "binarySha256": {
+        "audio_service_win_plugin.dll": "a5f96408a3ba417ceb7db856654d8cf2ce0a1f3ff12cafd3da531c4df4f038a3",
+        "concrt140.dll": "2405355f0a58067b258f8df33c327e3a3d716eaac5a3a5aebb757842d85bd376",
+        "d3dcompiler_47.dll": "5653bc7b0e2701561464ef36602ff6171c96bffe96e4c3597359cd7addcba88a",
+        "flutter_inappwebview_windows_plugin.dll": "b4d2407c57ecb6a23431d7871838b31119ca31dac19f5b0a46f8ed2ddbab3b86",
+        "flutter_secure_storage_windows_plugin.dll": "e91542df0301a6a47b24d0e740718763a61d1f915ddef6d0e506f38c9addf17b",
+        "flutter_windows.dll": "6840b8129fb105dd246f05f14eab97d7e8e9eade1428f9afde95de6b8e1a7808",
+        "libEGL.dll": "b2590bd0692f0381fc45c20bf1c7f7f713c9ea19c7ea6bab62efdd1fadc4eaac",
+        "libGLESv2.dll": "620bb6e38d7ed6c760a0cf4a8eb6a8f64b259b96ff286551cd32cefc6c35ca39",
+        "libmpv-2.dll": "d5f0694b08c124e785d858d00082f3e3b158dd9138bfc48c0382bf1eb443a5fc",
+        "media_kit_libs_windows_video_plugin.dll": "01cacd94bf0d397df4b817b4acf186279eb97833ed36c0dd644b6600caff54d7",
+        "msvcp140.dll": "0f885b509a685d2bbfa652fed26b5fb31d88fbdab0a978c641d1c7b8aa460aa9",
+        "msvcp140_1.dll": "bfad5aef4c63a669e3c140655cdfdf395b6c979b400a447bd5dcb65ed8826c3d",
+        "msvcp140_2.dll": "3ea06f0ee098b4823cb79599df3780e7f23cce52c19aac31d2a0d47efe33a5e9",
+        "msvcp140_atomic_wait.dll": "640b2aefced484d0368eea5bdd06addd0658a3a70a49256e560d6923b404a479",
+        "msvcp140_codecvt_ids.dll": "f2069a52880ec885ee7f0511186100eb7fada0411a2b4948fafea7735b878a18",
+        "screen_retriever_windows_plugin.dll": "b0ab4c280d047d0ce8e3bddaed4ed6fed12749ec6c1d5c4f77c05aa1bc200d48",
+        "tray_manager_plugin.dll": "6e0edbd9336389a1927013900517fa8b0e910367b36569adf24f0ff6009db7e2",
+        "url_launcher_windows_plugin.dll": "29809fd47350fc127133349efb3ff2389ca449060b0fc8048f80b0b29d7975b6",
+        "vccorlib140.dll": "19839407c3fdbc824e5bce189bf68ddf8097f12ec28b757797ffa0415c144ddd",
+        "vcruntime140.dll": "d5e4d9a3e835fa679450145d6a7d94e36573a509317111904d9b3712c30d9066",
+        "vcruntime140_1.dll": "1f2d41c4aa5db0bc33ebf7b66d72943a817d7ce6cbe880502a9403823633093f",
+        "vcruntime140_threads.dll": "219915cf20822f34d5e7c1fdd4e21ae7f3396881096c51036225fb8f84b47afa",
+        "vk_swiftshader.dll": "4f33eea716491972cb1ad123a78acef485f852581130d3f3a98a1981009004f2",
+        "vulkan-1.dll": "3be9a95dd9019aa1aca47ade26f5c1c7c0047f3cf6f633d586c9ec0d3b459566",
+        "WebView2Loader.dll": "9468470d6a4d11179ec179183d130465a380e0dedfdbe1fc2ab404c86c45a85e",
+        "window_manager_plugin.dll": "75547d85e71d762108b1bdceafc24eba8f6dd63bf91449e4fb6c3b4a80ed7947",
+        "zlib.dll": "82d5bf175cf882ac9afc1558b416e674606d055966bc09529076b28a498fc0e4",
+        "glukwave.exe": "cdc76d85d81c8a9a185b2082cd51369ea8e16e357a2949a4fbce8380bdc4afe0"
+      },
+      "authenticodeSigned": false,
+      "physicalAudioVerified": false,
+      "uiInteractionVerified": false,
+      "installer": {
+        "checkedAt": "2026-10-17T21:36:26.1117745Z",
+        "passed": true,
+        "singleFile": true,
+        "version": "1.0.0.26",
+        "productVersion": "1.0.0+26",
+        "bytes": 33161058,
+        "sha256": "5eec7e39a04fd3fdaec6f9b2feb29cfd269d9b2edda27cb2e74db8b46b10eaa7",
+        "compilerSucceeded": true,
+        "desktopShortcutChoice": true,
+        "autostartChoice": true,
+        "autostartDefault": false,
+        "webviewBootstrapperEmbedded": true,
+        "installedDuringIteration": false,
+        "authenticodeSigned": false
+      }
+    },
+    "verification": {
+      "checkedAt": "2026-10-17T21:15:39.203920+00:00",
+      "passed": true,
+      "fullSuitePassed": true,
+      "currentAffectedTestsPassed": 507,
+      "fullSuiteTestsPassed": 507,
+      "log": "parity26-native-final-full.log",
+      "logSha256": "59f3dda5402b06771fc4e584c6bd062d314c31053393e6e797d26a9d8ab67da6",
+      "analyzerLog": "parity26-native-final-analyze.log",
+      "sourceFreezeSha256": "f12d107b362817132d8ca21cbea13985b6e95a3551a5f0f96005a1b4e7f607dd",
+      "sourceFreezeStillMatches": true,
+      "scope": "Entire native test suite after final physical-hit, adaptive picker and cache/reconnect changes; reruns not added",
+      "limits": [
+        "No physical Android/TV/audio-hardware proof",
+        "Original intermittent startup assertion was not reproduced"
+      ]
+    }
+  },
+  "design": {
+    "current": {
+      "version": 26,
+      "attempt": 3,
+      "verdict": "PASS",
+      "evaluator": "Independent final evaluator agent, same available model provider",
+      "date": "2026-10-18",
+      "scores": {
+        "designQuality": 2,
+        "originality": 2,
+        "craft": 2,
+        "functionality": 2
+      },
+      "fixture": "http://127.0.0.1:5286/app/",
+      "session": "gw26-eval3",
+      "verifiedScopes": [
+        "Fresh web screenshots 1440/768/375/320; auth/register and expanded player",
+        "Desktop compact mini measured 740x68",
+        "Actual CDP horizontal touch neighbor preview, cancellation, next selection",
+        "Actual continuous upward reveal at 0.20689655 and cancellation",
+        "Artist detail with real returned tracks/album, responsive header, preserved search on back",
+        "Settings category search opens existing playback controls; narrow content scroll inspected",
+        "Top notice at320: within viewport, wrapping, dismissal",
+        "Web lyric focus, real independent per-row transforms, paused stillness",
+        "Native supplied widget-rendered screenshots and actual interaction test source inspected",
+        "Narrow auth password reveal and bounded container scroll to submit",
+        "Final rebuilt actual-dist tv-legacy fallback1440/768/375/320: bounded mini/metadata, physical mini/full/Lyrics controls, unblocked seek hit, cover/title nonoverlap, six lyric rows, no horizontal overflow",
+        "Final actual-dist modern1440 capsule exactly740x68 and375phone60px; physical expanded transport and lyrics preserved",
+        "Fresh final actual-dist settings search and artist panels reachable at375/1440; three returned tracks, one returned album, search query preserved on back",
+        "41/41 current UI source hashes match frozen source manifest"
+      ],
+      "limitations": [
+        "Same model provider; no alternate provider available",
+        "Real Flutter widget input/render evidence, not physical Android/Windows/TV audio-output evidence",
+        "Exact intermittent Flutter2115 cold-start assertion not reproduced",
+        "Silent WAV fixture seek samples reset to0; no claim of physical-source seek correctness",
+        "Final platform packaging and device cold launches remain root verification scope",
+        "Modern Chromium with deleted APIs and forced SystemJS is compatibility regression evidence, not a physical Samsung Tizen engine test",
+        "Narrow legacy wheel forwarding was inconclusive in the optional harness probe; last lyric reached via browser scroll-into-view. No physical remote/touch-scroll claim."
+      ],
+      "evidence": [
+        "work/qa/parity26-eval-interactions.json",
+        "work/qa/parity26-eval-lyrics-motion.json",
+        "work/qa/parity26-eval-lyrics-still.json",
+        "work/qa/parity26-native-affected-recovery.log",
+        "work/qa/parity26-native-affected-ui.log",
+        "work/qa/parity26-eval3-runtime-proof.json",
+        "work/qa/parity26-eval3-runtime-final.log",
+        "work/qa/parity26-eval3-panels.log"
+      ],
+      "sources": [
+        {
+          "path": "apps/native/lib/ui/app.dart",
+          "sha256": "b40814d3400222c17e3c54117d4e1082bc2d02edd3307cb49329dc594b8ce340"
+        },
+        {
+          "path": "apps/native/lib/ui/auth_page.dart",
+          "sha256": "2fd314cac7e317adad388e12e4ab684c1cc041a68e0d4462797381eb7a7af98d"
+        },
+        {
+          "path": "apps/native/lib/ui/halftone_room.dart",
+          "sha256": "76f0386e10d4d54c411f0bc6fde9c1f3bc3fc66782c3747ab56439f1a2266221"
+        },
+        {
+          "path": "apps/native/lib/ui/top_notice.dart",
+          "sha256": "cdb9455f9adf50d7dea9ebde5d3ce957ea60a9baa11b670720b1ba0374e5dd43"
+        },
+        {
+          "path": "apps/native/lib/ui/native19_desktop_transport.dart",
+          "sha256": "8bf5bfae08748340df21e64789cced594bda950d5e83920f2462089952c1e626"
+        },
+        {
+          "path": "apps/native/lib/ui/player_gestures.dart",
+          "sha256": "26eac928b61c58b122ff455bd02856d23938598f6d8c8f402000761071a23178"
+        },
+        {
+          "path": "apps/native/lib/ui/player.dart",
+          "sha256": "0e0fd0921320d8ba1cb82ef7d0555613d36f2e134ffa6a4771e1f504cfc44013"
+        },
+        {
+          "path": "apps/native/lib/ui/lyric_tile.dart",
+          "sha256": "60bbc7075628b2ff57f1703121c5bf9af03eb87ea7d1042b5e46b1ceb8d2b24d"
+        },
+        {
+          "path": "apps/native/lib/ui/parity_panels.dart",
+          "sha256": "2a79514ada62c9818e2ca6a59709a3e0b883d14ed05cda005595496bc6777327"
+        },
+        {
+          "path": "apps/native/lib/l10n/glukwave26_strings.dart",
+          "sha256": "41cd49d1f1c725c937dd054be9597c264803af87cf97dda4dded9d16145322be"
+        },
+        {
+          "path": "apps/native/test/parity26_ui_test.dart",
+          "sha256": "819d8d7522433b44218b8f970a3e20836e906e49bd970416d95140c97a181f55"
+        },
+        {
+          "path": "apps/web/src/App.tsx",
+          "sha256": "a98a8fa9c02f98cf0bab03c87a7dc4245ec7577c0f79a0ea6895a51db119db35"
+        },
+        {
+          "path": "apps/web/src/account.tsx",
+          "sha256": "8c7fb34bca875dd7dfcc750cdb1bf50ab2ef88413279658c565d25a0e3e05053"
+        },
+        {
+          "path": "apps/web/src/auth.tsx",
+          "sha256": "10f9c415aa8bc20bdcd918939f0e2a70b38576bab40f7008a2f6e0eff1c49445"
+        },
+        {
+          "path": "apps/web/src/artist-detail.tsx",
+          "sha256": "a05a7724239993cc656ff236148c66fee5829e4a68838bbea33da6c48f9c58ac"
+        },
+        {
+          "path": "apps/web/src/halftone-room.tsx",
+          "sha256": "ebf871684881eb75c1bd25cfd6258025f29bd62604aaa1d0d9d28c0d92e701b0"
+        },
+        {
+          "path": "apps/web/src/top-notice.tsx",
+          "sha256": "a62bfc85925a39a2e6f687a019e88c616a00abbcfb0b618d22b0b40e8be0162b"
+        },
+        {
+          "path": "apps/web/src/discovery-search.tsx",
+          "sha256": "4b9e21a7fc54602565e4f7730857388479e0aa5148a2d36101d02fd3e8f628c3"
+        },
+        {
+          "path": "apps/web/src/main.tsx",
+          "sha256": "8a943a6e8018e2d4bec42108b73adb4707529d3e75a4419c090fe937a79d86f4"
+        },
+        {
+          "path": "apps/web/src/parity-taste.tsx",
+          "sha256": "e6c71f0b8b14a410dbcda86cfeb1ac89f861649d7a3fd9437da51b5f76d372a6"
+        },
+        {
+          "path": "apps/web/src/player-gestures.ts",
+          "sha256": "7f19efae86ffc1a9bfa3c73de7e1b4e81f70bcf3dc54e5c000703093267b9659"
+        },
+        {
+          "path": "apps/web/src/player-ui.tsx",
+          "sha256": "9defac627f9f87565f0efd14f455ef8f24b12bcbcbb7a6d2a0986d7fbc669bd4"
+        },
+        {
+          "path": "apps/web/src/ui.tsx",
+          "sha256": "961289dc6ba961216f71e31b957aa2ae61b590b592faf336900b2c1882a6c1d9"
+        },
+        {
+          "path": "apps/web/src/glukwave26.css",
+          "sha256": "02e9d8b87130252d4d761e5cff41dd3b1073805ccea174c567849baafbcd7ea1"
+        },
+        {
+          "path": "apps/web/src/locales/en.json",
+          "sha256": "645bbaf1e81fe6b4781a7fe67353e6f64882c1cd090caf14a9bb8437fa536bad"
+        },
+        {
+          "path": "apps/web/src/locales/ru.json",
+          "sha256": "949e0ae603baa0505fdd872a9d4f87da8c37bddeef4d012c280b039ed39825b0"
+        },
+        {
+          "path": "apps/web/src/locales/kk.json",
+          "sha256": "89212ce4683f0a36e13935dc042bd06d6564cb992c90806a3c3861457144a5b0"
+        },
+        {
+          "path": "apps/web/src/locales/uk.json",
+          "sha256": "a1ec3e3b1421cbea902498a5d04e2f63457e750ae4bd5850258f7a1b9bbac77c"
+        },
+        {
+          "path": "apps/web/src/locales/de.json",
+          "sha256": "2f7b368a1ee14be756e976df4abdb7c2ccd3366ff34015c5da5117b17d4799cd"
+        },
+        {
+          "path": "apps/web/src/locales/es.json",
+          "sha256": "5319fd0d65d93a1a78031d2eb2a17ebb7e9a22ed355f8aecc61dcdf153a2219e"
+        },
+        {
+          "path": "apps/native/test/app_layout_test.dart",
+          "sha256": "4844461e0a815dc4b64c3b90a069bb74c396915394740975866612a19635a568"
+        },
+        {
+          "path": "apps/native/test/ecosystem_layout_test.dart",
+          "sha256": "c9bb00a31640fa39d376747192cfe8aeddce8a9fe7834b9b107450b2bbe5a692"
+        },
+        {
+          "path": "apps/native/test/localization_test.dart",
+          "sha256": "ee37f20127b216da9deb1cc7c90276d8f5f9f99ebbee8fd4c6d15b137ea068df"
+        },
+        {
+          "path": "apps/native/test/native19_round2_test.dart",
+          "sha256": "00a8c4aa3fafa9acd12909fddd8417aec766e18054834006c3b8a528067ee795"
+        },
+        {
+          "path": "apps/native/lib/ui/album_stage.dart",
+          "sha256": "c78b32eff376a84c8430cceb0251f34dce45823ec5c91a569ffa25c9a2b2acfc"
+        },
+        {
+          "path": "apps/native/test/parity23_ui_test.dart",
+          "sha256": "9a28959560720a2c1c0b0a06f574d8f2eb1ba0fd59e3f1d457312821a460f1a0"
+        },
+        {
+          "path": "apps/native/test/parity24_ui_test.dart",
+          "sha256": "6ddb57917fea8a2ca37d41de49d2291085475c82a3baccdad06e2a3f3584f868"
+        },
+        {
+          "path": "apps/native/test/playback_vector_test.dart",
+          "sha256": "ab78bda4318e98885155dcc343b83d9da29dce20b5d4e8aadc66fad83bce89e5"
+        },
+        {
+          "path": "apps/native/test/player_details_test.dart",
+          "sha256": "21db35c48dc05c9a0c8df0b6488e218800f2e9e8e1a1e6301ca2be546c9b986d"
+        },
+        {
+          "path": "apps/native/test/refinement20_evaluator_test.dart",
+          "sha256": "02b8f4e7e6ae4b4c6cdce49a252c11108a29c8339119383e1fdc7345e1eba993"
+        },
+        {
+          "path": "apps/native/test/refinement20_ui_test.dart",
+          "sha256": "742f37280c95ea6d1d425310dc4741c2b3dd53e54e5af8a144cb145a9f22bc5b"
+        }
+      ],
+      "reEvaluation": {
+        "scope": "Targeted native physical input, dropdown widths and finite desktop capsule bounds",
+        "verdict": "PASS",
+        "nativeRecovery": "58/58 passed; source assertions and log reviewed",
+        "physicalHit": "Sleeve centre enters queue recognizer; blank stage corner excluded; real touch chooses next at320/390/768/1280",
+        "web": "Production UI unchanged; attempt1 fresh browser evidence retained",
+        "freshCaptures": [
+          "work/qa/native-v6-player-390.png",
+          "work/qa/native-v6-player-1280.png",
+          "work/qa/native-parity26-auth-320.png",
+          "work/qa/native-parity26-auth-1440.png",
+          "work/qa/native-native19-round2-320-auth-label.png",
+          "work/qa/native-native19-round2-320-energy-heading.png"
+        ]
+      },
+      "priorEvaluation": {
+        "attempt": 2,
+        "date": "2026-10-16",
+        "verdict": "PASS",
+        "scope": "Retained unchanged original design/auth/native gestures/lyric-motion evaluation",
+        "sources": [
+          {
+            "path": "apps/native/lib/ui/app.dart",
+            "sha256": "b40814d3400222c17e3c54117d4e1082bc2d02edd3307cb49329dc594b8ce340"
+          },
+          {
+            "path": "apps/native/lib/ui/auth_page.dart",
+            "sha256": "2fd314cac7e317adad388e12e4ab684c1cc041a68e0d4462797381eb7a7af98d"
+          },
+          {
+            "path": "apps/native/lib/ui/halftone_room.dart",
+            "sha256": "76f0386e10d4d54c411f0bc6fde9c1f3bc3fc66782c3747ab56439f1a2266221"
+          },
+          {
+            "path": "apps/native/lib/ui/top_notice.dart",
+            "sha256": "cdb9455f9adf50d7dea9ebde5d3ce957ea60a9baa11b670720b1ba0374e5dd43"
+          },
+          {
+            "path": "apps/native/lib/ui/native19_desktop_transport.dart",
+            "sha256": "8bf5bfae08748340df21e64789cced594bda950d5e83920f2462089952c1e626"
+          },
+          {
+            "path": "apps/native/lib/ui/player_gestures.dart",
+            "sha256": "26eac928b61c58b122ff455bd02856d23938598f6d8c8f402000761071a23178"
+          },
+          {
+            "path": "apps/native/lib/ui/player.dart",
+            "sha256": "0e0fd0921320d8ba1cb82ef7d0555613d36f2e134ffa6a4771e1f504cfc44013"
+          },
+          {
+            "path": "apps/native/lib/ui/lyric_tile.dart",
+            "sha256": "60bbc7075628b2ff57f1703121c5bf9af03eb87ea7d1042b5e46b1ceb8d2b24d"
+          },
+          {
+            "path": "apps/native/lib/ui/parity_panels.dart",
+            "sha256": "2a79514ada62c9818e2ca6a59709a3e0b883d14ed05cda005595496bc6777327"
+          },
+          {
+            "path": "apps/native/lib/l10n/glukwave26_strings.dart",
+            "sha256": "41cd49d1f1c725c937dd054be9597c264803af87cf97dda4dded9d16145322be"
+          },
+          {
+            "path": "apps/native/test/parity26_ui_test.dart",
+            "sha256": "819d8d7522433b44218b8f970a3e20836e906e49bd970416d95140c97a181f55"
+          },
+          {
+            "path": "apps/web/src/App.tsx",
+            "sha256": "a98a8fa9c02f98cf0bab03c87a7dc4245ec7577c0f79a0ea6895a51db119db35"
+          },
+          {
+            "path": "apps/web/src/account.tsx",
+            "sha256": "8c7fb34bca875dd7dfcc750cdb1bf50ab2ef88413279658c565d25a0e3e05053"
+          },
+          {
+            "path": "apps/web/src/auth.tsx",
+            "sha256": "10f9c415aa8bc20bdcd918939f0e2a70b38576bab40f7008a2f6e0eff1c49445"
+          },
+          {
+            "path": "apps/web/src/artist-detail.tsx",
+            "sha256": "a05a7724239993cc656ff236148c66fee5829e4a68838bbea33da6c48f9c58ac"
+          },
+          {
+            "path": "apps/web/src/halftone-room.tsx",
+            "sha256": "ebf871684881eb75c1bd25cfd6258025f29bd62604aaa1d0d9d28c0d92e701b0"
+          },
+          {
+            "path": "apps/web/src/top-notice.tsx",
+            "sha256": "a62bfc85925a39a2e6f687a019e88c616a00abbcfb0b618d22b0b40e8be0162b"
+          },
+          {
+            "path": "apps/web/src/discovery-search.tsx",
+            "sha256": "4b9e21a7fc54602565e4f7730857388479e0aa5148a2d36101d02fd3e8f628c3"
+          },
+          {
+            "path": "apps/web/src/main.tsx",
+            "sha256": "8a943a6e8018e2d4bec42108b73adb4707529d3e75a4419c090fe937a79d86f4"
+          },
+          {
+            "path": "apps/web/src/parity-taste.tsx",
+            "sha256": "e6c71f0b8b14a410dbcda86cfeb1ac89f861649d7a3fd9437da51b5f76d372a6"
+          },
+          {
+            "path": "apps/web/src/player-gestures.ts",
+            "sha256": "7f19efae86ffc1a9bfa3c73de7e1b4e81f70bcf3dc54e5c000703093267b9659"
+          },
+          {
+            "path": "apps/web/src/player-ui.tsx",
+            "sha256": "9defac627f9f87565f0efd14f455ef8f24b12bcbcbb7a6d2a0986d7fbc669bd4"
+          },
+          {
+            "path": "apps/web/src/ui.tsx",
+            "sha256": "961289dc6ba961216f71e31b957aa2ae61b590b592faf336900b2c1882a6c1d9"
+          },
+          {
+            "path": "apps/web/src/glukwave26.css",
+            "sha256": "7e3eb68974044aa89a62eb32bd916d062e7413bec39ebfe86c27e465a206e2dc"
+          },
+          {
+            "path": "apps/web/src/locales/en.json",
+            "sha256": "645bbaf1e81fe6b4781a7fe67353e6f64882c1cd090caf14a9bb8437fa536bad"
+          },
+          {
+            "path": "apps/web/src/locales/ru.json",
+            "sha256": "949e0ae603baa0505fdd872a9d4f87da8c37bddeef4d012c280b039ed39825b0"
+          },
+          {
+            "path": "apps/web/src/locales/kk.json",
+            "sha256": "89212ce4683f0a36e13935dc042bd06d6564cb992c90806a3c3861457144a5b0"
+          },
+          {
+            "path": "apps/web/src/locales/uk.json",
+            "sha256": "a1ec3e3b1421cbea902498a5d04e2f63457e750ae4bd5850258f7a1b9bbac77c"
+          },
+          {
+            "path": "apps/web/src/locales/de.json",
+            "sha256": "2f7b368a1ee14be756e976df4abdb7c2ccd3366ff34015c5da5117b17d4799cd"
+          },
+          {
+            "path": "apps/web/src/locales/es.json",
+            "sha256": "5319fd0d65d93a1a78031d2eb2a17ebb7e9a22ed355f8aecc61dcdf153a2219e"
+          },
+          {
+            "path": "apps/native/test/app_layout_test.dart",
+            "sha256": "4844461e0a815dc4b64c3b90a069bb74c396915394740975866612a19635a568"
+          },
+          {
+            "path": "apps/native/test/ecosystem_layout_test.dart",
+            "sha256": "c9bb00a31640fa39d376747192cfe8aeddce8a9fe7834b9b107450b2bbe5a692"
+          },
+          {
+            "path": "apps/native/test/localization_test.dart",
+            "sha256": "ee37f20127b216da9deb1cc7c90276d8f5f9f99ebbee8fd4c6d15b137ea068df"
+          },
+          {
+            "path": "apps/native/test/native19_round2_test.dart",
+            "sha256": "00a8c4aa3fafa9acd12909fddd8417aec766e18054834006c3b8a528067ee795"
+          },
+          {
+            "path": "apps/native/lib/ui/album_stage.dart",
+            "sha256": "c78b32eff376a84c8430cceb0251f34dce45823ec5c91a569ffa25c9a2b2acfc"
+          },
+          {
+            "path": "apps/native/test/parity23_ui_test.dart",
+            "sha256": "9a28959560720a2c1c0b0a06f574d8f2eb1ba0fd59e3f1d457312821a460f1a0"
+          },
+          {
+            "path": "apps/native/test/parity24_ui_test.dart",
+            "sha256": "6ddb57917fea8a2ca37d41de49d2291085475c82a3baccdad06e2a3f3584f868"
+          }
+        ]
+      },
+      "finalActualDist": {
+        "passed": true,
+        "sourceCssInjected": false,
+        "sourceHash": "02e9d8b87130252d4d761e5cff41dd3b1073805ccea174c567849baafbcd7ea1",
+        "sourceFreezeMatches": true,
+        "legacyWidths": [
+          1440,
+          768,
+          375,
+          320
+        ],
+        "modernWidths": [
+          1440,
+          375
+        ],
+        "freshCaptures": [
+          "work/qa/parity26-eval3-legacy-full-1440.png",
+          "work/qa/parity26-eval3-legacy-full-320.png",
+          "work/qa/parity26-eval3-legacy-full-375.png",
+          "work/qa/parity26-eval3-legacy-full-768.png",
+          "work/qa/parity26-eval3-legacy-last-line-375.png",
+          "work/qa/parity26-eval3-legacy-lyrics-1440.png",
+          "work/qa/parity26-eval3-legacy-lyrics-320.png",
+          "work/qa/parity26-eval3-legacy-lyrics-375.png",
+          "work/qa/parity26-eval3-legacy-lyrics-768.png",
+          "work/qa/parity26-eval3-legacy-lyrics-scrolled-320.png",
+          "work/qa/parity26-eval3-legacy-lyrics-scrolled-375.png",
+          "work/qa/parity26-eval3-legacy-lyrics-scrolled-768.png",
+          "work/qa/parity26-eval3-legacy-mini-1440.png",
+          "work/qa/parity26-eval3-legacy-mini-320.png",
+          "work/qa/parity26-eval3-legacy-mini-375.png",
+          "work/qa/parity26-eval3-legacy-mini-768.png",
+          "work/qa/parity26-eval3-modern-artist-1440.png",
+          "work/qa/parity26-eval3-modern-artist-375.png",
+          "work/qa/parity26-eval3-modern-full-1440.png",
+          "work/qa/parity26-eval3-modern-full-375.png",
+          "work/qa/parity26-eval3-modern-lyrics-1440.png",
+          "work/qa/parity26-eval3-modern-lyrics-375.png",
+          "work/qa/parity26-eval3-modern-mini-1440.png",
+          "work/qa/parity26-eval3-modern-mini-375.png",
+          "work/qa/parity26-eval3-modern-settings-1440.png",
+          "work/qa/parity26-eval3-modern-settings-375.png"
+        ],
+        "seekRetentionClaim": false,
+        "physicalTvVerified": false
+      }
+    }
+  },
+  "currentServerAndWebSourceHashes": {
+    "apps/server/src/account.js": "10b53082822ab2202de89aee9fd8d0db11af9bd0d31306d691dd312353e05ca4",
+    "apps/server/src/action-jobs.js": "4844e62662c0705c6eb631e71c92ffa66efc1aed5a2b0bb91fc16313e5b80104",
+    "apps/server/src/admin.js": "82417a012738f9351e1bbecd7af7d3f90b29c09f35188bbf35793e7282541569",
+    "apps/server/src/app.js": "dce53294e7b5c7f8866694741ffb5a3225b665f21981f3387736abf425a86c99",
+    "apps/server/src/audio-capabilities.js": "3e4b5a2788070195292f5b517b252c1a6891655060de00c2ea316d2c8f6e8f22",
+    "apps/server/src/auth.js": "2695aed4392536184eacccc8cd8a6a9581beae7cf803c5a9e3feecc1794f3542",
+    "apps/server/src/billing.js": "a9163d0268b48e04598400df991530ceecdf2596fe1852c21c7a177fca52c335",
+    "apps/server/src/community.js": "bda0bc05cbf79db5d78e497b4511cb1b9e337daebbf627787dd951628ff754e0",
+    "apps/server/src/config.js": "6845dc54120af4d0f1dbdcf791084983892871c06756db1250cba8079e0496bc",
+    "apps/server/src/console-brand.js": "3cf4ddeac97b786ae842d0084e6c95f63e79d7ffea051fd71d588fcd181d5be8",
+    "apps/server/src/console-transport.js": "8b2b8c4eccfda0382f05b590b60c43693616649ee273474f51d045e7d2e4ed82",
+    "apps/server/src/console-ui.js": "5992d13453c6ac7e7065c2b9ec3e52db902b1ee2fffca22632c4705e65422e41",
+    "apps/server/src/diagnostics.js": "66ab9bae1912bf53afaac648cf14172fa2f66d68b60af94917e55dfb9b47eb84",
+    "apps/server/src/discord-presence.js": "3c69b062f30f751ae2bdc6e8eb07eab5dcf76ce4293efcdd37d917c3d1befa9a",
+    "apps/server/src/genius.js": "b785795dc7debcff70e7a117bc8e42fd6e34fb071329e4523caa72c2919ea43b",
+    "apps/server/src/index.js": "2a292e1e22151b0b41c1735bd3c00bfcbb7384f0888999c05eb5b6464286cf3f",
+    "apps/server/src/library-imports.js": "fe5b5adf60e6e8c4a9877f2f826df39ba10ab48766ddfab5adb28cc375273f66",
+    "apps/server/src/library.js": "5fed6dcdc944801af92fcd253ad6c53aaec01f301195721839d853e046eea599",
+    "apps/server/src/listening.js": "ce7fac0070fd52bbae62c2da3f1c47ed02bf5a173c9f8d501a547522e3711957",
+    "apps/server/src/locale.js": "76eb2654b0dcffd9ad98838186a32972853e90274809093e207ce4f6e1a16d8a",
+    "apps/server/src/lrclib.js": "4a40e8ba9d9341b27beb0637b728710e16d602e8b30a9afee1440c78d35fb2e1",
+    "apps/server/src/mail-text.js": "24fdc84a7907528d63e50145bf2f4b90390230df11b8d073b36198caef2ee2d9",
+    "apps/server/src/media.js": "797f087f23d4d29436a2a9b8ed5f9c181c31cedbffde3a806794e0fb3ac7c829",
+    "apps/server/src/messages.js": "6726f58392c0b38fd2b5bef912694422901041308df77e73f0e6a051a8429061",
+    "apps/server/src/oauth-config.js": "1bf7f01bd3b0560adc5b27699a768d895c159d98c7864d91d30117233dce8108",
+    "apps/server/src/plans.js": "1af41034b769c676bcadb3af097730fc9a3054662defe5c91844ee12fd30f9ff",
+    "apps/server/src/playback-jobs.js": "b111e33179be055775d8bcc5762b850d823a531a5c152e1c914cdd7176da895e",
+    "apps/server/src/playback.js": "438a08b44ac3106eaae4fecca82a99266ccb4524df3ed57d6680aea1ecf6c15b",
+    "apps/server/src/providers.js": "9d6027f46a3b434024a81e92c16034848c44b8b444f191273a33c6f798245fc3",
+    "apps/server/src/public-imports.js": "63f6bcc9ee5a5b2b3bf14c9d08ec53d360c3fe66079b0fd7b63f3ce98249bede",
+    "apps/server/src/push.js": "d2152b3739d4a574c80b22b389f24fb1f319d6bc8e6e3fe154e3b913295333de",
+    "apps/server/src/realtime-ecosystem.js": "95f8e392708c262ff145f85bda029618e8a584e85ab89a7c338d026b56fefec2",
+    "apps/server/src/realtime.js": "f8bde106f06e4bdd92b4b1faac40c1a2be62f858b8873f33cd05b50bb16e10a8",
+    "apps/server/src/recommendations.js": "2e1f780fbee88e28880fe4f015cc67ddc0263a0553c43844e33b5ba49cb5748c",
+    "apps/server/src/releases.js": "cf0a682142202827892e18d89ecaaa832592a5a5b90e6dc9a07d9d3c0c1a6af3",
+    "apps/server/src/resources.js": "2283499be57429eff52e8f2184acf8d6814de18897dd640ada3ea9faee6b13ed",
+    "apps/server/src/room-view.js": "b1f01371d67b1c4eded48630162c3043bf3b127f1ee73af9dbd8a0f9e707c2ec",
+    "apps/server/src/rooms.js": "5250c138dc01374a08ad87a4fe16b680d1b51749bc5d854f835903ebf618001a",
+    "apps/server/src/search-cache.js": "3764848931355619b11c11b8883c4f365e2a2cbf383d2a5c360afa26ef40b71d",
+    "apps/server/src/search.js": "6c1bcf08dc7d955a1a578798be89ec0605437a20f8556e1b04faf1043cefd302",
+    "apps/server/src/soundcloud-audio.js": "5c756f9f5d832833eea6c5a0ff071218cb428851403cd9a514731c4a88810984",
+    "apps/server/src/soundcloud-public.js": "1539d977c7e90326f12332df59a22d0fa2283f7b32a8ad1d3df3b8a22a32d77d",
+    "apps/server/src/store.js": "f5c92991e188e5bf333883e17e7ac20d4a396c2feb64f8e33fe2e6c2f893305c",
+    "apps/server/src/system-text.js": "d297190cd4ea5ddd3efcf5bba5a76d1221f5351ecb8cd6bc404844290aa85696",
+    "apps/server/src/util.js": "10d7fe120d039de68facc39ed03f84977487d0b0557eff99449cede1022798ca",
+    "apps/server/src/waveforms.js": "9e9102d2d5c9732f3dac9de8cfbed6520d0dc512fa99e8f8e7827c0518a15b45",
+    "apps/server/src/extractors/hls.js": "d54cd6998dc8f0d2889a0d878e55c46d051cae68439bb219890b1208226d1a14",
+    "apps/server/src/extractors/matching.js": "5aec51b318f99f19fb25d51236524fd5a4060e4d3f20fe889c02e955a7040367",
+    "apps/server/src/extractors/runtime.js": "4e36be0303f2045ed769257a4529023d9958f144354f6f8ff920754b4f5b9802",
+    "apps/server/src/extractors/service.js": "eb1a79d49224e49f92675c2054f75940be24678c4eb30ab5d4f65afdc363e4eb",
+    "apps/server/src/extractors/soundcloud.js": "39abeab959ac418df564d5d51fa5509d66a5484b20877799361b6d869563cd3c",
+    "apps/server/src/extractors/spotify.js": "05d9bfce18c37632cdd35d16469b59e0a4e48c4aa258e260ee12e1a78ee3af4d",
+    "apps/server/src/extractors/youtube.js": "01a8e67c3a39948c7268fc225ba3ac1c29266fbafb3453546a977dda67067cd3",
+    "apps/server/extractors/bridge.py": "084fd7b43212264a179868082333eb6825d986944d3d3385b3544e9a74937472",
+    "apps/server/extractors/requirements-spotdl.txt": "9faaa2416aaa16ba144f41df3b6be25ff363a13fbd139c17a8fc6e7fe8875d2b",
+    "apps/server/extractors/requirements-ytdlp.txt": "eddaf6b4a42ef7bc703cb08d3c189565a1d85a62b7a8b429b9b8e71eb793dcd4",
+    "apps/server/extractors/vendor/manifest.json": "ce60ab2e9ebcdebb3a15b370fcac9aa12c3160fe10ef5b377d008609d7378c16",
+    "apps/server/extractors/vendor/yt-dlp-ejs-UNLICENSE.txt": "b5065838cbac452dfc855ba6e6e031481ad2c68406f70d21ead9321374653e6c",
+    "apps/server/extractors/vendor/yt-dlp-UNLICENSE.txt": "7e12e5df4bae12cb21581ba157ced20e1986a0508dd10d0e8a4ab9a4cf94e85c",
+    "apps/server/extractors/vendor/yt-dlp.zip": "1fa6733c37ea6fb51c99ad8fe785e7b7e5f3246c9b980230329d4fb72ed8d4d6",
+    "apps/web/src/account-sessions.tsx": "bf4469a5ffac5e8bbefce71d5aae8831601ea3c5ff092a87661c9dc874adcf91",
+    "apps/web/src/account.tsx": "8c7fb34bca875dd7dfcc750cdb1bf50ab2ef88413279658c565d25a0e3e05053",
+    "apps/web/src/action-request.ts": "69b9f5a72a565e198e8df882da307586448d804265ee136d2648c246c7d2ee3c",
+    "apps/web/src/admin-errors.tsx": "99396e6f2c1073a7d3ab9b15a170eae60418f70eb5fb9e9f7c946c78bf3d8986",
+    "apps/web/src/admin-service.tsx": "9065df7e5dffe2d99aae303b19737ef558537f51fa818327e5df86856ddd5980",
+    "apps/web/src/album.tsx": "66efc18eecaa0d6ef75547a365386ebdfb97042c2574371d30b1a2ddd52f355d",
+    "apps/web/src/api.ts": "0fcbd72c322755c96394aaca17d0efc3a8b78cdb82681a34ee299a15ccae1120",
+    "apps/web/src/App.tsx": "a98a8fa9c02f98cf0bab03c87a7dc4245ec7577c0f79a0ea6895a51db119db35",
+    "apps/web/src/artist-detail.tsx": "a05a7724239993cc656ff236148c66fee5829e4a68838bbea33da6c48f9c58ac",
+    "apps/web/src/artwork.ts": "f1d150e9ed1a0a771187880037027ff372b7e3f1ab0472776ef8a137b8bfa11a",
+    "apps/web/src/audio-cache-validation.ts": "32c2a355f8a3bb237aa4f5e50b28408f20cda3a355223d272e220b644f464d54",
+    "apps/web/src/audio-design.css": "4cc4afd26b4187594fa661145c43340f4a0737e77fc517e888effa79a0f746b0",
+    "apps/web/src/audio-gesture.ts": "1aaa65323ca996d62814523e890b11a85f8dd65dfcf15aa570dc8e7ce114b813",
+    "apps/web/src/audio-processing.ts": "8ef029b1a068d78fed8c3e4b16588305a3392db988e46dd21dfbb6cebf6bd94e",
+    "apps/web/src/audio-stream.ts": "4fbf2d76f13d687b0ac3413c41b44eb42d1a9fef87bf49f39a5f28592209306b",
+    "apps/web/src/auth.tsx": "10f9c415aa8bc20bdcd918939f0e2a70b38576bab40f7008a2f6e0eff1c49445",
+    "apps/web/src/browser-compat-model.ts": "1b05a9a6e80927927127cf7288a50c6b547638e340c4a8604f9694a30abfe857",
+    "apps/web/src/browser-compat.ts": "6fddc2f54944fa1cbc3898bd8937a048f876cb953044019694e249e7194fa5a8",
+    "apps/web/src/cache.ts": "30e36b440883296ce74b0fa10ab6c583bbf0dc557a5760db449e85e4fee5a1ea",
+    "apps/web/src/color-picker.tsx": "200f9b5ec99f4660c8613488246260c3da18aa954c1c7623e19b4f1104476393",
+    "apps/web/src/community.tsx": "bbf2f311827637194bbed64d8c1374118b9c08c3201d5ea877fc91ffb0215411",
+    "apps/web/src/compat-modules.d.ts": "28153b025b7fbf95df0298e35337e9e3b50f9d3b80444708079bd22dc58b0fb9",
+    "apps/web/src/connect-controller.ts": "9c8260b27b90207650c2607310e9eb4bb998d929622ac2c23e042a2115013437",
+    "apps/web/src/connect-playback-card.tsx": "d9ad85eab0838b0b731303f1c47268f654e10a8b470bc38eb5fd4fcc42847569",
+    "apps/web/src/connect-refinement.css": "e366fb08896d52c21ce59d5931f2674f91a2376e3bc3d4641e938ba966176046",
+    "apps/web/src/continuous-range.tsx": "a386951502ede9d5528ad2bb7ff360be9a9d6590919f7804b7997af114eb9a3f",
+    "apps/web/src/cover-accent-bridge.tsx": "5132b9dccd4d307f9bac9dc1dc27fe00551ecb45885c80ac7fec68b2df5bb671",
+    "apps/web/src/cover-accent.ts": "1d33f7d0394436d1958e8456ca1eb3f69d0ae2f8af5d32dc15eba9f796c5953b",
+    "apps/web/src/cover-ambient.tsx": "131e189e9bbbc49bdcc1700b39acca0f52460b8f3e0d6e342baac3e6668b712f",
+    "apps/web/src/cover-fit.ts": "4bfd503e665bccf54e8b2b2292ec4a428bd258959924dda55cb7eb4c4d3e571e",
+    "apps/web/src/customization.tsx": "7ea3ad646c72d092306d7b7b846db7197e47da782150fdca41f2e1a71582c497",
+    "apps/web/src/device-identity.ts": "8530973d25877745e722f18c7603910ba7c81a2925a189c2e53132e78adcd55c",
+    "apps/web/src/device-platform.tsx": "9e57aa7934f78d5788a348ad5ef00f27920c3ca5b1b4fbc786cbca937b9e9309",
+    "apps/web/src/devices-popover.tsx": "9d57a9e6dc3320f341503bd8eda9503f770749e2a5733923cdc1464f23935989",
+    "apps/web/src/diagnostics.ts": "8c21c46e204ea3e5df9c164a93df46aed06174dd54d4e603d4f84eed4e4643cd",
+    "apps/web/src/discord-model.ts": "6ad5cfd0f5e6d4ad71e58bd02318baeba1bd78077d298ff0bcc6e289bc14345f",
+    "apps/web/src/discord.css": "5db13e61485e5d06eecc0213feb1f8f55bc6f1b2c9ae099fe604aa1a592100ce",
+    "apps/web/src/discord.tsx": "260da3f503d962d0b293461c0e85b0f43d95de1a38be8bddc85a096a8e1e3ba8",
+    "apps/web/src/discovery-polish.css": "aac886b47c64fdd6197e7bd878e0d058177ac75dd19e636d13bb467656e23841",
+    "apps/web/src/discovery-search.tsx": "4b9e21a7fc54602565e4f7730857388479e0aa5148a2d36101d02fd3e8f628c3",
+    "apps/web/src/ecosystem-controls.css": "ea8b5bde9813f7a2c9443e432edbc194fe016122f54144207d3d6851ed447198",
+    "apps/web/src/ecosystem-polish.css": "7cf33df3d81d42fda4af4f87ad3f09e694a24d8d2ff31bef484b2108219560a3",
+    "apps/web/src/ecosystem.css": "712561d08ca690cf0b68c23d362af988aec7236be827c89d05b8db635a4790a8",
+    "apps/web/src/embeds.tsx": "80442a04aeb28ac35186bae6ae210039561f47ee6eb1bb568dcb03aa350e2614",
+    "apps/web/src/equalizer-geometry.ts": "e326a26d55cd5242156ebbf924eafb3ddf29c3327a66ba41d3b02edb7620730d",
+    "apps/web/src/equalizer-popover.tsx": "10ead50c10ab2acadd5f97fdfb97450b1bb7cf32635d99b1febfa1a6d9142e8d",
+    "apps/web/src/experience.css": "09a5492f53b01865b94dc71d5cc5e54a11c73155a41fe5973140833ec47ce177",
+    "apps/web/src/extractor-diagnostics.tsx": "3700d1aa8abda94bfb02a874974af381b8e2b5da1d0d7e4eff6ad38cd1bc8441",
+    "apps/web/src/focused-player.css": "ff7772af3f881414683c892de0c9e0342ab1ec3d4adfa251e1c40b1fd93d05e9",
+    "apps/web/src/glukwave26.css": "02e9d8b87130252d4d761e5cff41dd3b1073805ccea174c567849baafbcd7ea1",
+    "apps/web/src/halftone-room.tsx": "ebf871684881eb75c1bd25cfd6258025f29bd62604aaa1d0d9d28c0d92e701b0",
+    "apps/web/src/home-wave.tsx": "4efdf32684d2a5d432b86f1ef02e280fdc0e890ad3547f58be1f59188324f56c",
+    "apps/web/src/integrations-diagnostics.tsx": "a1303367c943cd03a2dfa0d52f6cb237500a42759455a675acbac2261b32e6bf",
+    "apps/web/src/landing.css": "ef31e02d7a9762ab7122671cad48dd6490fc2c45eba2554497a766a48db0f73f",
+    "apps/web/src/landing.tsx": "a7dc708e34bc9d73a5ee73086f615a801da39dd1359e81f401103d038af463d5",
+    "apps/web/src/library-edits.ts": "68d729820cd7244215602623014b79c45c04f56d36ebbc83d77bfea13191930e",
+    "apps/web/src/library-order.ts": "7fc9ea1817d5aa307aea0ac9edf0be141fd451a99634398c33a836d1eecd0d70",
+    "apps/web/src/library-sort-copy.ts": "f67ce3fed41945af7a93cc5115ce8897a7343fdf44f8befcb9fc62f1c5500588",
+    "apps/web/src/locale-startup.ts": "aced1065b59eeece9d68eefe2f661b5eaf18fa6b5925a4185dc46a0b05e64fc0",
+    "apps/web/src/locale.tsx": "6ec6e5e57a66071a4523953e18f9e65e50d9650fcb2e021f4e5b162081efc653",
+    "apps/web/src/lofi.tsx": "aa8c8caed874cc495ff32eef5885ce4511dfd55cd298f507724b4758e0d18a68",
+    "apps/web/src/lyric-timing.ts": "66a81d7695cddbe7439b9a146be9ae94a0f5548c4619cdcb5181718344a5bee7",
+    "apps/web/src/lyrics-import.tsx": "dea168dc65ed4f4a8e5a4590487e94b733cd7d134a8da7523535e426696a72b7",
+    "apps/web/src/lyrics-model.ts": "134ed19f90d85795c0d9ee0ad09e7c13a70b3207a6bac5db70578634e9a7da82",
+    "apps/web/src/main.tsx": "8a943a6e8018e2d4bec42108b73adb4707529d3e75a4419c090fe937a79d86f4",
+    "apps/web/src/media-download.ts": "dd918e7bc2a0251d939129a251ab574da2eb7d3e0482128b91e6a06adff8218b",
+    "apps/web/src/media-session-state.ts": "e3e31645d70d561c594c9fc9ee03affdb52a97266f4246094cee4d7b85fea7fa",
+    "apps/web/src/metadata-cache.ts": "8dfb620920aade48dcebc731e6a177052e4bb37d3b230a99c454380ad3b07c0c",
+    "apps/web/src/mini.tsx": "7fd09d038e14005c51402132dad3863cf7c2bd51e836d784123ed1d959cf508f",
+    "apps/web/src/morph-icon.tsx": "1b317b3ca146d49e78feabc472bd6b21811196dae6895cbe24c81b9c7dcdb03c",
+    "apps/web/src/motion-controls.css": "86c56cac09e01830b44b521151ec11d8a1a65c313007967730d13cc60c8e4ff5",
+    "apps/web/src/optimistic-controls.ts": "587320fb930c8271cc1273b98768b699cc9e2b5f73e1ac1cb2a79474b448ddd3",
+    "apps/web/src/pages.tsx": "f222dc4383f69d3d6e99a0287bfd8b855292b6417cb28dfdeade0073b629894c",
+    "apps/web/src/parity-account.tsx": "f1682ffc76223fbc04e572291e3e10520c1490f0bf12512f280d15afa5ef1ce9",
+    "apps/web/src/parity-admin.tsx": "a635d5a819837c66c3a5354a31d6bb702ea9782e99e4ae0b82185b497277fa50",
+    "apps/web/src/parity-model.ts": "93bbad3ad22a84e6d352c808574a9009a0092d28edfa9483db24b9a406eb1aa5",
+    "apps/web/src/parity-playlists.tsx": "90b796928227658996185084a9f372f8bbfe832e988eaceb274b75cf153422ad",
+    "apps/web/src/parity-social.tsx": "c65bae7e20a1e8ea25dc5e0dbfeb8e96cbbb1dc65a231b7a21b3f05087565c89",
+    "apps/web/src/parity-taste.tsx": "e6c71f0b8b14a410dbcda86cfeb1ac89f861649d7a3fd9437da51b5f76d372a6",
+    "apps/web/src/parity.css": "44be32961ae9ad52c5343787ca2e1c0f9697ff3d76e23be569bf13ac7d60a106",
+    "apps/web/src/pixel-scene.ts": "6aebeff8524759519c0e78b1351e5fd5e306d9a8c191abc8d54a5acf97a8501c",
+    "apps/web/src/playback-feedback.css": "10fd7b45a9337606e5ef4cc401e310bbc62ce068e61643e864499b9aa91951fb",
+    "apps/web/src/playback-lifecycle.ts": "d20c0cd10eb869316f347a6183c7d2a8a996d740fe7b2c167aa995eba1f03564",
+    "apps/web/src/playback-recovery.ts": "5a19366df9fd35c1890b5bf197f4ba3730058f02f3626242db8ead13ced7645f",
+    "apps/web/src/playback-request.ts": "ab03ea51e983917b66c116eb28f78bf2fba00c9c9ad2590d2c418dda4688ffc7",
+    "apps/web/src/playback-settings.tsx": "e830b48067ddb7d8357d0a80de13cbe6df637ffc9109fb9e111b67579f1549c4",
+    "apps/web/src/playback-warmup.ts": "e76fe39cb1fc8c98be38a87c93d6638d959e86c0a0abf46343379103da152f2f",
+    "apps/web/src/player-details.css": "bb6ed6e63760b8d5ff3345fa3461827e20c2addd5d38d91f826014ddda1f64fd",
+    "apps/web/src/player-gestures.ts": "7f19efae86ffc1a9bfa3c73de7e1b4e81f70bcf3dc54e5c000703093267b9659",
+    "apps/web/src/player-refinement.css": "d103f3a510359ca432ba4607e535cdc82d6c1886b125c1c272144a02c34df0aa",
+    "apps/web/src/player-ui.tsx": "9defac627f9f87565f0efd14f455ef8f24b12bcbcbb7a6d2a0986d7fbc669bd4",
+    "apps/web/src/player.tsx": "76b5ec87bda43bcab09ab445272b5392ded4b27ed3761c2de3091b0da9f189f2",
+    "apps/web/src/playlist-copy.ts": "2cd5688f1ea33e82cea94dd1ba0e0c22b781a5065c1236cd64918135238a5a4b",
+    "apps/web/src/playlist-library.tsx": "447886e321db3ee850aade8be87c8dd7fed48a8b5e46b8deb744cc02ddc31792",
+    "apps/web/src/playlist-manager.tsx": "283c652a01551e8eb52f0e14fb1637c58322e9bbd34c19ad490b1cadf5eb22fa",
+    "apps/web/src/playlist-polish.css": "edecc305468749eea21d646462cb6c8b958dfe33045496dc5e7f9ebc3476fcc1",
+    "apps/web/src/preferences.ts": "25f982ca39ea3591a497fc6d88cc75bab62354d48936abb6c7a0d85a8eb10aa7",
+    "apps/web/src/preset-listbox.tsx": "99421d371e6ed4890232da3b43afecbf1c3ef54804ce5df397afb392a191d3e1",
+    "apps/web/src/progress-clock.ts": "6bcd62f63bd82177abacf8c957d0156ddf3f035b4fe13b566c9bd69ccd778041",
+    "apps/web/src/progress-paint.tsx": "6790a416c113105c240b5872762a6136d93cd1a499a42eff05412f6df5753408",
+    "apps/web/src/provider-import.tsx": "063e5a0a1b37bb8fb7251ca11cdcdf49e51b43f2500aa29b94a5d48c1c78e47d",
+    "apps/web/src/public-import-copy.ts": "917f01cde2a3c1531bd7db39154ed8ccd49af3f2ad59008ae984208b00271c04",
+    "apps/web/src/public-import.css": "15dfa72d6fe8278190f618b2c277c5711ee829e22eb117ca648b8a129bdd8f71",
+    "apps/web/src/queue-panel.tsx": "de25170f3ce243eb6784f5a03ce1e8e5245f23a3b2578346e69b13142783cb38",
+    "apps/web/src/range-input.tsx": "76ac75f16ec8117f20a53ecdcfe1189b48aac074fd8b55cdde84b23a0548b28c",
+    "apps/web/src/reference-cover.css": "1070513ebfd3dbf52c811d3277c30e98c66483ab36efc1b40069a2175ed1c177",
+    "apps/web/src/refinement20-home.tsx": "abf5db5f2aadd9589eb12a0d4f231c498a972251679614ecc62afd88e122c565",
+    "apps/web/src/refinement20-strings.ts": "0569365d1defe75171ff4fd5b94049c3c0c96b836b00b02c598df5792a941131",
+    "apps/web/src/refinement20.css": "7c8dcdcddda90331c822a8cb7218de3676fe0aff2961f1fece36b2113da65fed",
+    "apps/web/src/refinement21.css": "3ad362a2412482121ea6248b1953ff7b5598ebc7bbae47edbd4307db6849ac63",
+    "apps/web/src/room-listeners.tsx": "5b6494ea251e1afea0c804a64538370e93a061bb8f6dac57a73e7edf6e5a3632",
+    "apps/web/src/scrolling-label.css": "0844c87ded0da6f1b51d9f6356b715bf9d5f3ccd07544bf8befa3a09fb212169",
+    "apps/web/src/scrolling-label.tsx": "056376a52d44beaadd90fade198413fa821dc2afc30c2dc4aada2df346a25eca",
+    "apps/web/src/search-artists.css": "4212a317f73d87411970fa018d61658d93b79f113f3ed27ccb57080da77a7713",
+    "apps/web/src/search-artists.tsx": "032407ed09406eea8a86e0bbb02adabba7413b2ce6276fcd590067c8a79c6f73",
+    "apps/web/src/seasonal.tsx": "e71a70262eded64230a4cff5c9117e975c9800e47a79371f61b59cc3a5ecbef4",
+    "apps/web/src/settings-range.tsx": "c93207c2c28a468490937fd54590f85f781e990d36ea1e99040454a44647eb22",
+    "apps/web/src/store.tsx": "f5a35f2fee2f00ca880c2085c6a0b8754639f3104cf8d64cbb08ac07af1530f0",
+    "apps/web/src/styles.css": "f170ccd1c0589ff66c8f8fcdd50aa692cc18a3cc4722c0548eb07e384746a944",
+    "apps/web/src/top-notice.tsx": "a62bfc85925a39a2e6f687a019e88c616a00abbcfb0b618d22b0b40e8be0162b",
+    "apps/web/src/transport-season.css": "0459aeef49444aa51ae58be2ee9bab051b2ecfc1110848030a7a1722759c7182",
+    "apps/web/src/types.ts": "763fc1b9d24732321fb669d2abc1fdec57660c510d63a723d380c8962a00ab45",
+    "apps/web/src/ui.tsx": "961289dc6ba961216f71e31b957aa2ae61b590b592faf336900b2c1882a6c1d9",
+    "apps/web/src/v6.css": "73cae087b037346c6efeb26dd8dc46269ca2d43392424dd3d9575ce73f32aab3",
+    "apps/web/src/v7.css": "5f305a19b7ccaeb9bd37a484012cd4557e0b4d27457f2e4abbc689f5531de34f",
+    "apps/web/src/visual-lifecycle.ts": "110a20be1bde0bfbae1108d644bd367e9709a1e31f27b743d6946899990cac0e",
+    "apps/web/src/volume.ts": "4ca822baa37b289958ea5f0d751fc59278edae62b13eb7e4b4cec56a41577fa9",
+    "apps/web/src/wave-colors.ts": "29343730048694c9b77436f079b50f6f8cb9b3898da0ffd6fa2f4f6e0364ba77",
+    "apps/web/src/wave-math.ts": "71c6743a3031eab95ee15f7797d68c7662b144bf0686d31f611df4b81b202d70",
+    "apps/web/src/wave-session.ts": "d238c79a6975255676581fcb3bb405a80742841e71f3c1fae956bdb0944abe5d",
+    "apps/web/src/wave-shaders.ts": "c62cbcf66c2bf93da62c02052f69a5f7af0e5107e4b7b5f504a7d08d18c35bc6",
+    "apps/web/src/wave-silk-math.ts": "1d86a1e6df536527d339f0a8abd8961c8d208a5491aeab235d39934d8807c032",
+    "apps/web/src/wave-silk.ts": "e2abff49cfbc68dd50f89a9a25b316e552f442539fe25e7f714b186353b8f67f",
+    "apps/web/src/wave.tsx": "7173e79ed7fd47f172689df9a7278dd8291dea29118d01ddf5a948ce4ca7101f",
+    "apps/web/src/wave18-polish.css": "c491168d669fc00fbbd9c6a3acaf3c18d0303efb3d3a92f3788e8ff72c28dc6e",
+    "apps/web/src/locales/copy.tsv": "f990474ce08b549c2d6c3cb942a1e21c8905281fed020c1f0fd4638a391a02b3",
+    "apps/web/src/locales/de.json": "2f7b368a1ee14be756e976df4abdb7c2ccd3366ff34015c5da5117b17d4799cd",
+    "apps/web/src/locales/en.json": "645bbaf1e81fe6b4781a7fe67353e6f64882c1cd090caf14a9bb8437fa536bad",
+    "apps/web/src/locales/es.json": "5319fd0d65d93a1a78031d2eb2a17ebb7e9a22ed355f8aecc61dcdf153a2219e",
+    "apps/web/src/locales/extra.tsv": "81d6c54e69834bcab56b8b827089faeb759ba5b66745a9b4384570483ed59a0e",
+    "apps/web/src/locales/kk.json": "89212ce4683f0a36e13935dc042bd06d6564cb992c90806a3c3861457144a5b0",
+    "apps/web/src/locales/ru.json": "949e0ae603baa0505fdd872a9d4f87da8c37bddeef4d012c280b039ed39825b0",
+    "apps/web/src/locales/templates.tsv": "ecefdaa21386a1eb127325774e2d5598ee406b96afa8a3b67dbec2dcd0351b34",
+    "apps/web/src/locales/uk.json": "a1ec3e3b1421cbea902498a5d04e2f63457e750ae4bd5850258f7a1b9bbac77c",
+    "apps/web/src/vendor/halftone-bloom.ts": "c9a3b57f5dfd422cf313f91e3ecdbea768e8cb624f2ea2d0da70a7e34b49bc8f"
+  },
+  "rollback": "outputs/archive/releases/1.0.0+25",
+  "limits": [
+    "Original intermittent _InactiveElements.remove assertion was not reproduced; coherent restoration and actual transitions were verified",
+    "No owner-client installation, hosting update or physical TV/phone/audio-hardware verification",
+    "Legacy Chromium missing-API fixture is not an old Tizen engine emulator",
+    "Independent evaluator uses the same available model provider",
+    "Android retains debug certificate; Windows has no Authenticode signature; iOS not built",
+    "Liner code/assets/design were not imported; public provider availability and upstream speed remain external dependencies"
+  ]
+}

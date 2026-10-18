@@ -1,0 +1,62 @@
+{
+  "passed": true,
+  "captures": [
+    "work/qa/parity27-eval-auth-light-1440.png",
+    "work/qa/parity27-eval-auth-light-768.png",
+    "work/qa/parity27-eval-auth-light-390.png",
+    "work/qa/parity27-eval-auth-light-320.png"
+  ],
+  "layouts": [
+    {
+      "width": 1440,
+      "doc": 1430,
+      "field": {
+        "right": 1178,
+        "type": "text",
+        "width": 427
+      },
+      "overflow": [],
+      "scene": "rgb(239, 237, 227)",
+      "theme": "light"
+    },
+    {
+      "width": 768,
+      "doc": 758,
+      "field": {
+        "right": 726,
+        "type": "text",
+        "width": 694
+      },
+      "overflow": [],
+      "scene": "rgb(239, 237, 227)",
+      "theme": "light"
+    },
+    {
+      "width": 390,
+      "doc": 380,
+      "field": {
+        "right": 348,
+        "type": "text",
+        "width": 316
+      },
+      "overflow": [],
+      "scene": "rgb(239, 237, 227)",
+      "theme": "light"
+    },
+    {
+      "width": 320,
+      "doc": 310,
+      "field": {
+        "right": 278,
+        "type": "text",
+        "width": 246
+      },
+      "overflow": [],
+      "scene": "rgb(239, 237, 227)",
+      "theme": "light"
+    }
+  ],
+  "errors": {
+    "errors": []
+  }
+}

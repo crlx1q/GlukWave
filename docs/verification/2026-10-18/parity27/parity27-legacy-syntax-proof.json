@@ -1,0 +1,33 @@
+{
+  "checkedAt": "2026-10-18T15:10:30.328Z",
+  "passed": true,
+  "es5Parsed": true,
+  "physicalTvVerified": false,
+  "files": [
+    {
+      "name": "hls-legacy-B7zYHMqK.js",
+      "bytes": 665598,
+      "sha256": "49f0209bd024b5dedbefd741087def4a4c3c57e53ff43df3f8cfb3f0c368a304"
+    },
+    {
+      "name": "main-legacy-eCuXhW48.js",
+      "bytes": 1120093,
+      "sha256": "d3862e907eb674fcfc3430951ec668765bc1ee5722a8b5dfedb63df0c3047822"
+    },
+    {
+      "name": "mini-legacy-DyAZ6zzc.js",
+      "bytes": 7286,
+      "sha256": "882ce82884d9a048dc024b377b5a541e2ca5303f67856de5142deb72cfd0f816"
+    },
+    {
+      "name": "playback-feedback-legacy-zxLYc2Ok.js",
+      "bytes": 884887,
+      "sha256": "06983d72ddf0eba001e70e232bd0286a2679d0d7a41adf58ed094e4d426db51f"
+    },
+    {
+      "name": "polyfills-legacy-D4Cja7dM.js",
+      "bytes": 176910,
+      "sha256": "056c8c4e6b5fc36803a4e49276563680a7b7d17e6bbf3557d00962e4e7c776a8"
+    }
+  ]
+}

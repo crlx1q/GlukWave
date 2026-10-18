@@ -1,0 +1,2816 @@
+{
+  "checkedAt": "2026-10-18T15:14:52.426743+00:00",
+  "version": "1.0.0+27",
+  "passed": true,
+  "scope": "Picked-up queue rows and adaptive desktop dock; smoother browser clock/lyric transitions; daily verified native updater; personal encrypted Yandex/Spotify library access; account-synced home shelf, daily mixes and recommendation exclusions; Windows branded frame and MPV handoff intention reconciliation",
+  "web": {
+    "javascript": "/assets/main-w0GQmuRE.js",
+    "testsPassed": 104,
+    "buildPassed": true,
+    "legacySyntax": {
+      "checkedAt": "2026-10-18T15:10:30.328Z",
+      "passed": true,
+      "es5Parsed": true,
+      "physicalTvVerified": false,
+      "files": [
+        {
+          "name": "hls-legacy-B7zYHMqK.js",
+          "bytes": 665598,
+          "sha256": "49f0209bd024b5dedbefd741087def4a4c3c57e53ff43df3f8cfb3f0c368a304"
+        },
+        {
+          "name": "main-legacy-eCuXhW48.js",
+          "bytes": 1120093,
+          "sha256": "d3862e907eb674fcfc3430951ec668765bc1ee5722a8b5dfedb63df0c3047822"
+        },
+        {
+          "name": "mini-legacy-DyAZ6zzc.js",
+          "bytes": 7286,
+          "sha256": "882ce82884d9a048dc024b377b5a541e2ca5303f67856de5142deb72cfd0f816"
+        },
+        {
+          "name": "playback-feedback-legacy-zxLYc2Ok.js",
+          "bytes": 884887,
+          "sha256": "06983d72ddf0eba001e70e232bd0286a2679d0d7a41adf58ed094e4d426db51f"
+        },
+        {
+          "name": "polyfills-legacy-D4Cja7dM.js",
+          "bytes": 176910,
+          "sha256": "056c8c4e6b5fc36803a4e49276563680a7b7d17e6bbf3557d00962e4e7c776a8"
+        }
+      ]
+    },
+    "compatibilityRuntime": {
+      "checkedAt": "2026-10-18T15:11:29.646Z",
+      "passed": true,
+      "engine": "Modern Chromium forced to production SystemJS legacy branch with removed APIs",
+      "physicalTvVerified": false,
+      "originalFixtureAudio": true,
+      "unrelatedBootNoiseDidNotFlash": true,
+      "dialogPolyfillOpenedAndClosed": true,
+      "initial": {
+        "animate": "undefined",
+        "bootFailures": 0,
+        "broadcast": "undefined",
+        "fetch": "function",
+        "legacy": true,
+        "observer": "function",
+        "plural": "function",
+        "profile": "tv-legacy",
+        "proxy": "undefined",
+        "resize": "function",
+        "rootReady": true,
+        "uuid": "function"
+      },
+      "before": {
+        "paused": false,
+        "position": 0.837617,
+        "ready": 4
+      },
+      "final": {
+        "fatal": false,
+        "full": true,
+        "lyrics": 6,
+        "paused": false,
+        "position": 2.479525
+      },
+      "legacyFiles": [
+        {
+          "name": "hls-legacy-B7zYHMqK.js",
+          "bytes": 665598,
+          "sha256": "49f0209bd024b5dedbefd741087def4a4c3c57e53ff43df3f8cfb3f0c368a304"
+        },
+        {
+          "name": "main-legacy-eCuXhW48.js",
+          "bytes": 1120093,
+          "sha256": "d3862e907eb674fcfc3430951ec668765bc1ee5722a8b5dfedb63df0c3047822"
+        },
+        {
+          "name": "mini-legacy-DyAZ6zzc.js",
+          "bytes": 7286,
+          "sha256": "882ce82884d9a048dc024b377b5a541e2ca5303f67856de5142deb72cfd0f816"
+        },
+        {
+          "name": "playback-feedback-legacy-zxLYc2Ok.js",
+          "bytes": 884887,
+          "sha256": "06983d72ddf0eba001e70e232bd0286a2679d0d7a41adf58ed094e4d426db51f"
+        },
+        {
+          "name": "polyfills-legacy-D4Cja7dM.js",
+          "bytes": 176910,
+          "sha256": "056c8c4e6b5fc36803a4e49276563680a7b7d17e6bbf3557d00962e4e7c776a8"
+        }
+      ],
+      "capture": "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\work\\qa\\parity27-legacy-tv-lyrics.png"
+    },
+    "legacyLayout": {
+      "passed": true,
+      "scope": "Geometry, physical mini/full/lyrics controls, unblocked seek hit and nonoverlap. Canonical seek retention is recorded separately and is not a passing assertion.",
+      "sourceCssInjected": false,
+      "actualDistFinalRequired": false,
+      "distIndexSha256": "ef5d7c9ed771380b448990d82cdef921374f82e288d9c220e4bb1b5f59f35d49",
+      "physicalTvVerified": false,
+      "records": [
+        {
+          "width": 1440,
+          "mini": {
+            "bottom": 882,
+            "height": 104,
+            "hit": true,
+            "right": 1406,
+            "track": {
+              "height": 42.578125,
+              "right": 1086,
+              "width": 892,
+              "x": 194,
+              "y": 808.703125
+            },
+            "width": 1296,
+            "x": 110,
+            "y": 778
+          },
+          "full": {
+            "fatal": false,
+            "open": true,
+            "right": 1440,
+            "seek": {
+              "height": 26,
+              "hit": true,
+              "right": 1170.40625,
+              "width": 332.8125,
+              "x": 837.59375,
+              "y": 425.1875
+            },
+            "x": 0
+          },
+          "seekValue": 0.357916491560302,
+          "seekRetained": false,
+          "lyric": {
+            "count": 6,
+            "cover": {
+              "bottom": 483.796875,
+              "right": 535,
+              "x": 265
+            },
+            "headingTop": 516.796875,
+            "overflow": false,
+            "overlap": false
+          }
+        },
+        {
+          "width": 768,
+          "mini": {
+            "bottom": 834,
+            "height": 60,
+            "hit": true,
+            "right": 748,
+            "track": {
+              "height": 32.796875,
+              "right": 633,
+              "width": 554,
+              "x": 79,
+              "y": 787.59375
+            },
+            "width": 738,
+            "x": 10,
+            "y": 774
+          },
+          "full": {
+            "fatal": false,
+            "open": true,
+            "right": 768,
+            "seek": {
+              "height": 26,
+              "hit": true,
+              "right": 550.40625,
+              "width": 332.8125,
+              "x": 217.59375,
+              "y": 566.78125
+            },
+            "x": 0
+          },
+          "seekValue": 0.311119544726077,
+          "seekRetained": false,
+          "lyric": {
+            "count": 6,
+            "cover": {
+              "bottom": 397,
+              "right": 514,
+              "x": 244
+            },
+            "headingTop": 433,
+            "overflow": false,
+            "overlap": false
+          }
+        },
+        {
+          "width": 375,
+          "mini": {
+            "bottom": 834,
+            "height": 60,
+            "hit": true,
+            "right": 355,
+            "track": {
+              "height": 32.796875,
+              "right": 240,
+              "width": 161,
+              "x": 79,
+              "y": 787.59375
+            },
+            "width": 345,
+            "x": 10,
+            "y": 774
+          },
+          "full": {
+            "fatal": false,
+            "open": true,
+            "right": 375,
+            "seek": {
+              "height": 26,
+              "hit": true,
+              "right": 323.40625,
+              "width": 271.8125,
+              "x": 51.59375,
+              "y": 566.78125
+            },
+            "x": 0
+          },
+          "seekValue": 0.324612480743215,
+          "seekRetained": false,
+          "lyric": {
+            "count": 6,
+            "cover": {
+              "bottom": 397,
+              "right": 317.5,
+              "x": 47.5
+            },
+            "headingTop": 433,
+            "overflow": false,
+            "overlap": false
+          }
+        },
+        {
+          "width": 320,
+          "mini": {
+            "bottom": 834,
+            "height": 60,
+            "hit": true,
+            "right": 300,
+            "track": {
+              "height": 31.390625,
+              "right": 185,
+              "width": 106,
+              "x": 79,
+              "y": 788.296875
+            },
+            "width": 290,
+            "x": 10,
+            "y": 774
+          },
+          "full": {
+            "fatal": false,
+            "open": true,
+            "right": 320,
+            "seek": {
+              "height": 26,
+              "hit": true,
+              "right": 268.40625,
+              "width": 216.8125,
+              "x": 51.59375,
+              "y": 566.78125
+            },
+            "x": 0
+          },
+          "seekValue": 0.330863933649936,
+          "seekRetained": false,
+          "lyric": {
+            "count": 6,
+            "cover": {
+              "bottom": 397,
+              "right": 290,
+              "x": 20
+            },
+            "headingTop": 433,
+            "overflow": false,
+            "overlap": false
+          }
+        }
+      ]
+    },
+    "smoothProgress": {
+      "passed": true,
+      "actualBrowser": true,
+      "clockQuantizedTo100ms": true,
+      "physicalAudioVerified": false,
+      "records": [
+        {
+          "width": 1440,
+          "samples": [
+            {
+              "at": 408840.6999999881,
+              "media": 1.3,
+              "visual": 1.3151249056073206
+            },
+            {
+              "at": 408861.89999997616,
+              "media": 1.3,
+              "visual": 1.3375249056430834
+            },
+            {
+              "at": 408896.7999999523,
+              "media": 1.4,
+              "visual": 1.375649905643083
+            },
+            {
+              "at": 408919.89999997616,
+              "media": 1.4,
+              "visual": 1.4029499055953996
+            },
+            {
+              "at": 408948.7999999523,
+              "media": 1.4,
+              "visual": 1.4318499056311624
+            },
+            {
+              "at": 408956.5,
+              "media": 1.4,
+              "visual": 1.4394499055953998
+            },
+            {
+              "at": 408963.5,
+              "media": 1.4,
+              "visual": 1.4464499055953997
+            },
+            {
+              "at": 408969.59999996424,
+              "media": 1.4,
+              "visual": 1.4526499056430833
+            },
+            {
+              "at": 408976.59999996424,
+              "media": 1.5,
+              "visual": 1.46147490560136
+            },
+            {
+              "at": 408983.89999997616,
+              "media": 1.5,
+              "visual": 1.468674905589439
+            },
+            {
+              "at": 408990.7999999523,
+              "media": 1.5,
+              "visual": 1.475674905589439
+            },
+            {
+              "at": 408998.2999999523,
+              "media": 1.5,
+              "visual": 1.4825749056252018
+            },
+            {
+              "at": 409005,
+              "media": 1.5,
+              "visual": 1.489674905589439
+            },
+            {
+              "at": 409011.89999997616,
+              "media": 1.5,
+              "visual": 1.496674905589439
+            },
+            {
+              "at": 409018.7999999523,
+              "media": 1.5,
+              "visual": 1.5035749056252017
+            },
+            {
+              "at": 409025.89999997616,
+              "media": 1.5,
+              "visual": 1.5106749055894388
+            },
+            {
+              "at": 409032.89999997616,
+              "media": 1.5,
+              "visual": 1.5176749055894387
+            },
+            {
+              "at": 409039.7999999523,
+              "media": 1.5,
+              "visual": 1.5245749056252016
+            },
+            {
+              "at": 409046.89999997616,
+              "media": 1.5,
+              "visual": 1.5316749055894388
+            },
+            {
+              "at": 409053.89999997616,
+              "media": 1.5,
+              "visual": 1.5386749055894386
+            },
+            {
+              "at": 409062.59999996424,
+              "media": 1.5,
+              "visual": 1.5469749056013593
+            },
+            {
+              "at": 409068,
+              "media": 1.5,
+              "visual": 1.5527749056132802
+            },
+            {
+              "at": 409075.39999997616,
+              "media": 1.6,
+              "visual": 1.561974905586458
+            },
+            {
+              "at": 409082.09999996424,
+              "media": 1.6,
+              "visual": 1.5686749056341416
+            },
+            {
+              "at": 409089.5,
+              "media": 1.6,
+              "visual": 1.5760749056102996
+            },
+            {
+              "at": 409103.5,
+              "media": 1.6,
+              "visual": 1.5899749055864578
+            },
+            {
+              "at": 409111,
+              "media": 1.6,
+              "visual": 1.597474905586458
+            },
+            {
+              "at": 409118.2999999523,
+              "media": 1.6,
+              "visual": 1.6047749055983789
+            },
+            {
+              "at": 409125.1999999881,
+              "media": 1.6,
+              "visual": 1.6116749056341415
+            },
+            {
+              "at": 409132.6999999881,
+              "media": 1.6,
+              "visual": 1.6192749055983786
+            },
+            {
+              "at": 409141.1999999881,
+              "media": 1.6,
+              "visual": 1.6277749055983786
+            },
+            {
+              "at": 409191.09999996424,
+              "media": 1.7,
+              "visual": 1.6791749056043388
+            },
+            {
+              "at": 409199.89999997616,
+              "media": 1.7,
+              "visual": 1.6880749055804969
+            },
+            {
+              "at": 409208.6999999881,
+              "media": 1.7,
+              "visual": 1.6967749056281805
+            },
+            {
+              "at": 409216.6999999881,
+              "media": 1.7,
+              "visual": 1.7047749056281805
+            },
+            {
+              "at": 409222.7999999523,
+              "media": 1.7,
+              "visual": 1.7110749055804968
+            },
+            {
+              "at": 409229.6999999881,
+              "media": 1.7,
+              "visual": 1.7178749055924178
+            },
+            {
+              "at": 409236.89999997616,
+              "media": 1.7,
+              "visual": 1.7249749056162595
+            },
+            {
+              "at": 409243.7999999523,
+              "media": 1.7,
+              "visual": 1.7318749055924176
+            },
+            {
+              "at": 409250.6999999881,
+              "media": 1.7,
+              "visual": 1.7388749055924175
+            },
+            {
+              "at": 409257.6999999881,
+              "media": 1.7,
+              "visual": 1.7459749056162597
+            },
+            {
+              "at": 409264.7999999523,
+              "media": 1.7,
+              "visual": 1.7529749056162591
+            },
+            {
+              "at": 409272.59999996424,
+              "media": 1.8,
+              "visual": 1.7625749056102988
+            },
+            {
+              "at": 409279,
+              "media": 1.8,
+              "visual": 1.768974905586457
+            },
+            {
+              "at": 409286.2999999523,
+              "media": 1.8,
+              "visual": 1.7763749056222198
+            },
+            {
+              "at": 409293.09999996424,
+              "media": 1.8,
+              "visual": 1.7830749056102988
+            },
+            {
+              "at": 409300.1999999881,
+              "media": 1.8,
+              "visual": 1.7901749056341405
+            },
+            {
+              "at": 409307.39999997616,
+              "media": 1.8,
+              "visual": 1.7974749055864567
+            },
+            {
+              "at": 409314.7999999523,
+              "media": 1.8,
+              "visual": 1.8048749056222193
+            },
+            {
+              "at": 409320.89999997616,
+              "media": 1.8,
+              "visual": 1.8109749055864568
+            },
+            {
+              "at": 409328.1999999881,
+              "media": 1.8,
+              "visual": 1.8182749055983771
+            },
+            {
+              "at": 409335.1999999881,
+              "media": 1.8,
+              "visual": 1.8252749055983777
+            },
+            {
+              "at": 409343.2999999523,
+              "media": 1.8,
+              "visual": 1.8332749055983777
+            },
+            {
+              "at": 409349,
+              "media": 1.8,
+              "visual": 1.8390749056102984
+            },
+            {
+              "at": 409356.89999997616,
+              "media": 1.8,
+              "visual": 1.8469749055864568
+            },
+            {
+              "at": 409363.09999996424,
+              "media": 1.8,
+              "visual": 1.8530749056102984
+            },
+            {
+              "at": 409370.5,
+              "media": 1.8,
+              "visual": 1.8604749055864565
+            },
+            {
+              "at": 409379,
+              "media": 1.9,
+              "visual": 1.8711499056132783
+            },
+            {
+              "at": 409387.39999997616,
+              "media": 1.9,
+              "visual": 1.8794499056251992
+            },
+            {
+              "at": 409432.7999999523,
+              "media": 1.9,
+              "visual": 1.9245499055894368
+            },
+            {
+              "at": 409441.2999999523,
+              "media": 1.9,
+              "visual": 1.9334499056251992
+            },
+            {
+              "at": 409447.39999997616,
+              "media": 1.9,
+              "visual": 1.9395499055894363
+            },
+            {
+              "at": 409454.39999997616,
+              "media": 1.9,
+              "visual": 1.9465499055894364
+            },
+            {
+              "at": 409461.59999996424,
+              "media": 1.9,
+              "visual": 1.9536499056132783
+            },
+            {
+              "at": 409468.39999997616,
+              "media": 2,
+              "visual": 1.9605499055894364
+            },
+            {
+              "at": 409475.59999996424,
+              "media": 2,
+              "visual": 1.9695249056430808
+            },
+            {
+              "at": 409482.59999996424,
+              "media": 2,
+              "visual": 1.9765249056430805
+            },
+            {
+              "at": 409489.39999997616,
+              "media": 2,
+              "visual": 1.9833249055953968
+            },
+            {
+              "at": 409496.6999999881,
+              "media": 2,
+              "visual": 1.9906249056073175
+            },
+            {
+              "at": 409503.6999999881,
+              "media": 2,
+              "visual": 1.9976249056073176
+            },
+            {
+              "at": 409511.09999996424,
+              "media": 2,
+              "visual": 2.0050249056430807
+            },
+            {
+              "at": 409517.6999999881,
+              "media": 2,
+              "visual": 2.011624905607318
+            },
+            {
+              "at": 409524.5,
+              "media": 2,
+              "visual": 2.018424905619239
+            },
+            {
+              "at": 409531.59999996424,
+              "media": 2,
+              "visual": 2.0255249056430813
+            },
+            {
+              "at": 409538.59999996424,
+              "media": 2,
+              "visual": 2.0325249056430814
+            },
+            {
+              "at": 409546,
+              "media": 2,
+              "visual": 2.0399249056192397
+            },
+            {
+              "at": 409552.89999997616,
+              "media": 2,
+              "visual": 2.046624905607319
+            },
+            {
+              "at": 409560.59999996424,
+              "media": 2,
+              "visual": 2.054124905607319
+            },
+            {
+              "at": 409566.6999999881,
+              "media": 2,
+              "visual": 2.060724905631161
+            },
+            {
+              "at": 409575,
+              "media": 2,
+              "visual": 2.0688249055953984
+            },
+            {
+              "at": 409580.89999997616,
+              "media": 2.1,
+              "visual": 2.0761749056341414
+            },
+            {
+              "at": 409587.6999999881,
+              "media": 2.1,
+              "visual": 2.0831749056341415
+            },
+            {
+              "at": 409595,
+              "media": 2.1,
+              "visual": 2.090374905622221
+            },
+            {
+              "at": 409602.1999999881,
+              "media": 2.1,
+              "visual": 2.097474905646063
+            },
+            {
+              "at": 409608.89999997616,
+              "media": 2.1,
+              "visual": 2.1042749055983796
+            },
+            {
+              "at": 409615.89999997616,
+              "media": 2.1,
+              "visual": 2.1112749055983797
+            },
+            {
+              "at": 409623,
+              "media": 2.1,
+              "visual": 2.11827490559838
+            },
+            {
+              "at": 409630.1999999881,
+              "media": 2.1,
+              "visual": 2.1254749056460636
+            },
+            {
+              "at": 409638.59999996424,
+              "media": 2.1,
+              "visual": 2.134074905610301
+            },
+            {
+              "at": 409645.39999997616,
+              "media": 2.1,
+              "visual": 2.14077490559838
+            }
+          ],
+          "movingFrames": 89,
+          "coarseClockPositions": 9,
+          "capture": "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\work\\qa\\parity27-progress-1440.png"
+        },
+        {
+          "width": 390,
+          "samples": [
+            {
+              "at": 438621.7999999523,
+              "media": 0.9,
+              "visual": 0.95252500000596
+            },
+            {
+              "at": 438628.7999999523,
+              "media": 1,
+              "visual": 0.96127500000596
+            },
+            {
+              "at": 438635.7999999523,
+              "media": 1,
+              "visual": 0.9683750000298018
+            },
+            {
+              "at": 438642.7999999523,
+              "media": 1,
+              "visual": 0.9753750000298016
+            },
+            {
+              "at": 438650.09999996424,
+              "media": 1,
+              "visual": 0.9826750000417226
+            },
+            {
+              "at": 438656.89999997616,
+              "media": 1,
+              "visual": 0.9894749999940388
+            },
+            {
+              "at": 438663.89999997616,
+              "media": 1,
+              "visual": 0.9965750000178808
+            },
+            {
+              "at": 438671,
+              "media": 1,
+              "visual": 1.0034749999940389
+            },
+            {
+              "at": 438678.09999996424,
+              "media": 1,
+              "visual": 1.0105750000178806
+            },
+            {
+              "at": 438685,
+              "media": 1,
+              "visual": 1.0175750000178805
+            },
+            {
+              "at": 438692.09999996424,
+              "media": 1,
+              "visual": 1.0245750000178804
+            },
+            {
+              "at": 438699,
+              "media": 1,
+              "visual": 1.0315750000178805
+            },
+            {
+              "at": 438706,
+              "media": 1,
+              "visual": 1.0385750000178802
+            },
+            {
+              "at": 438713.1999999881,
+              "media": 1,
+              "visual": 1.0457750000059591
+            },
+            {
+              "at": 438720.2999999523,
+              "media": 1,
+              "visual": 1.052775000005959
+            },
+            {
+              "at": 438727.59999996424,
+              "media": 1.1,
+              "visual": 1.0618250000178795
+            },
+            {
+              "at": 438753.59999996424,
+              "media": 1.1,
+              "visual": 1.0879250000417215
+            },
+            {
+              "at": 438758.39999997616,
+              "media": 1.1,
+              "visual": 1.0927249999940378
+            },
+            {
+              "at": 438763.1999999881,
+              "media": 1.1,
+              "visual": 1.0974250000417216
+            },
+            {
+              "at": 438769.39999997616,
+              "media": 1.1,
+              "visual": 1.103625000029801
+            },
+            {
+              "at": 438776.1999999881,
+              "media": 1.1,
+              "visual": 1.1106250000298006
+            },
+            {
+              "at": 438783.39999997616,
+              "media": 1.1,
+              "visual": 1.117525000005959
+            },
+            {
+              "at": 438790.39999997616,
+              "media": 1.1,
+              "visual": 1.1246250000298006
+            },
+            {
+              "at": 438797.59999996424,
+              "media": 1.1,
+              "visual": 1.1318250000178796
+            },
+            {
+              "at": 438804.2999999523,
+              "media": 1.1,
+              "visual": 1.1386250000298004
+            },
+            {
+              "at": 438811.39999997616,
+              "media": 1.1,
+              "visual": 1.1457249999940375
+            },
+            {
+              "at": 438818.2999999523,
+              "media": 1.1,
+              "visual": 1.1527249999940377
+            },
+            {
+              "at": 438825.5,
+              "media": 1.2,
+              "visual": 1.1615500000268202
+            },
+            {
+              "at": 438832.39999997616,
+              "media": 1.2,
+              "visual": 1.1684500000029785
+            },
+            {
+              "at": 438839.39999997616,
+              "media": 1.2,
+              "visual": 1.1755500000268202
+            },
+            {
+              "at": 438847,
+              "media": 1.2,
+              "visual": 1.1828500000387412
+            },
+            {
+              "at": 438853.7999999523,
+              "media": 1.2,
+              "visual": 1.189850000038741
+            },
+            {
+              "at": 438860.59999996424,
+              "media": 1.2,
+              "visual": 1.19655000002682
+            },
+            {
+              "at": 438867.59999996424,
+              "media": 1.2,
+              "visual": 1.20355000002682
+            },
+            {
+              "at": 438874.5,
+              "media": 1.2,
+              "visual": 1.21055000002682
+            },
+            {
+              "at": 438881.7999999523,
+              "media": 1.2,
+              "visual": 1.217750000014899
+            },
+            {
+              "at": 438888.6999999881,
+              "media": 1.2,
+              "visual": 1.2247500000148992
+            },
+            {
+              "at": 438895.7999999523,
+              "media": 1.2,
+              "visual": 1.231850000038741
+            },
+            {
+              "at": 438902.6999999881,
+              "media": 1.2,
+              "visual": 1.2386500000506615
+            },
+            {
+              "at": 438910.1999999881,
+              "media": 1.2,
+              "visual": 1.2461500000506616
+            },
+            {
+              "at": 438916.89999997616,
+              "media": 1.2,
+              "visual": 1.2528500000387406
+            },
+            {
+              "at": 438923.7999999523,
+              "media": 1.2,
+              "visual": 1.259750000014899
+            },
+            {
+              "at": 438932.09999996424,
+              "media": 1.3,
+              "visual": 1.2699750000238392
+            },
+            {
+              "at": 438937.7999999523,
+              "media": 1.3,
+              "visual": 1.2757750000357602
+            },
+            {
+              "at": 438945,
+              "media": 1.3,
+              "visual": 1.282874999999997
+            },
+            {
+              "at": 438951.89999997616,
+              "media": 1.3,
+              "visual": 1.2898749999999972
+            },
+            {
+              "at": 438958.6999999881,
+              "media": 1.3,
+              "visual": 1.29677500003576
+            },
+            {
+              "at": 438966,
+              "media": 1.3,
+              "visual": 1.303874999999997
+            },
+            {
+              "at": 438972.89999997616,
+              "media": 1.3,
+              "visual": 1.31077500003576
+            },
+            {
+              "at": 438980,
+              "media": 1.3,
+              "visual": 1.317874999999997
+            },
+            {
+              "at": 438986.89999997616,
+              "media": 1.3,
+              "visual": 1.3248749999999971
+            },
+            {
+              "at": 438994,
+              "media": 1.3,
+              "visual": 1.331874999999997
+            },
+            {
+              "at": 439019,
+              "media": 1.3,
+              "visual": 1.3569750000238388
+            },
+            {
+              "at": 439023.09999996424,
+              "media": 1.3,
+              "visual": 1.3609750000238388
+            },
+            {
+              "at": 439030.2999999523,
+              "media": 1.4,
+              "visual": 1.368875000014898
+            },
+            {
+              "at": 439036.09999996424,
+              "media": 1.4,
+              "visual": 1.3746750000268189
+            },
+            {
+              "at": 439043.2999999523,
+              "media": 1.4,
+              "visual": 1.3819750000387396
+            },
+            {
+              "at": 439050.1999999881,
+              "media": 1.4,
+              "visual": 1.3888750000148975
+            },
+            {
+              "at": 439057.1999999881,
+              "media": 1.4,
+              "visual": 1.3958750000148978
+            },
+            {
+              "at": 439064.09999996424,
+              "media": 1.4,
+              "visual": 1.4027750000506605
+            },
+            {
+              "at": 439071.39999997616,
+              "media": 1.4,
+              "visual": 1.4100750000029767
+            },
+            {
+              "at": 439078.2999999523,
+              "media": 1.4,
+              "visual": 1.4168750000148975
+            },
+            {
+              "at": 439085.39999997616,
+              "media": 1.4,
+              "visual": 1.4239750000387392
+            },
+            {
+              "at": 439092.39999997616,
+              "media": 1.4,
+              "visual": 1.4309750000387391
+            },
+            {
+              "at": 439099.2999999523,
+              "media": 1.4,
+              "visual": 1.437975000038739
+            },
+            {
+              "at": 439106.2999999523,
+              "media": 1.4,
+              "visual": 1.444975000038739
+            },
+            {
+              "at": 439113.39999997616,
+              "media": 1.4,
+              "visual": 1.452075000002976
+            },
+            {
+              "at": 439120.59999996424,
+              "media": 1.4,
+              "visual": 1.4591750000268178
+            },
+            {
+              "at": 439127.5,
+              "media": 1.5,
+              "visual": 1.4677750000059562
+            },
+            {
+              "at": 439134.5,
+              "media": 1.5,
+              "visual": 1.474775000005956
+            },
+            {
+              "at": 439141.5,
+              "media": 1.5,
+              "visual": 1.4818750000297978
+            },
+            {
+              "at": 439148.39999997616,
+              "media": 1.5,
+              "visual": 1.4888750000297977
+            },
+            {
+              "at": 439155.5,
+              "media": 1.5,
+              "visual": 1.4958750000297976
+            },
+            {
+              "at": 439162.59999996424,
+              "media": 1.5,
+              "visual": 1.5029750000536393
+            },
+            {
+              "at": 439169.5,
+              "media": 1.5,
+              "visual": 1.5098750000297974
+            },
+            {
+              "at": 439176.59999996424,
+              "media": 1.5,
+              "visual": 1.5168750000297972
+            },
+            {
+              "at": 439183.89999997616,
+              "media": 1.5,
+              "visual": 1.5242750000059555
+            },
+            {
+              "at": 439191.1999999881,
+              "media": 1.5,
+              "visual": 1.5313750000297972
+            },
+            {
+              "at": 439197.59999996424,
+              "media": 1.5,
+              "visual": 1.5380750000178762
+            },
+            {
+              "at": 439204.7999999523,
+              "media": 1.5,
+              "visual": 1.5450750000178763
+            },
+            {
+              "at": 439211.89999997616,
+              "media": 1.5,
+              "visual": 1.552175000041718
+            },
+            {
+              "at": 439218.6999999881,
+              "media": 1.5,
+              "visual": 1.559075000017876
+            },
+            {
+              "at": 439225.7999999523,
+              "media": 1.6,
+              "visual": 1.567825000017876
+            },
+            {
+              "at": 439232.7999999523,
+              "media": 1.6,
+              "visual": 1.5748250000178758
+            },
+            {
+              "at": 439239.7999999523,
+              "media": 1.6,
+              "visual": 1.5819250000417175
+            },
+            {
+              "at": 439247.09999996424,
+              "media": 1.6,
+              "visual": 1.5891250000297965
+            },
+            {
+              "at": 439253.89999997616,
+              "media": 1.6,
+              "visual": 1.5959250000417171
+            },
+            {
+              "at": 439260.89999997616,
+              "media": 1.6,
+              "visual": 1.6029250000417172
+            },
+            {
+              "at": 439286.2999999523,
+              "media": 1.6,
+              "visual": 1.6285250000059546
+            },
+            {
+              "at": 439290.1999999881,
+              "media": 1.6,
+              "visual": 1.6323250000178755
+            }
+          ],
+          "movingFrames": 89,
+          "coarseClockPositions": 8,
+          "capture": "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\work\\qa\\parity27-progress-390.png"
+        }
+      ]
+    },
+    "gestures": {
+      "createdAt": "2026-10-18T13:06:42.145Z",
+      "checks": [
+        "Real mouse pickup, retained rowgap and one queue commit",
+        "Escape restores draft without queue command",
+        "Real touch hold/drop 768px one queue commit",
+        "Real touch hold/drop 390px one queue commit",
+        "Real touch hold/drop 320px one queue commit",
+        "Home draft saves likes and actual genre mix",
+        "Personal token validates then opens existing collection picker; field removed and cleared",
+        "Real lifted row autoscrolls longqueue 1376px; cancel sends0commands",
+        "Whole row touchhold lifts; touchcancel sends0commands",
+        "48 real animationframes keep distant blur>=2.25px andopacity<=.31; WAAPI onlymovesrows",
+        "Actualtrackmenu trackandartist optout +undo make4correctPOSTs; library untouched"
+      ],
+      "captures": [
+        "work/qa/parity27-web-dock-1440.png",
+        "work/qa/parity27-web-pickup-1440.png",
+        "work/qa/parity27-web-pickup-768.png",
+        "work/qa/parity27-web-pickup-390.png",
+        "work/qa/parity27-web-pickup-320.png",
+        "work/qa/parity27-web-home-editor-1440.png",
+        "work/qa/parity27-web-home-1440.png",
+        "work/qa/parity27-web-home-768.png",
+        "work/qa/parity27-web-home-editor-768.png",
+        "work/qa/parity27-web-home-390.png",
+        "work/qa/parity27-web-home-editor-390.png",
+        "work/qa/parity27-web-home-320.png",
+        "work/qa/parity27-web-home-editor-320.png",
+        "work/qa/parity27-web-transfer-token-1440.png",
+        "work/qa/parity27-web-transfer-collections-1440.png",
+        "work/qa/parity27-web-queue-edge-1440.png",
+        "work/qa/parity27-web-lyrics-depth-1440.png"
+      ],
+      "gestureChecksPassed": true,
+      "passed": true,
+      "lyricDepth": {
+        "active": "2",
+        "animations": [
+          [
+            {
+              "composite": "auto",
+              "computedOffset": 0,
+              "easing": "linear",
+              "offset": null,
+              "transform": "translateY(15px)"
+            },
+            {
+              "composite": "auto",
+              "computedOffset": 0.78,
+              "easing": "linear",
+              "offset": 0.78,
+              "transform": "translateY(-0.375px)"
+            },
+            {
+              "composite": "auto",
+              "computedOffset": 1,
+              "easing": "linear",
+              "offset": null,
+              "transform": "translateY(0px)"
+            }
+          ],
+          [
+            {
+              "composite": "auto",
+              "computedOffset": 0,
+              "easing": "linear",
+              "offset": null,
+              "transform": "translateY(15px)"
+            },
+            {
+              "composite": "auto",
+              "computedOffset": 0.78,
+              "easing": "linear",
+              "offset": 0.78,
+              "transform": "translateY(-0.375px)"
+            },
+            {
+              "composite": "auto",
+              "computedOffset": 1,
+              "easing": "linear",
+              "offset": null,
+              "transform": "translateY(0px)"
+            }
+          ],
+          [
+            {
+              "composite": "auto",
+              "computedOffset": 0,
+              "easing": "linear",
+              "offset": null,
+              "transform": "translateY(15px)"
+            },
+            {
+              "composite": "auto",
+              "computedOffset": 0.78,
+              "easing": "linear",
+              "offset": 0.78,
+              "transform": "translateY(-0.375px)"
+            },
+            {
+              "composite": "auto",
+              "computedOffset": 1,
+              "easing": "linear",
+              "offset": null,
+              "transform": "translateY(0px)"
+            }
+          ],
+          [
+            {
+              "composite": "auto",
+              "computedOffset": 0,
+              "easing": "linear",
+              "offset": null,
+              "transform": "translateY(15px)"
+            },
+            {
+              "composite": "auto",
+              "computedOffset": 0.78,
+              "easing": "linear",
+              "offset": 0.78,
+              "transform": "translateY(-0.375px)"
+            },
+            {
+              "composite": "auto",
+              "computedOffset": 1,
+              "easing": "linear",
+              "offset": null,
+              "transform": "translateY(0px)"
+            }
+          ],
+          [
+            {
+              "composite": "auto",
+              "computedOffset": 0,
+              "easing": "linear",
+              "offset": null,
+              "transform": "translateY(15px)"
+            },
+            {
+              "composite": "auto",
+              "computedOffset": 0.78,
+              "easing": "linear",
+              "offset": 0.78,
+              "transform": "translateY(-0.375px)"
+            },
+            {
+              "composite": "auto",
+              "computedOffset": 1,
+              "easing": "linear",
+              "offset": null,
+              "transform": "translateY(0px)"
+            }
+          ],
+          [
+            {
+              "composite": "auto",
+              "computedOffset": 0,
+              "easing": "linear",
+              "offset": null,
+              "transform": "translateY(15px)"
+            },
+            {
+              "composite": "auto",
+              "computedOffset": 0.78,
+              "easing": "linear",
+              "offset": 0.78,
+              "transform": "translateY(-0.375px)"
+            },
+            {
+              "composite": "auto",
+              "computedOffset": 1,
+              "easing": "linear",
+              "offset": null,
+              "transform": "translateY(0px)"
+            }
+          ]
+        ],
+        "samples": [
+          {
+            "active": "2",
+            "at": 1061176.2000000477,
+            "blur": 4.6,
+            "opacity": 0.18,
+            "transform": "matrix(1, 0, 0, 1, 0, 15)"
+          },
+          {
+            "active": "2",
+            "at": 1061181.9000000358,
+            "blur": 4.34944,
+            "opacity": 0.193073,
+            "transform": "matrix(1, 0, 0, 1, 0, 15)"
+          },
+          {
+            "active": "2",
+            "at": 1061237.2000000477,
+            "blur": 4.30051,
+            "opacity": 0.195626,
+            "transform": "matrix(1, 0, 0, 1, 0, 14.3094)"
+          },
+          {
+            "active": "2",
+            "at": 1061242.5,
+            "blur": 3.89057,
+            "opacity": 0.217014,
+            "transform": "matrix(1, 0, 0, 1, 0, 7.01973)"
+          },
+          {
+            "active": "2",
+            "at": 1061248.1000000238,
+            "blur": 3.76298,
+            "opacity": 0.223671,
+            "transform": "matrix(1, 0, 0, 1, 0, 5.35284)"
+          },
+          {
+            "active": "2",
+            "at": 1061254.7000000477,
+            "blur": 3.70049,
+            "opacity": 0.226931,
+            "transform": "matrix(1, 0, 0, 1, 0, 4.61824)"
+          },
+          {
+            "active": "2",
+            "at": 1061262.800000012,
+            "blur": 3.63816,
+            "opacity": 0.230183,
+            "transform": "matrix(1, 0, 0, 1, 0, 3.93347)"
+          },
+          {
+            "active": "2",
+            "at": 1061268.7000000477,
+            "blur": 3.57888,
+            "opacity": 0.233276,
+            "transform": "matrix(1, 0, 0, 1, 0, 3.32274)"
+          },
+          {
+            "active": "2",
+            "at": 1061275.7000000477,
+            "blur": 3.51942,
+            "opacity": 0.236378,
+            "transform": "matrix(1, 0, 0, 1, 0, 2.74643)"
+          },
+          {
+            "active": "2",
+            "at": 1061282.9000000358,
+            "blur": 3.46247,
+            "opacity": 0.239349,
+            "transform": "matrix(1, 0, 0, 1, 0, 2.22562)"
+          },
+          {
+            "active": "2",
+            "at": 1061289.6000000238,
+            "blur": 3.4073,
+            "opacity": 0.242228,
+            "transform": "matrix(1, 0, 0, 1, 0, 1.74757)"
+          },
+          {
+            "active": "2",
+            "at": 1061297.300000012,
+            "blur": 3.35322,
+            "opacity": 0.245049,
+            "transform": "matrix(1, 0, 0, 1, 0, 1.3022)"
+          },
+          {
+            "active": "2",
+            "at": 1061303.9000000358,
+            "blur": 3.3018,
+            "opacity": 0.247732,
+            "transform": "matrix(1, 0, 0, 1, 0, 0.898268)"
+          },
+          {
+            "active": "2",
+            "at": 1061310.800000012,
+            "blur": 3.25227,
+            "opacity": 0.250316,
+            "transform": "matrix(1, 0, 0, 1, 0, 0.525813)"
+          },
+          {
+            "active": "2",
+            "at": 1061317.800000012,
+            "blur": 3.20461,
+            "opacity": 0.252803,
+            "transform": "matrix(1, 0, 0, 1, 0, 0.181769)"
+          },
+          {
+            "active": "2",
+            "at": 1061326.4000000358,
+            "blur": 3.15817,
+            "opacity": 0.255226,
+            "transform": "matrix(1, 0, 0, 1, 0, -0.14098)"
+          },
+          {
+            "active": "2",
+            "at": 1061333.5,
+            "blur": 3.11421,
+            "opacity": 0.25752,
+            "transform": "matrix(1, 0, 0, 1, 0, -0.369742)"
+          },
+          {
+            "active": "2",
+            "at": 1061339.9000000358,
+            "blur": 3.07261,
+            "opacity": 0.25969,
+            "transform": "matrix(1, 0, 0, 1, 0, -0.346391)"
+          },
+          {
+            "active": "2",
+            "at": 1061346.1000000238,
+            "blur": 3.03156,
+            "opacity": 0.261832,
+            "transform": "matrix(1, 0, 0, 1, 0, -0.324041)"
+          },
+          {
+            "active": "2",
+            "at": 1061364.7000000477,
+            "blur": 2.95507,
+            "opacity": 0.265822,
+            "transform": "matrix(1, 0, 0, 1, 0, -0.284113)"
+          },
+          {
+            "active": "2",
+            "at": 1061368.6000000238,
+            "blur": 2.91948,
+            "opacity": 0.267679,
+            "transform": "matrix(1, 0, 0, 1, 0, -0.266243)"
+          },
+          {
+            "active": "2",
+            "at": 1061379.2000000477,
+            "blur": 2.88539,
+            "opacity": 0.269458,
+            "transform": "matrix(1, 0, 0, 1, 0, -0.249524)"
+          },
+          {
+            "active": "2",
+            "at": 1061394.800000012,
+            "blur": 2.82107,
+            "opacity": 0.272814,
+            "transform": "matrix(1, 0, 0, 1, 0, -0.218977)"
+          },
+          {
+            "active": "2",
+            "at": 1061400.300000012,
+            "blur": 2.79077,
+            "opacity": 0.274395,
+            "transform": "matrix(1, 0, 0, 1, 0, -0.205016)"
+          },
+          {
+            "active": "2",
+            "at": 1061411.2000000477,
+            "blur": 2.73526,
+            "opacity": 0.277291,
+            "transform": "matrix(1, 0, 0, 1, 0, -0.180104)"
+          },
+          {
+            "active": "2",
+            "at": 1061417.4000000358,
+            "blur": 2.70911,
+            "opacity": 0.278655,
+            "transform": "matrix(1, 0, 0, 1, 0, -0.168656)"
+          },
+          {
+            "active": "2",
+            "at": 1061423,
+            "blur": 2.68412,
+            "opacity": 0.279959,
+            "transform": "matrix(1, 0, 0, 1, 0, -0.157877)"
+          },
+          {
+            "active": "2",
+            "at": 1061430.2000000477,
+            "blur": 2.66023,
+            "opacity": 0.281205,
+            "transform": "matrix(1, 0, 0, 1, 0, -0.147721)"
+          },
+          {
+            "active": "2",
+            "at": 1061437.1000000238,
+            "blur": 2.6371,
+            "opacity": 0.282412,
+            "transform": "matrix(1, 0, 0, 1, 0, -0.138014)"
+          },
+          {
+            "active": "2",
+            "at": 1061444.2000000477,
+            "blur": 2.61533,
+            "opacity": 0.283548,
+            "transform": "matrix(1, 0, 0, 1, 0, -0.128992)"
+          },
+          {
+            "active": "2",
+            "at": 1061451.300000012,
+            "blur": 2.59456,
+            "opacity": 0.284632,
+            "transform": "matrix(1, 0, 0, 1, 0, -0.120481)"
+          },
+          {
+            "active": "2",
+            "at": 1061458.2000000477,
+            "blur": 2.57446,
+            "opacity": 0.28568,
+            "transform": "matrix(1, 0, 0, 1, 0, -0.112337)"
+          },
+          {
+            "active": "2",
+            "at": 1061465.1000000238,
+            "blur": 2.55585,
+            "opacity": 0.286652,
+            "transform": "matrix(1, 0, 0, 1, 0, -0.104865)"
+          },
+          {
+            "active": "2",
+            "at": 1061472.300000012,
+            "blur": 2.53784,
+            "opacity": 0.287591,
+            "transform": "matrix(1, 0, 0, 1, 0, -0.0977063)"
+          },
+          {
+            "active": "2",
+            "at": 1061479.4000000358,
+            "blur": 2.52023,
+            "opacity": 0.28851,
+            "transform": "matrix(1, 0, 0, 1, 0, -0.0907591)"
+          },
+          {
+            "active": "2",
+            "at": 1061486.6000000238,
+            "blur": 2.50394,
+            "opacity": 0.28936,
+            "transform": "matrix(1, 0, 0, 1, 0, -0.0843868)"
+          },
+          {
+            "active": "2",
+            "at": 1061493.2000000477,
+            "blur": 2.48846,
+            "opacity": 0.290167,
+            "transform": "matrix(1, 0, 0, 1, 0, -0.07837)"
+          },
+          {
+            "active": "2",
+            "at": 1061500.5,
+            "blur": 2.47375,
+            "opacity": 0.290935,
+            "transform": "matrix(1, 0, 0, 1, 0, -0.0726898)"
+          },
+          {
+            "active": "2",
+            "at": 1061507.5,
+            "blur": 2.4598,
+            "opacity": 0.291663,
+            "transform": "matrix(1, 0, 0, 1, 0, -0.0673281)"
+          },
+          {
+            "active": "2",
+            "at": 1061514.4000000358,
+            "blur": 2.44639,
+            "opacity": 0.292362,
+            "transform": "matrix(1, 0, 0, 1, 0, -0.0621985)"
+          },
+          {
+            "active": "2",
+            "at": 1061521.4000000358,
+            "blur": 2.43405,
+            "opacity": 0.293006,
+            "transform": "matrix(1, 0, 0, 1, 0, -0.0574959)"
+          },
+          {
+            "active": "2",
+            "at": 1061528.5,
+            "blur": 2.42205,
+            "opacity": 0.293632,
+            "transform": "matrix(1, 0, 0, 1, 0, -0.0529333)"
+          },
+          {
+            "active": "2",
+            "at": 1061535.300000012,
+            "blur": 2.41089,
+            "opacity": 0.294215,
+            "transform": "matrix(1, 0, 0, 1, 0, -0.0486958)"
+          },
+          {
+            "active": "2",
+            "at": 1061542.5,
+            "blur": 2.40036,
+            "opacity": 0.294764,
+            "transform": "matrix(1, 0, 0, 1, 0, -0.0447047)"
+          },
+          {
+            "active": "2",
+            "at": 1061549.7000000477,
+            "blur": 2.39046,
+            "opacity": 0.29528,
+            "transform": "matrix(1, 0, 0, 1, 0, -0.0409485)"
+          },
+          {
+            "active": "2",
+            "at": 1061556.5,
+            "blur": 2.38104,
+            "opacity": 0.295772,
+            "transform": "matrix(1, 0, 0, 1, 0, -0.0373673)"
+          },
+          {
+            "active": "2",
+            "at": 1061564,
+            "blur": 2.37222,
+            "opacity": 0.296232,
+            "transform": "matrix(1, 0, 0, 1, 0, -0.0340057)"
+          },
+          {
+            "active": "2",
+            "at": 1061570.6000000238,
+            "blur": 2.36421,
+            "opacity": 0.29665,
+            "transform": "matrix(1, 0, 0, 1, 0, -0.0309399)"
+          }
+        ]
+      },
+      "exclusionCalls": [
+        {
+          "artist": false,
+          "remove": false,
+          "trackId": "newest"
+        },
+        {
+          "artist": false,
+          "remove": true,
+          "trackId": "newest"
+        },
+        {
+          "artist": true,
+          "remove": false,
+          "trackId": "newest"
+        },
+        {
+          "artist": true,
+          "remove": true,
+          "trackId": "newest"
+        }
+      ]
+    }
+  },
+  "server": {
+    "testsPassed": 138,
+    "fullSuitePassed": true,
+    "deploymentPerformed": false
+  },
+  "native": {
+    "apk": "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\apps\\native\\build\\app\\outputs\\flutter-apk\\app-debug.apk",
+    "bytes": 180979038,
+    "builtAt": "2026-10-18T14:00:39.010324+00:00",
+    "sha256": "7a765fde502c3139c4920b91fede1dd001016ff63b5014b05d00b40c3b59fc9e",
+    "sourceFrozenAt": "2026-10-18T13:32:06.196418+00:00",
+    "sourceSha256": "5a671f055ee7ab5aa080e2a1220821369621cdc64c66442dc7eed1a073d99073",
+    "sourceFiles": 239,
+    "kernelSha256": "6d07b130b7321429806261bde3d1145a8a8ef1789a3b1e4ccb0fad56d2cf3de3",
+    "kernelMatchesBuildOutput": true,
+    "compileDefine": "https://wave.gluk.tech",
+    "kernelFeatureMarkers": {
+      "waveAudioServiceConfig": true,
+      "lyric-countdown": true,
+      "lyricsIntro": true,
+      "mini-lyrics-frame": true,
+      "activeDeviceName": true,
+      "glukwave.like": true,
+      "tech.gluk.glukwave/home_widgets": true,
+      "glukwave.widget": true,
+      "Home screen widgets": true,
+      "https://wave.gluk.tech": true,
+      "full-player": true,
+      "player-cover-gesture": true,
+      "language-selector": true,
+      "language.auto": true,
+      "locale:change": true,
+      "lrcClock": true,
+      "artworkForDisplay": true,
+      "-t500x500.": true,
+      "/api/diagnostics/events": true,
+      "glukwave-lan-v1": true,
+      "LAN pairing": true,
+      "seasonalEffects": true,
+      "lan-enable": true,
+      "ROOM_STATE": true,
+      "/lrclib": true,
+      "Find on LRCLIB": true,
+      "/genius/preview": true,
+      "genius-preview": true,
+      "cover-ambient-transform": true,
+      "/discord": true,
+      "discord:changed": true,
+      "discordPresence": true,
+      "deviceVolume": true,
+      "/api/auth/native-captcha": true,
+      "Invalid authentication expiry": true,
+      "desktop-quick-volume": true,
+      "account:state": true,
+      "track-loading-cover": true,
+      "ScrollingLabel": true,
+      "/connect": true,
+      "outputActive": true,
+      "/account/sessions": true,
+      "downloadUrl": true,
+      "adoptOnly": true,
+      "/taste": true,
+      "/friends": true,
+      "/jams": true,
+      "/api/account/": true,
+      "currentPassword": true,
+      "Email sent": true,
+      "/playlists/discover": true,
+      "mini-card-progress": true,
+      "search-source-menu": true,
+      "search-type-": true,
+      "player-transport-capsule": true,
+      "player-secondary-capsule": true,
+      "X-GlukWave-Playback-Wait": true,
+      "player-centered-view": true,
+      "player-detail-view-": true,
+      "player-lyrics-toggle": true,
+      "compact-eq-presets": true,
+      "#EXTM3U": true,
+      "Colour from the cover": true,
+      "coverAccent": true,
+      "compact-eq-enabled": true,
+      "compact-eq-band-": true,
+      "compact-eq-preamp": true,
+      "compact-eq-rate": true,
+      "connect-quick-picker": true,
+      "native-queue-list": true,
+      "queue-add": true,
+      "waveMode": true,
+      "waveMood": true,
+      "waveActive": true,
+      "/api/recommendations": true,
+      "queue-search": true,
+      "ListeningPresence": true,
+      "SettingsEdit": true,
+      "_PlaybackWavePainter": true,
+      "tech.gluk.glukwave/energy": true,
+      "saved-view": true,
+      "saved-play": true,
+      "guard-manual-code": true,
+      "guard-target-name": true,
+      "guard-approve": true,
+      "lyrics-persistent-controls": true,
+      "OFFLINE_MISSING": true,
+      "INVALID_LOGIN_CODE": true,
+      "playlist-membership-": true,
+      "playlist-new-name": true,
+      "playlist-edit-name": true,
+      "playlist-library-": true,
+      "Playlist response is missing": true,
+      "/api/public-import/search": true,
+      "/api/public-import/tracks": true,
+      "publicSourceUrl": true,
+      "album-back-title": true,
+      "album-back-source": true,
+      "AppUpdater": true,
+      "DesktopTitleBar": true,
+      "HomeShelf": true,
+      "/api/integrations/yandex/token": true,
+      "tech.gluk.glukwave/updates": true,
+      "/api/recommendations/exclude": true,
+      "HalftoneRoom": true,
+      "MetadataCache": true,
+      "restoringLocal": true,
+      "/api/artists/": true,
+      "wave-top-notice": true,
+      "settings-search": true,
+      "library-sort": true,
+      "AlbumPlaneScene": true,
+      "SmoothProgressBuilder": true,
+      "ProgressPresentationClock": true,
+      "refreshNotificationLike": true,
+      "glukwave.like/": true
+    },
+    "localCatalogsInKernel": {
+      "en": true,
+      "ru": true,
+      "kk": true,
+      "uk": true,
+      "de": true,
+      "es": true
+    },
+    "qaTrackBundled": false,
+    "fontManifestVerified": true,
+    "staticFontFaces": [
+      {
+        "asset": "assets/fonts/Nunito-Regular.ttf",
+        "weight": 400,
+        "variable": false,
+        "sha256": "29f17d41574376520b263bde34a4fecb11814233ff280c66befce6020c5e3cc4",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-Medium.ttf",
+        "weight": 500,
+        "variable": false,
+        "sha256": "818d89d5417ed2c7686c07097469f417d41dfe70b8e9514466637612f7ab9d8d",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-SemiBold.ttf",
+        "weight": 600,
+        "variable": false,
+        "sha256": "e6ac9b7051c6b3c4a23817a9272e2a8f7124896b36e68b30a3d46b452a0418a5",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-Bold.ttf",
+        "weight": 700,
+        "variable": false,
+        "sha256": "19acc4b8e7dc15b49c3802b6f2b53a1c41d7ee548733204a367052fa53387933",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-ExtraBold.ttf",
+        "weight": 800,
+        "variable": false,
+        "sha256": "9bc8f0d0c03926636f41ec699c6563dd01835b510c194e2086811eaf65a8e527",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Nunito-Black.ttf",
+        "weight": 900,
+        "variable": false,
+        "sha256": "b3628977111142f66472632770b76ee2c0665a40ae536bd64971a3bc19087717",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Manrope-Regular.ttf",
+        "weight": 400,
+        "variable": false,
+        "sha256": "c443e2325b9ff17933ec2f5a99d835af430a545901d146f81f4fc9f4882b6623",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Manrope-Medium.ttf",
+        "weight": 500,
+        "variable": false,
+        "sha256": "78177fa989a3feb256c1750faca4a05ab0b70f093f5f45b12a537e7b939bae9c",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Manrope-SemiBold.ttf",
+        "weight": 600,
+        "variable": false,
+        "sha256": "1eea52be7b84d0841e39d6102cdf2f6777dbdbd6781d3a40a3323a8151163f07",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Manrope-Bold.ttf",
+        "weight": 700,
+        "variable": false,
+        "sha256": "06ef9bf16d6ce1b6b8d6b953ea8b9e6c30e4b3708cf039132224fb2a5aa77102",
+        "matchesSource": true
+      },
+      {
+        "asset": "assets/fonts/Manrope-ExtraBold.ttf",
+        "weight": 800,
+        "variable": false,
+        "sha256": "63050130f7beccf497d740a2af39f8d5d49447e9ed777014e8d6d413442425ba",
+        "matchesSource": true
+      }
+    ],
+    "fontManifestSha256": "dc61e379e1f65f8de62057e95a64baaebcbbf8e5ee2450f736e2611705ca210f",
+    "nunitoLicenseIncluded": true,
+    "manifestVerified": true,
+    "androidWidgetReceiversPrivate": {
+      "WavePlayerWidget": true,
+      "WaveLargeWidget": true,
+      "WidgetCommandReceiver": true
+    },
+    "widgetTestRuntimeBundled": false,
+    "privateConnectBackgroundService": true,
+    "version": "1.0.0",
+    "versionCode": 27,
+    "minSdk": 24,
+    "targetSdk": 36,
+    "output": "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\outputs\\GlukWave-android-debug.apk",
+    "outputMatchesBuild": true,
+    "signatureVerified": true,
+    "signatureScheme": "v2",
+    "certificateSha256": "d631b0271019e5b3a9df153929ac0de07708b0766fc4c132fbce862b67a56748",
+    "updateCertificateMatchesPrevious": true,
+    "analyzerIssues": 0,
+    "standardTestsPassed": 528,
+    "standardVerification": {
+      "checkedAt": "2026-10-18T13:51:49.425616+00:00",
+      "passed": true,
+      "fullSuitePassed": true,
+      "currentAffectedTestsPassed": 528,
+      "fullSuiteTestsPassed": 528,
+      "log": "parity27-native-final-full.log",
+      "logSha256": "5e70407cd52d239e86ceabdd2471724de0049635a0bf6745d8a510f37c0c8503",
+      "analyzerLog": "parity27-native-final-analyze.log",
+      "sourceFreezeSha256": "ea8c0176f7906b9bd58d5cffbf61c3fbf8485a3638569d677d727b6dfb6a4858",
+      "sourceFreezeStillMatches": true,
+      "concurrency": 2,
+      "scope": "Entire native test suite after all native27 production changes; partial reruns not added",
+      "limits": [
+        "No real-device installation or physical sound verification",
+        "One aborted default-parallel run encountered host memory pressure; the complete bounded-parallel final run passed"
+      ]
+    },
+    "signature": "debug",
+    "deviceRuntimeVerified": false,
+    "manropeLicenseIncluded": true,
+    "iosBuilt": false,
+    "sourceFreezeFile": "docs/verification/2026-10-18/parity27/parity27-native-source-freeze.json",
+    "compaction": {
+      "passed": true,
+      "bytesBefore": 186086801,
+      "bytesAfter": 180979038,
+      "savedBytes": 5107763,
+      "allEntryHashesUnchanged": true,
+      "entryCount": 667,
+      "pageAlignmentKB": 16,
+      "v2SignatureVerified": true,
+      "updateCertificateMatchesBaseline": true,
+      "certificateSha256": "d631b0271019e5b3a9df153929ac0de07708b0766fc4c132fbce862b67a56748",
+      "sha256": "7a765fde502c3139c4920b91fede1dd001016ff63b5014b05d00b40c3b59fc9e"
+    },
+    "windowsExecutableBuilt": true,
+    "windows": {
+      "checkedAt": "2026-10-18T14:53:53.442459+00:00",
+      "passed": true,
+      "bundle": "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\outputs\\GlukWave-windows",
+      "file": "outputs/GlukWave-windows.zip",
+      "bytes": 41512502,
+      "sha256": "9a43b0e80678344a13390da1641aab174370a9f3345fa62b8af8eda812ac34b7",
+      "frozenOriginalFilesMatched": 239,
+      "compiledSourceFilesMatched": 156,
+      "packageMatchesReleaseBuild": true,
+      "zipCrcAndAllFilesMatched": true,
+      "staticFontFaces": 11,
+      "compileDefine": "https://wave.gluk.tech",
+      "buildMode": "release",
+      "pinnedFullMediaRuntimeVerified": true,
+      "binarySha256": {
+        "audio_service_win_plugin.dll": "a5f96408a3ba417ceb7db856654d8cf2ce0a1f3ff12cafd3da531c4df4f038a3",
+        "concrt140.dll": "2405355f0a58067b258f8df33c327e3a3d716eaac5a3a5aebb757842d85bd376",
+        "d3dcompiler_47.dll": "5653bc7b0e2701561464ef36602ff6171c96bffe96e4c3597359cd7addcba88a",
+        "flutter_inappwebview_windows_plugin.dll": "b4d2407c57ecb6a23431d7871838b31119ca31dac19f5b0a46f8ed2ddbab3b86",
+        "flutter_secure_storage_windows_plugin.dll": "e91542df0301a6a47b24d0e740718763a61d1f915ddef6d0e506f38c9addf17b",
+        "flutter_windows.dll": "6840b8129fb105dd246f05f14eab97d7e8e9eade1428f9afde95de6b8e1a7808",
+        "libEGL.dll": "b2590bd0692f0381fc45c20bf1c7f7f713c9ea19c7ea6bab62efdd1fadc4eaac",
+        "libGLESv2.dll": "620bb6e38d7ed6c760a0cf4a8eb6a8f64b259b96ff286551cd32cefc6c35ca39",
+        "libmpv-2.dll": "d5f0694b08c124e785d858d00082f3e3b158dd9138bfc48c0382bf1eb443a5fc",
+        "media_kit_libs_windows_video_plugin.dll": "01cacd94bf0d397df4b817b4acf186279eb97833ed36c0dd644b6600caff54d7",
+        "msvcp140.dll": "0f885b509a685d2bbfa652fed26b5fb31d88fbdab0a978c641d1c7b8aa460aa9",
+        "msvcp140_1.dll": "bfad5aef4c63a669e3c140655cdfdf395b6c979b400a447bd5dcb65ed8826c3d",
+        "msvcp140_2.dll": "3ea06f0ee098b4823cb79599df3780e7f23cce52c19aac31d2a0d47efe33a5e9",
+        "msvcp140_atomic_wait.dll": "640b2aefced484d0368eea5bdd06addd0658a3a70a49256e560d6923b404a479",
+        "msvcp140_codecvt_ids.dll": "f2069a52880ec885ee7f0511186100eb7fada0411a2b4948fafea7735b878a18",
+        "screen_retriever_windows_plugin.dll": "b0ab4c280d047d0ce8e3bddaed4ed6fed12749ec6c1d5c4f77c05aa1bc200d48",
+        "tray_manager_plugin.dll": "6e0edbd9336389a1927013900517fa8b0e910367b36569adf24f0ff6009db7e2",
+        "url_launcher_windows_plugin.dll": "29809fd47350fc127133349efb3ff2389ca449060b0fc8048f80b0b29d7975b6",
+        "vccorlib140.dll": "19839407c3fdbc824e5bce189bf68ddf8097f12ec28b757797ffa0415c144ddd",
+        "vcruntime140.dll": "d5e4d9a3e835fa679450145d6a7d94e36573a509317111904d9b3712c30d9066",
+        "vcruntime140_1.dll": "1f2d41c4aa5db0bc33ebf7b66d72943a817d7ce6cbe880502a9403823633093f",
+        "vcruntime140_threads.dll": "219915cf20822f34d5e7c1fdd4e21ae7f3396881096c51036225fb8f84b47afa",
+        "vk_swiftshader.dll": "4f33eea716491972cb1ad123a78acef485f852581130d3f3a98a1981009004f2",
+        "vulkan-1.dll": "3be9a95dd9019aa1aca47ade26f5c1c7c0047f3cf6f633d586c9ec0d3b459566",
+        "WebView2Loader.dll": "9468470d6a4d11179ec179183d130465a380e0dedfdbe1fc2ab404c86c45a85e",
+        "window_manager_plugin.dll": "75547d85e71d762108b1bdceafc24eba8f6dd63bf91449e4fb6c3b4a80ed7947",
+        "zlib.dll": "82d5bf175cf882ac9afc1558b416e674606d055966bc09529076b28a498fc0e4",
+        "glukwave.exe": "b8a6f258b0d21b2b577a1d964715330a39a3a279790312fbe233f0a2980a6856"
+      },
+      "authenticodeSigned": false,
+      "physicalAudioVerified": false,
+      "uiInteractionVerified": false,
+      "installer": {
+        "checkedAt": "2026-10-18T14:54:39.3396049Z",
+        "passed": true,
+        "singleFile": true,
+        "version": "1.0.0.27",
+        "productVersion": "1.0.0+27",
+        "bytes": 33216076,
+        "sha256": "6ec540344c374d9b20205e0f78376423c7f8d500a7a3fddbbdc6100491080801",
+        "compilerSucceeded": true,
+        "desktopShortcutChoice": true,
+        "autostartChoice": true,
+        "autostartDefault": false,
+        "webviewBootstrapperEmbedded": true,
+        "installedDuringIteration": false,
+        "authenticodeSigned": false
+      }
+    },
+    "verification": {
+      "checkedAt": "2026-10-18T13:51:49.425616+00:00",
+      "passed": true,
+      "fullSuitePassed": true,
+      "currentAffectedTestsPassed": 528,
+      "fullSuiteTestsPassed": 528,
+      "log": "parity27-native-final-full.log",
+      "logSha256": "5e70407cd52d239e86ceabdd2471724de0049635a0bf6745d8a510f37c0c8503",
+      "analyzerLog": "parity27-native-final-analyze.log",
+      "sourceFreezeSha256": "ea8c0176f7906b9bd58d5cffbf61c3fbf8485a3638569d677d727b6dfb6a4858",
+      "sourceFreezeStillMatches": true,
+      "concurrency": 2,
+      "scope": "Entire native test suite after all native27 production changes; partial reruns not added",
+      "limits": [
+        "No real-device installation or physical sound verification",
+        "One aborted default-parallel run encountered host memory pressure; the complete bounded-parallel final run passed"
+      ]
+    }
+  },
+  "design": {
+    "current": {
+      "version": 27,
+      "attempt": 3,
+      "verdict": "PASS",
+      "passed": true,
+      "createdAt": "2026-10-18T15:14:25.095Z",
+      "sameProviderLimitation": true,
+      "sameProviderNote": "Independent agent, same available model provider; different provider unavailable.",
+      "privateReport": "C:/Users/alish/AppData/Local/Temp/glukwave27-design-l1ghdyip.1qq/eval_main_3.md",
+      "surface": "actual rebuilt production web dist with isolated local API fixture; no source CSS injection",
+      "sourceHash": "016980e48373ae98389ad69761d6184fcbc6658bef162190ac44c178cb760859",
+      "distHash": "a2b7f5d31d6be0d44a2b9d0d03b3ab6217e9c38668a188b3a1b348d24152b33c",
+      "sourceHashes": {
+        "apps/native/lib/l10n/glukwave27_ui_strings.dart": "fdf79d953738baa5e47b74274e0aba5d47b2fc41ab192dbf76780909dd39f234",
+        "apps/native/lib/services/desktop.dart": "6c02d092578d6235ce8c8b0eb3cd60f16031bff538b54d77955e26edfa3ea5be",
+        "apps/native/lib/ui/app.dart": "33523b07c93ddd2dbb970d6ce3d9b4fc044d80878f4b9b8aab9ff973de15262d",
+        "apps/native/lib/ui/auth_page.dart": "23e3d8816fb2080642999c0282080026ee6ad2b3f7e1a9aadb6f2aa1f3225ecb",
+        "apps/native/lib/ui/desktop_titlebar.dart": "6e5493039e79d4b41c7fc9e732eed07895db57f45fd1b3e295a460777fc06ba2",
+        "apps/native/lib/ui/home_shelf.dart": "8b4bd8e0ecacc9359390de6d1146642c08172a503f42ec4a0e7a15e98ad18f8c",
+        "apps/native/lib/ui/listening_rail.dart": "b8ea3ebda05a70c154df3fe791aa01f28085e0919015fdfefa752679aaa46806",
+        "apps/native/lib/ui/native19_desktop_transport.dart": "f61c04f954fe6d48a40c41f1a0dd4cd250b300e1e35748c9d9e22b11c760e126",
+        "apps/native/lib/ui/player.dart": "7050d19ed64d6ea979533ed87e6b4c70c8c497f1d74bbde6c32dbbd8f802f062",
+        "apps/native/lib/ui/provider_access.dart": "1070ae81a628af601a2a5f677fa2bd73a45b7922062b6b02aca02142630108e0",
+        "apps/native/lib/ui/provider_import.dart": "bf9c35803ff9f6b890f436e4cec892abbf8f3a18afea8ccf391cd20703503a48",
+        "apps/native/lib/ui/queue_panel.dart": "5ce481e25491797cd207b25c2d6fee5994ce001251230a54af313b12994f8459",
+        "apps/native/lib/ui/recommendation_actions.dart": "6fa34e0e970045a6541355e8d08cbc56ce7857fa0c1c4da1ad3a9f40263837aa",
+        "apps/native/lib/ui/top_notice.dart": "cea02898ea5cf858386dc795947244ee9c078779c0f896efa72995e226c455a6",
+        "apps/native/lib/ui/update_notice.dart": "b6232dd90efb85e299c7a37d1e9cf29148edd923a2da271997a6fff7f1ba4be8",
+        "apps/native/lib/ui/volume_panel.dart": "71fd748750db96f50ff0e6016c4d2a3f2477bd8e8d5f8df9020f1cbff12fa4d7",
+        "apps/native/test/app_layout_test.dart": "0d36b5bd0f4cedaa01173b9e6aa72308cc0bcc5d7259848736b4c8909c64a9ae",
+        "apps/native/test/ecosystem_polish_test.dart": "aa86c27dd07c852d00bd66b8ea4b66cccb363257960d4c4cbe490f5c7293069e",
+        "apps/native/test/fixtures/silk-colors-parity.json": "1b0e7ed3cc51e91d5094bcb077fdb8d427cc5cbb5ed01a47be1d21ea0c028cf1",
+        "apps/native/test/parity23_ui_test.dart": "7da7ae726158b9ccb58be55732801b74f35838e691e56b5b13bea1820905ccaf",
+        "apps/native/test/parity24_ui_test.dart": "814011ea6127d8004c67827b431a48f96ab1aa59ad7283b08aa077d93e368f39",
+        "apps/native/test/parity27_ui_test.dart": "05ad9adaabeebd2d320d17aa745183664baf866bce21aceb8ae166ad928c049c",
+        "apps/web/src/glukwave26.css": "6c312b7e51edb6a5b61b2f89e17b46260b46ca347dde83ee3b4a8be9fd5c9734",
+        "apps/web/src/glukwave27-copy.ts": "ec3cd9542242d3a295f2b14e3a62175fadda1e0850e142a89a44ddf03352ab75",
+        "apps/web/src/home-shelf.tsx": "3f479ea762d214b757e4357c0ef1157073e3b9315db936a7c9b3ba6cdafe09f9",
+        "apps/web/src/mini.tsx": "e299c6d1e28635ca2823bbb75284c44e1f23eff3c643aa79cce04d44c8c348bb",
+        "apps/web/src/pages.tsx": "d6f6b73baffd5664302a64269fcf178476b0332ba1a71be26d32d0859c1e2b05",
+        "apps/web/src/pickup-order.tsx": "4333de79e6f1e90fd615a8613bca4a155daee8113e4e5ce0f9930ba483f467a6",
+        "apps/web/src/playback-settings.tsx": "0592528db6240502ead27c3b04493a2d49b1cfb09a42e259e842ed8adf9faefb",
+        "apps/web/src/player-ui.tsx": "cb38df719e015fd30301981e465404ea09475b1f66be9c70c3a77d450d4d2671",
+        "apps/web/src/provider-access.tsx": "d5161b644c21754b70e2f1215e5578a98559e01f2222d317efda69d8dc247b1d",
+        "apps/web/src/provider-import.tsx": "c2e45304dec8b1750af697b860020a3fcc7f7e0d456738b2c66de13709b122b6",
+        "apps/web/src/queue-panel.tsx": "0f1d2ef050ca5b861ed010c9bc4d8ad0154138818744f5877241bc6ad21c7b0d",
+        "apps/web/src/recommendation-actions.tsx": "16ac6cbfe4447257d4f41956528c133cfc493a0fa9960643aa4dfe5449d819a7",
+        "apps/web/src/ui.tsx": "a4336caa7d715ce1ea5332fe445f9d339f97a0dbb3f1cd347e89819e449bd868",
+        "apps/web/src/vendor/halftone-bloom.ts": "4b9889f1de2367e686ffb32709cc0dbc877e0b674d0fd8fe0f1cba1bac22ad58",
+        "apps/web/src/wave-colors.ts": "3df5776879b096a835125bca7ffd01f8dbcf9479f3e2237403dcf415ea01c8fd",
+        "apps/web/src/wave-silk.ts": "77a7cce430495ca9f7d24124ff8e652595b9d9f01e69c213e9385b06c1a0b0ec",
+        "apps/web/src/wave.tsx": "6098affadfb1076b071869f99c7ba47959eec328e8fc9d692b21d87b5e238734"
+      },
+      "distHashes": {
+        "apps/web/dist/assets/asset-1.jpg": "4eb2141d6e6a3d5344e8dedb67f6766226039c5a627c9141b757f0d993df3a80",
+        "apps/web/dist/assets/asset-2.jpg": "ba40a30d158a089be9947d7fcf849c71fa7c12362f10ceb34ea1afa673fedeac",
+        "apps/web/dist/assets/asset-3.jpg": "b944abd87e265d383d021181a00eb153babf605d2746d859be6be910a2deb1ed",
+        "apps/web/dist/assets/asset-4.jpg": "a4a320a0045289d29d32bd0025a95f6162343a8b15459e589168f3a80b16422f",
+        "apps/web/dist/assets/asset-5.jpg": "bc9f67b682ef20a766de54cdeca38012387170a429452bcb0a8c25bfb3aa6f13",
+        "apps/web/dist/assets/asset-6.jpg": "d83b47a0536def95d547cbb0354a9df3baec62cbeaa78adecb177655b18d3246",
+        "apps/web/dist/assets/hls-BsvdAr7l.js": "9776ad060f2eb7851d977bfbdba86f4f381dc8d86d798233a8635a2e3e5b8daa",
+        "apps/web/dist/assets/hls-legacy-B7zYHMqK.js": "49f0209bd024b5dedbefd741087def4a4c3c57e53ff43df3f8cfb3f0c368a304",
+        "apps/web/dist/assets/main-BNQJxA0H.css": "a2e072df983d9dd75a6113aa16a24681c30b79288e028e5996121d5def83c6d7",
+        "apps/web/dist/assets/main-legacy-eCuXhW48.js": "d3862e907eb674fcfc3430951ec668765bc1ee5722a8b5dfedb63df0c3047822",
+        "apps/web/dist/assets/main-w0GQmuRE.js": "5bb6bc0f33e1d7b58ddc4d609fe76faf3661ffb3ba86a9d4b179c8668f2a257a",
+        "apps/web/dist/assets/mini-SaZiBt6p.js": "99e1cdf9dfd0eaa94d30473cca253fe62e97e2262c4221d96cc32d27bd021f12",
+        "apps/web/dist/assets/mini-legacy-DyAZ6zzc.js": "882ce82884d9a048dc024b377b5a541e2ca5303f67856de5142deb72cfd0f816",
+        "apps/web/dist/assets/nunito.ttf": "bb55a5ca5c2042335b3991af27c4d0705d0ef41cac6164ac737fd8f2a1e85207",
+        "apps/web/dist/assets/playback-feedback-Bgt9n7mN.css": "2fbfc5adf90b4f64b98c1452c493d43979580e801b90a3490d36ce8a8a2e8f42",
+        "apps/web/dist/assets/playback-feedback-Dn2ux4gg.js": "5ea039c4c950d25d5e17b9e8b540433af0ee82c25934b728043f7b6b05795ceb",
+        "apps/web/dist/assets/playback-feedback-legacy-zxLYc2Ok.js": "06983d72ddf0eba001e70e232bd0286a2679d0d7a41adf58ed094e4d426db51f",
+        "apps/web/dist/assets/polyfills-CJrymdT5.js": "8a57194e025c4559497d5ec081163714349e5f90ad21697c18f6b5fab0bce563",
+        "apps/web/dist/assets/polyfills-legacy-D4Cja7dM.js": "056c8c4e6b5fc36803a4e49276563680a7b7d17e6bbf3557d00962e4e7c776a8",
+        "apps/web/dist/brand/Manrope-OFL.txt": "58172e0c0fac2cda8a37b348164bb55e44b0e69051e557e92b1d3f6910141f7b",
+        "apps/web/dist/brand/Nunito-OFL.txt": "580df76c95a1ec5ab878ceb25bb3d85c6a076804e9c970c8c6972aea775fdf65",
+        "apps/web/dist/brand/app-preview.png": "86a31cac2b2459b64e2b8bf4d987f3a39027f1caf7cd1786cfe950690df650d2",
+        "apps/web/dist/brand/google-g.png": "d1ce9c2af0b10a7333abc99bc706f9a6a199e5b65bf3e3009624f076b8638e6a",
+        "apps/web/dist/brand/logo.gif": "1e8d9b17f3f10032a288c6908fbf613906b691d6b558949f2c6efa4b3301f7d3",
+        "apps/web/dist/brand/logo.png": "17c11e6d04d4180a2ace71828dd9d2b9c8ef52f5380082062fe12a3d00acfa58",
+        "apps/web/dist/brand/manrope-variable.woff2": "9d28341e9190e088075e8ec917b35ef0ea713a1526cc7ae463fc0c9289fe3f9c",
+        "apps/web/dist/brand/mark.svg": "421eb15a46e15da29d635f5ca334f1671dae29ead2d4cf59977ee99028605392",
+        "apps/web/dist/index.html": "ef5d7c9ed771380b448990d82cdef921374f82e288d9c220e4bb1b5f59f35d49",
+        "apps/web/dist/manifest.webmanifest": "87d1a04e1709eea585ea08cf2b19ee9bab1afa7b8e9347ca3ccd15556838bdfc",
+        "apps/web/dist/mini.html": "675cf58b0059a3d9161e2eb3bdcbac4de4052737b3222b3298d214c7955aed9e",
+        "apps/web/dist/startup.css": "e673ff95722c4c6b9b3066377a3a3c668214cfd8b7db2ed83cc51be3573f975e",
+        "apps/web/dist/startup.js": "4328e2268a8faf27fdb3c1ab5425fa8bcb30899fc5c9752a6a500ad1515e092a",
+        "apps/web/dist/sw.js": "6285cd790cab1bab630a381ec232f58ea8be3fc1e0204bb189c71e7811c21f74"
+      },
+      "captureHashes": {
+        "work/qa/parity27-eval3-queue-1440-outside-drop.png": "08eb8deee291d875d360429a1a543c5a65564effe88a2375a311df42a5ad50ac",
+        "work/qa/parity27-eval3-queue-1440-outside-cancel.png": "fd7ae762c82443d57e521079ac93cedf2ee55b6319a98cac37c354f0cba974fc",
+        "work/qa/parity27-eval3-queue-clean-1440.png": "9c1e1bb3f1ee23b80973bb7991a19bcaed1af3f6a2e86002d0995ab51cb74bb7",
+        "work/qa/parity27-eval3-queue-1440-Escape.png": "e215836dd82aa61a056085f5037f65a0a20682c646addd0058b507f65df25469",
+        "work/qa/parity27-eval3-queue-390-outside-drop.png": "2e2a3ad97fd608e6e4cbeedd4639c6078405ba05c50897d2f818915df12fccc7",
+        "work/qa/parity27-eval3-queue-390-outside-cancel.png": "92baba2e3a99d6af7af3dd389bc636bacc88f36870a9078e0a88d6de9f21743d",
+        "work/qa/parity27-eval3-queue-clean-390.png": "b605c923ae8fd0d3d23a7d412be70d44db09b34946137fa061cec1a27b663b52",
+        "work/qa/parity27-eval3-queue-390-Escape.png": "ccf288ddbeb58bdfb7ff6c356333b17b5b210f9d0f23cafa76eb9f87ed629e0f",
+        "work/qa/parity27-eval3-queue-320-outside-drop.png": "e91a37bb27a63fd804ad83ac9e62459632ba878d32cc44ff5955620c847ea48e",
+        "work/qa/parity27-eval3-queue-320-outside-cancel.png": "e5dadf999232830d7aac92646cc00611c09a0962b274322cbe7793fead7c9069",
+        "work/qa/parity27-eval3-queue-clean-320.png": "014575e0bbfd19b2ec6850b506f97d438ec2c1e501210ce7d09a1200aba5a0cf",
+        "work/qa/parity27-eval3-queue-320-Escape.png": "f97356a232b60957322db99215a40499cdd2f7eba5d931b81fb9bfb70bb90dda",
+        "work/qa/parity27-eval3-queue-regrab-1440.png": "613f187a6b39d30677b98797bffda91e2842a4a3ba66e4d102b71e87c216e8d6",
+        "work/qa/parity27-eval3-home-pickup-1440.png": "92150d83e043f5fc8622aadfd033da9378b989faed0230129c2937e761e79c1e",
+        "work/qa/parity27-eval3-home-outside-scroll-1440.png": "c7e5879bc6192b248ba9856cf9b254e78e7e06e4b0d35a49aa7c9fdccc8aa110",
+        "work/qa/parity27-eval3-home-pickup-390.png": "8b7f97244559afa8a573fe7157874a660ed7c06235cf3fe77f61f17b1ef482ff",
+        "work/qa/parity27-eval3-home-outside-scroll-390.png": "87d34dbb88259273aba8c2939bee1d1a447d463f37e9c49bbf48676dea2ed140",
+        "work/qa/parity27-eval3-home-pickup-320.png": "f9e15eaf49fc27855161df4f1059a61f9c32f64dc88ee9b86b2fedd250bc4140",
+        "work/qa/parity27-eval3-home-outside-scroll-320.png": "f52bfd38150a9f888a5e4813be45b888a29b0155781c1b2d9678a1fae0528004"
+      },
+      "screenshots": [
+        "work/qa/parity27-eval3-queue-1440-outside-drop.png",
+        "work/qa/parity27-eval3-queue-1440-outside-cancel.png",
+        "work/qa/parity27-eval3-queue-clean-1440.png",
+        "work/qa/parity27-eval3-queue-1440-Escape.png",
+        "work/qa/parity27-eval3-queue-390-outside-drop.png",
+        "work/qa/parity27-eval3-queue-390-outside-cancel.png",
+        "work/qa/parity27-eval3-queue-clean-390.png",
+        "work/qa/parity27-eval3-queue-390-Escape.png",
+        "work/qa/parity27-eval3-queue-320-outside-drop.png",
+        "work/qa/parity27-eval3-queue-320-outside-cancel.png",
+        "work/qa/parity27-eval3-queue-clean-320.png",
+        "work/qa/parity27-eval3-queue-320-Escape.png",
+        "work/qa/parity27-eval3-queue-regrab-1440.png",
+        "work/qa/parity27-eval3-home-pickup-1440.png",
+        "work/qa/parity27-eval3-home-outside-scroll-1440.png",
+        "work/qa/parity27-eval3-home-pickup-390.png",
+        "work/qa/parity27-eval3-home-outside-scroll-390.png",
+        "work/qa/parity27-eval3-home-pickup-320.png",
+        "work/qa/parity27-eval3-home-outside-scroll-320.png"
+      ],
+      "checks": {
+        "queue": [
+          {
+            "width": 1440,
+            "scenario": "outside-drop",
+            "input": "mouse",
+            "commands": 1,
+            "ghost": false,
+            "active": false,
+            "restored": false,
+            "committedOrder": [
+              "earlier",
+              "ui26",
+              "newest",
+              "q0",
+              "q1",
+              "q2",
+              "q3",
+              "q4",
+              "q5",
+              "q6",
+              "q7",
+              "q8",
+              "q9",
+              "q10",
+              "q11",
+              "q12",
+              "q13",
+              "q14",
+              "q15",
+              "q16",
+              "q17",
+              "q18",
+              "q19",
+              "q20",
+              "q21",
+              "q22",
+              "q23",
+              "q24",
+              "q25",
+              "q26"
+            ]
+          },
+          {
+            "width": 1440,
+            "scenario": "outside-cancel",
+            "input": "mouse",
+            "commands": 0,
+            "ghost": false,
+            "active": false,
+            "restored": true
+          },
+          {
+            "width": 1440,
+            "scenario": "Escape",
+            "input": "mouse",
+            "commands": 0,
+            "ghost": false,
+            "active": false,
+            "restored": true
+          },
+          {
+            "width": 390,
+            "scenario": "outside-drop",
+            "input": "touch",
+            "commands": 1,
+            "ghost": false,
+            "active": false,
+            "restored": false,
+            "committedOrder": [
+              "earlier",
+              "ui26",
+              "newest",
+              "q0",
+              "q1",
+              "q2",
+              "q3",
+              "q4",
+              "q5",
+              "q6",
+              "q7",
+              "q8",
+              "q9",
+              "q10",
+              "q11",
+              "q12",
+              "q13",
+              "q14",
+              "q15",
+              "q16",
+              "q17",
+              "q18",
+              "q19",
+              "q20",
+              "q21",
+              "q22",
+              "q23",
+              "q24",
+              "q25",
+              "q26"
+            ]
+          },
+          {
+            "width": 390,
+            "scenario": "outside-cancel",
+            "input": "touch",
+            "commands": 0,
+            "ghost": false,
+            "active": false,
+            "restored": true
+          },
+          {
+            "width": 390,
+            "scenario": "Escape",
+            "input": "touch",
+            "commands": 0,
+            "ghost": false,
+            "active": false,
+            "restored": true
+          },
+          {
+            "width": 320,
+            "scenario": "outside-drop",
+            "input": "touch",
+            "commands": 1,
+            "ghost": false,
+            "active": false,
+            "restored": false,
+            "committedOrder": [
+              "earlier",
+              "ui26",
+              "newest",
+              "q0",
+              "q1",
+              "q2",
+              "q3",
+              "q4",
+              "q5",
+              "q6",
+              "q7",
+              "q8",
+              "q9",
+              "q10",
+              "q11",
+              "q12",
+              "q13",
+              "q14",
+              "q15",
+              "q16",
+              "q17",
+              "q18",
+              "q19",
+              "q20",
+              "q21",
+              "q22",
+              "q23",
+              "q24",
+              "q25",
+              "q26"
+            ]
+          },
+          {
+            "width": 320,
+            "scenario": "outside-cancel",
+            "input": "touch",
+            "commands": 0,
+            "ghost": false,
+            "active": false,
+            "restored": true
+          },
+          {
+            "width": 320,
+            "scenario": "Escape",
+            "input": "touch",
+            "commands": 0,
+            "ghost": false,
+            "active": false,
+            "restored": true
+          },
+          {
+            "width": 1440,
+            "scenario": "quick-regrab-during-old-settle",
+            "proxySurvivedOldTimer": true,
+            "cancelZeroCommits": true
+          }
+        ],
+        "home": [
+          {
+            "surface": "Home",
+            "width": 1440,
+            "visibleStack": {
+              "dialogModal": true,
+              "ghost": {
+                "height": 74.4783935546875,
+                "width": 392.372314453125,
+                "x": 518.8138427734375,
+                "y": 451.19830322265625
+              },
+              "insideDialog": true,
+              "layer": {
+                "height": 1000,
+                "width": 1440,
+                "x": 0,
+                "y": 0
+              },
+              "overflow": "visible",
+              "point": {
+                "x": 715,
+                "y": 488.4375
+              },
+              "top": "DIV",
+              "visible": true
+            },
+            "dropSaved": true,
+            "cancel": "Escape",
+            "restoresDraft": true,
+            "overlayRemoved": true,
+            "outsideScrollVisible": true,
+            "before": [
+              "likes",
+              "playlist",
+              "ambient"
+            ]
+          },
+          {
+            "surface": "Home",
+            "width": 390,
+            "visibleStack": {
+              "dialogModal": true,
+              "ghost": {
+                "height": 73.67694091796875,
+                "width": 326.7772216796875,
+                "x": 26.611404418945312,
+                "y": 350.0052795410156
+              },
+              "insideDialog": true,
+              "layer": {
+                "height": 900,
+                "width": 390,
+                "x": 0,
+                "y": 0
+              },
+              "overflow": "visible",
+              "point": {
+                "x": 190.00001525878903,
+                "y": 386.84375
+              },
+              "top": "DIV",
+              "visible": true
+            },
+            "dropSaved": true,
+            "cancel": "touchCancel",
+            "restoresDraft": true,
+            "overlayRemoved": true,
+            "outsideScrollVisible": true,
+            "before": [
+              "likes",
+              "playlist",
+              "ambient"
+            ]
+          },
+          {
+            "surface": "Home",
+            "width": 320,
+            "visibleStack": {
+              "dialogModal": true,
+              "ghost": {
+                "height": 72.80035400390625,
+                "width": 255.03253173828125,
+                "x": 27.483726501464844,
+                "y": 352.1935729980469
+              },
+              "insideDialog": true,
+              "layer": {
+                "height": 900,
+                "width": 320,
+                "x": 0,
+                "y": 0
+              },
+              "overflow": "visible",
+              "point": {
+                "x": 154.99999237060547,
+                "y": 388.59375
+              },
+              "top": "SPAN",
+              "visible": true
+            },
+            "dropSaved": true,
+            "cancel": "touchCancel",
+            "restoresDraft": true,
+            "overlayRemoved": true,
+            "outsideScrollVisible": true,
+            "before": [
+              "likes",
+              "playlist",
+              "ambient"
+            ]
+          }
+        ]
+      },
+      "freshScopes": [
+        "Queue mouse1440/touch390/320 outside-header drop exactly1commit",
+        "Queue mouse Escape and touchcancel outside list zero commits/order restored/ghost and active state cleared",
+        "Queue quick regrab before prior220ms settle timer retains proxy after340ms",
+        "Home mouse1440/touch390/320 top-layer visible ghost, outside-scroll visibility, outside drop/save and cancellation"
+      ],
+      "retainedScopes": [
+        "Attempt1 real actualdist mouse/touch queue and Home/token selection",
+        "Attempt1 actualdist auth theme and identifier field at1440/768/390/320",
+        "Attempt1 actualdist48-frame lyric depth sample and desktop dock104px",
+        "Attempt1 native scoped captures: volume8size/theme combinations at125%text, titlebar, context-only rail, updater, transfer and Home"
+      ],
+      "limitations": [
+        "Same available model provider; no different-provider review",
+        "No physical Android/Windows/Tizen hardware run by evaluator",
+        "No deployment, OS installation or physical audible Connect transfer",
+        "Token picker earlier validated with fixture simulation, not owner service credentials",
+        "Native widget/full regression and binary proof owned by root; no new native commands in attempt3",
+        "Queue narrow screenshots retain outer1440px browser frame; CSS viewport390/320px"
+      ],
+      "proofs": [
+        "work/qa/parity27-eval3-queue-proof.json",
+        "work/qa/parity27-eval3-home-proof.json"
+      ],
+      "cleanup": {
+        "browser": "gw27-eval3 closed",
+        "rootFixture5310": "left running"
+      }
+    }
+  },
+  "currentServerAndWebSourceHashes": {
+    "apps/server/src/account.js": "10b53082822ab2202de89aee9fd8d0db11af9bd0d31306d691dd312353e05ca4",
+    "apps/server/src/action-jobs.js": "4844e62662c0705c6eb631e71c92ffa66efc1aed5a2b0bb91fc16313e5b80104",
+    "apps/server/src/admin.js": "82417a012738f9351e1bbecd7af7d3f90b29c09f35188bbf35793e7282541569",
+    "apps/server/src/app.js": "1118446f8556ba3dc8f071fe7337b17d6fd1c710d1570207840cf28beaa575f5",
+    "apps/server/src/audio-capabilities.js": "3e4b5a2788070195292f5b517b252c1a6891655060de00c2ea316d2c8f6e8f22",
+    "apps/server/src/auth.js": "2695aed4392536184eacccc8cd8a6a9581beae7cf803c5a9e3feecc1794f3542",
+    "apps/server/src/billing.js": "a9163d0268b48e04598400df991530ceecdf2596fe1852c21c7a177fca52c335",
+    "apps/server/src/community.js": "539d647410f3b95e6a228015ac456e3df781d73e5faea7cfd861a83416d4113f",
+    "apps/server/src/config.js": "70f5281eae7eb9b9f9dc02cd73a4824a887bcb2b2d1ef0690f0fb74669576d1b",
+    "apps/server/src/console-brand.js": "3cf4ddeac97b786ae842d0084e6c95f63e79d7ffea051fd71d588fcd181d5be8",
+    "apps/server/src/console-transport.js": "8b2b8c4eccfda0382f05b590b60c43693616649ee273474f51d045e7d2e4ed82",
+    "apps/server/src/console-ui.js": "5992d13453c6ac7e7065c2b9ec3e52db902b1ee2fffca22632c4705e65422e41",
+    "apps/server/src/diagnostics.js": "66ab9bae1912bf53afaac648cf14172fa2f66d68b60af94917e55dfb9b47eb84",
+    "apps/server/src/discord-presence.js": "3c69b062f30f751ae2bdc6e8eb07eab5dcf76ce4293efcdd37d917c3d1befa9a",
+    "apps/server/src/genius.js": "b785795dc7debcff70e7a117bc8e42fd6e34fb071329e4523caa72c2919ea43b",
+    "apps/server/src/home-layout.js": "226f59e961cee0af5d23a0c4c8b29dcc8e7eb9c382badd11fb62c26b46939332",
+    "apps/server/src/index.js": "2a292e1e22151b0b41c1735bd3c00bfcbb7384f0888999c05eb5b6464286cf3f",
+    "apps/server/src/library-imports.js": "6d81ee9a5175a9b8f7f02a2896a867e02c772e4ac0819a78499a0c1f476feada",
+    "apps/server/src/library.js": "0a163a92f9e9180a2b7511b068e6e7a0c30673f9ca604910a507d8ec14b444a2",
+    "apps/server/src/listening.js": "ce7fac0070fd52bbae62c2da3f1c47ed02bf5a173c9f8d501a547522e3711957",
+    "apps/server/src/locale.js": "0583f534f21496b7d58f77fd2d66109c799e356331d7b415574f90cca146aa67",
+    "apps/server/src/lrclib.js": "4a40e8ba9d9341b27beb0637b728710e16d602e8b30a9afee1440c78d35fb2e1",
+    "apps/server/src/mail-text.js": "24fdc84a7907528d63e50145bf2f4b90390230df11b8d073b36198caef2ee2d9",
+    "apps/server/src/media.js": "797f087f23d4d29436a2a9b8ed5f9c181c31cedbffde3a806794e0fb3ac7c829",
+    "apps/server/src/messages.js": "6726f58392c0b38fd2b5bef912694422901041308df77e73f0e6a051a8429061",
+    "apps/server/src/oauth-config.js": "1bf7f01bd3b0560adc5b27699a768d895c159d98c7864d91d30117233dce8108",
+    "apps/server/src/personal-imports.js": "fbcc3e0a0f95669bcd50b75d555d6ee96843b3db017671bf4e6eb96e024ff480",
+    "apps/server/src/plans.js": "1af41034b769c676bcadb3af097730fc9a3054662defe5c91844ee12fd30f9ff",
+    "apps/server/src/playback-jobs.js": "b111e33179be055775d8bcc5762b850d823a531a5c152e1c914cdd7176da895e",
+    "apps/server/src/playback.js": "438a08b44ac3106eaae4fecca82a99266ccb4524df3ed57d6680aea1ecf6c15b",
+    "apps/server/src/providers.js": "6d8410f687546bece1b4d339255c19c93663e6611c4edaa64207fc97ec0c68d7",
+    "apps/server/src/public-imports.js": "63f6bcc9ee5a5b2b3bf14c9d08ec53d360c3fe66079b0fd7b63f3ce98249bede",
+    "apps/server/src/push.js": "d2152b3739d4a574c80b22b389f24fb1f319d6bc8e6e3fe154e3b913295333de",
+    "apps/server/src/realtime-ecosystem.js": "95f8e392708c262ff145f85bda029618e8a584e85ab89a7c338d026b56fefec2",
+    "apps/server/src/realtime.js": "f8bde106f06e4bdd92b4b1faac40c1a2be62f858b8873f33cd05b50bb16e10a8",
+    "apps/server/src/recommendations.js": "762df516b71c6be2228cfc3c2d12a302081b3c131f6a75b6362e68b05fe666aa",
+    "apps/server/src/releases.js": "87569f1af76a89e75d40d5d56171b869168b4a766490c570b1c72fdac35fa79f",
+    "apps/server/src/resources.js": "2283499be57429eff52e8f2184acf8d6814de18897dd640ada3ea9faee6b13ed",
+    "apps/server/src/room-view.js": "b1f01371d67b1c4eded48630162c3043bf3b127f1ee73af9dbd8a0f9e707c2ec",
+    "apps/server/src/rooms.js": "5250c138dc01374a08ad87a4fe16b680d1b51749bc5d854f835903ebf618001a",
+    "apps/server/src/search-cache.js": "3764848931355619b11c11b8883c4f365e2a2cbf383d2a5c360afa26ef40b71d",
+    "apps/server/src/search.js": "6c1bcf08dc7d955a1a578798be89ec0605437a20f8556e1b04faf1043cefd302",
+    "apps/server/src/soundcloud-audio.js": "5c756f9f5d832833eea6c5a0ff071218cb428851403cd9a514731c4a88810984",
+    "apps/server/src/soundcloud-public.js": "1539d977c7e90326f12332df59a22d0fa2283f7b32a8ad1d3df3b8a22a32d77d",
+    "apps/server/src/store.js": "f5c92991e188e5bf333883e17e7ac20d4a396c2feb64f8e33fe2e6c2f893305c",
+    "apps/server/src/system-text.js": "d297190cd4ea5ddd3efcf5bba5a76d1221f5351ecb8cd6bc404844290aa85696",
+    "apps/server/src/util.js": "23dc4c61351e9bcf340e39bc07bbcca0e3f0b87910c15bf4b895ab7a487c1abb",
+    "apps/server/src/waveforms.js": "9e9102d2d5c9732f3dac9de8cfbed6520d0dc512fa99e8f8e7827c0518a15b45",
+    "apps/server/src/extractors/hls.js": "d54cd6998dc8f0d2889a0d878e55c46d051cae68439bb219890b1208226d1a14",
+    "apps/server/src/extractors/matching.js": "5aec51b318f99f19fb25d51236524fd5a4060e4d3f20fe889c02e955a7040367",
+    "apps/server/src/extractors/runtime.js": "4e36be0303f2045ed769257a4529023d9958f144354f6f8ff920754b4f5b9802",
+    "apps/server/src/extractors/service.js": "eb1a79d49224e49f92675c2054f75940be24678c4eb30ab5d4f65afdc363e4eb",
+    "apps/server/src/extractors/soundcloud.js": "39abeab959ac418df564d5d51fa5509d66a5484b20877799361b6d869563cd3c",
+    "apps/server/src/extractors/spotify.js": "05d9bfce18c37632cdd35d16469b59e0a4e48c4aa258e260ee12e1a78ee3af4d",
+    "apps/server/src/extractors/youtube.js": "01a8e67c3a39948c7268fc225ba3ac1c29266fbafb3453546a977dda67067cd3",
+    "apps/server/extractors/bridge.py": "084fd7b43212264a179868082333eb6825d986944d3d3385b3544e9a74937472",
+    "apps/server/extractors/requirements-spotdl.txt": "9faaa2416aaa16ba144f41df3b6be25ff363a13fbd139c17a8fc6e7fe8875d2b",
+    "apps/server/extractors/requirements-ytdlp.txt": "eddaf6b4a42ef7bc703cb08d3c189565a1d85a62b7a8b429b9b8e71eb793dcd4",
+    "apps/server/extractors/vendor/manifest.json": "ce60ab2e9ebcdebb3a15b370fcac9aa12c3160fe10ef5b377d008609d7378c16",
+    "apps/server/extractors/vendor/yt-dlp-ejs-UNLICENSE.txt": "b5065838cbac452dfc855ba6e6e031481ad2c68406f70d21ead9321374653e6c",
+    "apps/server/extractors/vendor/yt-dlp-UNLICENSE.txt": "7e12e5df4bae12cb21581ba157ced20e1986a0508dd10d0e8a4ab9a4cf94e85c",
+    "apps/server/extractors/vendor/yt-dlp.zip": "1fa6733c37ea6fb51c99ad8fe785e7b7e5f3246c9b980230329d4fb72ed8d4d6",
+    "apps/web/src/account-sessions.tsx": "bf593ba196b767b6389c610ce87b198fc7c5f69f0aa33e09f0916037c086cfda",
+    "apps/web/src/account.tsx": "8c7fb34bca875dd7dfcc750cdb1bf50ab2ef88413279658c565d25a0e3e05053",
+    "apps/web/src/action-request.ts": "69b9f5a72a565e198e8df882da307586448d804265ee136d2648c246c7d2ee3c",
+    "apps/web/src/admin-errors.tsx": "795fd1d3e5bb0d89223798634789d9aa368cf4ddae97f8efd1aed50baadd9a69",
+    "apps/web/src/admin-service.tsx": "0e3b26a04151ff59a1156b853a1d6080dd72c5ce0609b495212c41cc8bd1c71b",
+    "apps/web/src/album.tsx": "66efc18eecaa0d6ef75547a365386ebdfb97042c2574371d30b1a2ddd52f355d",
+    "apps/web/src/api.ts": "01d21f8f277fe13ed2aca59840b79292270b1e530ac1edace0d117a596eb86f3",
+    "apps/web/src/App.tsx": "a98a8fa9c02f98cf0bab03c87a7dc4245ec7577c0f79a0ea6895a51db119db35",
+    "apps/web/src/artist-detail.tsx": "a05a7724239993cc656ff236148c66fee5829e4a68838bbea33da6c48f9c58ac",
+    "apps/web/src/artwork.ts": "f1d150e9ed1a0a771187880037027ff372b7e3f1ab0472776ef8a137b8bfa11a",
+    "apps/web/src/audio-cache-validation.ts": "32c2a355f8a3bb237aa4f5e50b28408f20cda3a355223d272e220b644f464d54",
+    "apps/web/src/audio-design.css": "4cc4afd26b4187594fa661145c43340f4a0737e77fc517e888effa79a0f746b0",
+    "apps/web/src/audio-gesture.ts": "1aaa65323ca996d62814523e890b11a85f8dd65dfcf15aa570dc8e7ce114b813",
+    "apps/web/src/audio-processing.ts": "8ef029b1a068d78fed8c3e4b16588305a3392db988e46dd21dfbb6cebf6bd94e",
+    "apps/web/src/audio-stream.ts": "4fbf2d76f13d687b0ac3413c41b44eb42d1a9fef87bf49f39a5f28592209306b",
+    "apps/web/src/auth.tsx": "df42c6784c3bab03c2e7484b9f7f5e3590acf62e9520592095678e55288158f2",
+    "apps/web/src/browser-compat-model.ts": "1b05a9a6e80927927127cf7288a50c6b547638e340c4a8604f9694a30abfe857",
+    "apps/web/src/browser-compat.ts": "6fddc2f54944fa1cbc3898bd8937a048f876cb953044019694e249e7194fa5a8",
+    "apps/web/src/cache.ts": "30e36b440883296ce74b0fa10ab6c583bbf0dc557a5760db449e85e4fee5a1ea",
+    "apps/web/src/color-picker.tsx": "200f9b5ec99f4660c8613488246260c3da18aa954c1c7623e19b4f1104476393",
+    "apps/web/src/community.tsx": "bbf2f311827637194bbed64d8c1374118b9c08c3201d5ea877fc91ffb0215411",
+    "apps/web/src/compat-modules.d.ts": "28153b025b7fbf95df0298e35337e9e3b50f9d3b80444708079bd22dc58b0fb9",
+    "apps/web/src/connect-controller.ts": "9c8260b27b90207650c2607310e9eb4bb998d929622ac2c23e042a2115013437",
+    "apps/web/src/connect-playback-card.tsx": "33b56fc7748e686e3ccec9511dff46c69b3dbdecf8be8218febb7657d31efee2",
+    "apps/web/src/connect-refinement.css": "e366fb08896d52c21ce59d5931f2674f91a2376e3bc3d4641e938ba966176046",
+    "apps/web/src/continuous-range.tsx": "337b251b272ee04dec23284f01e6208b4975115043daa11574db4aa9f63a2f77",
+    "apps/web/src/cover-accent-bridge.tsx": "7d3513428c19280c9a0b92d0ebd9286d955cac01de476979ffac29a11d32c0bc",
+    "apps/web/src/cover-accent.ts": "1d33f7d0394436d1958e8456ca1eb3f69d0ae2f8af5d32dc15eba9f796c5953b",
+    "apps/web/src/cover-ambient.tsx": "131e189e9bbbc49bdcc1700b39acca0f52460b8f3e0d6e342baac3e6668b712f",
+    "apps/web/src/cover-fit.ts": "4bfd503e665bccf54e8b2b2292ec4a428bd258959924dda55cb7eb4c4d3e571e",
+    "apps/web/src/customization.tsx": "7ea3ad646c72d092306d7b7b846db7197e47da782150fdca41f2e1a71582c497",
+    "apps/web/src/device-identity.ts": "8530973d25877745e722f18c7603910ba7c81a2925a189c2e53132e78adcd55c",
+    "apps/web/src/device-platform.tsx": "75d1dd8a06ff31c6e529e8469c1030c492c851cbb0543a1dda6228905c67a3de",
+    "apps/web/src/devices-popover.tsx": "9d57a9e6dc3320f341503bd8eda9503f770749e2a5733923cdc1464f23935989",
+    "apps/web/src/diagnostics.ts": "8c21c46e204ea3e5df9c164a93df46aed06174dd54d4e603d4f84eed4e4643cd",
+    "apps/web/src/discord-model.ts": "6ad5cfd0f5e6d4ad71e58bd02318baeba1bd78077d298ff0bcc6e289bc14345f",
+    "apps/web/src/discord.css": "5db13e61485e5d06eecc0213feb1f8f55bc6f1b2c9ae099fe604aa1a592100ce",
+    "apps/web/src/discord.tsx": "46e97da522c8976347d3c244275e1ea1479c2828f2b0a074c57ad4d84f6831d5",
+    "apps/web/src/discovery-polish.css": "aac886b47c64fdd6197e7bd878e0d058177ac75dd19e636d13bb467656e23841",
+    "apps/web/src/discovery-search.tsx": "4b9e21a7fc54602565e4f7730857388479e0aa5148a2d36101d02fd3e8f628c3",
+    "apps/web/src/ecosystem-controls.css": "ea8b5bde9813f7a2c9443e432edbc194fe016122f54144207d3d6851ed447198",
+    "apps/web/src/ecosystem-polish.css": "7cf33df3d81d42fda4af4f87ad3f09e694a24d8d2ff31bef484b2108219560a3",
+    "apps/web/src/ecosystem.css": "712561d08ca690cf0b68c23d362af988aec7236be827c89d05b8db635a4790a8",
+    "apps/web/src/embeds.tsx": "b1159899a9536bdc4e101af921c676ec0e1328d9c2457c8f5127565a5ed475af",
+    "apps/web/src/equalizer-geometry.ts": "e326a26d55cd5242156ebbf924eafb3ddf29c3327a66ba41d3b02edb7620730d",
+    "apps/web/src/equalizer-popover.tsx": "10ead50c10ab2acadd5f97fdfb97450b1bb7cf32635d99b1febfa1a6d9142e8d",
+    "apps/web/src/experience.css": "09a5492f53b01865b94dc71d5cc5e54a11c73155a41fe5973140833ec47ce177",
+    "apps/web/src/extractor-diagnostics.tsx": "3700d1aa8abda94bfb02a874974af381b8e2b5da1d0d7e4eff6ad38cd1bc8441",
+    "apps/web/src/focused-player.css": "ff7772af3f881414683c892de0c9e0342ab1ec3d4adfa251e1c40b1fd93d05e9",
+    "apps/web/src/glukwave26.css": "6c312b7e51edb6a5b61b2f89e17b46260b46ca347dde83ee3b4a8be9fd5c9734",
+    "apps/web/src/glukwave27-copy.ts": "ec3cd9542242d3a295f2b14e3a62175fadda1e0850e142a89a44ddf03352ab75",
+    "apps/web/src/halftone-room.tsx": "4f525e50944b5e3074b1a378a1c21912f9391ad64333069e024dd62a9e800f62",
+    "apps/web/src/home-pins.ts": "4cb2597ce90e77cb25fb4463eeb732be6c6f0345eef49652464db24c1b604455",
+    "apps/web/src/home-shelf.tsx": "3f479ea762d214b757e4357c0ef1157073e3b9315db936a7c9b3ba6cdafe09f9",
+    "apps/web/src/home-wave.tsx": "4efdf32684d2a5d432b86f1ef02e280fdc0e890ad3547f58be1f59188324f56c",
+    "apps/web/src/integrations-diagnostics.tsx": "664907ab5daac52e8429566186a22e8690b7b63995197c738ad6311bc73da88a",
+    "apps/web/src/landing.css": "ef31e02d7a9762ab7122671cad48dd6490fc2c45eba2554497a766a48db0f73f",
+    "apps/web/src/landing.tsx": "a7dc708e34bc9d73a5ee73086f615a801da39dd1359e81f401103d038af463d5",
+    "apps/web/src/library-edits.ts": "68d729820cd7244215602623014b79c45c04f56d36ebbc83d77bfea13191930e",
+    "apps/web/src/library-order.ts": "7fc9ea1817d5aa307aea0ac9edf0be141fd451a99634398c33a836d1eecd0d70",
+    "apps/web/src/library-sort-copy.ts": "f67ce3fed41945af7a93cc5115ce8897a7343fdf44f8befcb9fc62f1c5500588",
+    "apps/web/src/locale-startup.ts": "c51ab57653b091e2e469c774ffecd7500d0a0a8cb8c5966be1a74710b29fa75c",
+    "apps/web/src/locale.tsx": "2ff47cfe7e50bbbec10de3c0e48c7f34c5e3b9aa97472dd6c65a3be4d31cca7b",
+    "apps/web/src/lofi.tsx": "703e00337c7615f589234d4536b7c4912c00c56e2011bc9893ffc01aef479e44",
+    "apps/web/src/lyric-timing.ts": "66a81d7695cddbe7439b9a146be9ae94a0f5548c4619cdcb5181718344a5bee7",
+    "apps/web/src/lyrics-import.tsx": "dea168dc65ed4f4a8e5a4590487e94b733cd7d134a8da7523535e426696a72b7",
+    "apps/web/src/lyrics-model.ts": "134ed19f90d85795c0d9ee0ad09e7c13a70b3207a6bac5db70578634e9a7da82",
+    "apps/web/src/main.tsx": "8a943a6e8018e2d4bec42108b73adb4707529d3e75a4419c090fe937a79d86f4",
+    "apps/web/src/media-download.ts": "dd918e7bc2a0251d939129a251ab574da2eb7d3e0482128b91e6a06adff8218b",
+    "apps/web/src/media-session-state.ts": "e3e31645d70d561c594c9fc9ee03affdb52a97266f4246094cee4d7b85fea7fa",
+    "apps/web/src/metadata-cache.ts": "8dfb620920aade48dcebc731e6a177052e4bb37d3b230a99c454380ad3b07c0c",
+    "apps/web/src/mini.tsx": "e299c6d1e28635ca2823bbb75284c44e1f23eff3c643aa79cce04d44c8c348bb",
+    "apps/web/src/morph-icon.tsx": "1b317b3ca146d49e78feabc472bd6b21811196dae6895cbe24c81b9c7dcdb03c",
+    "apps/web/src/motion-controls.css": "86c56cac09e01830b44b521151ec11d8a1a65c313007967730d13cc60c8e4ff5",
+    "apps/web/src/optimistic-controls.ts": "587320fb930c8271cc1273b98768b699cc9e2b5f73e1ac1cb2a79474b448ddd3",
+    "apps/web/src/pages.tsx": "d6f6b73baffd5664302a64269fcf178476b0332ba1a71be26d32d0859c1e2b05",
+    "apps/web/src/parity-account.tsx": "f1682ffc76223fbc04e572291e3e10520c1490f0bf12512f280d15afa5ef1ce9",
+    "apps/web/src/parity-admin.tsx": "a635d5a819837c66c3a5354a31d6bb702ea9782e99e4ae0b82185b497277fa50",
+    "apps/web/src/parity-model.ts": "93bbad3ad22a84e6d352c808574a9009a0092d28edfa9483db24b9a406eb1aa5",
+    "apps/web/src/parity-playlists.tsx": "90b796928227658996185084a9f372f8bbfe832e988eaceb274b75cf153422ad",
+    "apps/web/src/parity-social.tsx": "c65bae7e20a1e8ea25dc5e0dbfeb8e96cbbb1dc65a231b7a21b3f05087565c89",
+    "apps/web/src/parity-taste.tsx": "e6c71f0b8b14a410dbcda86cfeb1ac89f861649d7a3fd9437da51b5f76d372a6",
+    "apps/web/src/parity.css": "44be32961ae9ad52c5343787ca2e1c0f9697ff3d76e23be569bf13ac7d60a106",
+    "apps/web/src/pickup-order.tsx": "4333de79e6f1e90fd615a8613bca4a155daee8113e4e5ce0f9930ba483f467a6",
+    "apps/web/src/pixel-scene.ts": "6aebeff8524759519c0e78b1351e5fd5e306d9a8c191abc8d54a5acf97a8501c",
+    "apps/web/src/playback-feedback.css": "10fd7b45a9337606e5ef4cc401e310bbc62ce068e61643e864499b9aa91951fb",
+    "apps/web/src/playback-lifecycle.ts": "d20c0cd10eb869316f347a6183c7d2a8a996d740fe7b2c167aa995eba1f03564",
+    "apps/web/src/playback-recovery.ts": "5a19366df9fd35c1890b5bf197f4ba3730058f02f3626242db8ead13ced7645f",
+    "apps/web/src/playback-request.ts": "ab03ea51e983917b66c116eb28f78bf2fba00c9c9ad2590d2c418dda4688ffc7",
+    "apps/web/src/playback-settings.tsx": "0592528db6240502ead27c3b04493a2d49b1cfb09a42e259e842ed8adf9faefb",
+    "apps/web/src/playback-warmup.ts": "e76fe39cb1fc8c98be38a87c93d6638d959e86c0a0abf46343379103da152f2f",
+    "apps/web/src/player-details.css": "bb6ed6e63760b8d5ff3345fa3461827e20c2addd5d38d91f826014ddda1f64fd",
+    "apps/web/src/player-gestures.ts": "7f19efae86ffc1a9bfa3c73de7e1b4e81f70bcf3dc54e5c000703093267b9659",
+    "apps/web/src/player-refinement.css": "d103f3a510359ca432ba4607e535cdc82d6c1886b125c1c272144a02c34df0aa",
+    "apps/web/src/player-ui.tsx": "cb38df719e015fd30301981e465404ea09475b1f66be9c70c3a77d450d4d2671",
+    "apps/web/src/player.tsx": "ee14d467167ec5ef4946cb564f3ee84f2426b48d05d0725c56b6ee4f5a308848",
+    "apps/web/src/playlist-copy.ts": "2cd5688f1ea33e82cea94dd1ba0e0c22b781a5065c1236cd64918135238a5a4b",
+    "apps/web/src/playlist-library.tsx": "447886e321db3ee850aade8be87c8dd7fed48a8b5e46b8deb744cc02ddc31792",
+    "apps/web/src/playlist-manager.tsx": "283c652a01551e8eb52f0e14fb1637c58322e9bbd34c19ad490b1cadf5eb22fa",
+    "apps/web/src/playlist-polish.css": "edecc305468749eea21d646462cb6c8b958dfe33045496dc5e7f9ebc3476fcc1",
+    "apps/web/src/preferences.ts": "3644ae3767fa880b77ab80d8da9cc82605e26dca09f795128df69a5d64bb05f7",
+    "apps/web/src/preset-listbox.tsx": "1bf4d92d0270f2c13e5c7076705a3967be39d87a7764ec23477d91294bab154b",
+    "apps/web/src/progress-clock.ts": "1d2350f7cc348ee8fdadd1a07a68d44d8e64aae9ef0e6e7d40873213f17b0289",
+    "apps/web/src/progress-paint.tsx": "6089fd01710988b84f201757748ec0833ccda966d24644d6960cbb3e1a2d3b78",
+    "apps/web/src/provider-access.tsx": "d5161b644c21754b70e2f1215e5578a98559e01f2222d317efda69d8dc247b1d",
+    "apps/web/src/provider-import.tsx": "c2e45304dec8b1750af697b860020a3fcc7f7e0d456738b2c66de13709b122b6",
+    "apps/web/src/public-import-copy.ts": "917f01cde2a3c1531bd7db39154ed8ccd49af3f2ad59008ae984208b00271c04",
+    "apps/web/src/public-import.css": "15dfa72d6fe8278190f618b2c277c5711ee829e22eb117ca648b8a129bdd8f71",
+    "apps/web/src/queue-panel.tsx": "0f1d2ef050ca5b861ed010c9bc4d8ad0154138818744f5877241bc6ad21c7b0d",
+    "apps/web/src/range-input.tsx": "cc40573cf1953ea0b0ce5e3b86999324050e52d30b532c35c43ea2d0db958433",
+    "apps/web/src/recommendation-actions.tsx": "16ac6cbfe4447257d4f41956528c133cfc493a0fa9960643aa4dfe5449d819a7",
+    "apps/web/src/reference-cover.css": "1070513ebfd3dbf52c811d3277c30e98c66483ab36efc1b40069a2175ed1c177",
+    "apps/web/src/refinement20-home.tsx": "83098e947caf7af5d85923821a410775b36c59e35fa0fad65a5c072619bd893c",
+    "apps/web/src/refinement20-strings.ts": "0569365d1defe75171ff4fd5b94049c3c0c96b836b00b02c598df5792a941131",
+    "apps/web/src/refinement20.css": "7c8dcdcddda90331c822a8cb7218de3676fe0aff2961f1fece36b2113da65fed",
+    "apps/web/src/refinement21.css": "3ad362a2412482121ea6248b1953ff7b5598ebc7bbae47edbd4307db6849ac63",
+    "apps/web/src/room-listeners.tsx": "c05552197f1518e4af8daf4da358df889f2fb1522f12fafa95f31d0fec826eb4",
+    "apps/web/src/scrolling-label.css": "0844c87ded0da6f1b51d9f6356b715bf9d5f3ccd07544bf8befa3a09fb212169",
+    "apps/web/src/scrolling-label.tsx": "4445bed47d77c7dab96e803818e84172db179c834ac6d26bb81e3154134fa579",
+    "apps/web/src/search-artists.css": "4212a317f73d87411970fa018d61658d93b79f113f3ed27ccb57080da77a7713",
+    "apps/web/src/search-artists.tsx": "c4696e8b7ab98fa71f2bde73acb72e5f1f1996643e758d2828fb9a3121a39862",
+    "apps/web/src/seasonal.tsx": "e71a70262eded64230a4cff5c9117e975c9800e47a79371f61b59cc3a5ecbef4",
+    "apps/web/src/settings-range.tsx": "184172f1d9ac13a71bbff6469836a70e80b211610b117b82c9c20569f3effedc",
+    "apps/web/src/store.tsx": "f5a35f2fee2f00ca880c2085c6a0b8754639f3104cf8d64cbb08ac07af1530f0",
+    "apps/web/src/styles.css": "f170ccd1c0589ff66c8f8fcdd50aa692cc18a3cc4722c0548eb07e384746a944",
+    "apps/web/src/top-notice.tsx": "cd7f2ee4a7be8d96eb18b838ccae538a81a7c7aab158cb66f9dfea16d48908a1",
+    "apps/web/src/transport-season.css": "0459aeef49444aa51ae58be2ee9bab051b2ecfc1110848030a7a1722759c7182",
+    "apps/web/src/types.ts": "f4b9f45316555fa321177e68ef1643728772292d45e9c6669d1c381aeca00755",
+    "apps/web/src/ui.tsx": "a4336caa7d715ce1ea5332fe445f9d339f97a0dbb3f1cd347e89819e449bd868",
+    "apps/web/src/v6.css": "73cae087b037346c6efeb26dd8dc46269ca2d43392424dd3d9575ce73f32aab3",
+    "apps/web/src/v7.css": "5f305a19b7ccaeb9bd37a484012cd4557e0b4d27457f2e4abbc689f5531de34f",
+    "apps/web/src/visual-lifecycle.ts": "110a20be1bde0bfbae1108d644bd367e9709a1e31f27b743d6946899990cac0e",
+    "apps/web/src/volume.ts": "4ca822baa37b289958ea5f0d751fc59278edae62b13eb7e4b4cec56a41577fa9",
+    "apps/web/src/wave-colors.ts": "3df5776879b096a835125bca7ffd01f8dbcf9479f3e2237403dcf415ea01c8fd",
+    "apps/web/src/wave-math.ts": "71c6743a3031eab95ee15f7797d68c7662b144bf0686d31f611df4b81b202d70",
+    "apps/web/src/wave-session.ts": "d238c79a6975255676581fcb3bb405a80742841e71f3c1fae956bdb0944abe5d",
+    "apps/web/src/wave-shaders.ts": "c62cbcf66c2bf93da62c02052f69a5f7af0e5107e4b7b5f504a7d08d18c35bc6",
+    "apps/web/src/wave-silk-math.ts": "1d86a1e6df536527d339f0a8abd8961c8d208a5491aeab235d39934d8807c032",
+    "apps/web/src/wave-silk.ts": "77a7cce430495ca9f7d24124ff8e652595b9d9f01e69c213e9385b06c1a0b0ec",
+    "apps/web/src/wave.tsx": "6098affadfb1076b071869f99c7ba47959eec328e8fc9d692b21d87b5e238734",
+    "apps/web/src/wave18-polish.css": "c491168d669fc00fbbd9c6a3acaf3c18d0303efb3d3a92f3788e8ff72c28dc6e",
+    "apps/web/src/locales/copy.tsv": "f990474ce08b549c2d6c3cb942a1e21c8905281fed020c1f0fd4638a391a02b3",
+    "apps/web/src/locales/de.json": "1a1cf2c3cabf3009f874153c1d496b9ff22677b5a0e721a6f60ca280c46d82de",
+    "apps/web/src/locales/en.json": "ba7b37aa47942674f7728935587c49f350fe7cd40a7a2c551abdb466ae29388b",
+    "apps/web/src/locales/es.json": "09a82d9e760e1ef5609241fb8278d34cd7e73f04f740f3f4dce3f429de083aad",
+    "apps/web/src/locales/extra.tsv": "81d6c54e69834bcab56b8b827089faeb759ba5b66745a9b4384570483ed59a0e",
+    "apps/web/src/locales/kk.json": "1ccc3574abcfe5f565492e8e0b7d7a007d5baab65cf212c91d97d575d819b307",
+    "apps/web/src/locales/ru.json": "df407f29d1372febaffa76cb3d32b191b34fddea864b3cb718a0a237ac621565",
+    "apps/web/src/locales/templates.tsv": "ecefdaa21386a1eb127325774e2d5598ee406b96afa8a3b67dbec2dcd0351b34",
+    "apps/web/src/locales/uk.json": "ae21f346224e8e5293f21dcef51cde1810f729433021316e9884c21e6d1aac81",
+    "apps/web/src/vendor/halftone-bloom.ts": "4b9889f1de2367e686ffb32709cc0dbc877e0b674d0fd8fe0f1cba1bac22ad58"
+  },
+  "rollback": "outputs/archive/releases/1.0.0+26",
+  "limits": [
+    "No owner-client installation, deployment, real upstream personal credentials or physical TV/phone/audio-hardware QA",
+    "The Windows open/play race is reproduced and fixed with a delayed native-backend test; owner-device transfer still needs confirmation",
+    "Native installers retain OS confirmation; Android debug certificate retained and Windows has no Authenticode signature",
+    "Legacy Chromium compatibility fixture is not an old Samsung Tizen engine emulator",
+    "Independent evaluator uses the same available model provider",
+    "Subscriptions/releases, continuous provider sync, word-level timestamps and global shortcuts remain separate stages in RESONANCE-COMPARISON.md; manual tokens retain upstream access limits"
+  ]
+}

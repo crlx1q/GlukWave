@@ -5,7 +5,7 @@ import kk from './locales/kk.json';
 import uk from './locales/uk.json';
 import de from './locales/de.json';
 import es from './locales/es.json';
-import {startupLanguageChoice,startupAutomaticLanguage,preferenceStorage} from './locale-startup';
+import {startupLanguageChoice,startupAutomaticLanguage,preferenceStorage,automaticLanguage} from './locale-startup';
 export const languages=[{code:'en',name:'English'},{code:'ru',name:'Русский'},{code:'kk',name:'Қазақша'},{code:'uk',name:'Українська'},{code:'de',name:'Deutsch'},{code:'es',name:'Español'}] as const;
 export type Language=typeof languages[number]['code'];
 export type LanguageChoice=Language|'auto';
@@ -33,7 +33,7 @@ const Context=createContext(snapshot);
 export function LocaleProvider({children}:{children:ReactNode}){
  const state=useSyncExternalStore(callback=>{listeners.add(callback);return()=>listeners.delete(callback);},()=>snapshot);
  useEffect(()=>{document.documentElement.lang=state.language;},[state.language]);
- useEffect(()=>{if(state.choice!=='auto')return;const controller=new AbortController();void fetch('/api/locale',{credentials:'include',headers:{'Accept-Language':browserLanguage()},signal:controller.signal}).then(response=>{if(!response.ok)throw new Error();return response.json();}).then((result:LocaleResponse)=>{if(!controller.signal.aborted&&choice==='auto'&&isLanguage(result.language)){automatic=result;try{localStorage.setItem('gw-language-auto',JSON.stringify({...result,savedAt:Date.now()}));}catch{/* Automatic locale still applies in this page. */}publish();}}).catch(()=>{});return()=>controller.abort();},[state.choice]);
+ useEffect(()=>{if(state.choice!=='auto')return;const controller=new AbortController();void fetch('/api/locale',{credentials:'include',headers:{'Accept-Language':browserLanguage()},signal:controller.signal}).then(response=>{if(!response.ok)throw new Error();return response.json();}).then((result:LocaleResponse)=>{if(!controller.signal.aborted&&choice==='auto'&&isLanguage(result.language)){automatic={...result,language:automaticLanguage(result.language) as Language};try{localStorage.setItem('gw-language-auto',JSON.stringify({...result,savedAt:Date.now()}));}catch{/* Automatic locale still applies in this page. */}publish();}}).catch(()=>{});return()=>controller.abort();},[state.choice]);
  useEffect(()=>{const changed=(event:StorageEvent)=>{if(event.key==='gw-language-choice')setLanguageChoice(readLanguageChoice());};window.addEventListener('storage',changed);return()=>window.removeEventListener('storage',changed);},[]);
  return <Context.Provider value={state}>{children}</Context.Provider>;
 }

@@ -1,0 +1,18 @@
+{
+  "dialogContainsCenter": {
+    "inDialog": true,
+    "tag": "DIV",
+    "text": "Твои любимыеТвои любимые"
+  },
+  "dialogModal": true,
+  "ghost": {
+    "h": 74.4783935546875,
+    "opacity": "1",
+    "parent": "BODY",
+    "w": 392.372314453125,
+    "x": 518.8138427734375,
+    "y": 429.90142822265625,
+    "z": "1600"
+  },
+  "insideDialog": false
+}

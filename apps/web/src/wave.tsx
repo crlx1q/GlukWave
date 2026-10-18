@@ -16,13 +16,13 @@ function drawCanvas(context:CanvasRenderingContext2D,frame:WaveFrame,style:Appea
       const cx=(col+.5)*cell,cy=(row+.5)*cell,x=cx*cos-cy*sin,y=cx*sin+cy*cos;if(x<-cell||x>width+cell||y<-cell||y>height+cell)continue;
       const u=x/width,v=y/height,dot=bloomDot(u,v,phase,energy,pointer,width/height);if(dot.level<.003)continue;
       const mix=.5+.5*Math.sin(u*6+phase*.23),color=tone.map((value,index)=>Math.min(255,value*(.55+.15*mix)+(.4*(1-mix)+[.24,.3,.34][index]*mix)*255));
-      context.fillStyle=`rgba(${color.join(',')},${dot.presence*(.5+dot.level*.5)})`;context.beginPath();context.arc(x,y,cell*dot.radius,0,Math.PI*2);context.fill();
+      context.fillStyle=`rgba(${color.join(',')},${Math.min(1,dot.presence*(.64+dot.level*.5))})`;context.beginPath();context.arc(x,y,cell*dot.radius,0,Math.PI*2);context.fill();
     }
   }else if(style==='particles'){
     const columns=Math.min(125,Math.max(55,Math.round(width/5))),pulse=particleResponse(energy);
     for(let layer=0;layer<3;layer++)for(let point=0;point<columns;point++)for(let band=0;band<5;band++){
       const u=point/(columns-1),x=u*width,y=height*.53+Math.sin(u*9+phase*.5+layer*.7)*height*pulse.amplitude+Math.cos(u*14-phase*.7+band*.25)*height*pulse.detail+(band-2)*5*pulse.spread+Math.sin(point*127+band*73+layer)*7*pulse.spread+(pointer.y-.5)*pointer.active*10;
-      context.fillStyle=`rgba(${tone.map(value=>Math.min(255,value+layer*20)).join(',')},${Math.min(.95,.2+(.5+.5*Math.sin(point*27+band+layer))*.53+pulse.brightness)})`;context.beginPath();context.arc(x,y,.45+(Math.sin(point*13+band)+1)*.3+pulse.radius,0,Math.PI*2);context.fill();
+      context.fillStyle=`rgba(${tone.map(value=>Math.min(255,value+layer*20)).join(',')},${Math.min(.97,.3+(.5+.5*Math.sin(point*27+band+layer))*.55+pulse.brightness)})`;context.beginPath();context.arc(x,y,.45+(Math.sin(point*13+band)+1)*.3+pulse.radius,0,Math.PI*2);context.fill();
     }
   }else{drawFlowRibbon(context,frame);
   }

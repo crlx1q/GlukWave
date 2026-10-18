@@ -1,0 +1,333 @@
+import {getLanguage} from './locale';
+const languages=['en','ru','kk','uk','de','es'];
+const copy:Record<string,string[]>={
+ "trackActions": [
+  "Track actions",
+  "Действия с треком",
+  "Трек әрекеттері",
+  "Дії з треком",
+  "Titelaktionen",
+  "Acciones de la canción"
+ ],
+ "hideTrack": [
+  "Do not recommend this track",
+  "Не предлагать этот трек",
+  "Бұл тректі ұсынбау",
+  "Не пропонувати цей трек",
+  "Diesen Titel nicht empfehlen",
+  "No recomendar esta canción"
+ ],
+ "hideArtist": [
+  "Do not recommend this artist",
+  "Не предлагать этого исполнителя",
+  "Бұл орындаушыны ұсынбау",
+  "Не пропонувати цього виконавця",
+  "Diesen Künstler nicht empfehlen",
+  "No recomendar este artista"
+ ],
+ "hiddenTrack": [
+  "Track removed from recommendations",
+  "Трек убран из рекомендаций",
+  "Трек ұсыныстардан алынды",
+  "Трек прибрано з рекомендацій",
+  "Titel aus Empfehlungen entfernt",
+  "Canción retirada de las recomendaciones"
+ ],
+ "hiddenArtist": [
+  "Artist removed from recommendations",
+  "Исполнитель убран из рекомендаций",
+  "Орындаушы ұсыныстардан алынды",
+  "Виконавця прибрано з рекомендацій",
+  "Künstler aus Empfehlungen entfernt",
+  "Artista retirado de las recomendaciones"
+ ],
+ "undo": [
+  "Undo",
+  "Отменить",
+  "Болдырмау",
+  "Скасувати",
+  "Rückgängig",
+  "Deshacer"
+ ],
+ "restored": [
+  "Recommendations restored",
+  "Рекомендации восстановлены",
+  "Ұсыныстар қалпына келтірілді",
+  "Рекомендації відновлено",
+  "Empfehlungen wiederhergestellt",
+  "Recomendaciones restauradas"
+ ],
+ "access": [
+  "Connect your library",
+  "Подключить медиатеку",
+  "Медиатеканы қосу",
+  "Підключити медіатеку",
+  "Mediathek verbinden",
+  "Conectar tu biblioteca"
+ ],
+ "manual": [
+  "Use a personal token",
+  "Вставить свой токен",
+  "Жеке токенді енгізу",
+  "Вставити свій токен",
+  "Persönliches Token eingeben",
+  "Introducir un token personal"
+ ],
+ "token": [
+  "Personal access token",
+  "Личный access token",
+  "Жеке access token",
+  "Особистий access token",
+  "Persönliches Zugriffstoken",
+  "Token de acceso personal"
+ ],
+ "saveToken": [
+  "Check and connect",
+  "Проверить и подключить",
+  "Тексеру және қосу",
+  "Перевірити й підключити",
+  "Prüfen und verbinden",
+  "Verificar y conectar"
+ ],
+ "oauth": [
+  "Sign in with Spotify",
+  "Войти через Spotify",
+  "Spotify арқылы кіру",
+  "Увійти через Spotify",
+  "Mit Spotify anmelden",
+  "Iniciar sesión con Spotify"
+ ],
+ "oauthYandex": [
+  "Open Yandex authorization",
+  "Открыть авторизацию Яндекса",
+  "Яндекс авторизациясын ашу",
+  "Відкрити авторизацію Яндекса",
+  "Yandex-Autorisierung öffnen",
+  "Abrir autorización de Yandex"
+ ],
+ "tokenHint": [
+  "Use your own short-lived token. It is checked by the server and encrypted; it never appears in this device’s settings. Expired tokens must be replaced.",
+  "Используй свой токен с ограниченным сроком действия. Сервер проверит и зашифрует его; в настройках этого устройства он не сохраняется. Истёкший токен нужно заменить.",
+  "Өзіңіздің мерзімі шектеулі токеніңізді қолданыңыз. Сервер оны тексеріп, шифрлайды; бұл құрылғыда сақталмайды. Мерзімі өткен токенді ауыстырыңыз.",
+  "Використовуй свій токен з обмеженим строком дії. Сервер перевірить і зашифрує його; на цьому пристрої він не зберігається. Прострочений токен потрібно замінити.",
+  "Verwende dein eigenes, zeitlich begrenztes Token. Der Server prüft und verschlüsselt es; auf diesem Gerät wird es nicht gespeichert. Ersetze abgelaufene Tokens.",
+  "Usa tu propio token temporal. El servidor lo verifica y cifra; no se guarda en este dispositivo. Sustituye los tokens caducados."
+ ],
+ "spotifyScopes": [
+  "Required access: user-library-read and playlist-read-private. A token does not remove the service’s access limits.",
+  "Нужен доступ user-library-read и playlist-read-private. Токен не отменяет ограничения площадки.",
+  "user-library-read және playlist-read-private рұқсаттары қажет. Токен қызметтің шектеулерін алып тастамайды.",
+  "Потрібен доступ user-library-read і playlist-read-private. Токен не скасовує обмеження сервісу.",
+  "Erforderlich: user-library-read und playlist-read-private. Ein Token hebt die Zugriffsbeschränkungen des Dienstes nicht auf.",
+  "Se requieren user-library-read y playlist-read-private. Un token no elimina los límites de acceso del servicio."
+ ],
+ "serverToken": [
+  "The server key is used by default for the catalog. You can add your own to import a private library.",
+  "Для каталога используется серверный ключ. Для переноса закрытой медиатеки можно указать свой.",
+  "Каталог үшін сервер кілті қолданылады. Жабық медиатеканы көшіру үшін өз токеніңізді қосуға болады.",
+  "Для каталогу використовується серверний ключ. Для перенесення закритої медіатеки можна додати свій.",
+  "Für den Katalog wird der Serverschlüssel verwendet. Verbinde dein eigenes Token, um private Musik zu übertragen.",
+  "El catálogo usa la clave del servidor. Puedes añadir tu token para importar una biblioteca privada."
+ ],
+ "publicCatalog": [
+  "Public collections are available without a personal token.",
+  "Открытые коллекции доступны без личного токена.",
+  "Ашық жинақтар жеке токенсіз қолжетімді.",
+  "Відкриті колекції доступні без особистого токена.",
+  "Öffentliche Sammlungen benötigen kein persönliches Token.",
+  "Las colecciones públicas no requieren un token personal."
+ ],
+ "connected": [
+  "Library connected",
+  "Медиатека подключена",
+  "Медиатека қосылды",
+  "Медіатеку підключено",
+  "Mediathek verbunden",
+  "Biblioteca conectada"
+ ],
+ "cancel": [
+  "Cancel",
+  "Отмена",
+  "Бас тарту",
+  "Скасувати",
+  "Abbrechen",
+  "Cancelar"
+ ],
+ "close": [
+  "Close",
+  "Закрыть",
+  "Жабу",
+  "Закрити",
+  "Schließen",
+  "Cerrar"
+ ],
+ "editHome": [
+  "Arrange home",
+  "Настроить главную",
+  "Басты бетті баптау",
+  "Налаштувати головну",
+  "Startseite anordnen",
+  "Organizar el inicio"
+ ],
+ "yourShelf": [
+  "Your shelf",
+  "Твоя полка",
+  "Сіздің сөреңіз",
+  "Твоя полиця",
+  "Dein Regal",
+  "Tu estante"
+ ],
+ "shelfHint": [
+  "Keep the music you return to within reach.",
+  "Музыка, к которой хочется возвращаться, всегда под рукой.",
+  "Қайта тыңдағыңыз келетін музыка әрқашан қолжетімді.",
+  "Музика, до якої хочеться повертатися, завжди поруч.",
+  "Die Musik, zu der du zurückkehrst, ist immer griffbereit.",
+  "La música a la que vuelves, siempre a mano."
+ ],
+ "addLikes": [
+  "Pin liked music",
+  "Закрепить любимое",
+  "Ұнағандарды бекіту",
+  "Закріпити улюблене",
+  "Lieblingsmusik anheften",
+  "Fijar favoritas"
+ ],
+ "addPlaylist": [
+  "Add a playlist",
+  "Добавить плейлист",
+  "Плейлист қосу",
+  "Додати плейлист",
+  "Playlist hinzufügen",
+  "Añadir una lista"
+ ],
+ "addMix": [
+  "Add a genre mix",
+  "Добавить микс по жанру",
+  "Жанр бойынша микс қосу",
+  "Додати мікс за жанром",
+  "Genre-Mix hinzufügen",
+  "Añadir una mezcla por género"
+ ],
+ "genre": [
+  "Genre",
+  "Жанр",
+  "Жанр",
+  "Жанр",
+  "Genre",
+  "Género"
+ ],
+ "save": [
+  "Save arrangement",
+  "Сохранить порядок",
+  "Ретін сақтау",
+  "Зберегти порядок",
+  "Anordnung speichern",
+  "Guardar el orden"
+ ],
+ "remove": [
+  "Remove from shelf",
+  "Убрать с полки",
+  "Сөреден алып тастау",
+  "Прибрати з полиці",
+  "Aus dem Regal entfernen",
+  "Quitar del estante"
+ ],
+ "up": [
+  "Move up",
+  "Поднять",
+  "Жоғары жылжыту",
+  "Підняти",
+  "Nach oben",
+  "Subir"
+ ],
+ "down": [
+  "Move down",
+  "Опустить",
+  "Төмен жылжыту",
+  "Опустити",
+  "Nach unten",
+  "Bajar"
+ ],
+ "emptyShelf": [
+  "Add favorites, a playlist or your own genre mix.",
+  "Добавь любимое, плейлист или свой микс по жанру.",
+  "Ұнағандарды, плейлистті немесе жанрлық миксті қосыңыз.",
+  "Додай улюблене, плейлист або свій мікс за жанром.",
+  "Füge Lieblingsmusik, eine Playlist oder deinen Genre-Mix hinzu.",
+  "Añade favoritas, una lista o tu mezcla por género."
+ ],
+ "daily": [
+  "Your day",
+  "Твой день",
+  "Сіздің күніңіз",
+  "Твій день",
+  "Dein Tag",
+  "Tu día"
+ ],
+ "morning": [
+  "Morning",
+  "Утро",
+  "Таң",
+  "Ранок",
+  "Morgen",
+  "Mañana"
+ ],
+ "focus": [
+  "Focus",
+  "Фокус",
+  "Зейін",
+  "Фокус",
+  "Fokus",
+  "Concentración"
+ ],
+ "evening": [
+  "Evening",
+  "Вечер",
+  "Кеш",
+  "Вечір",
+  "Abend",
+  "Tarde"
+ ],
+ "discovery": [
+  "Discoveries",
+  "Открытия",
+  "Жаңалықтар",
+  "Відкриття",
+  "Entdeckungen",
+  "Descubrimientos"
+ ],
+ "mix": [
+  "Genre mix",
+  "Микс по жанру",
+  "Жанрлық микс",
+  "Мікс за жанром",
+  "Genre-Mix",
+  "Mezcla por género"
+ ],
+ "noTracks": [
+  "No tracks found for this mix yet.",
+  "Для этого микса пока не нашлось треков.",
+  "Бұл микс үшін тректер әлі табылмады.",
+  "Для цього міксу поки не знайдено треків.",
+  "Für diesen Mix wurden noch keine Titel gefunden.",
+  "Todavía no se encontraron canciones para esta mezcla."
+ ],
+ "pickup": [
+  "Hold a row to pick it up. Arrows also change the order.",
+  "Зажми строку и перенеси. Стрелками тоже можно менять порядок.",
+  "Жолды басып ұстап, жылжытыңыз. Ретті көрсеткілермен де өзгертуге болады.",
+  "Затисни рядок і перенеси. Стрілками теж можна змінювати порядок.",
+  "Halte eine Zeile gedrückt und verschiebe sie. Auch die Pfeile ändern die Reihenfolge.",
+  "Mantén pulsada una fila y muévela. También puedes usar las flechas para cambiar el orden."
+ ],
+ "maximum": [
+  "You can pin up to 12 items.",
+  "Можно закрепить до 12 элементов.",
+  "12 элементке дейін бекітуге болады.",
+  "Можна закріпити до 12 елементів.",
+  "Du kannst bis zu 12 Elemente anheften.",
+  "Puedes fijar hasta 12 elementos."
+ ]
+};
+export function ui27(key:string){const index=languages.indexOf(getLanguage());return copy[key]?.[index<0?1:index]??key;}

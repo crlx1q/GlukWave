@@ -39,7 +39,7 @@ void main(){
  y+=detached*(mod(seed,2.)<1.?-1.:1.)*(.024+drift*.072+uEnergy*.022+influence*.018);
  gl_Position=vec4(x*2.-1.,1.-y*2.,0.,1.);
  gl_PointSize=(1.05+depth*1.05)*(1.+uEnergy*.22)*uRatio;
- vAlpha=(.38+depth*.53+uEnergy*.08)*(.70+.30*sin(seed*8.)*sin(seed*8.));vAccent=depth*depth*depth;
+ vAlpha=(.48+depth*.45+uEnergy*.07)*(.70+.30*sin(seed*8.)*sin(seed*8.));vAccent=depth*depth*depth;
 }`;
 const fragment=`precision mediump float;
 uniform vec3 uColor,uAccent;
@@ -89,5 +89,5 @@ export function drawFlowRibbon(context:CanvasRenderingContext2D,frame:WaveFrame)
   const drift=ribbonDrift(seed,phase,energy,influence);x+=drift.x;y+=drift.y;
   const radiusDot=.42+depth*.42+energy*.11,path=paths[Math.min(7,Math.floor(depth*8))];path.moveTo(x*width+radiusDot,y*height);path.arc(x*width,y*height,radiusDot,0,Math.PI*2);
  }
- for(let index=0;index<8;index++){const tone=silkDepthColor(color,(index+.5)/8).map(v=>Math.round(v*255));context.fillStyle=`rgba(${tone.join(',')},${.32+(index+.5)/8*.50+energy*.08})`;context.fill(paths[index]);}
+ for(let index=0;index<8;index++){const tone=silkDepthColor(color,(index+.5)/8).map(v=>Math.round(v*255));context.fillStyle=`rgba(${tone.join(',')},${.43+(index+.5)/8*.47+energy*.08})`;context.fill(paths[index]);}
 }

@@ -1,25 +1,24 @@
-import 'playback_progress.dart';
+import '../l10n/glukwave27_ui_strings.dart';
 import 'connect_picker.dart';
 import 'listening_presence.dart';
-import 'motion_icons.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import '../core/controller.dart';
 import '../core/models.dart';
 import '../l10n/wave_localizations.dart';
 import 'widgets.dart';
-import 'player.dart' show showPlayerEqualizer;
-import 'volume_slider.dart';
 
 /// Desktop has a genuine listening rail, rather than a wider phone layout.
 class DesktopListeningRail extends StatefulWidget {
   final WaveController controller;
   final VoidCallback onExpand, onDevices;
+  final VoidCallback? onQueue;
   const DesktopListeningRail({
     super.key,
     required this.controller,
     required this.onExpand,
     required this.onDevices,
+    this.onQueue,
   });
   @override
   State<DesktopListeningRail> createState() => _DesktopListeningRailState();
@@ -65,14 +64,6 @@ class _DesktopListeningRailState extends State<DesktopListeningRail> {
     c.removeListener(_changed);
     request++;
     super.dispose();
-  }
-
-  Future<void> _run(Future<void> Function() action) async {
-    try {
-      await action();
-    } catch (error) {
-      c.tell(error.toString());
-    }
   }
 
   @override
@@ -165,118 +156,57 @@ class _DesktopListeningRailState extends State<DesktopListeningRail> {
                 ),
               ),
               ListeningPresence(controller: c),
-              PlaybackProgress(
-                controller: c,
-                builder: (_, position, duration) => Column(
-                  children: [
-                    DraftSlider(
-                      scope:
-                          '${c.audio.viewCurrent?.id}:${c.activeDeviceId}:${c.activeSurfaceId}',
-                      value: position.clamp(
-                        0,
-                        track.duration > 0 ? track.duration * 1000 : 1,
-                      ),
-                      max: track.duration > 0 ? track.duration * 1000 : 1,
-                      onChanged: c.canSeek && track.duration > 0
-                          ? (value) => _run(
-                              () => c.audio.seek(
-                                Duration(milliseconds: value.round()),
-                              ),
-                            )
-                          : null,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          clock(position / 1000),
-                          style: TextStyle(fontSize: 9, color: v.muted),
-                        ),
-                        Text(
-                          clock(track.duration),
-                          style: TextStyle(fontSize: 9, color: v.muted),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
+              const Divider(height: 32),
+              Text(
+                wave27Text(context, 'next'),
+                style: TextStyle(fontSize: 10, height: 1.6, color: v.muted),
               ),
               const SizedBox(height: 12),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  IconButton(
-                    onPressed: c.canControl && !c.trackLoading
-                        ? () => _run(c.audio.skipToPrevious)
-                        : null,
-                    tooltip: wt('native.8e1abb9475', context: context),
-                    icon: const Icon(Icons.skip_previous_rounded),
+              for (final next
+                  in c.audio.viewTracks
+                      .where((item) => item.id != track.id)
+                      .take(3))
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 12),
+                  child: Row(
+                    children: [
+                      Artwork(
+                        controller: c,
+                        url: next.artwork,
+                        size: 34,
+                        radius: 7,
+                      ),
+                      const SizedBox(width: 9),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              next.title,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                fontSize: 11,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                            const SizedBox(height: 3),
+                            Text(
+                              next.artist,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(fontSize: 10, color: v.muted),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
-                  IconButton.filled(
-                    style: IconButton.styleFrom(
-                      backgroundColor: v.ink,
-                      foregroundColor: v.background,
-                    ),
-                    onPressed:
-                        c.canTogglePlayback &&
-                            (!c.trackLoading || c.audio.playing)
-                        ? () => _run(
-                            c.audio.playing ? c.audio.pause : c.audio.play,
-                          )
-                        : null,
-                    tooltip: wt(
-                      c.audio.playing
-                          ? 'native.03498e395a'
-                          : 'native.c750dc7d94',
-                      context: context,
-                    ),
-                    icon: WavePlaybackIcon(
-                      playing: c.audio.playing,
-                      loading: c.trackLoading,
-                      color: v.background,
-                    ),
-                  ),
-                  IconButton(
-                    onPressed: c.canControl && !c.trackLoading
-                        ? () => _run(c.audio.skipToNext)
-                        : null,
-                    tooltip: wt('native.c97fa8b29b', context: context),
-                    icon: const Icon(Icons.skip_next_rounded),
-                  ),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  IconButton(
-                    tooltip: wt('native.36f30bdb01', context: context),
-                    onPressed: c.online
-                        ? () => _run(() => c.like(track))
-                        : null,
-                    icon: WaveToggleIcon(
-                      active: c.likedIds.contains(track.id),
-                      activeIcon: Icons.favorite_rounded,
-                      inactiveIcon: Icons.favorite_border_rounded,
-                      size: 19,
-                      color: c.likedIds.contains(track.id) ? v.accent : v.muted,
-                    ),
-                  ),
-                  IconButton(
-                    tooltip: wt('eq.title', context: context),
-                    onPressed: () => showPlayerEqualizer(context, c),
-                    icon: Icon(
-                      Icons.graphic_eq_rounded,
-                      size: 19,
-                      color: v.muted,
-                    ),
-                  ),
-                ],
-              ),
-              VolumeSlider(
-                scope: '${c.activeDeviceId}:${c.activeSurfaceId}',
-                value: c.audio.volume,
-                onChanged: (value) =>
-                    _run(() => c.transport('volume', {'volume': value})),
+                ),
+              TextButton.icon(
+                onPressed: widget.onQueue ?? widget.onExpand,
+                icon: const Icon(Icons.queue_music_rounded, size: 17),
+                label: Text(wave27Text(context, 'queue')),
               ),
               if (lines.isNotEmpty && c.settings['lyrics'] != false) ...[
                 const Divider(height: 32),

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type CSSProperties } from 'react';
 import { RangeInput } from './range-input';
-import type {ProgressReader} from './progress-clock';
+import {progressPosition,type ProgressReader} from './progress-clock';
 import {useProgressPaint} from './progress-paint';
 
 /** Keep a drag under the listener's finger while fresh socket positions arrive. */
@@ -19,7 +19,8 @@ export function ContinuousRange({value,min=0,max,step=.1,label,onCommit,onDraft,
  useEffect(cancel,[resetKey]);
  useEffect(()=>{if(disabled)cancel();},[disabled]);
  useEffect(()=>{window.addEventListener('pointerup',release);window.addEventListener('pointercancel',cancel);return()=>{clearTimeout(timer.current);if(editing.current)cancelCallback.current?.();window.removeEventListener('pointerup',release);window.removeEventListener('pointercancel',cancel);};},[]);
- return <RangeInput ref={input} min={min} max={Math.max(min+step,max)} step={readProgress?'any':step} value={Math.min(max,Math.max(min,draft))} aria-label={label} aria-orientation={orientation} aria-valuetext={valueText} disabled={disabled} style={style} className={className}
+ const displayed=readProgress&&!editing.current?progressPosition(readProgress(),performance.now()):draft;
+ return <RangeInput ref={input} min={min} max={Math.max(min+step,max)} step={readProgress?'any':step} value={Math.min(max,Math.max(min,displayed))} aria-label={label} aria-orientation={orientation} aria-valuetext={valueText} disabled={disabled} style={style} className={className}
   onPointerDown={()=>{clearTimeout(timer.current);timer.current=undefined;editing.current=true;pointer.current=true;}}
   onChange={event=>{editing.current=true;const next=Number(event.target.value);setDraft(next);onDraft?.(next);pending.current=next;if(!pointer.current){clearTimeout(timer.current);timer.current=setTimeout(flush,240);}}}
   onPointerUp={release} onPointerCancel={cancel} onBlur={flush} onKeyDown={event=>{if(event.key==='Escape'){event.preventDefault();cancel();}else if(readProgress&&['ArrowLeft','ArrowDown','ArrowRight','ArrowUp','Home','End','PageUp','PageDown'].includes(event.key)){event.preventDefault();editing.current=true;const base=Number(event.currentTarget.value),direction=['ArrowLeft','ArrowDown','PageDown'].includes(event.key)?-1:1,next=Math.min(max,Math.max(min,event.key==='Home'?min:event.key==='End'?max:base+direction*step*(event.key.startsWith('Page')?10:1)));setDraft(next);draftCallback.current?.(next);pending.current=next;clearTimeout(timer.current);timer.current=setTimeout(flush,240);}}}/>

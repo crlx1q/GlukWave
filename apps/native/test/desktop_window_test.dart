@@ -20,7 +20,7 @@ class ClickDispatch extends DesktopShell {
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   testWidgets(
-    'Tray click modes preserve full and mini bounds and restore frame',
+    'Tray click modes preserve full and mini bounds and restore branded hidden frame',
     (tester) async {
       final c = (await tester.runAsync(fixtures.setup))!;
       final native = <MethodCall>[];
@@ -97,7 +97,7 @@ void main() {
       expect(bounds, {'x': 70.0, 'y': 80.0, 'width': 1280.0, 'height': 860.0});
       expect(
         native.lastWhere((call) => call.method == 'setTitleBarStyle').arguments,
-        {'titleBarStyle': 'normal', 'windowButtonVisibility': true},
+        {'titleBarStyle': 'hidden', 'windowButtonVisibility': false},
       );
 
       // Windows reports a sentinel position for a minimized window. It must

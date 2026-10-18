@@ -42,6 +42,7 @@ export const config={
   serviceRestartEnabled:bool(e.SERVICE_RESTART_ENABLED),
   geoipDir:path.resolve(root,e.GEOIP_DATA_DIR||'apps/server/data/geoip'),
   releasesDir:path.resolve(root,e.RELEASES_DIR||'outputs'),
+  yandexToken:e.YANDEX_MUSIC_TOKEN||'',
   extractors:{enabled:bool(e.EXTRACTORS_ENABLED,true),permissive:bool(e.EXTRACTOR_PERMISSIVE,e.NODE_ENV!=='test'),python:e.EXTRACTOR_PYTHON||'',spotdlPython:e.SPOTDL_PYTHON||'',deno:e.EXTRACTOR_DENO||'',concurrency:Math.max(1,Math.min(3,Number(e.EXTRACTOR_CONCURRENCY)||1)),timeout:Math.max(5000,Math.min(120000,Number(e.EXTRACTOR_TIMEOUT_MS)||45000)),cacheMB:Math.max(64,Math.min(8192,Number(e.EXTRACTOR_CACHE_MB)||512))},
 };
 export function validateConfig() {

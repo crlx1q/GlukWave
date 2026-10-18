@@ -18,6 +18,12 @@ String supportedLanguage(String? code) {
   return languageNames.containsKey(base) ? base : 'en';
 }
 
+/// Automatic detection uses Russian in place of Kazakh; manual kk remains.
+String automaticLanguage(String? code) {
+  final language = supportedLanguage(code);
+  return language == 'kk' ? 'ru' : language;
+}
+
 /// Local catalogs ship with the application. Service messages use the active
 /// controller language; widgets resolve the normal Flutter inherited locale.
 class WaveStrings {

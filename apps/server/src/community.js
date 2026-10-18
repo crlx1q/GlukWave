@@ -8,7 +8,7 @@ import {setupRecommendations,genreKey} from './recommendations.js';
 export const safeProfile=user=>user?Object.fromEntries(['id','username','displayName','bio','tags','avatarUrl','bannerUrl','plan','role','createdAt'].map(key=>[key,user[key]])):null;
 export const friendKey=(left,right)=>digest([left,right].sort().join(':'));
 const defaultPrivacy={showActivity:true,profileStats:false,allowFriendRequests:true};
-const defaultTaste={artists:[],genres:[],onboardingCompleted:false,onboardingStep:0,automatic:true,revision:0};
+const defaultTaste={artists:[],genres:[],excludedTrackIds:[],excludedArtistNames:[],onboardingCompleted:false,onboardingStep:0,automatic:true,revision:0};
 export function setupCommunity(app,ctx){
  const {store,requireAuth}=ctx,timers=new Map();let closed=false;
  const mutate=rateLimit({windowMs:60000,limit:30,standardHeaders:'draft-8',legacyHeaders:false});
@@ -50,6 +50,20 @@ export function setupCommunity(app,ctx){
  }));
  app.delete('/api/taste/learned',requireAuth,asyncRoute(async(req,res)=>{await store.update('taste',own(req),previous=>({...defaultTaste,...previous,id:own(req),learnedResetAt:now(),revision:(previous?.revision||0)+1}));const response=await tasteEnvelope(own(req));ctx.io?.to(`user:${own(req)}`).emit('taste:changed',response);res.json(response);}));
  setupRecommendations(app,ctx);
+ app.post('/api/recommendations/exclude',requireAuth,mutate,asyncRoute(async(req,res)=>{
+  const body=parse(z.object({trackId:text(200),artist:z.boolean().default(false),remove:z.boolean().default(false)}).strict(),req.body);
+  const track=await ctx.requireTrack(body.trackId,req.auth.user);
+  const key=body.artist?'excludedArtistNames':'excludedTrackIds';
+  const values=body.artist?(track.artists?.length?track.artists.map(value=>searchText(value.name)):[searchText(track.artist)]).filter(Boolean):[track.id];
+  await ctx.withLock('taste:'+own(req),()=>store.update('taste',own(req),previous=>{
+    const current=new Set(previous?.[key]||[]);
+    for(const value of values){if(body.remove)current.delete(value);else current.add(value);}
+    return {...defaultTaste,...previous,[key]:[...current].slice(-500),id:own(req),revision:(previous?.revision||0)+1,updatedAt:now()};
+  }));
+  ctx.invalidateRecommendations?.();
+  const response=await tasteEnvelope(own(req));ctx.io?.to(`user:${own(req)}`).emit('taste:changed',response);
+  res.set('Cache-Control','private, no-store').json(response);
+ }));
  app.get('/api/account/privacy',requireAuth,asyncRoute(async(req,res)=>res.json({privacy:await privacy(own(req))})));
  app.patch('/api/account/privacy',requireAuth,asyncRoute(async(req,res)=>{const body=parse(z.object({showActivity:z.boolean().optional(),profileStats:z.boolean().optional(),allowFriendRequests:z.boolean().optional()}).strict(),req.body);await store.update('privacy',own(req),previous=>({...defaultPrivacy,...previous,...body,id:own(req)}));changed(own(req));res.json({privacy:await privacy(own(req))});}));
  async function activity(viewer,friend){

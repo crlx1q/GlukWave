@@ -208,7 +208,7 @@ void main() {
       ),
     );
     await settle(tester);
-    expect(tester.getSize(find.byType(NativeDesktopTransport)).height, 68);
+    expect(tester.getSize(find.byType(NativeDesktopTransport)).height, 104);
     expect(find.byType(MiniLyrics), findsNothing);
     expect(find.text('The sea comes into view'), findsNothing);
     await f.screenshot(tester, 'parity24-desktop-bottom-clean');

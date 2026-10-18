@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+import 'dart:math' as math;
 import '../core/controller.dart';
 import '../core/models.dart';
 import '../l10n/ecosystem_polish_strings.dart';
@@ -14,9 +16,76 @@ class QueuePanel extends StatefulWidget {
   State<QueuePanel> createState() => _QueuePanelState();
 }
 
+class _QueueEntry {
+  final int key;
+  final WaveTrack track;
+  const _QueueEntry(this.key, this.track);
+}
+
 class _QueuePanelState extends State<QueuePanel> {
-  final rows = <WaveTrack>[];
-  final retiring = <String>{};
+  final rows = <_QueueEntry>[];
+  int occurrence = 0;
+  int? picked;
+  Offset? pointer;
+  Timer? edgeScroll;
+  List<_QueueEntry> reconcile(List<WaveTrack> tracks) {
+    final available = List<_QueueEntry>.of(rows);
+    return tracks.map((track) {
+      var at = available.indexWhere((row) => identical(row.track, track));
+      if (at < 0) at = available.indexWhere((row) => row.track.id == track.id);
+      return at < 0
+          ? _QueueEntry(++occurrence, track)
+          : _QueueEntry(available.removeAt(at).key, track);
+    }).toList();
+  }
+
+  void scrollEdge() {
+    if (!mounted || picked == null || pointer == null) return;
+    final scroll = Scrollable.maybeOf(context),
+        object = Scrollable.maybeOf(context)?.context.findRenderObject();
+    if (scroll == null || object is! RenderBox) return;
+    final y = object.globalToLocal(pointer!).dy,
+        h = object.size.height,
+        step = y < 56
+            ? -math.min(18.0, (56 - y) * .28)
+            : y > h - 56
+            ? math.min(18.0, (y - h + 56) * .28)
+            : 0.0;
+    if (step != 0 && scroll.position.hasContentDimensions) {
+      scroll.position.jumpTo(
+        (scroll.position.pixels + step).clamp(
+          scroll.position.minScrollExtent,
+          scroll.position.maxScrollExtent,
+        ),
+      );
+    }
+  }
+
+  Widget grip(int index, Widget child, bool canEdit) {
+    final desktop = [
+      TargetPlatform.windows,
+      TargetPlatform.linux,
+      TargetPlatform.macOS,
+    ].contains(defaultTargetPlatform);
+    return desktop
+        ? ReorderableDragStartListener(
+            index: index,
+            enabled: canEdit,
+            child: MouseRegion(
+              cursor: canEdit
+                  ? SystemMouseCursors.grab
+                  : SystemMouseCursors.basic,
+              child: child,
+            ),
+          )
+        : ReorderableDelayedDragStartListener(
+            index: index,
+            enabled: canEdit,
+            child: child,
+          );
+  }
+
+  final retiring = <int>{};
   Timer? removal;
   bool busy = false;
   String? signature;
@@ -24,20 +93,21 @@ class _QueuePanelState extends State<QueuePanel> {
   @override
   void initState() {
     super.initState();
-    rows.addAll(c.audio.viewTracks);
+    rows.addAll(reconcile(c.audio.viewTracks));
     c.addListener(sync);
   }
 
   void sync() {
-    if (!mounted) return;
+    if (!mounted || picked != null) return;
     final latest = c.audio.viewTracks;
+    final next = reconcile(latest);
     final nextSignature =
         '${latest.map((t) => t.id).join("|")}:${c.audio.viewCurrent?.id}:${c.audio.playing}:${c.trackLoading}:${c.canControl}';
     if (signature == nextSignature) return;
     signature = nextSignature;
     final deleted = rows
-        .where((t) => !latest.any((v) => v.id == t.id))
-        .map((t) => t.id)
+        .where((t) => !next.any((v) => v.key == t.key))
+        .map((t) => t.key)
         .toSet();
     if (deleted.isNotEmpty) {
       setState(() => retiring.addAll(deleted));
@@ -47,7 +117,7 @@ class _QueuePanelState extends State<QueuePanel> {
           setState(() {
             rows
               ..clear()
-              ..addAll(c.audio.viewTracks);
+              ..addAll(reconcile(c.audio.viewTracks));
             retiring.clear();
           });
         }
@@ -56,7 +126,7 @@ class _QueuePanelState extends State<QueuePanel> {
       setState(
         () => rows
           ..clear()
-          ..addAll(latest),
+          ..addAll(next),
       );
     }
   }
@@ -65,6 +135,7 @@ class _QueuePanelState extends State<QueuePanel> {
   void dispose() {
     c.removeListener(sync);
     removal?.cancel();
+    edgeScroll?.cancel();
     super.dispose();
   }
 
@@ -85,197 +156,256 @@ class _QueuePanelState extends State<QueuePanel> {
   Widget build(BuildContext context) {
     final v = waveVisuals(context),
         canEdit = c.canControl && !busy && retiring.isEmpty;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Align(
-          alignment: Alignment.centerLeft,
-          child: TextButton.icon(
-            key: const Key('queue-add'),
-            onPressed: canEdit
-                ? () => showWaveDialog<void>(
-                    context: context,
-                    builder: (_) => QueueAddDialog(controller: c),
-                  )
-                : null,
-            icon: const Icon(Icons.add_rounded),
-            label: Text(ecosystemText('queueAdd', context)),
+    return Listener(
+      onPointerMove: (event) => pointer = event.position,
+      onPointerDown: (event) => pointer = event.position,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Align(
+            alignment: Alignment.centerLeft,
+            child: TextButton.icon(
+              key: const Key('queue-add'),
+              onPressed: canEdit
+                  ? () => showWaveDialog<void>(
+                      context: context,
+                      builder: (_) => QueueAddDialog(controller: c),
+                    )
+                  : null,
+              icon: const Icon(Icons.add_rounded),
+              label: Text(ecosystemText('queueAdd', context)),
+            ),
           ),
-        ),
-        ReorderableListView.builder(
-          key: const Key('native-queue-list'),
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          buildDefaultDragHandles: false,
-          itemCount: rows.length,
-          proxyDecorator: (child, index, animation) => Material(
-            color: v.surface,
-            elevation: 5,
-            borderRadius: BorderRadius.circular(v.corners(14)),
-            child: child,
-          ),
-          onReorder: (from, to) {
-            if (!canEdit) return;
-            if (to > from) to--;
-            unawaited(run(() => c.moveQueue(from, to)));
-          },
-          itemBuilder: (context, index) {
-            final track = rows[index],
-                active = c.audio.viewCurrent?.id == track.id;
-            return _QueueSettlement(
-              key: ValueKey(track.id),
-              duration: v.duration(230),
-              curve: Curves.easeInOutCubic,
-              alignment: Alignment.topCenter,
-              child: retiring.contains(track.id)
-                  ? const SizedBox(width: double.infinity)
-                  : Material(
-                      color: active
-                          ? v.accentSoft.withValues(alpha: .4)
-                          : Colors.transparent,
-                      borderRadius: BorderRadius.circular(v.corners(14)),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 7,
-                          horizontal: 3,
+          ReorderableListView.builder(
+            key: const Key('native-queue-list'),
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            buildDefaultDragHandles: false,
+            itemCount: rows.length,
+            proxyDecorator: (child, index, animation) => AnimatedBuilder(
+              animation: animation,
+              child: child,
+              builder: (_, child) {
+                final lift = Curves.easeOutCubic.transform(animation.value);
+                return Transform.translate(
+                  offset: Offset(0, -5 * lift),
+                  child: Transform.rotate(
+                    angle: -.009 * lift,
+                    child: Transform.scale(
+                      scale: 1 + .025 * lift,
+                      child: Material(
+                        key: const Key('queue-lifted-proxy'),
+                        color: v.surface,
+                        elevation: 18 * lift,
+                        shadowColor: Colors.black.withValues(alpha: .35),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(v.corners(14)),
+                          side: BorderSide(
+                            color: v.accent.withValues(alpha: .3),
+                          ),
                         ),
-                        child: Row(
-                          children: [
-                            if (canEdit)
-                              ReorderableDelayedDragStartListener(
-                                index: index,
-                                child: Padding(
-                                  padding: const EdgeInsets.fromLTRB(
-                                    2,
-                                    12,
-                                    5,
-                                    12,
-                                  ),
-                                  child: Icon(
-                                    Icons.drag_indicator_rounded,
-                                    color: v.muted,
-                                    size: 17,
-                                  ),
-                                ),
-                              ),
-                            InkWell(
-                              key: Key('queue-cover-${track.id}'),
-                              onTap: c.canControl
-                                  ? () => run(
-                                      () => c.play(
-                                        track,
-                                        list: c.audio.viewTracks,
-                                        preserveWave: c.waveActive,
-                                      ),
-                                    )
-                                  : null,
-                              borderRadius: BorderRadius.circular(
-                                v.corners(10),
-                              ),
-                              child: Artwork(
-                                controller: c,
-                                url: track.artwork,
-                                size: 42,
-                                radius: 10,
-                                trackLoading: active && c.trackLoading,
-                              ),
-                            ),
-                            const SizedBox(width: 10),
-                            Expanded(
-                              child: InkWell(
-                                onTap: c.canControl
-                                    ? () => run(
-                                        () => c.play(
-                                          track,
-                                          list: c.audio.viewTracks,
-                                          preserveWave: c.waveActive,
-                                        ),
-                                      )
-                                    : null,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      track.title,
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: const TextStyle(
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.w800,
-                                      ),
-                                    ),
-                                    const SizedBox(height: 3),
-                                    Text(
-                                      track.artist,
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(
-                                        fontSize: 10,
-                                        color: v.muted,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                            if (active)
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  horizontal: 5,
-                                ),
-                                child: ListeningWave(
-                                  playing: c.audio.playing,
-                                  size: 15,
-                                ),
-                              ),
-                            PopupMenuButton<String>(
-                              key: Key('queue-actions-${track.id}'),
-                              icon: Icon(
-                                Icons.more_horiz_rounded,
-                                size: 19,
-                                color: v.muted,
-                              ),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(
-                                  v.corners(12),
-                                ),
-                              ),
-                              itemBuilder: (_) => [
-                                if (canEdit && index > 0)
-                                  PopupMenuItem(
-                                    value: 'up',
-                                    child: Text(ecosystemText('up', context)),
-                                  ),
-                                if (canEdit && index < rows.length - 1)
-                                  PopupMenuItem(
-                                    value: 'down',
-                                    child: Text(ecosystemText('down', context)),
-                                  ),
-                                if (canEdit)
-                                  PopupMenuItem(
-                                    value: 'remove',
-                                    child: Text(
-                                      ecosystemText('remove', context),
-                                    ),
-                                  ),
-                              ],
-                              onSelected: (action) => run(
-                                () => action == 'remove'
-                                    ? c.removeQueue(track.id)
-                                    : c.moveQueue(
-                                        index,
-                                        action == 'up' ? index - 1 : index + 1,
-                                      ),
-                              ),
-                            ),
-                          ],
-                        ),
+                        child: child,
                       ),
                     ),
-            );
-          },
-        ),
-      ],
+                  ),
+                );
+              },
+            ),
+            onReorderStart: (index) {
+              setState(() => picked = index);
+              edgeScroll?.cancel();
+              edgeScroll = Timer.periodic(
+                const Duration(milliseconds: 20),
+                (_) => scrollEdge(),
+              );
+            },
+            onReorderEnd: (_) {
+              edgeScroll?.cancel();
+              picked = null;
+            },
+            onReorder: (from, to) {
+              if (!canEdit) return;
+              if (to > from) to--;
+              if (from == to) return;
+              setState(() {
+                final item = rows.removeAt(from);
+                rows.insert(to, item);
+                picked = null;
+                signature = null;
+              });
+              unawaited(run(() => c.moveQueue(from, to)));
+            },
+            itemBuilder: (context, index) {
+              final entry = rows[index],
+                  track = entry.track,
+                  active = c.audio.viewCurrent?.id == track.id;
+              return _QueueSettlement(
+                key: ValueKey(entry.key),
+                duration: v.duration(230),
+                curve: Curves.easeInOutCubic,
+                alignment: Alignment.topCenter,
+                child: retiring.contains(entry.key)
+                    ? const SizedBox(width: double.infinity)
+                    : ReorderableDelayedDragStartListener(
+                        index: index,
+                        enabled: canEdit,
+                        child: Material(
+                          color: active
+                              ? v.accentSoft.withValues(alpha: .4)
+                              : Colors.transparent,
+                          borderRadius: BorderRadius.circular(v.corners(14)),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                              vertical: 7,
+                              horizontal: 3,
+                            ),
+                            child: Row(
+                              children: [
+                                if (canEdit)
+                                  grip(
+                                    index,
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(
+                                        2,
+                                        12,
+                                        5,
+                                        12,
+                                      ),
+                                      child: Icon(
+                                        Icons.drag_indicator_rounded,
+                                        color: v.muted,
+                                        size: 17,
+                                      ),
+                                    ),
+                                    canEdit,
+                                  ),
+                                InkWell(
+                                  key: Key('queue-cover-${track.id}'),
+                                  onTap: c.canControl
+                                      ? () => run(
+                                          () => c.play(
+                                            track,
+                                            list: c.audio.viewTracks,
+                                            preserveWave: c.waveActive,
+                                          ),
+                                        )
+                                      : null,
+                                  borderRadius: BorderRadius.circular(
+                                    v.corners(10),
+                                  ),
+                                  child: Artwork(
+                                    controller: c,
+                                    url: track.artwork,
+                                    size: 42,
+                                    radius: 10,
+                                    trackLoading: active && c.trackLoading,
+                                  ),
+                                ),
+                                const SizedBox(width: 10),
+                                Expanded(
+                                  child: InkWell(
+                                    onTap: c.canControl
+                                        ? () => run(
+                                            () => c.play(
+                                              track,
+                                              list: c.audio.viewTracks,
+                                              preserveWave: c.waveActive,
+                                            ),
+                                          )
+                                        : null,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          track.title,
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: const TextStyle(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w800,
+                                          ),
+                                        ),
+                                        const SizedBox(height: 3),
+                                        Text(
+                                          track.artist,
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                            fontSize: 10,
+                                            color: v.muted,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                if (active)
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 5,
+                                    ),
+                                    child: ListeningWave(
+                                      playing: c.audio.playing,
+                                      size: 15,
+                                    ),
+                                  ),
+                                PopupMenuButton<String>(
+                                  key: Key('queue-actions-${track.id}'),
+                                  icon: Icon(
+                                    Icons.more_horiz_rounded,
+                                    size: 19,
+                                    color: v.muted,
+                                  ),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(
+                                      v.corners(12),
+                                    ),
+                                  ),
+                                  itemBuilder: (_) => [
+                                    if (canEdit && index > 0)
+                                      PopupMenuItem(
+                                        value: 'up',
+                                        child: Text(
+                                          ecosystemText('up', context),
+                                        ),
+                                      ),
+                                    if (canEdit && index < rows.length - 1)
+                                      PopupMenuItem(
+                                        value: 'down',
+                                        child: Text(
+                                          ecosystemText('down', context),
+                                        ),
+                                      ),
+                                    if (canEdit)
+                                      PopupMenuItem(
+                                        value: 'remove',
+                                        child: Text(
+                                          ecosystemText('remove', context),
+                                        ),
+                                      ),
+                                  ],
+                                  onSelected: (action) => run(
+                                    () => action == 'remove'
+                                        ? c.removeQueueAt(index)
+                                        : c.moveQueue(
+                                            index,
+                                            action == 'up'
+                                                ? index - 1
+                                                : index + 1,
+                                          ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+              );
+            },
+          ),
+        ],
+      ),
     );
   }
 }

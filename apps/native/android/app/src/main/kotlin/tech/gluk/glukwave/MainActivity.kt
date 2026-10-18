@@ -4,6 +4,31 @@ class MainActivity : AudioServiceFragmentActivity() {
     override fun configureFlutterEngine(engine: io.flutter.embedding.engine.FlutterEngine) {
         super.configureFlutterEngine(engine)
         val app = applicationContext
+        io.flutter.plugin.common.MethodChannel(engine.dartExecutor.binaryMessenger,"tech.gluk.glukwave/updates").setMethodCallHandler { call,result ->
+            if (call.method == "version") {
+                val info = app.packageManager.getPackageInfo(app.packageName,0)
+                val build = if (android.os.Build.VERSION.SDK_INT >= 28) info.longVersionCode else info.versionCode.toLong()
+                result.success("${info.versionName}+$build"); return@setMethodCallHandler
+            }
+            if (call.method != "install") { result.notImplemented(); return@setMethodCallHandler }
+            try {
+                val file = java.io.File(call.argument<String>("path") ?: "").canonicalFile
+                val root = java.io.File(app.filesDir,"updates").canonicalFile
+                require(file.parentFile == root && file.name.matches(Regex("glukwave-[a-f0-9]{64}\\.apk")) && file.isFile)
+                if (android.os.Build.VERSION.SDK_INT >= 26 && !app.packageManager.canRequestPackageInstalls()) {
+                    startActivity(android.content.Intent(android.provider.Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES,
+                        android.net.Uri.parse("package:"+app.packageName)))
+                    result.error("INSTALL_PERMISSION","Allow updates from GlukWave, then press Install again.",null)
+                } else {
+                    val uri = androidx.core.content.FileProvider.getUriForFile(app,app.packageName+".updates",file)
+                    startActivity(android.content.Intent(android.content.Intent.ACTION_VIEW).apply {
+                        setDataAndType(uri,"application/vnd.android.package-archive")
+                        addFlags(android.content.Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                    })
+                    result.success(true)
+                }
+            } catch (error: Exception) { result.error("UPDATE_INSTALL",error.javaClass.simpleName,null) }
+        }
         io.flutter.plugin.common.MethodChannel(engine.dartExecutor.binaryMessenger,"tech.gluk.glukwave/connect_background").setMethodCallHandler { call,result ->
             if (call.method != "update") { result.notImplemented(); return@setMethodCallHandler }
             try {

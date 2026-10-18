@@ -1,3 +1,4 @@
+import 'volume_panel.dart';
 import 'playback_progress.dart';
 import 'dart:math' as math;
 import 'scrolling_label.dart';
@@ -616,6 +617,7 @@ class PlayerPage extends StatefulWidget {
   final ValueChanged<double>? onDragUpdate, onDragEnd;
   final Key? artworkKey;
   final bool hideAlbum;
+  final int initialTab;
   const PlayerPage({
     super.key,
     required this.controller,
@@ -629,6 +631,7 @@ class PlayerPage extends StatefulWidget {
     this.onDragCancel,
     this.artworkKey,
     this.hideAlbum = false,
+    this.initialTab = 0,
   });
   @override
   State<PlayerPage> createState() => _PlayerPageState();
@@ -668,6 +671,7 @@ class _PlayerPageState extends State<PlayerPage> {
   @override
   void initState() {
     super.initState();
+    tab = widget.initialTab;
     current = widget.initialTrack ?? c.audio.viewCurrent;
     _detailsScope = detailsScope(current);
     unawaited(loadDetails());
@@ -1660,32 +1664,7 @@ class _PlayerPageState extends State<PlayerPage> {
       ),
     ],
   );
-  Future<void> showVolume() => showWaveDialog<void>(
-    context: context,
-    builder: (_) => AnimatedBuilder(
-      animation: c,
-      builder: (_, child) => AlertDialog(
-        title: Text(wt('native.621777004a', context: context)),
-        content: SizedBox(
-          width: 300,
-          child: VolumeSlider(
-            scope: c.controlScope,
-            onPreview: c.previewVolume,
-            onCancel: c.cancelVolumeEdit,
-            value: c.audio.volume.clamp(0, 1),
-            onChanged: (v) =>
-                _run(c, () => c.transport('volume', {'volume': v})),
-          ),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text(wt('native.398c7d4f7b', context: context)),
-          ),
-        ],
-      ),
-    ),
-  );
+  Future<void> showVolume() => showWaveVolume(context, c);
   Widget lyricPage(WaveTrack track) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -1751,13 +1730,23 @@ class _PlayerPageState extends State<PlayerPage> {
                 if (mounted &&
                     node != null &&
                     DateTime.now().isAfter(_manualLyricsUntil)) {
-                  final before = _lyricsScroll.hasClients ? _lyricsScroll.offset : 0.0;
-                  Scrollable.ensureVisible(node, alignment: .5, duration: Duration.zero);
-                  final after = _lyricsScroll.hasClients ? _lyricsScroll.offset : before;
-                  if (mounted) { setState(() {
-                    _lyricShift = (after - before).clamp(-240.0, 240.0);
-                    _lyricRevision++;
-                  }); }
+                  final before = _lyricsScroll.hasClients
+                      ? _lyricsScroll.offset
+                      : 0.0;
+                  Scrollable.ensureVisible(
+                    node,
+                    alignment: .5,
+                    duration: Duration.zero,
+                  );
+                  final after = _lyricsScroll.hasClients
+                      ? _lyricsScroll.offset
+                      : before;
+                  if (mounted) {
+                    setState(() {
+                      _lyricShift = (after - before).clamp(-240.0, 240.0);
+                      _lyricRevision++;
+                    });
+                  }
                 }
               });
             }
@@ -1787,87 +1776,101 @@ class _PlayerPageState extends State<PlayerPage> {
                       ),
                     ),
                   for (var i = 0; i < lyrics.length; i++)
-                    SizedBox(key: _lyricKeys.putIfAbsent(i, () => GlobalKey()), child: LyricTile(key: ValueKey('lyric-tile-$i'), revision: _lyricRevision, offset: _lyricShift, distance: (active - i).abs(), active: active == i, child: InkWell(
-                      key: ValueKey('lyric-line-$i'),
-                      onHover: (clear) => setState(
-                        () => clear
-                            ? _clearLyricDepth.add(i)
-                            : _clearLyricDepth.remove(i),
-                      ),
-                      onFocusChange: (clear) => setState(
-                        () => clear
-                            ? _clearLyricDepth.add(i)
-                            : _clearLyricDepth.remove(i),
-                      ),
-                      onTap:
-                          synchronized &&
-                              c.canSeek &&
-                              c.audio.viewCurrent?.id == track.id
-                          ? () => _run(
-                              c,
-                              () => c.audio.seek(
-                                Duration(
-                                  milliseconds:
-                                      (number(lyrics[i]['time']) * 1000)
-                                          .round(),
-                                ),
-                              ),
-                            )
-                          : null,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 14),
-                        child: TweenAnimationBuilder<double>(
-                          tween: Tween(
-                            end:
-                                MediaQuery.highContrastOf(context) ||
-                                    _clearLyricDepth.contains(i) ||
-                                    DateTime.now().isBefore(_manualLyricsUntil)
-                                ? 0
-                                : lyricDefocus((active - i).abs(), active),
+                    SizedBox(
+                      key: _lyricKeys.putIfAbsent(i, () => GlobalKey()),
+                      child: LyricTile(
+                        key: ValueKey('lyric-tile-$i'),
+                        revision: _lyricRevision,
+                        offset: _lyricShift,
+                        distance: (active - i).abs(),
+                        active: active == i,
+                        child: InkWell(
+                          key: ValueKey('lyric-line-$i'),
+                          onHover: (clear) => setState(
+                            () => clear
+                                ? _clearLyricDepth.add(i)
+                                : _clearLyricDepth.remove(i),
                           ),
-                          duration: waveVisuals(context).duration(240),
-                          child: AnimatedDefaultTextStyle(
-                            duration: waveVisuals(context).duration(220),
-                            curve: Curves.easeOut,
-                            style: TextStyle(
-                              fontFamily: Theme.of(
-                                context,
-                              ).textTheme.bodyMedium?.fontFamily,
-                              fontSize: MediaQuery.sizeOf(context).width >= 851
-                                  ? 32
-                                  : 26,
-                              fontWeight: FontWeight.w800,
-                              letterSpacing: -.7,
-                              height: 1.5,
-                              color:
-                                  active < 0 ||
-                                      active == i ||
-                                      _clearLyricDepth.contains(i)
-                                  ? waveVisuals(context).ink
-                                  : (active - i).abs() <= 1 ||
+                          onFocusChange: (clear) => setState(
+                            () => clear
+                                ? _clearLyricDepth.add(i)
+                                : _clearLyricDepth.remove(i),
+                          ),
+                          onTap:
+                              synchronized &&
+                                  c.canSeek &&
+                                  c.audio.viewCurrent?.id == track.id
+                              ? () => _run(
+                                  c,
+                                  () => c.audio.seek(
+                                    Duration(
+                                      milliseconds:
+                                          (number(lyrics[i]['time']) * 1000)
+                                              .round(),
+                                    ),
+                                  ),
+                                )
+                              : null,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 14),
+                            child: TweenAnimationBuilder<double>(
+                              tween: Tween(
+                                end:
+                                    MediaQuery.highContrastOf(context) ||
+                                        _clearLyricDepth.contains(i) ||
                                         DateTime.now().isBefore(
                                           _manualLyricsUntil,
-                                        ) ||
-                                        MediaQuery.highContrastOf(context)
-                                  ? waveVisuals(context).muted
-                                  : waveVisuals(context).muted.withValues(
-                                      alpha: (.55 - (active - i).abs() * .065)
-                                          .clamp(.2, .5),
-                                    ),
+                                        )
+                                    ? 0
+                                    : lyricDefocus((active - i).abs(), active),
+                              ),
+                              duration: waveVisuals(context).duration(240),
+                              child: AnimatedDefaultTextStyle(
+                                duration: waveVisuals(context).duration(220),
+                                curve: Curves.easeOut,
+                                style: TextStyle(
+                                  fontFamily: Theme.of(
+                                    context,
+                                  ).textTheme.bodyMedium?.fontFamily,
+                                  fontSize:
+                                      MediaQuery.sizeOf(context).width >= 851
+                                      ? 32
+                                      : 26,
+                                  fontWeight: FontWeight.w800,
+                                  letterSpacing: -.7,
+                                  height: 1.5,
+                                  color:
+                                      active < 0 ||
+                                          active == i ||
+                                          _clearLyricDepth.contains(i)
+                                      ? waveVisuals(context).ink
+                                      : (active - i).abs() <= 1 ||
+                                            DateTime.now().isBefore(
+                                              _manualLyricsUntil,
+                                            ) ||
+                                            MediaQuery.highContrastOf(context)
+                                      ? waveVisuals(context).muted
+                                      : waveVisuals(context).muted.withValues(
+                                          alpha:
+                                              (.55 - (active - i).abs() * .065)
+                                                  .clamp(.2, .5),
+                                        ),
+                                ),
+                                child: Text(lyrics[i]['text'] as String? ?? ''),
+                              ),
+                              builder: (context, sigma, child) => ImageFiltered(
+                                imageFilter: ui.ImageFilter.blur(
+                                  sigmaX: sigma,
+                                  sigmaY: sigma,
+                                ),
+                                enabled: sigma > .01,
+                                child: child,
+                              ),
                             ),
-                            child: Text(lyrics[i]['text'] as String? ?? ''),
-                          ),
-                          builder: (context, sigma, child) => ImageFiltered(
-                            imageFilter: ui.ImageFilter.blur(
-                              sigmaX: sigma,
-                              sigmaY: sigma,
-                            ),
-                            enabled: sigma > .01,
-                            child: child,
                           ),
                         ),
                       ),
-                    ))),
+                    ),
                 ],
               ),
             );

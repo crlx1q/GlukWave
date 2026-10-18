@@ -20,7 +20,7 @@ const secrets=new Set();
 const add=value=>{if(typeof value==='string'&&value.length>=8){secrets.add(value);if(value.includes('\n'))secrets.add(value.replaceAll('\n','\\n'));}};
 const env=dotenv.parse(await fs.readFile(path.join(root,'.env')).catch(()=>Buffer.alloc(0)));
 for(const [key,value] of Object.entries(env)){
-  if(/SECRET|PASSWORD|PRIVATE|ENCRYPTION|MONGODB_URI|SMTP_URL|ACCESS_KEY|ORIGINKIT_API_KEY/i.test(key))add(value);
+  if(/SECRET|TOKEN|PASSWORD|PRIVATE|ENCRYPTION|MONGODB_URI|SMTP_URL|ACCESS_KEY|ORIGINKIT_API_KEY/i.test(key))add(value);
   if(/MONGODB_URI|SMTP_URL/i.test(key)){try{const url=new URL(value);if(url.password)add(decodeURIComponent(url.password));}catch{}}
 }
 try{const local=JSON.parse(await fs.readFile(path.join(root,'var/local-secrets.json'),'utf8'));for(const [key,value] of Object.entries(local))if(/PRIVATE|ENCRYPTION|SECRET/i.test(key))add(value);}catch{}

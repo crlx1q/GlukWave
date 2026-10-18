@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "bytesBefore": 186086801,
+  "bytesAfter": 180979038,
+  "savedBytes": 5107763,
+  "allEntryHashesUnchanged": true,
+  "entryCount": 667,
+  "pageAlignmentKB": 16,
+  "v2SignatureVerified": true,
+  "updateCertificateMatchesBaseline": true,
+  "certificateSha256": "d631b0271019e5b3a9df153929ac0de07708b0766fc4c132fbce862b67a56748",
+  "sha256": "7a765fde502c3139c4920b91fede1dd001016ff63b5014b05d00b40c3b59fc9e"
+}

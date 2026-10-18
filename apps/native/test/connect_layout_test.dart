@@ -214,16 +214,21 @@ void main() {
       );
       expect(volume, .5, reason: 'Wheel preview stays local until quiet.');
       await tester.pump(const Duration(milliseconds: 280));
-      expect(volume, .6);
+      expect(volume, .52);
       await tester.sendEventToBinding(
         PointerScrollEvent(
           position: tester.getCenter(find.byType(VolumeSlider)),
           scrollDelta: const Offset(0, 1200),
         ),
       );
-      expect(volume, .6);
+      expect(volume, .52);
       await tester.pump(const Duration(milliseconds: 280));
-      expect(volume, 0);
+      expect(
+        volume,
+        .5,
+        reason:
+            'A large wheel delta still changes exactly one two-percent step.',
+      );
       await tester.pumpWidget(const SizedBox());
     },
   );

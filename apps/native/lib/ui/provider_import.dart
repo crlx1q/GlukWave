@@ -1,3 +1,4 @@
+import 'provider_access.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'dart:math' as math;
@@ -45,6 +46,7 @@ class _ProviderImportState extends State<ProviderImport> {
   late String? account;
   late String origin;
   late bool publicMode;
+  late bool authorized;
   final query = TextEditingController();
   final scroll = ScrollController();
   final selected = <String>{};
@@ -76,6 +78,7 @@ class _ProviderImportState extends State<ProviderImport> {
     account = c.user?.id;
     origin = c.api.server;
     publicMode = widget.publicMode;
+    authorized = widget.connected;
     c.addListener(checkScope);
     if (!publicMode) unawaited(loadCollections());
   }
@@ -386,7 +389,20 @@ class _ProviderImportState extends State<ProviderImport> {
       ]);
     } else if (collection == null) {
       children.addAll([
-        if (widget.connected)
+        ProviderAccess(
+          key: ValueKey('$account:${widget.provider}'),
+          controller: c,
+          provider: widget.provider,
+          onConnected: () {
+            setState(() {
+              reset();
+              authorized = true;
+              publicMode = false;
+            });
+            unawaited(loadCollections());
+          },
+        ),
+        if (authorized)
           Padding(
             padding: const EdgeInsets.only(bottom: 14),
             child: Wrap(

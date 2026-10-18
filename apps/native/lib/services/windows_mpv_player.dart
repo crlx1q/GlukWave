@@ -98,6 +98,25 @@ class WaveMpvPlayer extends AudioPlayerPlatform implements WindowsDspOutput {
   Duration? _duration;
   bool _playing = false;
   bool _mediaOpened = false;
+  Future<void> _intentWrites = Future.value();
+  int _intentRevision = 0;
+
+  Future<void> _syncPlaybackIntent(int generation) {
+    final work = _intentWrites.catchError((_) {}).then((_) async {
+      while (generation == _loadGeneration && _mediaOpened) {
+        final revision = _intentRevision;
+        if (_playing) {
+          await _player.play();
+        } else {
+          await _player.pause();
+        }
+        if (revision == _intentRevision) return;
+      }
+    });
+    _intentWrites = work;
+    return work;
+  }
+
   bool _seeking = false;
   int? _errorCode;
   String? _errorMessage;
@@ -371,6 +390,9 @@ class WaveMpvPlayer extends AudioPlayerPlatform implements WindowsDspOutput {
     _errorMessage = null;
     _updatePlaybackEvent();
     await ready();
+    if (generation != _loadGeneration) {
+      throw StateError('Audio load superseded');
+    }
     if (_player.platform is NativePlayer) {
       // media_kit defaults to disk demux caching. Audio uses a bounded memory
       // cache so a missing/unwritable temporary directory cannot break handoff.
@@ -387,12 +409,18 @@ class WaveMpvPlayer extends AudioPlayerPlatform implements WindowsDspOutput {
         index: _currentIndex,
       );
 
-      await Future.any([_player.open(playable, play: _playing), loaded]);
+      await Future.any([
+        _player.open(playable, play: _playing),
+        loaded.then<void>((_) => Completer<void>().future),
+      ]);
     } else {
       final playable = _convertAudioSourceIntoMediaKit(
         request.audioSourceMessage,
       );
-      await Future.any([_player.open(playable, play: _playing), loaded]);
+      await Future.any([
+        _player.open(playable, play: _playing),
+        loaded.then<void>((_) => Completer<void>().future),
+      ]);
     }
     if (generation != _loadGeneration) {
       throw StateError('Audio load superseded');
@@ -416,14 +444,21 @@ class WaveMpvPlayer extends AudioPlayerPlatform implements WindowsDspOutput {
     if (request.initialPosition != null) {
       await seek(SeekRequest(position: request.initialPosition));
     }
+    // just_audio may send play/pause while open or initial seek is pending.
+    // Reconcile the latest intent only after the new media is actually open.
+    if (generation != _loadGeneration) {
+      throw StateError('Audio load superseded');
+    }
+    await _syncPlaybackIntent(generation);
     return LoadResponse(duration: duration);
   }
 
   @override
   Future<PlayResponse> play(PlayRequest request) async {
     _playing = true;
+    _intentRevision++;
     if (_mediaOpened) {
-      await _player.play();
+      await _syncPlaybackIntent(_loadGeneration);
     }
     return PlayResponse();
   }
@@ -431,8 +466,9 @@ class WaveMpvPlayer extends AudioPlayerPlatform implements WindowsDspOutput {
   @override
   Future<PauseResponse> pause(PauseRequest request) async {
     _playing = false;
+    _intentRevision++;
     if (_mediaOpened) {
-      await _player.pause();
+      await _syncPlaybackIntent(_loadGeneration);
     }
     return PauseResponse();
   }

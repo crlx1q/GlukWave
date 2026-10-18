@@ -332,7 +332,7 @@ void main() {
     },
   );
   testWidgets(
-    'Desktop bottom transport stays compact with or without lyric rail',
+    'Desktop bottom transport keeps spacious104px with or without lyric rail',
     (tester) async {
       final c = (await tester.runAsync(audio.makeController))!;
       c.settings['lyricsUnderCover'] = true;
@@ -348,7 +348,7 @@ void main() {
       );
       await tester.pumpWidget(scene());
       await settle(tester);
-      expect(tester.getSize(find.byType(NativeDesktopTransport)).height, 68);
+      expect(tester.getSize(find.byType(NativeDesktopTransport)).height, 104);
       (c.api as f.LayoutApi).lyricLines = [
         {'time': 0, 'text': 'Current lyric'},
         {'time': 20, 'text': 'Next lyric'},
@@ -357,14 +357,14 @@ void main() {
       c.render();
       await tester.pumpWidget(scene());
       await settle(tester);
-      expect(tester.getSize(find.byType(NativeDesktopTransport)).height, 68);
+      expect(tester.getSize(find.byType(NativeDesktopTransport)).height, 104);
       expect(find.text('Current lyric'), findsNothing);
       expect(find.byType(MiniLyrics), findsNothing);
       await f.screenshot(tester, 'parity24-bottom-clean');
       c.settings['lyricsUnderCover'] = false;
       await tester.pumpWidget(scene());
       await settle(tester);
-      expect(tester.getSize(find.byType(NativeDesktopTransport)).height, 68);
+      expect(tester.getSize(find.byType(NativeDesktopTransport)).height, 104);
       expect(tester.takeException(), isNull);
       await f.clean(tester, c);
     },

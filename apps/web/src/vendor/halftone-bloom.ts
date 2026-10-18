@@ -53,7 +53,7 @@ void main() {
   float aa = 0.7 * uPR;
   float dm = 1.0 - smoothstep(radius - aa, radius + aa, length(rp - c));
   vec3 dots = ink * min(0.8 / max(lvl, 1e-3), 2.2) * dm;
-  vec3 L = mix(soft, dots, presence);
+  vec3 L = mix(soft, dots, presence) * 1.16;
 
   vec3 dark = uBg + L * (1.0 - uBg);
   float strength = clamp(max(L.r, max(L.g, L.b)), 0.0, 1.0);

@@ -263,6 +263,8 @@ class DesktopShell extends ChangeNotifier with WindowListener, TrayListener {
         minimumSize: Size(760, 540),
         center: true,
         title: 'GlukWave',
+        titleBarStyle: TitleBarStyle.hidden,
+        windowButtonVisibility: false,
         backgroundColor: Color(0xffefede3),
       ),
       () async {
@@ -428,7 +430,7 @@ class DesktopShell extends ChangeNotifier with WindowListener, TrayListener {
     mini = quick = false;
     _compactSource = null;
     await windowManager.setOpacity(1);
-    await windowManager.setTitleBarStyle(TitleBarStyle.normal);
+    await windowManager.setTitleBarStyle(TitleBarStyle.hidden, windowButtonVisibility: false);
     await windowManager.setAlwaysOnTop(false);
     await windowManager.setSkipTaskbar(false);
     await windowManager.setResizable(true);

@@ -1,0 +1,134 @@
+{
+  "createdAt": "2026-10-18T14:57:40.839Z",
+  "surface": "fresh production dist with isolated fixture",
+  "checks": [
+    {
+      "surface": "Home",
+      "width": 1440,
+      "visibleStack": {
+        "dialogModal": true,
+        "ghost": {
+          "height": 74.4783935546875,
+          "width": 392.372314453125,
+          "x": 518.8138427734375,
+          "y": 451.19830322265625
+        },
+        "insideDialog": true,
+        "layer": {
+          "height": 1000,
+          "width": 1440,
+          "x": 0,
+          "y": 0
+        },
+        "overflow": "visible",
+        "point": {
+          "x": 715,
+          "y": 488.4375
+        },
+        "top": "DIV",
+        "visible": true
+      },
+      "dropSaved": true,
+      "cancel": "Escape",
+      "restoresDraft": true,
+      "overlayRemoved": true,
+      "outsideScrollVisible": true,
+      "before": [
+        "likes",
+        "playlist",
+        "ambient"
+      ]
+    },
+    {
+      "surface": "Home",
+      "width": 390,
+      "visibleStack": {
+        "dialogModal": true,
+        "ghost": {
+          "height": 73.67694091796875,
+          "width": 326.7772216796875,
+          "x": 26.611404418945312,
+          "y": 350.0052795410156
+        },
+        "insideDialog": true,
+        "layer": {
+          "height": 900,
+          "width": 390,
+          "x": 0,
+          "y": 0
+        },
+        "overflow": "visible",
+        "point": {
+          "x": 190.00001525878903,
+          "y": 386.84375
+        },
+        "top": "DIV",
+        "visible": true
+      },
+      "dropSaved": true,
+      "cancel": "touchCancel",
+      "restoresDraft": true,
+      "overlayRemoved": true,
+      "outsideScrollVisible": true,
+      "before": [
+        "likes",
+        "playlist",
+        "ambient"
+      ]
+    },
+    {
+      "surface": "Home",
+      "width": 320,
+      "visibleStack": {
+        "dialogModal": true,
+        "ghost": {
+          "height": 72.80035400390625,
+          "width": 255.03253173828125,
+          "x": 27.483726501464844,
+          "y": 352.1935729980469
+        },
+        "insideDialog": true,
+        "layer": {
+          "height": 900,
+          "width": 320,
+          "x": 0,
+          "y": 0
+        },
+        "overflow": "visible",
+        "point": {
+          "x": 154.99999237060547,
+          "y": 388.59375
+        },
+        "top": "SPAN",
+        "visible": true
+      },
+      "dropSaved": true,
+      "cancel": "touchCancel",
+      "restoresDraft": true,
+      "overlayRemoved": true,
+      "outsideScrollVisible": true,
+      "before": [
+        "likes",
+        "playlist",
+        "ambient"
+      ]
+    },
+    {
+      "surface": "Queue regression",
+      "width": 1440,
+      "singleCommit": true,
+      "cancelZeroCommits": true
+    }
+  ],
+  "captures": [
+    "work/qa/parity27-eval2-home-pickup-1440.png",
+    "work/qa/parity27-eval2-home-outside-scroll-1440.png",
+    "work/qa/parity27-eval2-home-pickup-390.png",
+    "work/qa/parity27-eval2-home-outside-scroll-390.png",
+    "work/qa/parity27-eval2-home-pickup-320.png",
+    "work/qa/parity27-eval2-home-outside-scroll-320.png",
+    "work/qa/parity27-eval2-queue-pickup-1440.png",
+    "work/qa/parity27-eval2-queue-pickup-390.png"
+  ],
+  "fixtureCleared": true
+}

@@ -2,6 +2,7 @@
 
 #include <optional>
 #include <algorithm>
+#include <flutter/standard_method_codec.h>
 #include "utils.h"
 
 #include "flutter/generated_plugin_registrant.h"
@@ -27,6 +28,16 @@ bool FlutterWindow::OnCreate() {
     return false;
   }
   RegisterPlugins(flutter_controller_->engine());
+  update_channel_ = std::make_unique<flutter::MethodChannel<flutter::EncodableValue>>(
+      flutter_controller_->engine()->messenger(), "tech.gluk.glukwave/updates",
+      &flutter::StandardMethodCodec::GetInstance());
+  update_channel_->SetMethodCallHandler([](const auto& call, auto result) {
+    if (call.method_name() == "version") {
+      result->Success(flutter::EncodableValue(std::string(FLUTTER_VERSION)));
+    } else {
+      result->NotImplemented();
+    }
+  });
   SetChildContent(flutter_controller_->view()->GetNativeWindow());
 
   flutter_controller_->engine()->SetNextFrameCallback([&]() {
@@ -45,6 +56,7 @@ bool FlutterWindow::OnCreate() {
 }
 
 void FlutterWindow::OnDestroy() {
+  update_channel_.reset();
   if (flutter_controller_) {
     flutter_controller_ = nullptr;
   }

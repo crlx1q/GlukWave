@@ -1,3 +1,4 @@
+import {ProviderAccess} from './provider-access';
 import {useEffect,useRef,useState} from 'react';
 import {ArrowLeft,ArrowRight,Check,Heart,Music2,RefreshCw,Search} from 'lucide-react';
 import {api,errorText,post} from './api';
@@ -16,6 +17,7 @@ const mergeWarnings=(...lists:(string[]|undefined)[])=>[...new Set(lists.flatMap
 
 export function ProviderImport({provider,onClose,connected=false}:{provider:Source;onClose:()=>void;connected?:boolean}){
  useLocale();const store=useStore(),account=store.user?.id;
+ const [authorized,setAuthorized]=useState(connected);
  const [mode,setMode]=useState<'public'|'connected'>('public'),[query,setQuery]=useState(''),[searched,setSearched]=useState(false);
  const [collections,setCollections]=useState<Collection[]>([]),[collection,setCollection]=useState<Collection|null>(null),[tracks,setTracks]=useState<Track[]>([]),[selection,setSelection]=useState(new Set<string>()),[cursor,setCursor]=useState<string|null>(null),[busy,setBusy]=useState(false),[saving,setSaving]=useState(false),[error,setError]=useState(''),[all,setAll]=useState(true),[destination,setDestination]=useState<'playlist'|'likes'>('playlist'),[result,setResult]=useState<Imported|null>(null);
  const [exposure,setExposure]=useState<Exposure>({}),[searchExposure,setSearchExposure]=useState<Exposure>({});
@@ -31,7 +33,7 @@ export function ProviderImport({provider,onClose,connected=false}:{provider:Sour
    if(valid(version)){setCollections([...(data.liked?[data.liked]:[]),...(data.playlists||[])]);setExposure(data);setSearchExposure(data);}
   }catch(reason){if(valid(version))setError(errorText(reason));}finally{if(valid(version))setBusy(false);}
  };
- useEffect(()=>{alive.current=true;reset();setQuery('');if(mode==='connected'&&connected)void loadCollections();return()=>{generation.current++;};},[provider,account,mode]);
+ useEffect(()=>{alive.current=true;reset();setQuery('');if(mode==='connected'&&authorized)void loadCollections();return()=>{generation.current++;};},[provider,account,mode,authorized]);
  useEffect(()=>{const dialog=root.current?.closest('dialog'),cancel=(event:Event)=>{if(saveLock.current)event.preventDefault();};dialog?.addEventListener('cancel',cancel);return()=>{alive.current=false;generation.current++;dialog?.removeEventListener('cancel',cancel);};},[]);
  useEffect(()=>{root.current?.closest('dialog')?.scrollTo({top:0});},[collection?.id,!!result]);
  const loadTracks=async(value:Collection,next?:string|null)=>{
@@ -53,7 +55,8 @@ export function ProviderImport({provider,onClose,connected=false}:{provider:Sour
   <div ref={root} className="import-preview public-import-preview" aria-busy={busy||saving}>
    {result?<div className="import-result" role="status"><Check size={28}/><h3>{text('imported')}</h3><strong>{trackCount(result.imported)}</strong>{!!result.deduplicated&&<small>{text('duplicates')}: {result.deduplicated}</small>}{!!result.unavailable&&<small>{text('unavailable')}: {result.unavailable}</small>}{notice(result)}{result.tasteSeeded&&<p>{text('tasteSeed')}</p>}<button className="primary-button" onClick={()=>{close();store.navigate('library');location.hash=`library?${result.playlist?`playlist=${encodeURIComponent(result.playlist.id)}`:'tab=liked'}`;}}>{t('copy.172')}<ArrowRight size={16}/></button></div>:
     !collection?<>
-     {connected&&<div className="import-destination public-import-modes" role="group" aria-label={copy('method')}>{(['public','connected'] as const).map(option=><button key={option} aria-pressed={mode===option} className={mode===option?'selected':''} onClick={()=>{generation.current++;setMode(option);}}>{copy(option)}</button>)}</div>}
+     <ProviderAccess key={`${account}:${provider}`} provider={provider} onConnected={()=>{setAuthorized(true);setMode('connected');}}/>
+     {authorized&&<div className="import-destination public-import-modes" role="group" aria-label={copy('method')}>{(['public','connected'] as const).map(option=><button key={option} aria-pressed={mode===option} className={mode===option?'selected':''} onClick={()=>{generation.current++;setMode(option);}}>{copy(option)}</button>)}</div>}
      {mode==='public'&&<form className="public-import-search" onSubmit={event=>{event.preventDefault();if(!busy)void loadCollections();}}><label className="field"><span>{copy('query')}</span><input autoFocus name="publicImportQuery" value={query} autoComplete="off" maxLength={2048} placeholder={copy('placeholder')} onChange={event=>{generation.current++;setQuery(event.target.value);setSearched(false);setCollections([]);setBusy(false);setError('');setExposure({});setSearchExposure({});}}/></label><button className="primary-button" type="submit" disabled={busy||!query.trim()}><Search size={16}/>{copy(busy?'finding':'find')}</button><p>{copy('hint')}</p></form>}
      {notice(exposure)}
      {busy?<Loading label={copy('finding')}/>:collections.length?<div className="external-playlists">{collections.map(item=><button className="list-button" key={item.id} onClick={()=>void loadTracks(item)}>{item.kind==='likes'||item.id==='liked'?<Heart/>:item.artwork?<span className="public-collection-art" style={{backgroundImage:`url(${JSON.stringify(item.artwork)})`}}/>:<Music2/>}<span><b>{item.name}</b><small>{mode==='public'&&!item.trackCount?copy('collection'):trackCount(item.trackCount)}</small></span><ArrowRight size={16}/></button>)}</div>:!error&&searched&&<Empty title={copy('empty')}>{copy('emptyHint')}</Empty>}

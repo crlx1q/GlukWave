@@ -1,3 +1,8 @@
+import 'recommendation_actions.dart';
+import '../l10n/glukwave27_ui_strings.dart';
+import 'home_shelf.dart';
+import 'update_notice.dart';
+import 'desktop_titlebar.dart';
 import 'playlist_manager.dart';
 import 'playlist_strings.dart';
 import 'library_sort.dart';
@@ -187,13 +192,20 @@ class _GlukWaveAppState extends State<GlukWaveApp> with WidgetsBindingObserver {
     _notice = c.noticeRevision;
     final text = c.notice!;
     final now = DateTime.now();
-    if (_lastNoticeText == text && _noticeAt != null && now.difference(_noticeAt!).inSeconds < 3) return;
+    if (_lastNoticeText == text &&
+        _noticeAt != null &&
+        now.difference(_noticeAt!).inSeconds < 3) {
+      return;
+    }
     _lastNoticeText = text;
     _noticeAt = now;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
       _noticeTimer?.cancel();
-      setState(() { _noticeText = text; _noticeAt = now; });
+      setState(() {
+        _noticeText = text;
+        _noticeAt = now;
+      });
       _noticeTimer = Timer(Duration(seconds: text.length > 100 ? 7 : 4), () {
         if (mounted) setState(() => _noticeText = null);
       });
@@ -290,13 +302,22 @@ class _GlukWaveAppState extends State<GlukWaveApp> with WidgetsBindingObserver {
                 c.energySaving ||
                 customization.reducedMotion,
           ),
-          child: TickerMode(enabled: _foreground, child: Stack(children: [
-            child!,
-            if (_noticeText != null) WaveTopNotice(text: _noticeText!, onClose: () {
-              _noticeTimer?.cancel();
-              setState(() => _noticeText = null);
-            }),
-          ])),
+          child: TickerMode(
+            enabled: _foreground,
+            child: Stack(
+              children: [
+                child!,
+                if (_noticeText != null)
+                  WaveTopNotice(
+                    text: _noticeText!,
+                    onClose: () {
+                      _noticeTimer?.cancel();
+                      setState(() => _noticeText = null);
+                    },
+                  ),
+              ],
+            ),
+          ),
         ),
         home: Builder(
           builder: (context) {
@@ -400,6 +421,7 @@ class _WaveShellState extends State<WaveShell>
   final miniArtwork = GlobalKey(), fullArtwork = GlobalKey();
   bool playerVisible = false;
   WaveTrack? previewTrack;
+  int playerInitialTab = 0;
   Rect? coverOrigin, coverDestination;
   double dragOrigin = 0;
   int playerTransition = 0;
@@ -489,6 +511,12 @@ class _WaveShellState extends State<WaveShell>
     }
     final desktop = MediaQuery.sizeOf(context).width >= 900;
     final shell = Scaffold(
+      appBar: DesktopTitleBar.supported
+          ? PreferredSize(
+              preferredSize: const Size.fromHeight(44),
+              child: DesktopTitleBar(controller: c),
+            )
+          : null,
       body: SafeArea(
         child: SeasonalBackdrop(
           settings: c.customization.seasonalEffects,
@@ -499,6 +527,7 @@ class _WaveShellState extends State<WaveShell>
                 child: Column(
                   children: [
                     topbar(desktop),
+                    WaveUpdateNotice(controller: c),
                     if (c.room != null) roomPin(),
                     if (!c.online)
                       NativeOfflineNotice(
@@ -609,6 +638,7 @@ class _WaveShellState extends State<WaveShell>
                             DesktopListeningRail(
                               controller: c,
                               onExpand: () => showPlayer(),
+                              onQueue: () => showPlayer(tab: 2),
                               onDevices: () => navigate(WavePage.devices),
                             ),
                         ],
@@ -655,8 +685,7 @@ class _WaveShellState extends State<WaveShell>
           child: shell,
           builder: (context, child) {
             final extent = playerReveal.value;
-            final shift =
-                (1 - extent) * MediaQuery.sizeOf(context).height;
+            final shift = (1 - extent) * MediaQuery.sizeOf(context).height;
             return Stack(
               children: [
                 ExcludeFocus(
@@ -687,6 +716,7 @@ class _WaveShellState extends State<WaveShell>
                             child: PlayerPage(
                               controller: c,
                               initialTrack: previewTrack,
+                              initialTab: playerInitialTab,
                               onMore: more,
                               onClose: () => settlePlayer(false),
                               onDevices: () {
@@ -1393,6 +1423,16 @@ class _WaveShellState extends State<WaveShell>
           ),
           const SizedBox(height: 28),
         ],
+        NativeHomeShelf(
+          controller: c,
+          onLikes: () => navigate(WavePage.liked),
+          onPlaylist: (playlist) {
+            setState(() {
+              selectedPlaylist = playlist;
+              page = WavePage.library;
+            });
+          },
+        ),
         WaveHero(
           controller: c,
           empty: false,
@@ -2180,7 +2220,8 @@ class _WaveShellState extends State<WaveShell>
     }
   }
 
-  Future<void> showPlayer({WaveTrack? track}) async {
+  Future<void> showPlayer({WaveTrack? track, int tab = 0}) async {
+    playerInitialTab = tab;
     setState(() => previewTrack = track);
     if (c.desktop.mini) await run(c, c.desktop.toggleMini);
     if (mounted) await settlePlayer(true);
@@ -2261,6 +2302,22 @@ class _WaveShellState extends State<WaveShell>
                 unawaited(showPlayer(track: track));
               },
             ),
+            if (c.online && c.loggedIn)
+              for (final artist in [false, true])
+                ListTile(
+                  leading: Icon(
+                    artist ? Icons.person_off_outlined : Icons.block_rounded,
+                  ),
+                  title: Text(
+                    wave27Text(context, artist ? 'hideArtist' : 'hideTrack'),
+                  ),
+                  onTap: () {
+                    Navigator.pop(sheet);
+                    unawaited(
+                      excludeRecommendation(context, c, track, artist: artist),
+                    );
+                  },
+                ),
             if (track.sourceUrl.isNotEmpty)
               ListTile(
                 leading: const Icon(Icons.open_in_new_rounded),
@@ -3442,7 +3499,11 @@ class _WaveShellState extends State<WaveShell>
         child: InkWell(
           key: Key('settings-${item.key}'),
           borderRadius: BorderRadius.circular(v.corners(10)),
-          onTap: () => setState(() { settingsSection = item.key; settingsQuery = ''; settingsSearch.clear(); }),
+          onTap: () => setState(() {
+            settingsSection = item.key;
+            settingsQuery = '';
+            settingsSearch.clear();
+          }),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
             child: Row(
@@ -3475,13 +3536,20 @@ class _WaveShellState extends State<WaveShell>
         ),
       ),
     );
-    final matches = settingsSections.entries.where((item) => '${item.key} ${item.value.$1} ${switch (item.key) {
-      'playback' => 'audio sound volume equalizer EQ lyrics звук громкость эквалайзер текст',
-      'storage' => 'cache offline memory downloads кеш память загрузки',
-      'appearance' => 'theme color animation background язык language тема цвет анимация',
-      'security' => 'sessions password privacy сессии пароль безопасность',
-      _ => '',
-    }}'.toLowerCase().contains(settingsQuery.trim().toLowerCase())).toList();
+    final matches = settingsSections.entries
+        .where(
+          (item) =>
+              '${item.key} ${item.value.$1} ${switch (item.key) {
+                    'playback' => 'audio sound volume equalizer EQ lyrics звук громкость эквалайзер текст',
+                    'storage' => 'cache offline memory downloads кеш память загрузки',
+                    'appearance' => 'theme color animation background язык language тема цвет анимация',
+                    'security' => 'sessions password privacy сессии пароль безопасность',
+                    _ => '',
+                  }}'
+                  .toLowerCase()
+                  .contains(settingsQuery.trim().toLowerCase()),
+        )
+        .toList();
     final detail = SingleChildScrollView(
       key: ValueKey('settings-detail-$settingsSection'),
       padding: const EdgeInsets.only(bottom: 28),
@@ -3495,18 +3563,60 @@ class _WaveShellState extends State<WaveShell>
           wt('native.413b6b6e1c', context: context),
           eyebrow: wt('native.aff68c53a5', context: context),
         ),
-        TextField(controller: settingsSearch, key: const Key('settings-search'),
-          decoration: InputDecoration(labelText: wave26Text(context, 'settings.search'), prefixIcon: const Icon(Icons.search_rounded, size: 19), suffixIcon: settingsQuery.isEmpty ? null : IconButton(onPressed: () => setState(() { settingsSearch.clear(); settingsQuery = ''; }), icon: const Icon(Icons.close_rounded, size: 18))),
+        TextField(
+          controller: settingsSearch,
+          key: const Key('settings-search'),
+          decoration: InputDecoration(
+            labelText: wave26Text(context, 'settings.search'),
+            prefixIcon: const Icon(Icons.search_rounded, size: 19),
+            suffixIcon: settingsQuery.isEmpty
+                ? null
+                : IconButton(
+                    onPressed: () => setState(() {
+                      settingsSearch.clear();
+                      settingsQuery = '';
+                    }),
+                    icon: const Icon(Icons.close_rounded, size: 18),
+                  ),
+          ),
           onChanged: (value) => setState(() => settingsQuery = value),
         ),
         const SizedBox(height: 18),
         if (!desktop) ...[
-          if (settingsQuery.isEmpty) DropdownButtonFormField<String>(
-            key: ValueKey('settings-mobile-$settingsSection'), isExpanded: true, initialValue: settingsSection,
-            decoration: InputDecoration(labelText: wave26Text(context, 'settings.category')),
-            items: [for (final item in settingsSections.entries) DropdownMenuItem(value: item.key, child: Text(item.value.$1, maxLines: 1, overflow: TextOverflow.ellipsis))],
-            onChanged: (value) { if (value != null) setState(() => settingsSection = value); },
-          ) else if (matches.isEmpty) Padding(padding: const EdgeInsets.all(12), child: Text(wave26Text(context, 'settings.noResults'))) else SingleChildScrollView(key: const Key('settings-navigation'), scrollDirection: Axis.horizontal, child: Row(children: [for (final item in matches) link(item)])),
+          if (settingsQuery.isEmpty)
+            DropdownButtonFormField<String>(
+              key: ValueKey('settings-mobile-$settingsSection'),
+              isExpanded: true,
+              initialValue: settingsSection,
+              decoration: InputDecoration(
+                labelText: wave26Text(context, 'settings.category'),
+              ),
+              items: [
+                for (final item in settingsSections.entries)
+                  DropdownMenuItem(
+                    value: item.key,
+                    child: Text(
+                      item.value.$1,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+              ],
+              onChanged: (value) {
+                if (value != null) setState(() => settingsSection = value);
+              },
+            )
+          else if (matches.isEmpty)
+            Padding(
+              padding: const EdgeInsets.all(12),
+              child: Text(wave26Text(context, 'settings.noResults')),
+            )
+          else
+            SingleChildScrollView(
+              key: const Key('settings-navigation'),
+              scrollDirection: Axis.horizontal,
+              child: Row(children: [for (final item in matches) link(item)]),
+            ),
           const SizedBox(height: 20),
         ],
         Expanded(
@@ -3517,8 +3627,10 @@ class _WaveShellState extends State<WaveShell>
                     SizedBox(
                       width: 180,
                       child: ListView(
+                        key: const Key('desktop-settings-navigation'),
                         children: [
-                          if (matches.isEmpty) Text(wave26Text(context, 'settings.noResults')),
+                          if (matches.isEmpty)
+                            Text(wave26Text(context, 'settings.noResults')),
                           for (final item in matches) link(item),
                         ],
                       ),
@@ -3870,6 +3982,8 @@ class _WaveShellState extends State<WaveShell>
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            WaveUpdateNotice(controller: c, settings: true),
+            const SizedBox(height: 18),
             const Brand(),
             const SizedBox(height: 18),
             Text(

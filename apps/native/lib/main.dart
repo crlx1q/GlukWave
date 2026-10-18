@@ -20,7 +20,7 @@ import 'ui/widgets.dart';
 Future<void> main(List<String> arguments) async {
   WidgetsFlutterBinding.ensureInitialized();
   WaveStrings.current = WaveStrings(
-    supportedLanguage(PlatformDispatcher.instance.locale.languageCode),
+    automaticLanguage(PlatformDispatcher.instance.locale.languageCode),
   );
   runApp(const WaveBootstrapApp());
   WaveApi? startupApi;
@@ -55,7 +55,7 @@ Future<void> main(List<String> arguments) async {
     startupApi = api;
     api.diagnostics.version = const String.fromEnvironment(
       'GLUKWAVE_BUILD_VERSION',
-      defaultValue: '1.0.0+26',
+      defaultValue: '1.0.0+27',
     );
     try {
       await api.diagnostics.enableLocalLog(

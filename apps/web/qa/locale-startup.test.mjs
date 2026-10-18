@@ -10,5 +10,7 @@ test('logged-out, corrupt and blocked storage use safe language defaults without
  assert.equal(startupLanguageChoice(storage({'gw-user':'{"id":"b"}','gw-settings:a':'{"language":"ru"}'})),'auto');
 });
 test('automatic locale reuses a recent country-only choice and expires invalid or stale data',()=>{
- const saved={language:'kk',country:'KZ',source:'ip',savedAt:Date.now()};assert.equal(startupAutomaticLanguage(storage({'gw-language-auto':JSON.stringify(saved)}),'en').language,'kk');assert.equal(startupAutomaticLanguage(storage({'gw-language-auto':JSON.stringify({...saved,savedAt:0})}),'ru').language,'ru');assert.equal(startupAutomaticLanguage(storage({'gw-language-auto':JSON.stringify({...saved,language:'bad'})}),'en').language,'en');
+ const saved={language:'kk',country:'KZ',source:'ip',savedAt:Date.now()};assert.equal(startupAutomaticLanguage(storage({'gw-language-auto':JSON.stringify(saved)}),'en').language,'ru');assert.equal(startupAutomaticLanguage(storage({'gw-language-auto':JSON.stringify({...saved,savedAt:0})}),'ru').language,'ru');assert.equal(startupAutomaticLanguage(storage({'gw-language-auto':JSON.stringify({...saved,language:'bad'})}),'en').language,'en');
 });
+
+test('automatic Kazakh falls back to Russian while explicit saved Kazakh stays selectable',()=>{assert.equal(startupAutomaticLanguage(storage({}),'kk').language,'ru');assert.equal(startupLanguageChoice(storage({'gw-language-choice':'kk'})),'kk');});

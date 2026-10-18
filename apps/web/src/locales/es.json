@@ -1328,5 +1328,6 @@
   "v26.artist.tracks": "Canciones",
   "auth.showPassword": "Mostrar contraseña",
   "auth.hidePassword": "Ocultar contraseña",
-  "v26.settings.cacheNote": "La caché automática guarda una cantidad limitada de canciones recientes. Guarda una canción expresamente para escucharla sin conexión."
+  "v26.settings.cacheNote": "La caché automática guarda una cantidad limitada de canciones recientes. Guarda una canción expresamente para escucharla sin conexión.",
+  "auth.identifier": "Correo o usuario"
 }

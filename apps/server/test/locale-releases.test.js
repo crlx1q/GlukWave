@@ -16,11 +16,11 @@ test('automatic locale understands weighted browser tags and country choices, wi
   assert.equal(browserLanguage('fr-FR,uk-UA;q=0.8,en;q=0.9'),'en');
   assert.equal(browserLanguage('de-DE;q=0,kk-KZ;q=0.4,es;q=0.7'),'es');
   assert.equal(browserLanguage('ru;q=invalid,de;q=2,*;q=1'),null);
-  for(const [country,language] of [['KZ','kk'],['UA','uk'],['RU','ru'],['AT','de'],['MX','es'],['US','en']])assert.equal(countryLanguage(country),language);
+  for(const [country,language] of [['KZ','ru'],['UA','uk'],['RU','ru'],['AT','de'],['MX','es'],['US','en']])assert.equal(countryLanguage(country),language);
   for(const ip of ['127.0.0.1','192.168.3.7','10.0.0.2','172.16.0.1','100.100.0.1','::1','fc00::1','fe80::1','::ffff:c0a8:0307','::ffff:127.0.0.1','fe80::1%eth0','bad'])assert.equal(ipNumber(ip),null);
   assert.equal(ipNumber('::ffff:0808:0808').value,ipNumber('8.8.8.8').value);
   assert.equal(ipNumber('2001:db8::192.0.2.1').family,6);
-  assert.equal(localeFor({ip:'127.0.0.1',headers:{'accept-language':'kk-KZ'}},()=>null).language,'kk');
+  assert.equal(localeFor({ip:'127.0.0.1',headers:{'accept-language':'kk-KZ'}},()=>null).language,'ru');
   assert.equal(localeFor({ip:'95.56.0.1',headers:{'accept-language':'en'}},()=> 'KZ').source,'ip');
   assert.equal(localeFor({ip:'127.0.0.1',headers:{}},()=>null).language,'en');
 });
@@ -51,7 +51,7 @@ test('locale, durable language settings, localized HTTP errors and real download
     await (await fetch(base+'/api/locale')).json();
     const local=await fetch(base+'/api/locale',{headers:{'Accept-Language':'es-ES','CF-IPCountry':'DE','X-Forwarded-For':'95.56.0.1'}}),locale=await local.json();
     assert.equal(locale.language,'es');assert.equal(locale.country,null);assert.equal(locale.source,'browser');assert.equal(local.headers.get('content-language'),'es');assert.match(local.headers.get('cache-control'),/no-store/);assert.equal(JSON.stringify(locale).includes('127.0.0.1'),false);
-    service.app.set('trust proxy',1);const regional=await (await fetch(base+'/api/locale',{headers:{'X-Forwarded-For':'95.56.0.1','Accept-Language':'en'}})).json();assert.equal(regional.language,'kk');assert.equal(regional.country,'KZ');service.app.set('trust proxy',false);
+    service.app.set('trust proxy',1);const regional=await (await fetch(base+'/api/locale',{headers:{'X-Forwarded-For':'95.56.0.1','Accept-Language':'en'}})).json();assert.equal(regional.language,'ru');assert.equal(regional.country,'KZ');service.app.set('trust proxy',false);
     for(const language of languageCodes){const response=await fetch(base+'/api/library',{headers:{'Accept-Language':language}}),body=await response.json();assert.equal(response.status,401);assert.equal(body.error.code,'AUTH_REQUIRED');assert.equal(response.headers.get('content-language'),language);assert.ok(body.error.message.length>5);}
     const signup=await (await fetch(base+'/api/auth/register',{method:'POST',headers:{'Content-Type':'application/json','X-GlukWave-Client':'native'},body:JSON.stringify({email:'locale@example.test',username:'locale_qa',password:'locale-private-test-password'})})).json(),headers={Authorization:`Bearer ${signup.token}`,'Content-Type':'application/json','Accept-Language':'en'};
     const socket=io(base,{auth:{token:signup.token,deviceId:'locale-test',name:'Locale test',kind:'web',language:'en'},transports:['websocket'],reconnection:false});

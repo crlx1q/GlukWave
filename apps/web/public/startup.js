@@ -10,6 +10,7 @@
     var choice = (pending && pending.language) || (settings && settings.language) || localStorage.getItem('gw-language-choice');
     if (choice && choice !== 'auto') language = choice;
   } catch (ignored) {}
+  if ((!choice || choice === 'auto') && language === 'kk') language = 'ru';
   var tv = /Tizen|SMART-TV|SmartTV/i.test(navigator.userAgent || '');
   var messages = {
     en: ['Opening your music', 'One moment…', 'GlukWave could not load', 'Check the connection and try again.', 'Try again', 'An old TV browser may need an update.'],
@@ -22,7 +23,7 @@
   var text = messages[language] || messages.en;
   document.documentElement.lang = messages[language] ? language : 'en';
   var title = shell.querySelector('h1'), detail = shell.querySelector('p'), retry = shell.querySelector('button');
-  title.textContent = text[0]; detail.textContent = text[1]; retry.textContent = text[4];
+  title.textContent = ''; detail.textContent = ''; retry.textContent = text[4];
   retry.onclick = function () { location.reload(); };
   function fail() {
     if (!document.getElementById('gw-boot')) return;

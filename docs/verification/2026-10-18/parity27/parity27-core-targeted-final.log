@@ -1,0 +1,19 @@
+00:00 +0: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/updates27_test.dart
+00:00 +0: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/updates27_test.dart: version ordering includes native build and semantic prerelease precedence
+00:00 +1: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/updates27_test.dart: updates coalesce, check once per day, verify the actual package and never install corrupt bytes
+00:00 +2: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/updates27_test.dart: manifest rejects cross-origin URLs, wrong platform and portable ZIP installers
+00:00 +3: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/updates27_test.dart: cancelling an in-flight update removes the partial and origin changes cannot install it
+00:00 +4: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/playback27_test.dart: play during delayed native open is applied after actual open and initial seek
+00:00 +5: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/playback27_test.dart: pause during delayed native open wins over the captured playing state
+00:00 +6: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/playback27_test.dart: released pending open cannot apply a late play intent
+00:03 +7: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/connect_layout_test.dart: (setUpAll)
+00:03 +7: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/connect_layout_test.dart: Connected playback, device controls and pinned room fit light Size(390.0, 844.0)
+00:05 +8: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/connect_layout_test.dart: Connected playback, device controls and pinned room fit light Size(390.0, 844.0)
+00:11 +9: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/connect_layout_test.dart: Connected playback, device controls and pinned room fit light Size(1280.0, 900.0)
+00:14 +10: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/connect_layout_test.dart: Connected playback, device controls and pinned room fit dark Size(390.0, 844.0)
+00:16 +11: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/connect_layout_test.dart: Connected playback, device controls and pinned room fit dark Size(1280.0, 900.0)
+00:18 +12: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/connect_layout_test.dart: Connected playback, device controls and pinned room fit amoled Size(390.0, 844.0)
+00:19 +13: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/connect_layout_test.dart: Connected playback, device controls and pinned room fit amoled Size(1280.0, 900.0)
+00:20 +14: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/connect_layout_test.dart: A mouse wheel adjusts volume within bounds rather than scrolling the page
+00:20 +15: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/connect_layout_test.dart: (tearDownAll)
+00:20 +15: All tests passed!

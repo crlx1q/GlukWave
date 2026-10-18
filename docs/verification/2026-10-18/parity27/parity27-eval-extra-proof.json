@@ -1,0 +1,271 @@
+{
+  "passed": true,
+  "main": {
+    "createdAt": "2026-10-18T13:37:17.403Z",
+    "checks": [
+      "Real mouse pickup, retained rowgap and one queue commit",
+      "Escape restores draft without queue command",
+      "Real touch hold/drop 768px one queue commit",
+      "Real touch hold/drop 390px one queue commit",
+      "Real touch hold/drop 320px one queue commit",
+      "Home draft saves likes + real genre mix",
+      "Personal token validates then opens existing collection picker; field removed/cleared",
+      "Independent Home mouse pickup reverses draft, saves order",
+      "Independent actual dist lyric transition48frames preserves distant blur and dimness"
+    ],
+    "captures": [
+      "work/qa/parity27-eval-dock-1440.png",
+      "work/qa/parity27-eval-pickup-1440.png",
+      "work/qa/parity27-eval-pickup-768.png",
+      "work/qa/parity27-eval-pickup-390.png",
+      "work/qa/parity27-eval-pickup-320.png",
+      "work/qa/parity27-eval-home-1440.png",
+      "work/qa/parity27-eval-home-editor-1440.png",
+      "work/qa/parity27-eval-home-768.png",
+      "work/qa/parity27-eval-home-editor-768.png",
+      "work/qa/parity27-eval-home-390.png",
+      "work/qa/parity27-eval-home-editor-390.png",
+      "work/qa/parity27-eval-home-320.png",
+      "work/qa/parity27-eval-home-editor-320.png",
+      "work/qa/parity27-eval-transfer-token-1440.png",
+      "work/qa/parity27-eval-transfer-collections-1440.png",
+      "work/qa/parity27-eval-home-lift-1440.png",
+      "work/qa/parity27-eval-home-lower-1440.png",
+      "work/qa/parity27-eval-home-lower-768.png",
+      "work/qa/parity27-eval-home-lower-390.png",
+      "work/qa/parity27-eval-home-lower-320.png",
+      "work/qa/parity27-eval-lyrics-1440.png"
+    ],
+    "passed": true,
+    "layout": [
+      {
+        "width": 1440,
+        "doc": 1430,
+        "height": 104,
+        "scrollHeight": 3118,
+        "vw": 1440
+      },
+      {
+        "width": 768,
+        "doc": 758,
+        "height": 84,
+        "scrollHeight": 3063,
+        "vw": 768
+      },
+      {
+        "width": 390,
+        "doc": 380,
+        "height": 84,
+        "scrollHeight": 3247,
+        "vw": 390
+      },
+      {
+        "width": 320,
+        "doc": 314,
+        "height": 84,
+        "scrollHeight": 3476,
+        "vw": 320
+      }
+    ],
+    "lyricDepth": {
+      "active": "2",
+      "samples": [
+        {
+          "blur": 4.55124,
+          "opacity": 0.182544
+        },
+        {
+          "blur": 4.527,
+          "opacity": 0.183809
+        },
+        {
+          "blur": 4.46792,
+          "opacity": 0.186891
+        },
+        {
+          "blur": 4.43282,
+          "opacity": 0.188722
+        },
+        {
+          "blur": 4.39317,
+          "opacity": 0.190791
+        },
+        {
+          "blur": 4.30128,
+          "opacity": 0.195586
+        },
+        {
+          "blur": 4.19489,
+          "opacity": 0.201136
+        },
+        {
+          "blur": 4.13844,
+          "opacity": 0.204082
+        },
+        {
+          "blur": 4.07799,
+          "opacity": 0.207235
+        },
+        {
+          "blur": 4.01659,
+          "opacity": 0.210439
+        },
+        {
+          "blur": 3.69968,
+          "opacity": 0.226973
+        },
+        {
+          "blur": 3.63824,
+          "opacity": 0.230179
+        },
+        {
+          "blur": 3.57811,
+          "opacity": 0.233316
+        },
+        {
+          "blur": 3.51949,
+          "opacity": 0.236374
+        },
+        {
+          "blur": 3.46254,
+          "opacity": 0.239346
+        },
+        {
+          "blur": 3.40659,
+          "opacity": 0.242265
+        },
+        {
+          "blur": 3.35404,
+          "opacity": 0.245007
+        },
+        {
+          "blur": 3.30259,
+          "opacity": 0.247691
+        },
+        {
+          "blur": 3.25233,
+          "opacity": 0.250313
+        },
+        {
+          "blur": 3.20467,
+          "opacity": 0.2528
+        },
+        {
+          "blur": 2.95564,
+          "opacity": 0.265793
+        },
+        {
+          "blur": 2.82154,
+          "opacity": 0.272789
+        },
+        {
+          "blur": 2.70914,
+          "opacity": 0.278653
+        },
+        {
+          "blur": 2.63681,
+          "opacity": 0.282427
+        },
+        {
+          "blur": 2.61536,
+          "opacity": 0.283546
+        },
+        {
+          "blur": 2.59429,
+          "opacity": 0.284646
+        },
+        {
+          "blur": 2.57421,
+          "opacity": 0.285693
+        },
+        {
+          "blur": 2.55534,
+          "opacity": 0.286678
+        },
+        {
+          "blur": 2.50396,
+          "opacity": 0.289359
+        },
+        {
+          "blur": 2.48869,
+          "opacity": 0.290155
+        },
+        {
+          "blur": 2.45962,
+          "opacity": 0.291672
+        },
+        {
+          "blur": 2.43372,
+          "opacity": 0.293023
+        },
+        {
+          "blur": 2.40008,
+          "opacity": 0.294778
+        },
+        {
+          "blur": 2.38066,
+          "opacity": 0.295791
+        },
+        {
+          "blur": 2.37211,
+          "opacity": 0.296238
+        },
+        {
+          "blur": 2.35643,
+          "opacity": 0.297056
+        },
+        {
+          "blur": 2.34951,
+          "opacity": 0.297417
+        },
+        {
+          "blur": 2.34291,
+          "opacity": 0.297761
+        },
+        {
+          "blur": 2.33693,
+          "opacity": 0.298073
+        },
+        {
+          "blur": 2.33144,
+          "opacity": 0.29836
+        },
+        {
+          "blur": 2.3219,
+          "opacity": 0.298858
+        },
+        {
+          "blur": 2.31782,
+          "opacity": 0.29907
+        },
+        {
+          "blur": 2.31415,
+          "opacity": 0.299262
+        },
+        {
+          "blur": 2.30817,
+          "opacity": 0.299574
+        },
+        {
+          "blur": 2.30586,
+          "opacity": 0.299694
+        },
+        {
+          "blur": 2.30393,
+          "opacity": 0.299795
+        },
+        {
+          "blur": 2.30237,
+          "opacity": 0.299876
+        },
+        {
+          "blur": 2.30121,
+          "opacity": 0.299937
+        }
+      ]
+    },
+    "pageErrors": {
+      "errors": []
+    }
+  }
+}

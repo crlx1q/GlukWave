@@ -17,7 +17,8 @@ export async function api<T>(path: string, init: RequestInit = {}): Promise<T> {
   let response: Response;
   const playback=/^\/tracks\/[^/]+\/playback$/.test(path);
   const action=init.method==='POST'&&(path==='/devices/command'||/^\/integrations\/[^/]+\/import$/.test(path));
-  if(action&&requestAccount)headers.set('X-GlukWave-Account',requestAccount);
+  const personalAccess=init.method==='POST'&&(/^\/integrations\/(?:spotify|yandex)\/token$/.test(path)||path==='/public-import/spotify/token');
+  if((action||personalAccess)&&requestAccount)headers.set('X-GlukWave-Account',requestAccount);
   if(playback)headers.set('X-GlukWave-Playback-Wait','poll');
   try { response = await (playback?playbackRequest:action?actionRequest:fetch)(`/api${path}`, { ...init, headers, credentials: 'include' }); }
   catch (error) { if ((error as Error).name === 'AbortError') throw error;reportError(error,'network',{code:'FETCH_FAILED'}); throw new ApiError('NETWORK',t('copy.166')); }

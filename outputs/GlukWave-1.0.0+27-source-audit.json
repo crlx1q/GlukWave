@@ -1,0 +1,19 @@
+{
+  "checkedAt": "2026-10-18T15:18:20.073Z",
+  "passed": true,
+  "archiveBytes": 260746274,
+  "archiveSha256": "e579731013afc7d6fe62a73ee96847c83a10f727482abe8ba3a8da26286851c5",
+  "entries": 3070,
+  "allCrcAndSourceHashesMatched": true,
+  "textFilesScanned": 1124,
+  "localPrivateValuesAbsent": true,
+  "liveCredentialPatternsAbsent": true,
+  "staticFontFaces": 6,
+  "manropeStaticFontFaces": 5,
+  "frozenNativeSourcesMatched": 239,
+  "currentWebBuild": "/assets/main-w0GQmuRE.js",
+  "runtimeDataExcluded": true,
+  "apkSha256": "7a765fde502c3139c4920b91fede1dd001016ff63b5014b05d00b40c3b59fc9e",
+  "windowsSha256": "9a43b0e80678344a13390da1641aab174370a9f3345fa62b8af8eda812ac34b7",
+  "installerSha256": "6ec540344c374d9b20205e0f78376423c7f8d500a7a3fddbbdc6100491080801"
+}

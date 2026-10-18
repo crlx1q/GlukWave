@@ -78,3 +78,5 @@ test('real recommendation API persists genres, protects private seeds and reject
   assert.equal((await request('/recommendations?mode=discovery&exclude=rock,dance,jazz',account.token)).data.tracks.length,0);
  }finally{socket?.disconnect();await service.close();await fs.rm(directory,{recursive:true,force:true,maxRetries:5,retryDelay:100});}
 });
+
+test('saved track and artist exclusions apply before every mode and override likes',()=>{const taste={excludedTrackIds:['rock'],excludedArtistNames:['calm artist']};for(const mode of ['personal','favorites','discovery','popular']){const result=rankRecommendations({tracks:candidates,taste,mode,library:{likedIds:mode==='favorites'?['quiet','rock','jazz']:[]}});assert(!result.some(x=>['rock','quiet'].includes(x.id)));}});

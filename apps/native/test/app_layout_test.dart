@@ -143,6 +143,17 @@ Future<void> selectSettingsCategory(
     );
   } else {
     final link = find.byKey(Key('settings-$id'));
+    if (link.evaluate().isEmpty) {
+      final navigation = find
+          .descendant(
+            of: find.byKey(const Key('desktop-settings-navigation')),
+            matching: find.byType(Scrollable),
+          )
+          .first;
+      tester.state<ScrollableState>(navigation).position.jumpTo(0);
+      await tester.pumpAndSettle();
+      await tester.scrollUntilVisible(link, 150, scrollable: navigation);
+    }
     await tester.ensureVisible(link);
     await tester.tap(link);
   }

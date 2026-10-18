@@ -39,7 +39,7 @@ const hash=value=>{let number=2166136261;for(const char of value)number=Math.imu
 
 /** Rank metadata and accepted listening, then diversify. Never inspect or extract audio. */
 export function rankRecommendations({tracks,taste={},library={},stats=[],popularity=new Map(),seed=null,related=[],exclude=[],mode='personal',mood='personal',limit=20,nonce='',at=Date.now()}){
- const liked=new Set(library.likedIds||[]),heard=new Set((library.history||[]).map(value=>value.trackId)),excluded=new Set(exclude),recent=new Map();
+ const liked=new Set(library.likedIds||[]),heard=new Set((library.history||[]).map(value=>value.trackId)),excluded=new Set([...exclude,...taste.excludedTrackIds||[]]),bannedArtists=new Set(taste.excludedArtistNames||[]),recent=new Map();
  for(const entry of library.history||[])if(!recent.has(entry.trackId))recent.set(entry.trackId,Date.parse(entry.playedAt||''));
  const selectedArtists=new Set((taste.artists||[]).map(value=>searchText(value.name))),selectedGenres=new Set((taste.genres||[]).map(genreKey));
  const rows=new Map(stats.map(row=>[row.trackId,row])),byId=new Map(tracks.map(track=>[track.id,track]));
@@ -65,6 +65,7 @@ export function rankRecommendations({tracks,taste={},library={},stats=[],popular
  for(const track of tracks){
   if(excluded.has(track.id)||seed?.id===track.id||mode==='favorites'&&!liked.has(track.id)||mode==='discovery'&&(heard.has(track.id)||heardSongs.has(songKey(track))))continue;
   const names=artists(track),tags=features(track),row=rows.get(track.id),popular=popularity.get(track.id)||0;
+  if(names.some(name=>bannedArtists.has(name)))continue;
   let score=names.some(name=>selectedArtists.has(name))?16:0;
   score+=overlap(tags,selectedGenres)*16;
   if(taste.automatic!==false){score+=Math.max(-14,Math.min(14,names.reduce((sum,name)=>sum+(artistWeights.get(name)||0),0)));
@@ -141,20 +142,22 @@ export function setupRecommendations(app,ctx){
   })().finally(()=>{popularityJob=null;});return popularityJob;
  }
  app.get('/api/recommendations',asyncRoute(async(req,res)=>{
-  const query=parse(z.object({mode:z.enum(waveModes).default('personal'),mood:z.enum([...waveMoods,'relax','night']).default('personal'),seedTrackId:z.string().max(200).optional(),exclude:z.string().max(22000).default(''),limit:z.coerce.number().int().min(1).max(60).default(20),nonce:z.string().max(100).default('')}).strict(),req.query);
-  const user=req.auth?.user,uid=user?.id,mood=aliases[query.mood]||query.mood,exclude=query.exclude.split(',').filter(Boolean).slice(-100);
+  const query=parse(z.object({mode:z.enum(waveModes).default('personal'),mood:z.enum([...waveMoods,'relax','night']).default('personal'),seedTrackId:z.string().max(200).optional(),exclude:z.string().max(22000).default(''),limit:z.coerce.number().int().min(1).max(60).default(20),genre:z.string().trim().max(40).optional(),mix:z.enum(['morning','focus','evening','discovery']).optional(),day:z.string().regex(/^\d{4}-\d{2}-\d{2}$/).optional(),nonce:z.string().max(100).default('')}).strict(),req.query);
+  const user=req.auth?.user,uid=user?.id,mood=query.mix?({morning:'energy',focus:'focus',evening:'calm',discovery:'personal'}[query.mix]):aliases[query.mood]||query.mood,exclude=query.exclude.split(',').filter(Boolean).slice(-100);
+  if(query.mix){query.nonce=`${uid||'guest'}:${query.day||new Date().toISOString().slice(0,10)}:${query.mix}`;if(query.mix==='discovery')query.mode='discovery';}
+  const selectedGenre=query.genre?genreKey(query.genre):null;
   await ctx.flushListening?.();
   const [taste,library,stats,popular]=await Promise.all([uid?store.get('taste',uid):null,uid?store.get('libraries',uid):null,uid?store.list('listeningStats',row=>row.userId===uid):[],aggregate()]);
   const seed=query.seedTrackId?await ctx.requireTrack(query.seedTrackId,user):null;
   const related=await neighbors(seed,user);
   const accessible=track=>track.public&&track.source!=='local'||!!uid&&track.uploadedBy===uid;
   let tracks=await store.list('tracks',accessible);
-  const rank=()=>rankRecommendations({tracks,taste:taste||{},library:library||{},stats,popularity:popular,seed,related,exclude,mode:query.mode,mood,limit:query.limit,nonce:query.nonce||uid||'guest'});
+  const rank=()=>rankRecommendations({tracks:selectedGenre?tracks.filter(track=>features(track).has(selectedGenre)):tracks,taste:taste||{},library:library||{},stats,popularity:popular,seed,related,exclude,mode:query.mode,mood,limit:query.limit,nonce:query.nonce||uid||'guest'});
   let ranked=rank();
   const poolArtists=new Set(ranked.flatMap(artists));
   if(query.mode!=='favorites'&&(ranked.length<Math.min(8,query.limit)||poolArtists.size<3||query.mode==='discovery')){
    const imported=taste?.automatic!==false&&(!taste?.learnedResetAt||taste?.importedAt>taste.learnedResetAt)?tracks.filter(track=>taste?.importedTrackIds?.includes(track.id)):[];
-   const genres=[...new Set([...(seed?features(seed):[]),...taste?.genres||[],...imported.flatMap(track=>[...features(track)])])].filter(Boolean).slice(0,20);
+   const genres=[...new Set([...(selectedGenre?[selectedGenre]:[]),...(seed?features(seed):[]),...taste?.genres||[],...imported.flatMap(track=>[...features(track)])])].filter(Boolean).slice(0,20);
    const families={'hip hop':['rap','rnb','trap'],'rock':['indie rock','alternative','post rock'],'pop':['indie pop','synth pop','dance'],'electronic':['house','techno','chillwave'],'ambient':['chill','downtempo','lofi'],'jazz':['soul','blues','jazz fusion'],'lofi':['chillhop','jazzhop','instrumental']};
    const index=Math.floor(hash(query.nonce+':genres')*Math.max(1,genres.length)),genre=genres[index]||({calm:'chill',energy:'dance',happy:'funk',sad:'piano',focus:'instrumental',dream:'ambient'}[mood]||'indie pop');
    const adjacent=families[genreKey(genre)]||[genre];

@@ -23,7 +23,7 @@ export function browserLanguage(header=''){
   candidates.sort((a,b)=>b.q-a.q||a.index-b.index);return candidates[0]?.code||null;
 }
 export function countryLanguage(country){
-  if(country==='KZ')return 'kk';if(country==='UA')return 'uk';
+  if(country==='KZ')return 'ru';if(country==='UA')return 'uk';
   if(['RU','BY'].includes(country))return 'ru';
   if(['DE','AT','LI'].includes(country))return 'de';
   if(['ES','MX','AR','BO','CL','CO','CR','CU','DO','EC','SV','GT','HN','NI','PA','PY','PE','PR','UY','VE','GQ'].includes(country))return 'es';
@@ -77,7 +77,7 @@ export function localeFor(req,lookup){
   // CF-IPCountry and arbitrary visitor-supplied location headers are never trusted.
   const country=lookup(req.ip||req.socket?.remoteAddress)||null;
   const regional=countryLanguage(country),browser=browserLanguage(req.headers?.['accept-language']);
-  return {language:regional||browser||'en',country,source:regional?'ip':browser?'browser':'default',supported:supportedLanguages,defaultLanguage:'en'};
+  return {language:(regional||browser)==='kk'?'ru':regional||browser||'en',country,source:regional?'ip':browser?'browser':'default',supported:supportedLanguages,defaultLanguage:'en'};
 }
 export function setupLocale(app,ctx,override){
   const lookup=override||createCountryLookup(ctx.config.geoipDir||path.join(ctx.config.root,'apps/server/data/geoip'),ctx.log);

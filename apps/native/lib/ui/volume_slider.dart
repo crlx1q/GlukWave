@@ -10,6 +10,7 @@ class DraftSlider extends StatefulWidget {
   final VoidCallback? onCancel;
   final Object? scope;
   final bool wheel;
+  final double? step;
   final Key? sliderKey;
   const DraftSlider({
     super.key,
@@ -21,6 +22,7 @@ class DraftSlider extends StatefulWidget {
     this.onCancel,
     this.scope,
     this.wheel = false,
+    this.step,
     this.sliderKey,
   });
   @override
@@ -58,6 +60,10 @@ class _DraftSliderState extends State<DraftSlider> {
   }
 
   void change(double value) {
+    final step = widget.step;
+    if (step != null) {
+      value = ((value / step).round() * step).clamp(widget.min, widget.max);
+    }
     setState(() => draft = value);
     widget.onPreview?.call(value);
     settle?.cancel();
@@ -91,7 +97,11 @@ class _DraftSliderState extends State<DraftSlider> {
         GestureBinding.instance.pointerSignalResolver.register(event, (_) {
           change(
             ((draft ?? widget.value) -
-                    event.scrollDelta.dy / 1200 * (widget.max - widget.min))
+                    (widget.step != null
+                        ? event.scrollDelta.dy.sign * widget.step!
+                        : event.scrollDelta.dy /
+                              1200 *
+                              (widget.max - widget.min)))
                 .clamp(widget.min, widget.max),
           );
         });
@@ -102,6 +112,9 @@ class _DraftSliderState extends State<DraftSlider> {
       value: (draft ?? widget.value).clamp(widget.min, widget.max),
       min: widget.min,
       max: widget.max,
+      divisions: widget.step == null
+          ? null
+          : ((widget.max - widget.min) / widget.step!).round(),
       onChangeStart: widget.onChanged == null
           ? null
           : (_) {
@@ -135,5 +148,6 @@ class VolumeSlider extends StatelessWidget {
     onCancel: onCancel,
     scope: scope,
     wheel: true,
+    step: .02,
   );
 }

@@ -1,0 +1,18 @@
+{
+  "checkedAt": "2026-10-18T13:51:49.425616+00:00",
+  "passed": true,
+  "fullSuitePassed": true,
+  "currentAffectedTestsPassed": 528,
+  "fullSuiteTestsPassed": 528,
+  "log": "parity27-native-final-full.log",
+  "logSha256": "5e70407cd52d239e86ceabdd2471724de0049635a0bf6745d8a510f37c0c8503",
+  "analyzerLog": "parity27-native-final-analyze.log",
+  "sourceFreezeSha256": "ea8c0176f7906b9bd58d5cffbf61c3fbf8485a3638569d677d727b6dfb6a4858",
+  "sourceFreezeStillMatches": true,
+  "concurrency": 2,
+  "scope": "Entire native test suite after all native27 production changes; partial reruns not added",
+  "limits": [
+    "No real-device installation or physical sound verification",
+    "One aborted default-parallel run encountered host memory pressure; the complete bounded-parallel final run passed"
+  ]
+}

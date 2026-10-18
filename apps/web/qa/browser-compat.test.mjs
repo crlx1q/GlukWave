@@ -43,7 +43,8 @@ test('startup recovery parses as ES5 and respects cached account language', () =
     location: { reload() {} }, setTimeout: callback => { timer = callback; return 1; }, clearTimeout() {}, MutationObserver: window.MutationObserver,
   });
   assert.equal(document.documentElement.lang, 'ru');
-  assert.equal(nodes.h1.textContent, 'Открываем твою музыку');
+  assert.equal(nodes.h1.textContent, '');
+  assert.equal(nodes.p.textContent, '');
   timer();
   assert.equal(attributes['data-failed'], 'true');
   assert.equal(nodes.h1.textContent, 'Не удалось открыть GlukWave');

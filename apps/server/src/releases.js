@@ -8,6 +8,20 @@ import {asyncRoute,fail,parse,id} from './util.js';
 
 const platforms={android:['.apk'],windows:['.exe','.zip'],ios:['.ipa']};
 const hashes=new Map();
+export function compareReleaseVersions(a,b){
+  const parse=value=>String(value).match(/^(\d+)\.(\d+)\.(\d+)(?:-([\w.-]+))?(?:\+(\d+))?$/);
+  const left=parse(a),right=parse(b);if(!left||!right)return 0;
+  for(const index of [1,2,3]){const x=BigInt(left[index]),y=BigInt(right[index]);if(x!==y)return x>y?1:-1;}
+  if(left[4]!==right[4]){
+    if(!left[4])return 1;if(!right[4])return -1;
+    const x=left[4].split('.'),y=right[4].split('.');
+    for(let i=0;i<Math.min(x.length,y.length);i++){
+      if(x[i]===y[i])continue;const xn=/^\d+$/.test(x[i]),yn=/^\d+$/.test(y[i]);
+      if(xn&&yn)return BigInt(x[i])>BigInt(y[i])?1:-1;if(xn!==yn)return xn?-1:1;return x[i]>y[i]?1:-1;
+    }return Math.sign(x.length-y.length);
+  }
+  const x=BigInt(left[5]||0),y=BigInt(right[5]||0);return x===y?0:x>y?1:-1;
+}
 async function fileHash(file,stat){
   const fingerprint=`${file}:${stat.size}:${stat.mtimeMs}:${stat.ctimeMs}`;
   if(!hashes.has(fingerprint)){
@@ -40,7 +54,14 @@ export function setupReleases(app,ctx){
   const directory=ctx.config.releasesDir||path.join(ctx.config.root,'outputs');
   const uploaded=path.join(ctx.config.dataDir,'releases'),temporary=path.join(ctx.config.dataDir,'tmp');
   const upload=multer({dest:temporary,limits:{fileSize:512*1024*1024,files:1,fields:3,fieldSize:200}});
-  const available=async()=>{const all=[...await verifiedReleases(uploaded),...await verifiedReleases(directory)];return [...new Map(all.reverse().map(value=>[value.platform,value])).values()];};
+  const available=async()=>{
+    const newest=new Map();
+    for(const value of [...await verifiedReleases(uploaded),...await verifiedReleases(directory)]){
+      const previous=newest.get(value.platform);
+      if(!previous||compareReleaseVersions(value.version,previous.version)>0)newest.set(value.platform,value);
+    }
+    return [...newest.values()];
+  };
   app.get('/api/releases',asyncRoute(async(req,res)=>{res.set('Cache-Control','no-store');res.json({releases:(await available()).map(publicRelease)});}));
   app.post('/api/admin/releases/:platform',ctx.requireAdmin,(req,res,next)=>{if(!ctx.isOwner(req.auth.user))return next(new ctx.HttpError(403,'OWNER_REQUIRED','Загрузить сборку может владелец сервиса.'));next();},upload.single('file'),asyncRoute(async(req,res)=>{
     const file=req.file;if(!file)fail(400,'FILE_REQUIRED','Выбери файл сборки.');let target,committed=false;

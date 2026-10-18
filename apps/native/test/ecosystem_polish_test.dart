@@ -734,7 +734,12 @@ void main() {
       a.shell(c, QueuePanel(controller: c, onMore: (_) {})),
     );
     await tester.pumpAndSettle();
-    final handle = find.byType(ReorderableDelayedDragStartListener).at(2);
+    final handle = find
+        .ancestor(
+          of: find.byKey(const Key('queue-cover-own-2')),
+          matching: find.byType(ReorderableDelayedDragStartListener),
+        )
+        .first;
     final first = tester.getCenter(find.byKey(const Key('queue-cover-own-0')));
     final gesture = await tester.startGesture(tester.getCenter(handle));
     await tester.pump(const Duration(milliseconds: 600));

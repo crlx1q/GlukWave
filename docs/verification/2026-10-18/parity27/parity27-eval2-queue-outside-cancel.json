@@ -1,0 +1,48 @@
+{
+  "active": true,
+  "events": [
+    {
+      "grip": true,
+      "id": 2,
+      "key": "queue-1",
+      "target": "BUTTON",
+      "type": "pointerdown"
+    },
+    {
+      "grip": true,
+      "id": 2,
+      "key": "queue-1",
+      "target": "BUTTON",
+      "type": "gotpointercapture"
+    },
+    {
+      "grip": true,
+      "id": 2,
+      "key": "queue-1",
+      "target": "BUTTON",
+      "type": "pointermove"
+    },
+    {
+      "grip": true,
+      "id": 2,
+      "key": "queue-1",
+      "target": "BUTTON",
+      "type": "lostpointercapture"
+    },
+    {
+      "grip": false,
+      "id": 2,
+      "target": "HEADER",
+      "type": "pointermove"
+    },
+    {
+      "grip": false,
+      "id": 2,
+      "target": "HEADER",
+      "type": "pointercancel"
+    }
+  ],
+  "ghost": true,
+  "settling": false,
+  "commands": []
+}

@@ -9,6 +9,7 @@ import 'package:flutter/widgets.dart' show WidgetsBinding;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:path/path.dart' as p;
 import 'package:shared_preferences/shared_preferences.dart';
+import '../services/app_updates.dart';
 import 'package:socket_io_client/socket_io_client.dart' as io;
 import 'package:url_launcher/url_launcher.dart';
 import 'package:uuid/uuid.dart';
@@ -113,6 +114,7 @@ class WaveController extends ChangeNotifier {
   late final WaveformStore waveforms;
   final FlutterSecureStorage secure = const FlutterSecureStorage();
   late SharedPreferences preferences;
+  AppUpdater? updater;
   AppearanceStore? appearanceStore;
   WaveCustomization get customization =>
       appearanceStore?.current ?? const WaveCustomization();
@@ -121,11 +123,11 @@ class WaveController extends ChangeNotifier {
   String _previousLanguage = 'auto';
   bool _disposed = false;
   bool _desktopReady = false;
-  String get osLanguage => supportedLanguage(
+  String get osLanguage => automaticLanguage(
     WidgetsBinding.instance.platformDispatcher.locale.languageCode,
   );
   String get resolvedLanguage => customization.language == 'auto'
-      ? _automaticLanguage ?? osLanguage
+      ? automaticLanguage(_automaticLanguage ?? osLanguage)
       : supportedLanguage(customization.language);
   void _applyLanguage() {
     final changed = api.language != resolvedLanguage;
@@ -560,6 +562,8 @@ class WaveController extends ChangeNotifier {
     restoringLocal = true;
     notifyListeners();
     preferences = await SharedPreferences.getInstance();
+    updater = AppUpdater(api, currentVersion: api.diagnostics.version);
+    await updater!.initialize(preferences, await cache.supportDirectory());
     backgroundConnectEnabled = preferences.getBool('backgroundConnect') ?? true;
     await energy.initialize(preferences);
     var savedServer = preferences.getString('server');
@@ -619,6 +623,7 @@ class WaveController extends ChangeNotifier {
     _localReady = true;
     notifyListeners();
     unawaited(resolveAutomaticLanguage());
+    unawaited(updater!.check());
     unawaited(refresh());
     if (Platform.isAndroid) {
       homeWidgets = HomeWidgetBridge(
@@ -1875,6 +1880,7 @@ class WaveController extends ChangeNotifier {
     if (session != api.token || origin != api.server) return;
     settings = {
       ...settings,
+      ...incoming,
       ...?appearanceStore?.serverSettings,
       ...customization.toSettings(),
     };
@@ -2349,6 +2355,13 @@ class WaveController extends ChangeNotifier {
 
   Future<void> removeQueue(String id) =>
       setQueue(audio.viewTracks.where((track) => track.id != id).toList());
+
+  Future<void> removeQueueAt(int index) async {
+    final items = List<WaveTrack>.of(audio.viewTracks);
+    if (index < 0 || index >= items.length) return;
+    items.removeAt(index);
+    await setQueue(items);
+  }
 
   Future<void> transport(String command, [Json data = const {}]) async {
     if (['next', 'previous'].contains(command)) {
@@ -4577,6 +4590,7 @@ class WaveController extends ChangeNotifier {
     cache.removeListener(notifyListeners);
     desktop.removeListener(notifyListeners);
     desktop.dispose();
+    updater?.dispose();
     api.diagnostics.dispose();
     super.dispose();
   }

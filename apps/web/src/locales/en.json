@@ -1328,5 +1328,6 @@
   "v26.artist.tracks": "Tracks",
   "auth.showPassword": "Show password",
   "auth.hidePassword": "Hide password",
-  "v26.settings.cacheNote": "Automatic cache keeps a limited set of recently played tracks. Save a track explicitly to keep it for offline listening."
+  "v26.settings.cacheNote": "Automatic cache keeps a limited set of recently played tracks. Save a track explicitly to keep it for offline listening.",
+  "auth.identifier": "Email or username"
 }

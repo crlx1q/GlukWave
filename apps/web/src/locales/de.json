@@ -1328,5 +1328,6 @@
   "v26.artist.tracks": "Titel",
   "auth.showPassword": "Passwort anzeigen",
   "auth.hidePassword": "Passwort verbergen",
-  "v26.settings.cacheNote": "Der automatische Cache enthält eine begrenzte Zahl zuletzt gehörter Titel. Speichere einen Titel ausdrücklich zum Offline-Hören."
+  "v26.settings.cacheNote": "Der automatische Cache enthält eine begrenzte Zahl zuletzt gehörter Titel. Speichere einen Titel ausdrücklich zum Offline-Hören.",
+  "auth.identifier": "E-Mail oder Benutzername"
 }
