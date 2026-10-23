@@ -1,0 +1,25 @@
+import {getLanguage} from './locale';
+const copy:Record<string,string[]>={
+ edit:['Customize home','Настроить главную','Басты бетті реттеу','Налаштувати головну','Startseite anpassen','Personalizar inicio'],
+ editing:['Your home, your rhythm','Твоя главная. Твой ритм','Өз бетің. Өз ырғағың','Твоя головна. Твій ритм','Deine Startseite. Dein Rhythmus','Tu inicio. Tu ritmo'],
+ hint:['Pick up a widget to move it. Change its size and view.','Возьми виджет и перемести. Меняй размер и вид.','Виджетті алып жылжытыңыз. Өлшемі мен түрін өзгертіңіз.','Візьми віджет і перемісти. Змінюй розмір і вигляд.','Widgets verschieben, Größe und Ansicht anpassen.','Mueve widgets y cambia su tamaño y vista.'],
+ add:['Add widget','Добавить виджет','Виджет қосу','Додати віджет','Widget hinzufügen','Añadir widget'],
+ reset:['Reset','Сбросить','Қалпына келтіру','Скинути','Zurücksetzen','Restablecer'],cancel:['Cancel','Отмена','Бас тарту','Скасувати','Abbrechen','Cancelar'],done:['Done','Готово','Дайын','Готово','Fertig','Listo'],
+ saving:['Saving…','Сохраняем…','Сақталуда…','Зберігаємо…','Wird gespeichert…','Guardando…'],
+ small:['Small','Маленький','Кіші','Малий','Klein','Pequeño'],medium:['Medium','Средний','Орташа','Середній','Mittel','Mediano'],large:['Large','Большой','Үлкен','Великий','Groß','Grande'],
+ cards:['Covers','Обложки','Мұқабалар','Обкладинки','Cover','Portadas'],list:['List','Список','Тізім','Список','Liste','Lista'],compact:['Compact','Компактно','Ықшам','Компактно','Kompakt','Compacto'],
+ options:['Widget options','Настроить виджет','Виджетті реттеу','Налаштувати віджет','Widget-Einstellungen','Opciones del widget'],
+ remove:['Remove widget','Убрать виджет','Виджетті алып тастау','Прибрати віджет','Widget entfernen','Quitar widget'],
+ move:['Move widget','Переместить виджет','Виджетті жылжыту','Перемістити віджет','Widget verschieben','Mover widget'],
+ before:['Move earlier','Переместить раньше','Алға жылжыту','Перемістити раніше','Nach vorne','Mover antes'],after:['Move later','Переместить дальше','Артқа жылжыту','Перемістити далі','Nach hinten','Mover después'],
+ wave:['My Wave','Моя волна','Менің толқыным','Моя хвиля','Meine Welle','Mi ola'],playlists:['Your playlists','Твои плейлисты','Плейлистерің','Твої плейлисти','Deine Playlists','Tus playlists'],
+ recent:['Recently played','Недавно слушал','Жақында тыңдалған','Нещодавно слухав','Zuletzt gehört','Escuchado recientemente'],recommendations:['Made for you','Для тебя','Сен үшін','Для тебе','Für dich','Para ti'],discovery:['Discover','Открывай новое','Жаңалықтар ашу','Відкривай нове','Entdecken','Descubre'],popular:['Popular now','Сейчас популярно','Қазір танымал','Зараз популярне','Jetzt beliebt','Popular ahora'],daily:['Your day','Твой день','Сенің күнің','Твій день','Dein Tag','Tu día'],likes:['Liked songs','Любимые треки','Ұнаған тректер','Улюблені треки','Lieblingstitel','Canciones favoritas'],playlist:['A playlist','Отдельный плейлист','Жеке плейлист','Окремий плейлист','Eine Playlist','Una playlist'],mix:['Genre mix','Микс по жанру','Жанр миксі','Мікс за жанром','Genre-Mix','Mix de género'],
+ library:['Open library','Открыть медиатеку','Медиатеканы ашу','Відкрити медіатеку','Mediathek öffnen','Abrir biblioteca'],empty:['Make room for your music','Здесь будет твоя музыка','Мұнда музыкаңыз болады','Тут буде твоя музика','Platz für deine Musik','Aquí irá tu música'],emptyHint:['Add a widget to begin.','Добавь первый виджет.','Алғашқы виджетті қосыңыз.','Додай перший віджет.','Füge dein erstes Widget hinzu.','Añade tu primer widget.'],
+ emptyLists:['Your playlists will appear here.','Твои плейлисты появятся здесь.','Плейлистеріңіз осында көрінеді.','Твої плейлисти з’являться тут.','Deine Playlists erscheinen hier.','Tus playlists aparecerán aquí.'],
+ maximum:['Up to 20 widgets','Не больше 20 виджетов','20 виджетке дейін','До 20 віджетів','Bis zu 20 Widgets','Hasta 20 widgets'],
+ galleryHint:['Music that belongs on your home.','Музыка, которой место на главной.','Басты бетке арналған музыка.','Музика, якій місце на головній.','Musik für deine Startseite.','Música para tu inicio.'],
+ genre:['Genre','Жанр','Жанр','Жанр','Genre','Género'],selected:['Selected','Выбран','Таңдалған','Обраний','Ausgewählt','Seleccionado'],size:['Size','Размер','Өлшем','Розмір','Größe','Tamaño'],view:['View','Вид','Түрі','Вигляд','Ansicht','Vista'],
+ unavailable:['Playlist is no longer available.','Плейлист больше недоступен.','Плейлист қолжетімсіз.','Плейлист більше недоступний.','Playlist nicht mehr verfügbar.','La playlist ya no está disponible.'],
+ hold:['Hold to pick up · arrow keys to move','Удерживай, чтобы поднять · стрелки для перемещения','Көтеру үшін ұстап тұрыңыз · жылжыту үшін көрсеткілер','Утримуй, щоб підняти · стрілки для переміщення','Halten zum Aufnehmen · Pfeiltasten zum Verschieben','Mantén para levantar · flechas para mover'],
+};
+export function canvasText(key:string){const i=['en','ru','kk','uk','de','es'].indexOf(getLanguage());return copy[key]?.[i]||copy[key]?.[0]||key;}

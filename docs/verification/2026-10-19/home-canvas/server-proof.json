@@ -1,0 +1,21 @@
+{
+  "clientDate": "2026-10-19",
+  "passed": true,
+  "fullSuiteTests": 142,
+  "fullSuiteFailures": 0,
+  "newScenarioTests": 4,
+  "checks": [
+    "schema bounds, IDs, singleton sections and type-specific payloads",
+    "portable layout order, size and representation",
+    "reset and unrelated settings preserve legacy pins",
+    "authenticated settings persistence, owner-only playlists, account scope and revision broadcast"
+  ],
+  "sourceHashes": {
+    "apps/server/src/home-layout.js": "cbba012625c8f34f8fff0f9db928b0a4228f4fa676a1b31ba503011dd35601a9",
+    "apps/server/test/home-layout.test.js": "7d04a08f10447a6597b2b36958bd1d28722c3e0f41baa4656bd7dd4ad9a5c979",
+    "apps/server/src/library.js": "54909a353d86e3e41854f19cb6548796ffb921a303b5bb4cd5ad385544e5e043",
+    "apps/server/src/util.js": "d81e07c0e8026e354f9db7898a9b158863434008c0dccd3d38d8c7e59b725aac"
+  },
+  "hostingChanged": false,
+  "ownerDataUsed": false
+}

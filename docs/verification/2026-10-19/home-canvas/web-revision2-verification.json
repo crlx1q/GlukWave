@@ -1,0 +1,121 @@
+{
+  "createdAt": "2026-10-19T18:57:43.236Z",
+  "passed": true,
+  "revision": 2,
+  "tests": {
+    "web": 109,
+    "failed": 0,
+    "typescript": "production tsc -b PASS",
+    "productionBuild": true,
+    "es5Chunks": 5
+  },
+  "sourceHash": "b5a8c1884caf56fb317061d7cf92caab2c00ef68ceaec186c020b5ff43b23c68",
+  "distHash": "438c25f937428e4e49741eb736070610a60b7640c69837ccdb1de4730c181a50",
+  "indexSha256": "e82c310d4e69d95b1b34fe7beccb66f389abbefa434e733f09779921962bb7c1",
+  "browser": {
+    "proof": "web-browser-proof.json",
+    "checks": 16,
+    "geometryProof": "web-revision2-geometry-proof.json",
+    "waveCases": 72,
+    "destinationCases": 24,
+    "actualProductionDist": true,
+    "isolatedFixture": true,
+    "ownerAccountUsed": false
+  },
+  "captures": [
+    {
+      "file": "docs/verification/2026-10-19/home-canvas/web-default-1440.png",
+      "sha256": "693d60e842729e09fcebc648c426ec92180536369eeae7eee5cddcab908bc186"
+    },
+    {
+      "file": "docs/verification/2026-10-19/home-canvas/web-editing-1440.png",
+      "sha256": "159bcf33ee31298806c034a1144f440b0daa90daf1035a2ff1403cf2e1ff96d8"
+    },
+    {
+      "file": "docs/verification/2026-10-19/home-canvas/web-lifted-1440.png",
+      "sha256": "09396f272c0e144caf341f47ad9eebf5b7dee5e36b19ca6367ede98a73a214c5"
+    },
+    {
+      "file": "docs/verification/2026-10-19/home-canvas/web-custom-1440.png",
+      "sha256": "7aae908d4b1feac16e4a8b325dce144d33e130046892e5897b38b5d972f429d6"
+    },
+    {
+      "file": "docs/verification/2026-10-19/home-canvas/web-gallery-1440.png",
+      "sha256": "62ac73486565baea4883bb7581dfd7e45c77c2bb9fdc706667235ed0464fe1ba"
+    },
+    {
+      "file": "docs/verification/2026-10-19/home-canvas/web-save-error-1440.png",
+      "sha256": "db7244e38c2b9e092508f9d64357d9ee01e1376f71c2e5db1cc36cef89317ee9"
+    },
+    {
+      "file": "docs/verification/2026-10-19/home-canvas/web-custom-390.png",
+      "sha256": "8b2c9157e5a595b9369a4a8da47077c7f56ddb498d477f1ff55ed533ecbf7925"
+    },
+    {
+      "file": "docs/verification/2026-10-19/home-canvas/web-lifted-390.png",
+      "sha256": "3d6acdb59d583a5c7125e4050f53d9bbaceaefcb496d5b9e1581223095e4c481"
+    },
+    {
+      "file": "docs/verification/2026-10-19/home-canvas/web-custom-320.png",
+      "sha256": "4cf01f7f368f1da7764e01e56a7d287dbf2cfa5849f526381abbbf8a47a31a1e"
+    },
+    {
+      "file": "docs/verification/2026-10-19/home-canvas/web-lifted-320.png",
+      "sha256": "e4f57780acb8240d08216462201766943ccf4f50f4a75cbe15c0785361e1634d"
+    },
+    {
+      "file": "docs/verification/2026-10-19/home-canvas/web-options-320-125.png",
+      "sha256": "5884fd1042822acaf234257b796d03081cd00e5358e523b8a9d39af3650d9c17"
+    },
+    {
+      "file": "docs/verification/2026-10-19/home-canvas/web-options-390-125.png",
+      "sha256": "a617175d9b85a3a1f0f72a74b678e9e33cdce346d07fef86a9e708bb62d24655"
+    },
+    {
+      "file": "docs/verification/2026-10-19/home-canvas/web-options-768-125.png",
+      "sha256": "b121b2653d30b9fbd0bfa729aa7980b99497bf73367bcaf10b3157ee3cb0c2a9"
+    },
+    {
+      "file": "docs/verification/2026-10-19/home-canvas/web-options-1440-125.png",
+      "sha256": "57a47ff8fbdb3faa9df44244d80f1bbea287789a9e2310f81a1070f5c3a1bb65"
+    },
+    {
+      "file": "docs/verification/2026-10-19/home-canvas/web-default-390.png",
+      "sha256": "83326568349e88937b855f50279b19346d7390f95f43307ac29a278a4d69c375"
+    },
+    {
+      "file": "docs/verification/2026-10-19/home-canvas/web-revision2-wave-320-125.png",
+      "sha256": "dec9a2aaa3a6491d312f0c9d87e0f05d68c3decabb5f51c479eff1dcbbfd719e"
+    },
+    {
+      "file": "docs/verification/2026-10-19/home-canvas/web-revision2-wave-390-100.png",
+      "sha256": "01449a35320547c49253eb040da6978c49eb4a4009d6a9d6c3a088a0d24664f3"
+    },
+    {
+      "file": "docs/verification/2026-10-19/home-canvas/web-revision2-wave-768-125.png",
+      "sha256": "708d900e16168bf0caf5814911c2cfbec5b1f32c679ed94708ed7d37db64a522"
+    },
+    {
+      "file": "docs/verification/2026-10-19/home-canvas/web-revision2-destinations-320-125-normal.png",
+      "sha256": "c8c338ea6c6503fb3e418a529528fe67a33c087b0c7ee9ad415821f8385e1fe5"
+    },
+    {
+      "file": "docs/verification/2026-10-19/home-canvas/web-revision2-destinations-320-125-edit.png",
+      "sha256": "d957763fa2e8bb089ca87c099ed996ecc2b0eeee49d9981c384002c12f9a265a"
+    },
+    {
+      "file": "docs/verification/2026-10-19/home-canvas/web-revision2-destinations-390-100-normal.png",
+      "sha256": "d0d0c113528c1ded7151dfb0e01af4d7f9abc35db64894b6027d4dbde622aba4"
+    },
+    {
+      "file": "docs/verification/2026-10-19/home-canvas/web-revision2-destinations-390-100-edit.png",
+      "sha256": "7d48b64b08a2392cafcba430988c3d42789fcabb398166e1c6d2a21751b0576b"
+    }
+  ],
+  "sourceUnchanged": true,
+  "limitations": [
+    "Chrome viewport and trusted browser input automation; not physical Android/Tizen",
+    "Focused source iteration; +27 release files and version numbers unchanged",
+    "No deploy or installer execution"
+  ]
+}

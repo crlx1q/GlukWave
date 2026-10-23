@@ -1,0 +1,142 @@
+{
+  "passed": true,
+  "tests": 537,
+  "newCanvasCases": 9,
+  "concurrency": 2,
+  "analyzer": "No issues found",
+  "commands": [
+    "flutter test --no-pub --concurrency=2",
+    "flutter analyze --no-pub"
+  ],
+  "checks": [
+    "default Wave before playlists without first-render migration",
+    "legacy pins preserved below default core blocks",
+    "logical size changes actual responsive span",
+    "cover/list/compact content variations",
+    "one scoped Done patch; Reset persists null",
+    "Cancel/Escape never patch",
+    "mouse X-axis reorder in real same row at390",
+    "touch cancel restores draft, zero playback",
+    "ordinary touch scrolling before long press",
+    "held edge autoscroll",
+    "keyboard alternative",
+    "failed save retains editor",
+    "remote conflict prevents overwrite",
+    "late account A response cannot mutate B",
+    "320 at125% dark/light reachable controls",
+    "actual main shell1440/768/narrow390"
+  ],
+  "sources": [
+    {
+      "path": "apps/native/lib/core/home_layout.dart",
+      "sha256": "3e282cee140c09accad67cec1d435a269385dacd47d87fafc6bc07b404b0abc4"
+    },
+    {
+      "path": "apps/native/lib/l10n/home_canvas_strings.dart",
+      "sha256": "c23198d53385bcc3348f80223dfd2b7bee3529ee04129f134009bbf2858a6119"
+    },
+    {
+      "path": "apps/native/lib/ui/home_canvas.dart",
+      "sha256": "1d890a679228aeb579d4c3475945e30a98ba81e2f77d07882c355050848405b8"
+    },
+    {
+      "path": "apps/native/lib/ui/app.dart",
+      "sha256": "8b9d19da174de911016251254a30d20bc6228fb8e1c12b14d4ab6bda854e75ba"
+    },
+    {
+      "path": "apps/native/lib/ui/refinement20_home.dart",
+      "sha256": "77e07a77dccfcb0107614783c7f8cc1d34ca05752d81b1d66303adc20aad4f45"
+    },
+    {
+      "path": "apps/native/test/home_canvas_test.dart",
+      "sha256": "725cd6030c95f183e37c47babd5386892301bd7d308e0cc11b62129593a7e4e4"
+    }
+  ],
+  "captures": [
+    {
+      "path": "docs/verification/2026-10-19/home-canvas/native-home-canvas-editor-320-dark.png",
+      "sha256": "26774096a0504232977af6965cc7919e40c1343ed95ecde6e088781048debe35"
+    },
+    {
+      "path": "docs/verification/2026-10-19/home-canvas/native-home-canvas-editor-320-light.png",
+      "sha256": "9b94fe34bfa922a9759a675498a531ca7ffb74a30f1900e2618a51b2e1f7c6a2"
+    },
+    {
+      "path": "docs/verification/2026-10-19/home-canvas/native-home-canvas-gallery-320-dark.png",
+      "sha256": "5c4bb03ee0e801a8a25aa42f129656e4d1d650e13b09ece2ea23f7759799ea89"
+    },
+    {
+      "path": "docs/verification/2026-10-19/home-canvas/native-home-canvas-gallery-320-light.png",
+      "sha256": "a77cf7714282f3eea29ee53a6fba436cdde7cedb9041d0ad8c8b06383f1cd56b"
+    },
+    {
+      "path": "docs/verification/2026-10-19/home-canvas/native-home-canvas-main-default-1440.png",
+      "sha256": "962240ea98134b77dca72ce0ca7a31a2ce50534041ff44db2baae029122047f8"
+    },
+    {
+      "path": "docs/verification/2026-10-19/home-canvas/native-home-canvas-main-default-390.png",
+      "sha256": "0e0b48ac62dd08e10d7e0222008e32eb8f5628e63016a99ace914c3d637a7d71"
+    },
+    {
+      "path": "docs/verification/2026-10-19/home-canvas/native-home-canvas-main-default-768.png",
+      "sha256": "334f16c706992b95a5d9079e41f6bd21096febacc8495c2f87dc7399025ffa5c"
+    },
+    {
+      "path": "docs/verification/2026-10-19/home-canvas/native-home-canvas-main-edit-1440.png",
+      "sha256": "2aaf43db4739ebd691e9dfbf288447e6bef7165c10c5c537befa287e710b5a64"
+    },
+    {
+      "path": "docs/verification/2026-10-19/home-canvas/native-home-canvas-tail-1440.png",
+      "sha256": "365227a8099de3cc7342e4abd23ca57a24e156e8974b0f1c2114e94590f0b30f"
+    },
+    {
+      "path": "docs/verification/2026-10-19/home-canvas/native-home-canvas-tail-320.png",
+      "sha256": "0f085b62f55f9ec58fa7c94ccf0e31e37e2b42636e9cfe1293c9f2fdd0fa8c60"
+    },
+    {
+      "path": "docs/verification/2026-10-19/home-canvas/native-home-canvas-tail-390.png",
+      "sha256": "275749905b133105e355cc149443e5c2bc84fbccd38c390a4e8590ec8c4d0dca"
+    }
+  ],
+  "scope": {
+    "captureType": "Actual Flutter widget tree on desktop test harness. No physical Android/Windows/Tizen test.",
+    "mainCaptures": {
+      "widths": [
+        390,
+        768,
+        1440
+      ],
+      "textScale": 1.0,
+      "platform": "Desktop Windows harness; 390 is narrow desktop, not Android"
+    },
+    "editorGalleryCaptures": {
+      "width": 320,
+      "textScale": 1.25,
+      "themes": [
+        "dark",
+        "light"
+      ],
+      "platform": "Isolated Flutter widget harness"
+    },
+    "transport": "Original project photography via isolated artwork transport; isolated test account API; no owner credentials/production writes",
+    "tailCaptures": {
+      "widths": [
+        320,
+        390,
+        1440
+      ],
+      "textScale": 1.0,
+      "platform": "Actual desktop GlukWaveApp harness; narrow width is not Android"
+    }
+  },
+  "artifactsRebuilt": false,
+  "versionsChanged": false,
+  "generatedWindowsFiles": "flutter pub get synchronized registrants for already-declared audio_service_win, Firebase, secure storage, screen retriever, tray, url launcher and window manager. Retained standard generated registrations; no dependencies added.",
+  "additionalProbe": {
+    "passed": true,
+    "testCases": 1,
+    "viewports": 3,
+    "proof": "native-tail-reachability.json",
+    "procedure": "Absolute max scroll then explicitly reveal and open last short widget; pre- and post-reveal geometry recorded. Existing footer prevents dock obstruction."
+  }
+}

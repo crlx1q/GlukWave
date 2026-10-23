@@ -1,0 +1,12 @@
+✔ home canvas accepts portable order, sizes and views with per-type payloads (25.4901ms)
+✔ home canvas rejects ambiguous identities, duplicated sections and unbounded payloads (5.3438ms)
+✔ default/reset and unrelated settings retain legacy pins and replace custom layout atomically (0.8929ms)
+✔ home settings enforce ownership and account scope, persist across reads, and broadcast the full layout (2634.0201ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 21873.4551

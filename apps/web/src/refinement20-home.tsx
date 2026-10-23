@@ -11,7 +11,7 @@ import {refinementText as text} from './refinement20-strings';
 const choices=[{key:'calm',name:'copy.458',caption:'copy.459'},{key:'dream',name:'copy.460',caption:'copy.461'},{key:'focus',name:'copy.462',caption:'copy.463'},{key:'happy',name:'copy.464',caption:'copy.465'}] as const;
 /** These shelves use the same recommendation engine as Wave. Work begins once
     visible, cancels with the account/page, and never invents charts or artists. */
-function RecommendationShelf({mode,initial=false,onData}:{mode:'personal'|'discovery'|'popular';initial?:boolean;onData?:(tracks:Track[])=>void}){
+export function RecommendationShelf({mode,initial=false,onData}:{mode:'personal'|'discovery'|'popular';initial?:boolean;onData?:(tracks:Track[])=>void}){
  const store=useStore(),player=usePlayer(),root=useRef<HTMLElement>(null),[visible,setVisible]=useState(initial),[tracks,setTracks]=useState<Track[]>([]),[pending,setPending]=useState(false),[failed,setFailed]=useState(false);
  useEffect(()=>{if(visible)return;const node=root.current;if(!node)return;const observer=new IntersectionObserver(entries=>{if(entries.some(item=>item.isIntersecting)){setVisible(true);observer.disconnect();}},{rootMargin:'100px'});observer.observe(node);return()=>observer.disconnect();},[visible]);
  useEffect(()=>{if(!visible||!store.user)return;const abort=new AbortController(),account=store.user.id,path=`/recommendations?mode=${mode}&mood=personal&limit=8`;

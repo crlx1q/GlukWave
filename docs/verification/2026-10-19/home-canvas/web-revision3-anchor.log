@@ -1,0 +1,47 @@
+BEGIN320/1/mouse
+320px 100% mouse: anchor+dimensions1:1, two horizontal crossings, outside release, rapid regrab/cancel and no writes PASS
+BEGIN320/1/touch
+{"debug":{"a":{"x":44.5,"y":229.96875,"hit":true},"z":{"x":181.5,"y":229.96875,"hit":true},"source":{"x":23,"y":208.96875,"width":127,"height":242.109375},"held":{"proxy":{"x":23,"y":202.96875,"width":127,"height":242.109375},"grab":{"x":44.5,"y":223.96875,"hit":false},"order":["wave","likes","playlist","mix","lists"]},"current":{"width":320,"height":1000,"zoom":"1","scroll":386,"events":[{"type":"pointerdown","x":44.5,"y":229.96875,"target":"canvas-grab","scroll":386}]}}}
+320px 100% touch: anchor+dimensions1:1, two horizontal crossings, outside release, rapid regrab/cancel and no writes PASS
+BEGIN320/1.25/mouse
+320px 125% mouse: anchor+dimensions1:1, two horizontal crossings, outside release, rapid regrab/cancel and no writes PASS
+BEGIN320/1.25/touch
+{"debug":{"a":{"x":43.5,"y":360.625,"hit":true},"z":{"x":176,"y":360.625,"hit":true},"source":{"x":28.75,"y":334.625,"width":120,"height":263.640625},"held":{"proxy":{"x":28.75,"y":328.625,"width":120,"height":263.640625},"grab":{"x":43.5,"y":354.625,"hit":false},"order":["wave","likes","playlist","mix","lists"]},"current":{"width":320,"height":1000,"zoom":"1.25","scroll":463,"events":[{"type":"pointerdown","x":43.5,"y":360.625,"target":"canvas-grab","scroll":463}]}}}
+320px 125% touch: anchor+dimensions1:1, two horizontal crossings, outside release, rapid regrab/cancel and no writes PASS
+BEGIN320/0.85/mouse
+320px 85% mouse: anchor+dimensions1:1, two horizontal crossings, outside release, rapid regrab/cancel and no writes PASS
+BEGIN320/0.85/touch
+{"debug":{"a":{"x":49.453125,"y":222.765625,"hit":true},"z":{"x":189.15625,"y":222.765625,"hit":true},"source":{"x":19.546875,"y":204.765625,"width":131.203125,"height":229.171875},"held":{"proxy":{"x":19.562639236450195,"y":198.68612670898438,"width":131.296875,"height":229.078125},"grab":{"x":49.515764236450195,"y":216.68612670898438,"hit":false},"order":["wave","likes","playlist","mix","lists"]},"current":{"width":320,"height":1000,"zoom":"0.85","scroll":260,"events":[{"type":"pointerdown","x":49.453125,"y":222.765625,"target":"canvas-grab","scroll":260}]}}}
+320px 85% touch: anchor+dimensions1:1, two horizontal crossings, outside release, rapid regrab/cancel and no writes PASS
+BEGIN390/1/mouse
+390px 100% mouse: anchor+dimensions1:1, two horizontal crossings, outside release, rapid regrab/cancel and no writes PASS
+BEGIN390/1/touch
+{"debug":{"a":{"x":64,"y":223.265625,"hit":true},"z":{"x":232,"y":223.265625,"hit":true},"source":{"x":27,"y":202.265625,"width":158,"height":273.109375},"held":{"proxy":{"x":27,"y":196.265625,"width":158,"height":273.109375},"grab":{"x":64,"y":217.265625,"hit":false},"order":["wave","likes","playlist","mix","lists"]},"current":{"width":390,"height":1000,"zoom":"1","scroll":402,"events":[{"type":"pointerdown","x":64,"y":223.265625,"target":"canvas-grab","scroll":402}]}}}
+390px 100% touch: anchor+dimensions1:1, two horizontal crossings, outside release, rapid regrab/cancel and no writes PASS
+BEGIN390/1.25/mouse
+390px 125% mouse: anchor+dimensions1:1, two horizontal crossings, outside release, rapid regrab/cancel and no writes PASS
+BEGIN390/1.25/touch
+{"debug":{"a":{"x":56.25,"y":260.125,"hit":true},"z":{"x":218.75,"y":260.125,"hit":true},"source":{"x":33.75,"y":234.125,"width":150,"height":293.640625},"held":{"proxy":{"x":33.75,"y":228.125,"width":150,"height":293.640625},"grab":{"x":56.25,"y":254.125,"hit":false},"order":["wave","likes","playlist","mix","lists"]},"current":{"width":390,"height":1000,"zoom":"1.25","scroll":520,"events":[{"type":"pointerdown","x":56.25,"y":260.125,"target":"canvas-grab","scroll":520}]}}}
+390px 125% touch: anchor+dimensions1:1, two horizontal crossings, outside release, rapid regrab/cancel and no writes PASS
+BEGIN390/0.85/mouse
+390px 85% mouse: anchor+dimensions1:1, two horizontal crossings, outside release, rapid regrab/cancel and no writes PASS
+BEGIN390/0.85/touch
+{"debug":{"a":{"x":68.6484375,"y":191.234375,"hit":true},"z":{"x":239.9609375,"y":191.234375,"hit":true},"source":{"x":22.9375,"y":173.234375,"width":162.8125,"height":260.78125},"held":{"proxy":{"x":22.93448257446289,"y":167.16748046875,"width":162.78125,"height":260.671875},"grab":{"x":68.62979507446289,"y":185.16748046875,"hit":false},"order":["wave","likes","playlist","mix","lists"]},"current":{"width":390,"height":1000,"zoom":"0.85","scroll":296,"events":[{"type":"pointerdown","x":68.6484375,"y":191.234375,"target":"canvas-grab","scroll":296}]}}}
+390px 85% touch: anchor+dimensions1:1, two horizontal crossings, outside release, rapid regrab/cancel and no writes PASS
+BEGIN1440/1/mouse
+1440px 100% mouse: anchor+dimensions1:1, two horizontal crossings, outside release, rapid regrab/cancel and no writes PASS
+BEGIN1440/1/touch
+{"debug":{"a":{"x":260,"y":184.28125,"hit":true},"z":{"x":680,"y":184.28125,"hit":true},"source":{"x":138,"y":163.78125,"width":402,"height":494.5},"held":{"proxy":{"x":138,"y":157.78125,"width":402,"height":494.5},"grab":{"x":260,"y":178.28125,"hit":false},"order":["wave","likes","playlist","mix","lists"]},"current":{"width":1440,"height":1000,"zoom":"1","scroll":424,"events":[{"type":"pointerdown","x":260,"y":184.28125,"target":"","scroll":424}]}}}
+1440px 100% touch: anchor+dimensions1:1, two horizontal crossings, outside release, rapid regrab/cancel and no writes PASS
+BEGIN1440/1.25/mouse
+1440px 125% mouse: anchor+dimensions1:1, two horizontal crossings, outside release, rapid regrab/cancel and no writes PASS
+BEGIN1440/1.25/touch
+{"debug":{"a":{"x":265.4140625,"y":267.25,"hit":true},"z":{"x":671.2421875,"y":267.25,"hit":true},"source":{"x":172.5,"y":241.75,"width":383.328125,"height":498.953125},"held":{"proxy":{"x":172.5,"y":235.75,"width":383.328125,"height":498.953125},"grab":{"x":265.4140625,"y":261.25,"hit":false},"order":["wave","likes","playlist","mix","lists"]},"current":{"width":1440,"height":1000,"zoom":"1.25","scroll":492,"events":[{"type":"pointerdown","x":265.4140625,"y":267.25,"target":"","scroll":492}]}}}
+1440px 125% touch: anchor+dimensions1:1, two horizontal crossings, outside release, rapid regrab/cancel and no writes PASS
+BEGIN1440/0.85/mouse
+1440px 85% mouse: anchor+dimensions1:1, two horizontal crossings, outside release, rapid regrab/cancel and no writes PASS
+BEGIN1440/0.85/touch
+{"debug":{"a":{"x":272.171875,"y":196.8515625,"hit":true},"z":{"x":685.265625,"y":196.8515625,"hit":true},"source":{"x":140.390625,"y":179.359375,"width":397.796875,"height":476.421875},"held":{"proxy":{"x":140.36117553710938,"y":173.2900390625,"width":397.7031555175781,"height":476.21875},"grab":{"x":272.0955505371094,"y":190.7822265625,"hit":false},"order":["wave","likes","playlist","mix","lists"]},"current":{"width":1440,"height":1000,"zoom":"0.85","scroll":321,"events":[{"type":"pointerdown","x":272.171875,"y":196.8515625,"target":"canvas-grab","scroll":321}]}}}
+1440px 85% touch: anchor+dimensions1:1, two horizontal crossings, outside release, rapid regrab/cancel and no writes PASS
+125% mouse edge autoscroll advances 71px under fixed physical proxy anchor; cancel restores all rows, no requests
+125% touch edge autoscroll advances 42px under fixed physical proxy anchor; cancel restores all rows, no requests

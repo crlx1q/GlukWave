@@ -1,0 +1,525 @@
+{
+  "attempt": 3,
+  "createdAt": "2026-10-19T20:59:41.993Z",
+  "surface": "Independent own agent-browser session on final rebuilt production dist5351; isolated synthetic fixtures; no injected product CSS",
+  "cases": [
+    {
+      "width": 320,
+      "scale": 1.25,
+      "input": "touch",
+      "source": {
+        "bottom": 541.265625,
+        "height": 263.640625,
+        "left": 28.75,
+        "right": 148.75,
+        "top": 277.625,
+        "width": 120,
+        "x": 28.75,
+        "y": 277.625
+      },
+      "start": {
+        "hit": true,
+        "x": 43.5,
+        "y": 303.625
+      },
+      "destination": {
+        "x": 176,
+        "y": 313.625
+      },
+      "held": {
+        "box": {
+          "bottom": 535.265625,
+          "height": 263.640625,
+          "left": 28.75,
+          "right": 148.75,
+          "top": 271.625,
+          "width": 120,
+          "x": 28.75,
+          "y": 271.625
+        },
+        "grip": {
+          "x": 43.5,
+          "y": 297.625
+        },
+        "order": [
+          "wave",
+          "likes",
+          "playlist",
+          "mix",
+          "playlists"
+        ]
+      },
+      "moved": {
+        "box": {
+          "bottom": 545.265625,
+          "height": 263.640625,
+          "left": 161.25,
+          "right": 281.25,
+          "top": 281.625,
+          "width": 120,
+          "x": 161.25,
+          "y": 281.625
+        },
+        "grip": {
+          "x": 176,
+          "y": 307.625
+        },
+        "order": [
+          "wave",
+          "playlist",
+          "likes",
+          "mix",
+          "playlists"
+        ]
+      },
+      "returned": {
+        "box": {
+          "bottom": 535.265625,
+          "height": 263.640625,
+          "left": 28.75,
+          "right": 148.75,
+          "top": 271.625,
+          "width": 120,
+          "x": 28.75,
+          "y": 271.625
+        },
+        "grip": {
+          "x": 43.5,
+          "y": 297.625
+        },
+        "order": [
+          "wave",
+          "likes",
+          "playlist",
+          "mix",
+          "playlists"
+        ]
+      },
+      "recrossed": {
+        "box": {
+          "bottom": 545.265625,
+          "height": 263.640625,
+          "left": 161.25,
+          "right": 281.25,
+          "top": 281.625,
+          "width": 120,
+          "x": 161.25,
+          "y": 281.625
+        },
+        "grip": {
+          "x": 176,
+          "y": 307.625
+        },
+        "order": [
+          "wave",
+          "playlist",
+          "likes",
+          "mix",
+          "playlists"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "width": 390,
+      "scale": 1.25,
+      "input": "touch",
+      "source": {
+        "bottom": 555.765625,
+        "height": 293.640625,
+        "left": 33.75,
+        "right": 183.75,
+        "top": 262.125,
+        "width": 150,
+        "x": 33.75,
+        "y": 262.125
+      },
+      "start": {
+        "hit": true,
+        "x": 56.25,
+        "y": 288.125
+      },
+      "destination": {
+        "x": 218.75,
+        "y": 298.125
+      },
+      "held": {
+        "box": {
+          "bottom": 549.765625,
+          "height": 293.640625,
+          "left": 33.75,
+          "right": 183.75,
+          "top": 256.125,
+          "width": 150,
+          "x": 33.75,
+          "y": 256.125
+        },
+        "grip": {
+          "x": 56.25,
+          "y": 282.125
+        },
+        "order": [
+          "wave",
+          "likes",
+          "playlist",
+          "mix",
+          "playlists"
+        ]
+      },
+      "moved": {
+        "box": {
+          "bottom": 559.765625,
+          "height": 293.640625,
+          "left": 196.25,
+          "right": 346.25,
+          "top": 266.125,
+          "width": 150,
+          "x": 196.25,
+          "y": 266.125
+        },
+        "grip": {
+          "x": 218.75,
+          "y": 292.125
+        },
+        "order": [
+          "wave",
+          "playlist",
+          "likes",
+          "mix",
+          "playlists"
+        ]
+      },
+      "returned": {
+        "box": {
+          "bottom": 549.765625,
+          "height": 293.640625,
+          "left": 33.75,
+          "right": 183.75,
+          "top": 256.125,
+          "width": 150,
+          "x": 33.75,
+          "y": 256.125
+        },
+        "grip": {
+          "x": 56.25,
+          "y": 282.125
+        },
+        "order": [
+          "wave",
+          "likes",
+          "playlist",
+          "mix",
+          "playlists"
+        ]
+      },
+      "recrossed": {
+        "box": {
+          "bottom": 559.765625,
+          "height": 293.640625,
+          "left": 196.25,
+          "right": 346.25,
+          "top": 266.125,
+          "width": 150,
+          "x": 196.25,
+          "y": 266.125
+        },
+        "grip": {
+          "x": 218.75,
+          "y": 292.125
+        },
+        "order": [
+          "wave",
+          "playlist",
+          "likes",
+          "mix",
+          "playlists"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "scale": 1.25,
+      "input": "mouse",
+      "source": {
+        "bottom": 658.703125,
+        "height": 498.953125,
+        "left": 172.5,
+        "right": 555.828125,
+        "top": 159.75,
+        "width": 383.328125,
+        "x": 172.5,
+        "y": 159.75
+      },
+      "start": {
+        "x": 265,
+        "y": 185
+      },
+      "destination": {
+        "x": 671,
+        "y": 195
+      },
+      "held": {
+        "box": {
+          "bottom": 652.703125,
+          "height": 498.953125,
+          "left": 172.5,
+          "right": 555.828125,
+          "top": 153.75,
+          "width": 383.328125,
+          "x": 172.5,
+          "y": 153.75
+        },
+        "grip": {
+          "x": 265.4140625,
+          "y": 179.25
+        },
+        "order": [
+          "wave",
+          "likes",
+          "playlist",
+          "mix",
+          "playlists"
+        ]
+      },
+      "moved": {
+        "box": {
+          "bottom": 662.703125,
+          "height": 498.953125,
+          "left": 578.5,
+          "right": 961.828125,
+          "top": 163.75,
+          "width": 383.328125,
+          "x": 578.5,
+          "y": 163.75
+        },
+        "grip": {
+          "x": 671.4140625,
+          "y": 189.25
+        },
+        "order": [
+          "wave",
+          "playlist",
+          "likes",
+          "mix",
+          "playlists"
+        ]
+      },
+      "returned": {
+        "box": {
+          "bottom": 652.703125,
+          "height": 498.953125,
+          "left": 172.5,
+          "right": 555.828125,
+          "top": 153.75,
+          "width": 383.328125,
+          "x": 172.5,
+          "y": 153.75
+        },
+        "grip": {
+          "x": 265.4140625,
+          "y": 179.25
+        },
+        "order": [
+          "wave",
+          "likes",
+          "playlist",
+          "mix",
+          "playlists"
+        ]
+      },
+      "recrossed": {
+        "box": {
+          "bottom": 662.703125,
+          "height": 498.953125,
+          "left": 578.5,
+          "right": 961.828125,
+          "top": 163.75,
+          "width": 383.328125,
+          "x": 578.5,
+          "y": 163.75
+        },
+        "grip": {
+          "x": 671.4140625,
+          "y": 189.25
+        },
+        "order": [
+          "wave",
+          "playlist",
+          "likes",
+          "mix",
+          "playlists"
+        ]
+      },
+      "passed": true
+    },
+    {
+      "width": 320,
+      "scale": 1,
+      "input": "mouse",
+      "source": {
+        "bottom": 548.078125,
+        "height": 242.109375,
+        "left": 23,
+        "right": 150,
+        "top": 305.96875,
+        "width": 127,
+        "x": 23,
+        "y": 305.96875
+      },
+      "start": {
+        "x": 45,
+        "y": 327
+      },
+      "destination": {
+        "x": 182,
+        "y": 337
+      },
+      "held": {
+        "box": {
+          "bottom": 542.078125,
+          "height": 242.109375,
+          "left": 23,
+          "right": 150,
+          "top": 299.96875,
+          "width": 127,
+          "x": 23,
+          "y": 299.96875
+        },
+        "grip": {
+          "x": 44.5,
+          "y": 320.96875
+        },
+        "order": [
+          "wave",
+          "likes",
+          "playlist",
+          "mix",
+          "playlists"
+        ]
+      },
+      "moved": {
+        "box": {
+          "bottom": 552.078125,
+          "height": 242.109375,
+          "left": 160,
+          "right": 287,
+          "top": 309.96875,
+          "width": 127,
+          "x": 160,
+          "y": 309.96875
+        },
+        "grip": {
+          "x": 181.5,
+          "y": 330.96875
+        },
+        "order": [
+          "wave",
+          "playlist",
+          "likes",
+          "mix",
+          "playlists"
+        ]
+      },
+      "returned": {
+        "box": {
+          "bottom": 542.078125,
+          "height": 242.109375,
+          "left": 23,
+          "right": 150,
+          "top": 299.96875,
+          "width": 127,
+          "x": 23,
+          "y": 299.96875
+        },
+        "grip": {
+          "x": 44.5,
+          "y": 320.96875
+        },
+        "order": [
+          "wave",
+          "likes",
+          "playlist",
+          "mix",
+          "playlists"
+        ]
+      },
+      "recrossed": {
+        "box": {
+          "bottom": 552.078125,
+          "height": 242.109375,
+          "left": 160,
+          "right": 287,
+          "top": 309.96875,
+          "width": 127,
+          "x": 160,
+          "y": 309.96875
+        },
+        "grip": {
+          "x": 181.5,
+          "y": 330.96875
+        },
+        "order": [
+          "wave",
+          "playlist",
+          "likes",
+          "mix",
+          "playlists"
+        ]
+      },
+      "passed": true
+    }
+  ],
+  "checks": [
+    "320/1.25 compact Wave retains reserved text region",
+    "320/1.25 small titles retain identity and no document overflow",
+    "320/1.25 actual gesture handles hit-test",
+    "320/1.25 proxy preserves source dimensions and physical six-pixel anchor",
+    "320/1.25 horizontal crossing inserts without moving Wave",
+    "320/1.25 physical proxy moves one-to-one",
+    "320/1.25 immediate crossback restores correct grid slot",
+    "320/1.25 repeated crossing is stable",
+    "320/1.25 cancel restores source order and zero writes/commands",
+    "390/1.25 compact Wave retains reserved text region",
+    "390/1.25 small titles retain identity and no document overflow",
+    "390/1.25 actual gesture handles hit-test",
+    "390/1.25 proxy preserves source dimensions and physical six-pixel anchor",
+    "390/1.25 horizontal crossing inserts without moving Wave",
+    "390/1.25 physical proxy moves one-to-one",
+    "390/1.25 immediate crossback restores correct grid slot",
+    "390/1.25 repeated crossing is stable",
+    "390/1.25 cancel restores source order and zero writes/commands",
+    "1440/1.25 compact Wave retains reserved text region",
+    "1440/1.25 small titles retain identity and no document overflow",
+    "1440/1.25 actual gesture handles hit-test",
+    "1440/1.25 proxy preserves source dimensions and physical six-pixel anchor",
+    "1440/1.25 horizontal crossing inserts without moving Wave",
+    "1440/1.25 physical proxy moves one-to-one",
+    "1440/1.25 immediate crossback restores correct grid slot",
+    "1440/1.25 repeated crossing is stable",
+    "1440/1.25 cancel restores source order and zero writes/commands",
+    "320/1 compact Wave retains reserved text region",
+    "320/1 small titles retain identity and no document overflow",
+    "320/1 actual gesture handles hit-test",
+    "320/1 proxy preserves source dimensions and physical six-pixel anchor",
+    "320/1 horizontal crossing inserts without moving Wave",
+    "320/1 physical proxy moves one-to-one",
+    "320/1 immediate crossback restores correct grid slot",
+    "320/1 repeated crossing is stable",
+    "320/1 cancel restores source order and zero writes/commands",
+    "Final Done performs exactly one settings patch",
+    "Final complete layout survives reload",
+    "Final Reset remains draft-only",
+    "Final Cancel restores saved composition without write",
+    "Final default1440 is Wave followed by own playlists, zero migration writes",
+    "Final default390 is Wave followed by own playlists, zero migration writes"
+  ],
+  "captures": [
+    "docs/verification/2026-10-19/home-canvas/eval3-touch-lift320-125.png",
+    "docs/verification/2026-10-19/home-canvas/eval3-custom390.png",
+    "docs/verification/2026-10-19/home-canvas/eval3-editing1440.png",
+    "docs/verification/2026-10-19/home-canvas/eval3-default1440.png",
+    "docs/verification/2026-10-19/home-canvas/eval3-default390.png"
+  ],
+  "passed": true
+}

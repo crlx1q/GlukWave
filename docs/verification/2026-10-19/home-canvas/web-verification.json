@@ -1,0 +1,87 @@
+{
+  "createdAt": "2026-10-19T20:58:09.640Z",
+  "passed": true,
+  "revision": 3,
+  "tests": {
+    "web": 109,
+    "failed": 0,
+    "typescript": "production tsc -b PASS",
+    "productionBuild": true,
+    "es5Chunks": 5,
+    "diffCheck": true
+  },
+  "sourceHash": "581f28c1903cf9129d617b75e88bd27ff22ccb8ad24a68cd3051c5500c73309b",
+  "distHash": "31e2e7b63e27df9d44aa269b161fe67742da70ed0ffb94cd21e67ff166fa5a53",
+  "indexSha256": "1741c432823f6bcaf362f453ac7352b3c82447cdc16aa0d1b82d6d8b0c674906",
+  "changedSinceAcceptedRevision2": [
+    "apps/web/src/home-canvas-pickup.tsx"
+  ],
+  "priorGeometryAcceptedHashes": [
+    {
+      "file": "apps/web/src/home-canvas.css",
+      "sha256": "83acdeec2eb591bc4777933fb2cf18dad1a0b2026c11e67452f14e40f4917743"
+    },
+    {
+      "file": "apps/web/src/home-widget-content.tsx",
+      "sha256": "219d104d8978200ef88cccb8a61d54f08ae6643b60e0400df261b295c138bad5"
+    },
+    {
+      "file": "apps/web/src/home-wave.tsx",
+      "sha256": "4efdf32684d2a5d432b86f1ef02e280fdc0e890ad3547f58be1f59188324f56c"
+    }
+  ],
+  "priorGeometry": {
+    "proof": "web-revision2-geometry-proof.json",
+    "sourceHash": "b5a8c1884caf56fb317061d7cf92caab2c00ef68ceaec186c020b5ff43b23c68",
+    "waveCases": 72,
+    "destinationCases": 24,
+    "rerunRequired": false,
+    "reason": "Accepted visual CSS, content and Wave unchanged; focused pointer JS revision only"
+  },
+  "browser": {
+    "proof": "web-revision3-anchor-proof.json",
+    "trustedInputCases": 18,
+    "autoscrollCases": 2,
+    "singleSaveExactlyOnce": true,
+    "observedSaveRequests": 1,
+    "actualProductionDist": true,
+    "isolatedFixture": true,
+    "ownerAccountUsed": false
+  },
+  "captures": [
+    {
+      "file": "docs/verification/2026-10-19/home-canvas/web-revision3-anchor-320-125-mouse.png",
+      "sha256": "cf79c2e82d59844430d135b9b214f70d5930168b6cf38ddac1e71d3481a50b71"
+    },
+    {
+      "file": "docs/verification/2026-10-19/home-canvas/web-revision3-anchor-320-125-touch.png",
+      "sha256": "9c1ae61d9e41f626d7f691e77ab0dd91f07ac7506e1a47fc765510bad6b698cb"
+    },
+    {
+      "file": "docs/verification/2026-10-19/home-canvas/web-revision3-anchor-1440-125-mouse.png",
+      "sha256": "782b0148d20cbc93c71bcc45b60d26041c8b7bd5c6168622de912fb671afe0e9"
+    },
+    {
+      "file": "docs/verification/2026-10-19/home-canvas/web-revision3-autoscroll-390-125-mouse.png",
+      "sha256": "5643ab84d8b810884e02c164552ea416829f2d68c4d9131323ae019bdf607f50"
+    },
+    {
+      "file": "docs/verification/2026-10-19/home-canvas/web-revision3-autoscroll-390-125-touch.png",
+      "sha256": "6a85ab225f1824362747ff7abe8cd1a79f7a365173d97ba9884403767c2e005d"
+    },
+    {
+      "file": "docs/verification/2026-10-19/home-canvas/web-revision3-default-1440.png",
+      "sha256": "93389223849744c6b34fb9ef7542b047cc4033a413c7992aff358a9e64308a73"
+    },
+    {
+      "file": "docs/verification/2026-10-19/home-canvas/web-revision3-default-390.png",
+      "sha256": "c154ec2705a91b8ed3e304cd4aee935ff1d60f8255220edc2718f6eb93aded13"
+    }
+  ],
+  "sourceUnchanged": true,
+  "limitations": [
+    "Chrome viewport and trusted browser input automation; not physical Android/Tizen",
+    "Focused source iteration; +27 release files and version numbers unchanged",
+    "No deploy or installer execution"
+  ]
+}

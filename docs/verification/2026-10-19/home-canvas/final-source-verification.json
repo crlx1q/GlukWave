@@ -1,0 +1,72 @@
+{
+  "checkedAt": "2026-10-19T21:01:59.010Z",
+  "passed": true,
+  "tests": {
+    "server": 142,
+    "web": 109,
+    "flutter": 537
+  },
+  "nativeSourcesAndCapturesVerified": 17,
+  "webSourcesAndBuildVerified": true,
+  "webCapturesVerified": 7,
+  "finalCaptures": [
+    {
+      "file": "docs/verification/2026-10-19/home-canvas/web-revision3-anchor-320-125-mouse.png",
+      "sha256": "cf79c2e82d59844430d135b9b214f70d5930168b6cf38ddac1e71d3481a50b71"
+    },
+    {
+      "file": "docs/verification/2026-10-19/home-canvas/web-revision3-anchor-320-125-touch.png",
+      "sha256": "9c1ae61d9e41f626d7f691e77ab0dd91f07ac7506e1a47fc765510bad6b698cb"
+    },
+    {
+      "file": "docs/verification/2026-10-19/home-canvas/web-revision3-anchor-1440-125-mouse.png",
+      "sha256": "782b0148d20cbc93c71bcc45b60d26041c8b7bd5c6168622de912fb671afe0e9"
+    },
+    {
+      "file": "docs/verification/2026-10-19/home-canvas/web-revision3-autoscroll-390-125-mouse.png",
+      "sha256": "5643ab84d8b810884e02c164552ea416829f2d68c4d9131323ae019bdf607f50"
+    },
+    {
+      "file": "docs/verification/2026-10-19/home-canvas/web-revision3-autoscroll-390-125-touch.png",
+      "sha256": "6a85ab225f1824362747ff7abe8cd1a79f7a365173d97ba9884403767c2e005d"
+    },
+    {
+      "file": "docs/verification/2026-10-19/home-canvas/web-revision3-default-1440.png",
+      "sha256": "93389223849744c6b34fb9ef7542b047cc4033a413c7992aff358a9e64308a73"
+    },
+    {
+      "file": "docs/verification/2026-10-19/home-canvas/web-revision3-default-390.png",
+      "sha256": "c154ec2705a91b8ed3e304cd4aee935ff1d60f8255220edc2718f6eb93aded13"
+    },
+    {
+      "file": "docs/verification/2026-10-19/home-canvas/web-revision3-editing-1440.png",
+      "sha256": "902383c9d44a03886d44ab27ce2628e7f95a40179703da00a6104e28bcb1136b"
+    },
+    {
+      "file": "docs/verification/2026-10-19/home-canvas/web-revision3-custom-390.png",
+      "sha256": "c55fd59eccce8d3dcd316c92f8d9f22ba32069de93a287707575477a7564fc46"
+    }
+  ],
+  "webSourceHash": "581f28c1903cf9129d617b75e88bd27ff22ccb8ad24a68cd3051c5500c73309b",
+  "indexSha256": "1741c432823f6bcaf362f453ac7352b3c82447cdc16aa0d1b82d6d8b0c674906",
+  "webPointerCases": 18,
+  "webAutoscrollCases": 2,
+  "webSingleSaveVerified": true,
+  "independentEvaluation": {
+    "attempt": 3,
+    "passed": true,
+    "checks": 42,
+    "trustedInputCases": 4,
+    "provider": "same-provider; alternate provider unavailable"
+  },
+  "nativeTailViewports": [
+    320,
+    390,
+    1440
+  ],
+  "versionsChanged": false,
+  "webProductionBuildRebuilt": true,
+  "nativeArtifactsRebuilt": false,
+  "hostingChanged": false,
+  "physicalDeviceTests": false
+}

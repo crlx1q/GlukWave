@@ -1,0 +1,65 @@
+{
+  "attempt": 3,
+  "createdAt": "2026-10-19T21:01:23.059190+00:00",
+  "verdict": "PASS",
+  "passed": true,
+  "blockers": [],
+  "resolved": [
+    "HC-W1 compact Wave text/particle separation",
+    "HC-W2 readable smallest destination identity",
+    "HC-W3 zoom-correct lifted proxy anchor and motion/stable crossings"
+  ],
+  "sourceHash": "581f28c1903cf9129d617b75e88bd27ff22ccb8ad24a68cd3051c5500c73309b",
+  "distHash": "31e2e7b63e27df9d44aa269b161fe67742da70ed0ffb94cd21e67ff166fa5a53",
+  "indexSha256": "1741c432823f6bcaf362f453ac7352b3c82447cdc16aa0d1b82d6d8b0c674906",
+  "independentBrowser": {
+    "checks": 42,
+    "trustedInputCases": 4,
+    "proof": "eval3-browser-proof.json",
+    "realProductionDist": true,
+    "ownerProductionDataUsed": false
+  },
+  "fingerprints": {
+    "web-source-freeze.json": {
+      "checked": 212,
+      "matched": true,
+      "mismatches": []
+    },
+    "native-verification.json": {
+      "checked": 17,
+      "matched": true,
+      "mismatches": []
+    }
+  },
+  "native": {
+    "tests": 537,
+    "analyzer": "No issues found",
+    "evidence": "native-verification.json",
+    "captureScope": "Actual Flutter widget-tree fixtures; main390 narrow Windows desktop harness,320 editor/gallery isolated125% harness; not physical Android hardware",
+    "tailHitProbe": "native-tail-reachability.json"
+  },
+  "providerLimit": "Independent evaluation with same OpenAI provider; alternate model provider was unavailable",
+  "captures": [
+    {
+      "path": "docs/verification/2026-10-19/home-canvas/eval3-touch-lift320-125.png",
+      "sha256": "63f3743c04f4384fff4848058bc23474f5cad319d186894f49180b1fc4277954"
+    },
+    {
+      "path": "docs/verification/2026-10-19/home-canvas/eval3-custom390.png",
+      "sha256": "9fbb8c71fe19a8d55fb8971e53d64eca05487dcb7e37849509d6801c535eadaf"
+    },
+    {
+      "path": "docs/verification/2026-10-19/home-canvas/eval3-editing1440.png",
+      "sha256": "a993451022ddc02e350df52b27b19d9c3484e394becab602899491bc94ab9450"
+    },
+    {
+      "path": "docs/verification/2026-10-19/home-canvas/eval3-default1440.png",
+      "sha256": "42157248e9fe8da37db4a41b9cfc1c0e4fadcda59c2e776015bdb448ecb9637d"
+    },
+    {
+      "path": "docs/verification/2026-10-19/home-canvas/eval3-default390.png",
+      "sha256": "ae46b508d2f876a63709236f47b17de415a30c8c5351c2d2790259cbf7288e5c"
+    }
+  ],
+  "fixtureRestored": "home-canvas-web-owner;homeLayout:null;fontScale:1;theme:dark;failSettings:false;settingsWrites:[];commands:[]"
+}

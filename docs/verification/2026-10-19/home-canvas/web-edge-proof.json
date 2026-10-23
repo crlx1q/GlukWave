@@ -1,0 +1,11 @@
+{
+  "createdAt": "2026-10-19T18:22:15.982Z",
+  "passed": true,
+  "checks": [
+    "Reset plus Done persists null/default once while preserving legacy homePins",
+    "Focused grab handle arrow moves without a pointer; Escape restores saved layout, no writes",
+    "Real held-card edge autoscroll advanced 120px; outside-header Escape cancels and restores original, no writes",
+    "Account replacement discards old draft and removes its Done action; no settings write to new account",
+    "320px at125% actual hit tests pass for Done, quick resize and options above fixed player"
+  ]
+}

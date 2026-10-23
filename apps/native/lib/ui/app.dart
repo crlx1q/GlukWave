@@ -1,6 +1,6 @@
 import 'recommendation_actions.dart';
 import '../l10n/glukwave27_ui_strings.dart';
-import 'home_shelf.dart';
+import 'home_canvas.dart';
 import 'update_notice.dart';
 import 'desktop_titlebar.dart';
 import 'playlist_manager.dart';
@@ -11,7 +11,6 @@ import 'wave18_strings.dart';
 import 'provider_import.dart';
 import 'public_import_strings.dart';
 import 'refinement20_strings.dart';
-import 'refinement20_home.dart';
 import 'native19_strings.dart';
 import 'native19_components.dart';
 import 'native19_saved.dart';
@@ -1392,12 +1391,6 @@ class _WaveShellState extends State<WaveShell>
         : hour >= 5
         ? wt('native.d73c91bbc4', context: context)
         : wt('native.194858b25f', context: context);
-    final local = parity.tracks.where((t) => t.playable).toList();
-    final recent = c.history
-        .map((entry) => c.track(entry['trackId'] as String?))
-        .whereType<WaveTrack>()
-        .take(6)
-        .toList();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -1423,315 +1416,28 @@ class _WaveShellState extends State<WaveShell>
           ),
           const SizedBox(height: 28),
         ],
-        NativeHomeShelf(
+        NativeHomeCanvas(
+          key: ValueKey('home-canvas:${c.user?.id}:${c.api.server}'),
           controller: c,
+          waveBuilder: (_) => homeWave(),
+          recommendations: parity.tracks
+              .where((t) => t.playable)
+              .take(8)
+              .toList(),
+          recommendationsLoading: parity.loading,
+          recommendationsError: parity.error,
+          onRetry: () => parity.load(mood: mood, mode: waveMode),
           onLikes: () => navigate(WavePage.liked),
-          onPlaylist: (playlist) {
-            setState(() {
-              selectedPlaylist = playlist;
-              page = WavePage.library;
-            });
-          },
-        ),
-        WaveHero(
-          controller: c,
-          empty: false,
-          loading: waveStarting || c.trackLoading,
-          playing:
-              c.waveActive &&
-              c.waveMode == waveMode &&
-              c.waveMood == mood &&
-              c.audio.playing,
-          caption: wave18Text(context, 'wave18.caption.$waveMode'),
-          reducedMotion: c.settings['reducedMotion'] == true,
-          onPlay: waveStarting
-              ? null
-              : () async {
-                  setState(() {
-                    waveStarting = true;
-                    waveStartError = null;
-                  });
-                  try {
-                    if (c.waveActive &&
-                        c.waveMode == waveMode &&
-                        c.waveMood == mood &&
-                        c.audio.viewCurrent != null) {
-                      c.audio.playing
-                          ? await c.audio.pause()
-                          : await c.audio.play();
-                    } else {
-                      await c.startWave(mood: mood, mode: waveMode);
-                    }
-                  } catch (error) {
-                    if (mounted) {
-                      setState(() => waveStartError = error.toString());
-                    }
-                  } finally {
-                    if (mounted) setState(() => waveStarting = false);
-                  }
-                },
-        ),
-        const SizedBox(height: 4),
-        Text(
-          refinementText(
-            context,
-            c.waveActive && c.waveMode == waveMode && c.waveMood == mood
-                ? 'waveContinues'
-                : 'waveStartChoice',
-          ),
-          style: TextStyle(fontSize: 11, color: waveVisuals(context).muted),
-        ),
-        const SizedBox(height: 14),
-        Wrap(
-          spacing: 7,
-          runSpacing: 7,
-          children: [
-            for (final mode in const [
-              'personal',
-              'favorites',
-              'discovery',
-              'popular',
-            ])
-              ChoiceChip(
-                key: Key('wave-mode-$mode'),
-                showCheckmark: false,
-                backgroundColor: Colors.transparent,
-                selectedColor: waveVisuals(context).surface,
-                side: BorderSide.none,
-                elevation: 0,
-                pressElevation: 0,
-                shadowColor: Colors.transparent,
-                labelStyle: TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w700,
-                  color: waveMode == mode
-                      ? waveVisuals(context).ink
-                      : waveVisuals(context).muted,
-                ),
-                label: Text(wave18Text(context, 'wave18.mode.$mode')),
-                selected: waveMode == mode,
-                onSelected: waveStarting
-                    ? null
-                    : (_) {
-                        setState(() {
-                          waveMode = mode;
-                          waveStartError = null;
-                        });
-                        unawaited(parity.load(mood: mood, mode: waveMode));
-                      },
-              ),
-          ],
-        ),
-        const SizedBox(height: 10),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: [
-              for (final value in const [
-                'personal',
-                'energy',
-                'happy',
-                'calm',
-                'sad',
-                'focus',
-                'dream',
-              ])
-                Padding(
-                  padding: const EdgeInsets.only(right: 7),
-                  child: ChoiceChip(
-                    key: Key('wave-mood-$value'),
-                    showCheckmark: false,
-                    backgroundColor: Colors.transparent,
-                    selectedColor: waveVisuals(context).surface,
-                    side: BorderSide.none,
-                    elevation: 0,
-                    pressElevation: 0,
-                    shadowColor: Colors.transparent,
-                    labelStyle: TextStyle(
-                      fontSize: 12,
-                      fontWeight: FontWeight.w700,
-                      color: mood == value
-                          ? waveVisuals(context).ink
-                          : waveVisuals(context).muted,
-                    ),
-                    label: Text(wave18Text(context, 'wave18.mood.$value')),
-                    selected: mood == value,
-                    onSelected: waveStarting
-                        ? null
-                        : (_) {
-                            setState(() {
-                              mood = value;
-                              waveStartError = null;
-                            });
-                            unawaited(parity.load(mood: mood, mode: waveMode));
-                          },
-                  ),
-                ),
-            ],
+          onCreatePlaylist: newPlaylist,
+          onPlaylist: (playlist) => setState(() {
+            selectedPlaylist = playlist;
+            page = WavePage.library;
+          }),
+          recommendationFooter: TasteInvitation(
+            parity: parity,
+            onOpen: () => openTaste(context, c, parity),
           ),
         ),
-        if (waveStartError != null)
-          Padding(
-            padding: const EdgeInsets.only(top: 12),
-            child: Text(
-              waveStartError!,
-              style: TextStyle(color: waveVisuals(context).muted, fontSize: 12),
-            ),
-          ),
-        const SizedBox(height: 16),
-        if (parity.loading)
-          const Padding(
-            padding: EdgeInsets.only(top: 16),
-            child: LinearProgressIndicator(minHeight: 2),
-          ),
-        if (parity.error != null)
-          Padding(
-            padding: const EdgeInsets.only(top: 12),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    pt(context, 'Unavailable detail'),
-                    style: TextStyle(
-                      color: waveVisuals(context).muted,
-                      fontSize: 12,
-                    ),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () => parity.load(mood: mood, mode: waveMode),
-                  child: Text(pt(context, 'Retry')),
-                ),
-              ],
-            ),
-          ),
-        if (local.isNotEmpty) ...[
-          section(pt(context, 'Personal')),
-          homeTrackRail(local.take(8).toList()),
-        ],
-        const SizedBox(height: 24),
-        TasteInvitation(
-          parity: parity,
-          onOpen: () => openTaste(context, c, parity),
-        ),
-        LayoutBuilder(
-          builder: (context, constraints) {
-            final width = constraints.maxWidth < 600
-                ? constraints.maxWidth
-                : (constraints.maxWidth - 14) / 2;
-            return Wrap(
-              spacing: 14,
-              runSpacing: 12,
-              children: [
-                SizedBox(
-                  width: width,
-                  child: CollectionDestination(
-                    title: wt('native.d3aa3fa13d', context: context),
-                    subtitle: wt(
-                      'native.e352fa0553',
-                      values: {'p0': c.likedIds.length},
-                      context: context,
-                    ),
-                    icon: Icons.favorite_border_rounded,
-                    onTap: () => navigate(WavePage.liked),
-                  ),
-                ),
-                SizedBox(
-                  width: width,
-                  child: CollectionDestination(
-                    title: nativeText(context, 'saved'),
-                    subtitle:
-                        '${c.savedTracks.length} · ${nativeText(context, 'savedShort')}',
-                    icon: Icons.download_for_offline_outlined,
-                    onTap: () => navigate(WavePage.downloads),
-                  ),
-                ),
-              ],
-            );
-          },
-        ),
-        const SizedBox(height: 24),
-
-        section(
-          wt('native.d73ebed4df', context: context),
-          trailing: TextButton(
-            onPressed: () => navigate(WavePage.library),
-            child: Text(wt('native.51d1aabe9f', context: context)),
-          ),
-        ),
-        if (c.playlists.isEmpty)
-          Surface(
-            child: Row(
-              children: [
-                Icon(
-                  Icons.queue_music_rounded,
-                  color: waveVisuals(context).accent,
-                  size: 32,
-                ),
-                const SizedBox(width: 18),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        wt('native.a3ea6451ed', context: context),
-                        style: TextStyle(
-                          fontWeight: FontWeight.w800,
-                          fontSize: 17,
-                        ),
-                      ),
-                      SizedBox(height: 5),
-                      Text(
-                        wt('native.637437750e', context: context),
-                        style: TextStyle(
-                          color: waveVisuals(context).muted,
-                          fontSize: 12,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                IconButton(
-                  tooltip: wt('native.6ce6f8d86e', context: context),
-                  onPressed: newPlaylist,
-                  icon: const Icon(Icons.add_rounded),
-                ),
-              ],
-            ),
-          )
-        else
-          playlistGrid(),
-        section(
-          recent.isEmpty
-              ? wt('native.b2fa6a1cea', context: context)
-              : wt('native.b73d4d1b29', context: context),
-        ),
-        if (recent.isNotEmpty)
-          homeTrackRail(recent)
-        else if (c.tracks.isNotEmpty)
-          homeTrackRail(c.tracks.take(8).toList())
-        else
-          EmptyState(
-            wt('native.c55ae9eb3e', context: context),
-            wt('native.a468ce3ecb', context: context),
-            action: FilledButton.icon(
-              onPressed: () => navigate(WavePage.sources),
-              icon: const Icon(Icons.hub_outlined),
-              label: Text(wt('native.db4afdc056', context: context)),
-            ),
-          ),
-        if (c.online) ...[
-          NativeDiscoveryShelf(
-            key: ValueKey('discovery:${c.user?.id}:${c.api.server}'),
-            controller: c,
-            mode: 'discovery',
-          ),
-          NativeDiscoveryShelf(
-            key: ValueKey('popular:${c.user?.id}:${c.api.server}'),
-            controller: c,
-            mode: 'popular',
-          ),
-        ],
         const SizedBox(height: 24),
         InkWell(
           onTap: () => Navigator.push(
@@ -1808,6 +1514,184 @@ class _WaveShellState extends State<WaveShell>
       ],
     );
   }
+
+  Widget homeWave() => Column(
+    crossAxisAlignment: CrossAxisAlignment.stretch,
+    children: [
+      WaveHero(
+        controller: c,
+        empty: false,
+        loading: waveStarting || c.trackLoading,
+        playing:
+            c.waveActive &&
+            c.waveMode == waveMode &&
+            c.waveMood == mood &&
+            c.audio.playing,
+        caption: wave18Text(context, 'wave18.caption.$waveMode'),
+        reducedMotion: c.settings['reducedMotion'] == true,
+        onPlay: waveStarting
+            ? null
+            : () async {
+                setState(() {
+                  waveStarting = true;
+                  waveStartError = null;
+                });
+                try {
+                  if (c.waveActive &&
+                      c.waveMode == waveMode &&
+                      c.waveMood == mood &&
+                      c.audio.viewCurrent != null) {
+                    c.audio.playing
+                        ? await c.audio.pause()
+                        : await c.audio.play();
+                  } else {
+                    await c.startWave(mood: mood, mode: waveMode);
+                  }
+                } catch (error) {
+                  if (mounted) {
+                    setState(() => waveStartError = error.toString());
+                  }
+                } finally {
+                  if (mounted) setState(() => waveStarting = false);
+                }
+              },
+      ),
+      const SizedBox(height: 4),
+      Text(
+        refinementText(
+          context,
+          c.waveActive && c.waveMode == waveMode && c.waveMood == mood
+              ? 'waveContinues'
+              : 'waveStartChoice',
+        ),
+        style: TextStyle(fontSize: 11, color: waveVisuals(context).muted),
+      ),
+      const SizedBox(height: 14),
+      Wrap(
+        spacing: 7,
+        runSpacing: 7,
+        children: [
+          for (final mode in const [
+            'personal',
+            'favorites',
+            'discovery',
+            'popular',
+          ])
+            ChoiceChip(
+              key: Key('wave-mode-$mode'),
+              showCheckmark: false,
+              backgroundColor: Colors.transparent,
+              selectedColor: waveVisuals(context).surface,
+              side: BorderSide.none,
+              elevation: 0,
+              pressElevation: 0,
+              shadowColor: Colors.transparent,
+              labelStyle: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w700,
+                color: waveMode == mode
+                    ? waveVisuals(context).ink
+                    : waveVisuals(context).muted,
+              ),
+              label: Text(wave18Text(context, 'wave18.mode.$mode')),
+              selected: waveMode == mode,
+              onSelected: waveStarting
+                  ? null
+                  : (_) {
+                      setState(() {
+                        waveMode = mode;
+                        waveStartError = null;
+                      });
+                      unawaited(parity.load(mood: mood, mode: waveMode));
+                    },
+            ),
+        ],
+      ),
+      const SizedBox(height: 10),
+      SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: [
+            for (final value in const [
+              'personal',
+              'energy',
+              'happy',
+              'calm',
+              'sad',
+              'focus',
+              'dream',
+            ])
+              Padding(
+                padding: const EdgeInsets.only(right: 7),
+                child: ChoiceChip(
+                  key: Key('wave-mood-$value'),
+                  showCheckmark: false,
+                  backgroundColor: Colors.transparent,
+                  selectedColor: waveVisuals(context).surface,
+                  side: BorderSide.none,
+                  elevation: 0,
+                  pressElevation: 0,
+                  shadowColor: Colors.transparent,
+                  labelStyle: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.w700,
+                    color: mood == value
+                        ? waveVisuals(context).ink
+                        : waveVisuals(context).muted,
+                  ),
+                  label: Text(wave18Text(context, 'wave18.mood.$value')),
+                  selected: mood == value,
+                  onSelected: waveStarting
+                      ? null
+                      : (_) {
+                          setState(() {
+                            mood = value;
+                            waveStartError = null;
+                          });
+                          unawaited(parity.load(mood: mood, mode: waveMode));
+                        },
+                ),
+              ),
+          ],
+        ),
+      ),
+      if (waveStartError != null)
+        Padding(
+          padding: const EdgeInsets.only(top: 12),
+          child: Text(
+            waveStartError!,
+            style: TextStyle(color: waveVisuals(context).muted, fontSize: 12),
+          ),
+        ),
+      const SizedBox(height: 16),
+      if (parity.loading)
+        const Padding(
+          padding: EdgeInsets.only(top: 16),
+          child: LinearProgressIndicator(minHeight: 2),
+        ),
+      if (parity.error != null)
+        Padding(
+          padding: const EdgeInsets.only(top: 12),
+          child: Row(
+            children: [
+              Expanded(
+                child: Text(
+                  pt(context, 'Unavailable detail'),
+                  style: TextStyle(
+                    color: waveVisuals(context).muted,
+                    fontSize: 12,
+                  ),
+                ),
+              ),
+              TextButton(
+                onPressed: () => parity.load(mood: mood, mode: waveMode),
+                child: Text(pt(context, 'Retry')),
+              ),
+            ],
+          ),
+        ),
+    ],
+  );
 
   Future<void> newPlaylist() => showPlaylistEditor(context, c);
 

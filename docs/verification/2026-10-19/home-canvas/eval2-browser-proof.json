@@ -1,0 +1,66 @@
+{
+  "attempt": 2,
+  "createdAt": "2026-10-19T19:03:24.939Z",
+  "surface": "Independent own session on rebuilt production dist5351, synthetic fixture, no CSS injection",
+  "checks": [
+    "HC-W1 320px125% compact Wave reserves text above particles",
+    "HC-W2 320px125% destinations reserve readable title width and unbroken count",
+    "320px125% document bounds remain clean",
+    "320px125% edit mode retains full small-card title",
+    "320px125% visual inspections create no settings writes",
+    "HC-W1 390px125% compact Wave reserves text above particles",
+    "HC-W2 390px125% destinations reserve readable title width and unbroken count",
+    "390px125% document bounds remain clean",
+    "390px125% edit mode retains full small-card title",
+    "390px125% visual inspections create no settings writes",
+    "HC-W1 768px125% compact Wave reserves text above particles",
+    "HC-W2 768px125% destinations reserve readable title width and unbroken count",
+    "768px125% document bounds remain clean",
+    "768px125% edit mode retains full small-card title",
+    "768px125% visual inspections create no settings writes",
+    "HC-W1 1440px125% compact Wave reserves text above particles",
+    "HC-W2 1440px125% destinations reserve readable title width and unbroken count",
+    "1440px125% document bounds remain clean",
+    "1440px125% edit mode retains full small-card title",
+    "1440px125% visual inspections create no settings writes",
+    "Revised desktop mouse horizontal pickup has one real-content proxy and insertion",
+    "Escape restores original order and cleans revised proxy",
+    "Revised Done writes exactly once for real rearrangement",
+    "Revised saved arrangement survives reload",
+    "Touch source and neighbor handles are genuinely hit-testable below sticky toolbar"
+  ],
+  "captures": [
+    "docs/verification/2026-10-19/home-canvas/eval2-normal-320-125.png",
+    "docs/verification/2026-10-19/home-canvas/eval2-edit-320-125.png",
+    "docs/verification/2026-10-19/home-canvas/eval2-normal-390-125.png",
+    "docs/verification/2026-10-19/home-canvas/eval2-edit-390-125.png",
+    "docs/verification/2026-10-19/home-canvas/eval2-normal-768-125.png",
+    "docs/verification/2026-10-19/home-canvas/eval2-edit-768-125.png",
+    "docs/verification/2026-10-19/home-canvas/eval2-normal-1440-125.png",
+    "docs/verification/2026-10-19/home-canvas/eval2-edit-1440-125.png",
+    "docs/verification/2026-10-19/home-canvas/eval2-mouse-lift-1440.png",
+    "docs/verification/2026-10-19/home-canvas/eval2-failure.png"
+  ],
+  "passed": false,
+  "error": "AssertionError [ERR_ASSERTION]: Revised320125% touch lifts readable destination and inserts horizontally",
+  "verdict": "NEEDS REVISION",
+  "visualBlockersResolved": [
+    "HC-W1",
+    "HC-W2"
+  ],
+  "remainingBlockers": [
+    {
+      "id": "HC-W3",
+      "issue": "125% font/CSS zoom scales and displaces lifted card relative to held pointer; motion factor1.25 instead of1",
+      "evidence": "eval2-touch-coordinate-proof.json",
+      "fix": "Map viewport proxy position/size and FLIP physical deltas into portal coordinate space; use stable layout hit bounds, not active animated visual bounds."
+    }
+  ],
+  "native": {
+    "verdict": "PASS within harness scope",
+    "fullSuite": 537,
+    "sourceCaptureFilesMatched": 17,
+    "scope": "Actual Flutter widget tree; narrow390 main is Windows desktop harness,320 editor/gallery is isolated125% harness; not physical Android"
+  },
+  "provider": "Independent same-provider evaluation; alternate provider unavailable"
+}

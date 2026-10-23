@@ -1,0 +1,40 @@
+{
+  "createdAt": "2026-10-19T18:52:37.667Z",
+  "surface": "final production dist with isolated fixture APIs, never owner account; no injected product CSS",
+  "checks": [
+    "Default Wave then playlists; legacy favorite remains below; first render writes nothing",
+    "Quick resize header is genuinely hit-testable above the fixed transport and changes Wave size",
+    "Resize changes logical desktop half-span and view changes covers to actual playlist rows",
+    "Real horizontal mouse pickup moves between desktop columns; one real-content proxy and gap; no draft requests",
+    "Done performs exactly one settings patch; complete layout survives reload",
+    "Cancel restores authoritative layout with no request",
+    "Reset is draft-only; Cancel restores prior saved composition",
+    "Gallery adds real daily widget as draft, singleton entries disabled, Cancel writes nothing",
+    "503 save failure retains the complete draft and inline error; no automatic duplicate save",
+    "Real touch 390px hold, horizontal reorder, drop and pointercancel cleanup; outer Cancel restores saved layout; no writes",
+    "Real touch 320px hold, horizontal reorder, drop and pointercancel cleanup; outer Cancel restores saved layout; no writes",
+    "320px at125% dark has no horizontal overflow, widget controls accessible",
+    "390px at125% light has no horizontal overflow, widget controls accessible",
+    "768px at125% dark has no horizontal overflow, widget controls accessible",
+    "1440px at125% light has no horizontal overflow, widget controls accessible",
+    "Reset plus Done persists null/default exactly once and retains legacy homePins"
+  ],
+  "captures": [
+    "docs/verification/2026-10-19/home-canvas/web-default-1440.png",
+    "docs/verification/2026-10-19/home-canvas/web-editing-1440.png",
+    "docs/verification/2026-10-19/home-canvas/web-lifted-1440.png",
+    "docs/verification/2026-10-19/home-canvas/web-custom-1440.png",
+    "docs/verification/2026-10-19/home-canvas/web-gallery-1440.png",
+    "docs/verification/2026-10-19/home-canvas/web-save-error-1440.png",
+    "docs/verification/2026-10-19/home-canvas/web-custom-390.png",
+    "docs/verification/2026-10-19/home-canvas/web-lifted-390.png",
+    "docs/verification/2026-10-19/home-canvas/web-custom-320.png",
+    "docs/verification/2026-10-19/home-canvas/web-lifted-320.png",
+    "docs/verification/2026-10-19/home-canvas/web-options-320-125.png",
+    "docs/verification/2026-10-19/home-canvas/web-options-390-125.png",
+    "docs/verification/2026-10-19/home-canvas/web-options-768-125.png",
+    "docs/verification/2026-10-19/home-canvas/web-options-1440-125.png",
+    "docs/verification/2026-10-19/home-canvas/web-default-390.png"
+  ],
+  "passed": true
+}

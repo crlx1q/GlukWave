@@ -6,16 +6,21 @@ import 'widgets.dart';
 import 'motion_icons.dart';
 import 'refinement20_strings.dart';
 import 'wave18_strings.dart';
+import 'home_canvas.dart' show NativeCanvasTracks;
+import '../l10n/home_canvas_strings.dart';
 
 /// Discovery shelves request only once they enter the viewport. Playback and
 /// account state stay in the controller, and the same backend as Wave ranks it.
 class NativeDiscoveryShelf extends StatefulWidget {
   final WaveController controller;
-  final String mode;
+  final String mode, view;
+  final bool embedded;
   const NativeDiscoveryShelf({
     super.key,
     required this.controller,
     required this.mode,
+    this.view = 'cards',
+    this.embedded = false,
   });
   @override
   State<NativeDiscoveryShelf> createState() => _NativeDiscoveryShelfState();
@@ -29,23 +34,36 @@ class _NativeDiscoveryShelfState extends State<NativeDiscoveryShelf> {
   late bool wasOnline;
   late final account = widget.controller.user?.id,
       origin = widget.controller.api.server;
-  Map<String,dynamic> get query => {'mode': widget.mode, 'mood': 'personal', 'limit': 8};
+  Map<String, dynamic> get query => {
+    'mode': widget.mode,
+    'mood': 'personal',
+    'limit': 8,
+  };
   @override
   void initState() {
     super.initState();
     wasOnline = widget.controller.online;
     widget.controller.addListener(connectionChanged);
-    final data = widget.controller.api.peekMetadata('/api/recommendations', query: query);
-    if (data != null) tracks = objects(data['tracks']).map(WaveTrack.new).toList();
+    final data = widget.controller.api.peekMetadata(
+      '/api/recommendations',
+      query: query,
+    );
+    if (data != null) {
+      tracks = objects(data['tracks']).map(WaveTrack.new).toList();
+    }
   }
+
   void connectionChanged() {
     final online = widget.controller.online;
     if (!wasOnline && online) {
       requested = false;
-      WidgetsBinding.instance.addPostFrameCallback((_) { if (mounted) check(); });
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) check();
+      });
     }
     wasOnline = online;
   }
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
@@ -111,7 +129,7 @@ class _NativeDiscoveryShelfState extends State<NativeDiscoveryShelf> {
       widget.mode == 'discovery' ? 'discover' : 'popular',
     );
     return Padding(
-      padding: const EdgeInsets.only(top: 30),
+      padding: EdgeInsets.only(top: widget.embedded ? 0 : 30),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -155,71 +173,7 @@ class _NativeDiscoveryShelfState extends State<NativeDiscoveryShelf> {
           if (busy)
             const LinearProgressIndicator(minHeight: 2)
           else if (tracks.isNotEmpty)
-            LayoutBuilder(
-              builder: (context, bounds) {
-                final size = bounds.maxWidth < 400 ? 136.0 : 158.0;
-                return SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      for (final track in tracks)
-                        Padding(
-                          padding: const EdgeInsets.only(right: 14),
-                          child: SizedBox(
-                            width: size,
-                            child: WavePress(
-                              child: InkWell(
-                                borderRadius: BorderRadius.circular(
-                                  v.corners(16),
-                                ),
-                                onTap: () async {
-                                  try {
-                                    await c.play(track, list: tracks);
-                                  } catch (e) {
-                                    c.tell(e.toString());
-                                  }
-                                },
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Artwork(
-                                      controller: c,
-                                      url: track.artwork,
-                                      size: size,
-                                      radius: 16,
-                                    ),
-                                    const SizedBox(height: 10),
-                                    Text(
-                                      track.title,
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: const TextStyle(
-                                        fontSize: 13,
-                                        fontWeight: FontWeight.w800,
-                                      ),
-                                    ),
-                                    const SizedBox(height: 4),
-                                    Text(
-                                      track.artist,
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(
-                                        fontSize: 11,
-                                        color: v.muted,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                    ],
-                  ),
-                );
-              },
-            )
+            NativeCanvasTracks(controller: c, tracks: tracks, view: widget.view)
           else if (error != null)
             Row(
               children: [
@@ -234,6 +188,14 @@ class _NativeDiscoveryShelfState extends State<NativeDiscoveryShelf> {
                   child: Text(refinementText(context, 'retry')),
                 ),
               ],
+            )
+          else
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 18),
+              child: Text(
+                canvasText(context, c.online ? 'empty' : 'offline'),
+                style: TextStyle(color: v.muted, fontSize: 12, height: 1.6),
+              ),
             ),
         ],
       ),

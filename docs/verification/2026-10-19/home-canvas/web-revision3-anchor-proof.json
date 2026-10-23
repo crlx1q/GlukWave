@@ -1,0 +1,2066 @@
+{
+  "createdAt": "2026-10-19T20:56:25.394Z",
+  "surface": "actual production dist5351 with isolated synthetic fixture APIs; real trusted CDP mouse/touch",
+  "checks": [
+    "125% mouse edge autoscroll advances 71px under fixed physical proxy anchor; cancel restores all rows, no requests",
+    "125% touch edge autoscroll advances 42px under fixed physical proxy anchor; cancel restores all rows, no requests",
+    "18trusted mouse/touch cases at320/390/1440 and85/100/125% keep source/proxy dimensions and6px physical lift anchor, movement1:1",
+    "Stable two-dimensional target bounds preserve Wave position through immediate return/crossings, outside release and rapid re-grab cancellation",
+    "Every gesture/cancel remains draft-only with0settings writes",
+    "One Done produces exactly1settings PATCH and persists the moved complete layout after reload"
+  ],
+  "cases": [
+    {
+      "width": 320,
+      "scale": 1,
+      "input": "mouse",
+      "source": {
+        "x": 23,
+        "y": 229.96875,
+        "width": 127,
+        "height": 242.109375
+      },
+      "initialPointer": {
+        "x": 44.5,
+        "y": 250.96875,
+        "hit": true
+      },
+      "held": {
+        "proxy": {
+          "x": 23,
+          "y": 223.96875,
+          "width": 127,
+          "height": 242.109375
+        },
+        "grab": {
+          "x": 44.5,
+          "y": 244.96875,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "likes",
+          "playlist",
+          "mix",
+          "lists"
+        ]
+      },
+      "movedPointer": {
+        "x": 181.5,
+        "y": 260.96875
+      },
+      "moved": {
+        "proxy": {
+          "x": 160,
+          "y": 233.96875,
+          "width": 127,
+          "height": 242.109375
+        },
+        "grab": {
+          "x": 181.5,
+          "y": 254.96875,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "playlist",
+          "likes",
+          "mix",
+          "lists"
+        ]
+      },
+      "returned": {
+        "proxy": {
+          "x": 23,
+          "y": 223.96875,
+          "width": 127,
+          "height": 242.109375
+        },
+        "grab": {
+          "x": 44.5,
+          "y": 244.96875,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "likes",
+          "playlist",
+          "mix",
+          "lists"
+        ]
+      },
+      "movementRatio": {
+        "x": 1,
+        "y": 1
+      },
+      "rapidRegrab": {
+        "source": {
+          "x": 160,
+          "y": 229.96875,
+          "width": 127,
+          "height": 242.109375
+        },
+        "held": {
+          "proxy": {
+            "x": 160,
+            "y": 223.96875,
+            "width": 127,
+            "height": 242.109375
+          },
+          "grab": {
+            "x": 181.5,
+            "y": 244.96875,
+            "hit": false
+          },
+          "order": [
+            "wave",
+            "playlist",
+            "likes",
+            "mix",
+            "lists"
+          ]
+        }
+      },
+      "passed": true
+    },
+    {
+      "width": 320,
+      "scale": 1,
+      "input": "touch",
+      "source": {
+        "x": 23,
+        "y": 208.96875,
+        "width": 127,
+        "height": 242.109375
+      },
+      "initialPointer": {
+        "x": 44.5,
+        "y": 229.96875,
+        "hit": true
+      },
+      "held": {
+        "proxy": {
+          "x": 23,
+          "y": 202.96875,
+          "width": 127,
+          "height": 242.109375
+        },
+        "grab": {
+          "x": 44.5,
+          "y": 223.96875,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "likes",
+          "playlist",
+          "mix",
+          "lists"
+        ]
+      },
+      "movedPointer": {
+        "x": 181.5,
+        "y": 239.96875
+      },
+      "moved": {
+        "proxy": {
+          "x": 160,
+          "y": 212.96875,
+          "width": 127,
+          "height": 242.109375
+        },
+        "grab": {
+          "x": 181.5,
+          "y": 233.96875,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "playlist",
+          "likes",
+          "mix",
+          "lists"
+        ]
+      },
+      "returned": {
+        "proxy": {
+          "x": 23,
+          "y": 202.96875,
+          "width": 127,
+          "height": 242.109375
+        },
+        "grab": {
+          "x": 44.5,
+          "y": 223.96875,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "likes",
+          "playlist",
+          "mix",
+          "lists"
+        ]
+      },
+      "movementRatio": {
+        "x": 1,
+        "y": 1
+      },
+      "rapidRegrab": {
+        "source": {
+          "x": 160,
+          "y": 208.96875,
+          "width": 127,
+          "height": 242.109375
+        },
+        "held": {
+          "proxy": {
+            "x": 160,
+            "y": 202.96875,
+            "width": 127,
+            "height": 242.109375
+          },
+          "grab": {
+            "x": 181.5,
+            "y": 223.96875,
+            "hit": false
+          },
+          "order": [
+            "wave",
+            "playlist",
+            "likes",
+            "mix",
+            "lists"
+          ]
+        }
+      },
+      "passed": true
+    },
+    {
+      "width": 320,
+      "scale": 1.25,
+      "input": "mouse",
+      "source": {
+        "x": 28.75,
+        "y": 314.625,
+        "width": 120,
+        "height": 263.640625
+      },
+      "initialPointer": {
+        "x": 43.5,
+        "y": 340.625,
+        "hit": true
+      },
+      "held": {
+        "proxy": {
+          "x": 28.75,
+          "y": 308.625,
+          "width": 120,
+          "height": 263.640625
+        },
+        "grab": {
+          "x": 43.5,
+          "y": 334.625,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "likes",
+          "playlist",
+          "mix",
+          "lists"
+        ]
+      },
+      "movedPointer": {
+        "x": 176,
+        "y": 350.625
+      },
+      "moved": {
+        "proxy": {
+          "x": 161.25,
+          "y": 318.625,
+          "width": 120,
+          "height": 263.640625
+        },
+        "grab": {
+          "x": 176,
+          "y": 344.625,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "playlist",
+          "likes",
+          "mix",
+          "lists"
+        ]
+      },
+      "returned": {
+        "proxy": {
+          "x": 28.75,
+          "y": 308.625,
+          "width": 120,
+          "height": 263.640625
+        },
+        "grab": {
+          "x": 43.5,
+          "y": 334.625,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "likes",
+          "playlist",
+          "mix",
+          "lists"
+        ]
+      },
+      "movementRatio": {
+        "x": 1,
+        "y": 1
+      },
+      "rapidRegrab": {
+        "source": {
+          "x": 161.25,
+          "y": 314.625,
+          "width": 120,
+          "height": 263.640625
+        },
+        "held": {
+          "proxy": {
+            "x": 161.25,
+            "y": 308.625,
+            "width": 120,
+            "height": 263.640625
+          },
+          "grab": {
+            "x": 176,
+            "y": 334.625,
+            "hit": false
+          },
+          "order": [
+            "wave",
+            "playlist",
+            "likes",
+            "mix",
+            "lists"
+          ]
+        }
+      },
+      "passed": true
+    },
+    {
+      "width": 320,
+      "scale": 1.25,
+      "input": "touch",
+      "source": {
+        "x": 28.75,
+        "y": 334.625,
+        "width": 120,
+        "height": 263.640625
+      },
+      "initialPointer": {
+        "x": 43.5,
+        "y": 360.625,
+        "hit": true
+      },
+      "held": {
+        "proxy": {
+          "x": 28.75,
+          "y": 328.625,
+          "width": 120,
+          "height": 263.640625
+        },
+        "grab": {
+          "x": 43.5,
+          "y": 354.625,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "likes",
+          "playlist",
+          "mix",
+          "lists"
+        ]
+      },
+      "movedPointer": {
+        "x": 176,
+        "y": 370.625
+      },
+      "moved": {
+        "proxy": {
+          "x": 161.25,
+          "y": 338.625,
+          "width": 120,
+          "height": 263.640625
+        },
+        "grab": {
+          "x": 176,
+          "y": 364.625,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "playlist",
+          "likes",
+          "mix",
+          "lists"
+        ]
+      },
+      "returned": {
+        "proxy": {
+          "x": 28.75,
+          "y": 328.625,
+          "width": 120,
+          "height": 263.640625
+        },
+        "grab": {
+          "x": 43.5,
+          "y": 354.625,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "likes",
+          "playlist",
+          "mix",
+          "lists"
+        ]
+      },
+      "movementRatio": {
+        "x": 1,
+        "y": 1
+      },
+      "rapidRegrab": {
+        "source": {
+          "x": 161.25,
+          "y": 334.625,
+          "width": 120,
+          "height": 263.640625
+        },
+        "held": {
+          "proxy": {
+            "x": 161.25,
+            "y": 328.625,
+            "width": 120,
+            "height": 263.640625
+          },
+          "grab": {
+            "x": 176,
+            "y": 354.625,
+            "hit": false
+          },
+          "order": [
+            "wave",
+            "playlist",
+            "likes",
+            "mix",
+            "lists"
+          ]
+        }
+      },
+      "passed": true
+    },
+    {
+      "width": 320,
+      "scale": 0.85,
+      "input": "mouse",
+      "source": {
+        "x": 19.546875,
+        "y": 202.765625,
+        "width": 131.203125,
+        "height": 229.171875
+      },
+      "initialPointer": {
+        "x": 49.453125,
+        "y": 220.765625,
+        "hit": true
+      },
+      "held": {
+        "proxy": {
+          "x": 19.562639236450195,
+          "y": 196.68692016601562,
+          "width": 131.296875,
+          "height": 229.078125
+        },
+        "grab": {
+          "x": 49.515764236450195,
+          "y": 214.68692016601562,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "likes",
+          "playlist",
+          "mix",
+          "lists"
+        ]
+      },
+      "movedPointer": {
+        "x": 189.15625,
+        "y": 230.765625
+      },
+      "moved": {
+        "proxy": {
+          "x": 159.37843322753906,
+          "y": 206.68292236328125,
+          "width": 131.29685974121094,
+          "height": 229.078125
+        },
+        "grab": {
+          "x": 189.33155822753906,
+          "y": 224.68292236328125,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "playlist",
+          "likes",
+          "mix",
+          "lists"
+        ]
+      },
+      "returned": {
+        "proxy": {
+          "x": 19.562639236450195,
+          "y": 196.68692016601562,
+          "width": 131.296875,
+          "height": 229.078125
+        },
+        "grab": {
+          "x": 49.515764236450195,
+          "y": 214.68692016601562,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "likes",
+          "playlist",
+          "mix",
+          "lists"
+        ]
+      },
+      "movementRatio": {
+        "x": 1.0008064886958603,
+        "y": 0.9996002197265625
+      },
+      "rapidRegrab": {
+        "source": {
+          "x": 159.25,
+          "y": 202.765625,
+          "width": 131.203125,
+          "height": 229.171875
+        },
+        "held": {
+          "proxy": {
+            "x": 159.37843322753906,
+            "y": 196.68692016601562,
+            "width": 131.29685974121094,
+            "height": 229.078125
+          },
+          "grab": {
+            "x": 189.33155822753906,
+            "y": 214.68692016601562,
+            "hit": false
+          },
+          "order": [
+            "wave",
+            "playlist",
+            "likes",
+            "mix",
+            "lists"
+          ]
+        }
+      },
+      "passed": true
+    },
+    {
+      "width": 320,
+      "scale": 0.85,
+      "input": "touch",
+      "source": {
+        "x": 19.546875,
+        "y": 204.765625,
+        "width": 131.203125,
+        "height": 229.171875
+      },
+      "initialPointer": {
+        "x": 49.453125,
+        "y": 222.765625,
+        "hit": true
+      },
+      "held": {
+        "proxy": {
+          "x": 19.562639236450195,
+          "y": 198.68612670898438,
+          "width": 131.296875,
+          "height": 229.078125
+        },
+        "grab": {
+          "x": 49.515764236450195,
+          "y": 216.68612670898438,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "likes",
+          "playlist",
+          "mix",
+          "lists"
+        ]
+      },
+      "movedPointer": {
+        "x": 189.15625,
+        "y": 232.765625
+      },
+      "moved": {
+        "proxy": {
+          "x": 159.37843322753906,
+          "y": 208.68212890625,
+          "width": 131.29685974121094,
+          "height": 229.078125
+        },
+        "grab": {
+          "x": 189.33155822753906,
+          "y": 226.68212890625,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "playlist",
+          "likes",
+          "mix",
+          "lists"
+        ]
+      },
+      "returned": {
+        "proxy": {
+          "x": 19.562639236450195,
+          "y": 198.68612670898438,
+          "width": 131.296875,
+          "height": 229.078125
+        },
+        "grab": {
+          "x": 49.515764236450195,
+          "y": 216.68612670898438,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "likes",
+          "playlist",
+          "mix",
+          "lists"
+        ]
+      },
+      "movementRatio": {
+        "x": 1.0008064886958603,
+        "y": 0.9996002197265625
+      },
+      "rapidRegrab": {
+        "source": {
+          "x": 159.25,
+          "y": 204.765625,
+          "width": 131.203125,
+          "height": 229.171875
+        },
+        "held": {
+          "proxy": {
+            "x": 159.37843322753906,
+            "y": 198.68612670898438,
+            "width": 131.29685974121094,
+            "height": 229.078125
+          },
+          "grab": {
+            "x": 189.33155822753906,
+            "y": 216.68612670898438,
+            "hit": false
+          },
+          "order": [
+            "wave",
+            "playlist",
+            "likes",
+            "mix",
+            "lists"
+          ]
+        }
+      },
+      "passed": true
+    },
+    {
+      "width": 390,
+      "scale": 1,
+      "input": "mouse",
+      "source": {
+        "x": 27,
+        "y": 208.265625,
+        "width": 158,
+        "height": 273.109375
+      },
+      "initialPointer": {
+        "x": 64,
+        "y": 229.265625,
+        "hit": true
+      },
+      "held": {
+        "proxy": {
+          "x": 27,
+          "y": 202.265625,
+          "width": 158,
+          "height": 273.109375
+        },
+        "grab": {
+          "x": 64,
+          "y": 223.265625,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "likes",
+          "playlist",
+          "mix",
+          "lists"
+        ]
+      },
+      "movedPointer": {
+        "x": 232,
+        "y": 239.265625
+      },
+      "moved": {
+        "proxy": {
+          "x": 195,
+          "y": 212.265625,
+          "width": 158,
+          "height": 273.109375
+        },
+        "grab": {
+          "x": 232,
+          "y": 233.265625,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "playlist",
+          "likes",
+          "mix",
+          "lists"
+        ]
+      },
+      "returned": {
+        "proxy": {
+          "x": 27,
+          "y": 202.265625,
+          "width": 158,
+          "height": 273.109375
+        },
+        "grab": {
+          "x": 64,
+          "y": 223.265625,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "likes",
+          "playlist",
+          "mix",
+          "lists"
+        ]
+      },
+      "movementRatio": {
+        "x": 1,
+        "y": 1
+      },
+      "rapidRegrab": {
+        "source": {
+          "x": 195,
+          "y": 208.265625,
+          "width": 158,
+          "height": 273.109375
+        },
+        "held": {
+          "proxy": {
+            "x": 195,
+            "y": 202.265625,
+            "width": 158,
+            "height": 273.109375
+          },
+          "grab": {
+            "x": 232,
+            "y": 223.265625,
+            "hit": false
+          },
+          "order": [
+            "wave",
+            "playlist",
+            "likes",
+            "mix",
+            "lists"
+          ]
+        }
+      },
+      "passed": true
+    },
+    {
+      "width": 390,
+      "scale": 1,
+      "input": "touch",
+      "source": {
+        "x": 27,
+        "y": 202.265625,
+        "width": 158,
+        "height": 273.109375
+      },
+      "initialPointer": {
+        "x": 64,
+        "y": 223.265625,
+        "hit": true
+      },
+      "held": {
+        "proxy": {
+          "x": 27,
+          "y": 196.265625,
+          "width": 158,
+          "height": 273.109375
+        },
+        "grab": {
+          "x": 64,
+          "y": 217.265625,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "likes",
+          "playlist",
+          "mix",
+          "lists"
+        ]
+      },
+      "movedPointer": {
+        "x": 232,
+        "y": 233.265625
+      },
+      "moved": {
+        "proxy": {
+          "x": 195,
+          "y": 206.265625,
+          "width": 158,
+          "height": 273.109375
+        },
+        "grab": {
+          "x": 232,
+          "y": 227.265625,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "playlist",
+          "likes",
+          "mix",
+          "lists"
+        ]
+      },
+      "returned": {
+        "proxy": {
+          "x": 27,
+          "y": 196.265625,
+          "width": 158,
+          "height": 273.109375
+        },
+        "grab": {
+          "x": 64,
+          "y": 217.265625,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "likes",
+          "playlist",
+          "mix",
+          "lists"
+        ]
+      },
+      "movementRatio": {
+        "x": 1,
+        "y": 1
+      },
+      "rapidRegrab": {
+        "source": {
+          "x": 195,
+          "y": 202.265625,
+          "width": 158,
+          "height": 273.109375
+        },
+        "held": {
+          "proxy": {
+            "x": 195,
+            "y": 196.265625,
+            "width": 158,
+            "height": 273.109375
+          },
+          "grab": {
+            "x": 232,
+            "y": 217.265625,
+            "hit": false
+          },
+          "order": [
+            "wave",
+            "playlist",
+            "likes",
+            "mix",
+            "lists"
+          ]
+        }
+      },
+      "passed": true
+    },
+    {
+      "width": 390,
+      "scale": 1.25,
+      "input": "mouse",
+      "source": {
+        "x": 33.75,
+        "y": 241.125,
+        "width": 150,
+        "height": 293.640625
+      },
+      "initialPointer": {
+        "x": 56.25,
+        "y": 267.125,
+        "hit": true
+      },
+      "held": {
+        "proxy": {
+          "x": 33.75,
+          "y": 235.125,
+          "width": 150,
+          "height": 293.640625
+        },
+        "grab": {
+          "x": 56.25,
+          "y": 261.125,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "likes",
+          "playlist",
+          "mix",
+          "lists"
+        ]
+      },
+      "movedPointer": {
+        "x": 218.75,
+        "y": 277.125
+      },
+      "moved": {
+        "proxy": {
+          "x": 196.25,
+          "y": 245.125,
+          "width": 150,
+          "height": 293.640625
+        },
+        "grab": {
+          "x": 218.75,
+          "y": 271.125,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "playlist",
+          "likes",
+          "mix",
+          "lists"
+        ]
+      },
+      "returned": {
+        "proxy": {
+          "x": 33.75,
+          "y": 235.125,
+          "width": 150,
+          "height": 293.640625
+        },
+        "grab": {
+          "x": 56.25,
+          "y": 261.125,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "likes",
+          "playlist",
+          "mix",
+          "lists"
+        ]
+      },
+      "movementRatio": {
+        "x": 1,
+        "y": 1
+      },
+      "rapidRegrab": {
+        "source": {
+          "x": 196.25,
+          "y": 241.125,
+          "width": 150,
+          "height": 293.640625
+        },
+        "held": {
+          "proxy": {
+            "x": 196.25,
+            "y": 235.125,
+            "width": 150,
+            "height": 293.640625
+          },
+          "grab": {
+            "x": 218.75,
+            "y": 261.125,
+            "hit": false
+          },
+          "order": [
+            "wave",
+            "playlist",
+            "likes",
+            "mix",
+            "lists"
+          ]
+        }
+      },
+      "passed": true
+    },
+    {
+      "width": 390,
+      "scale": 1.25,
+      "input": "touch",
+      "source": {
+        "x": 33.75,
+        "y": 234.125,
+        "width": 150,
+        "height": 293.640625
+      },
+      "initialPointer": {
+        "x": 56.25,
+        "y": 260.125,
+        "hit": true
+      },
+      "held": {
+        "proxy": {
+          "x": 33.75,
+          "y": 228.125,
+          "width": 150,
+          "height": 293.640625
+        },
+        "grab": {
+          "x": 56.25,
+          "y": 254.125,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "likes",
+          "playlist",
+          "mix",
+          "lists"
+        ]
+      },
+      "movedPointer": {
+        "x": 218.75,
+        "y": 270.125
+      },
+      "moved": {
+        "proxy": {
+          "x": 196.25,
+          "y": 238.125,
+          "width": 150,
+          "height": 293.640625
+        },
+        "grab": {
+          "x": 218.75,
+          "y": 264.125,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "playlist",
+          "likes",
+          "mix",
+          "lists"
+        ]
+      },
+      "returned": {
+        "proxy": {
+          "x": 33.75,
+          "y": 228.125,
+          "width": 150,
+          "height": 293.640625
+        },
+        "grab": {
+          "x": 56.25,
+          "y": 254.125,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "likes",
+          "playlist",
+          "mix",
+          "lists"
+        ]
+      },
+      "movementRatio": {
+        "x": 1,
+        "y": 1
+      },
+      "rapidRegrab": {
+        "source": {
+          "x": 196.25,
+          "y": 234.125,
+          "width": 150,
+          "height": 293.640625
+        },
+        "held": {
+          "proxy": {
+            "x": 196.25,
+            "y": 228.125,
+            "width": 150,
+            "height": 293.640625
+          },
+          "grab": {
+            "x": 218.75,
+            "y": 254.125,
+            "hit": false
+          },
+          "order": [
+            "wave",
+            "playlist",
+            "likes",
+            "mix",
+            "lists"
+          ]
+        }
+      },
+      "passed": true
+    },
+    {
+      "width": 390,
+      "scale": 0.85,
+      "input": "mouse",
+      "source": {
+        "x": 22.9375,
+        "y": 184.234375,
+        "width": 162.8125,
+        "height": 260.78125
+      },
+      "initialPointer": {
+        "x": 68.6484375,
+        "y": 202.234375,
+        "hit": true
+      },
+      "held": {
+        "proxy": {
+          "x": 22.93448257446289,
+          "y": 178.1630859375,
+          "width": 162.78125,
+          "height": 260.671875
+        },
+        "grab": {
+          "x": 68.62979507446289,
+          "y": 196.1630859375,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "likes",
+          "playlist",
+          "mix",
+          "lists"
+        ]
+      },
+      "movedPointer": {
+        "x": 239.9609375,
+        "y": 212.234375
+      },
+      "moved": {
+        "proxy": {
+          "x": 194.2244415283203,
+          "y": 188.15908813476562,
+          "width": 162.78123474121094,
+          "height": 260.671875
+        },
+        "grab": {
+          "x": 239.91974639892578,
+          "y": 206.15908813476562,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "playlist",
+          "likes",
+          "mix",
+          "lists"
+        ]
+      },
+      "returned": {
+        "proxy": {
+          "x": 22.93448257446289,
+          "y": 178.1630859375,
+          "width": 162.78125,
+          "height": 260.671875
+        },
+        "grab": {
+          "x": 68.62979507446289,
+          "y": 196.1630859375,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "likes",
+          "playlist",
+          "mix",
+          "lists"
+        ]
+      },
+      "movementRatio": {
+        "x": 0.9998683769395864,
+        "y": 0.9996002197265625
+      },
+      "rapidRegrab": {
+        "source": {
+          "x": 194.25,
+          "y": 184.234375,
+          "width": 162.8125,
+          "height": 260.78125
+        },
+        "held": {
+          "proxy": {
+            "x": 194.2244415283203,
+            "y": 178.1630859375,
+            "width": 162.78123474121094,
+            "height": 260.671875
+          },
+          "grab": {
+            "x": 239.91974639892578,
+            "y": 196.1630859375,
+            "hit": false
+          },
+          "order": [
+            "wave",
+            "playlist",
+            "likes",
+            "mix",
+            "lists"
+          ]
+        }
+      },
+      "passed": true
+    },
+    {
+      "width": 390,
+      "scale": 0.85,
+      "input": "touch",
+      "source": {
+        "x": 22.9375,
+        "y": 173.234375,
+        "width": 162.8125,
+        "height": 260.78125
+      },
+      "initialPointer": {
+        "x": 68.6484375,
+        "y": 191.234375,
+        "hit": true
+      },
+      "held": {
+        "proxy": {
+          "x": 22.93448257446289,
+          "y": 167.16748046875,
+          "width": 162.78125,
+          "height": 260.671875
+        },
+        "grab": {
+          "x": 68.62979507446289,
+          "y": 185.16748046875,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "likes",
+          "playlist",
+          "mix",
+          "lists"
+        ]
+      },
+      "movedPointer": {
+        "x": 239.9609375,
+        "y": 201.234375
+      },
+      "moved": {
+        "proxy": {
+          "x": 194.2244415283203,
+          "y": 177.16348266601562,
+          "width": 162.78123474121094,
+          "height": 260.671875
+        },
+        "grab": {
+          "x": 239.91974639892578,
+          "y": 195.16348266601562,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "playlist",
+          "likes",
+          "mix",
+          "lists"
+        ]
+      },
+      "returned": {
+        "proxy": {
+          "x": 22.93448257446289,
+          "y": 167.16748046875,
+          "width": 162.78125,
+          "height": 260.671875
+        },
+        "grab": {
+          "x": 68.62979507446289,
+          "y": 185.16748046875,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "likes",
+          "playlist",
+          "mix",
+          "lists"
+        ]
+      },
+      "movementRatio": {
+        "x": 0.9998683769395864,
+        "y": 0.9996002197265625
+      },
+      "rapidRegrab": {
+        "source": {
+          "x": 194.25,
+          "y": 173.234375,
+          "width": 162.8125,
+          "height": 260.78125
+        },
+        "held": {
+          "proxy": {
+            "x": 194.2244415283203,
+            "y": 167.16748046875,
+            "width": 162.78123474121094,
+            "height": 260.671875
+          },
+          "grab": {
+            "x": 239.91974639892578,
+            "y": 185.16748046875,
+            "hit": false
+          },
+          "order": [
+            "wave",
+            "playlist",
+            "likes",
+            "mix",
+            "lists"
+          ]
+        }
+      },
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "scale": 1,
+      "input": "mouse",
+      "source": {
+        "x": 138,
+        "y": 163.78125,
+        "width": 402,
+        "height": 494.5
+      },
+      "initialPointer": {
+        "x": 260,
+        "y": 184.28125,
+        "hit": true
+      },
+      "held": {
+        "proxy": {
+          "x": 138,
+          "y": 157.78125,
+          "width": 402,
+          "height": 494.5
+        },
+        "grab": {
+          "x": 260,
+          "y": 178.28125,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "likes",
+          "playlist",
+          "mix",
+          "lists"
+        ]
+      },
+      "movedPointer": {
+        "x": 680,
+        "y": 194.28125
+      },
+      "moved": {
+        "proxy": {
+          "x": 558,
+          "y": 167.78125,
+          "width": 402,
+          "height": 494.5
+        },
+        "grab": {
+          "x": 680,
+          "y": 188.28125,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "playlist",
+          "likes",
+          "mix",
+          "lists"
+        ]
+      },
+      "returned": {
+        "proxy": {
+          "x": 138,
+          "y": 157.78125,
+          "width": 402,
+          "height": 494.5
+        },
+        "grab": {
+          "x": 260,
+          "y": 178.28125,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "likes",
+          "playlist",
+          "mix",
+          "lists"
+        ]
+      },
+      "movementRatio": {
+        "x": 1,
+        "y": 1
+      },
+      "rapidRegrab": {
+        "source": {
+          "x": 558,
+          "y": 163.78125,
+          "width": 402,
+          "height": 494.5
+        },
+        "held": {
+          "proxy": {
+            "x": 558,
+            "y": 157.78125,
+            "width": 402,
+            "height": 494.5
+          },
+          "grab": {
+            "x": 680,
+            "y": 178.28125,
+            "hit": false
+          },
+          "order": [
+            "wave",
+            "playlist",
+            "likes",
+            "mix",
+            "lists"
+          ]
+        }
+      },
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "scale": 1,
+      "input": "touch",
+      "source": {
+        "x": 138,
+        "y": 163.78125,
+        "width": 402,
+        "height": 494.5
+      },
+      "initialPointer": {
+        "x": 260,
+        "y": 184.28125,
+        "hit": true
+      },
+      "held": {
+        "proxy": {
+          "x": 138,
+          "y": 157.78125,
+          "width": 402,
+          "height": 494.5
+        },
+        "grab": {
+          "x": 260,
+          "y": 178.28125,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "likes",
+          "playlist",
+          "mix",
+          "lists"
+        ]
+      },
+      "movedPointer": {
+        "x": 680,
+        "y": 194.28125
+      },
+      "moved": {
+        "proxy": {
+          "x": 558,
+          "y": 167.78125,
+          "width": 402,
+          "height": 494.5
+        },
+        "grab": {
+          "x": 680,
+          "y": 188.28125,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "playlist",
+          "likes",
+          "mix",
+          "lists"
+        ]
+      },
+      "returned": {
+        "proxy": {
+          "x": 138,
+          "y": 157.78125,
+          "width": 402,
+          "height": 494.5
+        },
+        "grab": {
+          "x": 260,
+          "y": 178.28125,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "likes",
+          "playlist",
+          "mix",
+          "lists"
+        ]
+      },
+      "movementRatio": {
+        "x": 1,
+        "y": 1
+      },
+      "rapidRegrab": {
+        "source": {
+          "x": 558,
+          "y": 163.78125,
+          "width": 402,
+          "height": 494.5
+        },
+        "held": {
+          "proxy": {
+            "x": 558,
+            "y": 157.78125,
+            "width": 402,
+            "height": 494.5
+          },
+          "grab": {
+            "x": 680,
+            "y": 178.28125,
+            "hit": false
+          },
+          "order": [
+            "wave",
+            "playlist",
+            "likes",
+            "mix",
+            "lists"
+          ]
+        }
+      },
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "scale": 1.25,
+      "input": "mouse",
+      "source": {
+        "x": 172.5,
+        "y": 193.75,
+        "width": 383.328125,
+        "height": 498.953125
+      },
+      "initialPointer": {
+        "x": 265.4140625,
+        "y": 219.25,
+        "hit": true
+      },
+      "held": {
+        "proxy": {
+          "x": 172.5,
+          "y": 187.75,
+          "width": 383.328125,
+          "height": 498.953125
+        },
+        "grab": {
+          "x": 265.4140625,
+          "y": 213.25,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "likes",
+          "playlist",
+          "mix",
+          "lists"
+        ]
+      },
+      "movedPointer": {
+        "x": 671.2421875,
+        "y": 229.25
+      },
+      "moved": {
+        "proxy": {
+          "x": 578.328125,
+          "y": 197.75,
+          "width": 383.328125,
+          "height": 498.953125
+        },
+        "grab": {
+          "x": 671.2421875,
+          "y": 223.25,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "playlist",
+          "likes",
+          "mix",
+          "lists"
+        ]
+      },
+      "returned": {
+        "proxy": {
+          "x": 172.5,
+          "y": 187.75,
+          "width": 383.328125,
+          "height": 498.953125
+        },
+        "grab": {
+          "x": 265.4140625,
+          "y": 213.25,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "likes",
+          "playlist",
+          "mix",
+          "lists"
+        ]
+      },
+      "movementRatio": {
+        "x": 1,
+        "y": 1
+      },
+      "rapidRegrab": {
+        "source": {
+          "x": 578.328125,
+          "y": 193.75,
+          "width": 383.328125,
+          "height": 498.953125
+        },
+        "held": {
+          "proxy": {
+            "x": 578.328125,
+            "y": 187.75,
+            "width": 383.328125,
+            "height": 498.953125
+          },
+          "grab": {
+            "x": 671.2421875,
+            "y": 213.25,
+            "hit": false
+          },
+          "order": [
+            "wave",
+            "playlist",
+            "likes",
+            "mix",
+            "lists"
+          ]
+        }
+      },
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "scale": 1.25,
+      "input": "touch",
+      "source": {
+        "x": 172.5,
+        "y": 241.75,
+        "width": 383.328125,
+        "height": 498.953125
+      },
+      "initialPointer": {
+        "x": 265.4140625,
+        "y": 267.25,
+        "hit": true
+      },
+      "held": {
+        "proxy": {
+          "x": 172.5,
+          "y": 235.75,
+          "width": 383.328125,
+          "height": 498.953125
+        },
+        "grab": {
+          "x": 265.4140625,
+          "y": 261.25,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "likes",
+          "playlist",
+          "mix",
+          "lists"
+        ]
+      },
+      "movedPointer": {
+        "x": 671.2421875,
+        "y": 277.25
+      },
+      "moved": {
+        "proxy": {
+          "x": 578.328125,
+          "y": 245.75,
+          "width": 383.328125,
+          "height": 498.953125
+        },
+        "grab": {
+          "x": 671.2421875,
+          "y": 271.25,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "playlist",
+          "likes",
+          "mix",
+          "lists"
+        ]
+      },
+      "returned": {
+        "proxy": {
+          "x": 172.5,
+          "y": 235.75,
+          "width": 383.328125,
+          "height": 498.953125
+        },
+        "grab": {
+          "x": 265.4140625,
+          "y": 261.25,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "likes",
+          "playlist",
+          "mix",
+          "lists"
+        ]
+      },
+      "movementRatio": {
+        "x": 1,
+        "y": 1
+      },
+      "rapidRegrab": {
+        "source": {
+          "x": 578.328125,
+          "y": 241.75,
+          "width": 383.328125,
+          "height": 498.953125
+        },
+        "held": {
+          "proxy": {
+            "x": 578.328125,
+            "y": 235.75,
+            "width": 383.328125,
+            "height": 498.953125
+          },
+          "grab": {
+            "x": 671.2421875,
+            "y": 261.25,
+            "hit": false
+          },
+          "order": [
+            "wave",
+            "playlist",
+            "likes",
+            "mix",
+            "lists"
+          ]
+        }
+      },
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "scale": 0.85,
+      "input": "mouse",
+      "source": {
+        "x": 140.390625,
+        "y": 164.359375,
+        "width": 397.796875,
+        "height": 476.421875
+      },
+      "initialPointer": {
+        "x": 272.171875,
+        "y": 181.8515625,
+        "hit": true
+      },
+      "held": {
+        "proxy": {
+          "x": 140.36117553710938,
+          "y": 158.29603576660156,
+          "width": 397.7031555175781,
+          "height": 476.21875
+        },
+        "grab": {
+          "x": 272.0955505371094,
+          "y": 175.78822326660156,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "likes",
+          "playlist",
+          "mix",
+          "lists"
+        ]
+      },
+      "movedPointer": {
+        "x": 685.265625,
+        "y": 191.8515625
+      },
+      "moved": {
+        "proxy": {
+          "x": 553.3682861328125,
+          "y": 168.2920379638672,
+          "width": 397.703125,
+          "height": 476.21875
+        },
+        "grab": {
+          "x": 685.1026611328125,
+          "y": 185.7842254638672,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "playlist",
+          "likes",
+          "mix",
+          "lists"
+        ]
+      },
+      "returned": {
+        "proxy": {
+          "x": 140.36117553710938,
+          "y": 158.29603576660156,
+          "width": 397.7031555175781,
+          "height": 476.21875
+        },
+        "grab": {
+          "x": 272.0955505371094,
+          "y": 175.78822326660156,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "likes",
+          "playlist",
+          "mix",
+          "lists"
+        ]
+      },
+      "movementRatio": {
+        "x": 0.9997902669689462,
+        "y": 0.9996002197265625
+      },
+      "rapidRegrab": {
+        "source": {
+          "x": 553.484375,
+          "y": 164.359375,
+          "width": 397.796875,
+          "height": 476.421875
+        },
+        "held": {
+          "proxy": {
+            "x": 553.3682861328125,
+            "y": 158.29603576660156,
+            "width": 397.703125,
+            "height": 476.21875
+          },
+          "grab": {
+            "x": 685.1026611328125,
+            "y": 175.78822326660156,
+            "hit": false
+          },
+          "order": [
+            "wave",
+            "playlist",
+            "likes",
+            "mix",
+            "lists"
+          ]
+        }
+      },
+      "passed": true
+    },
+    {
+      "width": 1440,
+      "scale": 0.85,
+      "input": "touch",
+      "source": {
+        "x": 140.390625,
+        "y": 179.359375,
+        "width": 397.796875,
+        "height": 476.421875
+      },
+      "initialPointer": {
+        "x": 272.171875,
+        "y": 196.8515625,
+        "hit": true
+      },
+      "held": {
+        "proxy": {
+          "x": 140.36117553710938,
+          "y": 173.2900390625,
+          "width": 397.7031555175781,
+          "height": 476.21875
+        },
+        "grab": {
+          "x": 272.0955505371094,
+          "y": 190.7822265625,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "likes",
+          "playlist",
+          "mix",
+          "lists"
+        ]
+      },
+      "movedPointer": {
+        "x": 685.265625,
+        "y": 206.8515625
+      },
+      "moved": {
+        "proxy": {
+          "x": 553.3682861328125,
+          "y": 183.28604125976562,
+          "width": 397.703125,
+          "height": 476.2187194824219
+        },
+        "grab": {
+          "x": 685.1026611328125,
+          "y": 200.77822875976562,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "playlist",
+          "likes",
+          "mix",
+          "lists"
+        ]
+      },
+      "returned": {
+        "proxy": {
+          "x": 140.36117553710938,
+          "y": 173.2900390625,
+          "width": 397.7031555175781,
+          "height": 476.21875
+        },
+        "grab": {
+          "x": 272.0955505371094,
+          "y": 190.7822265625,
+          "hit": false
+        },
+        "order": [
+          "wave",
+          "likes",
+          "playlist",
+          "mix",
+          "lists"
+        ]
+      },
+      "movementRatio": {
+        "x": 0.9997902669689462,
+        "y": 0.9996002197265625
+      },
+      "rapidRegrab": {
+        "source": {
+          "x": 553.484375,
+          "y": 179.359375,
+          "width": 397.796875,
+          "height": 476.421875
+        },
+        "held": {
+          "proxy": {
+            "x": 553.3682861328125,
+            "y": 173.2900390625,
+            "width": 397.703125,
+            "height": 476.21875
+          },
+          "grab": {
+            "x": 685.1026611328125,
+            "y": 190.7822265625,
+            "hit": false
+          },
+          "order": [
+            "wave",
+            "playlist",
+            "likes",
+            "mix",
+            "lists"
+          ]
+        }
+      },
+      "passed": true
+    }
+  ],
+  "captures": [
+    "docs/verification/2026-10-19/home-canvas/web-revision3-anchor-320-125-mouse.png",
+    "docs/verification/2026-10-19/home-canvas/web-revision3-anchor-320-125-touch.png",
+    "docs/verification/2026-10-19/home-canvas/web-revision3-anchor-1440-125-mouse.png",
+    "docs/verification/2026-10-19/home-canvas/web-revision3-autoscroll-390-125-mouse.png",
+    "docs/verification/2026-10-19/home-canvas/web-revision3-autoscroll-390-125-touch.png",
+    "docs/verification/2026-10-19/home-canvas/web-revision3-default-1440.png",
+    "docs/verification/2026-10-19/home-canvas/web-revision3-default-390.png",
+    "docs/verification/2026-10-19/home-canvas/web-revision3-editing-1440.png",
+    "docs/verification/2026-10-19/home-canvas/web-revision3-custom-390.png"
+  ],
+  "passed": true,
+  "revision": 3,
+  "sourceHash": "581f28c1903cf9129d617b75e88bd27ff22ccb8ad24a68cd3051c5500c73309b",
+  "indexSha256": "1741c432823f6bcaf362f453ac7352b3c82447cdc16aa0d1b82d6d8b0c674906",
+  "distHash": "31e2e7b63e27df9d44aa269b161fe67742da70ed0ffb94cd21e67ff166fa5a53",
+  "singleSaveExactlyOnce": true,
+  "observedSaveRequests": 1
+}

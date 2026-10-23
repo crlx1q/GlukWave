@@ -19,7 +19,7 @@ type Store = {
   route:Route; navigate:(route:Route)=>void; query:string; setQuery:(query:string)=>void; source:string; setSource:(source:string)=>void;
   authOpen:boolean; setAuthOpen:(open:boolean)=>void; setUser:(user:User|null)=>void; refresh:()=>Promise<void>; refreshLibrary:()=>Promise<void>;
   notify:(text:string,error?:boolean)=>void; toast:Toast|null; requireAuth:()=>boolean; logout:()=>Promise<void>;
-  saveSettings:(partial:SettingsPatch)=>Promise<void>; beginSettingsEdit:()=>()=>void; bindSettingsSync:(socket:Socket)=>()=>void; settingsSync:'saved'|'saving'|'local'; resolvedTheme:'light'|'dark'|'amoled'; motion:boolean; like:(track:Track)=>Promise<void>; remember:(tracks:Track[])=>void;
+  commitSettings:(partial:SettingsPatch)=>Promise<void>; saveSettings:(partial:SettingsPatch)=>Promise<void>; beginSettingsEdit:()=>()=>void; bindSettingsSync:(socket:Socket)=>()=>void; settingsSync:'saved'|'saving'|'local'; resolvedTheme:'light'|'dark'|'amoled'; motion:boolean; like:(track:Track)=>Promise<void>; remember:(tracks:Track[])=>void;
   run:<T>(operation:()=>Promise<T>,success?:string)=>Promise<T|undefined>;
   renderAccent:string;setCoverAccent:(value:string|null)=>void;
   librarySaving:string[];createPlaylist:(input:{name:string;description?:string;public?:boolean;trackIds?:string[];knownTracks?:Track[]})=>Promise<Playlist>;
@@ -162,6 +162,19 @@ export function StoreProvider({children}:{children:ReactNode}) {useLocale();
     const generation=accountGeneration.current;settingsHolds.current++;clearTimeout(settingsTimer.current);let released=false;
     return()=>{if(released||generation!==accountGeneration.current)return;released=true;settingsHolds.current=Math.max(0,settingsHolds.current-1);const id=userRef.current?.id||null;if(!settingsHolds.current){publishSettings(id);if(id&&Object.keys(pendingSettings.current).length)scheduleSettings(id,0);}};
   },[scheduleSettings,publishSettings]);
+  // The canvas commits once, after a complete draft. Await server acknowledgement
+  // so failures leave that draft editable instead of pretending it was saved.
+  const commitSettings=useCallback(async(partial:SettingsPatch)=>{
+    const change=normalizeSettingsPatch(partial),id=userRef.current?.id||null,generation=accountGeneration.current;
+    if(!id){settingsServer.current=mergeSettings(settingsServer.current,change);publishSettings(null);return;}
+    if(!navigator.onLine)throw new ApiError('NETWORK',t('copy.729'));
+    const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),15000);
+    try{
+      const result=await api<SettingsSnapshot>('/settings',{method:'PATCH',headers:{'X-GlukWave-Account':id},body:JSON.stringify(change),signal:controller.signal});
+      if(id!==userRef.current?.id||generation!==accountGeneration.current)throw new DOMException('Account changed','AbortError');
+      acceptSettings(id,generation,result);
+    }finally{clearTimeout(timer);}
+  },[acceptSettings,publishSettings]);
   const saveSettings=useCallback(async(partial:SettingsPatch)=>{
     const change=normalizeSettingsPatch(partial);if(!Object.keys(change).length)return;if(userRef.current?.plan==='free'&&advancedSettingsChange(change,settingsRef.current)){notify(t('parity.planLimit'),true);return;}const id=userRef.current?.id||null;
     if(!id){settingsServer.current=mergeSettings(settingsServer.current,change);publishSettings(null);return;}
@@ -191,7 +204,7 @@ export function StoreProvider({children}:{children:ReactNode}) {useLocale();
   const deletePlaylist=useCallback(async(id:string)=>{if(!requireAuth())throw new ApiError('AUTH_REQUIRED',t('copy.515'));if(id.startsWith('pending:'))return;const remove=(current:Library)=>({...current,playlists:current.playlists.filter(playlist=>playlist.id!==id)});await edits.current!.mutate('playlist:'+id,remove,()=>api(`/playlists/${encodeURIComponent(id)}`,{method:'DELETE'}),remove);persistLibrary();},[requireAuth,persistLibrary]);
   const remember=useCallback((tracks:Track[])=>{const known=new Map(tracks.map(track=>[track.id,track]));edits.current!.accept(current=>({...current,tracks:current.tracks.map(track=>known.get(track.id)||track)}));},[]);
   const logout=useCallback(async()=>{if(user){await post('/auth/logout');await clearPrivate(user.id);}setUser(null);setLibrary(emptyLibrary);navigate('home');notify(t('copy.730'));},[user,setUser,navigate,notify]);
-  return <Context.Provider value={{user,config,library,librarySaving,createPlaylist,updatePlaylist,setPlaylistTrack,deletePlaylist,acceptPlaylist,settings,renderAccent,setCoverAccent,settingsSync,resolvedTheme,motion,loading,libraryLoading:!!user&&(libraryPending||libraryOwner!==user.id),offline,route,navigate,query,setQuery,source,setSource,authOpen,setAuthOpen,setUser,refresh,refreshLibrary,notify,toast,requireAuth,logout,saveSettings,beginSettingsEdit,bindSettingsSync,like,remember,run}}>{children}</Context.Provider>;
+  return <Context.Provider value={{user,config,library,librarySaving,createPlaylist,updatePlaylist,setPlaylistTrack,deletePlaylist,acceptPlaylist,settings,renderAccent,setCoverAccent,settingsSync,resolvedTheme,motion,loading,libraryLoading:!!user&&(libraryPending||libraryOwner!==user.id),offline,route,navigate,query,setQuery,source,setSource,authOpen,setAuthOpen,setUser,refresh,refreshLibrary,notify,toast,requireAuth,logout,commitSettings,saveSettings,beginSettingsEdit,bindSettingsSync,like,remember,run}}>{children}</Context.Provider>;
 }
 export function useStore(){const context=useContext(Context);if(!context)throw new Error('Missing store');return context;}
 

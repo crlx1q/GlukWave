@@ -1,0 +1,29 @@
+{
+  "purpose": "Native home widget canvas source iteration; no release artifacts rebuilt",
+  "files": [
+    {
+      "path": "apps/native/lib/core/home_layout.dart",
+      "sha256": "3e282cee140c09accad67cec1d435a269385dacd47d87fafc6bc07b404b0abc4"
+    },
+    {
+      "path": "apps/native/lib/l10n/home_canvas_strings.dart",
+      "sha256": "c23198d53385bcc3348f80223dfd2b7bee3529ee04129f134009bbf2858a6119"
+    },
+    {
+      "path": "apps/native/lib/ui/home_canvas.dart",
+      "sha256": "1d890a679228aeb579d4c3475945e30a98ba81e2f77d07882c355050848405b8"
+    },
+    {
+      "path": "apps/native/lib/ui/app.dart",
+      "sha256": "8b9d19da174de911016251254a30d20bc6228fb8e1c12b14d4ab6bda854e75ba"
+    },
+    {
+      "path": "apps/native/lib/ui/refinement20_home.dart",
+      "sha256": "77e07a77dccfcb0107614783c7f8cc1d34ca05752d81b1d66303adc20aad4f45"
+    },
+    {
+      "path": "apps/native/test/home_canvas_test.dart",
+      "sha256": "725cd6030c95f183e37c47babd5386892301bd7d308e0cc11b62129593a7e4e4"
+    }
+  ]
+}

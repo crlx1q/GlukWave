@@ -1,0 +1,22 @@
+{
+  "captureType": "Actual Flutter widget tree on desktop test harness. No physical Android/Windows/Tizen test.",
+  "mainCaptures": {
+    "widths": [
+      390,
+      768,
+      1440
+    ],
+    "textScale": 1.0,
+    "platform": "Desktop Windows harness; 390 is narrow desktop, not Android"
+  },
+  "editorGalleryCaptures": {
+    "width": 320,
+    "textScale": 1.25,
+    "themes": [
+      "dark",
+      "light"
+    ],
+    "platform": "Isolated Flutter widget harness"
+  },
+  "transport": "Original project photography via isolated artwork transport; isolated test account API; no owner credentials/production writes"
+}

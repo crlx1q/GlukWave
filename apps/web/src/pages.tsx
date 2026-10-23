@@ -1,4 +1,4 @@
-import {HomeShelf} from './home-shelf';
+import {HomeCanvas} from './home-canvas';
 import { DiscordConnection } from './discord';
 import {ProviderImport} from './provider-import';
 import {publicImportText} from './public-import-copy';
@@ -20,21 +20,10 @@ import { Art, Empty, Heading, IconButton, Loading, Modal, SourceMark, TrackList,
 import { bytes, time, sourceNames, type Connection, type Playlist, type Source, type Track } from './types';
 const getDiscoveries=()=>[{name:t('copy.458'),word:['slow','down.'],query:'lofi hip hop',image:1,detail:t('copy.459')},{name:t('copy.460'),word:['after','hours.'],query:'late night jazz',image:2,detail:t('copy.461')},{name:t('copy.462'),word:['inner','space.'],query:'ambient instrumental',image:3,detail:t('copy.463')},{name:t('copy.464'),word:['a little','lighter.'],query:'indie pop',image:4,detail:t('copy.465')},{name:t('copy.466'),word:['free','form.'],query:'chill electronic',image:5,detail:t('copy.467')}];
 export function HomePage({upload}:{upload:()=>void}){useLocale();
- const store=useStore(),player=usePlayer(),hour=new Date().getHours(),greeting=hour<6?t('copy.468'):hour<12?t('copy.469'):hour<18?t('copy.470'):t('copy.471');
- const liked=likedTracks(store.library);
- const recent=[...new Set(store.library.history.map(item=>item.trackId))].map(id=>store.library.tracks.find(track=>track.id===id)).filter(Boolean) as Track[];
- const discover=(query:string)=>{store.setQuery(query);store.setSource('all');store.navigate('search');};
- return <section className="view home-view">
-  <div className="greeting"><div><h1>{greeting}{store.user?`, ${store.user.displayName}`:''}</h1><p className="intro">{t('copy.473')}</p></div><button className="subtle-button greeting-import" onClick={()=>store.navigate('sources')}><span className="overlap-services"><b className="soundcloud"><Cloud size={12}/></b><b className="spotify"><Music2 size={12}/></b><b className="youtube"><PlayTriangle/></b></span>{t('copy.474')}<ArrowUpRight size={15}/></button></div>
-  <HomeShelf/><TasteEntry/><PersonalWave key={store.user?.id||'guest'} upload={upload}/>
-  <section className="home-recent"><div className="section-heading"><div><h2>{recent.length?t('v7.home.quick'):t('v7.home.begin')}</h2><p className="section-caption">{recent.length?t('v7.home.quickCaption'):t('v7.home.beginCaption')}</p></div>{recent.length>0&&<button className="text-button" onClick={()=>{store.navigate('library');location.hash='library?tab=history';}}>{t('copy.487')}<ArrowRight size={15}/></button>}</div>
-   {store.libraryLoading&&!recent.length?<TrackSkeleton rows={3}/>:recent.length?<div className="recent-strip">{recent.slice(0,8).map(track=><article key={track.id} className={player.track?.id===track.id?'current':''}><Art track={track} onClick={()=>void player.playTrack(track,recent)}/><button className="recent-title" onClick={()=>void player.playTrack(track,recent)}><b>{track.title}</b><small>{track.artist}</small></button></article>)}</div>:<div className="home-start-actions"><button onClick={()=>store.navigate('search')}><Search size={22}/><span><b>{t('copy.171')}</b><small>{t('v7.home.find')}</small></span><ArrowUpRight size={17}/></button><button onClick={()=>store.navigate('sources')}><Cloud size={22}/><span><b>{t('copy.474')}</b><small>{t('v7.home.import')}</small></span><ArrowUpRight size={17}/></button><button onClick={upload}><FileAudio size={22}/><span><b>{t('copy.478')}</b><small>{t('v7.home.files')}</small></span><Plus size={17}/></button></div>}
-  </section>
-  <HomeDiscovery/>
-  <div className="home-utility"><button onClick={()=>{store.navigate('library');location.hash='library?tab=liked';}}><Heart size={19}/><span>{t('copy.475')}<small>{liked.length?trackCount(liked.length):t('copy.477')}</small></span><ArrowRight size={16}/></button><button onClick={()=>store.navigate('rooms')}><Waves size={21}/><span>{t('copy.173')}<small>{t('v7.home.together')}</small></span><ArrowRight size={16}/></button></div>
-  <LoFiEntry/><div className="page-foot"><span>{t('copy.495')}</span><span>GLUKWAVE · {new Date().getFullYear()}</span></div>
- </section>;
+ const store=useStore(),hour=new Date().getHours(),greeting=hour<6?t('copy.468'):hour<12?t('copy.469'):hour<18?t('copy.470'):t('copy.471');
+ return <section className="view home-view"><div className="greeting"><div><h1>{greeting}{store.user?`, ${store.user.displayName}`:''}</h1><p className="intro">{t('copy.473')}</p></div><button className="subtle-button greeting-import" onClick={()=>store.navigate('sources')}><span className="overlap-services"><b className="soundcloud"><Cloud size={12}/></b><b className="spotify"><Music2 size={12}/></b><b className="youtube"><PlayTriangle/></b></span>{t('copy.474')}<ArrowUpRight size={15}/></button></div><HomeCanvas key={store.user?.id||'guest'} upload={upload}/><TasteEntry/><div className="home-utility"><button onClick={()=>store.navigate('rooms')}><Waves size={21}/><span>{t('copy.173')}<small>{t('v7.home.together')}</small></span><ArrowRight size={16}/></button></div><LoFiEntry/><div className="page-foot"><span>{t('copy.495')}</span><span>GLUKWAVE {String.fromCharCode(183)} {new Date().getFullYear()}</span></div></section>;
 }
+
 function PlayTriangle(){useLocale();return <span className="small-play-triangle"/>;}
 export {DiscoverySearchPage as SearchPage} from './discovery-search';
 export {PlaylistLibrary as LibraryPage} from './playlist-library';

@@ -1,0 +1,173 @@
+{
+  "attempt": 2,
+  "scope": "actual production dist5351,320px,125% font, genuine CDP touch, source and destination hit-tested; independent session",
+  "states": {
+    "before": {
+      "events": [],
+      "order": [
+        "wave",
+        "likes",
+        "playlist",
+        "mix",
+        "playlists"
+      ],
+      "rects": [
+        {
+          "target": "canvas-grab",
+          "x": 43.5,
+          "y": 303.625
+        },
+        {
+          "target": "canvas-grab",
+          "x": 176,
+          "y": 303.625
+        }
+      ],
+      "scroll": 520
+    },
+    "held": {
+      "events": [
+        {
+          "pointerType": "touch",
+          "scroll": 520,
+          "target": "canvas-grab",
+          "type": "pointerdown",
+          "x": 43.5,
+          "y": 303.625
+        }
+      ],
+      "order": [
+        "wave",
+        "likes",
+        "playlist",
+        "mix",
+        "playlists"
+      ],
+      "rects": [
+        {
+          "target": "canvas-grab",
+          "x": 43.5,
+          "y": 303.625
+        },
+        {
+          "target": "canvas-grab",
+          "x": 176,
+          "y": 303.625
+        },
+        {
+          "target": "home-widget size-small view-cards widget-likes is-lifted ",
+          "x": 60.13681411743164,
+          "y": 364.9002075195313
+        }
+      ],
+      "scroll": 520
+    },
+    "moved": {
+      "events": [
+        {
+          "pointerType": "touch",
+          "scroll": 520,
+          "target": "canvas-grab",
+          "type": "pointerdown",
+          "x": 43.5,
+          "y": 303.625
+        },
+        {
+          "pointerType": "touch",
+          "scroll": 520,
+          "target": "canvas-grab",
+          "type": "pointermove",
+          "x": 176,
+          "y": 313.625
+        }
+      ],
+      "order": [
+        "wave",
+        "playlist",
+        "likes",
+        "mix",
+        "playlists"
+      ],
+      "rects": [
+        {
+          "target": "canvas-grab",
+          "x": 43.5,
+          "y": 303.625
+        },
+        {
+          "target": "canvas-grab",
+          "x": 176,
+          "y": 303.625
+        },
+        {
+          "target": "home-widget size-small view-cards widget-likes is-lifted ",
+          "x": 225.7618103027344,
+          "y": 377.4002075195313
+        }
+      ],
+      "scroll": 520
+    },
+    "cancel": {
+      "events": [
+        {
+          "pointerType": "touch",
+          "scroll": 520,
+          "target": "canvas-grab",
+          "type": "pointerdown",
+          "x": 43.5,
+          "y": 303.625
+        },
+        {
+          "pointerType": "touch",
+          "scroll": 520,
+          "target": "canvas-grab",
+          "type": "pointermove",
+          "x": 176,
+          "y": 313.625
+        },
+        {
+          "pointerType": "touch",
+          "scroll": 520,
+          "target": "canvas-grab",
+          "type": "pointercancel",
+          "x": 176,
+          "y": 313.625
+        }
+      ],
+      "order": [
+        "wave",
+        "likes",
+        "playlist",
+        "mix",
+        "playlists"
+      ],
+      "rects": [
+        {
+          "target": "canvas-grab",
+          "x": 44.4025993347168,
+          "y": 303.625
+        },
+        {
+          "target": "canvas-grab",
+          "x": 175.09739685058594,
+          "y": 303.625
+        }
+      ],
+      "scroll": 520
+    }
+  },
+  "proxyMovementScaleX": 1.2499999712098322,
+  "proxyMovementScaleY": 1.25,
+  "expectedMovementScale": 1,
+  "anchorOffsetHeld": {
+    "x": 16.63681411743164,
+    "y": 61.27520751953131
+  },
+  "anchorOffsetMoved": {
+    "x": 49.7618103027344,
+    "y": 63.77520751953131
+  },
+  "horizontalOrderAndCancelPassed": true,
+  "coordinateMappingPassed": false,
+  "capture": "eval2-touch-diagnostic.png"
+}

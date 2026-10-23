@@ -1,0 +1,10 @@
+Wave 320px 100%:9size/view cases PASS
+Wave 320px 125%:9size/view cases PASS
+Wave 390px 100%:9size/view cases PASS
+Wave 390px 125%:9size/view cases PASS
+Wave 768px 100%:9size/view cases PASS
+Wave 768px 125%:9size/view cases PASS
+Wave 1440px 100%:9size/view cases PASS
+Wave 1440px 125%:9size/view cases PASS
+72 Wave size/view/width/font combinations remain within viewport;24compact cases geometrically separate intrinsic copy/action from the particle region
+24small-phone destination normal/edit combinations at320/390 and100/125% retain both complete two-line names, one-line counts and full accessible labels
