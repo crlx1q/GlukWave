@@ -8,7 +8,18 @@ const mb=bytes=>Number((bytes/1048576).toFixed(2));
 const finiteLimit=value=>{const n=Number(value);return Number.isFinite(n)&&n>0&&n<2**60?n:null;};
 export async function readResourceLimits(read=path=>readFile(path,'utf8')){
   const text=async path=>{try{return (await read(path)).trim();}catch{return '';}};
-  const [cpu,memory,current,pids,stat]=await Promise.all(['cpu.max','memory.max','memory.current','pids.max','cpu.stat'].map(name=>text('/sys/fs/cgroup/'+name)));
+  let basePath='/sys/fs/cgroup';
+  const selfCgroup=await text('/proc/self/cgroup');
+  const cgroupMatch=selfCgroup.match(/^0::(.*)$/m);
+  if(cgroupMatch&&cgroupMatch[1]){
+    const sub=cgroupMatch[1].replace(/^\/+|\/+$/g,'');
+    if(sub){
+      const candidate=`/sys/fs/cgroup/${sub}`;
+      const probe=await text(candidate+'/cgroup.controllers');
+      if(probe||await text(candidate+'/cpu.max')||await text(candidate+'/memory.max'))basePath=candidate;
+    }
+  }
+  const [cpu,memory,current,pids,stat]=await Promise.all(['cpu.max','memory.max','memory.current','pids.max','cpu.stat'].map(name=>text(`${basePath}/${name}`)));
   let [quota,period]=cpu.split(/\s+/).map(Number),bytes=finiteLimit(memory),used=finiteLimit(current),maxPids=finiteLimit(pids),usage=Number(stat.match(/^usage_usec\s+(\d+)/m)?.[1]);
   if(!cpu){const old=await Promise.all(['/sys/fs/cgroup/cpu/cpu.cfs_quota_us','/sys/fs/cgroup/cpu/cpu.cfs_period_us','/sys/fs/cgroup/memory/memory.limit_in_bytes','/sys/fs/cgroup/memory/memory.usage_in_bytes','/sys/fs/cgroup/pids/pids.max','/sys/fs/cgroup/cpuacct/cpuacct.usage'].map(text));quota=Number(old[0]);period=Number(old[1]);bytes=finiteLimit(old[2]);used=finiteLimit(old[3]);maxPids=finiteLimit(old[4]);usage=old[5]?Number(old[5])/1000:NaN;}
   const cpuCores=quota>0&&period>0?Number((quota/period).toFixed(3)):null;

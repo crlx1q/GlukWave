@@ -13,3 +13,21 @@ test('older cgroup mounts preserve fractional CPU quotas without reporting unlim
   const limits=await readResourceLimits(fixture({'/sys/fs/cgroup/cpu/cpu.cfs_quota_us':'50000','/sys/fs/cgroup/cpu/cpu.cfs_period_us':'100000','/sys/fs/cgroup/memory/memory.limit_in_bytes':'9223372036854771712','/sys/fs/cgroup/memory/memory.usage_in_bytes':'268435456'}));
   assert.equal(limits.cpuCores,0.5);assert.equal(limits.memoryMB,null);assert.equal(limits.containerMemoryMB,256);
 });
+test('systemd service slice cgroup paths are resolved from /proc/self/cgroup',async()=>{
+  const limits=await readResourceLimits(fixture({
+    '/proc/self/cgroup':'0::/system.slice/glukwave.service\n',
+    '/sys/fs/cgroup/cpu.max':'max 100000',
+    '/sys/fs/cgroup/memory.max':'max',
+    '/sys/fs/cgroup/system.slice/glukwave.service/cpu.max':'100000 100000',
+    '/sys/fs/cgroup/system.slice/glukwave.service/memory.max':'1610612736',
+    '/sys/fs/cgroup/system.slice/glukwave.service/memory.current':'268435456',
+    '/sys/fs/cgroup/system.slice/glukwave.service/pids.max':'1000',
+    '/sys/fs/cgroup/system.slice/glukwave.service/cpu.stat':'usage_usec 5000000\n'
+  }));
+  assert.equal(limits.scope,'container');
+  assert.equal(limits.cpuCores,1);
+  assert.equal(limits.memoryMB,1536);
+  assert.equal(limits.containerMemoryMB,256);
+  assert.equal(limits.pidsMax,1000);
+  assert.equal(limits.containerCpuUsageMicros,5000000);
+});

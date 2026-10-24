@@ -27,3 +27,6 @@ outputs/archive/**/windows-unpacked/
 __pycache__/
 *.pyc
 output/
+
+server-backups/
+*.tar.gz
