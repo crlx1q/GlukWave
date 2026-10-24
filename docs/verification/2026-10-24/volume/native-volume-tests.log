@@ -1,0 +1,24 @@
+00:00 +0: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/volume27_test.dart
+Package screen_retriever:windows references screen_retriever_windows:windows as the default plugin, but the package does not exist, or is not a plugin package.
+Ask the maintainers of screen_retriever to either avoid referencing a default implementation via `platforms: windows: default_package: screen_retriever_windows` or create a plugin named screen_retriever_windows.
+
+Package url_launcher:windows references url_launcher_windows:windows as the default plugin, but the package does not exist, or is not a plugin package.
+Ask the maintainers of url_launcher to either avoid referencing a default implementation via `platforms: windows: default_package: url_launcher_windows` or create a plugin named url_launcher_windows.
+
+Package shared_preferences:windows references shared_preferences_windows:windows as the default plugin, but the package does not exist, or is not a plugin package.
+Ask the maintainers of shared_preferences to either avoid referencing a default implementation via `platforms: windows: default_package: shared_preferences_windows` or create a plugin named shared_preferences_windows.
+
+Package path_provider:windows references path_provider_windows:windows as the default plugin, but the package does not exist, or is not a plugin package.
+Ask the maintainers of path_provider to either avoid referencing a default implementation via `platforms: windows: default_package: path_provider_windows` or create a plugin named path_provider_windows.
+
+Package flutter_secure_storage:windows references flutter_secure_storage_windows:windows as the default plugin, but the package does not exist, or is not a plugin package.
+Ask the maintainers of flutter_secure_storage to either avoid referencing a default implementation via `platforms: windows: default_package: flutter_secure_storage_windows` or create a plugin named flutter_secure_storage_windows.
+
+00:00 +0: (setUpAll)
+00:00 +0: automatic Kazakh resolves Russian; explicitly selected Kazakh is retained
+00:00 +1: volume wheel moves five percent while keyboard retains two percent, drafts commit once after quiet time
+00:01 +2: volume wheel uses directional five-percent grid and clamps edges
+00:01 +3: volume hint waits one second, follows drafts and leaves no late popup
+00:01 +4: volume hint anchors actual track at endpoints in both themes at125%
+00:01 +5: (tearDownAll)
+00:01 +5: All tests passed!

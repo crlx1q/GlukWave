@@ -1,0 +1,111 @@
+{
+  "createdAt": "2026-10-24T13:50:07.904Z",
+  "passed": true,
+  "scope": "Focused wheel/hover volume refinement in React player and Flutter desktop controls",
+  "tests": {
+    "web": 110,
+    "native": 5,
+    "webProductionBuild": true,
+    "es5Chunks": 5,
+    "nativeChangedFilesAnalyzer": "No issues found",
+    "nativeAnalyzerFiles": 3,
+    "browserChecks": 9,
+    "nativeActualTrackGeometryCases": 6
+  },
+  "sourceHashes": [
+    {
+      "path": "apps/web/src/volume.ts",
+      "sha256": "4704d3c35bbc6617e4925aeb66308d0fe53a637b3f3849c8ab02a66637fcf3df"
+    },
+    {
+      "path": "apps/web/src/volume-hint.tsx",
+      "sha256": "c826472bfbf1df77449b3ff3edb5900652c126e392e8330e836c9e4f0c895fb5"
+    },
+    {
+      "path": "apps/web/src/continuous-range.tsx",
+      "sha256": "1924a5e7415e160100bb7cbcdb0076df1a7cab3c7796cc85180b0a8601d26d29"
+    },
+    {
+      "path": "apps/web/src/player-ui.tsx",
+      "sha256": "1a044294b9b406f25a06ba52e37029f39b96b95d3c88c3c83c6650ef8a5f174c"
+    },
+    {
+      "path": "apps/web/src/motion-controls.css",
+      "sha256": "b82bbcb1803ae957782766c229c85bbefc70aa1c83ba35c107c74c560b34fbd5"
+    },
+    {
+      "path": "apps/web/qa/volume-step.test.mjs",
+      "sha256": "fb8ed7af15269a8ca11b2b3785c4425ea4dfc80c826e688e84fcbfab69289820"
+    },
+    {
+      "path": "apps/native/lib/ui/volume_slider.dart",
+      "sha256": "762176cd62d8c7ddbf5624d6b9362bd0f8d49dd390969935a2e0a434491d3a8c"
+    },
+    {
+      "path": "apps/native/lib/ui/player.dart",
+      "sha256": "3bfe39acf4f50987ad75d8bc5d1476314f90c2e44def34fae4d0f01a8047c520"
+    },
+    {
+      "path": "apps/native/lib/ui/native19_desktop_transport.dart",
+      "sha256": "31bffb10dc5ca2ad77b6e791ebd0cb52c45d6e8218ee9fdc7931dbcc9d3ed0c7"
+    },
+    {
+      "path": "apps/native/test/volume27_test.dart",
+      "sha256": "2ae4b613408e2c7a6ea71d4878f0fc46812f34ed272c9b82b8e196aef9163e2f"
+    },
+    {
+      "path": "apps/native/test/connect_layout_test.dart",
+      "sha256": "bf2b7dacc1962d150949b7a7d49949a7ceffb6803a3bfff7c4a44c93ed3e8ccf"
+    }
+  ],
+  "indexSha256": "f9492a95bf12064c21e71f288d140b761991ee6771904f42bd272dc4921b7c8c",
+  "captures": [
+    {
+      "path": "docs/verification/2026-10-24/volume/web-volume-0.png",
+      "sha256": "45a7cec2f45d7fd36da19cb3fb1df3b275756a01ddbc7d02828139691ceb08a0"
+    },
+    {
+      "path": "docs/verification/2026-10-24/volume/web-volume-50.png",
+      "sha256": "040b8df95ccf2c47d4530aec85200f022b1d050c0732a57ae17d0cce8dcc260d"
+    },
+    {
+      "path": "docs/verification/2026-10-24/volume/web-volume-100.png",
+      "sha256": "f63f3d05f4ab961e74c4ab27f0348754fb7dcee3c365f850c4322ac3555618b5"
+    },
+    {
+      "path": "docs/verification/2026-10-24/volume/web-volume-light125.png",
+      "sha256": "17ac0e70751266bc0d2ea4ed02ad397ffac4edaaa10398a24ee5620d880a085d"
+    },
+    {
+      "path": "docs/verification/2026-10-24/volume/web-volume-narrow390.png",
+      "sha256": "f4ab67b9817fa4ea20f31932ecf622e6e9cbad58bb8e83a6f27ca74c2c080b1d"
+    },
+    {
+      "path": "docs/verification/2026-10-24/volume/native-volume-dark125.png",
+      "sha256": "e44d098687e1b42162e374bfa4cd7e6c6b4baf859513549cd9b1433402bdc30a"
+    },
+    {
+      "path": "docs/verification/2026-10-24/volume/native-volume-light125.png",
+      "sha256": "a7ea928fbe16f51fd80c861e7aad99e6a4bc3c59051440e63e2b5c5ef3685b47"
+    },
+    {
+      "path": "docs/verification/2026-10-24/volume/web-volume-held-drag.png",
+      "sha256": "664a8ec89b19d72fe8555e5faa19990ff96359575fdb8b229e7b0afd748adfe9"
+    }
+  ],
+  "limitations": [
+    "Browser tests used synthetic local APIs, no owner production data",
+    "Native snapshots and gesture tests are an isolated real VolumeSlider widget, not physical hardware or full app startup",
+    "Attempted broader native connect test could not compile because unrelated global Pub dependency cache lib files are missing; targeted volume tests and changed-file analysis passed",
+    "No server deployment, native installer or APK rebuild, version changes or commits"
+  ],
+  "qaURL": "http://127.0.0.1:5354/app/#home",
+  "revision": 2,
+  "heldDrag": {
+    "proof": "web-held-drag-proof.json",
+    "samples": 3,
+    "passed": true,
+    "maximumAnchorError": 0.00874999999996362
+  },
+  "acceptedPriorChecks": "Original9browser checks/110web units/5native tests/6native geometry cases retained: only tooltip transition:none added after evaluation; current build and trusted held-drag smoke rerun"
+}

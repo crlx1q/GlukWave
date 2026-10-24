@@ -1,0 +1,15 @@
+{
+  "checkedAt": "2026-10-24T13:54:29.7659828Z",
+  "passed": true,
+  "sourceAndCaptureHashesMatched": 19,
+  "indexSha256": "f9492a95bf12064c21e71f288d140b761991ee6771904f42bd272dc4921b7c8c",
+  "webTests": 110,
+  "nativeIsolatedTests": 5,
+  "nativeAnalyzer": "No issues found",
+  "independentAttempt": 2,
+  "independentPassed": true,
+  "maxAnchorError": 0.00874999999996362,
+  "hostingUpdated": false,
+  "nativeBinariesRebuilt": false,
+  "physicalHardwareChecked": false
+}

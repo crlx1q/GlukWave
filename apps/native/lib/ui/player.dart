@@ -447,6 +447,7 @@ class MiniPlayer extends StatelessWidget {
                                       ),
                                       Expanded(
                                         child: VolumeSlider(
+                                          hoverHint: true,
                                           scope: c.controlScope,
                                           onPreview: c.previewVolume,
                                           onCancel: c.cancelVolumeEdit,

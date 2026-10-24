@@ -1,0 +1,31 @@
+before {"value":0.5,"x":1342,"y":830,"left":1306,"width":72,"top":814,"thumbX":1342,"pointer":null,"display":"block","visible":true,"zoom":"1"} <input step="any" aria-label="Громкость" min="0" max="1" class="wave-range " type="range" value="0.5" style="--range-progress: 50%; --progress: 50%;">
+0 {"value":0.76,"x":1342,"y":830,"left":1306,"width":72,"top":814,"thumbX":1357.08,"bubble":"76%","bubbleX":1343.328125,"bubbleBottom":806,"bubbleLeft":1323.5546875,"bubbleRight":1363.1015625,"pointer":"none","display":"block","visible":true,"zoom":"1"} {
+  inline: '1357.08px',
+  computed: '1343.34px',
+  transition: '0.22s',
+  transform: 'matrix(1, 0, 0, 1, -19.7734, -25.1875)'
+}
+16 {"value":0.76,"x":1342,"y":830,"left":1306,"width":72,"top":814,"thumbX":1357.08,"bubble":"76%","bubbleX":1347.25,"bubbleBottom":806,"bubbleLeft":1327.4765625,"bubbleRight":1367.0234375,"pointer":"none","display":"block","visible":true,"zoom":"1"} {
+  inline: '1357.08px',
+  computed: '1347.25px',
+  transition: '0.22s',
+  transform: 'matrix(1, 0, 0, 1, -19.7734, -25.1875)'
+}
+80 {"value":0.76,"x":1342,"y":830,"left":1306,"width":72,"top":814,"thumbX":1357.08,"bubble":"76%","bubbleX":1355.703125,"bubbleBottom":806,"bubbleLeft":1335.9296875,"bubbleRight":1375.4765625,"pointer":"none","display":"block","visible":true,"zoom":"1"} {
+  inline: '1357.08px',
+  computed: '1355.98px',
+  transition: '0.22s',
+  transform: 'matrix(1, 0, 0, 1, -19.7734, -25.1875)'
+}
+200 {"value":0.76,"x":1342,"y":830,"left":1306,"width":72,"top":814,"thumbX":1357.08,"bubble":"76%","bubbleX":1357.078125,"bubbleBottom":806,"bubbleLeft":1337.3046875,"bubbleRight":1376.8515625,"pointer":"none","display":"block","visible":true,"zoom":"1"} {
+  inline: '1357.08px',
+  computed: '1357.08px',
+  transition: '0.22s',
+  transform: 'matrix(1, 0, 0, 1, -19.7734, -25.1875)'
+}
+400 {"value":0.76,"x":1342,"y":830,"left":1306,"width":72,"top":814,"thumbX":1357.08,"bubble":"76%","bubbleX":1357.078125,"bubbleBottom":806,"bubbleLeft":1337.3046875,"bubbleRight":1376.8515625,"pointer":"none","display":"block","visible":true,"zoom":"1"} {
+  inline: '1357.08px',
+  computed: '1357.08px',
+  transition: '0.22s',
+  transform: 'matrix(1, 0, 0, 1, -19.7734, -25.1875)'
+}

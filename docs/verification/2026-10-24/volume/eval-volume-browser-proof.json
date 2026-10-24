@@ -1,0 +1,74 @@
+{
+  "attempt": 1,
+  "createdAt": "2026-10-24T13:41:55.615Z",
+  "surface": "Independent agent-browser session, real production dist5354, synthetic account, trusted CDP mouse and key",
+  "checks": [
+    "Delayed hover absent at700ms and present after1080ms; small non-interactive50% above actual thumb",
+    "Moving mouse within track does not detach label from actual thumb",
+    "Three trusted wheel ticks55/60/65 produce exactly one quiet commit",
+    "Fine keyboard input remains2% after odd5% wheel value",
+    "Off-grid37 goes directionally to40 then35",
+    "0/50/100 anchor at actual thumb; boundary wheel does not create commands"
+  ],
+  "geometry": [
+    {
+      "value": 0,
+      "x": 1342,
+      "y": 830,
+      "left": 1306,
+      "width": 72,
+      "top": 814,
+      "thumbX": 1313,
+      "bubble": "0%",
+      "bubbleX": 1313,
+      "bubbleBottom": 806,
+      "bubbleLeft": 1296.6328125,
+      "bubbleRight": 1329.3671875,
+      "pointer": "none",
+      "display": "block",
+      "visible": true,
+      "zoom": "1"
+    },
+    {
+      "value": 0.5,
+      "x": 1342,
+      "y": 830,
+      "left": 1306,
+      "width": 72,
+      "top": 814,
+      "thumbX": 1342,
+      "bubble": "50%",
+      "bubbleX": 1342,
+      "bubbleBottom": 806,
+      "bubbleLeft": 1322.2265625,
+      "bubbleRight": 1361.7734375,
+      "pointer": "none",
+      "display": "block",
+      "visible": true,
+      "zoom": "1"
+    },
+    {
+      "value": 1,
+      "x": 1342,
+      "y": 830,
+      "left": 1306,
+      "width": 72,
+      "top": 814,
+      "thumbX": 1371,
+      "bubble": "100%",
+      "bubbleX": 1371,
+      "bubbleBottom": 806,
+      "bubbleLeft": 1347.8125,
+      "bubbleRight": 1394.1875,
+      "pointer": "none",
+      "display": "block",
+      "visible": true,
+      "zoom": "1"
+    }
+  ],
+  "captures": [
+    "docs/verification/2026-10-24/volume/eval-volume-desktop50.png"
+  ],
+  "passed": false,
+  "error": "AssertionError [ERR_ASSERTION]: 1353.765625 != 1357.08\n    at near (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/work/qa/volume-evaluator-browser.mjs:19:19)\n    at file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/work/qa/volume-evaluator-browser.mjs:30:505"
+}

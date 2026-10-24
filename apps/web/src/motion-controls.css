@@ -1,4 +1,8 @@
 /* Shared native slider behavior, GlukWave visual language. */
+.volume-thumb-hint,html[data-motion] .volume-thumb-hint{position:fixed;z-index:1000;transform:translate(-50%,-100%);pointer-events:none;padding:5px 7px;border:1px solid var(--line,#ffffff26);border-radius:7px;background:var(--surface,#202225);color:var(--ink,#eeeae3);font-size:11px;font-weight:700;line-height:1.2;font-variant-numeric:tabular-nums;white-space:nowrap;box-shadow:0 3px 12px #0002;transition:none;animation:volume-hint-in 140ms ease-out}
+@keyframes volume-hint-in{from{opacity:0}to{opacity:1}}
+html[data-motion=reduce] .volume-thumb-hint{animation:none}
+@media(prefers-reduced-motion:reduce){.volume-thumb-hint{animation:none}}
 *{scrollbar-width:thin;scrollbar-color:color-mix(in srgb,var(--ink,#efede3) 30%,var(--bg,#302f2c)) transparent}
 *::-webkit-scrollbar{width:6px;height:6px}*::-webkit-scrollbar-track{background:transparent}*::-webkit-scrollbar-thumb{border-radius:6px;background:color-mix(in srgb,var(--ink,#efede3) 30%,var(--bg,#302f2c))}*::-webkit-scrollbar-thumb:hover{background:color-mix(in srgb,var(--ink,#efede3) 48%,var(--bg,#302f2c))}
 input[type=range].wave-range{

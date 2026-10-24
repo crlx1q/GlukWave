@@ -370,6 +370,7 @@ class NativeDesktopTransport extends StatelessWidget {
                           SizedBox(
                             height: 26,
                             child: VolumeSlider(
+                              hoverHint: true,
                               scope: c.controlScope,
                               value: c.audio.volume,
                               onPreview: c.previewVolume,

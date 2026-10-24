@@ -1,0 +1,42 @@
+{
+  "createdAt": "2026-10-24T13:49:30.140Z",
+  "surface": "Final production dist5354; trusted held mouse drag with button:left/buttons1; two animation-frame checkpoints",
+  "passed": true,
+  "cases": [
+    {
+      "value": 0.76,
+      "left": 1306,
+      "width": 72,
+      "y": 830,
+      "thumbX": 1357.08,
+      "hintX": 1357.078125,
+      "transition": "0s",
+      "transitionProperty": "none"
+    },
+    {
+      "value": 0.2,
+      "left": 1306,
+      "width": 72,
+      "y": 830,
+      "thumbX": 1324.6,
+      "hintX": 1324.59375,
+      "transition": "0s",
+      "transitionProperty": "none"
+    },
+    {
+      "value": 0.88,
+      "left": 1306,
+      "width": 72,
+      "y": 830,
+      "thumbX": 1364.04,
+      "hintX": 1364.03125,
+      "transition": "0s",
+      "transitionProperty": "none"
+    }
+  ],
+  "captures": [
+    "docs/verification/2026-10-24/volume/web-volume-held-drag.png"
+  ],
+  "indexSha256": "f9492a95bf12064c21e71f288d140b761991ee6771904f42bd272dc4921b7c8c",
+  "cssSha256": "b82bbcb1803ae957782766c229c85bbefc70aa1c83ba35c107c74c560b34fbd5"
+}

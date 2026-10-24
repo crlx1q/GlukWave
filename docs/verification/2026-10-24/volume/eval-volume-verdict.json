@@ -1,0 +1,17 @@
+{
+  "attempt": 1,
+  "verdict": "NEEDS REVISION",
+  "passed": false,
+  "blockers": [{
+    "id": "V1",
+    "issue": "Tooltip inherits global220ms positional transition and trails actual moving thumb",
+    "expectedLeft": 1357.08,
+    "computedInitialLeft": 1344.14,
+    "computedTransition": "0.22s",
+    "fix": "Explicit transition:none on .volume-thumb-hint; retain opacity entrance animation"
+  }],
+  "checksPassed": 6,
+  "native": {"tests":5,"actualTrackGeometryCases":6,"scope":"isolated real VolumeSlider, not full app or physical device"},
+  "providerLimit": "Independent OpenAI evaluator; alternate provider unavailable",
+  "evidence": "eval-volume-browser-proof.json"
+}

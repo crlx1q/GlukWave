@@ -1,0 +1,18 @@
+{
+  "attempt": 2,
+  "verdict": "PASS",
+  "passed": true,
+  "blockers": [],
+  "resolved": ["V1 inherited positional transition causing tooltip drag lag"],
+  "indexSha256": "f9492a95bf12064c21e71f288d140b761991ee6771904f42bd272dc4921b7c8c",
+  "fingerprintRowsMatched": 19,
+  "independentHeldDragCases": 3,
+  "maxPhysicalAnchorErrorPx": 0.00874999999996362,
+  "transitionProperty": "none",
+  "transitionDuration": "0s",
+  "entranceAnimationDuration": "0.14s",
+  "priorCoreChecksAccepted": 6,
+  "native": {"tests": 5, "actualTrackGeometryCases": 6, "scope": "isolated real VolumeSlider, not full app or physical device"},
+  "providerLimit": "Independent OpenAI evaluator; alternate provider unavailable",
+  "evidence": "eval2-volume-browser-proof.json"
+}

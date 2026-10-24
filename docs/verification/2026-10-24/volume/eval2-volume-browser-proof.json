@@ -1,0 +1,80 @@
+{
+  "attempt": 2,
+  "createdAt": "2026-10-24T13:51:20.249Z",
+  "surface": "Independent agent-browser session, real production dist5354, synthetic account, trusted CDP mouse and key",
+  "checks": [
+    "Final built source and19source/capture fingerprints match; tooltip positional transition:none with140ms opacity entrance retained",
+    "Independent trusted held drag across76/20/88% has<=1.25px anchor error after two frames, no220ms trailing"
+  ],
+  "geometry": [
+    {
+      "value": 0.76,
+      "x": 1342,
+      "y": 830,
+      "left": 1306,
+      "width": 72,
+      "top": 814,
+      "thumbX": 1357.08,
+      "bubble": "76%",
+      "bubbleX": 1357.078125,
+      "bubbleBottom": 806,
+      "bubbleLeft": 1337.3046875,
+      "bubbleRight": 1376.8515625,
+      "pointer": "none",
+      "display": "block",
+      "visible": true,
+      "zoom": "1",
+      "anchorError": 0.0018749999999272404
+    },
+    {
+      "value": 0.2,
+      "x": 1342,
+      "y": 830,
+      "left": 1306,
+      "width": 72,
+      "top": 814,
+      "thumbX": 1324.6,
+      "bubble": "20%",
+      "bubbleX": 1324.59375,
+      "bubbleBottom": 806,
+      "bubbleLeft": 1304.8203125,
+      "bubbleRight": 1344.3671875,
+      "pointer": "none",
+      "display": "block",
+      "visible": true,
+      "zoom": "1",
+      "anchorError": 0.0062499999999090505
+    },
+    {
+      "value": 0.88,
+      "x": 1342,
+      "y": 830,
+      "left": 1306,
+      "width": 72,
+      "top": 814,
+      "thumbX": 1364.04,
+      "bubble": "88%",
+      "bubbleX": 1364.03125,
+      "bubbleBottom": 806,
+      "bubbleLeft": 1344.2578125,
+      "bubbleRight": 1383.8046875,
+      "pointer": "none",
+      "display": "block",
+      "visible": true,
+      "zoom": "1",
+      "anchorError": 0.00874999999996362
+    }
+  ],
+  "captures": [
+    "docs/verification/2026-10-24/volume/eval2-volume-held-drag.png"
+  ],
+  "passed": true,
+  "indexSha256": "f9492a95bf12064c21e71f288d140b761991ee6771904f42bd272dc4921b7c8c",
+  "fingerprintRows": 19,
+  "style": {
+    "transitionProperty": "none",
+    "transitionDuration": "0s",
+    "animationName": "volume-hint-in",
+    "animationDuration": "0.14s"
+  }
+}
