@@ -461,14 +461,15 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
   useEffect(()=>{if(!store.user||store.offline)return;setConnectionStatus('connecting');const account=store.user.id,connection=io({withCredentials:true,auth:{language:getLanguage(),deviceId,surfaceId,name:browserDeviceName,kind:'web'}});socketRef.current=connection;setSocket(connection);const unbindSettings=store.bindSettingsSync(connection);
     const reloadDevices=()=>void refreshDevices();
     connection.on('library:changed',()=>void store.refreshLibrary());
-    connection.on('connect',()=>{setConnectionStatus('online');reloadDevices();
+    let disconnectTimer: ReturnType<typeof setTimeout>|undefined;
+    connection.on('connect',()=>{setConnectionStatus('online');clearTimeout(disconnectTimer);reloadDevices();
       const restore=async()=>{try{const value=(await api<{connect:ConnectState}>('/connect')).connect;if(account!==userRef.current?.id||!connection.connected)return;syncConnectRef.current(value,false);
         const pinned=value.roomId??(value.roomId===undefined?localStorage.getItem(`gw-room-${account}`):null);if(pinned){const adoptOnly=Boolean(value.activeDeviceId);if(roomRef.current?.id===pinned)await enterRoom(roomRef.current,adoptOnly);else await adoptRoomRef.current(pinned,adoptOnly);if(roomRef.current?.id===pinned)await syncRoomStateRef.current({roomId:pinned,state:roomRef.current.state,serverTime:Date.now()},true);}
       }catch(error){if(account===userRef.current?.id)store.notify(errorText(error),true);}};void restore();
     });
     connection.on('account:state',(value:ConnectState)=>syncConnectRef.current(value));
     connection.on('session:revoked',()=>{if(store.user?.id!==userRef.current?.id)return;clearRoom();clearPlayback();store.setUser(null);store.setAuthOpen(true);connection.disconnect();});
-    connection.on('disconnect',()=>{setConnectionStatus(navigator.onLine?'connecting':'offline');if(roomRef.current){setOutput(false);roomOutputActive.current=false;desiredPlay.current=false;audio.pause();controller.current?.pause();}});
+    connection.on('disconnect',()=>{setConnectionStatus(navigator.onLine?'connecting':'offline');clearTimeout(disconnectTimer);disconnectTimer=setTimeout(()=>{if(!socketRef.current?.connected&&roomRef.current){setOutput(false);roomOutputActive.current=false;desiredPlay.current=false;audio.pause();controller.current?.pause();}},10000);});
     connection.on('devices:changed',reloadDevices);
     connection.on('connect_error',()=>{setConnectionStatus(navigator.onLine?'connecting':'offline');if(navigator.onLine)reportError('Realtime connection failed','socket',{code:'CONNECT_ERROR'});});
     const emitState=()=>{if(!controls.current.committing()&&connection.connected&&(outputHereRef.current||roomRef.current)){const canonical=controls.current.broadcast(stateRef.current);const dur=durationRef.current>0?durationRef.current:(trackRef.current?.duration||0);connection.emit('device:state',{...canonical,sequence:++stateSequence.current,trackLoading:trackLoadingRef.current,duration:dur>0?dur:undefined,playing:outputHereRef.current&&canonical.playing,outputActive:outputHereRef.current,roomId:roomRef.current?.id||null});}};
@@ -487,7 +488,7 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
     connection.on('room:left',(payload:{roomId:string})=>{if(payload.roomId===roomRef.current?.id){clearRoom();clearPlayback();}});
     connection.on('notification',(event:{title:string;body:string})=>store.notify(`${event.title}: ${event.body}`));
     const interval=setInterval(emitState,1800);
-    return()=>{clearInterval(interval);unbindSettings();connection.disconnect();setSocket(null);setDevices([]);setConnectionStatus('offline');};
+    return()=>{clearInterval(interval);clearTimeout(disconnectTimer);unbindSettings();connection.disconnect();setSocket(null);setDevices([]);setConnectionStatus('offline');};
   },[store.user?.id,store.offline,store.notify,store.bindSettingsSync,clearPlayback,clearRoom,setOutput,store.setUser,store.setAuthOpen,enterRoom,refreshDevices]);
   const joinRoom=useCallback((next:Room)=>enterRoom(next),[enterRoom]);
   const leaveRoom=useCallback(async()=>{

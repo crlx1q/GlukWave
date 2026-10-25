@@ -10,7 +10,7 @@ import {planLimits} from './plans.js';
 
 export function setupRealtime(server,app,ctx){
   const {store,config,requireAuth}=ctx;
-  const io=new Server(server,{cors:{origin:config.origins,credentials:true},maxHttpBufferSize:64*1024,allowRequest:(req,cb)=>cb(null,!req.headers.origin||config.origins.includes(req.headers.origin))});ctx.io=io;
+  const io=new Server(server,{cors:{origin:config.origins,credentials:true},maxHttpBufferSize:64*1024,pingInterval:15000,pingTimeout:20000,allowRequest:(req,cb)=>cb(null,!req.headers.origin||config.origins.includes(req.headers.origin))});ctx.io=io;
   const commandJobs=createActionJobs();
   const live=new Map(),primary=new Map(),changing=new Set(),disconnects=new Set();
   let directoryTimer=null;ctx.invalidateRoomDirectory=()=>{if(directoryTimer)return;directoryTimer=setTimeout(()=>{directoryTimer=null;io.emit('room:directory',{changed:true});},1000);directoryTimer.unref();};
@@ -137,7 +137,7 @@ export function setupRealtime(server,app,ctx){
     });
     on('room:leave',async payload=>{const {roomId}=parse(z.object({roomId:text(100)}).strict(),payload);if(await ctx.leaveJam?.(userId,roomId))return {connect:await snapshot(userId)};socket.leave(`room:${roomId}`);if(socket.data.roomId===roomId)socket.data.roomId=null;return {connect:await ctx.leaveAccountRoom(userId,roomId)};});
     on('room:command',async payload=>{const {roomId,...command}=parse(commandSchema.safeExtend({roomId:text(100)}),payload);return ctx.roomCommand(userId,roomId,command);});
-    socket.on('disconnect',()=>{const task=(async()=>{await ready.catch(()=>{});const surfaces=live.get(key);surfaces?.delete(socket.id);if(primary.get(key)===socket.id)primary.delete(key);try{if(!surfaces?.size){live.delete(key);await store.update('devices',key,value=>value?{...value,online:false,lastSeen:Date.now(),state:{...liveState(value.state),playing:false,updatedAt:Date.now()}}:undefined);}await freezeOwner(userId,device.deviceId,device.surfaceId);changes(userId);io.to(`user:${userId}`).emit('sessions:changed',{});await publish(userId);if(socket.data.roomId)await roomPresence(socket.data.roomId);ctx.jamDisconnected?.(userId);}catch(err){ctx.log.warn({message:err.message},'Device disconnect failed');}})();disconnects.add(task);task.finally(()=>disconnects.delete(task));});
+    socket.on('disconnect',()=>{const task=(async()=>{await ready.catch(()=>{});const surfaces=live.get(key);surfaces?.delete(socket.id);if(primary.get(key)===socket.id)primary.delete(key);const grace=config.env==='test'?0:3000;if(grace>0){await new Promise(r=>setTimeout(r,grace));if(live.get(key)?.size)return;}try{if(!surfaces?.size){live.delete(key);await store.update('devices',key,value=>value?{...value,online:false,lastSeen:Date.now(),state:{...liveState(value.state),playing:false,updatedAt:Date.now()}}:undefined);}await freezeOwner(userId,device.deviceId,device.surfaceId);changes(userId);io.to(`user:${userId}`).emit('sessions:changed',{});await publish(userId);if(socket.data.roomId)await roomPresence(socket.data.roomId);ctx.jamDisconnected?.(userId);}catch(err){ctx.log.warn({message:err.message},'Device disconnect failed');}})();disconnects.add(task);task.finally(()=>disconnects.delete(task));});
   });
   app.get('/api/devices',requireAuth,asyncRoute(async(req,res)=>{
     const uid=req.auth.user.id,records=await store.list('devices',record=>record.userId===uid),sessions=await store.list('sessions',record=>record.userId===uid&&record.expiresAt>Date.now()),connect=await snapshot(uid);
