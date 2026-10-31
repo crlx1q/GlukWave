@@ -9,7 +9,7 @@ import { sourceNames, time, type Track } from './types';
 import { useVisualVisibility } from './visual-lifecycle';
 
 export function AlbumCover({track,playing,gestureOwned=false,active=true,showTools=true,toolsOnly=false,stageBudget,onToolSelect}:{track:Track;playing:boolean;gestureOwned?:boolean;active?:boolean;showTools?:boolean;toolsOnly?:boolean;stageBudget?:number;onToolSelect?:()=>void}) {useLocale();
-  const player=usePlayer(),store=useStore(),appearance=store.settings.appearance,[rotation,setRotation]=useState({x:-9,y:-18}),[dragging,setDragging]=useState(false),[manual,setManual]=useState(false),[hovering,setHovering]=useState(false),hint=useId();
+  const player=usePlayer(),store=useStore(),appearance=store.settings.powerSaving?{...store.settings.appearance,cover3d:false}:store.settings.appearance,[rotation,setRotation]=useState({x:-9,y:-18}),[dragging,setDragging]=useState(false),[manual,setManual]=useState(false),[hovering,setHovering]=useState(false),hint=useId();
   const stage=useRef<HTMLDivElement>(null),visible=useVisualVisibility(stage,active),activeRef=useRef(active&&visible);activeRef.current=active&&visible;
   const [stageSize,setStageSize]=useState({width:0,height:0});
   useLayoutEffect(()=>{const node=stage.current;if(!node)return;const measure=()=>setStageSize({width:node.clientWidth,height:node.clientHeight});measure();const observer=new ResizeObserver(measure);observer.observe(node);return()=>observer.disconnect();},[]);

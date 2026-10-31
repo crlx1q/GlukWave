@@ -1,0 +1,228 @@
+{
+  "createdAt": "2026-10-31T17:30:38.845Z",
+  "owner": "studio31_web",
+  "state": "Frozen and handed to independent evaluator; local verification only",
+  "readyUrl": "http://127.0.0.1:5362",
+  "sourceScope": "apps/web; no deployment, release, version change or real-account mutation",
+  "validation": {
+    "modelTests": {
+      "pass": 119,
+      "fail": 0,
+      "log": "web-model-tests-final.log"
+    },
+    "typecheck": {
+      "passed": true,
+      "log": "web-typecheck-final.log"
+    },
+    "build": {
+      "passed": true,
+      "es5Chunks": 5,
+      "log": "web-build-final.log"
+    },
+    "independentLongRemote": "Pending evaluator at handoff"
+  },
+  "production": {
+    "index": "apps/web/dist/index.html",
+    "indexSha256": "88cc3f182c9b55ceefa37da5f25a03d5635034394b4ddf674bc5860f79704872",
+    "main": "apps/web/dist/assets/main-gqc5jRPr.js",
+    "mainSha256": "fdea2b13160041f283d7428eadf398b44e9ba14e204d0432163f6cd671cff0e3",
+    "emittedFeaturesConfirmed": [
+      "Stable device-catalog wrapper connected to visual visibility hook",
+      "Sequential2s visible-only polling with flight guard and cleanup",
+      "Remote presentation12s bounded horizon matching10s server checkpoint",
+      "Detached packet presentation correction with explicit seek revision"
+    ]
+  },
+  "runtime": {
+    "fixtureServerPid": 15520,
+    "fixtureScript": "work/qa/studio31-web-server.mjs",
+    "ownDevStopped": true,
+    "ownBrowserClosed": true,
+    "ownRemoteHelperStopped": true,
+    "evaluatorDriver": "work/qa/studio31-remote-output.mjs [--claim]"
+  },
+  "evidenceNotes": [
+    "web-studio31-browser-proof.json covers11 real-source UI checks; web-phone-camera-proof.json covers2 simulated Android checks. Camera permission denial is synthetic; no physical-camera assertion.",
+    "Original web-progress-browser-proof.json intentionally remains passed:false. Five completed smooth cases are accepted; later buffering failure was resolved and passed in web-progress-controls-proof.json.",
+    "Original web-progress-detached-remote-proof.json intentionally remains passed:false for a later incorrect management-selector setup. Its detached99/99 frames and immediate-pause checks passed.",
+    "web-progress-remote-continuation-proof.json passed78/78 in production build36466 after independent-control mount fix; latest build46931 adds approved visible refresh and12s main remote horizon.",
+    "Captured source UI and historical production UI are distinguished in their proof files. Current final source/dist hashes are supplied here; independent final screenshots/results are separate.",
+    "No physical mouse media button, physical phone camera, native binary, TV browser or production deployment is claimed by this web evidence."
+  ],
+  "sources": [
+    {
+      "path": "apps/web/qa/progress27.test.mjs",
+      "sha256": "f00f96371d5e09c42922b19ad4dc559a28c9a81c1323cd96279aa77c6aa419ef"
+    },
+    {
+      "path": "apps/web/qa/studio31.test.mjs",
+      "sha256": "655a72a5e2ad88f1f8c89e949568b6c015fc318f3de456367ec30aaf46aaceac"
+    },
+    {
+      "path": "apps/web/src/App.tsx",
+      "sha256": "69a3aabc37064443ae02ddcd254a01592681bfa2c871cc59a2e52ea1a6103ede"
+    },
+    {
+      "path": "apps/web/src/account.tsx",
+      "sha256": "208bf7c127518c3ce5abac5f5692f0adb73aa8e6bc02a4c8cc2e64b81494a733"
+    },
+    {
+      "path": "apps/web/src/admin-console.tsx",
+      "sha256": "f48031c15bfc871761444b85cd0fe58822a9839dc6217b89a6240cc10d2f9351"
+    },
+    {
+      "path": "apps/web/src/album.tsx",
+      "sha256": "5574697a7402726271f6512b557a4965aca1017d2b029188af6ced46449a4d7e"
+    },
+    {
+      "path": "apps/web/src/customization.tsx",
+      "sha256": "de10341b72264cfc8574ddfca5c790a88f05c60a23719937c69ba92136ae1b52"
+    },
+    {
+      "path": "apps/web/src/image-crop.tsx",
+      "sha256": "2b7f6fb8708eff84cbb018a8b23469dc986847b68540ae417870fb477044043a"
+    },
+    {
+      "path": "apps/web/src/main.tsx",
+      "sha256": "cb47f75b2001d5938578fc5ab9d938be9da519de30aed7ee796df1a4dbe9f73c"
+    },
+    {
+      "path": "apps/web/src/mini.tsx",
+      "sha256": "0d75a094318bfc49cfd43f0c189f2716e97f2af471cd8be6ad4f35d807f73819"
+    },
+    {
+      "path": "apps/web/src/parity-model.ts",
+      "sha256": "b1545b128cb0447fc99f0750fc8d9cfd66cc96dd371a3ec7e83e298b173c9a02"
+    },
+    {
+      "path": "apps/web/src/player-ui.tsx",
+      "sha256": "371924a844b5498412549427833d372ecd72910aead0279299fed86f0f632de4"
+    },
+    {
+      "path": "apps/web/src/player.tsx",
+      "sha256": "f7bdc5b51a2be2dd9bbd88cd9c86dedbf94a2efe8d076b624a6939fec64bb4cc"
+    },
+    {
+      "path": "apps/web/src/preferences.ts",
+      "sha256": "93b6cae8a85ee574f90737bd76b9487c0f94d7e95bafeb32215c1dfcb5f898b6"
+    },
+    {
+      "path": "apps/web/src/progress-clock.ts",
+      "sha256": "c23cb13494b3b36169d668b03fb9950f138e19111b4b78c4011632de9d0a3d69"
+    },
+    {
+      "path": "apps/web/src/progress-paint.tsx",
+      "sha256": "ac0e009279a34e1ec9f9d78970e75e3a9438d97142a1b947bbbdc5aee7669d91"
+    },
+    {
+      "path": "apps/web/src/qr-scanner.tsx",
+      "sha256": "243416359291dc464ae69b261b11103ccd240e703ab030a84925294aea43bcbc"
+    },
+    {
+      "path": "apps/web/src/store.tsx",
+      "sha256": "405f7da27245379299ec87b5ed6eed53121110f561d2ec3b1f19b8e5eda61c48"
+    },
+    {
+      "path": "apps/web/src/studio-model.ts",
+      "sha256": "ba14afd2cfbe9515e07760e3f605928b615d5f4762498cd3b9e43231187be723"
+    },
+    {
+      "path": "apps/web/src/studio-ui.tsx",
+      "sha256": "ecf097e6a506bf3c8b4aea7ee24b508ebe233de9ee7b132ee9f0961ed81499bf"
+    },
+    {
+      "path": "apps/web/src/studio31.css",
+      "sha256": "6ef1a8247ef4f8832fc9626c5912d585cb465c935647a52602dfd9ad67ee5c1b"
+    },
+    {
+      "path": "apps/web/src/types.ts",
+      "sha256": "ad9b6db5dcb20deb45bf89514acb58b64ddc3977111d9195f7f9a2780f3df847"
+    },
+    {
+      "path": "apps/web/src/wave.tsx",
+      "sha256": "bc0611e56ee1ece6ed4cea43e085e7e25351f479ed2f23c14444812b5109a13c"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "docs/verification/2026-10-31/studio/web-about-1440.png",
+      "sha256": "8e266455c11f3837c04b3d321b4607269091cb32622b2de19a5a9a591e6e719a"
+    },
+    {
+      "path": "docs/verification/2026-10-31/studio/web-admin-1440.png",
+      "sha256": "6052e35f0b3b1456bac45490b2e6b16f238ce56971694cad9302ef84331a7636"
+    },
+    {
+      "path": "docs/verification/2026-10-31/studio/web-appearance-1440.png",
+      "sha256": "522163642c6ad5d59bbfa141e5b5ea798146d729b9bc3f86326e7c0872e1c2bd"
+    },
+    {
+      "path": "docs/verification/2026-10-31/studio/web-appearance-390.png",
+      "sha256": "53567fcb7065e936fd2009047aa7734792147a59af44cf431b9d9efc615e6448"
+    },
+    {
+      "path": "docs/verification/2026-10-31/studio/web-build-final.log",
+      "sha256": "c967a9a30bf1dd93df9a473da926408ad5f2f94b01050fadc1c8e59b6436fbd9"
+    },
+    {
+      "path": "docs/verification/2026-10-31/studio/web-crop-avatar-1440.png",
+      "sha256": "101336ce4e86c260c3b7a72e6566937a3afaaa237d0b0331fd1190824d7f7b29"
+    },
+    {
+      "path": "docs/verification/2026-10-31/studio/web-model-tests-final.log",
+      "sha256": "eed996e5fb5262de924cad8bc61037806dd138aa117b5aadeaa4a6e265f06991"
+    },
+    {
+      "path": "docs/verification/2026-10-31/studio/web-phone-camera-proof.json",
+      "sha256": "e4b86fe81437151206baf028ee6c3b5e5d81a9261dde4b250a78323b1121518a"
+    },
+    {
+      "path": "docs/verification/2026-10-31/studio/web-phone-scanner-390.png",
+      "sha256": "5a38642d089636746fb0c86b99d80c7565a73d558dd17746b110238163a6379c"
+    },
+    {
+      "path": "docs/verification/2026-10-31/studio/web-progress-accepted-summary.json",
+      "sha256": "3c0535a033002dfff607a62c0b862552bff3d25492b1184da71e15698a51adf6"
+    },
+    {
+      "path": "docs/verification/2026-10-31/studio/web-progress-browser-proof.json",
+      "sha256": "65d9855cfdfcf6f2f1b8c96c3616be2ccdc83ed1be408ea72b277112f9c0d376"
+    },
+    {
+      "path": "docs/verification/2026-10-31/studio/web-progress-controls-proof.json",
+      "sha256": "caf6dbd896235472509ee1fa3c641242d7a539a5042388321a25f803591472a7"
+    },
+    {
+      "path": "docs/verification/2026-10-31/studio/web-progress-detached-remote-proof.json",
+      "sha256": "0c76aea5a790e874e2cc96042dfadfb4d7e1c1ed1ed9ca4b63883630373e13b9"
+    },
+    {
+      "path": "docs/verification/2026-10-31/studio/web-progress-full375.png",
+      "sha256": "ef8346360f8723ca19d2a8b7079c9176da1a21f62fe42b2182a6f973d98bf939"
+    },
+    {
+      "path": "docs/verification/2026-10-31/studio/web-progress-mini375.png",
+      "sha256": "a03dd538cb4ea699d77e05b75ef37110087116e60174e64235eba59d48dcd5df"
+    },
+    {
+      "path": "docs/verification/2026-10-31/studio/web-progress-remote-continuation-proof.json",
+      "sha256": "b34f22c09d09b316cab1271e24c2b5a99f6e2b35bd9c3f0377c138c85dc1e72a"
+    },
+    {
+      "path": "docs/verification/2026-10-31/studio/web-progress-remote-device1440.png",
+      "sha256": "1fd0becc52b5c2fe258fd16836bd79f77f16ebeee7faa21fe7fa51a3b63edef2"
+    },
+    {
+      "path": "docs/verification/2026-10-31/studio/web-qr-desktop-1440.png",
+      "sha256": "c551812c33349721d2987ef954b291129afc9200da3587fccd6505be21dd8c73"
+    },
+    {
+      "path": "docs/verification/2026-10-31/studio/web-studio31-browser-proof.json",
+      "sha256": "55625e9a85be5da56a0cf3729139f0bdc2de036fe548b06137454f402164a3e1"
+    },
+    {
+      "path": "docs/verification/2026-10-31/studio/web-typecheck-final.log",
+      "sha256": "d390a80ed9e799a0937a2dc84a6cb8695a1f8dbbbad3e5485c997e7654188e3e"
+    }
+  ]
+}

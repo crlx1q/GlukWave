@@ -1,3 +1,4 @@
+import '../services/media_button.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
@@ -38,6 +39,36 @@ import '../l10n/wave_localizations.dart';
 import '../l10n/parity_strings.dart';
 
 class WaveController extends ChangeNotifier {
+  late final WindowsMediaButton mediaButton = WindowsMediaButton((count) async {
+    if (_disposed || !canControl || audio.viewCurrent == null) return;
+    try {
+      await transport(
+        count == 1
+            ? (audio.playing ? 'pause' : 'play')
+            : count == 2
+            ? 'next'
+            : 'previous',
+        count == 3 ? {'restart': false} : const {},
+      );
+    } catch (error) {
+      tell(error.toString());
+    }
+  });
+  void _syncMediaButton() {
+    if (!_localReady) return;
+    unawaited(
+      mediaButton.update(
+        loggedIn &&
+            canControl &&
+            audio.viewCurrent != null &&
+            (preferences.getBool('nativeHotkeys') ?? true),
+        '$controlScope:${audio.viewCurrent?.id}',
+      ),
+    );
+  }
+
+  String? _previousRestartScope;
+  DateTime? _previousRestartAt;
   final EnergyPolicy energy = EnergyPolicy();
   final BackgroundConnectBridge backgroundConnect = BackgroundConnectBridge();
   bool backgroundConnectEnabled = true;
@@ -71,7 +102,7 @@ class WaveController extends ChangeNotifier {
   }
 
   String get energyMode => energy.mode;
-  bool get energySaving => energy.saving;
+  bool get energySaving => energy.saving || customization.powerSaving;
   Future<void> setEnergyMode(String mode) => energy.setMode(mode);
   void setVisualForeground(bool foreground) {
     _visualForeground = foreground;
@@ -329,7 +360,7 @@ class WaveController extends ChangeNotifier {
       ? 'ios'
       : 'android';
   String get deviceName =>
-      'GlukWave · ${Platform.isWindows
+      'GlukWave Р вЂ™Р’В· ${Platform.isWindows
           ? 'Windows'
           : Platform.isIOS
           ? 'iOS'
@@ -419,6 +450,7 @@ class WaveController extends ChangeNotifier {
     desktop = DesktopShell(audio);
     push = WavePush(api);
     cache.addListener(notifyListeners);
+    addListener(_syncMediaButton);
     energy.addListener(_energyChanged);
     desktop.addListener(notifyListeners);
     audio.onError = (message) {
@@ -477,7 +509,7 @@ class WaveController extends ChangeNotifier {
         await transport(command, data);
         return true;
       }
-      if (command == 'next') {
+      if (['next', 'previous'].contains(command)) {
         await transport(command, data);
         return true;
       }
@@ -2215,7 +2247,7 @@ class WaveController extends ChangeNotifier {
   }
 
   void _energyChanged() {
-    audio.prepareNext = !energySaving;
+    audio.prepareNext = !energy.saving;
     if (!_disposed) notifyListeners();
   }
 
@@ -2364,6 +2396,27 @@ class WaveController extends ChangeNotifier {
   }
 
   Future<void> transport(String command, [Json data = const {}]) async {
+    if (command == 'previous' &&
+        data['restart'] != false &&
+        !trackLoading &&
+        canControl) {
+      final now = DateTime.now(),
+          scope = '$controlScope:${audio.viewCurrent?.id}';
+      final repeated =
+          _previousRestartScope == scope &&
+          _previousRestartAt != null &&
+          now.difference(_previousRestartAt!) <
+              const Duration(milliseconds: 1600);
+      if (audio.viewCurrent != null && !repeated) {
+        _previousRestartScope = scope;
+        _previousRestartAt = now;
+        await transport('seek', {'position': 0});
+        return;
+      }
+      _previousRestartScope = null;
+      _previousRestartAt = null;
+      data = {...data, 'restart': false};
+    }
     if (['next', 'previous'].contains(command)) {
       if (trackLoading || !canControl) return;
       final revision = ++_selectionRevision;
@@ -2554,6 +2607,7 @@ class WaveController extends ChangeNotifier {
       return;
     }
     await _transport(command, data);
+    if (command == 'seek') audio.resetProgressPresentation();
   }
 
   Future<void> _transport(String command, Json data) async {
@@ -2663,7 +2717,7 @@ class WaveController extends ChangeNotifier {
       suggestion = data['suggestion'] as String?;
       final failures = objects(data['errors']);
       if (failures.isNotEmpty) {
-        tell(failures.map((e) => e['message'] ?? e['provider']).join(' · '));
+        tell(failures.map((e) => e['message'] ?? e['provider']).join(' Р’В· '));
       }
       notifyListeners();
     }
@@ -2829,23 +2883,63 @@ class WaveController extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> uploadProfile(String kind) async {
+  Future<void> uploadProfile(
+    String kind, {
+    Future<String?> Function(String path, String kind)? prepare,
+  }) async {
+    final session = api.token, origin = api.server, account = user?.id;
     final selection = await FilePicker.pickFiles(
       type: FileType.custom,
       allowedExtensions: ['png', 'jpg', 'jpeg', 'webp', 'gif'],
     );
     final path = selection?.files.single.path;
-    if (path == null) return;
-    user = WaveUser(
-      object(
-        (await api.upload(
-          '/api/profile/media',
-          path,
-          fields: {'kind': kind},
-        ))['user'],
-      ),
+    if (path == null || session != api.token || origin != api.server) return;
+    final prepared = prepare == null ? path : await prepare(path, kind);
+    if (prepared == null) return;
+    try {
+      if (session != api.token || origin != api.server) return;
+      final result = await api.upload(
+        '/api/profile/media',
+        prepared,
+        fields: {'kind': kind},
+        requestHeaders: {if (account != null) 'X-GlukWave-Account': account},
+      );
+      if (session != api.token || origin != api.server) return;
+      user = WaveUser(object(result['user']));
+      await _persist();
+      notifyListeners();
+    } finally {
+      if (prepared != path) {
+        final file = File(prepared);
+        await file.delete().catchError((_) => file);
+        await file.parent.delete().catchError((_) => file.parent);
+      }
+    }
+  }
+
+  Future<void> uploadWallpaper() async {
+    final session = api.token, origin = api.server, account = user?.id;
+    final selection = await FilePicker.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['png', 'jpg', 'jpeg', 'webp', 'gif'],
     );
-    notifyListeners();
+    final path = selection?.files.single.path;
+    if (path == null || session != api.token || origin != api.server) return;
+    if (await File(path).length() > 8 * 1024 * 1024) {
+      throw const FormatException('Image is larger than 8 MB');
+    }
+    if (session != api.token || origin != api.server) return;
+    final result = await api.upload(
+      '/api/settings/wallpaper',
+      path,
+      requestHeaders: {if (account != null) 'X-GlukWave-Account': account},
+    );
+    await _receiveSettings(
+      object(result['settings']),
+      revision: (result['revision'] as num?)?.toInt(),
+      expectedToken: session,
+      expectedOrigin: origin,
+    );
   }
 
   Future<void> removeProfileMedia(String kind) async {
@@ -4556,6 +4650,8 @@ class WaveController extends ChangeNotifier {
   @override
   void dispose() {
     _disposed = true;
+    removeListener(_syncMediaButton);
+    mediaButton.dispose();
     energy.removeListener(_energyChanged);
     energy.dispose();
     _roomDirectoryTimer?.cancel();

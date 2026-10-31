@@ -1,0 +1,31 @@
+{
+  "attempt": 1,
+  "verdict": "NEEDS REVISION",
+  "direction": "REFINE",
+  "evaluator": "Independent agent, same model/provider; alternate provider unavailable",
+  "surface": "Actual production web dist and isolated real server/database at 5362, synthetic accounts only",
+  "reportedWebIndexSha256": "88cc3f182c9b55ceefa37da5f25a03d5635034394b4ddf674bc5860f79704872",
+  "reportedNativeManifestSha256": "70350DD7512DE5B0A481F0F97B6A3AD92E6528FBAC985FD15390ADDD74FA1138",
+  "priorities": [
+    {"id":"S1","priority":"must-fix","summary":"Admin document scrollWidth approximately884 at375/768; confine navigation overflow and shrink grid columns"},
+    {"id":"S2","priority":"minor","summary":"Avatar crop preview aspect1.061111 rather than square; Cancel0 uploads and banner Confirm1 successful upload passed"},
+    {"id":"S3","priority":"must-fix","summary":"Independent device range/fill reanchors backwards0.2359s during ordinary refresh; same node retained"},
+    {"id":"S4","priority":"must-fix","summary":"Independent remote control geometry changes234px when device checkpoint reporter changes; stabilize card ordering"}
+  ],
+  "acceptedChecks": [
+    "Actual admin, normal-user and guest access boundaries",
+    "Short625px auth viewport has reachable desktop QR",
+    "Eight presets and named-theme real persistence",
+    "AMOLED computed background exactly black; wallpaper excluded",
+    "375px light appearance, owned wallpaper upload, power stops pixel bitmap changes and freezes wallpaper",
+    "About heart real click and power-saving animation stop",
+    "Avatar Cancel zero profile uploads; 3:1 banner Confirm exactly one successful upload",
+    "Shared remote13.2s actual range/fill:349 distinct values,13.2285s advance, no backward steps",
+    "Independent directory7.2s: same node,97 distinct values,4 polls; backward and geometry defects retained",
+    "True hidden tab2.6s requests26to26; unmounted catalog2.5s requests26to26",
+    "Native inspected capture evidence, including resolved light contrast; targeted tests/analyzer evidence acknowledged with limits"
+  ],
+  "evidence": ["eval1-core-browser-proof.json","eval1-admin-overflow-proof.json","eval1-extras-browser-proof.json","eval1-progress-browser-proof.json"],
+  "limits": "No physical Windows/Android camera or hardware media key check, background delivery, TV browser, installer/deployment. Native capture/test evidence is not a physical interactive-device claim. Server full148 tests provided by root.",
+  "handoff": "Evaluator driver stopped; fixture reset to admin with powerSaving false and wallpaper disabled; evaluator browser closed; server left running. Exclusive5362 released for combined fixes."
+}

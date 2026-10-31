@@ -1,5 +1,4 @@
 import {z} from 'zod';
-import rateLimit from 'express-rate-limit';
 import nodemailer from 'nodemailer';
 import {accountMail,resetConfirmation} from './mail-text.js';
 import fs from 'node:fs/promises';
@@ -13,6 +12,7 @@ export function decodedDeviceName(value){
 
 export function setupAuth(app,ctx){
   const {store,config,log}=ctx;
+  app.use('/api/auth',(req,res,next)=>{res.set('Cache-Control','no-store');next();});
   const cookieOptions={httpOnly:true,secure:config.production,sameSite:'lax',path:'/',maxAge:30*86400000};
   async function authenticate(token){if(!token||typeof token!=='string'||token.length>200)return null;const session=await store.get('sessions',digest(token));if(!session||session.expiresAt<Date.now())return null;const user=await store.get('users',session.userId);if(!user||user.blocked)return null;return {user,session};}
   ctx.authenticate=authenticate;
@@ -35,7 +35,7 @@ export function setupAuth(app,ctx){
   ctx.sendMail=sendMail;
   async function captcha(req){if(!config.turnstileSecret){if(config.production)fail(503,'CAPTCHA_UNAVAILABLE','Защита регистрации ещё не настроена.');return;}const token=req.body.captchaToken||req.body?.['cf-turnstile-response'];if(typeof token!=='string'||!token.trim()||token.length>2048)fail(400,'CAPTCHA_REQUIRED','Пройди проверку Cloudflare.');const r=await remoteJson('https://challenges.cloudflare.com/turnstile/v0/siteverify',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({secret:config.turnstileSecret,response:token,remoteip:req.ip})});if(!r.success)fail(400,'CAPTCHA_FAILED',`Проверка Cloudflare не пройдена: ${(r['error-codes']||[]).join(', ')||'повтори её'}.`);if(config.production&&r.hostname){const validHosts=[new URL(config.appUrl).hostname,...config.origins.map(o=>{try{return new URL(o).hostname;}catch{return '';}}).filter(Boolean)];if(!validHosts.includes(r.hostname))fail(400,'CAPTCHA_HOST',`Проверка выполнена на другом сайте (${r.hostname}).`);}}
   ctx.captcha=captcha;
-  const authLimiter=rateLimit({windowMs:15*60000,limit:30,standardHeaders:'draft-8',legacyHeaders:false,message:{error:{code:'RATE_LIMIT',message:'Слишком много попыток. Попробуй через 15 минут.'}}});
+  const authLimiter=ctx.abuse.auth;
   app.get('/api/auth/me',(req,res)=>res.json({user:publicUser(req.auth?.user)}));
   app.get('/api/account/sessions',requireAuth,asyncRoute(async(req,res)=>{
     const uid=req.auth.user.id,records=await store.list('sessions',session=>session.userId===uid&&session.expiresAt>Date.now());

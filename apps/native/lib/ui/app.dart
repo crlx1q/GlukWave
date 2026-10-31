@@ -1,3 +1,5 @@
+import 'studio31.dart';
+import 'profile_crop.dart';
 import 'recommendation_actions.dart';
 import '../l10n/glukwave27_ui_strings.dart';
 import 'home_canvas.dart';
@@ -510,6 +512,12 @@ class _WaveShellState extends State<WaveShell>
     }
     final desktop = MediaQuery.sizeOf(context).width >= 900;
     final shell = Scaffold(
+      backgroundColor:
+          c.customization.wallpaper['url'] != '' &&
+              c.customization.theme != 'amoled' &&
+              !c.energySaving
+          ? Colors.transparent
+          : null,
       appBar: DesktopTitleBar.supported
           ? PreferredSize(
               preferredSize: const Size.fromHeight(44),
@@ -681,7 +689,7 @@ class _WaveShellState extends State<WaveShell>
         },
         child: AnimatedBuilder(
           animation: playerReveal,
-          child: shell,
+          child: StudioWallpaper(controller: c, child: shell),
           builder: (context, child) {
             final extent = playerReveal.value;
             final shift = (1 - extent) * MediaQuery.sizeOf(context).height;
@@ -1030,7 +1038,7 @@ class _WaveShellState extends State<WaveShell>
             IconButton(
               key: const Key('mobile-guard'),
               tooltip: nativeText(context, 'guard'),
-              onPressed: c.online ? () => showWaveGuard(context, c) : null,
+              onPressed: c.online ? scanQr : null,
               icon: WaveControlIcon(
                 Icons.qr_code_scanner_rounded,
                 size: 20,
@@ -1100,10 +1108,11 @@ class _WaveShellState extends State<WaveShell>
                   wt('native.7ab03d602e', context: context),
                   Icons.devices_rounded,
                 ),
-                'guard': (
-                  nativeText(context, 'guard'),
-                  Icons.qr_code_scanner_rounded,
-                ),
+                if (Platform.isAndroid || Platform.isIOS)
+                  'guard': (
+                    nativeText(context, 'guard'),
+                    Icons.qr_code_scanner_rounded,
+                  ),
                 'artists': (
                   pt(context, 'Artists'),
                   Icons.person_outline_rounded,
@@ -1288,7 +1297,19 @@ class _WaveShellState extends State<WaveShell>
       WavePage.devices => devicesPage(),
       WavePage.profile => profile(),
       WavePage.settings => settingsPage(),
-      WavePage.admin => AdminPage(controller: c),
+      WavePage.admin => Surface(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const PageHeading('Gluk Wave for Admins', ''),
+            FilledButton.icon(
+              onPressed: () => run(c, () => c.openUrl(c.api.url('/admin'))),
+              icon: const Icon(Icons.open_in_new_rounded, size: 18),
+              label: Text(studioText(context, 'admin')),
+            ),
+          ],
+        ),
+      ),
       WavePage.friends => FriendsPage(
         controller: c,
         parity: parity,
@@ -2670,7 +2691,7 @@ class _WaveShellState extends State<WaveShell>
                                   const SizedBox(width: 6),
                                   Expanded(
                                     child: Text(
-                                      '${deviceKindLabel(device, context: context)}${device['name'] != null ? ' · ${device['name']}' : ''}${device['outputActive'] == true ? ' · ${wt(device['playing'] == true ? 'devices.activeOutput' : 'devices.selectedOutput', context: context)}' : ''}',
+                                      '${deviceKindLabel(device, context: context)}${device['name'] != null ? ' В· ${device['name']}' : ''}${device['outputActive'] == true ? ' В· ${wt(device['playing'] == true ? 'devices.activeOutput' : 'devices.selectedOutput', context: context)}' : ''}',
                                       style: TextStyle(
                                         fontSize: 11,
                                         color: waveVisuals(context).muted,
@@ -2805,8 +2826,12 @@ class _WaveShellState extends State<WaveShell>
     });
   }
 
-  Widget devicesPage() =>
-      ConnectPanel(controller: c, scanQr: scanQr, discover: discover);
+  Widget devicesPage() => ConnectPanel(
+    controller: c,
+    scanQr: scanQr,
+    discover: discover,
+    showQr: () => showQrLogin(context, c),
+  );
 
   Widget roomPin() {
     final v = waveVisuals(context);
@@ -2986,7 +3011,14 @@ class _WaveShellState extends State<WaveShell>
                   padding: const EdgeInsets.all(14),
                   child: IconButton.filled(
                     tooltip: wt('native.3288466d0d', context: context),
-                    onPressed: () => run(c, () => c.uploadProfile('banner')),
+                    onPressed: () => run(
+                      c,
+                      () => c.uploadProfile(
+                        'banner',
+                        prepare: (path, kind) =>
+                            cropProfileFile(context, path, kind),
+                      ),
+                    ),
                     icon: const Icon(Icons.photo_outlined, size: 19),
                   ),
                 ),
@@ -3001,7 +3033,14 @@ class _WaveShellState extends State<WaveShell>
                   Row(
                     children: [
                       InkWell(
-                        onTap: () => run(c, () => c.uploadProfile('avatar')),
+                        onTap: () => run(
+                          c,
+                          () => c.uploadProfile(
+                            'avatar',
+                            prepare: (path, kind) =>
+                                cropProfileFile(context, path, kind),
+                          ),
+                        ),
                         borderRadius: BorderRadius.circular(
                           waveRadius(context, 30),
                         ),
@@ -3597,6 +3636,8 @@ class _WaveShellState extends State<WaveShell>
               advancedAllowed: c.user?.plan != 'free',
             ),
           const SizedBox(height: 18),
+          StudioAppearance(controller: c),
+          const SizedBox(height: 18),
           TypographyPanel(controller: c),
           const SizedBox(height: 18),
           Surface(
@@ -3869,6 +3910,8 @@ class _WaveShellState extends State<WaveShell>
             WaveUpdateNotice(controller: c, settings: true),
             const SizedBox(height: 18),
             const Brand(),
+            const SizedBox(height: 18),
+            const AboutHeartbeat(),
             const SizedBox(height: 18),
             Text(
               wt('native.63ca392a3c', context: context),

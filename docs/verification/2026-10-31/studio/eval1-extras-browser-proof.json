@@ -1,0 +1,35 @@
+{
+  "attempt": 1,
+  "createdAt": "2026-10-31T20:48:22.218Z",
+  "surface": "Independent own browser; actual final production dist5362 and real isolated backend",
+  "checks": [
+    "Actual light theme375 appearance fits viewport and presets remain readable",
+    "Wallpaper actual upload saves owned asset and renders themed preview",
+    "Manual power saving stops actual pixel canvas draw loop and replaces wallpaper image with still canvas",
+    "About heart reacts to real click and respects power-saving animation stop",
+    "Avatar Cancel makes zero profile upload requests; preview aspect measured 1.061111 instead of square",
+    "Banner3:1 crop confirms once and saves through real protected profile endpoint"
+  ],
+  "blockers": [
+    {
+      "id": "S2",
+      "severity": "minor",
+      "issue": "Avatar preview stage is an ellipse; measured width/height=1.0611111111111111"
+    }
+  ],
+  "responsive": [],
+  "captures": [
+    "docs/verification/2026-10-31/studio/eval1-appearance375-light.png",
+    "docs/verification/2026-10-31/studio/eval1-power-saving1440.png",
+    "docs/verification/2026-10-31/studio/eval1-about1440.png",
+    "docs/verification/2026-10-31/studio/eval1-crop-avatar1440.png"
+  ],
+  "passed": false,
+  "wallpaper": {
+    "url": "/api/profile-assets/17abb896-55f1-42ab-9a08-0281818d4194",
+    "dim": 0.35,
+    "blur": 8
+  },
+  "avatarRatio": 1.0611111111111111,
+  "checksCompleted": true
+}

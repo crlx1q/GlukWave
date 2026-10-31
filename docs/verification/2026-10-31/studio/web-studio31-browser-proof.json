@@ -1,0 +1,25 @@
+{
+  "createdAt": "2026-10-31T16:17:47.768Z",
+  "surface": "Real web source5363 and actual isolated server5362; synthetic accounts, trusted browser inputs",
+  "checks": [
+    "Actual /admin admin account renders isolated console and existing overview with no music dock",
+    "Admin section navigation shows real synthetic users via existing server API",
+    "Non-admin account cannot see administrative data",
+    "Desktop QR challenge renders real server-issued QR image, no desktop scanner",
+    "Eight compact distinct presets render in existing appearance UI",
+    "Avatar crop uses real file; opening/cancel sends zero uploads, explicit confirmation sends exactly1 account-scoped upload",
+    "Own wallpaper upload uses real8MB-limited server route and appears without redundant settings PATCH",
+    "Named custom theme saves into account settings through existing sparse revision pipeline",
+    "Manual power saving switches motion off and Wave/pixel canvases remain static across450ms",
+    "AMOLED body/app remain exact black and suppress personal wallpaper",
+    "About heart easter egg responds to real click, static under power/reduced motion"
+  ],
+  "captures": [
+    "docs/verification/2026-10-31/studio/web-admin-1440.png",
+    "docs/verification/2026-10-31/studio/web-qr-desktop-1440.png",
+    "docs/verification/2026-10-31/studio/web-appearance-1440.png",
+    "docs/verification/2026-10-31/studio/web-crop-avatar-1440.png",
+    "docs/verification/2026-10-31/studio/web-about-1440.png"
+  ],
+  "passed": true
+}

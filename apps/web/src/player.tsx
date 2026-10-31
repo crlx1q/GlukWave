@@ -1,3 +1,4 @@
+import {MediaPressSequence} from './studio-model';
 import {unavailableAudio} from './playback-recovery';
 import {AudioStreamLoader} from './audio-stream';
 import { t, useLocale, getLanguage } from './locale';
@@ -17,10 +18,10 @@ import { restoredVolume, saveVolume } from './volume';
 import { cached, downloads, saveTrack, deleteDownload } from './cache';
 import {canRetryCachedAudio} from './audio-cache-validation';
 import { useStore } from './store';
-import {LocalMediaClock,progressPosition,type ProgressReader} from './progress-clock';
+import {LocalMediaClock,REMOTE_PROGRESS_HORIZON,progressPosition,type ProgressReader} from './progress-clock';
 import { configureEqualizer, createAudioGraph, type AudioGraph } from './audio-processing';
 import type { ConnectState, Device, Playback, PlayerState, Room, Track } from './types';
-type Command = { command:string; playing?:boolean; trackId?:string; queue?:string[]; position?:number; volume?:number; expectedRevision?:number; repeat?:'off'|'all'|'one'; enabled?:boolean; localOnly?:boolean; outputActive?:boolean; roomId?:string|null;waveMode?:WaveSelection['mode'];waveMood?:WaveSelection['mood'];waveActive?:boolean };
+type Command = { restart?:boolean;command:string; playing?:boolean; trackId?:string; queue?:string[]; position?:number; volume?:number; expectedRevision?:number; repeat?:'off'|'all'|'one'; enabled?:boolean; localOnly?:boolean; outputActive?:boolean; roomId?:string|null;waveMode?:WaveSelection['mode'];waveMood?:WaveSelection['mood'];waveActive?:boolean };
 export type EmbedController = { play:()=>Promise<void>|void; pause:()=>void; seek:(position:number)=>void; volume?:(volume:number)=>void; destroy?:()=>void };
 export type PlayerTab='player'|'lyrics'|'queue'|'comments';
 export type {WaveOptions,WaveSelection} from './wave-session';
@@ -67,17 +68,18 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
   stateRef.current=state;trackRef.current=track;queueRef.current=queue;roomRef.current=room;settingsRef.current=store.settings;userRef.current=store.user;repeatRef.current=repeat;shuffleRef.current=shuffle;durationRef.current=duration;
   const presentationAnchor=useRef({position:0,at:performance.now()}),presentationBlocked=useRef(false),presentationPending=useRef<Track|null>(null),presentationFreeze=useRef<{scope:string;position:number}|null>(null);
   presentationBlocked.current=trackLoading||transportPending||!!transferPending;presentationPending.current=pendingTrack&&pendingTrack.id!==track?.id?pendingTrack:null;
-  const localPresentation=useRef(new LocalMediaClock());
+  const localPresentation=useRef(new LocalMediaClock()),presentationRevision=useRef(0);
   const readProgress=useCallback<ProgressReader>(()=>{
-    const now=performance.now(),state=stateRef.current,total=durationRef.current||trackRef.current?.duration||0,blocked=presentationBlocked.current;
+    const now=performance.now(),state=stateRef.current,total=durationRef.current||trackRef.current?.duration||0,blocked=presentationBlocked.current||!outputHereRef.current&&!socketRef.current?.connected;
     if(presentationPending.current)return {position:0,duration:presentationPending.current.duration,playing:false,at:now};
     if(!blocked)presentationFreeze.current=null;
+    if(blocked&&outputHereRef.current&&playbackRef.current?.kind==='audio'){const scope=controlScope();if(presentationFreeze.current?.scope!==scope)presentationFreeze.current={scope,position:Number.isFinite(audio.currentTime)?audio.currentTime:state.position};return {position:presentationFreeze.current.position,duration:total,playing:false,at:now};}
     if(outputHereRef.current&&playbackRef.current?.kind==='audio')return localPresentation.current.read({position:Number.isFinite(audio.currentTime)?audio.currentTime:state.position,duration:total,playing:!blocked&&!audio.paused&&!audio.ended&&!audio.seeking&&audio.readyState>=3,rate:audio.playbackRate,at:now},loadRevision.current);
     if(controls.current.has('position'))return {position:state.position,duration:total,playing:false,at:now};
     const remote=!outputHereRef.current,anchor=remote?remoteAnchor.current:presentationAnchor.current;
     if(!state.playing)return {position:state.position,duration:total,playing:false,at:now};
-    if(blocked&&remote){const scope=controlScope();if(presentationFreeze.current?.scope!==scope)presentationFreeze.current={scope,position:anchor?progressPosition({position:anchor.position,duration:total,playing:true,at:'time' in anchor?anchor.time:anchor.at,horizon:5000},now):state.position};return {position:presentationFreeze.current.position,duration:total,playing:false,at:now};}
-    return {position:anchor?.position??state.position,duration:total,playing:state.playing&&!blocked,rate:remote||roomRef.current?1:settingsRef.current.playbackRate,at:anchor?('time' in anchor?anchor.time:anchor.at):now,horizon:remote?5000:2000};
+    if(blocked&&remote){const scope=controlScope();if(presentationFreeze.current?.scope!==scope)presentationFreeze.current={scope,position:anchor?progressPosition({position:anchor.position,duration:total,playing:true,at:'time' in anchor?anchor.time:anchor.at,horizon:REMOTE_PROGRESS_HORIZON},now):state.position};return {position:presentationFreeze.current.position,duration:total,playing:false,at:now};}
+    return {position:anchor?.position??state.position,duration:total,playing:state.playing&&!blocked,rate:remote||roomRef.current?1:settingsRef.current.playbackRate,at:anchor?('time' in anchor?anchor.time:anchor.at):now,horizon:remote?REMOTE_PROGRESS_HORIZON:2000};
   },[audio]);
   const controls=useRef(new OptimisticControls()),controlFlight=useRef<Promise<void>>(Promise.resolve());
   const stateSequence=useRef(0);
@@ -181,7 +183,7 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
     if(command.command==='repeat'){const value=command.repeat||'off';repeatRef.current=value;setRepeatState(value);update({repeat:value});return;}
     if(command.command==='shuffle'){const value=!!command.enabled;shuffleRef.current=value;setShuffleState(value);let order=[...queueRef.current];if(value){const start=order.findIndex(item=>item.id===trackRef.current?.id)+1;for(let i=order.length-1;i>start;i--){const j=start+Math.floor(Math.random()*(i-start+1));[order[i],order[j]]=[order[j],order[i]];}}queueRef.current=order;setQueueState(order);update({shuffle:value,queue:order.map(item=>item.id)});return;}
     if(command.command==='volume'){const volume=Math.max(0,Math.min(1,command.volume??.8));audio.volume=volume;controller.current?.volume?.(volume);update({volume});return;}
-    if(command.command==='seek'){const position=Math.max(0,command.position||0);if(!trackRef.current)return;desiredPosition.current=position;if(playbackRef.current?.kind==='audio')audio.currentTime=position;else if(controller.current)controller.current.seek(position);else if(playbackRef.current){store.notify(t('copy.709'));return;}update({position});return;}
+    if(command.command==='seek'){presentationRevision.current++;localPresentation.current.reset();const position=Math.max(0,command.position||0);if(!trackRef.current)return;desiredPosition.current=position;if(playbackRef.current?.kind==='audio')audio.currentTime=position;else if(controller.current)controller.current.seek(position);else if(playbackRef.current){store.notify(t('copy.709'));return;}update({position});return;}
     if(!trackRef.current){if(strict)throw new Error(t('copy.710'));store.navigate('library');return;}
     if(command.command==='pause'){desiredPlay.current=false;setTrackLoading(false);audio.pause();controller.current?.pause();update({playing:false});return;}
     if(command.command==='play'){
@@ -261,8 +263,11 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
   useEffect(()=>{
     if(waveActive&&state.playing&&outputHere&&!trackLoading&&repeat==='off')void refillWave(true).catch(()=>{});
   },[waveActive,state.playing,outputHere,trackLoading,repeat,track?.id,queue.length,refillWave]);
+  const previousPress=useRef({at:-Infinity,scope:''});
   const command=useCallback((next:Command):Promise<void>=>{
+    if(next.command==='previous'){const now=performance.now(),scope=controlScope(),repeat=previousPress.current.scope===scope&&now-previousPress.current.at<1600;previousPress.current={at:now,scope};if(next.restart!==false&&!repeat&&trackRef.current)next={command:'seek',position:0};else next={...next,restart:false};}
     if(next.command==='seek'&&outputHereRef.current&&(resolvingTrack.current||trackLoadingRef.current))return Promise.resolve();
+    if(next.command==='seek')presentationRevision.current++;
     if(['play','next','previous','track'].includes(next.command)){ensureAudioMeter();audioGesture.current.prime(audio);}
     // Range controls commit once on release; no second server-side drag timer is needed.
     if(!['next','previous','track'].includes(next.command)){
@@ -273,7 +278,7 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
       let localStart:Promise<void>=Promise.resolve();
       if(outputHereRef.current){
         if(values.volume!==undefined){audio.volume=values.volume;controller.current?.volume?.(values.volume);}
-        if(values.position!==undefined&&playbackRef.current?.kind==='audio')audio.currentTime=desiredPosition.current=values.position;
+        if(values.position!==undefined&&playbackRef.current?.kind==='audio'){localPresentation.current.reset();audio.currentTime=desiredPosition.current=values.position;}
         if(values.playing===false){desiredPlay.current=false;audio.pause();controller.current?.pause();}
         if(values.playing===true&&playbackRef.current?.kind==='audio'){desiredPlay.current=true;localStart=audio.play();}
       }
@@ -429,8 +434,9 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
     const onReady=()=>{if(local()&&!resolvingTrack.current)setTrackLoading(false);};const onWaiting=()=>{if(local()&&!audio.paused&&desiredPlay.current&&playbackRef.current?.kind==='audio')setTrackLoading(true);};
     const onEnded=()=>{if(local()){setTrackLoading(false);finish();}};
     const onError=()=>{if(local()&&audio.error&&audio.src&&!streamLoader.current.handlesMediaErrors&&!resolvingTrack.current){desiredPlay.current=false;setTrackLoading(false);audio.pause();setAutoplayBlocked(false);reportError('Audio playback failed','playback',{code:`MEDIA_${audio.error.code}`});update({playing:false});const failed=trackRef.current;if(failed)void recoverAudioRef.current(failed,new ApiError('AUDIO_FORMAT_UNAVAILABLE',t('copy.715'))).then(recovered=>{if(!recovered&&failed.id===trackRef.current?.id)store.notify(t('copy.715'),true);}).catch(()=>{});}};
-    audio.addEventListener('canplay',onReady);audio.addEventListener('playing',onReady);audio.addEventListener('waiting',onWaiting);audio.addEventListener('stalled',onWaiting);audio.addEventListener('timeupdate',onTime);audio.addEventListener('play',onPlay);audio.addEventListener('pause',onPause);audio.addEventListener('durationchange',onDuration);audio.addEventListener('ended',onEnded);audio.addEventListener('error',onError);
-    return()=>{audio.removeEventListener('canplay',onReady);audio.removeEventListener('playing',onReady);audio.removeEventListener('waiting',onWaiting);audio.removeEventListener('stalled',onWaiting);audio.removeEventListener('timeupdate',onTime);audio.removeEventListener('play',onPlay);audio.removeEventListener('pause',onPause);audio.removeEventListener('durationchange',onDuration);audio.removeEventListener('ended',onEnded);audio.removeEventListener('error',onError);};
+    const onSeeking=()=>{presentationRevision.current++;localPresentation.current.reset();};
+    audio.addEventListener('seeking',onSeeking);audio.addEventListener('canplay',onReady);audio.addEventListener('playing',onReady);audio.addEventListener('waiting',onWaiting);audio.addEventListener('stalled',onWaiting);audio.addEventListener('timeupdate',onTime);audio.addEventListener('play',onPlay);audio.addEventListener('pause',onPause);audio.addEventListener('durationchange',onDuration);audio.addEventListener('ended',onEnded);audio.addEventListener('error',onError);
+    return()=>{audio.removeEventListener('seeking',onSeeking);audio.removeEventListener('canplay',onReady);audio.removeEventListener('playing',onReady);audio.removeEventListener('waiting',onWaiting);audio.removeEventListener('stalled',onWaiting);audio.removeEventListener('timeupdate',onTime);audio.removeEventListener('play',onPlay);audio.removeEventListener('pause',onPause);audio.removeEventListener('durationchange',onDuration);audio.removeEventListener('ended',onEnded);audio.removeEventListener('error',onError);};
   },[audio,finish,store.notify,update]);
   useEffect(()=>{
     if(!state.playing||!outputHere||trackLoading||repeat==='one'||(navigator as Navigator&{connection?:{saveData?:boolean}}).connection?.saveData)return;
@@ -449,13 +455,15 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
     })().catch(()=>{}),600);
     return()=>{clearTimeout(timer);abort.abort();};
   },[state.playing,track?.id,queue,repeat,outputHere,trackLoading,store.user?.id]);
+  const mediaKeySuppression=useRef(0);
+  useEffect(()=>{if(!/Windows/i.test(navigator.userAgent))return;const sequence=new MediaPressSequence(action=>void command({command:action==='toggle'?(stateRef.current.playing?'pause':'play'):action,...(action==='previous'?{restart:false}:{})}));const key=(event:KeyboardEvent)=>{if(event.code!=='MediaPlayPause'&&event.key!=='MediaPlayPause')return;if(event.repeat)return;event.preventDefault();mediaKeySuppression.current=performance.now()+700;sequence.press();};window.addEventListener('keydown',key);return()=>{sequence.cancel();window.removeEventListener('keydown',key);};},[command,store.user?.id,connectState?.activeDeviceId]);
   useEffect(()=>{
     const presentation=mediaSessionState(pendingTrack||track,state.playing,trackLoading,desiredPlay.current,transportPending);
     document.title=presentation.title||t('copy.716');
     if(!('mediaSession'in navigator))return;
     navigator.mediaSession.playbackState=presentation.playbackState;
     const current=pendingTrack||track;if(current)navigator.mediaSession.metadata=new MediaMetadata({title:current.title,artist:current.artist,album:current.album,artwork:current.artwork?[{src:current.artwork}]:[]});else navigator.mediaSession.metadata=null;
-    const handlers:Partial<Record<MediaSessionAction,MediaSessionActionHandler>>={play:()=>void command({command:'play'}),pause:()=>void command({command:'pause'}),nexttrack:()=>void command({command:'next'}),previoustrack:()=>void command({command:'previous'}),seekto:details=>void command({command:'seek',position:details.seekTime||0}),seekforward:details=>void command({command:'seek',position:stateRef.current.position+(details.seekOffset||10)}),seekbackward:details=>void command({command:'seek',position:Math.max(0,stateRef.current.position-(details.seekOffset||10))})};
+    const handlers:Partial<Record<MediaSessionAction,MediaSessionActionHandler>>={play:()=>{if(performance.now()>mediaKeySuppression.current)void command({command:'play'});},pause:()=>{if(performance.now()>mediaKeySuppression.current)void command({command:'pause'});},nexttrack:()=>void command({command:'next'}),previoustrack:()=>void command({command:'previous'}),seekto:details=>void command({command:'seek',position:details.seekTime||0}),seekforward:details=>void command({command:'seek',position:stateRef.current.position+(details.seekOffset||10)}),seekbackward:details=>void command({command:'seek',position:Math.max(0,stateRef.current.position-(details.seekOffset||10))})};
     for(const[action,handler]of Object.entries(handlers))try{navigator.mediaSession.setActionHandler(action as MediaSessionAction,handler!);}catch{/* Browser may not expose every media action. */}
   },[state.playing,track,pendingTrack,trackLoading,transportPending,command,locale.language]);
   useEffect(()=>{if(!store.user||store.offline)return;setConnectionStatus('connecting');const account=store.user.id,connection=io({withCredentials:true,auth:{language:getLanguage(),deviceId,surfaceId,name:browserDeviceName,kind:'web'}});socketRef.current=connection;setSocket(connection);const unbindSettings=store.bindSettingsSync(connection);
@@ -530,7 +538,7 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
   const resumePlayback=useCallback(async()=>{ensureAudioMeter();audioGesture.current.prime(audio);if(!outputHereRef.current&&connectRef.current&&!connectRef.current.independent)await transfer(deviceId,surfaceId);else await command({command:'play'});},[audio,ensureAudioMeter,transfer,command]);
   const channel=useMemo(()=>typeof BroadcastChannel==='function'?new BroadcastChannel(`glukwave-mini-${surfaceId}`):null,[]);
   const [miniActive,setMiniActive]=useState(false),miniWindow=useRef<Window|null>(null);
-  useEffect(()=>{if(!channel)return;const send=()=>{const progress=readProgress(),now=performance.now();channel.postMessage({type:'state',progress:{...progress,position:progressPosition(progress,now),at:0,horizon:Math.max(0,(progress.horizon??1500)-(now-progress.at))},progressScope:controlScope(),trackLoading:presentationBlocked.current,track:trackRef.current,state:stateRef.current,duration:audio.duration||trackRef.current?.duration||0,palette:{...settingsRef.current.appearance[store.resolvedTheme],accent:store.renderAccent},motion:store.motion,speed:settingsRef.current.appearance.speed});};channel.onmessage=event=>{if(event.data?.command)void command(event.data);else if(event.data?.type==='subscribe'){setMiniActive(true);send();}else if(event.data?.type==='unsubscribe')setMiniActive(false);};if(!miniActive)return()=>{channel.onmessage=null;};const interval=setInterval(()=>{if(miniWindow.current?.closed){setMiniActive(false);return;}send();},500);send();return()=>{clearInterval(interval);channel.onmessage=null;};},[channel,command,audio,miniActive,store.resolvedTheme,store.renderAccent,store.motion,trackLoading]);
+  useEffect(()=>{if(!channel)return;const send=()=>{const progress=readProgress(),now=performance.now();channel.postMessage({type:'state',progress:{...progress,position:progressPosition(progress,now),at:0,horizon:Math.max(0,(progress.horizon??1500)-(now-progress.at))},progressScope:controlScope(),progressRevision:presentationRevision.current,trackLoading:presentationBlocked.current,track:trackRef.current,state:stateRef.current,duration:audio.duration||trackRef.current?.duration||0,palette:{...settingsRef.current.appearance[store.resolvedTheme],accent:store.renderAccent},motion:store.motion,miniBackground:settingsRef.current.appearance.miniBackground,speed:settingsRef.current.appearance.speed});};channel.onmessage=event=>{if(event.data?.command)void command(event.data);else if(event.data?.type==='subscribe'){setMiniActive(true);send();}else if(event.data?.type==='unsubscribe')setMiniActive(false);};if(!miniActive)return()=>{channel.onmessage=null;};const interval=setInterval(()=>{if(miniWindow.current?.closed){setMiniActive(false);return;}send();},500);send();return()=>{clearInterval(interval);channel.onmessage=null;};},[channel,command,audio,miniActive,store.resolvedTheme,store.renderAccent,store.motion,trackLoading,state.playing,state.position,state.trackId,store.settings.playbackRate]);
   const mini=useCallback(async()=>{const pip=(window as Window & {documentPictureInPicture?:{requestWindow:(options:{width:number;height:number})=>Promise<Window>}}).documentPictureInPicture;const url=`/mini.html?device=${encodeURIComponent(surfaceId)}`;if(pip){const pipWindow=await pip.requestWindow({width:380,height:176});miniWindow.current=pipWindow;pipWindow.document.title='GlukWave';const iframe=pipWindow.document.createElement('iframe');iframe.src=url;iframe.style.cssText='border:0;width:100%;height:100vh';pipWindow.document.body.style.margin='0';pipWindow.document.body.appendChild(iframe);}else {const popup=window.open(url,'glukwave-mini','width=380,height=176,popup=yes');if(!popup)throw new Error(t('copy.723'));miniWindow.current=popup;store.notify(t('copy.724'));}},[store.notify]);
   useEffect(()=>{let timer:ReturnType<typeof setInterval>|undefined;const tick=()=>{const anchor=remoteAnchor.current;if(!document.hidden&&!outputHereRef.current&&stateRef.current.playing&&anchor){const position=anchor.position+(performance.now()-anchor.time)/1000;stateRef.current={...stateRef.current,position};setState({...stateRef.current});}};const schedule=()=>{clearInterval(timer);timer=undefined;if(!document.hidden&&state.playing&&!outputHere){tick();timer=setInterval(tick,250);}};schedule();document.addEventListener('visibilitychange',schedule);return()=>{clearInterval(timer);document.removeEventListener('visibilitychange',schedule);};},[state.playing,outputHere]);
   const setIndependent=useCallback(async(independent:boolean)=>{const result=await patch<{connect:ConnectState}>('/connect',{independent});syncConnectRef.current(result.connect);},[]);

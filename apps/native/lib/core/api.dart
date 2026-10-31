@@ -323,7 +323,9 @@ class WaveApi {
     String filePath, {
     Json fields = const {},
     void Function(double)? progress,
+    Map<String, String> requestHeaders = const {},
   }) async {
+    final origin = server, requestToken = token;
     const mimeTypes = {
       'mp3': 'audio/mpeg',
       'wav': 'audio/wav',
@@ -349,12 +351,15 @@ class WaveApi {
         contentType: mime != null ? DioMediaType.parse(mime) : null,
       ),
     });
+    if (server != origin || token != requestToken) {
+      throw const FormatException('Account changed before upload');
+    }
     try {
       final result = await dio.post<dynamic>(
-        url(path),
+        Uri.parse('$origin/').resolve(path).toString(),
         data: data,
         options: Options(
-          headers: headers,
+          headers: {...headers, ...requestHeaders},
           sendTimeout: const Duration(minutes: 10),
           receiveTimeout: const Duration(minutes: 3),
         ),

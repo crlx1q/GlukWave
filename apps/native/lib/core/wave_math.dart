@@ -118,7 +118,7 @@ double easeEnergy(double current, double target, double seconds) =>
 /// levels without flattening them into a constant maximum.
 double waveResponse(double measured) {
   final level = clamp01(measured);
-  return 1 - math.pow(1 - level, 2.4).toDouble();
+  return 1 - math.pow(1 - level, 2.8).toDouble();
 }
 
 /// Same real-energy point mass/spread as web Canvas. Silence preserves baseline.

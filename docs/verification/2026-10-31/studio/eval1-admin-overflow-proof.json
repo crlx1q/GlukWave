@@ -1,0 +1,228 @@
+{
+  "attempt": 1,
+  "createdAt": "2026-10-31T17:32:43.032Z",
+  "surface": "Independent own browser; actual final production dist5362 and real isolated backend",
+  "checks": [],
+  "captures": [
+    "docs/verification/2026-10-31/studio/eval1-admin-1440.png",
+    "docs/verification/2026-10-31/studio/eval1-failure.png"
+  ],
+  "passed": false,
+  "error": "AssertionError [ERR_ASSERTION]: admin overflow 768\n    at file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/work/qa/studio31-eval1.mjs:22:76",
+  "failureGeometry": {
+    "width": 768,
+    "scroll": 884,
+    "overflow": [
+      {
+        "tag": "ASIDE",
+        "cls": "admin-console-nav",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 883.90625,
+          "height": 132,
+          "top": 0,
+          "right": 883.90625,
+          "bottom": 132,
+          "left": 0
+        }
+      },
+      {
+        "tag": "A",
+        "cls": "admin-brand",
+        "rect": {
+          "x": 18,
+          "y": 18,
+          "width": 847.90625,
+          "height": 52,
+          "top": 18,
+          "right": 865.90625,
+          "bottom": 70,
+          "left": 18
+        }
+      },
+      {
+        "tag": "SPAN",
+        "cls": "brand",
+        "rect": {
+          "x": 18,
+          "y": 18,
+          "width": 847.90625,
+          "height": 36,
+          "top": 18,
+          "right": 865.90625,
+          "bottom": 54,
+          "left": 18
+        }
+      },
+      {
+        "tag": "NAV",
+        "cls": "",
+        "rect": {
+          "x": 18,
+          "y": 70,
+          "width": 847.90625,
+          "height": 43,
+          "top": 70,
+          "right": 865.90625,
+          "bottom": 113,
+          "left": 18
+        }
+      },
+      {
+        "tag": "BUTTON",
+        "cls": "",
+        "rect": {
+          "x": 748.953125,
+          "y": 72,
+          "width": 116.953125,
+          "height": 36,
+          "top": 72,
+          "right": 865.90625,
+          "bottom": 108,
+          "left": 748.953125
+        }
+      },
+      {
+        "tag": "svg",
+        "cls": {},
+        "rect": {
+          "x": 759.953125,
+          "y": 81,
+          "width": 15,
+          "height": 18,
+          "top": 81,
+          "right": 774.953125,
+          "bottom": 99,
+          "left": 759.953125
+        }
+      },
+      {
+        "tag": "path",
+        "cls": {},
+        "rect": {
+          "x": 761.203125,
+          "y": 83.75,
+          "width": 12.5,
+          "height": 12.5,
+          "top": 83.75,
+          "right": 773.703125,
+          "bottom": 96.25,
+          "left": 761.203125
+        }
+      },
+      {
+        "tag": "SPAN",
+        "cls": "",
+        "rect": {
+          "x": 786.953125,
+          "y": 81.75,
+          "width": 67.953125,
+          "height": 16.5,
+          "top": 81.75,
+          "right": 854.90625,
+          "bottom": 98.25,
+          "left": 786.953125
+        }
+      },
+      {
+        "tag": "MAIN",
+        "cls": "admin-console-main",
+        "rect": {
+          "x": 0,
+          "y": 132,
+          "width": 883.90625,
+          "height": 1220.8125,
+          "top": 132,
+          "right": 883.90625,
+          "bottom": 1352.8125,
+          "left": 0
+        }
+      },
+      {
+        "tag": "HEADER",
+        "cls": "admin-console-header",
+        "rect": {
+          "x": 18,
+          "y": 160,
+          "width": 847.90625,
+          "height": 141.5,
+          "top": 160,
+          "right": 865.90625,
+          "bottom": 301.5,
+          "left": 18
+        }
+      },
+      {
+        "tag": "A",
+        "cls": "subtle-button",
+        "rect": {
+          "x": 774.46875,
+          "y": 160,
+          "width": 91.4375,
+          "height": 33,
+          "top": 160,
+          "right": 865.90625,
+          "bottom": 193,
+          "left": 774.46875
+        }
+      },
+      {
+        "tag": "svg",
+        "cls": {},
+        "rect": {
+          "x": 841.90625,
+          "y": 169,
+          "width": 15,
+          "height": 15,
+          "top": 169,
+          "right": 856.90625,
+          "bottom": 184,
+          "left": 841.90625
+        }
+      },
+      {
+        "tag": "path",
+        "cls": {},
+        "rect": {
+          "x": 846.28125,
+          "y": 173.375,
+          "width": 6.25,
+          "height": 6.25,
+          "top": 173.375,
+          "right": 852.53125,
+          "bottom": 179.625,
+          "left": 846.28125
+        }
+      },
+      {
+        "tag": "path",
+        "cls": {},
+        "rect": {
+          "x": 846.28125,
+          "y": 173.375,
+          "width": 6.25,
+          "height": 6.25,
+          "top": 173.375,
+          "right": 852.53125,
+          "bottom": 179.625,
+          "left": 846.28125
+        }
+      },
+      {
+        "tag": "SECTION",
+        "cls": "view",
+        "rect": {
+          "x": 18,
+          "y": 329.5,
+          "width": 847.90625,
+          "height": 973.3125,
+          "top": 329.5,
+          "right": 865.90625,
+          "bottom": 1302.8125,
+          "left": 18
+        }
+      }
+    ]
+  }
+}

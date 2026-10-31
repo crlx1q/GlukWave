@@ -1,5 +1,4 @@
 import {z} from 'zod';
-import rateLimit from 'express-rate-limit';
 import {asyncRoute,parse,text,id,now,digest,fail} from './util.js';
 import {artistsFromTracks,searchText} from './search.js';
 import {initialState,liveState} from './rooms.js';
@@ -11,7 +10,7 @@ const defaultPrivacy={showActivity:true,profileStats:false,allowFriendRequests:t
 const defaultTaste={artists:[],genres:[],excludedTrackIds:[],excludedArtistNames:[],onboardingCompleted:false,onboardingStep:0,automatic:true,revision:0};
 export function setupCommunity(app,ctx){
  const {store,requireAuth}=ctx,timers=new Map();let closed=false;
- const mutate=rateLimit({windowMs:60000,limit:30,standardHeaders:'draft-8',legacyHeaders:false});
+ const mutate=(req,res,next)=>ctx.abuse.middleware(req.method==='GET'?'search':'social')(req,res,next);
  const own=req=>req.auth.user.id,privacy=async uid=>({...defaultPrivacy,...await store.get('privacy',uid)});
  ctx.areFriends=async(a,b)=>!!await store.get('friendships',friendKey(a,b));
  ctx.profilePrivacy=privacy;

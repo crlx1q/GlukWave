@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'lan_panel.dart';
 import 'motion_icons.dart';
 import 'package:flutter/material.dart';
@@ -15,11 +16,13 @@ String installationId(Json device) =>
 class ConnectPanel extends StatelessWidget {
   final WaveController controller;
   final Future<void> Function() scanQr, discover;
+  final Future<void> Function()? showQr;
   const ConnectPanel({
     super.key,
     required this.controller,
     required this.scanQr,
     required this.discover,
+    this.showQr,
   });
   Future<void> _run(Future<void> Function() action) async {
     try {
@@ -204,9 +207,20 @@ class ConnectPanel extends StatelessWidget {
           runSpacing: 8,
           children: [
             TextButton.icon(
-              onPressed: scanQr,
-              icon: const WaveControlIcon(Icons.qr_code_scanner_rounded),
-              label: Text(wt('native.280e0f673d', context: context)),
+              onPressed: Platform.isAndroid || Platform.isIOS ? scanQr : showQr,
+              icon: WaveControlIcon(
+                Platform.isAndroid || Platform.isIOS
+                    ? Icons.qr_code_scanner_rounded
+                    : Icons.qr_code_rounded,
+              ),
+              label: Text(
+                wt(
+                  Platform.isAndroid || Platform.isIOS
+                      ? 'native.280e0f673d'
+                      : 'native.2b9ecdfc9d',
+                  context: context,
+                ),
+              ),
             ),
             TextButton.icon(
               onPressed: discover,

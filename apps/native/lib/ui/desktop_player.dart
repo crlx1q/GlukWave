@@ -261,6 +261,20 @@ class _DesktopCompactPlayerState extends State<DesktopCompactPlayer> {
                       ],
                     ),
                     const SizedBox(height: 8),
+                    PlaybackProgress(
+                      controller: c,
+                      builder: (_, position, duration) =>
+                          LinearProgressIndicator(
+                            key: const Key('desktop-quick-progress'),
+                            minHeight: 2,
+                            value: duration > 0
+                                ? (position / duration).clamp(0, 1)
+                                : 0,
+                            backgroundColor: v.line,
+                            color: v.accent,
+                          ),
+                    ),
+                    const SizedBox(height: 5),
                     Row(
                       children: [
                         WaveVolumeIcon(

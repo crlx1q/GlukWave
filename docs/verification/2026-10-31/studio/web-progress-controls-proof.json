@@ -1,0 +1,11 @@
+{
+  "createdAt": "2026-10-31T16:47:31.790Z",
+  "surface": "Real web source5363 and actual isolated server5362; synthetic accounts, trusted browser inputs",
+  "checks": [
+    "Collapsed progress freezes immediately on decoder pause",
+    "Explicit decoder waiting freezes progress; no extrapolation during stall",
+    "Seek draft stays under pointer with zero decoder writes while held, commits on release"
+  ],
+  "captures": [],
+  "passed": true
+}

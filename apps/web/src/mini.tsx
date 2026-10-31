@@ -1,3 +1,5 @@
+import {MiniAtmosphere} from './studio-ui';
+import './studio31.css';
 import './browser-compat';
 import {ScrollingLabel} from './scrolling-label';
 import { createRoot } from 'react-dom/client';
@@ -6,17 +8,18 @@ import { LocaleProvider, t, useLocale } from './locale';
 import { time, type PaletteColors, type PlayerState, type Track } from './types';
 import { MotionIcon,PlaybackMotionIcon } from './morph-icon';
 import { ContinuousRange } from './continuous-range';
-import type {ProgressSample} from './progress-clock';
+import {PacketProgressClock,type ProgressSample} from './progress-clock';
 import {ProgressTime} from './progress-paint';
 import { useDocumentVisible } from './visual-lifecycle';
 import './motion-controls.css';
 import './playback-feedback.css';
 
-type MiniState={progress?:ProgressSample;progressScope?:string;trackLoading?:boolean;track?:Track;state:Partial<PlayerState>;duration:number;palette?:PaletteColors;motion?:boolean;speed?:number};
+type MiniState={miniBackground?:'cover'|'pixels'|'plain';progress?:ProgressSample;progressScope?:string;progressRevision?:number;trackLoading?:boolean;track?:Track;state:Partial<PlayerState>;duration:number;palette?:PaletteColors;motion?:boolean;speed?:number};
 function Mini(){
  const locale=useLocale(),visible=useDocumentVisible(),id=new URLSearchParams(location.search).get('device'),channel=useMemo(()=>typeof BroadcastChannel==='function'?new BroadcastChannel('glukwave-mini-'+id):null,[id]),[data,setData]=useState<MiniState>({state:{playing:false},duration:0});
  const current=useRef(data);current.current=data;
- const readProgress=useCallback(()=>current.current.progress||{position:current.current.state.position||0,duration:current.current.duration,playing:false,at:performance.now()},[]);
+ const clock=useRef(new PacketProgressClock());
+ const readProgress=useCallback(()=>{const data=current.current,now=performance.now(),sample=data.progress||{position:data.state.position||0,duration:data.duration,playing:false,at:now};return clock.current.read(sample,`${data.progressScope}:${data.progressRevision}`,now);},[]);
  useEffect(()=>{
   if(!channel)return;
   channel.onmessage=event=>{if(event.data?.type==='state')setData({...event.data,progress:event.data.progress?{...event.data.progress,at:performance.now()}:undefined});};
@@ -32,7 +35,7 @@ function Mini(){
  },[data.palette,data.motion,data.speed]);
  const send=(command:string,position?:number)=>channel?.postMessage({command,position}),iconMotion=visible&&data.motion!==false;
  return <>
-  <header><img className="track-loading-cover" data-loading={data.trackLoading} aria-busy={data.trackLoading} src={data.track?.artwork||'/brand/logo.png'} alt=""/><p><b><ScrollingLabel text={data.track?.title||'GlukWave'} motion={iconMotion}/></b><small><ScrollingLabel text={data.track?.artist||t('mini.empty')} motion={iconMotion}/></small></p></header>
+  <MiniAtmosphere track={data.track} mode={data.miniBackground||'cover'} motion={data.motion!==false&&visible}/><header><img className="track-loading-cover" data-loading={data.trackLoading} aria-busy={data.trackLoading} src={data.track?.artwork||'/brand/logo.png'} alt=""/><p><b><ScrollingLabel text={data.track?.title||'GlukWave'} motion={iconMotion}/></b><small><ScrollingLabel text={data.track?.artist||t('mini.empty')} motion={iconMotion}/></small></p></header>
   <section>
    <button disabled={!data.track} onClick={()=>send('previous')} aria-label={t('copy.627')}><MotionIcon name="previous" size={20} motion={iconMotion} speed={data.speed}/></button>
    <button className={`main-play ${data.trackLoading?'is-loading':''}`} aria-busy={!!data.trackLoading} data-loading={!!data.trackLoading} disabled={!data.track} onClick={()=>send(data.state.playing?'pause':'play')} aria-label={t(data.state.playing?'copy.628':'copy.629')}><PlaybackMotionIcon playing={!!data.state.playing} loading={!!data.trackLoading} size={22} motion={iconMotion} speed={data.speed}/></button>

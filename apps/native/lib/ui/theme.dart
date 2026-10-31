@@ -37,7 +37,9 @@ class WaveVisuals extends ThemeExtension<WaveVisuals> {
         ? a.dark
         : a.light;
     return WaveVisuals(
-      background: hexColor(p.bg),
+      background: customization.theme == 'amoled'
+          ? Colors.black
+          : hexColor(p.bg),
       surface: hexColor(p.surface),
       ink: hexColor(p.ink),
       accent: readableCoverAccent(
@@ -51,7 +53,7 @@ class WaveVisuals extends ThemeExtension<WaveVisuals> {
       speed: a.speed,
       compact: a.compact,
       blur: a.blur,
-      reducedMotion: customization.reducedMotion,
+      reducedMotion: customization.reducedMotion || customization.powerSaving,
       waveStyle: a.waveStyle,
     );
   }
@@ -162,10 +164,20 @@ ThemeData buildWaveTheme(
           surfaceContainerHighest: v.accentSoft,
           outline: v.line,
         ),
-    textTheme: TextTheme(
-      bodyMedium: TextStyle(color: v.ink, fontSize: 14),
-      bodySmall: TextStyle(color: v.muted, fontSize: 12),
-    ),
+    textTheme: ThemeData(brightness: brightness).textTheme
+        .apply(
+          fontFamily: customization.fontFamily == 'system'
+              ? null
+              : customization.fontFamily == 'nunito'
+              ? 'Nunito'
+              : 'Manrope',
+          bodyColor: v.ink,
+          displayColor: v.ink,
+        )
+        .copyWith(
+          bodyMedium: TextStyle(color: v.ink, fontSize: 14),
+          bodySmall: TextStyle(color: v.muted, fontSize: 12),
+        ),
     dividerColor: v.line,
     appBarTheme: AppBarTheme(
       backgroundColor: v.background,

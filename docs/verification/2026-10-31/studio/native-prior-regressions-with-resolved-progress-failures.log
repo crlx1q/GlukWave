@@ -1,0 +1,94 @@
+00:00 +0: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/studio31_test.dart
+00:00 +0: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/studio31_test.dart: (setUpAll)
+00:01 +0: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/studio31_test.dart: Studio portable settings preserve sparse wallpaper siblings and bound saved themes
+00:02 +1: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/studio31_test.dart: Media toggle resolves single double triple once and cancels scope/dispose
+00:09 +2: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/studio31_test.dart: Previous first restarts even at1second, repeated press and explicit hop bypass restart
+00:16 +3: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/studio31_test.dart: Windows media registration is scoped and unregistered without counting explicit commands
+00:16 +4: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/studio31_test.dart: Studio eight palettes fit320, manual power and saved themes persist
+00:29 +5: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/studio31_test.dart: About heart reads Russian and has no repeated animation in power saving
+00:31 +6: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/studio31_test.dart: Profile crop pans zooms and confirms square or3to1 image output
+00:48 +7: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/studio31_test.dart: Real bottom docks retain artwork atmosphere and power saving removes effects
+00:53 +8: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/studio31_test.dart: (tearDownAll)
+00:53 +8: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/studio31_progress_test.dart
+01:04 +8: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/studio31_progress_test.dart: (setUpAll)
+01:07 +8: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/studio31_progress_test.dart: Coarse source samples interpolate fractional rate, cap stale stalls, pause and seek immediately
+01:07 +9: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/studio31_progress_test.dart: Mobile collapsed, desktop dock, compact and quick windows share fractional progress between coarse notifications
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: a value greater than <10010.0>
+  Actual: <10000.0>
+   Which: is not a value greater than <10010.0>
+MiniPlayer must advance without a decoder notification
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/studio31_progress_test.dart:173:11)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1059:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/studio31_progress_test.dart line 173
+The test description was:
+  Mobile collapsed, desktop dock, compact and quick windows share fractional progress between coarse
+  notifications
+════════════════════════════════════════════════════════════════════════════════════════════════════
+01:40 +9 -1: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/studio31_progress_test.dart: Mobile collapsed, desktop dock, compact and quick windows share fractional progress between coarse notifications [E]
+  Test failed. See exception logs above.
+  The test description was: Mobile collapsed, desktop dock, compact and quick windows share fractional progress between coarse notifications
+  
+01:40 +9 -1: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/studio31_progress_test.dart: Full player on phone and desktop uses same clock and preserves a held seek draft
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: a value greater than <10760.0>
+  Actual: <10750.0>
+   Which: is not a value greater than <10760.0>
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/studio31_progress_test.dart:231:11)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1059:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/studio31_progress_test.dart line 231
+The test description was:
+  Full player on phone and desktop uses same clock and preserves a held seek draft
+════════════════════════════════════════════════════════════════════════════════════════════════════
+01:49 +9 -2: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/studio31_progress_test.dart: Full player on phone and desktop uses same clock and preserves a held seek draft [E]
+  Test failed. See exception logs above.
+  The test description was: Full player on phone and desktop uses same clock and preserves a held seek draft
+  
+01:49 +9 -2: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/studio31_progress_test.dart: (tearDownAll)
+01:49 +9 -2: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity25_progress_test.dart
+02:01 +9 -2: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity25_progress_test.dart: (setUpAll)
+02:01 +9 -2: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity25_progress_test.dart: physical progress is fractional, speed aware, bounded and reanchors
+02:01 +10 -2: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity25_progress_test.dart: frame painting preserves a live draft and commits one seek on release
+02:28 +11 -2: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity25_progress_test.dart: pending new selection cannot display the prior decoder time or duration
+02:50 +12 -2: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity25_progress_test.dart: paused/hidden frames stop and presentation is independent of timeDilation
+02:51 +13 -2: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/parity25_progress_test.dart: (tearDownAll)
+02:52 +13 -2: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/volume27_test.dart
+02:58 +13 -2: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/volume27_test.dart: (setUpAll)
+02:59 +13 -2: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/volume27_test.dart: automatic Kazakh resolves Russian; explicitly selected Kazakh is retained
+02:59 +14 -2: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/volume27_test.dart: volume wheel moves five percent while keyboard retains two percent, drafts commit once after quiet time
+03:05 +15 -2: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/volume27_test.dart: volume wheel uses directional five-percent grid and clamps edges
+03:05 +16 -2: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/volume27_test.dart: volume hint waits one second, follows drafts and leaves no late popup
+03:05 +17 -2: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/volume27_test.dart: volume hint anchors actual track at endpoints in both themes at125%
+03:06 +18 -2: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/volume27_test.dart: (tearDownAll)
+03:07 +18 -2: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/appearance_test.dart
+03:09 +18 -2: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/appearance_test.dart: Hex accepts short input and invalid colors never replace a working palette
+03:10 +19 -2: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/appearance_test.dart: Palette edits and reset preserve the opposite theme
+03:10 +20 -2: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/appearance_test.dart: Guest changes survive restart and do not cross account scopes
+03:10 +21 -2: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/appearance_test.dart: Offline PATCH retries from disk and preserves a remote edit of the other palette
+03:10 +22 -2: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/appearance_test.dart: An old account response cannot change guest appearance after logout
+03:10 +23 -2: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/appearance_test.dart: Newer socket settings survive an older PATCH while sparse local edits stay visible
+03:10 +24 -2: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/appearance_test.dart: In-flight sparse edits overlay remote events and survive a failed transport restart
+03:10 +25 -2: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/appearance_test.dart: Old session and origin cannot reconcile or block a new account request
+03:10 +26 -2: Some tests failed.

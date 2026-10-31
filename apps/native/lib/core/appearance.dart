@@ -6,7 +6,13 @@ bool requiresAdvancedAppearance(Json changes) {
   if (changes.containsKey('fontFamily')) return true;
   final appearance = object(changes['appearance']);
   for (final entry in appearance.entries) {
-    if (!['light', 'dark', 'amoled', 'coverAccent'].contains(entry.key)) {
+    if (![
+      'light',
+      'dark',
+      'amoled',
+      'coverAccent',
+      'miniBackground',
+    ].contains(entry.key)) {
       return true;
     }
     if (object(entry.value).keys.any((key) => key != 'accent')) return true;
@@ -66,8 +72,17 @@ Json presentationPatch(Json changes, WaveCustomization normalized) {
     'playbackRate',
     'fontFamily',
     'fontScale',
+    'powerSaving',
+    'savedThemes',
   ]) {
     if (changes.containsKey(key)) result[key] = settings[key];
+  }
+  if (changes['wallpaper'] is Map) {
+    final changed = object(changes['wallpaper']);
+    result['wallpaper'] = {
+      for (final key in ['url', 'dim', 'blur'])
+        if (changed.containsKey(key)) key: object(settings['wallpaper'])[key],
+    };
   }
   if (changes['seasonalEffects'] is Map) {
     final changed = object(changes['seasonalEffects']);
@@ -97,6 +112,7 @@ Json presentationPatch(Json changes, WaveCustomization normalized) {
         'cover3d',
         'coverAccent',
         'coverKind',
+        'miniBackground',
       ])
         if (changed.containsKey(key)) key: appearance[key],
       for (final mode in ['light', 'dark', 'amoled'])
@@ -141,7 +157,7 @@ class WaveAppearance {
   final WavePalette light, dark, amoled;
   final double radius, speed;
   final bool compact, blur, cover3d, coverAccent;
-  final String waveStyle, coverKind;
+  final String waveStyle, coverKind, miniBackground;
   const WaveAppearance({
     this.light = WavePalette.light,
     this.dark = WavePalette.dark,
@@ -154,6 +170,7 @@ class WaveAppearance {
     this.cover3d = true,
     this.coverAccent = true,
     this.coverKind = 'vinyl',
+    this.miniBackground = 'cover',
   });
   Json toJson() => {
     'light': light.toJson(),
@@ -167,6 +184,7 @@ class WaveAppearance {
     'cover3d': cover3d,
     'coverAccent': coverAccent,
     'coverKind': coverKind,
+    'miniBackground': miniBackground,
   };
   WaveAppearance merge(Json values) => WaveAppearance(
     light: light.merge(object(values['light'])),
@@ -183,6 +201,10 @@ class WaveAppearance {
         ? values['coverAccent'] as bool
         : coverAccent,
     cover3d: values['cover3d'] is bool ? values['cover3d'] as bool : cover3d,
+    miniBackground:
+        ['cover', 'pixels', 'plain'].contains(values['miniBackground'])
+        ? values['miniBackground'] as String
+        : miniBackground,
     coverKind: ['vinyl', 'cd'].contains(values['coverKind'])
         ? values['coverKind'] as String
         : coverKind,
@@ -225,7 +247,9 @@ class WaveCustomization {
   final String language;
   final WaveAppearance appearance;
   final WaveSeasonalEffects seasonalEffects;
-  final bool reducedMotion;
+  final bool reducedMotion, powerSaving;
+  final Json wallpaper;
+  final List<Json> savedThemes;
   final WaveEqualizer equalizer;
   final double playbackRate;
   final String fontFamily;
@@ -236,6 +260,9 @@ class WaveCustomization {
     this.appearance = const WaveAppearance(),
     this.seasonalEffects = const WaveSeasonalEffects(),
     this.reducedMotion = false,
+    this.powerSaving = false,
+    this.wallpaper = const {'url': '', 'dim': .35, 'blur': 8},
+    this.savedThemes = const [],
     this.equalizer = const WaveEqualizer(),
     this.playbackRate = 1,
     this.fontFamily = 'manrope',
@@ -244,6 +271,15 @@ class WaveCustomization {
   factory WaveCustomization.fromSettings(Json settings) =>
       const WaveCustomization().merge(settings);
   WaveCustomization merge(Json settings) => WaveCustomization(
+    powerSaving: settings['powerSaving'] is bool
+        ? settings['powerSaving'] as bool
+        : powerSaving,
+    wallpaper: settings.containsKey('wallpaper')
+        ? normalizeWallpaper({...wallpaper, ...object(settings['wallpaper'])})
+        : wallpaper,
+    savedThemes: settings.containsKey('savedThemes')
+        ? normalizeSavedThemes(settings['savedThemes'])
+        : savedThemes,
     seasonalEffects: seasonalEffects.merge(object(settings['seasonalEffects'])),
     fontFamily: ['manrope', 'nunito', 'system'].contains(settings['fontFamily'])
         ? settings['fontFamily'] as String
@@ -284,6 +320,9 @@ class WaveCustomization {
     'appearance': appearance.toJson(),
     'seasonalEffects': seasonalEffects.toJson(),
     'reducedMotion': reducedMotion,
+    'powerSaving': powerSaving,
+    'wallpaper': wallpaper,
+    'savedThemes': savedThemes,
     'equalizer': equalizer.toJson(),
     'playbackRate': playbackRate,
     'fontFamily': fontFamily,
@@ -309,3 +348,96 @@ class WaveCustomization {
     'reducedMotion': false,
   };
 }
+
+Json normalizeWallpaper(Json value) {
+  final url = value['url']?.toString() ?? '';
+  return {
+    'url': RegExp(r'^/api/profile-assets/[A-Za-z0-9_-]+$').hasMatch(url)
+        ? url
+        : '',
+    'dim': number(value['dim'], .35).clamp(0, .9),
+    'blur': number(value['blur'], 8).clamp(0, 24),
+  };
+}
+
+List<Json> normalizeSavedThemes(dynamic input) {
+  if (input is! List) return [];
+  final ids = <String>{}, result = <Json>[];
+  for (final raw in input.take(12)) {
+    final value = object(raw),
+        id = value['id']?.toString() ?? '',
+        name = value['name']?.toString().trim() ?? '',
+        mode = value['mode'];
+    if (!RegExp(r'^[A-Za-z0-9_-]{1,80}$').hasMatch(id) ||
+        name.isEmpty ||
+        name.length > 40 ||
+        !['light', 'dark'].contains(mode) ||
+        !ids.add(id)) {
+      continue;
+    }
+    final colors = object(value['colors']);
+    if (!['bg', 'surface', 'ink', 'accent'].every(
+      (key) =>
+          RegExp(r'^#[0-9a-fA-F]{6}$').hasMatch(colors[key]?.toString() ?? ''),
+    )) {
+      continue;
+    }
+    result.add({
+      'id': id,
+      'name': name,
+      'mode': mode,
+      'colors': {
+        for (final key in ['bg', 'surface', 'ink', 'accent'])
+          key: colors[key].toString().toLowerCase(),
+      },
+    });
+  }
+  return result;
+}
+
+const studioPalettes =
+    <({String id, String name, String mode, WavePalette colors})>[
+      (id: 'paper', name: 'Paper', mode: 'light', colors: WavePalette.light),
+      (
+        id: 'midnight',
+        name: 'Midnight',
+        mode: 'dark',
+        colors: WavePalette('#202423', '#2c312f', '#edece2', '#a4b59c'),
+      ),
+      (
+        id: 'sage',
+        name: 'Sage',
+        mode: 'light',
+        colors: WavePalette('#e5e9dd', '#f2f4eb', '#323f35', '#7d9574'),
+      ),
+      (
+        id: 'lilac',
+        name: 'Lilac',
+        mode: 'light',
+        colors: WavePalette('#eae5ed', '#f6f1f8', '#44394b', '#aa89b7'),
+      ),
+      (
+        id: 'sand',
+        name: 'Sand',
+        mode: 'light',
+        colors: WavePalette('#eee4d7', '#faf3e9', '#46392f', '#bd845d'),
+      ),
+      (
+        id: 'ocean',
+        name: 'Ocean',
+        mode: 'dark',
+        colors: WavePalette('#101e29', '#1b2d3a', '#e2edf3', '#7eb4ca'),
+      ),
+      (
+        id: 'rose',
+        name: 'Rose',
+        mode: 'light',
+        colors: WavePalette('#eee1e3', '#fbf1f2', '#4c333b', '#b97c90'),
+      ),
+      (
+        id: 'forest',
+        name: 'Forest',
+        mode: 'dark',
+        colors: WavePalette('#121f1a', '#20322a', '#e3ede5', '#8cbaa0'),
+      ),
+    ];

@@ -1,3 +1,4 @@
+import 'studio31.dart';
 import 'volume_panel.dart';
 import 'playback_progress.dart';
 import 'dart:math' as math;
@@ -58,7 +59,7 @@ class SourceAttribution extends StatelessWidget {
     }
     final artist = credit['artist']?.toString() ?? track.artist;
     final label =
-        '$artist · ${credit['source'] == 'soundcloud' ? 'SoundCloud' : credit['source']}';
+        '$artist В· ${credit['source'] == 'soundcloud' ? 'SoundCloud' : credit['source']}';
     return Align(
       alignment: Alignment.centerLeft,
       child: InkWell(
@@ -73,7 +74,7 @@ class SourceAttribution extends StatelessWidget {
                       child: ScrollingLabel(
                         artist == track.artist
                             ? artist
-                            : '${track.artist} · $artist',
+                            : '${track.artist} В· $artist',
                         style: TextStyle(
                           color: waveVisuals(context).muted,
                           fontSize: 10,
@@ -156,17 +157,13 @@ class MiniPlayer extends StatelessWidget {
       ),
       child: Material(
         color: v.player,
-        child: StreamBuilder<Duration>(
-          stream: c.audio.positionStream,
-          builder: (context, snapshot) {
-            final total =
-                c.audio.duration?.inMilliseconds.toDouble() ??
-                (track?.duration ?? 0) * 1000;
-            final value = total > 0
-                ? ((snapshot.data?.inMilliseconds ?? 0) / total).clamp(0.0, 1.0)
-                : 0.0;
+        child: PlaybackProgress(
+          controller: c,
+          builder: (context, position, total) {
+            final value = total > 0 ? (position / total).clamp(0.0, 1.0) : 0.0;
             return Stack(
               children: [
+                Positioned.fill(child: MiniAtmosphere(controller: c)),
                 if (compact)
                   Positioned.fill(
                     child: IgnorePointer(
@@ -830,7 +827,7 @@ class _PlayerPageState extends State<PlayerPage> {
                                           context,
                                           'wave18.mood.${c.waveMood}',
                                         ),
-                                    ].join(' · ')
+                                    ].join(' В· ')
                                   : focusedPlayerText(
                                       'nowPlaying',
                                       context: context,
@@ -1988,7 +1985,7 @@ class _PlayerPageState extends State<PlayerPage> {
                       top: 4,
                       child: Tooltip(
                         message:
-                            '${entry['displayName']} · ${clock(number(entry['position']))}',
+                            '${entry['displayName']} В· ${clock(number(entry['position']))}',
                         child: GestureDetector(
                           onTap: () {
                             if (c.canSeek &&

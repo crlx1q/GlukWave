@@ -1,0 +1,12 @@
+{
+  "attempt":2,
+  "verdict":"NEEDS REVISION",
+  "direction":"REFINE",
+  "verifiedWebIndexSha256":"acd2fd726df9710a65a894c0f0beeae995576eb9775abdca7745a79688f38c8d",
+  "resolved":["S1 admin fits1440/768/375 including protected People section","S2 avatar stage360x360, canvas358x358, Cancel0 uploads","S3 ordinary directory trace8.2s:210 values, minDelta0, maxDelta0.0947,4 polls","S4 stable DOM and Y1100 in final trace; two actively playing outputs to be rechecked after final fix"],
+  "remaining":[{"id":"S5","priority":"must-fix","summary":"Explicit local0.1s paused seek rebounds to stale state between280ms and1502ms after one successful command; hold optimistic intent until canonical packet confirmation or bounded fallback"}],
+  "accepted":["Actual pause freezes rendered range","First previous eventually reaches0","True hidden tab2.6s calls8to8","Catalog unmount2.5s calls8to8"],
+  "evidence":["eval2-core-browser-proof.json","eval2-follow-browser-proof.json","eval2-progress-browser-proof.json"],
+  "limits":"Same provider independent evaluator. No physical device/hardware/TV/installer/deployment claim. Final directory trace followed reload, so local decoder was stopped; recheck two active outputs in final round. Initial old-to-fresh snapshot reanchor retained but not used as continuity proof.",
+  "handoff":"Evaluator remote helper stopped, fixture reset to admin with savingfalse and wallpaperoff, browser closed; server retained. Exclusive5362 released."
+}

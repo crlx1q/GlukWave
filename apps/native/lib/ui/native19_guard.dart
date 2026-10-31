@@ -43,6 +43,9 @@ class _WaveGuardPageState extends State<WaveGuardPage>
     super.initState();
     WidgetsBinding.instance.addObserver(this);
     c.addListener(accountChanged);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted && phone) unawaited(start());
+    });
   }
 
   void accountChanged() {

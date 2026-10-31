@@ -1,0 +1,194 @@
+{
+  "createdAt": 1793462885.8742564,
+  "passed": true,
+  "scope": "17 exact locked official archives SHA checked before extraction by studio31-cache-repair.py. Initial pass restored libraries; second pass also accepted verified asset/platform-only packages. No upgrade or global deletion.",
+  "packages": [
+    {
+      "name": "audio_service_win",
+      "version": "0.0.3",
+      "lockedArchiveSha256": "677e25f447d3d49f537ea6f4fd36e9511acdc0badc6534c9cb92a205566ba12a",
+      "officialArchiveUrl": "https://pub.dev/api/archives/audio_service_win-0.0.3.tar.gz",
+      "archiveShaVerified": true,
+      "restoredPath": "C:\\Users\\alish\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\audio_service_win-0.0.3",
+      "pubspecPresent": true,
+      "libraryPresent": true,
+      "assetOnlyAllowed": false
+    },
+    {
+      "name": "cupertino_icons",
+      "version": "1.0.9",
+      "lockedArchiveSha256": "41e005c33bd814be4d3096aff55b1908d419fde52ca656c8c47719ec745873cd",
+      "officialArchiveUrl": "https://pub.dev/api/archives/cupertino_icons-1.0.9.tar.gz",
+      "archiveShaVerified": true,
+      "restoredPath": "C:\\Users\\alish\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\cupertino_icons-1.0.9",
+      "pubspecPresent": true,
+      "libraryPresent": false,
+      "assetOnlyAllowed": true
+    },
+    {
+      "name": "file_picker",
+      "version": "11.0.3",
+      "lockedArchiveSha256": "29cc1fdb20613876cc7afc529738c1c0f11a9ca159b010edad0c566ac330847e",
+      "officialArchiveUrl": "https://pub.dev/api/archives/file_picker-11.0.3.tar.gz",
+      "archiveShaVerified": true,
+      "restoredPath": "C:\\Users\\alish\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\file_picker-11.0.3",
+      "pubspecPresent": true,
+      "libraryPresent": true,
+      "assetOnlyAllowed": false
+    },
+    {
+      "name": "firebase_core",
+      "version": "4.15.0",
+      "lockedArchiveSha256": "5fbbaa2aeb08a52feee559f92a62f5a6b04c9bdff81c8f608636771cf0d7b680",
+      "officialArchiveUrl": "https://pub.dev/api/archives/firebase_core-4.15.0.tar.gz",
+      "archiveShaVerified": true,
+      "restoredPath": "C:\\Users\\alish\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\firebase_core-4.15.0",
+      "pubspecPresent": true,
+      "libraryPresent": true,
+      "assetOnlyAllowed": false
+    },
+    {
+      "name": "flutter_plugin_android_lifecycle",
+      "version": "2.0.34",
+      "lockedArchiveSha256": "38d1c268de9097ff59cf0e844ac38759fc78f76836d37edad06fa21e182055a0",
+      "officialArchiveUrl": "https://pub.dev/api/archives/flutter_plugin_android_lifecycle-2.0.34.tar.gz",
+      "archiveShaVerified": true,
+      "restoredPath": "C:\\Users\\alish\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\flutter_plugin_android_lifecycle-2.0.34",
+      "pubspecPresent": true,
+      "libraryPresent": false,
+      "assetOnlyAllowed": true
+    },
+    {
+      "name": "flutter_secure_storage_darwin",
+      "version": "0.3.2",
+      "lockedArchiveSha256": "82329fa5cdf343773b1b6897dea959105a29f092454259edff92f9f6637e8149",
+      "officialArchiveUrl": "https://pub.dev/api/archives/flutter_secure_storage_darwin-0.3.2.tar.gz",
+      "archiveShaVerified": true,
+      "restoredPath": "C:\\Users\\alish\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\flutter_secure_storage_darwin-0.3.2",
+      "pubspecPresent": true,
+      "libraryPresent": false,
+      "assetOnlyAllowed": true
+    },
+    {
+      "name": "flutter_secure_storage_linux",
+      "version": "3.0.3",
+      "lockedArchiveSha256": "caa75bd78f017422912e3a904933113b2428eb79f981ac37acd2dd2a700458ea",
+      "officialArchiveUrl": "https://pub.dev/api/archives/flutter_secure_storage_linux-3.0.3.tar.gz",
+      "archiveShaVerified": true,
+      "restoredPath": "C:\\Users\\alish\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\flutter_secure_storage_linux-3.0.3",
+      "pubspecPresent": true,
+      "libraryPresent": false,
+      "assetOnlyAllowed": true
+    },
+    {
+      "name": "flutter_secure_storage_windows",
+      "version": "4.1.0",
+      "lockedArchiveSha256": "3b7c8e068875dfd46719ff57c90d8c459c87f2302ed6b00ff006b3c9fcad1613",
+      "officialArchiveUrl": "https://pub.dev/api/archives/flutter_secure_storage_windows-4.1.0.tar.gz",
+      "archiveShaVerified": true,
+      "restoredPath": "C:\\Users\\alish\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\flutter_secure_storage_windows-4.1.0",
+      "pubspecPresent": true,
+      "libraryPresent": true,
+      "assetOnlyAllowed": false
+    },
+    {
+      "name": "media_kit_libs_windows_video",
+      "version": "1.0.11",
+      "lockedArchiveSha256": "dff76da2778729ab650229e6b4ec6ec111eb5151431002cbd7ea304ff1f112ab",
+      "officialArchiveUrl": "https://pub.dev/api/archives/media_kit_libs_windows_video-1.0.11.tar.gz",
+      "archiveShaVerified": true,
+      "restoredPath": "C:\\Users\\alish\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\media_kit_libs_windows_video-1.0.11",
+      "pubspecPresent": true,
+      "libraryPresent": false,
+      "assetOnlyAllowed": true
+    },
+    {
+      "name": "path_provider_windows",
+      "version": "2.3.0",
+      "lockedArchiveSha256": "bd6f00dbd873bfb70d0761682da2b3a2c2fccc2b9e84c495821639601d81afe7",
+      "officialArchiveUrl": "https://pub.dev/api/archives/path_provider_windows-2.3.0.tar.gz",
+      "archiveShaVerified": true,
+      "restoredPath": "C:\\Users\\alish\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\path_provider_windows-2.3.0",
+      "pubspecPresent": true,
+      "libraryPresent": true,
+      "assetOnlyAllowed": false
+    },
+    {
+      "name": "screen_retriever_linux",
+      "version": "0.2.2",
+      "lockedArchiveSha256": "7b52006a5ceae1f3d5af7f77188c3290d6e7d8ded16d99809bea84967c65c257",
+      "officialArchiveUrl": "https://pub.dev/api/archives/screen_retriever_linux-0.2.2.tar.gz",
+      "archiveShaVerified": true,
+      "restoredPath": "C:\\Users\\alish\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\screen_retriever_linux-0.2.2",
+      "pubspecPresent": true,
+      "libraryPresent": false,
+      "assetOnlyAllowed": true
+    },
+    {
+      "name": "screen_retriever_macos",
+      "version": "0.2.2",
+      "lockedArchiveSha256": "a1489b99cce597c45a54b9aae1cd94c8d4705353b7e0bb2457a6e4de44e0ad8a",
+      "officialArchiveUrl": "https://pub.dev/api/archives/screen_retriever_macos-0.2.2.tar.gz",
+      "archiveShaVerified": true,
+      "restoredPath": "C:\\Users\\alish\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\screen_retriever_macos-0.2.2",
+      "pubspecPresent": true,
+      "libraryPresent": false,
+      "assetOnlyAllowed": true
+    },
+    {
+      "name": "screen_retriever_windows",
+      "version": "0.2.2",
+      "lockedArchiveSha256": "dafc6922b0bfbf1d48cf3ccbf519b4fff47bdcb820da1728ea6db675fecc9324",
+      "officialArchiveUrl": "https://pub.dev/api/archives/screen_retriever_windows-0.2.2.tar.gz",
+      "archiveShaVerified": true,
+      "restoredPath": "C:\\Users\\alish\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\screen_retriever_windows-0.2.2",
+      "pubspecPresent": true,
+      "libraryPresent": false,
+      "assetOnlyAllowed": true
+    },
+    {
+      "name": "shared_preferences_windows",
+      "version": "2.4.1",
+      "lockedArchiveSha256": "94ef0f72b2d71bc3e700e025db3710911bd51a71cefb65cc609dd0d9a982e3c1",
+      "officialArchiveUrl": "https://pub.dev/api/archives/shared_preferences_windows-2.4.1.tar.gz",
+      "archiveShaVerified": true,
+      "restoredPath": "C:\\Users\\alish\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\shared_preferences_windows-2.4.1",
+      "pubspecPresent": true,
+      "libraryPresent": true,
+      "assetOnlyAllowed": false
+    },
+    {
+      "name": "tray_manager",
+      "version": "0.5.3",
+      "lockedArchiveSha256": "1a659b08baa6e9b91ef8ce16eda37740de398be1c4cf322b8a1ddfef25c68c5a",
+      "officialArchiveUrl": "https://pub.dev/api/archives/tray_manager-0.5.3.tar.gz",
+      "archiveShaVerified": true,
+      "restoredPath": "C:\\Users\\alish\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\tray_manager-0.5.3",
+      "pubspecPresent": true,
+      "libraryPresent": true,
+      "assetOnlyAllowed": false
+    },
+    {
+      "name": "url_launcher_windows",
+      "version": "3.1.5",
+      "lockedArchiveSha256": "712c70ab1b99744ff066053cbe3e80c73332b38d46e5e945c98689b2e66fc15f",
+      "officialArchiveUrl": "https://pub.dev/api/archives/url_launcher_windows-3.1.5.tar.gz",
+      "archiveShaVerified": true,
+      "restoredPath": "C:\\Users\\alish\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\url_launcher_windows-3.1.5",
+      "pubspecPresent": true,
+      "libraryPresent": true,
+      "assetOnlyAllowed": false
+    },
+    {
+      "name": "window_manager",
+      "version": "0.5.2",
+      "lockedArchiveSha256": "05c231fd7b23d2380f14c5cc10b7b93d60d4fa4a2fb4e0f032de27e44b5560e9",
+      "officialArchiveUrl": "https://pub.dev/api/archives/window_manager-0.5.2.tar.gz",
+      "archiveShaVerified": true,
+      "restoredPath": "C:\\Users\\alish\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\window_manager-0.5.2",
+      "pubspecPresent": true,
+      "libraryPresent": true,
+      "assetOnlyAllowed": false
+    }
+  ]
+}

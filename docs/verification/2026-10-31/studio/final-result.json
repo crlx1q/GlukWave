@@ -1,0 +1,49 @@
+{
+  "completedOn": "2026-11-01",
+  "timezone": "Asia/Qyzylorda",
+  "scope": "Ten Studio31 requests plus smooth playback progress throughout existing web and Flutter player surfaces",
+  "independentEvaluation": {
+    "attempt": 3,
+    "verdict": "PASS",
+    "report": "eval3-verdict.json",
+    "previousReportsPreserved": true
+  },
+  "server": {
+    "testsPassed": 148,
+    "scope": "Full server suite, bounded concurrency2",
+    "sourceHashCount": 12,
+    "sourceHashMismatches": 0,
+    "proof": "server-proof.json"
+  },
+  "web": {
+    "testsPassed": 123,
+    "typecheckPassed": true,
+    "productionBuildPassed": true,
+    "es5ChunksVerified": 5,
+    "sourceHashCount": 25,
+    "sourceHashMismatches": 0,
+    "indexSha256": "fe1e829d68d80276003a56cf095dfd53127fba296481c557902b1405680bf96c",
+    "mainSha256": "02c599417be3fdecc1dc59dfe01f452eff4f75310a38cdddc8a81ba21078694b",
+    "proof": "web-attempt3-manifest.json"
+  },
+  "native": {
+    "uniqueTargetedTestsPassed": 31,
+    "scope": "Current5 progress, unchanged9 Studio and prior17 existing regressions; repeated runs not added",
+    "analyzerPassed": true,
+    "windowsRunnerCompileOnlyPassed": true,
+    "sourceHashCount": 20,
+    "sourceHashMismatches": 0,
+    "proof": "native-proof.json"
+  },
+  "cleanup": {
+    "ownBrowsersClosed": true,
+    "remoteOutputHelperStopped": true,
+    "testServer5362Stopped": true
+  },
+  "limits": [
+    "Local source/build verification; no hosting change, release version, APK or installer",
+    "Physical phone camera, hardware media button, background delivery and Samsung Tizen not tested",
+    "Very small seeks from another controller lack directory protocol identity and may be smoothed; this card's explicit seeks pass",
+    "Earlier requests outside this ten-item block and progress addition are not implicitly marked complete"
+  ]
+}

@@ -1,3 +1,4 @@
+import {normalizeWallpaper,normalizeSavedThemes} from './studio-model';
 import {normalizeHomeLayout} from './home-layout';
 import {normalizeHomePins} from './home-pins';
 import { t, getLanguageChoice, isLanguageChoice } from './locale';
@@ -12,16 +13,16 @@ function palette(value:unknown,fallback:PaletteColors):PaletteColors{const sourc
 
 export function normalizeSettings(value:unknown):Settings {
   const source=object(value),appearance=object(source.appearance),equalizer=object(source.equalizer);
-  return {homeLayout:normalizeHomeLayout(source.homeLayout),homePins:normalizeHomePins(source.homePins),seasonalEffects:normalizeSeasonalEffects(source.seasonalEffects),comments:source.comments!==false,lyricsUnderCover:source.lyricsUnderCover!==false,fontFamily:source.fontFamily==='nunito'||source.fontFamily==='system'?source.fontFamily:'manrope',fontScale:number(source.fontScale,1,.85,1.25),language:isLanguageChoice(source.language)?source.language:getLanguageChoice(),autoCache:typeof source.autoCache==='boolean'?source.autoCache:defaultSettings.autoCache,cacheLimitMB:number(source.cacheLimitMB,1024,64,16384),lyrics:typeof source.lyrics==='boolean'?source.lyrics:true,discordPresence:typeof source.discordPresence==='boolean'?source.discordPresence:true,notifications:source.notifications===true,theme:source.theme==='dark'||source.theme==='amoled'||source.theme==='system'?source.theme:'light',reducedMotion:source.reducedMotion===true,equalizer:{enabled:equalizer.enabled===true,preamp:number(equalizer.preamp,0,-12,12),bands:Array.from({length:10},(_,index)=>number(Array.isArray(equalizer.bands)?equalizer.bands[index]:undefined,0,-12,12))},playbackRate:number(source.playbackRate,1,.5,2),appearance:{light:palette(appearance.light,defaultAppearance.light),dark:palette(appearance.dark,defaultAppearance.dark),amoled:palette(appearance.amoled,defaultAppearance.amoled),radius:number(appearance.radius,24,8,38),speed:number(appearance.speed,1,.3,2),compact:appearance.compact===true,blur:appearance.blur!==false,waveStyle:appearance.waveStyle==='bloom'?'bloom':appearance.waveStyle==='particles'?'particles':'silk',cover3d:appearance.cover3d!==false,coverAccent:appearance.coverAccent!==false,coverKind:appearance.coverKind==='cd'?'cd':'vinyl'}};
+  return {powerSaving:source.powerSaving===true,wallpaper:normalizeWallpaper(source.wallpaper),savedThemes:normalizeSavedThemes(source.savedThemes),homeLayout:normalizeHomeLayout(source.homeLayout),homePins:normalizeHomePins(source.homePins),seasonalEffects:normalizeSeasonalEffects(source.seasonalEffects),comments:source.comments!==false,lyricsUnderCover:source.lyricsUnderCover!==false,fontFamily:source.fontFamily==='nunito'||source.fontFamily==='system'?source.fontFamily:'manrope',fontScale:number(source.fontScale,1,.85,1.25),language:isLanguageChoice(source.language)?source.language:getLanguageChoice(),autoCache:typeof source.autoCache==='boolean'?source.autoCache:defaultSettings.autoCache,cacheLimitMB:number(source.cacheLimitMB,1024,64,16384),lyrics:typeof source.lyrics==='boolean'?source.lyrics:true,discordPresence:typeof source.discordPresence==='boolean'?source.discordPresence:true,notifications:source.notifications===true,theme:source.theme==='dark'||source.theme==='amoled'||source.theme==='system'?source.theme:'light',reducedMotion:source.reducedMotion===true,equalizer:{enabled:equalizer.enabled===true,preamp:number(equalizer.preamp,0,-12,12),bands:Array.from({length:10},(_,index)=>number(Array.isArray(equalizer.bands)?equalizer.bands[index]:undefined,0,-12,12))},playbackRate:number(source.playbackRate,1,.5,2),appearance:{miniBackground:appearance.miniBackground==='pixels'?'pixels':appearance.miniBackground==='plain'?'plain':'cover',light:palette(appearance.light,defaultAppearance.light),dark:palette(appearance.dark,defaultAppearance.dark),amoled:palette(appearance.amoled,defaultAppearance.amoled),radius:number(appearance.radius,24,8,38),speed:number(appearance.speed,1,.3,2),compact:appearance.compact===true,blur:appearance.blur!==false,waveStyle:appearance.waveStyle==='bloom'?'bloom':appearance.waveStyle==='particles'?'particles':'silk',cover3d:appearance.cover3d!==false,coverAccent:appearance.coverAccent!==false,coverKind:appearance.coverKind==='cd'?'cd':'vinyl'}};
 }
 
 export function mergeSettings(current:Settings,partial:SettingsPatch):Settings {
   const appearance=partial.appearance;
-  return normalizeSettings({...current,...partial,seasonalEffects:{...current.seasonalEffects,...partial.seasonalEffects},equalizer:{...current.equalizer,...partial.equalizer},appearance:{...current.appearance,...appearance,light:{...current.appearance.light,...appearance?.light},dark:{...current.appearance.dark,...appearance?.dark},amoled:{...current.appearance.amoled,...appearance?.amoled}}});
+  return normalizeSettings({...current,...partial,wallpaper:{...current.wallpaper,...partial.wallpaper},seasonalEffects:{...current.seasonalEffects,...partial.seasonalEffects},equalizer:{...current.equalizer,...partial.equalizer},appearance:{...current.appearance,...appearance,light:{...current.appearance.light,...appearance?.light},dark:{...current.appearance.dark,...appearance?.dark},amoled:{...current.appearance.amoled,...appearance?.amoled}}});
 }
 
 export function mergeSettingsPatches(current:SettingsPatch,partial:SettingsPatch):SettingsPatch {
-  const result={...current,...partial,...((current.seasonalEffects||partial.seasonalEffects)?{seasonalEffects:{...current.seasonalEffects,...partial.seasonalEffects}}:{}),...((current.equalizer||partial.equalizer)?{equalizer:{...current.equalizer,...partial.equalizer}}:{})};
+  const result={...current,...partial,...((current.wallpaper||partial.wallpaper)?{wallpaper:{...current.wallpaper,...partial.wallpaper}}:{}),...((current.seasonalEffects||partial.seasonalEffects)?{seasonalEffects:{...current.seasonalEffects,...partial.seasonalEffects}}:{}),...((current.equalizer||partial.equalizer)?{equalizer:{...current.equalizer,...partial.equalizer}}:{})};
   if(!current.appearance&&!partial.appearance)return result;
   return {...result,appearance:{...current.appearance,...partial.appearance,...((current.appearance?.light||partial.appearance?.light)?{light:{...current.appearance?.light,...partial.appearance?.light}}:{}),...((current.appearance?.dark||partial.appearance?.dark)?{dark:{...current.appearance?.dark,...partial.appearance?.dark}}:{}),...((current.appearance?.amoled||partial.appearance?.amoled)?{amoled:{...current.appearance?.amoled,...partial.appearance?.amoled}}:{})}};
 }
@@ -35,6 +36,9 @@ export function writePendingSettings(userId:string,partial:SettingsPatch){try{co
 export function normalizeSettingsPatch(value:unknown):SettingsPatch {
   try {
     const source=object(value),result:SettingsPatch={};
+    if(typeof source.powerSaving==='boolean')result.powerSaving=source.powerSaving;
+    if(source.wallpaper&&typeof source.wallpaper==='object'){const w=object(source.wallpaper),next:NonNullable<SettingsPatch['wallpaper']>={};if(typeof w.url==='string'&&(w.url===''||/^\/api\/profile-assets\/[\w-]{1,100}$/.test(w.url)))next.url=w.url;if(typeof w.dim==='number')next.dim=number(w.dim,.35,0,.9);if(typeof w.blur==='number')next.blur=number(w.blur,8,0,24);if(Object.keys(next).length)result.wallpaper=next;}
+    if(Array.isArray(source.savedThemes))result.savedThemes=normalizeSavedThemes(source.savedThemes);
   if(Object.prototype.hasOwnProperty.call(source,'homeLayout'))result.homeLayout=normalizeHomeLayout(source.homeLayout);
   if(Array.isArray(source.homePins))result.homePins=normalizeHomePins(source.homePins);
     for(const key of ['autoCache','lyrics','comments','lyricsUnderCover','discordPresence','notifications','reducedMotion'] as const)if(typeof source[key]==='boolean')result[key]=source[key];
@@ -55,6 +59,7 @@ export function normalizeSettingsPatch(value:unknown):SettingsPatch {
     if(source.appearance&&typeof source.appearance==='object') {
       const input=object(source.appearance),appearance:NonNullable<SettingsPatch['appearance']>={};
       for(const mode of ['light','dark','amoled'] as const){const colors=object(input[mode]),next:Partial<PaletteColors>={};for(const key of ['bg','surface','ink','accent'] as const)if(typeof colors[key]==='string'&&/^#[\da-f]{6}$/i.test(colors[key]))next[key]=colors[key].toLowerCase();if(Object.keys(next).length)appearance[mode]=next;}
+      if(['cover','pixels','plain'].includes(String(input.miniBackground)))appearance.miniBackground=input.miniBackground as 'cover'|'pixels'|'plain';
       if(typeof input.radius==='number')appearance.radius=number(input.radius,24,8,38);
       if(typeof input.speed==='number')appearance.speed=number(input.speed,1,.3,2);
       if(typeof input.compact==='boolean')appearance.compact=input.compact;
@@ -76,16 +81,21 @@ export const getAppearancePresets=():{id:string;name:string;description:string;m
   {id:'midnight',name:'Midnight',description:t('copy.726'),mode:'dark',colors:{bg:'#202423',surface:'#2c312f',ink:'#edece2',accent:'#a4b59c'}},
   {id:'sage',name:'Sage',description:t('copy.727'),mode:'light',colors:{bg:'#e5e9dd',surface:'#f2f4eb',ink:'#323f35',accent:'#7d9574'}},
   {id:'lilac',name:'Lilac',description:t('copy.728'),mode:'light',colors:{bg:'#eae5ed',surface:'#f6f1f8',ink:'#44394b',accent:'#aa89b7'}},
+  {id:'sand',name:'Sand',description:'',mode:'light',colors:{bg:'#eae0d1',surface:'#f7efe3',ink:'#41372d',accent:'#9c694e'}},
+  {id:'ocean',name:'Ocean',description:'',mode:'dark',colors:{bg:'#101c26',surface:'#1b2b38',ink:'#e5eff5',accent:'#83b8cc'}},
+  {id:'rose',name:'Rose',description:'',mode:'light',colors:{bg:'#f0e1df',surface:'#faf1ef',ink:'#4b353c',accent:'#ae687c'}},
+  {id:'forest',name:'Forest',description:'',mode:'dark',colors:{bg:'#101b18',surface:'#1d2c25',ink:'#e4eee5',accent:'#a4c098'}},
 ];
 export const accentSwatches=['#a08369','#b1a2de','#9bb99a','#7ca8bb','#d2939c','#dbb976','#df9978'];
 
 export function applyAppearance(appearance:Appearance,mode:PaletteMode,motion:boolean,accentOverride?:string) {
-  const root=document.documentElement,colors={...appearance[mode],accent:accentOverride||appearance[mode].accent};
+  const root=document.documentElement,colors={...appearance[mode],...(mode==='amoled'?{bg:'#000000',surface:'#080808'}:{}),accent:accentOverride||appearance[mode].accent};
   for(const key of ['bg','surface','ink','accent'] as const)root.style.setProperty(`--${key}`,colors[key]);
   root.style.setProperty('--muted',`color-mix(in srgb,${colors.ink} 70%,${colors.bg})`);
   root.style.setProperty('--line',`color-mix(in srgb,${colors.ink} 11%,transparent)`);
   root.style.setProperty('--accent-soft',`color-mix(in srgb,${colors.accent} 18%,${colors.bg})`);
   root.style.setProperty('--player',`color-mix(in srgb,${colors.surface} 94%,${colors.ink})`);
+  root.style.setProperty('--surface-raised',`color-mix(in srgb,${colors.surface} 92%,${colors.ink})`);
   root.style.setProperty('--radius',`${appearance.radius}px`);root.style.setProperty('--motion-speed',String(appearance.speed));root.style.setProperty('--motion-duration',`${220/appearance.speed}ms`);
   root.dataset.theme=mode;root.dataset.motion=motion?'full':'reduce';root.dataset.blur=String(appearance.blur);root.dataset.compact=String(appearance.compact);root.style.colorScheme=mode==='amoled'?'dark':mode;
   document.body.classList.toggle('compact',appearance.compact);document.body.classList.toggle('soft-blur',appearance.blur);

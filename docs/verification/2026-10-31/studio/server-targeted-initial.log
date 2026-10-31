@@ -1,0 +1,12 @@
+✔ action budgets allow ordinary bursts, continuous recovery and isolate activity (16.4047ms)
+✔ pasted content duplicates are normalized across destinations without blocking short conversation (2.4321ms)
+✔ presentation settings reject executable URLs and ambiguous custom presets (16.7186ms)
+✔ real settings, GIF wallpaper ownership, native/web QR exchange and smart content protection (6146.6148ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 64683.1306

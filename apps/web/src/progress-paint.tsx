@@ -12,8 +12,7 @@ export function useProgressPaint<T extends Element>(ref:RefObject<T|null>,read:P
  const current=useRef({read,paint}),refresh=useRef<()=>void>(()=>{});current.current={read,paint};
  useLayoutEffect(()=>{
   const element=ref.current;if(!element||!read)return;let inView=false,last=0;
-  const reduced=matchMedia('(prefers-reduced-motion: reduce)');
-  const draw=()=>{if(!inView||document.hidden)return 0;const sample=current.current.read?.();if(!sample)return 0;const now=performance.now(),reduce=reduced.matches||document.documentElement.dataset.motion==='reduce';if(!reduce||now-last>=100){current.current.paint(progressPosition(sample,now),sample.duration);last=now;}return progressAdvancing(sample,now)?reduce?100:16:0;};
+  const draw=()=>{if(!inView||document.hidden)return 0;const sample=current.current.read?.();if(!sample)return 0;const now=performance.now(),saving=document.documentElement.dataset.powerSaving==='true';if(!saving||now-last>=1000/30){current.current.paint(progressPosition(sample,now),sample.duration);last=now;}return progressAdvancing(sample,now)?saving?1000/30:16:0;};
   refresh.current=()=>{last=-Infinity;draw();wake();};
   const observer=new IntersectionObserver(entries=>{inView=entries.at(-1)?.isIntersecting||false;refresh.current();});observer.observe(element);
   if(!paints.size)document.addEventListener('visibilitychange',visibility);paints.add(draw);

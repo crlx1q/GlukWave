@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import '../core/controller.dart';
@@ -25,6 +26,20 @@ class ProgressFrame {
 class ProgressPresentationClock {
   ProgressFrame? _sample;
   int _at = 0;
+  double _anchor = 0, _correction = 0;
+  double _value(ProgressFrame frame, int now) {
+    final elapsed = frame.playing && !frame.live
+        ? (now - _at).clamp(0, frame.horizon) * frame.rate
+        : 0.0;
+    // Correct healthy decoder latency by changing visual speed at most25%.
+    // A fresh packet can never pull the thumb backwards between frames.
+    final correction = _correction.clamp(-elapsed * .25, elapsed * .25);
+    return (_anchor + elapsed + correction).clamp(
+      0,
+      frame.duration > 0 ? frame.duration : 0,
+    );
+  }
+
   double position(ProgressFrame frame, int physicalMilliseconds) {
     final old = _sample;
     if (old == null ||
@@ -34,22 +49,52 @@ class ProgressPresentationClock {
         old.playing != frame.playing ||
         old.rate != frame.rate ||
         old.duration != frame.duration) {
+      final before = old == null
+          ? frame.position
+          : _value(old, physicalMilliseconds);
+      final continuous =
+          old != null &&
+          old.scope == frame.scope &&
+          old.playing &&
+          frame.playing &&
+          !frame.live &&
+          !old.live &&
+          old.rate == frame.rate &&
+          old.duration == frame.duration &&
+          physicalMilliseconds >= _at &&
+          frame.position >= old.position &&
+          frame.position - old.position <=
+              math.max(
+                1100 * frame.rate,
+                (physicalMilliseconds - _at) * frame.rate + 250,
+              ) &&
+          (before - frame.position).abs() <= 350 * frame.rate;
+      _anchor = continuous ? before : frame.position;
+      _correction = frame.position - _anchor;
       _sample = frame;
       _at = physicalMilliseconds;
     }
-    final elapsed = frame.playing && !frame.live
-        ? (physicalMilliseconds - _at).clamp(0, frame.horizon) * frame.rate
-        : 0.0;
-    return (frame.position + elapsed).clamp(
-      0,
-      frame.duration > 0 ? frame.duration : 0,
-    );
+    return _value(frame, physicalMilliseconds);
   }
 
   bool moving(ProgressFrame frame, int now) =>
       frame.playing &&
       position(frame, now) < frame.duration &&
       (frame.live || now - _at < frame.horizon);
+}
+
+/// Optional physical time source for deterministic embedders and widget tests.
+/// Normal application surfaces use their isolated monotonic Stopwatch.
+class ProgressTimeSource extends InheritedWidget {
+  final int Function() milliseconds;
+  const ProgressTimeSource({
+    super.key,
+    required this.milliseconds,
+    required super.child,
+  });
+  @override
+  bool updateShouldNotify(ProgressTimeSource oldWidget) =>
+      oldWidget.milliseconds != milliseconds;
 }
 
 class SmoothProgressBuilder extends StatefulWidget {
@@ -76,6 +121,11 @@ class _SmoothProgressBuilderState extends State<SmoothProgressBuilder>
   ScrollPosition? scroll;
   bool foreground = true, inView = true, reduced = false;
   int lastPaint = -1000;
+  int get now =>
+      context
+          .getInheritedWidgetOfExactType<ProgressTimeSource>()
+          ?.milliseconds() ??
+      physical.elapsedMilliseconds;
   @override
   void initState() {
     super.initState();
@@ -116,12 +166,14 @@ class _SmoothProgressBuilderState extends State<SmoothProgressBuilder>
         foreground &&
         inView &&
         TickerMode.of(context) &&
-        clock.moving(widget.read(), physical.elapsedMilliseconds);
+        clock.moving(widget.read(), now);
     if (enabled && !reduced && !ticker.isActive) ticker.start();
     if ((!enabled || reduced) && ticker.isActive) ticker.stop();
     if (enabled && reduced && reducedTimer == null) {
       reducedTimer = Timer.periodic(
-        const Duration(milliseconds: 100),
+        // Progress is functional feedback, not a decorative heavy effect.
+        // Keep it legible and smooth even when visual effects are reduced.
+        const Duration(milliseconds: 33),
         (_) => draw(),
       );
     }
@@ -137,9 +189,9 @@ class _SmoothProgressBuilderState extends State<SmoothProgressBuilder>
   }
 
   void draw() {
-    final now = physical.elapsedMilliseconds;
-    if (!reduced || now - lastPaint >= 100) {
-      lastPaint = now;
+    final time = now;
+    if (!reduced || time - lastPaint >= 33) {
+      lastPaint = time;
       setState(() {});
     }
     sync();
@@ -195,11 +247,7 @@ class _SmoothProgressBuilderState extends State<SmoothProgressBuilder>
   @override
   Widget build(BuildContext context) {
     final frame = widget.read();
-    return widget.builder(
-      context,
-      clock.position(frame, physical.elapsedMilliseconds),
-      frame.duration,
-    );
+    return widget.builder(context, clock.position(frame, now), frame.duration);
   }
 }
 
@@ -228,7 +276,8 @@ class PlaybackProgress extends StatelessWidget {
       );
     }
     return ProgressFrame(
-      scope: '${c.controlScope}:${audio.viewCurrent?.id}',
+      scope:
+          '${c.controlScope}:${audio.viewCurrent?.id}:${audio.loadRevision}:${audio.progressRevision}',
       position: remote
           ? state.updatePosition.inMilliseconds.toDouble()
           : audio.outputPosition.inMilliseconds.toDouble(),
@@ -239,15 +288,25 @@ class PlaybackProgress extends StatelessWidget {
           audio.playing &&
           !c.trackLoading &&
           c.transferPending == null &&
+          (!remote || (c.lanEnabled ? c.lanActive : c.online && c.connected)) &&
           (remote || audio.sourceReady),
-      live: !remote && !embedded,
+      // Platform position notifications can arrive only four times per second.
+      // Interpolate between verified decoder samples for every player surface;
+      // buffering/pause above stops the clock and the short horizon bounds stalls.
+      live: false,
       rate: remote || c.room != null ? 1 : audio.player.speed,
       stamp: remote
           ? state.updateTime
           : embedded
           ? audio.provider.position
           : null,
-      horizon: remote ? 5000 : 2000,
+      horizon: remote
+          // Healthy account checkpoints are10s apart. Allow a little delivery
+          // grace, but keep a finite stale bound if no newer packet arrives.
+          ? 12000
+          : embedded
+          ? 2000
+          : 750,
     );
   }
 

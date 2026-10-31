@@ -1,0 +1,48 @@
+{
+  "attempt": 1,
+  "createdAt": "2026-10-31T17:35:48.596Z",
+  "surface": "Independent own browser; actual final production dist5362 and real isolated backend",
+  "checks": [
+    "Real /admin loads server counts with separate console and no player; responsive bounds recorded1440/768/375",
+    "Admin People section reuses actual protected tools",
+    "Nonadmin cannot see editable admin user tools",
+    "Guest short-height desktop QR entry works without scanner route",
+    "Eight presets and named saved theme apply restores mode+colors through actual settings API",
+    "AMOLED real backdrop is pureblack and wallpaper absent"
+  ],
+  "blockers": [
+    "Admin overflow 768:884",
+    "Admin overflow 375:884"
+  ],
+  "responsive": [
+    {
+      "width": 1440,
+      "scroll": 1430
+    },
+    {
+      "width": 768,
+      "scroll": 884
+    },
+    {
+      "width": 375,
+      "scroll": 884
+    }
+  ],
+  "captures": [
+    "docs/verification/2026-10-31/studio/eval1-admin-1440.png",
+    "docs/verification/2026-10-31/studio/eval1-admin-768.png",
+    "docs/verification/2026-10-31/studio/eval1-admin-375.png",
+    "docs/verification/2026-10-31/studio/eval1-admin-users1440.png",
+    "docs/verification/2026-10-31/studio/eval1-qr-short625.png",
+    "docs/verification/2026-10-31/studio/eval1-appearance1440.png",
+    "docs/verification/2026-10-31/studio/eval1-amoled1440.png",
+    "docs/verification/2026-10-31/studio/eval1-failure.png"
+  ],
+  "passed": false,
+  "error": "AssertionError [ERR_ASSERTION]: .appearance-modes button:�������\n    at click (file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/work/qa/studio31-eval1.mjs:19:459)\n    at async file:///C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/work/qa/studio31-eval1.mjs:30:2",
+  "failureGeometry": {
+    "width": 1440,
+    "scroll": 1430,
+    "overflow": []
+  }
+}

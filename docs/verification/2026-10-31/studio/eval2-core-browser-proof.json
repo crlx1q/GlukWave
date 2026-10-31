@@ -1,0 +1,71 @@
+{
+  "attempt": 2,
+  "createdAt": "2026-10-31T21:02:16.346Z",
+  "surface": "Independent own browser; actual final production dist5362 and real isolated backend",
+  "checks": [
+    "S1 fixed: admin overview and protected People section fit1440/768/375 without document horizontal overflow",
+    "S2 fixed: avatar stage and canvas are square, Cancel issues zero profile upload requests"
+  ],
+  "blockers": [],
+  "responsive": [
+    {
+      "width": 1440,
+      "scroll": 1430,
+      "nav": {
+        "x": 0,
+        "y": 0,
+        "width": 222,
+        "height": 1000,
+        "top": 0,
+        "right": 222,
+        "bottom": 1000,
+        "left": 0
+      }
+    },
+    {
+      "width": 768,
+      "scroll": 758,
+      "nav": {
+        "x": 0,
+        "y": 0,
+        "width": 758,
+        "height": 142,
+        "top": 0,
+        "right": 758,
+        "bottom": 142,
+        "left": 0
+      }
+    },
+    {
+      "width": 375,
+      "scroll": 365,
+      "nav": {
+        "x": 0,
+        "y": 0,
+        "width": 365,
+        "height": 142,
+        "top": 0,
+        "right": 365,
+        "bottom": 142,
+        "left": 0
+      }
+    }
+  ],
+  "captures": [
+    "docs/verification/2026-10-31/studio/eval2-admin-1440.png",
+    "docs/verification/2026-10-31/studio/eval2-admin-users-1440.png",
+    "docs/verification/2026-10-31/studio/eval2-admin-768.png",
+    "docs/verification/2026-10-31/studio/eval2-admin-users-768.png",
+    "docs/verification/2026-10-31/studio/eval2-admin-375.png",
+    "docs/verification/2026-10-31/studio/eval2-admin-users-375.png",
+    "docs/verification/2026-10-31/studio/eval2-crop-avatar1440.png"
+  ],
+  "passed": true,
+  "crop": {
+    "width": 360,
+    "height": 360,
+    "canvasWidth": 358,
+    "canvasHeight": 358,
+    "ratio": 1
+  }
+}

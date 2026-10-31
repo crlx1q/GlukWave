@@ -1,0 +1,22 @@
+{
+  "attempt":3,
+  "verdict":"PASS",
+  "verifiedWebIndexSha256":"fe1e829d68d80276003a56cf095dfd53127fba296481c557902b1405680bf96c",
+  "reportedMainSha256":"02c599417be3fdecc1dc59dfe01f452eff4f75310a38cdddc8a81ba21078694b",
+  "scores":{"designQuality":2,"originality":2,"craft":2,"functionality":2},
+  "resolved":["S1 admin narrow fit","S2 square avatar crop preview","S3 forward continuous independent progress","S4 stable independent card geometry","S5 local seek held through stale ACK-adjacent GET"],
+  "finalChecks":{
+    "twoActiveOutputs":{"localDecoderUnpaused":true,"localTimeBefore":50.336,"localTimeAfter":55.989377,"apiPlayingOutputsBefore":2,"apiPlayingOutputsAfter":2,"durationMs":8200,"remoteDistinctValues":223,"minDelta":0,"maxDelta":0.057700000047702815,"polls":4,"sameNode":true,"controlY":1175},
+    "pausedSmallSeeks":{"negative":{"value":171.021,"distinct":1,"durationMs":2300,"staleGetObserved":true,"commands":1},"positive":{"value":171.121,"distinct":1,"durationMs":2300,"staleGetObserved":true,"commands":1}},
+    "restart":{"value":0,"distinct":1,"durationMs":2200},
+    "playingSeek":{"start":0,"end":2.06080000001192,"durationMs":2400,"minDelta":0,"maxDelta":0.06480000001191999,"commands":1},
+    "pauseAfterSeek":{"value":2.189,"distinct":1,"durationMs":800},
+    "hidden":{"visibility":"hidden","before":64,"after":64,"durationMs":2600},
+    "unmounted":{"before":64,"after":64,"durationMs":2500}
+  },
+  "retainedEvidence":["Attempt1 core roles/QR/themes/AMOLED/wallpaper/power/heart/upload checks","Attempt2 admin1440/768/375 plus protected People section and square avatar preview","Scoped native31 tests/analyzer/captures/compile-only and server148 tests"],
+  "proof":"eval3-browser-proof.json",
+  "captures":["eval3-independent-two-outputs1440.png","eval3-admin375.png","eval3-admin1440.png"],
+  "limits":["Same-provider separate evaluator; no alternate provider available","Tiny external-controller seeks lack protocol identity; local explicit seeks pass","No physical camera/media-key/background-phone/TV/installer/deployment claim","Error/timeout/offline/loading rollback supplied by tests, not all independently forced in browser","Headless decoder wall-clock equality was not required; original stricter assertion and actual advancing decoder trace retained"],
+  "handoff":"Remote helper stopped; admin fixture reset to powerSavingfalse and wallpaperoff; evaluator browser closed; server left running for root cleanup. Exclusive5362 released."
+}

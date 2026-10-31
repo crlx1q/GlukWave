@@ -38,6 +38,22 @@ bool FlutterWindow::OnCreate() {
       result->NotImplemented();
     }
   });
+  media_button_channel_ = std::make_unique<flutter::MethodChannel<flutter::EncodableValue>>(
+      flutter_controller_->engine()->messenger(), "tech.gluk.glukwave/media_button",
+      &flutter::StandardMethodCodec::GetInstance());
+  media_button_channel_->SetMethodCallHandler([this](const auto& call, auto result) {
+    if (call.method_name() != "setEnabled") { result->NotImplemented(); return; }
+    const auto* enabled = std::get_if<bool>(call.arguments());
+    if (!enabled) { result->Error("ARGUMENT", "Boolean required"); return; }
+    if (!*enabled && media_hotkey_registered_) {
+      UnregisterHotKey(GetHandle(), kMediaToggleHotkey);
+      media_hotkey_registered_ = false;
+    } else if (*enabled && !media_hotkey_registered_) {
+      media_hotkey_registered_ = RegisterHotKey(GetHandle(), kMediaToggleHotkey,
+          MOD_NOREPEAT, VK_MEDIA_PLAY_PAUSE) != 0;
+    }
+    result->Success(flutter::EncodableValue(media_hotkey_registered_));
+  });
   SetChildContent(flutter_controller_->view()->GetNativeWindow());
 
   flutter_controller_->engine()->SetNextFrameCallback([&]() {
@@ -56,6 +72,9 @@ bool FlutterWindow::OnCreate() {
 }
 
 void FlutterWindow::OnDestroy() {
+  if (media_hotkey_registered_) UnregisterHotKey(GetHandle(), kMediaToggleHotkey);
+  media_hotkey_registered_ = false;
+  media_button_channel_.reset();
   update_channel_.reset();
   if (flutter_controller_) {
     flutter_controller_ = nullptr;
@@ -68,6 +87,11 @@ LRESULT
 FlutterWindow::MessageHandler(HWND hwnd, UINT const message,
                               WPARAM const wparam,
                               LPARAM const lparam) noexcept {
+  // Consume our registered toggle exactly once, before any media plugin sees it.
+  if (message == WM_HOTKEY && wparam == kMediaToggleHotkey && media_button_channel_) {
+    media_button_channel_->InvokeMethod("press", std::make_unique<flutter::EncodableValue>());
+    return 0;
+  }
   // Give Flutter, including plugins, an opportunity to handle window messages.
   if (flutter_controller_) {
     std::optional<LRESULT> result =

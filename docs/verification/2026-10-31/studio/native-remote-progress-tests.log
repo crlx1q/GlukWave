@@ -1,0 +1,9 @@
+00:00 +0: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/studio31_progress_test.dart
+00:00 +0: (setUpAll)
+00:00 +0: Coarse source samples interpolate fractional rate, cap stale stalls, pause and seek immediately
+00:00 +1: Remote rendering bridges10second checkpoints and bounds stale offline pause and loading states
+00:09 +2: Delayed healthy decoder packets stay monotonic and a confirmed small seek resets exactly
+00:20 +3: Mobile collapsed, desktop dock, compact and quick windows share fractional progress between coarse notifications
+00:25 +4: Full player on phone and desktop uses same clock and preserves a held seek draft
+00:29 +5: (tearDownAll)
+00:29 +5: All tests passed!

@@ -1,0 +1,61 @@
+{
+  "checkedAt": "2026-10-31T16:07:20.0655258Z",
+  "passed": true,
+  "fullSuite": 148,
+  "sourceHashes": [
+    {
+      "path": "apps/server/src/abuse-protection.js",
+      "sha256": "f9980725a12b4a662f56b31cc5698bcfca6246bdf243c3caa10614913a757b22"
+    },
+    {
+      "path": "apps/server/src/presentation-settings.js",
+      "sha256": "0a2dfb8c9b696ee01b1525ce87f1553a9aeafc68ebf82ff5fb9bf68d10efbbcb"
+    },
+    {
+      "path": "apps/server/src/app.js",
+      "sha256": "36b9948759d3db8688bdf7b95d93bae400a5ae35c6bb5a2368323ce9c2b97abc"
+    },
+    {
+      "path": "apps/server/src/admin.js",
+      "sha256": "4192380f0fa6c6d5e8a8979340d54d124bb2a86664f7d8d0da895d02da17440f"
+    },
+    {
+      "path": "apps/server/src/auth.js",
+      "sha256": "cc9e3aa0ae5688d64a85bee62e9257984863c22025e40c457a7206a8d3866d7a"
+    },
+    {
+      "path": "apps/server/src/community.js",
+      "sha256": "beceed099b6d0f284491d5cb9b241ea2c0eeb37c5b3082151cc645ab1cc0057b"
+    },
+    {
+      "path": "apps/server/src/library.js",
+      "sha256": "614249af17be0fd167d72a2f23fa1f4aa76222c9bfb348a26ef2cee9b3689dd2"
+    },
+    {
+      "path": "apps/server/src/media.js",
+      "sha256": "39d8073af5403b9e1b2f7498ec69e3eb1580dfb083b7d8e3a88a754881d180d2"
+    },
+    {
+      "path": "apps/server/src/realtime-ecosystem.js",
+      "sha256": "2784ddd3883c54ebfd4ad7be7ba510fd96b508c98ae9afd975a8c62bfd81cf4d"
+    },
+    {
+      "path": "apps/server/src/rooms.js",
+      "sha256": "d550f624b65e8373f550d78688409043deaee3c88914edb0de4e345df094fc77"
+    },
+    {
+      "path": "apps/server/src/util.js",
+      "sha256": "b068e1d78b2065446b9f37c403ba431de0ddb7583bd8ba5e20d446d9c378211b"
+    },
+    {
+      "path": "apps/server/test/studio31.test.js",
+      "sha256": "43bffc9836fbd822ac6d6f299208bd1970b89161a4c71441a03e5f03cf29a93e"
+    }
+  ],
+  "contract": "powerSaving,wallpaper,savedThemes,appearance.miniBackground",
+  "wallpaperScope": "owned local assets;8MiB;GIF;revisionedaccountbroadcast",
+  "spamScope": "bounded per-process per-actor/action budgets; normalized publiccontent duplicates; normal playback independent",
+  "qr": "native bearer and web cookie tested;secretbound;oneuse;no-store",
+  "hostingChanged": false,
+  "execution": "node --test --test-concurrency=2; earlier unbounded rerun interrupted after contention; initial147pass preceded forcedprevious test"
+}

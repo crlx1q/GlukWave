@@ -1,0 +1,13 @@
+{
+  "createdAt": "2026-10-31T16:17:02.433Z",
+  "surface": "Real web source5363 and actual isolated server5362; synthetic accounts, trusted browser inputs",
+  "checks": [
+    "Android browser scanner click immediately requests camera once; synthetic permission denial exposes recoverable paste fallback, not hardware-camera proof",
+    "390px appearance controls remain in viewport"
+  ],
+  "captures": [
+    "docs/verification/2026-10-31/studio/web-phone-scanner-390.png",
+    "docs/verification/2026-10-31/studio/web-appearance-390.png"
+  ],
+  "passed": true
+}

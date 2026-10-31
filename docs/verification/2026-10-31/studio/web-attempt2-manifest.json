@@ -1,0 +1,126 @@
+{
+  "createdAt": "2026-10-31T21:00:44.909Z",
+  "attempt": 2,
+  "state": "Source frozen and final production bundle ready for independent evaluation",
+  "url": "http://127.0.0.1:5362",
+  "modelTests": {
+    "pass": 120,
+    "fail": 0,
+    "log": "web-model-tests-attempt2.log"
+  },
+  "build": {
+    "passed": true,
+    "typecheckPassed": true,
+    "es5Chunks": 5,
+    "log": "web-build-attempt2.log"
+  },
+  "production": {
+    "indexSha256": "acd2fd726df9710a65a894c0f0beeae995576eb9775abdca7745a79688f38c8d",
+    "main": "main-CCSW5Hd7.js",
+    "mainSha256": "99191ae9c29f1d76a957d7524de3aaa8d32e3e9f039ac413b8cc139826dd44b8"
+  },
+  "features": {
+    "stableIndependentOrder": true,
+    "directoryPacketClock": true,
+    "squareAvatar": true,
+    "adminShrinkableNav": true
+  },
+  "limitations": [
+    "Directory API has no explicit external-seek identity. This card’s own seeks/restart reset immediately; tiny seeks from another controller can be absorbed as ordinary correction. Track/output/pause/loading/offline transitions remain explicit.",
+    "Attempt1 failure reports/logs remain unchanged. Actual attempt2 measurements will be separate evaluator evidence."
+  ],
+  "sources": [
+    {
+      "path": "apps/web/qa/progress27.test.mjs",
+      "sha256": "9e6982ccb9cc0d7208e74c0d408d02e9b1dcb9a50596764b995f87578351c624"
+    },
+    {
+      "path": "apps/web/qa/studio31.test.mjs",
+      "sha256": "655a72a5e2ad88f1f8c89e949568b6c015fc318f3de456367ec30aaf46aaceac"
+    },
+    {
+      "path": "apps/web/src/App.tsx",
+      "sha256": "69a3aabc37064443ae02ddcd254a01592681bfa2c871cc59a2e52ea1a6103ede"
+    },
+    {
+      "path": "apps/web/src/account.tsx",
+      "sha256": "208bf7c127518c3ce5abac5f5692f0adb73aa8e6bc02a4c8cc2e64b81494a733"
+    },
+    {
+      "path": "apps/web/src/admin-console.tsx",
+      "sha256": "f48031c15bfc871761444b85cd0fe58822a9839dc6217b89a6240cc10d2f9351"
+    },
+    {
+      "path": "apps/web/src/album.tsx",
+      "sha256": "5574697a7402726271f6512b557a4965aca1017d2b029188af6ced46449a4d7e"
+    },
+    {
+      "path": "apps/web/src/customization.tsx",
+      "sha256": "de10341b72264cfc8574ddfca5c790a88f05c60a23719937c69ba92136ae1b52"
+    },
+    {
+      "path": "apps/web/src/image-crop.tsx",
+      "sha256": "2b7f6fb8708eff84cbb018a8b23469dc986847b68540ae417870fb477044043a"
+    },
+    {
+      "path": "apps/web/src/main.tsx",
+      "sha256": "cb47f75b2001d5938578fc5ab9d938be9da519de30aed7ee796df1a4dbe9f73c"
+    },
+    {
+      "path": "apps/web/src/mini.tsx",
+      "sha256": "0d75a094318bfc49cfd43f0c189f2716e97f2af471cd8be6ad4f35d807f73819"
+    },
+    {
+      "path": "apps/web/src/parity-model.ts",
+      "sha256": "b1545b128cb0447fc99f0750fc8d9cfd66cc96dd371a3ec7e83e298b173c9a02"
+    },
+    {
+      "path": "apps/web/src/player-ui.tsx",
+      "sha256": "e4a9d96126e43a5ab63c73963253ba39cd4af1bf9f8ba00884eed8b389419597"
+    },
+    {
+      "path": "apps/web/src/player.tsx",
+      "sha256": "f7bdc5b51a2be2dd9bbd88cd9c86dedbf94a2efe8d076b624a6939fec64bb4cc"
+    },
+    {
+      "path": "apps/web/src/preferences.ts",
+      "sha256": "93b6cae8a85ee574f90737bd76b9487c0f94d7e95bafeb32215c1dfcb5f898b6"
+    },
+    {
+      "path": "apps/web/src/progress-clock.ts",
+      "sha256": "c23cb13494b3b36169d668b03fb9950f138e19111b4b78c4011632de9d0a3d69"
+    },
+    {
+      "path": "apps/web/src/progress-paint.tsx",
+      "sha256": "ac0e009279a34e1ec9f9d78970e75e3a9438d97142a1b947bbbdc5aee7669d91"
+    },
+    {
+      "path": "apps/web/src/qr-scanner.tsx",
+      "sha256": "243416359291dc464ae69b261b11103ccd240e703ab030a84925294aea43bcbc"
+    },
+    {
+      "path": "apps/web/src/store.tsx",
+      "sha256": "405f7da27245379299ec87b5ed6eed53121110f561d2ec3b1f19b8e5eda61c48"
+    },
+    {
+      "path": "apps/web/src/studio-model.ts",
+      "sha256": "ba14afd2cfbe9515e07760e3f605928b615d5f4762498cd3b9e43231187be723"
+    },
+    {
+      "path": "apps/web/src/studio-ui.tsx",
+      "sha256": "ecf097e6a506bf3c8b4aea7ee24b508ebe233de9ee7b132ee9f0961ed81499bf"
+    },
+    {
+      "path": "apps/web/src/studio31.css",
+      "sha256": "bef087b35175c6df34802ec3b8fa7fe823b84cc61931e3724af036d51e2e1bfc"
+    },
+    {
+      "path": "apps/web/src/types.ts",
+      "sha256": "c5afd670e394ed02901c6193cdded50b1426a2cd22869b6281e10c6d4353ae2a"
+    },
+    {
+      "path": "apps/web/src/wave.tsx",
+      "sha256": "bc0611e56ee1ece6ed4cea43e085e7e25351f479ed2f23c14444812b5109a13c"
+    }
+  ]
+}

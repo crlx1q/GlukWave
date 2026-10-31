@@ -17,7 +17,7 @@ type Toast = { id:number; text:string; error:boolean };
 type Store = {
   user:User|null; config:Config|null; library:Library; settings:Settings; loading:boolean; libraryLoading:boolean; offline:boolean;
   route:Route; navigate:(route:Route)=>void; query:string; setQuery:(query:string)=>void; source:string; setSource:(source:string)=>void;
-  authOpen:boolean; setAuthOpen:(open:boolean)=>void; setUser:(user:User|null)=>void; refresh:()=>Promise<void>; refreshLibrary:()=>Promise<void>;
+  authOpen:boolean; setAuthOpen:(open:boolean)=>void; setUser:(user:User|null)=>void; refresh:()=>Promise<void>; refreshSettings:()=>Promise<void>; refreshLibrary:()=>Promise<void>;
   notify:(text:string,error?:boolean)=>void; toast:Toast|null; requireAuth:()=>boolean; logout:()=>Promise<void>;
   commitSettings:(partial:SettingsPatch)=>Promise<void>; saveSettings:(partial:SettingsPatch)=>Promise<void>; beginSettingsEdit:()=>()=>void; bindSettingsSync:(socket:Socket)=>()=>void; settingsSync:'saved'|'saving'|'local'; resolvedTheme:'light'|'dark'|'amoled'; motion:boolean; like:(track:Track)=>Promise<void>; remember:(tracks:Track[])=>void;
   run:<T>(operation:()=>Promise<T>,success?:string)=>Promise<T|undefined>;
@@ -29,7 +29,7 @@ type Store = {
 const Context = createContext<Store|null>(null);
 const emptyLibrary: Library = {tracks:[],likedIds:[],playlists:[],history:[]};
 const routes: Route[] = ['home','search','library','sources','rooms','lofi','downloads','settings','profile','admin'];
-function initialRoute():Route { const route=location.hash.slice(1).split('?')[0]; return routes.includes(route as Route)?route as Route:'home'; }
+function initialRoute():Route { if(location.pathname==='/admin'||location.pathname.startsWith('/admin/'))return 'admin';const route=location.hash.slice(1).split('?')[0]; return routes.includes(route as Route)?route as Route:'home'; }
 export function StoreProvider({children}:{children:ReactNode}) {useLocale();
   const startupAccount=useRef(startupAccountId(preferenceStorage()));
   const [coverAccent,setCoverAccent]=useState<string|null>(null);
@@ -48,7 +48,7 @@ export function StoreProvider({children}:{children:ReactNode}) {useLocale();
   useEffect(()=>()=>clearTimeout(toastTimer.current),[]);
   const commitUser=useCallback((next:User|null)=>{if(userRef.current?.id!==next?.id){resetDiagnostics();hydratedLibrary.current=null;edits.current!.reset(next?.id||null,emptyLibrary);}userRef.current=next;setRequestAccount(next?.id||null);setMetadataAccount(next?.id||null);setUserState(next);if(next)localStorage.setItem('gw-user',JSON.stringify(next));else localStorage.removeItem('gw-user');},[]);
   const setUser=useCallback((next:User|null)=>{authEpoch.current++;commitUser(next);},[commitUser]);
-  const navigate=useCallback((next:Route)=>{location.hash=next;setRoute(next);window.scrollTo({top:0,behavior:'instant'});},[]);
+  const navigate=useCallback((next:Route)=>{if(next==='admin'&&location.pathname!=='/admin'){location.assign('/admin');return;}if(next!=='admin'&&location.pathname==='/admin'){location.assign('/app/#'+next);return;}location.hash=next;setRoute(next);window.scrollTo({top:0,behavior:'instant'});},[]);
   const refreshLibrary=useCallback(()=>{
     const id=userRef.current?.id;if(!id){setLibraryPending(false);setLibraryOwner(null);return Promise.resolve();}
     if(libraryJob.current?.id===id)return libraryJob.current.job;
@@ -108,6 +108,7 @@ export function StoreProvider({children}:{children:ReactNode}) {useLocale();
     acceptSettings(id,generation,payload);
     if(Object.keys(pendingSettings.current).length)scheduleSettings(id);
   },[acceptSettings,scheduleSettings]);
+  const refreshSettings=useCallback(async()=>{const id=userRef.current?.id;if(id)await pullSettings(id,accountGeneration.current);},[pullSettings]);
   const bindSettingsSync=useCallback((socket:Socket)=>{
     const id=userRef.current?.id,generation=accountGeneration.current,controller=new AbortController();if(!id)return()=>{};
     const changed=(payload:SettingsSnapshot)=>acceptSettings(id,generation,payload);
@@ -152,7 +153,7 @@ export function StoreProvider({children}:{children:ReactNode}) {useLocale();
     window.addEventListener('online',sync);window.addEventListener('storage',storage);
     return()=>{appearance.removeEventListener('change',update);motion.removeEventListener('change',update);contrast.removeEventListener('change',update);window.removeEventListener('online',sync);window.removeEventListener('storage',storage);clearTimeout(settingsTimer.current);settingsFlight.current?.controller.abort();};
   },[scheduleSettings,pullSettings,acceptSettings]);
-  const resolvedTheme=settings.theme==='system'?(systemDark?'dark':'light'):settings.theme,motion=!settings.reducedMotion&&!systemMotion;
+  const resolvedTheme=settings.theme==='system'?(systemDark?'dark':'light'):settings.theme,motion=!settings.powerSaving&&!settings.reducedMotion&&!systemMotion;
   const renderAccent=readableCoverAccent(settings.appearance.coverAccent?coverAccent:null,settings.appearance[resolvedTheme].bg,settings.appearance[resolvedTheme].accent,systemContrast);
   presentHeldPalette.current=()=>{const live=settingsRef.current;applyAppearance(live.appearance,resolvedTheme,motion,readableCoverAccent(live.appearance.coverAccent?coverAccent:null,live.appearance[resolvedTheme].bg,live.appearance[resolvedTheme].accent,systemContrast));window.dispatchEvent(new Event('wave:palette-preview'));};
   useLayoutEffect(()=>applyAppearance(settings.appearance,resolvedTheme,motion,renderAccent),[settings.appearance,resolvedTheme,motion,renderAccent]);
@@ -180,6 +181,7 @@ export function StoreProvider({children}:{children:ReactNode}) {useLocale();
     if(!id){settingsServer.current=mergeSettings(settingsServer.current,change);publishSettings(null);return;}
     pendingSettings.current=mergeSettingsPatches(pendingSettings.current,change);publishSettings(id);if(navigator.onLine)scheduleSettings(id);
   },[scheduleSettings,publishSettings,notify]);
+  useLayoutEffect(()=>{document.documentElement.dataset.powerSaving=String(settings.powerSaving);},[settings.powerSaving]);
   useLayoutEffect(()=>{document.documentElement.style.setProperty('--font-scale',String(settings.fontScale));document.documentElement.dataset.textScale=settings.fontScale>1?'large':'normal';document.documentElement.style.setProperty('--app-font',settings.fontFamily==='system'?'system-ui, sans-serif':settings.fontFamily==='nunito'?"'Nunito', sans-serif":"'Manrope', 'Nunito', sans-serif");},[settings.fontScale,settings.fontFamily]);
   const persistLibrary=useCallback(()=>{const id=userRef.current?.id,revision=edits.current!.revision;if(!id||edits.current!.pending)return;void getCacheGeneration(id).then(generation=>{if(userRef.current?.id===id&&edits.current!.revision===revision&&!edits.current!.pending)return saveLibrary(id,edits.current!.confirmed,generation);}).catch(()=>{});},[]);
   useEffect(()=>{if(libraryOwner===user?.id&&!librarySaving.length)persistLibrary();},[library,libraryOwner,user?.id,librarySaving.length,persistLibrary]);
@@ -204,7 +206,7 @@ export function StoreProvider({children}:{children:ReactNode}) {useLocale();
   const deletePlaylist=useCallback(async(id:string)=>{if(!requireAuth())throw new ApiError('AUTH_REQUIRED',t('copy.515'));if(id.startsWith('pending:'))return;const remove=(current:Library)=>({...current,playlists:current.playlists.filter(playlist=>playlist.id!==id)});await edits.current!.mutate('playlist:'+id,remove,()=>api(`/playlists/${encodeURIComponent(id)}`,{method:'DELETE'}),remove);persistLibrary();},[requireAuth,persistLibrary]);
   const remember=useCallback((tracks:Track[])=>{const known=new Map(tracks.map(track=>[track.id,track]));edits.current!.accept(current=>({...current,tracks:current.tracks.map(track=>known.get(track.id)||track)}));},[]);
   const logout=useCallback(async()=>{if(user){await post('/auth/logout');await clearPrivate(user.id);}setUser(null);setLibrary(emptyLibrary);navigate('home');notify(t('copy.730'));},[user,setUser,navigate,notify]);
-  return <Context.Provider value={{user,config,library,librarySaving,createPlaylist,updatePlaylist,setPlaylistTrack,deletePlaylist,acceptPlaylist,settings,renderAccent,setCoverAccent,settingsSync,resolvedTheme,motion,loading,libraryLoading:!!user&&(libraryPending||libraryOwner!==user.id),offline,route,navigate,query,setQuery,source,setSource,authOpen,setAuthOpen,setUser,refresh,refreshLibrary,notify,toast,requireAuth,logout,commitSettings,saveSettings,beginSettingsEdit,bindSettingsSync,like,remember,run}}>{children}</Context.Provider>;
+  return <Context.Provider value={{user,config,library,librarySaving,createPlaylist,updatePlaylist,setPlaylistTrack,deletePlaylist,acceptPlaylist,settings,renderAccent,setCoverAccent,settingsSync,resolvedTheme,motion,loading,libraryLoading:!!user&&(libraryPending||libraryOwner!==user.id),offline,route,navigate,query,setQuery,source,setSource,authOpen,setAuthOpen,setUser,refresh,refreshSettings,refreshLibrary,notify,toast,requireAuth,logout,commitSettings,saveSettings,beginSettingsEdit,bindSettingsSync,like,remember,run}}>{children}</Context.Provider>;
 }
 export function useStore(){const context=useContext(Context);if(!context)throw new Error('Missing store');return context;}
 

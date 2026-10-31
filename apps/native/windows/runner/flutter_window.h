@@ -24,6 +24,9 @@ class FlutterWindow : public Win32Window {
                          LPARAM const lparam) noexcept override;
 
  private:
+  static constexpr int kMediaToggleHotkey = 0x4757;
+  std::unique_ptr<flutter::MethodChannel<flutter::EncodableValue>> media_button_channel_;
+  bool media_hotkey_registered_ = false;
   // The project to run.
   flutter::DartProject project_;
 

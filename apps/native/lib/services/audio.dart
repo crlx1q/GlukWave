@@ -67,6 +67,16 @@ class WaveAudioHandler extends BaseAudioHandler {
   List<WaveTrack> get viewTracks => _remote != null ? _remoteQueue : tracks;
   bool get remote => _remote != null;
   int get loadRevision => _loadRevision;
+  int _progressRevision = 0;
+  int get progressRevision => _progressRevision;
+
+  /// A confirmed seek invalidates interpolation even for a very small jump.
+  /// This is presentation state only; it never sends a transport command.
+  void resetProgressPresentation() {
+    _progressRevision++;
+    if (!_released && _positions.hasListener) _positions.add(position);
+  }
+
   bool get sourceReady => current?.embedded == true
       ? provider.ready
       : player.processingState == ProcessingState.ready;
@@ -1055,6 +1065,7 @@ class WaveAudioHandler extends BaseAudioHandler {
         command,
         command == 'volume' ? {...data, 'volume': outputVolume} : data,
       );
+      if (command == 'seek') resetProgressPresentation();
       _broadcast();
       return;
     }
@@ -1080,6 +1091,7 @@ class WaveAudioHandler extends BaseAudioHandler {
         await player.seek(
           Duration(milliseconds: (number(data['position']) * 1000).round()),
         );
+        resetProgressPresentation();
       case 'volume':
         _volume = hardwareVolume ? 1 : number(data['volume'], .8).clamp(0, 1);
         await _setOutputVolume();
@@ -1087,7 +1099,7 @@ class WaveAudioHandler extends BaseAudioHandler {
       case 'next':
         await _skip(1);
       case 'previous':
-        await _skip(-1);
+        await _skip(-1, restart: data['restart'] != false);
       case 'shuffle':
         shuffle = data['enabled'] == true;
       case 'repeat':
@@ -1198,13 +1210,15 @@ class WaveAudioHandler extends BaseAudioHandler {
     }
   }
 
-  Future<void> _skip(int direction) async {
+  Future<void> _skip(int direction, {bool restart = true}) async {
     if (trackLoading) return;
     if (tracks.isEmpty) {
       if (direction > 0) await localCommand('pause');
       return;
     }
-    if (direction < 0 && outputPosition > const Duration(seconds: 3)) {
+    if (direction < 0 &&
+        restart &&
+        outputPosition > const Duration(seconds: 3)) {
       await localCommand('seek', {'position': 0});
       return;
     }

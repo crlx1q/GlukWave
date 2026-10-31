@@ -1,0 +1,136 @@
+{
+  "createdAt": "2026-10-31T17:28:15.326309+00:00",
+  "repositoryRoot": "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify",
+  "evidenceRoot": "C:\\Users\\alish\\Documents\\Codex\\2026-10-06\\glukwave-soundcloud-yandex-music-youtube-spotify\\docs\\verification\\2026-10-31\\studio",
+  "scope": "Existing Flutter application and Windows runner source only; no version, installer, release or deployment.",
+  "newTests": {
+    "passed": true,
+    "uniqueCount": 14,
+    "logs": [
+      "native-new-tests.log",
+      "native-remote-progress-tests.log"
+    ],
+    "provenance": "Current progress5/5 supersedes the four progress tests in the historical13/13 log. The nine Studio tests in that log remain current for their unchanged source paths. Fourteen distinct tests, not18."
+  },
+  "lightRegression": {
+    "passed": true,
+    "repeatedCount": 1,
+    "renderedInkAsserted": [
+      "energy saving",
+      "enabled save theme",
+      "enabled wallpaper upload",
+      "saved theme name"
+    ],
+    "log": "native-light-test.log"
+  },
+  "existingRegressions": {
+    "passed": true,
+    "uniqueCount": 17,
+    "files": {
+      "parity25_progress_test.dart": 4,
+      "volume27_test.dart": 5,
+      "appearance_test.dart": 8
+    },
+    "log": "native-prior-regressions-with-resolved-progress-failures.log",
+    "note": "Historical combined run has two new progress failures; subsequent new-tests log supersedes both with deterministic physical-time fixtures. All17 existing tests passed in that historical run; no full-suite claim."
+  },
+  "uniquePassingTargetedTests": 31,
+  "analyzer": {
+    "passed": true,
+    "logs": [
+      "native-analyze.log",
+      "native-remote-analyze.log"
+    ],
+    "scope": "Full lib plus both new test files were clean before the final remote checkpoint correction. The only product file changed afterward, playback_progress.dart, and its updated regression file were reanalyzed clean."
+  },
+  "windowsRunner": {
+    "sourceCompilePassed": true,
+    "compileExitCode": 0,
+    "objectSha256": "437be6a6203566fe1d04e986122d2d9fde584aecf774d5000f3f962774f219f0",
+    "log": "native-windows-runner-compile.log",
+    "scope": "MSVC compile-only of real flutter_window.cpp with installed Windows SDK and Flutter headers; no link or physical key claim."
+  },
+  "progress": {
+    "surfaces": [
+      "phone collapsed",
+      "desktop dock",
+      "expanded phone",
+      "expanded desktop",
+      "detached compact",
+      "detached quick"
+    ],
+    "policy": "Monotonic visual clock interpolates coarse decoder samples; local stale horizon750ms, embedded2000ms, remote12000ms (server normal account checkpoints10s plus2s delivery grace). Healthy delayed forward packets correct at bounded25% visual speed without reversing. Remote presentation gates on online+connected or activeLAN, plus pause/loading/transfer. Source load and confirmed seek revisions reset separately from packet timestamp. Frame repaint isolated; no audio writes/broadcasts. Reduced visual mode retains33ms functional progress. Held seek draft preserved.",
+    "verified": "Actual rendered fraction or Slider value advances without a source update; eight35ms-late250ms packets never reverse progress; explicit+50ms/-50ms seek resets exactly. Remote rendering advances at6s/9.9s, refreshes at10s checkpoint, continues another6s, then stops at12s stale bound. Paused/offline/disconnected/loading/transfer states stop immediately. Held finger draft survives authority updates. Rate/horizon/scope pure clock assertions."
+  },
+  "previous": {
+    "policy": "First press seeks0 even at1second; repeat on same track/control scope within1600ms sends previous restart:false. Actual audio.skipToPrevious callbacks route through the controller for mini windows and media surfaces too.",
+    "verified": "Existing transport regression exercises actual handler.skipToPrevious at1second and repeat, then new-track reset and explicit forced hop."
+  },
+  "screenshots": {
+    "native-about-full-1440.png": {
+      "sha256": "8679258cc0c5a40add1e9804ca26bd7e8f08dbd6c0c595dc47bfa6a60468dbb3",
+      "bytes": 78874
+    },
+    "native-about-heart.png": {
+      "sha256": "0fadeba2fdd91a69765b905bd7c4b66e5a91300b37c953859d064e8875b9d5a3",
+      "bytes": 8548
+    },
+    "native-crop-avatar.png": {
+      "sha256": "5030d937cc7521b0ea21e2740580fad5899a7c6315c85a14a49c6ec9585ca779",
+      "bytes": 20175
+    },
+    "native-crop-banner.png": {
+      "sha256": "e9a538f604870167589eac1aeb8d6fcbc056e7b42e7f51d43134e68b0cfa9bd2",
+      "bytes": 13665
+    },
+    "native-mini-cover-1440.png": {
+      "sha256": "f37022e98a8e818e0abd628a3494514210c3b4ca1d76fc3eb9d07e7620fe136f",
+      "bytes": 41042
+    },
+    "native-mini-cover-390.png": {
+      "sha256": "7b8fb6781e30bc82a92bb2f82e477e13fadcfbd82194f457ad3f5ffc20c0448c",
+      "bytes": 7806
+    },
+    "native-mini-pixels.png": {
+      "sha256": "67d84139a6a1cf799b3c4fd3c63869af0d739725d889b74e8b778d1f2dd52fec",
+      "bytes": 26982
+    },
+    "native-studio-1440-light.png": {
+      "sha256": "c36a850aa8569a4a6cad4bae2195966b2c819962ae71e72b5bd9d21edae44873",
+      "bytes": 50775
+    },
+    "native-studio-320-dark.png": {
+      "sha256": "b4c8d2dfbe3733640745689e5d78ccf23b31e136457a427e9ff1d71e01059680",
+      "bytes": 42806
+    }
+  },
+  "sources": {
+    "apps/native/lib/core/api.dart": "b1cbfb14ad3f87d399b7759d9ab280336ddb5bb62f9f12857dd7b6badb1d1769",
+    "apps/native/lib/core/appearance.dart": "79d2451817aab107a727ddf8f186660e5f00a70a451f5a559ee142c12b0b1d3a",
+    "apps/native/lib/core/controller.dart": "325c6b25c4188416fa9beeb26fc6b6830dd1a29cca968aa963c0951fcc6691af",
+    "apps/native/lib/core/wave_math.dart": "43f62b18e5fcf6ac40385c637cdafd201c231225740671ee4e64f6216121ddaf",
+    "apps/native/lib/services/audio.dart": "9e779b0d87449f0bd2fb70e307c9536f8c77cf6e7ff97b530277ca680784ebc4",
+    "apps/native/lib/services/media_button.dart": "a911aa6377413872e517a319ff92f476911c220739beab32dfb2a4f7cdf3e907",
+    "apps/native/lib/ui/app.dart": "403ab8da60cb228de885061a8acf23b409fd5dd5867acf43385a4045738fc34f",
+    "apps/native/lib/ui/connect_panel.dart": "8da6d110b87bfb788de2a1a81863a22903af0698fe1a7c59084ea52cedbf0345",
+    "apps/native/lib/ui/desktop_player.dart": "9adcbf0bf341af344ecde749253861e3a8498cc1939406778a80056050008c4e",
+    "apps/native/lib/ui/native19_desktop_transport.dart": "02ce17649f3719606fa4a4707dd26527663f19fa19e8dcfc6d0270b73498c6a2",
+    "apps/native/lib/ui/native19_guard.dart": "3b017304a089abaad6a397edcb1f9a55dba46a274ba47b49a3f8ae9c17868eb9",
+    "apps/native/lib/ui/playback_progress.dart": "a16e4fc0bec2bcd8cde520ac3316aa6b75e3ce1532a32e844403c63d8d4e60b9",
+    "apps/native/lib/ui/player.dart": "b0a16ab7c164b729c113b6224b1fba385479dc0c21b1cf704cb04114f22aeb91",
+    "apps/native/lib/ui/profile_crop.dart": "970d28e0741bc121c05c6d90a563967064bebdf0a37b3857dc5ba7f6624699ce",
+    "apps/native/lib/ui/studio31.dart": "3deb3db903fa67c9f9d61015d842baec00eb209cf4333dc511e3ec5a7a358923",
+    "apps/native/lib/ui/theme.dart": "0452c84865fdfdc78ce995b7e7a8bca2f2238b39b9d7d1331346c61bfcf3a079",
+    "apps/native/test/studio31_progress_test.dart": "913785526da17f3e68997e20dc8f81b0d0405dafca910a8ae8f978c3c24466d7",
+    "apps/native/test/studio31_test.dart": "9112316746855ce2712da7f30421acc19b0537a8b9ae4e54226f153040c3c69b",
+    "apps/native/windows/runner/flutter_window.cpp": "a76c922026e8b21ce32926044ccfa3ef22b8e84bf6d9dfe4fb31ee6165833ce8",
+    "apps/native/windows/runner/flutter_window.h": "d7bda8956c33e2affc55959b3dbaccf03da66fa0b6d42893da604787eeb63ed2"
+  },
+  "limitations": [
+    "Physical Android camera and QR authorization were not exercised; desktop scanner entry is removed and phone opens scanner directly in source.",
+    "Windows global media key/mouse hardware delivery and linked release application are not verified by channel tests or source compile.",
+    "Wallpaper upload/sync uses the tested server contract, scoped client identity and sparse settings; no live multi-device account was used.",
+    "Captures are widget application fixtures with real components/routes and project fonts, not a physical Android screenshot.",
+    "No APK, installer, version change, commit or deployment."
+  ]
+}
