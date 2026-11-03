@@ -1,4 +1,6 @@
 import 'playlist_manager.dart';
+import 'client32_content.dart';
+import 'client32_workspace.dart';
 import 'discovery.dart' show openDiscoveryPlaylist;
 import '../l10n/glukwave26_strings.dart';
 import 'package:audio_service/audio_service.dart';
@@ -35,78 +37,189 @@ Future<void> parityTrackActions(
   BuildContext context,
   WaveController c,
   WaveTrack track,
-) => showModalBottomSheet<void>(
-  context: context,
-  useSafeArea: true,
-  builder: (sheet) => Padding(
-    padding: const EdgeInsets.all(20),
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        ListTile(
-          leading: Artwork(controller: c, url: track.artwork),
-          title: Text(track.title, maxLines: 2),
-          subtitle: Text(track.artist),
-        ),
-        const Divider(),
-        ListTile(
-          leading: const Icon(Icons.queue_music),
-          title: Text(wt('native.f130436a3b', context: sheet)),
-          enabled: c.canControl,
-          onTap: () {
-            Navigator.pop(sheet);
-            unawaited(
-              parityRun(c, () => c.audio.addQueueItem(c.audio.item(track))),
-            );
-          },
-        ),
-        ListTile(
-          leading: Icon(
-            c.playlistsForTrack(track.id).isEmpty
-                ? Icons.playlist_add_rounded
-                : Icons.playlist_add_check_rounded,
-            color: c.playlistsForTrack(track.id).isEmpty
-                ? null
-                : waveVisuals(context).accent,
+) {
+  final body = _TrackActionsBody(
+    controller: c,
+    track: track,
+    account: c.user?.id,
+  );
+  return MediaQuery.sizeOf(context).width < 720
+      ? showModalBottomSheet<void>(
+          context: context,
+          useSafeArea: true,
+          isScrollControlled: true,
+          showDragHandle: true,
+          constraints: BoxConstraints(
+            maxHeight: MediaQuery.sizeOf(context).height * .88,
           ),
-          title: Text(membershipLabel(context, c, track)),
-          onTap: () {
-            Navigator.pop(sheet);
-            showPlaylistMembership(context, c, track);
-          },
-        ),
-        if (track.offline)
-          ListTile(
-            leading: const Icon(Icons.download_outlined),
-            title: Text(wt('native.5fbca5dea7', context: sheet)),
-            onTap: () {
-              Navigator.pop(sheet);
-              unawaited(
-                parityRun(c, () async {
-                  await c.cache.save(track, manual: true);
-                }),
-              );
-            },
+          builder: (_) => body,
+        )
+      : showWaveDialog<void>(
+          context: context,
+          builder: (_) => Dialog(
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 480),
+              child: body,
+            ),
           ),
-        if (track.sourceUrl.isNotEmpty)
-          ListTile(
-            leading: const Icon(Icons.open_in_new),
-            title: Text(
-              wt(
-                'native.22618d4822',
-                context: sheet,
-                values: {'p0': track.sourceName},
+        );
+}
+
+class _TrackActionsBody extends StatelessWidget {
+  final WaveController controller;
+  final WaveTrack track;
+  final String? account;
+  const _TrackActionsBody({
+    required this.controller,
+    required this.track,
+    this.account,
+  });
+  @override
+  Widget build(BuildContext context) => AnimatedBuilder(
+    animation: controller,
+    builder: (context, _) {
+      final c = controller,
+          v = waveVisuals(context),
+          active = account == controller.user?.id;
+      void perform(Future<void> Function() action) {
+        Navigator.pop(context);
+        if (active) unawaited(parityRun(c, action));
+      }
+
+      return SingleChildScrollView(
+        padding: const EdgeInsets.fromLTRB(20, 6, 20, 20),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 14),
+              child: Row(
+                children: [
+                  Artwork(
+                    controller: c,
+                    url: track.artwork,
+                    size: 62,
+                    radius: 12,
+                  ),
+                  const SizedBox(width: 15),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          track.title,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w800,
+                            height: 1.3,
+                          ),
+                        ),
+                        const SizedBox(height: 5),
+                        Text(
+                          track.artist,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(fontSize: 12, color: v.muted),
+                        ),
+                        const SizedBox(height: 5),
+                        Text(
+                          track.sourceName,
+                          style: TextStyle(fontSize: 10, color: v.muted),
+                        ),
+                      ],
+                    ),
+                  ),
+                  IconButton(
+                    tooltip: MaterialLocalizations.of(
+                      context,
+                    ).closeButtonTooltip,
+                    onPressed: () => Navigator.pop(context),
+                    icon: const Icon(Icons.close_rounded, size: 20),
+                  ),
+                ],
               ),
             ),
-            onTap: () {
-              Navigator.pop(sheet);
-              unawaited(parityRun(c, () => c.openUrl(track.sourceUrl)));
-            },
-          ),
-      ],
-    ),
-  ),
-);
+            Divider(color: v.line),
+            ListTile(
+              key: const Key('track-action-like'),
+              contentPadding: EdgeInsets.zero,
+              leading: Icon(
+                c.likedIds.contains(track.id)
+                    ? Icons.favorite_rounded
+                    : Icons.favorite_border_rounded,
+                color: c.likedIds.contains(track.id) ? v.accent : v.ink,
+              ),
+              title: Text(
+                wt(
+                  c.likedIds.contains(track.id)
+                      ? 'native.4ddf34c036'
+                      : 'native.5633e5c745',
+                  context: context,
+                ),
+              ),
+              enabled: active && c.online,
+              onTap: () => perform(() => c.like(track)),
+            ),
+            ListTile(
+              key: const Key('track-action-queue'),
+              contentPadding: EdgeInsets.zero,
+              leading: const Icon(Icons.queue_music_rounded),
+              title: Text(wt('native.f130436a3b', context: context)),
+              enabled: active && c.canControl,
+              onTap: () =>
+                  perform(() => c.audio.addQueueItem(c.audio.item(track))),
+            ),
+            ListTile(
+              key: const Key('track-action-playlist'),
+              contentPadding: EdgeInsets.zero,
+              leading: Icon(
+                c.playlistsForTrack(track.id).isEmpty
+                    ? Icons.playlist_add_rounded
+                    : Icons.playlist_add_check_rounded,
+                color: c.playlistsForTrack(track.id).isEmpty ? v.ink : v.accent,
+              ),
+              title: Text(membershipLabel(context, c, track)),
+              enabled: active && c.online,
+              onTap: () {
+                Navigator.pop(context);
+                if (active) showPlaylistMembership(context, c, track);
+              },
+            ),
+            if (track.offline)
+              ListTile(
+                key: const Key('track-action-download'),
+                contentPadding: EdgeInsets.zero,
+                leading: const Icon(Icons.download_outlined),
+                title: Text(wt('native.5fbca5dea7', context: context)),
+                enabled: active && c.online,
+                onTap: () => perform(() => c.downloadTrack(track)),
+              ),
+            if (track.sourceUrl.isNotEmpty) ...[
+              Divider(color: v.line),
+              ListTile(
+                key: const Key('track-action-source'),
+                contentPadding: EdgeInsets.zero,
+                leading: const Icon(Icons.open_in_new_rounded),
+                title: Text(
+                  wt(
+                    'native.22618d4822',
+                    context: context,
+                    values: {'p0': track.sourceName},
+                  ),
+                ),
+                enabled: active,
+                onTap: () => perform(() => c.openUrl(track.sourceUrl)),
+              ),
+            ],
+          ],
+        ),
+      );
+    },
+  );
+}
 
 /// Owns optional endpoint states independently of playback/library refresh.
 class ApiPanel extends StatefulWidget {
@@ -115,6 +228,7 @@ class ApiPanel extends StatefulWidget {
   final Widget Function(Json, Future<void> Function()) builder;
   final Listenable? refresh;
   final Future<Json> Function()? loadData;
+  final bool bounded;
   const ApiPanel({
     super.key,
     required this.controller,
@@ -122,6 +236,7 @@ class ApiPanel extends StatefulWidget {
     required this.builder,
     this.refresh,
     this.loadData,
+    this.bounded = false,
   });
   @override
   State<ApiPanel> createState() => _ApiPanelState();
@@ -131,9 +246,20 @@ class _ApiPanelState extends State<ApiPanel> {
   Json? data;
   bool failed = false;
   int generation = 0;
+  String get scope =>
+      '${widget.controller.api.server}|${widget.controller.api.token}|${widget.controller.user?.id}';
+  late String accountScope;
+  void scopeChanged() {
+    if (accountScope == scope) return;
+    accountScope = scope;
+    unawaited(load());
+  }
+
   @override
   void initState() {
     super.initState();
+    accountScope = scope;
+    widget.controller.addListener(scopeChanged);
     widget.refresh?.addListener(refresh);
     unawaited(load());
   }
@@ -144,6 +270,11 @@ class _ApiPanelState extends State<ApiPanel> {
     if (old.refresh != widget.refresh) {
       old.refresh?.removeListener(refresh);
       widget.refresh?.addListener(refresh);
+    }
+    if (old.controller != widget.controller) {
+      old.controller.removeListener(scopeChanged);
+      widget.controller.addListener(scopeChanged);
+      accountScope = scope;
     }
     if (old.path != widget.path || old.controller != widget.controller) {
       unawaited(load());
@@ -183,6 +314,7 @@ class _ApiPanelState extends State<ApiPanel> {
   @override
   void dispose() {
     widget.refresh?.removeListener(refresh);
+    widget.controller.removeListener(scopeChanged);
     generation++;
     super.dispose();
   }
@@ -190,20 +322,25 @@ class _ApiPanelState extends State<ApiPanel> {
   void refresh() => unawaited(load());
 
   @override
-  Widget build(BuildContext context) => failed
-      ? EmptyState(
-          pt(context, 'Unavailable'),
-          pt(context, 'Unavailable detail'),
-          icon: Icons.cloud_off_outlined,
-          action: OutlinedButton.icon(
-            onPressed: load,
-            icon: const Icon(Icons.refresh_rounded),
-            label: Text(pt(context, 'Retry')),
-          ),
-        )
-      : data == null
-      ? const WaveLoadingList()
-      : widget.builder(data!, load);
+  Widget build(BuildContext context) {
+    final Widget child = failed
+        ? EmptyState(
+            pt(context, 'Unavailable'),
+            pt(context, 'Unavailable detail'),
+            icon: Icons.cloud_off_outlined,
+            action: OutlinedButton.icon(
+              onPressed: load,
+              icon: const Icon(Icons.refresh_rounded),
+              label: Text(pt(context, 'Retry')),
+            ),
+          )
+        : data == null
+        ? const WaveLoadingList()
+        : widget.builder(data!, load);
+    return widget.bounded && data == null
+        ? SingleChildScrollView(padding: const EdgeInsets.all(24), child: child)
+        : child;
+  }
 }
 
 class TasteInvitation extends StatelessWidget {
@@ -285,11 +422,11 @@ Future<void> openTaste(
   WaveController c,
   WaveParity parity,
 ) async {
-  await Navigator.push(
+  await openClientDetail(
     context,
-    MaterialPageRoute<void>(
-      builder: (_) => TastePage(controller: c, parity: parity),
-    ),
+    title: pt(context, 'Taste'),
+    identity: 'taste',
+    builder: (_) => TastePage(controller: c, parity: parity, embedded: true),
   );
   await parity.load();
 }
@@ -297,7 +434,13 @@ Future<void> openTaste(
 class TastePage extends StatefulWidget {
   final WaveController controller;
   final WaveParity parity;
-  const TastePage({super.key, required this.controller, required this.parity});
+  final bool embedded;
+  const TastePage({
+    super.key,
+    required this.controller,
+    required this.parity,
+    this.embedded = false,
+  });
   @override
   State<TastePage> createState() => _TastePageState();
 }
@@ -407,12 +550,8 @@ class _TastePageState extends State<TastePage> {
   }
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(
-      backgroundColor: waveVisuals(context).background,
-      title: Text(pt(context, 'Taste')),
-    ),
-    body: Center(
+  Widget build(BuildContext context) {
+    final body = Center(
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 1000),
         child: ListView(
@@ -559,8 +698,17 @@ class _TastePageState extends State<TastePage> {
           ],
         ),
       ),
-    ),
-  );
+    );
+    return widget.embedded
+        ? body
+        : Scaffold(
+            appBar: AppBar(
+              backgroundColor: waveVisuals(context).background,
+              title: Text(pt(context, 'Taste')),
+            ),
+            body: body,
+          );
+  }
 }
 
 class ArtistGrid extends StatelessWidget {
@@ -704,75 +852,81 @@ class ArtistBrowse extends StatelessWidget {
   );
 }
 
-Future<void> openGenre(
-  BuildContext context,
-  WaveController c,
-  String genre,
-) => Navigator.push(
-  context,
-  MaterialPageRoute<void>(
-    builder: (context) => Scaffold(
-      appBar: AppBar(
-        backgroundColor: waveVisuals(context).background,
-        title: Text(genre),
-      ),
-      body: ListView(
-        padding: const EdgeInsets.all(24),
-        children: [
-          ApiPanel(
-            controller: c,
-            path: '/api/search?q=${Uri.encodeQueryComponent(genre)}&source=all',
-            builder: (data, _) {
-              final tracks = objects(
-                    data['tracks'],
-                  ).map(WaveTrack.new).toList(),
-                  artists = objects(data['artists']);
-              return Column(
-                children: [
-                  if (artists.isNotEmpty)
-                    ArtistGrid(
-                      controller: c,
-                      artists: artists,
-                      onTap: (a) => openArtist(context, c, a),
-                    ),
-                  const SizedBox(height: 24),
-                  for (final track in tracks)
-                    TrackRow(
-                      controller: c,
-                      track: track,
-                      queue: tracks,
-                      onMore: () => parityTrackActions(context, c, track),
-                    ),
-                  if (artists.isEmpty && tracks.isEmpty)
-                    EmptyState(
-                      pt(context, 'No artists'),
-                      pt(context, 'No artists detail'),
-                    ),
-                ],
-              );
-            },
+Future<void> openGenre(BuildContext context, WaveController c, String genre) =>
+    openClientDetail(
+      context,
+      title: genre,
+      identity: 'genre:$genre',
+      builder: (_) => GenreDetailContent(controller: c, genre: genre),
+    );
+
+class GenreDetailContent extends StatelessWidget {
+  final WaveController controller;
+  final String genre;
+  const GenreDetailContent({
+    super.key,
+    required this.controller,
+    required this.genre,
+  });
+  @override
+  Widget build(BuildContext context) => ApiPanel(
+    controller: controller,
+    path: '/api/search?q=${Uri.encodeQueryComponent(genre)}&source=all',
+    bounded: true,
+    builder: (data, _) {
+      final tracks = objects(data['tracks']).map(WaveTrack.new).toList(),
+          artists = objects(data['artists']);
+      return ClientContentScroll(
+        slivers: [
+          clientBox(PageHeading(genre, '', eyebrow: pt(context, 'Artists'))),
+          if (artists.isNotEmpty)
+            clientBox(
+              ArtistGrid(
+                controller: controller,
+                artists: artists,
+                onTap: (a) => openArtist(context, controller, a),
+              ),
+            ),
+          if (tracks.isNotEmpty)
+            clientBox(
+              ClientSectionHeading(wave26Text(context, 'artist.tracks')),
+            ),
+          clientTracks(
+            controller: controller,
+            tracks: tracks,
+            onMore: (track) => parityTrackActions(context, controller, track),
           ),
+          if (artists.isEmpty && tracks.isEmpty)
+            clientBox(
+              EmptyState(
+                pt(context, 'No artists'),
+                pt(context, 'No artists detail'),
+              ),
+            ),
         ],
-      ),
-    ),
-  ),
-);
+      );
+    },
+  );
+}
 
 Future<void> openArtist(BuildContext context, WaveController c, Json artist) =>
-    Navigator.push(
+    openClientDetail(
       context,
-      MaterialPageRoute<void>(
-        builder: (_) => ArtistDetail(controller: c, artist: artist),
-      ),
+      title: artist['name']?.toString() ?? pt(context, 'Artists'),
+      identity: 'artist:${artist['id']}',
+      builder: (_) =>
+          ArtistDetail(controller: c, artist: artist, embedded: true),
     );
 
 class ArtistDetail extends StatefulWidget {
   final WaveController controller;
   final Json artist;
+  final bool embedded;
   const ArtistDetail({
     super.key,
     required this.controller,
     required this.artist,
+    this.embedded = false,
   });
   @override
   State<ArtistDetail> createState() => _ArtistDetailState();
@@ -783,254 +937,527 @@ class _ArtistDetailState extends State<ArtistDetail> {
   Json data = {};
   bool loading = true, failed = false;
   int generation = 0;
-  String get path => '/api/artists/${Uri.encodeComponent(widget.artist['id'].toString())}';
+  String get path =>
+      '/api/artists/${Uri.encodeComponent(widget.artist['id'].toString())}';
+  String get scope =>
+      '${widget.controller.api.server}|${widget.controller.api.token}|${widget.controller.user?.id}';
+  late String accountScope;
   Json get profile => {...widget.artist, ...object(data['artist'])};
-  void adopt(Json result) { data = result; tracks = objects(result['tracks']).map(WaveTrack.new).toList(); }
+  void adopt(Json result) {
+    data = result;
+    tracks = objects(result['tracks']).map(WaveTrack.new).toList();
+  }
+
   @override
   void initState() {
     super.initState();
+    accountScope = scope;
     widget.controller.addListener(changed);
     final saved = widget.controller.api.peekMetadata(path);
-    if (saved != null) { adopt(saved); loading = false; }
+    if (saved != null) {
+      adopt(saved);
+      loading = false;
+    }
     unawaited(load());
   }
-  void changed() { if (mounted) setState(() {}); }
+
+  void changed() {
+    if (!mounted) return;
+    if (accountScope != scope) {
+      generation++;
+      accountScope = scope;
+      setState(() {
+        data = {};
+        tracks = [];
+        loading = false;
+        failed = true;
+      });
+      return;
+    }
+    setState(() {});
+  }
+
   @override
-  void dispose() { widget.controller.removeListener(changed); generation++; super.dispose(); }
+  void dispose() {
+    widget.controller.removeListener(changed);
+    generation++;
+    super.dispose();
+  }
+
   Future<void> load({bool force = false}) async {
-    final version = ++generation;
-    if (tracks.isEmpty) setState(() { loading = true; failed = false; });
+    final version = ++generation, requestScope = scope;
+    setState(() {
+      loading = true;
+      failed = false;
+    });
     try {
-      var result = await widget.controller.api.cachedCall(path, force: force, maxAge: const Duration(minutes: 10));
+      var result = await widget.controller.api.cachedCall(
+        path,
+        force: force,
+        maxAge: const Duration(minutes: 10),
+      );
       var found = objects(result['tracks']);
-      // Sparse external identities are resolved locally to this profile. Never
-      // overwrite the shell's query, source or search result list.
-      if (found.isEmpty && widget.controller.online) {
-        final search = await widget.controller.api.cachedCall('/api/search', query: {'q': widget.artist['name'], 'source': widget.artist['source']}, maxAge: const Duration(minutes: 5));
+      // Resolve sparse identities locally, retaining the workspace search.
+      if (found.isEmpty && widget.controller.online && requestScope == scope) {
+        final search = await widget.controller.api.cachedCall(
+          '/api/search',
+          query: {
+            'q': widget.artist['name'],
+            'source': widget.artist['source'],
+          },
+          maxAge: const Duration(minutes: 5),
+        );
         final name = widget.artist['name'].toString().toLowerCase();
-        found = objects(search['tracks']).where((track) => track['artist'].toString().toLowerCase().contains(name)).toList();
+        found = objects(search['tracks'])
+            .where(
+              (track) =>
+                  track['artist'].toString().toLowerCase().contains(name),
+            )
+            .toList();
         result = {...result, 'tracks': found};
       }
-      if (!mounted || version != generation) return;
-      setState(() { adopt(result); loading = false; failed = false; });
+      if (!mounted || version != generation || requestScope != scope) return;
+      setState(() {
+        adopt(result);
+        loading = false;
+        failed = false;
+      });
     } catch (_) {
-      if (mounted && version == generation) setState(() { loading = false; failed = true; });
+      if (mounted && version == generation && requestScope == scope) {
+        setState(() {
+          loading = false;
+          failed = true;
+        });
+      }
     }
   }
-  Future<void> playAll({bool shuffle = false}) => parityRun(widget.controller, () async {
-    if (tracks.isEmpty) return;
-    final order = tracks.toList();
-    if (shuffle) order.shuffle();
-    await widget.controller.play(order.first, list: order);
-    await widget.controller.audio.setShuffleMode(shuffle ? AudioServiceShuffleMode.all : AudioServiceShuffleMode.none);
-  });
+
+  Future<void> playAll({bool shuffle = false}) =>
+      parityRun(widget.controller, () async {
+        if (tracks.isEmpty) return;
+        final order = tracks.toList();
+        if (shuffle) order.shuffle();
+        await widget.controller.play(order.first, list: order);
+        await widget.controller.audio.setShuffleMode(
+          shuffle ? AudioServiceShuffleMode.all : AudioServiceShuffleMode.none,
+        );
+      });
   void openAlbum(Json album) {
-    final ids = ((album['trackIds'] as List?) ?? const []).map((id) => id.toString()).toList(), list = tracks.where((track) => ids.contains(track.id)).toList();
-    Navigator.push(context, MaterialPageRoute<void>(builder: (_) => Scaffold(appBar: AppBar(title: Text(album['name']?.toString() ?? '')), body: ListView(padding: const EdgeInsets.all(24), children: [for (final track in list) TrackRow(controller: widget.controller, track: track, queue: list, onMore: () => parityTrackActions(context, widget.controller, track))]))));
+    final ids = ((album['trackIds'] as List?) ?? const [])
+        .map((id) => id.toString())
+        .toSet();
+    final list = tracks.where((track) => ids.contains(track.id)).toList();
+    unawaited(
+      openClientDetail(
+        context,
+        title: album['name']?.toString() ?? '',
+        identity:
+            'album:${widget.artist['id']}:${album['id'] ?? album['name']}',
+        builder: (_) => AlbumDetailContent(
+          controller: widget.controller,
+          album: album,
+          artist: profile,
+          tracks: list,
+        ),
+      ),
+    );
   }
+
   @override
   Widget build(BuildContext context) {
     final c = widget.controller, v = waveVisuals(context), artist = profile;
-    final sourceUrl = artist['sourceUrl']?.toString() ?? '', uri = Uri.tryParse(artist['sourceUrl']?.toString() ?? '');
-    final albums = objects(data['albums']).where((album) => ((album['trackIds'] as List?) ?? const []).map((id) => id.toString()).toList().any((id) => tracks.any((track) => track.id == id))).toList();
-    return Scaffold(
-      appBar: AppBar(backgroundColor: v.background, title: Text(pt(context, 'Artists'))),
-      body: ListView(padding: EdgeInsets.all(MediaQuery.sizeOf(context).width < 600 ? 20 : 32), children: [
-        Container(padding: const EdgeInsets.all(22), decoration: BoxDecoration(color: v.surface, borderRadius: BorderRadius.circular(14), border: Border.all(color: v.line)), child: Row(children: [
-          ClipOval(child: Artwork(controller: c, url: artist['artwork']?.toString(), size: MediaQuery.sizeOf(context).width < 400 ? 76 : 112, radius: 0, icon: Icons.person_outline)),
-          const SizedBox(width: 20),
-          Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text(paritySourceName(context, artist['source']), style: TextStyle(color: v.muted, fontSize: 11)),
-            const SizedBox(height: 8),
-            Text(artist['name']?.toString() ?? '', style: const TextStyle(fontSize: 28, fontWeight: FontWeight.w800, height: 1.1)),
-            if (uri?.scheme == 'https' && uri?.host.isNotEmpty == true) TextButton.icon(onPressed: () => c.openUrl(sourceUrl), icon: const Icon(Icons.open_in_new_rounded, size: 14), label: Text(wave26Text(context, 'artist.source'), style: const TextStyle(fontSize: 10))),
-          ])),
-        ])),
-        if (artist['bio']?.toString().trim().isNotEmpty == true) Padding(padding: const EdgeInsets.symmetric(vertical: 18), child: Text(artist['bio'].toString(), style: TextStyle(color: v.muted, height: 1.7))),
-        const SizedBox(height: 20),
-        if (tracks.isNotEmpty) Wrap(spacing: 10, runSpacing: 10, children: [
-          FilledButton.icon(onPressed: c.canControl ? playAll : null, icon: const Icon(Icons.play_arrow_rounded), label: Text(wave26Text(context, 'artist.playAll'))),
-          OutlinedButton.icon(onPressed: c.canControl ? () => playAll(shuffle: true) : null, icon: const Icon(Icons.shuffle_rounded, size: 18), label: Text(wave26Text(context, 'artist.shuffle'))),
-        ]),
-        if (loading) const WaveLoadingList() else if (failed && tracks.isEmpty) EmptyState(pt(context, 'Unavailable'), pt(context, 'Unavailable detail'), action: OutlinedButton(onPressed: () => load(force: true), child: Text(pt(context, 'Retry'))))
-        else if (tracks.isEmpty) EmptyState(wave26Text(context, 'artist.tracks'), wave26Text(context, 'artist.empty')),
+    final sourceUrl = artist['sourceUrl']?.toString() ?? '',
+        uri = Uri.tryParse(artist['sourceUrl']?.toString() ?? '');
+    final albums = objects(data['albums'])
+        .where(
+          (album) => ((album['trackIds'] as List?) ?? const []).any(
+            (id) => tracks.any((track) => track.id == id.toString()),
+          ),
+        )
+        .toList();
+    final playlists = objects(data['playlists']);
+    final size = MediaQuery.sizeOf(context).width < 600 ? 150.0 : 196.0;
+    final body = ClientContentScroll(
+      key: ValueKey('artist-detail-${artist['id']}'),
+      slivers: [
+        clientBox(
+          ClientCollectionHero(
+            artwork: ClipOval(
+              child: Artwork(
+                controller: c,
+                url: artist['artwork']?.toString(),
+                size: size,
+                radius: 0,
+                icon: Icons.person_outline_rounded,
+              ),
+            ),
+            title: artist['name']?.toString() ?? '',
+            eyebrow:
+                '${pt(context, 'Artists')} · ${paritySourceName(context, artist['source'])}',
+            description: artist['bio']?.toString(),
+            actions: [
+              if (tracks.isNotEmpty) ...[
+                FilledButton.icon(
+                  key: const Key('artist-play-all'),
+                  onPressed: c.canControl ? playAll : null,
+                  icon: const Icon(Icons.play_arrow_rounded),
+                  label: Text(wave26Text(context, 'artist.playAll')),
+                ),
+                OutlinedButton.icon(
+                  key: const Key('artist-shuffle'),
+                  onPressed: c.canControl ? () => playAll(shuffle: true) : null,
+                  icon: const Icon(Icons.shuffle_rounded, size: 18),
+                  label: Text(wave26Text(context, 'artist.shuffle')),
+                ),
+              ],
+              if (uri?.scheme == 'https' && uri?.host.isNotEmpty == true)
+                TextButton.icon(
+                  onPressed: () => c.openUrl(sourceUrl),
+                  icon: const Icon(Icons.open_in_new_rounded, size: 16),
+                  label: Text(wave26Text(context, 'artist.source')),
+                ),
+            ],
+          ),
+        ),
+        if (loading)
+          clientBox(
+            const Padding(
+              padding: EdgeInsets.only(top: 20),
+              child: LinearProgressIndicator(minHeight: 2),
+            ),
+          ),
+        if (failed)
+          clientBox(
+            EmptyState(
+              pt(context, 'Unavailable'),
+              pt(context, 'Unavailable detail'),
+              action: OutlinedButton.icon(
+                onPressed: () => load(force: true),
+                icon: const Icon(Icons.refresh_rounded, size: 17),
+                label: Text(pt(context, 'Retry')),
+              ),
+            ),
+          ),
+        if (!loading && !failed && tracks.isEmpty)
+          clientBox(
+            EmptyState(
+              wave26Text(context, 'artist.tracks'),
+              wave26Text(context, 'artist.empty'),
+            ),
+          ),
         if (tracks.isNotEmpty) ...[
-          const SizedBox(height: 26),
-          Text(wave26Text(context, 'artist.tracks'), style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w800)),
-          const SizedBox(height: 10),
-          for (final track in tracks) TrackRow(controller: c, track: track, queue: tracks, onMore: () => parityTrackActions(context, c, track)),
+          clientBox(ClientSectionHeading(wave26Text(context, 'artist.tracks'))),
+          clientTracks(
+            controller: c,
+            tracks: tracks,
+            onMore: (track) => parityTrackActions(context, c, track),
+          ),
         ],
         if (albums.isNotEmpty) ...[
-          const SizedBox(height: 28), Text(wave26Text(context, 'artist.albums'), style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w800)),
-          for (final album in albums) ListTile(contentPadding: EdgeInsets.zero, leading: Artwork(controller: c, url: album['artwork']?.toString(), size: 48, radius: 8), title: Text(album['name']?.toString() ?? ''), trailing: const Icon(Icons.chevron_right_rounded), onTap: () => openAlbum(album)),
+          clientBox(ClientSectionHeading(wave26Text(context, 'artist.albums'))),
+          SliverList.builder(
+            itemCount: albums.length,
+            itemBuilder: (context, i) {
+              final album = albums[i];
+              return ListTile(
+                key: ValueKey('artist-album-${album['id'] ?? album['name']}'),
+                contentPadding: const EdgeInsets.symmetric(vertical: 6),
+                leading: Artwork(
+                  controller: c,
+                  url: album['artwork']?.toString(),
+                  size: 52,
+                  radius: 9,
+                ),
+                title: Text(
+                  album['name']?.toString() ?? '',
+                  style: const TextStyle(fontWeight: FontWeight.w700),
+                ),
+                subtitle: Text(
+                  artist['name']?.toString() ?? '',
+                  style: TextStyle(color: v.muted, fontSize: 12),
+                ),
+                trailing: const Icon(Icons.chevron_right_rounded, size: 20),
+                onTap: () => openAlbum(album),
+              );
+            },
+          ),
         ],
-        if (objects(data['playlists']).isNotEmpty) ...[
-          const SizedBox(height: 28), Text(wave26Text(context, 'artist.playlists'), style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w800)),
-          for (final playlist in objects(data['playlists'])) ListTile(contentPadding: EdgeInsets.zero, leading: Artwork(controller: c, url: playlist['artwork']?.toString(), size: 48, radius: 8), title: Text(playlist['name']?.toString() ?? ''), trailing: const Icon(Icons.chevron_right_rounded), onTap: () => openDiscoveryPlaylist(context, c, playlist)),
+        if (playlists.isNotEmpty) ...[
+          clientBox(
+            ClientSectionHeading(wave26Text(context, 'artist.playlists')),
+          ),
+          SliverList.builder(
+            itemCount: playlists.length,
+            itemBuilder: (context, i) {
+              final playlist = playlists[i];
+              return ListTile(
+                contentPadding: const EdgeInsets.symmetric(vertical: 6),
+                leading: PlaylistArtwork(
+                  controller: c,
+                  playlist: playlist,
+                  size: 52,
+                ),
+                title: Text(
+                  playlist['name']?.toString() ?? '',
+                  style: const TextStyle(fontWeight: FontWeight.w700),
+                ),
+                trailing: const Icon(Icons.chevron_right_rounded, size: 20),
+                onTap: () => openDiscoveryPlaylist(context, c, playlist),
+              );
+            },
+          ),
         ],
-      ]),
+      ],
     );
+    return widget.embedded
+        ? body
+        : Scaffold(
+            appBar: AppBar(
+              backgroundColor: v.background,
+              title: Text(pt(context, 'Artists')),
+            ),
+            body: body,
+          );
   }
+}
+
+class AlbumDetailContent extends StatelessWidget {
+  final WaveController controller;
+  final Json album, artist;
+  final List<WaveTrack> tracks;
+  const AlbumDetailContent({
+    super.key,
+    required this.controller,
+    required this.album,
+    required this.artist,
+    required this.tracks,
+  });
+  @override
+  Widget build(BuildContext context) => ClientContentScroll(
+    key: ValueKey('album-detail-${album['id'] ?? album['name']}'),
+    slivers: [
+      clientBox(
+        ClientCollectionHero(
+          artwork: Artwork(
+            controller: controller,
+            url: (album['artwork'] ?? artist['artwork'])?.toString(),
+            size: MediaQuery.sizeOf(context).width < 600 ? 164 : 206,
+            radius: 12,
+          ),
+          title: album['name']?.toString() ?? '',
+          eyebrow: wave26Text(context, 'artist.albums'),
+          description: artist['name']?.toString(),
+          actions: [
+            if (tracks.isNotEmpty)
+              FilledButton.icon(
+                key: const Key('album-play-all'),
+                onPressed: controller.canControl
+                    ? () => parityRun(
+                        controller,
+                        () => controller.play(tracks.first, list: tracks),
+                      )
+                    : null,
+                icon: const Icon(Icons.play_arrow_rounded),
+                label: Text(wave26Text(context, 'artist.playAll')),
+              ),
+            TextButton.icon(
+              onPressed: () => openArtist(context, controller, artist),
+              icon: const Icon(Icons.person_outline_rounded, size: 17),
+              label: Text(artist['name']?.toString() ?? pt(context, 'Artists')),
+            ),
+          ],
+        ),
+      ),
+      clientBox(ClientSectionHeading(wave26Text(context, 'artist.tracks'))),
+      if (tracks.isEmpty)
+        clientBox(
+          EmptyState(
+            wave26Text(context, 'artist.tracks'),
+            wave26Text(context, 'artist.empty'),
+          ),
+        )
+      else
+        clientTracks(
+          controller: controller,
+          tracks: tracks,
+          onMore: (track) => parityTrackActions(context, controller, track),
+        ),
+    ],
+  );
 }
 
 Future<void> openPublicProfile(
   BuildContext context,
   WaveController c,
   Json user,
-) => Navigator.push(
+) => openClientDetail(
   context,
-  MaterialPageRoute<void>(
-    builder: (context) => Scaffold(
-      appBar: AppBar(
-        backgroundColor: waveVisuals(context).background,
-        title: Text(
-          user['displayName']?.toString() ?? user['username']?.toString() ?? '',
-        ),
-      ),
-      body: ListView(
-        padding: const EdgeInsets.all(24),
-        children: [
-          ApiPanel(
-            controller: c,
-            path: '/api/profile/${Uri.encodeComponent(user['id'].toString())}',
-            builder: (data, _) {
-              final profile = object(data['user']),
-                  stats = object(data['stats']);
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  if ((profile['bannerUrl']?.toString() ?? '').isNotEmpty)
-                    AspectRatio(
-                      aspectRatio: 3.5,
-                      child: FittedBox(
+  title: user['displayName']?.toString() ?? user['username']?.toString() ?? '',
+  identity: 'profile:${user['id']}',
+  builder: (_) => PublicProfileContent(controller: c, user: user),
+);
+
+class PublicProfileContent extends StatelessWidget {
+  final WaveController controller;
+  final Json user;
+  const PublicProfileContent({
+    super.key,
+    required this.controller,
+    required this.user,
+  });
+  @override
+  Widget build(BuildContext context) => ApiPanel(
+    controller: controller,
+    path: '/api/profile/${Uri.encodeComponent(user['id'].toString())}',
+    bounded: true,
+    builder: (data, _) {
+      final profile = {...user, ...object(data['user'])},
+          stats = object(data['stats']),
+          playlists = objects(data['playlists']);
+      final v = waveVisuals(context);
+      return ClientContentScroll(
+        key: ValueKey('public-profile-${user['id']}'),
+        slivers: [
+          if ((profile['bannerUrl']?.toString() ?? '').isNotEmpty)
+            clientBox(
+              Padding(
+                padding: const EdgeInsets.only(bottom: 24),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(v.corners(18)),
+                  child: AspectRatio(
+                    aspectRatio: 3.5,
+                    child: LayoutBuilder(
+                      builder: (context, box) => FittedBox(
                         fit: BoxFit.cover,
                         clipBehavior: Clip.hardEdge,
                         child: Artwork(
-                          controller: c,
+                          controller: controller,
                           url: profile['bannerUrl']?.toString(),
-                          size: 600,
+                          size: box.maxWidth,
                         ),
                       ),
                     ),
-                  const SizedBox(height: 22),
-                  Row(
+                  ),
+                ),
+              ),
+            ),
+          clientBox(
+            ClientCollectionHero(
+              artwork: ClipOval(
+                child: Artwork(
+                  controller: controller,
+                  url: profile['avatarUrl']?.toString(),
+                  size: MediaQuery.sizeOf(context).width < 600 ? 100 : 144,
+                  radius: 0,
+                  icon: Icons.person_outline_rounded,
+                ),
+              ),
+              title:
+                  profile['displayName']?.toString() ??
+                  profile['username']?.toString() ??
+                  '',
+              eyebrow: '@${profile['username'] ?? ''}',
+              description: profile['bio']?.toString(),
+              actions: [
+                Chip(
+                  visualDensity: VisualDensity.compact,
+                  label: Text(
+                    (profile['role'] == 'admin'
+                            ? 'admin'
+                            : profile['plan'] ?? 'free')
+                        .toString()
+                        .toUpperCase(),
+                    style: const TextStyle(
+                      fontSize: 10,
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          if (data['stats'] is Map)
+            clientBox(
+              Padding(
+                padding: const EdgeInsets.only(top: 28),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(vertical: 22),
+                  decoration: BoxDecoration(
+                    border: Border(
+                      top: BorderSide(color: v.line),
+                      bottom: BorderSide(color: v.line),
+                    ),
+                  ),
+                  child: Wrap(
+                    spacing: 38,
+                    runSpacing: 20,
                     children: [
-                      Artwork(
-                        controller: c,
-                        url: profile['avatarUrl']?.toString(),
-                        size: 70,
-                        radius: 35,
-                        icon: Icons.person_outline,
-                      ),
-                      const SizedBox(width: 18),
-                      Expanded(
-                        child: Column(
+                      for (final entry in <String, int>{
+                        'Plays': number(stats['plays']).round(),
+                        'Minutes': (number(stats['listeningSeconds']) / 60)
+                            .floor(),
+                        'Artists': number(stats['artistCount']).round(),
+                      }.entries)
+                        Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Wrap(
-                              spacing: 10,
-                              crossAxisAlignment: WrapCrossAlignment.center,
-                              children: [
-                                Text(
-                                  profile['displayName']?.toString() ?? '',
-                                  style: const TextStyle(
-                                    fontSize: 25,
-                                    fontWeight: FontWeight.w800,
-                                  ),
-                                ),
-                                Chip(
-                                  label: Text(
-                                    (profile['role'] == 'admin'
-                                            ? 'admin'
-                                            : profile['plan'] ?? 'free')
-                                        .toString()
-                                        .toUpperCase(),
-                                  ),
-                                ),
-                              ],
-                            ),
                             Text(
-                              '@${profile['username'] ?? ''}',
-                              style: TextStyle(
-                                color: waveVisuals(context).muted,
+                              localizedNumber(entry.value, context: context),
+                              style: const TextStyle(
+                                fontSize: 28,
+                                fontWeight: FontWeight.w800,
+                                letterSpacing: -.7,
                               ),
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              pt(context, entry.key),
+                              style: TextStyle(fontSize: 12, color: v.muted),
                             ),
                           ],
                         ),
-                      ),
                     ],
                   ),
-                  if ((profile['bio']?.toString() ?? '').isNotEmpty)
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 18),
-                      child: Text(
-                        profile['bio'].toString(),
-                        style: const TextStyle(height: 1.7),
-                      ),
-                    ),
-                  if (data['stats'] is Map)
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 24),
-                      child: Surface(
-                        child: Wrap(
-                          spacing: 28,
-                          runSpacing: 18,
-                          children: [
-                            for (final entry in {
-                              'Plays': number(stats['plays']).round(),
-                              'Minutes':
-                                  (number(stats['listeningSeconds']) / 60)
-                                      .floor(),
-                              'Artists': number(stats['artistCount']).round(),
-                            }.entries)
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    localizedNumber(
-                                      entry.value,
-                                      context: context,
-                                    ),
-                                    style: const TextStyle(
-                                      fontSize: 28,
-                                      fontWeight: FontWeight.w800,
-                                    ),
-                                  ),
-                                  Text(
-                                    pt(context, entry.key),
-                                    style: TextStyle(
-                                      color: waveVisuals(context).muted,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  for (final playlist in objects(data['playlists']))
-                    ListTile(
-                      contentPadding: const EdgeInsets.symmetric(vertical: 10),
-                      leading: PlaylistArtwork(
-                        controller: c,
-                        playlist: playlist,
-                        size: 52,
-                      ),
-                      title: Text(playlist['name']?.toString() ?? ''),
-                      subtitle: Text(
-                        playlist['description']?.toString() ?? '',
-                        maxLines: 2,
-                      ),
-                    ),
-                ],
-              );
-            },
-          ),
+                ),
+              ),
+            ),
+          if (playlists.isNotEmpty) ...[
+            clientBox(
+              ClientSectionHeading(wave26Text(context, 'artist.playlists')),
+            ),
+            SliverList.builder(
+              itemCount: playlists.length,
+              itemBuilder: (context, i) {
+                final playlist = playlists[i];
+                return ListTile(
+                  key: ValueKey('profile-playlist-${playlist['id']}'),
+                  contentPadding: const EdgeInsets.symmetric(vertical: 8),
+                  leading: PlaylistArtwork(
+                    controller: controller,
+                    playlist: playlist,
+                    size: 54,
+                  ),
+                  title: Text(
+                    playlist['name']?.toString() ?? '',
+                    style: const TextStyle(fontWeight: FontWeight.w700),
+                  ),
+                  subtitle: Text(
+                    playlist['description']?.toString() ?? '',
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  trailing: const Icon(Icons.chevron_right_rounded, size: 20),
+                  onTap: () =>
+                      openDiscoveryPlaylist(context, controller, playlist),
+                );
+              },
+            ),
+          ],
         ],
-      ),
-    ),
-  ),
-);
+      );
+    },
+  );
+}
 
 class FriendsPage extends StatefulWidget {
   final WaveController controller;
@@ -1900,51 +2327,8 @@ class PublicPlaylists extends StatelessWidget {
               maxLines: 2,
             ),
             trailing: const Icon(Icons.chevron_right),
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute<void>(
-                builder: (context) => Scaffold(
-                  appBar: AppBar(
-                    title: Text(playlist['name']?.toString() ?? ''),
-                  ),
-                  body: ListView(
-                    padding: const EdgeInsets.all(24),
-                    children: [
-                      ApiPanel(
-                        controller: controller,
-                        path: '/api/playlists/${playlist['id']}',
-                        builder: (detail, _) {
-                          final tracks = objects(
-                            detail['tracks'],
-                          ).map(WaveTrack.new).toList();
-                          return Column(
-                            children: [
-                              PlaylistArtwork(
-                                controller: controller,
-                                playlist: object(detail['playlist']),
-                                size: 200,
-                              ),
-                              const SizedBox(height: 28),
-                              for (final track in tracks)
-                                TrackRow(
-                                  controller: controller,
-                                  track: track,
-                                  queue: tracks,
-                                  onMore: () => parityTrackActions(
-                                    context,
-                                    controller,
-                                    track,
-                                  ),
-                                ),
-                            ],
-                          );
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
+            key: ValueKey('discover-public-playlist-${playlist['id']}'),
+            onTap: () => openDiscoveryPlaylist(context, controller, playlist),
           ),
         if (objects(data['playlists']).isEmpty)
           EmptyState(

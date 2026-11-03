@@ -71,7 +71,7 @@ class _DesktopListeningRailState extends State<DesktopListeningRail> {
     final v = waveVisuals(context), track = c.audio.viewCurrent;
     return Container(
       key: const Key('desktop-listening-rail'),
-      width: 244,
+      width: 280,
       padding: const EdgeInsets.fromLTRB(19, 26, 19, 18),
       decoration: BoxDecoration(
         color: v.surface.withValues(alpha: .6),
@@ -127,7 +127,7 @@ class _DesktopListeningRailState extends State<DesktopListeningRail> {
                 style: TextStyle(fontSize: 11, height: 1.6, color: v.muted),
               ),
             ] else ...[
-              Artwork(controller: c, url: track.artwork, size: 204, radius: 16),
+              Artwork(controller: c, url: track.artwork, size: 242, radius: 16),
               const SizedBox(height: 20),
               Text(
                 track.title,

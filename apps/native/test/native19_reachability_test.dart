@@ -233,8 +233,15 @@ void main() {
       await mount(t, c, const Size(320, 568));
       await t.tap(find.byKey(const Key('mobile-guard')));
       await settle(t);
-      await t.tap(find.byKey(const Key('guard-scan')));
-      await settle(t);
+      // Automatic scanning attaches on the next frame before permission can
+      // resolve. Await its terminal UI rather than the old two-frame startup.
+      final deniedState = find.byKey(const Key('guard-camera-error'));
+      final deadline = t.binding.clock.fromNowBy(const Duration(seconds: 2));
+      while (deniedState.evaluate().isEmpty &&
+          t.binding.clock.now().isBefore(deadline)) {
+        await t.pump(const Duration(milliseconds: 16));
+      }
+      expect(deniedState, findsOneWidget);
       expect(camera.starts, greaterThan(0));
       expect(find.text('Нужен доступ к камере'), findsOneWidget);
       await t.ensureVisible(find.byKey(const Key('guard-camera-retry')));

@@ -23,6 +23,72 @@ export function setupAuth(app,ctx){
   ctx.requireAuth=requireAuth;ctx.requireAdmin=requireAdmin;
   async function issue(user,req,res){const token=secret(),key=digest(token),installation=req.headers['x-glukwave-device'];const deviceId=typeof installation==='string'&&/^[\w-]{1,100}$/.test(installation)?installation:undefined;const kind=['web','windows','android','ios','macos','linux'].includes(req.headers['x-glukwave-kind'])?req.headers['x-glukwave-kind']:'web';await store.create('sessions',key,{id:key,userId:user.id,expiresAt:Date.now()+30*86400000,createdAt:now(),lastActiveAt:now(),kind,deviceName:decodedDeviceName(req.body?.deviceName||req.headers['x-glukwave-device-name']||req.headers['user-agent']),...(deviceId?{deviceId,deviceIds:[deviceId]}:{})});if(res)res.cookie('gw_session',token,cookieOptions);ctx.io?.to(`user:${user.id}`).emit('sessions:changed',{});return {user:publicUser(user),...(req.headers['x-glukwave-client']==='native'?{token}:{}),_token:token};}
   ctx.issue=issue;
+  // Opt-in delivery recovery is process-local: neither a bearer nor a CAPTCHA
+  // response is persisted. Approval remains one-use; only its delivery to the
+  // same native installation/claim can be repeated after a lost HTTP response.
+  const authRecoveries=new Map(),recoveryLimit=1024,recoveryLifetime=60000;
+  function recoveryClaim(req){
+    const nonce=req.headers['x-glukwave-auth-claim'];
+    if(nonce===undefined)return null;
+    if(typeof nonce!=='string'||!z.string().uuid().safeParse(nonce).success)fail(400,'AUTH_CLAIM_INVALID','Код получения ответа недействителен.');
+    const client=req.headers['x-glukwave-client'],device=req.headers['x-glukwave-device'],kind=req.headers['x-glukwave-kind']||'',surface=req.headers['x-glukwave-surface']||'';
+    if(client!=='native'||typeof device!=='string'||!/^\w[\w-]{0,99}$/.test(device)||typeof kind!=='string'||(kind&&!['windows','android','ios','macos','linux'].includes(kind))||typeof surface!=='string'||! /^[\w-]{0,100}$/.test(surface))fail(403,'AUTH_CLAIM_IDENTITY','Получить ответ может только исходное приложение.');
+    return digest(JSON.stringify([nonce.toLowerCase(),client,device,kind,surface]));
+  }
+  function pruneRecoveries(){
+    const time=Date.now();
+    for(const [key,value] of authRecoveries)if(value.expiresAt<=time)authRecoveries.delete(key);
+  }
+  function rememberRecovery(entry,claim,payload){
+    pruneRecoveries();
+    while(authRecoveries.size>=recoveryLimit)authRecoveries.delete(authRecoveries.keys().next().value);
+    authRecoveries.set(entry.id,{claim,payload,expiresAt:Math.min(entry.expiresAt,Date.now()+recoveryLifetime)});
+  }
+  async function exchangeChallenge(req,res,kind){
+    const claim=recoveryClaim(req);
+    return ctx.withLock('auth-challenge:'+req.params.id,async()=>{
+      const entry=await store.get('challenges',req.params.id);
+      if(!entry||entry.kind!==kind||entry.secretHash!==digest(String(req.query.secret||'')))fail(404,'CHALLENGE_NOT_FOUND','Код не найден.');
+      pruneRecoveries();
+      if(entry.expiresAt<=Date.now())return res.json({status:'expired'});
+      const saved=claim&&authRecoveries.get(entry.id);
+      if(saved){
+        if(saved.claim!==claim)fail(403,'AUTH_CLAIM_MISMATCH','Ответ уже получен другим приложением.');
+        if(kind!=='captcha'){
+          const live=await authenticate(saved.payload.token);
+          if(!live||live.user.id!==saved.payload.user.id){authRecoveries.delete(entry.id);fail(403,'AUTH_RECOVERY_REVOKED','Сессия завершена. Войди заново.');}
+          res.cookie('gw_session',saved.payload.token,cookieOptions);
+        }
+        return res.json(saved.payload);
+      }
+      if(entry.status==='consumed')return res.json({status:'expired'});
+      if(entry.status!=='approved')return res.json({status:'pending'});
+      const consume=()=>store.update('challenges',entry.id,value=>{
+        if(!value||value.kind!==kind||value.status!=='approved'||value.expiresAt<=Date.now())fail(409,'CHALLENGE_USED','Код уже использован или устарел.');
+        const {captchaToken,...rest}=value;return {...rest,status:'consumed'};
+      });
+      if(kind==='captcha'){
+        await consume();
+        const payload={status:'approved',captchaToken:entry.captchaToken};
+        if(claim)rememberRecovery(entry,claim,payload);
+        return res.json(payload);
+      }
+      // Legacy exchanges keep their original one-use semantics. Recoverable
+      // exchanges consume only after issuance succeeds, and publish no cookie
+      // until both operations have completed.
+      if(!claim)await consume();
+      const user=await store.get('users',entry.userId);
+      if(!user||user.blocked)fail(403,'ACCOUNT_BLOCKED','Аккаунт заблокирован.');
+      const {_token,...data}=await issue(user,req,claim?null:res);
+      const payload={status:'approved',...data,...(kind==='native'?{token:_token}:{})};
+      if(claim){
+        try{await consume();}catch(error){await store.remove('sessions',digest(_token));throw error;}
+        rememberRecovery(entry,claim,payload);
+        res.cookie('gw_session',_token,cookieOptions);
+      }
+      return res.json(payload);
+    });
+  }
   ctx.revokeSession=async(session,reason='session_removed')=>{
     await store.remove('sessions',session.id);
     for(const pending of await store.list('oauthStates',state=>state.sessionId===session.id&&!state.used))await store.remove('oauthStates',pending.id);
@@ -80,21 +146,10 @@ export function setupAuth(app,ctx){
       return {...entry,status:'approved',captchaToken:b.captchaToken};
     });res.json({ok:true});
   }));
-  app.get('/api/auth/native-captcha/:id',asyncRoute(async(req,res)=>{
-    const entry=await store.get('challenges',req.params.id);
-    if(!entry||entry.kind!=='captcha'||entry.secretHash!==digest(String(req.query.secret||'')))fail(404,'CHALLENGE_NOT_FOUND','Проверка не найдена.');
-    res.set('Cache-Control','no-store');
-    if(entry.expiresAt<Date.now()||entry.status==='consumed')return res.json({status:'expired'});
-    if(entry.status!=='approved')return res.json({status:'pending'});
-    const token=await store.update('challenges',entry.id,value=>{
-      if(value.status!=='approved')fail(409,'CHALLENGE_USED','Проверка уже использована.');
-      const {captchaToken,...rest}=value;return {...rest,status:'consumed'};
-    }).then(()=>entry.captchaToken);
-    res.json({status:'approved',captchaToken:token});
-  }));
+  app.get('/api/auth/native-captcha/:id',asyncRoute((req,res)=>exchangeChallenge(req,res,'captcha')));
   for(const kind of ['qr','native']){
     app.post(`/api/auth/${kind}`,authLimiter,asyncRoute(async(req,res)=>{const b=parse(z.object({deviceName:text(100).optional(),method:z.enum(['google','email']).optional()}).strict(),req.body||{});const token=secret(),entry={id:id(),secretHash:digest(token),deviceName:b.deviceName||'GlukWave',status:'pending',expiresAt:Date.now()+(kind==='qr'?120000:600000),createdAt:now(),kind};await store.create('challenges',entry.id,entry);const url=kind==='qr'?`${config.appUrl}/?qr=${entry.id}`:b.method==='email'?`${config.appUrl}/?native=${entry.id}&secret=${token}`:`${config.appUrl}/api/auth/google/start?native=${entry.id}&secret=${token}`;res.status(201).json({id:entry.id,secret:token,url,expiresAt:entry.expiresAt});}));
-    app.get(`/api/auth/${kind}/:id`,asyncRoute(async(req,res)=>{const key=req.params.id;const entry=await store.get('challenges',key);if(!entry||entry.kind!==kind||digest(String(req.query.secret||''))!==entry.secretHash)fail(404,'CHALLENGE_NOT_FOUND','Код не найден.');if(entry.expiresAt<Date.now()||entry.status==='consumed')return res.json({status:'expired'});if(entry.status!=='approved')return res.json({status:'pending'});await store.update('challenges',key,v=>{if(v.status!=='approved')fail(409,'CHALLENGE_USED','Код уже использован.');return {...v,status:'consumed'};});const user=await store.get('users',entry.userId);if(!user||user.blocked)fail(403,'ACCOUNT_BLOCKED','Аккаунт заблокирован.');const {_token,...data}=await issue(user,req,res);res.json({status:'approved',...data,...(kind==='native'?{token:_token}:{})});}));
+    app.get(`/api/auth/${kind}/:id`,asyncRoute((req,res)=>exchangeChallenge(req,res,kind)));
   }
   app.get('/api/auth/qr/:id/info',asyncRoute(async(req,res)=>{const v=await store.get('challenges',req.params.id);if(!v||v.kind!=='qr')fail(404,'CHALLENGE_NOT_FOUND','Код не найден.');res.json({deviceName:v.deviceName,expiresAt:v.expiresAt,status:v.expiresAt<Date.now()?'expired':v.status});}));
   app.post('/api/auth/qr/:id/approve',requireAuth,asyncRoute(async(req,res)=>{await store.update('challenges',req.params.id,v=>{if(!v||v.kind!=='qr'||v.status!=='pending'||v.expiresAt<Date.now())fail(400,'CHALLENGE_EXPIRED','Код устарел или уже использован.');return {...v,status:'approved',userId:req.auth.user.id};});await ctx.audit('auth.qrApprove',req.auth.user.id,{});res.json({ok:true});}));

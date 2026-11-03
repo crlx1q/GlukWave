@@ -605,40 +605,46 @@ class _ProviderImportState extends State<ProviderImport> {
           ],
         ),
         const SizedBox(height: 8),
-        for (final track in tracks)
-          CheckboxListTile(
-            key: Key('import-track-${id(track)}'),
-            contentPadding: EdgeInsets.zero,
-            dense: true,
-            secondary: Artwork(
-              controller: c,
-              url: track['artwork']?.toString(),
-              size: 38,
-              radius: 8,
-            ),
-            title: Text(
-              track['title']?.toString() ?? '',
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-            subtitle: Text(
-              track['artist']?.toString() ?? '',
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-            value: all || selected.contains(id(track)),
-            onChanged: saving || all
-                ? null
-                : (value) => setState(() {
-                    value == true
-                        ? selected.add(id(track))
-                        : selected.remove(id(track));
-                  }),
-          ),
+        SliverList.builder(
+          itemCount: tracks.length,
+          itemBuilder: (context, index) {
+            final track = tracks[index];
+            return CheckboxListTile(
+              key: Key('import-track-${id(track)}'),
+              contentPadding: EdgeInsets.zero,
+              dense: true,
+              secondary: Artwork(
+                controller: c,
+                url: track['artwork']?.toString(),
+                size: 38,
+                radius: 8,
+              ),
+              title: Text(
+                track['title']?.toString() ?? '',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+              subtitle: Text(
+                track['artist']?.toString() ?? '',
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+              value: all || selected.contains(id(track)),
+              onChanged: saving || all
+                  ? null
+                  : (value) => setState(() {
+                      value == true
+                          ? selected.add(id(track))
+                          : selected.remove(id(track));
+                    }),
+            );
+          },
+        ),
         if (tracks.isEmpty && !busy && error == null)
           Text(copy('emptyTracks'), style: TextStyle(color: v.muted)),
         if (cursor != null)
           TextButton(
+            key: const Key('import-load-more'),
             onPressed: busy || saving
                 ? null
                 : () => loadTracks(collection!, cursor),
@@ -652,6 +658,7 @@ class _ProviderImportState extends State<ProviderImport> {
           ),
         ),
         FilledButton(
+          key: const Key('import-confirm'),
           onPressed:
               busy ||
                   saving ||
@@ -693,7 +700,7 @@ class _ProviderImportState extends State<ProviderImport> {
       child: Dialog(
         insetPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
         child: SizedBox(
-          width: math.min(600.0, size.width - 24),
+          width: math.min(660.0, size.width - 24),
           height: math.max(
             100.0,
             math.min(
@@ -702,7 +709,7 @@ class _ProviderImportState extends State<ProviderImport> {
             ),
           ),
           child: Padding(
-            padding: const EdgeInsets.all(16),
+            padding: EdgeInsets.all(size.width < 600 ? 16 : 22),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -723,22 +730,52 @@ class _ProviderImportState extends State<ProviderImport> {
                               }),
                         icon: const Icon(Icons.arrow_back_rounded, size: 20),
                       ),
-                    Expanded(
-                      child: Text(
-                        collection?['name']?.toString() ??
-                            switch (widget.provider) {
-                              'spotify' => 'Spotify',
-                              'soundcloud' => 'SoundCloud',
-                              'youtube' => 'YouTube Music',
-                              'yandex' => 'Yandex Music',
-                              _ => widget.provider,
-                            },
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w800,
+                    if (size.width >= 600) ...[
+                      Container(
+                        width: 42,
+                        height: 42,
+                        decoration: BoxDecoration(
+                          color: v.surface,
+                          borderRadius: BorderRadius.circular(v.corners(12)),
                         ),
+                        child: Icon(
+                          Icons.library_music_outlined,
+                          size: 21,
+                          color: v.muted,
+                        ),
+                      ),
+                      const SizedBox(width: 14),
+                    ],
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            collection?['name']?.toString() ??
+                                switch (widget.provider) {
+                                  'spotify' => 'Spotify',
+                                  'soundcloud' => 'SoundCloud',
+                                  'youtube' => 'YouTube Music',
+                                  'yandex' => 'Yandex Music',
+                                  _ => widget.provider,
+                                },
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w800,
+                            ),
+                          ),
+                          const SizedBox(height: 4),
+                          Text(
+                            result != null
+                                ? text('imported')
+                                : collection != null
+                                ? copy('collection')
+                                : copy(publicMode ? 'public' : 'connected'),
+                            style: TextStyle(fontSize: 11, color: v.muted),
+                          ),
+                        ],
                       ),
                     ),
                     IconButton(
@@ -749,7 +786,7 @@ class _ProviderImportState extends State<ProviderImport> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 10),
+                Divider(height: 28, color: v.line),
                 if (busy || saving)
                   Padding(
                     padding: const EdgeInsets.only(bottom: 10),
@@ -759,11 +796,16 @@ class _ProviderImportState extends State<ProviderImport> {
                     ),
                   ),
                 Expanded(
-                  child: ListView(
+                  child: CustomScrollView(
                     key: const Key('provider-import-scroll'),
                     controller: scroll,
-                    padding: EdgeInsets.zero,
-                    children: children,
+                    slivers: [
+                      for (final child in children)
+                        if (child is SliverList)
+                          child
+                        else
+                          SliverToBoxAdapter(child: child),
+                    ],
                   ),
                 ),
               ],

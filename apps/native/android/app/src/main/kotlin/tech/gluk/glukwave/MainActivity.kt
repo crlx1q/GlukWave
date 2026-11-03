@@ -1,6 +1,16 @@
 package tech.gluk.glukwave
 import com.ryanheise.audioservice.AudioServiceFragmentActivity
 class MainActivity : AudioServiceFragmentActivity() {
+    override fun onStart() {
+        ConnectBackgroundService.activityOpened()
+        super.onStart()
+    }
+    override fun onDestroy() {
+        // Rotation, screen lock and opening the authentication browser are not
+        // an explicit close. Back/finish while idle releases foreground work.
+        if (isFinishing) ConnectBackgroundService.taskClosed(applicationContext)
+        super.onDestroy()
+    }
     override fun configureFlutterEngine(engine: io.flutter.embedding.engine.FlutterEngine) {
         super.configureFlutterEngine(engine)
         val app = applicationContext
@@ -29,14 +39,25 @@ class MainActivity : AudioServiceFragmentActivity() {
                 }
             } catch (error: Exception) { result.error("UPDATE_INSTALL",error.javaClass.simpleName,null) }
         }
-        io.flutter.plugin.common.MethodChannel(engine.dartExecutor.binaryMessenger,"tech.gluk.glukwave/connect_background").setMethodCallHandler { call,result ->
-            if (call.method != "update") { result.notImplemented(); return@setMethodCallHandler }
+        io.flutter.plugin.common.MethodChannel(engine.dartExecutor.binaryMessenger,"tech.gluk.glukwave/connect_background").also { channel ->
+          ConnectBackgroundService.channel = channel
+          channel.setMethodCallHandler { call,result ->
             try {
+            if (call.method == "listen") {
+                ConnectBackgroundService.listenerReady(app)
+                result.success(null); return@setMethodCallHandler
+            }
+            if (call.method == "playback") {
+                ConnectBackgroundService.playback(app,call.argument<Boolean>("active") == true)
+                result.success(null); return@setMethodCallHandler
+            }
+            if (call.method != "update") { result.notImplemented(); return@setMethodCallHandler }
                 result.success(ConnectBackgroundService.update(app,call.argument<Boolean>("enabled") == true,
                     call.argument<Boolean>("explicit") == true))
             } catch (error: Exception) {
                 result.error("CONNECT_BACKGROUND",error.javaClass.simpleName,null)
             }
+          }
         }
         io.flutter.plugin.common.MethodChannel(engine.dartExecutor.binaryMessenger,"tech.gluk.glukwave/energy").setMethodCallHandler { call,result ->
             if (call.method != "snapshot") { result.notImplemented(); return@setMethodCallHandler }

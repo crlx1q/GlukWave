@@ -146,6 +146,7 @@ void main() {
     )..addFont(rootBundle.load('fonts/MaterialIcons-Regular.otf'))).load();
   });
   testWidgets('Desktop dock is104px withseek; phone remains60px', (t) async {
+    addTearDown(() => debugDefaultTargetPlatformOverride = null);
     final c = (await t.runAsync(a.makeController))!;
     for (final size in [
       const Size(1440, 900),
@@ -154,6 +155,9 @@ void main() {
       const Size(390, 844),
       const Size(320, 740),
     ]) {
+      debugDefaultTargetPlatformOverride = size.width >= 720
+          ? TargetPlatform.windows
+          : TargetPlatform.android;
       await f.viewport(t, size);
       await t.pumpWidget(
         a.shell(
@@ -181,6 +185,7 @@ void main() {
       await f.screenshot(t, 'parity27-dock-${size.width.toInt()}');
     }
     await f.clean(t, c);
+    debugDefaultTargetPlatformOverride = null;
   });
   testWidgets('Volume panel320to1280 at125percent both themes', (t) async {
     final c = (await t.runAsync(a.makeController))!;

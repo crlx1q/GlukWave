@@ -1,3 +1,6 @@
+import 'client32_design.dart';
+import 'client32_workspace.dart';
+import 'source_mark.dart';
 import 'studio31.dart';
 import 'profile_crop.dart';
 import 'recommendation_actions.dart';
@@ -409,6 +412,17 @@ class _WaveShellState extends State<WaveShell>
     with SingleTickerProviderStateMixin {
   WaveController get c => widget.controller;
   WavePage page = WavePage.home;
+  final workspace = ClientWorkspaceController();
+  final pageStorage = PageStorageBucket();
+  final List<({WavePage page, Json? playlist})> navigationBack = [];
+  final List<({WavePage page, Json? playlist})> navigationForward = [];
+  bool contextVisible = true;
+  BuildContext get workspaceContext =>
+      workspace.navigatorKey.currentContext ?? context;
+  void workspaceChanged() {
+    if (mounted) setState(() {});
+  }
+
   String filter = 'all', source = 'all', searchType = 'all';
   Json? selectedPlaylist;
   final search = TextEditingController(), chat = TextEditingController();
@@ -474,6 +488,7 @@ class _WaveShellState extends State<WaveShell>
     // Compact desktop modes do not otherwise touch the full player animation.
     // Create its ticker while this State is alive, before dispose can run.
     playerReveal;
+    workspace.addListener(workspaceChanged);
     parity.addListener(parityChanged);
     c.addListener(waveSelectionChanged);
     waveSelectionChanged();
@@ -483,6 +498,8 @@ class _WaveShellState extends State<WaveShell>
 
   @override
   void dispose() {
+    workspace.removeListener(workspaceChanged);
+    workspace.dispose();
     search.dispose();
     settingsSearch.dispose();
     searchFocus.dispose();
@@ -498,10 +515,78 @@ class _WaveShellState extends State<WaveShell>
   }
 
   void navigate(WavePage value) {
+    workspace.clear();
+    if (page == value && selectedPlaylist == null) return;
     setState(() {
+      navigationBack.add((page: page, playlist: selectedPlaylist));
+      navigationForward.clear();
       page = value;
-      if (value != WavePage.library) selectedPlaylist = null;
+      selectedPlaylist = null;
     });
+  }
+
+  void openLibraryPlaylist(Json playlist) {
+    workspace.clear();
+    setState(() {
+      navigationBack.add((page: page, playlist: selectedPlaylist));
+      navigationForward.clear();
+      selectedPlaylist = playlist;
+      page = WavePage.library;
+    });
+  }
+
+  void goBack() {
+    if (workspace.back()) return;
+    if (navigationBack.isEmpty) return;
+    setState(() {
+      navigationForward.add((page: page, playlist: selectedPlaylist));
+      final previous = navigationBack.removeLast();
+      page = previous.page;
+      selectedPlaylist = previous.playlist;
+    });
+  }
+
+  void goForward() {
+    if (navigationForward.isEmpty) return;
+    workspace.clear();
+    setState(() {
+      navigationBack.add((page: page, playlist: selectedPlaylist));
+      final next = navigationForward.removeLast();
+      page = next.page;
+      selectedPlaylist = next.playlist;
+    });
+  }
+
+  Widget workspacePage(bool desktop) {
+    final Widget body;
+    if (page == WavePage.settings) {
+      body = Padding(
+        padding: EdgeInsets.fromLTRB(
+          desktop ? 28 : 18,
+          20,
+          desktop ? 28 : 18,
+          12,
+        ),
+        child: settingsPage(),
+      );
+    } else if (page == WavePage.rooms && c.room != null) {
+      body = roomWorkspace();
+    } else if (page == WavePage.search) {
+      body = searchPage();
+    } else if (page == WavePage.downloads) {
+      body = NativeSavedView(
+        controller: c,
+        onMore: more,
+        onBrowse: () => navigate(WavePage.search),
+        scrollable: true,
+      );
+    } else {
+      body = ClientScrollPage(
+        storageKey: 'workspace-${page.name}:${selectedPlaylist?['id'] ?? ''}',
+        content: content(),
+      );
+    }
+    return PageStorage(bucket: pageStorage, child: body);
   }
 
   @override
@@ -510,7 +595,13 @@ class _WaveShellState extends State<WaveShell>
     if (c.desktop.mini || c.desktop.quick) {
       return DesktopCompactPlayer(controller: c, quick: c.desktop.quick);
     }
-    final desktop = MediaQuery.sizeOf(context).width >= 900;
+    final layout = ClientLayout.of(context);
+    final desktop = layout.desktop;
+    final composingRoom =
+        !desktop &&
+        page == WavePage.rooms &&
+        c.room != null &&
+        MediaQuery.viewInsetsOf(context).bottom > 0;
     final shell = Scaffold(
       backgroundColor:
           c.customization.wallpaper['url'] != '' &&
@@ -518,7 +609,7 @@ class _WaveShellState extends State<WaveShell>
               !c.energySaving
           ? Colors.transparent
           : null,
-      appBar: DesktopTitleBar.supported
+      appBar: desktop && DesktopTitleBar.supported
           ? PreferredSize(
               preferredSize: const Size.fromHeight(44),
               child: DesktopTitleBar(controller: c),
@@ -527,245 +618,236 @@ class _WaveShellState extends State<WaveShell>
       body: SafeArea(
         child: SeasonalBackdrop(
           settings: c.customization.seasonalEffects,
-          child: Row(
+          child: Column(
             children: [
-              if (desktop) sidebar(),
               Expanded(
-                child: Column(
+                child: Row(
                   children: [
-                    topbar(desktop),
-                    WaveUpdateNotice(controller: c),
-                    if (c.room != null) roomPin(),
-                    if (!c.online)
-                      NativeOfflineNotice(
-                        onSaved: () => navigate(WavePage.downloads),
-                        onRetry: () => run(c, c.refresh),
-                      )
-                    else if (c.error != null)
-                      Material(
-                        color: waveVisuals(context).accentSoft,
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(20, 10, 10, 10),
-                          child: Row(
-                            children: [
-                              Icon(
-                                c.online
-                                    ? Icons.info_outline
-                                    : Icons.wifi_off_rounded,
-                                size: 17,
-                              ),
-                              const SizedBox(width: 10),
-                              Expanded(
-                                child: Text(
-                                  c.online
-                                      ? c.error!
-                                      : wt(
-                                          'native.91cea4784a',
-                                          values: {'p0': (c.error)},
+                    if (desktop) sidebar(),
+                    Expanded(
+                      child: Column(
+                        children: [
+                          if (!composingRoom &&
+                              (desktop || !workspace.canGoBack))
+                            topbar(desktop),
+                          if (!composingRoom) WaveUpdateNotice(controller: c),
+                          if (c.room != null && !composingRoom) roomPin(),
+                          if (!c.online)
+                            NativeOfflineNotice(
+                              onSaved: () => navigate(WavePage.downloads),
+                              onRetry: () => run(c, c.refresh),
+                            )
+                          else if (c.error != null)
+                            Material(
+                              color: waveVisuals(context).accentSoft,
+                              child: Padding(
+                                padding: const EdgeInsets.fromLTRB(
+                                  20,
+                                  10,
+                                  10,
+                                  10,
+                                ),
+                                child: Row(
+                                  children: [
+                                    Icon(
+                                      c.online
+                                          ? Icons.info_outline
+                                          : Icons.wifi_off_rounded,
+                                      size: 17,
+                                    ),
+                                    const SizedBox(width: 10),
+                                    Expanded(
+                                      child: Text(
+                                        c.online
+                                            ? c.error!
+                                            : wt(
+                                                'native.91cea4784a',
+                                                values: {'p0': (c.error)},
+                                                context: context,
+                                              ),
+                                        style: const TextStyle(fontSize: 11),
+                                      ),
+                                    ),
+                                    TextButton(
+                                      onPressed: () => run(c, c.refresh),
+                                      child: Text(
+                                        wt(
+                                          'native.9e506acb19',
                                           context: context,
                                         ),
-                                  style: const TextStyle(fontSize: 11),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                              TextButton(
-                                onPressed: () => run(c, c.refresh),
-                                child: Text(
-                                  wt('native.9e506acb19', context: context),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    if (c.loading)
-                      LinearProgressIndicator(
-                        minHeight: 2,
-                        color: waveVisuals(context).accent,
-                        backgroundColor: waveVisuals(context).background,
-                      ),
-                    Expanded(
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: page == WavePage.settings
-                                ? Padding(
-                                    padding: EdgeInsets.fromLTRB(
-                                      desktop ? 32 : 20,
-                                      20,
-                                      desktop ? 32 : 20,
-                                      12,
-                                    ),
-                                    child: settingsPage(),
-                                  )
-                                : AnimatedSwitcher(
-                                    duration: Duration(
-                                      milliseconds:
-                                          c.settings['reducedMotion'] == true
-                                          ? 0
-                                          : 220,
-                                    ),
-                                    child: SingleChildScrollView(
-                                      key: ValueKey(
-                                        '$page:${selectedPlaylist?['id']}',
-                                      ),
-                                      padding: EdgeInsets.fromLTRB(
-                                        waveVisuals(context).compact
-                                            ? 16
-                                            : desktop
-                                            ? 40
-                                            : 20,
-                                        waveVisuals(context).compact
-                                            ? 16
-                                            : desktop
-                                            ? 34
-                                            : 20,
-                                        waveVisuals(context).compact
-                                            ? 16
-                                            : desktop
-                                            ? 40
-                                            : 20,
-                                        32,
-                                      ),
-                                      child: ConstrainedBox(
-                                        constraints: const BoxConstraints(
-                                          maxWidth: 1450,
-                                        ),
-                                        child: content(),
-                                      ),
-                                    ),
-                                  ),
-                          ),
-                          if (MediaQuery.sizeOf(context).width >= 1560 &&
-                              [
-                                WavePage.home,
-                                WavePage.library,
-                                WavePage.search,
-                                WavePage.liked,
-                              ].contains(page))
-                            DesktopListeningRail(
-                              controller: c,
-                              onExpand: () => showPlayer(),
-                              onQueue: () => showPlayer(tab: 2),
-                              onDevices: () => navigate(WavePage.devices),
                             ),
+                          if (c.loading)
+                            LinearProgressIndicator(
+                              minHeight: 2,
+                              color: waveVisuals(context).accent,
+                              backgroundColor: waveVisuals(context).background,
+                            ),
+                          Expanded(
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: ClientWorkspace(
+                                    controller: workspace,
+                                    child: workspacePage(desktop),
+                                  ),
+                                ),
+                                if (layout.contextPane &&
+                                    contextVisible &&
+                                    page != WavePage.rooms)
+                                  DesktopListeningRail(
+                                    controller: c,
+                                    onExpand: () => showPlayer(),
+                                    onQueue: () => showPlayer(tab: 2),
+                                    onDevices: () => navigate(WavePage.devices),
+                                  ),
+                              ],
+                            ),
+                          ),
                         ],
                       ),
                     ),
-                    if (c.audio.viewCurrent != null)
-                      Padding(
-                        padding: EdgeInsets.fromLTRB(
-                          desktop ? 28 : 10,
-                          4,
-                          desktop ? 28 : 10,
-                          desktop ? 16 : 6,
-                        ),
-                        child: MiniPlayer(
-                          controller: c,
-                          onOpen: showPlayer,
-                          onDevices: () => navigate(WavePage.devices),
-                          artworkKey: miniArtwork,
-                          onDragStart: beginPlayerDrag,
-                          onDragUpdate: updatePlayerDrag,
-                          onDragEnd: finishPlayerOpen,
-                          onDragCancel: () => settlePlayer(false),
-                        ),
-                      ),
-                    if (!desktop) bottomNavigation(),
                   ],
                 ),
               ),
+              if ((desktop || c.audio.viewCurrent != null) && !composingRoom)
+                Padding(
+                  padding: EdgeInsets.fromLTRB(
+                    desktop ? 12 : 10,
+                    desktop ? 8 : 4,
+                    desktop ? 12 : 10,
+                    desktop ? 10 : 6,
+                  ),
+                  child: MiniPlayer(
+                    controller: c,
+                    onOpen: showPlayer,
+                    onDevices: () => navigate(WavePage.devices),
+                    artworkKey: miniArtwork,
+                    onDragStart: beginPlayerDrag,
+                    onDragUpdate: updatePlayerDrag,
+                    onDragEnd: finishPlayerOpen,
+                    onDragCancel: () => settlePlayer(false),
+                  ),
+                ),
+              if (!desktop && !composingRoom) bottomNavigation(),
             ],
           ),
         ),
       ),
     );
-    return Focus(
-      autofocus: true,
-      onKeyEvent: handleKey,
-      child: PopScope(
-        canPop: !playerVisible,
-        onPopInvokedWithResult: (didPop, result) {
-          if (!didPop && playerVisible) settlePlayer(false);
-        },
-        child: AnimatedBuilder(
-          animation: playerReveal,
-          child: StudioWallpaper(controller: c, child: shell),
-          builder: (context, child) {
-            final extent = playerReveal.value;
-            final shift = (1 - extent) * MediaQuery.sizeOf(context).height;
-            return Stack(
-              children: [
-                ExcludeFocus(
-                  excluding: playerVisible,
-                  child: ExcludeSemantics(
+    return ClientWorkspaceScope(
+      controller: workspace,
+      child: Focus(
+        autofocus: true,
+        onKeyEvent: handleKey,
+        child: PopScope(
+          canPop:
+              !playerVisible && !workspace.canGoBack && navigationBack.isEmpty,
+          onPopInvokedWithResult: (didPop, result) {
+            if (!didPop) {
+              if (playerVisible) {
+                settlePlayer(false);
+              } else {
+                goBack();
+              }
+            }
+          },
+          child: AnimatedBuilder(
+            animation: playerReveal,
+            child: StudioWallpaper(controller: c, child: shell),
+            builder: (context, child) {
+              final extent = playerReveal.value;
+              final shift = (1 - extent) * MediaQuery.sizeOf(context).height;
+              return Stack(
+                children: [
+                  ExcludeFocus(
                     excluding: playerVisible,
-                    child: IgnorePointer(
-                      ignoring: playerVisible,
-                      child: TickerMode(enabled: !playerVisible, child: child!),
+                    child: ExcludeSemantics(
+                      excluding: playerVisible,
+                      child: IgnorePointer(
+                        ignoring: playerVisible,
+                        child: TickerMode(
+                          enabled: !playerVisible,
+                          child: child!,
+                        ),
+                      ),
                     ),
                   ),
-                ),
-                if (playerVisible) ...[
-                  Positioned.fill(
-                    child: ColoredBox(
-                      color: Colors.black.withValues(alpha: .5 * extent),
+                  if (playerVisible) ...[
+                    Positioned.fill(
+                      child: ColoredBox(
+                        color: Colors.black.withValues(alpha: .5 * extent),
+                      ),
                     ),
-                  ),
-                  Positioned.fill(
-                    child: Opacity(
-                      opacity: (extent * 2.5).clamp(0, 1),
-                      child: Transform.translate(
-                        offset: Offset(0, shift),
-                        child: Material(
-                          key: const Key('full-player'),
-                          color: waveVisuals(context).background,
-                          child: SafeArea(
-                            child: PlayerPage(
-                              controller: c,
-                              initialTrack: previewTrack,
-                              initialTab: playerInitialTab,
-                              onMore: more,
-                              onClose: () => settlePlayer(false),
-                              onDevices: () {
-                                settlePlayer(false);
-                                navigate(WavePage.devices);
-                              },
-                              artworkKey: fullArtwork,
-                              hideAlbum: extent < 1 && coverOrigin != null,
-                              onDragStart: beginPlayerClose,
-                              onDragUpdate: updatePlayerDrag,
-                              onDragEnd: finishPlayerClose,
-                              onDragCancel: () => settlePlayer(true),
+                    Positioned.fill(
+                      top: desktop && DesktopTitleBar.supported ? 44 : 0,
+                      child: Opacity(
+                        opacity: (extent * 2.5).clamp(0, 1),
+                        child: Transform.translate(
+                          offset: Offset(0, shift),
+                          child: Material(
+                            key: const Key('full-player'),
+                            color: waveVisuals(context).background,
+                            child: SafeArea(
+                              child: PlayerPage(
+                                controller: c,
+                                initialTrack: previewTrack,
+                                initialTab: playerInitialTab,
+                                onMore: more,
+                                onClose: () => settlePlayer(false),
+                                onDevices: () {
+                                  settlePlayer(false);
+                                  navigate(WavePage.devices);
+                                },
+                                artworkKey: fullArtwork,
+                                hideAlbum: extent < 1 && coverOrigin != null,
+                                onDragStart: beginPlayerClose,
+                                onDragUpdate: updatePlayerDrag,
+                                onDragEnd: finishPlayerClose,
+                                onDragCancel: () => settlePlayer(true),
+                              ),
                             ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                  if (extent < 1 &&
-                      coverOrigin != null &&
-                      coverDestination != null &&
-                      c.audio.viewCurrent != null)
-                    Positioned.fromRect(
-                      rect: Rect.lerp(coverOrigin, coverDestination, extent)!,
-                      child: IgnorePointer(
-                        child: Artwork(
-                          key: const Key('player-cover-transition'),
-                          controller: c,
-                          url: c.audio.viewCurrent!.artwork,
-                          size: Rect.lerp(
-                            coverOrigin,
-                            coverDestination,
-                            extent,
-                          )!.width,
-                          radius: 8 + extent * 6,
+                    if (desktop && DesktopTitleBar.supported)
+                      Positioned(
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        height: 44,
+                        child: DesktopTitleBar(controller: c),
+                      ),
+                    if (extent < 1 &&
+                        coverOrigin != null &&
+                        coverDestination != null &&
+                        c.audio.viewCurrent != null)
+                      Positioned.fromRect(
+                        rect: Rect.lerp(coverOrigin, coverDestination, extent)!,
+                        child: IgnorePointer(
+                          child: Artwork(
+                            key: const Key('player-cover-transition'),
+                            controller: c,
+                            url: c.audio.viewCurrent!.artwork,
+                            size: Rect.lerp(
+                              coverOrigin,
+                              coverDestination,
+                              extent,
+                            )!.width,
+                            radius: 8 + extent * 6,
+                          ),
                         ),
                       ),
-                    ),
+                  ],
                 ],
-              ],
-            );
-          },
+              );
+            },
+          ),
         ),
       ),
     );
@@ -852,8 +934,13 @@ class _WaveShellState extends State<WaveShell>
 
   KeyEventResult handleKey(FocusNode node, KeyEvent event) {
     if (event is! KeyDownEvent) return KeyEventResult.ignored;
-    if (event.logicalKey == LogicalKeyboardKey.escape && playerVisible) {
-      settlePlayer(false);
+    if (event.logicalKey == LogicalKeyboardKey.escape &&
+        (playerVisible || workspace.canGoBack)) {
+      if (playerVisible) {
+        settlePlayer(false);
+      } else {
+        goBack();
+      }
       return KeyEventResult.handled;
     }
     if (!(c.preferences.getBool('nativeHotkeys') ?? true)) {
@@ -863,6 +950,16 @@ class _WaveShellState extends State<WaveShell>
     if (focused?.widget is EditableText ||
         focused?.findAncestorWidgetOfExactType<EditableText>() != null) {
       return KeyEventResult.ignored;
+    }
+    if (HardwareKeyboard.instance.isAltPressed &&
+        event.logicalKey == LogicalKeyboardKey.arrowLeft) {
+      goBack();
+      return KeyEventResult.handled;
+    }
+    if (HardwareKeyboard.instance.isAltPressed &&
+        event.logicalKey == LogicalKeyboardKey.arrowRight) {
+      goForward();
+      return KeyEventResult.handled;
     }
     final control = HardwareKeyboard.instance.isControlPressed;
     if (event.logicalKey == LogicalKeyboardKey.space &&
@@ -891,13 +988,158 @@ class _WaveShellState extends State<WaveShell>
     return KeyEventResult.handled;
   }
 
-  Widget sidebar() => compactSidebar();
+  Widget sidebar() => ClientLayout.of(context).labelledSidebar
+      ? labelledSidebar()
+      : compactSidebar();
+
+  Widget labelledSidebar() {
+    final v = waveVisuals(context);
+    Widget destination(WavePage value, {String? label, IconData? icon}) =>
+        Padding(
+          padding: const EdgeInsets.only(bottom: 3),
+          child: Semantics(
+            selected: page == value && selectedPlaylist == null,
+            child: Material(
+              color: page == value && selectedPlaylist == null
+                  ? v.ink.withValues(alpha: .075)
+                  : Colors.transparent,
+              borderRadius: BorderRadius.circular(v.corners(10)),
+              child: InkWell(
+                key: Key('nav-${value.name}'),
+                borderRadius: BorderRadius.circular(v.corners(10)),
+                onTap: () => navigate(value),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 11,
+                  ),
+                  child: Row(
+                    children: [
+                      WaveControlIcon(
+                        icon ?? pageIcons[value.index],
+                        size: 20,
+                        color: page == value ? v.ink : v.muted,
+                      ),
+                      const SizedBox(width: 13),
+                      Expanded(
+                        child: Text(
+                          label ?? pageLabels[value.index],
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: page == value
+                                ? FontWeight.w800
+                                : FontWeight.w600,
+                            color: page == value ? v.ink : v.muted,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+        );
+    return Container(
+      key: const Key('desktop-navigation-sidebar'),
+      width: 224,
+      decoration: BoxDecoration(
+        color: v.surface.withValues(alpha: .4),
+        border: Border(right: BorderSide(color: v.line)),
+      ),
+      padding: const EdgeInsets.fromLTRB(14, 23, 14, 12),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 10, bottom: 25),
+            child: Brand(size: 30, animated: !v.reducedMotion),
+          ),
+          for (final value in [
+            WavePage.home,
+            WavePage.search,
+            WavePage.library,
+          ])
+            destination(value),
+          const SizedBox(height: 20),
+          Expanded(
+            child: ListView(
+              key: const PageStorageKey('sidebar-library'),
+              padding: EdgeInsets.zero,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(12, 0, 12, 12),
+                  child: Text(
+                    wt('native.708d386559', context: context).toUpperCase(),
+                    style: TextStyle(
+                      fontSize: 9,
+                      fontWeight: FontWeight.w800,
+                      letterSpacing: 1.4,
+                      color: v.muted,
+                    ),
+                  ),
+                ),
+                for (final value in [
+                  WavePage.liked,
+                  WavePage.downloads,
+                  WavePage.artists,
+                  WavePage.discover,
+                ])
+                  destination(value),
+                if (c.playlists.isNotEmpty) ...[
+                  const SizedBox(height: 14),
+                  Divider(color: v.line),
+                  for (final playlist in c.playlists.take(5))
+                    ListTile(
+                      key: Key('sidebar-playlist-${playlist['id']}'),
+                      dense: true,
+                      minLeadingWidth: 18,
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                      ),
+                      leading: Icon(
+                        Icons.queue_music_rounded,
+                        size: 18,
+                        color: v.muted,
+                      ),
+                      title: Text(
+                        playlist['name']?.toString() ?? '',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(fontSize: 11),
+                      ),
+                      selected:
+                          selectedPlaylist?['id'] == playlist['id'] &&
+                          page == WavePage.library,
+                      onTap: () => openLibraryPlaylist(playlist),
+                    ),
+                ],
+                const SizedBox(height: 18),
+                for (final value in [
+                  WavePage.rooms,
+                  WavePage.friends,
+                  WavePage.sources,
+                  WavePage.devices,
+                ])
+                  destination(value),
+              ],
+            ),
+          ),
+          const SizedBox(height: 8),
+          destination(WavePage.settings),
+          if (c.user?.admin == true) destination(WavePage.admin),
+        ],
+      ),
+    );
+  }
 
   Widget compactSidebar() {
     final v = waveVisuals(context);
     return Container(
       key: const Key('desktop-navigation-rail'),
-      width: 84,
+      width: 76,
       decoration: BoxDecoration(
         border: Border(right: BorderSide(color: v.line)),
       ),
@@ -929,7 +1171,7 @@ class _WaveShellState extends State<WaveShell>
                           onPressed: () => navigate(value),
                           isSelected: page == value,
                           style: IconButton.styleFrom(
-                            minimumSize: const Size(54, 54),
+                            minimumSize: const Size(48, 48),
                             backgroundColor: page == value
                                 ? v.accentSoft
                                 : Colors.transparent,
@@ -975,8 +1217,8 @@ class _WaveShellState extends State<WaveShell>
     final v = waveVisuals(context),
         tight = MediaQuery.sizeOf(context).width < 360;
     return Container(
-      height: desktop ? 78 : 66,
-      padding: EdgeInsets.symmetric(horizontal: desktop ? 30 : 16),
+      height: desktop ? 72 : 60,
+      padding: EdgeInsets.symmetric(horizontal: desktop ? 20 : 14),
       decoration: BoxDecoration(
         border: Border(bottom: BorderSide(color: v.line)),
       ),
@@ -988,32 +1230,57 @@ class _WaveShellState extends State<WaveShell>
               compact: tight || MediaQuery.textScalerOf(context).scale(1) > 1.1,
               animated: !v.reducedMotion,
             ),
+          if (desktop) ...[
+            IconButton(
+              key: const Key('workspace-back'),
+              tooltip: MaterialLocalizations.of(context).backButtonTooltip,
+              onPressed: workspace.canGoBack || navigationBack.isNotEmpty
+                  ? goBack
+                  : null,
+              icon: const Icon(Icons.chevron_left_rounded, size: 23),
+            ),
+            IconButton(
+              key: const Key('workspace-forward'),
+              tooltip: wt('native.c97fa8b29b', context: context),
+              onPressed: navigationForward.isNotEmpty && !workspace.canGoBack
+                  ? goForward
+                  : null,
+              icon: const Icon(Icons.chevron_right_rounded, size: 23),
+            ),
+            const SizedBox(width: 10),
+          ],
           if (desktop)
             Expanded(
-              child: Row(
-                children: [
-                  ConstrainedBox(
-                    constraints: BoxConstraints(
-                      maxWidth: MediaQuery.sizeOf(context).width < 1100
-                          ? 350
-                          : 470,
-                    ),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(
+                    maxWidth: MediaQuery.sizeOf(context).width < 1100
+                        ? 350
+                        : 470,
+                  ),
+                  child: SizedBox(
+                    height: 44,
                     child: TextField(
+                      key: const Key('desktop-search-field'),
                       controller: search,
                       focusNode: searchFocus,
+                      style: const TextStyle(fontSize: 12),
                       decoration: InputDecoration(
+                        isDense: true,
                         hintText: wt('native.eaad77f8f4', context: context),
                         prefixIcon: const Padding(
-                          padding: EdgeInsets.all(14),
+                          padding: EdgeInsets.all(10),
                           child: WaveControlIcon(
                             Icons.search_rounded,
-                            size: 19,
+                            size: 18,
                           ),
                         ),
                         suffixIcon: const Center(
                           widthFactor: 1,
+                          heightFactor: 1,
                           child: Padding(
-                            padding: EdgeInsets.only(right: 14),
+                            padding: EdgeInsets.only(right: 12),
                             child: Text(
                               'Ctrl K',
                               style: TextStyle(fontSize: 9),
@@ -1021,15 +1288,14 @@ class _WaveShellState extends State<WaveShell>
                           ),
                         ),
                         contentPadding: const EdgeInsets.symmetric(
-                          vertical: 14,
+                          vertical: 10,
                         ),
                       ),
                       onChanged: scheduleSearch,
                       onSubmitted: (_) => doSearch(),
                     ),
                   ),
-                  const Spacer(),
-                ],
+                ),
               ),
             )
           else
@@ -1038,7 +1304,7 @@ class _WaveShellState extends State<WaveShell>
             IconButton(
               key: const Key('mobile-guard'),
               tooltip: nativeText(context, 'guard'),
-              onPressed: c.online ? scanQr : null,
+              onPressed: c.online ? () => showWaveGuard(context, c) : null,
               icon: WaveControlIcon(
                 Icons.qr_code_scanner_rounded,
                 size: 20,
@@ -1055,6 +1321,14 @@ class _WaveShellState extends State<WaveShell>
                 size: 21,
                 color: v.muted,
               ),
+            ),
+          if (desktop && ClientLayout.of(context).contextPane)
+            IconButton(
+              key: const Key('toggle-listening-context'),
+              tooltip: wave27Text(context, 'queue'),
+              isSelected: contextVisible,
+              onPressed: () => setState(() => contextVisible = !contextVisible),
+              icon: const Icon(Icons.view_sidebar_outlined, size: 21),
             ),
           if (desktop)
             IconButton(
@@ -1078,11 +1352,10 @@ class _WaveShellState extends State<WaveShell>
               if (value == 'guard') {
                 showWaveGuard(context, c);
               } else if (value == 'lofi') {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute<void>(
-                    builder: (_) => LofiPage(controller: c),
-                  ),
+                openClientDetail(
+                  workspaceContext,
+                  title: wt('native.847e19da38', context: context),
+                  builder: (_) => LofiPage(controller: c, embedded: true),
                 );
               } else {
                 navigate(
@@ -1191,65 +1464,85 @@ class _WaveShellState extends State<WaveShell>
     );
   }
 
-  Widget bottomNavigation() => Padding(
-    padding: const EdgeInsets.fromLTRB(12, 5, 12, 8),
-    child: Row(
-      children: [
-        for (final value in [WavePage.home, WavePage.search, WavePage.library])
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 4),
-              child: WavePress(
-                child: InkWell(
-                  onTap: () => navigate(value),
-                  key: Key('nav-${value.name}'),
-                  borderRadius: BorderRadius.circular(waveRadius(context, 19)),
-                  child: AnimatedContainer(
-                    duration: waveVisuals(context).duration(220),
-                    padding: const EdgeInsets.symmetric(vertical: 10),
-                    decoration: BoxDecoration(
-                      color: page == value
-                          ? waveVisuals(context).accentSoft
-                          : Colors.transparent,
-                      borderRadius: BorderRadius.circular(
-                        waveRadius(context, 19),
-                      ),
+  Widget bottomNavigation() {
+    final activePage = switch (page) {
+      WavePage.home => WavePage.home,
+      WavePage.library ||
+      WavePage.liked ||
+      WavePage.downloads => WavePage.library,
+      WavePage.search ||
+      WavePage.artists ||
+      WavePage.discover => WavePage.search,
+      _ => WavePage.profile,
+    };
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(12, 5, 12, 8),
+      child: Row(
+        children: [
+          for (final value in [
+            WavePage.home,
+            WavePage.search,
+            WavePage.library,
+            WavePage.profile,
+          ])
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4),
+                child: WavePress(
+                  child: InkWell(
+                    onTap: () => navigate(value),
+                    key: Key('nav-${value.name}'),
+                    borderRadius: BorderRadius.circular(
+                      waveRadius(context, 19),
                     ),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        WaveControlIcon(
-                          pageIcons[value.index],
-                          size: 22,
-                          color: page == value
-                              ? waveVisuals(context).ink
-                              : waveVisuals(context).muted,
+                    child: AnimatedContainer(
+                      duration: waveVisuals(context).duration(220),
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                      decoration: BoxDecoration(
+                        color: activePage == value
+                            ? waveVisuals(context).accentSoft
+                            : Colors.transparent,
+                        borderRadius: BorderRadius.circular(
+                          waveRadius(context, 19),
                         ),
-                        const SizedBox(height: 5),
-                        Text(
-                          pageLabels[value.index],
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            fontSize: 10,
-                            fontWeight: page == value
-                                ? FontWeight.w800
-                                : FontWeight.w500,
-                            color: page == value
+                      ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          WaveControlIcon(
+                            pageIcons[value.index],
+                            size: 22,
+                            color: activePage == value
                                 ? waveVisuals(context).ink
                                 : waveVisuals(context).muted,
                           ),
-                        ),
-                      ],
+                          const SizedBox(height: 5),
+                          Text(
+                            pageLabels[value.index],
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              fontSize: 10,
+                              fontWeight: activePage == value
+                                  ? FontWeight.w800
+                                  : FontWeight.w500,
+                              color: activePage == value
+                                  ? waveVisuals(context).ink
+                                  : waveVisuals(context).muted,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
-          ),
-      ],
-    ),
-  );
+        ],
+      ),
+    );
+  }
+
   Widget content() {
     final pending =
         c.loading &&
@@ -1338,17 +1631,8 @@ class _WaveShellState extends State<WaveShell>
       ],
     ),
   );
-  Widget tracksList(List<WaveTrack> items) => Column(
-    children: [
-      for (final track in items)
-        TrackRow(
-          controller: c,
-          track: track,
-          queue: items,
-          onMore: () => more(track),
-        ),
-    ],
-  );
+  Widget tracksList(List<WaveTrack> items) =>
+      ClientTrackRows(controller: c, tracks: items, onMore: more);
   Widget homeTrackRail(List<WaveTrack> items) {
     final v = waveVisuals(context),
         size = MediaQuery.sizeOf(context).width < 700 ? 142.0 : 164.0;
@@ -1450,22 +1734,19 @@ class _WaveShellState extends State<WaveShell>
           onRetry: () => parity.load(mood: mood, mode: waveMode),
           onLikes: () => navigate(WavePage.liked),
           onCreatePlaylist: newPlaylist,
-          onPlaylist: (playlist) => setState(() {
-            selectedPlaylist = playlist;
-            page = WavePage.library;
-          }),
+          onPlaylist: openLibraryPlaylist,
           recommendationFooter: TasteInvitation(
             parity: parity,
-            onOpen: () => openTaste(context, c, parity),
+            onOpen: () => openTaste(workspaceContext, c, parity),
           ),
         ),
         const SizedBox(height: 24),
         InkWell(
-          onTap: () => Navigator.push(
-            context,
-            MaterialPageRoute<void>(
-              builder: (_) => LofiPage(controller: c, onMore: more),
-            ),
+          onTap: () => openClientDetail(
+            workspaceContext,
+            title: wt('native.847e19da38', context: context),
+            builder: (_) =>
+                LofiPage(controller: c, onMore: more, embedded: true),
           ),
           borderRadius: BorderRadius.circular(waveRadius(context, 22)),
           child: ClipRRect(
@@ -1733,12 +2014,10 @@ class _WaveShellState extends State<WaveShell>
               width: width,
               child: InkWell(
                 borderRadius: BorderRadius.circular(waveRadius(context, 18)),
+                key: Key('library-playlist-${playlist['id']}'),
                 onTap: playlist['id'].toString().startsWith('pending:')
                     ? null
-                    : () => setState(() {
-                        selectedPlaylist = playlist;
-                        page = WavePage.library;
-                      }),
+                    : () => openLibraryPlaylist(playlist),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -1990,77 +2269,73 @@ class _WaveShellState extends State<WaveShell>
     if (mounted && revision == searchRequest) setState(() => searching = false);
   }
 
-  Widget searchPage() => Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      if (search.text.trim().isEmpty)
-        PageHeading(
-          polishText('browse', context),
-          polishText('browseDetail', context),
-          eyebrow: wt('native.9bd84125bc', context: context),
-        ),
-      if (MediaQuery.sizeOf(context).width < 900)
-        Padding(
-          padding: const EdgeInsets.only(bottom: 18),
-          child: TextField(
-            key: const Key('discovery-query'),
-            controller: search,
-            focusNode: searchFocus,
-            onChanged: scheduleSearch,
-            onSubmitted: (_) => doSearch(),
-            decoration: InputDecoration(
-              prefixIcon: const Padding(
-                padding: EdgeInsets.all(14),
-                child: WaveControlIcon(Icons.search_rounded, size: 20),
-              ),
-              hintText: wt('native.bbd9181561', context: context),
-              suffixIcon: IconButton(
-                onPressed: doSearch,
-                tooltip: wt('native.58212e541c', context: context),
-                icon: const Icon(Icons.arrow_forward_rounded),
+  Widget searchPage() => DiscoveryView(
+    scrollable: true,
+    header: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        if (search.text.trim().isEmpty)
+          PageHeading(
+            polishText('browse', context),
+            polishText('browseDetail', context),
+            eyebrow: wt('native.9bd84125bc', context: context),
+          ),
+        if (!ClientLayout.of(context).desktop)
+          Padding(
+            padding: const EdgeInsets.only(bottom: 18),
+            child: TextField(
+              key: const Key('discovery-query'),
+              controller: search,
+              focusNode: searchFocus,
+              onChanged: scheduleSearch,
+              onSubmitted: (_) => doSearch(),
+              decoration: InputDecoration(
+                prefixIcon: const Padding(
+                  padding: EdgeInsets.all(14),
+                  child: WaveControlIcon(Icons.search_rounded, size: 20),
+                ),
+                hintText: wt('native.bbd9181561', context: context),
+                suffixIcon: IconButton(
+                  onPressed: doSearch,
+                  tooltip: wt('native.58212e541c', context: context),
+                  icon: const Icon(Icons.arrow_forward_rounded),
+                ),
               ),
             ),
           ),
-        ),
-      if (c.suggestion != null)
-        TextButton(
-          onPressed: () {
-            search.text = c.suggestion!;
-            doSearch();
-          },
-          child: Text(
-            wt(
-              'native.f1b3941857',
-              values: {'p0': c.suggestion},
-              context: context,
+        if (c.suggestion != null)
+          TextButton(
+            onPressed: () {
+              search.text = c.suggestion!;
+              doSearch();
+            },
+            child: Text(
+              wt(
+                'native.f1b3941857',
+                values: {'p0': c.suggestion},
+                context: context,
+              ),
             ),
           ),
-        ),
-      DiscoveryView(
-        controller: c,
-        query: search.text,
-        type: searchType,
-        source: source,
-        loading: searching,
-        onType: (value) => setState(() => searchType = value),
-        onSource: (value) {
-          setState(() => source = value);
-          doSearch();
-        },
-        onQuery: (value) {
-          search.text = value;
-          doSearch();
-        },
-        onPlaylist: (playlist) => openDiscoveryPlaylist(context, c, playlist),
-        onMore: more,
-      ),
-      if (search.text.startsWith('https://'))
-        OutlinedButton.icon(
-          onPressed: () => run(c, () => c.resolve(search.text)),
-          icon: const Icon(Icons.link_rounded),
-          label: Text(wt('native.0556f90ffc', context: context)),
-        ),
-    ],
+      ],
+    ),
+    controller: c,
+    query: search.text,
+    type: searchType,
+    source: source,
+    loading: searching,
+    onType: (value) => setState(() => searchType = value),
+    onSource: (value) {
+      setState(() => source = value);
+      doSearch();
+    },
+    onQuery: (value) {
+      search.text = value;
+      doSearch();
+    },
+    onPlaylist: (playlist) =>
+        openDiscoveryPlaylist(workspaceContext, c, playlist),
+    onMore: more,
   );
   Future<Json?> roomCreation() async {
     final name = TextEditingController();
@@ -2136,8 +2411,14 @@ class _WaveShellState extends State<WaveShell>
     await showModalBottomSheet<void>(
       context: context,
       useSafeArea: true,
-      builder: (sheet) => Padding(
-        padding: const EdgeInsets.fromLTRB(14, 22, 14, 26),
+      isScrollControlled: true,
+      showDragHandle: true,
+      constraints: BoxConstraints(
+        maxHeight: MediaQuery.sizeOf(context).height * .88,
+        maxWidth: 560,
+      ),
+      builder: (sheet) => SingleChildScrollView(
+        padding: const EdgeInsets.fromLTRB(14, 0, 14, 26),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -2303,6 +2584,112 @@ class _WaveShellState extends State<WaveShell>
     if (accepted == true) await run(c, action);
   }
 
+  Widget sourceConnection(Json entry) {
+    final v = waveVisuals(context), provider = entry['provider'] as String;
+    final connected = entry['connected'] == true,
+        configured = entry['configured'] == true;
+    return Container(
+      key: Key('source-row-$provider'),
+      margin: const EdgeInsets.only(bottom: 2),
+      padding: const EdgeInsets.symmetric(vertical: 18),
+      decoration: BoxDecoration(
+        border: Border(bottom: BorderSide(color: v.line)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Container(
+                width: 42,
+                height: 42,
+                decoration: BoxDecoration(
+                  color: v.ink.withValues(alpha: .045),
+                  borderRadius: BorderRadius.circular(v.corners(12)),
+                ),
+                child: Center(
+                  child: SourceMark(
+                    provider: provider,
+                    color: providerColor(provider),
+                    size: 23,
+                  ),
+                ),
+              ),
+              const SizedBox(width: 14),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      providerName(provider),
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: -.4,
+                      ),
+                    ),
+                    const SizedBox(height: 4),
+                    Text(
+                      connected
+                          ? wt(
+                              'native.8343afbb45',
+                              values: {'p0': entry['displayName'] ?? ''},
+                              context: context,
+                            )
+                          : publicImportText(context, 'hint'),
+                      style: TextStyle(
+                        color: v.muted,
+                        fontSize: 11,
+                        height: 1.5,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(width: 6),
+              IconButton.filledTonal(
+                key: Key('public-import-open-$provider'),
+                style: waveFilledIconStyle(context, tonal: true),
+                tooltip: publicImportText(context, 'open'),
+                onPressed: () => sourcePlaylists(provider),
+                icon: const Icon(Icons.playlist_add_rounded, size: 22),
+              ),
+            ],
+          ),
+          const SizedBox(height: 6),
+          Padding(
+            padding: const EdgeInsets.only(left: 56),
+            child: !connected && !configured
+                ? Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    child: Text(
+                      publicImportText(context, 'accountUnavailable'),
+                      style: TextStyle(
+                        color: v.muted,
+                        fontSize: 11,
+                        height: 1.5,
+                      ),
+                    ),
+                  )
+                : TextButton(
+                    onPressed: connected
+                        ? () => run(c, () => c.disconnectProvider(provider))
+                        : configured
+                        ? () => run(c, () => c.connectProvider(provider))
+                        : null,
+                    child: Text(
+                      connected
+                          ? wt('native.94d07a2171', context: context)
+                          : wt('native.124298ec71', context: context),
+                      style: const TextStyle(fontSize: 11),
+                    ),
+                  ),
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget sourcesPage() => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -2311,107 +2698,12 @@ class _WaveShellState extends State<WaveShell>
         wt('native.28e8073601', context: context),
         eyebrow: wt('native.96aa77adea', context: context),
       ),
-      for (final entry in ['soundcloud', 'spotify', 'yandex', 'youtube'].map(
-        (provider) =>
-            c.integrations
-                .where((item) => item['provider'] == provider)
-                .firstOrNull ??
-            <String, dynamic>{'provider': provider},
-      ))
-        Padding(
-          padding: const EdgeInsets.only(bottom: 14),
-          child: Surface(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Container(
-                      width: 48,
-                      height: 48,
-                      decoration: BoxDecoration(
-                        color: waveVisuals(context).accentSoft,
-                        borderRadius: BorderRadius.circular(
-                          waveRadius(context, 15),
-                        ),
-                      ),
-                      child: Icon(
-                        sourceIcon(entry['provider'] as String),
-                        color: providerColor(entry['provider'] as String),
-                      ),
-                    ),
-                    const SizedBox(width: 18),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            providerName(entry['provider'] as String),
-                            style: const TextStyle(
-                              fontSize: 21,
-                              fontWeight: FontWeight.w800,
-                            ),
-                          ),
-                          const SizedBox(height: 5),
-                          Text(
-                            entry['connected'] == true
-                                ? wt(
-                                    'native.8343afbb45',
-                                    values: {
-                                      'p0': (entry['displayName'] ?? ''),
-                                    },
-                                    context: context,
-                                  )
-                                : publicImportText(context, 'hint'),
-                            style: TextStyle(
-                              fontSize: 11,
-                              color: waveVisuals(context).muted,
-                              height: 1.5,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 14),
-                FilledButton.icon(
-                  key: Key('public-import-open-${entry['provider']}'),
-                  onPressed: () => sourcePlaylists(entry['provider'] as String),
-                  icon: const Icon(Icons.playlist_add_rounded, size: 18),
-                  label: Text(publicImportText(context, 'open')),
-                ),
-                if (entry['connected'] == true)
-                  Column(
-                    children: [
-                      TextButton(
-                        onPressed: () => run(
-                          c,
-                          () =>
-                              c.disconnectProvider(entry['provider'] as String),
-                        ),
-                        child: Text(wt('native.94d07a2171', context: context)),
-                      ),
-                    ],
-                  )
-                else
-                  OutlinedButton(
-                    onPressed: entry['configured'] == true
-                        ? () => run(
-                            c,
-                            () =>
-                                c.connectProvider(entry['provider'] as String),
-                          )
-                        : null,
-                    child: Text(
-                      entry['configured'] == true
-                          ? wt('native.124298ec71', context: context)
-                          : publicImportText(context, 'connected'),
-                    ),
-                  ),
-              ],
-            ),
-          ),
+      for (final provider in ['soundcloud', 'spotify', 'yandex', 'youtube'])
+        sourceConnection(
+          c.integrations
+                  .where((item) => item['provider'] == provider)
+                  .firstOrNull ??
+              <String, dynamic>{'provider': provider},
         ),
       const SizedBox(height: 10),
       Surface(
@@ -2551,273 +2843,387 @@ class _WaveShellState extends State<WaveShell>
             wt('native.a82ae8303b', context: context),
             icon: Icons.spatial_audio_off_outlined,
           ),
-      ] else ...[
-        ClipRRect(
-          borderRadius: BorderRadius.circular(waveRadius(context, 22)),
-          child: Container(
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/forest.jpg'),
-                fit: BoxFit.cover,
-              ),
-            ),
-            child: Container(
-              color: waveVisuals(context).ink.withValues(alpha: .55),
-              padding: const EdgeInsets.all(26),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    c.connected
-                        ? wt('native.e191ae678f', context: context)
-                        : wt('native.0a4c6ceeee', context: context),
-                    style: TextStyle(
-                      color: waveVisuals(context).background,
-                      fontSize: 9,
-                      letterSpacing: 1.4,
-                    ),
-                  ),
-                  const SizedBox(height: 36),
-                  Text(
-                    c.room!['name'] as String,
-                    style: TextStyle(
-                      color: waveVisuals(context).background,
-                      fontSize: 32,
-                      fontWeight: FontWeight.w800,
-                    ),
-                  ),
-                  const SizedBox(height: 14),
-                  Wrap(
-                    spacing: 12,
-                    runSpacing: 8,
-                    children: [
-                      FilledButton.icon(
-                        style: FilledButton.styleFrom(
-                          backgroundColor: waveVisuals(context).background,
-                          foregroundColor: waveVisuals(context).ink,
-                        ),
-                        onPressed: () {
-                          Clipboard.setData(
-                            ClipboardData(
-                              text:
-                                  '${c.appUrl}/?room=${c.room!['inviteCode']}',
-                            ),
-                          );
-                          c.tell(wt('native.916b1a3bbf', context: context));
-                        },
-                        icon: const Icon(Icons.link_rounded),
-                        label: Text(wt('native.2c8e25954f', context: context)),
-                      ),
-                      TextButton(
-                        style: TextButton.styleFrom(
-                          foregroundColor: waveVisuals(context).background,
-                        ),
-                        onPressed: () => run(c, c.leaveRoom),
-                        child: Text(wt('native.5aeda8f0be', context: context)),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-        const SizedBox(height: 18),
-        section(wt('native.1d2a1d354c', context: context)),
-        Surface(
-          child: Column(
-            children: [
-              for (final member in objects(c.room!['members']))
-                Row(
-                  children: [
-                    ClipOval(
-                      child: Artwork(
-                        controller: c,
-                        url: member['avatarUrl']?.toString(),
-                        size: 36,
-                        radius: 0,
-                        icon: Icons.person_outline_rounded,
-                      ),
-                    ),
-                    const SizedBox(width: 13),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            member['displayName'] as String? ??
-                                wt('native.76ffe26d00', context: context),
-                            style: const TextStyle(fontWeight: FontWeight.w800),
-                          ),
-                          Text(
-                            member['role'] == 'owner' ||
-                                    member['userId'] == c.room!['ownerId']
-                                ? wt('native.d73e431d49', context: context)
-                                : member['canControl'] == true
-                                ? wt('native.0554078156', context: context)
-                                : wt('native.6a4bbeffcc', context: context),
-                            style: TextStyle(
-                              color: waveVisuals(context).muted,
-                              fontSize: 11,
-                            ),
-                          ),
-                          const SizedBox(height: 6),
-                          Text(
-                            memberListening(member)
-                                ? ecosystemText('listening', context)
-                                : wt(
-                                    member['online'] == true
-                                        ? 'room.online'
-                                        : 'native.67b99cc9bf',
-                                    context: context,
-                                  ),
-                            style: TextStyle(
-                              color: waveVisuals(context).muted,
-                              fontSize: 11,
-                            ),
-                          ),
-                          for (final device in objects(member['devices']))
-                            Padding(
-                              padding: const EdgeInsets.only(top: 5),
-                              child: Row(
-                                children: [
-                                  DevicePlatformIcon(
-                                    device: device,
-                                    size: 14,
-                                    color: device['outputActive'] == true
-                                        ? waveVisuals(context).accent
-                                        : waveVisuals(context).muted,
-                                  ),
-                                  const SizedBox(width: 6),
-                                  Expanded(
-                                    child: Text(
-                                      '${deviceKindLabel(device, context: context)}${device['name'] != null ? ' В· ${device['name']}' : ''}${device['outputActive'] == true ? ' В· ${wt(device['playing'] == true ? 'devices.activeOutput' : 'devices.selectedOutput', context: context)}' : ''}',
-                                      style: TextStyle(
-                                        fontSize: 11,
-                                        color: waveVisuals(context).muted,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                        ],
-                      ),
-                    ),
-                    if (c.room!['type'] != 'jam' &&
-                        c.canManageRoom &&
-                        member['userId'] != c.user!.id)
-                      Switch(
-                        value: member['canControl'] == true,
-                        onChanged: (v) => run(
-                          c,
-                          () => c.roomPermission(member['userId'] as String, v),
-                        ),
-                      )
-                    else
-                      Padding(
-                        padding: EdgeInsets.all(12),
-                        child: Icon(
-                          Icons.headphones_outlined,
-                          size: 19,
-                          color: waveVisuals(context).muted,
-                        ),
-                      ),
-                  ],
-                ),
-            ],
-          ),
-        ),
-        section(wt('native.6174ccc7f5', context: context)),
-        Surface(
-          child: Column(
-            children: [
-              SizedBox(
-                height: 300,
-                child: ListView(
-                  reverse: true,
-                  children: [
-                    for (final message in c.messages.reversed)
-                      Align(
-                        alignment: message['userId'] == c.user!.id
-                            ? Alignment.centerRight
-                            : Alignment.centerLeft,
-                        child: Container(
-                          margin: const EdgeInsets.only(bottom: 12),
-                          padding: const EdgeInsets.all(13),
-                          constraints: const BoxConstraints(maxWidth: 440),
-                          decoration: BoxDecoration(
-                            color: message['userId'] == c.user!.id
-                                ? waveVisuals(context).accentSoft
-                                : waveVisuals(context).background,
-                            borderRadius: BorderRadius.circular(
-                              waveRadius(context, 14),
-                            ),
-                          ),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                message['displayName'] as String? ?? '',
-                                style: TextStyle(
-                                  color: waveVisuals(context).muted,
-                                  fontSize: 10,
-                                ),
-                              ),
-                              const SizedBox(height: 5),
-                              SelectableText(message['text'] as String? ?? ''),
-                            ],
-                          ),
-                        ),
-                      ),
-                    if (c.messages.isEmpty)
-                      Padding(
-                        padding: EdgeInsets.all(30),
-                        child: Text(
-                          wt('native.7abdd3e513', context: context),
-                          textAlign: TextAlign.center,
-                          style: TextStyle(color: waveVisuals(context).muted),
-                        ),
-                      ),
-                  ],
-                ),
-              ),
-              const Divider(),
-              Row(
-                children: [
-                  Expanded(
-                    child: TextField(
-                      controller: chat,
-                      maxLength: 1000,
-                      decoration: InputDecoration(
-                        hintText: wt('native.e46d8ce0ed', context: context),
-                        counterText: '',
-                      ),
-                      onSubmitted: (_) => sendMessage(),
-                    ),
-                  ),
-                  const SizedBox(width: 10),
-                  IconButton.filled(
-                    onPressed: c.connected ? sendMessage : null,
-                    tooltip: wt('native.76dcf737a6', context: context),
-                    icon: const Icon(Icons.arrow_upward_rounded),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
-        const SizedBox(height: 18),
-        Text(
-          c.canControl
-              ? wt('native.ebd33b8d52', context: context)
-              : wt('native.7f5dea692a', context: context),
-          style: TextStyle(color: waveVisuals(context).muted, fontSize: 12),
-        ),
       ],
       RoomDirectory(controller: c),
     ],
   );
+  void showRoomDirectory() => showModalBottomSheet<void>(
+    context: context,
+    useSafeArea: true,
+    showDragHandle: true,
+    isScrollControlled: true,
+    constraints: BoxConstraints(
+      maxHeight: MediaQuery.sizeOf(context).height * .88,
+      maxWidth: 720,
+    ),
+    builder: (_) => SingleChildScrollView(
+      padding: const EdgeInsets.fromLTRB(20, 0, 20, 24),
+      child: RoomDirectory(controller: c),
+    ),
+  );
+
+  Widget roomWorkspace() {
+    final v = waveVisuals(context), desktop = ClientLayout.of(context).desktop;
+    final members = objects(c.room!['members']);
+    return Padding(
+      key: const Key('active-room-workspace'),
+      padding: EdgeInsets.fromLTRB(
+        desktop ? 28 : 16,
+        desktop ? 22 : 14,
+        desktop ? 28 : 16,
+        desktop ? 22 : 10,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      c.connected
+                          ? wt('native.e191ae678f', context: context)
+                          : wt('native.0a4c6ceeee', context: context),
+                      style: TextStyle(
+                        fontSize: 9,
+                        letterSpacing: 1.2,
+                        color: v.muted,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      c.room!['name']?.toString() ?? '',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontSize: desktop ? 28 : 23,
+                        letterSpacing: -.8,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              IconButton(
+                key: const Key('room-directory-open'),
+                tooltip: wt('native.200ba6b661', context: context),
+                onPressed: showRoomDirectory,
+                icon: const Icon(Icons.meeting_room_outlined, size: 21),
+              ),
+              PopupMenuButton<String>(
+                key: const Key('room-actions'),
+                tooltip: nativeText(context, 'more'),
+                icon: const Icon(Icons.more_horiz_rounded),
+                onSelected: (value) {
+                  if (value == 'leave') {
+                    run(c, c.leaveRoom);
+                  } else {
+                    Clipboard.setData(
+                      ClipboardData(
+                        text: '${c.appUrl}/?room=${c.room!['inviteCode']}',
+                      ),
+                    );
+                    c.tell(wt('native.916b1a3bbf', context: context));
+                  }
+                },
+                itemBuilder: (_) => [
+                  PopupMenuItem(
+                    value: 'invite',
+                    child: Text(wt('native.2c8e25954f', context: context)),
+                  ),
+                  PopupMenuItem(
+                    value: 'leave',
+                    child: Text(wt('native.5aeda8f0be', context: context)),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          if (!desktop) ...[
+            const SizedBox(height: 10),
+            TextButton.icon(
+              key: const Key('room-members-open'),
+              onPressed: () => showModalBottomSheet<void>(
+                context: context,
+                useSafeArea: true,
+                showDragHandle: true,
+                isScrollControlled: true,
+                constraints: BoxConstraints(
+                  maxHeight: MediaQuery.sizeOf(context).height * .75,
+                  maxWidth: 560,
+                ),
+                builder: (_) => SizedBox(
+                  height: MediaQuery.sizeOf(context).height * .65,
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(18, 0, 18, 12),
+                    child: roomMembersPanel(members),
+                  ),
+                ),
+              ),
+              icon: const Icon(Icons.people_outline_rounded, size: 19),
+              label: Text(
+                '${wt('native.1d2a1d354c', context: context)} · ${members.length}',
+                style: const TextStyle(fontSize: 12),
+              ),
+            ),
+          ],
+          SizedBox(height: desktop ? 22 : 10),
+          Expanded(
+            child: desktop
+                ? Row(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Expanded(flex: 7, child: roomChatPanel()),
+                      const SizedBox(width: 22),
+                      SizedBox(
+                        width: 270,
+                        child: DecoratedBox(
+                          decoration: BoxDecoration(
+                            border: Border(left: BorderSide(color: v.line)),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 22),
+                            child: roomMembersPanel(members),
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                : roomChatPanel(),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            c.canControl
+                ? wt('native.ebd33b8d52', context: context)
+                : wt('native.7f5dea692a', context: context),
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(fontSize: 10, color: v.muted),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget roomMembersPanel(List<Json> members) {
+    final v = waveVisuals(context);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          '${wt('native.1d2a1d354c', context: context)} · ${members.length}',
+          style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w700),
+        ),
+        const SizedBox(height: 14),
+        Expanded(
+          child: ListView.separated(
+            key: const Key('room-members-list'),
+            itemCount: members.length,
+            separatorBuilder: (_, _) => const SizedBox(height: 18),
+            itemBuilder: (_, index) {
+              final member = members[index];
+              return Row(
+                key: ValueKey('room-member-${member['userId']}'),
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ClipOval(
+                    child: Artwork(
+                      controller: c,
+                      url: member['avatarUrl']?.toString(),
+                      size: 34,
+                      radius: 0,
+                      icon: Icons.person_outline_rounded,
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          member['displayName']?.toString() ??
+                              wt('native.76ffe26d00', context: context),
+                          maxLines: 2,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.w700,
+                            fontSize: 12,
+                          ),
+                        ),
+                        const SizedBox(height: 3),
+                        Text(
+                          member['role'] == 'owner' ||
+                                  member['userId'] == c.room!['ownerId']
+                              ? wt('native.d73e431d49', context: context)
+                              : member['canControl'] == true
+                              ? wt('native.0554078156', context: context)
+                              : wt('native.6a4bbeffcc', context: context),
+                          style: TextStyle(color: v.muted, fontSize: 10),
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          memberListening(member)
+                              ? ecosystemText('listening', context)
+                              : wt(
+                                  member['online'] == true
+                                      ? 'room.online'
+                                      : 'native.67b99cc9bf',
+                                  context: context,
+                                ),
+                          style: TextStyle(color: v.muted, fontSize: 10),
+                        ),
+                        for (final device in objects(member['devices']))
+                          Padding(
+                            padding: const EdgeInsets.only(top: 5),
+                            child: Row(
+                              children: [
+                                DevicePlatformIcon(
+                                  device: device,
+                                  size: 13,
+                                  color: device['outputActive'] == true
+                                      ? v.accent
+                                      : v.muted,
+                                ),
+                                const SizedBox(width: 5),
+                                Expanded(
+                                  child: Text(
+                                    '${deviceKindLabel(device, context: context)}${device['name'] != null ? ' · ${device['name']}' : ''}${device['outputActive'] == true ? ' · ${wt(device['playing'] == true ? 'devices.activeOutput' : 'devices.selectedOutput', context: context)}' : ''}',
+                                    style: TextStyle(
+                                      fontSize: 10,
+                                      color: v.muted,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
+                  if (c.room!['type'] != 'jam' &&
+                      c.canManageRoom &&
+                      member['userId'] != c.user!.id)
+                    SizedBox(
+                      width: 42,
+                      child: Switch(
+                        key: ValueKey('room-permission-${member['userId']}'),
+                        value: member['canControl'] == true,
+                        onChanged: (value) => run(
+                          c,
+                          () => c.roomPermission(
+                            member['userId'] as String,
+                            value,
+                          ),
+                        ),
+                      ),
+                    ),
+                ],
+              );
+            },
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget roomChatPanel() {
+    final v = waveVisuals(context);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          wt('native.6174ccc7f5', context: context),
+          style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w700),
+        ),
+        const SizedBox(height: 12),
+        Expanded(
+          child: ListView.builder(
+            key: const Key('room-chat-list'),
+            reverse: true,
+            itemCount: c.messages.isEmpty ? 1 : c.messages.length,
+            itemBuilder: (_, index) {
+              if (c.messages.isEmpty) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 30),
+                  child: Text(
+                    wt('native.7abdd3e513', context: context),
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: v.muted, fontSize: 12),
+                  ),
+                );
+              }
+              final message = c.messages[c.messages.length - 1 - index],
+                  own = message['userId'] == c.user!.id;
+              return Align(
+                key: ValueKey(
+                  'room-message-${message['id'] ?? '${message['userId']}:$index'}',
+                ),
+                alignment: own ? Alignment.centerRight : Alignment.centerLeft,
+                child: Container(
+                  margin: const EdgeInsets.only(bottom: 10, right: 3),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 13,
+                    vertical: 11,
+                  ),
+                  constraints: const BoxConstraints(maxWidth: 440),
+                  decoration: BoxDecoration(
+                    color: own ? v.accentSoft : v.surface,
+                    borderRadius: BorderRadius.circular(v.corners(12)),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        message['displayName']?.toString() ?? '',
+                        style: TextStyle(color: v.muted, fontSize: 10),
+                      ),
+                      const SizedBox(height: 4),
+                      SelectableText(
+                        message['text']?.toString() ?? '',
+                        style: const TextStyle(fontSize: 12, height: 1.5),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            },
+          ),
+        ),
+        const SizedBox(height: 12),
+        Row(
+          children: [
+            Expanded(
+              child: TextField(
+                key: const Key('room-chat-input'),
+                controller: chat,
+                maxLength: 1000,
+                decoration: InputDecoration(
+                  hintText: wt('native.e46d8ce0ed', context: context),
+                  counterText: '',
+                  contentPadding: const EdgeInsets.symmetric(
+                    horizontal: 14,
+                    vertical: 13,
+                  ),
+                ),
+                onSubmitted: (_) => sendMessage(),
+              ),
+            ),
+            const SizedBox(width: 8),
+            IconButton.filled(
+              key: const Key('room-chat-send'),
+              style: waveFilledIconStyle(context),
+              onPressed: c.connected ? sendMessage : null,
+              tooltip: wt('native.76dcf737a6', context: context),
+              icon: const Icon(Icons.arrow_upward_rounded, size: 20),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
   Future<void> sendMessage() async {
     final value = chat.text;
     await run(c, () async {
@@ -2965,6 +3371,47 @@ class _WaveShellState extends State<WaveShell>
     });
   }
 
+  Widget profileDestinations() {
+    final v = waveVisuals(context);
+    return Material(
+      color: v.surface,
+      borderRadius: BorderRadius.circular(v.corners(16)),
+      child: Column(
+        children: [
+          for (final value in [
+            WavePage.settings,
+            WavePage.friends,
+            WavePage.rooms,
+            WavePage.devices,
+            WavePage.sources,
+            WavePage.downloads,
+          ])
+            ListTile(
+              key: Key('profile-${value.name}'),
+              leading: WaveControlIcon(
+                pageIcons[value.index],
+                size: 21,
+                color: v.muted,
+              ),
+              title: Text(
+                pageLabels[value.index],
+                style: const TextStyle(
+                  fontSize: 13,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              trailing: Icon(
+                Icons.chevron_right_rounded,
+                size: 18,
+                color: v.muted,
+              ),
+              onTap: () => navigate(value),
+            ),
+        ],
+      ),
+    );
+  }
+
   Widget profile() => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -2973,14 +3420,6 @@ class _WaveShellState extends State<WaveShell>
         wt('native.bd8bfe25b5', context: context),
         eyebrow: wt('native.29352daac4', context: context),
       ),
-      CollectionDestination(
-        key: const Key('profile-guard'),
-        title: nativeText(context, 'guard'),
-        subtitle: nativeText(context, 'guardDetail'),
-        icon: Icons.qr_code_scanner_rounded,
-        onTap: () => showWaveGuard(context, c),
-      ),
-      const SizedBox(height: 22),
       ClipRRect(
         borderRadius: BorderRadius.circular(waveRadius(context, 24)),
         child: Column(
@@ -3010,6 +3449,8 @@ class _WaveShellState extends State<WaveShell>
                 Padding(
                   padding: const EdgeInsets.all(14),
                   child: IconButton.filled(
+                    key: const Key('profile-banner-action'),
+                    style: waveFilledIconStyle(context),
                     tooltip: wt('native.3288466d0d', context: context),
                     onPressed: () => run(
                       c,
@@ -3181,36 +3622,21 @@ class _WaveShellState extends State<WaveShell>
         ),
       ),
       const SizedBox(height: 22),
-      Wrap(
-        spacing: 12,
-        runSpacing: 12,
-        children: [
-          OutlinedButton.icon(
-            onPressed: () => navigate(WavePage.settings),
-            icon: const WaveControlIcon(Icons.settings_rounded),
-            label: Text(wt('native.7f17c7c62a', context: context)),
-          ),
-          OutlinedButton.icon(
-            onPressed: () => navigate(WavePage.sources),
-            icon: const Icon(Icons.hub_outlined),
-            label: Text(wt('native.5384db72a4', context: context)),
-          ),
-          OutlinedButton.icon(
-            onPressed: () => navigate(WavePage.downloads),
-            icon: const Icon(Icons.download_for_offline_outlined),
-            label: Text(wt('native.212ccf5938', context: context)),
-          ),
-          OutlinedButton.icon(
-            onPressed: () => navigate(WavePage.devices),
-            icon: const Icon(Icons.devices_rounded),
-            label: Text(wt('native.7ab03d602e', context: context)),
-          ),
-          TextButton(
-            onPressed: () => run(c, c.logout),
-            child: Text(wt('native.026abb1e0a', context: context)),
-          ),
-        ],
+      profileDestinations(),
+      const SizedBox(height: 12),
+      TextButton.icon(
+        onPressed: () => run(c, c.logout),
+        icon: const Icon(Icons.logout_rounded, size: 18),
+        label: Text(wt('native.026abb1e0a', context: context)),
       ),
+      CollectionDestination(
+        key: const Key('profile-guard'),
+        title: nativeText(context, 'guard'),
+        subtitle: nativeText(context, 'guardDetail'),
+        icon: Icons.qr_code_scanner_rounded,
+        onTap: () => showWaveGuard(context, c),
+      ),
+      const SizedBox(height: 22),
       const SizedBox(height: 22),
       Surface(
         child: Column(
@@ -3412,7 +3838,7 @@ class _WaveShellState extends State<WaveShell>
       };
 
   Widget settingsPage() {
-    final desktop = MediaQuery.sizeOf(context).width >= 900;
+    final desktop = ClientLayout.of(context).desktop;
     final v = waveVisuals(context);
     Widget link(MapEntry<String, (String, IconData)> item) => Semantics(
       selected: settingsSection == item.key,
@@ -3478,6 +3904,99 @@ class _WaveShellState extends State<WaveShell>
       padding: const EdgeInsets.only(bottom: 28),
       child: settingsDetail(),
     );
+    if (!desktop) {
+      return CustomScrollView(
+        key: PageStorageKey('settings-mobile-$settingsSection'),
+        slivers: [
+          SliverToBoxAdapter(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                PageHeading(
+                  wt('native.ed3fb91811', context: context),
+                  wt('native.413b6b6e1c', context: context),
+                ),
+                TextField(
+                  controller: settingsSearch,
+                  key: const Key('settings-search'),
+                  decoration: InputDecoration(
+                    hintText: wave26Text(context, 'settings.search'),
+                    prefixIcon: const Icon(Icons.search_rounded, size: 19),
+                  ),
+                  onChanged: (value) => setState(() => settingsQuery = value),
+                ),
+                const SizedBox(height: 14),
+                Material(
+                  color: v.surface,
+                  borderRadius: BorderRadius.circular(v.corners(12)),
+                  child: ListTile(
+                    key: const Key('settings-category-picker'),
+                    leading: Icon(
+                      settingsSections[settingsSection]!.$2,
+                      size: 21,
+                    ),
+                    title: Text(
+                      settingsSections[settingsSection]!.$1,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w700,
+                        fontSize: 13,
+                      ),
+                    ),
+                    trailing: const Icon(Icons.expand_more_rounded),
+                    onTap: () => showModalBottomSheet<void>(
+                      context: context,
+                      useSafeArea: true,
+                      showDragHandle: true,
+                      isScrollControlled: true,
+                      constraints: BoxConstraints(
+                        maxHeight: MediaQuery.sizeOf(context).height * .8,
+                        maxWidth: 520,
+                      ),
+                      builder: (sheet) => ListView(
+                        shrinkWrap: true,
+                        padding: const EdgeInsets.fromLTRB(12, 0, 12, 24),
+                        children: [
+                          for (final item in settingsSections.entries)
+                            ListTile(
+                              key: Key('settings-${item.key}'),
+                              leading: Icon(item.value.$2, size: 21),
+                              title: Text(item.value.$1),
+                              selected: settingsSection == item.key,
+                              trailing: settingsSection == item.key
+                                  ? const Icon(Icons.check_rounded, size: 19)
+                                  : null,
+                              onTap: () {
+                                Navigator.pop(sheet);
+                                setState(() {
+                                  settingsSection = item.key;
+                                  settingsQuery = '';
+                                  settingsSearch.clear();
+                                });
+                              },
+                            ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                if (settingsQuery.isNotEmpty) ...[
+                  const SizedBox(height: 8),
+                  if (matches.isEmpty)
+                    Padding(
+                      padding: const EdgeInsets.all(12),
+                      child: Text(wave26Text(context, 'settings.noResults')),
+                    ),
+                  for (final item in matches) link(item),
+                ],
+                const SizedBox(height: 20),
+                settingsDetail(),
+                const SizedBox(height: 30),
+              ],
+            ),
+          ),
+        ],
+      );
+    }
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -3619,7 +4138,7 @@ class _WaveShellState extends State<WaveShell>
           children: [
             PageHeading(pt(context, 'Taste'), pt(context, 'Taste subtitle')),
             FilledButton.icon(
-              onPressed: () => openTaste(context, c, parity),
+              onPressed: () => openTaste(workspaceContext, c, parity),
               icon: const Icon(Icons.waves_rounded),
               label: Text(pt(context, 'Start')),
             ),
@@ -4063,13 +4582,6 @@ String providerName(String id) => switch (id) {
   'yandex' => wt('native.0fb8bc0888'),
   'discord' => 'Discord',
   _ => id,
-};
-IconData sourceIcon(String id) => switch (id) {
-  'youtube' => Icons.play_circle_outline_rounded,
-  'spotify' => Icons.multitrack_audio_rounded,
-  'soundcloud' => Icons.cloud_outlined,
-  'yandex' => Icons.auto_awesome_outlined,
-  _ => Icons.hub_outlined,
 };
 Color providerColor(String id) => switch (id) {
   'youtube' => const Color(0xffc96051),

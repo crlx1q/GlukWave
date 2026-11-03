@@ -1,0 +1,664 @@
+{
+  "sourceBaseline": "f75fcc97e94569d8d90e381faf1f764ec058850a",
+  "sources": [
+    {
+      "path": "apps/native/lib/ui/client32_content.dart",
+      "sha256": "97e8c4cf491c36181865a459e5f9052da70f8c13017c79e5fe50f8000b076331"
+    },
+    {
+      "path": "apps/native/lib/ui/discovery.dart",
+      "sha256": "f0ebc6b08d67953f9a85bb36c54974e53c132b9d125ff2ad8a0ccfe3ac6355e7"
+    },
+    {
+      "path": "apps/native/lib/ui/parity_panels.dart",
+      "sha256": "b834dbb5a2adc0c5b83a44883ad9d9603cd1fb22db92d978895e845132fb02e5"
+    },
+    {
+      "path": "apps/native/lib/ui/native19_saved.dart",
+      "sha256": "b90a8c9d061d00f7ff1aea6f8747da8de812b2a65294b892dfbd89bdb87b4156"
+    },
+    {
+      "path": "apps/native/lib/ui/playlist_manager.dart",
+      "sha256": "c6d78f84d3558385478b639667853b4d13aac3a1dd8e273d0387145620bc16f4"
+    },
+    {
+      "path": "apps/native/lib/ui/lofi.dart",
+      "sha256": "fb56d96ba195f8f777ea4890d4f3b593ad5d37e76c80662c7d8643f2cb3eb74e"
+    },
+    {
+      "path": "apps/native/lib/ui/auth_page.dart",
+      "sha256": "8583932e045ddd4429dc6ca245e3f1ef66188b05d3174cef76d317e3e96f813e"
+    },
+    {
+      "path": "apps/native/lib/ui/connect_panel.dart",
+      "sha256": "cd30b256159d0633b23887f8143ea86c4db12f3cc4a5c27ca931f60689030c24"
+    },
+    {
+      "path": "apps/native/lib/ui/home_canvas.dart",
+      "sha256": "54df839e8c7a5583c50e96771271dd3010721bb8a7a938a6a64f9415caa12f18"
+    },
+    {
+      "path": "apps/native/lib/ui/provider_import.dart",
+      "sha256": "0408845f03f7bffeace441e703ab9ee2475590fdf4b015b120f496b78dc9e3a9"
+    },
+    {
+      "path": "apps/native/test/clients32_content_test.dart",
+      "sha256": "dc0b3fcc2aaf369af23387b63f733d765eb3da9e76d88e2c97a9d9c274aaef26"
+    }
+  ],
+  "validation": {
+    "contentMatrixLog": "work/qa/clients32-content-final.log",
+    "contentMatrixPassed": 14,
+    "contentMatrixTotal": 15,
+    "importRerunLog": "work/qa/clients32-import-final.log",
+    "importRerunPassed": 1,
+    "importRerunTotal": 1,
+    "rootCorePassed": 9,
+    "rootCoreTotal": 9,
+    "pending": "Added one new causal PublicPlaylists row-navigation regression after the green import rerun; whole16-test content suite queued for serialized final verification."
+  },
+  "scope": [
+    "1000 search results: bounded mounted TrackRow count, scroll to final record, actual tap keeps full queue",
+    "Real filter/genre/provider callbacks",
+    "Artist and album Play All record complete endpoint queues",
+    "Public profile playlist action opens nested workspace detail and retains dock fixture",
+    "320px enlarged-text sheet invokes Like and real playlist membership dialog",
+    "Connect QR and discover callbacks invoked at1440/390/320",
+    "Authentication and400-playlist picker have no overflow; picker laziness measured",
+    "Loading/error/empty/partial-provider states and responsive detail captures",
+    "PublicPlaylists catalogue row now reuses the same workspace/lazy public-playlist detail; new causal navigation/playqueue regression awaits final suite."
+  ],
+  "limits": [
+    "All data is isolated fixture data and never imported by application routes. Artwork uses existing project assets or genuine code fallback; no competitor images.",
+    "Standalone content captures supplement actual-shell captures; they do not claim a full desktop shell.",
+    "Actual controls and controller callbacks are tested, but real external provider authentication, physical-device audio/camera/background delivery are not proven.",
+    "Public profile only displays server-returned stats and playlists; no extra endpoint or fake catalogue was added."
+  ],
+  "screenshots": [
+    {
+      "file": "after/native-clients32-content-actions-320-light.png",
+      "surface": "actions",
+      "width": 320,
+      "height": 740,
+      "theme": "light",
+      "textScale": 1.25,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "8ee5b24c8b1cd00f4160ed9503df8c13ad92f271688fc926225f10b7910a497d"
+    },
+    {
+      "file": "after/native-clients32-content-album-1440-light.png",
+      "surface": "album",
+      "width": 1440,
+      "height": 900,
+      "theme": "light",
+      "textScale": 1.0,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "a2086ea75cb0652bce7f98cc967dabefdee5657ca84651883d68b76750798508"
+    },
+    {
+      "file": "after/native-clients32-content-album-390-light.png",
+      "surface": "album",
+      "width": 390,
+      "height": 844,
+      "theme": "light",
+      "textScale": 1.0,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "a89b759a1d501fa1342b6bcf821022367c7984764610e6782874702fee472c42"
+    },
+    {
+      "file": "after/native-clients32-content-artist-1440-light.png",
+      "surface": "artist",
+      "width": 1440,
+      "height": 900,
+      "theme": "light",
+      "textScale": 1.0,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "6eb716581b332048e3b0800898ae576b25b5ec1803c2748f5d40e8ee5c734b86"
+    },
+    {
+      "file": "after/native-clients32-content-artist-320-amoled.png",
+      "surface": "artist",
+      "width": 320,
+      "height": 640,
+      "theme": "amoled",
+      "textScale": 1.25,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "06e1209c0c3492acbff0e8f20cb5f3a07f7e444e685c14f543571039f973adda"
+    },
+    {
+      "file": "after/native-clients32-content-artist-375-dark.png",
+      "surface": "artist",
+      "width": 375,
+      "height": 812,
+      "theme": "dark",
+      "textScale": 1.25,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "beeeeb9d7395771939d46206f12707c8fde224418e4d4e48b6d650ba0fee217a"
+    },
+    {
+      "file": "after/native-clients32-content-artist-390-light.png",
+      "surface": "artist",
+      "width": 390,
+      "height": 844,
+      "theme": "light",
+      "textScale": 1.0,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "7adb44a3941b29dff8b557cde20245015747eeabe9f107d20ede0af77acf80d5"
+    },
+    {
+      "file": "after/native-clients32-content-artist-768-dark.png",
+      "surface": "artist",
+      "width": 768,
+      "height": 900,
+      "theme": "dark",
+      "textScale": 1.0,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "a9862f171bc295dd2864d67317f677ab5ff3bdec37ff844b9f2afc234ad929a0"
+    },
+    {
+      "file": "after/native-clients32-content-auth-1440-light.png",
+      "surface": "auth",
+      "width": 1440,
+      "height": 900,
+      "theme": "light",
+      "textScale": 1.0,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "891969aaf6565215494f2d40067d25d3cdc10d57759a4f0be4f3bd5de33d5e54"
+    },
+    {
+      "file": "after/native-clients32-content-auth-320-light.png",
+      "surface": "auth",
+      "width": 320,
+      "height": 640,
+      "theme": "light",
+      "textScale": 1.25,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "f56bbe66c1bcd589a4a8ebc58cf4a62fb2515647b283217dda5b9c5c8ec7f036"
+    },
+    {
+      "file": "after/native-clients32-content-auth-390-light.png",
+      "surface": "auth",
+      "width": 390,
+      "height": 844,
+      "theme": "light",
+      "textScale": 1.0,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "0ce0f2c7c6240173ec316ec41dbad807a1bc716b84b9a3d9e6b687e000a2f33d"
+    },
+    {
+      "file": "after/native-clients32-content-browse-1440-light.png",
+      "surface": "browse",
+      "width": 1440,
+      "height": 900,
+      "theme": "light",
+      "textScale": 1.0,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "b51771db9c9416eb6af1e6a9edf5a1b5a4dd48e265af80352a8e8530fa2b6df0"
+    },
+    {
+      "file": "after/native-clients32-content-browse-320-amoled.png",
+      "surface": "browse",
+      "width": 320,
+      "height": 640,
+      "theme": "amoled",
+      "textScale": 1.25,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "6a12861a81ca1182bd105629f9f4cb04fb87827af0e6f2a57446c8c81ab50cb9"
+    },
+    {
+      "file": "after/native-clients32-content-browse-375-dark.png",
+      "surface": "browse",
+      "width": 375,
+      "height": 812,
+      "theme": "dark",
+      "textScale": 1.25,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "d1a0901bd5880d88ae52196b052de30f7acac3f4d1921b6c1c68fc1cc9505712"
+    },
+    {
+      "file": "after/native-clients32-content-browse-390-light.png",
+      "surface": "browse",
+      "width": 390,
+      "height": 844,
+      "theme": "light",
+      "textScale": 1.0,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "3e217038b12b1671bc0bf41717964fb4f4787a177fbdca4234abd2aac93375f5"
+    },
+    {
+      "file": "after/native-clients32-content-browse-768-dark.png",
+      "surface": "browse",
+      "width": 768,
+      "height": 900,
+      "theme": "dark",
+      "textScale": 1.0,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "abff0c5d2648eb704319580eb80e218395bb2f8864578e93b14b4b57455d58ba"
+    },
+    {
+      "file": "after/native-clients32-content-connect-1440-light.png",
+      "surface": "connect",
+      "width": 1440,
+      "height": 900,
+      "theme": "light",
+      "textScale": 1.0,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "a7424b7d216b126ef1fbc5e1974640d7603dcbaca46d3ab14800c6714323d2a2"
+    },
+    {
+      "file": "after/native-clients32-content-connect-320-light.png",
+      "surface": "connect",
+      "width": 320,
+      "height": 640,
+      "theme": "light",
+      "textScale": 1.25,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "247813138bf54c14b99bef83276ba65e20218862a599c3a0b0764cd53d217c94"
+    },
+    {
+      "file": "after/native-clients32-content-connect-390-light.png",
+      "surface": "connect",
+      "width": 390,
+      "height": 844,
+      "theme": "light",
+      "textScale": 1.0,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "025bde18278ae68a295a2f22ca288d5d2f2458a398f9bef6fe5c89e886247eb4"
+    },
+    {
+      "file": "after/native-clients32-content-empty-390-light.png",
+      "surface": "empty",
+      "width": 390,
+      "height": 844,
+      "theme": "light",
+      "textScale": 1.0,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "7dc3c0ec269fe2d3765851d4982df53360046610f943d197de74adfbfcbafd43"
+    },
+    {
+      "file": "after/native-clients32-content-error-390-light.png",
+      "surface": "error",
+      "width": 390,
+      "height": 844,
+      "theme": "light",
+      "textScale": 1.0,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "73b5b13dcf094687adfb8ddae94c718ce9bc30e3484a8f6302e0ea73e29e129e"
+    },
+    {
+      "file": "after/native-clients32-content-genre-1440-light.png",
+      "surface": "genre",
+      "width": 1440,
+      "height": 900,
+      "theme": "light",
+      "textScale": 1.0,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "c42336fa0ff2631ea41efdad05d5154bea64d92f921e7cb0340ceb622299c0e6"
+    },
+    {
+      "file": "after/native-clients32-content-genre-390-light.png",
+      "surface": "genre",
+      "width": 390,
+      "height": 844,
+      "theme": "light",
+      "textScale": 1.0,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "894b33740b52d0423feac1c7a87d4c2c05fbffc1a0f80b413adbd47c5fdbb91b"
+    },
+    {
+      "file": "after/native-clients32-content-import-1440-light.png",
+      "surface": "import",
+      "width": 1440,
+      "height": 900,
+      "theme": "light",
+      "textScale": 1.0,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "f4c6dcaaaab895d85ae3fd5f7cf612b4c39875cf3cbfc7c97c5d3d0f56886e00"
+    },
+    {
+      "file": "after/native-clients32-content-import-320-light.png",
+      "surface": "import",
+      "width": 320,
+      "height": 640,
+      "theme": "light",
+      "textScale": 1.25,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "95e9259822c152f8f95f664cfc8441c66b8d6b9ac8fa1e11a5114b7de02d4cf6"
+    },
+    {
+      "file": "after/native-clients32-content-import-390-light.png",
+      "surface": "import",
+      "width": 390,
+      "height": 844,
+      "theme": "light",
+      "textScale": 1.0,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "be6217535b2c9c136f34e15f66568696ce015f030f1841f145b13eb3312c1269"
+    },
+    {
+      "file": "after/native-clients32-content-import-selection-1440-light.png",
+      "surface": "import-selection",
+      "width": 1440,
+      "height": 900,
+      "theme": "light",
+      "textScale": 1.0,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "35ed1b662f008adc463046edbe35b8bea297089b0046a683cf8ec728a9313c93"
+    },
+    {
+      "file": "after/native-clients32-content-import-selection-320-light.png",
+      "surface": "import-selection",
+      "width": 320,
+      "height": 640,
+      "theme": "light",
+      "textScale": 1.25,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "459aa58a228d142e3150c077fcca18335f004ec8ec08d59b0d5bc7a47914922c"
+    },
+    {
+      "file": "after/native-clients32-content-import-selection-390-light.png",
+      "surface": "import-selection",
+      "width": 390,
+      "height": 844,
+      "theme": "light",
+      "textScale": 1.0,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "a1e0012d5bf17acc3e3d830d6c84bc18fed4323c3073e941d3205a24fafda674"
+    },
+    {
+      "file": "after/native-clients32-content-loading-390-light.png",
+      "surface": "loading",
+      "width": 390,
+      "height": 844,
+      "theme": "light",
+      "textScale": 1.0,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "1e83f67fe1701d0d386c53cf6e2bb8448e981d714743ddfe13445487f099ffc9"
+    },
+    {
+      "file": "after/native-clients32-content-partial-1440-light.png",
+      "surface": "partial",
+      "width": 1440,
+      "height": 900,
+      "theme": "light",
+      "textScale": 1.0,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "83a4d86d0f21c881c451a95831ef5ec78f5cee4e0615d40cb3869fb9701132a8"
+    },
+    {
+      "file": "after/native-clients32-content-partial-320-amoled.png",
+      "surface": "partial",
+      "width": 320,
+      "height": 640,
+      "theme": "amoled",
+      "textScale": 1.25,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "a9c9735b001535bbeb4a4bfcb033f99f3f39723f12209d27ab07fb536eb0b9a0"
+    },
+    {
+      "file": "after/native-clients32-content-partial-375-dark.png",
+      "surface": "partial",
+      "width": 375,
+      "height": 812,
+      "theme": "dark",
+      "textScale": 1.25,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "bcbf9925daf29962c1984c8f0a433928aa7177417751cd440f3171b3793357ef"
+    },
+    {
+      "file": "after/native-clients32-content-partial-390-light.png",
+      "surface": "partial",
+      "width": 390,
+      "height": 844,
+      "theme": "light",
+      "textScale": 1.0,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "875b7b0db6237843097ee01d50bde3b7e587e157a5a2acefa3022162950030fc"
+    },
+    {
+      "file": "after/native-clients32-content-partial-768-dark.png",
+      "surface": "partial",
+      "width": 768,
+      "height": 900,
+      "theme": "dark",
+      "textScale": 1.0,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "60ca084a2350765ce9e0c0ccd66cf92feb0907f6ad34d9d1183eb018d8554ca2"
+    },
+    {
+      "file": "after/native-clients32-content-playlist-1440-light.png",
+      "surface": "playlist",
+      "width": 1440,
+      "height": 900,
+      "theme": "light",
+      "textScale": 1.0,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "f89dd84a35b93e41663094315e73dc7181a2fc729f2fa9ef756ff82e49dfcf9a"
+    },
+    {
+      "file": "after/native-clients32-content-playlist-320-amoled.png",
+      "surface": "playlist",
+      "width": 320,
+      "height": 640,
+      "theme": "amoled",
+      "textScale": 1.25,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "dddf5c50359826fb35dd957bea1f33d90df28c85b4180cd25c08aef257d1a22f"
+    },
+    {
+      "file": "after/native-clients32-content-playlist-375-dark.png",
+      "surface": "playlist",
+      "width": 375,
+      "height": 812,
+      "theme": "dark",
+      "textScale": 1.25,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "1c173d5fa427b6d060e4298e69f0809d3612cd657c51ca8db04fe906933df490"
+    },
+    {
+      "file": "after/native-clients32-content-playlist-390-light.png",
+      "surface": "playlist",
+      "width": 390,
+      "height": 844,
+      "theme": "light",
+      "textScale": 1.0,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "da7adb93164af9329a99b28b187081f7a7c40ce9c75f892c4460281a23551213"
+    },
+    {
+      "file": "after/native-clients32-content-playlist-768-dark.png",
+      "surface": "playlist",
+      "width": 768,
+      "height": 900,
+      "theme": "dark",
+      "textScale": 1.0,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "6d24e2f9477be35b1c4a570791f9fa59cd4e34f58f323ec2661df6326f476425"
+    },
+    {
+      "file": "after/native-clients32-content-playlist-picker-390-light.png",
+      "surface": "playlist-picker",
+      "width": 390,
+      "height": 844,
+      "theme": "light",
+      "textScale": 1.0,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "9100a82ab534ebfa6ae3998d1b3afc51ba5fd850e67bf6cc9af514eae21e8ace"
+    },
+    {
+      "file": "after/native-clients32-content-profile-1440-light.png",
+      "surface": "profile",
+      "width": 1440,
+      "height": 900,
+      "theme": "light",
+      "textScale": 1.0,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "e03a5c7b9f6604af24afef669eaa576bfd19a2ebf436a630fcf668e9a381322c"
+    },
+    {
+      "file": "after/native-clients32-content-profile-320-amoled.png",
+      "surface": "profile",
+      "width": 320,
+      "height": 640,
+      "theme": "amoled",
+      "textScale": 1.25,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "8654b8016d70f6f096677ee4d77ad91dba58e7788ad89bd71fc968ba05983ca6"
+    },
+    {
+      "file": "after/native-clients32-content-profile-375-dark.png",
+      "surface": "profile",
+      "width": 375,
+      "height": 812,
+      "theme": "dark",
+      "textScale": 1.25,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "32f3980dcfa3567580a3c79eb642931d85cfd57aefd2fa41b8754acb33967030"
+    },
+    {
+      "file": "after/native-clients32-content-profile-390-light.png",
+      "surface": "profile",
+      "width": 390,
+      "height": 844,
+      "theme": "light",
+      "textScale": 1.0,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "3b4df29fe735357af740db42513f38feba4d9ab50d2a69158e4663023375b2ea"
+    },
+    {
+      "file": "after/native-clients32-content-profile-768-dark.png",
+      "surface": "profile",
+      "width": 768,
+      "height": 900,
+      "theme": "dark",
+      "textScale": 1.0,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "0edcb0df1459262f0c1e8d59582dcf7d99b2355e3d5d48a0f66c8622f93c53ed"
+    },
+    {
+      "file": "after/native-clients32-content-search-1440-light.png",
+      "surface": "search",
+      "width": 1440,
+      "height": 900,
+      "theme": "light",
+      "textScale": 1.0,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "84b7d83d87c33427f3d73bd5dd8e9896207985735ab6e2ae6284a58a8778f08d"
+    },
+    {
+      "file": "after/native-clients32-content-search-320-amoled.png",
+      "surface": "search",
+      "width": 320,
+      "height": 640,
+      "theme": "amoled",
+      "textScale": 1.25,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "15cfffc6e5b06296187a07775853b35beacf40cc00e0fcfae1f225fa1e578572"
+    },
+    {
+      "file": "after/native-clients32-content-search-375-dark.png",
+      "surface": "search",
+      "width": 375,
+      "height": 812,
+      "theme": "dark",
+      "textScale": 1.25,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "5f61241c7880e1c127cc3c9d9bc90eb2b695c27eb8867219ce64829b31e8700c"
+    },
+    {
+      "file": "after/native-clients32-content-search-390-light.png",
+      "surface": "search",
+      "width": 390,
+      "height": 844,
+      "theme": "light",
+      "textScale": 1.0,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "0ed78bf5319b7139fd2220b2e146acaec6db2c2edf10bfd933b3fa58b10e63cc"
+    },
+    {
+      "file": "after/native-clients32-content-search-768-dark.png",
+      "surface": "search",
+      "width": 768,
+      "height": 900,
+      "theme": "dark",
+      "textScale": 1.0,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "c1d89bcf9f7a5d11d54ad4735055e2102a906001b40637dc01b8550589cb4012"
+    },
+    {
+      "file": "after/native-clients32-content-taste-1440-light.png",
+      "surface": "taste",
+      "width": 1440,
+      "height": 900,
+      "theme": "light",
+      "textScale": 1.0,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "de0f60a5aa5814e32ba244c2bd914629c8c5ff240335b8131e6af04eabef8273"
+    },
+    {
+      "file": "after/native-clients32-content-taste-390-light.png",
+      "surface": "taste",
+      "width": 390,
+      "height": 844,
+      "theme": "light",
+      "textScale": 1.0,
+      "source": "apps/native/test/clients32_content_test.dart",
+      "kind": "actual Flutter content widgets, isolated endpoint/controller transport",
+      "sha256": "d36dc1e02df269c8677828f3f0915063414aba00dfc5b7b997ac2a1b0bd40848"
+    }
+  ],
+  "checkpointStatus": "Intermediate; retained with original per-run hashes/statistics",
+  "finalEvidence": "final-verification.json"
+}

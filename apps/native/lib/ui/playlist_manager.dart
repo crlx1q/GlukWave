@@ -159,124 +159,137 @@ class _PlaylistMembershipDialogState extends State<PlaylistMembershipDialog> {
                 ),
               ),
               const SizedBox(height: 12),
-              ConstrainedBox(
-                constraints: BoxConstraints(
-                  maxHeight: MediaQuery.sizeOf(context).height * .34,
-                ),
-                child: ListView(
-                  shrinkWrap: true,
-                  children: [
-                    for (final p in c.playlists.where(
-                      (p) => p['name'].toString().toLowerCase().contains(
-                        search.text.toLowerCase(),
-                      ),
-                    )) ...[
-                      Builder(
-                        builder: (context) {
-                          final id = p['id'].toString(),
-                              present = List<String>.from(
-                                p['trackIds'] ?? [],
-                              ).contains(widget.track.id),
-                              saving =
-                                  c.librarySaving.contains('playlist:$id') ||
-                                  id.startsWith('pending:');
-                          return ListTile(
-                            key: ValueKey('playlist-membership-$id'),
-                            contentPadding: const EdgeInsets.symmetric(
-                              horizontal: 6,
-                              vertical: 3,
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(
-                                waveRadius(context, 12),
-                              ),
-                            ),
-                            selected: present,
-                            selectedTileColor: waveVisuals(
-                              context,
-                            ).accent.withValues(alpha: .08),
-                            leading: PlaylistArtwork(
-                              controller: c,
-                              playlist: p,
-                              size: 42,
-                            ),
-                            title: Text(
-                              p['name'].toString(),
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              style: const TextStyle(
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                            subtitle: Text(
+              Builder(
+                builder: (context) {
+                  final filtered = c.playlists
+                      .where(
+                        (p) => p['name'].toString().toLowerCase().contains(
+                          search.text.toLowerCase(),
+                        ),
+                      )
+                      .toList();
+                  return SizedBox(
+                    height: (MediaQuery.sizeOf(context).height * .34).clamp(
+                      120.0,
+                      280.0,
+                    ),
+                    child: filtered.isEmpty
+                        ? Padding(
+                            padding: const EdgeInsets.all(18),
+                            child: Text(
                               playlistText(
                                 context,
-                                saving ? 'saving' : 'tracks',
-                                {
-                                  'count': List.from(
-                                    p['trackIds'] ?? [],
-                                  ).length,
-                                },
+                                c.playlists.isEmpty ? 'empty' : 'noMatch',
                               ),
                               style: TextStyle(
-                                fontSize: 11,
                                 color: waveVisuals(context).muted,
                               ),
                             ),
-                            trailing: Icon(
-                              present
-                                  ? Icons.playlist_add_check_rounded
-                                  : Icons.add_rounded,
-                              color: present
-                                  ? waveVisuals(context).accent
-                                  : waveVisuals(context).muted,
-                              size: 21,
-                            ),
-                            enabled: !id.startsWith('pending:'),
-                            onTap: () => perform(id, () async {
-                              await c.setPlaylistTrack(
-                                id,
-                                widget.track,
-                                !present,
+                          )
+                        : ListView.builder(
+                            itemCount: filtered.length,
+                            itemBuilder: (context, index) {
+                              final p = filtered[index];
+                              return Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Builder(
+                                    builder: (context) {
+                                      final id = p['id'].toString(),
+                                          present = List<String>.from(
+                                            p['trackIds'] ?? [],
+                                          ).contains(widget.track.id),
+                                          saving =
+                                              c.librarySaving.contains(
+                                                'playlist:$id',
+                                              ) ||
+                                              id.startsWith('pending:');
+                                      return ListTile(
+                                        key: ValueKey(
+                                          'playlist-membership-$id',
+                                        ),
+                                        contentPadding:
+                                            const EdgeInsets.symmetric(
+                                              horizontal: 6,
+                                              vertical: 3,
+                                            ),
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(
+                                            waveRadius(context, 12),
+                                          ),
+                                        ),
+                                        selected: present,
+                                        selectedTileColor: waveVisuals(
+                                          context,
+                                        ).accent.withValues(alpha: .08),
+                                        leading: PlaylistArtwork(
+                                          controller: c,
+                                          playlist: p,
+                                          size: 42,
+                                        ),
+                                        title: Text(
+                                          p['name'].toString(),
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: const TextStyle(
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                        ),
+                                        subtitle: Text(
+                                          playlistText(
+                                            context,
+                                            saving ? 'saving' : 'tracks',
+                                            {
+                                              'count': List.from(
+                                                p['trackIds'] ?? [],
+                                              ).length,
+                                            },
+                                          ),
+                                          style: TextStyle(
+                                            fontSize: 11,
+                                            color: waveVisuals(context).muted,
+                                          ),
+                                        ),
+                                        trailing: Icon(
+                                          present
+                                              ? Icons.playlist_add_check_rounded
+                                              : Icons.add_rounded,
+                                          color: present
+                                              ? waveVisuals(context).accent
+                                              : waveVisuals(context).muted,
+                                          size: 21,
+                                        ),
+                                        enabled: !id.startsWith('pending:'),
+                                        onTap: () => perform(id, () async {
+                                          await c.setPlaylistTrack(
+                                            id,
+                                            widget.track,
+                                            !present,
+                                          );
+                                        }),
+                                      );
+                                    },
+                                  ),
+                                  if (errors.containsKey(p['id']))
+                                    _OperationError(
+                                      message: errors[p['id']]!,
+                                      onRetry: () =>
+                                          perform(p['id'].toString(), () async {
+                                            await c.setPlaylistTrack(
+                                              p['id'].toString(),
+                                              widget.track,
+                                              !List<String>.from(
+                                                p['trackIds'] ?? [],
+                                              ).contains(widget.track.id),
+                                            );
+                                          }),
+                                    ),
+                                ],
                               );
-                            }),
-                          );
-                        },
-                      ),
-                      if (errors.containsKey(p['id']))
-                        _OperationError(
-                          message: errors[p['id']]!,
-                          onRetry: () => perform(p['id'].toString(), () async {
-                            await c.setPlaylistTrack(
-                              p['id'].toString(),
-                              widget.track,
-                              !List<String>.from(
-                                p['trackIds'] ?? [],
-                              ).contains(widget.track.id),
-                            );
-                          }),
-                        ),
-                    ],
-                    if (c.playlists.isEmpty)
-                      Padding(
-                        padding: const EdgeInsets.all(18),
-                        child: Text(
-                          playlistText(context, 'empty'),
-                          style: TextStyle(color: waveVisuals(context).muted),
-                        ),
-                      ),
-                    if (c.playlists.isNotEmpty &&
-                        !c.playlists.any(
-                          (p) => p['name'].toString().toLowerCase().contains(
-                            search.text.toLowerCase(),
+                            },
                           ),
-                        ))
-                      Padding(
-                        padding: const EdgeInsets.all(18),
-                        child: Text(playlistText(context, 'noMatch')),
-                      ),
-                  ],
-                ),
+                  );
+                },
               ),
               const SizedBox(height: 12),
               const Divider(),
@@ -698,46 +711,48 @@ class _PlaylistTracksState extends State<_PlaylistTracks> {
                     onRetry: () => retry?.call(),
                   ),
                 const SizedBox(height: 12),
-                ConstrainedBox(
-                  constraints: BoxConstraints(
-                    maxHeight: MediaQuery.sizeOf(context).height * .48,
+                SizedBox(
+                  height: (MediaQuery.sizeOf(context).height * .48).clamp(
+                    100.0,
+                    420.0,
                   ),
-                  child: ListView(
-                    shrinkWrap: true,
-                    children: [
-                      for (final track in tracks)
-                        ListTile(
-                          key: ValueKey('playlist-library-${track.id}'),
-                          contentPadding: EdgeInsets.zero,
-                          leading: Artwork(
-                            controller: c,
-                            url: track.artwork,
-                            size: 42,
-                          ),
-                          title: Text(
-                            track.title,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          subtitle: Text(
-                            track.artist,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          trailing: Icon(
-                            ids.contains(track.id)
-                                ? Icons.playlist_add_check_rounded
-                                : Icons.add_rounded,
-                            color: ids.contains(track.id)
-                                ? waveVisuals(context).accent
-                                : waveVisuals(context).muted,
-                          ),
-                          onTap: () => toggle(track, !ids.contains(track.id)),
+                  child: tracks.isEmpty
+                      ? Text(playlistText(context, 'noMatch'))
+                      : ListView.builder(
+                          itemCount: tracks.length,
+                          itemBuilder: (context, index) {
+                            final track = tracks[index];
+                            return ListTile(
+                              key: ValueKey('playlist-library-${track.id}'),
+                              contentPadding: EdgeInsets.zero,
+                              leading: Artwork(
+                                controller: c,
+                                url: track.artwork,
+                                size: 42,
+                              ),
+                              title: Text(
+                                track.title,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              subtitle: Text(
+                                track.artist,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              trailing: Icon(
+                                ids.contains(track.id)
+                                    ? Icons.playlist_add_check_rounded
+                                    : Icons.add_rounded,
+                                color: ids.contains(track.id)
+                                    ? waveVisuals(context).accent
+                                    : waveVisuals(context).muted,
+                              ),
+                              onTap: () =>
+                                  toggle(track, !ids.contains(track.id)),
+                            );
+                          },
                         ),
-                      if (tracks.isEmpty)
-                        Text(playlistText(context, 'noMatch')),
-                    ],
-                  ),
                 ),
               ],
             ),
@@ -840,89 +855,92 @@ class _PlaylistOrderState extends State<PlaylistOrder> {
         children: [
           if (error != null)
             _OperationError(message: error!, onRetry: () => perform(retry!)),
-          for (var i = 0; i < ids.length; i++)
-            if (c.track(ids[i]) != null)
-              Builder(
-                builder: (context) {
-                  final index = i, track = c.track(ids[i])!;
-                  Future<void> move(int direction) async {
-                    final order = List<String>.from(
-                          (c.playlists
-                                      .where((p) => p['id'] == widget.id)
-                                      .firstOrNull ??
-                                  {})['trackIds'] ??
-                              [],
-                        ),
-                        from = order.indexOf(track.id),
-                        to = from + direction;
-                    if (from < 0 || to < 0 || to >= order.length) return;
-                    final moved = order[from];
-                    order[from] = order[to];
-                    order[to] = moved;
-                    await c.updatePlaylist(widget.id, {'trackIds': order});
-                  }
+          SizedBox(
+            height: (ids.length * 64.0).clamp(
+              0.0,
+              MediaQuery.sizeOf(context).height * .5,
+            ),
+            child: ListView.builder(
+              itemCount: ids.length,
+              itemBuilder: (context, index) {
+                final track = c.track(ids[index]);
+                if (track == null) return const SizedBox.shrink();
+                Future<void> move(int direction) async {
+                  final order = List<String>.from(
+                        (c.playlists
+                                    .where((p) => p['id'] == widget.id)
+                                    .firstOrNull ??
+                                {})['trackIds'] ??
+                            [],
+                      ),
+                      from = order.indexOf(track.id),
+                      to = from + direction;
+                  if (from < 0 || to < 0 || to >= order.length) return;
+                  final moved = order[from];
+                  order[from] = order[to];
+                  order[to] = moved;
+                  await c.updatePlaylist(widget.id, {'trackIds': order});
+                }
 
-                  return ListTile(
-                    contentPadding: EdgeInsets.zero,
-                    title: Text(
-                      track.title,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w700,
+                return ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  title: Text(
+                    track.title,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  subtitle: Text(
+                    track.artist,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontSize: 10,
+                      color: waveVisuals(context).muted,
+                    ),
+                  ),
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      IconButton(
+                        tooltip: playlistText(context, 'up'),
+                        onPressed: pending || index == 0
+                            ? null
+                            : () => perform(() => move(-1)),
+                        icon: const Icon(Icons.arrow_upward_rounded, size: 17),
                       ),
-                    ),
-                    subtitle: Text(
-                      track.artist,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
-                        fontSize: 10,
-                        color: waveVisuals(context).muted,
+                      IconButton(
+                        tooltip: playlistText(context, 'down'),
+                        onPressed: pending || index == ids.length - 1
+                            ? null
+                            : () => perform(() => move(1)),
+                        icon: const Icon(
+                          Icons.arrow_downward_rounded,
+                          size: 17,
+                        ),
                       ),
-                    ),
-                    trailing: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        IconButton(
-                          tooltip: playlistText(context, 'up'),
-                          onPressed: pending || index == 0
-                              ? null
-                              : () => perform(() => move(-1)),
-                          icon: const Icon(
-                            Icons.arrow_upward_rounded,
-                            size: 17,
-                          ),
-                        ),
-                        IconButton(
-                          tooltip: playlistText(context, 'down'),
-                          onPressed: pending || index == ids.length - 1
-                              ? null
-                              : () => perform(() => move(1)),
-                          icon: const Icon(
-                            Icons.arrow_downward_rounded,
-                            size: 17,
-                          ),
-                        ),
-                        IconButton(
-                          tooltip: playlistText(context, 'remove'),
-                          onPressed: pending
-                              ? null
-                              : () => perform(() async {
-                                  await c.setPlaylistTrack(
-                                    widget.id,
-                                    track,
-                                    false,
-                                  );
-                                }),
-                          icon: const Icon(Icons.close_rounded, size: 17),
-                        ),
-                      ],
-                    ),
-                  );
-                },
-              ),
+                      IconButton(
+                        tooltip: playlistText(context, 'remove'),
+                        onPressed: pending
+                            ? null
+                            : () => perform(() async {
+                                await c.setPlaylistTrack(
+                                  widget.id,
+                                  track,
+                                  false,
+                                );
+                              }),
+                        icon: const Icon(Icons.close_rounded, size: 17),
+                      ),
+                    ],
+                  ),
+                );
+              },
+            ),
+          ),
         ],
       );
     },

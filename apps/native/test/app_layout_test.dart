@@ -13,6 +13,8 @@ import 'package:glukwave/services/audio.dart';
 import 'package:glukwave/services/cache.dart';
 import 'package:glukwave/ui/app.dart';
 import 'package:glukwave/ui/player.dart';
+import 'package:glukwave/ui/client32_design.dart';
+import 'package:glukwave/ui/desktop_titlebar.dart';
 import 'package:glukwave/ui/widgets.dart';
 import 'helpers/fonts.dart';
 
@@ -122,6 +124,29 @@ Future<void> selectSettingsCategory(
   String id, [
   String? label,
 ]) async {
+  final sheetPicker = find.byKey(const Key('settings-category-picker'));
+  if (sheetPicker.evaluate().isNotEmpty) {
+    await Scrollable.ensureVisible(tester.element(sheetPicker), alignment: .5);
+    await tester.pumpAndSettle();
+    await tester.tap(sheetPicker);
+    await tester.pumpAndSettle();
+    final option = find.byKey(Key('settings-$id'));
+    final sheetList = find
+        .descendant(
+          of: find.byType(BottomSheet).last,
+          matching: find.byType(Scrollable),
+        )
+        .first;
+    if (option.evaluate().isEmpty) {
+      await tester.scrollUntilVisible(option, 160, scrollable: sheetList);
+    }
+    await Scrollable.ensureVisible(tester.element(option), alignment: .5);
+    await tester.pumpAndSettle();
+    await tester.tap(option);
+    await tester.pumpAndSettle();
+    return;
+  }
+
   final compact = find.byWidgetPredicate((widget) {
     final key = widget.key;
     return widget is DropdownButtonFormField<String> &&
@@ -154,9 +179,41 @@ Future<void> selectSettingsCategory(
       await tester.pumpAndSettle();
       await tester.scrollUntilVisible(link, 150, scrollable: navigation);
     }
-    await tester.ensureVisible(link);
+    await Scrollable.ensureVisible(tester.element(link), alignment: .5);
+    await tester.pumpAndSettle();
     await tester.tap(link);
   }
+  await tester.pumpAndSettle();
+}
+
+/// Reveal the real desktop library list or the thumb navigation destinations.
+Future<void> navigateShell(WidgetTester tester, String page) async {
+  var target = find.byKey(Key('nav-$page'));
+  if (target.evaluate().isEmpty) {
+    final sidebar = find.byKey(const Key('desktop-navigation-sidebar'));
+    if (sidebar.evaluate().isNotEmpty) {
+      final scroll = find
+          .descendant(of: sidebar, matching: find.byType(Scrollable))
+          .first;
+      await tester.scrollUntilVisible(target, 140, scrollable: scroll);
+    } else {
+      await tester.tap(find.byKey(const Key('nav-profile')));
+      await tester.pumpAndSettle();
+      target = find.byKey(Key('profile-$page'));
+      final scroll = find
+          .descendant(
+            of: find.byType(ClientScrollPage),
+            matching: find.byType(Scrollable),
+          )
+          .first;
+      if (target.evaluate().isEmpty) {
+        await tester.scrollUntilVisible(target, 180, scrollable: scroll);
+      }
+    }
+  }
+  await Scrollable.ensureVisible(tester.element(target), alignment: .5);
+  await tester.pumpAndSettle();
+  await tester.tap(target);
   await tester.pumpAndSettle();
 }
 
@@ -409,9 +466,15 @@ void main() {
         await tester.pumpAndSettle();
         expect(
           tester.getRect(find.byKey(const Key('full-player'))).size,
-          Size(width, 900),
+          Size(width, width >= 900 && DesktopTitleBar.supported ? 856 : 900),
         );
-        expect(tester.getRect(find.byKey(const Key('full-player'))).top, 0);
+        expect(
+          tester.getRect(find.byKey(const Key('full-player'))).top,
+          width >= 900 && DesktopTitleBar.supported ? 44 : 0,
+        );
+        if (width >= 900 && DesktopTitleBar.supported) {
+          expect(find.byType(DesktopTitleBar).hitTestable(), findsOneWidget);
+        }
         expect(find.text('1:20:00'), findsWidgets);
         expect(tester.takeException(), isNull);
         if (width == 390 || width == 1280) {

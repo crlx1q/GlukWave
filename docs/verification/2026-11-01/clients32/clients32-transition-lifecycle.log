@@ -1,0 +1,22 @@
+00:00 +0: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/clients32_lifecycle_test.dart
+00:00 +0: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/clients32_lifecycle_test.dart: (setUpAll)
+00:00 +0: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/clients32_lifecycle_test.dart: Closing a task during the next track lookup preserves local listening
+00:00 +1: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/clients32_lifecycle_test.dart: Explicit pause during a source lookup releases an idle task and rejects late audio
+00:00 +2: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/clients32_lifecycle_test.dart: Removing an idle task stops media and cannot reconnect afterward
+00:00 +3: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/clients32_lifecycle_test.dart: A pre-close probe completing late cannot restart a closed idle task
+00:00 +4: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/clients32_lifecycle_test.dart: Task removal keeps audible local music intact
+00:00 +5: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/clients32_lifecycle_test.dart: A failed decoder stop still removes the idle media notification state
+00:00 +6: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/clients32_lifecycle_test.dart: Android bridge retries a failed playback delivery and handles idle close
+00:00 +7: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/clients32_lifecycle_test.dart: (tearDownAll)
+00:00 +7: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/clients32_auth_polling_test.dart
+00:02 +7: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/clients32_auth_polling_test.dart: (setUpAll)
+00:02 +7: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/clients32_auth_polling_test.dart: An older credential response cannot replace a newer login on the same server
+00:02 +8: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/clients32_auth_polling_test.dart: Cancelling during challenge creation cannot reopen the browser afterward
+00:02 +9: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/clients32_auth_polling_test.dart: One browser approval survives temporary failures without another approval
+00:02 +10: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/clients32_auth_polling_test.dart: Invalid secret or rejected approval is terminal, never retried
+00:02 +11: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/clients32_auth_polling_test.dart: Transient retries are bounded by the actual challenge expiry
+00:02 +12: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/clients32_auth_polling_test.dart: Cancellation aborts an in-flight read and cannot return its approval
+00:02 +13: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/clients32_auth_polling_test.dart: A response from an old account/flow is discarded before accepting a session
+00:02 +14: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/clients32_auth_polling_test.dart: Real HTTP status reads retain native identity and the same recovery claim
+00:02 +15: C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/clients32_auth_polling_test.dart: (tearDownAll)
+00:02 +15: All tests passed!

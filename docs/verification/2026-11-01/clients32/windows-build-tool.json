@@ -1,0 +1,12 @@
+{
+  "url": "https://dist.nuget.org/win-x86-commandline/v6.14.0/nuget.exe",
+  "version": "6.14.0.116",
+  "sha256": "92DBED160DDEE0F64B901E907439E021211B428E57C089ECC12FC38DCC4BD9A5",
+  "signature": "Valid",
+  "scope": "Workspace tool only; process PATH; no package/lock/version/system PATH change",
+  "documentation": "https://learn.microsoft.com/en-us/nuget/install-nuget-client-tools",
+  "buildAlias": "C:/Users/alish/Documents/Codex/gw-native32",
+  "aliasType": "NTFS junction to unchanged project directory",
+  "sdkArtifactRefresh": "Current Flutter SDK tool_backend.bat windows-x64 Debug",
+  "flutterVersion": "3.35.4"
+}

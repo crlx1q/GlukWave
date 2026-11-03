@@ -1,3 +1,4 @@
+import 'client32_design.dart';
 import 'motion_icons.dart';
 import 'dart:io';
 import 'scrolling_label.dart';
@@ -20,6 +21,18 @@ const background = Color(0xffefede3),
     accent = Color(0xffa08369),
     accentSoft = Color(0xffe1dacf),
     line = Color(0x1c302f2c);
+
+/// Filled actions need their own on-fill color. The shared outline IconTheme
+/// otherwise overrides Material's filled-button foreground in Material 3.
+ButtonStyle waveFilledIconStyle(BuildContext context, {bool tonal = false}) {
+  final v = waveVisuals(context);
+  return IconButton.styleFrom(
+    backgroundColor: tonal ? v.accentSoft : v.ink,
+    foregroundColor: tonal ? v.ink : v.background,
+    disabledBackgroundColor: v.ink.withValues(alpha: .08),
+    disabledForegroundColor: v.muted,
+  );
+}
 
 /// Dialog-owned editors must remain alive through the closing animation.
 /// Navigator's result completes before the route's widgets are unmounted.
@@ -966,6 +979,7 @@ class TrackRow extends StatelessWidget {
   final VoidCallback? onMore;
   final Future<void> Function()? onPlay;
   final List<WaveTrack>? queue;
+  final int? index;
   const TrackRow({
     super.key,
     required this.controller,
@@ -973,13 +987,15 @@ class TrackRow extends StatelessWidget {
     this.onMore,
     this.onPlay,
     this.queue,
+    this.index,
   });
   @override
   Widget build(BuildContext context) => LayoutBuilder(
     builder: (context, constraints) {
       final active = controller.audio.viewCurrent?.id == track.id;
+      final desktop = ClientLayout.of(context).desktop;
       final compact =
-          waveVisuals(context).compact || constraints.maxWidth < 300;
+          desktop || waveVisuals(context).compact || constraints.maxWidth < 300;
       final artworkSize = compact ? 38.0 : 46.0;
       return Material(
         color: active ? waveVisuals(context).surface : Colors.transparent,
@@ -988,6 +1004,7 @@ class TrackRow extends StatelessWidget {
           borderRadius: BorderRadius.circular(waveRadius(context, 14)),
           onTap: () =>
               _run(onPlay ?? () => controller.play(track, list: queue)),
+          onSecondaryTap: onMore,
           child: Padding(
             padding: EdgeInsets.symmetric(
               vertical: compact ? 5 : 9,
@@ -995,6 +1012,20 @@ class TrackRow extends StatelessWidget {
             ),
             child: Row(
               children: [
+                if (desktop && index != null) ...[
+                  SizedBox(
+                    width: 25,
+                    child: Text(
+                      '$index',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 10,
+                        color: waveVisuals(context).muted,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                ],
                 Stack(
                   alignment: Alignment.center,
                   children: [
@@ -1053,11 +1084,16 @@ class TrackRow extends StatelessWidget {
                 if (constraints.maxWidth >= 600)
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Text(
-                      track.sourceName,
-                      style: TextStyle(
-                        color: waveVisuals(context).muted,
-                        fontSize: 11,
+                    child: SizedBox(
+                      width: 100,
+                      child: Text(
+                        track.sourceName,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          color: waveVisuals(context).muted,
+                          fontSize: 11,
+                        ),
                       ),
                     ),
                   ),
@@ -1073,11 +1109,15 @@ class TrackRow extends StatelessWidget {
                 if (track.duration > 0 && constraints.maxWidth > 340)
                   Padding(
                     padding: const EdgeInsets.only(left: 10),
-                    child: Text(
-                      clock(track.duration),
-                      style: TextStyle(
-                        color: waveVisuals(context).muted,
-                        fontSize: 11,
+                    child: SizedBox(
+                      width: 34,
+                      child: Text(
+                        clock(track.duration),
+                        textAlign: TextAlign.right,
+                        style: TextStyle(
+                          color: waveVisuals(context).muted,
+                          fontSize: 11,
+                        ),
                       ),
                     ),
                   ),

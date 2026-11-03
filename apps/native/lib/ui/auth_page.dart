@@ -542,7 +542,7 @@ class _AuthPageState extends State<AuthPage> {
                       32,
                     ),
                     child: ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: 1080),
+                      constraints: const BoxConstraints(maxWidth: 1120),
                       child: Row(
                         children: [
                           // Keep the form in the same Row slot across the 900px breakpoint.
@@ -603,16 +603,18 @@ class _AuthPageState extends State<AuthPage> {
                             child: Center(
                               child: ConstrainedBox(
                                 constraints: const BoxConstraints(
-                                  maxWidth: 420,
+                                  maxWidth: 440,
                                 ),
                                 child: DecoratedBox(
                                   decoration: BoxDecoration(
                                     color: v.surface.withValues(alpha: .96),
                                     border: Border.all(color: v.line),
-                                    borderRadius: BorderRadius.circular(14),
+                                    borderRadius: BorderRadius.circular(
+                                      v.corners(20),
+                                    ),
                                   ),
                                   child: Padding(
-                                    padding: EdgeInsets.all(desktop ? 28 : 22),
+                                    padding: EdgeInsets.all(desktop ? 32 : 20),
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,

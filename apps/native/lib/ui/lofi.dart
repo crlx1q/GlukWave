@@ -19,7 +19,13 @@ List<String> get lofiScenes => [
 class LofiPage extends StatefulWidget {
   final WaveController controller;
   final void Function(WaveTrack)? onMore;
-  const LofiPage({super.key, required this.controller, this.onMore});
+  final bool embedded;
+  const LofiPage({
+    super.key,
+    required this.controller,
+    this.onMore,
+    this.embedded = false,
+  });
   @override
   State<LofiPage> createState() => _LofiPageState();
 }
@@ -114,165 +120,178 @@ class _LofiPageState extends State<LofiPage>
   Widget build(BuildContext context) {
     final v = waveVisuals(context), width = MediaQuery.sizeOf(context).width;
     final timestamp = WaveStrings.of(context).time(now);
-    return Scaffold(
-      appBar: zen
-          ? null
-          : AppBar(
-              title: Text(
-                wt('native.847e19da38', context: context),
-                style: TextStyle(fontWeight: FontWeight.w800),
-              ),
-              backgroundColor: v.background,
-              elevation: 0,
-              scrolledUnderElevation: 0,
-              actions: [
-                IconButton(
-                  tooltip: wt('native.d206f1bed0', context: context),
-                  icon: const Icon(Icons.palette_outlined),
-                  onPressed: () {
-                    if (c.appearanceStore != null) showLofiAppearance(context);
-                  },
-                ),
-              ],
-            ),
-      body: SafeArea(
-        top: !zen,
-        bottom: !zen,
-        child: zen
-            ? stage(timestamp, true)
-            : SingleChildScrollView(
-                padding: EdgeInsets.all(width < 600 ? 20 : 36),
-                child: Center(
-                  child: ConstrainedBox(
-                    constraints: const BoxConstraints(maxWidth: 1100),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        PageHeading(
-                          wt('native.1d03ab1de9', context: context),
-                          wt('native.711dd88a87', context: context),
-                        ),
-                        SizedBox(
-                          height: width < 600 ? 425 : 520,
-                          child: stage(timestamp, false),
-                        ),
-                        const SizedBox(height: 25),
-                        Text(
-                          wt('native.6182f364dd', context: context),
-                          style: TextStyle(
-                            color: v.muted,
-                            fontSize: 9,
-                            letterSpacing: 1.6,
+    final body = SafeArea(
+      top: !zen,
+      bottom: !zen,
+      child: zen
+          ? stage(timestamp, true)
+          : SingleChildScrollView(
+              padding: EdgeInsets.all(width < 600 ? 20 : 36),
+              child: Center(
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 1100),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      PageHeading(
+                        wt('native.1d03ab1de9', context: context),
+                        wt('native.711dd88a87', context: context),
+                      ),
+                      if (widget.embedded && c.appearanceStore != null)
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 16),
+                          child: TextButton.icon(
+                            onPressed: () => showLofiAppearance(context),
+                            icon: const Icon(Icons.palette_outlined, size: 18),
+                            label: Text(
+                              wt('native.d206f1bed0', context: context),
+                            ),
                           ),
                         ),
-                        const SizedBox(height: 10),
-                        Wrap(
-                          spacing: 8,
-                          runSpacing: 8,
+                      SizedBox(
+                        height: width < 600 ? 425 : 520,
+                        child: stage(timestamp, false),
+                      ),
+                      const SizedBox(height: 25),
+                      Text(
+                        wt('native.6182f364dd', context: context),
+                        style: TextStyle(
+                          color: v.muted,
+                          fontSize: 9,
+                          letterSpacing: 1.6,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Wrap(
+                        spacing: 8,
+                        runSpacing: 8,
+                        children: [
+                          for (var i = 0; i < lofiScenes.length; i++)
+                            ChoiceChip(
+                              key: Key('lofi-scene-$i'),
+                              label: Text(lofiScenes[i]),
+                              selected: scene == i,
+                              onSelected: (_) => _scene(i),
+                            ),
+                        ],
+                      ),
+                      const SizedBox(height: 23),
+                      Text(
+                        wt('native.3acf87bef9', context: context),
+                        style: TextStyle(
+                          color: v.muted,
+                          fontSize: 9,
+                          letterSpacing: 1.6,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Wrap(
+                        spacing: 8,
+                        runSpacing: 8,
+                        children: [
+                          for (final choice in {
+                            'none': wt('native.dae7e05e24', context: context),
+                            'glow': wt('native.4883983984', context: context),
+                            'rain': wt('native.aad03f21ab', context: context),
+                          }.entries)
+                            ChoiceChip(
+                              key: Key('lofi-atmos-${choice.key}'),
+                              label: Text(choice.value),
+                              selected: atmosphere == choice.key,
+                              onSelected: (_) => _atmosphere(choice.key),
+                            ),
+                        ],
+                      ),
+                      const SizedBox(height: 23),
+                      Surface(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            for (var i = 0; i < lofiScenes.length; i++)
-                              ChoiceChip(
-                                key: Key('lofi-scene-$i'),
-                                label: Text(lofiScenes[i]),
-                                selected: scene == i,
-                                onSelected: (_) => _scene(i),
-                              ),
-                          ],
-                        ),
-                        const SizedBox(height: 23),
-                        Text(
-                          wt('native.3acf87bef9', context: context),
-                          style: TextStyle(
-                            color: v.muted,
-                            fontSize: 9,
-                            letterSpacing: 1.6,
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        Wrap(
-                          spacing: 8,
-                          runSpacing: 8,
-                          children: [
-                            for (final choice in {
-                              'none': wt('native.dae7e05e24', context: context),
-                              'glow': wt('native.4883983984', context: context),
-                              'rain': wt('native.aad03f21ab', context: context),
-                            }.entries)
-                              ChoiceChip(
-                                key: Key('lofi-atmos-${choice.key}'),
-                                label: Text(choice.value),
-                                selected: atmosphere == choice.key,
-                                onSelected: (_) => _atmosphere(choice.key),
-                              ),
-                          ],
-                        ),
-                        const SizedBox(height: 23),
-                        Surface(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                wt('native.d049e3f66b', context: context),
-                                style: TextStyle(fontWeight: FontWeight.w800),
-                              ),
-                              const SizedBox(height: 5),
-                              Text(
-                                wt('native.32c2235be0', context: context),
-                                style: TextStyle(color: v.muted, fontSize: 11),
-                              ),
-                              Row(
-                                children: [
-                                  const Icon(
-                                    Icons.water_drop_outlined,
-                                    size: 20,
-                                  ),
-                                  Expanded(
-                                    child: Slider(
-                                      key: const Key('lofi-rain-level'),
-                                      value: rainLevel,
-                                      onChanged: (value) {
-                                        setState(() => rainLevel = value);
-                                        unawaited(_rain(value));
-                                      },
-                                      onChangeEnd: (value) => unawaited(
-                                        c.preferences.setDouble(
-                                          'lofiRain',
-                                          value,
-                                        ),
+                            Text(
+                              wt('native.d049e3f66b', context: context),
+                              style: TextStyle(fontWeight: FontWeight.w800),
+                            ),
+                            const SizedBox(height: 5),
+                            Text(
+                              wt('native.32c2235be0', context: context),
+                              style: TextStyle(color: v.muted, fontSize: 11),
+                            ),
+                            Row(
+                              children: [
+                                const Icon(Icons.water_drop_outlined, size: 20),
+                                Expanded(
+                                  child: Slider(
+                                    key: const Key('lofi-rain-level'),
+                                    value: rainLevel,
+                                    onChanged: (value) {
+                                      setState(() => rainLevel = value);
+                                      unawaited(_rain(value));
+                                    },
+                                    onChangeEnd: (value) => unawaited(
+                                      c.preferences.setDouble(
+                                        'lofiRain',
+                                        value,
                                       ),
                                     ),
                                   ),
-                                  Text(
-                                    '${(rainLevel * 100).round()}%',
-                                    style: TextStyle(
-                                      color: v.muted,
-                                      fontSize: 11,
-                                    ),
+                                ),
+                                Text(
+                                  '${(rainLevel * 100).round()}%',
+                                  style: TextStyle(
+                                    color: v.muted,
+                                    fontSize: 11,
                                   ),
-                                ],
-                              ),
-                            ],
-                          ),
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
-                        if (c.audio.viewCurrent != null) ...[
-                          const SizedBox(height: 22),
-                          MiniPlayer(
-                            controller: c,
-                            onOpen: () => openPlayer(context),
-                          ),
-                        ],
-                        const SizedBox(height: 20),
-                        Text(
-                          wt('native.d4958d914e', context: context),
-                          style: TextStyle(color: v.muted, fontSize: 10),
+                      ),
+                      if (!widget.embedded && c.audio.viewCurrent != null) ...[
+                        const SizedBox(height: 22),
+                        MiniPlayer(
+                          controller: c,
+                          onOpen: () => openPlayer(context),
                         ),
                       ],
-                    ),
+                      const SizedBox(height: 20),
+                      Text(
+                        wt('native.d4958d914e', context: context),
+                        style: TextStyle(color: v.muted, fontSize: 10),
+                      ),
+                    ],
                   ),
                 ),
               ),
-      ),
+            ),
     );
+    return widget.embedded
+        ? body
+        : Scaffold(
+            appBar: zen
+                ? null
+                : AppBar(
+                    title: Text(
+                      wt('native.847e19da38', context: context),
+                      style: TextStyle(fontWeight: FontWeight.w800),
+                    ),
+                    backgroundColor: v.background,
+                    elevation: 0,
+                    scrolledUnderElevation: 0,
+                    actions: [
+                      IconButton(
+                        tooltip: wt('native.d206f1bed0', context: context),
+                        icon: const Icon(Icons.palette_outlined),
+                        onPressed: () {
+                          if (c.appearanceStore != null) {
+                            showLofiAppearance(context);
+                          }
+                        },
+                      ),
+                    ],
+                  ),
+            body: body,
+          );
   }
 
   void showLofiAppearance(BuildContext context) => _openAppearance(context);

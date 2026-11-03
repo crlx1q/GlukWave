@@ -1,0 +1,301 @@
+{
+  "provenance": "Actual Flutter widgets and project fonts; isolated synthetic QA account/catalogue. No owner session, server mutations, physical audio or device/background-delivery claims. Covers intentionally use bundled/code fallback graphics.",
+  "sourceSha256": {
+    "apps/native/lib/ui/app.dart": "ca055e074ae5b3ff9b58a77901f3eb036ef2eaf89639e49f30c554dee25d4216",
+    "apps/native/lib/ui/widgets.dart": "7997c213aacff172fd0245173d073dc9e7576df51cf37f96f8da8c610ad673c8",
+    "apps/native/lib/ui/player.dart": "e91fd428d7f9897b76113c36ff73393c12b4f636be409946110754081b7e0324",
+    "apps/native/lib/ui/native19_desktop_transport.dart": "3d83fdc1efa444db4f3f04e7c0e53b78303a05de38af74a8a03c98e51dfd3ce5",
+    "apps/native/lib/ui/listening_rail.dart": "c4ef48feb6c2e9a80b25a0db0a84237175a0ccc67c5864129b3e2f888a4b788b",
+    "apps/native/lib/ui/queue_panel.dart": "3fefde7cbb7588db72485697ad1a1f68fc0a2fdf8c61d95273de2176b8b387e5",
+    "apps/native/lib/ui/client32_design.dart": "05f8e86a2d41db95d2e4e968c60ae8148450416b54cdabb14c62b24b95170779",
+    "apps/native/lib/ui/client32_workspace.dart": "cbbaa41f25da7b9737d52e42faf0e9f52bde1c73259dff41906413b1353c55c5",
+    "apps/native/test/clients32_shell_test.dart": "e5efdc381a117c879a786ccf173dd023b014c74ababc1395eb802c4408017cfb",
+    "apps/native/tool/clients32_capture_test.dart": "21324300bb002ff3cd63cfe7f69558793f1c8d789436d70d87929b611a6b108a",
+    "apps/native/test/app_layout_test.dart": "692255b15daedccd664f56db6f256ffab2174f62dfe400f3683f0e7ccb98a911",
+    "apps/native/test/parity27_ui_test.dart": "4d2e070a29e47504486dd7773701effc2b4bf795d55248fbe86d3599cc524102"
+  },
+  "commands": [
+    {
+      "command": "flutter test --no-pub --concurrency=1 [root20 + shell14 + content17 + capture3]",
+      "result": "54/54 passed on actual widgets/controller; public log names each test",
+      "log": "clients32-focused-complete.log"
+    },
+    {
+      "command": "flutter test --no-pub test/clients32_shell_test.dart --plain-name 'room composer remains reachable above keyboard at 320'",
+      "result": "1/1 passed after fixing observed80px overflow; real messagePOST and composer/send bounds verified",
+      "log": "clients32-keyboard-320-final.log"
+    }
+  ],
+  "verifiedBehaviors": [
+    "1440 labelled sidebar,280 context pane,one1416px full-width desktop dock",
+    "800 Windows compact rail and desktop dock",
+    "artist details retain shell and dock rectangle;Back/Forward playlist flow",
+    "1500 library tracks mount less than40 rows and restore scroll through Search/Back",
+    "1500 queue entries mount less than30 rows",
+    "duplicate queue occurrences retain distinct stable keys through real move callback",
+    "30 progress frames move visual progress without recreating metadata/gesture widget",
+    "4 phone destinations,Profile contextual actions,category sheet;no phone volume",
+    "320/375/390 phone at1.25 text scale in640 height",
+    "six languages Profile to Settings/Privacy and Rooms",
+    "Populated active Rooms1440/390/320: lazy1000messages,realchatPOST+permissionPATCH,Jamrestriction,mobilememberssheet",
+    "320x640 at1.25 text with250px keyboard inset:composerandSendremainabovekeyboard;observedoverflowfixedbytemporarilyhidingphonechrome",
+    "Desktop expanded player retains usable44px customtitlebar",
+    "Home/Search/Libraryprimarydesktopnavremainpinned"
+  ],
+  "pending": [
+    "Final complete legacy suite/analyzer after Android/auth corrections",
+    "Independent evaluation"
+  ],
+  "captures": [
+    {
+      "file": "after/active-room-1440.png",
+      "sha256": "ea8badffb4ebcbe03e8ac5a88a1138cc74f07d2f89e2699519ce730b1dc20cbb"
+    },
+    {
+      "file": "after/active-room-320.png",
+      "sha256": "42640439b25fac26cc496824d588f2593d419b95ee6bd75cf3606f5873847186"
+    },
+    {
+      "file": "after/active-room-390.png",
+      "sha256": "62b08d0ac81cb6d2be015ccdfa1faca215eead634a52288fa53a3030d4341ad6"
+    },
+    {
+      "file": "after/active-room-keyboard-320.png",
+      "sha256": "22d4153b7616f7fb2dd2ee9a355c7491cdaec8dc3b131e135abe0c54562934e9"
+    },
+    {
+      "file": "after/desktop-artist-1440.png",
+      "sha256": "e50a8f226fa54f118b34ec82b0bf84c955dabc428479596fe8ff466511e592d1"
+    },
+    {
+      "file": "after/desktop-artists-1280.png",
+      "sha256": "f801c79fae36f623271c68b16f3aa9a7519618cea013997ec4f6f698a751d054"
+    },
+    {
+      "file": "after/desktop-artists-1440.png",
+      "sha256": "1c5b2763b55706c14f2241157f118d06c36c2bec61e27d22724f9e05390f7d09"
+    },
+    {
+      "file": "after/desktop-compact-800.png",
+      "sha256": "1afeeef2897b5a5872bb86a94f7d12e1cbf2f6e5bb82b62be121fb8f82061774"
+    },
+    {
+      "file": "after/desktop-devices-1280.png",
+      "sha256": "8223d6f97424de794208b582f400a374e429ce0a337ebf1da89e54d39a42a824"
+    },
+    {
+      "file": "after/desktop-devices-1440.png",
+      "sha256": "472476d9b4ba582168237709364f9acda43f26dad96f2688f99a4ca563b2fcca"
+    },
+    {
+      "file": "after/desktop-discover-1280.png",
+      "sha256": "760b5c86ffa61e4b5e8c4ea40adc4287a0eb4218f16e21b4d7a4e69231b8f729"
+    },
+    {
+      "file": "after/desktop-discover-1440.png",
+      "sha256": "13f8a026f035e4239ffa2f0c94144e799b9993f2d99110ef136e257676b41554"
+    },
+    {
+      "file": "after/desktop-downloads-1280.png",
+      "sha256": "4a5d50ce978f84108b76d4a94afa77d581fa17abb3040a779687a7a9dbd73617"
+    },
+    {
+      "file": "after/desktop-downloads-1440.png",
+      "sha256": "eba505ff9d1ba0dbd4779a3382071dea8e5311f4d35d7ac6ed46f2d4e4fee000"
+    },
+    {
+      "file": "after/desktop-friends-1280.png",
+      "sha256": "eb50e8f560bb312252bf034329e6e0617f5563a425bed1c32e05225b91b84bdf"
+    },
+    {
+      "file": "after/desktop-friends-1440.png",
+      "sha256": "f097d5c8ebe4207feceeb74a3c18b103101105b32c13b51d9a00bf293d32c3b7"
+    },
+    {
+      "file": "after/desktop-home-1280.png",
+      "sha256": "1c94be0b14d14c37832f279a3bc5dc47d0027e6b1961030674c5c8c558ac3fb6"
+    },
+    {
+      "file": "after/desktop-home-1440.png",
+      "sha256": "201ef129bab4d7ef8222924a0ae1fb6b130ab2008052ecabe372e44d58f3b3f1"
+    },
+    {
+      "file": "after/desktop-home-dark-1280.png",
+      "sha256": "9007e9dcac96393fbc329ff8938750ef7cb7fedcf57977ba2753c0db45776b6d"
+    },
+    {
+      "file": "after/desktop-home-dark-1440.png",
+      "sha256": "3fcce6b314f41ddbf5c24913ee7413dcb7ab490750749eeac469c46e274edbf4"
+    },
+    {
+      "file": "after/desktop-library-1280.png",
+      "sha256": "4ac0d8952b9fb5865b77a9bde9c614a7837cfd4d70e509034332eebb52fe7662"
+    },
+    {
+      "file": "after/desktop-library-1440.png",
+      "sha256": "106ad77757064b925b7678f1b8120e39b6b1c19669df5cce709dafef2ae8b937"
+    },
+    {
+      "file": "after/desktop-liked-1280.png",
+      "sha256": "ce306ae23b778192d134d5ba967a64316adf372d4a41b8017d05b71c863f2977"
+    },
+    {
+      "file": "after/desktop-liked-1440.png",
+      "sha256": "bcd6cfdd5d10d917e4386cf77d433cc6ccb21c83249a81ac94cbb9ac24faec67"
+    },
+    {
+      "file": "after/desktop-lyrics-1280.png",
+      "sha256": "ad4f7b54e9ea41e8053b92077f0858f2923cec2b12aaed7b4eae6562d3474b10"
+    },
+    {
+      "file": "after/desktop-lyrics-1440.png",
+      "sha256": "24334e65741459e0e9dbc3caf78e0b21e54ee71e4a14fcf39686a1b069262bb9"
+    },
+    {
+      "file": "after/desktop-player-1280.png",
+      "sha256": "f90ab70b4769610df85aecb199f44895b160861bdaa892847041edac41d9f2c2"
+    },
+    {
+      "file": "after/desktop-player-1440.png",
+      "sha256": "04b79742cb755766423f1091ac4dcd9b5afb3c946563893b82f1247be3ba0635"
+    },
+    {
+      "file": "after/desktop-playlist-1280.png",
+      "sha256": "d4527cf8c27799f4d89515881b2646e6844256bd74e9bc05a9b9fda9f4435ce1"
+    },
+    {
+      "file": "after/desktop-playlist-1440.png",
+      "sha256": "7b3a3789afc12e8d07cb04aec7748943874bb0e575d86cd5e1e3905f6c862324"
+    },
+    {
+      "file": "after/desktop-profile-1280.png",
+      "sha256": "37c6ebb93b28c0a644607e8c3163e8e93291563b464f056ae9dcd76e8179faa4"
+    },
+    {
+      "file": "after/desktop-profile-1440.png",
+      "sha256": "fab5d6e3b592e5a08fcace3d6b55dbf707ec007b96ca59a5310a48c81c5577e6"
+    },
+    {
+      "file": "after/desktop-queue-1280.png",
+      "sha256": "ae4cdca553350151a7db8cbec46eef3f26c3f67d95b8febcae3f7e811ae23983"
+    },
+    {
+      "file": "after/desktop-queue-1440.png",
+      "sha256": "ea6f734455e6ecc1a57546e6b9895152a5f53a79eb0515041ccd8d50009be3e7"
+    },
+    {
+      "file": "after/desktop-rooms-1280.png",
+      "sha256": "f14acd34b49c792768327e547d4feb0cf4a5708d7d9d542b29c6435f83ee28e2"
+    },
+    {
+      "file": "after/desktop-rooms-1440.png",
+      "sha256": "3fa702978c17e7719b96f750a72f79c3ec23f4d03f1a5d090a2f398bc5fa0d92"
+    },
+    {
+      "file": "after/desktop-search-1280.png",
+      "sha256": "07817168d434d9bf0262dc3887492abf4d96bf6a655e73cebe0119e0c7355927"
+    },
+    {
+      "file": "after/desktop-search-1440.png",
+      "sha256": "5a41dc2e2eec48ef2be27b49d7cd771c61ebba5bc19aef72e17d6daeda435633"
+    },
+    {
+      "file": "after/desktop-settings-1280.png",
+      "sha256": "00df371620fdcb8b6a6661dbd07aacb11b907ad3abfd7ee43771dfa94e6cec68"
+    },
+    {
+      "file": "after/desktop-settings-1440.png",
+      "sha256": "2afbf8c53d8aaa721efffdd0553f7934f471a62a62069600fb3260563d8277de"
+    },
+    {
+      "file": "after/desktop-sources-1280.png",
+      "sha256": "d3ce7ddda05dfdd03b04134c7531f48e5f44a43f5fbea70d58d9d152f08945ff"
+    },
+    {
+      "file": "after/desktop-sources-1440.png",
+      "sha256": "fed6bc9f3013a8c5b83cdc8358d2e0038003ef9ba565f517a19c22e507f47319"
+    },
+    {
+      "file": "after/phone-devices-390.png",
+      "sha256": "c4a9a35938007007f278629c1b4d1179abf535066728252dfee594771c4729f8"
+    },
+    {
+      "file": "after/phone-downloads-390.png",
+      "sha256": "c2ce3a54dc6a6c664f81d6f7d606020c2807dc1859cc691fc07d08b7970ee586"
+    },
+    {
+      "file": "after/phone-friends-390.png",
+      "sha256": "f11e71b8147e833d2b34eea51954be80c7ad17eb680a50261edd17f29a45a397"
+    },
+    {
+      "file": "after/phone-home-320.png",
+      "sha256": "6e80832b7b5eca22722e19b933a1bdc7c8102b316b8d8b9d48b5803bd5d54c14"
+    },
+    {
+      "file": "after/phone-home-375.png",
+      "sha256": "62aae379a7323bc2531ed9ea30accda50e4b13da7f93b64bfa17dda061461bbd"
+    },
+    {
+      "file": "after/phone-home-390.png",
+      "sha256": "ddaa0a6158c9a1497684ea31c3c2f1e8129f32a04e81f254385c68ad99181fde"
+    },
+    {
+      "file": "after/phone-home-amoled-390.png",
+      "sha256": "861a547aa342d18fc3c9f34d09e47261a848d7ccedf8fe14ec757c8848874b4e"
+    },
+    {
+      "file": "after/phone-home-dark-390.png",
+      "sha256": "ab4feed3a3fe4c6c509380ab38455f71de69294c641c088b1a5f9356f21584f7"
+    },
+    {
+      "file": "after/phone-home-light-390.png",
+      "sha256": "3949c963f50d5cc41bf470ba489489ba2f765b9abbb91b4eb858d47c42e2f11a"
+    },
+    {
+      "file": "after/phone-library-390.png",
+      "sha256": "0ea6df163ddb2f7c0ec114e4238c15b8b0e67c411cdbde515f11e8df0548e9cd"
+    },
+    {
+      "file": "after/phone-lyrics-390.png",
+      "sha256": "07585497a207028a7df7721d8286571099f5cd3ea1f3cf2f2f676623919d7f50"
+    },
+    {
+      "file": "after/phone-player-390.png",
+      "sha256": "740561a7ec371d9bd659ab902adb912e5e1e347b0aef044383d68c4dc3a34e3f"
+    },
+    {
+      "file": "after/phone-player-dark-390.png",
+      "sha256": "3080dc2a647ee2eb5f57f36b4af894eebecb9fa0618171187b87c9d5c9de2a8d"
+    },
+    {
+      "file": "after/phone-profile-390.png",
+      "sha256": "423a20866fb45086575b1ebb2468349e1cd50f33053d641fa06b50dd62fe4758"
+    },
+    {
+      "file": "after/phone-queue-390.png",
+      "sha256": "3f105a9cc9e8e56713130771333e652454a7a128fcb23b1e1c77e0628c732999"
+    },
+    {
+      "file": "after/phone-rooms-390.png",
+      "sha256": "7df03a19b2264126387fad657ff8ee31d748db20ef9198d56ec95ca44fe4e07c"
+    },
+    {
+      "file": "after/phone-search-390.png",
+      "sha256": "f2176fb6ec77fa173e637e4d1b939e956534adf428747832dd14fe2ad47c4bf8"
+    },
+    {
+      "file": "after/phone-settings-390.png",
+      "sha256": "af07f40f0d48fcdf1a4f4e0a1daab49a9d3f26ff7a053175f2f741c15169b253"
+    },
+    {
+      "file": "after/phone-sources-390.png",
+      "sha256": "f00c4af78c7eb4b4a37823b13cd04f9002238bb325a83bbc534f45fa0feadd5d"
+    },
+    {
+      "file": "after/tablet-home-amoled-768.png",
+      "sha256": "6baf7c40d386c2e6d98ca8a2e5e7f930e3947adfdb1ceb590de8bfbe15296049"
+    }
+  ],
+  "checkpointStatus": "Intermediate; retained with original per-run hashes/statistics",
+  "finalEvidence": "final-verification.json"
+}

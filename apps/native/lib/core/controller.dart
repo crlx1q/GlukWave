@@ -17,6 +17,7 @@ import 'package:uuid/uuid.dart';
 import 'api.dart';
 import 'playback_recovery.dart';
 import 'qr_login.dart';
+import 'native_auth_polling.dart';
 import 'models.dart';
 import 'library_mutations.dart';
 import 'library_order.dart';
@@ -37,6 +38,13 @@ import '../services/lan_transport.dart';
 import '../l10n/lan_strings.dart';
 import '../l10n/wave_localizations.dart';
 import '../l10n/parity_strings.dart';
+
+typedef _AuthFlowScope = ({
+  int generation,
+  String origin,
+  String? token,
+  String? account,
+});
 
 class WaveController extends ChangeNotifier {
   late final WindowsMediaButton mediaButton = WindowsMediaButton((count) async {
@@ -72,6 +80,7 @@ class WaveController extends ChangeNotifier {
   final EnergyPolicy energy = EnergyPolicy();
   final BackgroundConnectBridge backgroundConnect = BackgroundConnectBridge();
   bool backgroundConnectEnabled = true;
+  bool _idleTaskClosed = false;
   Future<void> setBackgroundConnect(bool enabled) async {
     backgroundConnectEnabled = enabled;
     await preferences.setBool('backgroundConnect', enabled);
@@ -81,7 +90,7 @@ class WaveController extends ChangeNotifier {
 
   Future<void> _syncBackgroundConnect({bool explicit = false}) async {
     if (!backgroundConnect.supported || _disposed) return;
-    final enabled = loggedIn && backgroundConnectEnabled;
+    final enabled = loggedIn && backgroundConnectEnabled && !_idleTaskClosed;
     try {
       final available = await backgroundConnect.update(
         enabled,
@@ -234,6 +243,11 @@ class WaveController extends ChangeNotifier {
       };
   List<WaveTrack> tracks = [], results = [];
   List<Json> artistResults = [], playlistResults = [];
+  List<Json> searchProviderErrors = [];
+  List<String> searchPendingProviders = [];
+  bool searchLoading = false;
+  String? searchError;
+  Object? _lastAudioUiState;
   List<String> likedIds = [];
   Json likedAt = {}, addedAt = {};
   List<Json> playlists = [],
@@ -446,6 +460,27 @@ class WaveController extends ChangeNotifier {
     this.startMinimized = false,
   }) {
     _applyLanguage();
+    backgroundConnect.onIdleTaskClosed = audio.finishIdleTask;
+    backgroundConnect.listen();
+    audio.onIdleTaskRemoved = () async {
+      if (audio.outputPlaying || _disposed) return;
+      _idleTaskClosed = true;
+      cancelAuth = true;
+      _selectionRevision++;
+      transportPending = false;
+      transferPending = null;
+      audio.showPendingSelection(null);
+      _recoveryTimer?.cancel();
+      _recoveryTimer = null;
+      _heartbeat?.cancel();
+      _roomDirectoryTimer?.cancel();
+      socket?.dispose();
+      socket = null;
+      connected = false;
+      await _syncBackgroundConnect();
+      await setLanEnabled(false);
+      notifyListeners();
+    };
     waveforms = WaveformStore(api)..addListener(notifyListeners);
     desktop = DesktopShell(audio);
     push = WavePush(api);
@@ -541,12 +576,45 @@ class WaveController extends ChangeNotifier {
     };
     _subscriptions.add(
       audio.playbackState.listen((state) {
+        if (backgroundConnect.supported) {
+          unawaited(
+            backgroundConnect
+                .playback(audio.backgroundPlaybackActive)
+                .catchError((Object error) {
+                  api.diagnostics.report(
+                    error,
+                    kind: 'background',
+                    code: 'CONNECT_PLAYBACK',
+                  );
+                }),
+          );
+        }
         if (state.playing && !audio.trackLoading && outputHere && waveActive) {
           unawaited(_refillWaveTail(early: true).catchError((_) => false));
         }
-        notifyListeners();
+        // Provider clocks can publish position packets several times a second.
+        // Progress/lyrics subscribe to audio directly; only meaningful control
+        // changes invalidate the application shell or send window-title IPC.
+        final uiState = (
+          state.playing,
+          state.processingState,
+          state.repeatMode,
+          state.shuffleMode,
+          state.queueIndex,
+          state.speed,
+          audio.viewCurrent?.id,
+          audio.duration,
+          audio.volume,
+          audio.remote,
+          audio.sourceReady,
+          audio.trackLoading,
+        );
+        if (_lastAudioUiState != uiState) {
+          _lastAudioUiState = uiState;
+          notifyListeners();
+          unawaited(desktop.updateTitle());
+        }
         _report();
-        unawaited(desktop.updateTitle());
       }),
     );
     _subscriptions.add(
@@ -599,7 +667,7 @@ class WaveController extends ChangeNotifier {
     backgroundConnectEnabled = preferences.getBool('backgroundConnect') ?? true;
     await energy.initialize(preferences);
     var savedServer = preferences.getString('server');
-    if (api.server == 'https://wave.gluk.tech' &&
+    if (api.server == WaveApi.publicServer &&
         savedServer == 'http://192.168.3.7:4000') {
       // Retire the endpoint embedded in the previous LAN-only test build.
       await preferences.remove('server');
@@ -684,7 +752,14 @@ class WaveController extends ChangeNotifier {
         audio.onWidgetCommand = null;
       }
     }
+    _startHeartbeat();
+  }
+
+  void _startHeartbeat() {
+    _heartbeat?.cancel();
+    if (_idleTaskClosed || _disposed) return;
     _heartbeat = Timer.periodic(const Duration(seconds: 3), (_) {
+      if (_idleTaskClosed || _disposed) return;
       _report();
       if (room != null) unawaited(_correctDrift());
     });
@@ -1158,9 +1233,10 @@ class WaveController extends ChangeNotifier {
 
   /// Reconnect metadata without replacing a decoder, queue or local edits.
   bool get _needsRecovery =>
-      !online || loggedIn && !_offlinePlayback && !connected;
+      !_idleTaskClosed &&
+      (!online || loggedIn && !_offlinePlayback && !connected);
   Future<void> revalidateConnection() async {
-    if (_disposed) return;
+    if (_disposed || _idleTaskClosed) return;
     final pending = _connectionCheck;
     final identity = '${api.server}:${api.token}';
     if (pending != null && _connectionIdentity == identity) return pending;
@@ -1169,7 +1245,12 @@ class WaveController extends ChangeNotifier {
     final job = () async {
       try {
         final data = await api.probe();
-        if (_disposed || session != api.token || origin != api.server) return;
+        if (_disposed ||
+            _idleTaskClosed ||
+            session != api.token ||
+            origin != api.server) {
+          return;
+        }
         config = data;
         online = true;
         _recoveryAttempt = connected || !loggedIn || _offlinePlayback
@@ -1218,7 +1299,9 @@ class WaveController extends ChangeNotifier {
     String? username,
     String? displayName,
   }) async {
-    final captchaToken = captchaEnabled ? await verifyCaptcha() : null;
+    final scope = _beginNativeAuth();
+    final captchaToken = captchaEnabled ? await _captchaFor(scope) : null;
+    _requireAuthFlow(scope);
     final result = await api.call(
       '/api/auth/${username != null ? 'register' : 'login'}',
       method: 'POST',
@@ -1230,37 +1313,39 @@ class WaveController extends ChangeNotifier {
         if (displayName != null) 'displayName': displayName.trim(),
       },
     );
+    _requireAuthFlow(scope);
     await acceptSession(result);
   }
 
-  Future<String> verifyCaptcha() async {
+  Future<String> verifyCaptcha() => _captchaFor(_beginNativeAuth());
+
+  Future<String> _captchaFor(_AuthFlowScope scope) async {
     final bridge = await api.call(
       '/api/auth/native-captcha',
       method: 'POST',
       data: {},
     );
+    _requireAuthFlow(scope);
     await openUrl(bridge['url'] as String);
-    final expires = challengeExpiry(bridge['expiresAt']);
-    cancelAuth = false;
-    while (!cancelAuth && DateTime.now().isBefore(expires)) {
-      final result = await api.call(
-        '/api/auth/native-captcha/${bridge['id']}',
-        query: {'secret': bridge['secret']},
-      );
-      if (result['status'] == 'approved' && result['captchaToken'] is String) {
-        return result['captchaToken'] as String;
-      }
-      if (result['status'] == 'expired') break;
-      await Future<void>.delayed(const Duration(seconds: 2));
+    final result = await _waitForNativeApproval(
+      '/api/auth/native-captcha/${bridge['id']}',
+      bridge['secret'] as String,
+      challengeExpiry(bridge['expiresAt']),
+      scope,
+    );
+    if (result['captchaToken'] is String) {
+      return result['captchaToken'] as String;
     }
-    throw WaveException(wt('native.b85fd36bb6'));
+    throw WaveException(wt('native.b85fd36bb6'), 'CHALLENGE_EXPIRED');
   }
 
   bool get supportsNativeCaptcha =>
       object(config['auth'])['nativeCaptcha'] == true;
 
   Future<void> requestPasswordReset(String email) async {
-    final token = captchaEnabled ? await verifyCaptcha() : null;
+    final scope = _beginNativeAuth();
+    final token = captchaEnabled ? await _captchaFor(scope) : null;
+    _requireAuthFlow(scope);
     await api.call(
       '/api/auth/forgot',
       method: 'POST',
@@ -1295,35 +1380,93 @@ class WaveController extends ChangeNotifier {
   }
 
   Future<void> browserLogin({String method = 'google'}) async {
+    final scope = _beginNativeAuth();
     final bridge = await api.call(
       '/api/auth/native',
       method: 'POST',
       data: {'method': method, 'deviceName': deviceName},
     );
+    _requireAuthFlow(scope);
     await openUrl(bridge['url'] as String);
-    await pollSession(
+    final data = await _waitForNativeApproval(
       '/api/auth/native/${bridge['id']}',
       bridge['secret'] as String,
       challengeExpiry(bridge['expiresAt']),
+      scope,
+    );
+    _requireAuthFlow(scope);
+    await acceptSession(data);
+  }
+
+  bool _cancelAuth = false;
+  int _authFlowGeneration = 0;
+  NativeAuthPolling? _authPolling;
+  bool get cancelAuth => _cancelAuth;
+  set cancelAuth(bool value) {
+    _cancelAuth = value;
+    if (value) {
+      _authFlowGeneration++;
+      _authPolling?.cancel();
+      _authPolling = null;
+    }
+  }
+
+  ({String id, String? token, String origin, DateTime expires})? _qrApproval;
+  _AuthFlowScope _beginNativeAuth() {
+    _authPolling?.cancel();
+    _cancelAuth = false;
+    return (
+      generation: ++_authFlowGeneration,
+      origin: api.server,
+      token: api.token,
+      account: user?.id,
     );
   }
 
-  bool cancelAuth = false;
-  ({String id, String? token, String origin, DateTime expires})? _qrApproval;
+  bool _authFlowCurrent(_AuthFlowScope scope) =>
+      !_disposed &&
+      !_cancelAuth &&
+      scope.generation == _authFlowGeneration &&
+      scope.origin == api.server &&
+      scope.token == api.token &&
+      scope.account == user?.id;
+  void _requireAuthFlow(_AuthFlowScope scope) {
+    if (!_authFlowCurrent(scope)) {
+      throw WaveException(wt('native.b85fd36bb6'), 'AUTH_CANCELLED');
+    }
+  }
+
+  Future<Json> _waitForNativeApproval(
+    String path,
+    String secret,
+    DateTime expires,
+    _AuthFlowScope scope,
+  ) async {
+    _requireAuthFlow(scope);
+    final claim = const Uuid().v4(), flow = NativeAuthPolling();
+    _authPolling = flow;
+    try {
+      return await flow.wait(
+        expires: expires,
+        current: () => _authFlowCurrent(scope),
+        read: (cancellation, timeout) => api.pollNativeAuth(
+          path,
+          secret: secret,
+          claim: claim,
+          cancellation: cancellation,
+          timeout: timeout,
+        ),
+      );
+    } finally {
+      if (identical(_authPolling, flow)) _authPolling = null;
+    }
+  }
+
   Future<void> pollSession(String path, String secret, DateTime expires) async {
-    cancelAuth = false;
-    while (!cancelAuth && DateTime.now().isBefore(expires)) {
-      final data = await api.call(path, query: {'secret': secret});
-      if (data['status'] == 'approved') {
-        await acceptSession(data);
-        return;
-      }
-      if (data['status'] == 'expired') break;
-      await Future<void>.delayed(const Duration(seconds: 2));
-    }
-    if (!cancelAuth) {
-      throw WaveException(wt('native.b85fd36bb6'));
-    }
+    final scope = _beginNativeAuth();
+    final data = await _waitForNativeApproval(path, secret, expires, scope);
+    _requireAuthFlow(scope);
+    await acceptSession(data);
   }
 
   Future<void> approveQr(String value) async {
@@ -1392,8 +1535,10 @@ class WaveController extends ChangeNotifier {
   }
 
   Future<void> _performLogout({bool remote = true}) async {
+    cancelAuth = true;
     _qrApproval = null;
     _selectionRevision++;
+    _resetSearchState();
     transportPending = false;
     audio.showPendingSelection(null);
     transferPending = null;
@@ -2692,15 +2837,26 @@ class WaveController extends ChangeNotifier {
     );
   }
 
+  void _resetSearchState() {
+    _searchRevision++;
+    results = [];
+    artistResults = [];
+    playlistResults = [];
+    suggestion = null;
+    searchProviderErrors = [];
+    searchPendingProviders = [];
+    searchLoading = false;
+    searchError = null;
+  }
+
   Future<void> search(String query, {String source = 'all'}) async {
-    final revision = ++_searchRevision,
+    _resetSearchState();
+    final term = query.trim(),
+        revision = _searchRevision,
         session = api.token,
-        origin = api.server;
-    if (query.trim().isEmpty) {
-      results = [];
-      artistResults = [];
-      playlistResults = [];
-      suggestion = null;
+        origin = api.server,
+        account = user?.id;
+    if (term.isEmpty) {
       notifyListeners();
       return;
     }
@@ -2708,41 +2864,76 @@ class WaveController extends ChangeNotifier {
         !_disposed &&
         revision == _searchRevision &&
         session == api.token &&
-        origin == api.server;
+        origin == api.server &&
+        account == user?.id;
     void present(Json data) {
       if (!current()) return;
       results = objects(data['tracks']).map(WaveTrack.new).toList();
       artistResults = objects(data['artists']);
       playlistResults = objects(data['playlists']);
       suggestion = data['suggestion'] as String?;
-      final failures = objects(data['errors']);
-      if (failures.isNotEmpty) {
-        tell(failures.map((e) => e['message'] ?? e['provider']).join(' Р’В· '));
-      }
+      searchProviderErrors = objects(data['errors']);
+      searchPendingProviders = (data['pendingProviders'] as List? ?? const [])
+          .whereType<String>()
+          .toList();
+      searchLoading = false;
+      searchError = null;
       notifyListeners();
     }
 
-    final fastQuery = {'q': query.trim(), 'source': source, 'fast': '1'};
-    final saved = api.peekMetadata('/api/search', query: fastQuery);
-    if (saved != null) present(saved);
-    final data = await api.cachedCall(
-      '/api/search',
-      query: fastQuery,
-      maxAge: const Duration(seconds: 30),
-    );
-    if (!current()) return;
-    present(data);
-    if ((data['pendingProviders'] as List?)?.isNotEmpty == true) {
-      unawaited(
-        api
-            .cachedCall(
-              '/api/search',
-              query: {'q': query.trim(), 'source': source},
-              maxAge: const Duration(seconds: 30),
-            )
-            .then(present)
-            .catchError((Object _) {}),
+    searchLoading = true;
+    notifyListeners();
+    try {
+      // Opening a link is browsing. Explicit source import below remains a
+      // separate action; search never likes or imports a personal library row.
+      if (RegExp(r'^https?://', caseSensitive: false).hasMatch(term)) {
+        final resolved = await api.call(
+          '/api/tracks/resolve',
+          method: 'POST',
+          data: {'url': term},
+        );
+        final track = object(resolved['track']);
+        if (track.isEmpty) {
+          throw WaveException(wt('native.e61d08951b'), 'TRACK_NOT_FOUND');
+        }
+        present({
+          'tracks': [track],
+        });
+        return;
+      }
+      final fastQuery = {'q': term, 'source': source, 'fast': '1'};
+      final saved = api.peekMetadata('/api/search', query: fastQuery);
+      if (saved != null) present(saved);
+      final data = await api.cachedCall(
+        '/api/search',
+        query: fastQuery,
+        maxAge: const Duration(seconds: 30),
       );
+      if (!current()) return;
+      present(data);
+      if (searchPendingProviders.isNotEmpty) {
+        unawaited(
+          api
+              .cachedCall(
+                '/api/search',
+                query: {'q': term, 'source': source},
+                maxAge: const Duration(seconds: 30),
+              )
+              .then<void>(present)
+              .catchError((Object reason) {
+                if (!current()) return;
+                searchPendingProviders = [];
+                searchError = reason.toString();
+                notifyListeners();
+              }),
+        );
+      }
+    } catch (reason) {
+      if (!current()) return;
+      searchLoading = false;
+      searchPendingProviders = [];
+      searchError = reason.toString();
+      notifyListeners();
     }
   }
 
@@ -2833,6 +3024,9 @@ class WaveController extends ChangeNotifier {
   /// OAuth happens in the system browser. Returning to the app asks the server
   /// for the real connection, rather than treating a browser launch as success.
   Future<void> applicationResumed() async {
+    final wasClosed = _idleTaskClosed;
+    _idleTaskClosed = false;
+    if (wasClosed) _startHeartbeat();
     if (_needsRecovery) unawaited(revalidateConnection());
     if (api.token == null || _offlinePlayback) return;
     await _syncBackgroundConnect();
@@ -2961,7 +3155,12 @@ class WaveController extends ChangeNotifier {
   }
 
   void _connectSocket() {
-    if (_offlinePlayback || socket != null || api.token == null) return;
+    if (_idleTaskClosed ||
+        _offlinePlayback ||
+        socket != null ||
+        api.token == null) {
+      return;
+    }
     unawaited(_syncBackgroundConnect());
     final session = api.token, origin = api.server;
     socket = io.io(
@@ -3567,7 +3766,7 @@ class WaveController extends ChangeNotifier {
     updatedAt: DateTime.now().millisecondsSinceEpoch,
   );
   void _report() {
-    if (_offlinePlayback) return;
+    if (_offlinePlayback || _idleTaskClosed) return;
     if (_confirmingControl && _confirmingScope == controlScope) return;
     if (lanEnabled) {
       unawaited(_lanReport());
@@ -4650,6 +4849,9 @@ class WaveController extends ChangeNotifier {
   @override
   void dispose() {
     _disposed = true;
+    cancelAuth = true;
+    audio.onIdleTaskRemoved = null;
+    backgroundConnect.dispose();
     removeListener(_syncMediaButton);
     mediaButton.dispose();
     energy.removeListener(_energyChanged);

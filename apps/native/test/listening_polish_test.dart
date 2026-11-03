@@ -10,6 +10,7 @@ import 'package:glukwave/services/cache.dart';
 import 'package:glukwave/ui/app.dart';
 import 'package:glukwave/ui/player.dart';
 import 'package:glukwave/ui/widgets.dart';
+import 'package:glukwave/ui/discovery.dart';
 import 'package:glukwave/ui/equalizer_panel.dart';
 import 'package:glukwave/ui/motion_icons.dart';
 import 'package:glukwave/l10n/listening_polish_strings.dart';
@@ -92,6 +93,8 @@ class PolishAudio extends a.UiAudio {
   PolishAudio(super.api, super.cache);
   @override
   Duration get position => const Duration(seconds: 42);
+  @override
+  Duration get outputPosition => const Duration(seconds: 42);
   @override
   Duration get duration => const Duration(seconds: 240);
   @override
@@ -247,7 +250,12 @@ void main() {
           );
           await settleArtwork(tester);
           expect(tester.takeException(), isNull);
-          if (width >= 900 && width < 1180) {
+          if (width >= 1100) {
+            expect(
+              find.byKey(const Key('desktop-navigation-sidebar')),
+              findsOneWidget,
+            );
+          } else if (width >= 900) {
             expect(
               find.byKey(const Key('desktop-navigation-rail')),
               findsOneWidget,
@@ -282,14 +290,32 @@ void main() {
             find.byKey(const Key('browse-category-Ambient')),
             findsNothing,
           );
+          final discoveryScroll = find
+              .descendant(
+                of: find.byType(DiscoveryView),
+                matching: find.byType(Scrollable),
+              )
+              .first;
+          await tester.scrollUntilVisible(
+            find.byKey(const Key('search-artist-polish-own-artist')),
+            180,
+            scrollable: discoveryScroll,
+          );
           expect(
             find.byKey(const Key('search-artist-polish-own-artist')),
             findsOneWidget,
+          );
+          await tester.scrollUntilVisible(
+            find.byKey(const Key('search-playlist-polish-own-playlist')),
+            180,
+            scrollable: discoveryScroll,
           );
           expect(
             find.byKey(const Key('search-playlist-polish-own-playlist')),
             findsOneWidget,
           );
+          tester.state<ScrollableState>(discoveryScroll).position.jumpTo(0);
+          await settleArtwork(tester);
           await tester.tap(find.byKey(const Key('search-type-artists')));
           await settleArtwork(tester);
           expect(find.byType(TrackRow), findsNothing);

@@ -7,7 +7,7 @@ export function rangeProgress(value:unknown,min:unknown=0,max:unknown=100){
 }
 
 /** Native keyboard and touch behavior, with one theme-aware track everywhere. */
-export function RangeInput({value,min=0,max=100,style,className='',...props}:Omit<InputHTMLAttributes<HTMLInputElement>,'type'>&{ref?:Ref<HTMLInputElement>}){
- const progress=`${rangeProgress(value,min,max)}%`;
- return <input {...props} type="range" min={min} max={max} value={value} className={`wave-range ${className}`} style={{...style,'--range-progress':progress,'--progress':progress} as CSSProperties}/>;
+export function RangeInput({value,defaultValue,min=0,max=100,style,className='',...props}:Omit<InputHTMLAttributes<HTMLInputElement>,'type'>&{ref?:Ref<HTMLInputElement>}){
+ const progress=`${rangeProgress(value??defaultValue,min,max)}%`;
+ return <input {...props} type="range" min={min} max={max} value={value} defaultValue={defaultValue} className={`wave-range ${className}`} style={{...style,'--range-progress':progress,'--progress':progress} as CSSProperties}/>;
 }

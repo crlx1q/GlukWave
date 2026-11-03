@@ -7,6 +7,7 @@ import '../core/models.dart';
 import '../l10n/wave_localizations.dart';
 import '../l10n/ecosystem_polish_strings.dart';
 import 'widgets.dart';
+import 'client32_content.dart';
 import 'listening_presence.dart';
 import 'connect_device_tile.dart';
 
@@ -74,10 +75,11 @@ class ConnectPanel extends StatelessWidget {
           eyebrow: 'GLUKWAVE CONNECT',
         ),
         Surface(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SwitchListTile(
+              SwitchListTile.adaptive(
                 key: const Key('connect-independent'),
                 contentPadding: EdgeInsets.zero,
                 title: Text(
@@ -98,7 +100,7 @@ class ConnectPanel extends StatelessWidget {
               ),
               if (c.backgroundConnect.supported) ...[
                 Divider(height: 26, color: v.line),
-                SwitchListTile(
+                SwitchListTile.adaptive(
                   key: const Key('connect-screen-off'),
                   contentPadding: EdgeInsets.zero,
                   title: Text(
@@ -160,24 +162,14 @@ class ConnectPanel extends StatelessWidget {
             ],
           ),
         ),
-        const SizedBox(height: 24),
-        Row(
-          children: [
-            Expanded(
-              child: Text(
-                wt('connect.installations', context: context),
-                style: const TextStyle(
-                  fontWeight: FontWeight.w800,
-                  fontSize: 17,
-                ),
-              ),
-            ),
-            IconButton(
-              onPressed: c.online ? () => _run(c.refreshDevices) : null,
-              tooltip: wt('devices.refresh', context: context),
-              icon: const Icon(Icons.refresh_rounded, size: 20),
-            ),
-          ],
+        ClientSectionHeading(
+          wt('connect.installations', context: context),
+          action: IconButton(
+            key: const Key('connect-refresh'),
+            onPressed: c.online ? () => _run(c.refreshDevices) : null,
+            tooltip: wt('devices.refresh', context: context),
+            icon: const Icon(Icons.refresh_rounded, size: 20),
+          ),
         ),
         const SizedBox(height: 10),
         for (final device
@@ -206,7 +198,8 @@ class ConnectPanel extends StatelessWidget {
           spacing: 12,
           runSpacing: 8,
           children: [
-            TextButton.icon(
+            OutlinedButton.icon(
+              key: const Key('connect-pair-qr'),
               onPressed: Platform.isAndroid || Platform.isIOS ? scanQr : showQr,
               icon: WaveControlIcon(
                 Platform.isAndroid || Platform.isIOS
@@ -223,6 +216,7 @@ class ConnectPanel extends StatelessWidget {
               ),
             ),
             TextButton.icon(
+              key: const Key('connect-discover'),
               onPressed: discover,
               icon: const Icon(Icons.wifi_find_rounded),
               label: Text(wt('native.8db44b4616', context: context)),

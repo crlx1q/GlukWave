@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="tech.gluk.glukwave.ConnectBackgroundTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-11-01T12:00:31" hostname="DESKTOP-1GFOIA1" time="4.664">
+  <properties/>
+  <testcase name="visibleServiceCanBeStoppedWithoutEnablingItselfAgain" classname="tech.gluk.glukwave.ConnectBackgroundTest" time="4.303"/>
+  <testcase name="reopeningAnActivityResumesAllowedConnectWithoutChangingTheUserPreference" classname="tech.gluk.glukwave.ConnectBackgroundTest" time="0.087"/>
+  <testcase name="queuedStartAfterAnIdleTaskCloseCannotReacquireForegroundWork" classname="tech.gluk.glukwave.ConnectBackgroundTest" time="0.058"/>
+  <testcase name="explicitNotificationStopStillPersistsWhenTheTaskWasAlreadyRemoved" classname="tech.gluk.glukwave.ConnectBackgroundTest" time="0.064"/>
+  <testcase name="removingPlayingTaskKeepsAudioAliveUntilPlaybackIsPaused" classname="tech.gluk.glukwave.ConnectBackgroundTest" time="0.053"/>
+  <testcase name="removingPausedTaskStopsTheServiceAndReleasesItsWakeLockAndNotification" classname="tech.gluk.glukwave.ConnectBackgroundTest" time="0.051"/>
+  <testcase name="connectServiceIsPrivateAndHasNetworkForegroundType" classname="tech.gluk.glukwave.ConnectBackgroundTest" time="0.047"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

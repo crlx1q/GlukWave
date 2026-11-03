@@ -279,7 +279,13 @@ void main() {
         expect(api.imports.last['trackIds'], ['${config.$1}:two']);
         expect(c.libraryReads, 1);
         expect(c.broadRefreshes, 0);
-        expect(find.text('Музыка уже в Gluk Wave'), findsOneWidget);
+        expect(
+          find.descendant(
+            of: find.byKey(const Key('provider-import-scroll')),
+            matching: find.text('Музыка уже в Gluk Wave'),
+          ),
+          findsOneWidget,
+        );
         expect(find.textContaining('PUBLIC_'), findsNothing);
         expect(tester.takeException(), isNull);
         await base.screenshot(

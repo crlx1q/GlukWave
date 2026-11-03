@@ -294,7 +294,9 @@ void main() {
         expect(
           find.descendant(
             of: picker,
-            matching: find.text(WaveStrings(language.key).text('language.title')),
+            matching: find.text(
+              WaveStrings(language.key).text('language.title'),
+            ),
           ),
           findsOneWidget,
         );
@@ -379,12 +381,12 @@ void main() {
             expect(homeLabel, findsOneWidget);
             expectWholeLabel(tester, homeLabel);
           } else {
-            expect(
-              tester
-                  .widget<IconButton>(find.byKey(const Key('nav-home')))
-                  .tooltip,
-              copy('Главная', language),
+            final label = find.descendant(
+              of: find.byKey(const Key('nav-home')),
+              matching: find.text(copy('Главная', language)),
             );
+            expect(label, findsOneWidget);
+            expectWholeLabel(tester, label);
           }
           await screenshot(tester, 'language-home-$language-${width.toInt()}');
           if (width < 900) {
@@ -428,11 +430,23 @@ void main() {
           final before = c.audio.current!.id;
           await tester.tap(find.byKey(const Key('player-queue-toggle')));
           await tester.pumpAndSettle();
-          expect(find.text('Следующая запись'), findsOneWidget);
+          expect(
+            find.descendant(
+              of: find.byKey(const Key('native-queue-list')),
+              matching: find.text('Следующая запись'),
+            ),
+            findsOneWidget,
+          );
           expect(c.audio.current!.id, before);
           await tester.tap(find.byKey(const Key('player-lyrics-toggle')));
           await tester.pumpAndSettle();
-          expect(find.text('Следующая запись'), findsNothing);
+          expect(
+            find.descendant(
+              of: find.byKey(const Key('full-player')),
+              matching: find.text('Следующая запись'),
+            ),
+            findsNothing,
+          );
           expect(
             find.text(copy('Здесь будут слова', language)),
             findsOneWidget,

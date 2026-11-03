@@ -448,7 +448,8 @@ void main() {
         await t.tap(find.byKey(const Key('nav-settings')));
         await frames(t);
         final link = find.byKey(const Key('settings-about'));
-        await t.ensureVisible(link);
+        await Scrollable.ensureVisible(t.element(link), alignment: .5);
+        await t.pumpAndSettle();
         await t.tap(link);
         await frames(t);
         expect(find.byKey(const Key('about-heartbeat')), findsOneWidget);

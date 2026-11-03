@@ -1,0 +1,140 @@
+{
+  "round": 2,
+  "verdict": "PASS",
+  "generatedAt": "2026-11-02T22:39:31.8033739+05:00",
+  "command": "flutter test --no-pub --concurrency=1 --reporter expanded test/clients32_evaluator_test.dart",
+  "tests": {
+    "total": 14,
+    "passed": 14,
+    "failed": 0,
+    "exitCode": 0,
+    "log": "work/qa/clients32-evaluator-r2-proof.log"
+  },
+  "sourceAndHarnessSha256": {
+    "apps/native/lib/core/api.dart": "f6ce2d4bdd9d6d3875ae20aea28e23bbbd40f86e92fa73b7a32d1869a5685a51",
+    "apps/native/lib/core/controller.dart": "caaa7747b033b93a3c6c881b9d02256d7871912b865319747145f368d688c84a",
+    "apps/native/lib/core/native_auth_polling.dart": "4d44fd6def67eb7f6912078ed41a49dc25d13ec97e94879afade4c88ff265c03",
+    "apps/native/lib/services/audio.dart": "488e1f1dc3d40ad03c585278034d14ef133d609786eeed8c309fa43acf9ff7ca",
+    "apps/native/lib/services/background_connect.dart": "5d973456fb2b03bccb406f47ed9431124ef0ff896de8e4ec3b2f87c02593a3a1",
+    "apps/native/lib/ui/app.dart": "ec496ac4ea45fd88e00646194be4c167d822cc919084c7bfd124baf88e08bbaa",
+    "apps/native/lib/ui/auth_page.dart": "8583932e045ddd4429dc6ca245e3f1ef66188b05d3174cef76d317e3e96f813e",
+    "apps/native/lib/ui/client32_content.dart": "3a54578e5606687cce103f28d3884836392e653f9c71d8d006b3169e30420990",
+    "apps/native/lib/ui/client32_design.dart": "704cfcf17e15cb9aa2b9001cde10be85d33a14279e37bbfdb5d534972557a866",
+    "apps/native/lib/ui/client32_workspace.dart": "96377476b108c67294c75c3ee0d8c2665967fdfb024d5333401d77ae6c03f84e",
+    "apps/native/lib/ui/connect_panel.dart": "cd30b256159d0633b23887f8143ea86c4db12f3cc4a5c27ca931f60689030c24",
+    "apps/native/lib/ui/discovery.dart": "bbfa1f8a35a77b200e0d3339b64cd28a1877a7420be950e0f8dfa81710a5edbb",
+    "apps/native/lib/ui/home_canvas.dart": "54df839e8c7a5583c50e96771271dd3010721bb8a7a938a6a64f9415caa12f18",
+    "apps/native/lib/ui/listening_rail.dart": "c4ef48feb6c2e9a80b25a0db0a84237175a0ccc67c5864129b3e2f888a4b788b",
+    "apps/native/lib/ui/lofi.dart": "fb56d96ba195f8f777ea4890d4f3b593ad5d37e76c80662c7d8643f2cb3eb74e",
+    "apps/native/lib/ui/native19_desktop_transport.dart": "3d83fdc1efa444db4f3f04e7c0e53b78303a05de38af74a8a03c98e51dfd3ce5",
+    "apps/native/lib/ui/native19_saved.dart": "b27389295c02a1f1c439a177f674d88865cb544b2611bf352853bd9a0c7f8349",
+    "apps/native/lib/ui/parity_panels.dart": "b834dbb5a2adc0c5b83a44883ad9d9603cd1fb22db92d978895e845132fb02e5",
+    "apps/native/lib/ui/player.dart": "0d29f5d942851694566786adde62e1c3ea364b7c1e85b78d02f64cf31ae7335f",
+    "apps/native/lib/ui/playlist_manager.dart": "c6d78f84d3558385478b639667853b4d13aac3a1dd8e273d0387145620bc16f4",
+    "apps/native/lib/ui/provider_import.dart": "75320eb1b8e0fa4ac061f8a2c5d8c56d20d94b6b76fcdbd737edc4478fb80f63",
+    "apps/native/lib/ui/public_import_strings.dart": "669c3ae46b7a2da7d688221129a321498b6ee895d2ae6849a7137fd722c4d5dd",
+    "apps/native/lib/ui/queue_panel.dart": "3fefde7cbb7588db72485697ad1a1f68fc0a2fdf8c61d95273de2176b8b387e5",
+    "apps/native/lib/ui/source_mark.dart": "accace8945db9f4c325873b6679f8a41a72e39280bc8d637bc23dc351db4ccb0",
+    "apps/native/lib/ui/widgets.dart": "2c34b7b10f3d3d77700b6a7288de8ac675f9e95c3d70b784b5882513f1d362bc",
+    "apps/native/test/clients32_evaluator_test.dart": "4520283ffa41a96bfbd9eb2d4d35ab09e4400454cbe1d42ab9ac02d14f595896"
+  },
+  "captures": [
+    {
+      "path": "docs/verification/2026-11-01/clients32/after/evaluator-r2-desktop-about-1280-short-125-dark.png",
+      "sha256": "f09d04af550501999928dce2f6f4601084782db588c0d4620fe173e5db9398b8"
+    },
+    {
+      "path": "docs/verification/2026-11-01/clients32/after/evaluator-r2-desktop-artist-720-short.png",
+      "sha256": "0bdac1f23fcc6f44091f97aa30f5313fb2a6d83a4f2acc49ee999a609f25495e"
+    },
+    {
+      "path": "docs/verification/2026-11-01/clients32/after/evaluator-r2-home-1440-ru.png",
+      "sha256": "2053ff133473082017e69b74a355dc41a0be6a3f0eb5e1eab8c8069a53ec6e54"
+    },
+    {
+      "path": "docs/verification/2026-11-01/clients32/after/evaluator-r2-home-375-ru.png",
+      "sha256": "90883931cd1f14b9242a166e6152ff442108c1d372d639b762c0b0723eef1479"
+    },
+    {
+      "path": "docs/verification/2026-11-01/clients32/after/evaluator-r2-home-768-ru.png",
+      "sha256": "ee65ea832992ba9236aaef7f647c7aa504891779a1e20eeb715532921e0ad9e7"
+    },
+    {
+      "path": "docs/verification/2026-11-01/clients32/after/evaluator-r2-phone-artist-375.png",
+      "sha256": "6fca2996b0d4dbee689df2b2b29b4ce65c370d045f505435c0ecc48fdd15270f"
+    },
+    {
+      "path": "docs/verification/2026-11-01/clients32/after/evaluator-r2-phone-saved-320-125-de.png",
+      "sha256": "e019dc156798ff9817ba1f0463e5b42463f1e95c7a433d06e110d69ca50de917"
+    },
+    {
+      "path": "docs/verification/2026-11-01/clients32/after/evaluator-r2-phone-saved-320-125-en.png",
+      "sha256": "a72f9e82caa32f7824f0eade371986c01e90465990ec0b35d79dc5a6c04fda3d"
+    },
+    {
+      "path": "docs/verification/2026-11-01/clients32/after/evaluator-r2-phone-saved-320-125-es.png",
+      "sha256": "ca2040ee4262a4a5f6e9719129796850d4375113b4b5a453ce01c6f646d60919"
+    },
+    {
+      "path": "docs/verification/2026-11-01/clients32/after/evaluator-r2-phone-saved-320-125-kk.png",
+      "sha256": "49b688b46781c7ae9bb7b9440475c9521cdb326996facba6aca7dd7b50348f20"
+    },
+    {
+      "path": "docs/verification/2026-11-01/clients32/after/evaluator-r2-phone-saved-320-125-ru.png",
+      "sha256": "f4982f9087ab38ebb07b23a349ac3dd0f91ae196de6bece73fc348b01325b24c"
+    },
+    {
+      "path": "docs/verification/2026-11-01/clients32/after/evaluator-r2-phone-saved-320-125-uk.png",
+      "sha256": "b7d7d217f8dde854671aaf0c186d1203482cef28e5687a35dce04bb3a7983601"
+    },
+    {
+      "path": "docs/verification/2026-11-01/clients32/after/evaluator-r2-room-send-dark-390.png",
+      "sha256": "154226737f2eef5611476108aa4d62b87bfbbce47ae1febc5fb732e1ca346743"
+    },
+    {
+      "path": "docs/verification/2026-11-01/clients32/after/evaluator-r2-room-send-light-390.png",
+      "sha256": "1220df8174dae7bd82a2339859262e223ecbd0bfde32a0e2213e6cd3afb82ae6"
+    },
+    {
+      "path": "docs/verification/2026-11-01/clients32/after/evaluator-r2-saved-1440.png",
+      "sha256": "c301227014a43c20ca897af2c457dd6376ce577eb7ddadc78b5dea17da8ec1d0"
+    },
+    {
+      "path": "docs/verification/2026-11-01/clients32/after/evaluator-r2-saved-375.png",
+      "sha256": "d2b1f5c087e35db287bc15227222e3ca169c7630033a29c7a059d85e08b89f56"
+    },
+    {
+      "path": "docs/verification/2026-11-01/clients32/after/evaluator-r2-saved-768.png",
+      "sha256": "213c413753ca1405634b3f3bba1c992a4a0c6f437a18b821a373f45dc0534e62"
+    },
+    {
+      "path": "docs/verification/2026-11-01/clients32/after/evaluator-r2-search-1440.png",
+      "sha256": "7a3a9aaf613e8a155c024244ad9c99feef036aaf310752e697ca8e83c6734e15"
+    },
+    {
+      "path": "docs/verification/2026-11-01/clients32/after/evaluator-r2-search-375.png",
+      "sha256": "340d37d3261d8cc59b963eab0290c17b117182bebb6d10b58faf4967ec80e22b"
+    },
+    {
+      "path": "docs/verification/2026-11-01/clients32/after/evaluator-r2-search-768.png",
+      "sha256": "758874ecdbf00f4655f08ba98129f76a3c76990420e4019e41e43ed1967ba03c"
+    },
+    {
+      "path": "docs/verification/2026-11-01/clients32/after/evaluator-r2-sources-1440.png",
+      "sha256": "a2d5160cdbc5b8c10817bf99e28663b0100071053c33b20bf5a268992815ff77"
+    }
+  ],
+  "scope": [
+    "Actual Flutter widgets and navigation using isolated synthetic QA account/catalogue",
+    "Fresh RU Home/Search/Saved at1440/768/375; sources1440; phone artist375; room actions390 light/dark",
+    "Windows artist live resize1440 to1280x600 to800 to720; retained current track and dock",
+    "All settings categories1280x600 at125percent; six-language phone320x640 at125percent account destinations",
+    "Actual mobile mini expansion and platform Back preserve detail/Search and current track"
+  ],
+  "limitations": [
+    "Same-provider independent session; different provider unavailable",
+    "Bundled coast artwork through isolated image transport; no competitor media",
+    "No owner account or external provider mutation",
+    "Not physical Android audio/camera/background/auth/release/installation proof"
+  ]
+}

@@ -1,0 +1,7 @@
+00:00 +0: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/clients32_evaluator_test.dart
+00:00 +0: (setUpAll)
+00:00 +0: Evaluator: phone artist detail retains direct access to current playback
+00:04 +1: Evaluator: filled room action remains readable in light
+00:04 +2: Evaluator: filled room action remains readable in dark
+00:05 +3: (tearDownAll)
+00:05 +3: All tests passed!

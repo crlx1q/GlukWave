@@ -43,15 +43,7 @@ Future<void> main(List<String> arguments) async {
       WaveWindowsAudio.register();
     }
     const server = String.fromEnvironment('GLUKWAVE_SERVER');
-    final api = WaveApi(
-      server.isNotEmpty
-          ? server
-          : !kDebugMode
-          ? 'https://wave.gluk.tech'
-          : Platform.isAndroid
-          ? 'http://10.0.2.2:4000'
-          : 'http://127.0.0.1:4000',
-    );
+    final api = WaveApi(server.isNotEmpty ? server : WaveApi.publicServer);
     startupApi = api;
     api.diagnostics.version = const String.fromEnvironment(
       'GLUKWAVE_BUILD_VERSION',

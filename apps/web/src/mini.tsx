@@ -8,6 +8,7 @@ import { LocaleProvider, t, useLocale } from './locale';
 import { time, type PaletteColors, type PlayerState, type Track } from './types';
 import { MotionIcon,PlaybackMotionIcon } from './morph-icon';
 import { ContinuousRange } from './continuous-range';
+import {WheelVolume} from './wheel-volume';
 import {PacketProgressClock,type ProgressSample} from './progress-clock';
 import {ProgressTime} from './progress-paint';
 import { useDocumentVisible } from './visual-lifecycle';
@@ -42,7 +43,7 @@ function Mini(){
    <button disabled={!data.track} onClick={()=>send('next')} aria-label={t('copy.630')}><MotionIcon name="next" size={20} motion={iconMotion} speed={data.speed}/></button>
   </section>
   <div className={`progress-line ${data.trackLoading?'is-loading':''}`} aria-busy={!!data.trackLoading}><ContinuousRange readProgress={readProgress} value={Math.min(data.duration||1,data.state.position||0)} max={Math.max(1,data.duration)} step={.1} resetKey={data.progressScope||data.track?.id} onCommit={position=>send('seek',position)} disabled={!data.track||data.trackLoading} label={t('copy.634')}/></div>
-  <div className="times"><ProgressTime read={readProgress} value={data.state.position||0} revision={data}/><label className="mini-volume"><button aria-label={t('copy.643')} onClick={()=>channel?.postMessage({command:'volume',volume:data.state.volume?0:.8})}><MotionIcon name={!data.state.volume?'muted':data.state.volume<.5?'volumeLow':'volume'} size={15} motion={iconMotion} speed={data.speed}/></button><ContinuousRange value={data.state.volume??1} max={1} step={.02} label={t('copy.643')} onCommit={volume=>channel?.postMessage({command:'volume',volume})}/></label><span>{time(data.duration)}</span></div>
+  <div className="times"><ProgressTime read={readProgress} value={data.state.position||0}/><WheelVolume className="mini-volume" value={data.state.volume??1} resetKey={data.progressScope} onChange={volume=>channel?.postMessage({command:'volume',volume})}>{(volume,wheelRevision)=><><button aria-label={t('copy.643')} onClick={()=>channel?.postMessage({command:'volume',volume:volume?0:.8})}><MotionIcon name={!volume?'muted':volume<.5?'volumeLow':'volume'} size={15} motion={iconMotion} speed={data.speed}/></button><ContinuousRange wheelRevision={wheelRevision} value={volume} max={1} step={.02} allowOffStep resetKey={data.progressScope} label={t('copy.643')} onCommit={volume=>channel?.postMessage({command:'volume',volume})}/></>}</WheelVolume><span>{time(data.duration)}</span></div>
  </>;
 }
 createRoot(document.getElementById('root')!).render(<LocaleProvider><Mini/></LocaleProvider>);

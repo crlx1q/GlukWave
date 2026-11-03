@@ -1,0 +1,232 @@
+{
+  "status": "PASS",
+  "completedLocalDate": "2026-11-02",
+  "timeZone": "Asia/Qyzylorda",
+  "baseline": "f75fcc97e94569d8d90e381faf1f764ec058850a",
+  "version": "1.0.0+27",
+  "scope": "Existing Flutter Windows/phone clients, Android idle lifecycle and browser approval recovery; no release/deploy/owner-data mutation",
+  "nativeTests": {
+    "passed": 633,
+    "total": 633,
+    "failed": 0,
+    "log": "clients32-native-green.log",
+    "command": "flutter test --no-pub --concurrency=2 --reporter expanded [all test/**/*_test.dart including evaluator and regressions]"
+  },
+  "analyzer": {
+    "result": "No issues found!",
+    "log": "clients32-analyze-green.log"
+  },
+  "androidKotlin": {
+    "passed": 7,
+    "total": 7,
+    "failed": 0,
+    "xml": "android-connect-tests.xml",
+    "log": "clients32-android-connect-tests.metadata-fixed.log"
+  },
+  "server": {
+    "passed": 158,
+    "total": 158,
+    "failed": 0,
+    "log": "clients32-server-full.log"
+  },
+  "web": {
+    "typeCheck": "PASS",
+    "passed": 123,
+    "total": 123,
+    "failed": 0,
+    "log": "clients32-web-tests.log"
+  },
+  "independentReview": {
+    "round": 2,
+    "verdict": "PASS",
+    "passed": 14,
+    "total": 14,
+    "evidence": "evaluator-verdict-r2.json",
+    "separateSession": true,
+    "differentProvider": false
+  },
+  "targetBuilds": [
+    {
+      "path": "apps/native/build/windows/x64/runner/Debug/glukwave.exe",
+      "bytes": 3831808,
+      "sha256": "8f413d06ef68e244b7e28d0eca14bb54c3e1925bbdb915c7835b801562e2cd8b",
+      "mode": "debug",
+      "installed": false,
+      "published": false
+    },
+    {
+      "path": "apps/native/build/windows/x64/runner/Debug/data/flutter_assets/kernel_blob.bin",
+      "bytes": 86373080,
+      "sha256": "56d16d38bda68d129eb48a2fd4bafc1fd4d229fbcc258e5485672d47c95a513c",
+      "mode": "debug",
+      "installed": false,
+      "published": false
+    },
+    {
+      "path": "apps/native/build/app/outputs/flutter-apk/app-debug.apk",
+      "bytes": 215129336,
+      "sha256": "a90b23bca17508acc30abd5904f4733eab09bbb1e50ec14ad122376e5a15a6cc",
+      "mode": "debug",
+      "installed": false,
+      "published": false
+    }
+  ],
+  "sourceSha256": {
+    "apps/native/android/app/src/main/kotlin/tech/gluk/glukwave/ConnectBackgroundService.kt": "9295d998322ec9551aca734f63cfbe93f421b8c7dc1c261f5b83e94df5f11138",
+    "apps/native/android/app/src/main/kotlin/tech/gluk/glukwave/MainActivity.kt": "107dccfb6c2cde9a333d6f49785ae2ed33c6a1b761c939e25b6803feb705f4e4",
+    "apps/native/android/app/src/test/kotlin/tech/gluk/glukwave/ConnectBackgroundTest.kt": "747b9fbf6996bb8f5db7ba638faee1f2631575a0b5cfc92d3899668d721a9274",
+    "apps/native/lib/core/api.dart": "f6ce2d4bdd9d6d3875ae20aea28e23bbbd40f86e92fa73b7a32d1869a5685a51",
+    "apps/native/lib/core/controller.dart": "caaa7747b033b93a3c6c881b9d02256d7871912b865319747145f368d688c84a",
+    "apps/native/lib/core/native_auth_polling.dart": "4d44fd6def67eb7f6912078ed41a49dc25d13ec97e94879afade4c88ff265c03",
+    "apps/native/lib/services/audio.dart": "488e1f1dc3d40ad03c585278034d14ef133d609786eeed8c309fa43acf9ff7ca",
+    "apps/native/lib/services/background_connect.dart": "5d973456fb2b03bccb406f47ed9431124ef0ff896de8e4ec3b2f87c02593a3a1",
+    "apps/native/lib/ui/app.dart": "ec496ac4ea45fd88e00646194be4c167d822cc919084c7bfd124baf88e08bbaa",
+    "apps/native/lib/ui/auth_page.dart": "8583932e045ddd4429dc6ca245e3f1ef66188b05d3174cef76d317e3e96f813e",
+    "apps/native/lib/ui/client32_content.dart": "3a54578e5606687cce103f28d3884836392e653f9c71d8d006b3169e30420990",
+    "apps/native/lib/ui/client32_design.dart": "704cfcf17e15cb9aa2b9001cde10be85d33a14279e37bbfdb5d534972557a866",
+    "apps/native/lib/ui/client32_workspace.dart": "96377476b108c67294c75c3ee0d8c2665967fdfb024d5333401d77ae6c03f84e",
+    "apps/native/lib/ui/connect_panel.dart": "cd30b256159d0633b23887f8143ea86c4db12f3cc4a5c27ca931f60689030c24",
+    "apps/native/lib/ui/discovery.dart": "bbfa1f8a35a77b200e0d3339b64cd28a1877a7420be950e0f8dfa81710a5edbb",
+    "apps/native/lib/ui/home_canvas.dart": "54df839e8c7a5583c50e96771271dd3010721bb8a7a938a6a64f9415caa12f18",
+    "apps/native/lib/ui/listening_rail.dart": "c4ef48feb6c2e9a80b25a0db0a84237175a0ccc67c5864129b3e2f888a4b788b",
+    "apps/native/lib/ui/lofi.dart": "fb56d96ba195f8f777ea4890d4f3b593ad5d37e76c80662c7d8643f2cb3eb74e",
+    "apps/native/lib/ui/native19_desktop_transport.dart": "3d83fdc1efa444db4f3f04e7c0e53b78303a05de38af74a8a03c98e51dfd3ce5",
+    "apps/native/lib/ui/native19_saved.dart": "b27389295c02a1f1c439a177f674d88865cb544b2611bf352853bd9a0c7f8349",
+    "apps/native/lib/ui/parity_panels.dart": "b834dbb5a2adc0c5b83a44883ad9d9603cd1fb22db92d978895e845132fb02e5",
+    "apps/native/lib/ui/player.dart": "0d29f5d942851694566786adde62e1c3ea364b7c1e85b78d02f64cf31ae7335f",
+    "apps/native/lib/ui/playlist_manager.dart": "c6d78f84d3558385478b639667853b4d13aac3a1dd8e273d0387145620bc16f4",
+    "apps/native/lib/ui/provider_import.dart": "75320eb1b8e0fa4ac061f8a2c5d8c56d20d94b6b76fcdbd737edc4478fb80f63",
+    "apps/native/lib/ui/public_import_strings.dart": "669c3ae46b7a2da7d688221129a321498b6ee895d2ae6849a7137fd722c4d5dd",
+    "apps/native/lib/ui/queue_panel.dart": "3fefde7cbb7588db72485697ad1a1f68fc0a2fdf8c61d95273de2176b8b387e5",
+    "apps/native/lib/ui/source_mark.dart": "accace8945db9f4c325873b6679f8a41a72e39280bc8d637bc23dc351db4ccb0",
+    "apps/native/lib/ui/widgets.dart": "2c34b7b10f3d3d77700b6a7288de8ac675f9e95c3d70b784b5882513f1d362bc",
+    "apps/native/test/app_layout_test.dart": "92c667abee63510f8cfa74bc57daa033dad0b010cd005856af6a6575b2f2849b",
+    "apps/native/test/clients32_auth_polling_test.dart": "d1b2cff59afd1a5ec582b1080b7e9cb9fe2fba124732469248d414e0fd909c2d",
+    "apps/native/test/clients32_content_test.dart": "4af73c271538e2efbeba0e2acec9f74503b01d79d14ad6a780261f7039c2cc13",
+    "apps/native/test/clients32_evaluator_test.dart": "4520283ffa41a96bfbd9eb2d4d35ab09e4400454cbe1d42ab9ac02d14f595896",
+    "apps/native/test/clients32_lifecycle_test.dart": "e9a24394b2fd8f97b91ac3eb7a55c2b98a2a2cdadfcc89ce6dc669e477736c99",
+    "apps/native/test/clients32_revision_test.dart": "b6307c866d8d614d2a839584de2973516447139465b05424572eb294c67f8b5e",
+    "apps/native/test/clients32_search_test.dart": "f5f825a270ab8c0036d18af3e613c2ffdff0f6b64bf2540c53257d5e09ce2ac1",
+    "apps/native/test/clients32_shell_test.dart": "530a8d7360a3ed4fbd49201a8d3e1c74a602a10c2ca89c2b74cfe2941b915029",
+    "apps/native/test/connect_layout_test.dart": "a0a60f8fcaa1c22d11ba40a070d0186c9efecfab4771a4edb9942018950a860f",
+    "apps/native/test/ecosystem_layout_test.dart": "06090901c2ab2f267cd3250e268123e81b40aa6a0f8c50e70ed11e4cece9ebfc",
+    "apps/native/test/listening_polish_test.dart": "3d2e038f07ac803265ad3b7118243938e0fac53ad22f3b9c01757891e5e555f8",
+    "apps/native/test/localization_test.dart": "42f7a9c34bbfa027cf68ab3a9972fb37b287d61222f1c47d7545af507744afd4",
+    "apps/native/test/native19_reachability_test.dart": "0ed0b566fa178485b2d9ecce291f602a1066f7e0ca60b9592304d66fdec7bcec",
+    "apps/native/test/native19_ui_test.dart": "382a11e51ff5689adf43f934987ca78d38ea0dfa0229fa389770e135c63a788b",
+    "apps/native/test/parity27_ui_test.dart": "4d2e070a29e47504486dd7773701effc2b4bf795d55248fbe86d3599cc524102",
+    "apps/native/test/public_import_test.dart": "e40e6fa09834959ebfa72dc89131cb76cb881e236d026a4e8cfe115b5c2feea9",
+    "apps/native/test/refinement20_ui_test.dart": "33c61b16a1a5b551299f50625c2495775c9d68324f3bab5ce276d6f84b4106ef",
+    "apps/native/test/studio31_test.dart": "51869de6654e14aea19e4a5d955e82e63c09085fb912d532e4c7fd6cd989b93b",
+    "apps/native/test/wave18_ui_test.dart": "f692ab2b2ab24504af71439255dfeeec83c5745a8cdacb4e1c83419a54b77443",
+    "apps/native/tool/clients32_capture_test.dart": "21324300bb002ff3cd63cfe7f69558793f1c8d789436d70d87929b611a6b108a",
+    "apps/server/src/auth.js": "cc7a0baf3373da303f2d8c7c888bcacefcf2b0e09e904d2276ed2980453ba997",
+    "apps/server/test/clients32-auth-recovery.test.js": "e05a1af8f56db05f302e97c58ce331364a022441eee095c235093310b3b74aa6"
+  },
+  "logSha256": {
+    "clients32-native-green.log": "5b006c71ce6b64ebeccde03bb01201d8c742a832a35a69d995dc603fb914ca74",
+    "clients32-analyze-green.log": "490234a19b6c9f7b120f859a0e24f50da6faac4d0d9c5c3f1477e522423df25b",
+    "clients32-windows-debug-build.log": "d6cbc0b7d7d29f2a10a7941475a31c02234d51a78dc5ace4df17df309c02f99d",
+    "clients32-android-debug-build.log": "23461fe0c55d2d5e6784426fa8dee1b96d7cf3b977223584d7a44e9ad996fe0f",
+    "clients32-server-full.log": "13876488fa1f4fee91b67424e1909d0173e4f996eb14b1fdf3ffa1ab5324a513",
+    "clients32-web-check.log": "b4b24bac87ab7b42f2f25477bbc5be1f22be490705dc4c27cdf16cb4a449886c",
+    "clients32-web-tests.log": "367b7e5e09135bb94e948c0305d69d438aa4a11b09bb03e972e07180bc58ff86",
+    "clients32-transition-lifecycle.log": "6211dd7b49c8be2f5929fecd1374095c802e0e519349b25bf284687c6922fb6c",
+    "clients32-evaluator-r2-proof.log": "8fb5400f57f5332d0e2b822f2170e6aa7b028e4aa46d8e962986c58ec77fe64f",
+    "clients32-guard-terminal.log": "b4595104605900c92ff7b35f96ae497fd53b9c7cc9d341f6e64dd445309557d9",
+    "clients32-reachability-green.log": "fc4f7fe05ed981271bc3cbfbb3b6fa1c3e72515f08655de513645b048cb843fe"
+  },
+  "primaryCaptures": [
+    {
+      "path": "docs/verification/2026-11-01/clients32/after/evaluator-r2-desktop-about-1280-short-125-dark.png",
+      "sha256": "f09d04af550501999928dce2f6f4601084782db588c0d4620fe173e5db9398b8"
+    },
+    {
+      "path": "docs/verification/2026-11-01/clients32/after/evaluator-r2-desktop-artist-720-short.png",
+      "sha256": "0bdac1f23fcc6f44091f97aa30f5313fb2a6d83a4f2acc49ee999a609f25495e"
+    },
+    {
+      "path": "docs/verification/2026-11-01/clients32/after/evaluator-r2-home-1440-ru.png",
+      "sha256": "2053ff133473082017e69b74a355dc41a0be6a3f0eb5e1eab8c8069a53ec6e54"
+    },
+    {
+      "path": "docs/verification/2026-11-01/clients32/after/evaluator-r2-home-375-ru.png",
+      "sha256": "90883931cd1f14b9242a166e6152ff442108c1d372d639b762c0b0723eef1479"
+    },
+    {
+      "path": "docs/verification/2026-11-01/clients32/after/evaluator-r2-home-768-ru.png",
+      "sha256": "ee65ea832992ba9236aaef7f647c7aa504891779a1e20eeb715532921e0ad9e7"
+    },
+    {
+      "path": "docs/verification/2026-11-01/clients32/after/evaluator-r2-phone-artist-375.png",
+      "sha256": "6fca2996b0d4dbee689df2b2b29b4ce65c370d045f505435c0ecc48fdd15270f"
+    },
+    {
+      "path": "docs/verification/2026-11-01/clients32/after/evaluator-r2-phone-saved-320-125-de.png",
+      "sha256": "e019dc156798ff9817ba1f0463e5b42463f1e95c7a433d06e110d69ca50de917"
+    },
+    {
+      "path": "docs/verification/2026-11-01/clients32/after/evaluator-r2-phone-saved-320-125-en.png",
+      "sha256": "a72f9e82caa32f7824f0eade371986c01e90465990ec0b35d79dc5a6c04fda3d"
+    },
+    {
+      "path": "docs/verification/2026-11-01/clients32/after/evaluator-r2-phone-saved-320-125-es.png",
+      "sha256": "ca2040ee4262a4a5f6e9719129796850d4375113b4b5a453ce01c6f646d60919"
+    },
+    {
+      "path": "docs/verification/2026-11-01/clients32/after/evaluator-r2-phone-saved-320-125-kk.png",
+      "sha256": "49b688b46781c7ae9bb7b9440475c9521cdb326996facba6aca7dd7b50348f20"
+    },
+    {
+      "path": "docs/verification/2026-11-01/clients32/after/evaluator-r2-phone-saved-320-125-ru.png",
+      "sha256": "f4982f9087ab38ebb07b23a349ac3dd0f91ae196de6bece73fc348b01325b24c"
+    },
+    {
+      "path": "docs/verification/2026-11-01/clients32/after/evaluator-r2-phone-saved-320-125-uk.png",
+      "sha256": "b7d7d217f8dde854671aaf0c186d1203482cef28e5687a35dce04bb3a7983601"
+    },
+    {
+      "path": "docs/verification/2026-11-01/clients32/after/evaluator-r2-room-send-dark-390.png",
+      "sha256": "154226737f2eef5611476108aa4d62b87bfbbce47ae1febc5fb732e1ca346743"
+    },
+    {
+      "path": "docs/verification/2026-11-01/clients32/after/evaluator-r2-room-send-light-390.png",
+      "sha256": "1220df8174dae7bd82a2339859262e223ecbd0bfde32a0e2213e6cd3afb82ae6"
+    },
+    {
+      "path": "docs/verification/2026-11-01/clients32/after/evaluator-r2-saved-1440.png",
+      "sha256": "c301227014a43c20ca897af2c457dd6376ce577eb7ddadc78b5dea17da8ec1d0"
+    },
+    {
+      "path": "docs/verification/2026-11-01/clients32/after/evaluator-r2-saved-375.png",
+      "sha256": "d2b1f5c087e35db287bc15227222e3ca169c7630033a29c7a059d85e08b89f56"
+    },
+    {
+      "path": "docs/verification/2026-11-01/clients32/after/evaluator-r2-saved-768.png",
+      "sha256": "213c413753ca1405634b3f3bba1c992a4a0c6f437a18b821a373f45dc0534e62"
+    },
+    {
+      "path": "docs/verification/2026-11-01/clients32/after/evaluator-r2-search-1440.png",
+      "sha256": "7a3a9aaf613e8a155c024244ad9c99feef036aaf310752e697ca8e83c6734e15"
+    },
+    {
+      "path": "docs/verification/2026-11-01/clients32/after/evaluator-r2-search-375.png",
+      "sha256": "340d37d3261d8cc59b963eab0290c17b117182bebb6d10b58faf4967ec80e22b"
+    },
+    {
+      "path": "docs/verification/2026-11-01/clients32/after/evaluator-r2-search-768.png",
+      "sha256": "758874ecdbf00f4655f08ba98129f76a3c76990420e4019e41e43ed1967ba03c"
+    },
+    {
+      "path": "docs/verification/2026-11-01/clients32/after/evaluator-r2-sources-1440.png",
+      "sha256": "a2d5160cdbc5b8c10817bf99e28663b0100071053c33b20bf5a268992815ff77"
+    }
+  ],
+  "limitations": [
+    "Actual widgets with isolated QA data, project fonts and bundled coast artwork; no competitor media",
+    "Debug build success is not physical playback/camera/browser-return/background firmware proof",
+    "No production deployment or installer/release/signing/version change",
+    "Browser lost-response recovery requires both the updated native client and server",
+    "Earlier shell/content manifests are intermediate checkpoints; use this final manifest for current sources"
+  ]
+}

@@ -22,21 +22,62 @@ class ConnectBackgroundService : Service() {
         private const val ID = 52023
         private const val CHANNEL = "glukwave.connect"
         private const val PREFS = "glukwave-connect-background"
+        @Volatile private var taskRemoved = false
+        @Volatile private var localPlayback = false
+        @Volatile private var notifiedIdleClose = false
+        @Volatile private var requestedEnabled = false
+        @Volatile private var listenerReady = false
+        var channel: io.flutter.plugin.common.MethodChannel? = null
+        fun activityOpened() {
+            taskRemoved = false
+            notifiedIdleClose = false
+        }
+        fun playback(context: Context, active: Boolean) {
+            localPlayback = active
+            if (taskRemoved && !active) closeIdleTask(context)
+            else if (active && requestedEnabled) update(context,true,false)
+        }
+        fun listenerReady(context: Context) {
+            listenerReady = true
+            if (taskRemoved && !localPlayback) closeIdleTask(context)
+        }
+        fun taskClosed(context: Context) {
+            taskRemoved = true
+            if (!localPlayback) closeIdleTask(context)
+        }
+        private fun closeIdleTask(context: Context) {
+            context.stopService(Intent(context,ConnectBackgroundService::class.java))
+            if (!notifiedIdleClose && listenerReady && channel != null) {
+                notifiedIdleClose = true
+                // Release the idle media service/socket too. This does not
+                // change the user's persistent background-Connect preference.
+                channel?.invokeMethod("taskClosed",null)
+            }
+        }
         fun update(context: Context, enabled: Boolean, explicit: Boolean): Boolean {
             val prefs = context.getSharedPreferences(PREFS,Context.MODE_PRIVATE)
             if (explicit) prefs.edit().putBoolean("disabled",!enabled).apply()
             val allowed = enabled && !prefs.getBoolean("disabled",false)
+            requestedEnabled = allowed
             val intent = Intent(context,ConnectBackgroundService::class.java)
-            if (allowed) ContextCompat.startForegroundService(context,intent)
+            if (allowed && (!taskRemoved || localPlayback)) ContextCompat.startForegroundService(context,intent)
             else context.stopService(intent)
             return allowed
         }
     }
     private var lock: PowerManager.WakeLock? = null
     override fun onBind(intent: Intent?): IBinder? = null
+    override fun onTaskRemoved(rootIntent: Intent?) {
+        taskClosed(applicationContext)
+        super.onTaskRemoved(rootIntent)
+    }
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         if (intent?.action == DISABLE) {
             getSharedPreferences(PREFS,MODE_PRIVATE).edit().putBoolean("disabled",true).apply()
+            stopSelf()
+            return START_NOT_STICKY
+        }
+        if (taskRemoved && !localPlayback) {
             stopSelf()
             return START_NOT_STICKY
         }

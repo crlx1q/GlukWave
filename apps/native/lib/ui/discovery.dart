@@ -2,16 +2,22 @@ import 'package:flutter/material.dart';
 import '../core/controller.dart';
 import '../core/models.dart';
 import '../l10n/listening_polish_strings.dart';
+import '../l10n/glukwave26_strings.dart';
+import '../l10n/parity_strings.dart';
 import '../l10n/wave_localizations.dart';
+import 'client32_content.dart';
+import 'client32_workspace.dart';
 import 'motion_icons.dart';
 import 'parity_panels.dart';
 import 'widgets.dart';
 
-/// Result types are one compact navigation row; provider filtering is secondary.
+/// Search owns one bounded viewport in the workspace. The legacy inline mode
+/// remains available to small independently embedded discovery sections.
 class DiscoveryView extends StatelessWidget {
   final WaveController controller;
   final String query, type, source;
-  final bool loading;
+  final bool loading, scrollable;
+  final Widget? header;
   final ValueChanged<String> onType, onSource, onQuery;
   final ValueChanged<Json> onPlaylist;
   final ValueChanged<WaveTrack> onMore;
@@ -27,12 +33,14 @@ class DiscoveryView extends StatelessWidget {
     required this.onQuery,
     required this.onPlaylist,
     required this.onMore,
+    this.scrollable = false,
+    this.header,
   });
 
   @override
   Widget build(BuildContext context) {
     final c = controller, v = waveVisuals(context);
-    final providers = {
+    final providers = <String, String>{
       'all': wt('native.58b59eb005', context: context),
       'local': wt('native.1aa3589e13', context: context),
       'soundcloud': 'SoundCloud',
@@ -40,263 +48,352 @@ class DiscoveryView extends StatelessWidget {
       'youtube': 'YouTube',
       'yandex': wt('native.0fb8bc0888', context: context),
     };
+    final children = <Widget>[];
+    void add(Widget child) =>
+        children.add(scrollable ? clientBox(child) : child);
+    void section(String title) =>
+        add(ClientSectionHeading(polishText(title, context)));
     bool shows(String value) => type == 'all' || type == value;
-    Widget title(String value) => Padding(
-      padding: const EdgeInsets.only(top: 28, bottom: 14),
-      child: Text(
-        polishText(value, context),
-        style: const TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.w800,
-          letterSpacing: -.5,
-        ),
-      ),
-    );
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Row(
-          children: [
-            Expanded(
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    for (final value in [
-                      'all',
-                      'tracks',
-                      'artists',
-                      'playlists',
-                    ])
-                      Padding(
-                        padding: const EdgeInsets.only(right: 7),
-                        child: WavePress(
-                          child: ChoiceChip(
-                            key: Key('search-type-$value'),
-                            label: Text(polishText(value, context)),
-                            selected: type == value,
-                            showCheckmark: false,
-                            selectedColor: v.ink,
-                            labelStyle: Theme.of(context).textTheme.labelMedium
-                                ?.copyWith(
-                                  color: type == value ? v.background : v.ink,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                            onSelected: (_) => onType(value),
-                          ),
-                        ),
-                      ),
-                  ],
+    if (header != null) add(header!);
+    add(
+      LayoutBuilder(
+        builder: (context, box) {
+          final provider = PopupMenuButton<String>(
+            key: const Key('search-source-menu'),
+            tooltip: polishText('source', context),
+            initialValue: source,
+            onSelected: onSource,
+            itemBuilder: (_) => [
+              for (final entry in providers.entries)
+                CheckedPopupMenuItem(
+                  value: entry.key,
+                  checked: source == entry.key,
+                  child: Text(entry.value),
                 ),
+            ],
+            child: Container(
+              constraints: const BoxConstraints(minHeight: 44),
+              padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 10),
+              decoration: BoxDecoration(
+                color: v.surface,
+                border: Border.all(color: v.line),
+                borderRadius: BorderRadius.circular(v.corners(12)),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(Icons.tune_rounded, size: 17, color: v.muted),
+                  const SizedBox(width: 8),
+                  Text(
+                    providers[source] ?? source,
+                    style: const TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  const SizedBox(width: 7),
+                  Icon(Icons.expand_more_rounded, size: 17, color: v.muted),
+                ],
               ),
             ),
-            const SizedBox(width: 6),
-            PopupMenuButton<String>(
-              key: const Key('search-source-menu'),
-              tooltip: polishText('source', context),
-              initialValue: source,
-              onSelected: onSource,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(v.corners(14)),
-                side: BorderSide(color: v.line),
-              ),
-              itemBuilder: (_) => [
-                for (final value in providers.entries)
-                  PopupMenuItem(
-                    value: value.key,
-                    child: Row(
-                      children: [
-                        Expanded(child: Text(value.value)),
-                        if (source == value.key)
-                          Icon(Icons.check_rounded, size: 17, color: v.accent),
-                      ],
+          );
+          final filters = SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              children: [
+                for (final value in ['all', 'tracks', 'artists', 'playlists'])
+                  Padding(
+                    padding: const EdgeInsets.only(right: 7),
+                    child: ChoiceChip(
+                      key: Key('search-type-$value'),
+                      label: Text(polishText(value, context)),
+                      selected: type == value,
+                      showCheckmark: false,
+                      selectedColor: v.ink,
+                      labelStyle: TextStyle(
+                        color: type == value ? v.background : v.ink,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w700,
+                      ),
+                      onSelected: (_) => onType(value),
                     ),
                   ),
               ],
-              child: Container(
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(
-                  color: source == 'all' ? v.surface : v.accentSoft,
-                  border: Border.all(color: v.line),
-                  borderRadius: BorderRadius.circular(v.corners(13)),
-                ),
-                child: WaveControlIcon(
-                  Icons.graphic_eq_rounded,
-                  size: 20,
-                  color: v.muted,
+            ),
+          );
+          return box.maxWidth < 480
+              ? Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [filters, const SizedBox(height: 12), provider],
+                )
+              : Row(
+                  children: [
+                    Expanded(child: filters),
+                    const SizedBox(width: 16),
+                    provider,
+                  ],
+                );
+        },
+      ),
+    );
+    if (c.searchProviderErrors.isNotEmpty || c.searchError != null) {
+      add(
+        Padding(
+          padding: const EdgeInsets.only(top: 16),
+          child: Container(
+            decoration: BoxDecoration(
+              color: v.surface,
+              borderRadius: BorderRadius.circular(v.corners(12)),
+              border: Border.all(color: v.line),
+            ),
+            child: ExpansionTile(
+              key: const Key('search-provider-errors'),
+              tilePadding: const EdgeInsets.symmetric(horizontal: 14),
+              leading: Icon(Icons.cloud_off_outlined, size: 19, color: v.muted),
+              title: Text(
+                c.searchError ?? pt(context, 'Unavailable'),
+                style: const TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.w700,
                 ),
               ),
-            ),
-          ],
-        ),
-        if (source != 'all')
-          Padding(
-            padding: const EdgeInsets.only(top: 12),
-            child: Text(
-              providers[source] ?? source,
-              style: TextStyle(color: v.muted, fontSize: 11),
-            ),
-          ),
-        if (loading)
-          const Padding(
-            padding: EdgeInsets.only(top: 20),
-            child: WaveLoadingList(key: Key('search-loading')),
-          )
-        else if (query.trim().isEmpty) ...[
-          title('categories'),
-          LayoutBuilder(
-            builder: (context, box) {
-              final columns = box.maxWidth < 400
-                  ? 2
-                  : box.maxWidth < 700
-                  ? 3
-                  : 4;
-              final width = (box.maxWidth - (columns - 1) * 12) / columns;
-              return Wrap(
-                spacing: 12,
-                runSpacing: 12,
-                children: [
-                  for (final genre in [
-                    'Pop',
-                    'Hip-Hop',
-                    'Electronic',
-                    'Rock',
-                    'Ambient',
-                    'Jazz',
-                  ])
-                    SizedBox(
-                      width: width,
-                      child: WavePress(
-                        child: InkWell(
-                          key: Key('browse-category-$genre'),
-                          borderRadius: BorderRadius.circular(v.corners(18)),
-                          onTap: () => onQuery(genre),
-                          child: Container(
-                            constraints: const BoxConstraints(minHeight: 94),
-                            padding: const EdgeInsets.all(16),
-                            decoration: BoxDecoration(
-                              color: Color.lerp(
-                                v.surface,
-                                v.accent,
-                                .06 +
-                                    [
-                                          'Pop',
-                                          'Hip-Hop',
-                                          'Electronic',
-                                          'Rock',
-                                          'Ambient',
-                                          'Jazz',
-                                        ].indexOf(genre) *
-                                        .025,
-                              ),
-                              borderRadius: BorderRadius.circular(
-                                v.corners(18),
-                              ),
-                              border: Border.all(color: v.line),
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                WaveControlIcon(
-                                  Icons.album_outlined,
-                                  size: 20,
-                                  color: v.accent,
-                                ),
-                                const SizedBox(height: 12),
-                                Text(
-                                  genre,
-                                  style: const TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w800,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
+              children: [
+                for (final error in c.searchProviderErrors)
+                  ListTile(
+                    dense: true,
+                    title: Text(
+                      providers[error['provider']] ??
+                          error['provider']?.toString() ??
+                          '',
                     ),
-                ],
-              );
-            },
+                    subtitle: Text(
+                      (error['message'] ?? error['reason'] ?? '').toString(),
+                    ),
+                  ),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton.icon(
+                    onPressed: () => c.search(query, source: source),
+                    icon: const Icon(Icons.refresh_rounded, size: 16),
+                    label: Text(pt(context, 'Retry')),
+                  ),
+                ),
+              ],
+            ),
           ),
-          ApiPanel(
+        ),
+      );
+    }
+    if (loading && c.results.isEmpty && query.trim().isNotEmpty) {
+      add(
+        const Padding(
+          padding: EdgeInsets.only(top: 24),
+          child: WaveLoadingList(key: Key('search-loading')),
+        ),
+      );
+    } else if (query.trim().isEmpty) {
+      section('categories');
+      add(_DiscoveryGenres(onQuery: onQuery));
+      add(
+        ApiPanel(
+          controller: c,
+          path: '/api/artists?limit=12',
+          builder: (data, _) {
+            final artists = objects(data['artists']).take(12).toList();
+            return artists.isEmpty
+                ? const SizedBox.shrink()
+                : Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ClientSectionHeading(polishText('artists', context)),
+                      DiscoveryArtists(controller: c, artists: artists),
+                    ],
+                  );
+          },
+        ),
+      );
+      if (c.playlists.isNotEmpty) {
+        section('playlists');
+        add(
+          DiscoveryPlaylists(
             controller: c,
-            path: '/api/artists?limit=12',
-            builder: (data, _) {
-              final artists = objects(data['artists']).take(12).toList();
-              return artists.isEmpty
-                  ? const SizedBox.shrink()
-                  : Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        title('artists'),
-                        DiscoveryArtists(controller: c, artists: artists),
-                      ],
-                    );
-            },
+            playlists: c.playlists,
+            onTap: onPlaylist,
           ),
-          if (c.playlists.isNotEmpty) ...[
-            title('playlists'),
+        );
+      }
+    } else {
+      if (loading || c.searchPendingProviders.isNotEmpty) {
+        add(
+          Padding(
+            padding: const EdgeInsets.only(top: 16),
+            child: LinearProgressIndicator(minHeight: 2, color: v.accent),
+          ),
+        );
+      }
+      if (c.results.isEmpty &&
+          c.artistResults.isEmpty &&
+          c.playlistResults.isEmpty &&
+          !loading) {
+        add(
+          EmptyState(
+            wt('native.e61d08951b', context: context),
+            wt('native.10c727a4cc', context: context),
+          ),
+        );
+      } else {
+        if (shows('tracks') && c.results.isNotEmpty) {
+          section('tracks');
+          final visible = type == 'all'
+              ? c.results.take(6).toList()
+              : c.results;
+          if (scrollable) {
+            children.add(
+              clientTracks(
+                controller: c,
+                tracks: visible,
+                queue: c.results,
+                onMore: onMore,
+              ),
+            );
+          } else {
+            for (final track in visible) {
+              add(
+                TrackRow(
+                  key: ValueKey('search-track-${track.id}'),
+                  controller: c,
+                  track: track,
+                  queue: c.results,
+                  onMore: () => onMore(track),
+                ),
+              );
+            }
+          }
+          if (type == 'all' && c.results.length > 6) {
+            add(
+              Align(
+                alignment: Alignment.centerRight,
+                child: TextButton(
+                  onPressed: () => onType('tracks'),
+                  child: Text(polishText('tracks', context)),
+                ),
+              ),
+            );
+          }
+        }
+        if (shows('artists') && c.artistResults.isNotEmpty) {
+          section('artists');
+          add(DiscoveryArtists(controller: c, artists: c.artistResults));
+        }
+        if (shows('playlists') && c.playlistResults.isNotEmpty) {
+          section('playlists');
+          add(
             DiscoveryPlaylists(
               controller: c,
-              playlists: c.playlists,
+              playlists: c.playlistResults,
               onTap: onPlaylist,
             ),
-          ],
-        ] else ...[
-          if (c.results.isEmpty &&
-              c.artistResults.isEmpty &&
-              c.playlistResults.isEmpty)
+          );
+        }
+        if (!loading &&
+            (type == 'artists' && c.artistResults.isEmpty ||
+                type == 'playlists' && c.playlistResults.isEmpty ||
+                type == 'tracks' && c.results.isEmpty)) {
+          add(
             EmptyState(
               wt('native.e61d08951b', context: context),
               wt('native.10c727a4cc', context: context),
-            )
-          else ...[
-            if (shows('tracks') && c.results.isNotEmpty) ...[
-              title('tracks'),
-              for (final track in type == 'all' ? c.results.take(6) : c.results)
-                TrackRow(
-                  controller: c,
-                  track: track,
-                  queue: [track],
-                  onMore: () => onMore(track),
-                ),
-              if (type == 'all' && c.results.length > 6)
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: TextButton(
-                    onPressed: () => onType('tracks'),
-                    child: Text(polishText('tracks', context)),
+            ),
+          );
+        }
+      }
+    }
+    return scrollable
+        ? ClientContentScroll(
+            key: const Key('discovery-scroll'),
+            slivers: children,
+          )
+        : Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: children,
+          );
+  }
+}
+
+class _DiscoveryGenres extends StatelessWidget {
+  final ValueChanged<String> onQuery;
+  const _DiscoveryGenres({required this.onQuery});
+  @override
+  Widget build(BuildContext context) => LayoutBuilder(
+    builder: (context, box) {
+      final v = waveVisuals(context),
+          columns = box.maxWidth < 440
+              ? 2
+              : box.maxWidth < 720
+              ? 3
+              : 3;
+      final width = (box.maxWidth - (columns - 1) * 12) / columns;
+      const genres = <(String, IconData)>[
+        ('Pop', Icons.auto_awesome_outlined),
+        ('Hip-Hop', Icons.mic_none_rounded),
+        ('Electronic', Icons.graphic_eq_rounded),
+        ('Rock', Icons.bolt_rounded),
+        ('Ambient', Icons.waves_rounded),
+        ('Jazz', Icons.piano_outlined),
+      ];
+      return Wrap(
+        spacing: 12,
+        runSpacing: 12,
+        children: [
+          for (var i = 0; i < genres.length; i++)
+            SizedBox(
+              width: width,
+              child: Material(
+                color: Color.lerp(v.surface, v.accent, .02 + i * .012),
+                borderRadius: BorderRadius.circular(v.corners(16)),
+                child: InkWell(
+                  key: Key('browse-category-${genres[i].$1}'),
+                  onTap: () => onQuery(genres[i].$1),
+                  borderRadius: BorderRadius.circular(v.corners(16)),
+                  child: Container(
+                    constraints: const BoxConstraints(minHeight: 114),
+                    padding: const EdgeInsets.all(16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Icon(genres[i].$2, color: v.muted, size: 26),
+                            const Spacer(),
+                            Text(
+                              '0${i + 1}',
+                              style: TextStyle(
+                                fontSize: 10,
+                                color: v.muted,
+                                letterSpacing: 1,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 24),
+                        Text(
+                          genres[i].$1,
+                          style: const TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w800,
+                            letterSpacing: -.3,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
-            ],
-            if (shows('artists') && c.artistResults.isNotEmpty) ...[
-              title('artists'),
-              DiscoveryArtists(controller: c, artists: c.artistResults),
-            ],
-            if (shows('playlists') && c.playlistResults.isNotEmpty) ...[
-              title('playlists'),
-              DiscoveryPlaylists(
-                controller: c,
-                playlists: c.playlistResults,
-                onTap: onPlaylist,
               ),
-            ],
-            if (type == 'artists' && c.artistResults.isEmpty ||
-                type == 'playlists' && c.playlistResults.isEmpty ||
-                type == 'tracks' && c.results.isEmpty)
-              EmptyState(
-                wt('native.e61d08951b', context: context),
-                wt('native.10c727a4cc', context: context),
-              ),
-          ],
+            ),
         ],
-      ],
-    );
-  }
+      );
+    },
+  );
 }
 
 class DiscoveryArtists extends StatelessWidget {
@@ -442,69 +539,75 @@ Future<void> openDiscoveryPlaylist(
   BuildContext context,
   WaveController c,
   Json playlist,
-) => Navigator.push(
+) => openClientDetail(
   context,
-  MaterialPageRoute<void>(
-    builder: (context) => Scaffold(
-      appBar: AppBar(
-        title: Text(
-          playlist['name']?.toString() ?? polishText('playlists', context),
-        ),
-      ),
-      body: ListView(
-        padding: const EdgeInsets.all(24),
-        children: [
-          ApiPanel(
-            controller: c,
-            path:
-                '/api/playlists/${Uri.encodeComponent(playlist['id'].toString())}',
-            builder: (data, _) {
-              final tracks = objects(
-                data['tracks'],
-              ).map(WaveTrack.new).toList();
-              final detail = object(data['playlist']);
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Center(
-                    child: PlaylistArtwork(
-                      controller: c,
-                      playlist: detail.isEmpty ? playlist : detail,
-                      size: 220,
-                    ),
-                  ),
-                  const SizedBox(height: 24),
-                  Text(
-                    playlist['name']?.toString() ?? '',
-                    style: const TextStyle(
-                      fontSize: 27,
-                      fontWeight: FontWeight.w800,
-                    ),
-                  ),
-                  if (playlist['description']?.toString().isNotEmpty == true)
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8),
-                      child: Text(playlist['description'].toString()),
-                    ),
-                  const SizedBox(height: 24),
-                  for (final track in tracks)
-                    TrackRow(
-                      controller: c,
-                      track: track,
-                      queue: tracks,
-                      onMore: () => parityTrackActions(context, c, track),
-                    ),
-                  if (tracks.isEmpty)
-                    EmptyState(
-                      wt('native.1adc5a6a23', context: context),
-                      wt('native.29f6c0dba0', context: context),
-                    ),
-                ],
-              );
-            },
-          ),
-        ],
-      ),
-    ),
-  ),
+  title: playlist['name']?.toString() ?? polishText('playlists', context),
+  identity: 'playlist:${playlist['id']}',
+  builder: (_) => DiscoveryPlaylistContent(controller: c, playlist: playlist),
 );
+
+class DiscoveryPlaylistContent extends StatelessWidget {
+  final WaveController controller;
+  final Json playlist;
+  const DiscoveryPlaylistContent({
+    super.key,
+    required this.controller,
+    required this.playlist,
+  });
+  @override
+  Widget build(BuildContext context) => ApiPanel(
+    controller: controller,
+    path: '/api/playlists/${Uri.encodeComponent(playlist['id'].toString())}',
+    bounded: true,
+    builder: (data, _) {
+      final tracks = objects(data['tracks']).map(WaveTrack.new).toList();
+      final detail = {...playlist, ...object(data['playlist'])};
+      final size = MediaQuery.sizeOf(context).width < 600 ? 164.0 : 206.0;
+      return ClientContentScroll(
+        key: ValueKey('playlist-detail-${playlist['id']}'),
+        slivers: [
+          clientBox(
+            ClientCollectionHero(
+              artwork: PlaylistArtwork(
+                controller: controller,
+                playlist: detail,
+                size: size,
+              ),
+              title: detail['name']?.toString() ?? '',
+              eyebrow: polishText('playlists', context),
+              description: detail['description']?.toString(),
+              actions: [
+                if (tracks.isNotEmpty)
+                  FilledButton.icon(
+                    key: const Key('public-playlist-play'),
+                    onPressed: controller.canControl
+                        ? () => parityRun(
+                            controller,
+                            () => controller.play(tracks.first, list: tracks),
+                          )
+                        : null,
+                    icon: const Icon(Icons.play_arrow_rounded),
+                    label: Text(wave26Text(context, 'artist.playAll')),
+                  ),
+              ],
+            ),
+          ),
+          clientBox(ClientSectionHeading(polishText('tracks', context))),
+          if (tracks.isEmpty)
+            clientBox(
+              EmptyState(
+                wt('native.1adc5a6a23', context: context),
+                wt('native.29f6c0dba0', context: context),
+              ),
+            )
+          else
+            clientTracks(
+              controller: controller,
+              tracks: tracks,
+              onMore: (track) => parityTrackActions(context, controller, track),
+            ),
+        ],
+      );
+    },
+  );
+}

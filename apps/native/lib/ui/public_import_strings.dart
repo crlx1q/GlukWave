@@ -14,6 +14,14 @@ String publicImportText(BuildContext context, String key) {
 }
 
 const _copy = <String, List<String>>{
+  'accountUnavailable': [
+    'Account sign-in is unavailable. Public import is available.',
+    'Вход в аккаунт пока недоступен. Импорт по ссылке доступен.',
+    'Аккаунтқа кіру әзірге қолжетімсіз. Сілтеме арқылы импорт бар.',
+    'Вхід в акаунт поки недоступний. Імпорт за посиланням доступний.',
+    'Kontoanmeldung derzeit nicht verfügbar. Öffentlicher Import ist möglich.',
+    'El acceso a la cuenta no está disponible. Puedes importar música pública.',
+  ],
   "open": [
     "Import public music",
     "Импорт по нику или ссылке",

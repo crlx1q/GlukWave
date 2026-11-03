@@ -35,18 +35,18 @@ flutter run -d <ANDROID_DEVICE_ID> --dart-define=GLUKWAVE_SERVER=http://10.0.2.2
 flutter run -d <ANDROID_DEVICE_ID> --dart-define=GLUKWAVE_SERVER=http://192.168.1.10:4000
 ```
 
-`GLUKWAVE_SERVER` — origin API без пути, например `https://wave.gluk.tech`. Обычный вход уже использует адрес, заданный сервисом при сборке. Изменение адреса доступно администратору в разделе «О приложении» и через долгое нажатие на версию в debug-сборке; поля настройки API в обычном входе нет. Debug по умолчанию использует `127.0.0.1:4000` на Windows/iOS и `10.0.2.2:4000` на Android; release — `https://wave.gluk.tech`. На Android HTTP разрешён только debug-манифестом. Для release и iOS используй действующий HTTPS. Наличие домена в конфигурации само по себе не разворачивает сервер.
+`GLUKWAVE_SERVER` — origin API без пути, например `https://wave.gluk.tech`. Обычный вход уже использует адрес, заданный сервисом при сборке. Изменение адреса доступно администратору в разделе «О приложении» и через долгое нажатие на версию в debug-сборке; поля настройки API в обычном входе нет. Все сборки по умолчанию используют `https://wave.gluk.tech`. Для разработки на локальном сервере передай `GLUKWAVE_SERVER` явно. На Android HTTP разрешён только debug-манифестом. Для release и iOS используй действующий HTTPS. Наличие домена в конфигурации само по себе не разворачивает сервер.
 
 ## Сборка
 
 ```powershell
 flutter analyze --no-pub
 flutter test --no-pub
-flutter build apk --debug --no-pub --dart-define=GLUKWAVE_SERVER=http://10.0.2.2:4000
+flutter build apk --debug --no-pub
 flutter build windows --release --dart-define=GLUKWAVE_SERVER=https://wave.gluk.tech
 ```
 
-APK появляется в `build/app/outputs/flutter-apk/app-debug.apk`. Для телефона адрес компьютера передаётся при сборке, например `--dart-define=GLUKWAVE_SERVER=http://192.168.3.7:4000`. Компьютер и телефон должны видеть этот сервер в общей сети. Это тестовая сборка с debug-подписью.
+APK появляется в `build/app/outputs/flutter-apk/app-debug.apk`. Для тестирования локального сервера на телефоне укажи адрес компьютера при сборке, например `--dart-define=GLUKWAVE_SERVER=http://192.168.3.7:4000`. Компьютер и телефон должны видеть этот сервер в общей сети. Это тестовая сборка с debug-подписью.
 
 Windows требует Visual Studio с Desktop development with C++, Windows SDK и CMake; они установлены. В глубокой папке MSVC не открывает заголовки длиной 263 символа. Из корня запускайте `scripts/build-windows.ps1`: он копирует исходники в отдельную короткую рабочую папку, устанавливает зависимости в отдельный кеш и упаковывает результат. Исходный проект не связывается с временным каталогом и не очищается.
 

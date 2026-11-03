@@ -47,7 +47,7 @@ class NativeDesktopTransport extends StatelessWidget {
     return Material(
       key: const Key('desktop-main-dock'),
       color: v.surface,
-      elevation: 8,
+      elevation: 0,
       shadowColor: Colors.black.withValues(alpha: .12),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(16),

@@ -1,0 +1,37 @@
+{
+  "sdkVersion": "13.12.0",
+  "source": "https://dl.google.com/firebase/sdk/cpp/firebase_cpp_sdk_windows_13.12.0.zip",
+  "scope": "Restore only missing files from the already cached pinned SDK archive",
+  "restored": [
+    {
+      "name": "firebase_app.lib",
+      "bytes": 60191808,
+      "sha256": "de89396cc8ed2706068a6688e0130c23aa67057b3da0aeb3f90cd1b827c77a03",
+      "vendorHashVerified": true
+    },
+    {
+      "name": "firebase_storage.lib",
+      "bytes": 9815416,
+      "sha256": "ede1ec2ef38a211174a99c79eccc025eceb03aee175f11197b2e7a06a1014d9e",
+      "vendorHashVerified": true
+    },
+    {
+      "name": "firebase_app_check.lib",
+      "bytes": 4608874,
+      "sha256": "b0cd7aedc7249eb6ee8773b3605aaa2558f73c53455feb54c9d330b29942b824",
+      "vendorHashVerified": true
+    },
+    {
+      "name": "firebase_installations.lib",
+      "bytes": 824040,
+      "sha256": "9a09f7b899422620a50ecc4cffd99d30ef74466fbfdda22f3409bb0678bafee5",
+      "vendorHashVerified": true
+    },
+    {
+      "name": "firebase_auth.lib",
+      "bytes": 46881598,
+      "sha256": "43cfefbae12fbe1fa916e1a766659ae3f48230dbc8fdee179bb0434fe99f2cce",
+      "vendorHashVerified": true
+    }
+  ]
+}

@@ -82,6 +82,12 @@ class WaveAudioHandler extends BaseAudioHandler {
       : player.processingState == ProcessingState.ready;
   bool get outputPlaying =>
       current?.embedded == true ? provider.playing : player.playing;
+
+  /// Pausing the decoder while resolving the next local track is still an
+  /// active listening session. An explicit pause/stop clears that intent.
+  bool get backgroundPlaybackActive =>
+      outputPlaying ||
+      !remote && _intendedPlaying && (_resolving || _recoveringStream);
   Duration get outputPosition => current?.embedded == true
       ? Duration(milliseconds: (provider.position * 1000).round())
       : player.position;
@@ -350,6 +356,55 @@ class WaveAudioHandler extends BaseAudioHandler {
   Future<bool> Function(WaveTrack track, AudioServiceRepeatMode repeat)?
   onEnded;
   void Function()? onProcessingChanged;
+  Future<void> Function()? onIdleTaskRemoved;
+  Future<void>? _idleTaskRemoval;
+
+  /// Task removal must not pause another output or stop audible local music.
+  /// Idle Android media services otherwise keep the app resident indefinitely.
+  Future<void> finishIdleTask() async {
+    if (backgroundPlaybackActive) return;
+    if (_idleTaskRemoval != null) return _idleTaskRemoval;
+    final operation = () async {
+      cancelPendingLoad();
+      try {
+        await onIdleTaskRemoved?.call().timeout(const Duration(seconds: 3));
+      } catch (error) {
+        api.diagnostics.report(
+          error,
+          kind: 'background',
+          code: 'IDLE_TASK_CLEANUP',
+        );
+      }
+      if (backgroundPlaybackActive) return;
+      try {
+        await localCommand('stop').timeout(const Duration(seconds: 3));
+      } catch (error) {
+        api.diagnostics.report(
+          error,
+          kind: 'background',
+          code: 'IDLE_TASK_STOP',
+        );
+      } finally {
+        if (!backgroundPlaybackActive) {
+          playbackState.add(
+            playbackState.value.copyWith(
+              playing: false,
+              processingState: AudioProcessingState.idle,
+            ),
+          );
+        }
+      }
+    }();
+    _idleTaskRemoval = operation;
+    try {
+      await operation;
+    } finally {
+      if (identical(_idleTaskRemoval, operation)) _idleTaskRemoval = null;
+    }
+  }
+
+  @override
+  Future<void> onTaskRemoved() => finishIdleTask();
   Future<void> Function(double volume)? onVolumeChanged;
   void Function(String message)? onError;
   Future<bool> Function(WaveTrack track, Object error)? onSourceFailure;

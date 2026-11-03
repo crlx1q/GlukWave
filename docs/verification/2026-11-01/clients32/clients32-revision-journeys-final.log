@@ -1,0 +1,12 @@
+00:00 +0: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/clients32_revision_test.dart
+00:00 +0: (setUpAll)
+00:00 +0: phone artist, album and public playlist retain one controllable mini and Back
+00:06 +1: Search and Saved share responsive gutters at 375.0
+00:07 +2: Search and Saved share responsive gutters at 768.0
+00:08 +3: Search and Saved share responsive gutters at 1440.0
+00:10 +4: filled room and profile actions have contrasting glyphs in light
+00:10 +5: filled room and profile actions have contrasting glyphs in dark
+00:11 +6: filled room and profile actions have contrasting glyphs in amoled
+00:12 +7: unconfigured sources retain public import without claiming connection
+00:13 +8: (tearDownAll)
+00:13 +8: All tests passed!

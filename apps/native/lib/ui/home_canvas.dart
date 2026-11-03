@@ -12,6 +12,7 @@ import '../core/models.dart';
 import '../l10n/glukwave27_ui_strings.dart';
 import '../l10n/home_canvas_strings.dart';
 import 'refinement20_home.dart';
+import 'client32_design.dart';
 import 'parity_panels.dart' show PlaylistArtwork;
 import 'widgets.dart';
 
@@ -336,7 +337,7 @@ class _NativeHomeCanvasState extends State<NativeHomeCanvas> {
         right: 12,
         bottom:
             MediaQuery.paddingOf(context).bottom +
-            (MediaQuery.sizeOf(context).width < 700 ? 160 : 130),
+            (ClientLayout.of(context).desktop ? 132 : 164),
         child: Center(
           child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 720),
@@ -463,12 +464,12 @@ class _NativeHomeCanvasState extends State<NativeHomeCanvas> {
     return Material(
       elevation: 16,
       color: v.surface,
-      borderRadius: BorderRadius.circular(16),
+      borderRadius: BorderRadius.circular(v.corners(18)),
       shadowColor: Colors.black.withValues(alpha: .35),
       child: Container(
         decoration: BoxDecoration(
           border: Border.all(color: v.line),
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(v.corners(18)),
         ),
         padding: const EdgeInsets.all(8),
         child: Wrap(

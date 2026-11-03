@@ -119,7 +119,7 @@ void main() {
           );
           await tester.pumpAndSettle();
           if (size.width >= 900) {
-            await tester.tap(find.byKey(const Key('nav-devices')));
+            await fixtures.navigateShell(tester, 'devices');
           } else {
             await tester.tap(find.byKey(const Key('mobile-menu')));
             await tester.pumpAndSettle();
@@ -145,7 +145,11 @@ void main() {
           await tester.ensureVisible(find.text('Настройки').last);
           await tester.tap(find.text('Настройки').last);
           await tester.pumpAndSettle();
-          await fixtures.selectSettingsCategory(tester, 'security', 'Безопасность');
+          await fixtures.selectSettingsCategory(
+            tester,
+            'security',
+            'Безопасность',
+          );
           expect(
             find.byKey(const Key('session-revoke-current')),
             findsOneWidget,
@@ -171,7 +175,11 @@ void main() {
             3,
             reason: 'Cancelling a confirmation leaves the session untouched.',
           );
-          await fixtures.selectSettingsCategory(tester, 'playback', 'Воспроизведение');
+          await fixtures.selectSettingsCategory(
+            tester,
+            'playback',
+            'Воспроизведение',
+          );
           await Scrollable.ensureVisible(
             tester.element(find.byKey(const Key('equalizer-band-0'))),
             alignment: .65,
@@ -239,7 +247,7 @@ void main() {
           c.render();
           await tester.pumpAndSettle();
           if (size.width >= 900) {
-            await tester.tap(find.byKey(const Key('nav-rooms')));
+            await fixtures.navigateShell(tester, 'rooms');
           } else {
             await tester.tap(find.byTooltip('Слушать вместе').first);
           }
@@ -251,6 +259,10 @@ void main() {
             tester,
             'ecosystem-room-$theme-${size.width.toInt()}',
           );
+          if (size.width < 900) {
+            await tester.tap(find.byKey(const Key('room-members-open')));
+            await tester.pumpAndSettle();
+          }
           await Scrollable.ensureVisible(
             tester.element(find.textContaining('Приложение Windows').last),
             alignment: .45,

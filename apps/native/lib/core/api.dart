@@ -20,6 +20,7 @@ class WaveException implements Exception {
 }
 
 class WaveApi {
+  static const publicServer = 'https://wave.gluk.tech';
   final MetadataCache metadata = MetadataCache();
   final Map<String, Future<Json>> _metadataFlights = {};
   String? _metadataIdentity;
@@ -212,6 +213,45 @@ class WaveApi {
       throw WaveException(wt('native.6ade2e521e'));
     }
     return uri.origin;
+  }
+
+  /// Safe challenge status read with an attempt budget and stable recovery
+  /// claim. This never retries credential/registration/approval POST requests.
+  Future<Json> pollNativeAuth(
+    String path, {
+    required String secret,
+    required String claim,
+    required CancelToken cancellation,
+    required Duration timeout,
+  }) async {
+    final budget = Timer(
+      timeout,
+      () => cancellation.cancel('Auth status deadline'),
+    );
+    try {
+      final response = await dio.get<dynamic>(
+        url(path),
+        queryParameters: {'secret': secret},
+        cancelToken: cancellation,
+        options: Options(
+          headers: {...headers, 'X-GlukWave-Auth-Claim': claim},
+          receiveTimeout: timeout,
+        ),
+      );
+      return object(response.data);
+    } on DioException catch (error) {
+      final detail = object(object(error.response?.data)['error']);
+      throw WaveException(
+        detail['message']?.toString() ?? wt('native.5918da6940'),
+        detail['code']?.toString() ??
+            (error.type == DioExceptionType.cancel
+                ? 'AUTH_POLL_TIMEOUT'
+                : 'network'),
+        error.response?.statusCode,
+      );
+    } finally {
+      budget.cancel();
+    }
   }
 
   Future<Json> call(

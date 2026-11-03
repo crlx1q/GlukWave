@@ -1,0 +1,15 @@
+00:00 +0: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/native19_reachability_test.dart
+00:00 +0: (setUpAll)
+00:00 +0: Secondary routes and keyboard fit 320.0 light
+00:07 +1: Secondary routes and keyboard fit 375.0 dark
+00:11 +2: Secondary routes and keyboard fit 768.0 amoled
+00:16 +3: Secondary routes and keyboard fit 938.0 amoled
+00:21 +4: Secondary routes and keyboard fit 1440.0 light
+00:27 +5: Windows displays QR while mobile sign-in is conventional
+00:28 +6: Guard camera denial exposes manual fallback and expires pending approval
+00:31 +7: Saved cover and accent use durable files; energy removes expensive visuals
+00:35 +8: Loading and offline empty collection remain navigable
+00:36 +9: Opt-in two-line synced preview fits Size(320.0, 568.0) with pinned controls
+00:39 +10: Opt-in two-line synced preview fits Size(375.0, 812.0) with pinned controls
+00:41 +11: (tearDownAll)
+00:41 +11: All tests passed!

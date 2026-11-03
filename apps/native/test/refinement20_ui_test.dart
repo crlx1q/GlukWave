@@ -247,14 +247,35 @@ void main() {
       await tester.tap(find.text('Перенести в Wave'));
       await settle(tester);
       expect(find.textContaining('Temporary import outage'), findsOneWidget);
-      await tester.tap(find.text('Повторить').last);
+      final retry = find.descendant(
+        of: find.byKey(const Key('provider-import-scroll')),
+        matching: find.text('Повторить'),
+      );
+      final importScroll = tester.state<ScrollableState>(
+        find
+            .descendant(
+              of: find.byKey(const Key('provider-import-scroll')),
+              matching: find.byType(Scrollable),
+            )
+            .first,
+      );
+      importScroll.position.jumpTo(importScroll.position.maxScrollExtent);
+      await settle(tester);
+      expect(retry.hitTestable(), findsOneWidget);
+      await tester.tap(retry);
       await settle(tester);
       final api = c.api as ImportApi;
       expect(api.requests.length, 2);
       expect(api.requests[0]['requestId'], api.requests[1]['requestId']);
       expect(api.requests.last['destination'], 'likes');
       expect(api.requests.last.containsKey('trackIds'), isFalse);
-      expect(find.text('Музыка уже в Gluk Wave'), findsOneWidget);
+      expect(
+        find.descendant(
+          of: find.byKey(const Key('provider-import-scroll')),
+          matching: find.text('Музыка уже в Gluk Wave'),
+        ),
+        findsOneWidget,
+      );
       expect(tester.takeException(), isNull);
       await base.screenshot(tester, 'refinement20-320-import-result');
       await base.clean(tester, c);

@@ -1,0 +1,13 @@
+Analyzing native...                                             
+
+   info - The import of 'package:glukwave/ui/theme.dart' is unnecessary because all of the used elements are also provided by the import of 'package:glukwave/ui/widgets.dart' - test\clients32_content_test.dart:19:8 - unnecessary_import
+   info - Statements in an if should be enclosed in a block - test\clients32_content_test.dart:48:7 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block - test\clients32_content_test.dart:63:7 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block - test\clients32_content_test.dart:71:7 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block - test\clients32_content_test.dart:89:7 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block - test\clients32_content_test.dart:91:7 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block - test\clients32_content_test.dart:96:7 - curly_braces_in_flow_control_structures
+   info - Statements in an if should be enclosed in a block - test\clients32_content_test.dart:115:7 - curly_braces_in_flow_control_structures
+   info - The import of 'package:flutter/material.dart' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/services.dart' - tool\clients32_capture_test.dart:4:8 - unnecessary_import
+
+9 issues found. (ran in 25.0s)

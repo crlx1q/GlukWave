@@ -1,0 +1,15 @@
+00:00 +0: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/test/clients32_shell_test.dart
+00:00 +0: (setUpAll)
+00:00 +0: desktop details retain labelled library and one full-width dock
+00:05 +1: resized Windows client keeps compact desktop rail and dock at 800
+00:05 +2: large library is lazy and workspace back restores scroll
+00:08 +3: phone has four tabs, account destinations, category sheet and no volume
+00:09 +4: full-player queue keeps 1500 entries virtualized
+00:10 +5: queue duplicate occurrences keep their own keys through real move action
+00:10 +6: smooth phone progress frames retain metadata and gesture widgets
+00:10 +7: six languages retain account settings and room navigation
+00:14 +8: phone 320.0 enlarged text and short settings/actions stay reachable
+00:14 +9: phone 375.0 enlarged text and short settings/actions stay reachable
+00:15 +10: phone 390.0 enlarged text and short settings/actions stay reachable
+00:15 +11: (tearDownAll)
+00:15 +11: All tests passed!

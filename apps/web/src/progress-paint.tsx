@@ -8,16 +8,17 @@ function wake(){clearTimeout(timer);timer=undefined;if(!frame&&!document.hidden&
 function tick(){frame=0;if(document.hidden)return;let delay=Infinity;for(const paint of paints){const next=paint();if(next)delay=Math.min(delay,next);}if(delay===16)wake();else if(Number.isFinite(delay))timer=setTimeout(wake,delay);}
 function visibility(){if(document.hidden){cancelAnimationFrame(frame);clearTimeout(timer);timer=undefined;frame=0;}else wake();}
 /** One visible scheduler, isolated DOM writes, no application-wide frame state. */
-export function useProgressPaint<T extends Element>(ref:RefObject<T|null>,read:ProgressReader|undefined,paint:(position:number,duration:number)=>void,revision?:unknown){
+export function useProgressPaint<T extends Element>(ref:RefObject<T|null>,read:ProgressReader|undefined,paint:(position:number,duration:number)=>void){
  const current=useRef({read,paint}),refresh=useRef<()=>void>(()=>{});current.current={read,paint};
  useLayoutEffect(()=>{
-  const element=ref.current;if(!element||!read)return;let inView=false,last=0;
+  const element=ref.current;if(!element||!read)return;let inView=element.getClientRects().length>0,last=0;
   const draw=()=>{if(!inView||document.hidden)return 0;const sample=current.current.read?.();if(!sample)return 0;const now=performance.now(),saving=document.documentElement.dataset.powerSaving==='true';if(!saving||now-last>=1000/30){current.current.paint(progressPosition(sample,now),sample.duration);last=now;}return progressAdvancing(sample,now)?saving?1000/30:16:0;};
   refresh.current=()=>{last=-Infinity;draw();wake();};
-  const observer=new IntersectionObserver(entries=>{inView=entries.at(-1)?.isIntersecting||false;refresh.current();});observer.observe(element);
+  const observer=typeof IntersectionObserver==='undefined'?undefined:new IntersectionObserver(entries=>{inView=entries[entries.length-1]?.isIntersecting||false;refresh.current();});observer?.observe(element);
   if(!paints.size)document.addEventListener('visibilitychange',visibility);paints.add(draw);
-  return()=>{observer.disconnect();paints.delete(draw);refresh.current=()=>{};if(!paints.size){cancelAnimationFrame(frame);clearTimeout(timer);timer=undefined;frame=0;document.removeEventListener('visibilitychange',visibility);}};
+  return()=>{observer?.disconnect();paints.delete(draw);refresh.current=()=>{};if(!paints.size){cancelAnimationFrame(frame);clearTimeout(timer);timer=undefined;frame=0;document.removeEventListener('visibilitychange',visibility);}};
  },[ref,!!read]);
- useLayoutEffect(()=>refresh.current(),[revision]);
+ // Playback can resume at exactly the same numerical position after buffering.
+ useLayoutEffect(()=>refresh.current());
 }
-export function ProgressTime({read,value,revision}:{read:ProgressReader;value:number;revision?:unknown}){const ref=useRef<HTMLSpanElement>(null);useProgressPaint(ref,read,position=>{const text=time(position);if(ref.current&&ref.current.textContent!==text)ref.current.textContent=text;},revision);return <span ref={ref}>{time(value)}</span>;}
+export function ProgressTime({read,value}:{read:ProgressReader;value:number}){const ref=useRef<HTMLSpanElement>(null);useProgressPaint(ref,read,position=>{const text=time(position);if(ref.current&&ref.current.textContent!==text)ref.current.textContent=text;});return <span ref={ref}>{time(value)}</span>;}

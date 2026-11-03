@@ -181,7 +181,8 @@ void main() {
           of: find.byType(WaveHero),
           matching: find.byWidgetPredicate((widget) => widget is FilledButton),
         );
-        await tester.ensureVisible(play);
+        await Scrollable.ensureVisible(tester.element(play), alignment: .5);
+        await tester.pumpAndSettle();
         await tester.tap(play);
         await tester.pump();
         expect(c.requests.single, {'mode': 'favorites', 'mood': 'happy'});

@@ -1,3 +1,4 @@
+import 'package:mobile_scanner/mobile_scanner.dart';
 import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/foundation.dart';
@@ -15,6 +16,31 @@ import 'audio_design_test.dart' as audio;
 import 'app_layout_test.dart' as base;
 import 'helpers/fonts.dart';
 import 'helpers/artwork_fixture.dart';
+
+// Camera hardware is isolated; the actual Guard still starts its normal flow.
+class ManualGuardCamera extends MobileScannerPlatform {
+  @override
+  Stream<BarcodeCapture?> get barcodesStream => const Stream.empty();
+  @override
+  Stream<TorchState> get torchStateStream => const Stream.empty();
+  @override
+  Stream<double> get zoomScaleStateStream => const Stream.empty();
+  @override
+  Widget buildCameraView() => const ColoredBox(color: Colors.black);
+  @override
+  Future<MobileScannerViewAttributes> start(StartOptions options) async =>
+      const MobileScannerViewAttributes(
+        cameraDirection: CameraFacing.back,
+        currentTorchMode: TorchState.off,
+        size: Size(320, 240),
+      );
+  @override
+  Future<void> stop() async {}
+  @override
+  Future<void> dispose() async {}
+  @override
+  Future<void> updateScanWindow(Rect? window) async {}
+}
 
 class Native19Api extends base.LayoutApi {
   int lyricsRequests = 0;
@@ -330,6 +356,9 @@ void main() {
   testWidgets(
     'Phone Guard accepts manual fallback and requires explicit target confirmation',
     (tester) async {
+      final originalScanner = MobileScannerPlatform.instance;
+      MobileScannerPlatform.instance = ManualGuardCamera();
+      addTearDown(() => MobileScannerPlatform.instance = originalScanner);
       debugDefaultTargetPlatformOverride = TargetPlatform.android;
       addTearDown(() => debugDefaultTargetPlatformOverride = null);
       final c = (await tester.runAsync(fixture))!;
@@ -338,7 +367,7 @@ void main() {
       await settle(tester);
       cleanExceptions(tester);
       expect(find.byType(WaveGuardPage), findsOneWidget);
-      expect(find.byKey(const Key('guard-scan')), findsOneWidget);
+      expect(find.byKey(const Key('guard-manual')), findsOneWidget);
       await shot(tester, '375-guard');
       await tester.tap(find.byKey(const Key('guard-manual')));
       await settle(tester);
@@ -369,7 +398,7 @@ void main() {
       await settle(tester);
       cleanExceptions(tester);
       await shot(tester, '1440-search');
-      await tester.tap(find.byKey(const Key('nav-devices')));
+      await base.navigateShell(tester, 'devices');
       await settle(tester);
       cleanExceptions(tester);
       await shot(tester, '1440-connect');

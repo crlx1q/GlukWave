@@ -111,14 +111,14 @@ void main() {
           expect(c.audio.playing, isTrue);
           expect(
             find.byKey(const Key('desktop-listening-rail')),
-            size.width >= 1560 ? findsOneWidget : findsNothing,
+            size.width >= 1280 ? findsOneWidget : findsNothing,
           );
           await fixtures.screenshot(
             tester,
             'connect-home-$theme-${size.width.toInt()}',
           );
           if (size.width >= 900) {
-            await tester.tap(find.byKey(const Key('nav-devices')));
+            await fixtures.navigateShell(tester, 'devices');
           } else {
             await tester.tap(find.byKey(const Key('mobile-menu')));
             await tester.pumpAndSettle();
@@ -142,7 +142,7 @@ void main() {
             'connect-devices-$theme-${size.width.toInt()}',
           );
           if (size.width >= 900) {
-            await tester.tap(find.byKey(const Key('nav-rooms')));
+            await fixtures.navigateShell(tester, 'rooms');
           } else {
             await tester.tap(find.byTooltip('Слушать вместе').first);
           }

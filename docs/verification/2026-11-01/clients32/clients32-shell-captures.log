@@ -1,0 +1,7 @@
+00:00 +0: loading C:/Users/alish/Documents/Codex/2026-10-06/glukwave-soundcloud-yandex-music-youtube-spotify/apps/native/tool/clients32_capture_test.dart
+00:00 +0: (setUpAll)
+00:00 +0: capture Clients32 desktop routes 1280.0
+00:09 +1: capture Clients32 desktop routes 1440.0
+00:15 +2: capture phone and tablet actual navigation routes
+00:18 +3: (tearDownAll)
+00:18 +3: All tests passed!
