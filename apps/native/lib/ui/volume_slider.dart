@@ -48,6 +48,7 @@ class _DraftSliderState extends State<DraftSlider> with WidgetsBindingObserver {
   double? draft;
   Timer? settle;
   bool dragging = false;
+  bool animateWheel = false;
   Timer? hoverDelay;
   final hint = OverlayPortalController();
   final sliderBox = GlobalKey();
@@ -128,6 +129,7 @@ class _DraftSliderState extends State<DraftSlider> with WidgetsBindingObserver {
       settle?.cancel();
       draft = null;
       dragging = false;
+      animateWheel = false;
       hideHint();
     }
   }
@@ -143,12 +145,15 @@ class _DraftSliderState extends State<DraftSlider> with WidgetsBindingObserver {
     }
   }
 
-  void change(double value, {bool snap = true}) {
+  void change(double value, {bool snap = true, bool fromWheel = false}) {
     final step = widget.step;
     if (snap && step != null) {
       value = ((value / step).round() * step).clamp(widget.min, widget.max);
     }
-    setState(() => draft = value);
+    setState(() {
+      draft = value;
+      animateWheel = fromWheel;
+    });
     widget.onPreview?.call(value);
     settle?.cancel();
     if (!dragging) settle = Timer(const Duration(milliseconds: 260), commit);
@@ -168,7 +173,20 @@ class _DraftSliderState extends State<DraftSlider> with WidgetsBindingObserver {
   }
 
   @override
-  Widget build(BuildContext context) => OverlayPortal(
+  Widget build(BuildContext context) {
+    final value = (draft ?? widget.value).clamp(widget.min, widget.max);
+    if (widget.wheelStep == null) return buildSlider(value);
+    return TweenAnimationBuilder<double>(
+      tween: Tween(end: value),
+      duration: animateWheel && !waveVisuals(context).reducedMotion
+          ? const Duration(milliseconds: 150)
+          : Duration.zero,
+      curve: Curves.easeOutCubic,
+      builder: (_, visible, _) => buildSlider(visible),
+    );
+  }
+
+  Widget buildSlider(double visible) => OverlayPortal(
     controller: hint,
     overlayChildBuilder: (context) {
       final box = sliderBox.currentContext?.findRenderObject() as RenderBox?;
@@ -186,8 +204,7 @@ class _DraftSliderState extends State<DraftSlider> with WidgetsBindingObserver {
             isEnabled: widget.onChanged != null,
             isDiscrete: false,
           );
-      var ratio =
-          ((draft ?? widget.value) - widget.min) / (widget.max - widget.min);
+      var ratio = (visible - widget.min) / (widget.max - widget.min);
       if (Directionality.of(context) == TextDirection.rtl) ratio = 1 - ratio;
       final global = box.localToGlobal(
         Offset(
@@ -229,7 +246,7 @@ class _DraftSliderState extends State<DraftSlider> with WidgetsBindingObserver {
                   ],
                 ),
                 child: Text(
-                  '${((draft ?? widget.value) * 100).round()}%',
+                  '${(visible * 100).round()}%',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 11,
@@ -255,6 +272,7 @@ class _DraftSliderState extends State<DraftSlider> with WidgetsBindingObserver {
           setState(() {
             draft = null;
             dragging = false;
+            animateWheel = false;
           });
         },
         onPointerSignal: (event) {
@@ -268,7 +286,9 @@ class _DraftSliderState extends State<DraftSlider> with WidgetsBindingObserver {
                   draft ?? widget.value,
                   event.scrollDelta.dy,
                 );
-                if (next != (draft ?? widget.value)) change(next, snap: false);
+                if (next != (draft ?? widget.value)) {
+                  change(next, snap: false, fromWheel: true);
+                }
                 return;
               }
               change(
@@ -288,7 +308,7 @@ class _DraftSliderState extends State<DraftSlider> with WidgetsBindingObserver {
           child: Slider(
             focusNode: focus,
             key: widget.sliderKey,
-            value: (draft ?? widget.value).clamp(widget.min, widget.max),
+            value: visible,
             min: widget.min,
             max: widget.max,
             divisions: widget.step == null || widget.wheelStep != null

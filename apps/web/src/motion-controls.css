@@ -23,6 +23,28 @@ input[type=range].wave-range:disabled{cursor:default;opacity:.4}
 .player .progress-line input.wave-range{height:16px;min-height:16px;touch-action:pan-y}
 .player .volume-control input.wave-range{width:78px}
 .full-seek input.wave-range{height:30px;min-height:30px}
+.seek-range,.progress-line>span.seek-range{position:relative;display:block;flex:1;min-width:0}
+.seek-range>input[type=range].wave-range{position:relative;width:100%;background:none}
+.seek-range>input[type=range].wave-range::-webkit-slider-runnable-track,
+.seek-range>input[type=range].wave-range::-webkit-slider-thumb{opacity:0}
+.seek-range>input[type=range].wave-range::-moz-range-track,
+.seek-range>input[type=range].wave-range::-moz-range-progress,
+.seek-range>input[type=range].wave-range::-moz-range-thumb{opacity:0}
+.seek-range-art{position:absolute;top:50%;left:0;right:0;height:4px;transform:translateY(-50%);border-radius:4px;background:var(--line);pointer-events:none}
+.seek-range-art>i,.seek-range-art>b{position:absolute;top:0;bottom:0;left:0;right:0;transition:none!important}
+.seek-range-art>i{border-radius:inherit;background:var(--accent);transform-origin:left center;transform:scaleX(var(--seek-ratio,0))}
+.seek-range-art>b{left:7px;right:7px;transform:translate3d(var(--seek-progress,0%),0,0)}
+.seek-range-art em{position:absolute;top:50%;left:0;width:14px;height:14px;transform:translate(-50%,-50%);border:2px solid var(--surface,var(--bg));border-radius:50%;background:var(--accent);box-shadow:0 1px 4px #0002}
+.seek-range[data-disabled=true] .seek-range-art{opacity:.4}
+@media(forced-colors:active){
+ .seek-range-art{display:none}
+ .seek-range>input[type=range].wave-range{appearance:auto;-webkit-appearance:auto}
+ .seek-range>input[type=range].wave-range::-webkit-slider-runnable-track,
+ .seek-range>input[type=range].wave-range::-webkit-slider-thumb{opacity:1}
+ .seek-range>input[type=range].wave-range::-moz-range-track,
+ .seek-range>input[type=range].wave-range::-moz-range-progress,
+ .seek-range>input[type=range].wave-range::-moz-range-thumb{opacity:1}
+}
 .equalizer-band>input[type=range].wave-range{writing-mode:vertical-lr;direction:rtl;width:28px;height:132px;min-height:132px;touch-action:pan-x;border-radius:6px}
 .equalizer-band>input.wave-range::-webkit-slider-runnable-track{width:4px;height:100%;background:linear-gradient(to top,var(--range-tone) var(--range-progress,0%),var(--range-rest) var(--range-progress,0%))}
 .equalizer-band>input.wave-range::-webkit-slider-thumb{margin-top:0;margin-left:-5px}

@@ -11,16 +11,22 @@ export function ContinuousRange({value,min=0,max,step=.1,label,onCommit,onDraft,
  const [draft,setDraft]=useState(value),editing=useRef(false),pointer=useRef(false),pending=useRef<number|null>(null),timer=useRef<ReturnType<typeof setTimeout>|undefined>(undefined),send=useRef(onCommit),draftCallback=useRef(onDraft),latest=useRef(value);
  send.current=onCommit;draftCallback.current=onDraft;latest.current=value;
  const input=useRef<HTMLInputElement>(null);
+ const seekTrack=useRef<HTMLSpanElement>(null);
  const initialValue=useRef(Math.min(max,Math.max(min,value)));
  const frame=useRef(0),previousWheel=useRef({revision:wheelRevision,scope:resetKey});
  const timed=!!readProgress,managed=timed||wheelRevision!==undefined;
  const paint=(position:number)=>{
   const node=input.current;if(!node)return;
-  const next=Math.min(max,Math.max(min,position)),progress=`${(next-min)/(max-min||1)*100}%`;
+  const next=Math.min(max,Math.max(min,position)),ratio=(next-min)/(max-min||1),progress=`${ratio*100}%`;
   node.value=String(next);
-  node.style.setProperty('--range-progress',progress);
-  node.style.setProperty('--progress',progress);
-  if(timed)node.dataset.progressPosition=String(next);
+  if(timed){
+   seekTrack.current?.style.setProperty('--seek-ratio',String(ratio));
+   seekTrack.current?.style.setProperty('--seek-progress',progress);
+   node.dataset.progressPosition=String(next);
+  }else{
+   node.style.setProperty('--range-progress',progress);
+   node.style.setProperty('--progress',progress);
+  }
  };
  const stopWheel=()=>{cancelAnimationFrame(frame.current);frame.current=0;};
  useLayoutEffect(()=>{
@@ -52,9 +58,13 @@ export function ContinuousRange({value,min=0,max,step=.1,label,onCommit,onDraft,
  useEffect(cancel,[resetKey]);
  useEffect(()=>{if(disabled)cancel();},[disabled]);
  useEffect(()=>{window.addEventListener('pointerup',release);window.addEventListener('pointercancel',cancel);return()=>{clearTimeout(timer.current);if(editing.current)cancelCallback.current?.();window.removeEventListener('pointerup',release);window.removeEventListener('pointercancel',cancel);};},[]);
- return <><RangeInput ref={input} min={min} max={Math.max(min+step,max)} step={timed||allowOffStep?'any':step} value={managed?undefined:Math.min(max,Math.max(min,draft))} defaultValue={managed?initialValue.current:undefined} aria-label={label} aria-orientation={orientation} aria-valuetext={valueText} disabled={disabled} style={style} className={className}
+ const control=<RangeInput ref={input} min={min} max={Math.max(min+step,max)} step={timed||allowOffStep?'any':step} value={managed?undefined:Math.min(max,Math.max(min,draft))} defaultValue={managed?initialValue.current:undefined} aria-label={label} aria-orientation={orientation} aria-valuetext={valueText} disabled={disabled} style={style} className={className}
   onPointerEnter={event=>{if(event.pointerType==='mouse')hint.enter();}} onPointerLeave={hint.hide}
   onPointerDown={()=>{clearTimeout(timer.current);timer.current=undefined;begin();pointer.current=true;}}
   onChange={event=>{begin();const raw=Number(event.target.value),next=allowOffStep?Math.max(min,Math.min(max,Math.round(raw/step)*step)):raw;if(managed)paint(next);setDraft(next);onDraft?.(next);pending.current=next;if(!pointer.current){clearTimeout(timer.current);timer.current=setTimeout(flush,240);}}}
-  onPointerUp={release} onPointerCancel={()=>{hint.hide();cancel();}} onBlur={()=>{hint.hide();flush();}} onKeyDown={event=>{if(event.key==='Escape'){event.preventDefault();hint.hide();cancel();}else if((timed||allowOffStep)&&['ArrowLeft','ArrowDown','ArrowRight','ArrowUp','Home','End','PageUp','PageDown'].includes(event.key)){event.preventDefault();begin();const base=Number(event.currentTarget.value),direction=['ArrowLeft','ArrowDown','PageDown'].includes(event.key)?-1:1,next=Math.min(max,Math.max(min,event.key==='Home'?min:event.key==='End'?max:base+direction*step*(event.key.startsWith('Page')?10:1)));if(managed)paint(next);setDraft(next);draftCallback.current?.(next);pending.current=next;clearTimeout(timer.current);timer.current=setTimeout(flush,240);}}}/>{hint.hint}</>
+  onPointerUp={release} onPointerCancel={()=>{hint.hide();cancel();}} onBlur={()=>{hint.hide();flush();}} onKeyDown={event=>{if(event.key==='Escape'){event.preventDefault();hint.hide();cancel();}else if((timed||allowOffStep)&&['ArrowLeft','ArrowDown','ArrowRight','ArrowUp','Home','End','PageUp','PageDown'].includes(event.key)){event.preventDefault();begin();const base=Number(event.currentTarget.value),direction=['ArrowLeft','ArrowDown','PageDown'].includes(event.key)?-1:1,next=Math.min(max,Math.max(min,event.key==='Home'?min:event.key==='End'?max:base+direction*step*(event.key.startsWith('Page')?10:1)));if(managed)paint(next);setDraft(next);draftCallback.current?.(next);pending.current=next;clearTimeout(timer.current);timer.current=setTimeout(flush,240);}}}/>
+ return timed?<span ref={seekTrack} className="seek-range" data-disabled={disabled}>
+  <span className="seek-range-art" aria-hidden="true"><i/><b><em/></b></span>
+  {control}
+ </span>:<>{control}{hint.hint}</>;
 }
