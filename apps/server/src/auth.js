@@ -3,11 +3,12 @@ import nodemailer from 'nodemailer';
 import {accountMail,resetConfirmation} from './mail-text.js';
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import {normalizeDeviceName} from './device-name.js';
 import {id,now,secret,digest,parse,text,publicUser,hashPassword,verifyPassword,fail,asyncRoute,remoteJson} from './util.js';
 
 export function decodedDeviceName(value){
   let name=String(value||'GlukWave');try{name=decodeURIComponent(name);}catch{}
-  return name.replace(/[\x00-\x1f\x7f]/g,'').slice(0,150);
+  return normalizeDeviceName(name.replace(/[\x00-\x1f\x7f]/g,'').slice(0,150));
 }
 
 export function setupAuth(app,ctx){
@@ -106,7 +107,7 @@ export function setupAuth(app,ctx){
   app.get('/api/account/sessions',requireAuth,asyncRoute(async(req,res)=>{
     const uid=req.auth.user.id,records=await store.list('sessions',session=>session.userId===uid&&session.expiresAt>Date.now());
     const devices=new Map((await store.list('devices',device=>device.userId===uid)).map(device=>[device.deviceId,device]));
-    const sessions=records.map(session=>{const device=devices.get(session.deviceId);return {id:session.id,current:session.id===req.auth.session.id,deviceId:session.deviceId||null,deviceName:device?.name||session.deviceName||'GlukWave',kind:device?.kind||session.kind||'web',createdAt:session.createdAt,lastActiveAt:session.lastActiveAt||session.createdAt,expiresAt:session.expiresAt,online:!!ctx.sessionOnline?.(session.id)};}).sort((a,b)=>Number(b.current)-Number(a.current)||Date.parse(b.lastActiveAt)-Date.parse(a.lastActiveAt));
+    const sessions=records.map(session=>{const device=devices.get(session.deviceId);return {id:session.id,current:session.id===req.auth.session.id,deviceId:session.deviceId||null,deviceName:normalizeDeviceName(device?.name||session.deviceName||'GlukWave'),kind:device?.kind||session.kind||'web',createdAt:session.createdAt,lastActiveAt:session.lastActiveAt||session.createdAt,expiresAt:session.expiresAt,online:!!ctx.sessionOnline?.(session.id)};}).sort((a,b)=>Number(b.current)-Number(a.current)||Date.parse(b.lastActiveAt)-Date.parse(a.lastActiveAt));
     res.set('Cache-Control','no-store').json({sessions,currentSessionId:req.auth.session.id});
   }));
   app.delete('/api/account/sessions',requireAuth,asyncRoute(async(req,res)=>{

@@ -1,5 +1,5 @@
 import { t, useLocale, setLanguageChoice } from './locale';
-import {readableCoverAccent} from './cover-accent';
+import {readableCoverAccent,type CoverTones} from './cover-accent';
 import {LibraryEdits,replacePlaylist,rememberTrack,setLiked,mergePlaylistCover,playlistMembership} from './library-edits';
 import {startupAccountId,preferenceStorage} from './locale-startup';
 import { createContext, useCallback, useContext, useEffect, useLayoutEffect, useRef, useState, type ReactNode } from 'react';
@@ -21,7 +21,7 @@ type Store = {
   notify:(text:string,error?:boolean)=>void; toast:Toast|null; requireAuth:()=>boolean; logout:()=>Promise<void>;
   commitSettings:(partial:SettingsPatch)=>Promise<void>; saveSettings:(partial:SettingsPatch)=>Promise<void>; beginSettingsEdit:()=>()=>void; bindSettingsSync:(socket:Socket)=>()=>void; settingsSync:'saved'|'saving'|'local'; resolvedTheme:'light'|'dark'|'amoled'; motion:boolean; like:(track:Track)=>Promise<void>; remember:(tracks:Track[])=>void;
   run:<T>(operation:()=>Promise<T>,success?:string)=>Promise<T|undefined>;
-  renderAccent:string;setCoverAccent:(value:string|null)=>void;
+  renderAccent:string;setCoverAccent:(value:CoverTones|null)=>void;
   librarySaving:string[];createPlaylist:(input:{name:string;description?:string;public?:boolean;trackIds?:string[];knownTracks?:Track[]})=>Promise<Playlist>;
   updatePlaylist:(id:string,patch:Partial<Pick<Playlist,'name'|'description'|'public'|'trackIds'>>)=>Promise<Playlist>;
   setPlaylistTrack:(id:string,track:Track,present:boolean)=>Promise<Playlist>;deletePlaylist:(id:string)=>Promise<void>;acceptPlaylist:(playlist:Playlist)=>void;
@@ -32,7 +32,7 @@ const routes: Route[] = ['home','search','library','sources','rooms','lofi','dow
 function initialRoute():Route { if(location.pathname==='/admin'||location.pathname.startsWith('/admin/'))return 'admin';const route=location.hash.slice(1).split('?')[0]; return routes.includes(route as Route)?route as Route:'home'; }
 export function StoreProvider({children}:{children:ReactNode}) {useLocale();
   const startupAccount=useRef(startupAccountId(preferenceStorage()));
-  const [coverAccent,setCoverAccent]=useState<string|null>(null);
+  const [coverAccent,setCoverAccent]=useState<CoverTones|null>(null);
   const [user,setUserState]=useState<User|null>(null), [config,setConfig]=useState<Config|null>(null), [library,setLibrary]=useState<Library>(emptyLibrary), [settings,setSettings]=useState<Settings>(()=>readLocalSettings(startupAccount.current));
   const [libraryOwner,setLibraryOwner]=useState<string|null>(null),[libraryPending,setLibraryPending]=useState(false),libraryFlight=useRef(0),libraryJob=useRef<{id:string;job:Promise<void>}|null>(null),hydratedLibrary=useRef<string|null>(null);
   const [librarySaving,setLibrarySaving]=useState<string[]>([]);
@@ -154,9 +154,9 @@ export function StoreProvider({children}:{children:ReactNode}) {useLocale();
     return()=>{appearance.removeEventListener('change',update);motion.removeEventListener('change',update);contrast.removeEventListener('change',update);window.removeEventListener('online',sync);window.removeEventListener('storage',storage);clearTimeout(settingsTimer.current);settingsFlight.current?.controller.abort();};
   },[scheduleSettings,pullSettings,acceptSettings]);
   const resolvedTheme=settings.theme==='system'?(systemDark?'dark':'light'):settings.theme,motion=!settings.powerSaving&&!settings.reducedMotion&&!systemMotion;
-  const renderAccent=readableCoverAccent(settings.appearance.coverAccent?coverAccent:null,settings.appearance[resolvedTheme].bg,settings.appearance[resolvedTheme].accent,systemContrast);
-  presentHeldPalette.current=()=>{const live=settingsRef.current;applyAppearance(live.appearance,resolvedTheme,motion,readableCoverAccent(live.appearance.coverAccent?coverAccent:null,live.appearance[resolvedTheme].bg,live.appearance[resolvedTheme].accent,systemContrast));window.dispatchEvent(new Event('wave:palette-preview'));};
-  useLayoutEffect(()=>applyAppearance(settings.appearance,resolvedTheme,motion,renderAccent),[settings.appearance,resolvedTheme,motion,renderAccent]);
+  const renderAccent=readableCoverAccent(settings.appearance.coverAccent?coverAccent?.primary??null:null,settings.appearance[resolvedTheme].bg,settings.appearance[resolvedTheme].accent,systemContrast);
+  presentHeldPalette.current=()=>{const live=settingsRef.current;applyAppearance(live.appearance,resolvedTheme,motion,readableCoverAccent(live.appearance.coverAccent?coverAccent?.primary??null:null,live.appearance[resolvedTheme].bg,live.appearance[resolvedTheme].accent,systemContrast),systemContrast?null:coverAccent);window.dispatchEvent(new Event('wave:palette-preview'));};
+  useLayoutEffect(()=>applyAppearance(settings.appearance,resolvedTheme,motion,renderAccent,systemContrast?null:coverAccent),[settings.appearance,resolvedTheme,motion,renderAccent,coverAccent,systemContrast]);
   const requireAuth=useCallback(()=>{if(!user){setAuthOpen(true);return false;}if(offline){notify(t('copy.729'),true);return false;}return true;},[user,offline,notify]);
   const run=useCallback(async<T,>(operation:()=>Promise<T>,success?:string)=>{try{const result=await operation();if(success)notify(success);return result;}catch(error){if((error as Error)?.name!=='AbortError')notify(errorText(error),true);return undefined;}},[notify]);
   const beginSettingsEdit=useCallback(()=>{

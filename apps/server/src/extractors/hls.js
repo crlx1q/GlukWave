@@ -6,7 +6,7 @@ import {rewriteSoundcloudManifest} from '../soundcloud-audio.js';
 
 // Never expose signed CDN URLs. A grant is bound to one live account session;
 // every manifest, encryption key and segment is checked against that session.
-export function setupExtractedHls(app,ctx,{cdn,resolve,downloadable,fetcher=fetch}){
+export function setupExtractedHls(app,ctx,{cdn,resolve,downloadable=()=>false,fetcher=fetch}){
   const grants=new Map(),transfers=new Set(),restoring=new Map(),capabilities=audioCapabilities(ctx.config.encryptionKey,'extracted-hls');let closed=false,parts=0;
   const drop=key=>{const grant=grants.get(key);if(grant)parts-=grant.parts.size;grants.delete(key);};
   const sweep=()=>{for(const [key,grant] of grants)if(grant.expiresAt<=Date.now())drop(key);};

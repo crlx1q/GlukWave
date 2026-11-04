@@ -11,7 +11,38 @@ export const s31=(ru:string,en:string)=>getLanguage()==='ru'?ru:en;
 /** Freeze the first decoded frame instead of letting a GIF keep consuming visual work. */
 export function StillImage({url,className}:{url:string;className?:string}){const canvas=useRef<HTMLCanvasElement>(null);useEffect(()=>{const image=new Image();let alive=true;image.onload=()=>{if(!alive||!canvas.current)return;const n=canvas.current,ratio=Math.min(1,1200/image.width);n.width=Math.round(image.width*ratio);n.height=Math.round(image.height*ratio);n.getContext('2d')?.drawImage(image,0,0,n.width,n.height);image.src='';};image.src=url;return()=>{alive=false;image.src='';};},[url]);return <canvas ref={canvas} className={className}/>;}
 export function WallpaperLayer(){const store=useStore(),{url,dim,blur}=store.settings.wallpaper;if(!url||store.resolvedTheme==='amoled')return null;return <div className="studio-wallpaper" aria-hidden="true" style={{'--wallpaper-dim':dim,'--wallpaper-blur':`${store.settings.powerSaving?0:blur}px`} as CSSProperties}>{store.settings.powerSaving?<StillImage url={url}/>:<img src={url} alt=""/>}<i/></div>;}
-export function MiniAtmosphere({track,mode='cover',motion=true}:{track?:Track|null;mode?:'cover'|'pixels'|'plain';motion?:boolean}){const canvas=useRef<HTMLCanvasElement>(null);useEffect(()=>{const n=canvas.current;if(mode!=='pixels'||!n)return;const ctx=n.getContext('2d');if(!ctx)return;let frame=0,last=0,phase=0,visible=!document.hidden;const draw=(now:number)=>{if(!visible)return;if(last&&now-last<1000/12){if(motion)frame=requestAnimationFrame(draw);return;}phase+=motion?.025:0;last=now;n.width=180;n.height=32;ctx.clearRect(0,0,180,32);const tint=getComputedStyle(n).getPropertyValue('--accent').trim()||'#ad9bd5';ctx.fillStyle=tint;for(let x=0;x<180;x+=3){const y=16+Math.round(Math.sin(x*.035+phase)*7+Math.cos(x*.081-phase*.4)*3);ctx.globalAlpha=.22+.18*(1+Math.sin(x*.2+phase));ctx.fillRect(x,y,2,2);if(x%9===0){ctx.globalAlpha=.12;ctx.fillRect(x,y-9,1,1);}}if(motion)frame=requestAnimationFrame(draw);};const repaint=()=>{cancelAnimationFrame(frame);visible=!document.hidden;last=0;if(visible)draw(performance.now());};document.addEventListener('visibilitychange',repaint);repaint();return()=>{cancelAnimationFrame(frame);document.removeEventListener('visibilitychange',repaint);};},[mode,motion]);if(mode==='plain')return null;return <div className={`mini-atmosphere atmosphere-${mode}`} aria-hidden="true">{mode==='pixels'?<canvas ref={canvas}/>:track?.artwork?motion?<img src={track.artwork} alt=""/>:<StillImage url={track.artwork}/>:null}<i/></div>;}
+export function MiniAtmosphere({track,mode='cover',motion=true}:{track?:Track|null;mode?:'cover'|'pixels'|'plain';motion?:boolean}){
+ const canvas=useRef<HTMLCanvasElement>(null);
+ useEffect(()=>{
+  const node=canvas.current;if(mode!=='pixels'||!node)return;
+  const ctx=node.getContext('2d');if(!ctx)return;
+  const width=160,height=44;node.width=width;node.height=height;
+  let frame=0,last=-Infinity;
+  const draw=(now:number)=>{
+   if(document.hidden)return;
+   if(now-last>=1000/12){
+    last=now;const phase=motion?now*.00018:0,tint=getComputedStyle(node).getPropertyValue('--accent').trim()||'#ad9bd5';
+    ctx.clearRect(0,0,width,height);ctx.fillStyle=tint;
+    for(let i=0;i<22;i++){
+     ctx.globalAlpha=.18+.27*(1+Math.sin(i*2.3+phase*3))/2;
+     ctx.fillRect((i*43+17)%width,(i*13+5)%23,1+(i%7===0?1:0),1);
+    }
+    for(let x=0;x<width;x+=2){
+     const ridge=26+Math.round(4*Math.sin(x*.061+phase)+3*Math.cos(x*.119-phase));
+     ctx.globalAlpha=.20;ctx.fillRect(x,ridge,2,height-ridge);
+     ctx.globalAlpha=.68;ctx.fillRect(x,ridge,2,1);
+     ctx.globalAlpha=.30;ctx.fillRect(x,ridge+5+Math.round(2*Math.sin(x*.07)),2,1);
+    }
+   }
+   if(motion)frame=requestAnimationFrame(draw);
+  };
+  const refresh=()=>{cancelAnimationFrame(frame);last=-Infinity;if(!document.hidden)draw(performance.now());};
+  document.addEventListener('visibilitychange',refresh);refresh();
+  return()=>{cancelAnimationFrame(frame);document.removeEventListener('visibilitychange',refresh);};
+ },[mode,motion]);
+ if(mode==='plain')return null;
+ return <div className={`mini-atmosphere atmosphere-${mode}`} aria-hidden="true">{mode==='pixels'?<canvas ref={canvas}/>:track?.artwork?motion?<img src={track.artwork} alt=""/>:<StillImage url={track.artwork}/>:null}<i/></div>;
+}
 export function AboutSignature(){useLocale();const store=useStore(),[beating,setBeating]=useState(false),timer=useRef<ReturnType<typeof setTimeout>|undefined>(undefined);useEffect(()=>()=>clearTimeout(timer.current),[]);return <div className="studio-about-signature"><img src="/brand/logo.png" alt=""/><p>{s31('Твоя музыка. На одной волне.','Your music. On one wavelength.')}<small>{s31('С любовью,','Made with love,')} <button type="button" className={`about-heart ${beating&&store.motion?'is-beating':''}`} aria-label={s31('Сердце GlukWave','GlukWave heart')} onClick={()=>{clearTimeout(timer.current);setBeating(true);timer.current=setTimeout(()=>setBeating(false),2600);}}><Heart fill="currentColor" size={17}/></button> GlukWave</small></p></div>;}
 export function StudioAppearanceControls(){useLocale();const store=useStore(),[pending,setPending]=useState(false),[error,setError]=useState(''),account=useRef(store.user?.id),upload=useRef<AbortController|null>(null);account.current=store.user?.id;useEffect(()=>{setPending(false);setError('');return()=>upload.current?.abort();},[store.user?.id]);const wallpaper=store.settings.wallpaper;return <section className="studio-appearance-tools">
  <Toggle checked={store.settings.powerSaving} onChange={powerSaving=>void store.saveSettings({powerSaving})} label={s31('Энергосбережение','Power saving')} description={s31('Статичная волна, обложка и фон. Музыка и управление работают как обычно.','Still wave, cover and background. Music and controls work as usual.')}/>

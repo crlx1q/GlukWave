@@ -62,6 +62,10 @@ class NativeDesktopTransport extends StatelessWidget {
             child: LayoutBuilder(
               builder: (_, constraints) {
                 final wide = constraints.maxWidth >= 940;
+                final sideWidth = (constraints.maxWidth * .23).clamp(
+                  wide ? 170.0 : 96.0,
+                  350.0,
+                );
                 return Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: 16,
@@ -69,8 +73,8 @@ class NativeDesktopTransport extends StatelessWidget {
                   ),
                   child: Row(
                     children: [
-                      Expanded(
-                        flex: 10,
+                      SizedBox(
+                        width: sideWidth,
                         child: Row(
                           children: [
                             Expanded(
@@ -166,7 +170,6 @@ class NativeDesktopTransport extends StatelessWidget {
                       ),
                       const SizedBox(width: 16),
                       Expanded(
-                        flex: wide ? 14 : 13,
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
@@ -355,58 +358,64 @@ class NativeDesktopTransport extends StatelessWidget {
                       ),
                       const SizedBox(width: 16),
                       SizedBox(
-                        width: wide ? 170 : 96,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
+                        width: sideWidth,
+                        child: Align(
+                          alignment: Alignment.centerRight,
+                          child: SizedBox(
+                            width: wide ? 170 : 96,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                IconButton(
-                                  key: const Key('mini-connect'),
-                                  tooltip: 'GlukWave Connect',
-                                  onPressed: () => showConnectPicker(
-                                    context,
-                                    c,
-                                    onAllDevices: onDevices,
-                                  ),
-                                  icon: Icon(
-                                    Icons.devices_rounded,
-                                    size: 19,
-                                    color: v.muted,
-                                  ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    IconButton(
+                                      key: const Key('mini-connect'),
+                                      tooltip: 'GlukWave Connect',
+                                      onPressed: () => showConnectPicker(
+                                        context,
+                                        c,
+                                        onAllDevices: onDevices,
+                                      ),
+                                      icon: Icon(
+                                        Icons.devices_rounded,
+                                        size: 19,
+                                        color: v.muted,
+                                      ),
+                                    ),
+                                    IconButton(
+                                      tooltip: wt(
+                                        'native.d66131f711',
+                                        context: context,
+                                      ),
+                                      onPressed: onOpen,
+                                      icon: Icon(
+                                        Icons.open_in_full_rounded,
+                                        size: 18,
+                                        color: v.muted,
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                IconButton(
-                                  tooltip: wt(
-                                    'native.d66131f711',
-                                    context: context,
+                                if (wide)
+                                  SizedBox(
+                                    height: 26,
+                                    child: VolumeSlider(
+                                      hoverHint: true,
+                                      scope: c.controlScope,
+                                      value: c.audio.volume,
+                                      onPreview: c.previewVolume,
+                                      onCancel: c.cancelVolumeEdit,
+                                      onChanged: (value) => perform(
+                                        () => c.transport('volume', {
+                                          'volume': value,
+                                        }),
+                                      ),
+                                    ),
                                   ),
-                                  onPressed: onOpen,
-                                  icon: Icon(
-                                    Icons.open_in_full_rounded,
-                                    size: 18,
-                                    color: v.muted,
-                                  ),
-                                ),
                               ],
                             ),
-                            if (wide)
-                              SizedBox(
-                                height: 26,
-                                child: VolumeSlider(
-                                  hoverHint: true,
-                                  scope: c.controlScope,
-                                  value: c.audio.volume,
-                                  onPreview: c.previewVolume,
-                                  onCancel: c.cancelVolumeEdit,
-                                  onChanged: (value) => perform(
-                                    () => c.transport('volume', {
-                                      'volume': value,
-                                    }),
-                                  ),
-                                ),
-                              ),
-                          ],
+                          ),
                         ),
                       ),
                     ],

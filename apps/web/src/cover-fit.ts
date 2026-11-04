@@ -13,11 +13,11 @@ export function coverBounds(size:number,x:number,y:number) {
  return {left:Math.min(...points.map(p=>p.x)),right:Math.max(...points.map(p=>p.x)),top:Math.min(...points.map(p=>p.y)),bottom:Math.max(...points.map(p=>p.y))};
 }
 
-export function fitCover(width:number,height:number,threeD:boolean,x:number,y:number) {
+export function fitCover(width:number,height:number,threeD:boolean,x:number,y:number,maxSize=340) {
  // Size follows the available viewport once. Angle never changes the stage or the artwork.
  void x;void y;
  if(!width)return 0;
- const widthLimit=Math.min(340,Math.max(0,width-24)/(threeD?1.5:1));
+ const widthLimit=Math.min(maxSize,Math.max(0,width-24)/(threeD?1.5:1));
  if(height<=0)return Math.floor(widthLimit*100)/100;
  if(!threeD)return Math.max(0,Math.min(widthLimit,height-36));
  let low=0,high=widthLimit;

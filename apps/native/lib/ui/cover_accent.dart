@@ -3,7 +3,11 @@ import 'dart:typed_data';
 import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 
-Color? sampleCoverAccent(Uint8List pixels) {
+typedef CoverTones = ({Color primary, Color? secondary});
+
+Color? sampleCoverAccent(Uint8List pixels) => sampleCoverTones(pixels)?.primary;
+
+CoverTones? sampleCoverTones(Uint8List pixels) {
   final bins = List.generate(12, (_) => List.filled(4, 0.0));
   for (var i = 0; i + 3 < pixels.length; i += 4) {
     final c = Color.fromARGB(
@@ -25,14 +29,25 @@ Color? sampleCoverAccent(Uint8List pixels) {
     bin[3] += c.b * weight;
   }
   final best = bins.reduce((a, b) => a[0] > b[0] ? a : b);
-  return best[0] < 1
-      ? null
-      : Color.from(
-          alpha: 1,
-          red: best[1] / best[0],
-          green: best[2] / best[0],
-          blue: best[3] / best[0],
-        );
+  if (best[0] < 1) return null;
+  final index = bins.indexOf(best);
+  var alternate = bins[(index + 2) % 12];
+  for (var offset = 3; offset <= 10; offset++) {
+    final bin = bins[(index + offset) % 12];
+    if (bin[0] > alternate[0]) alternate = bin;
+  }
+  Color tone(List<double> bin) => Color.from(
+    alpha: 1,
+    red: bin[1] / bin[0],
+    green: bin[2] / bin[0],
+    blue: bin[3] / bin[0],
+  );
+  return (
+    primary: tone(best),
+    secondary: alternate[0] >= 1 && alternate[0] >= best[0] * .15
+        ? tone(alternate)
+        : null,
+  );
 }
 
 Color readableCoverAccent(
@@ -62,7 +77,7 @@ Color readableCoverAccent(
 
 /// Tiny decoded samples, at most32 colours. Streams detach on change/dispose.
 class CoverAccentSampler {
-  final _cache = <String, Color?>{};
+  final _cache = <String, CoverTones?>{};
   ImageStream? _stream;
   ImageStreamListener? _listener;
   Timer? _timer;
@@ -77,7 +92,17 @@ class CoverAccentSampler {
     _listener = null;
   }
 
-  void read(String key, ImageProvider provider, ValueChanged<Color?> complete) {
+  void read(
+    String key,
+    ImageProvider provider,
+    ValueChanged<Color?> complete,
+  ) => readTones(key, provider, (tones) => complete(tones?.primary));
+
+  void readTones(
+    String key,
+    ImageProvider provider,
+    ValueChanged<CoverTones?> complete,
+  ) {
     cancel();
     final generation = _generation;
     if (_cache.containsKey(key)) {
@@ -86,7 +111,7 @@ class CoverAccentSampler {
       });
       return;
     }
-    void finish(Color? tone) {
+    void finish(CoverTones? tone) {
       if (generation != _generation) return;
       cancel();
       _cache[key] = tone;
@@ -109,7 +134,7 @@ class CoverAccentSampler {
       try {
         final data = await image.toByteData(format: ui.ImageByteFormat.rawRgba);
         finish(
-          data == null ? null : sampleCoverAccent(data.buffer.asUint8List()),
+          data == null ? null : sampleCoverTones(data.buffer.asUint8List()),
         );
       } catch (_) {
         finish(null);

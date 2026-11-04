@@ -374,7 +374,7 @@ class WaveController extends ChangeNotifier {
       ? 'ios'
       : 'android';
   String get deviceName =>
-      'GlukWave Р вЂ™Р’В· ${Platform.isWindows
+      'GlukWave \u00b7 ${Platform.isWindows
           ? 'Windows'
           : Platform.isIOS
           ? 'iOS'

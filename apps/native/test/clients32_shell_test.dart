@@ -143,6 +143,10 @@ void main() {
       expect(find.byKey(const Key('desktop-listening-rail')), findsOneWidget);
       final dock = tester.getRect(find.byKey(const Key('desktop-main-dock')));
       expect(dock.width, 1416);
+      expect(
+        tester.getCenter(find.byKey(const Key('mini-play'))).dx,
+        closeTo(dock.center.dx, 1),
+      );
       await clientTap(tester, 'nav-artists');
       await clientTap(tester, 'artist-qa-artist');
       expect(find.byType(ClientDetailPage), findsOneWidget);

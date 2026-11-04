@@ -133,7 +133,7 @@ class _GlukWaveAppState extends State<GlukWaveApp> with WidgetsBindingObserver {
   ThemeData? _light, _dark;
   final _coverSampler = CoverAccentSampler();
   String? _coverKey;
-  Color? _coverAccent, _themeAccent;
+  CoverTones? _coverAccent, _themeAccent;
   bool _highContrast = false;
   bool _energySaving = false;
   @override
@@ -174,16 +174,19 @@ class _GlukWaveAppState extends State<GlukWaveApp> with WidgetsBindingObserver {
     if (key == _coverKey) return;
     _coverKey = key;
     _coverSampler.cancel();
-    if (c.energySaving) return;
-    if (!c.customization.appearance.coverAccent ||
+    if (c.energySaving ||
+        !c.customization.appearance.coverAccent ||
         track == null ||
         track.artwork.isEmpty) {
       _coverAccent = null;
       return;
     }
     final provider = waveArtworkProvider(c, track.artwork);
-    if (provider == null) return;
-    _coverSampler.read(key, provider, (tone) {
+    if (provider == null) {
+      _coverAccent = null;
+      return;
+    }
+    _coverSampler.readTones(key, provider, (tone) {
       if (!mounted || _coverKey != key) return;
       setState(() => _coverAccent = tone);
     });
@@ -253,13 +256,15 @@ class _GlukWaveAppState extends State<GlukWaveApp> with WidgetsBindingObserver {
         _light = buildWaveTheme(
           customization,
           Brightness.light,
-          coverAccent: _coverAccent,
+          coverAccent: _coverAccent?.primary,
+          coverSecondary: _coverAccent?.secondary,
           highContrast: highContrast,
         );
         _dark = buildWaveTheme(
           customization,
           Brightness.dark,
-          coverAccent: _coverAccent,
+          coverAccent: _coverAccent?.primary,
+          coverSecondary: _coverAccent?.secondary,
           highContrast: highContrast,
         );
         if (c.energySaving) {

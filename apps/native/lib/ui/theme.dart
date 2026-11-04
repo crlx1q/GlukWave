@@ -7,6 +7,7 @@ Color hexColor(String hex) =>
 
 class WaveVisuals extends ThemeExtension<WaveVisuals> {
   final Color background, surface, ink, accent;
+  final Color coverTone;
   final Brightness brightness;
   final double radius, speed;
   final bool compact, blur, reducedMotion;
@@ -16,6 +17,7 @@ class WaveVisuals extends ThemeExtension<WaveVisuals> {
     required this.surface,
     required this.ink,
     required this.accent,
+    this.coverTone = Colors.transparent,
     required this.brightness,
     required this.radius,
     required this.speed,
@@ -28,6 +30,7 @@ class WaveVisuals extends ThemeExtension<WaveVisuals> {
     WaveCustomization customization,
     Brightness brightness, {
     Color? coverAccent,
+    Color? coverSecondary,
     bool highContrast = false,
   }) {
     final a = customization.appearance;
@@ -42,6 +45,13 @@ class WaveVisuals extends ThemeExtension<WaveVisuals> {
           : hexColor(p.bg),
       surface: hexColor(p.surface),
       ink: hexColor(p.ink),
+      coverTone:
+          a.coverAccent &&
+              coverAccent != null &&
+              !highContrast &&
+              customization.theme != 'amoled'
+          ? coverSecondary ?? hexColor(p.accent)
+          : Colors.transparent,
       accent: readableCoverAccent(
         a.coverAccent ? coverAccent : null,
         hexColor(p.bg),
@@ -73,6 +83,7 @@ class WaveVisuals extends ThemeExtension<WaveVisuals> {
     Color? surface,
     Color? ink,
     Color? accent,
+    Color? coverTone,
     Brightness? brightness,
     double? radius,
     double? speed,
@@ -85,6 +96,7 @@ class WaveVisuals extends ThemeExtension<WaveVisuals> {
     surface: surface ?? this.surface,
     ink: ink ?? this.ink,
     accent: accent ?? this.accent,
+    coverTone: coverTone ?? this.coverTone,
     brightness: brightness ?? this.brightness,
     radius: radius ?? this.radius,
     speed: speed ?? this.speed,
@@ -101,6 +113,7 @@ class WaveVisuals extends ThemeExtension<WaveVisuals> {
       surface: Color.lerp(surface, other.surface, t),
       ink: Color.lerp(ink, other.ink, t),
       accent: Color.lerp(accent, other.accent, t),
+      coverTone: Color.lerp(coverTone, other.coverTone, t),
       radius: radius + (other.radius - radius) * t,
     );
   }
@@ -116,12 +129,14 @@ ThemeData buildWaveTheme(
   WaveCustomization customization,
   Brightness brightness, {
   Color? coverAccent,
+  Color? coverSecondary,
   bool highContrast = false,
 }) {
   final v = WaveVisuals.from(
     customization,
     brightness,
     coverAccent: coverAccent,
+    coverSecondary: coverSecondary,
     highContrast: highContrast,
   );
   final shape = RoundedRectangleBorder(

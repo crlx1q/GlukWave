@@ -794,6 +794,8 @@ class _WaveHeroState extends State<WaveHero>
       final v = waveVisuals(context),
           compact = constraints.maxWidth < 600 || v.compact;
       final height = compact ? 260.0 : 310.0;
+      final coverTint = v.coverTone.a;
+      final colorButton = coverTint > 0 && widget.onPlay != null;
       return MouseRegion(
         onHover: (event) =>
             _readPointer(event.localPosition, constraints.maxWidth, height),
@@ -807,6 +809,24 @@ class _WaveHeroState extends State<WaveHero>
             height: height,
             child: Stack(
               children: [
+                if (coverTint > 0)
+                  Positioned.fill(
+                    child: IgnorePointer(
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          gradient: RadialGradient(
+                            center: const Alignment(.2, .34),
+                            radius: .68,
+                            colors: [
+                              v.coverTone.withValues(alpha: .18 * coverTint),
+                              v.accent.withValues(alpha: .09 * coverTint),
+                              v.accent.withValues(alpha: 0),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                 Positioned(
                   left: 0,
                   right: 0,
@@ -866,29 +886,54 @@ class _WaveHeroState extends State<WaveHero>
                     ),
                     const SizedBox(width: 14),
                     WavePress(
-                      child: FilledButton(
-                        onPressed: widget.onPlay,
-                        style: FilledButton.styleFrom(
-                          minimumSize: const Size(54, 54),
-                          maximumSize: const Size(54, 54),
-                          padding: EdgeInsets.zero,
-                          backgroundColor: v.ink,
-                          foregroundColor: v.background,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(v.corners(18)),
-                          ),
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(v.corners(18)),
+                          gradient: colorButton
+                              ? LinearGradient(
+                                  colors: [
+                                    Color.lerp(
+                                      v.ink,
+                                      v.accent,
+                                      .20 * coverTint,
+                                    )!,
+                                    Color.lerp(
+                                      v.ink,
+                                      v.coverTone,
+                                      .23 * coverTint,
+                                    )!,
+                                  ],
+                                )
+                              : null,
                         ),
-                        child: Semantics(
-                          label: widget.playing
-                              ? wt('native.03498e395a', context: context)
-                              : wt('native.5f266e04fe', context: context),
-                          child: widget.empty
-                              ? const Icon(Icons.add_rounded, size: 24)
-                              : WavePlaybackIcon(
-                                  playing: widget.playing,
-                                  loading: widget.loading,
-                                  size: 27,
-                                ),
+                        child: FilledButton(
+                          onPressed: widget.onPlay,
+                          style: FilledButton.styleFrom(
+                            minimumSize: const Size(54, 54),
+                            maximumSize: const Size(54, 54),
+                            padding: EdgeInsets.zero,
+                            backgroundColor: colorButton
+                                ? Colors.transparent
+                                : v.ink,
+                            foregroundColor: v.background,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(
+                                v.corners(18),
+                              ),
+                            ),
+                          ),
+                          child: Semantics(
+                            label: widget.playing
+                                ? wt('native.03498e395a', context: context)
+                                : wt('native.5f266e04fe', context: context),
+                            child: widget.empty
+                                ? const Icon(Icons.add_rounded, size: 24)
+                                : WavePlaybackIcon(
+                                    playing: widget.playing,
+                                    loading: widget.loading,
+                                    size: 27,
+                                  ),
+                          ),
                         ),
                       ),
                     ),

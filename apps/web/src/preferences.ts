@@ -1,4 +1,5 @@
 import {normalizeWallpaper,normalizeSavedThemes} from './studio-model';
+import type {CoverTones} from './cover-accent';
 import {normalizeHomeLayout} from './home-layout';
 import {normalizeHomePins} from './home-pins';
 import { t, getLanguageChoice, isLanguageChoice } from './locale';
@@ -88,7 +89,7 @@ export const getAppearancePresets=():{id:string;name:string;description:string;m
 ];
 export const accentSwatches=['#a08369','#b1a2de','#9bb99a','#7ca8bb','#d2939c','#dbb976','#df9978'];
 
-export function applyAppearance(appearance:Appearance,mode:PaletteMode,motion:boolean,accentOverride?:string) {
+export function applyAppearance(appearance:Appearance,mode:PaletteMode,motion:boolean,accentOverride?:string,tones?:CoverTones|null) {
   const root=document.documentElement,colors={...appearance[mode],...(mode==='amoled'?{bg:'#000000',surface:'#080808'}:{}),accent:accentOverride||appearance[mode].accent};
   for(const key of ['bg','surface','ink','accent'] as const)root.style.setProperty(`--${key}`,colors[key]);
   root.style.setProperty('--muted',`color-mix(in srgb,${colors.ink} 70%,${colors.bg})`);
@@ -96,6 +97,10 @@ export function applyAppearance(appearance:Appearance,mode:PaletteMode,motion:bo
   root.style.setProperty('--accent-soft',`color-mix(in srgb,${colors.accent} 18%,${colors.bg})`);
   root.style.setProperty('--player',`color-mix(in srgb,${colors.surface} 94%,${colors.ink})`);
   root.style.setProperty('--surface-raised',`color-mix(in srgb,${colors.surface} 92%,${colors.ink})`);
+  const gradient=appearance.coverAccent&&tones&&mode!=='amoled';
+  root.style.setProperty('--cover-tone-a',gradient?colors.accent:'transparent');
+  root.style.setProperty('--cover-tone-b',gradient?tones.secondary||appearance[mode].accent:'transparent');
+  root.dataset.coverGradient=String(!!gradient);
   root.style.setProperty('--radius',`${appearance.radius}px`);root.style.setProperty('--motion-speed',String(appearance.speed));root.style.setProperty('--motion-duration',`${220/appearance.speed}ms`);
   root.dataset.theme=mode;root.dataset.motion=motion?'full':'reduce';root.dataset.blur=String(appearance.blur);root.dataset.compact=String(appearance.compact);root.style.colorScheme=mode==='amoled'?'dark':mode;
   document.body.classList.toggle('compact',appearance.compact);document.body.classList.toggle('soft-blur',appearance.blur);

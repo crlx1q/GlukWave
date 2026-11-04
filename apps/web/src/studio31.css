@@ -17,6 +17,18 @@ html:not([data-theme=amoled]){
 }
 html:not([data-theme=amoled]) .app-shell{background:var(--surface-pane)}
 html:not([data-theme=amoled]) .app-shell .quick-tile{background:var(--surface-tile)}
+@property --cover-tone-a{syntax:"<color>";inherits:true;initial-value:transparent}
+@property --cover-tone-b{syntax:"<color>";inherits:true;initial-value:transparent}
+html[data-motion=full]{transition:--cover-tone-a 420ms ease,--cover-tone-b 420ms ease}
+html[data-cover-gradient=true] .wave-hero::before{
+ content:""!important;position:absolute;inset:0;z-index:-1;pointer-events:none;
+ background:radial-gradient(ellipse at 22% 52%,color-mix(in srgb,var(--cover-tone-a) 23%,transparent),transparent 64%),radial-gradient(ellipse at 80% 64%,color-mix(in srgb,var(--cover-tone-b) 20%,transparent),transparent 68%);
+}
+html[data-cover-gradient=true] :is(.wave-play,.wave-mode.selected,.mood-chip.selected){
+ background:linear-gradient(120deg,color-mix(in srgb,var(--surface-raised) 77%,var(--cover-tone-a)),color-mix(in srgb,var(--surface-raised) 79%,var(--cover-tone-b)));
+ color:var(--ink);
+}
+html[data-cover-gradient=true] .wave-play:hover{filter:brightness(1.08)}
 body:has(.studio-wallpaper) .app-shell,
 body:has(.studio-wallpaper) .app-shell .wave-hero{background:transparent}
 body:has(.studio-wallpaper) .sidebar,

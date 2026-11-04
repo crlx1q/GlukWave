@@ -7,6 +7,7 @@ import {stateSchema,commandSchema,initialState,liveState} from './rooms.js';
 import {languageCodes,browserLanguage} from './locale.js';
 import {localizedError} from './messages.js';
 import {planLimits} from './plans.js';
+import {normalizeDeviceName} from './device-name.js';
 
 export function setupRealtime(server,app,ctx){
   const {store,config,requireAuth}=ctx;
@@ -27,6 +28,7 @@ export function setupRealtime(server,app,ctx){
       const rawToken=tokenFrom(socket),auth=await ctx.authenticate(rawToken);if(!auth)fail(401,'AUTH_REQUIRED','Войди в GlukWave.');
       const device=parse(z.object({deviceId:text(100),surfaceId:text(100).optional(),name:text(100),kind:z.enum(['web','windows','android','ios','macos','linux']).default('web'),token:z.string().optional(),language:z.enum(languageCodes).optional()}),socket.handshake.auth);
       if(auth.session.deviceId&&auth.session.deviceId!==device.deviceId)fail(401,'AUTH_REQUIRED','Войди на этом устройстве заново.');
+      device.name=normalizeDeviceName(device.name);
       device.surfaceId||=socket.id;socket.data={userId:auth.user.id,rawToken,device,sessionId:auth.session.id,language};next();
     }catch(err){const body=localizedError({code:err.code||'AUTH_REQUIRED',message:err.message},language),error=new Error(body.message);error.data={code:body.code};next(error);}
   });
@@ -141,7 +143,7 @@ export function setupRealtime(server,app,ctx){
   });
   app.get('/api/devices',requireAuth,asyncRoute(async(req,res)=>{
     const uid=req.auth.user.id,records=await store.list('devices',record=>record.userId===uid),sessions=await store.list('sessions',record=>record.userId===uid&&record.expiresAt>Date.now()),connect=await snapshot(uid);
-    const devices=await Promise.all(records.map(async record=>{const sockets=socketsFor(record.id),output=outputSocket(record.id),active=connect.activeDeviceId===record.deviceId,room=record.roomId?await store.get('rooms',record.roomId):null,ownState=connect.independent&&output?.data.lastState&&(output.data.lastState.updatedAt||0)>(record.state?.updatedAt||0)?output.data.lastState:record.state,state=active&&!connect.independent?connect.state:{...liveState(ownState),playing:sockets.length>0&&ownState.playing},track=state.trackId?await store.get('tracks',state.trackId):null;return {id:record.deviceId,name:record.name,kind:record.kind,online:sockets.length>0,surfaceId:active?connect.activeSurfaceId:output?.data.device.surfaceId,surfaceCount:sockets.length,sessions:sessions.filter(s=>s.deviceId===record.deviceId).length,roomId:room?.members.some(m=>m.userId===uid)?room.id:null,createdAt:record.createdAt,lastSeen:record.lastSeen,state,track:track&&await ctx.canAccessTrack(track,req.auth.user)?ctx.publicTrack(track,req.auth.user):null};}));res.set('Cache-Control','no-store').json({devices,limit:planLimits(req.auth.user).devices});
+    const devices=await Promise.all(records.map(async record=>{const sockets=socketsFor(record.id),output=outputSocket(record.id),active=connect.activeDeviceId===record.deviceId,room=record.roomId?await store.get('rooms',record.roomId):null,ownState=connect.independent&&output?.data.lastState&&(output.data.lastState.updatedAt||0)>(record.state?.updatedAt||0)?output.data.lastState:record.state,state=active&&!connect.independent?connect.state:{...liveState(ownState),playing:sockets.length>0&&ownState.playing},track=state.trackId?await store.get('tracks',state.trackId):null;return {id:record.deviceId,name:normalizeDeviceName(record.name),kind:record.kind,online:sockets.length>0,surfaceId:active?connect.activeSurfaceId:output?.data.device.surfaceId,surfaceCount:sockets.length,sessions:sessions.filter(s=>s.deviceId===record.deviceId).length,roomId:room?.members.some(m=>m.userId===uid)?room.id:null,createdAt:record.createdAt,lastSeen:record.lastSeen,state,track:track&&await ctx.canAccessTrack(track,req.auth.user)?ctx.publicTrack(track,req.auth.user):null};}));res.set('Cache-Control','no-store').json({devices,limit:planLimits(req.auth.user).devices});
   }));
   app.delete('/api/devices/:id',requireAuth,asyncRoute(async(req,res)=>{if(!await store.get('devices',keyFor(req.auth.user.id,req.params.id)))fail(404,'DEVICE_NOT_FOUND','Устройство не найдено.');await ctx.revokeDevice(req.auth.user.id,req.params.id);await ctx.audit('device.remove',req.auth.user.id,{deviceId:req.params.id});res.json({ok:true});}));
   app.get('/api/connect',requireAuth,asyncRoute(async(req,res)=>res.set('Cache-Control','no-store').json({connect:await snapshot(req.auth.user.id)})));
