@@ -26,6 +26,9 @@ class NativeHomeCanvas extends StatefulWidget {
   final String? recommendationsError;
   final VoidCallback onRetry, onLikes, onCreatePlaylist;
   final ValueChanged<Json> onPlaylist;
+  final List<Json> friends;
+  final Future<void> Function() refreshFriends;
+  final VoidCallback onFriends, onRooms;
   final Widget? recommendationFooter;
   const NativeHomeCanvas({
     super.key,
@@ -38,6 +41,10 @@ class NativeHomeCanvas extends StatefulWidget {
     required this.onLikes,
     required this.onCreatePlaylist,
     required this.onPlaylist,
+    required this.friends,
+    required this.refreshFriends,
+    required this.onFriends,
+    required this.onRooms,
     this.recommendationFooter,
   });
   @override
@@ -809,6 +816,32 @@ class _NativeHomeCanvasState extends State<NativeHomeCanvas> {
       );
     }
     if (type == 'daily') return _daily(item);
+    if (type == 'friends' || type == 'rooms') {
+      final isFriends = type == 'friends';
+      final open = isFriends ? widget.onFriends : widget.onRooms;
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          _heading(
+            title,
+            action: IconButton(
+              tooltip: title,
+              onPressed: open,
+              icon: const Icon(Icons.arrow_forward_rounded),
+            ),
+          ),
+          _HomeSocialRows(
+            key: ValueKey(type),
+            controller: c,
+            isFriends: isFriends,
+            friends: widget.friends,
+            refreshFriends: widget.refreshFriends,
+            compact: view == 'compact',
+            onOpen: open,
+          ),
+        ],
+      );
+    }
     if (type == 'discovery' || type == 'popular') {
       return NativeDiscoveryShelf(
         key: ValueKey('$type:${c.user?.id}:${c.api.server}'),
@@ -1265,6 +1298,8 @@ class _NativeHomeCanvasState extends State<NativeHomeCanvas> {
                         'discovery',
                         'popular',
                         'daily',
+                        'friends',
+                        'rooms',
                         'likes',
                       ])
                         if (!present.contains(type))
@@ -1281,8 +1316,16 @@ class _NativeHomeCanvasState extends State<NativeHomeCanvas> {
                             trailing: Icon(Icons.add_rounded, color: v.accent),
                             onTap: () => Navigator.pop(sheet, {
                               'type': type,
-                              'size': type == 'likes' ? 'small' : 'large',
-                              'view': type == 'likes' ? 'compact' : 'cards',
+                              'size': switch (type) {
+                                'likes' => 'small',
+                                'friends' || 'rooms' => 'medium',
+                                _ => 'large',
+                              },
+                              'view': switch (type) {
+                                'likes' => 'compact',
+                                'friends' || 'rooms' => 'list',
+                                _ => 'cards',
+                              },
                             }),
                           ),
                       if (c.playlists.isNotEmpty) ...[
@@ -1670,6 +1713,144 @@ class NativeCanvasTracks extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+}
+
+class _HomeSocialRows extends StatefulWidget {
+  final WaveController controller;
+  final bool isFriends, compact;
+  final List<Json> friends;
+  final Future<void> Function() refreshFriends;
+  final VoidCallback onOpen;
+
+  const _HomeSocialRows({
+    super.key,
+    required this.controller,
+    required this.isFriends,
+    required this.compact,
+    required this.friends,
+    required this.refreshFriends,
+    required this.onOpen,
+  });
+
+  @override
+  State<_HomeSocialRows> createState() => _HomeSocialRowsState();
+}
+
+class _HomeSocialRowsState extends State<_HomeSocialRows> {
+  Timer? _refresh;
+  WaveController get c => widget.controller;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.isFriends) {
+      scheduleMicrotask(_refreshFriends);
+      _refresh = Timer.periodic(
+        const Duration(seconds: 30),
+        (_) => _refreshFriends(),
+      );
+    } else {
+      c.openRoomDirectory();
+    }
+  }
+
+  void _refreshFriends() {
+    if (mounted &&
+        c.loggedIn &&
+        c.online &&
+        WidgetsBinding.instance.lifecycleState == AppLifecycleState.resumed) {
+      unawaited(widget.refreshFriends());
+    }
+  }
+
+  @override
+  void dispose() {
+    _refresh?.cancel();
+    if (!widget.isFriends) c.closeRoomDirectory();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final v = waveVisuals(context);
+    final rows = <({String title, String subtitle, String? artwork})>[];
+    if (c.loggedIn && c.online) {
+      if (widget.isFriends) {
+        for (final friend in widget.friends) {
+          final activity = object(friend['activity']);
+          final track = object(activity['track']);
+          if (friend['online'] != true ||
+              activity['playing'] != true ||
+              track.isEmpty) {
+            continue;
+          }
+          final user = object(friend['user']);
+          final artist = track['artist'] as String? ?? '';
+          rows.add((
+            title: user['displayName'] as String? ?? '',
+            subtitle: [
+              track['title'] as String? ?? '',
+              artist,
+            ].where((part) => part.isNotEmpty).join(' · '),
+            artwork: track['artwork'] as String?,
+          ));
+        }
+      } else {
+        for (final room in [...c.rooms, ...c.publicRooms]) {
+          rows.add((
+            title: room['name'] as String? ?? '',
+            subtitle: canvasText(
+              context,
+              room['visibility'] == 'public' ? 'roomPublic' : 'roomPrivate',
+            ),
+            artwork: null,
+          ));
+        }
+      }
+    }
+    if (rows.isEmpty) {
+      final key = !c.online
+          ? 'offline'
+          : !c.loggedIn
+          ? 'socialSignIn'
+          : widget.isFriends
+          ? 'friendsEmpty'
+          : 'roomsEmpty';
+      return Padding(
+        padding: const EdgeInsets.only(bottom: 14),
+        child: Text(canvasText(context, key), style: TextStyle(color: v.muted)),
+      );
+    }
+    return Column(
+      children: [
+        for (final row in rows.take(widget.compact ? 2 : 4))
+          ListTile(
+            dense: true,
+            contentPadding: EdgeInsets.zero,
+            leading: Artwork(
+              controller: c,
+              size: 36,
+              radius: 8,
+              url: row.artwork,
+              icon: widget.isFriends
+                  ? Icons.headphones_rounded
+                  : Icons.groups_outlined,
+            ),
+            title: Text(
+              row.title,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+            subtitle: Text(
+              row.subtitle,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+            onTap: widget.onOpen,
+          ),
+      ],
     );
   }
 }

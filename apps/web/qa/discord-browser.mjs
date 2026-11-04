@@ -47,7 +47,17 @@ try {
   await control({ scenario: 'error' }); refresh(); wait(`!!document.querySelector('.wave-discord-error')`); shot('error-mobile');
   await control({ scenario: 'idle' }); click('Refresh'); wait(`!document.querySelector('.wave-discord-error')`); proof.steps.push('Transient API error has a scoped retry and recovers');
   await control({ scenario: 'free' }); run('reload'); wait(`!!document.querySelector('.wave-discord-empty.locked')`); run('scrollintoview', '.wave-discord'); snapshot(); shot('free-mobile'); assert(!evaluate(`!!document.querySelector('.wave-discord .switch')`)); proof.steps.push('Free receives locked UI from the server eligibility response');
-  await control({ scenario: 'signedout' }); open(origin + '/app/?listen=friend-42#rooms'); wait(`!!document.querySelector('.wave-discord-invitation')`); assert(evaluate(`document.querySelector('.wave-discord-invitation').innerText.includes('Sign in to join')`)); shot('invite-signedout-mobile'); click('Close'); assert(!evaluate(`location.search.includes('listen=')`)); proof.steps.push('Signed-out listen invitation requires explicit sign-in and can be dismissed without joining');
+  await control({ scenario: 'signedout' }); open(origin + '/app/?listen=friend-42');
+  wait(`!!document.querySelector('.rooms-view .wave-discord-invitation')`);
+  assert(evaluate(`document.querySelector('.wave-discord-invitation').innerText.includes('Sign in to join') && !document.querySelector('.wave-discord-invitation').closest('dialog')`));
+  shot('invite-signedout-mobile'); click('Close');
+  assert(!evaluate(`location.search.includes('listen=') || !!document.querySelector('.wave-discord-invitation')`));
+  proof.steps.push('Signed-out deep link opens Rooms with an inline invitation requiring explicit sign-in; dismiss clears the intent');
+  open(origin + '/app/?track=verified-music');
+  wait(`!!document.querySelector('main .shared-track-link')`);
+  assert(evaluate(`!document.querySelector('.shared-track-link').closest('dialog')`));
+  click('Close'); assert(!evaluate(`location.search.includes('track=') || !!document.querySelector('.shared-track-link')`));
+  proof.steps.push('Shared track deep link opens an inline card with a dismiss action');
   const errors = run('errors'); proof.browserErrors = errors;
   proof.passed = true;
 } catch (error) { proof.error = String(error); try { proof.snapshot = snapshot().snapshot; } catch {} throw error; }

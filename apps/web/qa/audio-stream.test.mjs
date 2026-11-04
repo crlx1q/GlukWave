@@ -5,6 +5,7 @@ import {AudioStreamLoader} from '../src/audio-stream.ts';
 class FakeHls{
  static Events={MEDIA_ATTACHED:'attached',MANIFEST_PARSED:'parsed',ERROR:'error'};
  static ErrorTypes={NETWORK_ERROR:'network',MEDIA_ERROR:'media'};
+ static DefaultConfig={loader:class FakeFragmentLoader{}};
  static instances=[];static isSupported(){return true;}
  constructor(options){this.options=options;this.events=new Map();this.destroyed=0;this.retries=0;this.recoveries=0;FakeHls.instances.push(this);}
  on(event,handler){this.events.set(event,handler);}

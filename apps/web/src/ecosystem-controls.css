@@ -94,3 +94,18 @@ html[data-motion=reduce] :is(.connect-popover,.listening-glyph>.playback-flow>pa
  .full-player.focused-player.connected-player .np-detail-pane .np-queue,.full-player.focused-player.connected-player .np-detail-pane .np-comments{overflow:auto}
  .full-player.focused-player.connected-player .np-detail-pane .lyrics-lines{min-height:0;max-height:none;overflow:auto;padding:55px 3px 70px}
 }
+
+.shared-track-link{
+ display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:15px;
+ margin:0 0 24px;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:var(--surface);
+}
+.shared-track-link>.art{width:54px;height:54px;border-radius:9px}
+.shared-track-link-copy{min-width:0}
+.shared-track-link-copy h2{font-size:18px;line-height:1.25;margin:3px 0;overflow-wrap:anywhere}
+.shared-track-link-copy p{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:0;color:var(--muted);font-size:12px}
+.shared-track-link-actions{display:flex;align-items:center;justify-content:flex-end;gap:8px}
+.shared-track-link-actions>.primary-button{min-height:36px}
+@media(max-width:600px){
+ .shared-track-link{grid-template-columns:auto minmax(0,1fr);gap:10px}
+ .shared-track-link-actions{grid-column:1/-1;justify-content:space-between}
+}

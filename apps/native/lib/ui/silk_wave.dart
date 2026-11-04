@@ -29,6 +29,7 @@ void drawSilkWave(
   Offset pointer,
   double pointerActive, {
   Color background = const Color(0xff141517),
+  Color? accentEnd,
   Offset velocity = Offset.zero,
 }) {
   final count = size.width < 500 ? 2400 : 4200;
@@ -98,11 +99,20 @@ void drawSilkWave(
     ]);
   }
   final palette = SilkPalette.from(accent, background);
+  final end = accentEnd == null
+      ? null
+      : SilkPalette.from(accentEnd, background);
   final paint = Paint()..strokeCap = StrokeCap.round;
   for (var band = 0; band < positions.length; band++) {
-    paint.color = palette
-        .atDepth((band + .5) / 8)
-        .withValues(alpha: .42 + (band + .5) / 8 * .50 + energy * .08);
+    final depth = (band + .5) / 8;
+    final start = palette.atDepth(depth);
+    paint.color = start.withValues(alpha: .42 + depth * .50 + energy * .08);
+    if (end != null) {
+      paint.shader = ui.Gradient.linear(Offset.zero, Offset(size.width, 0), [
+        start,
+        end.atDepth(depth),
+      ]);
+    }
     paint.strokeWidth = .94 + (band + .5) / 8 * .94 + energy * .22;
     canvas.drawRawPoints(
       ui.PointMode.points,

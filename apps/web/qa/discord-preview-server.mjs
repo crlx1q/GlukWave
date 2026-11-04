@@ -5,6 +5,11 @@ import path from 'node:path';
 let scenario = 'active', revision = 1, settings = { language: 'en', theme: 'light', autoCache: false, fontScale: 1 };
 let preferences = { enabled: true, allowJoin: false }, mutations = [];
 const user = { id: 'discord-ui-qa', email: 'discord-ui@example.test', username: 'wave_verified', displayName: 'Wave verification', bio: '', tags: [], plan: 'beta', role: 'user', emailVerified: true, createdAt: '2026-10-09T00:00:00.000Z' };
+const track = { id: 'verified-music', source: 'soundcloud', title: 'A moment on your wavelength', artist: 'Gluk Wave verification', artwork: '/brand/logo.png', duration: 178 };
+const socialLayout = { version: 1, widgets: [
+  { id: 'social-friends', type: 'friends', size: 'medium', view: 'list' },
+  { id: 'social-rooms', type: 'rooms', size: 'medium', view: 'list' }
+] };
 const status = () => ({ eligible: scenario !== 'free', configured: scenario !== 'unavailable', connected: !['disconnected', 'unavailable'].includes(scenario), needsReconnect: scenario === 'reconnect_required', ...preferences, status: scenario === 'free' ? 'locked' : scenario === 'active' && !preferences.enabled ? 'disabled' : scenario, lastPublishedAt: scenario === 'active' ? new Date().toISOString() : null, lastError: null, identity: ['disconnected', 'unavailable', 'free'].includes(scenario) ? null : { id: '1001', username: 'wave_listener', displayName: 'Your Wave friend', avatarUrl: '/assets/asset-1.jpg' }, device: scenario === 'active' ? { name: 'Gluk Wave on Windows', kind: 'windows' } : null, activity: scenario === 'active' ? { trackId: 'verified-music', title: 'A moment on your wavelength', artist: 'Gluk Wave verification', album: 'UI verification fixture', cover: '/assets/asset-1.jpg', position: 25, duration: 178, playing: true, trackUrl: '/app/?track=verified-music', joinUrl: preferences.allowJoin ? '/app/?listen=discord-ui-qa' : null } : null });
 const fixture = {
   name: 'discord-ui-fixtures',
@@ -19,9 +24,17 @@ const fixture = {
       else if (route === '/api/locale') result = { language: 'en', country: null, source: 'default' };
       else if (route === '/api/config') result = { appName: 'Gluk Wave', appUrl: 'http://127.0.0.1:5183', environment: 'test', providers: [], auth: { google: false, turnstileSiteKey: '' }, push: { enabled: false }, plans: [] };
       else if (route === '/api/auth/me') result = { user: scenario === 'signedout' ? null : { ...user, plan: scenario === 'free' ? 'free' : 'beta' } };
-      else if (route === '/api/settings') { if (method === 'PATCH') { settings = { ...settings, ...body }; revision++; } result = { settings: { ...settings, revision }, revision }; }
+      else if (route === '/api/settings') { if (method === 'PATCH') { settings = { ...settings, ...body }; revision++; } result = { settings: { ...(scenario === 'social' ? { homeLayout: socialLayout } : {}), ...settings, revision }, revision }; }
       else if (route === '/api/library') result = { tracks: [], likedIds: [], playlists: [], history: [] };
       else if (route === '/api/integrations') result = { connections: [] };
+      else if (route === '/api/tracks/verified-music') result = { track };
+      else if (route === '/api/friends') result = { friends: scenario === 'social' ? [
+        { user: { ...user, id: 'friend-42', displayName: 'Nika' }, online: true, activity: { track, playing: true } },
+        { user: { ...user, id: 'friend-43', displayName: 'Paused listener' }, online: true, activity: { track, playing: false } }
+      ] : [], incoming: [], outgoing: [] };
+      else if (route === '/api/rooms') result = { rooms: [], publicRooms: scenario === 'social' ? [
+        { id: 'night-radio', name: 'Night Radio', ownerId: 'friend-42', visibility: 'public', type: 'room', memberCount: 3, onlineCount: 2, currentTrack: track }
+      ] : [] };
       else if (route === '/api/discord') {
         if (scenario === 'error') { res.statusCode = 503; result = { error: { code: 'DISCORD_UNAVAILABLE', message: 'This connection is temporarily unavailable.' } }; }
         else { if (method === 'PATCH') { preferences = { ...preferences, ...body }; mutations.push(body); } result = status(); }

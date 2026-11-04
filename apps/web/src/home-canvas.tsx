@@ -1,5 +1,5 @@
 import {useEffect,useRef,useState} from 'react';
-import {Plus,SlidersHorizontal,RotateCcw,Check,X,GripVertical,ArrowLeft,ArrowRight,ChevronDown,Maximize2,Waves,Music2,Heart,Radio,History,Sparkles,Compass,Flame,Sun} from 'lucide-react';
+import {Plus,SlidersHorizontal,RotateCcw,Check,X,GripVertical,ArrowLeft,ArrowRight,ChevronDown,Maximize2,Waves,Music2,Heart,Radio,History,Sparkles,Compass,Flame,Sun,Users,Headphones} from 'lucide-react';
 import {useStore} from './store';
 import {useLocale} from './locale';
 import {errorText} from './api';
@@ -9,9 +9,12 @@ import {useHomePickup} from './home-canvas-pickup';
 import {canvasText as text} from './home-canvas-copy';
 import type {HomeLayout,HomeWidget,HomeWidgetType} from './types';
 import './home-canvas.css';
-const core=['wave','playlists','recent','recommendations','discovery','popular','daily'] as const;
-const icons={wave:Waves,playlists:Music2,recent:History,recommendations:Sparkles,discovery:Compass,popular:Flame,daily:Sun,likes:Heart,playlist:Music2,mix:Radio};
-const makeWidget=(type:HomeWidgetType):HomeWidget=>({id:crypto.randomUUID(),type,size:['likes','playlist','mix'].includes(type)?'small':'large',view:['likes','playlist','mix'].includes(type)?'compact':'cards'});
+const core=['wave','playlists','recent','recommendations','discovery','popular','daily','friends','rooms'] as const;
+const icons={wave:Waves,playlists:Music2,recent:History,recommendations:Sparkles,discovery:Compass,popular:Flame,daily:Sun,friends:Users,rooms:Headphones,likes:Heart,playlist:Music2,mix:Radio};
+const makeWidget=(type:HomeWidgetType):HomeWidget=>{
+ const destination=['likes','playlist','mix'].includes(type),social=type==='friends'||type==='rooms';
+ return {id:crypto.randomUUID(),type,size:destination?'small':social?'medium':'large',view:destination?'compact':social?'list':'cards'};
+};
 export function HomeCanvas({upload}:{upload:()=>void}){
  useLocale();const store=useStore(),saved=store.settings.homeLayout??defaultHomeLayout(store.settings.homePins),[draft,setDraft]=useState<HomeLayout|null>(null),[gallery,setGallery]=useState(false),[options,setOptions]=useState<string|null>(null),[busy,setBusy]=useState(false),[error,setError]=useState(''),[announce,setAnnounce]=useState(''),account=useRef(store.user?.id);account.current=store.user?.id;
  const widgets=(draft||saved).widgets,editing=draft!==null,change=(next:HomeWidget[])=>{setDraft({version:1,widgets:next});setError('');},pickup=useHomePickup(widgets,change,editing&&!busy);

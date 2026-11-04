@@ -8,6 +8,62 @@ String canvasText(BuildContext context, String key) {
 }
 
 const _strings = <String, List<String>>{
+  'friends': [
+    'Friends listening',
+    'Что слушают друзья',
+    'Достар не тыңдайды',
+    'Що слухають друзі',
+    'Was Freunde hören',
+    'Qué escuchan tus amigos',
+  ],
+  'rooms': [
+    'Listening rooms',
+    'Комнаты',
+    'Бөлмелер',
+    'Кімнати',
+    'Hörräume',
+    'Salas de escucha',
+  ],
+  'friendsEmpty': [
+    'No friends are sharing music right now.',
+    'Друзья сейчас не делятся музыкой.',
+    'Достар қазір музыка бөліспейді.',
+    'Друзі зараз не діляться музикою.',
+    'Gerade teilen keine Freunde Musik.',
+    'Tus amigos no comparten música ahora.',
+  ],
+  'roomsEmpty': [
+    'No rooms to show yet.',
+    'Пока нет доступных комнат.',
+    'Әзірге қолжетімді бөлмелер жоқ.',
+    'Поки немає доступних кімнат.',
+    'Noch keine Räume verfügbar.',
+    'Todavía no hay salas disponibles.',
+  ],
+  'socialSignIn': [
+    'Sign in to see this widget.',
+    'Войди, чтобы увидеть этот виджет.',
+    'Виджетті көру үшін кір.',
+    'Увійди, щоб побачити цей віджет.',
+    'Melde dich an, um dieses Widget zu sehen.',
+    'Inicia sesión para ver este widget.',
+  ],
+  'roomPublic': [
+    'Public room',
+    'Открытая комната',
+    'Ашық бөлме',
+    'Відкрита кімната',
+    'Öffentlicher Raum',
+    'Sala pública',
+  ],
+  'roomPrivate': [
+    'Private room',
+    'Закрытая комната',
+    'Жабық бөлме',
+    'Закрита кімната',
+    'Privater Raum',
+    'Sala privada',
+  ],
   'unavailable': [
     'Playlist unavailable',
     'Плейлист недоступен',

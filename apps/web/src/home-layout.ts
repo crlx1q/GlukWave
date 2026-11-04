@@ -1,5 +1,5 @@
 import type {HomeLayout,HomeWidget,HomePin} from './types';
-const singleton=['wave','playlists','recent','recommendations','discovery','popular','daily'];
+const singleton=['wave','playlists','recent','recommendations','discovery','popular','daily','friends','rooms'];
 const types=[...singleton,'likes','playlist','mix'];
 export function normalizeHomeLayout(value:unknown):HomeLayout|null{
  if(!value||typeof value!=='object'||Array.isArray(value))return null;

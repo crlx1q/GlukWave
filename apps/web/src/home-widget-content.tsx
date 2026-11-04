@@ -13,6 +13,7 @@ import {PlaylistArt} from './parity-playlists';
 import type {HomeWidget,Track} from './types';
 import {trackCount} from './types';
 import {likedTracks} from './library-order';
+import {HomeSocialWidget} from './home-social-widget';
 export function widgetTitle(widget:HomeWidget,playlists:{id:string;name:string}[]){return widget.type==='playlist'?playlists.find(item=>item.id===widget.playlistId)?.name||text('playlist'):widget.type==='mix'?widget.genre||text('mix'):text(widget.type);}
 const today=()=>{const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;};
 export function HomeWidgetContent({widget,upload}:{widget:HomeWidget;upload:()=>void}){
@@ -20,6 +21,7 @@ export function HomeWidgetContent({widget,upload}:{widget:HomeWidget;upload:()=>
  const playMix=async(key:string,query:string)=>{const owner=account.current;setPending(key);try{const data=await api<{tracks:Track[]}>(`/recommendations?${query}&day=${today()}&limit=30`);if(owner!==account.current)return;if(!data.tracks?.length){store.notify(ui27('noTracks'));return;}await player.playTrack(data.tracks[0],data.tracks);}catch(reason){if(owner===account.current)store.notify(errorText(reason),true);}finally{if(owner===account.current)setPending(null);}};
  const open=(id?:string)=>{store.navigate('library');if(id)location.hash=`library?playlist=${encodeURIComponent(id)}`;};
  if(widget.type==='wave')return <PersonalWave upload={upload}/>;
+ if(widget.type==='friends'||widget.type==='rooms')return <HomeSocialWidget widget={widget} kind={widget.type}/>;
  if(widget.type==='recommendations'||widget.type==='popular')return <RecommendationShelf mode={widget.type==='popular'?'popular':'personal'} initial/>;
  if(widget.type==='discovery')return <><RecommendationShelf mode="discovery"/><div className="canvas-moods">{(['calm','dream','focus','happy'] as const).map((mood,i)=>{const Icon=[Moon,Sparkles,Focus,Sun][i];return <button key={mood} onClick={()=>void store.run(()=>player.startWave({mood}))}><Icon size={18}/><span>{t(`wave18.mood.${mood}`)}</span><ArrowUpRight size={14}/></button>;})}</div></>;
  if(widget.type==='daily')return <section className="canvas-daily"><WidgetHeading title={text('daily')}/><div className="canvas-daily-grid">{([{id:'morning',Icon:Sun},{id:'focus',Icon:Focus},{id:'evening',Icon:Moon},{id:'discovery',Icon:Sparkles}] as const).map(({id,Icon})=><button key={id} disabled={!!pending} onClick={()=>void playMix(id,`mix=${id}`)}><Icon size={23}/><b>{ui27(id)}</b><span>{pending===id?'…':<ArrowUpRight size={15}/>}</span></button>)}</div></section>;

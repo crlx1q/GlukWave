@@ -2,6 +2,9 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import {existsSync} from 'node:fs';
+import {execFileSync} from 'node:child_process';
+import ffmpeg from 'ffmpeg-static';
 import pino from 'pino';
 import {config} from '../src/config.js';
 import {createApp} from '../src/app.js';
@@ -45,6 +48,53 @@ test('unofficial extraction accepts licensed HLS, rewrites keys and segments, re
     await service.ctx.store.remove('sessions',sessions[0].id);assert.equal((await fetch(base+segment)).status,401,'Session revoke blocks grant');
     assert.equal(service.ctx.extractorStats().hls.transfers,0);
   }finally{await service.close();await fs.rm(directory,{recursive:true,force:true,maxRetries:5,retryDelay:100});}
+});
+
+test('an expired HLS download is repacked through the proxy before returning a complete file',{skip:!ffmpeg||!existsSync(ffmpeg)},async()=>{
+  const directory=await fs.mkdtemp(path.join(config.root,'work/qa/hls-download-'));
+  let generation=0,expiredSegments=0,expireEveryAttempt=false;
+  const info={track_id:'download',title:'Download',artist:'Fixture',duration:2,source:'soundcloud',source_url:'https://soundcloud.com/wave/download',ext:'m4a',protocol:'m3u8_native',license:'cc-by'};
+  let service;
+  try{
+    execFileSync(ffmpeg,['-v','error','-f','lavfi','-i','sine=frequency=440:duration=2.2','-c:a','aac','-hls_time','1','-hls_playlist_type','vod','-f','hls',path.join(directory,'audio.m3u8')]);
+    service=await createApp({...config,env:'test',production:false,storage:'sqlite',objectStorage:'local',dataDir:directory,emailVerify:false,turnstileSecret:'',smtp:'',soundcloudPublicSearch:false,soundcloud:{id:'',secret:''},extractors:{enabled:true}},{log:pino({level:'silent'}),extractors:{
+      run:async(_adapter,request)=>request.action==='versions'?{}:{...info,audio_url:`https://cf-media.sndcdn.com/audio.m3u8?g=${++generation}`},
+      fetch:async url=>{
+        const value=new URL(url),g=value.searchParams.get('g');
+        if(value.pathname==='/audio.m3u8'){
+          const manifest=await fs.readFile(path.join(directory,'audio.m3u8'),'utf8');
+          return new Response(manifest.replace(/(audio\d+\.ts)/g,`$1?g=${g}`),{headers:{'Content-Type':'application/vnd.apple.mpegurl'}});
+        }
+        if((g==='1'||expireEveryAttempt)&&value.pathname==='/audio1.ts'){
+          expiredSegments++;return new Response(null,{status:403});
+        }
+        assert.match(value.pathname,/^\/audio\d+\.ts$/);
+        return new Response(await fs.readFile(path.join(directory,path.basename(value.pathname))),{headers:{'Content-Type':'video/mp2t'}});
+      },
+    }});
+    await new Promise(resolve=>service.server.listen(0,'127.0.0.1',resolve));
+    const base=`http://127.0.0.1:${service.server.address().port}/api`;
+    const registration=await fetch(base+'/auth/register',{method:'POST',headers:{'Content-Type':'application/json','X-GlukWave-Client':'native'},body:JSON.stringify({email:'download@qa.test',username:'hls_download',password:'Fixture-password-2026'})});
+    const user=await registration.json();
+    const track={id:'download-hls',...info,sourceId:'download',sourceUrl:info.source_url,public:true,playback:{kind:'soundcloud'}};
+    await service.ctx.store.put('tracks',track.id,track);
+    const response=await fetch(base+'/external-audio/'+track.id+'/download',{headers:{Authorization:'Bearer '+user.token}});
+    const bytes=Buffer.from(await response.arrayBuffer());
+    assert.equal(response.status,200,bytes.toString('utf8',0,250));
+    assert.equal(response.headers.get('content-type'),'audio/mp4');
+    assert.equal(Number(response.headers.get('content-length')),bytes.length);
+    assert(bytes.length>5000);
+    assert.equal(bytes.toString('ascii',4,8),'ftyp');
+    assert(expiredSegments>0);
+    assert.equal(generation,2);
+    assert.equal(service.ctx.extractorStats().hls.grants,0);
+    expireEveryAttempt=true;
+    const failed=await fetch(base+'/external-audio/'+track.id+'/download',{headers:{Authorization:'Bearer '+user.token}});
+    assert.equal(failed.status,502);
+    assert.equal(failed.headers.get('content-disposition'),null);
+    assert.equal((await failed.json()).error.code,'EXTRACTOR_UPSTREAM');
+    assert.equal(service.ctx.extractorStats().hls.grants,0);
+  }finally{await service?.close();await fs.rm(directory,{recursive:true,force:true,maxRetries:5,retryDelay:100});}
 });
 
 test('Spotify and Yandex metadata automatically find exact licensed audio; mismatches and unlicensed candidates remain unavailable',async()=>{

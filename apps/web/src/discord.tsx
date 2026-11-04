@@ -79,17 +79,60 @@ function DiscordPreview({ data }: { data: DiscordStatus }) {
   </article><p className="wave-discord-preview-note">{t('discord.previewNote')}</p></aside>;
 }
 
-export function DiscordInvitationHandler() {
+export function readDiscordInvitation() {
+  try { return restoredDiscordInvitation(location.search, sessionStorage.getItem('gw-discord-invitation')); }
+  catch { return discordInvitation(location.search); }
+}
+
+export function DiscordInvitationCard() {
   useLocale(); const store = useStore(), player = usePlayer();
-  const [invite, setInvite] = useState(() => { try { return restoredDiscordInvitation(location.search, sessionStorage.getItem('gw-discord-invitation')); } catch { return discordInvitation(location.search); } }), [pending, setPending] = useState(false), [error, setError] = useState('');
+  const [invite, setInvite] = useState(readDiscordInvitation), [pending, setPending] = useState(false), [error, setError] = useState('');
+  const request = useRef<AbortController | null>(null);
   const accountRef = useRef(store.user?.id); accountRef.current = store.user?.id;
-  const dismiss = () => { try { sessionStorage.removeItem('gw-discord-invitation'); } catch {} const url = new URL(location.href); url.searchParams.delete('listen'); url.searchParams.delete('jam'); history.replaceState(null, '', url); setInvite(null); };
-  const accept = () => {
-    if (!invite) return;
-    if (!store.user) { try { sessionStorage.setItem('gw-discord-invitation', JSON.stringify({ ...invite, expiresAt: Date.now() + 30 * 60 * 1000 })); } catch {} store.requireAuth(); return; }
-    const account = store.user?.id; setPending(true); setError('');
-    void post<{ room: Room }>(invite.kind === 'listen' ? `/discord/listen/${encodeURIComponent(invite.id)}` : `/jams/${encodeURIComponent(invite.id)}/join`).then(async result => { if (account !== accountRef.current) return; await player.joinRoom(result.room); dismiss(); store.navigate('rooms'); }).catch(reason => setError(errorText(reason))).finally(() => setPending(false));
+  useEffect(() => () => request.current?.abort(), []);
+  const dismiss = () => {
+    try { sessionStorage.removeItem('gw-discord-invitation'); } catch {}
+    const url = new URL(location.href);
+    url.searchParams.delete('listen'); url.searchParams.delete('jam');
+    history.replaceState(history.state, '', url);
+    setInvite(null);
   };
-  if (!invite || store.loading || store.authOpen) return null;
-  return <Modal title={t('discord.listenTogether')} onClose={dismiss}><div className="wave-discord-invitation"><span className="wave-discord-mark"><Headphones size={27}/></span><h3>{t('discord.inviteTitle')}</h3><p>{t('discord.inviteCaption')}</p>{error && <p className="error-banner" role="alert">{error}</p>}<button className="primary-button" disabled={pending || Boolean(store.user && player.connectionStatus !== 'online')} onClick={accept}><Headphones size={17}/>{pending ? t('discord.working') : !store.user ? t('discord.signInJoin') : t('discord.join')}</button><button className="text-button" onClick={dismiss}>{t('copy.736')}</button></div></Modal>;
+  const accept = async () => {
+    if (!invite || request.current) return;
+    if (!store.user) { try { sessionStorage.setItem('gw-discord-invitation', JSON.stringify({ ...invite, expiresAt: Date.now() + 30 * 60 * 1000 })); } catch {} store.requireAuth(); return; }
+    const account = store.user.id, controller = new AbortController();
+    const isCurrent = () => !controller.signal.aborted && account === accountRef.current;
+    request.current = controller; setPending(true); setError('');
+    const path = invite.kind === 'listen' ? `/discord/listen/${encodeURIComponent(invite.id)}` : `/jams/${encodeURIComponent(invite.id)}/join`;
+    try {
+      const result = await api<{room: Room}>(path, {method:'POST',body:'{}',signal:controller.signal});
+      if (!isCurrent()) return;
+      await player.joinRoom(result.room);
+      if (isCurrent()) dismiss();
+    } catch (reason) {
+      if (isCurrent()) setError(errorText(reason));
+    } finally {
+      request.current = null;
+      if (!controller.signal.aborted) setPending(false);
+    }
+  };
+  if (!invite) return null;
+  const unavailable = !!store.user && (store.offline || player.connectionStatus !== 'online');
+  const joinLabel = pending ? 'discord.working' : !store.user ? 'discord.signInJoin' : !unavailable ? 'discord.join'
+    : store.offline || player.connectionStatus === 'offline' ? 'connect.offline' : 'connect.reconnecting';
+  return <section className="wave-discord-invitation" aria-labelledby="discord-invitation-heading">
+    <span className="wave-discord-invitation-mark" aria-hidden="true"><DiscordMark/></span>
+    <div className="wave-discord-invitation-copy">
+      <span className="eyebrow">Discord · {t('discord.listenTogether')}</span>
+      <h2 id="discord-invitation-heading">{t('discord.inviteTitle')}</h2>
+      <p>{t('discord.inviteCaption')}</p>
+    </div>
+    <div className="wave-discord-invitation-actions">
+      <button className="primary-button" disabled={pending || unavailable} onClick={()=>void accept()}>
+        <Headphones size={17}/><span aria-live="polite">{t(joinLabel)}</span>
+      </button>
+      <button className="text-button" disabled={pending} onClick={dismiss}>{t('copy.736')}</button>
+    </div>
+    {error && <p className="error-banner" role="alert">{error}</p>}
+  </section>;
 }

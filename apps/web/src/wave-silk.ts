@@ -10,7 +10,7 @@ const vertex=`precision highp float;
 attribute vec4 aSeed;
 uniform float uTime,uEnergy,uRatio,uActive;
 uniform vec2 uSize,uPointer,uVelocity;
-varying float vAlpha,vAccent;
+varying float vAlpha,vAccent,vTone;
 void main(){
  float u=aSeed.x,v=aSeed.y,seed=aSeed.z,depth=aSeed.w;
  float t=uTime*.24,envelope=sin(u*3.14159265);
@@ -39,17 +39,17 @@ void main(){
  y+=detached*(mod(seed,2.)<1.?-1.:1.)*(.024+drift*.072+uEnergy*.022+influence*.018);
  gl_Position=vec4(x*2.-1.,1.-y*2.,0.,1.);
  gl_PointSize=(1.05+depth*1.05)*(1.+uEnergy*.22)*uRatio;
- vAlpha=(.48+depth*.45+uEnergy*.07)*(.70+.30*sin(seed*8.)*sin(seed*8.));vAccent=depth*depth*depth;
+ vAlpha=(.48+depth*.45+uEnergy*.07)*(.70+.30*sin(seed*8.)*sin(seed*8.));vAccent=depth*depth*depth;vTone=u;
 }`;
 const fragment=`precision mediump float;
-uniform vec3 uColor,uAccent;
-varying float vAlpha,vAccent;
+uniform vec3 uColor,uAccent,uEndColor,uEndAccent;
+varying float vAlpha,vAccent,vTone;
 void main(){vec2 p=gl_PointCoord-.5;float d=dot(p,p);if(d>.25)discard;
-gl_FragColor=vec4(mix(uColor,uAccent,vAccent),(1.-smoothstep(.045,.25,d))*vAlpha);}`;
+gl_FragColor=vec4(mix(mix(uColor,uEndColor,vTone),mix(uAccent,uEndAccent,vTone),vAccent),(1.-smoothstep(.045,.25,d))*vAlpha);}`;
 const seeds=ribbonSeeds(20000);
 function colors(frame:WaveFrame){return silkPalette(frame.tint,frame.background);}
 export function createSilkWave(canvas:HTMLCanvasElement):WaveRenderer|null {
- const gl=canvas.getContext('webgl',{alpha:true,antialias:false,premultipliedAlpha:false,powerPreference:'low-power'});if(!gl)return null;
+ const gl=canvas.getContext('webgl',{alpha:true,antialias:false,premultipliedAlpha:true,powerPreference:'low-power'});if(!gl)return null;
  const compile=(type:number,text:string)=>{const shader=gl.createShader(type);if(!shader)return null;gl.shaderSource(shader,text);gl.compileShader(shader);if(!gl.getShaderParameter(shader,gl.COMPILE_STATUS)){gl.deleteShader(shader);return null;}return shader;};
  const vs=compile(gl.VERTEX_SHADER,vertex),fs=compile(gl.FRAGMENT_SHADER,fragment),program=gl.createProgram();
  if(!vs||!fs||!program){if(vs)gl.deleteShader(vs);if(fs)gl.deleteShader(fs);if(program)gl.deleteProgram(program);return null;}
@@ -57,23 +57,22 @@ export function createSilkWave(canvas:HTMLCanvasElement):WaveRenderer|null {
  if(!gl.getProgramParameter(program,gl.LINK_STATUS)){gl.deleteProgram(program);return null;}
  const buffer=gl.createBuffer();if(!buffer){gl.deleteProgram(program);return null;}
  gl.useProgram(program);gl.bindBuffer(gl.ARRAY_BUFFER,buffer);gl.bufferData(gl.ARRAY_BUFFER,seeds,gl.STATIC_DRAW);
- const attribute=gl.getAttribLocation(program,'aSeed'),uniform=Object.fromEntries(['Time','Energy','Ratio','Size','Pointer','Velocity','Active','Color','Accent'].map(key=>[key,gl.getUniformLocation(program,'u'+key)]));
- let quality=1,samples=0,cost=0;
- return {draw(frame){if(gl.isContextLost())return false;const start=performance.now(),{width,height,phase,energy,pointer}=frame,color=colors(frame);
+ const attribute=gl.getAttribLocation(program,'aSeed'),uniform=Object.fromEntries(['Time','Energy','Ratio','Size','Pointer','Velocity','Active','Color','Accent','EndColor','EndAccent'].map(key=>[key,gl.getUniformLocation(program,'u'+key)]));
+ return {draw(frame){if(gl.isContextLost())return false;const {width,height,phase,energy,pointer}=frame,color=colors(frame),end=silkPalette(frame.tintEnd||frame.tint,frame.background);
   gl.viewport(0,0,canvas.width,canvas.height);gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT);gl.useProgram(program);
   gl.bindBuffer(gl.ARRAY_BUFFER,buffer);gl.enableVertexAttribArray(attribute);gl.vertexAttribPointer(attribute,4,gl.FLOAT,false,0,0);
-  gl.enable(gl.BLEND);gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);
+  gl.enable(gl.BLEND);gl.blendFuncSeparate(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA,gl.ONE,gl.ONE_MINUS_SRC_ALPHA);
   gl.uniform1f(uniform.Time,phase);gl.uniform1f(uniform.Energy,energy);gl.uniform1f(uniform.Ratio,canvas.width/width);
   gl.uniform2f(uniform.Size,width,height);gl.uniform2f(uniform.Pointer,pointer.x,pointer.y);gl.uniform2f(uniform.Velocity,pointer.vx||0,pointer.vy||0);gl.uniform1f(uniform.Active,pointer.active);
-  gl.uniform3fv(uniform.Color,color.base);gl.uniform3fv(uniform.Accent,color.accent);
-  gl.drawArrays(gl.POINTS,0,Math.round((width<500?9000:width<900?14500:20000)*quality));
-  cost+=performance.now()-start;if(++samples===90){if(cost/samples>5)quality=Math.max(.45,quality*.75);cost=0;samples=0;}return true;
+  gl.uniform3fv(uniform.Color,color.base);gl.uniform3fv(uniform.Accent,color.accent);gl.uniform3fv(uniform.EndColor,end.base);gl.uniform3fv(uniform.EndAccent,end.accent);
+  gl.drawArrays(gl.POINTS,0,width<500?9000:width<900?14500:20000);
+  return true;
  },dispose(){gl.deleteBuffer(buffer);gl.deleteProgram(program);}};
 }
 
 /** Deterministic Canvas fallback uses the same folded field and hover mapping. */
 export function drawFlowRibbon(context:CanvasRenderingContext2D,frame:WaveFrame){
- const {width,height,phase,energy,pointer}=frame,t=phase*.24,color=colors(frame),count=width<500?2400:4200;
+ const {width,height,phase,energy,pointer}=frame,t=phase*.24,color=colors(frame),end=silkPalette(frame.tintEnd||frame.tint,frame.background),count=width<500?2400:4200;
  const paths=Array.from({length:8},()=>new Path2D());
  for(let i=0;i<count;i++){
   const offset=i*4,u=seeds[offset],v=seeds[offset+1],seed=seeds[offset+2],depth=seeds[offset+3],envelope=Math.sin(u*Math.PI);
@@ -89,5 +88,11 @@ export function drawFlowRibbon(context:CanvasRenderingContext2D,frame:WaveFrame)
   const drift=ribbonDrift(seed,phase,energy,influence);x+=drift.x;y+=drift.y;
   const radiusDot=.42+depth*.42+energy*.11,path=paths[Math.min(7,Math.floor(depth*8))];path.moveTo(x*width+radiusDot,y*height);path.arc(x*width,y*height,radiusDot,0,Math.PI*2);
  }
- for(let index=0;index<8;index++){const tone=silkDepthColor(color,(index+.5)/8).map(v=>Math.round(v*255));context.fillStyle=`rgba(${tone.join(',')},${.43+(index+.5)/8*.47+energy*.08})`;context.fill(paths[index]);}
+ for(let index=0;index<8;index++){
+  const depth=(index+.5)/8,alpha=.43+depth*.47+energy*.08;
+  const ink=(palette:typeof color)=>`rgba(${silkDepthColor(palette,depth).map(v=>Math.round(v*255)).join(',')},${alpha})`;
+  if(!frame.tintEnd||frame.tint===frame.tintEnd)context.fillStyle=ink(color);
+  else{const gradient=context.createLinearGradient(0,0,width,0);gradient.addColorStop(0,ink(color));gradient.addColorStop(1,ink(end));context.fillStyle=gradient;}
+  context.fill(paths[index]);
+ }
 }

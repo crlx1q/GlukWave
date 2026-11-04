@@ -23,8 +23,8 @@ const widgetBase={
   size:z.enum(['small','medium','large']),
   view:z.enum(['cards','list','compact']),
 };
-export const homeWidgetTypes=['wave','playlists','recent','recommendations','discovery','popular','daily','likes','playlist','mix'];
-const singletonTypes=new Set(homeWidgetTypes.slice(0,7));
+const singletonTypes=new Set(['wave','playlists','recent','recommendations','discovery','popular','daily','friends','rooms']);
+export const homeWidgetTypes=[...singletonTypes,'likes','playlist','mix'];
 export const homeLayoutSchema=z.object({
   version:z.literal(1),
   widgets:z.array(z.discriminatedUnion('type',[

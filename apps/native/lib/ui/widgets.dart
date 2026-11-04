@@ -809,24 +809,6 @@ class _WaveHeroState extends State<WaveHero>
             height: height,
             child: Stack(
               children: [
-                if (coverTint > 0)
-                  Positioned.fill(
-                    child: IgnorePointer(
-                      child: DecoratedBox(
-                        decoration: BoxDecoration(
-                          gradient: RadialGradient(
-                            center: const Alignment(.2, .34),
-                            radius: .68,
-                            colors: [
-                              v.coverTone.withValues(alpha: .18 * coverTint),
-                              v.accent.withValues(alpha: .09 * coverTint),
-                              v.accent.withValues(alpha: 0),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
                 Positioned(
                   left: 0,
                   right: 0,
@@ -837,6 +819,13 @@ class _WaveHeroState extends State<WaveHero>
                       painter: WavePainter(
                         reduced ? bloomPhase : _phase,
                         accentColor: v.accent,
+                        accentEnd: coverTint > 0
+                            ? Color.lerp(
+                                v.accent,
+                                v.coverTone.withValues(alpha: 1),
+                                coverTint,
+                              )
+                            : null,
                         backgroundColor: v.background,
                         style: v.waveStyle,
                         energy: reduced ? 0 : _energy,
@@ -953,10 +942,12 @@ class WavePainter extends CustomPainter {
   final Offset pointer;
   final Offset pointerVelocity;
   final Color accentColor, backgroundColor;
+  final Color? accentEnd;
   final String style;
   WavePainter(
     this.phase, {
     this.accentColor = accent,
+    this.accentEnd,
     this.backgroundColor = background,
     this.style = 'silk',
     this.energy = 0,
@@ -1006,11 +997,16 @@ class WavePainter extends CustomPainter {
                 0,
                 1,
               );
+          final tone = Color.lerp(
+            accentColor,
+            accentEnd ?? accentColor,
+            u.clamp(0, 1),
+          )!;
           paint.color = Color.from(
             alpha: (dot.presence * (.5 + dot.level * .5)).clamp(0, 1),
-            red: channel(accentColor.r, .24),
-            green: channel(accentColor.g, .3),
-            blue: channel(accentColor.b, .34),
+            red: channel(tone.r, .24),
+            green: channel(tone.g, .3),
+            blue: channel(tone.b, .34),
           );
           canvas.drawCircle(Offset(x, y), bloomCell * dot.radius, paint);
         }
@@ -1023,9 +1019,10 @@ class WavePainter extends CustomPainter {
           pulse = particleResponse(energy);
       for (var layer = 0; layer < 3; layer++) {
         for (var point = 0; point < columns; point++) {
+          final u = point / (columns - 1);
+          final tone = Color.lerp(accentColor, accentEnd ?? accentColor, u)!;
           for (var band = 0; band < 5; band++) {
-            final u = point / (columns - 1),
-                x = u * size.width,
+            final x = u * size.width,
                 y =
                     size.height * .53 +
                     math.sin(u * 9 + phase * .5 + layer * .7) *
@@ -1046,9 +1043,9 @@ class WavePainter extends CustomPainter {
                               .53 +
                           pulse.brightness)
                       .clamp(0, .95),
-              red: (accentColor.r + layer * 20 / 255).clamp(0, 1),
-              green: (accentColor.g + layer * 20 / 255).clamp(0, 1),
-              blue: (accentColor.b + layer * 20 / 255).clamp(0, 1),
+              red: (tone.r + layer * 20 / 255).clamp(0, 1),
+              green: (tone.g + layer * 20 / 255).clamp(0, 1),
+              blue: (tone.b + layer * 20 / 255).clamp(0, 1),
             );
             canvas.drawCircle(
               Offset(x, y),
@@ -1069,6 +1066,7 @@ class WavePainter extends CustomPainter {
       pointer,
       pointerActive,
       background: backgroundColor,
+      accentEnd: accentEnd,
       velocity: pointerVelocity,
     );
   }
@@ -1077,6 +1075,7 @@ class WavePainter extends CustomPainter {
   bool shouldRepaint(WavePainter oldDelegate) =>
       phase != oldDelegate.phase ||
       accentColor != oldDelegate.accentColor ||
+      accentEnd != oldDelegate.accentEnd ||
       backgroundColor != oldDelegate.backgroundColor ||
       style != oldDelegate.style ||
       energy != oldDelegate.energy ||

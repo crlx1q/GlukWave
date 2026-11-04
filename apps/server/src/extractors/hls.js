@@ -11,10 +11,10 @@ export function setupExtractedHls(app,ctx,{cdn,resolve,downloadable=()=>false,fe
   const drop=key=>{const grant=grants.get(key);if(grant)parts-=grant.parts.size;grants.delete(key);};
   const sweep=()=>{for(const [key,grant] of grants)if(grant.expiresAt<=Date.now())drop(key);};
   const timer=setInterval(sweep,60000);timer.unref();
-  function issue(track,result,user,sessionId){
+  function issue(track,result,user,sessionId,{download=null}={}){
     if(closed||!user||!sessionId)return null;
     sweep();
-    const prior=[...grants.values()].find(grant=>grant.trackId===track.id&&grant.sessionId===sessionId&&Date.now()-grant.createdAt<240000);
+    const prior=!download&&[...grants.values()].find(grant=>!grant.download&&grant.trackId===track.id&&grant.sessionId===sessionId&&Date.now()-grant.createdAt<240000);
     if(prior)return {...prior.descriptor};
     while(grants.size>=128)drop(grants.keys().next().value);
     const createdAt=Date.now(),expiresAt=createdAt+Math.min(86400000,Math.max(7200000,((Number(track.duration)||0)+300)*1000));
@@ -22,7 +22,7 @@ export function setupExtractedHls(app,ctx,{cdn,resolve,downloadable=()=>false,fe
     const attribution={source:result.info.source,artist:result.info.artist||track.artist,sourceUrl:result.info.source_url||track.sourceUrl};
     const offline=downloadable(result);
     const descriptor={kind:'audio',format:'hls',audioSource:result.info.source,offline,...(offline?{downloadUrl:`/api/external-audio/${encodeURIComponent(track.id)}/download`}:{}),url:`/api/stream-audio/${encodeURIComponent(track.id)}?grant=${token}`,attribution};
-    grants.set(token,{trackId:track.id,userId:user.id,sessionId,createdAt,expiresAt,parts:new Map([['root',result.info.audio_url]]),partVersions:new Map([['root',0]]),sourceVersion:0,reverse:new Map([[result.info.audio_url,'root']]),headers:result.info.http_headers||{},descriptor,refresh:null});parts++;
+    grants.set(token,{trackId:track.id,userId:user.id,sessionId,createdAt,expiresAt,parts:new Map([['root',result.info.audio_url]]),partVersions:new Map([['root',0]]),sourceVersion:0,reverse:new Map([[result.info.audio_url,'root']]),headers:result.info.http_headers||{},descriptor,refresh:null,download});parts++;
     return descriptor;
   }
   async function pull(input,signal,headers){
@@ -37,6 +37,10 @@ export function setupExtractedHls(app,ctx,{cdn,resolve,downloadable=()=>false,fe
   app.get('/api/stream-audio/:id',asyncRoute(async(req,res)=>{
     sweep();const token=String(req.query.grant||''),part=String(req.query.part||'root');let grant=grants.get(token)||capabilities.root(token);
     if(!grant||grant.trackId!==req.params.id||closed)fail(401,'AUDIO_EXPIRED','Ссылка на аудио обновилась. Запусти трек ещё раз.');
+    if(grant.download){
+      const download=grant.download;
+      res.once('close',()=>{if(res.statusCode>=400||!res.writableFinished)download.failed=true;});
+    }
     const [session,user]=await Promise.all([ctx.store.get('sessions',grant.sessionId),ctx.store.get('users',grant.userId)]);
     if(!session||session.userId!==grant.userId||session.expiresAt<=Date.now()||!user||user.blocked)fail(401,'AUTH_REQUIRED','Сессия завершена.');
     if(req.auth?.user&&req.auth.user.id!==grant.userId)fail(403,'TRACK_NOT_FOUND','Трек не найден.');
@@ -100,5 +104,5 @@ export function setupExtractedHls(app,ctx,{cdn,resolve,downloadable=()=>false,fe
     }catch(error){if(!controller.signal.aborted&&!req.aborted&&!res.destroyed&&!res.headersSent)throw error;if(!res.destroyed)res.destroy();}
     finally{clearTimeout(timeout);res.removeListener('close',abort);req.removeListener('aborted',abort);controller.abort();transfers.delete(controller);}
   }));
-  return {issue,stats:()=>({grants:grants.size,parts,transfers:transfers.size}),close(){closed=true;clearInterval(timer);for(const controller of transfers)controller.abort();grants.clear();parts=0;}};
+  return {issue,release:descriptor=>drop(new URLSearchParams(descriptor.url.split('?')[1]).get('grant')),stats:()=>({grants:grants.size,parts,transfers:transfers.size}),close(){closed=true;clearInterval(timer);for(const controller of transfers)controller.abort();grants.clear();parts=0;}};
 }

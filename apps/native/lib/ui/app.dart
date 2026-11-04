@@ -1743,6 +1743,10 @@ class _WaveShellState extends State<WaveShell>
           onLikes: () => navigate(WavePage.liked),
           onCreatePlaylist: newPlaylist,
           onPlaylist: openLibraryPlaylist,
+          friends: objects(parity.friends['friends']),
+          refreshFriends: parity.refreshFriends,
+          onFriends: () => navigate(WavePage.friends),
+          onRooms: () => navigate(WavePage.rooms),
           recommendationFooter: TasteInvitation(
             parity: parity,
             onOpen: () => openTaste(workspaceContext, c, parity),

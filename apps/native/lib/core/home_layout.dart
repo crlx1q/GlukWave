@@ -8,6 +8,8 @@ const homeCanvasTypes = {
   'discovery',
   'popular',
   'daily',
+  'friends',
+  'rooms',
   'likes',
   'playlist',
   'mix',
@@ -20,6 +22,8 @@ const homeCanvasSingletons = {
   'discovery',
   'popular',
   'daily',
+  'friends',
+  'rooms',
 };
 const homeCanvasSizes = ['small', 'medium', 'large'];
 const homeCanvasViews = ['cards', 'list', 'compact'];

@@ -23,7 +23,6 @@ const float SWELL = ${BLOOM.swell.toFixed(4)};
 const float REST = ${BLOOM.rest.toFixed(4)};
 const float CAP = ${BLOOM.cap.toFixed(4)};
 
-float ign(vec2 p, float f) { p += 5.588238 * mod(f, 64.0); return fract(52.9829189 * fract(0.06711056 * p.x + 0.00583715 * p.y)); }
 
 vec3 scene(vec2 uv) { return max(texture(uField, clamp(uv, 0.0, 1.0)).rgb, 0.0); }
 
@@ -59,8 +58,7 @@ void main() {
   float strength = clamp(max(L.r, max(L.g, L.b)), 0.0, 1.0);
   vec3 paper = uBg * (1.0 - strength) + L * 0.96;
   vec3 col = mix(dark, paper, uPaper);
-  col += (ign(frag, floor(uTime * 24.0)) - 0.5) / 255.0;
-  o = vec4(clamp(col, 0.0, 1.0), 1.0);
+  o = vec4(clamp((col - uBg * (1.0 - strength)) / max(strength, 0.0001), 0.0, 1.0), strength);
 }
 `
 
@@ -73,16 +71,16 @@ uniform vec2 uRes;
 uniform float uTime;
 uniform float uEnergy;
 uniform vec3 uC1;
-uniform vec3 uC2;
+uniform vec3 uC2,uEnd1,uEnd2;
 out vec4 o;
 ${bloomFieldGLSL}
 void main(){vec2 p=gl_FragCoord.xy/uRes;p.y=1.-p.y;
   float level=waveField(p,uTime,uEnergy);
-  vec3 color=mix(uC1,uC2,.5+.5*sin(p.x*6.+uTime*.23));
+  vec3 color=mix(mix(uC1,uEnd1,p.x),mix(uC2,uEnd2,p.x),.5+.5*sin(p.x*6.+uTime*.23));
   o=vec4(color*level,level);
 }`;
 
-export type WaveFrame={width:number;height:number;phase:number;energy:number;pointer:WavePointer;tint:string;background:string};
+export type WaveFrame={width:number;height:number;phase:number;energy:number;pointer:WavePointer;tint:string;tintEnd?:string;background:string};
 export type WaveRenderer={draw:(frame:WaveFrame)=>boolean;dispose:()=>void};
 export const rgb=(hex:string)=>[1,3,5].map(index=>parseInt(hex.slice(index,index+2),16)/255);
 
@@ -98,21 +96,21 @@ function link(gl:WebGL2RenderingContext,fragment:string) {
  * The React host owns frame scheduling, reduced motion, visibility and dimensions.
  */
 export function createHalftoneBloom(canvas:HTMLCanvasElement):WaveRenderer|null {
-  const gl=canvas.getContext('webgl2',{antialias:false,alpha:false,depth:false,stencil:false,powerPreference:'low-power'});if(!gl)return null;
+  const gl=canvas.getContext('webgl2',{antialias:false,alpha:true,premultipliedAlpha:false,depth:false,stencil:false,powerPreference:'low-power'});if(!gl)return null;
   const field=link(gl,FIELD_SRC),finish=link(gl,FINISH_SRC);
   if(!field||!finish){if(field)gl.deleteProgram(field);if(finish)gl.deleteProgram(finish);return null;}
   const locations=(program:WebGLProgram,names:string[])=>Object.fromEntries(names.map(name=>[name,gl.getUniformLocation(program,name)]));
-  const uf=locations(field,['uRes','uTime','uEnergy','uC1','uC2']),un=locations(finish,['uField','uRes','uTime','uBg','uPaper','uMouse','uOn','uReach','uCell','uPR']);
+  const uf=locations(field,['uRes','uTime','uEnergy','uC1','uC2','uEnd1','uEnd2']),un=locations(finish,['uField','uRes','uTime','uBg','uPaper','uMouse','uOn','uReach','uCell','uPR']);
   const vao=gl.createVertexArray(),fbo=gl.createFramebuffer(),texture=gl.createTexture();let tw=0,th=0;
   gl.bindVertexArray(vao);gl.bindTexture(gl.TEXTURE_2D,texture);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
   return {
     draw(frame){
-      if(gl.isContextLost())return false;const {width,height,phase,energy,pointer,tint,background}=frame;if(!width||!height)return true;
+      if(gl.isContextLost())return false;const {width,height,phase,energy,pointer,tint,tintEnd,background}=frame;if(!width||!height)return true;
       const bw=canvas.width,bh=canvas.height,nw=Math.max(1,Math.round(bw/2)),nh=Math.max(1,Math.round(bh/2));
       gl.bindTexture(gl.TEXTURE_2D,texture);
       if(nw!==tw||nh!==th){tw=nw;th=nh;gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA8,tw,th,0,gl.RGBA,gl.UNSIGNED_BYTE,null);gl.bindFramebuffer(gl.FRAMEBUFFER,fbo);gl.framebufferTexture2D(gl.FRAMEBUFFER,gl.COLOR_ATTACHMENT0,gl.TEXTURE_2D,texture,0);if(gl.checkFramebufferStatus(gl.FRAMEBUFFER)!==gl.FRAMEBUFFER_COMPLETE)return false;}
-      const c1=rgb(tint).map(value=>Math.min(1,value*.55+.4)),c2=rgb(tint).map((value,index)=>Math.min(1,value*.7+[.24,.3,.34][index])),bg=rgb(background);
-      gl.bindFramebuffer(gl.FRAMEBUFFER,fbo);gl.viewport(0,0,tw,th);gl.useProgram(field);gl.uniform2f(uf.uRes,tw,th);gl.uniform1f(uf.uTime,phase);gl.uniform1f(uf.uEnergy,energy);gl.uniform3fv(uf.uC1,c1);gl.uniform3fv(uf.uC2,c2);gl.drawArrays(gl.TRIANGLES,0,3);
+      const c1=rgb(tint).map(value=>Math.min(1,value*.55+.4)),c2=rgb(tint).map((value,index)=>Math.min(1,value*.7+[.24,.3,.34][index])),end1=rgb(tintEnd||tint).map(value=>Math.min(1,value*.55+.4)),end2=rgb(tintEnd||tint).map((value,index)=>Math.min(1,value*.7+[.24,.3,.34][index])),bg=rgb(background);
+      gl.bindFramebuffer(gl.FRAMEBUFFER,fbo);gl.viewport(0,0,tw,th);gl.useProgram(field);gl.uniform2f(uf.uRes,tw,th);gl.uniform1f(uf.uTime,phase);gl.uniform1f(uf.uEnergy,energy);gl.uniform3fv(uf.uC1,c1);gl.uniform3fv(uf.uC2,c2);gl.uniform3fv(uf.uEnd1,end1);gl.uniform3fv(uf.uEnd2,end2);gl.drawArrays(gl.TRIANGLES,0,3);
       const pr=bw/width;gl.bindFramebuffer(gl.FRAMEBUFFER,null);gl.viewport(0,0,bw,bh);gl.useProgram(finish);gl.activeTexture(gl.TEXTURE0);gl.bindTexture(gl.TEXTURE_2D,texture);gl.uniform1i(un.uField,0);gl.uniform2f(un.uRes,bw,bh);gl.uniform1f(un.uTime,phase);gl.uniform3fv(un.uBg,bg);gl.uniform1f(un.uPaper,0);gl.uniform2f(un.uMouse,pointer.x*bw,(1-pointer.y)*bh);gl.uniform1f(un.uOn,pointer.active);gl.uniform1f(un.uReach,height*BLOOM.reach*pr);gl.uniform1f(un.uCell,BLOOM.cell*pr);gl.uniform1f(un.uPR,pr);gl.drawArrays(gl.TRIANGLES,0,3);return true;
     },
     dispose(){gl.deleteTexture(texture);gl.deleteFramebuffer(fbo);gl.deleteVertexArray(vao);gl.deleteProgram(field);gl.deleteProgram(finish);}
