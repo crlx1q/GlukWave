@@ -81,7 +81,7 @@ class _DesktopTitleBarState extends State<DesktopTitleBar> with WindowListener {
                         alignment: Alignment.centerLeft,
                         child: Row(
                           children: [
-                            const Brand(size: 21, animated: false),
+                            const Brand(size: 21, animated: true),
                             const SizedBox(width: 18),
                             Container(
                               padding: const EdgeInsets.symmetric(

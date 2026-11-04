@@ -262,7 +262,9 @@ class WaveApi {
   }) async {
     final playback =
         method == 'GET' &&
-        RegExp(r'^/api/tracks/[^/]+/playback$').hasMatch(path);
+        RegExp(
+          r'^/api/tracks/[^/?]+/playback(?:\?purpose=download)?$',
+        ).hasMatch(path);
     final action =
         method == 'POST' &&
         (path == '/api/devices/command' ||
@@ -450,26 +452,31 @@ class WaveApi {
   Future<WaveTrack> resolvePlayback(
     WaveTrack track, {
     bool fresh = false,
+    bool forDownload = false,
   }) async {
     final scope = '$server:$token';
     if (_playbackScope != scope) {
       _playbackScope = scope;
       _playbackWarmup.clear();
     }
-    final existing = _playbackWarmup[track.id];
+    final key = forDownload ? 'download:${track.id}' : track.id;
+    final existing = _playbackWarmup[key];
     if (fresh ||
         existing != null &&
             DateTime.now().difference(existing.at) >
                 const Duration(seconds: 60)) {
-      _playbackWarmup.remove(track.id);
+      _playbackWarmup.remove(key);
     }
-    var entry = _playbackWarmup[track.id];
+    var entry = _playbackWarmup[key];
     if (entry == null) {
       entry = (
         at: DateTime.now(),
-        job: call('/api/tracks/${Uri.encodeComponent(track.id)}/playback'),
+        job: call(
+          '/api/tracks/${Uri.encodeComponent(track.id)}/playback'
+          '${forDownload ? '?purpose=download' : ''}',
+        ),
       );
-      _playbackWarmup[track.id] = entry;
+      _playbackWarmup[key] = entry;
       while (_playbackWarmup.length > 3) {
         _playbackWarmup.remove(_playbackWarmup.keys.first);
       }
@@ -478,8 +485,8 @@ class WaveApi {
     try {
       data = await entry.job;
     } catch (_) {
-      if (identical(_playbackWarmup[track.id]?.job, entry.job)) {
-        _playbackWarmup.remove(track.id);
+      if (identical(_playbackWarmup[key]?.job, entry.job)) {
+        _playbackWarmup.remove(key);
       }
       rethrow;
     }
@@ -487,8 +494,8 @@ class WaveApi {
     if (descriptor['kind'] != 'audio' ||
         descriptor['url'] is! String ||
         (descriptor['url'] as String).isEmpty) {
-      if (identical(_playbackWarmup[track.id]?.job, entry.job)) {
-        _playbackWarmup.remove(track.id);
+      if (identical(_playbackWarmup[key]?.job, entry.job)) {
+        _playbackWarmup.remove(key);
       }
       throw WaveException(wt('native.266e43ddb8'), 'AUDIO_UNAVAILABLE');
     }

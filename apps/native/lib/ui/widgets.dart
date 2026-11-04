@@ -64,7 +64,7 @@ class Brand extends StatelessWidget {
   Widget build(BuildContext context) => Row(
     mainAxisSize: MainAxisSize.min,
     children: [
-      GlukWaveMark(size: size),
+      GlukWaveMark(size: size, animated: animated),
       if (!compact) const SizedBox(width: 10),
       if (!compact)
         Text.rich(
@@ -97,13 +97,24 @@ class Brand extends StatelessWidget {
   );
 }
 
-/// The exact web mark, drawn as a vector inside the app's square brand tile.
+/// The web animation and its static vector fallback share the same brand tile.
 class GlukWaveMark extends StatelessWidget {
   final double size;
-  const GlukWaveMark({super.key, this.size = 34});
+  final bool animated;
+  const GlukWaveMark({super.key, this.size = 34, this.animated = false});
   @override
   Widget build(BuildContext context) {
     final v = waveVisuals(context);
+    final motion =
+        animated &&
+        !v.reducedMotion &&
+        !MediaQuery.disableAnimationsOf(context) &&
+        TickerMode.of(context);
+    final radius = BorderRadius.circular(v.corners(size * .3));
+    Widget vector() => Padding(
+      padding: EdgeInsets.all(size * .13),
+      child: CustomPaint(painter: _BrandMarkPainter(v.ink)),
+    );
     return Semantics(
       label: 'GlukWave',
       image: true,
@@ -112,12 +123,68 @@ class GlukWaveMark extends StatelessWidget {
           key: const Key('glukwave-vector-mark'),
           width: size,
           height: size,
-          padding: EdgeInsets.all(size * .13),
           decoration: BoxDecoration(
             color: v.ink.withValues(alpha: .12),
-            borderRadius: BorderRadius.circular(v.corners(size * .3)),
+            borderRadius: radius,
           ),
-          child: CustomPaint(painter: _BrandMarkPainter(v.ink)),
+          child: motion
+              ? ClipRRect(
+                  borderRadius: radius,
+                  child: OverflowBox(
+                    minWidth: size * 2.4,
+                    maxWidth: size * 2.4,
+                    minHeight: size * 1.35,
+                    maxHeight: size * 1.35,
+                    alignment: const Alignment(0, -.1),
+                    child: Image.asset(
+                      'assets/logo.gif',
+                      fit: BoxFit.fill,
+                      cacheWidth: 192,
+                      excludeFromSemantics: true,
+                      // The pale source background becomes transparent and
+                      // the dark wave takes the current theme ink.
+                      frameBuilder: (_, child, frame, _) => frame == null
+                          ? Center(
+                              child: SizedBox.square(
+                                dimension: size,
+                                child: vector(),
+                              ),
+                            )
+                          : ColorFiltered(
+                              colorFilter: ColorFilter.matrix([
+                                0,
+                                0,
+                                0,
+                                0,
+                                v.ink.r * 255,
+                                0,
+                                0,
+                                0,
+                                0,
+                                v.ink.g * 255,
+                                0,
+                                0,
+                                0,
+                                0,
+                                v.ink.b * 255,
+                                -1.28,
+                                -4.29,
+                                -.43,
+                                3,
+                                0,
+                              ]),
+                              child: child,
+                            ),
+                      errorBuilder: (_, _, _) => Center(
+                        child: SizedBox.square(
+                          dimension: size,
+                          child: vector(),
+                        ),
+                      ),
+                    ),
+                  ),
+                )
+              : vector(),
         ),
       ),
     );

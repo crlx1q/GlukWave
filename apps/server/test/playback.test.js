@@ -2,6 +2,17 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createPlaybackResolver} from '../src/playback.js';
 
+test('download resolution picks an independent file even when normal playback uses SoundCloud HLS',async()=>{
+  const track={id:'song',source:'soundcloud'},user={id:'user'};
+  const stream={kind:'audio',format:'hls',offline:false,url:'/api/soundcloud-audio/song'};
+  let file={kind:'audio',offline:true,url:'/api/external-audio/song',downloadUrl:'/api/external-audio/song/download'};
+  const resolve=createPlaybackResolver({soundcloudPlayback:async()=>stream,extractorPlayback:async()=>file});
+  assert.equal(await resolve(track,user,'session'),stream);
+  assert.equal(await resolve(track,user,'session',true),file);
+  file=null;
+  await assert.rejects(resolve(track,user,'session',true),{code:'OFFLINE_UNAVAILABLE',status:403});
+});
+
 test('Playback never falls back to catalog widgets; tries independent audio after a failed adapter and bounds diagnostics',async()=>{
   const calls=[],reports=[];
   const track={id:'song',source:'youtube',playback:{kind:'youtube',embedUrl:'https://www.youtube.com/embed/never-mounted'}};

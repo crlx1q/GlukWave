@@ -114,7 +114,7 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
     const order=nextQueue??(queueRef.current.some(item=>item.id===next.id)?queueRef.current:[next]);queueRef.current=order;setQueueState(order);store.remember([next]);update({trackId:next.id,position,playing:false,queue:order.map(item=>item.id),waveMode:waveOptionsRef.current.mode,waveMood:waveOptionsRef.current.mood});
     let usedCache=false;
     try {
-      const local=userRef.current?await cached(userRef.current.id,next.id):undefined;
+      const local=userRef.current?await cached(userRef.current.id,next.id,playing):undefined;
       usedCache=!!local;
       warmup.current.reset(startedUserId||'guest');
       const resolvePlayback=()=>api<{playback:Playback}>(`/tracks/${encodeURIComponent(next.id)}/playback`,{signal:request.signal}).then(value=>value.playback);
@@ -151,7 +151,7 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
         if(!current())return;audio.volume=stateRef.current.volume;audio.currentTime=desiredPosition.current;audio.playbackRate=roomRef.current?1:settingsRef.current.playbackRate;
         if(desiredPlay.current) {try {await audio.play();ensureAudioMeter();}catch(error) {if(!current())return;setTrackLoading(false);if(!isPlaybackBlocked(error)){setAutoplayBlocked(false);reportError(error,'playback',{code:'AUDIO_START'});throw new ApiError('AUDIO_FORMAT_UNAVAILABLE',t('copy.715'));}setAutoplayBlocked(true);if(strict)throw new ApiError('AUTOPLAY_BLOCKED',t('copy.705'));store.notify(t('copy.704'));}}
         if(strict&&!playing)await waitForPlayback(()=>audio.readyState>=1,request.signal,t('copy.715'));
-        if(userRef.current&&settingsRef.current.autoCache&&!local&&fresh.offline&&fresh.format!=='hls')void saveTrack(userRef.current.id,effective,settingsRef.current.cacheLimitMB,false).catch(()=>{});
+        if(desiredPlay.current&&userRef.current&&settingsRef.current.autoCache&&!local&&fresh.offline&&!(navigator as Navigator&{connection?:{saveData?:boolean}}).connection?.saveData)void saveTrack(userRef.current.id,effective,settingsRef.current.cacheLimitMB,false,undefined,request.signal).catch(()=>{});
       } else if(fresh.kind==='yandex'&&playing){store.notify(t('copy.706'));if(strict)throw new Error(t('copy.707'));}
       if(strict&&playing&&fresh.kind!=='audio')await waitForPlayback(()=>trackRef.current?.id===next.id&&stateRef.current.playing,request.signal,t('copy.708'));
       if(userRef.current&&startedUserId===userRef.current.id)void post('/history',{trackId:next.id,position}).then(()=>store.refreshLibrary()).catch(()=>{});
@@ -451,7 +451,7 @@ export function PlayerProvider({children}:{children:ReactNode}) {useLocale();
           if(account&&await cached(account,next.id))continue;
           const fresh=await warmup.current.prepare(next.id,signal=>api<{playback:Playback}>(`/tracks/${encodeURIComponent(next.id)}/playback`,{signal:AbortSignal.any([signal,AbortSignal.timeout(20000)])}).then(value=>value.playback),abort.signal);
           if(abort.signal.aborted||account!==userRef.current?.id)return;
-          if(account&&settingsRef.current.autoCache&&fresh.offline&&fresh.format!=='hls')await saveTrack(account,{...next,playback:fresh},settingsRef.current.cacheLimitMB,false,undefined,abort.signal);
+          if(next===following[0]&&account&&settingsRef.current.autoCache&&fresh.offline&&fresh.format!=='hls')await saveTrack(account,{...next,playback:fresh},settingsRef.current.cacheLimitMB,false,undefined,abort.signal);
         }catch{if(abort.signal.aborted)return;}
       }
     })().catch(()=>{}),600);

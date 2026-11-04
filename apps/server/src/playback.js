@@ -15,10 +15,20 @@ export function createPlaybackResolver(ctx) {
     void ctx.reportError?.({platform:'server',kind:'playback',message:`Own audio resolution failed (${adapter})`,code,version:'0.1.0',route:'/tracks/:id/playback'}).catch(()=>{});
   }
   ctx.playbackDiagnostics=()=>({revision:playbackRevision,mode:playbackMode,counts:{...counts},recent:recent.map(item=>({...item})),soundcloud:ctx.soundcloudAudioStats?.()||null});
-  return async (track,user,sessionId) => {
+  return async (track,user,sessionId,forDownload=false) => {
     counts.requests++;
-    if(track.source==='local'&&track.playback?.kind==='audio'){counts.local++;return ctx.publicTrack(track,user).playback;}
+    if(track.source==='local'&&track.playback?.kind==='audio'){
+      const descriptor=ctx.publicTrack(track,user).playback;
+      if(forDownload&&!descriptor.offline)fail(403,'OFFLINE_UNAVAILABLE','Для этого трека недоступно скачивание.');
+      counts.local++;return descriptor;
+    }
     if(!user||!sessionId)fail(401,'AUTH_REQUIRED','Войди в GlukWave, чтобы слушать музыку.');
+    if(forDownload){
+      // Official SoundCloud streaming never supplies an offline file.
+      const descriptor=await ctx.extractorPlayback?.(track,user,sessionId);
+      if(!descriptor?.offline||!descriptor.downloadUrl)fail(403,'OFFLINE_UNAVAILABLE','Для этого трека недоступно скачивание.');
+      return descriptor;
+    }
     const expected=await ctx.extractorExpected?.(track);
     let lastError;
     const attempt=async(adapter,operation)=>{

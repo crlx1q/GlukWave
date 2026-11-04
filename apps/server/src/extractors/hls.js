@@ -6,7 +6,7 @@ import {rewriteSoundcloudManifest} from '../soundcloud-audio.js';
 
 // Never expose signed CDN URLs. A grant is bound to one live account session;
 // every manifest, encryption key and segment is checked against that session.
-export function setupExtractedHls(app,ctx,{cdn,resolve,fetcher=fetch}){
+export function setupExtractedHls(app,ctx,{cdn,resolve,downloadable,fetcher=fetch}){
   const grants=new Map(),transfers=new Set(),restoring=new Map(),capabilities=audioCapabilities(ctx.config.encryptionKey,'extracted-hls');let closed=false,parts=0;
   const drop=key=>{const grant=grants.get(key);if(grant)parts-=grant.parts.size;grants.delete(key);};
   const sweep=()=>{for(const [key,grant] of grants)if(grant.expiresAt<=Date.now())drop(key);};
@@ -20,8 +20,8 @@ export function setupExtractedHls(app,ctx,{cdn,resolve,fetcher=fetch}){
     const createdAt=Date.now(),expiresAt=createdAt+Math.min(86400000,Math.max(7200000,((Number(track.duration)||0)+300)*1000));
     const token=capabilities.issueRoot({trackId:track.id,userId:user.id,sessionId,createdAt,expiresAt});
     const attribution={source:result.info.source,artist:result.info.artist||track.artist,sourceUrl:result.info.source_url||track.sourceUrl};
-    const offline=!!(result.permission?.download&&ctx.config.env!=='test');
-    const descriptor={kind:'audio',format:'hls',audioSource:result.info.source,offline,...(result.permission?.download?{downloadUrl:`/api/external-audio/${encodeURIComponent(track.id)}/download`}:{}),url:`/api/stream-audio/${encodeURIComponent(track.id)}?grant=${token}`,attribution};
+    const offline=downloadable(result);
+    const descriptor={kind:'audio',format:'hls',audioSource:result.info.source,offline,...(offline?{downloadUrl:`/api/external-audio/${encodeURIComponent(track.id)}/download`}:{}),url:`/api/stream-audio/${encodeURIComponent(track.id)}?grant=${token}`,attribution};
     grants.set(token,{trackId:track.id,userId:user.id,sessionId,createdAt,expiresAt,parts:new Map([['root',result.info.audio_url]]),partVersions:new Map([['root',0]]),sourceVersion:0,reverse:new Map([[result.info.audio_url,'root']]),headers:result.info.http_headers||{},descriptor,refresh:null});parts++;
     return descriptor;
   }

@@ -1153,13 +1153,24 @@ class _PlayerPageState extends State<PlayerPage> {
       final scale = MediaQuery.textScalerOf(context).scale(1);
       final dimensional = c.customization.appearance.cover3d && !c.energySaving;
       final split = bounds.maxWidth >= 960 && bounds.maxHeight >= 610;
+      final wideWidth = math.min(bounds.maxWidth, 1320.0);
+      final controlsWidth = (wideWidth * .4).clamp(400.0, 520.0);
+      final columnGap = (wideWidth * .055).clamp(48.0, 76.0);
       final landscape =
           MediaQuery.sizeOf(context).width > 600 && bounds.maxHeight < 470;
       // Give the rigid sleeve its complete turn envelope. The remaining space,
       // rather than the whole viewport, chooses the density of its controls.
-      final size = ((bounds.maxWidth - 32) / (dimensional ? 1.6 : 1)).clamp(
+      final coverWidth = split
+          ? wideWidth - controlsWidth - columnGap
+          : bounds.maxWidth;
+      final coverLimit = split
+          ? (bounds.maxHeight * .52).clamp(302.0, 430.0)
+          : landscape
+          ? 202.0
+          : 302.0;
+      final size = ((coverWidth - 32) / (dimensional ? 1.6 : 1)).clamp(
         60.0,
-        landscape ? 202.0 : 302.0,
+        coverLimit,
       );
       final sceneHeight = dimensional
           ? referenceSleeveSceneHeight(size)
@@ -1208,7 +1219,7 @@ class _PlayerPageState extends State<PlayerPage> {
                     playing: active && c.audio.playing,
                     artworkKey: widget.artworkKey,
                     touchTilt: false,
-                    compactVertical: true,
+                    compactVertical: !split,
                   ),
                 ),
               ),
@@ -1248,6 +1259,8 @@ class _PlayerPageState extends State<PlayerPage> {
                           ? 19
                           : dense
                           ? 23
+                          : split
+                          ? 32
                           : 27,
                       height: 1.25,
                       fontWeight: FontWeight.w800,
@@ -1257,7 +1270,10 @@ class _PlayerPageState extends State<PlayerPage> {
                   SizedBox(height: short ? 6 : 9),
                   ScrollingLabel(
                     track.artist,
-                    style: TextStyle(color: v.muted, fontSize: short ? 12 : 13),
+                    style: TextStyle(
+                      color: v.muted,
+                      fontSize: split ? 15 : (short ? 12 : 13),
+                    ),
                   ),
                 ],
               ),
@@ -1297,7 +1313,7 @@ class _PlayerPageState extends State<PlayerPage> {
               color: v.surface.withValues(alpha: .8),
               borderRadius: BorderRadius.circular(v.corners(26)),
             ),
-            child: transport(compact: short),
+            child: transport(compact: short, wide: split),
           ),
           SizedBox(
             height: short
@@ -1380,7 +1396,9 @@ class _PlayerPageState extends State<PlayerPage> {
                   itemBuilder: (_) => [
                     PopupMenuItem(
                       value: 'save',
-                      enabled: c.online && !c.cache.contains(track.id),
+                      enabled: c.cache.contains(track.id)
+                          ? object(c.cache.entries[track.id])['manual'] != true
+                          : c.online,
                       child: Text(nativeText(context, 'save')),
                     ),
                     PopupMenuItem(
@@ -1429,23 +1447,27 @@ class _PlayerPageState extends State<PlayerPage> {
         ],
       ];
       if (split) {
-        return Row(
-          key: const Key('player-wide-layout'),
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Expanded(child: contents.first),
-            const SizedBox(width: 54),
-            SizedBox(
-              width: 400,
-              child: SingleChildScrollView(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: contents.skip(1).toList(),
+        return Center(
+          child: SizedBox(
+            width: wideWidth,
+            child: Row(
+              key: const Key('player-wide-layout'),
+              children: [
+                Expanded(child: contents.first),
+                SizedBox(width: columnGap),
+                SizedBox(
+                  width: controlsWidth,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: contents.skip(1).toList(),
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
-          ],
+          ),
         );
       }
       return SingleChildScrollView(
@@ -1559,7 +1581,7 @@ class _PlayerPageState extends State<PlayerPage> {
       );
     },
   );
-  Widget transport({bool compact = false}) => Row(
+  Widget transport({bool compact = false, bool wide = false}) => Row(
     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
     children: [
       IconButton(
@@ -1605,7 +1627,7 @@ class _PlayerPageState extends State<PlayerPage> {
               )
             : null,
         style: IconButton.styleFrom(
-          minimumSize: compact ? const Size(56, 56) : const Size(66, 66),
+          minimumSize: Size.square(compact ? 56 : (wide ? 74 : 66)),
           backgroundColor: waveVisuals(context).ink,
           foregroundColor: waveVisuals(context).background,
         ),

@@ -10,9 +10,9 @@ import { trackCount } from './types';
 import { useEffect, useLayoutEffect, useId, useRef, useState, type ButtonHTMLAttributes, type ReactNode, type RefObject } from 'react';
 import { ArrowRight, Check, ListChecks, Cloud, Disc3, Download, Heart, Music2, Play, Plus, Radio, Waves, X, Youtube } from 'lucide-react';
 import { useStore } from './store';
-import { sourceNames, time, type Source, type Track } from './types';
+import { sourceNames, time, type Playback, type Source, type Track } from './types';
 import { usePlayer } from './player';
-import { post, patch } from './api';
+import { api, post, patch } from './api';
 import {artworkSize} from './artwork';
 import { cached, pinDownload, saveTrack } from './cache';
 export function IconButton({title,children,...props}:ButtonHTMLAttributes<HTMLButtonElement>&{title:string}){useLocale();return <button className="icon-btn" aria-label={title} title={title} {...props}>{children}</button>;}
@@ -44,5 +44,19 @@ export function Toggle({checked,onChange,label,description,disabled=false}:{chec
 export function TrackList({tracks,empty=t('copy.737'),onPlaylist,compact=false}:{tracks:Track[];empty?:string;onPlaylist?:(track:Track)=>void;compact?:boolean}){useLocale();const store=useStore(),player=usePlayer();const saved=player.savedIds;return tracks.length?<div className={`track-list ${compact?'compact':''}`}>{tracks.map((track,index)=><div className={`track-row ${player.track?.id===track.id?'current':''}`} key={track.id}><span className="track-number">{String(index+1).padStart(2,'0')}</span><div className="track-cover-wrap"><Art track={track} className="track-cover" onClick={()=>void player.playTrack(track,tracks)}/><Play className="art-play" size={14}/></div><button className="track-main" onClick={()=>void player.playTrack(track,tracks)}><b>{track.title}</b><small>{track.artist||t('copy.738')}</small></button><span className="track-source"><SourceMark source={track.source} label/></span>{saved.has(track.id)&&<span className="downloaded-mark" title={t('copy.739')}><Download size={13}/></span>}<span className="track-duration">{track.duration?time(track.duration):'—'}</span><IconButton title={store.library.likedIds.includes(track.id)?t('copy.637'):t('copy.638')} className={`icon-btn track-like ${store.library.likedIds.includes(track.id)?'liked':''}`} aria-pressed={store.library.likedIds.includes(track.id)} onClick={()=>void store.run(()=>store.like(track))}><AnimatedIcon name={store.library.likedIds.includes(track.id)?'heartFull':'heart'} size={17}/></IconButton>{!compact&&<PlaylistMembershipButton track={track} onClick={()=>onPlaylist?onPlaylist(track):player.setAddTrack(track)}/>}<RecommendationActions track={track}/></div>)}</div>:<Empty title={empty}>{t('copy.741')}</Empty>;}
 export function PlaylistMembershipButton({track,onClick,className='',label=false}:{track:Track;onClick:()=>void;className?:string;label?:boolean}){useLocale();const store=useStore(),lists=store.library.playlists.filter(p=>p.trackIds.includes(track.id)),title=lists.length===1?playlistText('one',{name:lists[0].name}):lists.length?playlistText('many',{count:lists.length}):playlistText('add');return <button type="button" title={title} aria-label={title} aria-pressed={lists.length>0} className={`${label?'playlist-membership-button':'icon-btn'} ${lists.length?'in-playlist':''} ${className}`} onClick={onClick}>{lists.length?<ListChecks size={17}/>:<Plus size={17}/>} {label&&<span>{title}</span>}</button>;}
 export function AddPlaylistModal({track,onClose}:{track:Track;onClose:()=>void}){const store=useStore();return <PlaylistMembershipPicker key={`${store.user?.id}:${track.id}`} track={track} onClose={onClose}/>;}
-export function DownloadButton({track}:{track:Track}){useLocale();const store=useStore(),player=usePlayer();return <button className="subtle-button" disabled={!track.playback.offline||player.manualIds.has(track.id)} onClick={()=>{if(!store.requireAuth())return;void store.run(async()=>{if(await cached(store.user!.id,track.id)){await pinDownload(store.user!.id,track.id);return;}await saveTrack(store.user!.id,track,store.settings.cacheLimitMB,true);},t('copy.746'));}}>{player.manualIds.has(track.id)?<Check size={16}/>:<Download size={16}/>} {player.manualIds.has(track.id)?t('copy.747'):track.playback.offline?(player.savedIds.has(track.id)?t('copy.748'):t('copy.749')):t('copy.750')}</button>;}
+export function DownloadButton({track}:{track:Track}){
+ useLocale();const store=useStore(),player=usePlayer(),account=useRef(store.user?.id),[pending,setPending]=useState<string|null>(null);
+ account.current=store.user?.id;
+ const saved=player.savedIds.has(track.id),pinned=player.manualIds.has(track.id),busy=pending===track.id;
+ const download=async()=>{
+  if(!store.requireAuth()||!store.user)return;
+  const user=store.user.id;setPending(track.id);
+  try{await store.run(async()=>{
+   if(await cached(user,track.id)){if(account.current===user)await pinDownload(user,track.id);return;}
+   const playback=track.playback.offline?track.playback:(await api<{playback:Playback}>(`/tracks/${encodeURIComponent(track.id)}/playback?purpose=download`)).playback;
+   if(account.current===user)await saveTrack(user,{...track,playback},store.settings.cacheLimitMB,true);
+  },t('copy.746'));}finally{setPending(current=>current===track.id?null:current);}
+ };
+ return <button className="subtle-button" disabled={pinned||busy||store.offline&&!saved} aria-busy={busy} onClick={()=>void download()}>{pinned?<Check size={16}/>:<Download size={16}/>} {pinned?t('copy.747'):saved?t('copy.748'):t('copy.749')}</button>;
+}
 

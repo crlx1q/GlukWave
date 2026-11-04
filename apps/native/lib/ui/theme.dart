@@ -59,6 +59,8 @@ class WaveVisuals extends ThemeExtension<WaveVisuals> {
   }
   Color get muted => Color.lerp(background, ink, .72)!;
   Color get accentSoft => Color.lerp(background, accent, .18)!;
+  Color get workspace => Color.lerp(background, ink, .045)!;
+  Color get raisedSurface => Color.lerp(surface, accent, .055)!;
   Color get line => ink.withValues(alpha: .11);
   Color get player => surface;
   Color get onPlayer => ink;

@@ -184,9 +184,6 @@ class MusicCache extends ChangeNotifier {
     return file;
   });
   Future<void> save(WaveTrack track, {bool manual = false}) async {
-    if (!track.offline) {
-      throw WaveException(wt('native.1a9e0219dd'));
-    }
     if (contains(track.id)) {
       if (manual) {
         await _exclusive(() async {
@@ -213,6 +210,9 @@ class MusicCache extends ChangeNotifier {
         }
       }
       return;
+    }
+    if (!track.offline) {
+      throw WaveException(wt('native.1a9e0219dd'));
     }
     if (_jobs.containsKey(track.id)) {
       if (manual) _manualRequested.add(track.id);

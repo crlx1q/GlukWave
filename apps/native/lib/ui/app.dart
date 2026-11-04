@@ -597,6 +597,7 @@ class _WaveShellState extends State<WaveShell>
     }
     final layout = ClientLayout.of(context);
     final desktop = layout.desktop;
+    final amoled = c.customization.theme == 'amoled';
     final composingRoom =
         !desktop &&
         page == WavePage.rooms &&
@@ -604,11 +605,11 @@ class _WaveShellState extends State<WaveShell>
         MediaQuery.viewInsetsOf(context).bottom > 0;
     final shell = Scaffold(
       backgroundColor:
-          c.customization.wallpaper['url'] != '' &&
-              c.customization.theme != 'amoled' &&
-              !c.energySaving
+          c.customization.wallpaper['url'] != '' && !amoled && !c.energySaving
           ? Colors.transparent
-          : null,
+          : amoled
+          ? Colors.black
+          : waveVisuals(context).workspace,
       appBar: desktop && DesktopTitleBar.supported
           ? PreferredSize(
               preferredSize: const Size.fromHeight(44),
@@ -1046,7 +1047,9 @@ class _WaveShellState extends State<WaveShell>
       key: const Key('desktop-navigation-sidebar'),
       width: 224,
       decoration: BoxDecoration(
-        color: v.surface.withValues(alpha: .4),
+        color: c.customization.theme == 'amoled'
+            ? Colors.black
+            : v.raisedSurface.withValues(alpha: .78),
         border: Border(right: BorderSide(color: v.line)),
       ),
       padding: const EdgeInsets.fromLTRB(14, 23, 14, 12),

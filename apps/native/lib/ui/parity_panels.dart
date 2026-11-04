@@ -188,13 +188,13 @@ class _TrackActionsBody extends StatelessWidget {
                 if (active) showPlaylistMembership(context, c, track);
               },
             ),
-            if (track.offline)
+            if (track.playable || c.cache.contains(track.id))
               ListTile(
                 key: const Key('track-action-download'),
                 contentPadding: EdgeInsets.zero,
                 leading: const Icon(Icons.download_outlined),
                 title: Text(wt('native.5fbca5dea7', context: context)),
-                enabled: active && c.online,
+                enabled: active && (c.online || c.cache.contains(track.id)),
                 onTap: () => perform(() => c.downloadTrack(track)),
               ),
             if (track.sourceUrl.isNotEmpty) ...[

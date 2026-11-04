@@ -1,4 +1,46 @@
 import type HlsType from 'hls.js';
+import type {FragmentLoaderContext, HlsConfig, Loader, LoaderCallbacks, LoaderConfiguration, LoaderResponse} from 'hls.js';
+
+// One bounded memory cache per active HLS stream. Encrypted media stays
+// encrypted here and nothing survives a track change or logout.
+function sessionFragmentLoader(DefaultLoader:HlsConfig['loader']) {
+ const limit=24*1024*1024,fragments=new Map<string,LoaderResponse>();let bytes=0;
+ return class implements Loader<FragmentLoaderContext>{
+  private network:Loader<FragmentLoaderContext>;
+  private cachedLoad=false;
+  private cancelHit:(()=>void)|null=null;
+  context:FragmentLoaderContext|null=null;
+  get stats(){return this.network.stats;}
+  constructor(config:HlsConfig){this.network=new DefaultLoader(config) as Loader<FragmentLoaderContext>;}
+  abort(){if(this.cachedLoad)this.cancelHit?.();else this.network.abort();}
+  destroy(){this.cancelHit=null;this.network.destroy();}
+  load(context:FragmentLoaderContext,config:LoaderConfiguration,callbacks:LoaderCallbacks<FragmentLoaderContext>){
+   this.context=context;
+   const key=JSON.stringify([context.url,context.rangeStart,context.rangeEnd]);
+   const cached=fragments.get(key);
+   if(cached?.data instanceof ArrayBuffer){
+    this.cachedLoad=true;fragments.delete(key);fragments.set(key,cached);
+    const data=cached.data.slice(0),now=performance.now();
+    Object.assign(this.stats,{loaded:data.byteLength,total:data.byteLength,loading:{start:now,first:now,end:now}});
+    this.cancelHit=()=>{this.cancelHit=null;this.stats.aborted=true;callbacks.onAbort?.(this.stats,context,null);};
+    void Promise.resolve().then(()=>{if(!this.cancelHit)return;this.cancelHit=null;callbacks.onSuccess({...cached,data},this.stats,context,null);});
+    return;
+   }
+   this.network.load(context,config,{...callbacks,onSuccess:(response,stats,ctx,details)=>{
+    if(response.data instanceof ArrayBuffer&&response.data.byteLength<=limit){
+     const data=response.data.slice(0);
+     const replaced=fragments.get(key);if(replaced){bytes-=(replaced.data as ArrayBuffer).byteLength;fragments.delete(key);}
+     while(bytes+data.byteLength>limit){
+      const oldest=fragments.keys().next().value!;
+      bytes-=(fragments.get(oldest)!.data as ArrayBuffer).byteLength;fragments.delete(oldest);
+     }
+     fragments.set(key,{...response,data});bytes+=data.byteLength;
+    }
+    callbacks.onSuccess(response,stats,ctx,details);
+   }});
+  }
+ };
+}
 /** One audio element owns decoding, EQ, MediaSession and queue completion.
  * A provider HLS stream is playable, not an offline download permission. */
 export class AudioStreamLoader {
@@ -23,7 +65,7 @@ export class AudioStreamLoader {
     if(Hls.isSupported()){
      audio.removeAttribute('src');audio.load();
      const policy={default:{maxTimeToFirstByteMs:10000,maxLoadTimeMs:20000,timeoutRetry:{maxNumRetry:2,retryDelayMs:700,maxRetryDelayMs:2500},errorRetry:{maxNumRetry:2,retryDelayMs:700,maxRetryDelayMs:2500}}};
-     const hls=new Hls({enableWorker:true,lowLatencyMode:false,maxBufferLength:24,maxMaxBufferLength:36,backBufferLength:6,maxBufferSize:12*1024*1024,manifestLoadPolicy:policy,playlistLoadPolicy:policy,fragLoadPolicy:policy});
+     const hls=new Hls({enableWorker:true,lowLatencyMode:false,maxBufferLength:24,maxMaxBufferLength:36,backBufferLength:120,maxBufferSize:12*1024*1024,fLoader:sessionFragmentLoader(Hls.DefaultConfig.loader),manifestLoadPolicy:policy,playlistLoadPolicy:policy,fragLoadPolicy:policy});
      this.hls=hls;
      let networkRetries=0,mediaRetries=0;
      await new Promise<void>((resolve,reject)=>{let ready=false,settled=false,failed=false;const timeout=setTimeout(()=>fail(Error('Audio stream did not respond. Try again.')),30000);

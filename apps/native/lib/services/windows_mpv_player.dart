@@ -397,8 +397,9 @@ class WaveMpvPlayer extends AudioPlayerPlatform implements WindowsDspOutput {
       // media_kit defaults to disk demux caching. Audio uses a bounded memory
       // cache so a missing/unwritable temporary directory cannot break handoff.
       await _checkedProperty('cache-on-disk', 'no');
-      await _checkedProperty('demuxer-max-bytes', '16777216');
-      await _checkedProperty('demuxer-max-back-bytes', '8388608');
+      await _checkedProperty('demuxer-seekable-cache', 'yes');
+      await _checkedProperty('demuxer-max-bytes', '12582912');
+      await _checkedProperty('demuxer-max-back-bytes', '25165824');
     }
 
     if (request.audioSourceMessage is ConcatenatingAudioSourceMessage) {

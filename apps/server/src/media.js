@@ -41,10 +41,12 @@ export function setupMedia(app,ctx){
   app.get('/api/admin/playback',ctx.requireAdmin,(req,res)=>res.set('Cache-Control','no-store').json(ctx.playbackDiagnostics()));
   app.get('/api/tracks/:id/playback',asyncRoute(async(req,res)=>{
     const t=await store.get('tracks',req.params.id);
-    if(!await authorizedTrack(t,req.auth?.user))fail(404,'TRACK_NOT_FOUND','Трек не найден.');
+    const forDownload=req.query.purpose==='download';
+    const permitted=track=>authorizedTrack(track,req.auth?.user,forDownload&&track?.source==='local');
+    if(!await permitted(t))fail(404,'TRACK_NOT_FOUND','Трек не найден.');
     res.set('Cache-Control','private, no-store');
     if(req.headers['x-glukwave-playback-wait']==='poll'){
-      const result=await playbackJobs.wait(`${req.auth?.session.id||'anonymous'}:${t.id}`,()=>resolvePlayback(t,req.auth?.user,req.auth?.session.id));
+      const result=await playbackJobs.wait(`${req.auth?.session.id||'anonymous'}:${forDownload?'download':'play'}:${t.id}`,()=>resolvePlayback(t,req.auth?.user,req.auth?.session.id,forDownload));
       // Authorize each poll AND the final result after the slow operation.
       if(req.auth){
         const token=req.headers.authorization?.startsWith('Bearer ')?req.headers.authorization.slice(7):req.cookies.gw_session;
@@ -52,11 +54,11 @@ export function setupMedia(app,ctx){
         if(!req.auth)fail(401,'AUTH_REQUIRED','Войди в GlukWave, чтобы продолжить.');
       }
       const current=await store.get('tracks',t.id);
-      if(!await authorizedTrack(current,req.auth?.user))fail(404,'TRACK_NOT_FOUND','Трек не найден.');
+      if(!await permitted(current))fail(404,'TRACK_NOT_FOUND','Трек не найден.');
       if(result.pending)res.status(202).set('Retry-After',String(result.retryAfter));
       return res.json(result);
     }
-    res.json({playback:await resolvePlayback(t,req.auth?.user,req.auth?.session.id)});
+    res.json({playback:await resolvePlayback(t,req.auth?.user,req.auth?.session.id,forDownload)});
   }));
   async function stream(req,res,download=false){const t=await store.get('tracks',req.params.id);if(!t||t.source!=='local'||!await authorizedTrack(t,req.auth?.user,download))fail(404,'TRACK_NOT_FOUND','Трек не найден.');if(download&&!t.playback.offline)fail(403,'OFFLINE_UNAVAILABLE','Эта площадка не предоставляет скачивание.');const range=parseRange(req.headers.range,t.size);if(range===false)return res.status(416).set('Content-Range',`bytes */${t.size}`).end();const headers={'Content-Type':t.mime,'Accept-Ranges':'bytes','Cache-Control':'private, no-store','Content-Length':String(range?range.end-range.start+1:t.size),'X-Content-Type-Options':'nosniff'};if(range)headers['Content-Range']=`bytes ${range.start}-${range.end}/${t.size}`;if(download)headers['Content-Disposition']=`attachment; filename="glukwave-${t.id}${path.extname(t.mediaKey)}"`;let readable;if(s3){const response=await s3.send(new GetObjectCommand({Bucket:config.r2.bucket,Key:t.mediaKey,...(range?{Range:`bytes=${range.start}-${range.end}`}:{})}));readable=response.Body;}else{await fsp.access(path.join(mediaDir,t.mediaKey));readable=fs.createReadStream(path.join(mediaDir,t.mediaKey),range||{});}res.status(range?206:200).set(headers);if(req.method==='HEAD'){readable.destroy();return res.end();}readable.on('error',err=>{ctx.log.error({err},'Media stream failed');res.destroy();});res.on('close',()=>readable.destroy());readable.pipe(res);}
   app.get('/api/media/:id',asyncRoute((req,res)=>stream(req,res)));

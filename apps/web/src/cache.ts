@@ -3,7 +3,7 @@ import { openDB, type DBSchema, type IDBPDatabase } from 'idb';
 import type { Library, Track } from './types';
 import { mediaDownloadPath, mediaArtworkPath } from './media-download';
 import {isAudioFile} from './audio-cache-validation';
-export type CachedTrack = { key:string; userId:string; track:Track; blob:Blob; artworkBlob?:Blob; bytes:number; savedAt:number; manual:boolean };
+export type CachedTrack = { key:string; userId:string; track:Track; blob:Blob; artworkBlob?:Blob; bytes:number; savedAt:number; usedAt?:number; manual:boolean };
 export type MetadataEntry = {key:string;userId:string;at:number;value:unknown};
 interface WaveDB extends DBSchema {
   downloads:{key:string;value:CachedTrack;indexes:{userId:string}};
@@ -41,9 +41,14 @@ function announce(userId:string,trackId?:string){window.dispatchEvent(new Event(
 function cancel(userId:string,trackId?:string){for(const[key,operation]of inFlight)if(key.startsWith(`${userId}:`)&&(!trackId||key===`${userId}:${trackId}`))operation.controller.abort();}
 if(changes)changes.onmessage=event=>{cancel(event.data.userId,event.data.trackId);window.dispatchEvent(new Event('wave:cache'));};
 export async function getCacheGeneration(userId:string){return(await(await getDatabase())?.get('generation',userId))||0;}
-export async function cached(userId:string,trackId:string){
- const row=await(await getDatabase())?.get('downloads',`${userId}:${trackId}`);
+export async function cached(userId:string,trackId:string,playing=false){
+ const db=await getDatabase(),key=`${userId}:${trackId}`,row=await db?.get('downloads',key);
  if(row&&!await isAudioFile(row.blob)){await deleteDownload(userId,trackId);return undefined;}
+ if(playing&&row&&db&&Date.now()-(row.usedAt??row.savedAt)>60000)void (async()=>{
+  const tx=db.transaction('downloads','readwrite'),latest=await tx.store.get(key);
+  if(latest?.savedAt===row.savedAt)await tx.store.put({...latest,usedAt:Date.now()});
+  await tx.done;
+ })().catch(()=>{});
  return row;
 }
 export async function downloads(userId:string){return(await getDatabase())?.getAllFromIndex('downloads','userId',userId)??[];}
@@ -89,7 +94,7 @@ export async function saveTrack(userId:string,track:Track,limitMB:number,manual:
   const cancelSpeculative=()=>{if(!operation.manual&&operation.speculative)operation.controller.abort();};externalSignal?.addEventListener('abort',cancelSpeculative,{once:true});if(externalSignal?.aborted)cancelSpeculative();
   operation.promise=(async()=>{
     const db=await getDatabase();if(!db)throw new Error(t('copy.275'));const generation=await getCacheGeneration(userId),trackGeneration=(await db.get('generation',key))||0;
-    const response=await fetch(downloadUrl,{credentials:'include',signal:operation.controller.signal});
+    const response=await fetch(downloadUrl,{credentials:'include',signal:AbortSignal.any([operation.controller.signal,AbortSignal.timeout(10*60*1000)])});
     if(!response.ok){const body=await response.json().catch(()=>({}));throw new Error(body.error?.message||t('copy.276'));}
     const size=Number(response.headers.get('Content-Length')),limit=limitMB*1024*1024;
     if(size>limit){await response.body?.cancel();throw new Error(t('copy.277'));}
@@ -104,7 +109,7 @@ export async function saveTrack(userId:string,track:Track,limitMB:number,manual:
     const tx=db.transaction(['downloads','generation'],'readwrite'),generations=tx.objectStore('generation');
     const actualGeneration=(await generations.get(userId))||0,actualTrackGeneration=(await generations.get(key))||0;
     if(actualGeneration!==generation||actualTrackGeneration!==trackGeneration||operation.controller.signal.aborted){await tx.done;throw new DOMException(t('copy.279'),'AbortError');}
-    const records=tx.objectStore('downloads'),existing=await records.get(key),rows=(await records.index('userId').getAll(userId)).filter(row=>row.key!==key).sort((a,b)=>a.savedAt-b.savedAt);
+    const records=tx.objectStore('downloads'),existing=await records.get(key),rows=(await records.index('userId').getAll(userId)).filter(row=>row.key!==key).sort((a,b)=>(a.usedAt??a.savedAt)-(b.usedAt??b.savedAt));
     let total=rows.reduce((sum,row)=>sum+row.bytes,0);
     for(const row of rows.filter(row=>!row.manual))if(total+bytes>limit){await records.delete(row.key);total-=row.bytes;}
     if(total+bytes>limit){tx.abort();await tx.done.catch(()=>{});throw new Error(t('copy.280'));}

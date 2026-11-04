@@ -15,7 +15,7 @@ export async function api<T>(path: string, init: RequestInit = {}): Promise<T> {
   headers.set('X-GlukWave-Device-Name',encodeURIComponent(browserDeviceName));
   if (init.body && !(init.body instanceof FormData)) headers.set('Content-Type','application/json');
   let response: Response;
-  const playback=/^\/tracks\/[^/]+\/playback$/.test(path);
+  const playback=/^\/tracks\/[^/?]+\/playback(?:\?purpose=download)?$/.test(path);
   const action=init.method==='POST'&&(path==='/devices/command'||/^\/integrations\/[^/]+\/import$/.test(path));
   const personalAccess=init.method==='POST'&&(/^\/integrations\/(?:spotify|yandex)\/token$/.test(path)||path==='/public-import/spotify/token');
   if((action||personalAccess)&&requestAccount)headers.set('X-GlukWave-Account',requestAccount);

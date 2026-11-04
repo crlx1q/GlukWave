@@ -379,6 +379,7 @@ class StudioWallpaper extends StatelessWidget {
     final c = controller,
         state = c.customization,
         w = state.wallpaper,
+        v = waveVisuals(context),
         url = w['url']?.toString() ?? '';
     if (url.isEmpty || state.theme == 'amoled' || c.energySaving) return child;
     return Stack(
@@ -404,6 +405,26 @@ class StudioWallpaper extends StatelessWidget {
             child: ColoredBox(
               color: Colors.black.withValues(
                 alpha: (w['dim'] as num).toDouble(),
+              ),
+            ),
+          ),
+        ),
+        Positioned.fill(
+          child: IgnorePointer(
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    v.raisedSurface.withValues(
+                      alpha: v.brightness == Brightness.light ? .87 : .76,
+                    ),
+                    v.background.withValues(
+                      alpha: v.brightness == Brightness.light ? .80 : .64,
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

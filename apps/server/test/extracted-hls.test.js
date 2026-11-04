@@ -10,7 +10,7 @@ test('unofficial extraction accepts licensed HLS, rewrites keys and segments, re
   const directory=await fs.mkdtemp(path.join(config.root,'work/qa/hls-extracted-'));
   let generation=0,license='cc-by',escape=false,expireSegments=false;
   const info={track_id:'licensed',title:'Evening',artist:'Wave artist',duration:120,source:'soundcloud',source_url:'https://soundcloud.com/wave/track',ext:'m4a',protocol:'m3u8_native',http_headers:{}};
-  const service=await createApp({...config,env:'test',production:false,storage:'sqlite',objectStorage:'local',dataDir:directory,emailVerify:false,turnstileSecret:'',smtp:'',soundcloudPublicSearch:false,soundcloud:{id:'',secret:''},extractors:{enabled:true}},{log:pino({level:'silent'}),extractors:{run:async(_adapter,request)=>request.action==='versions'?{}:{...info,license,audio_url:`https://cf-media.sndcdn.com/master.m3u8?g=${++generation}`},fetch:async(url)=>{
+  const service=await createApp({...config,env:'test',production:false,storage:'sqlite',objectStorage:'local',dataDir:directory,emailVerify:false,turnstileSecret:'',smtp:'',soundcloudPublicSearch:false,soundcloud:{id:'',secret:''},extractors:{enabled:true}},{log:pino({level:'silent'}),extractors:{ffmpegPath:null,run:async(_adapter,request)=>request.action==='versions'?{}:{...info,license,audio_url:`https://cf-media.sndcdn.com/master.m3u8?g=${++generation}`},fetch:async(url)=>{
     const value=new URL(url);
     if(value.pathname==='/master.m3u8'){
       if(value.searchParams.get('g')==='1')return new Response('',{status:403});

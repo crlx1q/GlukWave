@@ -432,6 +432,14 @@ class WaveAudioHandler extends BaseAudioHandler {
         output ??
         AudioPlayer(
           useProxyForRequestHeaders: false,
+          audioLoadConfiguration: const AudioLoadConfiguration(
+            androidLoadControl: AndroidLoadControl(
+              minBufferDuration: Duration(seconds: 12),
+              maxBufferDuration: Duration(seconds: 25),
+              backBufferDuration: Duration(minutes: 3),
+              targetBufferBytes: 16 * 1024 * 1024,
+            ),
+          ),
           audioPipeline: AudioPipeline(
             androidAudioEffects: [
               if (_equalizer != null) _equalizer,
@@ -936,10 +944,7 @@ class WaveAudioHandler extends BaseAudioHandler {
       await _startVerified(revision: revision);
     }
     if (revision != _loadRevision) return;
-    if (local == null &&
-        autoCache &&
-        track.offline &&
-        track.playback['format'] != 'hls') {
+    if (local == null && autoCache && track.offline && playing) {
       unawaited(
         cache.save(track).catchError((Object error) {
           onError?.call(wt('native.310a7a8960', values: {'p0': (error)}));

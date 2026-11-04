@@ -2443,7 +2443,7 @@ class WaveController extends ChangeNotifier {
           }
           final resolved = cache.contains(track.id)
               ? savedTracks.where((t) => t.id == track.id).firstOrNull ?? track
-              : await api.resolvePlayback(track);
+              : await api.resolvePlayback(track, forDownload: true);
           if (_disposed ||
               scope != namespace ||
               session != api.token ||

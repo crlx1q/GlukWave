@@ -57,9 +57,16 @@ html[data-theme=dark] .album-stage.reference-sleeve .album-shadow,html[data-them
 .album-stage.reference-sleeve.flat .album-cd-tray{display:none}
 .full-player.focused-player.connected-player .np-controls .compact-lyric-preview>button{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;min-width:0;flex:none}
 @media(min-width:1100px) and (min-height:760px){
- .full-player.focused-player.connected-player.details-player .np-listening{display:grid;grid-template-columns:minmax(0,496px) minmax(0,400px);column-gap:72px;align-items:center;justify-content:center;width:100%;max-width:1120px;overflow:visible;margin:auto;padding:12px 6px}
+ .full-player.focused-player.connected-player.details-player .np-listening{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);column-gap:clamp(38px,5vw,90px);align-items:center;width:100%;max-width:clamp(1000px,73vw,1330px);overflow:auto;margin:auto;padding:12px 6px}
  .full-player.focused-player.connected-player.details-player .np-cover-growth{grid-column:1;grid-row:1}
- .full-player.focused-player.connected-player.details-player .np-controls{grid-column:2;grid-row:1;margin:0;width:100%;max-width:400px}
+ .full-player.focused-player.connected-player.details-player .np-controls{grid-column:2;grid-row:1;margin:0;width:100%;max-width:none}
+ .full-player.focused-player.connected-player.details-player .np-cover-growth .album-stage{margin-bottom:0!important}
+ .full-player.focused-player.connected-player.details-player .np-track-heading h1{font-size:clamp(26px,2vw,36px)}
+ .full-player.focused-player.connected-player.details-player .np-track-heading p{font-size:15px}
+ .full-player.focused-player.connected-player.details-player .np-transport-row .main-play{width:72px;height:72px}
+ .full-player.focused-player.connected-player.details-player .np-transport-row .transport{gap:clamp(12px,1vw,20px)}
+ .full-player.focused-player.connected-player.details-player .np-volume{max-width:290px}
+ .full-player.focused-player.connected-player.details-player .np-bottom-actions button{font-size:12px}
 }
 .album-stage.reference-sleeve.flat .album-object{transform:none!important;translate:none!important;animation:none!important}
 .album-stage.reference-sleeve.flat .album-cover{position:absolute;inset:0;transform:none;border-radius:calc(var(--radius)*.55);overflow:hidden;background:var(--surface)}

@@ -8,24 +8,23 @@ import { Art, IconButton, largeArtwork } from './ui';
 import { sourceNames, time, type Track } from './types';
 import { useVisualVisibility } from './visual-lifecycle';
 
-export function AlbumCover({track,playing,gestureOwned=false,active=true,showTools=true,toolsOnly=false,stageBudget,onToolSelect}:{track:Track;playing:boolean;gestureOwned?:boolean;active?:boolean;showTools?:boolean;toolsOnly?:boolean;stageBudget?:number;onToolSelect?:()=>void}) {useLocale();
+export function AlbumCover({track,playing,gestureOwned=false,active=true,showTools=true,toolsOnly=false,sizeLimit,onToolSelect}:{track:Track;playing:boolean;gestureOwned?:boolean;active?:boolean;showTools?:boolean;toolsOnly?:boolean;sizeLimit?:number;onToolSelect?:()=>void}) {useLocale();
   const player=usePlayer(),store=useStore(),appearance=store.settings.powerSaving?{...store.settings.appearance,cover3d:false}:store.settings.appearance,[rotation,setRotation]=useState({x:-9,y:-18}),[dragging,setDragging]=useState(false),[manual,setManual]=useState(false),[hovering,setHovering]=useState(false),hint=useId();
   const stage=useRef<HTMLDivElement>(null),visible=useVisualVisibility(stage,active),activeRef=useRef(active&&visible);activeRef.current=active&&visible;
   const [stageSize,setStageSize]=useState({width:0,height:0});
   useLayoutEffect(()=>{const node=stage.current;if(!node)return;const measure=()=>setStageSize({width:node.clientWidth,height:node.clientHeight});measure();const observer=new ResizeObserver(measure);observer.observe(node);return()=>observer.disconnect();},[]);
   // Artwork has one responsive size. The stage grows around it; rotation never shrinks it.
   const fontScale=store.settings.fontScale||1,landscape=appearance.cover3d&&matchMedia('(min-width:600px) and (max-height:500px)').matches;
-  const spacious = appearance.cover3d && stageSize.width >= 330 && (stageBudget??0)>=410;
   const coverSize=useMemo(()=>{
     const widthLimit=Math.max(0,stageSize.width-24)/(appearance.cover3d?1.5:1);
     if(landscape)return Math.min(202/fontScale,widthLimit);
     // Full-player controls may need internal scroll. They must not steal the
     // sleeve's size when lyrics load or a window becomes shorter.
-    if(stageBudget!==undefined)return Math.min(302/fontScale,widthLimit);
-    const fitted=spacious?Math.min(302/fontScale,widthLimit,Math.max(0,(stageBudget??410)-24)/1.36):fitCover(stageSize.width,stageBudget??0,appearance.cover3d,0,0);
+    if(sizeLimit!==undefined)return Math.min(sizeLimit/fontScale,widthLimit);
+    const fitted=fitCover(stageSize.width,0,appearance.cover3d,0,0);
     const minimum=appearance.cover3d&&matchMedia('(max-width:600px)').matches?Math.min(155/fontScale,widthLimit):0;
     return Math.max(minimum,fitted);
-  },[stageSize.width,stageBudget,appearance.cover3d,spacious,landscape,fontScale]);
+  },[stageSize.width,sizeLimit,appearance.cover3d,landscape,fontScale]);
   const sceneHeight=useMemo(()=>appearance.cover3d?coverEnvelopeHeight(coverSize):coverSceneHeight(coverSize),[coverSize,appearance.cover3d]);
   const hold=useRef<ReturnType<typeof setTimeout>|null>(null),heldPointer=useRef<{id:number;x:number;y:number}|null>(null),angles=useRef(rotation),frame=useRef(0),animationGoal=useRef<{x:number;y:number}|null>(null),motion=useRef(store.motion),speed=useRef(appearance.speed),drag=useRef<{pointerId:number;x:number;y:number;baseX:number;baseY:number;lastX:number;lastTime:number;velocity:number}|null>(null);motion.current=store.motion;speed.current=appearance.speed;
   const update=(next:{x:number;y:number})=>{angles.current=next;setRotation(next);};
